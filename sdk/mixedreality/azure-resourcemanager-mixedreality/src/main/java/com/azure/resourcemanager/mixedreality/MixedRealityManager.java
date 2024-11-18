@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,16 +20,17 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mixedreality.fluent.MixedRealityClient;
 import com.azure.resourcemanager.mixedreality.implementation.MixedRealityClientBuilder;
+import com.azure.resourcemanager.mixedreality.implementation.ObjectAnchorsAccountsImpl;
 import com.azure.resourcemanager.mixedreality.implementation.OperationsImpl;
 import com.azure.resourcemanager.mixedreality.implementation.RemoteRenderingAccountsImpl;
 import com.azure.resourcemanager.mixedreality.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.mixedreality.implementation.SpatialAnchorsAccountsImpl;
+import com.azure.resourcemanager.mixedreality.models.ObjectAnchorsAccounts;
 import com.azure.resourcemanager.mixedreality.models.Operations;
 import com.azure.resourcemanager.mixedreality.models.RemoteRenderingAccounts;
 import com.azure.resourcemanager.mixedreality.models.ResourceProviders;
@@ -52,6 +54,8 @@ public final class MixedRealityManager {
     private SpatialAnchorsAccounts spatialAnchorsAccounts;
 
     private RemoteRenderingAccounts remoteRenderingAccounts;
+
+    private ObjectAnchorsAccounts objectAnchorsAccounts;
 
     private final MixedRealityClient clientObject;
 
@@ -217,7 +221,7 @@ public final class MixedRealityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.mixedreality")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -250,7 +254,7 @@ public final class MixedRealityManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -311,6 +315,18 @@ public final class MixedRealityManager {
                 = new RemoteRenderingAccountsImpl(clientObject.getRemoteRenderingAccounts(), this);
         }
         return remoteRenderingAccounts;
+    }
+
+    /**
+     * Gets the resource collection API of ObjectAnchorsAccounts. It manages ObjectAnchorsAccount.
+     * 
+     * @return Resource collection API of ObjectAnchorsAccounts.
+     */
+    public ObjectAnchorsAccounts objectAnchorsAccounts() {
+        if (this.objectAnchorsAccounts == null) {
+            this.objectAnchorsAccounts = new ObjectAnchorsAccountsImpl(clientObject.getObjectAnchorsAccounts(), this);
+        }
+        return objectAnchorsAccounts;
     }
 
     /**
