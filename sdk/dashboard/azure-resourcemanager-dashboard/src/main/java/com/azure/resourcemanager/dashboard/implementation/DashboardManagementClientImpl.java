@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.dashboard.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -24,6 +25,7 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.dashboard.fluent.DashboardManagementClient;
 import com.azure.resourcemanager.dashboard.fluent.GrafanasClient;
+import com.azure.resourcemanager.dashboard.fluent.IntegrationFabricsClient;
 import com.azure.resourcemanager.dashboard.fluent.ManagedPrivateEndpointsClient;
 import com.azure.resourcemanager.dashboard.fluent.OperationsClient;
 import com.azure.resourcemanager.dashboard.fluent.PrivateEndpointConnectionsClient;
@@ -197,6 +199,20 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
     }
 
     /**
+     * The IntegrationFabricsClient object to access its operations.
+     */
+    private final IntegrationFabricsClient integrationFabrics;
+
+    /**
+     * Gets the IntegrationFabricsClient object to access its operations.
+     * 
+     * @return the IntegrationFabricsClient object.
+     */
+    public IntegrationFabricsClient getIntegrationFabrics() {
+        return this.integrationFabrics;
+    }
+
+    /**
      * Initializes an instance of DashboardManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -213,12 +229,13 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-01";
+        this.apiVersion = "2023-10-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.grafanas = new GrafanasClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.managedPrivateEndpoints = new ManagedPrivateEndpointsClientImpl(this);
+        this.integrationFabrics = new IntegrationFabricsClientImpl(this);
     }
 
     /**
@@ -323,7 +340,7 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {

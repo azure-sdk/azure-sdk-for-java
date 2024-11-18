@@ -9,7 +9,8 @@ package com.azure.resourcemanager.dashboard.generated;
  */
 public final class ManagedPrivateEndpointsRefreshSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/preview/2023-10-01-preview/examples/
      * ManagedPrivateEndpoints_Refresh.json
      */
     /**

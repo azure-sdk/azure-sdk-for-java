@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,18 +20,19 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dashboard.fluent.DashboardManagementClient;
 import com.azure.resourcemanager.dashboard.implementation.DashboardManagementClientBuilder;
 import com.azure.resourcemanager.dashboard.implementation.GrafanasImpl;
+import com.azure.resourcemanager.dashboard.implementation.IntegrationFabricsImpl;
 import com.azure.resourcemanager.dashboard.implementation.ManagedPrivateEndpointsImpl;
 import com.azure.resourcemanager.dashboard.implementation.OperationsImpl;
 import com.azure.resourcemanager.dashboard.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.dashboard.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.dashboard.models.Grafanas;
+import com.azure.resourcemanager.dashboard.models.IntegrationFabrics;
 import com.azure.resourcemanager.dashboard.models.ManagedPrivateEndpoints;
 import com.azure.resourcemanager.dashboard.models.Operations;
 import com.azure.resourcemanager.dashboard.models.PrivateEndpointConnections;
@@ -56,6 +58,8 @@ public final class DashboardManager {
     private PrivateLinkResources privateLinkResources;
 
     private ManagedPrivateEndpoints managedPrivateEndpoints;
+
+    private IntegrationFabrics integrationFabrics;
 
     private final DashboardManagementClient clientObject;
 
@@ -221,7 +225,7 @@ public final class DashboardManager {
                 .append("-")
                 .append("com.azure.resourcemanager.dashboard")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -254,7 +258,7 @@ public final class DashboardManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -327,6 +331,18 @@ public final class DashboardManager {
                 = new ManagedPrivateEndpointsImpl(clientObject.getManagedPrivateEndpoints(), this);
         }
         return managedPrivateEndpoints;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationFabrics. It manages IntegrationFabric.
+     * 
+     * @return Resource collection API of IntegrationFabrics.
+     */
+    public IntegrationFabrics integrationFabrics() {
+        if (this.integrationFabrics == null) {
+            this.integrationFabrics = new IntegrationFabricsImpl(clientObject.getIntegrationFabrics(), this);
+        }
+        return integrationFabrics;
     }
 
     /**
