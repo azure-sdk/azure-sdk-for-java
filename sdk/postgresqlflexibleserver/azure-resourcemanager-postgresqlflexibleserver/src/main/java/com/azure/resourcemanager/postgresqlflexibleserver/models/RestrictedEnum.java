@@ -5,12 +5,11 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
  * A value indicating whether this region is restricted. "Enabled" means region is restricted. "Disabled" stands for
- * region is not restricted.
+ * region is not restricted. Will be deprecated in future, please look to Supported Features for "Restricted".
  */
 public final class RestrictedEnum extends ExpandableStringEnum<RestrictedEnum> {
     /**
@@ -38,7 +37,6 @@ public final class RestrictedEnum extends ExpandableStringEnum<RestrictedEnum> {
      * @param name a name to look for.
      * @return the corresponding RestrictedEnum.
      */
-    @JsonCreator
     public static RestrictedEnum fromString(String name) {
         return fromString(name, RestrictedEnum.class);
     }
