@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.kubernetesconfiguration.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -38,147 +39,159 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the SourceControlConfigurationClientImpl type. */
+/**
+ * Initializes a new instance of the SourceControlConfigurationClientImpl type.
+ */
 @ServiceClient(builder = SourceControlConfigurationClientBuilder.class)
 public final class SourceControlConfigurationClientImpl implements SourceControlConfigurationClient {
-    /** The ID of the target subscription. */
+    /**
+     * The ID of the target subscription.
+     */
     private final String subscriptionId;
 
     /**
      * Gets The ID of the target subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String getSubscriptionId() {
         return this.subscriptionId;
     }
 
-    /** server parameter. */
+    /**
+     * server parameter.
+     */
     private final String endpoint;
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
     }
 
-    /** Api Version. */
-    private final String apiVersion;
-
     /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
+     * The HTTP pipeline to send requests through.
      */
-    public String getApiVersion() {
-        return this.apiVersion;
-    }
-
-    /** The HTTP pipeline to send requests through. */
     private final HttpPipeline httpPipeline;
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     public HttpPipeline getHttpPipeline() {
         return this.httpPipeline;
     }
 
-    /** The serializer to serialize an object into a string. */
+    /**
+     * The serializer to serialize an object into a string.
+     */
     private final SerializerAdapter serializerAdapter;
 
     /**
      * Gets The serializer to serialize an object into a string.
-     *
+     * 
      * @return the serializerAdapter value.
      */
     SerializerAdapter getSerializerAdapter() {
         return this.serializerAdapter;
     }
 
-    /** The default poll interval for long-running operation. */
+    /**
+     * The default poll interval for long-running operation.
+     */
     private final Duration defaultPollInterval;
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
     }
 
-    /** The ExtensionsClient object to access its operations. */
+    /**
+     * The ExtensionsClient object to access its operations.
+     */
     private final ExtensionsClient extensions;
 
     /**
      * Gets the ExtensionsClient object to access its operations.
-     *
+     * 
      * @return the ExtensionsClient object.
      */
     public ExtensionsClient getExtensions() {
         return this.extensions;
     }
 
-    /** The OperationStatusClient object to access its operations. */
+    /**
+     * The OperationStatusClient object to access its operations.
+     */
     private final OperationStatusClient operationStatus;
 
     /**
      * Gets the OperationStatusClient object to access its operations.
-     *
+     * 
      * @return the OperationStatusClient object.
      */
     public OperationStatusClient getOperationStatus() {
         return this.operationStatus;
     }
 
-    /** The FluxConfigurationsClient object to access its operations. */
+    /**
+     * The FluxConfigurationsClient object to access its operations.
+     */
     private final FluxConfigurationsClient fluxConfigurations;
 
     /**
      * Gets the FluxConfigurationsClient object to access its operations.
-     *
+     * 
      * @return the FluxConfigurationsClient object.
      */
     public FluxConfigurationsClient getFluxConfigurations() {
         return this.fluxConfigurations;
     }
 
-    /** The FluxConfigOperationStatusClient object to access its operations. */
+    /**
+     * The FluxConfigOperationStatusClient object to access its operations.
+     */
     private final FluxConfigOperationStatusClient fluxConfigOperationStatus;
 
     /**
      * Gets the FluxConfigOperationStatusClient object to access its operations.
-     *
+     * 
      * @return the FluxConfigOperationStatusClient object.
      */
     public FluxConfigOperationStatusClient getFluxConfigOperationStatus() {
         return this.fluxConfigOperationStatus;
     }
 
-    /** The SourceControlConfigurationsClient object to access its operations. */
+    /**
+     * The SourceControlConfigurationsClient object to access its operations.
+     */
     private final SourceControlConfigurationsClient sourceControlConfigurations;
 
     /**
      * Gets the SourceControlConfigurationsClient object to access its operations.
-     *
+     * 
      * @return the SourceControlConfigurationsClient object.
      */
     public SourceControlConfigurationsClient getSourceControlConfigurations() {
         return this.sourceControlConfigurations;
     }
 
-    /** The OperationsClient object to access its operations. */
+    /**
+     * The OperationsClient object to access its operations.
+     */
     private final OperationsClient operations;
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     public OperationsClient getOperations() {
@@ -187,7 +200,7 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
 
     /**
      * Initializes an instance of SourceControlConfigurationClient client.
-     *
+     * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
@@ -202,7 +215,6 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-05-01";
         this.extensions = new ExtensionsClientImpl(this);
         this.operationStatus = new OperationStatusClientImpl(this);
         this.fluxConfigurations = new FluxConfigurationsClientImpl(this);
@@ -213,7 +225,7 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
 
     /**
      * Gets default client context.
-     *
+     * 
      * @return the default client context.
      */
     public Context getContext() {
@@ -222,7 +234,7 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
 
     /**
      * Merges default client context with provided context.
-     *
+     * 
      * @param context the context to be merged with default client context.
      * @return the merged context.
      */
@@ -232,7 +244,7 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
 
     /**
      * Gets long running operation result.
-     *
+     * 
      * @param activationResponse the response of activation operation.
      * @param httpPipeline the http pipeline.
      * @param pollResultType type of poll result.
@@ -250,7 +262,7 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
 
     /**
      * Gets the final result, or an error, based on last async poll response.
-     *
+     * 
      * @param response the last async poll response.
      * @param <T> type of poll result.
      * @param <U> type of final result.
@@ -313,7 +325,7 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {
