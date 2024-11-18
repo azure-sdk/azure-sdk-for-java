@@ -37,13 +37,17 @@
 ### Controller_Create
 
 ```java
+import com.azure.resourcemanager.delegatednetwork.models.ControllerPurpose;
+import com.azure.resourcemanager.delegatednetwork.models.DelegatedControllerProperties;
+
 /**
  * Samples for Controller Create.
  */
 public final class ControllerCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/putController.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/putController.
+     * json
      */
     /**
      * Sample code: Create controller.
@@ -55,6 +59,7 @@ public final class ControllerCreateSamples {
             .define("testcontroller")
             .withRegion("West US")
             .withExistingResourceGroup("TestRG")
+            .withProperties(new DelegatedControllerProperties().withPurpose(ControllerPurpose.TEST))
             .create();
     }
 }
@@ -69,7 +74,8 @@ public final class ControllerCreateSamples {
 public final class ControllerDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/deleteController.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * deleteController.json
      */
     /**
      * Sample code: Delete controller.
@@ -91,7 +97,8 @@ public final class ControllerDeleteSamples {
 public final class ControllerGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/getController.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/getController.
+     * json
      */
     /**
      * Sample code: Get details of a controller.
@@ -119,7 +126,8 @@ import java.util.Map;
 public final class ControllerPatchSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchController.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/patchController
+     * .json
      */
     /**
      * Sample code: update controller.
@@ -156,7 +164,8 @@ public final class ControllerPatchSamples {
 public final class DelegatedNetworkListSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/controllerListBySub.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * controllerListBySub.json
      */
     /**
      * Sample code: Get DelegatedController resources by subscription.
@@ -179,7 +188,8 @@ public final class DelegatedNetworkListSamples {
 public final class DelegatedNetworkListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/controllerListByRG.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * controllerListByRG.json
      */
     /**
      * Sample code: Get DelegatedNetwork resources by resource group.
@@ -202,8 +212,8 @@ public final class DelegatedNetworkListByResourceGroupSamples {
 public final class DelegatedSubnetServiceDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/deleteDelegatedSubnet.
-     * json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * deleteDelegatedSubnet.json
      */
     /**
      * Sample code: delete delegated subnet.
@@ -226,7 +236,8 @@ public final class DelegatedSubnetServiceDeleteSamples {
 public final class DelegatedSubnetServiceGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/getDelegatedSubnet.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * getDelegatedSubnet.json
      */
     /**
      * Sample code: Get details of a delegated subnet.
@@ -250,8 +261,8 @@ public final class DelegatedSubnetServiceGetByResourceGroupSamples {
 public final class DelegatedSubnetServiceListSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/delegatedSubnetListBySub
-     * .json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * delegatedSubnetListBySub.json
      */
     /**
      * Sample code: Get DelegatedSubnets resources by subscription.
@@ -274,8 +285,8 @@ public final class DelegatedSubnetServiceListSamples {
 public final class DelegatedSubnetServiceListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/delegatedSubnetListByRG.
-     * json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * delegatedSubnetListByRG.json
      */
     /**
      * Sample code: Get DelegatedSubnets resources by resource group.
@@ -302,8 +313,8 @@ import java.util.Map;
 public final class DelegatedSubnetServicePatchDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchDelegatedSubnet.
-     * json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * patchDelegatedSubnet.json
      */
     /**
      * Sample code: patch delegated subnet.
@@ -344,7 +355,32 @@ import com.azure.resourcemanager.delegatednetwork.models.SubnetDetails;
 public final class DelegatedSubnetServicePutDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/putDelegatedSubnet.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * putDelegatedSubnetVnetBlock.json
+     */
+    /**
+     * Sample code: put delegated subnet vnetblock.
+     * 
+     * @param manager Entry point to DelegatedNetworkManager.
+     */
+    public static void
+        putDelegatedSubnetVnetblock(com.azure.resourcemanager.delegatednetwork.DelegatedNetworkManager manager) {
+        manager.delegatedSubnetServices()
+            .define("delegated1")
+            .withRegion("West US")
+            .withExistingResourceGroup("TestRG")
+            .withSubnetDetails(new SubnetDetails().withId(
+                "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/testvnet/subnets/testsubnet"))
+            .withControllerDetails(new ControllerDetails().withId(
+                "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.DelegatedNetwork/controller/dnctestcontroller"))
+            .withAllocationBlockPrefixSize(27)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * putDelegatedSubnet.json
      */
     /**
      * Sample code: put delegated subnet.
@@ -373,7 +409,8 @@ public final class DelegatedSubnetServicePutDetailsSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/
+     * x-ms-original-file:
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
      * delegatedNetworkOperationsList.json
      */
     /**
@@ -403,7 +440,8 @@ import com.azure.resourcemanager.delegatednetwork.models.ResourceIdentityType;
 public final class OrchestratorInstanceServiceCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/putOrchestrator.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/putOrchestrator
+     * .json
      */
     /**
      * Sample code: Create orchestrator instance.
@@ -441,7 +479,8 @@ public final class OrchestratorInstanceServiceCreateSamples {
 public final class OrchestratorInstanceServiceDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/deleteOrchestrator.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * deleteOrchestrator.json
      */
     /**
      * Sample code: Delete Orchestrator Instance.
@@ -464,7 +503,8 @@ public final class OrchestratorInstanceServiceDeleteSamples {
 public final class OrchestratorInstanceServiceGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/getOrchestrator.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/getOrchestrator
+     * .json
      */
     /**
      * Sample code: Get details of a orchestratorInstance.
@@ -487,7 +527,8 @@ public final class OrchestratorInstanceServiceGetByResourceGroupSamples {
  */
 public final class OrchestratorInstanceServiceListSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/
+     * x-ms-original-file:
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
      * orchestratorInstanceListBySub.json
      */
     /**
@@ -510,7 +551,8 @@ public final class OrchestratorInstanceServiceListSamples {
  */
 public final class OrchestratorInstanceServiceListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/
+     * x-ms-original-file:
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
      * orchestratorInstanceListByRG.json
      */
     /**
@@ -538,7 +580,8 @@ import java.util.Map;
 public final class OrchestratorInstanceServicePatchSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchOrchestrator.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * patchOrchestrator.json
      */
     /**
      * Sample code: update Orchestrator Instance.
