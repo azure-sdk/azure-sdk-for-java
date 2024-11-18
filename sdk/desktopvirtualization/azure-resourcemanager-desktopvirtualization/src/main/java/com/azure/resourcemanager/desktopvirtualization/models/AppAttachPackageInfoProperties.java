@@ -26,7 +26,7 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     private String packageAlias;
 
     /*
-     * VHD/CIM image path on Network Share.
+     * VHD/CIM/APP-V image path on Network Share.
      */
     private String imagePath;
 
@@ -36,12 +36,12 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     private String packageName;
 
     /*
-     * Package Family Name from appxmanifest.xml. Contains Package Name and Publisher name.
+     * Identifier not including the package version, for Msix packages it is the family name from the appxmanifest.xml.
      */
     private String packageFamilyName;
 
     /*
-     * Package Full Name from appxmanifest.xml.
+     * Identifier including the package version, for Msix packages it is the full name from the appxmanifest.xml.
      */
     private String packageFullName;
 
@@ -71,12 +71,12 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     private List<MsixPackageDependencies> packageDependencies;
 
     /*
-     * Package version found in the appxmanifest.xml.
+     * Package Version found in the appxmanifest.xml.
      */
     private String version;
 
     /*
-     * Date Package was last updated, found in the appxmanifest.xml.
+     * Date the package source was last updated, for Msix packages this is found in the appxmanifest.xml.
      */
     private OffsetDateTime lastUpdated;
 
@@ -127,7 +127,7 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Get the imagePath property: VHD/CIM image path on Network Share.
+     * Get the imagePath property: VHD/CIM/APP-V image path on Network Share.
      * 
      * @return the imagePath value.
      */
@@ -136,7 +136,7 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Set the imagePath property: VHD/CIM image path on Network Share.
+     * Set the imagePath property: VHD/CIM/APP-V image path on Network Share.
      * 
      * @param imagePath the imagePath value to set.
      * @return the AppAttachPackageInfoProperties object itself.
@@ -167,8 +167,8 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Get the packageFamilyName property: Package Family Name from appxmanifest.xml. Contains Package Name and
-     * Publisher name.
+     * Get the packageFamilyName property: Identifier not including the package version, for Msix packages it is the
+     * family name from the appxmanifest.xml.
      * 
      * @return the packageFamilyName value.
      */
@@ -177,8 +177,8 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Set the packageFamilyName property: Package Family Name from appxmanifest.xml. Contains Package Name and
-     * Publisher name.
+     * Set the packageFamilyName property: Identifier not including the package version, for Msix packages it is the
+     * family name from the appxmanifest.xml.
      * 
      * @param packageFamilyName the packageFamilyName value to set.
      * @return the AppAttachPackageInfoProperties object itself.
@@ -189,7 +189,8 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Get the packageFullName property: Package Full Name from appxmanifest.xml.
+     * Get the packageFullName property: Identifier including the package version, for Msix packages it is the full name
+     * from the appxmanifest.xml.
      * 
      * @return the packageFullName value.
      */
@@ -198,7 +199,8 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Set the packageFullName property: Package Full Name from appxmanifest.xml.
+     * Set the packageFullName property: Identifier including the package version, for Msix packages it is the full name
+     * from the appxmanifest.xml.
      * 
      * @param packageFullName the packageFullName value to set.
      * @return the AppAttachPackageInfoProperties object itself.
@@ -309,7 +311,7 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Get the version property: Package version found in the appxmanifest.xml.
+     * Get the version property: Package Version found in the appxmanifest.xml.
      * 
      * @return the version value.
      */
@@ -318,7 +320,7 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Set the version property: Package version found in the appxmanifest.xml.
+     * Set the version property: Package Version found in the appxmanifest.xml.
      * 
      * @param version the version value to set.
      * @return the AppAttachPackageInfoProperties object itself.
@@ -329,7 +331,8 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Get the lastUpdated property: Date Package was last updated, found in the appxmanifest.xml.
+     * Get the lastUpdated property: Date the package source was last updated, for Msix packages this is found in the
+     * appxmanifest.xml.
      * 
      * @return the lastUpdated value.
      */
@@ -338,7 +341,8 @@ public final class AppAttachPackageInfoProperties implements JsonSerializable<Ap
     }
 
     /**
-     * Set the lastUpdated property: Date Package was last updated, found in the appxmanifest.xml.
+     * Set the lastUpdated property: Date the package source was last updated, for Msix packages this is found in the
+     * appxmanifest.xml.
      * 
      * @param lastUpdated the lastUpdated value to set.
      * @return the AppAttachPackageInfoProperties object itself.
