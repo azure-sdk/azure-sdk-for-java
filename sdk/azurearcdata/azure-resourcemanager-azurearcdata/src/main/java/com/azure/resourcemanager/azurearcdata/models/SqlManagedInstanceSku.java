@@ -38,12 +38,12 @@ public final class SqlManagedInstanceSku implements JsonSerializable<SqlManagedI
     private String size;
 
     /*
-     * The family property.
+     * The SKU family
      */
     private String family;
 
     /*
-     * The capacity property.
+     * The SKU capacity
      */
     private Integer capacity;
 
@@ -138,7 +138,7 @@ public final class SqlManagedInstanceSku implements JsonSerializable<SqlManagedI
     }
 
     /**
-     * Get the family property: The family property.
+     * Get the family property: The SKU family.
      * 
      * @return the family value.
      */
@@ -147,7 +147,7 @@ public final class SqlManagedInstanceSku implements JsonSerializable<SqlManagedI
     }
 
     /**
-     * Set the family property: The family property.
+     * Set the family property: The SKU family.
      * 
      * @param family the family value to set.
      * @return the SqlManagedInstanceSku object itself.
@@ -158,7 +158,7 @@ public final class SqlManagedInstanceSku implements JsonSerializable<SqlManagedI
     }
 
     /**
-     * Get the capacity property: The capacity property.
+     * Get the capacity property: The SKU capacity.
      * 
      * @return the capacity value.
      */
@@ -167,7 +167,7 @@ public final class SqlManagedInstanceSku implements JsonSerializable<SqlManagedI
     }
 
     /**
-     * Set the capacity property: The capacity property.
+     * Set the capacity property: The SKU capacity.
      * 
      * @param capacity the capacity value to set.
      * @return the SqlManagedInstanceSku object itself.

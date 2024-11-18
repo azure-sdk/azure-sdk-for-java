@@ -12,7 +12,12 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInner;
+import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceJobsStatusResponseInner;
+import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceRunMigrationAssessmentResponseInner;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceJobsStatusRequest;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceTelemetryRequest;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceUpdate;
+import java.util.List;
 
 /**
  * An instance of this class provides access to all the operations defined in SqlServerInstancesClient.
@@ -101,7 +106,7 @@ public interface SqlServerInstancesClient {
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -116,7 +121,7 @@ public interface SqlServerInstancesClient {
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -132,7 +137,7 @@ public interface SqlServerInstancesClient {
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -147,7 +152,7 @@ public interface SqlServerInstancesClient {
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -163,7 +168,7 @@ public interface SqlServerInstancesClient {
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -176,7 +181,7 @@ public interface SqlServerInstancesClient {
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -191,7 +196,7 @@ public interface SqlServerInstancesClient {
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -203,7 +208,7 @@ public interface SqlServerInstancesClient {
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -216,23 +221,38 @@ public interface SqlServerInstancesClient {
      * Updates a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance along with {@link Response}.
+     * @return the {@link SyncPoller} for polling of a SqlServerInstance.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<SqlServerInstanceInner> updateWithResponse(String resourceGroupName, String sqlServerInstanceName,
-        SqlServerInstanceUpdate parameters, Context context);
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginUpdate(String resourceGroupName,
+        String sqlServerInstanceName, SqlServerInstanceUpdate parameters);
 
     /**
      * Updates a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param parameters The SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginUpdate(String resourceGroupName,
+        String sqlServerInstanceName, SqlServerInstanceUpdate parameters, Context context);
+
+    /**
+     * Updates a SQL Server Instance resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -242,4 +262,168 @@ public interface SqlServerInstancesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     SqlServerInstanceInner update(String resourceGroupName, String sqlServerInstanceName,
         SqlServerInstanceUpdate parameters);
+
+    /**
+     * Updates a SQL Server Instance resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param parameters The SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SqlServerInstanceInner update(String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceUpdate parameters, Context context);
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<List<String>> getTelemetry(String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest);
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<List<String>> getTelemetry(String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest, Context context);
+
+    /**
+     * Runs migration assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response for running migration assessment on the SQL Server instance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SqlServerInstanceRunMigrationAssessmentResponseInner>
+        runMigrationAssessmentWithResponse(String resourceGroupName, String sqlServerInstanceName, Context context);
+
+    /**
+     * Runs migration assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response for running migration assessment on the SQL Server instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SqlServerInstanceRunMigrationAssessmentResponseInner runMigrationAssessment(String resourceGroupName,
+        String sqlServerInstanceName);
+
+    /**
+     * Gets jobs status details for sql arc resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceJobsStatusRequest Contains the parameters to get SQL Server instance agent jobs status.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return jobs status details for sql arc resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SqlServerInstanceJobsStatusResponseInner> getJobsStatusWithResponse(String resourceGroupName,
+        String sqlServerInstanceName, SqlServerInstanceJobsStatusRequest sqlServerInstanceJobsStatusRequest,
+        Context context);
+
+    /**
+     * Gets jobs status details for sql arc resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return jobs status details for sql arc resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SqlServerInstanceJobsStatusResponseInner getJobsStatus(String resourceGroupName, String sqlServerInstanceName);
+
+    /**
+     * Request Upgrade Permission before upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SqlServerInstanceInner> preUpgradeWithResponse(String resourceGroupName, String sqlServerInstanceName,
+        Context context);
+
+    /**
+     * Request Upgrade Permission before upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SqlServerInstanceInner preUpgrade(String resourceGroupName, String sqlServerInstanceName);
+
+    /**
+     * Clean up after upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SqlServerInstanceInner> postUpgradeWithResponse(String resourceGroupName, String sqlServerInstanceName,
+        Context context);
+
+    /**
+     * Clean up after upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SqlServerInstanceInner postUpgrade(String resourceGroupName, String sqlServerInstanceName);
 }
