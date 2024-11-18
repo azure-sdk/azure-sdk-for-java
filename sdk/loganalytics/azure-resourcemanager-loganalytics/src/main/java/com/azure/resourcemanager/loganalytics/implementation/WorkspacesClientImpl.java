@@ -40,17 +40,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in WorkspacesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in WorkspacesClient.
+ */
 public final class WorkspacesClientImpl implements WorkspacesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final WorkspacesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of WorkspacesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     WorkspacesClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -123,11 +129,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets the workspaces in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workspaces in a subscription along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the workspaces in a subscription along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync() {
@@ -139,11 +145,10 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<WorkspaceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -151,13 +156,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets the workspaces in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workspaces in a subscription along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the workspaces in a subscription along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync(Context context) {
@@ -169,17 +174,18 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
     }
 
     /**
      * Gets the workspaces in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the workspaces in a subscription as paginated response with {@link PagedFlux}.
@@ -191,7 +197,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets the workspaces in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -205,7 +211,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets the workspaces in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the workspaces in a subscription as paginated response with {@link PagedIterable}.
@@ -217,7 +223,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets the workspaces in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -231,7 +237,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets workspaces in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -252,11 +258,10 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<WorkspaceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -264,7 +269,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets workspaces in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -287,11 +292,10 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, apiVersion,
+            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
                 this.client.getSubscriptionId(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
@@ -299,7 +303,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets workspaces in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -313,7 +317,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets workspaces in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -328,7 +332,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets workspaces in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -342,7 +346,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets workspaces in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -357,15 +361,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the top level Workspace resource container along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the top level Workspace resource container along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -390,17 +394,16 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                apiVersion, this.client.getSubscriptionId(), parameters, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -408,8 +411,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the top level Workspace resource container along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the top level Workspace resource container along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -434,16 +437,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName, apiVersion,
-            this.client.getSubscriptionId(), parameters, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName,
+            this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept, context);
     }
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -463,7 +465,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -485,7 +487,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -502,7 +504,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -520,7 +522,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -538,7 +540,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -557,7 +559,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -573,7 +575,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Create or update a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to create or update a workspace.
@@ -593,11 +595,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param force Deletes the workspace without the recovery option. A workspace that was deleted with this flag
-     *     cannot be recovered.
+     * cannot be recovered.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -621,11 +623,10 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                apiVersion, this.client.getSubscriptionId(), force, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), force, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -633,11 +634,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param force Deletes the workspace without the recovery option. A workspace that was deleted with this flag
-     *     cannot be recovered.
+     * cannot be recovered.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -662,10 +663,9 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName, apiVersion,
+        return service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), force, accept, context);
     }
 
@@ -673,11 +673,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param force Deletes the workspace without the recovery option. A workspace that was deleted with this flag
-     *     cannot be recovered.
+     * cannot be recovered.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -695,7 +695,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -715,11 +715,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param force Deletes the workspace without the recovery option. A workspace that was deleted with this flag
-     *     cannot be recovered.
+     * cannot be recovered.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -740,7 +740,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -758,11 +758,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param force Deletes the workspace without the recovery option. A workspace that was deleted with this flag
-     *     cannot be recovered.
+     * cannot be recovered.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -779,11 +779,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param force Deletes the workspace without the recovery option. A workspace that was deleted with this flag
-     *     cannot be recovered.
+     * cannot be recovered.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -799,7 +799,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -818,11 +818,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param force Deletes the workspace without the recovery option. A workspace that was deleted with this flag
-     *     cannot be recovered.
+     * cannot be recovered.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -839,7 +839,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -856,11 +856,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same
      * subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace.
      * To remove the workspace completely and release the name, use the force flag.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param force Deletes the workspace without the recovery option. A workspace that was deleted with this flag
-     *     cannot be recovered.
+     * cannot be recovered.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -873,7 +873,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets a workspace instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -899,17 +899,16 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                workspaceName, apiVersion, this.client.getSubscriptionId(), accept, context))
+                workspaceName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a workspace instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -936,16 +935,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, workspaceName, apiVersion,
-            this.client.getSubscriptionId(), accept, context);
+        return service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, workspaceName,
+            this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context);
     }
 
     /**
      * Gets a workspace instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -961,7 +959,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets a workspace instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -978,7 +976,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Gets a workspace instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -993,15 +991,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Updates a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to patch a workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the top level Workspace resource container along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the top level Workspace resource container along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkspaceInner>> updateWithResponseAsync(String resourceGroupName, String workspaceName,
@@ -1026,17 +1024,16 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                apiVersion, this.client.getSubscriptionId(), parameters, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Updates a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to patch a workspace.
@@ -1044,8 +1041,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the top level Workspace resource container along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the top level Workspace resource container along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkspaceInner>> updateWithResponseAsync(String resourceGroupName, String workspaceName,
@@ -1070,16 +1067,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), resourceGroupName, workspaceName, apiVersion,
+        return service.update(this.client.getEndpoint(), resourceGroupName, workspaceName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), parameters, accept, context);
     }
 
     /**
      * Updates a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to patch a workspace.
@@ -1097,7 +1093,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Updates a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to patch a workspace.
@@ -1115,7 +1111,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
     /**
      * Updates a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param parameters The parameters required to patch a workspace.

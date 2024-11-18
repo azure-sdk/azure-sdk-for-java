@@ -33,17 +33,23 @@ import com.azure.resourcemanager.loganalytics.fluent.models.DataSourceInner;
 import com.azure.resourcemanager.loganalytics.models.DataSourceListResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in DataSourcesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in DataSourcesClient.
+ */
 public final class DataSourcesClientImpl implements DataSourcesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final DataSourcesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of DataSourcesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     DataSourcesClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -109,7 +115,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Create or update a data source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName The name of the datasource resource.
@@ -145,17 +151,17 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                dataSourceName, apiVersion, this.client.getSubscriptionId(), parameters, accept, context))
+                dataSourceName, this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a data source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName The name of the datasource resource.
@@ -192,16 +198,15 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceName,
-            apiVersion, this.client.getSubscriptionId(), parameters, accept, context);
+            this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept, context);
     }
 
     /**
      * Create or update a data source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName The name of the datasource resource.
@@ -220,7 +225,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Create or update a data source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName The name of the datasource resource.
@@ -240,7 +245,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Create or update a data source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName The name of the datasource resource.
@@ -259,7 +264,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Deletes a data source instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -289,16 +294,15 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                dataSourceName, apiVersion, this.client.getSubscriptionId(), context))
+                dataSourceName, this.client.getApiVersion(), this.client.getSubscriptionId(), context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes a data source instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -329,15 +333,14 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceName, apiVersion,
-            this.client.getSubscriptionId(), context);
+        return service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceName,
+            this.client.getApiVersion(), this.client.getSubscriptionId(), context);
     }
 
     /**
      * Deletes a data source instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -354,7 +357,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Deletes a data source instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -372,7 +375,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Deletes a data source instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -387,7 +390,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets a datasource instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -417,17 +420,16 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                dataSourceName, apiVersion, this.client.getSubscriptionId(), accept, context))
+                dataSourceName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a datasource instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -458,16 +460,15 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceName, apiVersion,
-            this.client.getSubscriptionId(), accept, context);
+        return service.get(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceName,
+            this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context);
     }
 
     /**
      * Gets a datasource instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -484,7 +485,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets a datasource instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -502,7 +503,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets a datasource instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceName Name of the datasource.
@@ -518,7 +519,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets the first page of data source instances in a workspace with the link to the next page.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param filter The filter to apply on the operation.
@@ -526,8 +527,8 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the first page of data source instances in a workspace with the link to the next page along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the first page of data source instances in a workspace with the link to the next page along with
+     * {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataSourceInner>> listByWorkspaceSinglePageAsync(String resourceGroupName,
@@ -550,11 +551,10 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                filter, skiptoken, apiVersion, this.client.getSubscriptionId(), accept, context))
+                filter, skiptoken, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<DataSourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -562,7 +562,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets the first page of data source instances in a workspace with the link to the next page.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param filter The filter to apply on the operation.
@@ -571,8 +571,8 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the first page of data source instances in a workspace with the link to the next page along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the first page of data source instances in a workspace with the link to the next page along with
+     * {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataSourceInner>> listByWorkspaceSinglePageAsync(String resourceGroupName,
@@ -595,19 +595,18 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByWorkspace(this.client.getEndpoint(), resourceGroupName, workspaceName, filter, skiptoken, apiVersion,
-                this.client.getSubscriptionId(), accept, context)
+            .listByWorkspace(this.client.getEndpoint(), resourceGroupName, workspaceName, filter, skiptoken,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets the first page of data source instances in a workspace with the link to the next page.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param filter The filter to apply on the operation.
@@ -616,7 +615,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the first page of data source instances in a workspace with the link to the next page as paginated
-     *     response with {@link PagedFlux}.
+     * response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DataSourceInner> listByWorkspaceAsync(String resourceGroupName, String workspaceName,
@@ -628,7 +627,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets the first page of data source instances in a workspace with the link to the next page.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param filter The filter to apply on the operation.
@@ -636,7 +635,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the first page of data source instances in a workspace with the link to the next page as paginated
-     *     response with {@link PagedFlux}.
+     * response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DataSourceInner> listByWorkspaceAsync(String resourceGroupName, String workspaceName,
@@ -649,7 +648,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets the first page of data source instances in a workspace with the link to the next page.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param filter The filter to apply on the operation.
@@ -659,7 +658,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the first page of data source instances in a workspace with the link to the next page as paginated
-     *     response with {@link PagedFlux}.
+     * response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DataSourceInner> listByWorkspaceAsync(String resourceGroupName, String workspaceName,
@@ -671,7 +670,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets the first page of data source instances in a workspace with the link to the next page.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param filter The filter to apply on the operation.
@@ -679,7 +678,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the first page of data source instances in a workspace with the link to the next page as paginated
-     *     response with {@link PagedIterable}.
+     * response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DataSourceInner> listByWorkspace(String resourceGroupName, String workspaceName,
@@ -690,7 +689,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Gets the first page of data source instances in a workspace with the link to the next page.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param filter The filter to apply on the operation.
@@ -700,7 +699,7 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the first page of data source instances in a workspace with the link to the next page as paginated
-     *     response with {@link PagedIterable}.
+     * response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DataSourceInner> listByWorkspace(String resourceGroupName, String workspaceName, String filter,
@@ -710,14 +709,13 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list data source by workspace operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataSourceInner>> listByWorkspaceNextSinglePageAsync(String nextLink) {
@@ -738,15 +736,14 @@ public final class DataSourcesClientImpl implements DataSourcesClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list data source by workspace operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataSourceInner>> listByWorkspaceNextSinglePageAsync(String nextLink, Context context) {

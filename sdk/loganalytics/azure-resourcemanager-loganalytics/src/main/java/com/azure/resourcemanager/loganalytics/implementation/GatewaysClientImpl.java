@@ -23,17 +23,23 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.loganalytics.fluent.GatewaysClient;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in GatewaysClient. */
+/**
+ * An instance of this class provides access to all the operations defined in GatewaysClient.
+ */
 public final class GatewaysClientImpl implements GatewaysClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final GatewaysService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of GatewaysClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     GatewaysClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -60,7 +66,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
 
     /**
      * Delete a Log Analytics gateway.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param gatewayId The Log Analytics gateway Id.
@@ -90,16 +96,15 @@ public final class GatewaysClientImpl implements GatewaysClient {
         if (gatewayId == null) {
             return Mono.error(new IllegalArgumentException("Parameter gatewayId is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, gatewayId, apiVersion, context))
+                resourceGroupName, workspaceName, gatewayId, this.client.getApiVersion(), context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a Log Analytics gateway.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param gatewayId The Log Analytics gateway Id.
@@ -130,15 +135,14 @@ public final class GatewaysClientImpl implements GatewaysClient {
         if (gatewayId == null) {
             return Mono.error(new IllegalArgumentException("Parameter gatewayId is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, gatewayId, apiVersion, context);
+            workspaceName, gatewayId, this.client.getApiVersion(), context);
     }
 
     /**
      * Delete a Log Analytics gateway.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param gatewayId The Log Analytics gateway Id.
@@ -154,7 +158,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
 
     /**
      * Delete a Log Analytics gateway.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param gatewayId The Log Analytics gateway Id.
@@ -172,7 +176,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
 
     /**
      * Delete a Log Analytics gateway.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param gatewayId The Log Analytics gateway Id.

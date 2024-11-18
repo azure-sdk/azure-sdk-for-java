@@ -40,17 +40,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in TablesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in TablesClient.
+ */
 public final class TablesClientImpl implements TablesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final TablesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of TablesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     TablesClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -139,14 +145,14 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Gets all the tables for the specified Log Analytics workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all the tables for the specified Log Analytics workspace along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TableInner>> listByWorkspaceSinglePageAsync(String resourceGroupName,
@@ -166,11 +172,10 @@ public final class TablesClientImpl implements TablesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<TableInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -178,7 +183,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Gets all the tables for the specified Log Analytics workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -186,7 +191,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all the tables for the specified Log Analytics workspace along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TableInner>> listByWorkspaceSinglePageAsync(String resourceGroupName,
@@ -206,19 +211,18 @@ public final class TablesClientImpl implements TablesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                workspaceName, apiVersion, accept, context)
+                workspaceName, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
     }
 
     /**
      * Gets all the tables for the specified Log Analytics workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -233,7 +237,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Gets all the tables for the specified Log Analytics workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -250,14 +254,14 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Gets all the tables for the specified Log Analytics workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the tables for the specified Log Analytics workspace as paginated response with {@link
-     *     PagedIterable}.
+     * @return all the tables for the specified Log Analytics workspace as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TableInner> listByWorkspace(String resourceGroupName, String workspaceName) {
@@ -266,15 +270,15 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Gets all the tables for the specified Log Analytics workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the tables for the specified Log Analytics workspace as paginated response with {@link
-     *     PagedIterable}.
+     * @return all the tables for the specified Log Analytics workspace as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TableInner> listByWorkspace(String resourceGroupName, String workspaceName, Context context) {
@@ -283,7 +287,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -319,17 +323,16 @@ public final class TablesClientImpl implements TablesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, parameters, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -366,16 +369,15 @@ public final class TablesClientImpl implements TablesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, parameters, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, parameters, accept, context);
     }
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -396,7 +398,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -419,7 +421,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -437,7 +439,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -457,7 +459,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -476,7 +478,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -496,7 +498,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -514,7 +516,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update or Create a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -533,7 +535,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -569,17 +571,16 @@ public final class TablesClientImpl implements TablesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, parameters, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -616,16 +617,15 @@ public final class TablesClientImpl implements TablesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, parameters, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, parameters, accept, context);
     }
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -646,7 +646,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -669,7 +669,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -687,7 +687,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -706,7 +706,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -725,7 +725,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -745,7 +745,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -762,7 +762,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Update a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -781,7 +781,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Gets a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -811,17 +811,16 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -852,16 +851,15 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-            apiVersion, tableName, accept, context);
+            this.client.getApiVersion(), tableName, accept, context);
     }
 
     /**
      * Gets a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -878,7 +876,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Gets a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -896,7 +894,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Gets a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -912,7 +910,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -942,17 +940,16 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -983,16 +980,15 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, accept, context);
     }
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1011,7 +1007,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1033,7 +1029,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1050,7 +1046,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1068,7 +1064,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1085,7 +1081,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1103,7 +1099,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1118,7 +1114,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Delete a Log Analytics workspace table.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1135,7 +1131,7 @@ public final class TablesClientImpl implements TablesClient {
     /**
      * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
      * Data Collection Rule-based Custom Logs.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1165,18 +1161,17 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.migrate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
      * Data Collection Rule-based Custom Logs.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1207,17 +1202,16 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.migrate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, accept, context);
     }
 
     /**
      * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
      * Data Collection Rule-based Custom Logs.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1234,7 +1228,7 @@ public final class TablesClientImpl implements TablesClient {
     /**
      * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
      * Data Collection Rule-based Custom Logs.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1253,7 +1247,7 @@ public final class TablesClientImpl implements TablesClient {
     /**
      * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
      * Data Collection Rule-based Custom Logs.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1268,7 +1262,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Cancel a log analytics workspace search results table query run.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1298,17 +1292,16 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.cancelSearch(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Cancel a log analytics workspace search results table query run.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1339,16 +1332,15 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.cancelSearch(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, accept, context);
     }
 
     /**
      * Cancel a log analytics workspace search results table query run.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1365,7 +1357,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Cancel a log analytics workspace search results table query run.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
@@ -1383,7 +1375,7 @@ public final class TablesClientImpl implements TablesClient {
 
     /**
      * Cancel a log analytics workspace search results table query run.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.

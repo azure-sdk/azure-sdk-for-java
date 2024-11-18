@@ -27,17 +27,23 @@ import com.azure.resourcemanager.loganalytics.fluent.models.IntelligencePackInne
 import java.util.List;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in IntelligencePacksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in IntelligencePacksClient.
+ */
 public final class IntelligencePacksClientImpl implements IntelligencePacksClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final IntelligencePacksService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of IntelligencePacksClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     IntelligencePacksClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -85,7 +91,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Disables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be disabled.
@@ -116,16 +122,15 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         return FluxUtil
             .withContext(context -> service.disable(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                intelligencePackName, apiVersion, this.client.getSubscriptionId(), context))
+                intelligencePackName, this.client.getApiVersion(), this.client.getSubscriptionId(), context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Disables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be disabled.
@@ -157,15 +162,14 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         context = this.client.mergeContext(context);
         return service.disable(this.client.getEndpoint(), resourceGroupName, workspaceName, intelligencePackName,
-            apiVersion, this.client.getSubscriptionId(), context);
+            this.client.getApiVersion(), this.client.getSubscriptionId(), context);
     }
 
     /**
      * Disables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be disabled.
@@ -182,7 +186,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Disables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be disabled.
@@ -200,7 +204,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Disables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be disabled.
@@ -215,7 +219,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Enables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be enabled.
@@ -246,16 +250,15 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         return FluxUtil
             .withContext(context -> service.enable(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                intelligencePackName, apiVersion, this.client.getSubscriptionId(), context))
+                intelligencePackName, this.client.getApiVersion(), this.client.getSubscriptionId(), context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Enables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be enabled.
@@ -287,15 +290,14 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         context = this.client.mergeContext(context);
         return service.enable(this.client.getEndpoint(), resourceGroupName, workspaceName, intelligencePackName,
-            apiVersion, this.client.getSubscriptionId(), context);
+            this.client.getApiVersion(), this.client.getSubscriptionId(), context);
     }
 
     /**
      * Enables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be enabled.
@@ -312,7 +314,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Enables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be enabled.
@@ -330,7 +332,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Enables an intelligence pack for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param intelligencePackName The name of the intelligence pack to be enabled.
@@ -345,7 +347,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Lists all the intelligence packs possible and whether they are enabled or disabled for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -371,17 +373,16 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all the intelligence packs possible and whether they are enabled or disabled for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -408,16 +409,15 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), resourceGroupName, workspaceName, apiVersion,
+        return service.list(this.client.getEndpoint(), resourceGroupName, workspaceName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), accept, context);
     }
 
     /**
      * Lists all the intelligence packs possible and whether they are enabled or disabled for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -432,7 +432,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Lists all the intelligence packs possible and whether they are enabled or disabled for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -449,7 +449,7 @@ public final class IntelligencePacksClientImpl implements IntelligencePacksClien
 
     /**
      * Lists all the intelligence packs possible and whether they are enabled or disabled for a given workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

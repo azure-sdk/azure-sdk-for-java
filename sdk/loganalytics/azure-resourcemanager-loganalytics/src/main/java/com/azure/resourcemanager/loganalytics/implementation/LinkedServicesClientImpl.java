@@ -38,17 +38,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in LinkedServicesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in LinkedServicesClient.
+ */
 public final class LinkedServicesClientImpl implements LinkedServicesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final LinkedServicesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of LinkedServicesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     LinkedServicesClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -105,7 +111,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -114,7 +120,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the top level Linked service resource container along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -143,17 +149,17 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                linkedServiceName, this.client.getSubscriptionId(), apiVersion, parameters, accept, context))
+                linkedServiceName, this.client.getSubscriptionId(), this.client.getApiVersion(), parameters, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -163,7 +169,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the top level Linked service resource container along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -192,16 +198,15 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName, linkedServiceName,
-            this.client.getSubscriptionId(), apiVersion, parameters, accept, context);
+            this.client.getSubscriptionId(), this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -222,7 +227,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -246,7 +251,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -265,7 +270,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -285,7 +290,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -304,7 +309,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -324,7 +329,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -342,7 +347,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Create or update a linked service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linkedServices resource.
@@ -361,7 +366,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -369,7 +374,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the top level Linked service resource container along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
@@ -393,17 +398,16 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                linkedServiceName, apiVersion, this.client.getSubscriptionId(), accept, context))
+                linkedServiceName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -412,7 +416,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the top level Linked service resource container along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
@@ -436,16 +440,15 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName, linkedServiceName,
-            apiVersion, this.client.getSubscriptionId(), accept, context);
+            this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context);
     }
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -465,7 +468,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -487,7 +490,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -504,7 +507,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -522,7 +525,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -540,7 +543,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -559,7 +562,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -575,7 +578,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Deletes a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -593,7 +596,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -624,17 +627,16 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                linkedServiceName, apiVersion, this.client.getSubscriptionId(), accept, context))
+                linkedServiceName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -666,16 +668,15 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceGroupName, workspaceName, linkedServiceName, apiVersion,
-            this.client.getSubscriptionId(), accept, context);
+        return service.get(this.client.getEndpoint(), resourceGroupName, workspaceName, linkedServiceName,
+            this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context);
     }
 
     /**
      * Gets a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -693,7 +694,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -711,7 +712,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets a linked service instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param linkedServiceName Name of the linked service.
@@ -727,14 +728,14 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets the linked services instances in a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the linked services instances in a workspace along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LinkedServiceInner>> listByWorkspaceSinglePageAsync(String resourceGroupName,
@@ -754,11 +755,10 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<LinkedServiceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -766,7 +766,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets the linked services instances in a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -774,7 +774,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the linked services instances in a workspace along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LinkedServiceInner>> listByWorkspaceSinglePageAsync(String resourceGroupName,
@@ -794,11 +794,10 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByWorkspace(this.client.getEndpoint(), resourceGroupName, workspaceName, apiVersion,
+            .listByWorkspace(this.client.getEndpoint(), resourceGroupName, workspaceName, this.client.getApiVersion(),
                 this.client.getSubscriptionId(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
@@ -806,7 +805,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets the linked services instances in a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -821,7 +820,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets the linked services instances in a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -838,7 +837,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets the linked services instances in a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -853,7 +852,7 @@ public final class LinkedServicesClientImpl implements LinkedServicesClient {
 
     /**
      * Gets the linked services instances in a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.

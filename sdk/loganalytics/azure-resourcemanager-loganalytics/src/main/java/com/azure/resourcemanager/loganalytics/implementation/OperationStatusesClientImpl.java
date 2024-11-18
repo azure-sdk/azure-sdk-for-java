@@ -25,17 +25,23 @@ import com.azure.resourcemanager.loganalytics.fluent.OperationStatusesClient;
 import com.azure.resourcemanager.loganalytics.fluent.models.OperationStatusInner;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in OperationStatusesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in OperationStatusesClient.
+ */
 public final class OperationStatusesClientImpl implements OperationStatusesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final OperationStatusesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of OperationStatusesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     OperationStatusesClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -63,14 +69,14 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
 
     /**
      * Get the status of a long running azure asynchronous operation.
-     *
+     * 
      * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the status of a long running azure asynchronous operation along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OperationStatusInner>> getWithResponseAsync(String location, String asyncOperationId) {
@@ -89,17 +95,16 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), location, asyncOperationId, apiVersion,
-                this.client.getSubscriptionId(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), location, asyncOperationId,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the status of a long running azure asynchronous operation.
-     *
+     * 
      * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @param context The context to associate with this operation.
@@ -107,7 +112,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the status of a long running azure asynchronous operation along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OperationStatusInner>> getWithResponseAsync(String location, String asyncOperationId,
@@ -127,16 +132,15 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), location, asyncOperationId, apiVersion,
+        return service.get(this.client.getEndpoint(), location, asyncOperationId, this.client.getApiVersion(),
             this.client.getSubscriptionId(), accept, context);
     }
 
     /**
      * Get the status of a long running azure asynchronous operation.
-     *
+     * 
      * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -151,7 +155,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
 
     /**
      * Get the status of a long running azure asynchronous operation.
-     *
+     * 
      * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @param context The context to associate with this operation.
@@ -167,7 +171,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
 
     /**
      * Get the status of a long running azure asynchronous operation.
-     *
+     * 
      * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

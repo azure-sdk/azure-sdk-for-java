@@ -30,17 +30,23 @@ import com.azure.resourcemanager.loganalytics.fluent.models.UsageMetricInner;
 import com.azure.resourcemanager.loganalytics.models.WorkspaceListUsagesResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in UsagesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in UsagesClient.
+ */
 public final class UsagesClientImpl implements UsagesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final UsagesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of UsagesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     UsagesClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -67,14 +73,14 @@ public final class UsagesClientImpl implements UsagesClient {
 
     /**
      * Gets a list of usage metrics for a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of usage metrics for a workspace along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageMetricInner>> listSinglePageAsync(String resourceGroupName, String workspaceName) {
@@ -93,11 +99,10 @@ public final class UsagesClientImpl implements UsagesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<UsageMetricInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -105,7 +110,7 @@ public final class UsagesClientImpl implements UsagesClient {
 
     /**
      * Gets a list of usage metrics for a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -113,7 +118,7 @@ public final class UsagesClientImpl implements UsagesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of usage metrics for a workspace along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageMetricInner>> listSinglePageAsync(String resourceGroupName, String workspaceName,
@@ -133,11 +138,10 @@ public final class UsagesClientImpl implements UsagesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), resourceGroupName, workspaceName, apiVersion,
+            .list(this.client.getEndpoint(), resourceGroupName, workspaceName, this.client.getApiVersion(),
                 this.client.getSubscriptionId(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
@@ -145,7 +149,7 @@ public final class UsagesClientImpl implements UsagesClient {
 
     /**
      * Gets a list of usage metrics for a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -160,7 +164,7 @@ public final class UsagesClientImpl implements UsagesClient {
 
     /**
      * Gets a list of usage metrics for a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -176,7 +180,7 @@ public final class UsagesClientImpl implements UsagesClient {
 
     /**
      * Gets a list of usage metrics for a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -191,7 +195,7 @@ public final class UsagesClientImpl implements UsagesClient {
 
     /**
      * Gets a list of usage metrics for a workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.

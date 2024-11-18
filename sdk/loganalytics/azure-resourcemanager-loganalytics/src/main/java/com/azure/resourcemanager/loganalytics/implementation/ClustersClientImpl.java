@@ -40,17 +40,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ClustersClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ClustersClient.
+ */
 public final class ClustersClientImpl implements ClustersClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ClustersService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final OperationalInsightsManagementClientImpl client;
 
     /**
      * Initializes an instance of ClustersClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ClustersClientImpl(OperationalInsightsManagementClientImpl client) {
@@ -137,13 +143,13 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets Log Analytics clusters in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return log Analytics clusters in a resource group along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -159,11 +165,10 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<ClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -171,14 +176,14 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets Log Analytics clusters in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return log Analytics clusters in a resource group along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
@@ -195,11 +200,10 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, apiVersion,
+            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
                 this.client.getSubscriptionId(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -207,7 +211,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets Log Analytics clusters in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -222,7 +226,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets Log Analytics clusters in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -238,7 +242,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets Log Analytics clusters in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -252,7 +256,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets Log Analytics clusters in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -267,11 +271,11 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets the Log Analytics clusters in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Log Analytics clusters in a subscription along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listSinglePageAsync() {
@@ -283,11 +287,10 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<ClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -295,13 +298,13 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets the Log Analytics clusters in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Log Analytics clusters in a subscription along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listSinglePageAsync(Context context) {
@@ -313,17 +316,18 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets the Log Analytics clusters in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Log Analytics clusters in a subscription as paginated response with {@link PagedFlux}.
@@ -335,7 +339,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets the Log Analytics clusters in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -350,7 +354,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets the Log Analytics clusters in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Log Analytics clusters in a subscription as paginated response with {@link PagedIterable}.
@@ -362,7 +366,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets the Log Analytics clusters in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -376,7 +380,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -384,7 +388,7 @@ public final class ClustersClientImpl implements ClustersClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the top level Log Analytics cluster resource container along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -409,17 +413,16 @@ public final class ClustersClientImpl implements ClustersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, apiVersion,
-                this.client.getSubscriptionId(), clusterName, parameters, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), clusterName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -428,7 +431,7 @@ public final class ClustersClientImpl implements ClustersClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the top level Log Analytics cluster resource container along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -453,16 +456,15 @@ public final class ClustersClientImpl implements ClustersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, apiVersion,
+        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), clusterName, parameters, accept, context);
     }
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -482,7 +484,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -504,7 +506,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -521,7 +523,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -539,7 +541,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -557,7 +559,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -576,7 +578,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -592,7 +594,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Create or update a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Log Analytics cluster.
      * @param parameters The parameters required to create or update a Log Analytics cluster.
@@ -610,7 +612,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -635,17 +637,16 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName, clusterName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param context The context to associate with this operation.
@@ -672,16 +673,15 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, clusterName, apiVersion,
+        return service.delete(this.client.getEndpoint(), resourceGroupName, clusterName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), accept, context);
     }
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -698,7 +698,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param context The context to associate with this operation.
@@ -718,7 +718,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -733,7 +733,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param context The context to associate with this operation.
@@ -750,7 +750,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -765,7 +765,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param context The context to associate with this operation.
@@ -782,7 +782,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -796,7 +796,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Deletes a cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param context The context to associate with this operation.
@@ -811,7 +811,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets a Log Analytics cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -837,17 +837,17 @@ public final class ClustersClientImpl implements ClustersClient {
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, apiVersion, clusterName, accept, context))
+            .withContext(
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, this.client.getApiVersion(), clusterName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a Log Analytics cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param context The context to associate with this operation.
@@ -874,16 +874,15 @@ public final class ClustersClientImpl implements ClustersClient {
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            apiVersion, clusterName, accept, context);
+            this.client.getApiVersion(), clusterName, accept, context);
     }
 
     /**
      * Gets a Log Analytics cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -899,7 +898,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets a Log Analytics cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param context The context to associate with this operation.
@@ -916,7 +915,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Gets a Log Analytics cluster instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -931,7 +930,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -939,7 +938,7 @@ public final class ClustersClientImpl implements ClustersClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the top level Log Analytics cluster resource container along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String clusterName,
@@ -964,17 +963,16 @@ public final class ClustersClientImpl implements ClustersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), resourceGroupName, clusterName,
-                apiVersion, this.client.getSubscriptionId(), parameters, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -983,7 +981,7 @@ public final class ClustersClientImpl implements ClustersClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the top level Log Analytics cluster resource container along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String clusterName,
@@ -1008,16 +1006,15 @@ public final class ClustersClientImpl implements ClustersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), resourceGroupName, clusterName, apiVersion,
+        return service.update(this.client.getEndpoint(), resourceGroupName, clusterName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), parameters, accept, context);
     }
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -1036,7 +1033,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -1058,7 +1055,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -1075,7 +1072,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -1093,7 +1090,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -1110,7 +1107,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -1129,7 +1126,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -1145,7 +1142,7 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Updates a Log Analytics cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
      * @param parameters The parameters required to patch a Log Analytics cluster.
@@ -1162,14 +1159,13 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list clusters operation response along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the list clusters operation response along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1191,15 +1187,14 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list clusters operation response along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the list clusters operation response along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
@@ -1219,14 +1214,13 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list clusters operation response along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the list clusters operation response along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listNextSinglePageAsync(String nextLink) {
@@ -1246,15 +1240,14 @@ public final class ClustersClientImpl implements ClustersClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list clusters operation response along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the list clusters operation response along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listNextSinglePageAsync(String nextLink, Context context) {

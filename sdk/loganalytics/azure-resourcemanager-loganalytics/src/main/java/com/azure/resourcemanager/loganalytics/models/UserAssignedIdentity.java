@@ -10,43 +10,44 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * User assigned identity properties.
  */
 @Immutable
-public final class UserIdentityProperties implements JsonSerializable<UserIdentityProperties> {
+public final class UserAssignedIdentity implements JsonSerializable<UserAssignedIdentity> {
     /*
-     * The principal id of user assigned identity.
+     * The principal ID of the assigned identity.
      */
-    private String principalId;
+    private UUID principalId;
 
     /*
-     * The client id of user assigned identity.
+     * The client ID of the assigned identity.
      */
-    private String clientId;
+    private UUID clientId;
 
     /**
-     * Creates an instance of UserIdentityProperties class.
+     * Creates an instance of UserAssignedIdentity class.
      */
-    public UserIdentityProperties() {
+    public UserAssignedIdentity() {
     }
 
     /**
-     * Get the principalId property: The principal id of user assigned identity.
+     * Get the principalId property: The principal ID of the assigned identity.
      * 
      * @return the principalId value.
      */
-    public String principalId() {
+    public UUID principalId() {
         return this.principalId;
     }
 
     /**
-     * Get the clientId property: The client id of user assigned identity.
+     * Get the clientId property: The client ID of the assigned identity.
      * 
      * @return the clientId value.
      */
-    public String clientId() {
+    public UUID clientId() {
         return this.clientId;
     }
 
@@ -68,30 +69,32 @@ public final class UserIdentityProperties implements JsonSerializable<UserIdenti
     }
 
     /**
-     * Reads an instance of UserIdentityProperties from the JsonReader.
+     * Reads an instance of UserAssignedIdentity from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of UserIdentityProperties if the JsonReader was pointing to an instance of it, or null if it
+     * @return An instance of UserAssignedIdentity if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the UserIdentityProperties.
+     * @throws IOException If an error occurs while reading the UserAssignedIdentity.
      */
-    public static UserIdentityProperties fromJson(JsonReader jsonReader) throws IOException {
+    public static UserAssignedIdentity fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            UserIdentityProperties deserializedUserIdentityProperties = new UserIdentityProperties();
+            UserAssignedIdentity deserializedUserAssignedIdentity = new UserAssignedIdentity();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("principalId".equals(fieldName)) {
-                    deserializedUserIdentityProperties.principalId = reader.getString();
+                    deserializedUserAssignedIdentity.principalId
+                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
                 } else if ("clientId".equals(fieldName)) {
-                    deserializedUserIdentityProperties.clientId = reader.getString();
+                    deserializedUserAssignedIdentity.clientId
+                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedUserIdentityProperties;
+            return deserializedUserAssignedIdentity;
         });
     }
 }
