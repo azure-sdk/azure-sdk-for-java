@@ -1,14 +1,320 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-11-18)
+
+- Azure Resource Manager IotHub client library for Java. This package contains Microsoft Azure SDK for IotHub Management SDK. Use this API to manage the IoT hubs in your Azure subscription. Package tag package-2023-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+#### `models.FeedbackProperties` was modified
 
-### Bugs Fixed
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
-### Other Changes
+#### `models.MatchedRoute` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GroupIdInformationProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ArmIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationInputs` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TestRouteInput` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RoutingMessage` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IotHubCapacity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RouteCompilationError` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserSubscriptionQuota` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EventHubConsumerGroupName` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IpFilterRule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EventHubConsumerGroupBodyDescription` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IotHubLocationDescription` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RoutingProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IotHubProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IotHubQuotaMetricInfoListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Name` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FallbackRouteProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CertificatePropertiesWithNonce` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RoutingServiceBusQueueEndpointProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RoutingStorageContainerProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RoutingTwinProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EnrichmentProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RouteProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EndpointHealthDataListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FailoverInput` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExportDevicesRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TagsResource` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetworkRuleSetProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CertificateProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RouteErrorRange` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RoutingCosmosDBSqlApiProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EventHubProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImportDevicesRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.JobResponseListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IotHubDescriptionListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StorageEndpointProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RouteErrorPosition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TestAllRoutesInput` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RoutingEndpoints` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EventHubConsumerGroupsListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TestRouteResultDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ErrorDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getAdditionalInfo()` was added
+* `getCode()` was added
+* `getMessage()` was added
+* `getDetails()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getTarget()` was added
+
+#### `models.IotHubSkuDescriptionListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CloudToDeviceProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MessagingEndpointProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SharedAccessSignatureAuthorizationRuleListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ArmUserIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CertificateVerificationDescription` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IotHubSkuInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RoutingEventHubProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RoutingTwin` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetworkRuleSetIpRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RoutingServiceBusTopicEndpointProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpointConnectionProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.2.0 (2023-09-20)
 
