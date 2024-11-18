@@ -9,7 +9,7 @@ package com.azure.resourcemanager.consumption.generated;
  */
 public final class BalancesGetByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * BalancesByBillingAccount.json
      */
     /**

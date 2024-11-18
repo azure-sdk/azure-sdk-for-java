@@ -32,6 +32,16 @@ public final class ModernSingleScopeReservationRecommendationProperties
     private UUID subscriptionId;
 
     /*
+     * The total hours for which the cost is covered.
+     */
+    private Integer totalHours;
+
+    /*
+     * The last usage date used for looking back for computing the recommendation.
+     */
+    private OffsetDateTime lastUsageDate;
+
+    /*
      * This is the ARM Sku name.
      */
     private String skuName;
@@ -72,7 +82,7 @@ public final class ModernSingleScopeReservationRecommendationProperties
     private Amount costWithNoReservedInstances;
 
     /*
-     * RI recommendations in one or three year terms.
+     * Term period of the reservation. ex: P1M, P1Y or P3Y.
      */
     private String term;
 
@@ -134,6 +144,26 @@ public final class ModernSingleScopeReservationRecommendationProperties
      */
     public UUID subscriptionId() {
         return this.subscriptionId;
+    }
+
+    /**
+     * Get the totalHours property: The total hours for which the cost is covered.
+     * 
+     * @return the totalHours value.
+     */
+    @Override
+    public Integer totalHours() {
+        return this.totalHours;
+    }
+
+    /**
+     * Get the lastUsageDate property: The last usage date used for looking back for computing the recommendation.
+     * 
+     * @return the lastUsageDate value.
+     */
+    @Override
+    public OffsetDateTime lastUsageDate() {
+        return this.lastUsageDate;
     }
 
     /**
@@ -217,7 +247,7 @@ public final class ModernSingleScopeReservationRecommendationProperties
     }
 
     /**
-     * Get the term property: RI recommendations in one or three year terms.
+     * Get the term property: Term period of the reservation. ex: P1M, P1Y or P3Y.
      * 
      * @return the term value.
      */
@@ -388,6 +418,12 @@ public final class ModernSingleScopeReservationRecommendationProperties
                     deserializedModernSingleScopeReservationRecommendationProperties.skuProperties = skuProperties;
                 } else if ("skuName".equals(fieldName)) {
                     deserializedModernSingleScopeReservationRecommendationProperties.skuName = reader.getString();
+                } else if ("lastUsageDate".equals(fieldName)) {
+                    deserializedModernSingleScopeReservationRecommendationProperties.lastUsageDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("totalHours".equals(fieldName)) {
+                    deserializedModernSingleScopeReservationRecommendationProperties.totalHours
+                        = reader.getNullable(JsonReader::getInt);
                 } else if ("scope".equals(fieldName)) {
                     deserializedModernSingleScopeReservationRecommendationProperties.scope = reader.getString();
                 } else if ("subscriptionId".equals(fieldName)) {

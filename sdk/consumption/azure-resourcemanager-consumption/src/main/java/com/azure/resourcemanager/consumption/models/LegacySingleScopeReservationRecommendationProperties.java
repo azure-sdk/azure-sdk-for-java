@@ -32,6 +32,16 @@ public final class LegacySingleScopeReservationRecommendationProperties
     private UUID subscriptionId;
 
     /*
+     * The total hours for which the cost is covered.
+     */
+    private Integer totalHours;
+
+    /*
+     * The last usage date used for looking back for computing the recommendation.
+     */
+    private OffsetDateTime lastUsageDate;
+
+    /*
      * List of sku properties
      */
     private List<SkuProperty> skuProperties;
@@ -62,7 +72,7 @@ public final class LegacySingleScopeReservationRecommendationProperties
     private BigDecimal costWithNoReservedInstances;
 
     /*
-     * RI recommendations in one or three year terms.
+     * Term period of the reservation. ex: P1M, P1Y or P3Y.
      */
     private String term;
 
@@ -127,6 +137,26 @@ public final class LegacySingleScopeReservationRecommendationProperties
     }
 
     /**
+     * Get the totalHours property: The total hours for which the cost is covered.
+     * 
+     * @return the totalHours value.
+     */
+    @Override
+    public Integer totalHours() {
+        return this.totalHours;
+    }
+
+    /**
+     * Get the lastUsageDate property: The last usage date used for looking back for computing the recommendation.
+     * 
+     * @return the lastUsageDate value.
+     */
+    @Override
+    public OffsetDateTime lastUsageDate() {
+        return this.lastUsageDate;
+    }
+
+    /**
      * Get the skuProperties property: List of sku properties.
      * 
      * @return the skuProperties value.
@@ -187,7 +217,7 @@ public final class LegacySingleScopeReservationRecommendationProperties
     }
 
     /**
-     * Get the term property: RI recommendations in one or three year terms.
+     * Get the term property: Term period of the reservation. ex: P1M, P1Y or P3Y.
      * 
      * @return the term value.
      */
@@ -345,6 +375,12 @@ public final class LegacySingleScopeReservationRecommendationProperties
                 } else if ("skuProperties".equals(fieldName)) {
                     List<SkuProperty> skuProperties = reader.readArray(reader1 -> SkuProperty.fromJson(reader1));
                     deserializedLegacySingleScopeReservationRecommendationProperties.skuProperties = skuProperties;
+                } else if ("lastUsageDate".equals(fieldName)) {
+                    deserializedLegacySingleScopeReservationRecommendationProperties.lastUsageDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("totalHours".equals(fieldName)) {
+                    deserializedLegacySingleScopeReservationRecommendationProperties.totalHours
+                        = reader.getNullable(JsonReader::getInt);
                 } else if ("scope".equals(fieldName)) {
                     deserializedLegacySingleScopeReservationRecommendationProperties.scope = reader.getString();
                 } else if ("subscriptionId".equals(fieldName)) {
