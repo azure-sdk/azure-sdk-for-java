@@ -5,16 +5,16 @@
 package com.azure.resourcemanager.quota.implementation;
 
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.quota.fluent.models.SubscriptionQuotaAllocationsInner;
-import com.azure.resourcemanager.quota.models.SubscriptionQuotaAllocations;
-import com.azure.resourcemanager.quota.models.SubscriptionQuotaDetails;
+import com.azure.resourcemanager.quota.fluent.models.SubscriptionQuotaAllocationsListInner;
+import com.azure.resourcemanager.quota.models.SubscriptionQuotaAllocationsList;
+import com.azure.resourcemanager.quota.models.SubscriptionQuotaAllocationsListProperties;
 
-public final class SubscriptionQuotaAllocationsImpl implements SubscriptionQuotaAllocations {
-    private SubscriptionQuotaAllocationsInner innerObject;
+public final class SubscriptionQuotaAllocationsListImpl implements SubscriptionQuotaAllocationsList {
+    private SubscriptionQuotaAllocationsListInner innerObject;
 
     private final com.azure.resourcemanager.quota.QuotaManager serviceManager;
 
-    SubscriptionQuotaAllocationsImpl(SubscriptionQuotaAllocationsInner innerObject,
+    SubscriptionQuotaAllocationsListImpl(SubscriptionQuotaAllocationsListInner innerObject,
         com.azure.resourcemanager.quota.QuotaManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -32,7 +32,7 @@ public final class SubscriptionQuotaAllocationsImpl implements SubscriptionQuota
         return this.innerModel().type();
     }
 
-    public SubscriptionQuotaDetails properties() {
+    public SubscriptionQuotaAllocationsListProperties properties() {
         return this.innerModel().properties();
     }
 
@@ -40,7 +40,7 @@ public final class SubscriptionQuotaAllocationsImpl implements SubscriptionQuota
         return this.innerModel().systemData();
     }
 
-    public SubscriptionQuotaAllocationsInner innerModel() {
+    public SubscriptionQuotaAllocationsListInner innerModel() {
         return this.innerObject;
     }
 

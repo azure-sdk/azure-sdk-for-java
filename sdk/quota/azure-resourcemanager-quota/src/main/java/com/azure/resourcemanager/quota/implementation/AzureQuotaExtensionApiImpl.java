@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -27,12 +27,12 @@ import com.azure.resourcemanager.quota.fluent.AzureQuotaExtensionApi;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaLimitsClient;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaLimitsRequestsClient;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaLocationSettingsClient;
-import com.azure.resourcemanager.quota.fluent.GroupQuotasClient;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaSubscriptionAllocationRequestsClient;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaSubscriptionAllocationsClient;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaSubscriptionRequestsClient;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaSubscriptionsClient;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaUsagesClient;
+import com.azure.resourcemanager.quota.fluent.GroupQuotasClient;
 import com.azure.resourcemanager.quota.fluent.QuotaOperationsClient;
 import com.azure.resourcemanager.quota.fluent.QuotaRequestStatusClient;
 import com.azure.resourcemanager.quota.fluent.QuotasClient;
@@ -178,20 +178,6 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
     }
 
     /**
-     * The GroupQuotaLimitsClient object to access its operations.
-     */
-    private final GroupQuotaLimitsClient groupQuotaLimits;
-
-    /**
-     * Gets the GroupQuotaLimitsClient object to access its operations.
-     * 
-     * @return the GroupQuotaLimitsClient object.
-     */
-    public GroupQuotaLimitsClient getGroupQuotaLimits() {
-        return this.groupQuotaLimits;
-    }
-
-    /**
      * The GroupQuotaLimitsRequestsClient object to access its operations.
      */
     private final GroupQuotaLimitsRequestsClient groupQuotaLimitsRequests;
@@ -206,17 +192,17 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
     }
 
     /**
-     * The GroupQuotaSubscriptionAllocationsClient object to access its operations.
+     * The GroupQuotaLimitsClient object to access its operations.
      */
-    private final GroupQuotaSubscriptionAllocationsClient groupQuotaSubscriptionAllocations;
+    private final GroupQuotaLimitsClient groupQuotaLimits;
 
     /**
-     * Gets the GroupQuotaSubscriptionAllocationsClient object to access its operations.
+     * Gets the GroupQuotaLimitsClient object to access its operations.
      * 
-     * @return the GroupQuotaSubscriptionAllocationsClient object.
+     * @return the GroupQuotaLimitsClient object.
      */
-    public GroupQuotaSubscriptionAllocationsClient getGroupQuotaSubscriptionAllocations() {
-        return this.groupQuotaSubscriptionAllocations;
+    public GroupQuotaLimitsClient getGroupQuotaLimits() {
+        return this.groupQuotaLimits;
     }
 
     /**
@@ -231,6 +217,20 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
      */
     public GroupQuotaSubscriptionAllocationRequestsClient getGroupQuotaSubscriptionAllocationRequests() {
         return this.groupQuotaSubscriptionAllocationRequests;
+    }
+
+    /**
+     * The GroupQuotaSubscriptionAllocationsClient object to access its operations.
+     */
+    private final GroupQuotaSubscriptionAllocationsClient groupQuotaSubscriptionAllocations;
+
+    /**
+     * Gets the GroupQuotaSubscriptionAllocationsClient object to access its operations.
+     * 
+     * @return the GroupQuotaSubscriptionAllocationsClient object.
+     */
+    public GroupQuotaSubscriptionAllocationsClient getGroupQuotaSubscriptionAllocations() {
+        return this.groupQuotaSubscriptionAllocations;
     }
 
     /**
@@ -334,14 +334,14 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-06-01-preview";
+        this.apiVersion = "2024-10-15-preview";
         this.groupQuotas = new GroupQuotasClientImpl(this);
         this.groupQuotaSubscriptions = new GroupQuotaSubscriptionsClientImpl(this);
         this.groupQuotaSubscriptionRequests = new GroupQuotaSubscriptionRequestsClientImpl(this);
-        this.groupQuotaLimits = new GroupQuotaLimitsClientImpl(this);
         this.groupQuotaLimitsRequests = new GroupQuotaLimitsRequestsClientImpl(this);
-        this.groupQuotaSubscriptionAllocations = new GroupQuotaSubscriptionAllocationsClientImpl(this);
+        this.groupQuotaLimits = new GroupQuotaLimitsClientImpl(this);
         this.groupQuotaSubscriptionAllocationRequests = new GroupQuotaSubscriptionAllocationRequestsClientImpl(this);
+        this.groupQuotaSubscriptionAllocations = new GroupQuotaSubscriptionAllocationsClientImpl(this);
         this.groupQuotaUsages = new GroupQuotaUsagesClientImpl(this);
         this.groupQuotaLocationSettings = new GroupQuotaLocationSettingsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
