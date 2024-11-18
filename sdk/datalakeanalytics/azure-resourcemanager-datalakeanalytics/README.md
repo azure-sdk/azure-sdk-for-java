@@ -2,7 +2,7 @@
 
 Azure Resource Manager DataLakeAnalytics client library for Java.
 
-This package contains Microsoft Azure SDK for DataLakeAnalytics Management SDK. Creates an Azure Data Lake Analytics account management client. Package tag package-2016-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for DataLakeAnalytics Management SDK. Creates an Azure Data Lake Analytics account management client. Package tag package-preview-2019-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-datalakeanalytics</artifactId>
-    <version>1.0.0-beta.3</version>
+    <version>1.0.0-beta.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})

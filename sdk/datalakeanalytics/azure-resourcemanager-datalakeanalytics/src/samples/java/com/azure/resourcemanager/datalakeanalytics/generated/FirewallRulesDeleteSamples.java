@@ -10,8 +10,8 @@ package com.azure.resourcemanager.datalakeanalytics.generated;
 public final class FirewallRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * FirewallRules_Delete.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /FirewallRules_Delete.json
      */
     /**
      * Sample code: Deletes the specified firewall rule.

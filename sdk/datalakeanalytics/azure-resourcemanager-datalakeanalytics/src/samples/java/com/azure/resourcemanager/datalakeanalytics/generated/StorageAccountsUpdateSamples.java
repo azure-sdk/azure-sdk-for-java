@@ -12,8 +12,8 @@ import com.azure.resourcemanager.datalakeanalytics.models.UpdateStorageAccountPa
 public final class StorageAccountsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_Update.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_Update.json
      */
     /**
      * Sample code: Replaces Azure Storage blob account details.
