@@ -13,7 +13,7 @@ import com.azure.resourcemanager.labservices.models.Image;
 public final class ImagesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/patchImage.
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/patchImage.
      * json
      */
     /**

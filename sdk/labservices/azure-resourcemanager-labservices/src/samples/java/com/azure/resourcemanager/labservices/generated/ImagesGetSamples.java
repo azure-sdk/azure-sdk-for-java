@@ -10,7 +10,7 @@ package com.azure.resourcemanager.labservices.generated;
 public final class ImagesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/getImage.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/getImage.json
      */
     /**
      * Sample code: getImage.
