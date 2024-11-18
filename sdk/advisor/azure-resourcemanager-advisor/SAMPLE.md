@@ -1,6 +1,11 @@
 # Code snippets and samples
 
 
+## AdvisorScores
+
+- [Get](#advisorscores_get)
+- [List](#advisorscores_list)
+
 ## Configurations
 
 - [CreateInResourceGroup](#configurations_createinresourcegroup)
@@ -24,12 +29,60 @@
 - [GetGenerateStatus](#recommendations_getgeneratestatus)
 - [List](#recommendations_list)
 
+## ResourceProvider
+
+- [Predict](#resourceprovider_predict)
+
 ## Suppressions
 
 - [Create](#suppressions_create)
 - [Delete](#suppressions_delete)
 - [Get](#suppressions_get)
 - [List](#suppressions_list)
+### AdvisorScores_Get
+
+```java
+/**
+ * Samples for AdvisorScores Get.
+ */
+public final class AdvisorScoresGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/GetAdvisorScoreDetail.json
+     */
+    /**
+     * Sample code: GetAdvisorScoreDetail.
+     * 
+     * @param manager Entry point to AdvisorManager.
+     */
+    public static void getAdvisorScoreDetail(com.azure.resourcemanager.advisor.AdvisorManager manager) {
+        manager.advisorScores().getWithResponse("Cost", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AdvisorScores_List
+
+```java
+/**
+ * Samples for AdvisorScores List.
+ */
+public final class AdvisorScoresListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/ListAdvisorScore.json
+     */
+    /**
+     * Sample code: ListAdvisorScore.
+     * 
+     * @param manager Entry point to AdvisorManager.
+     */
+    public static void listAdvisorScore(com.azure.resourcemanager.advisor.AdvisorManager manager) {
+        manager.advisorScores().listWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Configurations_CreateInResourceGroup
 
 ```java
@@ -38,6 +91,7 @@ import com.azure.resourcemanager.advisor.models.ConfigurationName;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
 import com.azure.resourcemanager.advisor.models.DigestConfigState;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import java.util.Arrays;
 
 /**
@@ -46,7 +100,7 @@ import java.util.Arrays;
 public final class ConfigurationsCreateInResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/CreateConfiguration.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/CreateConfiguration.json
      */
     /**
      * Sample code: PutConfigurations.
@@ -59,6 +113,7 @@ public final class ConfigurationsCreateInResourceGroupSamples {
             .withExistingResourceGroup("resourceGroup")
             .withExclude(true)
             .withLowCpuThreshold(CpuThreshold.FIVE)
+            .withDuration(DurationModel.SEVEN)
             .withDigests(Arrays.asList(new DigestConfig().withName("digestConfigName")
                 .withActionGroupResourceId(
                     "/subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/microsoft.insights/actionGroups/actionGroupName")
@@ -81,6 +136,7 @@ import com.azure.resourcemanager.advisor.models.ConfigurationName;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
 import com.azure.resourcemanager.advisor.models.DigestConfigState;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import java.util.Arrays;
 
 /**
@@ -89,7 +145,7 @@ import java.util.Arrays;
 public final class ConfigurationsCreateInSubscriptionSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/CreateConfiguration.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/CreateConfiguration.json
      */
     /**
      * Sample code: PutConfigurations.
@@ -100,6 +156,7 @@ public final class ConfigurationsCreateInSubscriptionSamples {
         manager.configurations()
             .createInSubscriptionWithResponse(ConfigurationName.DEFAULT, new ConfigDataInner().withExclude(true)
                 .withLowCpuThreshold(CpuThreshold.FIVE)
+                .withDuration(DurationModel.SEVEN)
                 .withDigests(Arrays.asList(new DigestConfig().withName("digestConfigName")
                     .withActionGroupResourceId(
                         "/subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/microsoft.insights/actionGroups/actionGroupName")
@@ -122,7 +179,7 @@ public final class ConfigurationsCreateInSubscriptionSamples {
 public final class ConfigurationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListConfigurations.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/ListConfigurations.json
      */
     /**
      * Sample code: GetConfigurations.
@@ -144,7 +201,7 @@ public final class ConfigurationsListSamples {
 public final class ConfigurationsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListConfigurations.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/ListConfigurations.json
      */
     /**
      * Sample code: GetConfigurations.
@@ -166,14 +223,14 @@ public final class ConfigurationsListByResourceGroupSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListOperations.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/OperationsList.json
      */
     /**
-     * Sample code: ListRecommendations.
+     * Sample code: OperationsList.
      * 
      * @param manager Entry point to AdvisorManager.
      */
-    public static void listRecommendations(com.azure.resourcemanager.advisor.AdvisorManager manager) {
+    public static void operationsList(com.azure.resourcemanager.advisor.AdvisorManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -187,7 +244,7 @@ public final class OperationsListSamples {
  */
 public final class RecommendationMetadataGetSamples {
     /*
-     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/
      * GetRecommendationMetadataEntity.json
      */
     /**
@@ -210,7 +267,7 @@ public final class RecommendationMetadataGetSamples {
 public final class RecommendationMetadataListSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListRecommendationMetadata.
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/ListRecommendationMetadata.
      * json
      */
     /**
@@ -233,7 +290,7 @@ public final class RecommendationMetadataListSamples {
 public final class RecommendationsGenerateSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/GenerateRecommendations.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/GenerateRecommendations.json
      */
     /**
      * Sample code: GenerateRecommendations.
@@ -255,7 +312,7 @@ public final class RecommendationsGenerateSamples {
 public final class RecommendationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/GetRecommendationDetail.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/GetRecommendationDetail.json
      */
     /**
      * Sample code: GetRecommendationDetail.
@@ -279,7 +336,7 @@ import java.util.UUID;
 public final class RecommendationsGetGenerateStatusSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/EmptyResponse.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/EmptyResponse.json
      */
     /**
      * Sample code: GetGenerateStatus.
@@ -288,7 +345,7 @@ public final class RecommendationsGetGenerateStatusSamples {
      */
     public static void getGenerateStatus(com.azure.resourcemanager.advisor.AdvisorManager manager) {
         manager.recommendations()
-            .getGenerateStatusWithResponse(UUID.fromString("00000000-0000-0000-0000-000000000000"),
+            .getGenerateStatusWithResponse(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -303,7 +360,7 @@ public final class RecommendationsGetGenerateStatusSamples {
 public final class RecommendationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListRecommendations.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/ListRecommendations.json
      */
     /**
      * Sample code: ListRecommendations.
@@ -312,6 +369,40 @@ public final class RecommendationsListSamples {
      */
     public static void listRecommendations(com.azure.resourcemanager.advisor.AdvisorManager manager) {
         manager.recommendations().list(null, 10, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_Predict
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.advisor.models.PredictionRequest;
+import com.azure.resourcemanager.advisor.models.PredictionType;
+import java.io.IOException;
+
+/**
+ * Samples for ResourceProvider Predict.
+ */
+public final class ResourceProviderPredictSamples {
+    /*
+     * x-ms-original-file:
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/Predict.json
+     */
+    /**
+     * Sample code: Predict.
+     * 
+     * @param manager Entry point to AdvisorManager.
+     */
+    public static void predict(com.azure.resourcemanager.advisor.AdvisorManager manager) throws IOException {
+        manager.resourceProviders()
+            .predictWithResponse(new PredictionRequest().withPredictionType(PredictionType.PREDICTIVE_RIGHTSIZING)
+                .withExtendedProperties(SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize(
+                        "{\"type\":\"iaas\",\"deploymentType\":\"Linux_IaaS_Software_Store\",\"numberOfInstances\":10,\"region\":\"CentralUS\",\"sku\":\"Standard_Dv4\"}",
+                        Object.class, SerializerEncoding.JSON)),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -325,7 +416,7 @@ public final class RecommendationsListSamples {
 public final class SuppressionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/CreateSuppression.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/CreateSuppression.json
      */
     /**
      * Sample code: CreateSuppression.
@@ -351,7 +442,7 @@ public final class SuppressionsCreateSamples {
 public final class SuppressionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/DeleteSuppression.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/DeleteSuppression.json
      */
     /**
      * Sample code: DeleteSuppression.
@@ -375,7 +466,7 @@ public final class SuppressionsDeleteSamples {
 public final class SuppressionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/GetSuppressionDetail.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/GetSuppressionDetail.json
      */
     /**
      * Sample code: GetSuppressionDetail.
@@ -398,7 +489,7 @@ public final class SuppressionsGetSamples {
 public final class SuppressionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListSuppressions.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/ListSuppressions.json
      */
     /**
      * Sample code: ListSuppressions.
