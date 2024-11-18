@@ -47,20 +47,6 @@ public interface AzureMachineLearningWorkspaces {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
-     * Gets the WorkspacesClient object to access its operations.
-     * 
-     * @return the WorkspacesClient object.
-     */
-    WorkspacesClient getWorkspaces();
-
-    /**
      * Gets the UsagesClient object to access its operations.
      * 
      * @return the UsagesClient object.
@@ -87,41 +73,6 @@ public interface AzureMachineLearningWorkspaces {
      * @return the ComputesClient object.
      */
     ComputesClient getComputes();
-
-    /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
-     * 
-     * @return the PrivateEndpointConnectionsClient object.
-     */
-    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
-
-    /**
-     * Gets the PrivateLinkResourcesClient object to access its operations.
-     * 
-     * @return the PrivateLinkResourcesClient object.
-     */
-    PrivateLinkResourcesClient getPrivateLinkResources();
-
-    /**
-     * Gets the WorkspaceConnectionsClient object to access its operations.
-     * 
-     * @return the WorkspaceConnectionsClient object.
-     */
-    WorkspaceConnectionsClient getWorkspaceConnections();
-
-    /**
-     * Gets the ManagedNetworkSettingsRulesClient object to access its operations.
-     * 
-     * @return the ManagedNetworkSettingsRulesClient object.
-     */
-    ManagedNetworkSettingsRulesClient getManagedNetworkSettingsRules();
-
-    /**
-     * Gets the ManagedNetworkProvisionsClient object to access its operations.
-     * 
-     * @return the ManagedNetworkProvisionsClient object.
-     */
-    ManagedNetworkProvisionsClient getManagedNetworkProvisions();
 
     /**
      * Gets the RegistryCodeContainersClient object to access its operations.
@@ -381,4 +332,53 @@ public interface AzureMachineLearningWorkspaces {
      * @return the WorkspaceFeaturesClient object.
      */
     WorkspaceFeaturesClient getWorkspaceFeatures();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
+     * Gets the WorkspacesClient object to access its operations.
+     * 
+     * @return the WorkspacesClient object.
+     */
+    WorkspacesClient getWorkspaces();
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     * 
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the PrivateLinkResourcesClient object.
+     */
+    PrivateLinkResourcesClient getPrivateLinkResources();
+
+    /**
+     * Gets the WorkspaceConnectionsClient object to access its operations.
+     * 
+     * @return the WorkspaceConnectionsClient object.
+     */
+    WorkspaceConnectionsClient getWorkspaceConnections();
+
+    /**
+     * Gets the ManagedNetworkSettingsRulesClient object to access its operations.
+     * 
+     * @return the ManagedNetworkSettingsRulesClient object.
+     */
+    ManagedNetworkSettingsRulesClient getManagedNetworkSettingsRules();
+
+    /**
+     * Gets the ManagedNetworkProvisionsClient object to access its operations.
+     * 
+     * @return the ManagedNetworkProvisionsClient object.
+     */
+    ManagedNetworkProvisionsClient getManagedNetworkProvisions();
 }
