@@ -14,7 +14,7 @@ import java.util.Map;
 public final class PeeringServicesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/UpdatePeeringServiceTags.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/UpdatePeeringServiceTags.json
      */
     /**
      * Sample code: Update peering service tags.

@@ -11,7 +11,7 @@ import com.azure.resourcemanager.peering.models.CheckServiceProviderAvailability
  */
 public final class ResourceProviderCheckServiceProviderAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
      * CheckServiceProviderAvailability.json
      */
     /**

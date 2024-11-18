@@ -12,7 +12,7 @@ import com.azure.resourcemanager.peering.models.PeeringLocationsKind;
 public final class PeeringLocationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListExchangePeeringLocations.
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListExchangePeeringLocations.
      * json
      */
     /**
@@ -26,7 +26,7 @@ public final class PeeringLocationsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListDirectPeeringLocations.
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListDirectPeeringLocations.
      * json
      */
     /**

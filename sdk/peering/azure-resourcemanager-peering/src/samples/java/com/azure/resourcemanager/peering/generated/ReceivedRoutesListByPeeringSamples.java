@@ -10,7 +10,7 @@ package com.azure.resourcemanager.peering.generated;
 public final class ReceivedRoutesListByPeeringSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetPeeringReceivedRoutes.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetPeeringReceivedRoutes.json
      */
     /**
      * Sample code: Lists the prefixes received over the specified peering under the given subscription and resource

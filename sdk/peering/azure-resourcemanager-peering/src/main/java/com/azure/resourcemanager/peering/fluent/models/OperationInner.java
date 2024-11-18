@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.peering.models.OperationDisplayInfo;
+import com.azure.resourcemanager.peering.models.ServiceSpecification;
 import java.io.IOException;
 
 /**
@@ -31,6 +32,11 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
      * The flag that indicates whether the operation applies to data plane.
      */
     private Boolean isDataAction;
+
+    /*
+     * The properties of the operation.
+     */
+    private OperationProperties innerProperties;
 
     /**
      * Creates an instance of OperationInner class.
@@ -66,6 +72,24 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     }
 
     /**
+     * Get the innerProperties property: The properties of the operation.
+     * 
+     * @return the innerProperties value.
+     */
+    private OperationProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the serviceSpecification property: Service specification payload.
+     * 
+     * @return the serviceSpecification value.
+     */
+    public ServiceSpecification serviceSpecification() {
+        return this.innerProperties() == null ? null : this.innerProperties().serviceSpecification();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -73,6 +97,9 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     public void validate() {
         if (display() != null) {
             display().validate();
+        }
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 
@@ -106,6 +133,8 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
                     deserializedOperationInner.display = OperationDisplayInfo.fromJson(reader);
                 } else if ("isDataAction".equals(fieldName)) {
                     deserializedOperationInner.isDataAction = reader.getNullable(JsonReader::getBoolean);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedOperationInner.innerProperties = OperationProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

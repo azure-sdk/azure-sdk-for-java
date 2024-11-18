@@ -14,7 +14,7 @@ import java.util.Arrays;
 public final class PeerAsnsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreatePeerAsn.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/CreatePeerAsn.json
      */
     /**
      * Sample code: Create a peer ASN.
