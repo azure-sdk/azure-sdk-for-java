@@ -11,24 +11,26 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.nginx.fluent.NginxManagementClient;
+import com.azure.resourcemanager.nginx.implementation.ApiKeysImpl;
 import com.azure.resourcemanager.nginx.implementation.CertificatesImpl;
 import com.azure.resourcemanager.nginx.implementation.ConfigurationsImpl;
 import com.azure.resourcemanager.nginx.implementation.DeploymentsImpl;
 import com.azure.resourcemanager.nginx.implementation.NginxManagementClientBuilder;
 import com.azure.resourcemanager.nginx.implementation.OperationsImpl;
+import com.azure.resourcemanager.nginx.models.ApiKeys;
 import com.azure.resourcemanager.nginx.models.Certificates;
 import com.azure.resourcemanager.nginx.models.Configurations;
 import com.azure.resourcemanager.nginx.models.Deployments;
@@ -44,6 +46,8 @@ import java.util.stream.Collectors;
  * Entry point to NginxManager.
  */
 public final class NginxManager {
+    private ApiKeys apiKeys;
+
     private Certificates certificates;
 
     private Configurations configurations;
@@ -216,7 +220,7 @@ public final class NginxManager {
                 .append("-")
                 .append("com.azure.resourcemanager.nginx")
                 .append("/")
-                .append("1.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -249,7 +253,7 @@ public final class NginxManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -260,6 +264,18 @@ public final class NginxManager {
                 .build();
             return new NginxManager(httpPipeline, profile, defaultPollInterval);
         }
+    }
+
+    /**
+     * Gets the resource collection API of ApiKeys. It manages NginxDeploymentApiKeyResponse.
+     * 
+     * @return Resource collection API of ApiKeys.
+     */
+    public ApiKeys apiKeys() {
+        if (this.apiKeys == null) {
+            this.apiKeys = new ApiKeysImpl(clientObject.getApiKeys(), this);
+        }
+        return apiKeys;
     }
 
     /**
@@ -275,7 +291,7 @@ public final class NginxManager {
     }
 
     /**
-     * Gets the resource collection API of Configurations. It manages NginxConfiguration.
+     * Gets the resource collection API of Configurations. It manages NginxConfigurationResponse.
      * 
      * @return Resource collection API of Configurations.
      */
