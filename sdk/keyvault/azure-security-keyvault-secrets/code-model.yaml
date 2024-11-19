@@ -1,0 +1,2928 @@
+language:
+  default:
+    name: KeyVault
+    description: >-
+      The key vault client performs cryptographic key operations and vault
+      operations
+
+      against the Key Vault service.
+    namespace: KeyVault
+  java:
+    namespace: com.azure.security.keyvault.secrets.implementation
+protocol: {}
+info:
+  title: KeyVault
+  description: >-
+    The key vault client performs cryptographic key operations and vault
+    operations
+
+    against the Key Vault service.
+schemas:
+  uris:
+    - &ref_13
+      language:
+        default:
+          name: vaultBaseUrl
+          description: Represent a URL string as described by https://url.spec.whatwg.org/
+      protocol: {}
+      type: uri
+  strings:
+    - &ref_0
+      language:
+        default:
+          name: string
+          description: simple string
+      protocol: {}
+      type: string
+    - &ref_15
+      language:
+        default:
+          name: secretName
+          description: A sequence of textual characters.
+      protocol: {}
+      type: string
+    - &ref_1
+      language:
+        default:
+          name: string
+          description: A sequence of textual characters.
+      protocol: {}
+      type: string
+    - &ref_28
+      language:
+        default:
+          name: secretVersion
+          description: A sequence of textual characters.
+      protocol: {}
+      type: string
+  constants:
+    - &ref_14
+      language:
+        default:
+          name: api-version
+          description: API Version
+      protocol: {}
+      type: constant
+      valueType: *ref_0
+      value:
+        value: ''
+    - &ref_16
+      language:
+        default:
+          name: setSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_17
+      language:
+        default:
+          name: setSecretContentType1
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_25
+      language:
+        default:
+          name: deleteSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_29
+      language:
+        default:
+          name: updateSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_30
+      language:
+        default:
+          name: updateSecretContentType1
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_35
+      language:
+        default:
+          name: getSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_39
+      language:
+        default:
+          name: getSecretsContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_42
+      language:
+        default:
+          name: getSecretVersionsContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_45
+      language:
+        default:
+          name: getDeletedSecretsContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_48
+      language:
+        default:
+          name: getDeletedSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_50
+      language:
+        default:
+          name: purgeDeletedSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_52
+      language:
+        default:
+          name: recoverDeletedSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_54
+      language:
+        default:
+          name: backupSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_57
+      language:
+        default:
+          name: restoreSecretContentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+    - &ref_58
+      language:
+        default:
+          name: restoreSecretContentType1
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_1
+      value:
+        value: application/json
+      usage:
+        - input
+        - public
+  objects:
+    - &ref_18
+      language:
+        default:
+          name: SecretSetParameters
+          description: The secret set parameters.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.SecretSetParameters
+      properties:
+        - language:
+            default:
+              name: value
+              description: The value of the secret.
+          protocol: {}
+          schema: *ref_1
+          serializedName: value
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: tags
+              description: Application specific metadata in the form of key-value pairs.
+          protocol: {}
+          schema: &ref_4
+            language:
+              default:
+                name: ''
+                description: ''
+            protocol: {}
+            type: dictionary
+            elementType: *ref_1
+            nullableItems: false
+          serializedName: tags
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: contentType
+              description: Type of the secret value such as a password.
+          protocol: {}
+          schema: *ref_1
+          serializedName: contentType
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: secretAttributes
+              description: The secret management attributes.
+          protocol: {}
+          schema: &ref_3
+            language:
+              default:
+                name: SecretAttributes
+                description: The secret management attributes.
+                namespace: KeyVault
+              java:
+                namespace: com.azure.security.keyvault.secrets.implementation
+            protocol: {}
+            type: object
+            crossLanguageDefinitionId: KeyVault.SecretAttributes
+            properties:
+              - language:
+                  default:
+                    name: enabled
+                    description: Determines whether the object is enabled.
+                protocol: {}
+                schema: &ref_5
+                  language:
+                    default:
+                      name: boolean
+                      description: Boolean with `true` and `false` values.
+                  protocol: {}
+                  type: boolean
+                serializedName: enabled
+                required: false
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: NotBefore
+                    description: Not before date in UTC.
+                protocol: {}
+                schema: &ref_2
+                  language:
+                    default:
+                      name: ''
+                      description: An instant in coordinated universal time (UTC)"
+                  protocol: {}
+                  type: unixtime
+                serializedName: nbf
+                required: false
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: Expires
+                    description: Expiry date in UTC.
+                protocol: {}
+                schema: *ref_2
+                serializedName: exp
+                required: false
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: created
+                    description: Creation time in UTC.
+                protocol: {}
+                schema: *ref_2
+                serializedName: created
+                required: false
+                nullable: false
+                readOnly: true
+                extensions:
+                  x-ms-mutability:
+                    - read
+              - language:
+                  default:
+                    name: updated
+                    description: Last updated time in UTC.
+                protocol: {}
+                schema: *ref_2
+                serializedName: updated
+                required: false
+                nullable: false
+                readOnly: true
+                extensions:
+                  x-ms-mutability:
+                    - read
+              - language:
+                  default:
+                    name: recoverableDays
+                    description: >-
+                      softDelete data retention days. Value should be >=7 and
+                      <=90 when softDelete
+
+                      enabled, otherwise 0.
+                protocol: {}
+                schema: &ref_10
+                  language:
+                    default:
+                      name: int32
+                      description: A 32-bit integer. (`-2,147,483,648` to `2,147,483,647`)
+                  protocol: {}
+                  type: integer
+                  precision: 32
+                serializedName: recoverableDays
+                required: false
+                nullable: false
+                readOnly: true
+                extensions:
+                  x-ms-mutability:
+                    - read
+              - language:
+                  default:
+                    name: recoveryLevel
+                    description: >-
+                      Reflects the deletion recovery level currently in effect
+                      for secrets in the
+
+                      current vault. If it contains 'Purgeable', the secret can
+                      be permanently
+
+                      deleted by a privileged user; otherwise, only the system
+                      can purge the secret,
+
+                      at the end of the retention interval.
+                protocol: {}
+                schema: *ref_1
+                serializedName: recoveryLevel
+                required: false
+                nullable: false
+                readOnly: true
+                extensions:
+                  x-ms-mutability:
+                    - read
+            usage:
+              - input
+              - public
+              - output
+          serializedName: attributes
+          required: false
+          nullable: false
+          readOnly: false
+      usage:
+        - input
+        - public
+    - *ref_3
+    - &ref_21
+      language:
+        default:
+          name: SecretBundle
+          description: A secret consisting of a value, id and its attributes.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.SecretBundle
+      properties:
+        - language:
+            default:
+              name: value
+              description: The secret value.
+          protocol: {}
+          schema: *ref_1
+          serializedName: value
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: id
+              description: The secret id.
+          protocol: {}
+          schema: *ref_1
+          serializedName: id
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: contentType
+              description: The content type of the secret.
+          protocol: {}
+          schema: *ref_1
+          serializedName: contentType
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: attributes
+              description: The secret management attributes.
+          protocol: {}
+          schema: *ref_3
+          serializedName: attributes
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: tags
+              description: Application specific metadata in the form of key-value pairs.
+          protocol: {}
+          schema: *ref_4
+          serializedName: tags
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: kid
+              description: >-
+                If this is a secret backing a KV certificate, then this field
+                specifies the
+
+                corresponding key backing the KV certificate.
+          protocol: {}
+          schema: *ref_1
+          serializedName: kid
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+        - language:
+            default:
+              name: managed
+              description: >-
+                True if the secret's lifetime is managed by key vault. If this
+                is a secret
+
+                backing a certificate, then managed will be true.
+          protocol: {}
+          schema: *ref_5
+          serializedName: managed
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+      usage:
+        - output
+        - public
+    - &ref_22
+      language:
+        default:
+          name: KeyVaultError
+          description: The key vault error exception.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.KeyVaultError
+      properties:
+        - language:
+            default:
+              name: error
+              description: The key vault server error.
+          protocol: {}
+          schema: &ref_6
+            language:
+              default:
+                name: Error
+                description: The key vault server error.
+                namespace: KeyVault
+              java:
+                namespace: com.azure.security.keyvault.secrets.implementation
+            protocol: {}
+            type: object
+            crossLanguageDefinitionId: KeyVault.Error
+            properties:
+              - language:
+                  default:
+                    name: code
+                    description: The error code.
+                protocol: {}
+                schema: *ref_1
+                serializedName: code
+                required: false
+                nullable: false
+                readOnly: true
+                extensions:
+                  x-ms-mutability:
+                    - read
+              - language:
+                  default:
+                    name: message
+                    description: The error message.
+                protocol: {}
+                schema: *ref_1
+                serializedName: message
+                required: false
+                nullable: false
+                readOnly: true
+                extensions:
+                  x-ms-mutability:
+                    - read
+              - language:
+                  default:
+                    name: innerError
+                    description: The key vault server error.
+                protocol: {}
+                schema: *ref_6
+                serializedName: innererror
+                required: false
+                nullable: false
+                readOnly: true
+                extensions:
+                  x-ms-mutability:
+                    - read
+            usage:
+              - exception
+          serializedName: error
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+      usage:
+        - exception
+    - *ref_6
+    - &ref_27
+      language:
+        default:
+          name: DeletedSecretBundle
+          description: >-
+            A Deleted Secret consisting of its previous id, attributes and its
+            tags, as
+
+            well as information on when it will be purged.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.DeletedSecretBundle
+      properties:
+        - language:
+            default:
+              name: value
+              description: The secret value.
+          protocol: {}
+          schema: *ref_1
+          serializedName: value
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: id
+              description: The secret id.
+          protocol: {}
+          schema: *ref_1
+          serializedName: id
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: contentType
+              description: The content type of the secret.
+          protocol: {}
+          schema: *ref_1
+          serializedName: contentType
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: attributes
+              description: The secret management attributes.
+          protocol: {}
+          schema: *ref_3
+          serializedName: attributes
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: tags
+              description: Application specific metadata in the form of key-value pairs.
+          protocol: {}
+          schema: *ref_4
+          serializedName: tags
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: kid
+              description: >-
+                If this is a secret backing a KV certificate, then this field
+                specifies the
+
+                corresponding key backing the KV certificate.
+          protocol: {}
+          schema: *ref_1
+          serializedName: kid
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+        - language:
+            default:
+              name: managed
+              description: >-
+                True if the secret's lifetime is managed by key vault. If this
+                is a secret
+
+                backing a certificate, then managed will be true.
+          protocol: {}
+          schema: *ref_5
+          serializedName: managed
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+        - language:
+            default:
+              name: recoveryId
+              description: >-
+                The url of the recovery object, used to identify and recover the
+                deleted secret.
+          protocol: {}
+          schema: *ref_1
+          serializedName: recoveryId
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: scheduledPurgeDate
+              description: The time when the secret is scheduled to be purged, in UTC
+          protocol: {}
+          schema: *ref_2
+          serializedName: scheduledPurgeDate
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+        - language:
+            default:
+              name: deletedDate
+              description: The time when the secret was deleted, in UTC
+          protocol: {}
+          schema: *ref_2
+          serializedName: deletedDate
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+      usage:
+        - output
+        - public
+    - &ref_31
+      language:
+        default:
+          name: SecretUpdateParameters
+          description: The secret update parameters.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.SecretUpdateParameters
+      properties:
+        - language:
+            default:
+              name: contentType
+              description: Type of the secret value such as a password.
+          protocol: {}
+          schema: *ref_1
+          serializedName: contentType
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: secretAttributes
+              description: The secret management attributes.
+          protocol: {}
+          schema: *ref_3
+          serializedName: attributes
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: tags
+              description: Application specific metadata in the form of key-value pairs.
+          protocol: {}
+          schema: *ref_4
+          serializedName: tags
+          required: false
+          nullable: false
+          readOnly: false
+      usage:
+        - input
+        - public
+    - &ref_41
+      language:
+        default:
+          name: SecretListResult
+          description: The secret list result.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.SecretListResult
+      properties:
+        - language:
+            default:
+              name: value
+              description: >-
+                A response message containing a list of secrets in the key vault
+                along with a link to the next page of
+
+                secrets.
+          protocol: {}
+          schema: &ref_11
+            language:
+              default:
+                name: ''
+                description: ''
+            protocol: {}
+            type: array
+            elementType: &ref_7
+              language:
+                default:
+                  name: SecretItem
+                  description: The secret item containing secret metadata.
+                  namespace: KeyVault
+                java:
+                  namespace: com.azure.security.keyvault.secrets.implementation
+              protocol: {}
+              type: object
+              crossLanguageDefinitionId: KeyVault.SecretItem
+              properties:
+                - language:
+                    default:
+                      name: id
+                      description: Secret identifier.
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: id
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: attributes
+                      description: The secret management attributes.
+                  protocol: {}
+                  schema: *ref_3
+                  serializedName: attributes
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: tags
+                      description: >-
+                        Application specific metadata in the form of key-value
+                        pairs.
+                  protocol: {}
+                  schema: *ref_4
+                  serializedName: tags
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: contentType
+                      description: Type of the secret value such as a password.
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: contentType
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: managed
+                      description: >-
+                        True if the secret's lifetime is managed by key vault.
+                        If this is a key backing
+
+                        a certificate, then managed will be true.
+                  protocol: {}
+                  schema: *ref_5
+                  serializedName: managed
+                  required: false
+                  nullable: false
+                  readOnly: true
+                  extensions:
+                    x-ms-mutability:
+                      - read
+              usage:
+                - output
+                - public
+            nullableItems: false
+          serializedName: value
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+        - language:
+            default:
+              name: nextLink
+              description: The URL to get the next set of secrets.
+          protocol: {}
+          schema: *ref_1
+          serializedName: nextLink
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+      usage:
+        - output
+        - public
+        - paged
+    - *ref_7
+    - &ref_47
+      language:
+        default:
+          name: DeletedSecretListResult
+          description: The deleted secret list result
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.DeletedSecretListResult
+      properties:
+        - language:
+            default:
+              name: value
+              description: >-
+                A response message containing a list of deleted secrets in the
+                key vault along with a link to the next page of
+
+                deleted secrets.
+          protocol: {}
+          schema: &ref_12
+            language:
+              default:
+                name: ''
+                description: ''
+            protocol: {}
+            type: array
+            elementType: &ref_8
+              language:
+                default:
+                  name: DeletedSecretItem
+                  description: >-
+                    The deleted secret item containing metadata about the
+                    deleted secret.
+                  namespace: KeyVault
+                java:
+                  namespace: com.azure.security.keyvault.secrets.implementation
+              protocol: {}
+              type: object
+              crossLanguageDefinitionId: KeyVault.DeletedSecretItem
+              properties:
+                - language:
+                    default:
+                      name: id
+                      description: Secret identifier.
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: id
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: attributes
+                      description: The secret management attributes.
+                  protocol: {}
+                  schema: *ref_3
+                  serializedName: attributes
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: tags
+                      description: >-
+                        Application specific metadata in the form of key-value
+                        pairs.
+                  protocol: {}
+                  schema: *ref_4
+                  serializedName: tags
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: contentType
+                      description: Type of the secret value such as a password.
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: contentType
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: managed
+                      description: >-
+                        True if the secret's lifetime is managed by key vault.
+                        If this is a key backing
+
+                        a certificate, then managed will be true.
+                  protocol: {}
+                  schema: *ref_5
+                  serializedName: managed
+                  required: false
+                  nullable: false
+                  readOnly: true
+                  extensions:
+                    x-ms-mutability:
+                      - read
+                - language:
+                    default:
+                      name: recoveryId
+                      description: >-
+                        The url of the recovery object, used to identify and
+                        recover the deleted secret.
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: recoveryId
+                  required: false
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: scheduledPurgeDate
+                      description: >-
+                        The time when the secret is scheduled to be purged, in
+                        UTC
+                  protocol: {}
+                  schema: *ref_2
+                  serializedName: scheduledPurgeDate
+                  required: false
+                  nullable: false
+                  readOnly: true
+                  extensions:
+                    x-ms-mutability:
+                      - read
+                - language:
+                    default:
+                      name: deletedDate
+                      description: The time when the secret was deleted, in UTC
+                  protocol: {}
+                  schema: *ref_2
+                  serializedName: deletedDate
+                  required: false
+                  nullable: false
+                  readOnly: true
+                  extensions:
+                    x-ms-mutability:
+                      - read
+              usage:
+                - output
+                - public
+            nullableItems: false
+          serializedName: value
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+        - language:
+            default:
+              name: nextLink
+              description: The URL to get the next set of deleted secrets.
+          protocol: {}
+          schema: *ref_1
+          serializedName: nextLink
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+      usage:
+        - output
+        - public
+        - paged
+    - *ref_8
+    - &ref_56
+      language:
+        default:
+          name: BackupSecretResult
+          description: The backup secret result, containing the backup blob.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.BackupSecretResult
+      properties:
+        - language:
+            default:
+              name: value
+              description: The backup blob containing the backed up secret.
+          protocol: {}
+          schema: &ref_9
+            language:
+              default:
+                name: bytes
+                description: Represent a byte array
+            protocol: {}
+            type: byte-array
+            format: base64url
+          serializedName: value
+          required: false
+          nullable: false
+          readOnly: true
+          extensions:
+            x-ms-mutability:
+              - read
+      usage:
+        - output
+        - public
+    - &ref_59
+      language:
+        default:
+          name: SecretRestoreParameters
+          description: The secret restore parameters.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: object
+      crossLanguageDefinitionId: KeyVault.SecretRestoreParameters
+      properties:
+        - language:
+            default:
+              name: secretBundleBackup
+              description: The backup blob associated with a secret bundle.
+          protocol: {}
+          schema: *ref_9
+          serializedName: value
+          required: true
+          nullable: false
+          readOnly: false
+      usage:
+        - input
+        - public
+  dictionaries:
+    - *ref_4
+  booleans:
+    - *ref_5
+  unixtimes:
+    - *ref_2
+  numbers:
+    - *ref_10
+    - &ref_38
+      language:
+        default:
+          name: maxresults
+          description: A 32-bit integer. (`-2,147,483,648` to `2,147,483,647`)
+      protocol: {}
+      type: integer
+      precision: 32
+  arrays:
+    - *ref_11
+    - *ref_12
+  byteArrays:
+    - *ref_9
+  choices:
+    - language:
+        default:
+          name: DeletionRecoveryLevel
+          description: >-
+            Reflects the deletion recovery level currently in effect for secrets
+            in the
+
+            current vault. If it contains 'Purgeable', the secret can be
+            permanently
+
+            deleted by a privileged user; otherwise, only the system can purge
+            the secret,
+
+            at the end of the retention interval.
+          namespace: KeyVault
+        java:
+          namespace: com.azure.security.keyvault.secrets.implementation
+      protocol: {}
+      type: choice
+      choiceType: *ref_1
+      choices:
+        - value: Purgeable
+          language:
+            default:
+              name: Purgeable
+              description: >-
+                Denotes a vault state in which deletion is an irreversible
+                operation, without
+
+                the possibility for recovery. This level corresponds to no
+                protection being
+
+                available against a Delete operation; the data is irretrievably
+                lost upon
+
+                accepting a Delete operation at the entity level or higher
+                (vault, resource
+
+                group, subscription etc.)
+        - value: Recoverable+Purgeable
+          language:
+            default:
+              name: RecoverablePurgeable
+              description: >-
+                Denotes a vault state in which deletion is recoverable, and
+                which also permits
+
+                immediate and permanent deletion (i.e. purge). This level
+                guarantees the
+
+                recoverability of the deleted entity during the retention
+                interval (90 days),
+
+                unless a Purge operation is requested, or the subscription is
+                cancelled. System
+
+                wil permanently delete it after 90 days, if not recovered
+        - value: Recoverable
+          language:
+            default:
+              name: Recoverable
+              description: >-
+                Denotes a vault state in which deletion is recoverable without
+                the possibility
+
+                for immediate and permanent deletion (i.e. purge). This level
+                guarantees the
+
+                recoverability of the deleted entity during the retention
+                interval(90 days) and
+
+                while the subscription is still available. System wil
+                permanently delete it
+
+                after 90 days, if not recovered
+        - value: Recoverable+ProtectedSubscription
+          language:
+            default:
+              name: RecoverableProtectedSubscription
+              description: >-
+                Denotes a vault and subscription state in which deletion is
+                recoverable within
+
+                retention interval (90 days), immediate and permanent deletion
+                (i.e. purge) is
+
+                not permitted, and in which the subscription itself  cannot be
+                permanently
+
+                canceled. System wil permanently delete it after 90 days, if not
+                recovered
+        - value: CustomizedRecoverable+Purgeable
+          language:
+            default:
+              name: CustomizedRecoverablePurgeable
+              description: >-
+                Denotes a vault state in which deletion is recoverable, and
+                which also permits
+
+                immediate and permanent deletion (i.e. purge when 7<=
+                SoftDeleteRetentionInDays
+
+                < 90). This level guarantees the recoverability of the deleted
+                entity during
+
+                the retention interval, unless a Purge operation is requested,
+                or the
+
+                subscription is cancelled.
+        - value: CustomizedRecoverable
+          language:
+            default:
+              name: CustomizedRecoverable
+              description: >-
+                Denotes a vault state in which deletion is recoverable without
+                the possibility
+
+                for immediate and permanent deletion (i.e. purge when 7<=
+
+                SoftDeleteRetentionInDays < 90).This level guarantees the
+                recoverability of the
+
+                deleted entity during the retention interval and while the
+                subscription is
+
+                still available.
+        - value: CustomizedRecoverable+ProtectedSubscription
+          language:
+            default:
+              name: CustomizedRecoverableProtectedSubscription
+              description: >-
+                Denotes a vault and subscription state in which deletion is
+                recoverable,
+
+                immediate and permanent deletion (i.e. purge) is not permitted,
+                and in which
+
+                the subscription itself cannot be permanently canceled when 7<=
+
+                SoftDeleteRetentionInDays < 90. This level guarantees the
+                recoverability of the
+
+                deleted entity during the retention interval, and also reflects
+                the fact that
+
+                the subscription itself cannot be cancelled.
+      crossLanguageDefinitionId: KeyVault.DeletionRecoveryLevel
+      usage:
+        - output
+operationGroups:
+  - language:
+      default:
+        name: ''
+        description: ''
+    protocol: {}
+    $key: ''
+    operations:
+      - &ref_62
+        language:
+          default:
+            name: setSecret
+            description: >-
+              The SET operation adds a secret to the Azure Key Vault. If the
+              named secret
+
+              already exists, Azure Key Vault creates a new version of that
+              secret. This
+
+              operation requires the secrets/set permission.
+        protocol: {}
+        operationId: setSecret
+        summary: Sets a secret in a specified key vault.
+        extensions:
+          x-ms-examples:
+            SetSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: crpsecret
+                api-version: 7.6-preview.1
+                parameters:
+                  value: mysecretvalue
+              responses:
+                '200':
+                  body:
+                    value: mysecretvalue
+                    id: >-
+                      https://myvault.vault.azure.net/secrets/crpsecret/03bcccc7c8cf4546a0e3e21e52560441
+                    attributes:
+                      enabled: true
+                      created: 1493938459
+                      updated: 1493938459
+                      recoveryLevel: Recoverable+Purgeable
+              operationId: SetSecret
+              title: SetSecret
+              x-ms-original-file: 7.6-preview.1/SetSecret-example.json
+        crossLanguageDefinitionId: KeyVault.setSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: setSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /secrets/{secret-name}
+                method: put
+                uri: '{vaultBaseUrl}'
+                mediaTypes:
+                  - application/json
+        parameters:
+          - &ref_23
+            language:
+              default:
+                name: vaultBaseUrl
+                description: ''
+                serializedName: vaultBaseUrl
+            protocol:
+              http:
+                in: uri
+            schema: *ref_13
+            implementation: Client
+            origin: modelerfour:synthesized/host
+            required: true
+            extensions:
+              x-ms-skip-url-encoding: true
+          - &ref_24
+            language:
+              default:
+                name: api-version
+                description: Version parameter
+                serializedName: api-version
+            protocol:
+              http:
+                in: query
+            schema: *ref_14
+            implementation: Client
+            origin: modelerfour:synthesized/api-version
+            required: true
+          - &ref_19
+            language:
+              default:
+                name: secretName
+                description: >-
+                  The name of the secret. The value you provide may be copied
+                  globally for the
+
+                  purpose of running the service. The value provided should not
+                  include
+
+                  personally identifiable or sensitive information.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: contentType
+                description: >-
+                  Body parameter's content type. Known values are
+                  application/json
+                serializedName: Content-Type
+            protocol:
+              http:
+                in: header
+            schema: *ref_16
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_17
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_20
+            language:
+              default:
+                name: parameters
+                description: The parameters for setting the secret.
+            protocol:
+              http:
+                in: body
+            schema: *ref_18
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_19
+          - *ref_20
+        responses:
+          - language:
+              default:
+                name: setSecretResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_21
+        exceptions:
+          - language:
+              default:
+                name: setSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_63
+        language:
+          default:
+            name: deleteSecret
+            description: >-
+              The DELETE operation applies to any secret stored in Azure Key
+              Vault. DELETE
+
+              cannot be applied to an individual version of a secret. This
+              operation requires
+
+              the secrets/delete permission.
+        protocol: {}
+        operationId: deleteSecret
+        summary: Deletes a secret from a specified key vault.
+        extensions:
+          x-ms-examples:
+            DeleteSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: GetDeletedSecretTest
+                api-version: 7.6-preview.1
+              responses:
+                '200':
+                  body:
+                    recoveryId: >-
+                      https://myvault.vault.azure.net/deletedsecrets/GetDeletedSecretTest
+                    deletedDate: 1493938433
+                    scheduledPurgeDate: 1501714433
+                    id: >-
+                      https://myvault.vault.azure.net/secrets/GetDeletedSecretTest/b595353d9c39413d80626575b3b5d865
+                    attributes:
+                      enabled: true
+                      created: 1493938433
+                      updated: 1493938433
+                      recoveryLevel: Recoverable+Purgeable
+              operationId: DeleteSecret
+              title: DeleteSecret
+              x-ms-original-file: 7.6-preview.1/DeleteSecret-example.json
+        crossLanguageDefinitionId: KeyVault.deleteSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: deleteSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /secrets/{secret-name}
+                method: delete
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_26
+            language:
+              default:
+                name: secretName
+                description: The name of the secret.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_25
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_26
+        responses:
+          - language:
+              default:
+                name: deleteSecretResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_27
+        exceptions:
+          - language:
+              default:
+                name: deleteSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_64
+        language:
+          default:
+            name: updateSecret
+            description: >-
+              The UPDATE operation changes specified attributes of an existing
+              stored secret.
+
+              Attributes that are not specified in the request are left
+              unchanged. The value
+
+              of a secret itself cannot be changed. This operation requires the
+              secrets/set
+
+              permission.
+        protocol: {}
+        operationId: updateSecret
+        summary: >-
+          Updates the attributes associated with a specified secret in a given
+          key vault.
+        extensions:
+          x-ms-examples:
+            UpdateSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: crpsecret
+                secret-version: 03bcccc7c8cf4546a0e3e21e52560441
+                api-version: 7.6-preview.1
+                parameters:
+                  tags:
+                    mytag: myvalue
+                  contentType: myContentType
+                  attributes:
+                    enabled: true
+              responses:
+                '200':
+                  body:
+                    id: >-
+                      https://myvault.vault.azure.net/secrets/crpsecret/03bcccc7c8cf4546a0e3e21e52560441
+                    contentType: myContentType
+                    attributes:
+                      enabled: true
+                      created: 1493938459
+                      updated: 1493938459
+                      recoveryLevel: Recoverable+Purgeable
+                    tags:
+                      mytag: myvalue
+              operationId: UpdateSecret
+              title: UpdateSecret
+              x-ms-original-file: 7.6-preview.1/UpdateSecret-example.json
+        crossLanguageDefinitionId: KeyVault.updateSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: updateSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /secrets/{secret-name}/{secret-version}
+                method: patch
+                uri: '{vaultBaseUrl}'
+                mediaTypes:
+                  - application/json
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_32
+            language:
+              default:
+                name: secretName
+                description: The name of the secret.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_33
+            language:
+              default:
+                name: secretVersion
+                description: The version of the secret.
+                serializedName: secret-version
+            protocol:
+              http:
+                in: path
+            schema: *ref_28
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: contentType
+                description: >-
+                  Body parameter's content type. Known values are
+                  application/json
+                serializedName: Content-Type
+            protocol:
+              http:
+                in: header
+            schema: *ref_29
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_30
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_34
+            language:
+              default:
+                name: parameters
+                description: The parameters for update secret operation.
+            protocol:
+              http:
+                in: body
+            schema: *ref_31
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_32
+          - *ref_33
+          - *ref_34
+        responses:
+          - language:
+              default:
+                name: updateSecretResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_21
+        exceptions:
+          - language:
+              default:
+                name: updateSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_65
+        language:
+          default:
+            name: getSecret
+            description: >-
+              The GET operation is applicable to any secret stored in Azure Key
+              Vault. This
+
+              operation requires the secrets/get permission.
+        protocol: {}
+        operationId: getSecret
+        summary: Get a specified secret from a given key vault.
+        extensions:
+          x-ms-examples:
+            GetSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: mysecretname
+                secret-version: 4387e9f3d6e14c459867679a90fd0f79
+                api-version: 7.6-preview.1
+              responses:
+                '200':
+                  body:
+                    value: mysecretvalue
+                    id: >-
+                      https://myvault.vault.azure.net/secrets/mysecretname/4387e9f3d6e14c459867679a90fd0f79
+                    attributes:
+                      enabled: true
+                      created: 1493938410
+                      updated: 1493938410
+                      recoveryLevel: Recoverable+Purgeable
+              operationId: GetSecret
+              title: GetSecret
+              x-ms-original-file: 7.6-preview.1/GetSecret-example.json
+        crossLanguageDefinitionId: KeyVault.getSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: getSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /secrets/{secret-name}/{secret-version}
+                method: get
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_36
+            language:
+              default:
+                name: secretName
+                description: The name of the secret.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_37
+            language:
+              default:
+                name: secretVersion
+                description: >-
+                  The version of the secret. This URI fragment is optional. If
+                  not specified, the
+
+                  latest version of the secret is returned.
+                serializedName: secret-version
+            protocol:
+              http:
+                in: path
+            schema: *ref_28
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_35
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_36
+          - *ref_37
+        responses:
+          - language:
+              default:
+                name: getSecretResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_21
+        exceptions:
+          - language:
+              default:
+                name: getSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_66
+        language:
+          default:
+            name: getSecrets
+            description: >-
+              The Get Secrets operation is applicable to the entire vault.
+              However, only the
+
+              base secret identifier and its attributes are provided in the
+              response.
+
+              Individual secret versions are not listed in the response. This
+              operation
+
+              requires the secrets/list permission.
+        protocol: {}
+        operationId: getSecrets
+        summary: List secrets in a specified key vault.
+        extensions:
+          x-ms-examples:
+            GetSecrets:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                api-version: 7.6-preview.1
+                maxresults: 1
+              responses:
+                '200':
+                  body:
+                    value:
+                      - contentType: plainText
+                        id: >-
+                          https://myvault.vault.azure.net/secrets/listsecrettest0
+                        attributes:
+                          enabled: true
+                          created: 1482189047
+                          updated: 1482189047
+                    nextLink: >-
+                      https://myvault.vault.azure.net:443/secrets?api-version=7.2&$skiptoken=eyJOZXh0TWFya2VyIjoiMiE4OCFNREF3TURJeUlYTmxZM0psZEM5TVNWTlVVMFZEVWtWVVZFVlRWREVoTURBd01ESTRJVEl3TVRZdE1USXRNVGxVTWpNNk1UQTZORFV1T0RneE9ERXhNRm9oIiwiVGFyZ2V0TG9jYXRpb24iOjB9&maxresults=1
+              operationId: GetSecrets
+              title: GetSecrets
+              x-ms-original-file: 7.6-preview.1/GetSecrets-example.json
+          x-ms-pageable:
+            itemName: value
+            nextLinkName: nextLink
+        crossLanguageDefinitionId: KeyVault.getSecrets
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: getSecrets
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /secrets
+                method: get
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_40
+            language:
+              default:
+                name: maxresults
+                description: >-
+                  Maximum number of results to return in a page. If not
+                  specified the service
+
+                  will return up to 25 results.
+                serializedName: maxresults
+            protocol:
+              http:
+                in: query
+            schema: *ref_38
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_39
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_40
+        responses:
+          - language:
+              default:
+                name: getSecretsResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_41
+        exceptions:
+          - language:
+              default:
+                name: getSecretsResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_67
+        language:
+          default:
+            name: getSecretVersions
+            description: >-
+              The full secret identifier and attributes are provided in the
+              response. No
+
+              values are returned for the secrets. This operations requires the
+              secrets/list
+
+              permission.
+        protocol: {}
+        operationId: getSecretVersions
+        summary: List all versions of the specified secret.
+        extensions:
+          x-ms-examples:
+            GetSecretVersions:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: listsecretversionstest
+                api-version: 7.6-preview.1
+                maxresults: 1
+              responses:
+                '200':
+                  body:
+                    value:
+                      - id: >-
+                          https://myvault.vault.azure.net/secrets/listsecretversionstest/11a536561da34d6b8b452d880df58f3a
+                        attributes:
+                          enabled: true
+                          created: 1481851699
+                          updated: 1481851699
+                    nextLink: >-
+                      https://myvault.vault.azure.net:443/secrets/listsecretversionstest/versions?api-version=7.2&$skiptoken=eyJOZXh0TWFya2VyIjoiMiExNDQhTURBd01EWXlJWE5sWTNKbGRDOU1TVk5VVTBWRFVrVlVWa1ZTVTBsUFRsTlVSVk5VTHpGRU5EazJNa0l4UlVRM09EUkVRa1k0T1RsR016TXpNa1UwTnpZNFFqY3dJVEF3TURBeU9DRTVPVGs1TFRFeUxUTXhWREl6T2pVNU9qVTVMams1T1RrNU9UbGFJUS0tIiwiVGFyZ2V0TG9jYXRpb24iOjB9&maxresults=1
+              operationId: GetSecretVersions
+              title: GetSecretVersions
+              x-ms-original-file: 7.6-preview.1/GetSecretVersions-example.json
+          x-ms-pageable:
+            itemName: value
+            nextLinkName: nextLink
+        crossLanguageDefinitionId: KeyVault.getSecretVersions
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: getSecretVersions
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /secrets/{secret-name}/versions
+                method: get
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_43
+            language:
+              default:
+                name: secretName
+                description: The name of the secret.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_44
+            language:
+              default:
+                name: maxresults
+                description: >-
+                  Maximum number of results to return in a page. If not
+                  specified the service
+
+                  will return up to 25 results.
+                serializedName: maxresults
+            protocol:
+              http:
+                in: query
+            schema: *ref_38
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_42
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_43
+          - *ref_44
+        responses:
+          - language:
+              default:
+                name: getSecretVersionsResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_41
+        exceptions:
+          - language:
+              default:
+                name: getSecretVersionsResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_68
+        language:
+          default:
+            name: getDeletedSecrets
+            description: >-
+              The Get Deleted Secrets operation returns the secrets that have
+              been deleted
+
+              for a vault enabled for soft-delete. This operation requires the
+              secrets/list
+
+              permission.
+        protocol: {}
+        operationId: getDeletedSecrets
+        summary: Lists deleted secrets for the specified vault.
+        extensions:
+          x-ms-examples:
+            GetDeletedSecrets:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                api-version: 7.6-preview.1
+                maxresults: 1
+                $skiptoken: >-
+                  eyJOZXh0TWFya2VyIjoiMiExMDAhTURBd01ESTVJWE5sWTNKbGRDOU1TVk5VUkVWTVJWUkZSRk5GUTFKRlZGUkZVMVF3SVRBd01EQXlPQ0V5TURFM0xUQTFMVEEwVkRFNU9qSTFPakU0TGpJNE5qUXdORFZhSVEtLSIsIlRhcmdldExvY2F0aW9uIjowfQ
+              responses:
+                '200':
+                  body:
+                    value:
+                      - recoveryId: >-
+                          https://myvault.vault.azure.net/deletedsecrets/listdeletedsecrettest0
+                        deletedDate: 1493937855
+                        scheduledPurgeDate: 1501713855
+                        contentType: plainText
+                        id: >-
+                          https://myvault.vault.azure.net/secrets/listdeletedsecrettest0
+                        attributes:
+                          enabled: true
+                          created: 1493937855
+                          updated: 1493937855
+                          recoveryLevel: Recoverable+Purgeable
+                    nextLink: >-
+                      https://myvault.vault.azure.net:443/deletedsecrets?api-version=7.2&$skiptoken=eyJOZXh0TWFya2VyIjoiMiExNDQhTURBd01EWXlJWE5sWTNKbGRDOU1TVk5VUkVWTVJWUkZSRk5GUTFKRlZGUkZVMVF3THpZMU16ZERSRVJGTlRJNU5qUkRSa1pDTVRkQ1JVWXhORGszUXpSQ1JEZEVJVEF3TURBeU9DRXlNREUzTFRBMUxUQTBWREl5T2pRME9qUXdMamsxTnpZeE1UbGFJUS0tIiwiVGFyZ2V0TG9jYXRpb24iOjB9&maxresults=1
+              operationId: GetDeletedSecrets
+              title: GetDeletedSecrets
+              x-ms-original-file: 7.6-preview.1/GetDeletedSecrets-example.json
+          x-ms-pageable:
+            itemName: value
+            nextLinkName: nextLink
+        crossLanguageDefinitionId: KeyVault.getDeletedSecrets
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: getDeletedSecrets
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /deletedsecrets
+                method: get
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_46
+            language:
+              default:
+                name: maxresults
+                description: >-
+                  Maximum number of results to return in a page. If not
+                  specified the service
+
+                  will return up to 25 results.
+                serializedName: maxresults
+            protocol:
+              http:
+                in: query
+            schema: *ref_38
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_45
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_46
+        responses:
+          - language:
+              default:
+                name: getDeletedSecretsResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_47
+        exceptions:
+          - language:
+              default:
+                name: getDeletedSecretsResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_69
+        language:
+          default:
+            name: getDeletedSecret
+            description: >-
+              The Get Deleted Secret operation returns the specified deleted
+              secret along
+
+              with its attributes. This operation requires the secrets/get
+              permission.
+        protocol: {}
+        operationId: getDeletedSecret
+        summary: Gets the specified deleted secret.
+        extensions:
+          x-ms-examples:
+            GetDeletedSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: GetDeletedSecretTest
+                api-version: 7.6-preview.1
+              responses:
+                '200':
+                  body:
+                    recoveryId: >-
+                      https://myvault.vault.azure.net/deletedsecrets/GetDeletedSecretTest
+                    deletedDate: 1493938433
+                    scheduledPurgeDate: 1501714433
+                    id: >-
+                      https://myvault.vault.azure.net/secrets/GetDeletedSecretTest/b595353d9c39413d80626575b3b5d865
+                    attributes:
+                      enabled: true
+                      created: 1493938433
+                      updated: 1493938433
+                      recoveryLevel: Recoverable+Purgeable
+              operationId: GetDeletedSecret
+              title: GetDeletedSecret
+              x-ms-original-file: 7.6-preview.1/GetDeletedSecret-example.json
+        crossLanguageDefinitionId: KeyVault.getDeletedSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: getDeletedSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /deletedsecrets/{secret-name}
+                method: get
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_49
+            language:
+              default:
+                name: secretName
+                description: The name of the secret.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_48
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_49
+        responses:
+          - language:
+              default:
+                name: getDeletedSecretResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_27
+        exceptions:
+          - language:
+              default:
+                name: getDeletedSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_70
+        language:
+          default:
+            name: purgeDeletedSecret
+            description: >-
+              The purge deleted secret operation removes the secret permanently,
+              without the
+
+              possibility of recovery. This operation can only be enabled on a
+              soft-delete
+
+              enabled vault. This operation requires the secrets/purge
+              permission.
+        protocol: {}
+        operationId: purgeDeletedSecret
+        summary: Permanently deletes the specified secret.
+        extensions:
+          x-ms-examples:
+            PurgeDeletedSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: testsecret
+                api-version: 7.6-preview.1
+              responses:
+                '204': {}
+              operationId: PurgeDeletedSecret
+              title: PurgeDeletedSecret
+              x-ms-original-file: 7.6-preview.1/PurgeDeletedSecret-example.json
+        crossLanguageDefinitionId: KeyVault.purgeDeletedSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: purgeDeletedSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /deletedsecrets/{secret-name}
+                method: delete
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_51
+            language:
+              default:
+                name: secretName
+                description: The name of the secret.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_50
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_51
+        responses:
+          - language:
+              default:
+                name: purgeDeletedSecretResponse
+                description: >-
+                  There is no content to send for this request, but the headers
+                  may be useful. 
+            protocol:
+              http:
+                statusCodes:
+                  - '204'
+                headers: []
+        exceptions:
+          - language:
+              default:
+                name: purgeDeletedSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_71
+        language:
+          default:
+            name: recoverDeletedSecret
+            description: >-
+              Recovers the deleted secret in the specified vault. This operation
+              can only be
+
+              performed on a soft-delete enabled vault. This operation requires
+              the
+
+              secrets/recover permission.
+        protocol: {}
+        operationId: recoverDeletedSecret
+        summary: Recovers the deleted secret to the latest version.
+        extensions:
+          x-ms-examples:
+            RecoverDeletedSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: SecretCreateDeleteRecoverPurgeTest
+                api-version: 7.6-preview.1
+              responses:
+                '200':
+                  body:
+                    id: >-
+                      https://myvault.vault.azure.net/secrets/SecretCreateDeleteRecoverPurgeTest/16f5f7feb7004280b7f3b8ac50cd01f9
+                    attributes:
+                      enabled: true
+                      created: 1493937960
+                      updated: 1493937960
+                      recoveryLevel: Recoverable+Purgeable
+              operationId: RecoverDeletedSecret
+              title: RecoverDeletedSecret
+              x-ms-original-file: 7.6-preview.1/RecoverDeletedSecret-example.json
+        crossLanguageDefinitionId: KeyVault.recoverDeletedSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: recoverDeletedSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /deletedsecrets/{secret-name}/recover
+                method: post
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_53
+            language:
+              default:
+                name: secretName
+                description: The name of the deleted secret.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_52
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_53
+        responses:
+          - language:
+              default:
+                name: recoverDeletedSecretResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_21
+        exceptions:
+          - language:
+              default:
+                name: recoverDeletedSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_72
+        language:
+          default:
+            name: backupSecret
+            description: >-
+              Requests that a backup of the specified secret be downloaded to
+              the client. All
+
+              versions of the secret will be downloaded. This operation requires
+              the
+
+              secrets/backup permission.
+        protocol: {}
+        operationId: backupSecret
+        summary: Backs up the specified secret.
+        extensions:
+          x-ms-examples:
+            BackupSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                secret-name: testsecret
+                api-version: 7.6-preview.1
+              responses:
+                '200':
+                  body:
+                    value: >-
+                      KUF6dXJlS2V5VmF1bHRTZWNyZXRCYWNrdXBWMS5taWNyb3NvZnQuY29tZXlKcmFXUWlPaUppTlRjMk5ESTVaaTB5TlRZNExUUTFZbVV0WW1aaFlTMHpOMlZrTURkbVl6QmpPREVpTENKaGJHY2lPaUpTVTBFdFQwRkZVQ0lzSW1WdVl5STZJa0V4TWpoRFFrTXRTRk15TlRZaWZRLmhERDdfVW9aU1ptR2JYN1dYUTU5WDkxZ0FQb05kdDcwZE1BbmgzbjQ3eWNjbkRNOU5vTm1hY0NHZmlNeUwxU0FlZDk0UjhBNDAtVE81TDNfQ05Qal9pdWIyaW03Z21nbHNPNnFFUVVIWU1tOEh2Wl9odFRrdEl4QzRPWEowYTB0S2hscnczZlBvVVFDZHVGcFg0ekEzYTR4VTZXTUNfYjZZVXZqUjZnSGM5TFRUR2tIazh1RTY0aVQ4cmt5RDRrU3RNcXhnU2lfRVZwUUdjWGdfNE9wQ1dBOUFha0N1NkpybGRaQW9BLUtXTWpQbGhaWHFYWGMyVkJlbUJjRTQ1YzY3QWhqYjJrSi1uQ1c5dHBjWS1JZ3JEUHFzWkswOS1WbHVtcl9SbzQzcG5FeW5jVFpTdzZlX1h6VnN0dUFOZHdiM0E2OVR1c1hfYkJKZ0J2SGQ4cDJSUS5WMTlhMVRacjZ2UjJHdEVaWGtOOXJRLmhwMU5IMmwtZklWbVgwWlNfTlRzekJfUEs1aktDUU5rSnJyRUhRQmZjQ2VjdHhmVU5uVlB6MVBqRWNDblZuV0pCUk4zTlFKZm01MjFLRHp1MzBIVUFEUGVmVHJyMFVFS2x5QTM2cThoWFY3VTdoQ0dHNk85NVpYclRsZlVENDI5RTNTNTQxdVBmWGpGR2cxbHlucFNTNnAtVkFzaXFlY1lpQWNuM1hhNzRhUm5xS3N3ZzhyU1ZOX09hSVU3ak1VVUhYZWY1ZmN0NlFrdWFfYkt6Z2dtR2ZiT2RTdVdNRmVQaF9mMkJMUFNGN3k1NThEMFZxSVlNY0JJR0dMU3BQUU93Q094OFF3Y3NVUEp4ZDFuWkVYYjRVNEJZYlhBcmFMX0NwekYxZlhYWVBsdmVUSGdKNVdrR28tWXNJVzAtT3ZqVGdLN2hIamxpR1psd29HOVUtbTJSVDZfbkhseHhVRFMyY3JseGNmay1OOTlXd0tEdUxFMTM5ZE1mN2RCSEl1aTdxd0RXdm1TN2JMTHYzM05Wd19XSl9DT1VGQjgycy1ELXk0UEdIRzVackhsSDgxa25mLVpRblU0SmZfY2lhMWhmWlY3ZFMxb21UZDQtNnJwZmpTMGxFT3VfZTQ5bUpYUGFpZ0hyLWFQYkFzTXJJQ2JvOUVIR2IzMXJ5SlR2QXF2ZmJDbU10bkdLUDV6aUNiZFh3SU5ONzBJTk5lZnJLWGZkZFBUd0RSV3d1ZkxCcGNlU0U0SG5EWVZVQmdkMDl4UUZidG12UDhhTXhhUlpGSTNpWG1fbmpCNmZfdlNhZUNUakdVYVVuRE1QQkdOQWQ5T2xVX3dvUnMtalNCVnVqd1FQSGlGcm5RWElkXzBRdXRYSm54cTU4aUtlTGJvNDJtOHgwaXBRcnB4aEZoUDdHNmZOWXAwVmxXR0RxZ1Q0VlpPQkZsZWRKUU0yaDQtb2xTbXdtUms0M0Y1cjdKd3h4aENqU1JReWx1MGEyQ0ZONWMyZjIxTElZaFliLWNReWFXMDNpV3hsb04zWld5cDJIb1FlUmZPR3lXUzBiU2NBT3JndGpBYnJaUFIwMGRRNnpSOHNBczFYUzh3dzBlaVczbFpsdjJwVWFxOVpTeVhnTS14b2NTOS1ueXRaWGtWWlUwX2dDVXJBV0ZKNG5XdW9oTGM1RkkyRWFQNWR0SXVWa3dnbXlsR1gtYk9ZeHp3dzVGYmI1V3VEbnJ5aDBMSnVic3Q4VXdLdnl3bk1jQ3duMjZSVTNxQVRudGJubVhJS0FyeGkwMldQVk9oTXdpUWZuX2h1TWk5emp3MEVuaXNWdktNWUNnR2xqNWlGZW5Tc0FKUXBiLUY4bng3OWFJQlJaTUc1a0huUDR5dGxmNm9FTkRsRXNJY21aeEtOdEIzcmJPdVROYUhLTXZBNmxSNzlMMDJZSTZrcEdrUUZnaHpIaTBjTWkwbFdCejRTM1AzUEMzZElZSVlQZ0Q2S05kT2FLWHkta0dWdUlsWFNmVlVrMnpzM0NBeTJhZEJjV0NMV094ZkRoQnlwNTl4MHpBRExvdnZySHRLOWF6TGN3N0lTbVl6eUhYMkpobVdReUYtTFd1VzhfcW41SkFVYlB5Z0RTRDYyMi1PTGZQVDZmc2VTWUVBUTFLVWRwZTFnSV9hZWxVT3FaRWN1aE5SckU1YUp0LTN5TEVLVWZIWXF6WTlGbHJrUE5MUC03Y2xRbmEySEhfZmMzZV9LTGtGUDFhQTJjM0RVaERseGhsTzB2bFVmV0c5eXpXaDNZN0NmRFlFMlBaUzZBcFBlYy0wa1NDcEVKMmtCcnFzWG4yeDJDX0FDdTdCTTVGZXNJQkN0M2NqSEdQSVVQRnEteGVmT0RCXzBQcXZDTXpBOHg5Zm10Ny1sNHhVQlJaa0dtZExhZFoxVzdFUXRNRVpsSWMtbDF1V1UzTU15cFZpVWR0OWxJUHVQVUEwc1NrbWxrTGhNSjgyNE5QN0hyVi01dC1ZNDcxaWVKMHdEUjFxMmU4MU8yazdNeTFlTDY3TlY4OVBHYU81SVR5WG1ueUVXMGtVbl9qa3l1UVRkV3dsS09HZVZIYkJWNFpxSXZHWjdQUS02TEE5eXc3a0dyZFRhVFZXOEdOOV9GY1c2VUhjbzA0U3dqTzY2S2x4VlFJWWpBdEZPZlBjWW5xNzF1RndyQS1UZHVDZG1sUFBHOVpjc2tiQmdrbF8wVk90dmhuc0pwYXZKZ2Zka0d3OF9qMkQzd0Jzemd0VndHNk9nNW16eVFwM2pFc0w3UmNtcXd6WFBOaDdKYXdHVDBJMlRvZHYyQ1Z3MDkzWjJlODFXR1NxRnlIejAxdjFBaGN2T2VWdmFjUGM2Y1JJaVduNW93ZF80d2FBdjlyNjVVdmtWa1FLRXpHUmo5eTZILXdZTTMyV1JyMzBlOU9MRTNKUU5POV9kNjRTRmIwSjZHa2VxUmtnNkVXc2xqN1JYLVU1VlhrS1BtMzNpS3c5dGU2NVBqQUNnZThRVDBYVWZEaUx5a1pGeUdpZ09ZMS1TVDFxUlE1eUhMTXhEc3BPRjFXd1lMQ2c2b3hocTlWMm55Z0U1cUJ2ZnYyWUtFaDdjM1dWNjJrYkw3UXJ2d0xkMHVRZ1FwYmUza3E3dGJzcC1lNWlud3cyY0YxQzByeHNScGZJRHlJMmg4b2xHMi1RQUZkWmtlMUlmaE1FZmNfdUdXX2pqSGJSWXVzYnZCRnpKMDdaOVJsVnFMR1A2WXBnTDFsRTFOY09xUVJyYVdxckdDTWZ6SzZMVENQSl93aHJRam9WTzdVRDJIUEVnUjZ2S3U3cWlmTmo3UjE5OUJuRi1EZmlnbk1TYTFKZkZadDNuVXVZOEhMUXRoUzN4MUMxOE50d3dsaDVuNGxYS3d5MERHenljbVNweE05QkdPNTFRckFmSXRfY0xHbUlzMlJ4MzMyeDRIdEZ3Z05nRzFBazNIUno4TlJ4V3lhNWhjb1NoYURXekhES2gyOVp3Vm4wYXVzeWJpal9uNlFGcnZZbjRSOHdPNlRQV3FrS09JcHkxc1lQNWxyNDc1anZSRVZGaFdCWDBiUXdJdnNlM0Q0a0dFQzgzU3FWYkhxY3phZTNwOFNxaG5tQW5ZYzBIbWp4clJfZUMzT0hYVFBGUFZmNDlVWHdrQjIwY1lvcjJ1dzBaTzJ2TUg3S1QwcjBSWDBQVy1qcGpORFpjSGRSNVVCMXFacGlWLWxaYkw0eF9IZW14aWUxY0RPOHNQSXhIOElUSWtOV0tTR1N2eWdraHBBbGl2RzVEZXJObElkeFE2c0tHQ3RtMDEyT2xjN2thaVFaNHh0TjR5ZVpPU2xyS0s0OTlIcWhObzhkNTNsbFFfMW5ncWlHbzhUSDlzWkFrclYwclc3dkJOSF92UlhBdTc2MnlpZGhZUURYYXJXSEFUMm9DU2hEN1lOdnotekoyZGtEajJMcW5CdFNCWFh5T2xsM3o0ZWFITDd2MDZ1QTgxMVBKQU5YZUdoenNaNFVQQUQ2Q0E4cGlxSHB4WGkxODRHNEJETVU4S2VHeHZLWnJiUlNOT2pTOFNrQUJKZERfSklIZ1RhNEFhNzdPUmNZcVY3OWZ5djFZVHNma2lLR2NUYzZIUjZzUVpsamt2U0NQNjdtTTRGUHRqTHlfX1pDQlNwdnRSVWd5UlpNM1dSOUViNHkxa29uRG4zUjMzN2lpSzdfbGtIa1UtZ21VbUpZUVdnUjYzT01pZUdRUHdNR3BSZXlRWE5yckJVTDN2Z2JYdjlac1ZDcDh1NHRwQjBleXJvUXgxZC1KSWJvOWVyR1VlX0ZzU1Fpd0tIaGFIUk02Nzh5dENkcHJFbDBWeG92TFVrX0xNcTFjN1R4MG5jbFl2WE4yUjhEMXNhU2FibkJSd19CU2tZMFNMSXdhb2RpY2o2ZzdLd0ZfMXB2eThhNF9LbnJNLUNkenBvdHA0aTd4QUJuY2JRVUEwWkpsYlp1elRpR0F4ZjFnclk1Z0dZOTVoWi1XZG1lOWlSazBHRTJGN3d4MlJyLUVvS3lZRjNjak0xMWt6MWFmME9fNFdyOXJoU3JrX1NHU3l2a3ZCTW9NZ0xOX0tSS1BlTjlqUnpwRlVST2VnN2NCbGlhdy1odnZhY2lCeDN2UWRqTE5jTldQdU1UbzVmME1QbmU4TUtXcFBoWjBySElMaEVuYW1pcG82X3pzNjczcE9ma09FS0JWWE9mUDEzR0UwS25SWTBab2JPLWRub254LVdBY1dodFZvX08xbkwwTWE5ZXFMMURhRGhJU0JNbVRIM1hkY2dDTnF0emIwcVMtS1l5Mk9zRzZOakRDVEM1aEI3MXIwU09WMUprNFV2QjdYemxTTW9YUXJnTzF2ZFVwSGtxaVhUM1RJZmlQMWRKcDEweDlSMlp5R0lzUzljQUtNMEZyMGRxQmJmQy16NTJpcWZweW4zUVVqb1Fld2hPYnJwUEZGOF9lUmVNRlIwSXZjUkxnMHpwek56UzU1N1pkQkZhemxNTThLcnkwN2QyUDAyTnZtclUtN1ZjOW8wZm1qem9WOHVVTG9PMkJHdmFRdnFJNmtBTmQ5VWo1X2JkY2NVUzBhcklzcGFZa1UtUXQtNnQxYU5YUUdGZEtUbFMwSVowek54bkNIZWRySEE4SkYtOFg3d1ZpRW1McXJQbU1Sd25sbWx3SnhxLVlReWMydmdUallSbUxCVU5TS3VrZkJsa2VnMmlCRWdySksxVlNyRWswX0ZvOXkzV1EwVlZuNXhEZXlGc1JuWDI4Tkl6alFQLVNXaHhYbzdPYm5YY1cxZHlWNE1fYjdzM096cEMwOTJWcGZYQkpaTDhBeHgxNGY2TmJzTEpXLW95VEdsaTJFb2FCZHJKQ2JkQlNOdWJlbGdRRmU2V2hqSjRGdlNrYVJISjFTT3ltbGFtQmYwaVNDOGM2X1g2SkZORjNmOXYuQjc5SDJvbVIyTU52SndydHVzclJ4UQ
+              operationId: BackupSecret
+              title: BackupSecret
+              x-ms-original-file: 7.6-preview.1/BackupSecret-example.json
+        crossLanguageDefinitionId: KeyVault.backupSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: backupSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /secrets/{secret-name}/backup
+                method: post
+                uri: '{vaultBaseUrl}'
+        parameters:
+          - *ref_23
+          - *ref_24
+          - &ref_55
+            language:
+              default:
+                name: secretName
+                description: The name of the secret.
+                serializedName: secret-name
+            protocol:
+              http:
+                in: path
+            schema: *ref_15
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_54
+            implementation: Method
+            required: true
+            nullable: false
+        signatureParameters:
+          - *ref_55
+        responses:
+          - language:
+              default:
+                name: backupSecretResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_56
+        exceptions:
+          - language:
+              default:
+                name: backupSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+      - &ref_73
+        language:
+          default:
+            name: restoreSecret
+            description: >-
+              Restores a backed up secret, and all its versions, to a vault.
+              This operation
+
+              requires the secrets/restore permission.
+        protocol: {}
+        operationId: restoreSecret
+        summary: Restores a backed up secret to a vault.
+        extensions:
+          x-ms-examples:
+            RestoreSecret:
+              parameters:
+                vaultBaseUrl: https://myvault.vault.azure.net/
+                api-version: 7.6-preview.1
+                parameters:
+                  value: >-
+                    KUF6dXJlS2V5VmF1bHRTZWNyZXRCYWNrdXBWMS5taWNyb3NvZnQuY29tZXlKcmFXUWlPaUppTlRjMk5ESTVaaTB5TlRZNExUUTFZbVV0WW1aaFlTMHpOMlZrTURkbVl6QmpPREVpTENKaGJHY2lPaUpTVTBFdFQwRkZVQ0lzSW1WdVl5STZJa0V4TWpoRFFrTXRTRk15TlRZaWZRLmhERDdfVW9aU1ptR2JYN1dYUTU5WDkxZ0FQb05kdDcwZE1BbmgzbjQ3eWNjbkRNOU5vTm1hY0NHZmlNeUwxU0FlZDk0UjhBNDAtVE81TDNfQ05Qal9pdWIyaW03Z21nbHNPNnFFUVVIWU1tOEh2Wl9odFRrdEl4QzRPWEowYTB0S2hscnczZlBvVVFDZHVGcFg0ekEzYTR4VTZXTUNfYjZZVXZqUjZnSGM5TFRUR2tIazh1RTY0aVQ4cmt5RDRrU3RNcXhnU2lfRVZwUUdjWGdfNE9wQ1dBOUFha0N1NkpybGRaQW9BLUtXTWpQbGhaWHFYWGMyVkJlbUJjRTQ1YzY3QWhqYjJrSi1uQ1c5dHBjWS1JZ3JEUHFzWkswOS1WbHVtcl9SbzQzcG5FeW5jVFpTdzZlX1h6VnN0dUFOZHdiM0E2OVR1c1hfYkJKZ0J2SGQ4cDJSUS5WMTlhMVRacjZ2UjJHdEVaWGtOOXJRLmhwMU5IMmwtZklWbVgwWlNfTlRzekJfUEs1aktDUU5rSnJyRUhRQmZjQ2VjdHhmVU5uVlB6MVBqRWNDblZuV0pCUk4zTlFKZm01MjFLRHp1MzBIVUFEUGVmVHJyMFVFS2x5QTM2cThoWFY3VTdoQ0dHNk85NVpYclRsZlVENDI5RTNTNTQxdVBmWGpGR2cxbHlucFNTNnAtVkFzaXFlY1lpQWNuM1hhNzRhUm5xS3N3ZzhyU1ZOX09hSVU3ak1VVUhYZWY1ZmN0NlFrdWFfYkt6Z2dtR2ZiT2RTdVdNRmVQaF9mMkJMUFNGN3k1NThEMFZxSVlNY0JJR0dMU3BQUU93Q094OFF3Y3NVUEp4ZDFuWkVYYjRVNEJZYlhBcmFMX0NwekYxZlhYWVBsdmVUSGdKNVdrR28tWXNJVzAtT3ZqVGdLN2hIamxpR1psd29HOVUtbTJSVDZfbkhseHhVRFMyY3JseGNmay1OOTlXd0tEdUxFMTM5ZE1mN2RCSEl1aTdxd0RXdm1TN2JMTHYzM05Wd19XSl9DT1VGQjgycy1ELXk0UEdIRzVackhsSDgxa25mLVpRblU0SmZfY2lhMWhmWlY3ZFMxb21UZDQtNnJwZmpTMGxFT3VfZTQ5bUpYUGFpZ0hyLWFQYkFzTXJJQ2JvOUVIR2IzMXJ5SlR2QXF2ZmJDbU10bkdLUDV6aUNiZFh3SU5ONzBJTk5lZnJLWGZkZFBUd0RSV3d1ZkxCcGNlU0U0SG5EWVZVQmdkMDl4UUZidG12UDhhTXhhUlpGSTNpWG1fbmpCNmZfdlNhZUNUakdVYVVuRE1QQkdOQWQ5T2xVX3dvUnMtalNCVnVqd1FQSGlGcm5RWElkXzBRdXRYSm54cTU4aUtlTGJvNDJtOHgwaXBRcnB4aEZoUDdHNmZOWXAwVmxXR0RxZ1Q0VlpPQkZsZWRKUU0yaDQtb2xTbXdtUms0M0Y1cjdKd3h4aENqU1JReWx1MGEyQ0ZONWMyZjIxTElZaFliLWNReWFXMDNpV3hsb04zWld5cDJIb1FlUmZPR3lXUzBiU2NBT3JndGpBYnJaUFIwMGRRNnpSOHNBczFYUzh3dzBlaVczbFpsdjJwVWFxOVpTeVhnTS14b2NTOS1ueXRaWGtWWlUwX2dDVXJBV0ZKNG5XdW9oTGM1RkkyRWFQNWR0SXVWa3dnbXlsR1gtYk9ZeHp3dzVGYmI1V3VEbnJ5aDBMSnVic3Q4VXdLdnl3bk1jQ3duMjZSVTNxQVRudGJubVhJS0FyeGkwMldQVk9oTXdpUWZuX2h1TWk5emp3MEVuaXNWdktNWUNnR2xqNWlGZW5Tc0FKUXBiLUY4bng3OWFJQlJaTUc1a0huUDR5dGxmNm9FTkRsRXNJY21aeEtOdEIzcmJPdVROYUhLTXZBNmxSNzlMMDJZSTZrcEdrUUZnaHpIaTBjTWkwbFdCejRTM1AzUEMzZElZSVlQZ0Q2S05kT2FLWHkta0dWdUlsWFNmVlVrMnpzM0NBeTJhZEJjV0NMV094ZkRoQnlwNTl4MHpBRExvdnZySHRLOWF6TGN3N0lTbVl6eUhYMkpobVdReUYtTFd1VzhfcW41SkFVYlB5Z0RTRDYyMi1PTGZQVDZmc2VTWUVBUTFLVWRwZTFnSV9hZWxVT3FaRWN1aE5SckU1YUp0LTN5TEVLVWZIWXF6WTlGbHJrUE5MUC03Y2xRbmEySEhfZmMzZV9LTGtGUDFhQTJjM0RVaERseGhsTzB2bFVmV0c5eXpXaDNZN0NmRFlFMlBaUzZBcFBlYy0wa1NDcEVKMmtCcnFzWG4yeDJDX0FDdTdCTTVGZXNJQkN0M2NqSEdQSVVQRnEteGVmT0RCXzBQcXZDTXpBOHg5Zm10Ny1sNHhVQlJaa0dtZExhZFoxVzdFUXRNRVpsSWMtbDF1V1UzTU15cFZpVWR0OWxJUHVQVUEwc1NrbWxrTGhNSjgyNE5QN0hyVi01dC1ZNDcxaWVKMHdEUjFxMmU4MU8yazdNeTFlTDY3TlY4OVBHYU81SVR5WG1ueUVXMGtVbl9qa3l1UVRkV3dsS09HZVZIYkJWNFpxSXZHWjdQUS02TEE5eXc3a0dyZFRhVFZXOEdOOV9GY1c2VUhjbzA0U3dqTzY2S2x4VlFJWWpBdEZPZlBjWW5xNzF1RndyQS1UZHVDZG1sUFBHOVpjc2tiQmdrbF8wVk90dmhuc0pwYXZKZ2Zka0d3OF9qMkQzd0Jzemd0VndHNk9nNW16eVFwM2pFc0w3UmNtcXd6WFBOaDdKYXdHVDBJMlRvZHYyQ1Z3MDkzWjJlODFXR1NxRnlIejAxdjFBaGN2T2VWdmFjUGM2Y1JJaVduNW93ZF80d2FBdjlyNjVVdmtWa1FLRXpHUmo5eTZILXdZTTMyV1JyMzBlOU9MRTNKUU5POV9kNjRTRmIwSjZHa2VxUmtnNkVXc2xqN1JYLVU1VlhrS1BtMzNpS3c5dGU2NVBqQUNnZThRVDBYVWZEaUx5a1pGeUdpZ09ZMS1TVDFxUlE1eUhMTXhEc3BPRjFXd1lMQ2c2b3hocTlWMm55Z0U1cUJ2ZnYyWUtFaDdjM1dWNjJrYkw3UXJ2d0xkMHVRZ1FwYmUza3E3dGJzcC1lNWlud3cyY0YxQzByeHNScGZJRHlJMmg4b2xHMi1RQUZkWmtlMUlmaE1FZmNfdUdXX2pqSGJSWXVzYnZCRnpKMDdaOVJsVnFMR1A2WXBnTDFsRTFOY09xUVJyYVdxckdDTWZ6SzZMVENQSl93aHJRam9WTzdVRDJIUEVnUjZ2S3U3cWlmTmo3UjE5OUJuRi1EZmlnbk1TYTFKZkZadDNuVXVZOEhMUXRoUzN4MUMxOE50d3dsaDVuNGxYS3d5MERHenljbVNweE05QkdPNTFRckFmSXRfY0xHbUlzMlJ4MzMyeDRIdEZ3Z05nRzFBazNIUno4TlJ4V3lhNWhjb1NoYURXekhES2gyOVp3Vm4wYXVzeWJpal9uNlFGcnZZbjRSOHdPNlRQV3FrS09JcHkxc1lQNWxyNDc1anZSRVZGaFdCWDBiUXdJdnNlM0Q0a0dFQzgzU3FWYkhxY3phZTNwOFNxaG5tQW5ZYzBIbWp4clJfZUMzT0hYVFBGUFZmNDlVWHdrQjIwY1lvcjJ1dzBaTzJ2TUg3S1QwcjBSWDBQVy1qcGpORFpjSGRSNVVCMXFacGlWLWxaYkw0eF9IZW14aWUxY0RPOHNQSXhIOElUSWtOV0tTR1N2eWdraHBBbGl2RzVEZXJObElkeFE2c0tHQ3RtMDEyT2xjN2thaVFaNHh0TjR5ZVpPU2xyS0s0OTlIcWhObzhkNTNsbFFfMW5ncWlHbzhUSDlzWkFrclYwclc3dkJOSF92UlhBdTc2MnlpZGhZUURYYXJXSEFUMm9DU2hEN1lOdnotekoyZGtEajJMcW5CdFNCWFh5T2xsM3o0ZWFITDd2MDZ1QTgxMVBKQU5YZUdoenNaNFVQQUQ2Q0E4cGlxSHB4WGkxODRHNEJETVU4S2VHeHZLWnJiUlNOT2pTOFNrQUJKZERfSklIZ1RhNEFhNzdPUmNZcVY3OWZ5djFZVHNma2lLR2NUYzZIUjZzUVpsamt2U0NQNjdtTTRGUHRqTHlfX1pDQlNwdnRSVWd5UlpNM1dSOUViNHkxa29uRG4zUjMzN2lpSzdfbGtIa1UtZ21VbUpZUVdnUjYzT01pZUdRUHdNR3BSZXlRWE5yckJVTDN2Z2JYdjlac1ZDcDh1NHRwQjBleXJvUXgxZC1KSWJvOWVyR1VlX0ZzU1Fpd0tIaGFIUk02Nzh5dENkcHJFbDBWeG92TFVrX0xNcTFjN1R4MG5jbFl2WE4yUjhEMXNhU2FibkJSd19CU2tZMFNMSXdhb2RpY2o2ZzdLd0ZfMXB2eThhNF9LbnJNLUNkenBvdHA0aTd4QUJuY2JRVUEwWkpsYlp1elRpR0F4ZjFnclk1Z0dZOTVoWi1XZG1lOWlSazBHRTJGN3d4MlJyLUVvS3lZRjNjak0xMWt6MWFmME9fNFdyOXJoU3JrX1NHU3l2a3ZCTW9NZ0xOX0tSS1BlTjlqUnpwRlVST2VnN2NCbGlhdy1odnZhY2lCeDN2UWRqTE5jTldQdU1UbzVmME1QbmU4TUtXcFBoWjBySElMaEVuYW1pcG82X3pzNjczcE9ma09FS0JWWE9mUDEzR0UwS25SWTBab2JPLWRub254LVdBY1dodFZvX08xbkwwTWE5ZXFMMURhRGhJU0JNbVRIM1hkY2dDTnF0emIwcVMtS1l5Mk9zRzZOakRDVEM1aEI3MXIwU09WMUprNFV2QjdYemxTTW9YUXJnTzF2ZFVwSGtxaVhUM1RJZmlQMWRKcDEweDlSMlp5R0lzUzljQUtNMEZyMGRxQmJmQy16NTJpcWZweW4zUVVqb1Fld2hPYnJwUEZGOF9lUmVNRlIwSXZjUkxnMHpwek56UzU1N1pkQkZhemxNTThLcnkwN2QyUDAyTnZtclUtN1ZjOW8wZm1qem9WOHVVTG9PMkJHdmFRdnFJNmtBTmQ5VWo1X2JkY2NVUzBhcklzcGFZa1UtUXQtNnQxYU5YUUdGZEtUbFMwSVowek54bkNIZWRySEE4SkYtOFg3d1ZpRW1McXJQbU1Sd25sbWx3SnhxLVlReWMydmdUallSbUxCVU5TS3VrZkJsa2VnMmlCRWdySksxVlNyRWswX0ZvOXkzV1EwVlZuNXhEZXlGc1JuWDI4Tkl6alFQLVNXaHhYbzdPYm5YY1cxZHlWNE1fYjdzM096cEMwOTJWcGZYQkpaTDhBeHgxNGY2TmJzTEpXLW95VEdsaTJFb2FCZHJKQ2JkQlNOdWJlbGdRRmU2V2hqSjRGdlNrYVJISjFTT3ltbGFtQmYwaVNDOGM2X1g2SkZORjNmOXYuQjc5SDJvbVIyTU52SndydHVzclJ4UQ
+              responses:
+                '200':
+                  body:
+                    contentType: text
+                    id: >-
+                      https://myvault.vault.azure.net/secrets/SecretBackupRestoreTest/01ddd6e3a0d34d35bb5bccecb1251837
+                    attributes:
+                      enabled: true
+                      nbf: 1262332800
+                      exp: 1893484800
+                      created: 1493938113
+                      updated: 1493938113
+                      recoveryLevel: Recoverable+Purgeable
+              operationId: RestoreSecret
+              title: RestoreSecret
+              x-ms-original-file: 7.6-preview.1/RestoreSecret-example.json
+        crossLanguageDefinitionId: KeyVault.restoreSecret
+        internalApi: false
+        convenienceApi:
+          language:
+            default:
+              name: restoreSecret
+              description: ''
+          protocol: {}
+        generateProtocolApi: true
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /secrets/restore
+                method: post
+                uri: '{vaultBaseUrl}'
+                mediaTypes:
+                  - application/json
+        parameters:
+          - *ref_23
+          - *ref_24
+          - language:
+              default:
+                name: contentType
+                description: >-
+                  Body parameter's content type. Known values are
+                  application/json
+                serializedName: Content-Type
+            protocol:
+              http:
+                in: header
+            schema: *ref_57
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: ''
+                serializedName: Accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_58
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_60
+            language:
+              default:
+                name: parameters
+                description: The parameters to restore the secret.
+            protocol:
+              http:
+                in: body
+            schema: *ref_59
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_60
+        responses:
+          - language:
+              default:
+                name: restoreSecretResponse
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_21
+        exceptions:
+          - language:
+              default:
+                name: restoreSecretResponse
+            protocol:
+              http:
+                statusCodes:
+                  - default
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_22
+security:
+  authenticationRequired: true
+  schemes:
+    - &ref_61
+      type: OAuth2
+      scopes:
+        - https://vault.azure.net/.default
+clients:
+  - language:
+      default:
+        name: SecretClient
+        description: >-
+          The key vault client performs cryptographic key operations and vault
+          operations
+
+          against the Key Vault service.
+        namespace: KeyVault
+      java:
+        namespace: com.azure.security.keyvault.secrets.implementation
+    protocol: {}
+    security:
+      authenticationRequired: true
+      schemes:
+        - *ref_61
+    operationGroups:
+      - language:
+          default:
+            name: ''
+            description: ''
+        protocol: {}
+        $key: ''
+        operations:
+          - *ref_62
+          - *ref_63
+          - *ref_64
+          - *ref_65
+          - *ref_66
+          - *ref_67
+          - *ref_68
+          - *ref_69
+          - *ref_70
+          - *ref_71
+          - *ref_72
+          - *ref_73
+    crossLanguageDefinitionId: KeyVault
+    apiVersions:
+      - version: '7.5'
+      - version: 7.6-preview.1
+    globalParameters:
+      - *ref_23
+      - *ref_24
+    serviceVersion:
+      language:
+        default:
+          name: KeyVaultServiceVersion
+          description: KeyVaultClient
+      protocol: {}
+globalParameters:
+  - *ref_23
