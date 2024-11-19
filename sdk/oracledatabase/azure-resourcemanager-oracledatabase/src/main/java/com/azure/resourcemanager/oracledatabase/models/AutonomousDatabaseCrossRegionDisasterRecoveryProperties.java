@@ -15,55 +15,49 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
- * Autonomous Database clone resource model.
+ * Autonomous Database Cross Region Disaster Recovery resource model.
  */
 @Fluent
-public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseBaseProperties {
+public final class AutonomousDatabaseCrossRegionDisasterRecoveryProperties extends AutonomousDatabaseBaseProperties {
     /*
      * Database type to be created.
      */
-    private DataBaseType dataBaseType = DataBaseType.CLONE;
+    private DataBaseType dataBaseType = DataBaseType.CROSS_REGION_DISASTER_RECOVERY;
 
     /*
      * The source of the database.
      */
-    private SourceType source;
+    private final String source = "CrossRegionDisasterRecovery";
 
     /*
-     * The Azure resource ID of the Autonomous Database that was cloned to create the current Autonomous Database.
+     * The Azure resource ID of the source Autonomous Database that will be used to create a new peer database for the
+     * DR association.
      */
     private String sourceId;
 
     /*
-     * The Autonomous Database clone type.
+     * The name of the region where source Autonomous Database exists.
      */
-    private CloneType cloneType;
+    private String sourceLocation;
 
     /*
-     * Indicates if the refreshable clone can be reconnected to its source database.
+     * The source database ocid
      */
-    private Boolean isReconnectCloneEnabled;
+    private String sourceOcid;
 
     /*
-     * Indicates if the Autonomous Database is a refreshable clone.
+     * Indicates the cross-region disaster recovery (DR) type of the standby Autonomous Database Serverless instance.
+     * Autonomous Data Guard (ADG) DR type provides business critical DR with a faster recovery time objective (RTO)
+     * during failover or switchover. Backup-based DR type provides lower cost DR with a slower RTO during failover or
+     * switchover.
      */
-    private Boolean isRefreshableClone;
+    private DisasterRecoveryType remoteDisasterRecoveryType;
 
     /*
-     * The refresh mode of the clone.
+     * If true, 7 days worth of backups are replicated across regions for Cross-Region ADB or Backup-Based DR between
+     * Primary and Standby. If false, the backups taken on the Primary are not replicated to the Standby database.
      */
-    private RefreshableModelType refreshableModel;
-
-    /*
-     * The refresh status of the clone.
-     */
-    private RefreshableStatusType refreshableStatus;
-
-    /*
-     * The time and date as an RFC3339 formatted string, e.g., 2022-01-01T12:00:00.000Z, to set the limit for a
-     * refreshable clone to be reconnected to its source database.
-     */
-    private String timeUntilReconnectCloneEnabled;
+    private Boolean isReplicateAutomaticBackups;
 
     /*
      * Database ocid
@@ -284,9 +278,9 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
     private List<String> peerDbIds;
 
     /**
-     * Creates an instance of AutonomousDatabaseCloneProperties class.
+     * Creates an instance of AutonomousDatabaseCrossRegionDisasterRecoveryProperties class.
      */
-    public AutonomousDatabaseCloneProperties() {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties() {
     }
 
     /**
@@ -304,24 +298,13 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * 
      * @return the source value.
      */
-    public SourceType source() {
+    public String source() {
         return this.source;
     }
 
     /**
-     * Set the source property: The source of the database.
-     * 
-     * @param source the source value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
-     */
-    public AutonomousDatabaseCloneProperties withSource(SourceType source) {
-        this.source = source;
-        return this;
-    }
-
-    /**
-     * Get the sourceId property: The Azure resource ID of the Autonomous Database that was cloned to create the current
-     * Autonomous Database.
+     * Get the sourceId property: The Azure resource ID of the source Autonomous Database that will be used to create a
+     * new peer database for the DR association.
      * 
      * @return the sourceId value.
      */
@@ -330,104 +313,106 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
     }
 
     /**
-     * Set the sourceId property: The Azure resource ID of the Autonomous Database that was cloned to create the current
-     * Autonomous Database.
+     * Set the sourceId property: The Azure resource ID of the source Autonomous Database that will be used to create a
+     * new peer database for the DR association.
      * 
      * @param sourceId the sourceId value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
+     * @return the AutonomousDatabaseCrossRegionDisasterRecoveryProperties object itself.
      */
-    public AutonomousDatabaseCloneProperties withSourceId(String sourceId) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withSourceId(String sourceId) {
         this.sourceId = sourceId;
         return this;
     }
 
     /**
-     * Get the cloneType property: The Autonomous Database clone type.
+     * Get the sourceLocation property: The name of the region where source Autonomous Database exists.
      * 
-     * @return the cloneType value.
+     * @return the sourceLocation value.
      */
-    public CloneType cloneType() {
-        return this.cloneType;
+    public String sourceLocation() {
+        return this.sourceLocation;
     }
 
     /**
-     * Set the cloneType property: The Autonomous Database clone type.
+     * Set the sourceLocation property: The name of the region where source Autonomous Database exists.
      * 
-     * @param cloneType the cloneType value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
+     * @param sourceLocation the sourceLocation value to set.
+     * @return the AutonomousDatabaseCrossRegionDisasterRecoveryProperties object itself.
      */
-    public AutonomousDatabaseCloneProperties withCloneType(CloneType cloneType) {
-        this.cloneType = cloneType;
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withSourceLocation(String sourceLocation) {
+        this.sourceLocation = sourceLocation;
         return this;
     }
 
     /**
-     * Get the isReconnectCloneEnabled property: Indicates if the refreshable clone can be reconnected to its source
-     * database.
+     * Get the sourceOcid property: The source database ocid.
      * 
-     * @return the isReconnectCloneEnabled value.
+     * @return the sourceOcid value.
      */
-    public Boolean isReconnectCloneEnabled() {
-        return this.isReconnectCloneEnabled;
+    public String sourceOcid() {
+        return this.sourceOcid;
     }
 
     /**
-     * Get the isRefreshableClone property: Indicates if the Autonomous Database is a refreshable clone.
+     * Set the sourceOcid property: The source database ocid.
      * 
-     * @return the isRefreshableClone value.
+     * @param sourceOcid the sourceOcid value to set.
+     * @return the AutonomousDatabaseCrossRegionDisasterRecoveryProperties object itself.
      */
-    public Boolean isRefreshableClone() {
-        return this.isRefreshableClone;
-    }
-
-    /**
-     * Get the refreshableModel property: The refresh mode of the clone.
-     * 
-     * @return the refreshableModel value.
-     */
-    public RefreshableModelType refreshableModel() {
-        return this.refreshableModel;
-    }
-
-    /**
-     * Set the refreshableModel property: The refresh mode of the clone.
-     * 
-     * @param refreshableModel the refreshableModel value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
-     */
-    public AutonomousDatabaseCloneProperties withRefreshableModel(RefreshableModelType refreshableModel) {
-        this.refreshableModel = refreshableModel;
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withSourceOcid(String sourceOcid) {
+        this.sourceOcid = sourceOcid;
         return this;
     }
 
     /**
-     * Get the refreshableStatus property: The refresh status of the clone.
+     * Get the remoteDisasterRecoveryType property: Indicates the cross-region disaster recovery (DR) type of the
+     * standby Autonomous Database Serverless instance. Autonomous Data Guard (ADG) DR type provides business critical
+     * DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower
+     * cost DR with a slower RTO during failover or switchover.
      * 
-     * @return the refreshableStatus value.
+     * @return the remoteDisasterRecoveryType value.
      */
-    public RefreshableStatusType refreshableStatus() {
-        return this.refreshableStatus;
+    public DisasterRecoveryType remoteDisasterRecoveryType() {
+        return this.remoteDisasterRecoveryType;
     }
 
     /**
-     * Get the timeUntilReconnectCloneEnabled property: The time and date as an RFC3339 formatted string, e.g.,
-     * 2022-01-01T12:00:00.000Z, to set the limit for a refreshable clone to be reconnected to its source database.
+     * Set the remoteDisasterRecoveryType property: Indicates the cross-region disaster recovery (DR) type of the
+     * standby Autonomous Database Serverless instance. Autonomous Data Guard (ADG) DR type provides business critical
+     * DR with a faster recovery time objective (RTO) during failover or switchover. Backup-based DR type provides lower
+     * cost DR with a slower RTO during failover or switchover.
      * 
-     * @return the timeUntilReconnectCloneEnabled value.
+     * @param remoteDisasterRecoveryType the remoteDisasterRecoveryType value to set.
+     * @return the AutonomousDatabaseCrossRegionDisasterRecoveryProperties object itself.
      */
-    public String timeUntilReconnectCloneEnabled() {
-        return this.timeUntilReconnectCloneEnabled;
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withRemoteDisasterRecoveryType(DisasterRecoveryType remoteDisasterRecoveryType) {
+        this.remoteDisasterRecoveryType = remoteDisasterRecoveryType;
+        return this;
     }
 
     /**
-     * Set the timeUntilReconnectCloneEnabled property: The time and date as an RFC3339 formatted string, e.g.,
-     * 2022-01-01T12:00:00.000Z, to set the limit for a refreshable clone to be reconnected to its source database.
+     * Get the isReplicateAutomaticBackups property: If true, 7 days worth of backups are replicated across regions for
+     * Cross-Region ADB or Backup-Based DR between Primary and Standby. If false, the backups taken on the Primary are
+     * not replicated to the Standby database.
      * 
-     * @param timeUntilReconnectCloneEnabled the timeUntilReconnectCloneEnabled value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
+     * @return the isReplicateAutomaticBackups value.
      */
-    public AutonomousDatabaseCloneProperties withTimeUntilReconnectCloneEnabled(String timeUntilReconnectCloneEnabled) {
-        this.timeUntilReconnectCloneEnabled = timeUntilReconnectCloneEnabled;
+    public Boolean isReplicateAutomaticBackups() {
+        return this.isReplicateAutomaticBackups;
+    }
+
+    /**
+     * Set the isReplicateAutomaticBackups property: If true, 7 days worth of backups are replicated across regions for
+     * Cross-Region ADB or Backup-Based DR between Primary and Standby. If false, the backups taken on the Primary are
+     * not replicated to the Standby database.
+     * 
+     * @param isReplicateAutomaticBackups the isReplicateAutomaticBackups value to set.
+     * @return the AutonomousDatabaseCrossRegionDisasterRecoveryProperties object itself.
+     */
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withIsReplicateAutomaticBackups(Boolean isReplicateAutomaticBackups) {
+        this.isReplicateAutomaticBackups = isReplicateAutomaticBackups;
         return this;
     }
 
@@ -873,7 +858,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withAdminPassword(String adminPassword) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withAdminPassword(String adminPassword) {
         super.withAdminPassword(adminPassword);
         return this;
     }
@@ -882,7 +867,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
         withAutonomousMaintenanceScheduleType(AutonomousMaintenanceScheduleType autonomousMaintenanceScheduleType) {
         super.withAutonomousMaintenanceScheduleType(autonomousMaintenanceScheduleType);
         return this;
@@ -892,7 +877,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withCharacterSet(String characterSet) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withCharacterSet(String characterSet) {
         super.withCharacterSet(characterSet);
         return this;
     }
@@ -901,7 +886,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withComputeCount(Float computeCount) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withComputeCount(Float computeCount) {
         super.withComputeCount(computeCount);
         return this;
     }
@@ -910,7 +895,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withComputeModel(ComputeModel computeModel) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withComputeModel(ComputeModel computeModel) {
         super.withComputeModel(computeModel);
         return this;
     }
@@ -919,7 +904,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withCpuCoreCount(Integer cpuCoreCount) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withCpuCoreCount(Integer cpuCoreCount) {
         super.withCpuCoreCount(cpuCoreCount);
         return this;
     }
@@ -928,7 +913,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withCustomerContacts(List<CustomerContact> customerContacts) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withCustomerContacts(List<CustomerContact> customerContacts) {
         super.withCustomerContacts(customerContacts);
         return this;
     }
@@ -937,7 +923,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDataStorageSizeInTbs(Integer dataStorageSizeInTbs) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withDataStorageSizeInTbs(Integer dataStorageSizeInTbs) {
         super.withDataStorageSizeInTbs(dataStorageSizeInTbs);
         return this;
     }
@@ -946,7 +933,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDataStorageSizeInGbs(Integer dataStorageSizeInGbs) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withDataStorageSizeInGbs(Integer dataStorageSizeInGbs) {
         super.withDataStorageSizeInGbs(dataStorageSizeInGbs);
         return this;
     }
@@ -955,7 +943,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDbVersion(String dbVersion) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withDbVersion(String dbVersion) {
         super.withDbVersion(dbVersion);
         return this;
     }
@@ -964,7 +952,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDbWorkload(WorkloadType dbWorkload) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withDbWorkload(WorkloadType dbWorkload) {
         super.withDbWorkload(dbWorkload);
         return this;
     }
@@ -973,7 +961,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDisplayName(String displayName) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
@@ -982,7 +970,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withIsAutoScalingEnabled(Boolean isAutoScalingEnabled) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withIsAutoScalingEnabled(Boolean isAutoScalingEnabled) {
         super.withIsAutoScalingEnabled(isAutoScalingEnabled);
         return this;
     }
@@ -991,7 +980,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
         withIsAutoScalingForStorageEnabled(Boolean isAutoScalingForStorageEnabled) {
         super.withIsAutoScalingForStorageEnabled(isAutoScalingForStorageEnabled);
         return this;
@@ -1001,7 +990,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withPeerDbId(String peerDbId) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withPeerDbId(String peerDbId) {
         super.withPeerDbId(peerDbId);
         return this;
     }
@@ -1010,7 +999,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withIsLocalDataGuardEnabled(Boolean isLocalDataGuardEnabled) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withIsLocalDataGuardEnabled(Boolean isLocalDataGuardEnabled) {
         super.withIsLocalDataGuardEnabled(isLocalDataGuardEnabled);
         return this;
     }
@@ -1019,7 +1009,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withIsMtlsConnectionRequired(Boolean isMtlsConnectionRequired) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withIsMtlsConnectionRequired(Boolean isMtlsConnectionRequired) {
         super.withIsMtlsConnectionRequired(isMtlsConnectionRequired);
         return this;
     }
@@ -1028,7 +1019,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
         withIsPreviewVersionWithServiceTermsAccepted(Boolean isPreviewVersionWithServiceTermsAccepted) {
         super.withIsPreviewVersionWithServiceTermsAccepted(isPreviewVersionWithServiceTermsAccepted);
         return this;
@@ -1038,7 +1029,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withLicenseModel(LicenseModel licenseModel) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withLicenseModel(LicenseModel licenseModel) {
         super.withLicenseModel(licenseModel);
         return this;
     }
@@ -1047,7 +1038,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withNcharacterSet(String ncharacterSet) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withNcharacterSet(String ncharacterSet) {
         super.withNcharacterSet(ncharacterSet);
         return this;
     }
@@ -1056,7 +1047,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withScheduledOperations(ScheduledOperationsType scheduledOperations) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withScheduledOperations(ScheduledOperationsType scheduledOperations) {
         super.withScheduledOperations(scheduledOperations);
         return this;
     }
@@ -1065,7 +1057,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withPrivateEndpointIp(String privateEndpointIp) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withPrivateEndpointIp(String privateEndpointIp) {
         super.withPrivateEndpointIp(privateEndpointIp);
         return this;
     }
@@ -1074,7 +1066,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withPrivateEndpointLabel(String privateEndpointLabel) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withPrivateEndpointLabel(String privateEndpointLabel) {
         super.withPrivateEndpointLabel(privateEndpointLabel);
         return this;
     }
@@ -1083,7 +1076,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withSubnetId(String subnetId) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withSubnetId(String subnetId) {
         super.withSubnetId(subnetId);
         return this;
     }
@@ -1092,7 +1085,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withVnetId(String vnetId) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withVnetId(String vnetId) {
         super.withVnetId(vnetId);
         return this;
     }
@@ -1101,7 +1094,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDatabaseEdition(DatabaseEditionType databaseEdition) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withDatabaseEdition(DatabaseEditionType databaseEdition) {
         super.withDatabaseEdition(databaseEdition);
         return this;
     }
@@ -1110,7 +1104,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withAutonomousDatabaseId(String autonomousDatabaseId) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withAutonomousDatabaseId(String autonomousDatabaseId) {
         super.withAutonomousDatabaseId(autonomousDatabaseId);
         return this;
     }
@@ -1119,7 +1114,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
         withLongTermBackupSchedule(LongTermBackUpScheduleDetails longTermBackupSchedule) {
         super.withLongTermBackupSchedule(longTermBackupSchedule);
         return this;
@@ -1129,7 +1124,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
         withLocalAdgAutoFailoverMaxDataLossLimit(Integer localAdgAutoFailoverMaxDataLossLimit) {
         super.withLocalAdgAutoFailoverMaxDataLossLimit(localAdgAutoFailoverMaxDataLossLimit);
         return this;
@@ -1139,7 +1134,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withOpenMode(OpenModeType openMode) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withOpenMode(OpenModeType openMode) {
         super.withOpenMode(openMode);
         return this;
     }
@@ -1148,7 +1143,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withPermissionLevel(PermissionLevelType permissionLevel) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withPermissionLevel(PermissionLevelType permissionLevel) {
         super.withPermissionLevel(permissionLevel);
         return this;
     }
@@ -1157,7 +1153,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withRole(RoleType role) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withRole(RoleType role) {
         super.withRole(role);
         return this;
     }
@@ -1166,7 +1162,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withBackupRetentionPeriodInDays(Integer backupRetentionPeriodInDays) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+        withBackupRetentionPeriodInDays(Integer backupRetentionPeriodInDays) {
         super.withBackupRetentionPeriodInDays(backupRetentionPeriodInDays);
         return this;
     }
@@ -1175,7 +1172,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withWhitelistedIps(List<String> whitelistedIps) {
+    public AutonomousDatabaseCrossRegionDisasterRecoveryProperties withWhitelistedIps(List<String> whitelistedIps) {
         super.withWhitelistedIps(whitelistedIps);
         return this;
     }
@@ -1190,12 +1187,12 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
         if (sourceId() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property sourceId in model AutonomousDatabaseCloneProperties"));
+                    "Missing required property sourceId in model AutonomousDatabaseCrossRegionDisasterRecoveryProperties"));
         }
-        if (cloneType() == null) {
+        if (remoteDisasterRecoveryType() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property cloneType in model AutonomousDatabaseCloneProperties"));
+                    "Missing required property remoteDisasterRecoveryType in model AutonomousDatabaseCrossRegionDisasterRecoveryProperties"));
         }
         if (customerContacts() != null) {
             customerContacts().forEach(e -> e.validate());
@@ -1223,7 +1220,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(AutonomousDatabaseCloneProperties.class);
+    private static final ClientLogger LOGGER
+        = new ClientLogger(AutonomousDatabaseCrossRegionDisasterRecoveryProperties.class);
 
     /**
      * {@inheritDoc}
@@ -1269,265 +1267,291 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
         jsonWriter.writeNumberField("backupRetentionPeriodInDays", backupRetentionPeriodInDays());
         jsonWriter.writeArrayField("whitelistedIps", whitelistedIps(),
             (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("source", this.source);
         jsonWriter.writeStringField("sourceId", this.sourceId);
-        jsonWriter.writeStringField("cloneType", this.cloneType == null ? null : this.cloneType.toString());
+        jsonWriter.writeStringField("remoteDisasterRecoveryType",
+            this.remoteDisasterRecoveryType == null ? null : this.remoteDisasterRecoveryType.toString());
         jsonWriter.writeStringField("dataBaseType", this.dataBaseType == null ? null : this.dataBaseType.toString());
-        jsonWriter.writeStringField("source", this.source == null ? null : this.source.toString());
-        jsonWriter.writeStringField("refreshableModel",
-            this.refreshableModel == null ? null : this.refreshableModel.toString());
-        jsonWriter.writeStringField("timeUntilReconnectCloneEnabled", this.timeUntilReconnectCloneEnabled);
+        jsonWriter.writeStringField("sourceLocation", this.sourceLocation);
+        jsonWriter.writeStringField("sourceOcid", this.sourceOcid);
+        jsonWriter.writeBooleanField("isReplicateAutomaticBackups", this.isReplicateAutomaticBackups);
         return jsonWriter.writeEndObject();
     }
 
     /**
-     * Reads an instance of AutonomousDatabaseCloneProperties from the JsonReader.
+     * Reads an instance of AutonomousDatabaseCrossRegionDisasterRecoveryProperties from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of AutonomousDatabaseCloneProperties if the JsonReader was pointing to an instance of it, or
-     * null if it was pointing to JSON null.
+     * @return An instance of AutonomousDatabaseCrossRegionDisasterRecoveryProperties if the JsonReader was pointing to
+     * an instance of it, or null if it was pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the AutonomousDatabaseCloneProperties.
+     * @throws IOException If an error occurs while reading the AutonomousDatabaseCrossRegionDisasterRecoveryProperties.
      */
-    public static AutonomousDatabaseCloneProperties fromJson(JsonReader jsonReader) throws IOException {
+    public static AutonomousDatabaseCrossRegionDisasterRecoveryProperties fromJson(JsonReader jsonReader)
+        throws IOException {
         return jsonReader.readObject(reader -> {
-            AutonomousDatabaseCloneProperties deserializedAutonomousDatabaseCloneProperties
-                = new AutonomousDatabaseCloneProperties();
+            AutonomousDatabaseCrossRegionDisasterRecoveryProperties deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                = new AutonomousDatabaseCrossRegionDisasterRecoveryProperties();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("adminPassword".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withAdminPassword(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withAdminPassword(reader.getString());
                 } else if ("autonomousMaintenanceScheduleType".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withAutonomousMaintenanceScheduleType(
-                        AutonomousMaintenanceScheduleType.fromString(reader.getString()));
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withAutonomousMaintenanceScheduleType(
+                            AutonomousMaintenanceScheduleType.fromString(reader.getString()));
                 } else if ("characterSet".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withCharacterSet(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withCharacterSet(reader.getString());
                 } else if ("computeCount".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withComputeCount(reader.getNullable(JsonReader::getFloat));
                 } else if ("computeModel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withComputeModel(ComputeModel.fromString(reader.getString()));
                 } else if ("cpuCoreCount".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withCpuCoreCount(reader.getNullable(JsonReader::getInt));
                 } else if ("customerContacts".equals(fieldName)) {
                     List<CustomerContact> customerContacts
                         = reader.readArray(reader1 -> CustomerContact.fromJson(reader1));
-                    deserializedAutonomousDatabaseCloneProperties.withCustomerContacts(customerContacts);
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withCustomerContacts(customerContacts);
                 } else if ("dataStorageSizeInTbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withDataStorageSizeInTbs(reader.getNullable(JsonReader::getInt));
                 } else if ("dataStorageSizeInGbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withDataStorageSizeInGbs(reader.getNullable(JsonReader::getInt));
                 } else if ("dbVersion".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withDbVersion(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withDbVersion(reader.getString());
                 } else if ("dbWorkload".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withDbWorkload(WorkloadType.fromString(reader.getString()));
                 } else if ("displayName".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withDisplayName(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withDisplayName(reader.getString());
                 } else if ("isAutoScalingEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withIsAutoScalingEnabled(reader.getNullable(JsonReader::getBoolean));
                 } else if ("isAutoScalingForStorageEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withIsAutoScalingForStorageEnabled(reader.getNullable(JsonReader::getBoolean));
                 } else if ("peerDbIds".equals(fieldName)) {
                     List<String> peerDbIds = reader.readArray(reader1 -> reader1.getString());
-                    deserializedAutonomousDatabaseCloneProperties.peerDbIds = peerDbIds;
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.peerDbIds = peerDbIds;
                 } else if ("peerDbId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withPeerDbId(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withPeerDbId(reader.getString());
                 } else if ("isLocalDataGuardEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withIsLocalDataGuardEnabled(reader.getNullable(JsonReader::getBoolean));
                 } else if ("isRemoteDataGuardEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.isRemoteDataGuardEnabled
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.isRemoteDataGuardEnabled
                         = reader.getNullable(JsonReader::getBoolean);
                 } else if ("localDisasterRecoveryType".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.localDisasterRecoveryType
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.localDisasterRecoveryType
                         = DisasterRecoveryType.fromString(reader.getString());
                 } else if ("timeDisasterRecoveryRoleChanged".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeDisasterRecoveryRoleChanged = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeDisasterRecoveryRoleChanged
+                        = reader
+                            .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("remoteDisasterRecoveryConfiguration".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.remoteDisasterRecoveryConfiguration
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.remoteDisasterRecoveryConfiguration
                         = DisasterRecoveryConfigurationDetails.fromJson(reader);
                 } else if ("localStandbyDb".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.localStandbyDb
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.localStandbyDb
                         = AutonomousDatabaseStandbySummary.fromJson(reader);
                 } else if ("failedDataRecoveryInSeconds".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.failedDataRecoveryInSeconds
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.failedDataRecoveryInSeconds
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("isMtlsConnectionRequired".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withIsMtlsConnectionRequired(reader.getNullable(JsonReader::getBoolean));
                 } else if ("isPreviewVersionWithServiceTermsAccepted".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withIsPreviewVersionWithServiceTermsAccepted(reader.getNullable(JsonReader::getBoolean));
                 } else if ("licenseModel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withLicenseModel(LicenseModel.fromString(reader.getString()));
                 } else if ("ncharacterSet".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withNcharacterSet(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withNcharacterSet(reader.getString());
                 } else if ("lifecycleDetails".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.lifecycleDetails = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.lifecycleDetails
+                        = reader.getString();
                 } else if ("provisioningState".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.provisioningState
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.provisioningState
                         = AzureResourceProvisioningState.fromString(reader.getString());
                 } else if ("lifecycleState".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.lifecycleState
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.lifecycleState
                         = AutonomousDatabaseLifecycleState.fromString(reader.getString());
                 } else if ("scheduledOperations".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withScheduledOperations(ScheduledOperationsType.fromJson(reader));
                 } else if ("privateEndpointIp".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withPrivateEndpointIp(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withPrivateEndpointIp(reader.getString());
                 } else if ("privateEndpointLabel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withPrivateEndpointLabel(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withPrivateEndpointLabel(reader.getString());
                 } else if ("ociUrl".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.ociUrl = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.ociUrl = reader.getString();
                 } else if ("subnetId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withSubnetId(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withSubnetId(reader.getString());
                 } else if ("vnetId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withVnetId(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.withVnetId(reader.getString());
                 } else if ("timeCreated".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeCreated = reader
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeCreated = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("timeMaintenanceBegin".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeMaintenanceBegin = reader
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeMaintenanceBegin = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("timeMaintenanceEnd".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeMaintenanceEnd = reader
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeMaintenanceEnd = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("actualUsedDataStorageSizeInTbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.actualUsedDataStorageSizeInTbs
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.actualUsedDataStorageSizeInTbs
                         = reader.getNullable(JsonReader::getDouble);
                 } else if ("allocatedStorageSizeInTbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.allocatedStorageSizeInTbs
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.allocatedStorageSizeInTbs
                         = reader.getNullable(JsonReader::getDouble);
                 } else if ("apexDetails".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.apexDetails = ApexDetailsType.fromJson(reader);
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.apexDetails
+                        = ApexDetailsType.fromJson(reader);
                 } else if ("availableUpgradeVersions".equals(fieldName)) {
                     List<String> availableUpgradeVersions = reader.readArray(reader1 -> reader1.getString());
-                    deserializedAutonomousDatabaseCloneProperties.availableUpgradeVersions = availableUpgradeVersions;
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.availableUpgradeVersions
+                        = availableUpgradeVersions;
                 } else if ("connectionStrings".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.connectionStrings
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.connectionStrings
                         = ConnectionStringType.fromJson(reader);
                 } else if ("connectionUrls".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.connectionUrls = ConnectionUrlType.fromJson(reader);
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.connectionUrls
+                        = ConnectionUrlType.fromJson(reader);
                 } else if ("dataSafeStatus".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.dataSafeStatus
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.dataSafeStatus
                         = DataSafeStatusType.fromString(reader.getString());
                 } else if ("databaseEdition".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withDatabaseEdition(DatabaseEditionType.fromString(reader.getString()));
                 } else if ("autonomousDatabaseId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withAutonomousDatabaseId(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withAutonomousDatabaseId(reader.getString());
                 } else if ("inMemoryAreaInGbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.inMemoryAreaInGbs
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.inMemoryAreaInGbs
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("nextLongTermBackupTimeStamp".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.nextLongTermBackupTimestamp = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.nextLongTermBackupTimestamp
+                        = reader
+                            .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("longTermBackupSchedule".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withLongTermBackupSchedule(LongTermBackUpScheduleDetails.fromJson(reader));
                 } else if ("isPreview".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.isPreview
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.isPreview
                         = reader.getNullable(JsonReader::getBoolean);
                 } else if ("localAdgAutoFailoverMaxDataLossLimit".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withLocalAdgAutoFailoverMaxDataLossLimit(reader.getNullable(JsonReader::getInt));
                 } else if ("memoryPerOracleComputeUnitInGbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.memoryPerOracleComputeUnitInGbs
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.memoryPerOracleComputeUnitInGbs
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("openMode".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withOpenMode(OpenModeType.fromString(reader.getString()));
                 } else if ("operationsInsightsStatus".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.operationsInsightsStatus
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.operationsInsightsStatus
                         = OperationsInsightsStatusType.fromString(reader.getString());
                 } else if ("permissionLevel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withPermissionLevel(PermissionLevelType.fromString(reader.getString()));
                 } else if ("privateEndpoint".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.privateEndpoint = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.privateEndpoint
+                        = reader.getString();
                 } else if ("provisionableCpus".equals(fieldName)) {
                     List<Integer> provisionableCpus = reader.readArray(reader1 -> reader1.getInt());
-                    deserializedAutonomousDatabaseCloneProperties.provisionableCpus = provisionableCpus;
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.provisionableCpus
+                        = provisionableCpus;
                 } else if ("role".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withRole(RoleType.fromString(reader.getString()));
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withRole(RoleType.fromString(reader.getString()));
                 } else if ("serviceConsoleUrl".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.serviceConsoleUrl = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.serviceConsoleUrl
+                        = reader.getString();
                 } else if ("sqlWebDeveloperUrl".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.sqlWebDeveloperUrl = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.sqlWebDeveloperUrl
+                        = reader.getString();
                 } else if ("supportedRegionsToCloneTo".equals(fieldName)) {
                     List<String> supportedRegionsToCloneTo = reader.readArray(reader1 -> reader1.getString());
-                    deserializedAutonomousDatabaseCloneProperties.supportedRegionsToCloneTo = supportedRegionsToCloneTo;
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.supportedRegionsToCloneTo
+                        = supportedRegionsToCloneTo;
                 } else if ("timeDataGuardRoleChanged".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeDataGuardRoleChanged = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeDataGuardRoleChanged
+                        = reader.getString();
                 } else if ("timeDeletionOfFreeAutonomousDatabase".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeDeletionOfFreeAutonomousDatabase
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeDeletionOfFreeAutonomousDatabase
                         = reader.getString();
                 } else if ("timeLocalDataGuardEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeLocalDataGuardEnabled = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeLocalDataGuardEnabled
+                        = reader.getString();
                 } else if ("timeOfLastFailover".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeOfLastFailover = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeOfLastFailover
+                        = reader.getString();
                 } else if ("timeOfLastRefresh".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeOfLastRefresh = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeOfLastRefresh
+                        = reader.getString();
                 } else if ("timeOfLastRefreshPoint".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeOfLastRefreshPoint = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeOfLastRefreshPoint
+                        = reader.getString();
                 } else if ("timeOfLastSwitchover".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeOfLastSwitchover = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeOfLastSwitchover
+                        = reader.getString();
                 } else if ("timeReclamationOfFreeAutonomousDatabase".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeReclamationOfFreeAutonomousDatabase
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.timeReclamationOfFreeAutonomousDatabase
                         = reader.getString();
                 } else if ("usedDataStorageSizeInGbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.usedDataStorageSizeInGbs
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.usedDataStorageSizeInGbs
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("usedDataStorageSizeInTbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.usedDataStorageSizeInTbs
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.usedDataStorageSizeInTbs
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("ocid".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.ocid = reader.getString();
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.ocid = reader.getString();
                 } else if ("backupRetentionPeriodInDays".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
                         .withBackupRetentionPeriodInDays(reader.getNullable(JsonReader::getInt));
                 } else if ("whitelistedIps".equals(fieldName)) {
                     List<String> whitelistedIps = reader.readArray(reader1 -> reader1.getString());
-                    deserializedAutonomousDatabaseCloneProperties.withWhitelistedIps(whitelistedIps);
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties
+                        .withWhitelistedIps(whitelistedIps);
                 } else if ("sourceId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.sourceId = reader.getString();
-                } else if ("cloneType".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.cloneType = CloneType.fromString(reader.getString());
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.sourceId = reader.getString();
+                } else if ("remoteDisasterRecoveryType".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.remoteDisasterRecoveryType
+                        = DisasterRecoveryType.fromString(reader.getString());
                 } else if ("dataBaseType".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.dataBaseType
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.dataBaseType
                         = DataBaseType.fromString(reader.getString());
-                } else if ("source".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.source = SourceType.fromString(reader.getString());
-                } else if ("isReconnectCloneEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.isReconnectCloneEnabled
+                } else if ("sourceLocation".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.sourceLocation
+                        = reader.getString();
+                } else if ("sourceOcid".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.sourceOcid = reader.getString();
+                } else if ("isReplicateAutomaticBackups".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties.isReplicateAutomaticBackups
                         = reader.getNullable(JsonReader::getBoolean);
-                } else if ("isRefreshableClone".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.isRefreshableClone
-                        = reader.getNullable(JsonReader::getBoolean);
-                } else if ("refreshableModel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.refreshableModel
-                        = RefreshableModelType.fromString(reader.getString());
-                } else if ("refreshableStatus".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.refreshableStatus
-                        = RefreshableStatusType.fromString(reader.getString());
-                } else if ("timeUntilReconnectCloneEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeUntilReconnectCloneEnabled = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedAutonomousDatabaseCloneProperties;
+            return deserializedAutonomousDatabaseCrossRegionDisasterRecoveryProperties;
         });
     }
 }

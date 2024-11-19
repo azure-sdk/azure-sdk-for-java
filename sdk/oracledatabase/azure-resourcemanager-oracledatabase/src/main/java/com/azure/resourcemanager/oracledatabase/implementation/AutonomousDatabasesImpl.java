@@ -13,8 +13,9 @@ import com.azure.resourcemanager.oracledatabase.fluent.AutonomousDatabasesClient
 import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDatabaseInner;
 import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDatabaseWalletFileInner;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabase;
-import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabases;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseWalletFile;
+import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabases;
+import com.azure.resourcemanager.oracledatabase.models.DisasterRecoveryConfigurationDetails;
 import com.azure.resourcemanager.oracledatabase.models.GenerateAutonomousDatabaseWalletDetails;
 import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
 import com.azure.resourcemanager.oracledatabase.models.RestoreAutonomousDatabaseDetails;
@@ -81,6 +82,28 @@ public final class AutonomousDatabasesImpl implements AutonomousDatabases {
 
     public void delete(String resourceGroupName, String autonomousdatabasename, Context context) {
         this.serviceClient().delete(resourceGroupName, autonomousdatabasename, context);
+    }
+
+    public AutonomousDatabase changeDisasterRecoveryConfiguration(String resourceGroupName,
+        String autonomousdatabasename, DisasterRecoveryConfigurationDetails body) {
+        AutonomousDatabaseInner inner
+            = this.serviceClient().changeDisasterRecoveryConfiguration(resourceGroupName, autonomousdatabasename, body);
+        if (inner != null) {
+            return new AutonomousDatabaseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public AutonomousDatabase changeDisasterRecoveryConfiguration(String resourceGroupName,
+        String autonomousdatabasename, DisasterRecoveryConfigurationDetails body, Context context) {
+        AutonomousDatabaseInner inner = this.serviceClient()
+            .changeDisasterRecoveryConfiguration(resourceGroupName, autonomousdatabasename, body, context);
+        if (inner != null) {
+            return new AutonomousDatabaseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public AutonomousDatabase failover(String resourceGroupName, String autonomousdatabasename, PeerDbDetails body) {

@@ -24,17 +24,203 @@ public final class AutonomousDatabaseProperties extends AutonomousDatabaseBasePr
     private DataBaseType dataBaseType = DataBaseType.REGULAR;
 
     /*
-     * The list of [OCIDs](https://docs.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of standby databases
-     * located in Autonomous Data Guard remote regions that are associated with the source database. Note that for
-     * Autonomous Database Serverless instances, standby databases located in the same region as the source primary
-     * database do not have OCIDs.
+     * Database ocid
      */
-    private List<String> peerDbIds;
+    private String ocid;
 
     /*
-     * Indicates whether the Autonomous Database has Cross Region Data Guard enabled.
+     * The amount of storage that has been used, in terabytes.
      */
-    private Boolean isRemoteDataGuardEnabled;
+    private Integer usedDataStorageSizeInTbs;
+
+    /*
+     * The storage space consumed by Autonomous Database in GBs.
+     */
+    private Integer usedDataStorageSizeInGbs;
+
+    /*
+     * The date and time the Always Free database will be stopped because of inactivity.
+     */
+    private String timeReclamationOfFreeAutonomousDatabase;
+
+    /*
+     * The timestamp of the last switchover operation for the Autonomous Database.
+     */
+    private String timeOfLastSwitchover;
+
+    /*
+     * The refresh point timestamp (UTC).
+     */
+    private String timeOfLastRefreshPoint;
+
+    /*
+     * The date and time when last refresh happened.
+     */
+    private String timeOfLastRefresh;
+
+    /*
+     * The timestamp of the last failover operation.
+     */
+    private String timeOfLastFailover;
+
+    /*
+     * The date and time that Autonomous Data Guard was enabled for an Autonomous Database where the standby was
+     * provisioned in the same region as the primary database.
+     */
+    private String timeLocalDataGuardEnabled;
+
+    /*
+     * The date and time the Always Free database will be automatically deleted because of inactivity.
+     */
+    private String timeDeletionOfFreeAutonomousDatabase;
+
+    /*
+     * The date and time the Autonomous Data Guard role was switched for the Autonomous Database.
+     */
+    private String timeDataGuardRoleChanged;
+
+    /*
+     * The list of regions that support the creation of an Autonomous Database clone or an Autonomous Data Guard standby
+     * database.
+     */
+    private List<String> supportedRegionsToCloneTo;
+
+    /*
+     * The SQL Web Developer URL for the Oracle Autonomous Database.
+     */
+    private String sqlWebDeveloperUrl;
+
+    /*
+     * The URL of the Service Console for the Autonomous Database.
+     */
+    private String serviceConsoleUrl;
+
+    /*
+     * An array of CPU values that an Autonomous Database can be scaled to.
+     */
+    private List<Integer> provisionableCpus;
+
+    /*
+     * The private endpoint for the resource.
+     */
+    private String privateEndpoint;
+
+    /*
+     * Status of Operations Insights for this Autonomous Database.
+     */
+    private OperationsInsightsStatusType operationsInsightsStatus;
+
+    /*
+     * The amount of memory (in GBs) enabled per ECPU or OCPU.
+     */
+    private Integer memoryPerOracleComputeUnitInGbs;
+
+    /*
+     * Indicates if the Autonomous Database version is a preview version.
+     */
+    private Boolean isPreview;
+
+    /*
+     * The date and time when the next long-term backup would be created.
+     */
+    private OffsetDateTime nextLongTermBackupTimestamp;
+
+    /*
+     * The area assigned to In-Memory tables in Autonomous Database.
+     */
+    private Integer inMemoryAreaInGbs;
+
+    /*
+     * Status of the Data Safe registration for this Autonomous Database.
+     */
+    private DataSafeStatusType dataSafeStatus;
+
+    /*
+     * The URLs for accessing Oracle Application Express (APEX) and SQL Developer Web with a browser from a Compute
+     * instance within your VCN or that has a direct connection to your VCN.
+     */
+    private ConnectionUrlType connectionUrls;
+
+    /*
+     * The connection string used to connect to the Autonomous Database.
+     */
+    private ConnectionStringType connectionStrings;
+
+    /*
+     * List of Oracle Database versions available for a database upgrade. If there are no version upgrades available,
+     * this list is empty.
+     */
+    private List<String> availableUpgradeVersions;
+
+    /*
+     * Information about Oracle APEX Application Development.
+     */
+    private ApexDetailsType apexDetails;
+
+    /*
+     * The amount of storage currently allocated for the database tables and billed for, rounded up.
+     */
+    private Double allocatedStorageSizeInTbs;
+
+    /*
+     * The current amount of storage in use for user and system data, in terabytes (TB).
+     */
+    private Double actualUsedDataStorageSizeInTbs;
+
+    /*
+     * The date and time when maintenance will end.
+     */
+    private OffsetDateTime timeMaintenanceEnd;
+
+    /*
+     * The date and time when maintenance will begin.
+     */
+    private OffsetDateTime timeMaintenanceBegin;
+
+    /*
+     * The date and time that the database was created.
+     */
+    private OffsetDateTime timeCreated;
+
+    /*
+     * HTTPS link to OCI resources exposed to Azure Customer via Azure Interface.
+     */
+    private String ociUrl;
+
+    /*
+     * Views lifecycleState
+     */
+    private AutonomousDatabaseLifecycleState lifecycleState;
+
+    /*
+     * Azure resource provisioning state.
+     */
+    private AzureResourceProvisioningState provisioningState;
+
+    /*
+     * Additional information about the current lifecycle state.
+     */
+    private String lifecycleDetails;
+
+    /*
+     * Indicates the number of seconds of data loss for a Data Guard failover.
+     */
+    private Integer failedDataRecoveryInSeconds;
+
+    /*
+     * Local Autonomous Disaster Recovery standby database details.
+     */
+    private AutonomousDatabaseStandbySummary localStandbyDb;
+
+    /*
+     * Indicates remote disaster recovery configuration
+     */
+    private DisasterRecoveryConfigurationDetails remoteDisasterRecoveryConfiguration;
+
+    /*
+     * The date and time the Disaster Recovery role was switched for the standby Autonomous Database.
+     */
+    private OffsetDateTime timeDisasterRecoveryRoleChanged;
 
     /*
      * Indicates the local disaster recovery (DR) type of the Autonomous Database Serverless instance.Autonomous Data
@@ -44,193 +230,16 @@ public final class AutonomousDatabaseProperties extends AutonomousDatabaseBasePr
     private DisasterRecoveryType localDisasterRecoveryType;
 
     /*
-     * Local Autonomous Disaster Recovery standby database details.
+     * Indicates whether the Autonomous Database has Cross Region Data Guard enabled.
      */
-    private AutonomousDatabaseStandbySummary localStandbyDb;
+    private Boolean isRemoteDataGuardEnabled;
 
     /*
-     * Indicates the number of seconds of data loss for a Data Guard failover.
+     * The list of Azure resource IDs of standby databases located in Autonomous Data Guard remote regions that are
+     * associated with the source database. Note that for Autonomous Database Serverless instances, standby databases
+     * located in the same region as the source primary database do not have Azure IDs.
      */
-    private Integer failedDataRecoveryInSeconds;
-
-    /*
-     * Additional information about the current lifecycle state.
-     */
-    private String lifecycleDetails;
-
-    /*
-     * Azure resource provisioning state.
-     */
-    private AzureResourceProvisioningState provisioningState;
-
-    /*
-     * Views lifecycleState
-     */
-    private AutonomousDatabaseLifecycleState lifecycleState;
-
-    /*
-     * HTTPS link to OCI resources exposed to Azure Customer via Azure Interface.
-     */
-    private String ociUrl;
-
-    /*
-     * The date and time that the database was created.
-     */
-    private OffsetDateTime timeCreated;
-
-    /*
-     * The date and time when maintenance will begin.
-     */
-    private OffsetDateTime timeMaintenanceBegin;
-
-    /*
-     * The date and time when maintenance will end.
-     */
-    private OffsetDateTime timeMaintenanceEnd;
-
-    /*
-     * The current amount of storage in use for user and system data, in terabytes (TB).
-     */
-    private Double actualUsedDataStorageSizeInTbs;
-
-    /*
-     * The amount of storage currently allocated for the database tables and billed for, rounded up.
-     */
-    private Double allocatedStorageSizeInTbs;
-
-    /*
-     * Information about Oracle APEX Application Development.
-     */
-    private ApexDetailsType apexDetails;
-
-    /*
-     * List of Oracle Database versions available for a database upgrade. If there are no version upgrades available,
-     * this list is empty.
-     */
-    private List<String> availableUpgradeVersions;
-
-    /*
-     * The connection string used to connect to the Autonomous Database.
-     */
-    private ConnectionStringType connectionStrings;
-
-    /*
-     * The URLs for accessing Oracle Application Express (APEX) and SQL Developer Web with a browser from a Compute
-     * instance within your VCN or that has a direct connection to your VCN.
-     */
-    private ConnectionUrlType connectionUrls;
-
-    /*
-     * Status of the Data Safe registration for this Autonomous Database.
-     */
-    private DataSafeStatusType dataSafeStatus;
-
-    /*
-     * The area assigned to In-Memory tables in Autonomous Database.
-     */
-    private Integer inMemoryAreaInGbs;
-
-    /*
-     * The date and time when the next long-term backup would be created.
-     */
-    private OffsetDateTime nextLongTermBackupTimestamp;
-
-    /*
-     * Indicates if the Autonomous Database version is a preview version.
-     */
-    private Boolean isPreview;
-
-    /*
-     * The amount of memory (in GBs) enabled per ECPU or OCPU.
-     */
-    private Integer memoryPerOracleComputeUnitInGbs;
-
-    /*
-     * Status of Operations Insights for this Autonomous Database.
-     */
-    private OperationsInsightsStatusType operationsInsightsStatus;
-
-    /*
-     * The private endpoint for the resource.
-     */
-    private String privateEndpoint;
-
-    /*
-     * An array of CPU values that an Autonomous Database can be scaled to.
-     */
-    private List<Integer> provisionableCpus;
-
-    /*
-     * The URL of the Service Console for the Autonomous Database.
-     */
-    private String serviceConsoleUrl;
-
-    /*
-     * The SQL Web Developer URL for the Oracle Autonomous Database.
-     */
-    private String sqlWebDeveloperUrl;
-
-    /*
-     * The list of regions that support the creation of an Autonomous Database clone or an Autonomous Data Guard standby
-     * database.
-     */
-    private List<String> supportedRegionsToCloneTo;
-
-    /*
-     * The date and time the Autonomous Data Guard role was switched for the Autonomous Database.
-     */
-    private String timeDataGuardRoleChanged;
-
-    /*
-     * The date and time the Always Free database will be automatically deleted because of inactivity.
-     */
-    private String timeDeletionOfFreeAutonomousDatabase;
-
-    /*
-     * The date and time that Autonomous Data Guard was enabled for an Autonomous Database where the standby was
-     * provisioned in the same region as the primary database.
-     */
-    private String timeLocalDataGuardEnabled;
-
-    /*
-     * The timestamp of the last failover operation.
-     */
-    private String timeOfLastFailover;
-
-    /*
-     * The date and time when last refresh happened.
-     */
-    private String timeOfLastRefresh;
-
-    /*
-     * The refresh point timestamp (UTC).
-     */
-    private String timeOfLastRefreshPoint;
-
-    /*
-     * The timestamp of the last switchover operation for the Autonomous Database.
-     */
-    private String timeOfLastSwitchover;
-
-    /*
-     * The date and time the Always Free database will be stopped because of inactivity.
-     */
-    private String timeReclamationOfFreeAutonomousDatabase;
-
-    /*
-     * The storage space consumed by Autonomous Database in GBs.
-     */
-    private Integer usedDataStorageSizeInGbs;
-
-    /*
-     * The amount of storage that has been used, in terabytes.
-     */
-    private Integer usedDataStorageSizeInTbs;
-
-    /*
-     * Database ocid
-     */
-    private String ocid;
+    private List<String> peerDbIds;
 
     /**
      * Creates an instance of AutonomousDatabaseProperties class.
@@ -249,28 +258,405 @@ public final class AutonomousDatabaseProperties extends AutonomousDatabaseBasePr
     }
 
     /**
-     * Get the peerDbIds property: The list of
-     * [OCIDs](https://docs.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of standby databases located in
-     * Autonomous Data Guard remote regions that are associated with the source database. Note that for Autonomous
-     * Database Serverless instances, standby databases located in the same region as the source primary database do not
-     * have OCIDs.
+     * Get the ocid property: Database ocid.
      * 
-     * @return the peerDbIds value.
+     * @return the ocid value.
      */
     @Override
-    public List<String> peerDbIds() {
-        return this.peerDbIds;
+    public String ocid() {
+        return this.ocid;
     }
 
     /**
-     * Get the isRemoteDataGuardEnabled property: Indicates whether the Autonomous Database has Cross Region Data Guard
-     * enabled.
+     * Get the usedDataStorageSizeInTbs property: The amount of storage that has been used, in terabytes.
      * 
-     * @return the isRemoteDataGuardEnabled value.
+     * @return the usedDataStorageSizeInTbs value.
      */
     @Override
-    public Boolean isRemoteDataGuardEnabled() {
-        return this.isRemoteDataGuardEnabled;
+    public Integer usedDataStorageSizeInTbs() {
+        return this.usedDataStorageSizeInTbs;
+    }
+
+    /**
+     * Get the usedDataStorageSizeInGbs property: The storage space consumed by Autonomous Database in GBs.
+     * 
+     * @return the usedDataStorageSizeInGbs value.
+     */
+    @Override
+    public Integer usedDataStorageSizeInGbs() {
+        return this.usedDataStorageSizeInGbs;
+    }
+
+    /**
+     * Get the timeReclamationOfFreeAutonomousDatabase property: The date and time the Always Free database will be
+     * stopped because of inactivity.
+     * 
+     * @return the timeReclamationOfFreeAutonomousDatabase value.
+     */
+    @Override
+    public String timeReclamationOfFreeAutonomousDatabase() {
+        return this.timeReclamationOfFreeAutonomousDatabase;
+    }
+
+    /**
+     * Get the timeOfLastSwitchover property: The timestamp of the last switchover operation for the Autonomous
+     * Database.
+     * 
+     * @return the timeOfLastSwitchover value.
+     */
+    @Override
+    public String timeOfLastSwitchover() {
+        return this.timeOfLastSwitchover;
+    }
+
+    /**
+     * Get the timeOfLastRefreshPoint property: The refresh point timestamp (UTC).
+     * 
+     * @return the timeOfLastRefreshPoint value.
+     */
+    @Override
+    public String timeOfLastRefreshPoint() {
+        return this.timeOfLastRefreshPoint;
+    }
+
+    /**
+     * Get the timeOfLastRefresh property: The date and time when last refresh happened.
+     * 
+     * @return the timeOfLastRefresh value.
+     */
+    @Override
+    public String timeOfLastRefresh() {
+        return this.timeOfLastRefresh;
+    }
+
+    /**
+     * Get the timeOfLastFailover property: The timestamp of the last failover operation.
+     * 
+     * @return the timeOfLastFailover value.
+     */
+    @Override
+    public String timeOfLastFailover() {
+        return this.timeOfLastFailover;
+    }
+
+    /**
+     * Get the timeLocalDataGuardEnabled property: The date and time that Autonomous Data Guard was enabled for an
+     * Autonomous Database where the standby was provisioned in the same region as the primary database.
+     * 
+     * @return the timeLocalDataGuardEnabled value.
+     */
+    @Override
+    public String timeLocalDataGuardEnabled() {
+        return this.timeLocalDataGuardEnabled;
+    }
+
+    /**
+     * Get the timeDeletionOfFreeAutonomousDatabase property: The date and time the Always Free database will be
+     * automatically deleted because of inactivity.
+     * 
+     * @return the timeDeletionOfFreeAutonomousDatabase value.
+     */
+    @Override
+    public String timeDeletionOfFreeAutonomousDatabase() {
+        return this.timeDeletionOfFreeAutonomousDatabase;
+    }
+
+    /**
+     * Get the timeDataGuardRoleChanged property: The date and time the Autonomous Data Guard role was switched for the
+     * Autonomous Database.
+     * 
+     * @return the timeDataGuardRoleChanged value.
+     */
+    @Override
+    public String timeDataGuardRoleChanged() {
+        return this.timeDataGuardRoleChanged;
+    }
+
+    /**
+     * Get the supportedRegionsToCloneTo property: The list of regions that support the creation of an Autonomous
+     * Database clone or an Autonomous Data Guard standby database.
+     * 
+     * @return the supportedRegionsToCloneTo value.
+     */
+    @Override
+    public List<String> supportedRegionsToCloneTo() {
+        return this.supportedRegionsToCloneTo;
+    }
+
+    /**
+     * Get the sqlWebDeveloperUrl property: The SQL Web Developer URL for the Oracle Autonomous Database.
+     * 
+     * @return the sqlWebDeveloperUrl value.
+     */
+    @Override
+    public String sqlWebDeveloperUrl() {
+        return this.sqlWebDeveloperUrl;
+    }
+
+    /**
+     * Get the serviceConsoleUrl property: The URL of the Service Console for the Autonomous Database.
+     * 
+     * @return the serviceConsoleUrl value.
+     */
+    @Override
+    public String serviceConsoleUrl() {
+        return this.serviceConsoleUrl;
+    }
+
+    /**
+     * Get the provisionableCpus property: An array of CPU values that an Autonomous Database can be scaled to.
+     * 
+     * @return the provisionableCpus value.
+     */
+    @Override
+    public List<Integer> provisionableCpus() {
+        return this.provisionableCpus;
+    }
+
+    /**
+     * Get the privateEndpoint property: The private endpoint for the resource.
+     * 
+     * @return the privateEndpoint value.
+     */
+    @Override
+    public String privateEndpoint() {
+        return this.privateEndpoint;
+    }
+
+    /**
+     * Get the operationsInsightsStatus property: Status of Operations Insights for this Autonomous Database.
+     * 
+     * @return the operationsInsightsStatus value.
+     */
+    @Override
+    public OperationsInsightsStatusType operationsInsightsStatus() {
+        return this.operationsInsightsStatus;
+    }
+
+    /**
+     * Get the memoryPerOracleComputeUnitInGbs property: The amount of memory (in GBs) enabled per ECPU or OCPU.
+     * 
+     * @return the memoryPerOracleComputeUnitInGbs value.
+     */
+    @Override
+    public Integer memoryPerOracleComputeUnitInGbs() {
+        return this.memoryPerOracleComputeUnitInGbs;
+    }
+
+    /**
+     * Get the isPreview property: Indicates if the Autonomous Database version is a preview version.
+     * 
+     * @return the isPreview value.
+     */
+    @Override
+    public Boolean isPreview() {
+        return this.isPreview;
+    }
+
+    /**
+     * Get the nextLongTermBackupTimestamp property: The date and time when the next long-term backup would be created.
+     * 
+     * @return the nextLongTermBackupTimestamp value.
+     */
+    @Override
+    public OffsetDateTime nextLongTermBackupTimestamp() {
+        return this.nextLongTermBackupTimestamp;
+    }
+
+    /**
+     * Get the inMemoryAreaInGbs property: The area assigned to In-Memory tables in Autonomous Database.
+     * 
+     * @return the inMemoryAreaInGbs value.
+     */
+    @Override
+    public Integer inMemoryAreaInGbs() {
+        return this.inMemoryAreaInGbs;
+    }
+
+    /**
+     * Get the dataSafeStatus property: Status of the Data Safe registration for this Autonomous Database.
+     * 
+     * @return the dataSafeStatus value.
+     */
+    @Override
+    public DataSafeStatusType dataSafeStatus() {
+        return this.dataSafeStatus;
+    }
+
+    /**
+     * Get the connectionUrls property: The URLs for accessing Oracle Application Express (APEX) and SQL Developer Web
+     * with a browser from a Compute instance within your VCN or that has a direct connection to your VCN.
+     * 
+     * @return the connectionUrls value.
+     */
+    @Override
+    public ConnectionUrlType connectionUrls() {
+        return this.connectionUrls;
+    }
+
+    /**
+     * Get the connectionStrings property: The connection string used to connect to the Autonomous Database.
+     * 
+     * @return the connectionStrings value.
+     */
+    @Override
+    public ConnectionStringType connectionStrings() {
+        return this.connectionStrings;
+    }
+
+    /**
+     * Get the availableUpgradeVersions property: List of Oracle Database versions available for a database upgrade. If
+     * there are no version upgrades available, this list is empty.
+     * 
+     * @return the availableUpgradeVersions value.
+     */
+    @Override
+    public List<String> availableUpgradeVersions() {
+        return this.availableUpgradeVersions;
+    }
+
+    /**
+     * Get the apexDetails property: Information about Oracle APEX Application Development.
+     * 
+     * @return the apexDetails value.
+     */
+    @Override
+    public ApexDetailsType apexDetails() {
+        return this.apexDetails;
+    }
+
+    /**
+     * Get the allocatedStorageSizeInTbs property: The amount of storage currently allocated for the database tables and
+     * billed for, rounded up.
+     * 
+     * @return the allocatedStorageSizeInTbs value.
+     */
+    @Override
+    public Double allocatedStorageSizeInTbs() {
+        return this.allocatedStorageSizeInTbs;
+    }
+
+    /**
+     * Get the actualUsedDataStorageSizeInTbs property: The current amount of storage in use for user and system data,
+     * in terabytes (TB).
+     * 
+     * @return the actualUsedDataStorageSizeInTbs value.
+     */
+    @Override
+    public Double actualUsedDataStorageSizeInTbs() {
+        return this.actualUsedDataStorageSizeInTbs;
+    }
+
+    /**
+     * Get the timeMaintenanceEnd property: The date and time when maintenance will end.
+     * 
+     * @return the timeMaintenanceEnd value.
+     */
+    @Override
+    public OffsetDateTime timeMaintenanceEnd() {
+        return this.timeMaintenanceEnd;
+    }
+
+    /**
+     * Get the timeMaintenanceBegin property: The date and time when maintenance will begin.
+     * 
+     * @return the timeMaintenanceBegin value.
+     */
+    @Override
+    public OffsetDateTime timeMaintenanceBegin() {
+        return this.timeMaintenanceBegin;
+    }
+
+    /**
+     * Get the timeCreated property: The date and time that the database was created.
+     * 
+     * @return the timeCreated value.
+     */
+    @Override
+    public OffsetDateTime timeCreated() {
+        return this.timeCreated;
+    }
+
+    /**
+     * Get the ociUrl property: HTTPS link to OCI resources exposed to Azure Customer via Azure Interface.
+     * 
+     * @return the ociUrl value.
+     */
+    @Override
+    public String ociUrl() {
+        return this.ociUrl;
+    }
+
+    /**
+     * Get the lifecycleState property: Views lifecycleState.
+     * 
+     * @return the lifecycleState value.
+     */
+    @Override
+    public AutonomousDatabaseLifecycleState lifecycleState() {
+        return this.lifecycleState;
+    }
+
+    /**
+     * Get the provisioningState property: Azure resource provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    @Override
+    public AzureResourceProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the lifecycleDetails property: Additional information about the current lifecycle state.
+     * 
+     * @return the lifecycleDetails value.
+     */
+    @Override
+    public String lifecycleDetails() {
+        return this.lifecycleDetails;
+    }
+
+    /**
+     * Get the failedDataRecoveryInSeconds property: Indicates the number of seconds of data loss for a Data Guard
+     * failover.
+     * 
+     * @return the failedDataRecoveryInSeconds value.
+     */
+    @Override
+    public Integer failedDataRecoveryInSeconds() {
+        return this.failedDataRecoveryInSeconds;
+    }
+
+    /**
+     * Get the localStandbyDb property: Local Autonomous Disaster Recovery standby database details.
+     * 
+     * @return the localStandbyDb value.
+     */
+    @Override
+    public AutonomousDatabaseStandbySummary localStandbyDb() {
+        return this.localStandbyDb;
+    }
+
+    /**
+     * Get the remoteDisasterRecoveryConfiguration property: Indicates remote disaster recovery configuration.
+     * 
+     * @return the remoteDisasterRecoveryConfiguration value.
+     */
+    @Override
+    public DisasterRecoveryConfigurationDetails remoteDisasterRecoveryConfiguration() {
+        return this.remoteDisasterRecoveryConfiguration;
+    }
+
+    /**
+     * Get the timeDisasterRecoveryRoleChanged property: The date and time the Disaster Recovery role was switched for
+     * the standby Autonomous Database.
+     * 
+     * @return the timeDisasterRecoveryRoleChanged value.
+     */
+    @Override
+    public OffsetDateTime timeDisasterRecoveryRoleChanged() {
+        return this.timeDisasterRecoveryRoleChanged;
     }
 
     /**
@@ -287,384 +673,26 @@ public final class AutonomousDatabaseProperties extends AutonomousDatabaseBasePr
     }
 
     /**
-     * Get the localStandbyDb property: Local Autonomous Disaster Recovery standby database details.
+     * Get the isRemoteDataGuardEnabled property: Indicates whether the Autonomous Database has Cross Region Data Guard
+     * enabled.
      * 
-     * @return the localStandbyDb value.
+     * @return the isRemoteDataGuardEnabled value.
      */
     @Override
-    public AutonomousDatabaseStandbySummary localStandbyDb() {
-        return this.localStandbyDb;
+    public Boolean isRemoteDataGuardEnabled() {
+        return this.isRemoteDataGuardEnabled;
     }
 
     /**
-     * Get the failedDataRecoveryInSeconds property: Indicates the number of seconds of data loss for a Data Guard
-     * failover.
+     * Get the peerDbIds property: The list of Azure resource IDs of standby databases located in Autonomous Data Guard
+     * remote regions that are associated with the source database. Note that for Autonomous Database Serverless
+     * instances, standby databases located in the same region as the source primary database do not have Azure IDs.
      * 
-     * @return the failedDataRecoveryInSeconds value.
+     * @return the peerDbIds value.
      */
     @Override
-    public Integer failedDataRecoveryInSeconds() {
-        return this.failedDataRecoveryInSeconds;
-    }
-
-    /**
-     * Get the lifecycleDetails property: Additional information about the current lifecycle state.
-     * 
-     * @return the lifecycleDetails value.
-     */
-    @Override
-    public String lifecycleDetails() {
-        return this.lifecycleDetails;
-    }
-
-    /**
-     * Get the provisioningState property: Azure resource provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public AzureResourceProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the lifecycleState property: Views lifecycleState.
-     * 
-     * @return the lifecycleState value.
-     */
-    @Override
-    public AutonomousDatabaseLifecycleState lifecycleState() {
-        return this.lifecycleState;
-    }
-
-    /**
-     * Get the ociUrl property: HTTPS link to OCI resources exposed to Azure Customer via Azure Interface.
-     * 
-     * @return the ociUrl value.
-     */
-    @Override
-    public String ociUrl() {
-        return this.ociUrl;
-    }
-
-    /**
-     * Get the timeCreated property: The date and time that the database was created.
-     * 
-     * @return the timeCreated value.
-     */
-    @Override
-    public OffsetDateTime timeCreated() {
-        return this.timeCreated;
-    }
-
-    /**
-     * Get the timeMaintenanceBegin property: The date and time when maintenance will begin.
-     * 
-     * @return the timeMaintenanceBegin value.
-     */
-    @Override
-    public OffsetDateTime timeMaintenanceBegin() {
-        return this.timeMaintenanceBegin;
-    }
-
-    /**
-     * Get the timeMaintenanceEnd property: The date and time when maintenance will end.
-     * 
-     * @return the timeMaintenanceEnd value.
-     */
-    @Override
-    public OffsetDateTime timeMaintenanceEnd() {
-        return this.timeMaintenanceEnd;
-    }
-
-    /**
-     * Get the actualUsedDataStorageSizeInTbs property: The current amount of storage in use for user and system data,
-     * in terabytes (TB).
-     * 
-     * @return the actualUsedDataStorageSizeInTbs value.
-     */
-    @Override
-    public Double actualUsedDataStorageSizeInTbs() {
-        return this.actualUsedDataStorageSizeInTbs;
-    }
-
-    /**
-     * Get the allocatedStorageSizeInTbs property: The amount of storage currently allocated for the database tables and
-     * billed for, rounded up.
-     * 
-     * @return the allocatedStorageSizeInTbs value.
-     */
-    @Override
-    public Double allocatedStorageSizeInTbs() {
-        return this.allocatedStorageSizeInTbs;
-    }
-
-    /**
-     * Get the apexDetails property: Information about Oracle APEX Application Development.
-     * 
-     * @return the apexDetails value.
-     */
-    @Override
-    public ApexDetailsType apexDetails() {
-        return this.apexDetails;
-    }
-
-    /**
-     * Get the availableUpgradeVersions property: List of Oracle Database versions available for a database upgrade. If
-     * there are no version upgrades available, this list is empty.
-     * 
-     * @return the availableUpgradeVersions value.
-     */
-    @Override
-    public List<String> availableUpgradeVersions() {
-        return this.availableUpgradeVersions;
-    }
-
-    /**
-     * Get the connectionStrings property: The connection string used to connect to the Autonomous Database.
-     * 
-     * @return the connectionStrings value.
-     */
-    @Override
-    public ConnectionStringType connectionStrings() {
-        return this.connectionStrings;
-    }
-
-    /**
-     * Get the connectionUrls property: The URLs for accessing Oracle Application Express (APEX) and SQL Developer Web
-     * with a browser from a Compute instance within your VCN or that has a direct connection to your VCN.
-     * 
-     * @return the connectionUrls value.
-     */
-    @Override
-    public ConnectionUrlType connectionUrls() {
-        return this.connectionUrls;
-    }
-
-    /**
-     * Get the dataSafeStatus property: Status of the Data Safe registration for this Autonomous Database.
-     * 
-     * @return the dataSafeStatus value.
-     */
-    @Override
-    public DataSafeStatusType dataSafeStatus() {
-        return this.dataSafeStatus;
-    }
-
-    /**
-     * Get the inMemoryAreaInGbs property: The area assigned to In-Memory tables in Autonomous Database.
-     * 
-     * @return the inMemoryAreaInGbs value.
-     */
-    @Override
-    public Integer inMemoryAreaInGbs() {
-        return this.inMemoryAreaInGbs;
-    }
-
-    /**
-     * Get the nextLongTermBackupTimestamp property: The date and time when the next long-term backup would be created.
-     * 
-     * @return the nextLongTermBackupTimestamp value.
-     */
-    @Override
-    public OffsetDateTime nextLongTermBackupTimestamp() {
-        return this.nextLongTermBackupTimestamp;
-    }
-
-    /**
-     * Get the isPreview property: Indicates if the Autonomous Database version is a preview version.
-     * 
-     * @return the isPreview value.
-     */
-    @Override
-    public Boolean isPreview() {
-        return this.isPreview;
-    }
-
-    /**
-     * Get the memoryPerOracleComputeUnitInGbs property: The amount of memory (in GBs) enabled per ECPU or OCPU.
-     * 
-     * @return the memoryPerOracleComputeUnitInGbs value.
-     */
-    @Override
-    public Integer memoryPerOracleComputeUnitInGbs() {
-        return this.memoryPerOracleComputeUnitInGbs;
-    }
-
-    /**
-     * Get the operationsInsightsStatus property: Status of Operations Insights for this Autonomous Database.
-     * 
-     * @return the operationsInsightsStatus value.
-     */
-    @Override
-    public OperationsInsightsStatusType operationsInsightsStatus() {
-        return this.operationsInsightsStatus;
-    }
-
-    /**
-     * Get the privateEndpoint property: The private endpoint for the resource.
-     * 
-     * @return the privateEndpoint value.
-     */
-    @Override
-    public String privateEndpoint() {
-        return this.privateEndpoint;
-    }
-
-    /**
-     * Get the provisionableCpus property: An array of CPU values that an Autonomous Database can be scaled to.
-     * 
-     * @return the provisionableCpus value.
-     */
-    @Override
-    public List<Integer> provisionableCpus() {
-        return this.provisionableCpus;
-    }
-
-    /**
-     * Get the serviceConsoleUrl property: The URL of the Service Console for the Autonomous Database.
-     * 
-     * @return the serviceConsoleUrl value.
-     */
-    @Override
-    public String serviceConsoleUrl() {
-        return this.serviceConsoleUrl;
-    }
-
-    /**
-     * Get the sqlWebDeveloperUrl property: The SQL Web Developer URL for the Oracle Autonomous Database.
-     * 
-     * @return the sqlWebDeveloperUrl value.
-     */
-    @Override
-    public String sqlWebDeveloperUrl() {
-        return this.sqlWebDeveloperUrl;
-    }
-
-    /**
-     * Get the supportedRegionsToCloneTo property: The list of regions that support the creation of an Autonomous
-     * Database clone or an Autonomous Data Guard standby database.
-     * 
-     * @return the supportedRegionsToCloneTo value.
-     */
-    @Override
-    public List<String> supportedRegionsToCloneTo() {
-        return this.supportedRegionsToCloneTo;
-    }
-
-    /**
-     * Get the timeDataGuardRoleChanged property: The date and time the Autonomous Data Guard role was switched for the
-     * Autonomous Database.
-     * 
-     * @return the timeDataGuardRoleChanged value.
-     */
-    @Override
-    public String timeDataGuardRoleChanged() {
-        return this.timeDataGuardRoleChanged;
-    }
-
-    /**
-     * Get the timeDeletionOfFreeAutonomousDatabase property: The date and time the Always Free database will be
-     * automatically deleted because of inactivity.
-     * 
-     * @return the timeDeletionOfFreeAutonomousDatabase value.
-     */
-    @Override
-    public String timeDeletionOfFreeAutonomousDatabase() {
-        return this.timeDeletionOfFreeAutonomousDatabase;
-    }
-
-    /**
-     * Get the timeLocalDataGuardEnabled property: The date and time that Autonomous Data Guard was enabled for an
-     * Autonomous Database where the standby was provisioned in the same region as the primary database.
-     * 
-     * @return the timeLocalDataGuardEnabled value.
-     */
-    @Override
-    public String timeLocalDataGuardEnabled() {
-        return this.timeLocalDataGuardEnabled;
-    }
-
-    /**
-     * Get the timeOfLastFailover property: The timestamp of the last failover operation.
-     * 
-     * @return the timeOfLastFailover value.
-     */
-    @Override
-    public String timeOfLastFailover() {
-        return this.timeOfLastFailover;
-    }
-
-    /**
-     * Get the timeOfLastRefresh property: The date and time when last refresh happened.
-     * 
-     * @return the timeOfLastRefresh value.
-     */
-    @Override
-    public String timeOfLastRefresh() {
-        return this.timeOfLastRefresh;
-    }
-
-    /**
-     * Get the timeOfLastRefreshPoint property: The refresh point timestamp (UTC).
-     * 
-     * @return the timeOfLastRefreshPoint value.
-     */
-    @Override
-    public String timeOfLastRefreshPoint() {
-        return this.timeOfLastRefreshPoint;
-    }
-
-    /**
-     * Get the timeOfLastSwitchover property: The timestamp of the last switchover operation for the Autonomous
-     * Database.
-     * 
-     * @return the timeOfLastSwitchover value.
-     */
-    @Override
-    public String timeOfLastSwitchover() {
-        return this.timeOfLastSwitchover;
-    }
-
-    /**
-     * Get the timeReclamationOfFreeAutonomousDatabase property: The date and time the Always Free database will be
-     * stopped because of inactivity.
-     * 
-     * @return the timeReclamationOfFreeAutonomousDatabase value.
-     */
-    @Override
-    public String timeReclamationOfFreeAutonomousDatabase() {
-        return this.timeReclamationOfFreeAutonomousDatabase;
-    }
-
-    /**
-     * Get the usedDataStorageSizeInGbs property: The storage space consumed by Autonomous Database in GBs.
-     * 
-     * @return the usedDataStorageSizeInGbs value.
-     */
-    @Override
-    public Integer usedDataStorageSizeInGbs() {
-        return this.usedDataStorageSizeInGbs;
-    }
-
-    /**
-     * Get the usedDataStorageSizeInTbs property: The amount of storage that has been used, in terabytes.
-     * 
-     * @return the usedDataStorageSizeInTbs value.
-     */
-    @Override
-    public Integer usedDataStorageSizeInTbs() {
-        return this.usedDataStorageSizeInTbs;
-    }
-
-    /**
-     * Get the ocid property: Database ocid.
-     * 
-     * @return the ocid value.
-     */
-    @Override
-    public String ocid() {
-        return this.ocid;
+    public List<String> peerDbIds() {
+        return this.peerDbIds;
     }
 
     /**
@@ -984,7 +1012,30 @@ public final class AutonomousDatabaseProperties extends AutonomousDatabaseBasePr
      */
     @Override
     public void validate() {
-        super.validate();
+        if (customerContacts() != null) {
+            customerContacts().forEach(e -> e.validate());
+        }
+        if (remoteDisasterRecoveryConfiguration() != null) {
+            remoteDisasterRecoveryConfiguration().validate();
+        }
+        if (localStandbyDb() != null) {
+            localStandbyDb().validate();
+        }
+        if (scheduledOperations() != null) {
+            scheduledOperations().validate();
+        }
+        if (apexDetails() != null) {
+            apexDetails().validate();
+        }
+        if (connectionStrings() != null) {
+            connectionStrings().validate();
+        }
+        if (connectionUrls() != null) {
+            connectionUrls().validate();
+        }
+        if (longTermBackupSchedule() != null) {
+            longTermBackupSchedule().validate();
+        }
     }
 
     /**
@@ -1101,6 +1152,12 @@ public final class AutonomousDatabaseProperties extends AutonomousDatabaseBasePr
                 } else if ("localDisasterRecoveryType".equals(fieldName)) {
                     deserializedAutonomousDatabaseProperties.localDisasterRecoveryType
                         = DisasterRecoveryType.fromString(reader.getString());
+                } else if ("timeDisasterRecoveryRoleChanged".equals(fieldName)) {
+                    deserializedAutonomousDatabaseProperties.timeDisasterRecoveryRoleChanged = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("remoteDisasterRecoveryConfiguration".equals(fieldName)) {
+                    deserializedAutonomousDatabaseProperties.remoteDisasterRecoveryConfiguration
+                        = DisasterRecoveryConfigurationDetails.fromJson(reader);
                 } else if ("localStandbyDb".equals(fieldName)) {
                     deserializedAutonomousDatabaseProperties.localStandbyDb
                         = AutonomousDatabaseStandbySummary.fromJson(reader);

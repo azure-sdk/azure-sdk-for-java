@@ -5,9 +5,11 @@
 package com.azure.resourcemanager.oracledatabase.generated;
 
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseCloneProperties;
+import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseCrossRegionDisasterRecoveryProperties;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseProperties;
 import com.azure.resourcemanager.oracledatabase.models.CloneType;
 import com.azure.resourcemanager.oracledatabase.models.ComputeModel;
+import com.azure.resourcemanager.oracledatabase.models.DisasterRecoveryType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,8 +18,8 @@ import java.util.Map;
  */
 public final class AutonomousDatabasesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_create.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/preview/2024-10-01-preview/examples/
+     * autonomousDatabase_create.json
      */
     /**
      * Sample code: AutonomousDatabases_CreateOrUpdate.
@@ -47,8 +49,37 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_create.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/preview/2024-10-01-preview/examples/
+     * autonomousDatabaseCrossRegionPeer_create.json
+     */
+    /**
+     * Sample code: AutonomousDatabases_CreateOrUpdate_CrossRegionPeer.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void autonomousDatabasesCreateOrUpdateCrossRegionPeer(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .define("databasedb1")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg000")
+            .withTags(mapOf("tagK1", "tagV1"))
+            .withProperties(new AutonomousDatabaseCrossRegionDisasterRecoveryProperties().withSubnetId(
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg000/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1")
+                .withVnetId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg000/providers/Microsoft.Network/virtualNetworks/vnet1")
+                .withSourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg000/providers/Oracle.Database/autonomousDatabases/databasedb1")
+                .withSourceLocation("germanywestcentral")
+                .withSourceOcid("ocid1..aaaaa")
+                .withRemoteDisasterRecoveryType(DisasterRecoveryType.ADG)
+                .withIsReplicateAutomaticBackups(false))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/preview/2024-10-01-preview/examples/
+     * autonomousDatabase_create.json
      */
     /**
      * Sample code: Create Autonomous Database.
@@ -78,9 +109,8 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseClone_create.
-     * json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/preview/2024-10-01-preview/examples/
+     * autonomousDatabaseClone_create.json
      */
     /**
      * Sample code: Create clone Autonomous Database.
@@ -112,9 +142,8 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseClone_create.
-     * json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/preview/2024-10-01-preview/examples/
+     * autonomousDatabaseClone_create.json
      */
     /**
      * Sample code: AutonomousDatabases_CreateOrUpdate_clone.

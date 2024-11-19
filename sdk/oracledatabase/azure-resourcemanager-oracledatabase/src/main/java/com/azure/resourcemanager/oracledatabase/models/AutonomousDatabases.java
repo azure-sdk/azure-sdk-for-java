@@ -105,6 +105,35 @@ public interface AutonomousDatabases {
     void delete(String resourceGroupName, String autonomousdatabasename, Context context);
 
     /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model.
+     */
+    AutonomousDatabase changeDisasterRecoveryConfiguration(String resourceGroupName, String autonomousdatabasename,
+        DisasterRecoveryConfigurationDetails body);
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model.
+     */
+    AutonomousDatabase changeDisasterRecoveryConfiguration(String resourceGroupName, String autonomousdatabasename,
+        DisasterRecoveryConfigurationDetails body, Context context);
+
+    /**
      * Perform failover action on Autonomous Database.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.

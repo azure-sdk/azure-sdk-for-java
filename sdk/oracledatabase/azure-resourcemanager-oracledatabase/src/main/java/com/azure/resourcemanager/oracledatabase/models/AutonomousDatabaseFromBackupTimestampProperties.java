@@ -12,25 +12,26 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * Autonomous Database clone resource model.
+ * Autonomous Database From Backup Timestamp resource model.
  */
 @Fluent
-public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseBaseProperties {
+public final class AutonomousDatabaseFromBackupTimestampProperties extends AutonomousDatabaseBaseProperties {
     /*
      * Database type to be created.
      */
-    private DataBaseType dataBaseType = DataBaseType.CLONE;
+    private DataBaseType dataBaseType = DataBaseType.CLONE_FROM_BACKUP_TIMESTAMP;
 
     /*
      * The source of the database.
      */
-    private SourceType source;
+    private final String source = "BackupFromTimestamp";
 
     /*
-     * The Azure resource ID of the Autonomous Database that was cloned to create the current Autonomous Database.
+     * The ID of the source Autonomous Database that you will clone to create a new Autonomous Database.
      */
     private String sourceId;
 
@@ -40,30 +41,15 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
     private CloneType cloneType;
 
     /*
-     * Indicates if the refreshable clone can be reconnected to its source database.
+     * The timestamp specified for the point-in-time clone of the source Autonomous Database. The timestamp must be in
+     * the past.
      */
-    private Boolean isReconnectCloneEnabled;
+    private OffsetDateTime timestamp;
 
     /*
-     * Indicates if the Autonomous Database is a refreshable clone.
+     * Clone from latest available backup timestamp.
      */
-    private Boolean isRefreshableClone;
-
-    /*
-     * The refresh mode of the clone.
-     */
-    private RefreshableModelType refreshableModel;
-
-    /*
-     * The refresh status of the clone.
-     */
-    private RefreshableStatusType refreshableStatus;
-
-    /*
-     * The time and date as an RFC3339 formatted string, e.g., 2022-01-01T12:00:00.000Z, to set the limit for a
-     * refreshable clone to be reconnected to its source database.
-     */
-    private String timeUntilReconnectCloneEnabled;
+    private Boolean useLatestAvailableBackupTimestamp;
 
     /*
      * Database ocid
@@ -284,9 +270,9 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
     private List<String> peerDbIds;
 
     /**
-     * Creates an instance of AutonomousDatabaseCloneProperties class.
+     * Creates an instance of AutonomousDatabaseFromBackupTimestampProperties class.
      */
-    public AutonomousDatabaseCloneProperties() {
+    public AutonomousDatabaseFromBackupTimestampProperties() {
     }
 
     /**
@@ -304,23 +290,12 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * 
      * @return the source value.
      */
-    public SourceType source() {
+    public String source() {
         return this.source;
     }
 
     /**
-     * Set the source property: The source of the database.
-     * 
-     * @param source the source value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
-     */
-    public AutonomousDatabaseCloneProperties withSource(SourceType source) {
-        this.source = source;
-        return this;
-    }
-
-    /**
-     * Get the sourceId property: The Azure resource ID of the Autonomous Database that was cloned to create the current
+     * Get the sourceId property: The ID of the source Autonomous Database that you will clone to create a new
      * Autonomous Database.
      * 
      * @return the sourceId value.
@@ -330,13 +305,13 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
     }
 
     /**
-     * Set the sourceId property: The Azure resource ID of the Autonomous Database that was cloned to create the current
+     * Set the sourceId property: The ID of the source Autonomous Database that you will clone to create a new
      * Autonomous Database.
      * 
      * @param sourceId the sourceId value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
+     * @return the AutonomousDatabaseFromBackupTimestampProperties object itself.
      */
-    public AutonomousDatabaseCloneProperties withSourceId(String sourceId) {
+    public AutonomousDatabaseFromBackupTimestampProperties withSourceId(String sourceId) {
         this.sourceId = sourceId;
         return this;
     }
@@ -354,80 +329,53 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * Set the cloneType property: The Autonomous Database clone type.
      * 
      * @param cloneType the cloneType value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
+     * @return the AutonomousDatabaseFromBackupTimestampProperties object itself.
      */
-    public AutonomousDatabaseCloneProperties withCloneType(CloneType cloneType) {
+    public AutonomousDatabaseFromBackupTimestampProperties withCloneType(CloneType cloneType) {
         this.cloneType = cloneType;
         return this;
     }
 
     /**
-     * Get the isReconnectCloneEnabled property: Indicates if the refreshable clone can be reconnected to its source
-     * database.
+     * Get the timestamp property: The timestamp specified for the point-in-time clone of the source Autonomous
+     * Database. The timestamp must be in the past.
      * 
-     * @return the isReconnectCloneEnabled value.
+     * @return the timestamp value.
      */
-    public Boolean isReconnectCloneEnabled() {
-        return this.isReconnectCloneEnabled;
+    public OffsetDateTime timestamp() {
+        return this.timestamp;
     }
 
     /**
-     * Get the isRefreshableClone property: Indicates if the Autonomous Database is a refreshable clone.
+     * Set the timestamp property: The timestamp specified for the point-in-time clone of the source Autonomous
+     * Database. The timestamp must be in the past.
      * 
-     * @return the isRefreshableClone value.
+     * @param timestamp the timestamp value to set.
+     * @return the AutonomousDatabaseFromBackupTimestampProperties object itself.
      */
-    public Boolean isRefreshableClone() {
-        return this.isRefreshableClone;
-    }
-
-    /**
-     * Get the refreshableModel property: The refresh mode of the clone.
-     * 
-     * @return the refreshableModel value.
-     */
-    public RefreshableModelType refreshableModel() {
-        return this.refreshableModel;
-    }
-
-    /**
-     * Set the refreshableModel property: The refresh mode of the clone.
-     * 
-     * @param refreshableModel the refreshableModel value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
-     */
-    public AutonomousDatabaseCloneProperties withRefreshableModel(RefreshableModelType refreshableModel) {
-        this.refreshableModel = refreshableModel;
+    public AutonomousDatabaseFromBackupTimestampProperties withTimestamp(OffsetDateTime timestamp) {
+        this.timestamp = timestamp;
         return this;
     }
 
     /**
-     * Get the refreshableStatus property: The refresh status of the clone.
+     * Get the useLatestAvailableBackupTimestamp property: Clone from latest available backup timestamp.
      * 
-     * @return the refreshableStatus value.
+     * @return the useLatestAvailableBackupTimestamp value.
      */
-    public RefreshableStatusType refreshableStatus() {
-        return this.refreshableStatus;
+    public Boolean useLatestAvailableBackupTimestamp() {
+        return this.useLatestAvailableBackupTimestamp;
     }
 
     /**
-     * Get the timeUntilReconnectCloneEnabled property: The time and date as an RFC3339 formatted string, e.g.,
-     * 2022-01-01T12:00:00.000Z, to set the limit for a refreshable clone to be reconnected to its source database.
+     * Set the useLatestAvailableBackupTimestamp property: Clone from latest available backup timestamp.
      * 
-     * @return the timeUntilReconnectCloneEnabled value.
+     * @param useLatestAvailableBackupTimestamp the useLatestAvailableBackupTimestamp value to set.
+     * @return the AutonomousDatabaseFromBackupTimestampProperties object itself.
      */
-    public String timeUntilReconnectCloneEnabled() {
-        return this.timeUntilReconnectCloneEnabled;
-    }
-
-    /**
-     * Set the timeUntilReconnectCloneEnabled property: The time and date as an RFC3339 formatted string, e.g.,
-     * 2022-01-01T12:00:00.000Z, to set the limit for a refreshable clone to be reconnected to its source database.
-     * 
-     * @param timeUntilReconnectCloneEnabled the timeUntilReconnectCloneEnabled value to set.
-     * @return the AutonomousDatabaseCloneProperties object itself.
-     */
-    public AutonomousDatabaseCloneProperties withTimeUntilReconnectCloneEnabled(String timeUntilReconnectCloneEnabled) {
-        this.timeUntilReconnectCloneEnabled = timeUntilReconnectCloneEnabled;
+    public AutonomousDatabaseFromBackupTimestampProperties
+        withUseLatestAvailableBackupTimestamp(Boolean useLatestAvailableBackupTimestamp) {
+        this.useLatestAvailableBackupTimestamp = useLatestAvailableBackupTimestamp;
         return this;
     }
 
@@ -873,7 +821,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withAdminPassword(String adminPassword) {
+    public AutonomousDatabaseFromBackupTimestampProperties withAdminPassword(String adminPassword) {
         super.withAdminPassword(adminPassword);
         return this;
     }
@@ -882,7 +830,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseFromBackupTimestampProperties
         withAutonomousMaintenanceScheduleType(AutonomousMaintenanceScheduleType autonomousMaintenanceScheduleType) {
         super.withAutonomousMaintenanceScheduleType(autonomousMaintenanceScheduleType);
         return this;
@@ -892,7 +840,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withCharacterSet(String characterSet) {
+    public AutonomousDatabaseFromBackupTimestampProperties withCharacterSet(String characterSet) {
         super.withCharacterSet(characterSet);
         return this;
     }
@@ -901,7 +849,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withComputeCount(Float computeCount) {
+    public AutonomousDatabaseFromBackupTimestampProperties withComputeCount(Float computeCount) {
         super.withComputeCount(computeCount);
         return this;
     }
@@ -910,7 +858,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withComputeModel(ComputeModel computeModel) {
+    public AutonomousDatabaseFromBackupTimestampProperties withComputeModel(ComputeModel computeModel) {
         super.withComputeModel(computeModel);
         return this;
     }
@@ -919,7 +867,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withCpuCoreCount(Integer cpuCoreCount) {
+    public AutonomousDatabaseFromBackupTimestampProperties withCpuCoreCount(Integer cpuCoreCount) {
         super.withCpuCoreCount(cpuCoreCount);
         return this;
     }
@@ -928,7 +876,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withCustomerContacts(List<CustomerContact> customerContacts) {
+    public AutonomousDatabaseFromBackupTimestampProperties
+        withCustomerContacts(List<CustomerContact> customerContacts) {
         super.withCustomerContacts(customerContacts);
         return this;
     }
@@ -937,7 +886,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDataStorageSizeInTbs(Integer dataStorageSizeInTbs) {
+    public AutonomousDatabaseFromBackupTimestampProperties withDataStorageSizeInTbs(Integer dataStorageSizeInTbs) {
         super.withDataStorageSizeInTbs(dataStorageSizeInTbs);
         return this;
     }
@@ -946,7 +895,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDataStorageSizeInGbs(Integer dataStorageSizeInGbs) {
+    public AutonomousDatabaseFromBackupTimestampProperties withDataStorageSizeInGbs(Integer dataStorageSizeInGbs) {
         super.withDataStorageSizeInGbs(dataStorageSizeInGbs);
         return this;
     }
@@ -955,7 +904,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDbVersion(String dbVersion) {
+    public AutonomousDatabaseFromBackupTimestampProperties withDbVersion(String dbVersion) {
         super.withDbVersion(dbVersion);
         return this;
     }
@@ -964,7 +913,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDbWorkload(WorkloadType dbWorkload) {
+    public AutonomousDatabaseFromBackupTimestampProperties withDbWorkload(WorkloadType dbWorkload) {
         super.withDbWorkload(dbWorkload);
         return this;
     }
@@ -973,7 +922,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDisplayName(String displayName) {
+    public AutonomousDatabaseFromBackupTimestampProperties withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
@@ -982,7 +931,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withIsAutoScalingEnabled(Boolean isAutoScalingEnabled) {
+    public AutonomousDatabaseFromBackupTimestampProperties withIsAutoScalingEnabled(Boolean isAutoScalingEnabled) {
         super.withIsAutoScalingEnabled(isAutoScalingEnabled);
         return this;
     }
@@ -991,7 +940,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseFromBackupTimestampProperties
         withIsAutoScalingForStorageEnabled(Boolean isAutoScalingForStorageEnabled) {
         super.withIsAutoScalingForStorageEnabled(isAutoScalingForStorageEnabled);
         return this;
@@ -1001,7 +950,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withPeerDbId(String peerDbId) {
+    public AutonomousDatabaseFromBackupTimestampProperties withPeerDbId(String peerDbId) {
         super.withPeerDbId(peerDbId);
         return this;
     }
@@ -1010,7 +959,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withIsLocalDataGuardEnabled(Boolean isLocalDataGuardEnabled) {
+    public AutonomousDatabaseFromBackupTimestampProperties
+        withIsLocalDataGuardEnabled(Boolean isLocalDataGuardEnabled) {
         super.withIsLocalDataGuardEnabled(isLocalDataGuardEnabled);
         return this;
     }
@@ -1019,7 +969,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withIsMtlsConnectionRequired(Boolean isMtlsConnectionRequired) {
+    public AutonomousDatabaseFromBackupTimestampProperties
+        withIsMtlsConnectionRequired(Boolean isMtlsConnectionRequired) {
         super.withIsMtlsConnectionRequired(isMtlsConnectionRequired);
         return this;
     }
@@ -1028,7 +979,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseFromBackupTimestampProperties
         withIsPreviewVersionWithServiceTermsAccepted(Boolean isPreviewVersionWithServiceTermsAccepted) {
         super.withIsPreviewVersionWithServiceTermsAccepted(isPreviewVersionWithServiceTermsAccepted);
         return this;
@@ -1038,7 +989,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withLicenseModel(LicenseModel licenseModel) {
+    public AutonomousDatabaseFromBackupTimestampProperties withLicenseModel(LicenseModel licenseModel) {
         super.withLicenseModel(licenseModel);
         return this;
     }
@@ -1047,7 +998,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withNcharacterSet(String ncharacterSet) {
+    public AutonomousDatabaseFromBackupTimestampProperties withNcharacterSet(String ncharacterSet) {
         super.withNcharacterSet(ncharacterSet);
         return this;
     }
@@ -1056,7 +1007,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withScheduledOperations(ScheduledOperationsType scheduledOperations) {
+    public AutonomousDatabaseFromBackupTimestampProperties
+        withScheduledOperations(ScheduledOperationsType scheduledOperations) {
         super.withScheduledOperations(scheduledOperations);
         return this;
     }
@@ -1065,7 +1017,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withPrivateEndpointIp(String privateEndpointIp) {
+    public AutonomousDatabaseFromBackupTimestampProperties withPrivateEndpointIp(String privateEndpointIp) {
         super.withPrivateEndpointIp(privateEndpointIp);
         return this;
     }
@@ -1074,7 +1026,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withPrivateEndpointLabel(String privateEndpointLabel) {
+    public AutonomousDatabaseFromBackupTimestampProperties withPrivateEndpointLabel(String privateEndpointLabel) {
         super.withPrivateEndpointLabel(privateEndpointLabel);
         return this;
     }
@@ -1083,7 +1035,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withSubnetId(String subnetId) {
+    public AutonomousDatabaseFromBackupTimestampProperties withSubnetId(String subnetId) {
         super.withSubnetId(subnetId);
         return this;
     }
@@ -1092,7 +1044,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withVnetId(String vnetId) {
+    public AutonomousDatabaseFromBackupTimestampProperties withVnetId(String vnetId) {
         super.withVnetId(vnetId);
         return this;
     }
@@ -1101,7 +1053,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withDatabaseEdition(DatabaseEditionType databaseEdition) {
+    public AutonomousDatabaseFromBackupTimestampProperties withDatabaseEdition(DatabaseEditionType databaseEdition) {
         super.withDatabaseEdition(databaseEdition);
         return this;
     }
@@ -1110,7 +1062,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withAutonomousDatabaseId(String autonomousDatabaseId) {
+    public AutonomousDatabaseFromBackupTimestampProperties withAutonomousDatabaseId(String autonomousDatabaseId) {
         super.withAutonomousDatabaseId(autonomousDatabaseId);
         return this;
     }
@@ -1119,7 +1071,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseFromBackupTimestampProperties
         withLongTermBackupSchedule(LongTermBackUpScheduleDetails longTermBackupSchedule) {
         super.withLongTermBackupSchedule(longTermBackupSchedule);
         return this;
@@ -1129,7 +1081,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties
+    public AutonomousDatabaseFromBackupTimestampProperties
         withLocalAdgAutoFailoverMaxDataLossLimit(Integer localAdgAutoFailoverMaxDataLossLimit) {
         super.withLocalAdgAutoFailoverMaxDataLossLimit(localAdgAutoFailoverMaxDataLossLimit);
         return this;
@@ -1139,7 +1091,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withOpenMode(OpenModeType openMode) {
+    public AutonomousDatabaseFromBackupTimestampProperties withOpenMode(OpenModeType openMode) {
         super.withOpenMode(openMode);
         return this;
     }
@@ -1148,7 +1100,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withPermissionLevel(PermissionLevelType permissionLevel) {
+    public AutonomousDatabaseFromBackupTimestampProperties withPermissionLevel(PermissionLevelType permissionLevel) {
         super.withPermissionLevel(permissionLevel);
         return this;
     }
@@ -1157,7 +1109,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withRole(RoleType role) {
+    public AutonomousDatabaseFromBackupTimestampProperties withRole(RoleType role) {
         super.withRole(role);
         return this;
     }
@@ -1166,7 +1118,8 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withBackupRetentionPeriodInDays(Integer backupRetentionPeriodInDays) {
+    public AutonomousDatabaseFromBackupTimestampProperties
+        withBackupRetentionPeriodInDays(Integer backupRetentionPeriodInDays) {
         super.withBackupRetentionPeriodInDays(backupRetentionPeriodInDays);
         return this;
     }
@@ -1175,7 +1128,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
      * {@inheritDoc}
      */
     @Override
-    public AutonomousDatabaseCloneProperties withWhitelistedIps(List<String> whitelistedIps) {
+    public AutonomousDatabaseFromBackupTimestampProperties withWhitelistedIps(List<String> whitelistedIps) {
         super.withWhitelistedIps(whitelistedIps);
         return this;
     }
@@ -1190,12 +1143,12 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
         if (sourceId() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property sourceId in model AutonomousDatabaseCloneProperties"));
+                    "Missing required property sourceId in model AutonomousDatabaseFromBackupTimestampProperties"));
         }
         if (cloneType() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property cloneType in model AutonomousDatabaseCloneProperties"));
+                    "Missing required property cloneType in model AutonomousDatabaseFromBackupTimestampProperties"));
         }
         if (customerContacts() != null) {
             customerContacts().forEach(e -> e.validate());
@@ -1223,7 +1176,7 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(AutonomousDatabaseCloneProperties.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AutonomousDatabaseFromBackupTimestampProperties.class);
 
     /**
      * {@inheritDoc}
@@ -1269,265 +1222,268 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
         jsonWriter.writeNumberField("backupRetentionPeriodInDays", backupRetentionPeriodInDays());
         jsonWriter.writeArrayField("whitelistedIps", whitelistedIps(),
             (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("source", this.source);
         jsonWriter.writeStringField("sourceId", this.sourceId);
         jsonWriter.writeStringField("cloneType", this.cloneType == null ? null : this.cloneType.toString());
         jsonWriter.writeStringField("dataBaseType", this.dataBaseType == null ? null : this.dataBaseType.toString());
-        jsonWriter.writeStringField("source", this.source == null ? null : this.source.toString());
-        jsonWriter.writeStringField("refreshableModel",
-            this.refreshableModel == null ? null : this.refreshableModel.toString());
-        jsonWriter.writeStringField("timeUntilReconnectCloneEnabled", this.timeUntilReconnectCloneEnabled);
+        jsonWriter.writeStringField("timestamp",
+            this.timestamp == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.timestamp));
+        jsonWriter.writeBooleanField("useLatestAvailableBackupTimeStamp", this.useLatestAvailableBackupTimestamp);
         return jsonWriter.writeEndObject();
     }
 
     /**
-     * Reads an instance of AutonomousDatabaseCloneProperties from the JsonReader.
+     * Reads an instance of AutonomousDatabaseFromBackupTimestampProperties from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of AutonomousDatabaseCloneProperties if the JsonReader was pointing to an instance of it, or
-     * null if it was pointing to JSON null.
+     * @return An instance of AutonomousDatabaseFromBackupTimestampProperties if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the AutonomousDatabaseCloneProperties.
+     * @throws IOException If an error occurs while reading the AutonomousDatabaseFromBackupTimestampProperties.
      */
-    public static AutonomousDatabaseCloneProperties fromJson(JsonReader jsonReader) throws IOException {
+    public static AutonomousDatabaseFromBackupTimestampProperties fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            AutonomousDatabaseCloneProperties deserializedAutonomousDatabaseCloneProperties
-                = new AutonomousDatabaseCloneProperties();
+            AutonomousDatabaseFromBackupTimestampProperties deserializedAutonomousDatabaseFromBackupTimestampProperties
+                = new AutonomousDatabaseFromBackupTimestampProperties();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("adminPassword".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withAdminPassword(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withAdminPassword(reader.getString());
                 } else if ("autonomousMaintenanceScheduleType".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withAutonomousMaintenanceScheduleType(
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withAutonomousMaintenanceScheduleType(
                         AutonomousMaintenanceScheduleType.fromString(reader.getString()));
                 } else if ("characterSet".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withCharacterSet(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withCharacterSet(reader.getString());
                 } else if ("computeCount".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withComputeCount(reader.getNullable(JsonReader::getFloat));
                 } else if ("computeModel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withComputeModel(ComputeModel.fromString(reader.getString()));
                 } else if ("cpuCoreCount".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withCpuCoreCount(reader.getNullable(JsonReader::getInt));
                 } else if ("customerContacts".equals(fieldName)) {
                     List<CustomerContact> customerContacts
                         = reader.readArray(reader1 -> CustomerContact.fromJson(reader1));
-                    deserializedAutonomousDatabaseCloneProperties.withCustomerContacts(customerContacts);
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withCustomerContacts(customerContacts);
                 } else if ("dataStorageSizeInTbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withDataStorageSizeInTbs(reader.getNullable(JsonReader::getInt));
                 } else if ("dataStorageSizeInGbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withDataStorageSizeInGbs(reader.getNullable(JsonReader::getInt));
                 } else if ("dbVersion".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withDbVersion(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withDbVersion(reader.getString());
                 } else if ("dbWorkload".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withDbWorkload(WorkloadType.fromString(reader.getString()));
                 } else if ("displayName".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withDisplayName(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withDisplayName(reader.getString());
                 } else if ("isAutoScalingEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withIsAutoScalingEnabled(reader.getNullable(JsonReader::getBoolean));
                 } else if ("isAutoScalingForStorageEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withIsAutoScalingForStorageEnabled(reader.getNullable(JsonReader::getBoolean));
                 } else if ("peerDbIds".equals(fieldName)) {
                     List<String> peerDbIds = reader.readArray(reader1 -> reader1.getString());
-                    deserializedAutonomousDatabaseCloneProperties.peerDbIds = peerDbIds;
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.peerDbIds = peerDbIds;
                 } else if ("peerDbId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withPeerDbId(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withPeerDbId(reader.getString());
                 } else if ("isLocalDataGuardEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withIsLocalDataGuardEnabled(reader.getNullable(JsonReader::getBoolean));
                 } else if ("isRemoteDataGuardEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.isRemoteDataGuardEnabled
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.isRemoteDataGuardEnabled
                         = reader.getNullable(JsonReader::getBoolean);
                 } else if ("localDisasterRecoveryType".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.localDisasterRecoveryType
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.localDisasterRecoveryType
                         = DisasterRecoveryType.fromString(reader.getString());
                 } else if ("timeDisasterRecoveryRoleChanged".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeDisasterRecoveryRoleChanged = reader
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeDisasterRecoveryRoleChanged = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("remoteDisasterRecoveryConfiguration".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.remoteDisasterRecoveryConfiguration
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.remoteDisasterRecoveryConfiguration
                         = DisasterRecoveryConfigurationDetails.fromJson(reader);
                 } else if ("localStandbyDb".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.localStandbyDb
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.localStandbyDb
                         = AutonomousDatabaseStandbySummary.fromJson(reader);
                 } else if ("failedDataRecoveryInSeconds".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.failedDataRecoveryInSeconds
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.failedDataRecoveryInSeconds
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("isMtlsConnectionRequired".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withIsMtlsConnectionRequired(reader.getNullable(JsonReader::getBoolean));
                 } else if ("isPreviewVersionWithServiceTermsAccepted".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withIsPreviewVersionWithServiceTermsAccepted(reader.getNullable(JsonReader::getBoolean));
                 } else if ("licenseModel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withLicenseModel(LicenseModel.fromString(reader.getString()));
                 } else if ("ncharacterSet".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withNcharacterSet(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withNcharacterSet(reader.getString());
                 } else if ("lifecycleDetails".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.lifecycleDetails = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.lifecycleDetails = reader.getString();
                 } else if ("provisioningState".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.provisioningState
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.provisioningState
                         = AzureResourceProvisioningState.fromString(reader.getString());
                 } else if ("lifecycleState".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.lifecycleState
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.lifecycleState
                         = AutonomousDatabaseLifecycleState.fromString(reader.getString());
                 } else if ("scheduledOperations".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withScheduledOperations(ScheduledOperationsType.fromJson(reader));
                 } else if ("privateEndpointIp".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withPrivateEndpointIp(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
+                        .withPrivateEndpointIp(reader.getString());
                 } else if ("privateEndpointLabel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withPrivateEndpointLabel(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
+                        .withPrivateEndpointLabel(reader.getString());
                 } else if ("ociUrl".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.ociUrl = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.ociUrl = reader.getString();
                 } else if ("subnetId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withSubnetId(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withSubnetId(reader.getString());
                 } else if ("vnetId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withVnetId(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withVnetId(reader.getString());
                 } else if ("timeCreated".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeCreated = reader
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeCreated = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("timeMaintenanceBegin".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeMaintenanceBegin = reader
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeMaintenanceBegin = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("timeMaintenanceEnd".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeMaintenanceEnd = reader
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeMaintenanceEnd = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("actualUsedDataStorageSizeInTbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.actualUsedDataStorageSizeInTbs
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.actualUsedDataStorageSizeInTbs
                         = reader.getNullable(JsonReader::getDouble);
                 } else if ("allocatedStorageSizeInTbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.allocatedStorageSizeInTbs
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.allocatedStorageSizeInTbs
                         = reader.getNullable(JsonReader::getDouble);
                 } else if ("apexDetails".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.apexDetails = ApexDetailsType.fromJson(reader);
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.apexDetails
+                        = ApexDetailsType.fromJson(reader);
                 } else if ("availableUpgradeVersions".equals(fieldName)) {
                     List<String> availableUpgradeVersions = reader.readArray(reader1 -> reader1.getString());
-                    deserializedAutonomousDatabaseCloneProperties.availableUpgradeVersions = availableUpgradeVersions;
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.availableUpgradeVersions
+                        = availableUpgradeVersions;
                 } else if ("connectionStrings".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.connectionStrings
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.connectionStrings
                         = ConnectionStringType.fromJson(reader);
                 } else if ("connectionUrls".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.connectionUrls = ConnectionUrlType.fromJson(reader);
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.connectionUrls
+                        = ConnectionUrlType.fromJson(reader);
                 } else if ("dataSafeStatus".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.dataSafeStatus
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.dataSafeStatus
                         = DataSafeStatusType.fromString(reader.getString());
                 } else if ("databaseEdition".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withDatabaseEdition(DatabaseEditionType.fromString(reader.getString()));
                 } else if ("autonomousDatabaseId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withAutonomousDatabaseId(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
+                        .withAutonomousDatabaseId(reader.getString());
                 } else if ("inMemoryAreaInGbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.inMemoryAreaInGbs
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.inMemoryAreaInGbs
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("nextLongTermBackupTimeStamp".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.nextLongTermBackupTimestamp = reader
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.nextLongTermBackupTimestamp = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("longTermBackupSchedule".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withLongTermBackupSchedule(LongTermBackUpScheduleDetails.fromJson(reader));
                 } else if ("isPreview".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.isPreview
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.isPreview
                         = reader.getNullable(JsonReader::getBoolean);
                 } else if ("localAdgAutoFailoverMaxDataLossLimit".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withLocalAdgAutoFailoverMaxDataLossLimit(reader.getNullable(JsonReader::getInt));
                 } else if ("memoryPerOracleComputeUnitInGbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.memoryPerOracleComputeUnitInGbs
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.memoryPerOracleComputeUnitInGbs
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("openMode".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withOpenMode(OpenModeType.fromString(reader.getString()));
                 } else if ("operationsInsightsStatus".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.operationsInsightsStatus
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.operationsInsightsStatus
                         = OperationsInsightsStatusType.fromString(reader.getString());
                 } else if ("permissionLevel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withPermissionLevel(PermissionLevelType.fromString(reader.getString()));
                 } else if ("privateEndpoint".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.privateEndpoint = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.privateEndpoint = reader.getString();
                 } else if ("provisionableCpus".equals(fieldName)) {
                     List<Integer> provisionableCpus = reader.readArray(reader1 -> reader1.getInt());
-                    deserializedAutonomousDatabaseCloneProperties.provisionableCpus = provisionableCpus;
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.provisionableCpus = provisionableCpus;
                 } else if ("role".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.withRole(RoleType.fromString(reader.getString()));
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
+                        .withRole(RoleType.fromString(reader.getString()));
                 } else if ("serviceConsoleUrl".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.serviceConsoleUrl = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.serviceConsoleUrl = reader.getString();
                 } else if ("sqlWebDeveloperUrl".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.sqlWebDeveloperUrl = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.sqlWebDeveloperUrl = reader.getString();
                 } else if ("supportedRegionsToCloneTo".equals(fieldName)) {
                     List<String> supportedRegionsToCloneTo = reader.readArray(reader1 -> reader1.getString());
-                    deserializedAutonomousDatabaseCloneProperties.supportedRegionsToCloneTo = supportedRegionsToCloneTo;
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.supportedRegionsToCloneTo
+                        = supportedRegionsToCloneTo;
                 } else if ("timeDataGuardRoleChanged".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeDataGuardRoleChanged = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeDataGuardRoleChanged
+                        = reader.getString();
                 } else if ("timeDeletionOfFreeAutonomousDatabase".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeDeletionOfFreeAutonomousDatabase
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeDeletionOfFreeAutonomousDatabase
                         = reader.getString();
                 } else if ("timeLocalDataGuardEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeLocalDataGuardEnabled = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeLocalDataGuardEnabled
+                        = reader.getString();
                 } else if ("timeOfLastFailover".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeOfLastFailover = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeOfLastFailover = reader.getString();
                 } else if ("timeOfLastRefresh".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeOfLastRefresh = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeOfLastRefresh = reader.getString();
                 } else if ("timeOfLastRefreshPoint".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeOfLastRefreshPoint = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeOfLastRefreshPoint
+                        = reader.getString();
                 } else if ("timeOfLastSwitchover".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeOfLastSwitchover = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeOfLastSwitchover
+                        = reader.getString();
                 } else if ("timeReclamationOfFreeAutonomousDatabase".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeReclamationOfFreeAutonomousDatabase
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timeReclamationOfFreeAutonomousDatabase
                         = reader.getString();
                 } else if ("usedDataStorageSizeInGbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.usedDataStorageSizeInGbs
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.usedDataStorageSizeInGbs
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("usedDataStorageSizeInTbs".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.usedDataStorageSizeInTbs
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.usedDataStorageSizeInTbs
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("ocid".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.ocid = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.ocid = reader.getString();
                 } else if ("backupRetentionPeriodInDays".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties
                         .withBackupRetentionPeriodInDays(reader.getNullable(JsonReader::getInt));
                 } else if ("whitelistedIps".equals(fieldName)) {
                     List<String> whitelistedIps = reader.readArray(reader1 -> reader1.getString());
-                    deserializedAutonomousDatabaseCloneProperties.withWhitelistedIps(whitelistedIps);
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.withWhitelistedIps(whitelistedIps);
                 } else if ("sourceId".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.sourceId = reader.getString();
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.sourceId = reader.getString();
                 } else if ("cloneType".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.cloneType = CloneType.fromString(reader.getString());
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.cloneType
+                        = CloneType.fromString(reader.getString());
                 } else if ("dataBaseType".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.dataBaseType
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.dataBaseType
                         = DataBaseType.fromString(reader.getString());
-                } else if ("source".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.source = SourceType.fromString(reader.getString());
-                } else if ("isReconnectCloneEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.isReconnectCloneEnabled
+                } else if ("timestamp".equals(fieldName)) {
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.timestamp = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("useLatestAvailableBackupTimeStamp".equals(fieldName)) {
+                    deserializedAutonomousDatabaseFromBackupTimestampProperties.useLatestAvailableBackupTimestamp
                         = reader.getNullable(JsonReader::getBoolean);
-                } else if ("isRefreshableClone".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.isRefreshableClone
-                        = reader.getNullable(JsonReader::getBoolean);
-                } else if ("refreshableModel".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.refreshableModel
-                        = RefreshableModelType.fromString(reader.getString());
-                } else if ("refreshableStatus".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.refreshableStatus
-                        = RefreshableStatusType.fromString(reader.getString());
-                } else if ("timeUntilReconnectCloneEnabled".equals(fieldName)) {
-                    deserializedAutonomousDatabaseCloneProperties.timeUntilReconnectCloneEnabled = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedAutonomousDatabaseCloneProperties;
+            return deserializedAutonomousDatabaseFromBackupTimestampProperties;
         });
     }
 }
