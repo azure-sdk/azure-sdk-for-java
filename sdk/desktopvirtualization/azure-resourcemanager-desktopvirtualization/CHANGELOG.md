@@ -1,14 +1,57 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-11-19)
+
+- Azure Resource Manager DesktopVirtualization client library for Java. This package contains Microsoft Azure SDK for DesktopVirtualization Management SDK.  Package tag package-2024-09. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.PublicUdp` was added
 
-### Bugs Fixed
+* `models.DirectUdp` was added
 
-### Other Changes
+* `models.ManagedPrivateUdp` was added
+
+* `models.RelayUdp` was added
+
+#### `models.HostPool$Update` was modified
+
+* `withPublicUdp(models.PublicUdp)` was added
+* `withRelayUdp(models.RelayUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+* `withDirectUdp(models.DirectUdp)` was added
+
+#### `models.HostPool` was modified
+
+* `managedPrivateUdp()` was added
+* `relayUdp()` was added
+* `publicUdp()` was added
+* `directUdp()` was added
+
+#### `models.HostPoolPatch` was modified
+
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+* `managedPrivateUdp()` was added
+* `publicUdp()` was added
+* `directUdp()` was added
+* `withRelayUdp(models.RelayUdp)` was added
+* `withPublicUdp(models.PublicUdp)` was added
+* `relayUdp()` was added
+* `withDirectUdp(models.DirectUdp)` was added
+
+#### `models.HostPoolProperties` was modified
+
+* `directUdp()` was added
+* `managedPrivateUdp()` was added
+* `publicUdp()` was added
+* `relayUdp()` was added
+
+#### `models.HostPool$Definition` was modified
+
+* `withPublicUdp(models.PublicUdp)` was added
+* `withRelayUdp(models.RelayUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+* `withDirectUdp(models.DirectUdp)` was added
 
 ## 1.2.0 (2024-09-25)
 

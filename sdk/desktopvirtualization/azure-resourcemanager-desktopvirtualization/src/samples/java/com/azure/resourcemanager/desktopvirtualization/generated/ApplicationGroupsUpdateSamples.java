@@ -14,7 +14,7 @@ import java.util.Map;
 public final class ApplicationGroupsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
      * ApplicationGroup_Update.json
      */
     /**
