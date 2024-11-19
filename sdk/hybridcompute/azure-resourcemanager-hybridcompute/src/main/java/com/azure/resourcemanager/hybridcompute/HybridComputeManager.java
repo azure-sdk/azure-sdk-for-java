@@ -24,7 +24,10 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcompute.fluent.HybridComputeManagementClient;
+import com.azure.resourcemanager.hybridcompute.implementation.ExtensionMetadataV2sImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.ExtensionMetadatasImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.ExtensionPublishersImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.ExtensionTypesImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.GatewaysImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.HybridComputeManagementClientBuilder;
 import com.azure.resourcemanager.hybridcompute.implementation.LicenseProfilesImpl;
@@ -40,7 +43,10 @@ import com.azure.resourcemanager.hybridcompute.implementation.PrivateLinkResourc
 import com.azure.resourcemanager.hybridcompute.implementation.PrivateLinkScopesImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.SettingsOperationsImpl;
+import com.azure.resourcemanager.hybridcompute.models.ExtensionMetadataV2s;
 import com.azure.resourcemanager.hybridcompute.models.ExtensionMetadatas;
+import com.azure.resourcemanager.hybridcompute.models.ExtensionPublishers;
+import com.azure.resourcemanager.hybridcompute.models.ExtensionTypes;
 import com.azure.resourcemanager.hybridcompute.models.Gateways;
 import com.azure.resourcemanager.hybridcompute.models.LicenseProfiles;
 import com.azure.resourcemanager.hybridcompute.models.Licenses;
@@ -78,6 +84,12 @@ public final class HybridComputeManager {
     private ResourceProviders resourceProviders;
 
     private ExtensionMetadatas extensionMetadatas;
+
+    private ExtensionMetadataV2s extensionMetadataV2s;
+
+    private ExtensionTypes extensionTypes;
+
+    private ExtensionPublishers extensionPublishers;
 
     private Operations operations;
 
@@ -261,7 +273,7 @@ public final class HybridComputeManager {
                 .append("-")
                 .append("com.azure.resourcemanager.hybridcompute")
                 .append("/")
-                .append("1.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -377,6 +389,42 @@ public final class HybridComputeManager {
             this.extensionMetadatas = new ExtensionMetadatasImpl(clientObject.getExtensionMetadatas(), this);
         }
         return extensionMetadatas;
+    }
+
+    /**
+     * Gets the resource collection API of ExtensionMetadataV2s.
+     * 
+     * @return Resource collection API of ExtensionMetadataV2s.
+     */
+    public ExtensionMetadataV2s extensionMetadataV2s() {
+        if (this.extensionMetadataV2s == null) {
+            this.extensionMetadataV2s = new ExtensionMetadataV2sImpl(clientObject.getExtensionMetadataV2s(), this);
+        }
+        return extensionMetadataV2s;
+    }
+
+    /**
+     * Gets the resource collection API of ExtensionTypes.
+     * 
+     * @return Resource collection API of ExtensionTypes.
+     */
+    public ExtensionTypes extensionTypes() {
+        if (this.extensionTypes == null) {
+            this.extensionTypes = new ExtensionTypesImpl(clientObject.getExtensionTypes(), this);
+        }
+        return extensionTypes;
+    }
+
+    /**
+     * Gets the resource collection API of ExtensionPublishers.
+     * 
+     * @return Resource collection API of ExtensionPublishers.
+     */
+    public ExtensionPublishers extensionPublishers() {
+        if (this.extensionPublishers == null) {
+            this.extensionPublishers = new ExtensionPublishersImpl(clientObject.getExtensionPublishers(), this);
+        }
+        return extensionPublishers;
     }
 
     /**
