@@ -4,8 +4,7 @@
 
 package com.azure.resourcemanager.iotoperations.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -15,42 +14,12 @@ import java.io.IOException;
 /**
  * DataflowEndpoint Resource properties. NOTE - Only one type of endpoint is supported for one Resource.
  */
-@Fluent
-public final class DataflowEndpointProperties implements JsonSerializable<DataflowEndpointProperties> {
+@Immutable
+public class DataflowEndpointProperties implements JsonSerializable<DataflowEndpointProperties> {
     /*
      * Endpoint Type.
      */
-    private EndpointType endpointType;
-
-    /*
-     * Azure Data Explorer endpoint.
-     */
-    private DataflowEndpointDataExplorer dataExplorerSettings;
-
-    /*
-     * Azure Data Lake endpoint.
-     */
-    private DataflowEndpointDataLakeStorage dataLakeStorageSettings;
-
-    /*
-     * Microsoft Fabric endpoint.
-     */
-    private DataflowEndpointFabricOneLake fabricOneLakeSettings;
-
-    /*
-     * Kafka endpoint.
-     */
-    private DataflowEndpointKafka kafkaSettings;
-
-    /*
-     * Local persistent volume endpoint.
-     */
-    private DataflowEndpointLocalStorage localStorageSettings;
-
-    /*
-     * Broker endpoint.
-     */
-    private DataflowEndpointMqtt mqttSettings;
+    private EndpointType endpointType = EndpointType.fromString("DataflowEndpointProperties");
 
     /*
      * The status of the last operation.
@@ -73,138 +42,6 @@ public final class DataflowEndpointProperties implements JsonSerializable<Datafl
     }
 
     /**
-     * Set the endpointType property: Endpoint Type.
-     * 
-     * @param endpointType the endpointType value to set.
-     * @return the DataflowEndpointProperties object itself.
-     */
-    public DataflowEndpointProperties withEndpointType(EndpointType endpointType) {
-        this.endpointType = endpointType;
-        return this;
-    }
-
-    /**
-     * Get the dataExplorerSettings property: Azure Data Explorer endpoint.
-     * 
-     * @return the dataExplorerSettings value.
-     */
-    public DataflowEndpointDataExplorer dataExplorerSettings() {
-        return this.dataExplorerSettings;
-    }
-
-    /**
-     * Set the dataExplorerSettings property: Azure Data Explorer endpoint.
-     * 
-     * @param dataExplorerSettings the dataExplorerSettings value to set.
-     * @return the DataflowEndpointProperties object itself.
-     */
-    public DataflowEndpointProperties withDataExplorerSettings(DataflowEndpointDataExplorer dataExplorerSettings) {
-        this.dataExplorerSettings = dataExplorerSettings;
-        return this;
-    }
-
-    /**
-     * Get the dataLakeStorageSettings property: Azure Data Lake endpoint.
-     * 
-     * @return the dataLakeStorageSettings value.
-     */
-    public DataflowEndpointDataLakeStorage dataLakeStorageSettings() {
-        return this.dataLakeStorageSettings;
-    }
-
-    /**
-     * Set the dataLakeStorageSettings property: Azure Data Lake endpoint.
-     * 
-     * @param dataLakeStorageSettings the dataLakeStorageSettings value to set.
-     * @return the DataflowEndpointProperties object itself.
-     */
-    public DataflowEndpointProperties
-        withDataLakeStorageSettings(DataflowEndpointDataLakeStorage dataLakeStorageSettings) {
-        this.dataLakeStorageSettings = dataLakeStorageSettings;
-        return this;
-    }
-
-    /**
-     * Get the fabricOneLakeSettings property: Microsoft Fabric endpoint.
-     * 
-     * @return the fabricOneLakeSettings value.
-     */
-    public DataflowEndpointFabricOneLake fabricOneLakeSettings() {
-        return this.fabricOneLakeSettings;
-    }
-
-    /**
-     * Set the fabricOneLakeSettings property: Microsoft Fabric endpoint.
-     * 
-     * @param fabricOneLakeSettings the fabricOneLakeSettings value to set.
-     * @return the DataflowEndpointProperties object itself.
-     */
-    public DataflowEndpointProperties withFabricOneLakeSettings(DataflowEndpointFabricOneLake fabricOneLakeSettings) {
-        this.fabricOneLakeSettings = fabricOneLakeSettings;
-        return this;
-    }
-
-    /**
-     * Get the kafkaSettings property: Kafka endpoint.
-     * 
-     * @return the kafkaSettings value.
-     */
-    public DataflowEndpointKafka kafkaSettings() {
-        return this.kafkaSettings;
-    }
-
-    /**
-     * Set the kafkaSettings property: Kafka endpoint.
-     * 
-     * @param kafkaSettings the kafkaSettings value to set.
-     * @return the DataflowEndpointProperties object itself.
-     */
-    public DataflowEndpointProperties withKafkaSettings(DataflowEndpointKafka kafkaSettings) {
-        this.kafkaSettings = kafkaSettings;
-        return this;
-    }
-
-    /**
-     * Get the localStorageSettings property: Local persistent volume endpoint.
-     * 
-     * @return the localStorageSettings value.
-     */
-    public DataflowEndpointLocalStorage localStorageSettings() {
-        return this.localStorageSettings;
-    }
-
-    /**
-     * Set the localStorageSettings property: Local persistent volume endpoint.
-     * 
-     * @param localStorageSettings the localStorageSettings value to set.
-     * @return the DataflowEndpointProperties object itself.
-     */
-    public DataflowEndpointProperties withLocalStorageSettings(DataflowEndpointLocalStorage localStorageSettings) {
-        this.localStorageSettings = localStorageSettings;
-        return this;
-    }
-
-    /**
-     * Get the mqttSettings property: Broker endpoint.
-     * 
-     * @return the mqttSettings value.
-     */
-    public DataflowEndpointMqtt mqttSettings() {
-        return this.mqttSettings;
-    }
-
-    /**
-     * Set the mqttSettings property: Broker endpoint.
-     * 
-     * @param mqttSettings the mqttSettings value to set.
-     * @return the DataflowEndpointProperties object itself.
-     */
-    public DataflowEndpointProperties withMqttSettings(DataflowEndpointMqtt mqttSettings) {
-        this.mqttSettings = mqttSettings;
-        return this;
-    }
-
-    /**
      * Get the provisioningState property: The status of the last operation.
      * 
      * @return the provisioningState value.
@@ -214,37 +51,23 @@ public final class DataflowEndpointProperties implements JsonSerializable<Datafl
     }
 
     /**
+     * Set the provisioningState property: The status of the last operation.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the DataflowEndpointProperties object itself.
+     */
+    DataflowEndpointProperties withProvisioningState(ProvisioningState provisioningState) {
+        this.provisioningState = provisioningState;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (endpointType() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property endpointType in model DataflowEndpointProperties"));
-        }
-        if (dataExplorerSettings() != null) {
-            dataExplorerSettings().validate();
-        }
-        if (dataLakeStorageSettings() != null) {
-            dataLakeStorageSettings().validate();
-        }
-        if (fabricOneLakeSettings() != null) {
-            fabricOneLakeSettings().validate();
-        }
-        if (kafkaSettings() != null) {
-            kafkaSettings().validate();
-        }
-        if (localStorageSettings() != null) {
-            localStorageSettings().validate();
-        }
-        if (mqttSettings() != null) {
-            mqttSettings().validate();
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DataflowEndpointProperties.class);
 
     /**
      * {@inheritDoc}
@@ -253,12 +76,6 @@ public final class DataflowEndpointProperties implements JsonSerializable<Datafl
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("endpointType", this.endpointType == null ? null : this.endpointType.toString());
-        jsonWriter.writeJsonField("dataExplorerSettings", this.dataExplorerSettings);
-        jsonWriter.writeJsonField("dataLakeStorageSettings", this.dataLakeStorageSettings);
-        jsonWriter.writeJsonField("fabricOneLakeSettings", this.fabricOneLakeSettings);
-        jsonWriter.writeJsonField("kafkaSettings", this.kafkaSettings);
-        jsonWriter.writeJsonField("localStorageSettings", this.localStorageSettings);
-        jsonWriter.writeJsonField("mqttSettings", this.mqttSettings);
         return jsonWriter.writeEndObject();
     }
 
@@ -268,10 +85,44 @@ public final class DataflowEndpointProperties implements JsonSerializable<Datafl
      * @param jsonReader The JsonReader being read.
      * @return An instance of DataflowEndpointProperties if the JsonReader was pointing to an instance of it, or null if
      * it was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the DataflowEndpointProperties.
      */
     public static DataflowEndpointProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            String discriminatorValue = null;
+            try (JsonReader readerToUse = reader.bufferObject()) {
+                readerToUse.nextToken(); // Prepare for reading
+                while (readerToUse.nextToken() != JsonToken.END_OBJECT) {
+                    String fieldName = readerToUse.getFieldName();
+                    readerToUse.nextToken();
+                    if ("endpointType".equals(fieldName)) {
+                        discriminatorValue = readerToUse.getString();
+                        break;
+                    } else {
+                        readerToUse.skipChildren();
+                    }
+                }
+                // Use the discriminator value to determine which subtype should be deserialized.
+                if ("DataExplorer".equals(discriminatorValue)) {
+                    return DataExplorerEndpoint.fromJson(readerToUse.reset());
+                } else if ("DataLakeStorage".equals(discriminatorValue)) {
+                    return DataLakeStorageEndpoint.fromJson(readerToUse.reset());
+                } else if ("FabricOneLake".equals(discriminatorValue)) {
+                    return FabricOneLakeEndpoint.fromJson(readerToUse.reset());
+                } else if ("Kafka".equals(discriminatorValue)) {
+                    return KafkaEndpoint.fromJson(readerToUse.reset());
+                } else if ("LocalStorage".equals(discriminatorValue)) {
+                    return LocalStorageEndpoint.fromJson(readerToUse.reset());
+                } else if ("Mqtt".equals(discriminatorValue)) {
+                    return MqttEndpoint.fromJson(readerToUse.reset());
+                } else {
+                    return fromJsonKnownDiscriminator(readerToUse.reset());
+                }
+            }
+        });
+    }
+
+    static DataflowEndpointProperties fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
             DataflowEndpointProperties deserializedDataflowEndpointProperties = new DataflowEndpointProperties();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
@@ -280,22 +131,6 @@ public final class DataflowEndpointProperties implements JsonSerializable<Datafl
 
                 if ("endpointType".equals(fieldName)) {
                     deserializedDataflowEndpointProperties.endpointType = EndpointType.fromString(reader.getString());
-                } else if ("dataExplorerSettings".equals(fieldName)) {
-                    deserializedDataflowEndpointProperties.dataExplorerSettings
-                        = DataflowEndpointDataExplorer.fromJson(reader);
-                } else if ("dataLakeStorageSettings".equals(fieldName)) {
-                    deserializedDataflowEndpointProperties.dataLakeStorageSettings
-                        = DataflowEndpointDataLakeStorage.fromJson(reader);
-                } else if ("fabricOneLakeSettings".equals(fieldName)) {
-                    deserializedDataflowEndpointProperties.fabricOneLakeSettings
-                        = DataflowEndpointFabricOneLake.fromJson(reader);
-                } else if ("kafkaSettings".equals(fieldName)) {
-                    deserializedDataflowEndpointProperties.kafkaSettings = DataflowEndpointKafka.fromJson(reader);
-                } else if ("localStorageSettings".equals(fieldName)) {
-                    deserializedDataflowEndpointProperties.localStorageSettings
-                        = DataflowEndpointLocalStorage.fromJson(reader);
-                } else if ("mqttSettings".equals(fieldName)) {
-                    deserializedDataflowEndpointProperties.mqttSettings = DataflowEndpointMqtt.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedDataflowEndpointProperties.provisioningState
                         = ProvisioningState.fromString(reader.getString());

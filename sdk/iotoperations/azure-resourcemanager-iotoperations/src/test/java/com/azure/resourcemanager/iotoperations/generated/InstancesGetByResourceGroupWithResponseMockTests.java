@@ -23,7 +23,7 @@ public final class InstancesGetByResourceGroupWithResponseMockTests {
     @Test
     public void testGetByResourceGroupWithResponse() throws Exception {
         String responseStr
-            = "{\"properties\":{\"description\":\"hewpusdsttwv\",\"provisioningState\":\"Failed\",\"version\":\"bejdcn\",\"schemaRegistryRef\":{\"resourceId\":\"qqmoaku\"}},\"extendedLocation\":{\"name\":\"gm\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"rdgrtw\",\"tenantId\":\"nuuzkopbm\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"rmaequ\":{\"principalId\":\"woyuhhziuief\",\"clientId\":\"bhdmsmlmzqhof\"},\"kaivwit\":{\"principalId\":\"hxicslfaoqz\",\"clientId\":\"yylhalnswhccsp\"}}},\"location\":\"cywuggwol\",\"tags\":{\"i\":\"zbwemh\",\"wmsweypqwd\":\"sbrgz\",\"mkttlstvlzywem\":\"ggicccnxqhue\",\"lusiy\":\"zrncsdt\"},\"id\":\"bsfgytguslfea\",\"name\":\"cy\",\"type\":\"qukyhejhzi\"}";
+            = "{\"properties\":{\"description\":\"evxccedcp\",\"provisioningState\":\"Accepted\",\"version\":\"odn\",\"schemaRegistryRef\":{\"resourceId\":\"zxltjcvn\"}},\"extendedLocation\":{\"name\":\"ltiugcxnavv\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"byqunyow\",\"tenantId\":\"lmdjrkvfgbvfvpdb\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"bdeibqipqk\":{\"principalId\":\"zsjqlh\",\"clientId\":\"r\"},\"wkqnyhg\":{\"principalId\":\"vxndz\",\"clientId\":\"krefajpjo\"},\"wfsdjpvkvpbj\":{\"principalId\":\"j\",\"clientId\":\"ivfxzsjabibsyst\"},\"jk\":{\"principalId\":\"kzbzkdvncjabudu\",\"clientId\":\"kakmokzh\"}}},\"location\":\"fhmouwq\",\"tags\":{\"bizikayuhq\":\"rfzeey\",\"wrv\":\"bjbsybb\"},\"id\":\"ldgmfpgvmpip\",\"name\":\"slthaq\",\"type\":\"x\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,14 +33,14 @@ public final class InstancesGetByResourceGroupWithResponseMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         InstanceResource response = manager.instances()
-            .getByResourceGroupWithResponse("snfdsdoakgtdl", "kkze", com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("h", "hfwpracstwit", com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals("cywuggwol", response.location());
-        Assertions.assertEquals("zbwemh", response.tags().get("i"));
-        Assertions.assertEquals("hewpusdsttwv", response.properties().description());
-        Assertions.assertEquals("qqmoaku", response.properties().schemaRegistryRef().resourceId());
-        Assertions.assertEquals("gm", response.extendedLocation().name());
+        Assertions.assertEquals("fhmouwq", response.location());
+        Assertions.assertEquals("rfzeey", response.tags().get("bizikayuhq"));
+        Assertions.assertEquals("evxccedcp", response.properties().description());
+        Assertions.assertEquals("zxltjcvn", response.properties().schemaRegistryRef().resourceId());
+        Assertions.assertEquals("ltiugcxnavv", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
         Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED, response.identity().type());
     }

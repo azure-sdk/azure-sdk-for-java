@@ -11,14 +11,14 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.iotoperations.fluent.models.BrokerAuthorizationResourceInner;
+import com.azure.resourcemanager.iotoperations.fluent.models.AuthorizationResourceInner;
 
 /**
  * An instance of this class provides access to all the operations defined in BrokerAuthorizationsClient.
  */
 public interface BrokerAuthorizationsClient {
     /**
-     * Get a BrokerAuthorizationResource.
+     * Get a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -28,14 +28,14 @@ public interface BrokerAuthorizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthorizationResource along with {@link Response}.
+     * @return a AuthorizationResource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BrokerAuthorizationResourceInner> getWithResponse(String resourceGroupName, String instanceName,
+    Response<AuthorizationResourceInner> getWithResponse(String resourceGroupName, String instanceName,
         String brokerName, String authorizationName, Context context);
 
     /**
-     * Get a BrokerAuthorizationResource.
+     * Get a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -44,14 +44,14 @@ public interface BrokerAuthorizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthorizationResource.
+     * @return a AuthorizationResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerAuthorizationResourceInner get(String resourceGroupName, String instanceName, String brokerName,
+    AuthorizationResourceInner get(String resourceGroupName, String instanceName, String brokerName,
         String authorizationName);
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -64,12 +64,12 @@ public interface BrokerAuthorizationsClient {
      * @return the {@link SyncPoller} for polling of instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BrokerAuthorizationResourceInner>, BrokerAuthorizationResourceInner> beginCreateOrUpdate(
+    SyncPoller<PollResult<AuthorizationResourceInner>, AuthorizationResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String instanceName, String brokerName, String authorizationName,
-        BrokerAuthorizationResourceInner resource);
+        AuthorizationResourceInner resource);
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -83,12 +83,12 @@ public interface BrokerAuthorizationsClient {
      * @return the {@link SyncPoller} for polling of instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BrokerAuthorizationResourceInner>, BrokerAuthorizationResourceInner> beginCreateOrUpdate(
+    SyncPoller<PollResult<AuthorizationResourceInner>, AuthorizationResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String instanceName, String brokerName, String authorizationName,
-        BrokerAuthorizationResourceInner resource, Context context);
+        AuthorizationResourceInner resource, Context context);
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -101,11 +101,11 @@ public interface BrokerAuthorizationsClient {
      * @return instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerAuthorizationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
-        String authorizationName, BrokerAuthorizationResourceInner resource);
+    AuthorizationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String authorizationName, AuthorizationResourceInner resource);
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -119,11 +119,11 @@ public interface BrokerAuthorizationsClient {
      * @return instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerAuthorizationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
-        String authorizationName, BrokerAuthorizationResourceInner resource, Context context);
+    AuthorizationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String authorizationName, AuthorizationResourceInner resource, Context context);
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -139,7 +139,7 @@ public interface BrokerAuthorizationsClient {
         String authorizationName);
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -156,7 +156,7 @@ public interface BrokerAuthorizationsClient {
         String authorizationName, Context context);
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -170,7 +170,7 @@ public interface BrokerAuthorizationsClient {
     void delete(String resourceGroupName, String instanceName, String brokerName, String authorizationName);
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -186,7 +186,7 @@ public interface BrokerAuthorizationsClient {
         Context context);
 
     /**
-     * List BrokerAuthorizationResource resources by BrokerResource.
+     * List AuthorizationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -194,15 +194,14 @@ public interface BrokerAuthorizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a AuthorizationResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BrokerAuthorizationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<AuthorizationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName);
 
     /**
-     * List BrokerAuthorizationResource resources by BrokerResource.
+     * List AuthorizationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -211,10 +210,9 @@ public interface BrokerAuthorizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a AuthorizationResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BrokerAuthorizationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<AuthorizationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName, Context context);
 }

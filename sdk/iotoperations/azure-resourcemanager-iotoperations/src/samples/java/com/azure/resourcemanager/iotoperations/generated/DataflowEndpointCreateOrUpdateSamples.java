@@ -8,7 +8,11 @@ import com.azure.resourcemanager.iotoperations.models.BatchingConfiguration;
 import com.azure.resourcemanager.iotoperations.models.BrokerProtocolType;
 import com.azure.resourcemanager.iotoperations.models.CloudEventAttributeType;
 import com.azure.resourcemanager.iotoperations.models.DataExplorerAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.DataExplorerEndpoint;
+import com.azure.resourcemanager.iotoperations.models.DataExplorerSettings;
 import com.azure.resourcemanager.iotoperations.models.DataLakeStorageAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.DataLakeStorageEndpoint;
+import com.azure.resourcemanager.iotoperations.models.DataLakeStorageSettings;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationAccessToken;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationSasl;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationSaslType;
@@ -16,31 +20,31 @@ import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthentica
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationSystemAssignedManagedIdentity;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationUserAssignedManagedIdentity;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationX509;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointDataExplorer;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointDataExplorerAuthentication;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointDataLakeStorage;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointDataLakeStorageAuthentication;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointFabricOneLake;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointFabricOneLakeAuthentication;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointFabricOneLakeNames;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointFabricPathType;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafka;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaAcks;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaAuthentication;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaBatching;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaCompression;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaPartitionStrategy;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointLocalStorage;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointMqtt;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointMqttAuthentication;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointProperties;
-import com.azure.resourcemanager.iotoperations.models.EndpointType;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
 import com.azure.resourcemanager.iotoperations.models.FabricOneLakeAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.FabricOneLakeEndpoint;
+import com.azure.resourcemanager.iotoperations.models.FabricOneLakeSettings;
 import com.azure.resourcemanager.iotoperations.models.KafkaAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.KafkaEndpoint;
+import com.azure.resourcemanager.iotoperations.models.KafkaSettings;
+import com.azure.resourcemanager.iotoperations.models.LocalStorageEndpoint;
+import com.azure.resourcemanager.iotoperations.models.LocalStorageSettings;
 import com.azure.resourcemanager.iotoperations.models.MqttAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.MqttEndpoint;
 import com.azure.resourcemanager.iotoperations.models.MqttRetainType;
+import com.azure.resourcemanager.iotoperations.models.MqttSettings;
 import com.azure.resourcemanager.iotoperations.models.OperationalMode;
 import com.azure.resourcemanager.iotoperations.models.TlsProperties;
 
@@ -49,7 +53,7 @@ import com.azure.resourcemanager.iotoperations.models.TlsProperties;
  */
 public final class DataflowEndpointCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_EventGrid.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_EventGrid.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_EventGrid.
@@ -63,19 +67,18 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
-                .withMqttSettings(new DataflowEndpointMqtt()
-                    .withAuthentication(new DataflowEndpointMqttAuthentication()
-                        .withMethod(MqttAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+            .withProperties(new MqttEndpoint().withMqttSettings(new MqttSettings()
+                .withAuthentication(
+                    new DataflowEndpointMqttAuthentication().withMethod(MqttAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
                         .withSystemAssignedManagedIdentitySettings(
                             new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
-                    .withHost("example.westeurope-1.ts.eventgrid.azure.net:8883")
-                    .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
+                .withHost("example.westeurope-1.ts.eventgrid.azure.net:8883")
+                .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_ADLSv2.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_ADLSv2.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_ADLSv2.
@@ -89,9 +92,9 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_LAKE_STORAGE)
-                .withDataLakeStorageSettings(
-                    new DataflowEndpointDataLakeStorage()
+            .withProperties(
+                new DataLakeStorageEndpoint().withDataLakeStorageSettings(
+                    new DataLakeStorageSettings()
                         .withAuthentication(
                             new DataflowEndpointDataLakeStorageAuthentication()
                                 .withMethod(DataLakeStorageAuthMethod.ACCESS_TOKEN)
@@ -102,7 +105,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_EventHub.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_EventHub.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_EventHub.
@@ -116,20 +119,19 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.KAFKA)
-                .withKafkaSettings(new DataflowEndpointKafka()
-                    .withAuthentication(new DataflowEndpointKafkaAuthentication()
-                        .withMethod(KafkaAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                        .withSystemAssignedManagedIdentitySettings(
-                            new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
-                    .withConsumerGroupId("aiodataflows")
-                    .withHost("example.servicebus.windows.net:9093")
-                    .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
+            .withProperties(new KafkaEndpoint().withKafkaSettings(new KafkaSettings()
+                .withAuthentication(new DataflowEndpointKafkaAuthentication()
+                    .withMethod(KafkaAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+                    .withSystemAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
+                .withConsumerGroupId("aiodataflows")
+                .withHost("example.servicebus.windows.net:9093")
+                .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate.
@@ -143,118 +145,25 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(
-                new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_EXPLORER)
-                    .withDataExplorerSettings(
-                        new DataflowEndpointDataExplorer()
-                            .withAuthentication(
-                                new DataflowEndpointDataExplorerAuthentication()
-                                    .withMethod(DataExplorerAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                                    .withSystemAssignedManagedIdentitySettings(
-                                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                            .withAudience("psxomrfbhoflycm"))
-                                    .withUserAssignedManagedIdentitySettings(
-                                        new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                            .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                            .withScope("zop")
-                                            .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec")))
-                            .withDatabase("yqcdpjsifm")
-                            .withHost("<cluster>.<region>.kusto.windows.net")
-                            .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028)))
-                    .withDataLakeStorageSettings(
-                        new DataflowEndpointDataLakeStorage()
-                            .withAuthentication(new DataflowEndpointDataLakeStorageAuthentication()
-                                .withMethod(DataLakeStorageAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                                .withAccessTokenSettings(new DataflowEndpointAuthenticationAccessToken()
-                                    .withSecretRef("fakeTokenPlaceholder"))
-                                .withSystemAssignedManagedIdentitySettings(
-                                    new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                        .withAudience("psxomrfbhoflycm"))
-                                .withUserAssignedManagedIdentitySettings(
-                                    new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                        .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                        .withScope("zop")
-                                        .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec")))
-                            .withHost("<account>.blob.core.windows.net")
-                            .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028)))
-                    .withFabricOneLakeSettings(new DataflowEndpointFabricOneLake()
-                        .withAuthentication(new DataflowEndpointFabricOneLakeAuthentication()
-                            .withMethod(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                            .withSystemAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                    .withAudience("psxomrfbhoflycm"))
-                            .withUserAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                    .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                    .withScope("zop")
-                                    .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec")))
-                        .withNames(new DataflowEndpointFabricOneLakeNames().withLakehouseName("wpeathi")
-                            .withWorkspaceName("nwgmitkbljztgms"))
-                        .withOneLakePathType(DataflowEndpointFabricPathType.FILES)
-                        .withHost("https://<host>.fabric.microsoft.com")
-                        .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028)))
-                    .withKafkaSettings(new DataflowEndpointKafka()
-                        .withAuthentication(new DataflowEndpointKafkaAuthentication()
-                            .withMethod(KafkaAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                            .withSystemAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                    .withAudience("psxomrfbhoflycm"))
-                            .withUserAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                    .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                    .withScope("zop")
-                                    .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec"))
-                            .withSaslSettings(new DataflowEndpointAuthenticationSasl()
-                                .withSaslType(DataflowEndpointAuthenticationSaslType.PLAIN)
-                                .withSecretRef("fakeTokenPlaceholder"))
-                            .withX509CertificateSettings(
-                                new DataflowEndpointAuthenticationX509().withSecretRef("fakeTokenPlaceholder")))
-                        .withConsumerGroupId("ukkzcjiyenhxokat")
-                        .withHost("pwcqfiqclcgneolpewnyavoulbip")
-                        .withBatching(new DataflowEndpointKafkaBatching().withMode(OperationalMode.ENABLED)
-                            .withLatencyMs(3679)
-                            .withMaxBytes(8887)
-                            .withMaxMessages(2174))
-                        .withCopyMqttProperties(OperationalMode.ENABLED)
-                        .withCompression(DataflowEndpointKafkaCompression.NONE)
-                        .withKafkaAcks(DataflowEndpointKafkaAcks.ZERO)
-                        .withPartitionStrategy(DataflowEndpointKafkaPartitionStrategy.DEFAULT)
-                        .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
-                            .withTrustedCaCertificateConfigMapRef("tectjjvukvelsreihwadh"))
-                        .withCloudEventAttributes(CloudEventAttributeType.fromString("PassThrough")))
-                    .withLocalStorageSettings(
-                        new DataflowEndpointLocalStorage().withPersistentVolumeClaimRef("jjwqwvd"))
-                    .withMqttSettings(new DataflowEndpointMqtt()
-                        .withAuthentication(new DataflowEndpointMqttAuthentication()
-                            .withMethod(MqttAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                            .withSystemAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                    .withAudience("psxomrfbhoflycm"))
-                            .withUserAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                    .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                    .withScope("zop")
-                                    .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec"))
-                            .withServiceAccountTokenSettings(new DataflowEndpointAuthenticationServiceAccountToken()
-                                .withAudience("ejbklrbxgjaqleoycgpje"))
-                            .withX509CertificateSettings(
-                                new DataflowEndpointAuthenticationX509().withSecretRef("fakeTokenPlaceholder")))
-                        .withClientIdPrefix("kkljsdxdirfhwxtkavldekeqhv")
-                        .withHost("nyhnxqnbspstctl")
-                        .withProtocol(BrokerProtocolType.MQTT)
-                        .withKeepAliveSeconds(0)
-                        .withRetain(MqttRetainType.KEEP)
-                        .withMaxInflightMessages(0)
-                        .withQos(1)
-                        .withSessionExpirySeconds(0)
-                        .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
-                            .withTrustedCaCertificateConfigMapRef("tectjjvukvelsreihwadh"))
-                        .withCloudEventAttributes(CloudEventAttributeType.fromString("PassThrough"))))
+            .withProperties(new DataExplorerEndpoint().withDataExplorerSettings(new DataExplorerSettings()
+                .withAuthentication(new DataflowEndpointDataExplorerAuthentication()
+                    .withMethod(DataExplorerAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+                    .withSystemAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
+                            .withAudience("psxomrfbhoflycm"))
+                    .withUserAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
+                            .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
+                            .withScope("zop")
+                            .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec")))
+                .withDatabase("yqcdpjsifm")
+                .withHost("<cluster>.<region>.kusto.windows.net")
+                .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_ADX.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_ADX.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_ADX.
@@ -268,20 +177,19 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_EXPLORER)
-                .withDataExplorerSettings(new DataflowEndpointDataExplorer()
-                    .withAuthentication(new DataflowEndpointDataExplorerAuthentication()
-                        .withMethod(DataExplorerAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                        .withSystemAssignedManagedIdentitySettings(
-                            new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
-                    .withDatabase("example-database")
-                    .withHost("example.westeurope.kusto.windows.net")
-                    .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028))))
+            .withProperties(new DataExplorerEndpoint().withDataExplorerSettings(new DataExplorerSettings()
+                .withAuthentication(new DataflowEndpointDataExplorerAuthentication()
+                    .withMethod(DataExplorerAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+                    .withSystemAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
+                .withDatabase("example-database")
+                .withHost("example.westeurope.kusto.windows.net")
+                .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_Fabric.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_Fabric.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_Fabric.
@@ -295,21 +203,20 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.FABRIC_ONE_LAKE)
-                .withFabricOneLakeSettings(new DataflowEndpointFabricOneLake()
-                    .withAuthentication(new DataflowEndpointFabricOneLakeAuthentication()
-                        .withMethod(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                        .withSystemAssignedManagedIdentitySettings(
-                            new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
-                    .withNames(new DataflowEndpointFabricOneLakeNames().withLakehouseName("example-lakehouse")
-                        .withWorkspaceName("example-workspace"))
-                    .withOneLakePathType(DataflowEndpointFabricPathType.TABLES)
-                    .withHost("onelake.dfs.fabric.microsoft.com")))
+            .withProperties(new FabricOneLakeEndpoint().withFabricOneLakeSettings(new FabricOneLakeSettings()
+                .withAuthentication(new DataflowEndpointFabricOneLakeAuthentication()
+                    .withMethod(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+                    .withSystemAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
+                .withNames(new DataflowEndpointFabricOneLakeNames().withLakehouseName("example-lakehouse")
+                    .withWorkspaceName("example-workspace"))
+                .withOneLakePathType(DataflowEndpointFabricPathType.TABLES)
+                .withHost("onelake.dfs.fabric.microsoft.com")))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_LocalStorage.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_LocalStorage.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_LocalStorage.
@@ -323,14 +230,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.LOCAL_STORAGE)
-                .withLocalStorageSettings(
-                    new DataflowEndpointLocalStorage().withPersistentVolumeClaimRef("example-pvc")))
+            .withProperties(new LocalStorageEndpoint()
+                .withLocalStorageSettings(new LocalStorageSettings().withPersistentVolumeClaimRef("example-pvc")))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_AIO.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_AIO.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_AIO.
@@ -345,8 +251,8 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(
-                new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
-                    .withMqttSettings(new DataflowEndpointMqtt()
+                new MqttEndpoint()
+                    .withMqttSettings(new MqttSettings()
                         .withAuthentication(
                             new DataflowEndpointMqttAuthentication().withMethod(MqttAuthMethod.fromString("Kubernetes"))
                                 .withServiceAccountTokenSettings(new DataflowEndpointAuthenticationServiceAccountToken()
@@ -358,7 +264,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_MQTT.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_MQTT.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_MQTT.
@@ -372,26 +278,24 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
-                .withMqttSettings(new DataflowEndpointMqtt()
-                    .withAuthentication(
-                        new DataflowEndpointMqttAuthentication().withMethod(MqttAuthMethod.X509CERTIFICATE)
-                            .withX509CertificateSettings(
-                                new DataflowEndpointAuthenticationX509().withSecretRef("fakeTokenPlaceholder")))
-                    .withClientIdPrefix("factory-gateway")
-                    .withHost("example.broker.local:1883")
-                    .withProtocol(BrokerProtocolType.WEB_SOCKETS)
-                    .withKeepAliveSeconds(60)
-                    .withRetain(MqttRetainType.KEEP)
-                    .withMaxInflightMessages(100)
-                    .withQos(1)
-                    .withSessionExpirySeconds(3600)
-                    .withTls(new TlsProperties().withMode(OperationalMode.DISABLED))))
+            .withProperties(new MqttEndpoint().withMqttSettings(new MqttSettings()
+                .withAuthentication(new DataflowEndpointMqttAuthentication().withMethod(MqttAuthMethod.X509CERTIFICATE)
+                    .withX509CertificateSettings(
+                        new DataflowEndpointAuthenticationX509().withSecretRef("fakeTokenPlaceholder")))
+                .withClientIdPrefix("factory-gateway")
+                .withHost("example.broker.local:1883")
+                .withProtocol(BrokerProtocolType.WEB_SOCKETS)
+                .withKeepAliveSeconds(60)
+                .withRetain(MqttRetainType.KEEP)
+                .withMaxInflightMessages(100)
+                .withQos(1)
+                .withSessionExpirySeconds(3600)
+                .withTls(new TlsProperties().withMode(OperationalMode.DISABLED))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_Kafka.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_Kafka.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_Kafka.
@@ -405,25 +309,24 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.KAFKA)
-                .withKafkaSettings(new DataflowEndpointKafka()
-                    .withAuthentication(new DataflowEndpointKafkaAuthentication().withMethod(KafkaAuthMethod.SASL)
-                        .withSaslSettings(new DataflowEndpointAuthenticationSasl()
-                            .withSaslType(DataflowEndpointAuthenticationSaslType.PLAIN)
-                            .withSecretRef("fakeTokenPlaceholder")))
-                    .withConsumerGroupId("dataflows")
-                    .withHost("example.kafka.local:9093")
-                    .withBatching(new DataflowEndpointKafkaBatching().withMode(OperationalMode.ENABLED)
-                        .withLatencyMs(5)
-                        .withMaxBytes(1000000)
-                        .withMaxMessages(100000))
-                    .withCopyMqttProperties(OperationalMode.ENABLED)
-                    .withCompression(DataflowEndpointKafkaCompression.GZIP)
-                    .withKafkaAcks(DataflowEndpointKafkaAcks.ALL)
-                    .withPartitionStrategy(DataflowEndpointKafkaPartitionStrategy.DEFAULT)
-                    .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
-                        .withTrustedCaCertificateConfigMapRef("ca-certificates"))
-                    .withCloudEventAttributes(CloudEventAttributeType.PROPAGATE)))
+            .withProperties(new KafkaEndpoint().withKafkaSettings(new KafkaSettings()
+                .withAuthentication(new DataflowEndpointKafkaAuthentication().withMethod(KafkaAuthMethod.SASL)
+                    .withSaslSettings(new DataflowEndpointAuthenticationSasl()
+                        .withSaslType(DataflowEndpointAuthenticationSaslType.PLAIN)
+                        .withSecretRef("fakeTokenPlaceholder")))
+                .withConsumerGroupId("dataflows")
+                .withHost("example.kafka.local:9093")
+                .withBatching(new DataflowEndpointKafkaBatching().withMode(OperationalMode.ENABLED)
+                    .withLatencyMs(5)
+                    .withMaxBytes(1000000)
+                    .withMaxMessages(100000))
+                .withCopyMqttProperties(OperationalMode.ENABLED)
+                .withCompression(DataflowEndpointKafkaCompression.GZIP)
+                .withKafkaAcks(DataflowEndpointKafkaAcks.ALL)
+                .withPartitionStrategy(DataflowEndpointKafkaPartitionStrategy.DEFAULT)
+                .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
+                    .withTrustedCaCertificateConfigMapRef("ca-certificates"))
+                .withCloudEventAttributes(CloudEventAttributeType.PROPAGATE)))
             .create();
     }
 }

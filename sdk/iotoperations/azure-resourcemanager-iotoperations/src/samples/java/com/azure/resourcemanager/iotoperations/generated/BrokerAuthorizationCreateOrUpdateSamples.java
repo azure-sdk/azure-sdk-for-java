@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.iotoperations.generated;
 
 import com.azure.resourcemanager.iotoperations.models.AuthorizationConfig;
+import com.azure.resourcemanager.iotoperations.models.AuthorizationProperties;
 import com.azure.resourcemanager.iotoperations.models.AuthorizationRule;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthorizationProperties;
 import com.azure.resourcemanager.iotoperations.models.BrokerResourceDefinitionMethods;
 import com.azure.resourcemanager.iotoperations.models.BrokerResourceRule;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
@@ -25,7 +25,7 @@ import java.util.Map;
  */
 public final class BrokerAuthorizationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate.
@@ -39,7 +39,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthorizationProperties()
+            .withProperties(new AuthorizationProperties()
                 .withAuthorizationPolicies(new AuthorizationConfig().withCache(OperationalMode.ENABLED)
                     .withRules(Arrays.asList(new AuthorizationRule()
                         .withBrokerResources(
@@ -58,7 +58,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_CreateOrUpdate_Simple.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_CreateOrUpdate_Simple.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate_Simple.
@@ -72,7 +72,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthorizationProperties()
+            .withProperties(new AuthorizationProperties()
                 .withAuthorizationPolicies(new AuthorizationConfig().withCache(OperationalMode.ENABLED)
                     .withRules(Arrays.asList(new AuthorizationRule()
                         .withBrokerResources(
@@ -90,7 +90,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate_Complex.
@@ -104,7 +104,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthorizationProperties()
+            .withProperties(new AuthorizationProperties()
                 .withAuthorizationPolicies(new AuthorizationConfig().withCache(OperationalMode.ENABLED)
                     .withRules(Arrays.asList(new AuthorizationRule()
                         .withBrokerResources(Arrays.asList(

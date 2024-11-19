@@ -11,14 +11,14 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.iotoperations.fluent.models.BrokerAuthenticationResourceInner;
+import com.azure.resourcemanager.iotoperations.fluent.models.AuthenticationResourceInner;
 
 /**
  * An instance of this class provides access to all the operations defined in BrokerAuthenticationsClient.
  */
 public interface BrokerAuthenticationsClient {
     /**
-     * Get a BrokerAuthenticationResource.
+     * Get a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -28,14 +28,14 @@ public interface BrokerAuthenticationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthenticationResource along with {@link Response}.
+     * @return a AuthenticationResource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BrokerAuthenticationResourceInner> getWithResponse(String resourceGroupName, String instanceName,
+    Response<AuthenticationResourceInner> getWithResponse(String resourceGroupName, String instanceName,
         String brokerName, String authenticationName, Context context);
 
     /**
-     * Get a BrokerAuthenticationResource.
+     * Get a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -44,14 +44,14 @@ public interface BrokerAuthenticationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthenticationResource.
+     * @return a AuthenticationResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerAuthenticationResourceInner get(String resourceGroupName, String instanceName, String brokerName,
+    AuthenticationResourceInner get(String resourceGroupName, String instanceName, String brokerName,
         String authenticationName);
 
     /**
-     * Create a BrokerAuthenticationResource.
+     * Create a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -64,12 +64,12 @@ public interface BrokerAuthenticationsClient {
      * @return the {@link SyncPoller} for polling of instance broker authentication resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BrokerAuthenticationResourceInner>, BrokerAuthenticationResourceInner> beginCreateOrUpdate(
+    SyncPoller<PollResult<AuthenticationResourceInner>, AuthenticationResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String instanceName, String brokerName, String authenticationName,
-        BrokerAuthenticationResourceInner resource);
+        AuthenticationResourceInner resource);
 
     /**
-     * Create a BrokerAuthenticationResource.
+     * Create a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -83,12 +83,12 @@ public interface BrokerAuthenticationsClient {
      * @return the {@link SyncPoller} for polling of instance broker authentication resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BrokerAuthenticationResourceInner>, BrokerAuthenticationResourceInner> beginCreateOrUpdate(
+    SyncPoller<PollResult<AuthenticationResourceInner>, AuthenticationResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String instanceName, String brokerName, String authenticationName,
-        BrokerAuthenticationResourceInner resource, Context context);
+        AuthenticationResourceInner resource, Context context);
 
     /**
-     * Create a BrokerAuthenticationResource.
+     * Create a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -101,11 +101,11 @@ public interface BrokerAuthenticationsClient {
      * @return instance broker authentication resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerAuthenticationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
-        String authenticationName, BrokerAuthenticationResourceInner resource);
+    AuthenticationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String authenticationName, AuthenticationResourceInner resource);
 
     /**
-     * Create a BrokerAuthenticationResource.
+     * Create a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -119,11 +119,11 @@ public interface BrokerAuthenticationsClient {
      * @return instance broker authentication resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerAuthenticationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
-        String authenticationName, BrokerAuthenticationResourceInner resource, Context context);
+    AuthenticationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String authenticationName, AuthenticationResourceInner resource, Context context);
 
     /**
-     * Delete a BrokerAuthenticationResource.
+     * Delete a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -139,7 +139,7 @@ public interface BrokerAuthenticationsClient {
         String authenticationName);
 
     /**
-     * Delete a BrokerAuthenticationResource.
+     * Delete a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -156,7 +156,7 @@ public interface BrokerAuthenticationsClient {
         String authenticationName, Context context);
 
     /**
-     * Delete a BrokerAuthenticationResource.
+     * Delete a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -170,7 +170,7 @@ public interface BrokerAuthenticationsClient {
     void delete(String resourceGroupName, String instanceName, String brokerName, String authenticationName);
 
     /**
-     * Delete a BrokerAuthenticationResource.
+     * Delete a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -186,7 +186,7 @@ public interface BrokerAuthenticationsClient {
         Context context);
 
     /**
-     * List BrokerAuthenticationResource resources by BrokerResource.
+     * List AuthenticationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -194,15 +194,14 @@ public interface BrokerAuthenticationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthenticationResource list operation as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a AuthenticationResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BrokerAuthenticationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<AuthenticationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName);
 
     /**
-     * List BrokerAuthenticationResource resources by BrokerResource.
+     * List AuthenticationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -211,10 +210,9 @@ public interface BrokerAuthenticationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthenticationResource list operation as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a AuthenticationResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BrokerAuthenticationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<AuthenticationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName, Context context);
 }

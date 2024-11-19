@@ -23,7 +23,7 @@ public final class DataflowProfilesListByResourceGroupMockTests {
     @Test
     public void testListByResourceGroup() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"jn\"},\"metrics\":{\"prometheusPort\":1488634157}},\"instanceCount\":1315745127,\"provisioningState\":\"Accepted\"},\"extendedLocation\":{\"name\":\"jzgxmrhublwp\",\"type\":\"CustomLocation\"},\"id\":\"utr\",\"name\":\"jupauut\",\"type\":\"woqhihe\"}]}";
+            = "{\"value\":[{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"zbrhubskhudyg\"},\"metrics\":{\"prometheusPort\":328293320}},\"instanceCount\":1039197688,\"provisioningState\":\"Canceled\"},\"extendedLocation\":{\"name\":\"jb\",\"type\":\"CustomLocation\"},\"id\":\"orfmluiqt\",\"name\":\"zf\",\"type\":\"vyvnqqyb\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,13 +33,13 @@ public final class DataflowProfilesListByResourceGroupMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         PagedIterable<DataflowProfileResource> response = manager.dataflowProfiles()
-            .listByResourceGroup("wdgzxulucv", "amrsreuzv", com.azure.core.util.Context.NONE);
+            .listByResourceGroup("mlkxtrqjfs", "lmbtxhwgfwsrt", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("jn", response.iterator().next().properties().diagnostics().logs().level());
-        Assertions.assertEquals(1488634157,
+        Assertions.assertEquals("zbrhubskhudyg", response.iterator().next().properties().diagnostics().logs().level());
+        Assertions.assertEquals(328293320,
             response.iterator().next().properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(1315745127, response.iterator().next().properties().instanceCount());
-        Assertions.assertEquals("jzgxmrhublwp", response.iterator().next().extendedLocation().name());
+        Assertions.assertEquals(1039197688, response.iterator().next().properties().instanceCount());
+        Assertions.assertEquals("jb", response.iterator().next().extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION,
             response.iterator().next().extendedLocation().type());
     }

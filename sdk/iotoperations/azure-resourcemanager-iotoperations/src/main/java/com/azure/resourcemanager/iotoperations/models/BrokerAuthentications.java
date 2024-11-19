@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface BrokerAuthentications {
     /**
-     * Get a BrokerAuthenticationResource.
+     * Get a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -23,13 +23,13 @@ public interface BrokerAuthentications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthenticationResource along with {@link Response}.
+     * @return a AuthenticationResource along with {@link Response}.
      */
-    Response<BrokerAuthenticationResource> getWithResponse(String resourceGroupName, String instanceName,
-        String brokerName, String authenticationName, Context context);
+    Response<AuthenticationResource> getWithResponse(String resourceGroupName, String instanceName, String brokerName,
+        String authenticationName, Context context);
 
     /**
-     * Get a BrokerAuthenticationResource.
+     * Get a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -38,13 +38,13 @@ public interface BrokerAuthentications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthenticationResource.
+     * @return a AuthenticationResource.
      */
-    BrokerAuthenticationResource get(String resourceGroupName, String instanceName, String brokerName,
+    AuthenticationResource get(String resourceGroupName, String instanceName, String brokerName,
         String authenticationName);
 
     /**
-     * Delete a BrokerAuthenticationResource.
+     * Delete a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -57,7 +57,7 @@ public interface BrokerAuthentications {
     void delete(String resourceGroupName, String instanceName, String brokerName, String authenticationName);
 
     /**
-     * Delete a BrokerAuthenticationResource.
+     * Delete a AuthenticationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -72,7 +72,7 @@ public interface BrokerAuthentications {
         Context context);
 
     /**
-     * List BrokerAuthenticationResource resources by BrokerResource.
+     * List AuthenticationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -80,14 +80,13 @@ public interface BrokerAuthentications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthenticationResource list operation as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a AuthenticationResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<BrokerAuthenticationResource> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<AuthenticationResource> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName);
 
     /**
-     * List BrokerAuthenticationResource resources by BrokerResource.
+     * List AuthenticationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -96,37 +95,36 @@ public interface BrokerAuthentications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthenticationResource list operation as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a AuthenticationResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<BrokerAuthenticationResource> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<AuthenticationResource> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName, Context context);
 
     /**
-     * Get a BrokerAuthenticationResource.
+     * Get a AuthenticationResource.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthenticationResource along with {@link Response}.
+     * @return a AuthenticationResource along with {@link Response}.
      */
-    BrokerAuthenticationResource getById(String id);
+    AuthenticationResource getById(String id);
 
     /**
-     * Get a BrokerAuthenticationResource.
+     * Get a AuthenticationResource.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthenticationResource along with {@link Response}.
+     * @return a AuthenticationResource along with {@link Response}.
      */
-    Response<BrokerAuthenticationResource> getByIdWithResponse(String id, Context context);
+    Response<AuthenticationResource> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete a BrokerAuthenticationResource.
+     * Delete a AuthenticationResource.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -136,7 +134,7 @@ public interface BrokerAuthentications {
     void deleteById(String id);
 
     /**
-     * Delete a BrokerAuthenticationResource.
+     * Delete a AuthenticationResource.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -147,10 +145,10 @@ public interface BrokerAuthentications {
     void deleteByIdWithResponse(String id, Context context);
 
     /**
-     * Begins definition for a new BrokerAuthenticationResource resource.
+     * Begins definition for a new AuthenticationResource resource.
      * 
      * @param name resource name.
-     * @return the first stage of the new BrokerAuthenticationResource definition.
+     * @return the first stage of the new AuthenticationResource definition.
      */
-    BrokerAuthenticationResource.DefinitionStages.Blank define(String name);
+    AuthenticationResource.DefinitionStages.Blank define(String name);
 }

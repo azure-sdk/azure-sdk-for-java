@@ -11,14 +11,14 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.iotoperations.fluent.models.BrokerListenerResourceInner;
+import com.azure.resourcemanager.iotoperations.fluent.models.ListenerResourceInner;
 
 /**
  * An instance of this class provides access to all the operations defined in BrokerListenersClient.
  */
 public interface BrokerListenersClient {
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -28,14 +28,14 @@ public interface BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource along with {@link Response}.
+     * @return a ListenerResource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BrokerListenerResourceInner> getWithResponse(String resourceGroupName, String instanceName,
-        String brokerName, String listenerName, Context context);
+    Response<ListenerResourceInner> getWithResponse(String resourceGroupName, String instanceName, String brokerName,
+        String listenerName, Context context);
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -44,14 +44,13 @@ public interface BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource.
+     * @return a ListenerResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerListenerResourceInner get(String resourceGroupName, String instanceName, String brokerName,
-        String listenerName);
+    ListenerResourceInner get(String resourceGroupName, String instanceName, String brokerName, String listenerName);
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -64,12 +63,11 @@ public interface BrokerListenersClient {
      * @return the {@link SyncPoller} for polling of instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BrokerListenerResourceInner>, BrokerListenerResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String instanceName, String brokerName, String listenerName,
-        BrokerListenerResourceInner resource);
+    SyncPoller<PollResult<ListenerResourceInner>, ListenerResourceInner> beginCreateOrUpdate(String resourceGroupName,
+        String instanceName, String brokerName, String listenerName, ListenerResourceInner resource);
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -83,12 +81,11 @@ public interface BrokerListenersClient {
      * @return the {@link SyncPoller} for polling of instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BrokerListenerResourceInner>, BrokerListenerResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String instanceName, String brokerName, String listenerName,
-        BrokerListenerResourceInner resource, Context context);
+    SyncPoller<PollResult<ListenerResourceInner>, ListenerResourceInner> beginCreateOrUpdate(String resourceGroupName,
+        String instanceName, String brokerName, String listenerName, ListenerResourceInner resource, Context context);
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -101,11 +98,11 @@ public interface BrokerListenersClient {
      * @return instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerListenerResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
-        String listenerName, BrokerListenerResourceInner resource);
+    ListenerResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String listenerName, ListenerResourceInner resource);
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -119,11 +116,11 @@ public interface BrokerListenersClient {
      * @return instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BrokerListenerResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
-        String listenerName, BrokerListenerResourceInner resource, Context context);
+    ListenerResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String listenerName, ListenerResourceInner resource, Context context);
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -139,7 +136,7 @@ public interface BrokerListenersClient {
         String listenerName);
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -156,7 +153,7 @@ public interface BrokerListenersClient {
         String listenerName, Context context);
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -170,7 +167,7 @@ public interface BrokerListenersClient {
     void delete(String resourceGroupName, String instanceName, String brokerName, String listenerName);
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -185,7 +182,7 @@ public interface BrokerListenersClient {
     void delete(String resourceGroupName, String instanceName, String brokerName, String listenerName, Context context);
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -193,14 +190,14 @@ public interface BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a ListenerResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BrokerListenerResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<ListenerResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName);
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -209,9 +206,9 @@ public interface BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a ListenerResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BrokerListenerResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<ListenerResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName, Context context);
 }

@@ -30,7 +30,7 @@ public final class InstancesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"description\":\"xedk\",\"provisioningState\":\"Succeeded\",\"version\":\"bqpc\",\"schemaRegistryRef\":{\"resourceId\":\"fkbw\"}},\"extendedLocation\":{\"name\":\"csnjvcdwxlpqekft\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"jsyingwfqatm\",\"tenantId\":\"htmdvy\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"rvqqaatj\":{\"principalId\":\"gszywk\",\"clientId\":\"rryuzhlhkjo\"},\"jioolvrwxk\":{\"principalId\":\"rv\",\"clientId\":\"upmfiibfg\"},\"hvkzuh\":{\"principalId\":\"kkgll\",\"clientId\":\"jygvjayvbl\"}}},\"location\":\"vvyhg\",\"tags\":{\"uvwzfbnh\":\"byrqufeg\",\"bmhrixkwmyijejv\":\"mctlpdngitv\",\"ixexcc\":\"grhbpn\"},\"id\":\"dreaxh\",\"name\":\"exdrrvqahqkg\",\"type\":\"tpwijnh\"}";
+            = "{\"properties\":{\"description\":\"vfycxzb\",\"provisioningState\":\"Succeeded\",\"version\":\"wvrvmtg\",\"schemaRegistryRef\":{\"resourceId\":\"qp\"}},\"extendedLocation\":{\"name\":\"y\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"on\",\"tenantId\":\"yhgfipnsx\",\"type\":\"UserAssigned\",\"userAssignedIdentities\":{\"jglikkxwslolb\":{\"principalId\":\"ekrrjr\",\"clientId\":\"fxtsgum\"},\"gplcrpwjxeznoigb\":{\"principalId\":\"vuzlm\",\"clientId\":\"elfk\"},\"gzxnfaazpxdtnk\":{\"principalId\":\"jwmwkpnbs\",\"clientId\":\"ejjoqkagfhsxtta\"},\"ixqtn\":{\"principalId\":\"kqjjlwuenvrkp\",\"clientId\":\"uaibrebqaaysj\"}}},\"location\":\"tezlwff\",\"tags\":{\"qqmtedltmmji\":\"kpj\",\"upkvipmdsc\":\"yeozphvwauyqncy\",\"totxhojujb\":\"xqupevzhf\",\"n\":\"pelmcuvhixbjxyf\"},\"id\":\"lrcoolsttpki\",\"name\":\"kkbnu\",\"type\":\"rywvtylbfpn\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -40,26 +40,25 @@ public final class InstancesCreateOrUpdateMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         InstanceResource response = manager.instances()
-            .define("qxujxukndxd")
-            .withRegion("fhwygzlvdnkfxus")
-            .withExistingResourceGroup("ughftqsx")
+            .define("ngwfqatm")
+            .withRegion("vvyhg")
+            .withExistingResourceGroup("y")
             .withExtendedLocation(
-                new ExtendedLocation().withName("phoszqz").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withTags(mapOf("pfcqdp", "wzrmuh", "elvezrypq", "qxqvpsvuoymgc"))
-            .withProperties(new InstanceProperties().withDescription("jguufzdm")
-                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("whbotzingamv")))
-            .withIdentity(
-                new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
-                    .withUserAssignedIdentities(mapOf("ccyajg", new UserAssignedIdentity())))
+                new ExtendedLocation().withName("qrvqq").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withTags(mapOf("uvwzfbnh", "byrqufeg", "bmhrixkwmyijejv", "mctlpdngitv", "ixexcc", "grhbpn"))
+            .withProperties(new InstanceProperties().withDescription("tmdvypgikdgs")
+                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("kj")))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
+                .withUserAssignedIdentities(mapOf("hvkzuh", new UserAssignedIdentity())))
             .create();
 
-        Assertions.assertEquals("vvyhg", response.location());
-        Assertions.assertEquals("byrqufeg", response.tags().get("uvwzfbnh"));
-        Assertions.assertEquals("xedk", response.properties().description());
-        Assertions.assertEquals("fkbw", response.properties().schemaRegistryRef().resourceId());
-        Assertions.assertEquals("csnjvcdwxlpqekft", response.extendedLocation().name());
+        Assertions.assertEquals("tezlwff", response.location());
+        Assertions.assertEquals("kpj", response.tags().get("qqmtedltmmji"));
+        Assertions.assertEquals("vfycxzb", response.properties().description());
+        Assertions.assertEquals("qp", response.properties().schemaRegistryRef().resourceId());
+        Assertions.assertEquals("y", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
-        Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED, response.identity().type());
+        Assertions.assertEquals(ManagedServiceIdentityType.USER_ASSIGNED, response.identity().type());
     }
 
     // Use "Map.of" if available

@@ -32,8 +32,8 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.iotoperations.fluent.BrokerAuthorizationsClient;
-import com.azure.resourcemanager.iotoperations.fluent.models.BrokerAuthorizationResourceInner;
-import com.azure.resourcemanager.iotoperations.implementation.models.BrokerAuthorizationResourceListResult;
+import com.azure.resourcemanager.iotoperations.fluent.models.AuthorizationResourceInner;
+import com.azure.resourcemanager.iotoperations.implementation.models.AuthorizationResourceListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -74,7 +74,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations/{authorizationName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BrokerAuthorizationResourceInner>> get(@HostParam("endpoint") String endpoint,
+        Mono<Response<AuthorizationResourceInner>> get(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("instanceName") String instanceName,
             @PathParam("brokerName") String brokerName, @PathParam("authorizationName") String authorizationName,
@@ -88,7 +88,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("instanceName") String instanceName,
             @PathParam("brokerName") String brokerName, @PathParam("authorizationName") String authorizationName,
             @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
-            @BodyParam("application/json") BrokerAuthorizationResourceInner resource, Context context);
+            @BodyParam("application/json") AuthorizationResourceInner resource, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations/{authorizationName}")
@@ -104,9 +104,8 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BrokerAuthorizationResourceListResult>> listByResourceGroup(
-            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<AuthorizationResourceListResult>> listByResourceGroup(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("instanceName") String instanceName,
             @PathParam("brokerName") String brokerName, @HeaderParam("Accept") String accept, Context context);
 
@@ -114,13 +113,13 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BrokerAuthorizationResourceListResult>> listByResourceGroupNext(
+        Mono<Response<AuthorizationResourceListResult>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Get a BrokerAuthorizationResource.
+     * Get a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -129,10 +128,10 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthorizationResource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a AuthorizationResource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BrokerAuthorizationResourceInner>> getWithResponseAsync(String resourceGroupName,
+    private Mono<Response<AuthorizationResourceInner>> getWithResponseAsync(String resourceGroupName,
         String instanceName, String brokerName, String authorizationName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -165,7 +164,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Get a BrokerAuthorizationResource.
+     * Get a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -175,10 +174,10 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthorizationResource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a AuthorizationResource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BrokerAuthorizationResourceInner>> getWithResponseAsync(String resourceGroupName,
+    private Mono<Response<AuthorizationResourceInner>> getWithResponseAsync(String resourceGroupName,
         String instanceName, String brokerName, String authorizationName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -209,7 +208,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Get a BrokerAuthorizationResource.
+     * Get a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -218,17 +217,17 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthorizationResource on successful completion of {@link Mono}.
+     * @return a AuthorizationResource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BrokerAuthorizationResourceInner> getAsync(String resourceGroupName, String instanceName,
-        String brokerName, String authorizationName) {
+    private Mono<AuthorizationResourceInner> getAsync(String resourceGroupName, String instanceName, String brokerName,
+        String authorizationName) {
         return getWithResponseAsync(resourceGroupName, instanceName, brokerName, authorizationName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a BrokerAuthorizationResource.
+     * Get a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -238,16 +237,16 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthorizationResource along with {@link Response}.
+     * @return a AuthorizationResource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BrokerAuthorizationResourceInner> getWithResponse(String resourceGroupName, String instanceName,
+    public Response<AuthorizationResourceInner> getWithResponse(String resourceGroupName, String instanceName,
         String brokerName, String authorizationName, Context context) {
         return getWithResponseAsync(resourceGroupName, instanceName, brokerName, authorizationName, context).block();
     }
 
     /**
-     * Get a BrokerAuthorizationResource.
+     * Get a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -256,16 +255,16 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerAuthorizationResource.
+     * @return a AuthorizationResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BrokerAuthorizationResourceInner get(String resourceGroupName, String instanceName, String brokerName,
+    public AuthorizationResourceInner get(String resourceGroupName, String instanceName, String brokerName,
         String authorizationName) {
         return getWithResponse(resourceGroupName, instanceName, brokerName, authorizationName, Context.NONE).getValue();
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -280,7 +279,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String instanceName, String brokerName, String authorizationName, BrokerAuthorizationResourceInner resource) {
+        String instanceName, String brokerName, String authorizationName, AuthorizationResourceInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -318,7 +317,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -334,7 +333,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String instanceName, String brokerName, String authorizationName, BrokerAuthorizationResourceInner resource,
+        String instanceName, String brokerName, String authorizationName, AuthorizationResourceInner resource,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -372,7 +371,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -385,18 +384,18 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @return the {@link PollerFlux} for polling of instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BrokerAuthorizationResourceInner>, BrokerAuthorizationResourceInner>
-        beginCreateOrUpdateAsync(String resourceGroupName, String instanceName, String brokerName,
-            String authorizationName, BrokerAuthorizationResourceInner resource) {
+    private PollerFlux<PollResult<AuthorizationResourceInner>, AuthorizationResourceInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String instanceName, String brokerName, String authorizationName,
+        AuthorizationResourceInner resource) {
         Mono<Response<Flux<ByteBuffer>>> mono
             = createOrUpdateWithResponseAsync(resourceGroupName, instanceName, brokerName, authorizationName, resource);
-        return this.client.<BrokerAuthorizationResourceInner, BrokerAuthorizationResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), BrokerAuthorizationResourceInner.class,
-            BrokerAuthorizationResourceInner.class, this.client.getContext());
+        return this.client.<AuthorizationResourceInner, AuthorizationResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), AuthorizationResourceInner.class, AuthorizationResourceInner.class,
+            this.client.getContext());
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -410,19 +409,18 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @return the {@link PollerFlux} for polling of instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BrokerAuthorizationResourceInner>, BrokerAuthorizationResourceInner>
-        beginCreateOrUpdateAsync(String resourceGroupName, String instanceName, String brokerName,
-            String authorizationName, BrokerAuthorizationResourceInner resource, Context context) {
+    private PollerFlux<PollResult<AuthorizationResourceInner>, AuthorizationResourceInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String instanceName, String brokerName, String authorizationName,
+        AuthorizationResourceInner resource, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, instanceName,
             brokerName, authorizationName, resource, context);
-        return this.client.<BrokerAuthorizationResourceInner, BrokerAuthorizationResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), BrokerAuthorizationResourceInner.class,
-            BrokerAuthorizationResourceInner.class, context);
+        return this.client.<AuthorizationResourceInner, AuthorizationResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), AuthorizationResourceInner.class, AuthorizationResourceInner.class, context);
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -435,15 +433,15 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @return the {@link SyncPoller} for polling of instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<BrokerAuthorizationResourceInner>, BrokerAuthorizationResourceInner>
-        beginCreateOrUpdate(String resourceGroupName, String instanceName, String brokerName, String authorizationName,
-            BrokerAuthorizationResourceInner resource) {
+    public SyncPoller<PollResult<AuthorizationResourceInner>, AuthorizationResourceInner> beginCreateOrUpdate(
+        String resourceGroupName, String instanceName, String brokerName, String authorizationName,
+        AuthorizationResourceInner resource) {
         return this.beginCreateOrUpdateAsync(resourceGroupName, instanceName, brokerName, authorizationName, resource)
             .getSyncPoller();
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -457,16 +455,16 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @return the {@link SyncPoller} for polling of instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<BrokerAuthorizationResourceInner>, BrokerAuthorizationResourceInner>
-        beginCreateOrUpdate(String resourceGroupName, String instanceName, String brokerName, String authorizationName,
-            BrokerAuthorizationResourceInner resource, Context context) {
+    public SyncPoller<PollResult<AuthorizationResourceInner>, AuthorizationResourceInner> beginCreateOrUpdate(
+        String resourceGroupName, String instanceName, String brokerName, String authorizationName,
+        AuthorizationResourceInner resource, Context context) {
         return this
             .beginCreateOrUpdateAsync(resourceGroupName, instanceName, brokerName, authorizationName, resource, context)
             .getSyncPoller();
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -479,14 +477,14 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @return instance broker authorizations resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BrokerAuthorizationResourceInner> createOrUpdateAsync(String resourceGroupName, String instanceName,
-        String brokerName, String authorizationName, BrokerAuthorizationResourceInner resource) {
+    private Mono<AuthorizationResourceInner> createOrUpdateAsync(String resourceGroupName, String instanceName,
+        String brokerName, String authorizationName, AuthorizationResourceInner resource) {
         return beginCreateOrUpdateAsync(resourceGroupName, instanceName, brokerName, authorizationName, resource).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -500,14 +498,14 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @return instance broker authorizations resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BrokerAuthorizationResourceInner> createOrUpdateAsync(String resourceGroupName, String instanceName,
-        String brokerName, String authorizationName, BrokerAuthorizationResourceInner resource, Context context) {
+    private Mono<AuthorizationResourceInner> createOrUpdateAsync(String resourceGroupName, String instanceName,
+        String brokerName, String authorizationName, AuthorizationResourceInner resource, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, instanceName, brokerName, authorizationName, resource,
             context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -520,13 +518,13 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @return instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BrokerAuthorizationResourceInner createOrUpdate(String resourceGroupName, String instanceName,
-        String brokerName, String authorizationName, BrokerAuthorizationResourceInner resource) {
+    public AuthorizationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String authorizationName, AuthorizationResourceInner resource) {
         return createOrUpdateAsync(resourceGroupName, instanceName, brokerName, authorizationName, resource).block();
     }
 
     /**
-     * Create a BrokerAuthorizationResource.
+     * Create a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -540,14 +538,14 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @return instance broker authorizations resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BrokerAuthorizationResourceInner createOrUpdate(String resourceGroupName, String instanceName,
-        String brokerName, String authorizationName, BrokerAuthorizationResourceInner resource, Context context) {
+    public AuthorizationResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String authorizationName, AuthorizationResourceInner resource, Context context) {
         return createOrUpdateAsync(resourceGroupName, instanceName, brokerName, authorizationName, resource, context)
             .block();
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -592,7 +590,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -636,7 +634,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -657,7 +655,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -680,7 +678,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -698,7 +696,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -718,7 +716,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -737,7 +735,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -757,7 +755,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -773,7 +771,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * Delete a BrokerAuthorizationResource.
+     * Delete a AuthorizationResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -791,7 +789,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * List BrokerAuthorizationResource resources by BrokerResource.
+     * List AuthorizationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -799,12 +797,12 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation along with {@link PagedResponse} on
-     * successful completion of {@link Mono}.
+     * @return the response of a AuthorizationResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BrokerAuthorizationResourceInner>>
-        listByResourceGroupSinglePageAsync(String resourceGroupName, String instanceName, String brokerName) {
+    private Mono<PagedResponse<AuthorizationResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String instanceName, String brokerName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -827,13 +825,13 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, instanceName, brokerName, accept, context))
-            .<PagedResponse<BrokerAuthorizationResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<AuthorizationResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List BrokerAuthorizationResource resources by BrokerResource.
+     * List AuthorizationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -842,12 +840,12 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation along with {@link PagedResponse} on
-     * successful completion of {@link Mono}.
+     * @return the response of a AuthorizationResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BrokerAuthorizationResourceInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, String instanceName, String brokerName, Context context) {
+    private Mono<PagedResponse<AuthorizationResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String instanceName, String brokerName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -876,7 +874,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * List BrokerAuthorizationResource resources by BrokerResource.
+     * List AuthorizationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -884,18 +882,17 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation as paginated response with
-     * {@link PagedFlux}.
+     * @return the response of a AuthorizationResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BrokerAuthorizationResourceInner> listByResourceGroupAsync(String resourceGroupName,
+    private PagedFlux<AuthorizationResourceInner> listByResourceGroupAsync(String resourceGroupName,
         String instanceName, String brokerName) {
         return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, instanceName, brokerName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List BrokerAuthorizationResource resources by BrokerResource.
+     * List AuthorizationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -904,11 +901,10 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation as paginated response with
-     * {@link PagedFlux}.
+     * @return the response of a AuthorizationResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BrokerAuthorizationResourceInner> listByResourceGroupAsync(String resourceGroupName,
+    private PagedFlux<AuthorizationResourceInner> listByResourceGroupAsync(String resourceGroupName,
         String instanceName, String brokerName, Context context) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, instanceName, brokerName, context),
@@ -916,7 +912,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
     }
 
     /**
-     * List BrokerAuthorizationResource resources by BrokerResource.
+     * List AuthorizationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -924,17 +920,16 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a AuthorizationResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BrokerAuthorizationResourceInner> listByResourceGroup(String resourceGroupName,
-        String instanceName, String brokerName) {
+    public PagedIterable<AuthorizationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+        String brokerName) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, instanceName, brokerName));
     }
 
     /**
-     * List BrokerAuthorizationResource resources by BrokerResource.
+     * List AuthorizationResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -943,12 +938,11 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a AuthorizationResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BrokerAuthorizationResourceInner> listByResourceGroup(String resourceGroupName,
-        String instanceName, String brokerName, Context context) {
+    public PagedIterable<AuthorizationResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+        String brokerName, Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, instanceName, brokerName, context));
     }
 
@@ -959,12 +953,11 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation along with {@link PagedResponse} on
-     * successful completion of {@link Mono}.
+     * @return the response of a AuthorizationResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BrokerAuthorizationResourceInner>>
-        listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<AuthorizationResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -976,7 +969,7 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BrokerAuthorizationResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<AuthorizationResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -989,12 +982,12 @@ public final class BrokerAuthorizationsClientImpl implements BrokerAuthorization
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerAuthorizationResource list operation along with {@link PagedResponse} on
-     * successful completion of {@link Mono}.
+     * @return the response of a AuthorizationResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BrokerAuthorizationResourceInner>>
-        listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<AuthorizationResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }

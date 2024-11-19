@@ -105,7 +105,7 @@ import java.util.Map;
  */
 public final class BrokerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Broker_CreateOrUpdate_Minimal.json
+     * x-ms-original-file: 2025-01-01-preview/Broker_CreateOrUpdate_Minimal.json
      */
     /**
      * Sample code: Broker_CreateOrUpdate_Minimal.
@@ -124,7 +124,7 @@ public final class BrokerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/Broker_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-01-01-preview/Broker_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: Broker_CreateOrUpdate_Complex.
@@ -149,7 +149,7 @@ public final class BrokerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/Broker_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Broker_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: Broker_CreateOrUpdate.
@@ -238,7 +238,7 @@ public final class BrokerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/Broker_CreateOrUpdate_Simple.json
+     * x-ms-original-file: 2025-01-01-preview/Broker_CreateOrUpdate_Simple.json
      */
     /**
      * Sample code: Broker_CreateOrUpdate_Simple.
@@ -283,7 +283,7 @@ public final class BrokerCreateOrUpdateSamples {
  */
 public final class BrokerDeleteSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Broker_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Broker_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Broker_Delete.
@@ -305,7 +305,7 @@ public final class BrokerDeleteSamples {
  */
 public final class BrokerGetSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Broker_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Broker_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Broker_Get.
@@ -328,7 +328,7 @@ public final class BrokerGetSamples {
  */
 public final class BrokerListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Broker_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Broker_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: Broker_ListByResourceGroup.
@@ -344,14 +344,14 @@ public final class BrokerListByResourceGroupSamples {
 ### BrokerAuthentication_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationMethod;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationProperties;
+import com.azure.resourcemanager.iotoperations.models.AuthenticationMethod;
+import com.azure.resourcemanager.iotoperations.models.AuthenticationProperties;
+import com.azure.resourcemanager.iotoperations.models.AuthenticatorMethodCustom;
+import com.azure.resourcemanager.iotoperations.models.AuthenticatorMethodSat;
+import com.azure.resourcemanager.iotoperations.models.AuthenticatorMethodX509;
+import com.azure.resourcemanager.iotoperations.models.AuthenticatorMethods;
 import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorCustomAuth;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodCustom;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodSat;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodX509;
 import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodX509Attributes;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethods;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
 import com.azure.resourcemanager.iotoperations.models.X509ManualCertificate;
@@ -364,7 +364,7 @@ import java.util.Map;
  */
 public final class BrokerAuthenticationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthentication_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthentication_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthentication_CreateOrUpdate.
@@ -379,19 +379,19 @@ public final class BrokerAuthenticationCreateOrUpdateSamples {
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(
-                new BrokerAuthenticationProperties()
+                new AuthenticationProperties()
                     .withAuthenticationMethods(
                         Arrays
-                            .asList(new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.CUSTOM)
-                                .withCustomSettings(new BrokerAuthenticatorMethodCustom()
+                            .asList(new AuthenticatorMethods().withMethod(AuthenticationMethod.CUSTOM)
+                                .withCustomSettings(new AuthenticatorMethodCustom()
                                     .withAuth(new BrokerAuthenticatorCustomAuth()
                                         .withX509(new X509ManualCertificate().withSecretRef("fakeTokenPlaceholder")))
                                     .withCaCertConfigMap("pdecudefqyolvncbus")
                                     .withEndpoint("https://www.example.com")
                                     .withHeaders(mapOf("key8518", "fakeTokenPlaceholder")))
                                 .withServiceAccountTokenSettings(
-                                    new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("jqyhyqatuydg")))
-                                .withX509Settings(new BrokerAuthenticatorMethodX509()
+                                    new AuthenticatorMethodSat().withAudiences(Arrays.asList("jqyhyqatuydg")))
+                                .withX509Settings(new AuthenticatorMethodX509()
                                     .withAuthorizationAttributes(mapOf("key3384",
                                         new BrokerAuthenticatorMethodX509Attributes()
                                             .withAttributes(mapOf("key186", "fakeTokenPlaceholder"))
@@ -401,7 +401,7 @@ public final class BrokerAuthenticationCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthentication_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthentication_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: BrokerAuthentication_CreateOrUpdate_Complex.
@@ -415,12 +415,12 @@ public final class BrokerAuthenticationCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthenticationProperties().withAuthenticationMethods(Arrays.asList(
-                new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.SERVICE_ACCOUNT_TOKEN)
+            .withProperties(new AuthenticationProperties().withAuthenticationMethods(Arrays.asList(
+                new AuthenticatorMethods().withMethod(AuthenticationMethod.SERVICE_ACCOUNT_TOKEN)
                     .withServiceAccountTokenSettings(
-                        new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("aio-internal"))),
-                new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.X509)
-                    .withX509Settings(new BrokerAuthenticatorMethodX509().withAuthorizationAttributes(mapOf("root",
+                        new AuthenticatorMethodSat().withAudiences(Arrays.asList("aio-internal"))),
+                new AuthenticatorMethods().withMethod(AuthenticationMethod.X509)
+                    .withX509Settings(new AuthenticatorMethodX509().withAuthorizationAttributes(mapOf("root",
                         new BrokerAuthenticatorMethodX509Attributes().withAttributes(mapOf("organization", "contoso"))
                             .withSubject("CN = Contoso Root CA Cert, OU = Engineering, C = US"),
                         "intermediate",
@@ -456,7 +456,7 @@ public final class BrokerAuthenticationCreateOrUpdateSamples {
  */
 public final class BrokerAuthenticationDeleteSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthentication_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthentication_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthentication_Delete.
@@ -480,7 +480,7 @@ public final class BrokerAuthenticationDeleteSamples {
  */
 public final class BrokerAuthenticationGetSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthentication_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthentication_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthentication_Get.
@@ -503,7 +503,7 @@ public final class BrokerAuthenticationGetSamples {
  */
 public final class BrokerAuthenticationListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthentication_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthentication_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthentication_ListByResourceGroup.
@@ -523,8 +523,8 @@ public final class BrokerAuthenticationListByResourceGroupSamples {
 
 ```java
 import com.azure.resourcemanager.iotoperations.models.AuthorizationConfig;
+import com.azure.resourcemanager.iotoperations.models.AuthorizationProperties;
 import com.azure.resourcemanager.iotoperations.models.AuthorizationRule;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthorizationProperties;
 import com.azure.resourcemanager.iotoperations.models.BrokerResourceDefinitionMethods;
 import com.azure.resourcemanager.iotoperations.models.BrokerResourceRule;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
@@ -543,7 +543,7 @@ import java.util.Map;
  */
 public final class BrokerAuthorizationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate.
@@ -557,7 +557,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthorizationProperties()
+            .withProperties(new AuthorizationProperties()
                 .withAuthorizationPolicies(new AuthorizationConfig().withCache(OperationalMode.ENABLED)
                     .withRules(Arrays.asList(new AuthorizationRule()
                         .withBrokerResources(
@@ -576,7 +576,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_CreateOrUpdate_Simple.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_CreateOrUpdate_Simple.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate_Simple.
@@ -590,7 +590,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthorizationProperties()
+            .withProperties(new AuthorizationProperties()
                 .withAuthorizationPolicies(new AuthorizationConfig().withCache(OperationalMode.ENABLED)
                     .withRules(Arrays.asList(new AuthorizationRule()
                         .withBrokerResources(
@@ -608,7 +608,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate_Complex.
@@ -622,7 +622,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthorizationProperties()
+            .withProperties(new AuthorizationProperties()
                 .withAuthorizationPolicies(new AuthorizationConfig().withCache(OperationalMode.ENABLED)
                     .withRules(Arrays.asList(new AuthorizationRule()
                         .withBrokerResources(Arrays.asList(
@@ -669,7 +669,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
  */
 public final class BrokerAuthorizationDeleteSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthorization_Delete.
@@ -692,7 +692,7 @@ public final class BrokerAuthorizationDeleteSamples {
  */
 public final class BrokerAuthorizationGetSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthorization_Get.
@@ -715,7 +715,7 @@ public final class BrokerAuthorizationGetSamples {
  */
 public final class BrokerAuthorizationListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthorization_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthorization_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthorization_ListByResourceGroup.
@@ -734,7 +734,6 @@ public final class BrokerAuthorizationListByResourceGroupSamples {
 ### BrokerListener_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.iotoperations.models.BrokerListenerProperties;
 import com.azure.resourcemanager.iotoperations.models.BrokerProtocolType;
 import com.azure.resourcemanager.iotoperations.models.CertManagerCertificateSpec;
 import com.azure.resourcemanager.iotoperations.models.CertManagerIssuerKind;
@@ -743,6 +742,7 @@ import com.azure.resourcemanager.iotoperations.models.CertManagerPrivateKey;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
 import com.azure.resourcemanager.iotoperations.models.ListenerPort;
+import com.azure.resourcemanager.iotoperations.models.ListenerProperties;
 import com.azure.resourcemanager.iotoperations.models.PrivateKeyAlgorithm;
 import com.azure.resourcemanager.iotoperations.models.PrivateKeyRotationPolicy;
 import com.azure.resourcemanager.iotoperations.models.SanForCert;
@@ -757,7 +757,7 @@ import java.util.Arrays;
  */
 public final class BrokerListenerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerListener_CreateOrUpdate.
@@ -771,7 +771,7 @@ public final class BrokerListenerCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties().withServiceName("tpfiszlapdpxktx")
+            .withProperties(new ListenerProperties().withServiceName("tpfiszlapdpxktx")
                 .withPorts(Arrays.asList(new ListenerPort().withAuthenticationRef("tjvdroaqqy")
                     .withAuthorizationRef("fakeTokenPlaceholder")
                     .withNodePort(7281)
@@ -794,7 +794,7 @@ public final class BrokerListenerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_CreateOrUpdate_Simple.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_CreateOrUpdate_Simple.json
      */
     /**
      * Sample code: BrokerListener_CreateOrUpdate_Simple.
@@ -808,12 +808,12 @@ public final class BrokerListenerCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties().withPorts(Arrays.asList(new ListenerPort().withPort(1883))))
+            .withProperties(new ListenerProperties().withPorts(Arrays.asList(new ListenerPort().withPort(1883))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: BrokerListener_CreateOrUpdate_Complex.
@@ -827,7 +827,7 @@ public final class BrokerListenerCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties()
+            .withProperties(new ListenerProperties()
                 .withPorts(Arrays.asList(
                     new ListenerPort().withAuthenticationRef("example-authentication")
                         .withPort(8080)
@@ -859,7 +859,7 @@ public final class BrokerListenerCreateOrUpdateSamples {
  */
 public final class BrokerListenerDeleteSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerListener_Delete.
@@ -882,7 +882,7 @@ public final class BrokerListenerDeleteSamples {
  */
 public final class BrokerListenerGetSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerListener_Get.
@@ -905,7 +905,7 @@ public final class BrokerListenerGetSamples {
  */
 public final class BrokerListenerListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerListener_ListByResourceGroup.
@@ -947,7 +947,7 @@ import java.util.Arrays;
  */
 public final class DataflowCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_CreateOrUpdate_FilterToTopic.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_CreateOrUpdate_FilterToTopic.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_FilterToTopic.
@@ -991,7 +991,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate.
@@ -1041,7 +1041,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_CreateOrUpdate_ComplexContextualization.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_CreateOrUpdate_ComplexContextualization.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_ComplexContextualization.
@@ -1085,7 +1085,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_CreateOrUpdate_ComplexEventHub.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_CreateOrUpdate_ComplexEventHub.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_ComplexEventHub.
@@ -1149,7 +1149,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_CreateOrUpdate_SimpleFabric.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_CreateOrUpdate_SimpleFabric.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_SimpleFabric.
@@ -1186,7 +1186,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_CreateOrUpdate_SimpleEventGrid.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_CreateOrUpdate_SimpleEventGrid.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_SimpleEventGrid.
@@ -1225,7 +1225,7 @@ public final class DataflowCreateOrUpdateSamples {
  */
 public final class DataflowDeleteSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Dataflow_Delete.
@@ -1248,7 +1248,7 @@ public final class DataflowDeleteSamples {
  */
 public final class DataflowGetSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Dataflow_Get.
@@ -1271,7 +1271,7 @@ public final class DataflowGetSamples {
  */
 public final class DataflowListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Dataflow_ListByProfileResource_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Dataflow_ListByProfileResource_MaximumSet_Gen.json
      */
     /**
      * Sample code: Dataflow_ListByProfileResource.
@@ -1294,7 +1294,11 @@ import com.azure.resourcemanager.iotoperations.models.BatchingConfiguration;
 import com.azure.resourcemanager.iotoperations.models.BrokerProtocolType;
 import com.azure.resourcemanager.iotoperations.models.CloudEventAttributeType;
 import com.azure.resourcemanager.iotoperations.models.DataExplorerAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.DataExplorerEndpoint;
+import com.azure.resourcemanager.iotoperations.models.DataExplorerSettings;
 import com.azure.resourcemanager.iotoperations.models.DataLakeStorageAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.DataLakeStorageEndpoint;
+import com.azure.resourcemanager.iotoperations.models.DataLakeStorageSettings;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationAccessToken;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationSasl;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationSaslType;
@@ -1302,31 +1306,31 @@ import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthentica
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationSystemAssignedManagedIdentity;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationUserAssignedManagedIdentity;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointAuthenticationX509;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointDataExplorer;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointDataExplorerAuthentication;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointDataLakeStorage;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointDataLakeStorageAuthentication;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointFabricOneLake;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointFabricOneLakeAuthentication;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointFabricOneLakeNames;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointFabricPathType;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafka;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaAcks;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaAuthentication;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaBatching;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaCompression;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointKafkaPartitionStrategy;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointLocalStorage;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointMqtt;
 import com.azure.resourcemanager.iotoperations.models.DataflowEndpointMqttAuthentication;
-import com.azure.resourcemanager.iotoperations.models.DataflowEndpointProperties;
-import com.azure.resourcemanager.iotoperations.models.EndpointType;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
 import com.azure.resourcemanager.iotoperations.models.FabricOneLakeAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.FabricOneLakeEndpoint;
+import com.azure.resourcemanager.iotoperations.models.FabricOneLakeSettings;
 import com.azure.resourcemanager.iotoperations.models.KafkaAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.KafkaEndpoint;
+import com.azure.resourcemanager.iotoperations.models.KafkaSettings;
+import com.azure.resourcemanager.iotoperations.models.LocalStorageEndpoint;
+import com.azure.resourcemanager.iotoperations.models.LocalStorageSettings;
 import com.azure.resourcemanager.iotoperations.models.MqttAuthMethod;
+import com.azure.resourcemanager.iotoperations.models.MqttEndpoint;
 import com.azure.resourcemanager.iotoperations.models.MqttRetainType;
+import com.azure.resourcemanager.iotoperations.models.MqttSettings;
 import com.azure.resourcemanager.iotoperations.models.OperationalMode;
 import com.azure.resourcemanager.iotoperations.models.TlsProperties;
 
@@ -1335,7 +1339,7 @@ import com.azure.resourcemanager.iotoperations.models.TlsProperties;
  */
 public final class DataflowEndpointCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_EventGrid.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_EventGrid.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_EventGrid.
@@ -1349,19 +1353,18 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
-                .withMqttSettings(new DataflowEndpointMqtt()
-                    .withAuthentication(new DataflowEndpointMqttAuthentication()
-                        .withMethod(MqttAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+            .withProperties(new MqttEndpoint().withMqttSettings(new MqttSettings()
+                .withAuthentication(
+                    new DataflowEndpointMqttAuthentication().withMethod(MqttAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
                         .withSystemAssignedManagedIdentitySettings(
                             new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
-                    .withHost("example.westeurope-1.ts.eventgrid.azure.net:8883")
-                    .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
+                .withHost("example.westeurope-1.ts.eventgrid.azure.net:8883")
+                .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_ADLSv2.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_ADLSv2.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_ADLSv2.
@@ -1375,9 +1378,9 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_LAKE_STORAGE)
-                .withDataLakeStorageSettings(
-                    new DataflowEndpointDataLakeStorage()
+            .withProperties(
+                new DataLakeStorageEndpoint().withDataLakeStorageSettings(
+                    new DataLakeStorageSettings()
                         .withAuthentication(
                             new DataflowEndpointDataLakeStorageAuthentication()
                                 .withMethod(DataLakeStorageAuthMethod.ACCESS_TOKEN)
@@ -1388,7 +1391,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_EventHub.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_EventHub.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_EventHub.
@@ -1402,20 +1405,19 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.KAFKA)
-                .withKafkaSettings(new DataflowEndpointKafka()
-                    .withAuthentication(new DataflowEndpointKafkaAuthentication()
-                        .withMethod(KafkaAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                        .withSystemAssignedManagedIdentitySettings(
-                            new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
-                    .withConsumerGroupId("aiodataflows")
-                    .withHost("example.servicebus.windows.net:9093")
-                    .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
+            .withProperties(new KafkaEndpoint().withKafkaSettings(new KafkaSettings()
+                .withAuthentication(new DataflowEndpointKafkaAuthentication()
+                    .withMethod(KafkaAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+                    .withSystemAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
+                .withConsumerGroupId("aiodataflows")
+                .withHost("example.servicebus.windows.net:9093")
+                .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate.
@@ -1429,118 +1431,25 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(
-                new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_EXPLORER)
-                    .withDataExplorerSettings(
-                        new DataflowEndpointDataExplorer()
-                            .withAuthentication(
-                                new DataflowEndpointDataExplorerAuthentication()
-                                    .withMethod(DataExplorerAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                                    .withSystemAssignedManagedIdentitySettings(
-                                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                            .withAudience("psxomrfbhoflycm"))
-                                    .withUserAssignedManagedIdentitySettings(
-                                        new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                            .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                            .withScope("zop")
-                                            .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec")))
-                            .withDatabase("yqcdpjsifm")
-                            .withHost("<cluster>.<region>.kusto.windows.net")
-                            .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028)))
-                    .withDataLakeStorageSettings(
-                        new DataflowEndpointDataLakeStorage()
-                            .withAuthentication(new DataflowEndpointDataLakeStorageAuthentication()
-                                .withMethod(DataLakeStorageAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                                .withAccessTokenSettings(new DataflowEndpointAuthenticationAccessToken()
-                                    .withSecretRef("fakeTokenPlaceholder"))
-                                .withSystemAssignedManagedIdentitySettings(
-                                    new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                        .withAudience("psxomrfbhoflycm"))
-                                .withUserAssignedManagedIdentitySettings(
-                                    new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                        .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                        .withScope("zop")
-                                        .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec")))
-                            .withHost("<account>.blob.core.windows.net")
-                            .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028)))
-                    .withFabricOneLakeSettings(new DataflowEndpointFabricOneLake()
-                        .withAuthentication(new DataflowEndpointFabricOneLakeAuthentication()
-                            .withMethod(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                            .withSystemAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                    .withAudience("psxomrfbhoflycm"))
-                            .withUserAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                    .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                    .withScope("zop")
-                                    .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec")))
-                        .withNames(new DataflowEndpointFabricOneLakeNames().withLakehouseName("wpeathi")
-                            .withWorkspaceName("nwgmitkbljztgms"))
-                        .withOneLakePathType(DataflowEndpointFabricPathType.FILES)
-                        .withHost("https://<host>.fabric.microsoft.com")
-                        .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028)))
-                    .withKafkaSettings(new DataflowEndpointKafka()
-                        .withAuthentication(new DataflowEndpointKafkaAuthentication()
-                            .withMethod(KafkaAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                            .withSystemAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                    .withAudience("psxomrfbhoflycm"))
-                            .withUserAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                    .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                    .withScope("zop")
-                                    .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec"))
-                            .withSaslSettings(new DataflowEndpointAuthenticationSasl()
-                                .withSaslType(DataflowEndpointAuthenticationSaslType.PLAIN)
-                                .withSecretRef("fakeTokenPlaceholder"))
-                            .withX509CertificateSettings(
-                                new DataflowEndpointAuthenticationX509().withSecretRef("fakeTokenPlaceholder")))
-                        .withConsumerGroupId("ukkzcjiyenhxokat")
-                        .withHost("pwcqfiqclcgneolpewnyavoulbip")
-                        .withBatching(new DataflowEndpointKafkaBatching().withMode(OperationalMode.ENABLED)
-                            .withLatencyMs(3679)
-                            .withMaxBytes(8887)
-                            .withMaxMessages(2174))
-                        .withCopyMqttProperties(OperationalMode.ENABLED)
-                        .withCompression(DataflowEndpointKafkaCompression.NONE)
-                        .withKafkaAcks(DataflowEndpointKafkaAcks.ZERO)
-                        .withPartitionStrategy(DataflowEndpointKafkaPartitionStrategy.DEFAULT)
-                        .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
-                            .withTrustedCaCertificateConfigMapRef("tectjjvukvelsreihwadh"))
-                        .withCloudEventAttributes(CloudEventAttributeType.fromString("PassThrough")))
-                    .withLocalStorageSettings(
-                        new DataflowEndpointLocalStorage().withPersistentVolumeClaimRef("jjwqwvd"))
-                    .withMqttSettings(new DataflowEndpointMqtt()
-                        .withAuthentication(new DataflowEndpointMqttAuthentication()
-                            .withMethod(MqttAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                            .withSystemAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
-                                    .withAudience("psxomrfbhoflycm"))
-                            .withUserAssignedManagedIdentitySettings(
-                                new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
-                                    .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
-                                    .withScope("zop")
-                                    .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec"))
-                            .withServiceAccountTokenSettings(new DataflowEndpointAuthenticationServiceAccountToken()
-                                .withAudience("ejbklrbxgjaqleoycgpje"))
-                            .withX509CertificateSettings(
-                                new DataflowEndpointAuthenticationX509().withSecretRef("fakeTokenPlaceholder")))
-                        .withClientIdPrefix("kkljsdxdirfhwxtkavldekeqhv")
-                        .withHost("nyhnxqnbspstctl")
-                        .withProtocol(BrokerProtocolType.MQTT)
-                        .withKeepAliveSeconds(0)
-                        .withRetain(MqttRetainType.KEEP)
-                        .withMaxInflightMessages(0)
-                        .withQos(1)
-                        .withSessionExpirySeconds(0)
-                        .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
-                            .withTrustedCaCertificateConfigMapRef("tectjjvukvelsreihwadh"))
-                        .withCloudEventAttributes(CloudEventAttributeType.fromString("PassThrough"))))
+            .withProperties(new DataExplorerEndpoint().withDataExplorerSettings(new DataExplorerSettings()
+                .withAuthentication(new DataflowEndpointDataExplorerAuthentication()
+                    .withMethod(DataExplorerAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+                    .withSystemAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()
+                            .withAudience("psxomrfbhoflycm"))
+                    .withUserAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationUserAssignedManagedIdentity()
+                            .withClientId("fb90f267-8872-431a-a76a-a1cec5d3c4d2")
+                            .withScope("zop")
+                            .withTenantId("ed060aa2-71ff-4d3f-99c4-a9138356fdec")))
+                .withDatabase("yqcdpjsifm")
+                .withHost("<cluster>.<region>.kusto.windows.net")
+                .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_ADX.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_ADX.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_ADX.
@@ -1554,20 +1463,19 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_EXPLORER)
-                .withDataExplorerSettings(new DataflowEndpointDataExplorer()
-                    .withAuthentication(new DataflowEndpointDataExplorerAuthentication()
-                        .withMethod(DataExplorerAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                        .withSystemAssignedManagedIdentitySettings(
-                            new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
-                    .withDatabase("example-database")
-                    .withHost("example.westeurope.kusto.windows.net")
-                    .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028))))
+            .withProperties(new DataExplorerEndpoint().withDataExplorerSettings(new DataExplorerSettings()
+                .withAuthentication(new DataflowEndpointDataExplorerAuthentication()
+                    .withMethod(DataExplorerAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+                    .withSystemAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
+                .withDatabase("example-database")
+                .withHost("example.westeurope.kusto.windows.net")
+                .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_Fabric.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_Fabric.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_Fabric.
@@ -1581,21 +1489,20 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.FABRIC_ONE_LAKE)
-                .withFabricOneLakeSettings(new DataflowEndpointFabricOneLake()
-                    .withAuthentication(new DataflowEndpointFabricOneLakeAuthentication()
-                        .withMethod(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
-                        .withSystemAssignedManagedIdentitySettings(
-                            new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
-                    .withNames(new DataflowEndpointFabricOneLakeNames().withLakehouseName("example-lakehouse")
-                        .withWorkspaceName("example-workspace"))
-                    .withOneLakePathType(DataflowEndpointFabricPathType.TABLES)
-                    .withHost("onelake.dfs.fabric.microsoft.com")))
+            .withProperties(new FabricOneLakeEndpoint().withFabricOneLakeSettings(new FabricOneLakeSettings()
+                .withAuthentication(new DataflowEndpointFabricOneLakeAuthentication()
+                    .withMethod(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
+                    .withSystemAssignedManagedIdentitySettings(
+                        new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
+                .withNames(new DataflowEndpointFabricOneLakeNames().withLakehouseName("example-lakehouse")
+                    .withWorkspaceName("example-workspace"))
+                .withOneLakePathType(DataflowEndpointFabricPathType.TABLES)
+                .withHost("onelake.dfs.fabric.microsoft.com")))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_LocalStorage.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_LocalStorage.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_LocalStorage.
@@ -1609,14 +1516,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.LOCAL_STORAGE)
-                .withLocalStorageSettings(
-                    new DataflowEndpointLocalStorage().withPersistentVolumeClaimRef("example-pvc")))
+            .withProperties(new LocalStorageEndpoint()
+                .withLocalStorageSettings(new LocalStorageSettings().withPersistentVolumeClaimRef("example-pvc")))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_AIO.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_AIO.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_AIO.
@@ -1631,8 +1537,8 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(
-                new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
-                    .withMqttSettings(new DataflowEndpointMqtt()
+                new MqttEndpoint()
+                    .withMqttSettings(new MqttSettings()
                         .withAuthentication(
                             new DataflowEndpointMqttAuthentication().withMethod(MqttAuthMethod.fromString("Kubernetes"))
                                 .withServiceAccountTokenSettings(new DataflowEndpointAuthenticationServiceAccountToken()
@@ -1644,7 +1550,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_MQTT.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_MQTT.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_MQTT.
@@ -1658,26 +1564,24 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
-                .withMqttSettings(new DataflowEndpointMqtt()
-                    .withAuthentication(
-                        new DataflowEndpointMqttAuthentication().withMethod(MqttAuthMethod.X509CERTIFICATE)
-                            .withX509CertificateSettings(
-                                new DataflowEndpointAuthenticationX509().withSecretRef("fakeTokenPlaceholder")))
-                    .withClientIdPrefix("factory-gateway")
-                    .withHost("example.broker.local:1883")
-                    .withProtocol(BrokerProtocolType.WEB_SOCKETS)
-                    .withKeepAliveSeconds(60)
-                    .withRetain(MqttRetainType.KEEP)
-                    .withMaxInflightMessages(100)
-                    .withQos(1)
-                    .withSessionExpirySeconds(3600)
-                    .withTls(new TlsProperties().withMode(OperationalMode.DISABLED))))
+            .withProperties(new MqttEndpoint().withMqttSettings(new MqttSettings()
+                .withAuthentication(new DataflowEndpointMqttAuthentication().withMethod(MqttAuthMethod.X509CERTIFICATE)
+                    .withX509CertificateSettings(
+                        new DataflowEndpointAuthenticationX509().withSecretRef("fakeTokenPlaceholder")))
+                .withClientIdPrefix("factory-gateway")
+                .withHost("example.broker.local:1883")
+                .withProtocol(BrokerProtocolType.WEB_SOCKETS)
+                .withKeepAliveSeconds(60)
+                .withRetain(MqttRetainType.KEEP)
+                .withMaxInflightMessages(100)
+                .withQos(1)
+                .withSessionExpirySeconds(3600)
+                .withTls(new TlsProperties().withMode(OperationalMode.DISABLED))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_CreateOrUpdate_Kafka.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_CreateOrUpdate_Kafka.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_Kafka.
@@ -1691,25 +1595,24 @@ public final class DataflowEndpointCreateOrUpdateSamples {
             .withExistingInstance("rgiotoperations", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.KAFKA)
-                .withKafkaSettings(new DataflowEndpointKafka()
-                    .withAuthentication(new DataflowEndpointKafkaAuthentication().withMethod(KafkaAuthMethod.SASL)
-                        .withSaslSettings(new DataflowEndpointAuthenticationSasl()
-                            .withSaslType(DataflowEndpointAuthenticationSaslType.PLAIN)
-                            .withSecretRef("fakeTokenPlaceholder")))
-                    .withConsumerGroupId("dataflows")
-                    .withHost("example.kafka.local:9093")
-                    .withBatching(new DataflowEndpointKafkaBatching().withMode(OperationalMode.ENABLED)
-                        .withLatencyMs(5)
-                        .withMaxBytes(1000000)
-                        .withMaxMessages(100000))
-                    .withCopyMqttProperties(OperationalMode.ENABLED)
-                    .withCompression(DataflowEndpointKafkaCompression.GZIP)
-                    .withKafkaAcks(DataflowEndpointKafkaAcks.ALL)
-                    .withPartitionStrategy(DataflowEndpointKafkaPartitionStrategy.DEFAULT)
-                    .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
-                        .withTrustedCaCertificateConfigMapRef("ca-certificates"))
-                    .withCloudEventAttributes(CloudEventAttributeType.PROPAGATE)))
+            .withProperties(new KafkaEndpoint().withKafkaSettings(new KafkaSettings()
+                .withAuthentication(new DataflowEndpointKafkaAuthentication().withMethod(KafkaAuthMethod.SASL)
+                    .withSaslSettings(new DataflowEndpointAuthenticationSasl()
+                        .withSaslType(DataflowEndpointAuthenticationSaslType.PLAIN)
+                        .withSecretRef("fakeTokenPlaceholder")))
+                .withConsumerGroupId("dataflows")
+                .withHost("example.kafka.local:9093")
+                .withBatching(new DataflowEndpointKafkaBatching().withMode(OperationalMode.ENABLED)
+                    .withLatencyMs(5)
+                    .withMaxBytes(1000000)
+                    .withMaxMessages(100000))
+                .withCopyMqttProperties(OperationalMode.ENABLED)
+                .withCompression(DataflowEndpointKafkaCompression.GZIP)
+                .withKafkaAcks(DataflowEndpointKafkaAcks.ALL)
+                .withPartitionStrategy(DataflowEndpointKafkaPartitionStrategy.DEFAULT)
+                .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
+                    .withTrustedCaCertificateConfigMapRef("ca-certificates"))
+                .withCloudEventAttributes(CloudEventAttributeType.PROPAGATE)))
             .create();
     }
 }
@@ -1723,7 +1626,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
  */
 public final class DataflowEndpointDeleteSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowEndpoint_Delete.
@@ -1745,7 +1648,7 @@ public final class DataflowEndpointDeleteSamples {
  */
 public final class DataflowEndpointGetSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowEndpoint_Get.
@@ -1768,7 +1671,7 @@ public final class DataflowEndpointGetSamples {
  */
 public final class DataflowEndpointListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowEndpoint_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowEndpoint_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowEndpoint_ListByResourceGroup.
@@ -1798,7 +1701,7 @@ import com.azure.resourcemanager.iotoperations.models.ProfileDiagnostics;
  */
 public final class DataflowProfileCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowProfile_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowProfile_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowProfile_CreateOrUpdate.
@@ -1820,7 +1723,7 @@ public final class DataflowProfileCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowProfile_CreateOrUpdate_Minimal.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowProfile_CreateOrUpdate_Minimal.json
      */
     /**
      * Sample code: DataflowProfile_CreateOrUpdate_Minimal.
@@ -1839,7 +1742,7 @@ public final class DataflowProfileCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowProfile_CreateOrUpdate_Multi.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowProfile_CreateOrUpdate_Multi.json
      */
     /**
      * Sample code: DataflowProfile_CreateOrUpdate_Multi.
@@ -1867,7 +1770,7 @@ public final class DataflowProfileCreateOrUpdateSamples {
  */
 public final class DataflowProfileDeleteSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowProfile_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowProfile_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowProfile_Delete.
@@ -1889,7 +1792,7 @@ public final class DataflowProfileDeleteSamples {
  */
 public final class DataflowProfileGetSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowProfile_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowProfile_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowProfile_Get.
@@ -1912,7 +1815,7 @@ public final class DataflowProfileGetSamples {
  */
 public final class DataflowProfileListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/DataflowProfile_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/DataflowProfile_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowProfile_ListByResourceGroup.
@@ -1944,7 +1847,7 @@ import java.util.Map;
  */
 public final class InstanceCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Instance_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Instance_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: Instance_CreateOrUpdate.
@@ -1989,7 +1892,7 @@ public final class InstanceCreateOrUpdateSamples {
  */
 public final class InstanceDeleteSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Instance_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Instance_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Instance_Delete.
@@ -2010,7 +1913,7 @@ public final class InstanceDeleteSamples {
  */
 public final class InstanceGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Instance_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Instance_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Instance_Get.
@@ -2032,7 +1935,7 @@ public final class InstanceGetByResourceGroupSamples {
  */
 public final class InstanceListSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Instance_ListBySubscription_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Instance_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: Instance_ListBySubscription.
@@ -2054,7 +1957,7 @@ public final class InstanceListSamples {
  */
 public final class InstanceListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Instance_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Instance_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: Instance_ListByResourceGroup.
@@ -2082,7 +1985,7 @@ import java.util.Map;
  */
 public final class InstanceUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Instance_Update_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Instance_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Instance_Update.
@@ -2122,7 +2025,7 @@ public final class InstanceUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/Operations_List_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/Operations_List_MaximumSet_Gen.json
      */
     /**
      * Sample code: Operations_List.

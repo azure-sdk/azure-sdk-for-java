@@ -4,14 +4,14 @@
 
 package com.azure.resourcemanager.iotoperations.generated;
 
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationMethod;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationProperties;
+import com.azure.resourcemanager.iotoperations.models.AuthenticationMethod;
+import com.azure.resourcemanager.iotoperations.models.AuthenticationProperties;
+import com.azure.resourcemanager.iotoperations.models.AuthenticatorMethodCustom;
+import com.azure.resourcemanager.iotoperations.models.AuthenticatorMethodSat;
+import com.azure.resourcemanager.iotoperations.models.AuthenticatorMethodX509;
+import com.azure.resourcemanager.iotoperations.models.AuthenticatorMethods;
 import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorCustomAuth;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodCustom;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodSat;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodX509;
 import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodX509Attributes;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethods;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
 import com.azure.resourcemanager.iotoperations.models.X509ManualCertificate;
@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public final class BrokerAuthenticationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthentication_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthentication_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthentication_CreateOrUpdate.
@@ -39,19 +39,19 @@ public final class BrokerAuthenticationCreateOrUpdateSamples {
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(
-                new BrokerAuthenticationProperties()
+                new AuthenticationProperties()
                     .withAuthenticationMethods(
                         Arrays
-                            .asList(new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.CUSTOM)
-                                .withCustomSettings(new BrokerAuthenticatorMethodCustom()
+                            .asList(new AuthenticatorMethods().withMethod(AuthenticationMethod.CUSTOM)
+                                .withCustomSettings(new AuthenticatorMethodCustom()
                                     .withAuth(new BrokerAuthenticatorCustomAuth()
                                         .withX509(new X509ManualCertificate().withSecretRef("fakeTokenPlaceholder")))
                                     .withCaCertConfigMap("pdecudefqyolvncbus")
                                     .withEndpoint("https://www.example.com")
                                     .withHeaders(mapOf("key8518", "fakeTokenPlaceholder")))
                                 .withServiceAccountTokenSettings(
-                                    new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("jqyhyqatuydg")))
-                                .withX509Settings(new BrokerAuthenticatorMethodX509()
+                                    new AuthenticatorMethodSat().withAudiences(Arrays.asList("jqyhyqatuydg")))
+                                .withX509Settings(new AuthenticatorMethodX509()
                                     .withAuthorizationAttributes(mapOf("key3384",
                                         new BrokerAuthenticatorMethodX509Attributes()
                                             .withAttributes(mapOf("key186", "fakeTokenPlaceholder"))
@@ -61,7 +61,7 @@ public final class BrokerAuthenticationCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerAuthentication_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerAuthentication_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: BrokerAuthentication_CreateOrUpdate_Complex.
@@ -75,12 +75,12 @@ public final class BrokerAuthenticationCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthenticationProperties().withAuthenticationMethods(Arrays.asList(
-                new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.SERVICE_ACCOUNT_TOKEN)
+            .withProperties(new AuthenticationProperties().withAuthenticationMethods(Arrays.asList(
+                new AuthenticatorMethods().withMethod(AuthenticationMethod.SERVICE_ACCOUNT_TOKEN)
                     .withServiceAccountTokenSettings(
-                        new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("aio-internal"))),
-                new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.X509)
-                    .withX509Settings(new BrokerAuthenticatorMethodX509().withAuthorizationAttributes(mapOf("root",
+                        new AuthenticatorMethodSat().withAudiences(Arrays.asList("aio-internal"))),
+                new AuthenticatorMethods().withMethod(AuthenticationMethod.X509)
+                    .withX509Settings(new AuthenticatorMethodX509().withAuthorizationAttributes(mapOf("root",
                         new BrokerAuthenticatorMethodX509Attributes().withAttributes(mapOf("organization", "contoso"))
                             .withSubject("CN = Contoso Root CA Cert, OU = Engineering, C = US"),
                         "intermediate",

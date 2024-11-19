@@ -32,8 +32,8 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.iotoperations.fluent.BrokerListenersClient;
-import com.azure.resourcemanager.iotoperations.fluent.models.BrokerListenerResourceInner;
-import com.azure.resourcemanager.iotoperations.implementation.models.BrokerListenerResourceListResult;
+import com.azure.resourcemanager.iotoperations.fluent.models.ListenerResourceInner;
+import com.azure.resourcemanager.iotoperations.implementation.models.ListenerResourceListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -74,7 +74,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners/{listenerName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BrokerListenerResourceInner>> get(@HostParam("endpoint") String endpoint,
+        Mono<Response<ListenerResourceInner>> get(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("instanceName") String instanceName,
             @PathParam("brokerName") String brokerName, @PathParam("listenerName") String listenerName,
@@ -88,7 +88,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("instanceName") String instanceName,
             @PathParam("brokerName") String brokerName, @PathParam("listenerName") String listenerName,
             @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
-            @BodyParam("application/json") BrokerListenerResourceInner resource, Context context);
+            @BodyParam("application/json") ListenerResourceInner resource, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners/{listenerName}")
@@ -104,7 +104,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BrokerListenerResourceListResult>> listByResourceGroup(@HostParam("endpoint") String endpoint,
+        Mono<Response<ListenerResourceListResult>> listByResourceGroup(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("instanceName") String instanceName,
             @PathParam("brokerName") String brokerName, @HeaderParam("Accept") String accept, Context context);
@@ -113,13 +113,13 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BrokerListenerResourceListResult>> listByResourceGroupNext(
+        Mono<Response<ListenerResourceListResult>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -128,11 +128,11 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a ListenerResource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BrokerListenerResourceInner>> getWithResponseAsync(String resourceGroupName,
-        String instanceName, String brokerName, String listenerName) {
+    private Mono<Response<ListenerResourceInner>> getWithResponseAsync(String resourceGroupName, String instanceName,
+        String brokerName, String listenerName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -163,7 +163,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -173,11 +173,11 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a ListenerResource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BrokerListenerResourceInner>> getWithResponseAsync(String resourceGroupName,
-        String instanceName, String brokerName, String listenerName, Context context) {
+    private Mono<Response<ListenerResourceInner>> getWithResponseAsync(String resourceGroupName, String instanceName,
+        String brokerName, String listenerName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -206,7 +206,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -215,17 +215,17 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource on successful completion of {@link Mono}.
+     * @return a ListenerResource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BrokerListenerResourceInner> getAsync(String resourceGroupName, String instanceName, String brokerName,
+    private Mono<ListenerResourceInner> getAsync(String resourceGroupName, String instanceName, String brokerName,
         String listenerName) {
         return getWithResponseAsync(resourceGroupName, instanceName, brokerName, listenerName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -235,16 +235,16 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource along with {@link Response}.
+     * @return a ListenerResource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BrokerListenerResourceInner> getWithResponse(String resourceGroupName, String instanceName,
+    public Response<ListenerResourceInner> getWithResponse(String resourceGroupName, String instanceName,
         String brokerName, String listenerName, Context context) {
         return getWithResponseAsync(resourceGroupName, instanceName, brokerName, listenerName, context).block();
     }
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -253,16 +253,16 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource.
+     * @return a ListenerResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BrokerListenerResourceInner get(String resourceGroupName, String instanceName, String brokerName,
+    public ListenerResourceInner get(String resourceGroupName, String instanceName, String brokerName,
         String listenerName) {
         return getWithResponse(resourceGroupName, instanceName, brokerName, listenerName, Context.NONE).getValue();
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -276,7 +276,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String instanceName, String brokerName, String listenerName, BrokerListenerResourceInner resource) {
+        String instanceName, String brokerName, String listenerName, ListenerResourceInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -313,7 +313,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -328,8 +328,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String instanceName, String brokerName, String listenerName, BrokerListenerResourceInner resource,
-        Context context) {
+        String instanceName, String brokerName, String listenerName, ListenerResourceInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -365,7 +364,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -378,18 +377,18 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @return the {@link PollerFlux} for polling of instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BrokerListenerResourceInner>, BrokerListenerResourceInner> beginCreateOrUpdateAsync(
+    private PollerFlux<PollResult<ListenerResourceInner>, ListenerResourceInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String instanceName, String brokerName, String listenerName,
-        BrokerListenerResourceInner resource) {
+        ListenerResourceInner resource) {
         Mono<Response<Flux<ByteBuffer>>> mono
             = createOrUpdateWithResponseAsync(resourceGroupName, instanceName, brokerName, listenerName, resource);
-        return this.client.<BrokerListenerResourceInner, BrokerListenerResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), BrokerListenerResourceInner.class, BrokerListenerResourceInner.class,
+        return this.client.<ListenerResourceInner, ListenerResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ListenerResourceInner.class, ListenerResourceInner.class,
             this.client.getContext());
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -403,19 +402,18 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @return the {@link PollerFlux} for polling of instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BrokerListenerResourceInner>, BrokerListenerResourceInner> beginCreateOrUpdateAsync(
+    private PollerFlux<PollResult<ListenerResourceInner>, ListenerResourceInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String instanceName, String brokerName, String listenerName,
-        BrokerListenerResourceInner resource, Context context) {
+        ListenerResourceInner resource, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, instanceName,
             brokerName, listenerName, resource, context);
-        return this.client.<BrokerListenerResourceInner, BrokerListenerResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), BrokerListenerResourceInner.class, BrokerListenerResourceInner.class,
-            context);
+        return this.client.<ListenerResourceInner, ListenerResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ListenerResourceInner.class, ListenerResourceInner.class, context);
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -428,15 +426,15 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @return the {@link SyncPoller} for polling of instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<BrokerListenerResourceInner>, BrokerListenerResourceInner> beginCreateOrUpdate(
+    public SyncPoller<PollResult<ListenerResourceInner>, ListenerResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String instanceName, String brokerName, String listenerName,
-        BrokerListenerResourceInner resource) {
+        ListenerResourceInner resource) {
         return this.beginCreateOrUpdateAsync(resourceGroupName, instanceName, brokerName, listenerName, resource)
             .getSyncPoller();
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -450,16 +448,16 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @return the {@link SyncPoller} for polling of instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<BrokerListenerResourceInner>, BrokerListenerResourceInner> beginCreateOrUpdate(
+    public SyncPoller<PollResult<ListenerResourceInner>, ListenerResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String instanceName, String brokerName, String listenerName,
-        BrokerListenerResourceInner resource, Context context) {
+        ListenerResourceInner resource, Context context) {
         return this
             .beginCreateOrUpdateAsync(resourceGroupName, instanceName, brokerName, listenerName, resource, context)
             .getSyncPoller();
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -472,14 +470,14 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @return instance broker resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BrokerListenerResourceInner> createOrUpdateAsync(String resourceGroupName, String instanceName,
-        String brokerName, String listenerName, BrokerListenerResourceInner resource) {
+    private Mono<ListenerResourceInner> createOrUpdateAsync(String resourceGroupName, String instanceName,
+        String brokerName, String listenerName, ListenerResourceInner resource) {
         return beginCreateOrUpdateAsync(resourceGroupName, instanceName, brokerName, listenerName, resource).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -493,15 +491,15 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @return instance broker resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BrokerListenerResourceInner> createOrUpdateAsync(String resourceGroupName, String instanceName,
-        String brokerName, String listenerName, BrokerListenerResourceInner resource, Context context) {
+    private Mono<ListenerResourceInner> createOrUpdateAsync(String resourceGroupName, String instanceName,
+        String brokerName, String listenerName, ListenerResourceInner resource, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, instanceName, brokerName, listenerName, resource, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -514,13 +512,13 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @return instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BrokerListenerResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
-        String listenerName, BrokerListenerResourceInner resource) {
+    public ListenerResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String listenerName, ListenerResourceInner resource) {
         return createOrUpdateAsync(resourceGroupName, instanceName, brokerName, listenerName, resource).block();
     }
 
     /**
-     * Create a BrokerListenerResource.
+     * Create a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -534,14 +532,14 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @return instance broker resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BrokerListenerResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
-        String listenerName, BrokerListenerResourceInner resource, Context context) {
+    public ListenerResourceInner createOrUpdate(String resourceGroupName, String instanceName, String brokerName,
+        String listenerName, ListenerResourceInner resource, Context context) {
         return createOrUpdateAsync(resourceGroupName, instanceName, brokerName, listenerName, resource, context)
             .block();
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -585,7 +583,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -628,7 +626,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -649,7 +647,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -672,7 +670,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -690,7 +688,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -710,7 +708,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -729,7 +727,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -749,7 +747,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -765,7 +763,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -783,7 +781,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -791,12 +789,12 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation along with {@link PagedResponse} on successful
+     * @return the response of a ListenerResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BrokerListenerResourceInner>>
-        listByResourceGroupSinglePageAsync(String resourceGroupName, String instanceName, String brokerName) {
+    private Mono<PagedResponse<ListenerResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String instanceName, String brokerName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -819,13 +817,13 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, instanceName, brokerName, accept, context))
-            .<PagedResponse<BrokerListenerResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<ListenerResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -834,12 +832,12 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation along with {@link PagedResponse} on successful
+     * @return the response of a ListenerResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BrokerListenerResourceInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, String instanceName, String brokerName, Context context) {
+    private Mono<PagedResponse<ListenerResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String instanceName, String brokerName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -868,7 +866,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
     }
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -876,17 +874,17 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation as paginated response with {@link PagedFlux}.
+     * @return the response of a ListenerResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BrokerListenerResourceInner> listByResourceGroupAsync(String resourceGroupName,
-        String instanceName, String brokerName) {
+    private PagedFlux<ListenerResourceInner> listByResourceGroupAsync(String resourceGroupName, String instanceName,
+        String brokerName) {
         return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, instanceName, brokerName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -895,18 +893,18 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation as paginated response with {@link PagedFlux}.
+     * @return the response of a ListenerResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BrokerListenerResourceInner> listByResourceGroupAsync(String resourceGroupName,
-        String instanceName, String brokerName, Context context) {
+    private PagedFlux<ListenerResourceInner> listByResourceGroupAsync(String resourceGroupName, String instanceName,
+        String brokerName, Context context) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, instanceName, brokerName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -914,16 +912,16 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a ListenerResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BrokerListenerResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+    public PagedIterable<ListenerResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, instanceName, brokerName));
     }
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -932,10 +930,10 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a ListenerResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BrokerListenerResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
+    public PagedIterable<ListenerResourceInner> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName, Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, instanceName, brokerName, context));
     }
@@ -947,11 +945,11 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation along with {@link PagedResponse} on successful
+     * @return the response of a ListenerResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BrokerListenerResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ListenerResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -963,7 +961,7 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BrokerListenerResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<ListenerResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -976,11 +974,11 @@ public final class BrokerListenersClientImpl implements BrokerListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation along with {@link PagedResponse} on successful
+     * @return the response of a ListenerResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BrokerListenerResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<ListenerResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));

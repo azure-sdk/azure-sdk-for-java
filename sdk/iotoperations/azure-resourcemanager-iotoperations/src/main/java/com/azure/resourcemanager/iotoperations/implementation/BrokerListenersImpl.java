@@ -10,9 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.iotoperations.fluent.BrokerListenersClient;
-import com.azure.resourcemanager.iotoperations.fluent.models.BrokerListenerResourceInner;
-import com.azure.resourcemanager.iotoperations.models.BrokerListenerResource;
+import com.azure.resourcemanager.iotoperations.fluent.models.ListenerResourceInner;
 import com.azure.resourcemanager.iotoperations.models.BrokerListeners;
+import com.azure.resourcemanager.iotoperations.models.ListenerResource;
 
 public final class BrokerListenersImpl implements BrokerListeners {
     private static final ClientLogger LOGGER = new ClientLogger(BrokerListenersImpl.class);
@@ -27,24 +27,23 @@ public final class BrokerListenersImpl implements BrokerListeners {
         this.serviceManager = serviceManager;
     }
 
-    public Response<BrokerListenerResource> getWithResponse(String resourceGroupName, String instanceName,
-        String brokerName, String listenerName, Context context) {
-        Response<BrokerListenerResourceInner> inner
+    public Response<ListenerResource> getWithResponse(String resourceGroupName, String instanceName, String brokerName,
+        String listenerName, Context context) {
+        Response<ListenerResourceInner> inner
             = this.serviceClient().getWithResponse(resourceGroupName, instanceName, brokerName, listenerName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new BrokerListenerResourceImpl(inner.getValue(), this.manager()));
+                new ListenerResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public BrokerListenerResource get(String resourceGroupName, String instanceName, String brokerName,
-        String listenerName) {
-        BrokerListenerResourceInner inner
+    public ListenerResource get(String resourceGroupName, String instanceName, String brokerName, String listenerName) {
+        ListenerResourceInner inner
             = this.serviceClient().get(resourceGroupName, instanceName, brokerName, listenerName);
         if (inner != null) {
-            return new BrokerListenerResourceImpl(inner, this.manager());
+            return new ListenerResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -59,21 +58,21 @@ public final class BrokerListenersImpl implements BrokerListeners {
         this.serviceClient().delete(resourceGroupName, instanceName, brokerName, listenerName, context);
     }
 
-    public PagedIterable<BrokerListenerResource> listByResourceGroup(String resourceGroupName, String instanceName,
+    public PagedIterable<ListenerResource> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName) {
-        PagedIterable<BrokerListenerResourceInner> inner
+        PagedIterable<ListenerResourceInner> inner
             = this.serviceClient().listByResourceGroup(resourceGroupName, instanceName, brokerName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new BrokerListenerResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ListenerResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BrokerListenerResource> listByResourceGroup(String resourceGroupName, String instanceName,
+    public PagedIterable<ListenerResource> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName, Context context) {
-        PagedIterable<BrokerListenerResourceInner> inner
+        PagedIterable<ListenerResourceInner> inner
             = this.serviceClient().listByResourceGroup(resourceGroupName, instanceName, brokerName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new BrokerListenerResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ListenerResourceImpl(inner1, this.manager()));
     }
 
-    public BrokerListenerResource getById(String id) {
+    public ListenerResource getById(String id) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -97,7 +96,7 @@ public final class BrokerListenersImpl implements BrokerListeners {
         return this.getWithResponse(resourceGroupName, instanceName, brokerName, listenerName, Context.NONE).getValue();
     }
 
-    public Response<BrokerListenerResource> getByIdWithResponse(String id, Context context) {
+    public Response<ListenerResource> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -177,7 +176,7 @@ public final class BrokerListenersImpl implements BrokerListeners {
         return this.serviceManager;
     }
 
-    public BrokerListenerResourceImpl define(String name) {
-        return new BrokerListenerResourceImpl(name, this.manager());
+    public ListenerResourceImpl define(String name) {
+        return new ListenerResourceImpl(name, this.manager());
     }
 }

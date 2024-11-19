@@ -320,7 +320,7 @@ public final class IoTOperationsManager {
     }
 
     /**
-     * Gets the resource collection API of BrokerListeners. It manages BrokerListenerResource.
+     * Gets the resource collection API of BrokerListeners. It manages ListenerResource.
      * 
      * @return Resource collection API of BrokerListeners.
      */
@@ -332,7 +332,7 @@ public final class IoTOperationsManager {
     }
 
     /**
-     * Gets the resource collection API of BrokerAuthentications. It manages BrokerAuthenticationResource.
+     * Gets the resource collection API of BrokerAuthentications. It manages AuthenticationResource.
      * 
      * @return Resource collection API of BrokerAuthentications.
      */
@@ -344,7 +344,7 @@ public final class IoTOperationsManager {
     }
 
     /**
-     * Gets the resource collection API of BrokerAuthorizations. It manages BrokerAuthorizationResource.
+     * Gets the resource collection API of BrokerAuthorizations. It manages AuthorizationResource.
      * 
      * @return Resource collection API of BrokerAuthorizations.
      */

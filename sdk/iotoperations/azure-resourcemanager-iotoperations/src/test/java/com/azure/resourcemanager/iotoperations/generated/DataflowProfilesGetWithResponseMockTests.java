@@ -22,7 +22,7 @@ public final class DataflowProfilesGetWithResponseMockTests {
     @Test
     public void testGetWithResponse() throws Exception {
         String responseStr
-            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"iylwdshfssnr\"},\"metrics\":{\"prometheusPort\":593893972}},\"instanceCount\":692564067,\"provisioningState\":\"Provisioning\"},\"extendedLocation\":{\"name\":\"sgaojfmwncot\",\"type\":\"CustomLocation\"},\"id\":\"hirctymoxoftpipi\",\"name\":\"yczuhxacpq\",\"type\":\"lihhyuspskasdvlm\"}";
+            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"x\"},\"metrics\":{\"prometheusPort\":1532025762}},\"instanceCount\":338199100,\"provisioningState\":\"Provisioning\"},\"extendedLocation\":{\"name\":\"pyklyhpluodpvru\",\"type\":\"CustomLocation\"},\"id\":\"gzibthostgktstv\",\"name\":\"xeclzedqbcvhzlhp\",\"type\":\"odqkdlwwqfb\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -32,13 +32,13 @@ public final class DataflowProfilesGetWithResponseMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         DataflowProfileResource response = manager.dataflowProfiles()
-            .getWithResponse("hwzdgirujbz", "omvzzbtd", "qvpn", com.azure.core.util.Context.NONE)
+            .getWithResponse("gtczheydb", "dshmkxmaehvbbx", "ripltf", com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals("iylwdshfssnr", response.properties().diagnostics().logs().level());
-        Assertions.assertEquals(593893972, response.properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(692564067, response.properties().instanceCount());
-        Assertions.assertEquals("sgaojfmwncot", response.extendedLocation().name());
+        Assertions.assertEquals("x", response.properties().diagnostics().logs().level());
+        Assertions.assertEquals(1532025762, response.properties().diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(338199100, response.properties().instanceCount());
+        Assertions.assertEquals("pyklyhpluodpvru", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.iotoperations.generated;
 
-import com.azure.resourcemanager.iotoperations.models.BrokerListenerProperties;
 import com.azure.resourcemanager.iotoperations.models.BrokerProtocolType;
 import com.azure.resourcemanager.iotoperations.models.CertManagerCertificateSpec;
 import com.azure.resourcemanager.iotoperations.models.CertManagerIssuerKind;
@@ -13,6 +12,7 @@ import com.azure.resourcemanager.iotoperations.models.CertManagerPrivateKey;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
 import com.azure.resourcemanager.iotoperations.models.ListenerPort;
+import com.azure.resourcemanager.iotoperations.models.ListenerProperties;
 import com.azure.resourcemanager.iotoperations.models.PrivateKeyAlgorithm;
 import com.azure.resourcemanager.iotoperations.models.PrivateKeyRotationPolicy;
 import com.azure.resourcemanager.iotoperations.models.SanForCert;
@@ -27,7 +27,7 @@ import java.util.Arrays;
  */
 public final class BrokerListenerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerListener_CreateOrUpdate.
@@ -41,7 +41,7 @@ public final class BrokerListenerCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties().withServiceName("tpfiszlapdpxktx")
+            .withProperties(new ListenerProperties().withServiceName("tpfiszlapdpxktx")
                 .withPorts(Arrays.asList(new ListenerPort().withAuthenticationRef("tjvdroaqqy")
                     .withAuthorizationRef("fakeTokenPlaceholder")
                     .withNodePort(7281)
@@ -64,7 +64,7 @@ public final class BrokerListenerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_CreateOrUpdate_Simple.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_CreateOrUpdate_Simple.json
      */
     /**
      * Sample code: BrokerListener_CreateOrUpdate_Simple.
@@ -78,12 +78,12 @@ public final class BrokerListenerCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties().withPorts(Arrays.asList(new ListenerPort().withPort(1883))))
+            .withProperties(new ListenerProperties().withPorts(Arrays.asList(new ListenerPort().withPort(1883))))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-09-15-preview/BrokerListener_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-01-01-preview/BrokerListener_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: BrokerListener_CreateOrUpdate_Complex.
@@ -97,7 +97,7 @@ public final class BrokerListenerCreateOrUpdateSamples {
             .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
             .withExtendedLocation(
                 new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties()
+            .withProperties(new ListenerProperties()
                 .withPorts(Arrays.asList(
                     new ListenerPort().withAuthenticationRef("example-authentication")
                         .withPort(8080)

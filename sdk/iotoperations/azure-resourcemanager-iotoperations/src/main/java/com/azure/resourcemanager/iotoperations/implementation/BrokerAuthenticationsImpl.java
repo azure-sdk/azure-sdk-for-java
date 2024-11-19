@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.iotoperations.fluent.BrokerAuthenticationsClient;
-import com.azure.resourcemanager.iotoperations.fluent.models.BrokerAuthenticationResourceInner;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationResource;
+import com.azure.resourcemanager.iotoperations.fluent.models.AuthenticationResourceInner;
+import com.azure.resourcemanager.iotoperations.models.AuthenticationResource;
 import com.azure.resourcemanager.iotoperations.models.BrokerAuthentications;
 
 public final class BrokerAuthenticationsImpl implements BrokerAuthentications {
@@ -27,24 +27,24 @@ public final class BrokerAuthenticationsImpl implements BrokerAuthentications {
         this.serviceManager = serviceManager;
     }
 
-    public Response<BrokerAuthenticationResource> getWithResponse(String resourceGroupName, String instanceName,
+    public Response<AuthenticationResource> getWithResponse(String resourceGroupName, String instanceName,
         String brokerName, String authenticationName, Context context) {
-        Response<BrokerAuthenticationResourceInner> inner = this.serviceClient()
+        Response<AuthenticationResourceInner> inner = this.serviceClient()
             .getWithResponse(resourceGroupName, instanceName, brokerName, authenticationName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new BrokerAuthenticationResourceImpl(inner.getValue(), this.manager()));
+                new AuthenticationResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public BrokerAuthenticationResource get(String resourceGroupName, String instanceName, String brokerName,
+    public AuthenticationResource get(String resourceGroupName, String instanceName, String brokerName,
         String authenticationName) {
-        BrokerAuthenticationResourceInner inner
+        AuthenticationResourceInner inner
             = this.serviceClient().get(resourceGroupName, instanceName, brokerName, authenticationName);
         if (inner != null) {
-            return new BrokerAuthenticationResourceImpl(inner, this.manager());
+            return new AuthenticationResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -59,23 +59,21 @@ public final class BrokerAuthenticationsImpl implements BrokerAuthentications {
         this.serviceClient().delete(resourceGroupName, instanceName, brokerName, authenticationName, context);
     }
 
-    public PagedIterable<BrokerAuthenticationResource> listByResourceGroup(String resourceGroupName,
-        String instanceName, String brokerName) {
-        PagedIterable<BrokerAuthenticationResourceInner> inner
+    public PagedIterable<AuthenticationResource> listByResourceGroup(String resourceGroupName, String instanceName,
+        String brokerName) {
+        PagedIterable<AuthenticationResourceInner> inner
             = this.serviceClient().listByResourceGroup(resourceGroupName, instanceName, brokerName);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new BrokerAuthenticationResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AuthenticationResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BrokerAuthenticationResource> listByResourceGroup(String resourceGroupName,
-        String instanceName, String brokerName, Context context) {
-        PagedIterable<BrokerAuthenticationResourceInner> inner
+    public PagedIterable<AuthenticationResource> listByResourceGroup(String resourceGroupName, String instanceName,
+        String brokerName, Context context) {
+        PagedIterable<AuthenticationResourceInner> inner
             = this.serviceClient().listByResourceGroup(resourceGroupName, instanceName, brokerName, context);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new BrokerAuthenticationResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AuthenticationResourceImpl(inner1, this.manager()));
     }
 
-    public BrokerAuthenticationResource getById(String id) {
+    public AuthenticationResource getById(String id) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -100,7 +98,7 @@ public final class BrokerAuthenticationsImpl implements BrokerAuthentications {
             .getValue();
     }
 
-    public Response<BrokerAuthenticationResource> getByIdWithResponse(String id, Context context) {
+    public Response<AuthenticationResource> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -180,7 +178,7 @@ public final class BrokerAuthenticationsImpl implements BrokerAuthentications {
         return this.serviceManager;
     }
 
-    public BrokerAuthenticationResourceImpl define(String name) {
-        return new BrokerAuthenticationResourceImpl(name, this.manager());
+    public AuthenticationResourceImpl define(String name) {
+        return new AuthenticationResourceImpl(name, this.manager());
     }
 }

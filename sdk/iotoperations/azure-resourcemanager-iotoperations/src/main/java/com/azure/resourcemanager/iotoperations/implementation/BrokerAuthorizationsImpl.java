@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.iotoperations.fluent.BrokerAuthorizationsClient;
-import com.azure.resourcemanager.iotoperations.fluent.models.BrokerAuthorizationResourceInner;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthorizationResource;
+import com.azure.resourcemanager.iotoperations.fluent.models.AuthorizationResourceInner;
+import com.azure.resourcemanager.iotoperations.models.AuthorizationResource;
 import com.azure.resourcemanager.iotoperations.models.BrokerAuthorizations;
 
 public final class BrokerAuthorizationsImpl implements BrokerAuthorizations {
@@ -27,24 +27,24 @@ public final class BrokerAuthorizationsImpl implements BrokerAuthorizations {
         this.serviceManager = serviceManager;
     }
 
-    public Response<BrokerAuthorizationResource> getWithResponse(String resourceGroupName, String instanceName,
+    public Response<AuthorizationResource> getWithResponse(String resourceGroupName, String instanceName,
         String brokerName, String authorizationName, Context context) {
-        Response<BrokerAuthorizationResourceInner> inner = this.serviceClient()
+        Response<AuthorizationResourceInner> inner = this.serviceClient()
             .getWithResponse(resourceGroupName, instanceName, brokerName, authorizationName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new BrokerAuthorizationResourceImpl(inner.getValue(), this.manager()));
+                new AuthorizationResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public BrokerAuthorizationResource get(String resourceGroupName, String instanceName, String brokerName,
+    public AuthorizationResource get(String resourceGroupName, String instanceName, String brokerName,
         String authorizationName) {
-        BrokerAuthorizationResourceInner inner
+        AuthorizationResourceInner inner
             = this.serviceClient().get(resourceGroupName, instanceName, brokerName, authorizationName);
         if (inner != null) {
-            return new BrokerAuthorizationResourceImpl(inner, this.manager());
+            return new AuthorizationResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -59,23 +59,21 @@ public final class BrokerAuthorizationsImpl implements BrokerAuthorizations {
         this.serviceClient().delete(resourceGroupName, instanceName, brokerName, authorizationName, context);
     }
 
-    public PagedIterable<BrokerAuthorizationResource> listByResourceGroup(String resourceGroupName, String instanceName,
+    public PagedIterable<AuthorizationResource> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName) {
-        PagedIterable<BrokerAuthorizationResourceInner> inner
+        PagedIterable<AuthorizationResourceInner> inner
             = this.serviceClient().listByResourceGroup(resourceGroupName, instanceName, brokerName);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new BrokerAuthorizationResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AuthorizationResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BrokerAuthorizationResource> listByResourceGroup(String resourceGroupName, String instanceName,
+    public PagedIterable<AuthorizationResource> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName, Context context) {
-        PagedIterable<BrokerAuthorizationResourceInner> inner
+        PagedIterable<AuthorizationResourceInner> inner
             = this.serviceClient().listByResourceGroup(resourceGroupName, instanceName, brokerName, context);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new BrokerAuthorizationResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AuthorizationResourceImpl(inner1, this.manager()));
     }
 
-    public BrokerAuthorizationResource getById(String id) {
+    public AuthorizationResource getById(String id) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -100,7 +98,7 @@ public final class BrokerAuthorizationsImpl implements BrokerAuthorizations {
             .getValue();
     }
 
-    public Response<BrokerAuthorizationResource> getByIdWithResponse(String id, Context context) {
+    public Response<AuthorizationResource> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -180,7 +178,7 @@ public final class BrokerAuthorizationsImpl implements BrokerAuthorizations {
         return this.serviceManager;
     }
 
-    public BrokerAuthorizationResourceImpl define(String name) {
-        return new BrokerAuthorizationResourceImpl(name, this.manager());
+    public AuthorizationResourceImpl define(String name) {
+        return new AuthorizationResourceImpl(name, this.manager());
     }
 }

@@ -274,7 +274,7 @@ public final class IoTOperationsManagementClientImpl implements IoTOperationsMan
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
         this.subscriptionId = subscriptionId;
-        this.apiVersion = "2024-09-15-preview";
+        this.apiVersion = "2025-01-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.instances = new InstancesClientImpl(this);
         this.brokers = new BrokersClientImpl(this);

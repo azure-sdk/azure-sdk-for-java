@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface BrokerListeners {
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -23,13 +23,13 @@ public interface BrokerListeners {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource along with {@link Response}.
+     * @return a ListenerResource along with {@link Response}.
      */
-    Response<BrokerListenerResource> getWithResponse(String resourceGroupName, String instanceName, String brokerName,
+    Response<ListenerResource> getWithResponse(String resourceGroupName, String instanceName, String brokerName,
         String listenerName, Context context);
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -38,12 +38,12 @@ public interface BrokerListeners {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource.
+     * @return a ListenerResource.
      */
-    BrokerListenerResource get(String resourceGroupName, String instanceName, String brokerName, String listenerName);
+    ListenerResource get(String resourceGroupName, String instanceName, String brokerName, String listenerName);
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -56,7 +56,7 @@ public interface BrokerListeners {
     void delete(String resourceGroupName, String instanceName, String brokerName, String listenerName);
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -70,7 +70,7 @@ public interface BrokerListeners {
     void delete(String resourceGroupName, String instanceName, String brokerName, String listenerName, Context context);
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -78,13 +78,13 @@ public interface BrokerListeners {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a ListenerResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<BrokerListenerResource> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<ListenerResource> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName);
 
     /**
-     * List BrokerListenerResource resources by BrokerResource.
+     * List ListenerResource resources by BrokerResource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param instanceName Name of instance.
@@ -93,36 +93,36 @@ public interface BrokerListeners {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a BrokerListenerResource list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a ListenerResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<BrokerListenerResource> listByResourceGroup(String resourceGroupName, String instanceName,
+    PagedIterable<ListenerResource> listByResourceGroup(String resourceGroupName, String instanceName,
         String brokerName, Context context);
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource along with {@link Response}.
+     * @return a ListenerResource along with {@link Response}.
      */
-    BrokerListenerResource getById(String id);
+    ListenerResource getById(String id);
 
     /**
-     * Get a BrokerListenerResource.
+     * Get a ListenerResource.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a BrokerListenerResource along with {@link Response}.
+     * @return a ListenerResource along with {@link Response}.
      */
-    Response<BrokerListenerResource> getByIdWithResponse(String id, Context context);
+    Response<ListenerResource> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -132,7 +132,7 @@ public interface BrokerListeners {
     void deleteById(String id);
 
     /**
-     * Delete a BrokerListenerResource.
+     * Delete a ListenerResource.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -143,10 +143,10 @@ public interface BrokerListeners {
     void deleteByIdWithResponse(String id, Context context);
 
     /**
-     * Begins definition for a new BrokerListenerResource resource.
+     * Begins definition for a new ListenerResource resource.
      * 
      * @param name resource name.
-     * @return the first stage of the new BrokerListenerResource definition.
+     * @return the first stage of the new ListenerResource definition.
      */
-    BrokerListenerResource.DefinitionStages.Blank define(String name);
+    ListenerResource.DefinitionStages.Blank define(String name);
 }
