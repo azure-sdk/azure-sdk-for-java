@@ -8,6 +8,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.astro.fluent.models.OrganizationResourceInner;
+import com.azure.resourcemanager.astro.models.AzureResourceManagerLegacyManagedServiceIdentityV4Update;
 import com.azure.resourcemanager.astro.models.LiftrBaseDataOrganizationProperties;
 import com.azure.resourcemanager.astro.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.astro.models.OrganizationResource;
@@ -179,13 +180,13 @@ public final class OrganizationResourceImpl
     }
 
     public OrganizationResourceImpl withIdentity(ManagedServiceIdentity identity) {
-        if (isInCreateMode()) {
-            this.innerModel().withIdentity(identity);
-            return this;
-        } else {
-            this.updateProperties.withIdentity(identity);
-            return this;
-        }
+        this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public OrganizationResourceImpl withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4Update identity) {
+        this.updateProperties.withIdentity(identity);
+        return this;
     }
 
     public OrganizationResourceImpl withProperties(OrganizationResourceUpdateProperties properties) {

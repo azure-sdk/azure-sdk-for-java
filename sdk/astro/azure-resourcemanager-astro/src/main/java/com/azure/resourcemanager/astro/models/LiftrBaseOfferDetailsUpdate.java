@@ -5,20 +5,17 @@
 package com.azure.resourcemanager.astro.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.CoreUtils;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Offer details for the marketplace that is selected by the user.
  */
 @Fluent
-public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOfferDetails> {
+public final class LiftrBaseOfferDetailsUpdate implements JsonSerializable<LiftrBaseOfferDetailsUpdate> {
     /*
      * Publisher Id for the marketplace offer
      */
@@ -54,15 +51,10 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      */
     private RenewalMode renewalMode;
 
-    /*
-     * Current subscription end date and time
-     */
-    private OffsetDateTime endDate;
-
     /**
-     * Creates an instance of LiftrBaseOfferDetails class.
+     * Creates an instance of LiftrBaseOfferDetailsUpdate class.
      */
-    public LiftrBaseOfferDetails() {
+    public LiftrBaseOfferDetailsUpdate() {
     }
 
     /**
@@ -78,9 +70,9 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * Set the publisherId property: Publisher Id for the marketplace offer.
      * 
      * @param publisherId the publisherId value to set.
-     * @return the LiftrBaseOfferDetails object itself.
+     * @return the LiftrBaseOfferDetailsUpdate object itself.
      */
-    public LiftrBaseOfferDetails withPublisherId(String publisherId) {
+    public LiftrBaseOfferDetailsUpdate withPublisherId(String publisherId) {
         this.publisherId = publisherId;
         return this;
     }
@@ -98,9 +90,9 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * Set the offerId property: Offer Id for the marketplace offer.
      * 
      * @param offerId the offerId value to set.
-     * @return the LiftrBaseOfferDetails object itself.
+     * @return the LiftrBaseOfferDetailsUpdate object itself.
      */
-    public LiftrBaseOfferDetails withOfferId(String offerId) {
+    public LiftrBaseOfferDetailsUpdate withOfferId(String offerId) {
         this.offerId = offerId;
         return this;
     }
@@ -118,9 +110,9 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * Set the planId property: Plan Id for the marketplace offer.
      * 
      * @param planId the planId value to set.
-     * @return the LiftrBaseOfferDetails object itself.
+     * @return the LiftrBaseOfferDetailsUpdate object itself.
      */
-    public LiftrBaseOfferDetails withPlanId(String planId) {
+    public LiftrBaseOfferDetailsUpdate withPlanId(String planId) {
         this.planId = planId;
         return this;
     }
@@ -138,9 +130,9 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * Set the planName property: Plan Name for the marketplace offer.
      * 
      * @param planName the planName value to set.
-     * @return the LiftrBaseOfferDetails object itself.
+     * @return the LiftrBaseOfferDetailsUpdate object itself.
      */
-    public LiftrBaseOfferDetails withPlanName(String planName) {
+    public LiftrBaseOfferDetailsUpdate withPlanName(String planName) {
         this.planName = planName;
         return this;
     }
@@ -158,9 +150,9 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * Set the termUnit property: Plan Display Name for the marketplace offer.
      * 
      * @param termUnit the termUnit value to set.
-     * @return the LiftrBaseOfferDetails object itself.
+     * @return the LiftrBaseOfferDetailsUpdate object itself.
      */
-    public LiftrBaseOfferDetails withTermUnit(String termUnit) {
+    public LiftrBaseOfferDetailsUpdate withTermUnit(String termUnit) {
         this.termUnit = termUnit;
         return this;
     }
@@ -178,9 +170,9 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * Set the termId property: Plan Display Name for the marketplace offer.
      * 
      * @param termId the termId value to set.
-     * @return the LiftrBaseOfferDetails object itself.
+     * @return the LiftrBaseOfferDetailsUpdate object itself.
      */
-    public LiftrBaseOfferDetails withTermId(String termId) {
+    public LiftrBaseOfferDetailsUpdate withTermId(String termId) {
         this.termId = termId;
         return this;
     }
@@ -198,20 +190,11 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * Set the renewalMode property: Subscription renewal mode.
      * 
      * @param renewalMode the renewalMode value to set.
-     * @return the LiftrBaseOfferDetails object itself.
+     * @return the LiftrBaseOfferDetailsUpdate object itself.
      */
-    public LiftrBaseOfferDetails withRenewalMode(RenewalMode renewalMode) {
+    public LiftrBaseOfferDetailsUpdate withRenewalMode(RenewalMode renewalMode) {
         this.renewalMode = renewalMode;
         return this;
-    }
-
-    /**
-     * Get the endDate property: Current subscription end date and time.
-     * 
-     * @return the endDate value.
-     */
-    public OffsetDateTime endDate() {
-        return this.endDate;
     }
 
     /**
@@ -220,22 +203,7 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (publisherId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property publisherId in model LiftrBaseOfferDetails"));
-        }
-        if (offerId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property offerId in model LiftrBaseOfferDetails"));
-        }
-        if (planId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property planId in model LiftrBaseOfferDetails"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LiftrBaseOfferDetails.class);
 
     /**
      * {@inheritDoc}
@@ -254,44 +222,40 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
     }
 
     /**
-     * Reads an instance of LiftrBaseOfferDetails from the JsonReader.
+     * Reads an instance of LiftrBaseOfferDetailsUpdate from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of LiftrBaseOfferDetails if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the LiftrBaseOfferDetails.
+     * @return An instance of LiftrBaseOfferDetailsUpdate if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the LiftrBaseOfferDetailsUpdate.
      */
-    public static LiftrBaseOfferDetails fromJson(JsonReader jsonReader) throws IOException {
+    public static LiftrBaseOfferDetailsUpdate fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            LiftrBaseOfferDetails deserializedLiftrBaseOfferDetails = new LiftrBaseOfferDetails();
+            LiftrBaseOfferDetailsUpdate deserializedLiftrBaseOfferDetailsUpdate = new LiftrBaseOfferDetailsUpdate();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("publisherId".equals(fieldName)) {
-                    deserializedLiftrBaseOfferDetails.publisherId = reader.getString();
+                    deserializedLiftrBaseOfferDetailsUpdate.publisherId = reader.getString();
                 } else if ("offerId".equals(fieldName)) {
-                    deserializedLiftrBaseOfferDetails.offerId = reader.getString();
+                    deserializedLiftrBaseOfferDetailsUpdate.offerId = reader.getString();
                 } else if ("planId".equals(fieldName)) {
-                    deserializedLiftrBaseOfferDetails.planId = reader.getString();
+                    deserializedLiftrBaseOfferDetailsUpdate.planId = reader.getString();
                 } else if ("planName".equals(fieldName)) {
-                    deserializedLiftrBaseOfferDetails.planName = reader.getString();
+                    deserializedLiftrBaseOfferDetailsUpdate.planName = reader.getString();
                 } else if ("termUnit".equals(fieldName)) {
-                    deserializedLiftrBaseOfferDetails.termUnit = reader.getString();
+                    deserializedLiftrBaseOfferDetailsUpdate.termUnit = reader.getString();
                 } else if ("termId".equals(fieldName)) {
-                    deserializedLiftrBaseOfferDetails.termId = reader.getString();
+                    deserializedLiftrBaseOfferDetailsUpdate.termId = reader.getString();
                 } else if ("renewalMode".equals(fieldName)) {
-                    deserializedLiftrBaseOfferDetails.renewalMode = RenewalMode.fromString(reader.getString());
-                } else if ("endDate".equals(fieldName)) {
-                    deserializedLiftrBaseOfferDetails.endDate = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedLiftrBaseOfferDetailsUpdate.renewalMode = RenewalMode.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedLiftrBaseOfferDetails;
+            return deserializedLiftrBaseOfferDetailsUpdate;
         });
     }
 }
