@@ -23,7 +23,10 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.hybridcompute.fluent.ExtensionMetadataV2sClient;
 import com.azure.resourcemanager.hybridcompute.fluent.ExtensionMetadatasClient;
+import com.azure.resourcemanager.hybridcompute.fluent.ExtensionPublishersClient;
+import com.azure.resourcemanager.hybridcompute.fluent.ExtensionTypesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.GatewaysClient;
 import com.azure.resourcemanager.hybridcompute.fluent.HybridComputeManagementClient;
 import com.azure.resourcemanager.hybridcompute.fluent.LicenseProfilesClient;
@@ -222,6 +225,48 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
     }
 
     /**
+     * The ExtensionMetadataV2sClient object to access its operations.
+     */
+    private final ExtensionMetadataV2sClient extensionMetadataV2s;
+
+    /**
+     * Gets the ExtensionMetadataV2sClient object to access its operations.
+     * 
+     * @return the ExtensionMetadataV2sClient object.
+     */
+    public ExtensionMetadataV2sClient getExtensionMetadataV2s() {
+        return this.extensionMetadataV2s;
+    }
+
+    /**
+     * The ExtensionTypesClient object to access its operations.
+     */
+    private final ExtensionTypesClient extensionTypes;
+
+    /**
+     * Gets the ExtensionTypesClient object to access its operations.
+     * 
+     * @return the ExtensionTypesClient object.
+     */
+    public ExtensionTypesClient getExtensionTypes() {
+        return this.extensionTypes;
+    }
+
+    /**
+     * The ExtensionPublishersClient object to access its operations.
+     */
+    private final ExtensionPublishersClient extensionPublishers;
+
+    /**
+     * Gets the ExtensionPublishersClient object to access its operations.
+     * 
+     * @return the ExtensionPublishersClient object.
+     */
+    public ExtensionPublishersClient getExtensionPublishers() {
+        return this.extensionPublishers;
+    }
+
+    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -364,13 +409,16 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-07-31-preview";
+        this.apiVersion = "2024-11-10-preview";
         this.licenses = new LicensesClientImpl(this);
         this.machines = new MachinesClientImpl(this);
         this.licenseProfiles = new LicenseProfilesClientImpl(this);
         this.machineExtensions = new MachineExtensionsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.extensionMetadatas = new ExtensionMetadatasClientImpl(this);
+        this.extensionMetadataV2s = new ExtensionMetadataV2sClientImpl(this);
+        this.extensionTypes = new ExtensionTypesClientImpl(this);
+        this.extensionPublishers = new ExtensionPublishersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.networkProfiles = new NetworkProfilesClientImpl(this);
         this.machineRunCommands = new MachineRunCommandsClientImpl(this);
