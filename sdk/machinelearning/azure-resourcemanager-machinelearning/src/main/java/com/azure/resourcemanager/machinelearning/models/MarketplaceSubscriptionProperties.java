@@ -18,11 +18,6 @@ import java.io.IOException;
 @Fluent
 public final class MarketplaceSubscriptionProperties implements JsonSerializable<MarketplaceSubscriptionProperties> {
     /*
-     * [Required] Target Marketplace Model ID to create a Marketplace Subscription for.
-     */
-    private String modelId;
-
-    /*
      * Marketplace Plan associated with the Marketplace Subscription.
      */
     private MarketplacePlan marketplacePlan;
@@ -33,6 +28,11 @@ public final class MarketplaceSubscriptionProperties implements JsonSerializable
     private MarketplaceSubscriptionStatus marketplaceSubscriptionStatus;
 
     /*
+     * [Required] Target Marketplace Model ID to create a Marketplace Subscription for.
+     */
+    private String modelId;
+
+    /*
      * Provisioning State of the Marketplace Subscription.
      */
     private MarketplaceSubscriptionProvisioningState provisioningState;
@@ -41,6 +41,24 @@ public final class MarketplaceSubscriptionProperties implements JsonSerializable
      * Creates an instance of MarketplaceSubscriptionProperties class.
      */
     public MarketplaceSubscriptionProperties() {
+    }
+
+    /**
+     * Get the marketplacePlan property: Marketplace Plan associated with the Marketplace Subscription.
+     * 
+     * @return the marketplacePlan value.
+     */
+    public MarketplacePlan marketplacePlan() {
+        return this.marketplacePlan;
+    }
+
+    /**
+     * Get the marketplaceSubscriptionStatus property: Current status of the Marketplace Subscription.
+     * 
+     * @return the marketplaceSubscriptionStatus value.
+     */
+    public MarketplaceSubscriptionStatus marketplaceSubscriptionStatus() {
+        return this.marketplaceSubscriptionStatus;
     }
 
     /**
@@ -64,24 +82,6 @@ public final class MarketplaceSubscriptionProperties implements JsonSerializable
     }
 
     /**
-     * Get the marketplacePlan property: Marketplace Plan associated with the Marketplace Subscription.
-     * 
-     * @return the marketplacePlan value.
-     */
-    public MarketplacePlan marketplacePlan() {
-        return this.marketplacePlan;
-    }
-
-    /**
-     * Get the marketplaceSubscriptionStatus property: Current status of the Marketplace Subscription.
-     * 
-     * @return the marketplaceSubscriptionStatus value.
-     */
-    public MarketplaceSubscriptionStatus marketplaceSubscriptionStatus() {
-        return this.marketplaceSubscriptionStatus;
-    }
-
-    /**
      * Get the provisioningState property: Provisioning State of the Marketplace Subscription.
      * 
      * @return the provisioningState value.
@@ -96,13 +96,13 @@ public final class MarketplaceSubscriptionProperties implements JsonSerializable
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (marketplacePlan() != null) {
+            marketplacePlan().validate();
+        }
         if (modelId() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property modelId in model MarketplaceSubscriptionProperties"));
-        }
-        if (marketplacePlan() != null) {
-            marketplacePlan().validate();
         }
     }
 

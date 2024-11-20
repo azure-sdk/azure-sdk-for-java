@@ -69,7 +69,6 @@ public final class TopNFeaturesByAttribution extends MonitoringFeatureFilterBase
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
