@@ -27,6 +27,16 @@ public final class TypeConversionSettings implements JsonSerializable<TypeConver
     private Object treatBooleanAsNumber;
 
     /*
+     * The format for Date values. Type: string (or Expression with resultType string).
+     */
+    private Object dateFormat;
+
+    /*
+     * The format for Time values. Type: string (or Expression with resultType string).
+     */
+    private Object timeFormat;
+
+    /*
      * The format for DateTime values. Type: string (or Expression with resultType string).
      */
     private Object dateTimeFormat;
@@ -93,6 +103,46 @@ public final class TypeConversionSettings implements JsonSerializable<TypeConver
      */
     public TypeConversionSettings withTreatBooleanAsNumber(Object treatBooleanAsNumber) {
         this.treatBooleanAsNumber = treatBooleanAsNumber;
+        return this;
+    }
+
+    /**
+     * Get the dateFormat property: The format for Date values. Type: string (or Expression with resultType string).
+     * 
+     * @return the dateFormat value.
+     */
+    public Object dateFormat() {
+        return this.dateFormat;
+    }
+
+    /**
+     * Set the dateFormat property: The format for Date values. Type: string (or Expression with resultType string).
+     * 
+     * @param dateFormat the dateFormat value to set.
+     * @return the TypeConversionSettings object itself.
+     */
+    public TypeConversionSettings withDateFormat(Object dateFormat) {
+        this.dateFormat = dateFormat;
+        return this;
+    }
+
+    /**
+     * Get the timeFormat property: The format for Time values. Type: string (or Expression with resultType string).
+     * 
+     * @return the timeFormat value.
+     */
+    public Object timeFormat() {
+        return this.timeFormat;
+    }
+
+    /**
+     * Set the timeFormat property: The format for Time values. Type: string (or Expression with resultType string).
+     * 
+     * @param timeFormat the timeFormat value to set.
+     * @return the TypeConversionSettings object itself.
+     */
+    public TypeConversionSettings withTimeFormat(Object timeFormat) {
+        this.timeFormat = timeFormat;
         return this;
     }
 
@@ -200,6 +250,8 @@ public final class TypeConversionSettings implements JsonSerializable<TypeConver
         jsonWriter.writeStartObject();
         jsonWriter.writeUntypedField("allowDataTruncation", this.allowDataTruncation);
         jsonWriter.writeUntypedField("treatBooleanAsNumber", this.treatBooleanAsNumber);
+        jsonWriter.writeUntypedField("dateFormat", this.dateFormat);
+        jsonWriter.writeUntypedField("timeFormat", this.timeFormat);
         jsonWriter.writeUntypedField("dateTimeFormat", this.dateTimeFormat);
         jsonWriter.writeUntypedField("dateTimeOffsetFormat", this.dateTimeOffsetFormat);
         jsonWriter.writeUntypedField("timeSpanFormat", this.timeSpanFormat);
@@ -226,6 +278,10 @@ public final class TypeConversionSettings implements JsonSerializable<TypeConver
                     deserializedTypeConversionSettings.allowDataTruncation = reader.readUntyped();
                 } else if ("treatBooleanAsNumber".equals(fieldName)) {
                     deserializedTypeConversionSettings.treatBooleanAsNumber = reader.readUntyped();
+                } else if ("dateFormat".equals(fieldName)) {
+                    deserializedTypeConversionSettings.dateFormat = reader.readUntyped();
+                } else if ("timeFormat".equals(fieldName)) {
+                    deserializedTypeConversionSettings.timeFormat = reader.readUntyped();
                 } else if ("dateTimeFormat".equals(fieldName)) {
                     deserializedTypeConversionSettings.dateTimeFormat = reader.readUntyped();
                 } else if ("dateTimeOffsetFormat".equals(fieldName)) {
