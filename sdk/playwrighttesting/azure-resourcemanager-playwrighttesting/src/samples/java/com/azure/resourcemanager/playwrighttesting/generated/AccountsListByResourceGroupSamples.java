@@ -10,8 +10,8 @@ package com.azure.resourcemanager.playwrighttesting.generated;
 public final class AccountsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2023-10-01-preview/
-     * examples/Accounts_ListByResourceGroup.json
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Accounts_ListByResourceGroup.json
      */
     /**
      * Sample code: Accounts_ListByResourceGroup.
