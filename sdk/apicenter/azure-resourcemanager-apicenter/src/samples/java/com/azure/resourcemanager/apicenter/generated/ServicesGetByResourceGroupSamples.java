@@ -10,7 +10,8 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class ServicesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-12-01-preview/examples/Services_Get.
+     * json
      */
     /**
      * Sample code: Services_Get.
@@ -18,7 +19,7 @@ public final class ServicesGetByResourceGroupSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void servicesGet(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.services().getByResourceGroupWithResponse("contoso-resources", "contoso",
-            com.azure.core.util.Context.NONE);
+        manager.services()
+            .getByResourceGroupWithResponse("contoso-resources", "contoso", com.azure.core.util.Context.NONE);
     }
 }

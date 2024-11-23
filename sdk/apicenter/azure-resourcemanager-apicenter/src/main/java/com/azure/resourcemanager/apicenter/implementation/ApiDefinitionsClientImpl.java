@@ -107,7 +107,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
             @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
-            @BodyParam("application/json") ApiDefinitionInner resource, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") ApiDefinitionInner payload, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -552,7 +552,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -561,7 +561,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiDefinitionInner resource) {
+        ApiDefinitionInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -589,16 +589,16 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         if (definitionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter definitionName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, resource, accept, context))
+                definitionName, payload, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -611,7 +611,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -621,7 +621,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiDefinitionInner resource, Context context) {
+        ApiDefinitionInner payload, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -649,16 +649,16 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         if (definitionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter definitionName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, accept, context);
+            definitionName, payload, accept, context);
     }
 
     /**
@@ -670,7 +670,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -678,9 +678,9 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner resource) {
+        String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner payload) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+            definitionName, payload).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -692,7 +692,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -701,10 +701,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiDefinitionsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner resource,
+        String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner payload,
         Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, context).block();
+            definitionName, payload, context).block();
     }
 
     /**
@@ -716,7 +716,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -724,9 +724,9 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiDefinitionInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String versionName, String definitionName, ApiDefinitionInner resource) {
+        String apiName, String versionName, String definitionName, ApiDefinitionInner payload) {
         return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, Context.NONE).getValue();
+            definitionName, payload, Context.NONE).getValue();
     }
 
     /**
@@ -1663,9 +1663,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1691,9 +1689,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -9,7 +9,8 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class ApiVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file:
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-12-01-preview/examples/
      * ApiVersions_CreateOrUpdate.json
      */
     /**
@@ -18,7 +19,9 @@ public final class ApiVersionsCreateOrUpdateSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void apiVersionsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apiVersions().define("2023-01-01")
-            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").create();
+        manager.apiVersions()
+            .define("2023-01-01")
+            .withExistingApi("contoso-resources", "contoso", "default", "echo-api")
+            .create();
     }
 }

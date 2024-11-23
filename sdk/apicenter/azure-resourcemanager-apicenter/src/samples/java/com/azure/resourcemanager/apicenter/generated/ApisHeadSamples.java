@@ -10,7 +10,7 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class ApisHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Apis_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-12-01-preview/examples/Apis_Head.json
      */
     /**
      * Sample code: Apis_Head.
@@ -18,7 +18,7 @@ public final class ApisHeadSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void apisHead(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apis().headWithResponse("contoso-resources", "contoso", "default", "echo-api",
-            com.azure.core.util.Context.NONE);
+        manager.apis()
+            .headWithResponse("contoso-resources", "contoso", "default", "echo-api", com.azure.core.util.Context.NONE);
     }
 }

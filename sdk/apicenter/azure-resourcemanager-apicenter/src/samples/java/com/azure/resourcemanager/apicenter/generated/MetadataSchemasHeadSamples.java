@@ -10,7 +10,8 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class MetadataSchemasHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/MetadataSchemas_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-12-01-preview/examples/
+     * MetadataSchemas_Head.json
      */
     /**
      * Sample code: MetadataSchemas_Head.
@@ -18,7 +19,7 @@ public final class MetadataSchemasHeadSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void metadataSchemasHead(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.metadataSchemas().headWithResponse("contoso-resources", "contoso", "author",
-            com.azure.core.util.Context.NONE);
+        manager.metadataSchemas()
+            .headWithResponse("contoso-resources", "contoso", "author", com.azure.core.util.Context.NONE);
     }
 }

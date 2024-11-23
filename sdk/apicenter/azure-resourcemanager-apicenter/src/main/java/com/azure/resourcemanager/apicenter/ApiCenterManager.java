@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,15 +20,16 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apicenter.fluent.AzureApiCenter;
 import com.azure.resourcemanager.apicenter.implementation.ApiDefinitionsImpl;
+import com.azure.resourcemanager.apicenter.implementation.ApiSourcesImpl;
 import com.azure.resourcemanager.apicenter.implementation.ApiVersionsImpl;
 import com.azure.resourcemanager.apicenter.implementation.ApisImpl;
 import com.azure.resourcemanager.apicenter.implementation.AzureApiCenterBuilder;
+import com.azure.resourcemanager.apicenter.implementation.DeletedServicesImpl;
 import com.azure.resourcemanager.apicenter.implementation.DeploymentsImpl;
 import com.azure.resourcemanager.apicenter.implementation.EnvironmentsImpl;
 import com.azure.resourcemanager.apicenter.implementation.MetadataSchemasImpl;
@@ -35,8 +37,10 @@ import com.azure.resourcemanager.apicenter.implementation.OperationsImpl;
 import com.azure.resourcemanager.apicenter.implementation.ServicesImpl;
 import com.azure.resourcemanager.apicenter.implementation.WorkspacesImpl;
 import com.azure.resourcemanager.apicenter.models.ApiDefinitions;
+import com.azure.resourcemanager.apicenter.models.ApiSources;
 import com.azure.resourcemanager.apicenter.models.ApiVersions;
 import com.azure.resourcemanager.apicenter.models.Apis;
+import com.azure.resourcemanager.apicenter.models.DeletedServices;
 import com.azure.resourcemanager.apicenter.models.Deployments;
 import com.azure.resourcemanager.apicenter.models.Environments;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemas;
@@ -57,11 +61,15 @@ import java.util.stream.Collectors;
 public final class ApiCenterManager {
     private Operations operations;
 
+    private DeletedServices deletedServices;
+
     private Services services;
 
     private MetadataSchemas metadataSchemas;
 
     private Workspaces workspaces;
+
+    private ApiSources apiSources;
 
     private Apis apis;
 
@@ -237,7 +245,7 @@ public final class ApiCenterManager {
                 .append("-")
                 .append("com.azure.resourcemanager.apicenter")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -270,7 +278,7 @@ public final class ApiCenterManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -293,6 +301,18 @@ public final class ApiCenterManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of DeletedServices.
+     * 
+     * @return Resource collection API of DeletedServices.
+     */
+    public DeletedServices deletedServices() {
+        if (this.deletedServices == null) {
+            this.deletedServices = new DeletedServicesImpl(clientObject.getDeletedServices(), this);
+        }
+        return deletedServices;
     }
 
     /**
@@ -329,6 +349,18 @@ public final class ApiCenterManager {
             this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
         }
         return workspaces;
+    }
+
+    /**
+     * Gets the resource collection API of ApiSources. It manages ApiSource.
+     * 
+     * @return Resource collection API of ApiSources.
+     */
+    public ApiSources apiSources() {
+        if (this.apiSources == null) {
+            this.apiSources = new ApiSourcesImpl(clientObject.getApiSources(), this);
+        }
+        return apiSources;
     }
 
     /**
