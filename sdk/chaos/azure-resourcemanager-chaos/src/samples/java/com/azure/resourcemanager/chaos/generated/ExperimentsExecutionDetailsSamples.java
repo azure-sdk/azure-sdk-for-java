@@ -9,8 +9,8 @@ package com.azure.resourcemanager.chaos.generated;
  */
 public final class ExperimentsExecutionDetailsSamples {
     /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DetailsExperiment.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/
+     * ExperimentExecutions_GetExecutionDetails.json
      */
     /**
      * Sample code: Get experiment execution details.
@@ -18,7 +18,8 @@ public final class ExperimentsExecutionDetailsSamples {
      * @param manager Entry point to ChaosManager.
      */
     public static void getExperimentExecutionDetails(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments().executionDetailsWithResponse("exampleRG", "exampleExperiment",
-            "f24500ad-744e-4a26-864b-b76199eac333", com.azure.core.util.Context.NONE);
+        manager.experiments()
+            .executionDetailsWithResponse("exampleRG", "exampleExperiment", "f24500ad-744e-4a26-864b-b76199eac333",
+                com.azure.core.util.Context.NONE);
     }
 }

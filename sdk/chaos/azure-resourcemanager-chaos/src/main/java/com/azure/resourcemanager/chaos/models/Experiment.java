@@ -51,18 +51,18 @@ public interface Experiment {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: The system metadata of the experiment resource.
+     * Gets the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the identity property: The identity of the experiment resource.
-     * 
-     * @return the identity value.
-     */
-    ResourceIdentity identity();
 
     /**
      * Gets the provisioningState property: Most recent provisioning state for the given experiment resource.
@@ -159,7 +159,7 @@ public interface Experiment {
             /**
              * Specifies resourceGroupName.
              * 
-             * @param resourceGroupName String that represents an Azure resource group.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithSteps withExistingResourceGroup(String resourceGroupName);
@@ -230,12 +230,12 @@ public interface Experiment {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the experiment resource..
+             * Specifies the identity property: The managed service identities assigned to this resource..
              * 
-             * @param identity The identity of the experiment resource.
+             * @param identity The managed service identities assigned to this resource.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(ResourceIdentity identity);
+            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
     }
 
@@ -275,9 +275,9 @@ public interface Experiment {
          */
         interface WithTags {
             /**
-             * Specifies the tags property: The tags of the experiment resource..
+             * Specifies the tags property: Resource tags..
              * 
-             * @param tags The tags of the experiment resource.
+             * @param tags Resource tags.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
@@ -288,12 +288,12 @@ public interface Experiment {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the experiment resource..
+             * Specifies the identity property: Experiment managed identity..
              * 
-             * @param identity The identity of the experiment resource.
+             * @param identity Experiment managed identity.
              * @return the next definition stage.
              */
-            Update withIdentity(ResourceIdentity identity);
+            Update withIdentity(ManagedServiceIdentity identity);
         }
     }
 
@@ -317,8 +317,9 @@ public interface Experiment {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents the post action response.
      */
-    void cancel();
+    PostActionResult cancel();
 
     /**
      * Cancel a running Experiment resource.
@@ -327,16 +328,18 @@ public interface Experiment {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents the post action response.
      */
-    void cancel(Context context);
+    PostActionResult cancel(Context context);
 
     /**
      * Start a Experiment resource.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents the post action response.
      */
-    void start();
+    PostActionResult start();
 
     /**
      * Start a Experiment resource.
@@ -345,6 +348,7 @@ public interface Experiment {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents the post action response.
      */
-    void start(Context context);
+    PostActionResult start(Context context);
 }

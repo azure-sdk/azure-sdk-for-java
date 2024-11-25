@@ -5,37 +5,82 @@
 package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsPropertiesRunInformation;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 
 /**
  * Model that represents the extended properties of an experiment execution.
  */
 @Immutable
-public final class ExperimentExecutionDetailsProperties extends ExperimentExecutionProperties {
+public final class ExperimentExecutionDetailsProperties
+    implements JsonSerializable<ExperimentExecutionDetailsProperties> {
+    /*
+     * The status of the execution.
+     */
+    private String status;
+
+    /*
+     * String that represents the start date time.
+     */
+    private OffsetDateTime startedAt;
+
+    /*
+     * String that represents the stop date time.
+     */
+    private OffsetDateTime stoppedAt;
+
     /*
      * The reason why the execution failed.
      */
-    @JsonProperty(value = "failureReason", access = JsonProperty.Access.WRITE_ONLY)
     private String failureReason;
 
     /*
      * String that represents the last action date time.
      */
-    @JsonProperty(value = "lastActionAt", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastActionAt;
 
     /*
      * The information of the experiment run.
      */
-    @JsonProperty(value = "runInformation", access = JsonProperty.Access.WRITE_ONLY)
     private ExperimentExecutionDetailsPropertiesRunInformation runInformation;
 
     /**
      * Creates an instance of ExperimentExecutionDetailsProperties class.
      */
     public ExperimentExecutionDetailsProperties() {
+    }
+
+    /**
+     * Get the status property: The status of the execution.
+     * 
+     * @return the status value.
+     */
+    public String status() {
+        return this.status;
+    }
+
+    /**
+     * Get the startedAt property: String that represents the start date time.
+     * 
+     * @return the startedAt value.
+     */
+    public OffsetDateTime startedAt() {
+        return this.startedAt;
+    }
+
+    /**
+     * Get the stoppedAt property: String that represents the stop date time.
+     * 
+     * @return the stoppedAt value.
+     */
+    public OffsetDateTime stoppedAt() {
+        return this.stoppedAt;
     }
 
     /**
@@ -70,11 +115,59 @@ public final class ExperimentExecutionDetailsProperties extends ExperimentExecut
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
         if (runInformation() != null) {
             runInformation().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ExperimentExecutionDetailsProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ExperimentExecutionDetailsProperties if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ExperimentExecutionDetailsProperties.
+     */
+    public static ExperimentExecutionDetailsProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ExperimentExecutionDetailsProperties deserializedExperimentExecutionDetailsProperties
+                = new ExperimentExecutionDetailsProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("status".equals(fieldName)) {
+                    deserializedExperimentExecutionDetailsProperties.status = reader.getString();
+                } else if ("startedAt".equals(fieldName)) {
+                    deserializedExperimentExecutionDetailsProperties.startedAt = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("stoppedAt".equals(fieldName)) {
+                    deserializedExperimentExecutionDetailsProperties.stoppedAt = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("failureReason".equals(fieldName)) {
+                    deserializedExperimentExecutionDetailsProperties.failureReason = reader.getString();
+                } else if ("lastActionAt".equals(fieldName)) {
+                    deserializedExperimentExecutionDetailsProperties.lastActionAt = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("runInformation".equals(fieldName)) {
+                    deserializedExperimentExecutionDetailsProperties.runInformation
+                        = ExperimentExecutionDetailsPropertiesRunInformation.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedExperimentExecutionDetailsProperties;
+        });
     }
 }

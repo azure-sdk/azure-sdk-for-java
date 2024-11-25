@@ -12,8 +12,9 @@ import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
 import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
 import com.azure.resourcemanager.chaos.models.Experiment;
 import com.azure.resourcemanager.chaos.models.ExperimentUpdate;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.chaos.models.PostActionResult;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -48,12 +49,12 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
-    public ResourceIdentity identity() {
-        return this.innerModel().identity();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public ProvisioningState provisioningState() {
@@ -102,7 +103,7 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
 
     private String experimentName;
 
-    private ExperimentUpdate updateExperiment;
+    private ExperimentUpdate updateProperties;
 
     public ExperimentImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -130,21 +131,21 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
     }
 
     public ExperimentImpl update() {
-        this.updateExperiment = new ExperimentUpdate();
+        this.updateProperties = new ExperimentUpdate();
         return this;
     }
 
     public Experiment apply() {
         this.innerObject = serviceManager.serviceClient()
             .getExperiments()
-            .update(resourceGroupName, experimentName, updateExperiment, Context.NONE);
+            .update(resourceGroupName, experimentName, updateProperties, Context.NONE);
         return this;
     }
 
     public Experiment apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getExperiments()
-            .update(resourceGroupName, experimentName, updateExperiment, context);
+            .update(resourceGroupName, experimentName, updateProperties, context);
         return this;
     }
 
@@ -171,20 +172,20 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         return this;
     }
 
-    public void cancel() {
-        serviceManager.experiments().cancel(resourceGroupName, experimentName);
+    public PostActionResult cancel() {
+        return serviceManager.experiments().cancel(resourceGroupName, experimentName);
     }
 
-    public void cancel(Context context) {
-        serviceManager.experiments().cancel(resourceGroupName, experimentName, context);
+    public PostActionResult cancel(Context context) {
+        return serviceManager.experiments().cancel(resourceGroupName, experimentName, context);
     }
 
-    public void start() {
-        serviceManager.experiments().start(resourceGroupName, experimentName);
+    public PostActionResult start() {
+        return serviceManager.experiments().start(resourceGroupName, experimentName);
     }
 
-    public void start(Context context) {
-        serviceManager.experiments().start(resourceGroupName, experimentName, context);
+    public PostActionResult start(Context context) {
+        return serviceManager.experiments().start(resourceGroupName, experimentName, context);
     }
 
     public ExperimentImpl withRegion(Region location) {
@@ -212,17 +213,17 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateExperiment.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }
 
-    public ExperimentImpl withIdentity(ResourceIdentity identity) {
+    public ExperimentImpl withIdentity(ManagedServiceIdentity identity) {
         if (isInCreateMode()) {
             this.innerModel().withIdentity(identity);
             return this;
         } else {
-            this.updateExperiment.withIdentity(identity);
+            this.updateProperties.withIdentity(identity);
             return this;
         }
     }

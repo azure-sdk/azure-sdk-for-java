@@ -13,10 +13,12 @@ import com.azure.resourcemanager.chaos.fluent.ExperimentsClient;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentInner;
+import com.azure.resourcemanager.chaos.fluent.models.PostActionResultInner;
 import com.azure.resourcemanager.chaos.models.Experiment;
 import com.azure.resourcemanager.chaos.models.ExperimentExecution;
 import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetails;
 import com.azure.resourcemanager.chaos.models.Experiments;
+import com.azure.resourcemanager.chaos.models.PostActionResult;
 
 public final class ExperimentsImpl implements Experiments {
     private static final ClientLogger LOGGER = new ClientLogger(ExperimentsImpl.class);
@@ -52,14 +54,6 @@ public final class ExperimentsImpl implements Experiments {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ExperimentImpl(inner1, this.manager()));
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String experimentName) {
-        this.serviceClient().delete(resourceGroupName, experimentName);
-    }
-
-    public void delete(String resourceGroupName, String experimentName, Context context) {
-        this.serviceClient().delete(resourceGroupName, experimentName, context);
-    }
-
     public Response<Experiment> getByResourceGroupWithResponse(String resourceGroupName, String experimentName,
         Context context) {
         Response<ExperimentInner> inner
@@ -81,20 +75,30 @@ public final class ExperimentsImpl implements Experiments {
         }
     }
 
-    public void cancel(String resourceGroupName, String experimentName) {
-        this.serviceClient().cancel(resourceGroupName, experimentName);
+    public void deleteByResourceGroup(String resourceGroupName, String experimentName) {
+        this.serviceClient().delete(resourceGroupName, experimentName);
     }
 
-    public void cancel(String resourceGroupName, String experimentName, Context context) {
-        this.serviceClient().cancel(resourceGroupName, experimentName, context);
+    public void delete(String resourceGroupName, String experimentName, Context context) {
+        this.serviceClient().delete(resourceGroupName, experimentName, context);
     }
 
-    public void start(String resourceGroupName, String experimentName) {
-        this.serviceClient().start(resourceGroupName, experimentName);
+    public PostActionResult cancel(String resourceGroupName, String experimentName) {
+        PostActionResultInner inner = this.serviceClient().cancel(resourceGroupName, experimentName);
+        if (inner != null) {
+            return new PostActionResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public void start(String resourceGroupName, String experimentName, Context context) {
-        this.serviceClient().start(resourceGroupName, experimentName, context);
+    public PostActionResult cancel(String resourceGroupName, String experimentName, Context context) {
+        PostActionResultInner inner = this.serviceClient().cancel(resourceGroupName, experimentName, context);
+        if (inner != null) {
+            return new PostActionResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public PagedIterable<ExperimentExecution> listAllExecutions(String resourceGroupName, String experimentName) {
@@ -150,6 +154,24 @@ public final class ExperimentsImpl implements Experiments {
             = this.serviceClient().executionDetails(resourceGroupName, experimentName, executionId);
         if (inner != null) {
             return new ExperimentExecutionDetailsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PostActionResult start(String resourceGroupName, String experimentName) {
+        PostActionResultInner inner = this.serviceClient().start(resourceGroupName, experimentName);
+        if (inner != null) {
+            return new PostActionResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PostActionResult start(String resourceGroupName, String experimentName, Context context) {
+        PostActionResultInner inner = this.serviceClient().start(resourceGroupName, experimentName, context);
+        if (inner != null) {
+            return new PostActionResultImpl(inner, this.manager());
         } else {
             return null;
         }

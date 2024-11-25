@@ -5,69 +5,48 @@
 package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 
 /**
- * Model that represents the execution of a Experiment.
+ * Model that represents the execution of an Experiment.
  */
 @Immutable
-public final class ExperimentExecutionInner {
-    /*
-     * String of the resource type.
-     */
-    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
-    private String type;
-
-    /*
-     * String of the fully qualified resource ID.
-     */
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
-    private String id;
-
-    /*
-     * String of the resource name.
-     */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
-    private String name;
-
+public final class ExperimentExecutionInner extends ProxyResource {
     /*
      * The properties of experiment execution status.
      */
-    @JsonProperty(value = "properties")
     private ExperimentExecutionProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
      * Creates an instance of ExperimentExecutionInner class.
      */
     public ExperimentExecutionInner() {
-    }
-
-    /**
-     * Get the type property: String of the resource type.
-     * 
-     * @return the type value.
-     */
-    public String type() {
-        return this.type;
-    }
-
-    /**
-     * Get the id property: String of the fully qualified resource ID.
-     * 
-     * @return the id value.
-     */
-    public String id() {
-        return this.id;
-    }
-
-    /**
-     * Get the name property: String of the resource name.
-     * 
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
     }
 
     /**
@@ -77,6 +56,45 @@ public final class ExperimentExecutionInner {
      */
     private ExperimentExecutionProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -115,5 +133,51 @@ public final class ExperimentExecutionInner {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ExperimentExecutionInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ExperimentExecutionInner if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ExperimentExecutionInner.
+     */
+    public static ExperimentExecutionInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ExperimentExecutionInner deserializedExperimentExecutionInner = new ExperimentExecutionInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedExperimentExecutionInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedExperimentExecutionInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedExperimentExecutionInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedExperimentExecutionInner.innerProperties
+                        = ExperimentExecutionProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedExperimentExecutionInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedExperimentExecutionInner;
+        });
     }
 }

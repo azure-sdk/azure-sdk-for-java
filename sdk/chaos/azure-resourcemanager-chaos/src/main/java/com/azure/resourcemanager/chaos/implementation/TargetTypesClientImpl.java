@@ -63,21 +63,21 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
     @ServiceInterface(name = "ChaosManagementClien")
     public interface TargetTypesService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{locationName}/targetTypes")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<TargetTypeListResult>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("locationName") String locationName, @QueryParam("continuationToken") String continuationToken,
+            @PathParam("location") String location, @QueryParam("continuationToken") String continuationToken,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{locationName}/targetTypes/{targetTypeName}")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<TargetTypeInner>> get(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("locationName") String locationName, @PathParam("targetTypeName") String targetTypeName,
+            @PathParam("location") String location, @PathParam("targetTypeName") String targetTypeName,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -91,7 +91,7 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
     /**
      * Get a list of Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param continuationToken String that sets the continuation token.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -100,7 +100,7 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<TargetTypeInner>> listSinglePageAsync(String locationName, String continuationToken) {
+    private Mono<PagedResponse<TargetTypeInner>> listSinglePageAsync(String location, String continuationToken) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -109,13 +109,13 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), locationName, continuationToken, accept, context))
+                this.client.getSubscriptionId(), location, continuationToken, accept, context))
             .<PagedResponse<TargetTypeInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -124,7 +124,7 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
     /**
      * Get a list of Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -134,7 +134,7 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<TargetTypeInner>> listSinglePageAsync(String locationName, String continuationToken,
+    private Mono<PagedResponse<TargetTypeInner>> listSinglePageAsync(String location, String continuationToken,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -144,13 +144,13 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), locationName,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), location,
                 continuationToken, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -159,7 +159,7 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
     /**
      * Get a list of Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param continuationToken String that sets the continuation token.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -167,31 +167,31 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * @return a list of Target Type resources for given location as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<TargetTypeInner> listAsync(String locationName, String continuationToken) {
-        return new PagedFlux<>(() -> listSinglePageAsync(locationName, continuationToken),
+    private PagedFlux<TargetTypeInner> listAsync(String location, String continuationToken) {
+        return new PagedFlux<>(() -> listSinglePageAsync(location, continuationToken),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get a list of Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Target Type resources for given location as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<TargetTypeInner> listAsync(String locationName) {
+    private PagedFlux<TargetTypeInner> listAsync(String location) {
         final String continuationToken = null;
-        return new PagedFlux<>(() -> listSinglePageAsync(locationName, continuationToken),
+        return new PagedFlux<>(() -> listSinglePageAsync(location, continuationToken),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get a list of Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -200,30 +200,30 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * @return a list of Target Type resources for given location as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<TargetTypeInner> listAsync(String locationName, String continuationToken, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(locationName, continuationToken, context),
+    private PagedFlux<TargetTypeInner> listAsync(String location, String continuationToken, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(location, continuationToken, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Get a list of Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Target Type resources for given location as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<TargetTypeInner> list(String locationName) {
+    public PagedIterable<TargetTypeInner> list(String location) {
         final String continuationToken = null;
-        return new PagedIterable<>(listAsync(locationName, continuationToken));
+        return new PagedIterable<>(listAsync(location, continuationToken));
     }
 
     /**
      * Get a list of Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -232,14 +232,14 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * @return a list of Target Type resources for given location as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<TargetTypeInner> list(String locationName, String continuationToken, Context context) {
-        return new PagedIterable<>(listAsync(locationName, continuationToken, context));
+    public PagedIterable<TargetTypeInner> list(String location, String continuationToken, Context context) {
+        return new PagedIterable<>(listAsync(location, continuationToken, context));
     }
 
     /**
      * Get a Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -248,7 +248,7 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<TargetTypeInner>> getWithResponseAsync(String locationName, String targetTypeName) {
+    private Mono<Response<TargetTypeInner>> getWithResponseAsync(String location, String targetTypeName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -257,8 +257,8 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         if (targetTypeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter targetTypeName is required and cannot be null."));
@@ -266,14 +266,14 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), locationName, targetTypeName, accept, context))
+                this.client.getSubscriptionId(), location, targetTypeName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -283,7 +283,7 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<TargetTypeInner>> getWithResponseAsync(String locationName, String targetTypeName,
+    private Mono<Response<TargetTypeInner>> getWithResponseAsync(String location, String targetTypeName,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -293,8 +293,8 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         if (targetTypeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter targetTypeName is required and cannot be null."));
@@ -302,13 +302,13 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            locationName, targetTypeName, accept, context);
+            location, targetTypeName, accept, context);
     }
 
     /**
      * Get a Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -316,14 +316,14 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * @return a Target Type resources for given location on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<TargetTypeInner> getAsync(String locationName, String targetTypeName) {
-        return getWithResponseAsync(locationName, targetTypeName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<TargetTypeInner> getAsync(String location, String targetTypeName) {
+        return getWithResponseAsync(location, targetTypeName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -332,14 +332,14 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * @return a Target Type resources for given location along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<TargetTypeInner> getWithResponse(String locationName, String targetTypeName, Context context) {
-        return getWithResponseAsync(locationName, targetTypeName, context).block();
+    public Response<TargetTypeInner> getWithResponse(String location, String targetTypeName, Context context) {
+        return getWithResponseAsync(location, targetTypeName, context).block();
     }
 
     /**
      * Get a Target Type resources for given location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -347,16 +347,14 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
      * @return a Target Type resources for given location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public TargetTypeInner get(String locationName, String targetTypeName) {
-        return getWithResponse(locationName, targetTypeName, Context.NONE).getValue();
+    public TargetTypeInner get(String location, String targetTypeName) {
+        return getWithResponse(location, targetTypeName, Context.NONE).getValue();
     }
 
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -382,9 +380,7 @@ public final class TargetTypesClientImpl implements TargetTypesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

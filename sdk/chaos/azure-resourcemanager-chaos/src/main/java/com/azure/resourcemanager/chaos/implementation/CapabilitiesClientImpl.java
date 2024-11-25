@@ -74,9 +74,9 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("parentProviderNamespace") String parentProviderNamespace,
             @PathParam("parentResourceType") String parentResourceType,
-            @PathParam("parentResourceName") String parentResourceName, @PathParam("targetName") String targetName,
-            @QueryParam("continuationToken") String continuationToken, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("parentResourceName") String parentResourceName,
+            @QueryParam("continuationToken") String continuationToken, @PathParam("targetName") String targetName,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}")
@@ -91,6 +91,19 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
             @PathParam("capabilityName") String capabilityName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CapabilityInner>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("parentProviderNamespace") String parentProviderNamespace,
+            @PathParam("parentResourceType") String parentResourceType,
+            @PathParam("parentResourceName") String parentResourceName, @PathParam("targetName") String targetName,
+            @PathParam("capabilityName") String capabilityName, @BodyParam("application/json") CapabilityInner resource,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -103,20 +116,6 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
             @PathParam("capabilityName") String capabilityName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CapabilityInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("parentProviderNamespace") String parentProviderNamespace,
-            @PathParam("parentResourceType") String parentResourceType,
-            @PathParam("parentResourceName") String parentResourceName, @PathParam("targetName") String targetName,
-            @PathParam("capabilityName") String capabilityName,
-            @BodyParam("application/json") CapabilityInner capability, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -127,10 +126,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a list of Capability resources that extend a Target resource..
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param continuationToken String that sets the continuation token.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -174,7 +173,7 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, parentProviderNamespace, parentResourceType,
-                parentResourceName, targetName, continuationToken, accept, context))
+                parentResourceName, continuationToken, targetName, accept, context))
             .<PagedResponse<CapabilityInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -183,10 +182,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a list of Capability resources that extend a Target resource..
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
@@ -231,8 +230,8 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName, targetName,
-                continuationToken, accept, context)
+                resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName, continuationToken,
+                targetName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -240,10 +239,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a list of Capability resources that extend a Target resource..
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param continuationToken String that sets the continuation token.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -262,10 +261,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a list of Capability resources that extend a Target resource..
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -284,10 +283,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a list of Capability resources that extend a Target resource..
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
@@ -310,10 +309,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a list of Capability resources that extend a Target resource..
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -332,10 +331,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a list of Capability resources that extend a Target resource..
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
@@ -356,10 +355,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a Capability resource that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -413,10 +412,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a Capability resource that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @param context The context to associate with this operation.
@@ -470,10 +469,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a Capability resource that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -491,10 +490,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a Capability resource that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @param context The context to associate with this operation.
@@ -514,10 +513,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get a Capability resource that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -533,12 +532,208 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     }
 
     /**
+     * Create or update a Capability resource that extends a Target resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
+     * @param targetName String that represents a Target resource name.
+     * @param capabilityName String that represents a Capability resource name.
+     * @param resource Capability resource to be created or updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Capability resource along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CapabilityInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String parentProviderNamespace, String parentResourceType, String parentResourceName, String targetName,
+        String capabilityName, CapabilityInner resource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (parentProviderNamespace == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter parentProviderNamespace is required and cannot be null."));
+        }
+        if (parentResourceType == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter parentResourceType is required and cannot be null."));
+        }
+        if (parentResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter parentResourceName is required and cannot be null."));
+        }
+        if (targetName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter targetName is required and cannot be null."));
+        }
+        if (capabilityName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter capabilityName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, parentProviderNamespace, parentResourceType,
+                parentResourceName, targetName, capabilityName, resource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create or update a Capability resource that extends a Target resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
+     * @param targetName String that represents a Target resource name.
+     * @param capabilityName String that represents a Capability resource name.
+     * @param resource Capability resource to be created or updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Capability resource along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CapabilityInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String parentProviderNamespace, String parentResourceType, String parentResourceName, String targetName,
+        String capabilityName, CapabilityInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (parentProviderNamespace == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter parentProviderNamespace is required and cannot be null."));
+        }
+        if (parentResourceType == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter parentResourceType is required and cannot be null."));
+        }
+        if (parentResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter parentResourceName is required and cannot be null."));
+        }
+        if (targetName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter targetName is required and cannot be null."));
+        }
+        if (capabilityName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter capabilityName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, parentProviderNamespace, parentResourceType,
+            parentResourceName, targetName, capabilityName, resource, accept, context);
+    }
+
+    /**
+     * Create or update a Capability resource that extends a Target resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
+     * @param targetName String that represents a Target resource name.
+     * @param capabilityName String that represents a Capability resource name.
+     * @param resource Capability resource to be created or updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Capability resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CapabilityInner> createOrUpdateAsync(String resourceGroupName, String parentProviderNamespace,
+        String parentResourceType, String parentResourceName, String targetName, String capabilityName,
+        CapabilityInner resource) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, parentProviderNamespace, parentResourceType,
+            parentResourceName, targetName, capabilityName, resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Create or update a Capability resource that extends a Target resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
+     * @param targetName String that represents a Target resource name.
+     * @param capabilityName String that represents a Capability resource name.
+     * @param resource Capability resource to be created or updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Capability resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CapabilityInner> createOrUpdateWithResponse(String resourceGroupName,
+        String parentProviderNamespace, String parentResourceType, String parentResourceName, String targetName,
+        String capabilityName, CapabilityInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, parentProviderNamespace, parentResourceType,
+            parentResourceName, targetName, capabilityName, resource, context).block();
+    }
+
+    /**
+     * Create or update a Capability resource that extends a Target resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
+     * @param targetName String that represents a Target resource name.
+     * @param capabilityName String that represents a Capability resource name.
+     * @param resource Capability resource to be created or updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Capability resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CapabilityInner createOrUpdate(String resourceGroupName, String parentProviderNamespace,
+        String parentResourceType, String parentResourceName, String targetName, String capabilityName,
+        CapabilityInner resource) {
+        return createOrUpdateWithResponse(resourceGroupName, parentProviderNamespace, parentResourceType,
+            parentResourceName, targetName, capabilityName, resource, Context.NONE).getValue();
+    }
+
+    /**
      * Delete a Capability that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -590,10 +785,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Delete a Capability that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @param context The context to associate with this operation.
@@ -646,10 +841,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Delete a Capability that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -667,10 +862,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Delete a Capability that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @param context The context to associate with this operation.
@@ -690,10 +885,10 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Delete a Capability that extends a Target resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param parentProviderNamespace The parent resource provider namespace.
+     * @param parentResourceType The parent resource type.
+     * @param parentResourceName The parent resource name.
      * @param targetName String that represents a Target resource name.
      * @param capabilityName String that represents a Capability resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -708,208 +903,9 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     }
 
     /**
-     * Create or update a Capability resource that extends a Target resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
-     * @param targetName String that represents a Target resource name.
-     * @param capabilityName String that represents a Capability resource name.
-     * @param capability Capability resource to be created or updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Capability resource along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CapabilityInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String parentProviderNamespace, String parentResourceType, String parentResourceName, String targetName,
-        String capabilityName, CapabilityInner capability) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (parentProviderNamespace == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter parentProviderNamespace is required and cannot be null."));
-        }
-        if (parentResourceType == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter parentResourceType is required and cannot be null."));
-        }
-        if (parentResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter parentResourceName is required and cannot be null."));
-        }
-        if (targetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter targetName is required and cannot be null."));
-        }
-        if (capabilityName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter capabilityName is required and cannot be null."));
-        }
-        if (capability == null) {
-            return Mono.error(new IllegalArgumentException("Parameter capability is required and cannot be null."));
-        } else {
-            capability.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, parentProviderNamespace, parentResourceType,
-                parentResourceName, targetName, capabilityName, capability, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Create or update a Capability resource that extends a Target resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
-     * @param targetName String that represents a Target resource name.
-     * @param capabilityName String that represents a Capability resource name.
-     * @param capability Capability resource to be created or updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Capability resource along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CapabilityInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String parentProviderNamespace, String parentResourceType, String parentResourceName, String targetName,
-        String capabilityName, CapabilityInner capability, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (parentProviderNamespace == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter parentProviderNamespace is required and cannot be null."));
-        }
-        if (parentResourceType == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter parentResourceType is required and cannot be null."));
-        }
-        if (parentResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter parentResourceName is required and cannot be null."));
-        }
-        if (targetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter targetName is required and cannot be null."));
-        }
-        if (capabilityName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter capabilityName is required and cannot be null."));
-        }
-        if (capability == null) {
-            return Mono.error(new IllegalArgumentException("Parameter capability is required and cannot be null."));
-        } else {
-            capability.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, parentProviderNamespace, parentResourceType,
-            parentResourceName, targetName, capabilityName, capability, accept, context);
-    }
-
-    /**
-     * Create or update a Capability resource that extends a Target resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
-     * @param targetName String that represents a Target resource name.
-     * @param capabilityName String that represents a Capability resource name.
-     * @param capability Capability resource to be created or updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Capability resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CapabilityInner> createOrUpdateAsync(String resourceGroupName, String parentProviderNamespace,
-        String parentResourceType, String parentResourceName, String targetName, String capabilityName,
-        CapabilityInner capability) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, parentProviderNamespace, parentResourceType,
-            parentResourceName, targetName, capabilityName, capability)
-                .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Create or update a Capability resource that extends a Target resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
-     * @param targetName String that represents a Target resource name.
-     * @param capabilityName String that represents a Capability resource name.
-     * @param capability Capability resource to be created or updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Capability resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CapabilityInner> createOrUpdateWithResponse(String resourceGroupName,
-        String parentProviderNamespace, String parentResourceType, String parentResourceName, String targetName,
-        String capabilityName, CapabilityInner capability, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, parentProviderNamespace, parentResourceType,
-            parentResourceName, targetName, capabilityName, capability, context).block();
-    }
-
-    /**
-     * Create or update a Capability resource that extends a Target resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param parentProviderNamespace String that represents a resource provider namespace.
-     * @param parentResourceType String that represents a resource type.
-     * @param parentResourceName String that represents a resource name.
-     * @param targetName String that represents a Target resource name.
-     * @param capabilityName String that represents a Capability resource name.
-     * @param capability Capability resource to be created or updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Capability resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CapabilityInner createOrUpdate(String resourceGroupName, String parentProviderNamespace,
-        String parentResourceType, String parentResourceName, String targetName, String capabilityName,
-        CapabilityInner capability) {
-        return createOrUpdateWithResponse(resourceGroupName, parentProviderNamespace, parentResourceType,
-            parentResourceName, targetName, capabilityName, capability, Context.NONE).getValue();
-    }
-
-    /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -935,9 +931,7 @@ public final class CapabilitiesClientImpl implements CapabilitiesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

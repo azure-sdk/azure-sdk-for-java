@@ -4,26 +4,28 @@
 
 package com.azure.resourcemanager.chaos.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.chaos.fluent.models.TargetTypeInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Model that represents a list of Target Type resources and a link for pagination.
  */
-@Immutable
-public final class TargetTypeListResult {
+@Fluent
+public final class TargetTypeListResult implements JsonSerializable<TargetTypeListResult> {
     /*
-     * List of Target Type resources.
+     * The TargetType items on this page
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<TargetTypeInner> value;
 
     /*
-     * URL to retrieve the next page of Target Type resources.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
     /**
@@ -33,7 +35,7 @@ public final class TargetTypeListResult {
     }
 
     /**
-     * Get the value property: List of Target Type resources.
+     * Get the value property: The TargetType items on this page.
      * 
      * @return the value value.
      */
@@ -42,12 +44,34 @@ public final class TargetTypeListResult {
     }
 
     /**
-     * Get the nextLink property: URL to retrieve the next page of Target Type resources.
+     * Set the value property: The TargetType items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the TargetTypeListResult object itself.
+     */
+    public TargetTypeListResult withValue(List<TargetTypeInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the TargetTypeListResult object itself.
+     */
+    public TargetTypeListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
     }
 
     /**
@@ -59,5 +83,45 @@ public final class TargetTypeListResult {
         if (value() != null) {
             value().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of TargetTypeListResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of TargetTypeListResult if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the TargetTypeListResult.
+     */
+    public static TargetTypeListResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            TargetTypeListResult deserializedTargetTypeListResult = new TargetTypeListResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("value".equals(fieldName)) {
+                    List<TargetTypeInner> value = reader.readArray(reader1 -> TargetTypeInner.fromJson(reader1));
+                    deserializedTargetTypeListResult.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedTargetTypeListResult.nextLink = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedTargetTypeListResult;
+        });
     }
 }

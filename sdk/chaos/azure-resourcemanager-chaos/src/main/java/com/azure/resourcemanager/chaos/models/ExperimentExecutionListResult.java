@@ -4,26 +4,28 @@
 
 package com.azure.resourcemanager.chaos.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Model that represents a list of Experiment executions and a link for pagination.
  */
-@Immutable
-public final class ExperimentExecutionListResult {
+@Fluent
+public final class ExperimentExecutionListResult implements JsonSerializable<ExperimentExecutionListResult> {
     /*
-     * List of Experiment executions.
+     * The ExperimentExecution items on this page
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<ExperimentExecutionInner> value;
 
     /*
-     * URL to retrieve the next page of Experiment executions.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
     /**
@@ -33,7 +35,7 @@ public final class ExperimentExecutionListResult {
     }
 
     /**
-     * Get the value property: List of Experiment executions.
+     * Get the value property: The ExperimentExecution items on this page.
      * 
      * @return the value value.
      */
@@ -42,12 +44,34 @@ public final class ExperimentExecutionListResult {
     }
 
     /**
-     * Get the nextLink property: URL to retrieve the next page of Experiment executions.
+     * Set the value property: The ExperimentExecution items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the ExperimentExecutionListResult object itself.
+     */
+    public ExperimentExecutionListResult withValue(List<ExperimentExecutionInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the ExperimentExecutionListResult object itself.
+     */
+    public ExperimentExecutionListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
     }
 
     /**
@@ -59,5 +83,47 @@ public final class ExperimentExecutionListResult {
         if (value() != null) {
             value().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ExperimentExecutionListResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ExperimentExecutionListResult if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ExperimentExecutionListResult.
+     */
+    public static ExperimentExecutionListResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ExperimentExecutionListResult deserializedExperimentExecutionListResult
+                = new ExperimentExecutionListResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("value".equals(fieldName)) {
+                    List<ExperimentExecutionInner> value
+                        = reader.readArray(reader1 -> ExperimentExecutionInner.fromJson(reader1));
+                    deserializedExperimentExecutionListResult.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedExperimentExecutionListResult.nextLink = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedExperimentExecutionListResult;
+        });
     }
 }

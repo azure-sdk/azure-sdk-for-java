@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,7 +20,6 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
@@ -51,19 +51,19 @@ import java.util.stream.Collectors;
  * Chaos Management Client.
  */
 public final class ChaosManager {
-    private Capabilities capabilities;
-
-    private CapabilityTypes capabilityTypes;
+    private Operations operations;
 
     private Experiments experiments;
 
     private OperationStatuses operationStatuses;
 
-    private Operations operations;
-
     private TargetTypes targetTypes;
 
+    private CapabilityTypes capabilityTypes;
+
     private Targets targets;
+
+    private Capabilities capabilities;
 
     private final ChaosManagementClient clientObject;
 
@@ -229,7 +229,7 @@ public final class ChaosManager {
                 .append("-")
                 .append("com.azure.resourcemanager.chaos")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -262,7 +262,7 @@ public final class ChaosManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -276,27 +276,15 @@ public final class ChaosManager {
     }
 
     /**
-     * Gets the resource collection API of Capabilities.
+     * Gets the resource collection API of Operations.
      * 
-     * @return Resource collection API of Capabilities.
+     * @return Resource collection API of Operations.
      */
-    public Capabilities capabilities() {
-        if (this.capabilities == null) {
-            this.capabilities = new CapabilitiesImpl(clientObject.getCapabilities(), this);
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
-        return capabilities;
-    }
-
-    /**
-     * Gets the resource collection API of CapabilityTypes.
-     * 
-     * @return Resource collection API of CapabilityTypes.
-     */
-    public CapabilityTypes capabilityTypes() {
-        if (this.capabilityTypes == null) {
-            this.capabilityTypes = new CapabilityTypesImpl(clientObject.getCapabilityTypes(), this);
-        }
-        return capabilityTypes;
+        return operations;
     }
 
     /**
@@ -324,18 +312,6 @@ public final class ChaosManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
      * Gets the resource collection API of TargetTypes.
      * 
      * @return Resource collection API of TargetTypes.
@@ -348,6 +324,18 @@ public final class ChaosManager {
     }
 
     /**
+     * Gets the resource collection API of CapabilityTypes.
+     * 
+     * @return Resource collection API of CapabilityTypes.
+     */
+    public CapabilityTypes capabilityTypes() {
+        if (this.capabilityTypes == null) {
+            this.capabilityTypes = new CapabilityTypesImpl(clientObject.getCapabilityTypes(), this);
+        }
+        return capabilityTypes;
+    }
+
+    /**
      * Gets the resource collection API of Targets.
      * 
      * @return Resource collection API of Targets.
@@ -357,6 +345,18 @@ public final class ChaosManager {
             this.targets = new TargetsImpl(clientObject.getTargets(), this);
         }
         return targets;
+    }
+
+    /**
+     * Gets the resource collection API of Capabilities.
+     * 
+     * @return Resource collection API of Capabilities.
+     */
+    public Capabilities capabilities() {
+        if (this.capabilities == null) {
+            this.capabilities = new CapabilitiesImpl(clientObject.getCapabilities(), this);
+        }
+        return capabilities;
     }
 
     /**

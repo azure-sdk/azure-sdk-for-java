@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.chaos.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -45,12 +46,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = ChaosManagementClientBuilder.class)
 public final class ChaosManagementClientImpl implements ChaosManagementClient {
     /**
-     * GUID that represents an Azure subscription ID.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets GUID that represents an Azure subscription ID.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -129,31 +130,17 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
     }
 
     /**
-     * The CapabilitiesClient object to access its operations.
+     * The OperationsClient object to access its operations.
      */
-    private final CapabilitiesClient capabilities;
+    private final OperationsClient operations;
 
     /**
-     * Gets the CapabilitiesClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      * 
-     * @return the CapabilitiesClient object.
+     * @return the OperationsClient object.
      */
-    public CapabilitiesClient getCapabilities() {
-        return this.capabilities;
-    }
-
-    /**
-     * The CapabilityTypesClient object to access its operations.
-     */
-    private final CapabilityTypesClient capabilityTypes;
-
-    /**
-     * Gets the CapabilityTypesClient object to access its operations.
-     * 
-     * @return the CapabilityTypesClient object.
-     */
-    public CapabilityTypesClient getCapabilityTypes() {
-        return this.capabilityTypes;
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /**
@@ -185,20 +172,6 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
     }
 
     /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
      * The TargetTypesClient object to access its operations.
      */
     private final TargetTypesClient targetTypes;
@@ -210,6 +183,20 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
      */
     public TargetTypesClient getTargetTypes() {
         return this.targetTypes;
+    }
+
+    /**
+     * The CapabilityTypesClient object to access its operations.
+     */
+    private final CapabilityTypesClient capabilityTypes;
+
+    /**
+     * Gets the CapabilityTypesClient object to access its operations.
+     * 
+     * @return the CapabilityTypesClient object.
+     */
+    public CapabilityTypesClient getCapabilityTypes() {
+        return this.capabilityTypes;
     }
 
     /**
@@ -227,13 +214,27 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
     }
 
     /**
+     * The CapabilitiesClient object to access its operations.
+     */
+    private final CapabilitiesClient capabilities;
+
+    /**
+     * Gets the CapabilitiesClient object to access its operations.
+     * 
+     * @return the CapabilitiesClient object.
+     */
+    public CapabilitiesClient getCapabilities() {
+        return this.capabilities;
+    }
+
+    /**
      * Initializes an instance of ChaosManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId GUID that represents an Azure subscription ID.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     ChaosManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -243,14 +244,14 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-01-01";
-        this.capabilities = new CapabilitiesClientImpl(this);
-        this.capabilityTypes = new CapabilityTypesClientImpl(this);
+        this.apiVersion = "2025-01-01";
+        this.operations = new OperationsClientImpl(this);
         this.experiments = new ExperimentsClientImpl(this);
         this.operationStatuses = new OperationStatusesClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
         this.targetTypes = new TargetTypesClientImpl(this);
+        this.capabilityTypes = new CapabilityTypesClientImpl(this);
         this.targets = new TargetsClientImpl(this);
+        this.capabilities = new CapabilitiesClientImpl(this);
     }
 
     /**
@@ -355,7 +356,7 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {

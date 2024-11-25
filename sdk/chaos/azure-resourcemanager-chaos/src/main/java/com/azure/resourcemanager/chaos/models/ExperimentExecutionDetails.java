@@ -33,27 +33,6 @@ public interface ExperimentExecutionDetails {
     String name();
 
     /**
-     * Gets the failureReason property: The reason why the execution failed.
-     * 
-     * @return the failureReason value.
-     */
-    String failureReason();
-
-    /**
-     * Gets the lastActionAt property: String that represents the last action date time.
-     * 
-     * @return the lastActionAt value.
-     */
-    OffsetDateTime lastActionAt();
-
-    /**
-     * Gets the runInformation property: The information of the experiment run.
-     * 
-     * @return the runInformation value.
-     */
-    ExperimentExecutionDetailsPropertiesRunInformation runInformation();
-
-    /**
      * Gets the status property: The status of the execution.
      * 
      * @return the status value.
@@ -73,6 +52,27 @@ public interface ExperimentExecutionDetails {
      * @return the stoppedAt value.
      */
     OffsetDateTime stoppedAt();
+
+    /**
+     * Gets the failureReason property: The reason why the execution failed.
+     * 
+     * @return the failureReason value.
+     */
+    String failureReason();
+
+    /**
+     * Gets the lastActionAt property: String that represents the last action date time.
+     * 
+     * @return the lastActionAt value.
+     */
+    OffsetDateTime lastActionAt();
+
+    /**
+     * Gets the runInformation property: The information of the experiment run.
+     * 
+     * @return the runInformation value.
+     */
+    ExperimentExecutionDetailsPropertiesRunInformation runInformation();
 
     /**
      * Gets the inner com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner object.

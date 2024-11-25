@@ -1,14 +1,258 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-11-25)
 
-### Features Added
+- Azure Resource Manager Chaos client library for Java. This package contains Microsoft Azure SDK for Chaos Management SDK. Chaos Management Client. Package tag package-2025-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ResourceIdentity` was removed
 
-### Other Changes
+#### `models.ResourceIdentityType` was removed
+
+#### `models.OperationStatus` was removed
+
+#### `models.TargetType` was modified
+
+* `location()` was removed
+
+#### `models.Experiments` was modified
+
+* `void start(java.lang.String,java.lang.String)` -> `models.PostActionResult start(java.lang.String,java.lang.String)`
+* `void cancel(java.lang.String,java.lang.String,com.azure.core.util.Context)` -> `models.PostActionResult cancel(java.lang.String,java.lang.String,com.azure.core.util.Context)`
+* `void start(java.lang.String,java.lang.String,com.azure.core.util.Context)` -> `models.PostActionResult start(java.lang.String,java.lang.String,com.azure.core.util.Context)`
+* `void cancel(java.lang.String,java.lang.String)` -> `models.PostActionResult cancel(java.lang.String,java.lang.String)`
+
+#### `models.CapabilityType` was modified
+
+* `location()` was removed
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.Experiment` was modified
+
+* `void start()` -> `models.PostActionResult start()`
+* `void cancel(com.azure.core.util.Context)` -> `models.PostActionResult cancel(com.azure.core.util.Context)`
+* `models.ResourceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `void start(com.azure.core.util.Context)` -> `models.PostActionResult start(com.azure.core.util.Context)`
+* `void cancel()` -> `models.PostActionResult cancel()`
+
+#### `models.ChaosTargetSelector` was modified
+
+* `withAdditionalProperties(java.util.Map)` was removed
+* `additionalProperties()` was removed
+
+#### `models.ExperimentUpdate` was modified
+
+* `models.ResourceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.OperationStatuses` was modified
+
+* `models.OperationStatus get(java.lang.String,java.lang.String)` -> `models.OperationStatusResult get(java.lang.String,java.lang.String)`
+
+### Features Added
+
+* `models.ExperimentActionType` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.PostActionResult` was added
+
+* `models.OperationStatusResult` was added
+
+* `models.ManagedServiceIdentity` was added
+
+#### `models.TargetListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withNextLink(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ChaosTargetListSelector` was modified
+
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ChaosTargetSimpleFilterParameters` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DelayAction` was modified
+
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CapabilityTypeListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ChaosTargetQuerySelector` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.ExperimentExecutionDetailsPropertiesRunInformation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.StepStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ContinuousAction` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.CapabilityTypePropertiesRuntimeProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExperimentExecutionActionTargetDetailsError` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExperimentListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withNextLink(java.lang.String)` was added
+* `withValue(java.util.List)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExperimentExecutionListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withValue(java.util.List)` was added
+* `withNextLink(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExperimentExecution` was modified
+
+* `systemData()` was added
+
+#### `models.ChaosExperimentBranch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.KeyValuePair` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ChaosTargetFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ChaosTargetSimpleFilter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.ChaosExperimentStep` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ChaosExperimentAction` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.BranchStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TargetTypeListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withNextLink(java.lang.String)` was added
+* `withValue(java.util.List)` was added
+
+#### `models.DiscreteAction` was modified
+
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ActionStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ChaosTargetSelector` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CapabilityListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExperimentExecutionActionTargetDetailsProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExperimentUpdate` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TargetReference` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
 
 ## 1.1.0 (2024-03-15)
 

@@ -5,27 +5,27 @@
 package com.azure.resourcemanager.chaos.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
 /**
  * Describes an experiment update.
  */
 @Fluent
-public final class ExperimentUpdate {
+public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate> {
     /*
-     * The identity of the experiment resource.
+     * Resource tags.
      */
-    @JsonProperty(value = "identity")
-    private ResourceIdentity identity;
+    private Map<String, String> tags;
 
     /*
-     * The tags of the experiment resource.
+     * Experiment managed identity.
      */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
+    private ManagedServiceIdentity identity;
 
     /**
      * Creates an instance of ExperimentUpdate class.
@@ -34,27 +34,7 @@ public final class ExperimentUpdate {
     }
 
     /**
-     * Get the identity property: The identity of the experiment resource.
-     * 
-     * @return the identity value.
-     */
-    public ResourceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The identity of the experiment resource.
-     * 
-     * @param identity the identity value to set.
-     * @return the ExperimentUpdate object itself.
-     */
-    public ExperimentUpdate withIdentity(ResourceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the tags property: The tags of the experiment resource.
+     * Get the tags property: Resource tags.
      * 
      * @return the tags value.
      */
@@ -63,13 +43,33 @@ public final class ExperimentUpdate {
     }
 
     /**
-     * Set the tags property: The tags of the experiment resource.
+     * Set the tags property: Resource tags.
      * 
      * @param tags the tags value to set.
      * @return the ExperimentUpdate object itself.
      */
     public ExperimentUpdate withTags(Map<String, String> tags) {
         this.tags = tags;
+        return this;
+    }
+
+    /**
+     * Get the identity property: Experiment managed identity.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: Experiment managed identity.
+     * 
+     * @param identity the identity value to set.
+     * @return the ExperimentUpdate object itself.
+     */
+    public ExperimentUpdate withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
         return this;
     }
 
@@ -82,5 +82,45 @@ public final class ExperimentUpdate {
         if (identity() != null) {
             identity().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("identity", this.identity);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ExperimentUpdate from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ExperimentUpdate if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ExperimentUpdate.
+     */
+    public static ExperimentUpdate fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ExperimentUpdate deserializedExperimentUpdate = new ExperimentUpdate();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedExperimentUpdate.tags = tags;
+                } else if ("identity".equals(fieldName)) {
+                    deserializedExperimentUpdate.identity = ManagedServiceIdentity.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedExperimentUpdate;
+        });
     }
 }

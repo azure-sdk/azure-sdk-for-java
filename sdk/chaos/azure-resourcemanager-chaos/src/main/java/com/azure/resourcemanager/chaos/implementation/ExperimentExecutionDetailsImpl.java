@@ -32,18 +32,6 @@ public final class ExperimentExecutionDetailsImpl implements ExperimentExecution
         return this.innerModel().name();
     }
 
-    public String failureReason() {
-        return this.innerModel().failureReason();
-    }
-
-    public OffsetDateTime lastActionAt() {
-        return this.innerModel().lastActionAt();
-    }
-
-    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
-        return this.innerModel().runInformation();
-    }
-
     public String status() {
         return this.innerModel().status();
     }
@@ -54,6 +42,18 @@ public final class ExperimentExecutionDetailsImpl implements ExperimentExecution
 
     public OffsetDateTime stoppedAt() {
         return this.innerModel().stoppedAt();
+    }
+
+    public String failureReason() {
+        return this.innerModel().failureReason();
+    }
+
+    public OffsetDateTime lastActionAt() {
+        return this.innerModel().lastActionAt();
+    }
+
+    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
+        return this.innerModel().runInformation();
     }
 
     public ExperimentExecutionDetailsInner innerModel() {

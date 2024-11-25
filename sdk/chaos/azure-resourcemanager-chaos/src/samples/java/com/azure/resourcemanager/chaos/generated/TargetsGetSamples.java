@@ -10,7 +10,7 @@ package com.azure.resourcemanager.chaos.generated;
 public final class TargetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetTarget.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Targets_Get.json
      */
     /**
      * Sample code: Get a Target that extends a virtual machine resource.
@@ -19,7 +19,8 @@ public final class TargetsGetSamples {
      */
     public static void
         getATargetThatExtendsAVirtualMachineResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.targets().getWithResponse("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM",
-            "Microsoft-Agent", com.azure.core.util.Context.NONE);
+        manager.targets()
+            .getWithResponse("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM",
+                "Microsoft-VirtualMachine", com.azure.core.util.Context.NONE);
     }
 }
