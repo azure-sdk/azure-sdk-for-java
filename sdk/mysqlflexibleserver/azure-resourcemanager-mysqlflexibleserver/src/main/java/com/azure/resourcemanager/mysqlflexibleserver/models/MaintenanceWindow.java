@@ -5,36 +5,41 @@
 package com.azure.resourcemanager.mysqlflexibleserver.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * Maintenance window of a server.
  */
 @Fluent
-public final class MaintenanceWindow {
+public final class MaintenanceWindow implements JsonSerializable<MaintenanceWindow> {
     /*
      * indicates whether custom window is enabled or disabled
      */
-    @JsonProperty(value = "customWindow")
     private String customWindow;
 
     /*
      * start hour for maintenance window
      */
-    @JsonProperty(value = "startHour")
     private Integer startHour;
 
     /*
      * start minute for maintenance window
      */
-    @JsonProperty(value = "startMinute")
     private Integer startMinute;
 
     /*
      * day of week for maintenance window
      */
-    @JsonProperty(value = "dayOfWeek")
     private Integer dayOfWeek;
+
+    /*
+     * The batch of maintenance when enabled the custom managed maintenance window of a server.
+     */
+    private BatchOfMaintenance batchOfMaintenance;
 
     /**
      * Creates an instance of MaintenanceWindow class.
@@ -123,10 +128,82 @@ public final class MaintenanceWindow {
     }
 
     /**
+     * Get the batchOfMaintenance property: The batch of maintenance when enabled the custom managed maintenance window
+     * of a server.
+     * 
+     * @return the batchOfMaintenance value.
+     */
+    public BatchOfMaintenance batchOfMaintenance() {
+        return this.batchOfMaintenance;
+    }
+
+    /**
+     * Set the batchOfMaintenance property: The batch of maintenance when enabled the custom managed maintenance window
+     * of a server.
+     * 
+     * @param batchOfMaintenance the batchOfMaintenance value to set.
+     * @return the MaintenanceWindow object itself.
+     */
+    public MaintenanceWindow withBatchOfMaintenance(BatchOfMaintenance batchOfMaintenance) {
+        this.batchOfMaintenance = batchOfMaintenance;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("customWindow", this.customWindow);
+        jsonWriter.writeNumberField("startHour", this.startHour);
+        jsonWriter.writeNumberField("startMinute", this.startMinute);
+        jsonWriter.writeNumberField("dayOfWeek", this.dayOfWeek);
+        jsonWriter.writeStringField("batchOfMaintenance",
+            this.batchOfMaintenance == null ? null : this.batchOfMaintenance.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MaintenanceWindow from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MaintenanceWindow if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the MaintenanceWindow.
+     */
+    public static MaintenanceWindow fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MaintenanceWindow deserializedMaintenanceWindow = new MaintenanceWindow();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("customWindow".equals(fieldName)) {
+                    deserializedMaintenanceWindow.customWindow = reader.getString();
+                } else if ("startHour".equals(fieldName)) {
+                    deserializedMaintenanceWindow.startHour = reader.getNullable(JsonReader::getInt);
+                } else if ("startMinute".equals(fieldName)) {
+                    deserializedMaintenanceWindow.startMinute = reader.getNullable(JsonReader::getInt);
+                } else if ("dayOfWeek".equals(fieldName)) {
+                    deserializedMaintenanceWindow.dayOfWeek = reader.getNullable(JsonReader::getInt);
+                } else if ("batchOfMaintenance".equals(fieldName)) {
+                    deserializedMaintenanceWindow.batchOfMaintenance
+                        = BatchOfMaintenance.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMaintenanceWindow;
+        });
     }
 }

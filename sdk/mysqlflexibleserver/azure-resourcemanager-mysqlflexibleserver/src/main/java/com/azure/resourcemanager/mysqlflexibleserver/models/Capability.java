@@ -62,6 +62,13 @@ public interface Capability {
     List<ServerVersionCapabilityV2> supportedServerVersions();
 
     /**
+     * Gets the supportedFeatures property: A list of supported features.
+     * 
+     * @return the supportedFeatures value.
+     */
+    List<FeatureProperty> supportedFeatures();
+
+    /**
      * Gets the inner com.azure.resourcemanager.mysqlflexibleserver.fluent.models.CapabilityInner object.
      * 
      * @return the inner object.

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.mysqlflexibleserver.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.CapabilityInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Capability;
+import com.azure.resourcemanager.mysqlflexibleserver.models.FeatureProperty;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerEditionCapabilityV2;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersionCapabilityV2;
 import java.util.Collections;
@@ -59,6 +60,15 @@ public final class CapabilityImpl implements Capability {
 
     public List<ServerVersionCapabilityV2> supportedServerVersions() {
         List<ServerVersionCapabilityV2> inner = this.innerModel().supportedServerVersions();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<FeatureProperty> supportedFeatures() {
+        List<FeatureProperty> inner = this.innerModel().supportedFeatures();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
