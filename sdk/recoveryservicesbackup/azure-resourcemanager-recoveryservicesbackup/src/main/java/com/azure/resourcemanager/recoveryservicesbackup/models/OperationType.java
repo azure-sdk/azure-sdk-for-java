@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -28,6 +27,11 @@ public final class OperationType extends ExpandableStringEnum<OperationType> {
     public static final OperationType REREGISTER = fromString("Reregister");
 
     /**
+     * Static value Rehydrate for OperationType.
+     */
+    public static final OperationType REHYDRATE = fromString("Rehydrate");
+
+    /**
      * Creates a new instance of OperationType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -42,7 +46,6 @@ public final class OperationType extends ExpandableStringEnum<OperationType> {
      * @param name a name to look for.
      * @return the corresponding OperationType.
      */
-    @JsonCreator
     public static OperationType fromString(String name) {
         return fromString(name, OperationType.class);
     }
