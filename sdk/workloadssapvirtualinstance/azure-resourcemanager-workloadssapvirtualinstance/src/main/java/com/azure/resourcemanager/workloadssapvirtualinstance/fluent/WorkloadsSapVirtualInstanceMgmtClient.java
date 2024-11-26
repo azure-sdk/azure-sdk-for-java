@@ -73,4 +73,11 @@ public interface WorkloadsSapVirtualInstanceMgmtClient {
      * @return the SapApplicationServerInstancesClient object.
      */
     SapApplicationServerInstancesClient getSapApplicationServerInstances();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
 }

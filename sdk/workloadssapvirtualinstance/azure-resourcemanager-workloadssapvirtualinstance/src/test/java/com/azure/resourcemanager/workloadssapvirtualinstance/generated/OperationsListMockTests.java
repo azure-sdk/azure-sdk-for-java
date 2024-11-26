@@ -6,25 +6,24 @@ package com.azure.resourcemanager.workloadssapvirtualinstance.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager;
-import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapAvailabilityZoneDetailsRequest;
-import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapAvailabilityZoneDetailsResult;
-import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapDatabaseType;
-import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapProductType;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.ActionType;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.Operation;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
-public final class SapVirtualInstancesGetAvailabilityZoneDetaiMockTests {
+public final class OperationsListMockTests {
     @Test
-    public void testGetAvailabilityZoneDetailsWithResponse() throws Exception {
+    public void testList() throws Exception {
         String responseStr
-            = "{\"availabilityZonePairs\":[{\"zoneA\":9052215185939635562,\"zoneB\":2544407581840449875}]}";
+            = "{\"value\":[{\"name\":\"ttadijae\",\"isDataAction\":false,\"display\":{\"provider\":\"ieekpndzaa\",\"resource\":\"udqmeqwigpibudq\",\"operation\":\"xebeybpmz\",\"description\":\"rtffyaqitmh\"},\"origin\":\"system\",\"actionType\":\"Internal\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,15 +32,8 @@ public final class SapVirtualInstancesGetAvailabilityZoneDetaiMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        SapAvailabilityZoneDetailsResult response = manager.sapVirtualInstances()
-            .getAvailabilityZoneDetailsWithResponse("jzhpjbibgjmfx",
-                new SapAvailabilityZoneDetailsRequest().withAppLocation("mv")
-                    .withSapProduct(SapProductType.ECC)
-                    .withDatabaseType(SapDatabaseType.DB2),
-                com.azure.core.util.Context.NONE)
-            .getValue();
+        PagedIterable<Operation> response = manager.operations().list(com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals(9052215185939635562L, response.availabilityZonePairs().get(0).zoneA());
-        Assertions.assertEquals(2544407581840449875L, response.availabilityZonePairs().get(0).zoneB());
+        Assertions.assertEquals(ActionType.INTERNAL, response.iterator().next().actionType());
     }
 }
