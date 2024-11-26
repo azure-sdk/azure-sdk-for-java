@@ -10,9 +10,21 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.astro.fluent.OrganizationsClient;
+import com.azure.resourcemanager.astro.fluent.models.GetResourcesSuccessResponseInner;
+import com.azure.resourcemanager.astro.fluent.models.GetRolesSuccessResponseInner;
+import com.azure.resourcemanager.astro.fluent.models.GetUsersSuccessResponseInner;
+import com.azure.resourcemanager.astro.fluent.models.ManageRolesModelInner;
 import com.azure.resourcemanager.astro.fluent.models.OrganizationResourceInner;
+import com.azure.resourcemanager.astro.models.GetResourcesRequest;
+import com.azure.resourcemanager.astro.models.GetResourcesSuccessResponse;
+import com.azure.resourcemanager.astro.models.GetRolesRequest;
+import com.azure.resourcemanager.astro.models.GetRolesSuccessResponse;
+import com.azure.resourcemanager.astro.models.GetUsersRequest;
+import com.azure.resourcemanager.astro.models.GetUsersSuccessResponse;
+import com.azure.resourcemanager.astro.models.ManageRolesModel;
 import com.azure.resourcemanager.astro.models.OrganizationResource;
 import com.azure.resourcemanager.astro.models.Organizations;
+import com.azure.resourcemanager.astro.models.RemoveUserRequest;
 
 public final class OrganizationsImpl implements Organizations {
     private static final ClientLogger LOGGER = new ClientLogger(OrganizationsImpl.class);
@@ -75,6 +87,106 @@ public final class OrganizationsImpl implements Organizations {
 
     public void delete(String resourceGroupName, String organizationName, Context context) {
         this.serviceClient().delete(resourceGroupName, organizationName, context);
+    }
+
+    public Response<GetResourcesSuccessResponse> getResourcesWithResponse(String resourceGroupName,
+        String organizationName, GetResourcesRequest properties, Context context) {
+        Response<GetResourcesSuccessResponseInner> inner
+            = this.serviceClient().getResourcesWithResponse(resourceGroupName, organizationName, properties, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new GetResourcesSuccessResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GetResourcesSuccessResponse getResources(String resourceGroupName, String organizationName,
+        GetResourcesRequest properties) {
+        GetResourcesSuccessResponseInner inner
+            = this.serviceClient().getResources(resourceGroupName, organizationName, properties);
+        if (inner != null) {
+            return new GetResourcesSuccessResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<GetRolesSuccessResponse> getRolesWithResponse(String resourceGroupName, String organizationName,
+        GetRolesRequest properties, Context context) {
+        Response<GetRolesSuccessResponseInner> inner
+            = this.serviceClient().getRolesWithResponse(resourceGroupName, organizationName, properties, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new GetRolesSuccessResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GetRolesSuccessResponse getRoles(String resourceGroupName, String organizationName,
+        GetRolesRequest properties) {
+        GetRolesSuccessResponseInner inner
+            = this.serviceClient().getRoles(resourceGroupName, organizationName, properties);
+        if (inner != null) {
+            return new GetRolesSuccessResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<GetUsersSuccessResponse> getUsersWithResponse(String resourceGroupName, String organizationName,
+        GetUsersRequest properties, Context context) {
+        Response<GetUsersSuccessResponseInner> inner
+            = this.serviceClient().getUsersWithResponse(resourceGroupName, organizationName, properties, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new GetUsersSuccessResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GetUsersSuccessResponse getUsers(String resourceGroupName, String organizationName,
+        GetUsersRequest properties) {
+        GetUsersSuccessResponseInner inner
+            = this.serviceClient().getUsers(resourceGroupName, organizationName, properties);
+        if (inner != null) {
+            return new GetUsersSuccessResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ManageRolesModel> manageRolesWithResponse(String resourceGroupName, String organizationName,
+        ManageRolesModelInner properties, Context context) {
+        Response<ManageRolesModelInner> inner
+            = this.serviceClient().manageRolesWithResponse(resourceGroupName, organizationName, properties, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ManageRolesModelImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ManageRolesModel manageRoles(String resourceGroupName, String organizationName,
+        ManageRolesModelInner properties) {
+        ManageRolesModelInner inner = this.serviceClient().manageRoles(resourceGroupName, organizationName, properties);
+        if (inner != null) {
+            return new ManageRolesModelImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<Void> removeUserWithResponse(String resourceGroupName, String organizationName,
+        RemoveUserRequest properties, Context context) {
+        return this.serviceClient().removeUserWithResponse(resourceGroupName, organizationName, properties, context);
+    }
+
+    public void removeUser(String resourceGroupName, String organizationName, RemoveUserRequest properties) {
+        this.serviceClient().removeUser(resourceGroupName, organizationName, properties);
     }
 
     public OrganizationResource getById(String id) {

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.astro.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.astro.fluent.models.ManageRolesModelInner;
 
 /**
  * Resource collection API of Organizations.
@@ -103,6 +104,146 @@ public interface Organizations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String organizationName, Context context);
+
+    /**
+     * list of available resources.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of GetResourcesRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get resources API along with {@link Response}.
+     */
+    Response<GetResourcesSuccessResponse> getResourcesWithResponse(String resourceGroupName, String organizationName,
+        GetResourcesRequest properties, Context context);
+
+    /**
+     * list of available resources.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of GetResourcesRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get resources API.
+     */
+    GetResourcesSuccessResponse getResources(String resourceGroupName, String organizationName,
+        GetResourcesRequest properties);
+
+    /**
+     * list of available roles.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of GetRolesRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get roles API along with {@link Response}.
+     */
+    Response<GetRolesSuccessResponse> getRolesWithResponse(String resourceGroupName, String organizationName,
+        GetRolesRequest properties, Context context);
+
+    /**
+     * list of available roles.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of GetRolesRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get roles API.
+     */
+    GetRolesSuccessResponse getRoles(String resourceGroupName, String organizationName, GetRolesRequest properties);
+
+    /**
+     * list of users with roles.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of GetUsersRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get users API along with {@link Response}.
+     */
+    Response<GetUsersSuccessResponse> getUsersWithResponse(String resourceGroupName, String organizationName,
+        GetUsersRequest properties, Context context);
+
+    /**
+     * list of users with roles.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of GetUsersRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get users API.
+     */
+    GetUsersSuccessResponse getUsers(String resourceGroupName, String organizationName, GetUsersRequest properties);
+
+    /**
+     * manage roles of users.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of ManageRolesRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return request model for manage roles API along with {@link Response}.
+     */
+    Response<ManageRolesModel> manageRolesWithResponse(String resourceGroupName, String organizationName,
+        ManageRolesModelInner properties, Context context);
+
+    /**
+     * manage roles of users.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of ManageRolesRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return request model for manage roles API.
+     */
+    ManageRolesModel manageRoles(String resourceGroupName, String organizationName, ManageRolesModelInner properties);
+
+    /**
+     * remove user.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of RemoveUserRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> removeUserWithResponse(String resourceGroupName, String organizationName,
+        RemoveUserRequest properties, Context context);
+
+    /**
+     * remove user.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Name of the Organizations resource.
+     * @param properties properties of RemoveUserRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void removeUser(String resourceGroupName, String organizationName, RemoveUserRequest properties);
 
     /**
      * Get a OrganizationResource.

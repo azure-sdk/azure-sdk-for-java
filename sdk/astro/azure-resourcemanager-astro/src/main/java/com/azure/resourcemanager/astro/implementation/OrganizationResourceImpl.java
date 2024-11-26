@@ -4,15 +4,25 @@
 
 package com.azure.resourcemanager.astro.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.astro.fluent.models.ManageRolesModelInner;
 import com.azure.resourcemanager.astro.fluent.models.OrganizationResourceInner;
+import com.azure.resourcemanager.astro.models.GetResourcesRequest;
+import com.azure.resourcemanager.astro.models.GetResourcesSuccessResponse;
+import com.azure.resourcemanager.astro.models.GetRolesRequest;
+import com.azure.resourcemanager.astro.models.GetRolesSuccessResponse;
+import com.azure.resourcemanager.astro.models.GetUsersRequest;
+import com.azure.resourcemanager.astro.models.GetUsersSuccessResponse;
 import com.azure.resourcemanager.astro.models.LiftrBaseDataOrganizationProperties;
+import com.azure.resourcemanager.astro.models.ManageRolesModel;
 import com.azure.resourcemanager.astro.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.astro.models.OrganizationResource;
 import com.azure.resourcemanager.astro.models.OrganizationResourceUpdate;
 import com.azure.resourcemanager.astro.models.OrganizationResourceUpdateProperties;
+import com.azure.resourcemanager.astro.models.RemoveUserRequest;
 import java.util.Collections;
 import java.util.Map;
 
@@ -151,6 +161,52 @@ public final class OrganizationResourceImpl
             .getByResourceGroupWithResponse(resourceGroupName, organizationName, context)
             .getValue();
         return this;
+    }
+
+    public Response<GetResourcesSuccessResponse> getResourcesWithResponse(GetResourcesRequest properties,
+        Context context) {
+        return serviceManager.organizations()
+            .getResourcesWithResponse(resourceGroupName, organizationName, properties, context);
+    }
+
+    public GetResourcesSuccessResponse getResources(GetResourcesRequest properties) {
+        return serviceManager.organizations().getResources(resourceGroupName, organizationName, properties);
+    }
+
+    public Response<GetRolesSuccessResponse> getRolesWithResponse(GetRolesRequest properties, Context context) {
+        return serviceManager.organizations()
+            .getRolesWithResponse(resourceGroupName, organizationName, properties, context);
+    }
+
+    public GetRolesSuccessResponse getRoles(GetRolesRequest properties) {
+        return serviceManager.organizations().getRoles(resourceGroupName, organizationName, properties);
+    }
+
+    public Response<GetUsersSuccessResponse> getUsersWithResponse(GetUsersRequest properties, Context context) {
+        return serviceManager.organizations()
+            .getUsersWithResponse(resourceGroupName, organizationName, properties, context);
+    }
+
+    public GetUsersSuccessResponse getUsers(GetUsersRequest properties) {
+        return serviceManager.organizations().getUsers(resourceGroupName, organizationName, properties);
+    }
+
+    public Response<ManageRolesModel> manageRolesWithResponse(ManageRolesModelInner properties, Context context) {
+        return serviceManager.organizations()
+            .manageRolesWithResponse(resourceGroupName, organizationName, properties, context);
+    }
+
+    public ManageRolesModel manageRoles(ManageRolesModelInner properties) {
+        return serviceManager.organizations().manageRoles(resourceGroupName, organizationName, properties);
+    }
+
+    public Response<Void> removeUserWithResponse(RemoveUserRequest properties, Context context) {
+        return serviceManager.organizations()
+            .removeUserWithResponse(resourceGroupName, organizationName, properties, context);
+    }
+
+    public void removeUser(RemoveUserRequest properties) {
+        serviceManager.organizations().removeUser(resourceGroupName, organizationName, properties);
     }
 
     public OrganizationResourceImpl withRegion(Region location) {

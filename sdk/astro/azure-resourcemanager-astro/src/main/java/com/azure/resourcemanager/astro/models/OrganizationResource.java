@@ -4,9 +4,11 @@
 
 package com.azure.resourcemanager.astro.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.astro.fluent.models.ManageRolesModelInner;
 import com.azure.resourcemanager.astro.fluent.models.OrganizationResourceInner;
 import java.util.Map;
 
@@ -273,9 +275,9 @@ public interface OrganizationResource {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The updatable properties of the OrganizationResource..
+             * Specifies the properties property: The resource-specific properties for this resource..
              * 
-             * @param properties The updatable properties of the OrganizationResource.
+             * @param properties The resource-specific properties for this resource.
              * @return the next definition stage.
              */
             Update withProperties(OrganizationResourceUpdateProperties properties);
@@ -296,4 +298,118 @@ public interface OrganizationResource {
      * @return the refreshed resource.
      */
     OrganizationResource refresh(Context context);
+
+    /**
+     * list of available resources.
+     * 
+     * @param properties properties of GetResourcesRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get resources API along with {@link Response}.
+     */
+    Response<GetResourcesSuccessResponse> getResourcesWithResponse(GetResourcesRequest properties, Context context);
+
+    /**
+     * list of available resources.
+     * 
+     * @param properties properties of GetResourcesRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get resources API.
+     */
+    GetResourcesSuccessResponse getResources(GetResourcesRequest properties);
+
+    /**
+     * list of available roles.
+     * 
+     * @param properties properties of GetRolesRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get roles API along with {@link Response}.
+     */
+    Response<GetRolesSuccessResponse> getRolesWithResponse(GetRolesRequest properties, Context context);
+
+    /**
+     * list of available roles.
+     * 
+     * @param properties properties of GetRolesRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get roles API.
+     */
+    GetRolesSuccessResponse getRoles(GetRolesRequest properties);
+
+    /**
+     * list of users with roles.
+     * 
+     * @param properties properties of GetUsersRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get users API along with {@link Response}.
+     */
+    Response<GetUsersSuccessResponse> getUsersWithResponse(GetUsersRequest properties, Context context);
+
+    /**
+     * list of users with roles.
+     * 
+     * @param properties properties of GetUsersRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response model for get users API.
+     */
+    GetUsersSuccessResponse getUsers(GetUsersRequest properties);
+
+    /**
+     * manage roles of users.
+     * 
+     * @param properties properties of ManageRolesRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return request model for manage roles API along with {@link Response}.
+     */
+    Response<ManageRolesModel> manageRolesWithResponse(ManageRolesModelInner properties, Context context);
+
+    /**
+     * manage roles of users.
+     * 
+     * @param properties properties of ManageRolesRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return request model for manage roles API.
+     */
+    ManageRolesModel manageRoles(ManageRolesModelInner properties);
+
+    /**
+     * remove user.
+     * 
+     * @param properties properties of RemoveUserRequest.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> removeUserWithResponse(RemoveUserRequest properties, Context context);
+
+    /**
+     * remove user.
+     * 
+     * @param properties properties of RemoveUserRequest.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void removeUser(RemoveUserRequest properties);
 }

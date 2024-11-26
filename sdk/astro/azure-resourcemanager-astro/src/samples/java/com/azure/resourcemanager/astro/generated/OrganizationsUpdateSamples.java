@@ -5,13 +5,18 @@
 package com.azure.resourcemanager.astro.generated;
 
 import com.azure.resourcemanager.astro.models.LiftrBaseDataPartnerOrganizationPropertiesUpdate;
+import com.azure.resourcemanager.astro.models.LiftrBaseMarketplaceDetailsUpdate;
+import com.azure.resourcemanager.astro.models.LiftrBaseOfferDetailsUpdate;
 import com.azure.resourcemanager.astro.models.LiftrBaseSingleSignOnProperties;
 import com.azure.resourcemanager.astro.models.LiftrBaseUserDetailsUpdate;
 import com.azure.resourcemanager.astro.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.astro.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.astro.models.MarketplaceSubscriptionStatus;
 import com.azure.resourcemanager.astro.models.OrganizationResource;
 import com.azure.resourcemanager.astro.models.OrganizationResourceUpdateProperties;
+import com.azure.resourcemanager.astro.models.RenewalMode;
 import com.azure.resourcemanager.astro.models.SingleSignOnStates;
+import com.azure.resourcemanager.astro.models.UserAssignedIdentity;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,30 +26,48 @@ import java.util.Map;
  */
 public final class OrganizationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2023-08-01/examples/
+     * x-ms-original-file:
+     * specification/liftrastronomer/resource-manager/Astronomer.Astro/preview/2024-11-01-preview/examples/
      * Organizations_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Organizations_Update.
+     * Sample code: Organizations_Update_MaximumSet.
      * 
      * @param manager Entry point to AstroManager.
      */
-    public static void organizationsUpdate(com.azure.resourcemanager.astro.AstroManager manager) {
+    public static void organizationsUpdateMaximumSet(com.azure.resourcemanager.astro.AstroManager manager) {
         OrganizationResource resource = manager.organizations()
-            .getByResourceGroupWithResponse("rgastronomer", "6.", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withTags(mapOf("key1474", "fakeTokenPlaceholder"))
+            .getByResourceGroupWithResponse("rgastronomer", "org-name", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("key9852", "fakeTokenPlaceholder"))
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
-                .withUserAssignedIdentities(mapOf()))
+                .withUserAssignedIdentities(mapOf("key9286", new UserAssignedIdentity())))
             .withProperties(new OrganizationResourceUpdateProperties()
-                .withUser(new LiftrBaseUserDetailsUpdate().withFirstName("qeuofehzypzljgcuysugefbgxde")
-                    .withLastName("g").withEmailAddress(".K_@e7N-g1.xjqnbPs").withUpn("uwtprzdfpsqmktx")
-                    .withPhoneNumber("aqpyxznvqpgkzohevynofrjdfgoo"))
-                .withPartnerOrganizationProperties(new LiftrBaseDataPartnerOrganizationPropertiesUpdate()
-                    .withOrganizationId("lrtmbkvyvvoszhjevohkmyjhfyty").withWorkspaceId("xsepuskdhejaadusyxq")
-                    .withOrganizationName("U2P_").withWorkspaceName("L.-y_--:")
-                    .withSingleSignOnProperties(new LiftrBaseSingleSignOnProperties()
-                        .withSingleSignOnState(SingleSignOnStates.INITIAL).withEnterpriseAppId("mklfypyujwumgwdzae")
-                        .withSingleSignOnUrl("ymmtzkyghvinvhgnqlzwrr").withAadDomains(Arrays.asList("kfbleh")))))
+                .withMarketplace(new LiftrBaseMarketplaceDetailsUpdate().withSubscriptionId("nkcsegq")
+                    .withSubscriptionStatus(MarketplaceSubscriptionStatus.PENDING_FULFILLMENT_START)
+                    .withOfferDetails(new LiftrBaseOfferDetailsUpdate().withPublisherId("lmwmclwdsecdpbpq")
+                        .withOfferId("xsta")
+                        .withPlanId("fqqucecxoevhjlxqcdgjwmmsrzttbp")
+                        .withPlanName("gvinyrhjmpbggxyloat")
+                        .withTermUnit("vaomfejhbskxuhmocluwoettfib")
+                        .withTermId("hmdexaapsrqrhmxmbofhwvr")
+                        .withRenewalMode(RenewalMode.AUTO)))
+                .withUser(new LiftrBaseUserDetailsUpdate().withFirstName("udtkhkmlnbfklcbbl")
+                    .withLastName("fuqkvskj")
+                    .withEmailAddress("test@microsoft.com")
+                    .withUpn("pwqvhwqmerlshgkuxyctzmry")
+                    .withPhoneNumber("dugfmdmvhibsqeankiafs"))
+                .withPartnerOrganizationProperties(
+                    new LiftrBaseDataPartnerOrganizationPropertiesUpdate().withOrganizationId("wncyfiaz")
+                        .withWorkspaceId("qjomwrywxxydravkumubtqh")
+                        .withOrganizationName("org-name")
+                        .withWorkspaceName("org-name")
+                        .withSingleSignOnProperties(
+                            new LiftrBaseSingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
+                                .withEnterpriseAppId("rmlbwbbfwoaqauafgwhlvuics")
+                                .withSingleSignOnUrl("kfwqhhftpdaveuwloqs")
+                                .withAadDomains(Arrays.asList("mpf")))))
             .apply();
     }
 
