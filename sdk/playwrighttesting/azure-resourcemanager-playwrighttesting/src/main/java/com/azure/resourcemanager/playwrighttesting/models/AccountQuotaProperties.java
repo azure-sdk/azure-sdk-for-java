@@ -12,19 +12,14 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The subscription quota resource properties.
+ * The Playwright service account quota resource properties.
  */
 @Fluent
-public final class QuotaProperties implements JsonSerializable<QuotaProperties> {
+public final class AccountQuotaProperties implements JsonSerializable<AccountQuotaProperties> {
     /*
-     * The subscription quota resource free-trial properties.
+     * The Playwright service account quota resource free-trial properties.
      */
-    private FreeTrialProperties freeTrial;
-
-    /*
-     * Indicates the offering type for the subscription.
-     */
-    private OfferingType offeringType;
+    private AccountFreeTrialProperties freeTrial;
 
     /*
      * The status of the last operation.
@@ -32,38 +27,29 @@ public final class QuotaProperties implements JsonSerializable<QuotaProperties> 
     private ProvisioningState provisioningState;
 
     /**
-     * Creates an instance of QuotaProperties class.
+     * Creates an instance of AccountQuotaProperties class.
      */
-    public QuotaProperties() {
+    public AccountQuotaProperties() {
     }
 
     /**
-     * Get the freeTrial property: The subscription quota resource free-trial properties.
+     * Get the freeTrial property: The Playwright service account quota resource free-trial properties.
      * 
      * @return the freeTrial value.
      */
-    public FreeTrialProperties freeTrial() {
+    public AccountFreeTrialProperties freeTrial() {
         return this.freeTrial;
     }
 
     /**
-     * Set the freeTrial property: The subscription quota resource free-trial properties.
+     * Set the freeTrial property: The Playwright service account quota resource free-trial properties.
      * 
      * @param freeTrial the freeTrial value to set.
-     * @return the QuotaProperties object itself.
+     * @return the AccountQuotaProperties object itself.
      */
-    public QuotaProperties withFreeTrial(FreeTrialProperties freeTrial) {
+    public AccountQuotaProperties withFreeTrial(AccountFreeTrialProperties freeTrial) {
         this.freeTrial = freeTrial;
         return this;
-    }
-
-    /**
-     * Get the offeringType property: Indicates the offering type for the subscription.
-     * 
-     * @return the offeringType value.
-     */
-    public OfferingType offeringType() {
-        return this.offeringType;
     }
 
     /**
@@ -97,32 +83,31 @@ public final class QuotaProperties implements JsonSerializable<QuotaProperties> 
     }
 
     /**
-     * Reads an instance of QuotaProperties from the JsonReader.
+     * Reads an instance of AccountQuotaProperties from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of QuotaProperties if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the QuotaProperties.
+     * @return An instance of AccountQuotaProperties if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AccountQuotaProperties.
      */
-    public static QuotaProperties fromJson(JsonReader jsonReader) throws IOException {
+    public static AccountQuotaProperties fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            QuotaProperties deserializedQuotaProperties = new QuotaProperties();
+            AccountQuotaProperties deserializedAccountQuotaProperties = new AccountQuotaProperties();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("freeTrial".equals(fieldName)) {
-                    deserializedQuotaProperties.freeTrial = FreeTrialProperties.fromJson(reader);
-                } else if ("offeringType".equals(fieldName)) {
-                    deserializedQuotaProperties.offeringType = OfferingType.fromString(reader.getString());
+                    deserializedAccountQuotaProperties.freeTrial = AccountFreeTrialProperties.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {
-                    deserializedQuotaProperties.provisioningState = ProvisioningState.fromString(reader.getString());
+                    deserializedAccountQuotaProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedQuotaProperties;
+            return deserializedAccountQuotaProperties;
         });
     }
 }

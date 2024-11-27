@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.playwrighttesting.generated;
 
 /**
- * Samples for Accounts GetByResourceGroup.
+ * Samples for AccountQuotas ListByAccount.
  */
-public final class AccountsGetByResourceGroupSamples {
+public final class AccountQuotasListByAccountSamples {
     /*
      * x-ms-original-file:
      * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
-     * Accounts_Get.json
+     * AccountQuotas_ListByAccount.json
      */
     /**
-     * Sample code: Accounts_Get.
+     * Sample code: AccountQuotas_ListByAccount.
      * 
      * @param manager Entry point to PlaywrightTestingManager.
      */
-    public static void accountsGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.accounts()
-            .getByResourceGroupWithResponse("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE);
+    public static void
+        accountQuotasListByAccount(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.accountQuotas().listByAccount("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE);
     }
 }

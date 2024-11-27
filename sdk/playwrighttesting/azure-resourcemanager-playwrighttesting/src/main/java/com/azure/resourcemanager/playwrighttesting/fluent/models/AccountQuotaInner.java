@@ -10,18 +10,18 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.playwrighttesting.models.QuotaProperties;
+import com.azure.resourcemanager.playwrighttesting.models.AccountQuotaProperties;
 import java.io.IOException;
 
 /**
- * A subscription quota resource.
+ * A quota resource for a Playwright service account.
  */
 @Fluent
-public final class QuotaInner extends ProxyResource {
+public final class AccountQuotaInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
      */
-    private QuotaProperties properties;
+    private AccountQuotaProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -44,9 +44,9 @@ public final class QuotaInner extends ProxyResource {
     private String id;
 
     /**
-     * Creates an instance of QuotaInner class.
+     * Creates an instance of AccountQuotaInner class.
      */
-    public QuotaInner() {
+    public AccountQuotaInner() {
     }
 
     /**
@@ -54,7 +54,7 @@ public final class QuotaInner extends ProxyResource {
      * 
      * @return the properties value.
      */
-    public QuotaProperties properties() {
+    public AccountQuotaProperties properties() {
         return this.properties;
     }
 
@@ -62,9 +62,9 @@ public final class QuotaInner extends ProxyResource {
      * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
-     * @return the QuotaInner object itself.
+     * @return the AccountQuotaInner object itself.
      */
-    public QuotaInner withProperties(QuotaProperties properties) {
+    public AccountQuotaInner withProperties(AccountQuotaProperties properties) {
         this.properties = properties;
         return this;
     }
@@ -130,37 +130,37 @@ public final class QuotaInner extends ProxyResource {
     }
 
     /**
-     * Reads an instance of QuotaInner from the JsonReader.
+     * Reads an instance of AccountQuotaInner from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of QuotaInner if the JsonReader was pointing to an instance of it, or null if it was pointing
-     * to JSON null.
+     * @return An instance of AccountQuotaInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the QuotaInner.
+     * @throws IOException If an error occurs while reading the AccountQuotaInner.
      */
-    public static QuotaInner fromJson(JsonReader jsonReader) throws IOException {
+    public static AccountQuotaInner fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            QuotaInner deserializedQuotaInner = new QuotaInner();
+            AccountQuotaInner deserializedAccountQuotaInner = new AccountQuotaInner();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("id".equals(fieldName)) {
-                    deserializedQuotaInner.id = reader.getString();
+                    deserializedAccountQuotaInner.id = reader.getString();
                 } else if ("name".equals(fieldName)) {
-                    deserializedQuotaInner.name = reader.getString();
+                    deserializedAccountQuotaInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
-                    deserializedQuotaInner.type = reader.getString();
+                    deserializedAccountQuotaInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedQuotaInner.properties = QuotaProperties.fromJson(reader);
+                    deserializedAccountQuotaInner.properties = AccountQuotaProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
-                    deserializedQuotaInner.systemData = SystemData.fromJson(reader);
+                    deserializedAccountQuotaInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedQuotaInner;
+            return deserializedAccountQuotaInner;
         });
     }
 }

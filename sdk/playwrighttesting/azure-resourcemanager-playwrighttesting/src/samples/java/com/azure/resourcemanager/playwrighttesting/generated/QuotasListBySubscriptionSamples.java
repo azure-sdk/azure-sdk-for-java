@@ -10,8 +10,8 @@ package com.azure.resourcemanager.playwrighttesting.generated;
 public final class QuotasListBySubscriptionSamples {
     /*
      * x-ms-original-file:
-     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2023-10-01-preview/
-     * examples/Quotas_ListBySubscription.json
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Quotas_ListBySubscription.json
      */
     /**
      * Sample code: Quotas_ListBySubscription.

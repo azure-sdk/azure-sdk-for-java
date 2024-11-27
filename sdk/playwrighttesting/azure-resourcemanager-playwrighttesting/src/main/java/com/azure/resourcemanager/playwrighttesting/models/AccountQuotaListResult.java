@@ -10,19 +10,19 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.playwrighttesting.fluent.models.QuotaInner;
+import com.azure.resourcemanager.playwrighttesting.fluent.models.AccountQuotaInner;
 import java.io.IOException;
 import java.util.List;
 
 /**
- * The response of a Quota list operation.
+ * The response of a AccountQuota list operation.
  */
 @Fluent
-public final class QuotaListResult implements JsonSerializable<QuotaListResult> {
+public final class AccountQuotaListResult implements JsonSerializable<AccountQuotaListResult> {
     /*
-     * The Quota items on this page
+     * The AccountQuota items on this page
      */
-    private List<QuotaInner> value;
+    private List<AccountQuotaInner> value;
 
     /*
      * The link to the next page of items
@@ -30,27 +30,27 @@ public final class QuotaListResult implements JsonSerializable<QuotaListResult> 
     private String nextLink;
 
     /**
-     * Creates an instance of QuotaListResult class.
+     * Creates an instance of AccountQuotaListResult class.
      */
-    public QuotaListResult() {
+    public AccountQuotaListResult() {
     }
 
     /**
-     * Get the value property: The Quota items on this page.
+     * Get the value property: The AccountQuota items on this page.
      * 
      * @return the value value.
      */
-    public List<QuotaInner> value() {
+    public List<AccountQuotaInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The Quota items on this page.
+     * Set the value property: The AccountQuota items on this page.
      * 
      * @param value the value value to set.
-     * @return the QuotaListResult object itself.
+     * @return the AccountQuotaListResult object itself.
      */
-    public QuotaListResult withValue(List<QuotaInner> value) {
+    public AccountQuotaListResult withValue(List<AccountQuotaInner> value) {
         this.value = value;
         return this;
     }
@@ -68,9 +68,9 @@ public final class QuotaListResult implements JsonSerializable<QuotaListResult> 
      * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the QuotaListResult object itself.
+     * @return the AccountQuotaListResult object itself.
      */
-    public QuotaListResult withNextLink(String nextLink) {
+    public AccountQuotaListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -83,13 +83,13 @@ public final class QuotaListResult implements JsonSerializable<QuotaListResult> 
     public void validate() {
         if (value() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property value in model QuotaListResult"));
+                .log(new IllegalArgumentException("Missing required property value in model AccountQuotaListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(QuotaListResult.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AccountQuotaListResult.class);
 
     /**
      * {@inheritDoc}
@@ -103,32 +103,32 @@ public final class QuotaListResult implements JsonSerializable<QuotaListResult> 
     }
 
     /**
-     * Reads an instance of QuotaListResult from the JsonReader.
+     * Reads an instance of AccountQuotaListResult from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of QuotaListResult if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
+     * @return An instance of AccountQuotaListResult if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the QuotaListResult.
+     * @throws IOException If an error occurs while reading the AccountQuotaListResult.
      */
-    public static QuotaListResult fromJson(JsonReader jsonReader) throws IOException {
+    public static AccountQuotaListResult fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            QuotaListResult deserializedQuotaListResult = new QuotaListResult();
+            AccountQuotaListResult deserializedAccountQuotaListResult = new AccountQuotaListResult();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("value".equals(fieldName)) {
-                    List<QuotaInner> value = reader.readArray(reader1 -> QuotaInner.fromJson(reader1));
-                    deserializedQuotaListResult.value = value;
+                    List<AccountQuotaInner> value = reader.readArray(reader1 -> AccountQuotaInner.fromJson(reader1));
+                    deserializedAccountQuotaListResult.value = value;
                 } else if ("nextLink".equals(fieldName)) {
-                    deserializedQuotaListResult.nextLink = reader.getString();
+                    deserializedAccountQuotaListResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedQuotaListResult;
+            return deserializedAccountQuotaListResult;
         });
     }
 }
