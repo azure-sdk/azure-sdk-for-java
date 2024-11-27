@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.devcenter.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -43,6 +42,11 @@ public final class HealthCheckStatus extends ExpandableStringEnum<HealthCheckSta
     public static final HealthCheckStatus FAILED = fromString("Failed");
 
     /**
+     * Static value Informational for HealthCheckStatus.
+     */
+    public static final HealthCheckStatus INFORMATIONAL = fromString("Informational");
+
+    /**
      * Creates a new instance of HealthCheckStatus value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -57,7 +61,6 @@ public final class HealthCheckStatus extends ExpandableStringEnum<HealthCheckSta
      * @param name a name to look for.
      * @return the corresponding HealthCheckStatus.
      */
-    @JsonCreator
     public static HealthCheckStatus fromString(String name) {
         return fromString(name, HealthCheckStatus.class);
     }

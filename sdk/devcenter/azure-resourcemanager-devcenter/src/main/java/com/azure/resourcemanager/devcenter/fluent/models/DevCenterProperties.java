@@ -5,10 +5,17 @@
 package com.azure.resourcemanager.devcenter.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterResourceType;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Properties of the devcenter.
@@ -18,13 +25,11 @@ public final class DevCenterProperties extends DevCenterUpdateProperties {
     /*
      * The provisioning state of the resource.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
      * The URI of the Dev Center.
      */
-    @JsonProperty(value = "devCenterUri", access = JsonProperty.Access.WRITE_ONLY)
     private String devCenterUri;
 
     /**
@@ -79,12 +84,111 @@ public final class DevCenterProperties extends DevCenterUpdateProperties {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DevCenterProperties withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        super.withNetworkSettings(networkSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DevCenterProperties withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        super.withDevBoxProvisioningSettings(devBoxProvisioningSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DevCenterProperties withRestrictedResourceTypes(List<DevCenterResourceType> restrictedResourceTypes) {
+        super.withRestrictedResourceTypes(restrictedResourceTypes);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
+        if (encryption() != null) {
+            encryption().validate();
+        }
+        if (projectCatalogSettings() != null) {
+            projectCatalogSettings().validate();
+        }
+        if (networkSettings() != null) {
+            networkSettings().validate();
+        }
+        if (devBoxProvisioningSettings() != null) {
+            devBoxProvisioningSettings().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("encryption", encryption());
+        jsonWriter.writeStringField("displayName", displayName());
+        jsonWriter.writeJsonField("projectCatalogSettings", projectCatalogSettings());
+        jsonWriter.writeJsonField("networkSettings", networkSettings());
+        jsonWriter.writeJsonField("devBoxProvisioningSettings", devBoxProvisioningSettings());
+        jsonWriter.writeArrayField("restrictedResourceTypes", restrictedResourceTypes(),
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DevCenterProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DevCenterProperties if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DevCenterProperties.
+     */
+    public static DevCenterProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DevCenterProperties deserializedDevCenterProperties = new DevCenterProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("encryption".equals(fieldName)) {
+                    deserializedDevCenterProperties.withEncryption(Encryption.fromJson(reader));
+                } else if ("displayName".equals(fieldName)) {
+                    deserializedDevCenterProperties.withDisplayName(reader.getString());
+                } else if ("projectCatalogSettings".equals(fieldName)) {
+                    deserializedDevCenterProperties
+                        .withProjectCatalogSettings(DevCenterProjectCatalogSettings.fromJson(reader));
+                } else if ("networkSettings".equals(fieldName)) {
+                    deserializedDevCenterProperties.withNetworkSettings(DevCenterNetworkSettings.fromJson(reader));
+                } else if ("devBoxProvisioningSettings".equals(fieldName)) {
+                    deserializedDevCenterProperties
+                        .withDevBoxProvisioningSettings(DevBoxProvisioningSettings.fromJson(reader));
+                } else if ("restrictedResourceTypes".equals(fieldName)) {
+                    List<DevCenterResourceType> restrictedResourceTypes
+                        = reader.readArray(reader1 -> DevCenterResourceType.fromString(reader1.getString()));
+                    deserializedDevCenterProperties.withRestrictedResourceTypes(restrictedResourceTypes);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedDevCenterProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
+                } else if ("devCenterUri".equals(fieldName)) {
+                    deserializedDevCenterProperties.devCenterUri = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDevCenterProperties;
+        });
     }
 }

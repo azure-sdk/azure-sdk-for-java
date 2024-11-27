@@ -8,13 +8,17 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.DevCenterInner;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenter;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterResourceType;
 import com.azure.resourcemanager.devcenter.models.DevCenterUpdate;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class DevCenterImpl implements DevCenter, DevCenter.Definition, DevCenter.Update {
@@ -73,6 +77,23 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
 
     public DevCenterProjectCatalogSettings projectCatalogSettings() {
         return this.innerModel().projectCatalogSettings();
+    }
+
+    public DevCenterNetworkSettings networkSettings() {
+        return this.innerModel().networkSettings();
+    }
+
+    public DevBoxProvisioningSettings devBoxProvisioningSettings() {
+        return this.innerModel().devBoxProvisioningSettings();
+    }
+
+    public List<DevCenterResourceType> restrictedResourceTypes() {
+        List<DevCenterResourceType> inner = this.innerModel().restrictedResourceTypes();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public Region region() {
@@ -224,6 +245,36 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
             return this;
         } else {
             this.updateBody.withProjectCatalogSettings(projectCatalogSettings);
+            return this;
+        }
+    }
+
+    public DevCenterImpl withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withNetworkSettings(networkSettings);
+            return this;
+        } else {
+            this.updateBody.withNetworkSettings(networkSettings);
+            return this;
+        }
+    }
+
+    public DevCenterImpl withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withDevBoxProvisioningSettings(devBoxProvisioningSettings);
+            return this;
+        } else {
+            this.updateBody.withDevBoxProvisioningSettings(devBoxProvisioningSettings);
+            return this;
+        }
+    }
+
+    public DevCenterImpl withRestrictedResourceTypes(List<DevCenterResourceType> restrictedResourceTypes) {
+        if (isInCreateMode()) {
+            this.innerModel().withRestrictedResourceTypes(restrictedResourceTypes);
+            return this;
+        } else {
+            this.updateBody.withRestrictedResourceTypes(restrictedResourceTypes);
             return this;
         }
     }
