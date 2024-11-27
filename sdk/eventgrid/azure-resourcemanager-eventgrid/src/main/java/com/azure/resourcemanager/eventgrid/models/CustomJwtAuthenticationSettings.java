@@ -5,25 +5,33 @@
 package com.azure.resourcemanager.eventgrid.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Custom JWT authentication settings for namespace resource.
  */
 @Fluent
-public final class CustomJwtAuthenticationSettings {
+public final class CustomJwtAuthenticationSettings implements JsonSerializable<CustomJwtAuthenticationSettings> {
     /*
      * Expected JWT token issuer.
      */
-    @JsonProperty(value = "tokenIssuer")
     private String tokenIssuer;
 
     /*
-     * Information about the certificate that is used for token validation. We currently support maximum 2 certificates.
+     * Information about the certificates that are used for token validation. We currently support maximum 2
+     * certificates.
      */
-    @JsonProperty(value = "issuerCertificates")
     private List<IssuerCertificateInfo> issuerCertificates;
+
+    /*
+     * Information about the encoded public certificates that are used for custom authentication.
+     */
+    private List<EncodedIssuerCertificateInfo> encodedIssuerCertificates;
 
     /**
      * Creates an instance of CustomJwtAuthenticationSettings class.
@@ -52,7 +60,7 @@ public final class CustomJwtAuthenticationSettings {
     }
 
     /**
-     * Get the issuerCertificates property: Information about the certificate that is used for token validation. We
+     * Get the issuerCertificates property: Information about the certificates that are used for token validation. We
      * currently support maximum 2 certificates.
      * 
      * @return the issuerCertificates value.
@@ -62,7 +70,7 @@ public final class CustomJwtAuthenticationSettings {
     }
 
     /**
-     * Set the issuerCertificates property: Information about the certificate that is used for token validation. We
+     * Set the issuerCertificates property: Information about the certificates that are used for token validation. We
      * currently support maximum 2 certificates.
      * 
      * @param issuerCertificates the issuerCertificates value to set.
@@ -70,6 +78,29 @@ public final class CustomJwtAuthenticationSettings {
      */
     public CustomJwtAuthenticationSettings withIssuerCertificates(List<IssuerCertificateInfo> issuerCertificates) {
         this.issuerCertificates = issuerCertificates;
+        return this;
+    }
+
+    /**
+     * Get the encodedIssuerCertificates property: Information about the encoded public certificates that are used for
+     * custom authentication.
+     * 
+     * @return the encodedIssuerCertificates value.
+     */
+    public List<EncodedIssuerCertificateInfo> encodedIssuerCertificates() {
+        return this.encodedIssuerCertificates;
+    }
+
+    /**
+     * Set the encodedIssuerCertificates property: Information about the encoded public certificates that are used for
+     * custom authentication.
+     * 
+     * @param encodedIssuerCertificates the encodedIssuerCertificates value to set.
+     * @return the CustomJwtAuthenticationSettings object itself.
+     */
+    public CustomJwtAuthenticationSettings
+        withEncodedIssuerCertificates(List<EncodedIssuerCertificateInfo> encodedIssuerCertificates) {
+        this.encodedIssuerCertificates = encodedIssuerCertificates;
         return this;
     }
 
@@ -82,5 +113,57 @@ public final class CustomJwtAuthenticationSettings {
         if (issuerCertificates() != null) {
             issuerCertificates().forEach(e -> e.validate());
         }
+        if (encodedIssuerCertificates() != null) {
+            encodedIssuerCertificates().forEach(e -> e.validate());
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("tokenIssuer", this.tokenIssuer);
+        jsonWriter.writeArrayField("issuerCertificates", this.issuerCertificates,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("encodedIssuerCertificates", this.encodedIssuerCertificates,
+            (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of CustomJwtAuthenticationSettings from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of CustomJwtAuthenticationSettings if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the CustomJwtAuthenticationSettings.
+     */
+    public static CustomJwtAuthenticationSettings fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            CustomJwtAuthenticationSettings deserializedCustomJwtAuthenticationSettings
+                = new CustomJwtAuthenticationSettings();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("tokenIssuer".equals(fieldName)) {
+                    deserializedCustomJwtAuthenticationSettings.tokenIssuer = reader.getString();
+                } else if ("issuerCertificates".equals(fieldName)) {
+                    List<IssuerCertificateInfo> issuerCertificates
+                        = reader.readArray(reader1 -> IssuerCertificateInfo.fromJson(reader1));
+                    deserializedCustomJwtAuthenticationSettings.issuerCertificates = issuerCertificates;
+                } else if ("encodedIssuerCertificates".equals(fieldName)) {
+                    List<EncodedIssuerCertificateInfo> encodedIssuerCertificates
+                        = reader.readArray(reader1 -> EncodedIssuerCertificateInfo.fromJson(reader1));
+                    deserializedCustomJwtAuthenticationSettings.encodedIssuerCertificates = encodedIssuerCertificates;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedCustomJwtAuthenticationSettings;
+        });
     }
 }
