@@ -9,12 +9,15 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryptionType;
 import com.azure.resourcemanager.mysqlflexibleserver.models.EnableStatusEnum;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenancePolicy;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerIdentity;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
+import com.azure.resourcemanager.mysqlflexibleserver.models.PatchStrategy;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Server;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
+import com.azure.resourcemanager.mysqlflexibleserver.models.StorageRedundancyEnum;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +27,9 @@ import java.util.Map;
  */
 public final class ServersUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerUpdateWithCustomerMaintenanceWindow.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-10-01-preview/examples/
+     * ServerUpdateWithCustomerMaintenanceWindow.json
      */
     /**
      * Sample code: Update server customer maintenance window.
@@ -45,7 +50,49 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerUpdateWithBYOK.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-10-01-preview/examples/
+     * MaintenancePolicyPatchOptInVirtualCanary.json
+     */
+    /**
+     * Sample code: Update server to opt in virtual canary.
+     * 
+     * @param manager Entry point to MySqlManager.
+     */
+    public static void
+        updateServerToOptInVirtualCanary(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
+        Server resource = manager.servers()
+            .getByResourceGroupWithResponse("testrg", "mysqltestserver", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withMaintenancePolicy(new MaintenancePolicy().withPatchStrategy(PatchStrategy.VIRTUAL_CANARY))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-10-01-preview/examples/
+     * MaintenancePolicyPatchOptOutVirtualCanary.json
+     */
+    /**
+     * Sample code: Update server to opt out virtual canary.
+     * 
+     * @param manager Entry point to MySqlManager.
+     */
+    public static void
+        updateServerToOptOutVirtualCanary(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
+        Server resource = manager.servers()
+            .getByResourceGroupWithResponse("testrg", "mysqltestserver", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withMaintenancePolicy(new MaintenancePolicy().withPatchStrategy(PatchStrategy.fromString("Default")))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-10-01-preview/examples/
+     * ServerUpdateWithBYOK.json
      */
     /**
      * Sample code: Update server with byok.
@@ -74,7 +121,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerUpdate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-10-01-preview/examples/
+     * ServerUpdate.json
      */
     /**
      * Sample code: Update a server.
@@ -89,7 +138,8 @@ public final class ServersUpdateSamples {
             .withStorage(new Storage().withStorageSizeGB(30)
                 .withIops(200)
                 .withAutoGrow(EnableStatusEnum.DISABLED)
-                .withAutoIoScaling(EnableStatusEnum.DISABLED))
+                .withAutoIoScaling(EnableStatusEnum.DISABLED)
+                .withStorageRedundancy(StorageRedundancyEnum.LOCAL_REDUNDANCY))
             .withNetwork(new Network().withPublicNetworkAccess(EnableStatusEnum.DISABLED))
             .apply();
     }
