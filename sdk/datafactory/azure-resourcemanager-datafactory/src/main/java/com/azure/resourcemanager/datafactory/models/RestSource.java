@@ -41,7 +41,7 @@ public final class RestSource extends CopySource {
     private Object additionalHeaders;
 
     /*
-     * The pagination rules to compose next page requests. Type: string (or Expression with resultType string).
+     * The pagination rules to compose next page requests. Type: key value pairs (value should be string type).
      */
     private Object paginationRules;
 
@@ -145,8 +145,8 @@ public final class RestSource extends CopySource {
     }
 
     /**
-     * Get the paginationRules property: The pagination rules to compose next page requests. Type: string (or Expression
-     * with resultType string).
+     * Get the paginationRules property: The pagination rules to compose next page requests. Type: key value pairs
+     * (value should be string type).
      * 
      * @return the paginationRules value.
      */
@@ -155,8 +155,8 @@ public final class RestSource extends CopySource {
     }
 
     /**
-     * Set the paginationRules property: The pagination rules to compose next page requests. Type: string (or Expression
-     * with resultType string).
+     * Set the paginationRules property: The pagination rules to compose next page requests. Type: key value pairs
+     * (value should be string type).
      * 
      * @param paginationRules the paginationRules value to set.
      * @return the RestSource object itself.
@@ -275,7 +275,6 @@ public final class RestSource extends CopySource {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
