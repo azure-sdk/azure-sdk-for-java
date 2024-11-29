@@ -14,9 +14,27 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
-/** A builder for creating a new instance of the HybridConnectivityManagementApiImpl type. */
+/**
+ * A builder for creating a new instance of the HybridConnectivityManagementApiImpl type.
+ */
 @ServiceClientBuilder(serviceClients = { HybridConnectivityManagementApiImpl.class })
 public final class HybridConnectivityManagementApiBuilder {
+    /*
+     * The ID of the target subscription. The value must be an UUID.
+     */
+    private String subscriptionId;
+
+    /**
+     * Sets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @param subscriptionId the subscriptionId value.
+     * @return the HybridConnectivityManagementApiBuilder.
+     */
+    public HybridConnectivityManagementApiBuilder subscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
     /*
      * server parameter
      */
@@ -24,7 +42,7 @@ public final class HybridConnectivityManagementApiBuilder {
 
     /**
      * Sets server parameter.
-     *
+     * 
      * @param endpoint the endpoint value.
      * @return the HybridConnectivityManagementApiBuilder.
      */
@@ -40,7 +58,7 @@ public final class HybridConnectivityManagementApiBuilder {
 
     /**
      * Sets The environment to connect to.
-     *
+     * 
      * @param environment the environment value.
      * @return the HybridConnectivityManagementApiBuilder.
      */
@@ -56,7 +74,7 @@ public final class HybridConnectivityManagementApiBuilder {
 
     /**
      * Sets The HTTP pipeline to send requests through.
-     *
+     * 
      * @param pipeline the pipeline value.
      * @return the HybridConnectivityManagementApiBuilder.
      */
@@ -72,7 +90,7 @@ public final class HybridConnectivityManagementApiBuilder {
 
     /**
      * Sets The default poll interval for long-running operation.
-     *
+     * 
      * @param defaultPollInterval the defaultPollInterval value.
      * @return the HybridConnectivityManagementApiBuilder.
      */
@@ -88,7 +106,7 @@ public final class HybridConnectivityManagementApiBuilder {
 
     /**
      * Sets The serializer to serialize an object into a string.
-     *
+     * 
      * @param serializerAdapter the serializerAdapter value.
      * @return the HybridConnectivityManagementApiBuilder.
      */
@@ -99,7 +117,7 @@ public final class HybridConnectivityManagementApiBuilder {
 
     /**
      * Builds an instance of HybridConnectivityManagementApiImpl with the provided parameters.
-     *
+     * 
      * @return an instance of HybridConnectivityManagementApiImpl.
      */
     public HybridConnectivityManagementApiImpl buildClient() {
@@ -114,7 +132,7 @@ public final class HybridConnectivityManagementApiBuilder {
             ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
         HybridConnectivityManagementApiImpl client = new HybridConnectivityManagementApiImpl(localPipeline,
-            localSerializerAdapter, localDefaultPollInterval, localEnvironment, localEndpoint);
+            localSerializerAdapter, localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }
