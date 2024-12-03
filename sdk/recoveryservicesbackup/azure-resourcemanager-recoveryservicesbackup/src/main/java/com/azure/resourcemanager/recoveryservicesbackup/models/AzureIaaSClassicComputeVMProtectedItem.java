@@ -5,31 +5,65 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
 /**
  * IaaS VM workload-specific backup item representing the Classic Compute VM.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    property = "protectedItemType",
-    defaultImpl = AzureIaaSClassicComputeVMProtectedItem.class,
-    visible = true)
-@JsonTypeName("Microsoft.ClassicCompute/virtualMachines")
 @Fluent
 public final class AzureIaaSClassicComputeVMProtectedItem extends AzureIaaSvmProtectedItem {
     /*
      * backup item type.
      */
-    @JsonTypeId
-    @JsonProperty(value = "protectedItemType", required = true)
     private String protectedItemType = "Microsoft.ClassicCompute/virtualMachines";
+
+    /*
+     * Data ID of the protected item.
+     */
+    private String protectedItemDataId;
+
+    /*
+     * Timestamp of the last backup operation on this backup item.
+     */
+    private OffsetDateTime lastBackupTime;
+
+    /*
+     * Health status of protected item.
+     */
+    private HealthStatus healthStatus;
+
+    /*
+     * Fully qualified ARM ID of the virtual machine represented by this item.
+     */
+    private String virtualMachineId;
+
+    /*
+     * Friendly name of the VM represented by this backup item.
+     */
+    private String friendlyName;
+
+    /*
+     * ID of the vault which protects this item
+     */
+    private String vaultId;
+
+    /*
+     * Type of workload this item represents.
+     */
+    private DataSourceType workloadType;
+
+    /*
+     * Type of backup management for the backed up item.
+     */
+    private BackupManagementType backupManagementType;
 
     /**
      * Creates an instance of AzureIaaSClassicComputeVMProtectedItem class.
@@ -45,6 +79,86 @@ public final class AzureIaaSClassicComputeVMProtectedItem extends AzureIaaSvmPro
     @Override
     public String protectedItemType() {
         return this.protectedItemType;
+    }
+
+    /**
+     * Get the protectedItemDataId property: Data ID of the protected item.
+     * 
+     * @return the protectedItemDataId value.
+     */
+    @Override
+    public String protectedItemDataId() {
+        return this.protectedItemDataId;
+    }
+
+    /**
+     * Get the lastBackupTime property: Timestamp of the last backup operation on this backup item.
+     * 
+     * @return the lastBackupTime value.
+     */
+    @Override
+    public OffsetDateTime lastBackupTime() {
+        return this.lastBackupTime;
+    }
+
+    /**
+     * Get the healthStatus property: Health status of protected item.
+     * 
+     * @return the healthStatus value.
+     */
+    @Override
+    public HealthStatus healthStatus() {
+        return this.healthStatus;
+    }
+
+    /**
+     * Get the virtualMachineId property: Fully qualified ARM ID of the virtual machine represented by this item.
+     * 
+     * @return the virtualMachineId value.
+     */
+    @Override
+    public String virtualMachineId() {
+        return this.virtualMachineId;
+    }
+
+    /**
+     * Get the friendlyName property: Friendly name of the VM represented by this backup item.
+     * 
+     * @return the friendlyName value.
+     */
+    @Override
+    public String friendlyName() {
+        return this.friendlyName;
+    }
+
+    /**
+     * Get the vaultId property: ID of the vault which protects this item.
+     * 
+     * @return the vaultId value.
+     */
+    @Override
+    public String vaultId() {
+        return this.vaultId;
+    }
+
+    /**
+     * Get the workloadType property: Type of workload this item represents.
+     * 
+     * @return the workloadType value.
+     */
+    @Override
+    public DataSourceType workloadType() {
+        return this.workloadType;
+    }
+
+    /**
+     * Get the backupManagementType property: Type of backup management for the backed up item.
+     * 
+     * @return the backupManagementType value.
+     */
+    @Override
+    public BackupManagementType backupManagementType() {
+        return this.backupManagementType;
     }
 
     /**
@@ -255,6 +369,167 @@ public final class AzureIaaSClassicComputeVMProtectedItem extends AzureIaaSvmPro
      */
     @Override
     public void validate() {
-        super.validate();
+        if (healthDetails() != null) {
+            healthDetails().forEach(e -> e.validate());
+        }
+        if (kpisHealths() != null) {
+            kpisHealths().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
+        }
+        if (extendedInfo() != null) {
+            extendedInfo().validate();
+        }
+        if (extendedProperties() != null) {
+            extendedProperties().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("containerName", containerName());
+        jsonWriter.writeStringField("sourceResourceId", sourceResourceId());
+        jsonWriter.writeStringField("policyId", policyId());
+        jsonWriter.writeStringField("lastRecoveryPoint",
+            lastRecoveryPoint() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(lastRecoveryPoint()));
+        jsonWriter.writeStringField("backupSetName", backupSetName());
+        jsonWriter.writeStringField("createMode", createMode() == null ? null : createMode().toString());
+        jsonWriter.writeStringField("deferredDeleteTimeInUTC",
+            deferredDeleteTimeInUtc() == null
+                ? null
+                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(deferredDeleteTimeInUtc()));
+        jsonWriter.writeBooleanField("isScheduledForDeferredDelete", isScheduledForDeferredDelete());
+        jsonWriter.writeStringField("deferredDeleteTimeRemaining", deferredDeleteTimeRemaining());
+        jsonWriter.writeBooleanField("isDeferredDeleteScheduleUpcoming", isDeferredDeleteScheduleUpcoming());
+        jsonWriter.writeBooleanField("isRehydrate", isRehydrate());
+        jsonWriter.writeArrayField("resourceGuardOperationRequests", resourceGuardOperationRequests(),
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeBooleanField("isArchiveEnabled", isArchiveEnabled());
+        jsonWriter.writeStringField("policyName", policyName());
+        jsonWriter.writeNumberField("softDeleteRetentionPeriodInDays", softDeleteRetentionPeriod());
+        jsonWriter.writeStringField("protectionStatus", protectionStatus());
+        jsonWriter.writeStringField("protectionState", protectionState() == null ? null : protectionState().toString());
+        jsonWriter.writeArrayField("healthDetails", healthDetails(), (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeMapField("kpisHealths", kpisHealths(), (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("lastBackupStatus", lastBackupStatus());
+        jsonWriter.writeJsonField("extendedInfo", extendedInfo());
+        jsonWriter.writeJsonField("extendedProperties", extendedProperties());
+        jsonWriter.writeStringField("protectedItemType", this.protectedItemType);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AzureIaaSClassicComputeVMProtectedItem from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AzureIaaSClassicComputeVMProtectedItem if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AzureIaaSClassicComputeVMProtectedItem.
+     */
+    public static AzureIaaSClassicComputeVMProtectedItem fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AzureIaaSClassicComputeVMProtectedItem deserializedAzureIaaSClassicComputeVMProtectedItem
+                = new AzureIaaSClassicComputeVMProtectedItem();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("backupManagementType".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.backupManagementType
+                        = BackupManagementType.fromString(reader.getString());
+                } else if ("workloadType".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.workloadType
+                        = DataSourceType.fromString(reader.getString());
+                } else if ("containerName".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withContainerName(reader.getString());
+                } else if ("sourceResourceId".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withSourceResourceId(reader.getString());
+                } else if ("policyId".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withPolicyId(reader.getString());
+                } else if ("lastRecoveryPoint".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withLastRecoveryPoint(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
+                } else if ("backupSetName".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withBackupSetName(reader.getString());
+                } else if ("createMode".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withCreateMode(CreateMode.fromString(reader.getString()));
+                } else if ("deferredDeleteTimeInUTC".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withDeferredDeleteTimeInUtc(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
+                } else if ("isScheduledForDeferredDelete".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withIsScheduledForDeferredDelete(reader.getNullable(JsonReader::getBoolean));
+                } else if ("deferredDeleteTimeRemaining".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withDeferredDeleteTimeRemaining(reader.getString());
+                } else if ("isDeferredDeleteScheduleUpcoming".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withIsDeferredDeleteScheduleUpcoming(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isRehydrate".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withIsRehydrate(reader.getNullable(JsonReader::getBoolean));
+                } else if ("resourceGuardOperationRequests".equals(fieldName)) {
+                    List<String> resourceGuardOperationRequests = reader.readArray(reader1 -> reader1.getString());
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withResourceGuardOperationRequests(resourceGuardOperationRequests);
+                } else if ("isArchiveEnabled".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withIsArchiveEnabled(reader.getNullable(JsonReader::getBoolean));
+                } else if ("policyName".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withPolicyName(reader.getString());
+                } else if ("softDeleteRetentionPeriodInDays".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withSoftDeleteRetentionPeriod(reader.getNullable(JsonReader::getInt));
+                } else if ("vaultId".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.vaultId = reader.getString();
+                } else if ("friendlyName".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.friendlyName = reader.getString();
+                } else if ("virtualMachineId".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.virtualMachineId = reader.getString();
+                } else if ("protectionStatus".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withProtectionStatus(reader.getString());
+                } else if ("protectionState".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withProtectionState(ProtectionState.fromString(reader.getString()));
+                } else if ("healthStatus".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.healthStatus
+                        = HealthStatus.fromString(reader.getString());
+                } else if ("healthDetails".equals(fieldName)) {
+                    List<AzureIaaSvmHealthDetails> healthDetails
+                        = reader.readArray(reader1 -> AzureIaaSvmHealthDetails.fromJson(reader1));
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withHealthDetails(healthDetails);
+                } else if ("kpisHealths".equals(fieldName)) {
+                    Map<String, KpiResourceHealthDetails> kpisHealths
+                        = reader.readMap(reader1 -> KpiResourceHealthDetails.fromJson(reader1));
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withKpisHealths(kpisHealths);
+                } else if ("lastBackupStatus".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withLastBackupStatus(reader.getString());
+                } else if ("lastBackupTime".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.lastBackupTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("protectedItemDataId".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.protectedItemDataId = reader.getString();
+                } else if ("extendedInfo".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withExtendedInfo(AzureIaaSvmProtectedItemExtendedInfo.fromJson(reader));
+                } else if ("extendedProperties".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem
+                        .withExtendedProperties(ExtendedProperties.fromJson(reader));
+                } else if ("protectedItemType".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.protectedItemType = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAzureIaaSClassicComputeVMProtectedItem;
+        });
     }
 }
