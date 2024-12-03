@@ -19,10 +19,57 @@ import reactor.core.publisher.Mono;
  */
 public interface MsixPackagesClient {
     /**
+     * List MSIX packages in hostpool.
+     * 
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<MsixPackageInner> listAsync(Integer pageSize, Boolean isDescending, Integer initialSkip);
+
+    /**
+     * List MSIX packages in hostpool.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<MsixPackageInner> listAsync();
+
+    /**
+     * List MSIX packages in hostpool.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<MsixPackageInner> list();
+
+    /**
+     * List MSIX packages in hostpool.
+     * 
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<MsixPackageInner> list(Integer pageSize, Boolean isDescending, Integer initialSkip, Context context);
+
+    /**
      * Get a msixpackage.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -30,14 +77,11 @@ public interface MsixPackagesClient {
      * @return a msixpackage along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<MsixPackageInner>> getWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName);
+    Mono<Response<MsixPackageInner>> getWithResponseAsync(String msixPackageFullName);
 
     /**
      * Get a msixpackage.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -45,13 +89,11 @@ public interface MsixPackagesClient {
      * @return a msixpackage on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<MsixPackageInner> getAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName);
+    Mono<MsixPackageInner> getAsync(String msixPackageFullName);
 
     /**
      * Get a msixpackage.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -60,14 +102,11 @@ public interface MsixPackagesClient {
      * @return a msixpackage along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<MsixPackageInner> getWithResponse(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, Context context);
+    Response<MsixPackageInner> getWithResponse(String msixPackageFullName, Context context);
 
     /**
      * Get a msixpackage.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -75,47 +114,40 @@ public interface MsixPackagesClient {
      * @return a msixpackage.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MsixPackageInner get(String resourceGroupName, String hostPoolName, String msixPackageFullName);
+    MsixPackageInner get(String msixPackageFullName);
 
     /**
      * Create or update a MSIX package.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
+     * @param resource Object containing MSIX Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<MsixPackageInner>> createOrUpdateWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackageInner msixPackage);
+    Mono<Response<MsixPackageInner>> createOrUpdateWithResponseAsync(String msixPackageFullName,
+        MsixPackageInner resource);
 
     /**
      * Create or update a MSIX package.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
+     * @param resource Object containing MSIX Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return schema for MSIX Package properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<MsixPackageInner> createOrUpdateAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackageInner msixPackage);
+    Mono<MsixPackageInner> createOrUpdateAsync(String msixPackageFullName, MsixPackageInner resource);
 
     /**
      * Create or update a MSIX package.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
+     * @param resource Object containing MSIX Package definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -123,30 +155,79 @@ public interface MsixPackagesClient {
      * @return schema for MSIX Package properties along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<MsixPackageInner> createOrUpdateWithResponse(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackageInner msixPackage, Context context);
+    Response<MsixPackageInner> createOrUpdateWithResponse(String msixPackageFullName, MsixPackageInner resource,
+        Context context);
 
     /**
      * Create or update a MSIX package.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
+     * @param resource Object containing MSIX Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return schema for MSIX Package properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MsixPackageInner createOrUpdate(String resourceGroupName, String hostPoolName, String msixPackageFullName,
-        MsixPackageInner msixPackage);
+    MsixPackageInner createOrUpdate(String msixPackageFullName, MsixPackageInner resource);
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Response<MsixPackageInner>> updateWithResponseAsync(String msixPackageFullName, MsixPackagePatch properties);
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<MsixPackageInner> updateAsync(String msixPackageFullName, MsixPackagePatch properties);
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<MsixPackageInner> updateWithResponse(String msixPackageFullName, MsixPackagePatch properties,
+        Context context);
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MsixPackageInner update(String msixPackageFullName, MsixPackagePatch properties);
 
     /**
      * Remove an MSIX Package.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -154,14 +235,11 @@ public interface MsixPackagesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName);
+    Mono<Response<Void>> deleteWithResponseAsync(String msixPackageFullName);
 
     /**
      * Remove an MSIX Package.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -169,13 +247,11 @@ public interface MsixPackagesClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName);
+    Mono<Void> deleteAsync(String msixPackageFullName);
 
     /**
      * Remove an MSIX Package.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -184,141 +260,16 @@ public interface MsixPackagesClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroupName, String hostPoolName, String msixPackageFullName,
-        Context context);
+    Response<Void> deleteWithResponse(String msixPackageFullName, Context context);
 
     /**
      * Remove an MSIX Package.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String hostPoolName, String msixPackageFullName);
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<MsixPackageInner>> updateWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackagePatch msixPackage);
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<MsixPackageInner> updateAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName);
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<MsixPackageInner> updateWithResponse(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackagePatch msixPackage, Context context);
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MsixPackageInner update(String resourceGroupName, String hostPoolName, String msixPackageFullName);
-
-    /**
-     * List MSIX packages in hostpool.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<MsixPackageInner> listAsync(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip);
-
-    /**
-     * List MSIX packages in hostpool.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<MsixPackageInner> listAsync(String resourceGroupName, String hostPoolName);
-
-    /**
-     * List MSIX packages in hostpool.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<MsixPackageInner> list(String resourceGroupName, String hostPoolName);
-
-    /**
-     * List MSIX packages in hostpool.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<MsixPackageInner> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context);
+    void delete(String msixPackageFullName);
 }

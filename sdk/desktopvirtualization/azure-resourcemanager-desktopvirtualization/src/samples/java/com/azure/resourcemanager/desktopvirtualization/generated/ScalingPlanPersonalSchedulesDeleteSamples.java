@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class ScalingPlanPersonalSchedulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ScalingPlanPersonalSchedule_Delete.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
+     * ScalingPlanPersonalSchedules_Delete.json
      */
     /**
      * Sample code: ScalingPlanPersonalSchedules_Delete.

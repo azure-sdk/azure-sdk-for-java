@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -23,23 +23,20 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.desktopvirtualization.fluent.AppAttachPackageInfoesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.AppAttachPackagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ApplicationGroupsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ApplicationsClient;
-import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopVirtualizationApiClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.HostPoolsClient;
-import com.azure.resourcemanager.desktopvirtualization.fluent.MsixImagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.MsixPackagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.OperationsClient;
-import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionsClient;
-import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlanPersonalSchedulesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlanPooledSchedulesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlansClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostsClient;
-import com.azure.resourcemanager.desktopvirtualization.fluent.StartMenuItemsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.UserSessionsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.WorkspacesClient;
 import java.io.IOException;
@@ -155,87 +152,17 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
     }
 
     /**
-     * The WorkspacesClient object to access its operations.
+     * The AppAttachPackagesClient object to access its operations.
      */
-    private final WorkspacesClient workspaces;
+    private final AppAttachPackagesClient appAttachPackages;
 
     /**
-     * Gets the WorkspacesClient object to access its operations.
+     * Gets the AppAttachPackagesClient object to access its operations.
      * 
-     * @return the WorkspacesClient object.
+     * @return the AppAttachPackagesClient object.
      */
-    public WorkspacesClient getWorkspaces() {
-        return this.workspaces;
-    }
-
-    /**
-     * The PrivateEndpointConnectionsClient object to access its operations.
-     */
-    private final PrivateEndpointConnectionsClient privateEndpointConnections;
-
-    /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
-     * 
-     * @return the PrivateEndpointConnectionsClient object.
-     */
-    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
-        return this.privateEndpointConnections;
-    }
-
-    /**
-     * The PrivateLinkResourcesClient object to access its operations.
-     */
-    private final PrivateLinkResourcesClient privateLinkResources;
-
-    /**
-     * Gets the PrivateLinkResourcesClient object to access its operations.
-     * 
-     * @return the PrivateLinkResourcesClient object.
-     */
-    public PrivateLinkResourcesClient getPrivateLinkResources() {
-        return this.privateLinkResources;
-    }
-
-    /**
-     * The ScalingPlansClient object to access its operations.
-     */
-    private final ScalingPlansClient scalingPlans;
-
-    /**
-     * Gets the ScalingPlansClient object to access its operations.
-     * 
-     * @return the ScalingPlansClient object.
-     */
-    public ScalingPlansClient getScalingPlans() {
-        return this.scalingPlans;
-    }
-
-    /**
-     * The ScalingPlanPooledSchedulesClient object to access its operations.
-     */
-    private final ScalingPlanPooledSchedulesClient scalingPlanPooledSchedules;
-
-    /**
-     * Gets the ScalingPlanPooledSchedulesClient object to access its operations.
-     * 
-     * @return the ScalingPlanPooledSchedulesClient object.
-     */
-    public ScalingPlanPooledSchedulesClient getScalingPlanPooledSchedules() {
-        return this.scalingPlanPooledSchedules;
-    }
-
-    /**
-     * The ScalingPlanPersonalSchedulesClient object to access its operations.
-     */
-    private final ScalingPlanPersonalSchedulesClient scalingPlanPersonalSchedules;
-
-    /**
-     * Gets the ScalingPlanPersonalSchedulesClient object to access its operations.
-     * 
-     * @return the ScalingPlanPersonalSchedulesClient object.
-     */
-    public ScalingPlanPersonalSchedulesClient getScalingPlanPersonalSchedules() {
-        return this.scalingPlanPersonalSchedules;
+    public AppAttachPackagesClient getAppAttachPackages() {
+        return this.appAttachPackages;
     }
 
     /**
@@ -253,17 +180,59 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
     }
 
     /**
-     * The StartMenuItemsClient object to access its operations.
+     * The HostPoolsClient object to access its operations.
      */
-    private final StartMenuItemsClient startMenuItems;
+    private final HostPoolsClient hostPools;
 
     /**
-     * Gets the StartMenuItemsClient object to access its operations.
+     * Gets the HostPoolsClient object to access its operations.
      * 
-     * @return the StartMenuItemsClient object.
+     * @return the HostPoolsClient object.
      */
-    public StartMenuItemsClient getStartMenuItems() {
-        return this.startMenuItems;
+    public HostPoolsClient getHostPools() {
+        return this.hostPools;
+    }
+
+    /**
+     * The MsixPackagesClient object to access its operations.
+     */
+    private final MsixPackagesClient msixPackages;
+
+    /**
+     * Gets the MsixPackagesClient object to access its operations.
+     * 
+     * @return the MsixPackagesClient object.
+     */
+    public MsixPackagesClient getMsixPackages() {
+        return this.msixPackages;
+    }
+
+    /**
+     * The ScalingPlansClient object to access its operations.
+     */
+    private final ScalingPlansClient scalingPlans;
+
+    /**
+     * Gets the ScalingPlansClient object to access its operations.
+     * 
+     * @return the ScalingPlansClient object.
+     */
+    public ScalingPlansClient getScalingPlans() {
+        return this.scalingPlans;
+    }
+
+    /**
+     * The WorkspacesClient object to access its operations.
+     */
+    private final WorkspacesClient workspaces;
+
+    /**
+     * Gets the WorkspacesClient object to access its operations.
+     * 
+     * @return the WorkspacesClient object.
+     */
+    public WorkspacesClient getWorkspaces() {
+        return this.workspaces;
     }
 
     /**
@@ -295,31 +264,18 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
     }
 
     /**
-     * The HostPoolsClient object to access its operations.
+     * The PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsClient object to access its operations.
      */
-    private final HostPoolsClient hostPools;
+    private final PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsClient privateEndpointConnectionOnHostPoolWithSystemDataOperationGroups;
 
     /**
-     * Gets the HostPoolsClient object to access its operations.
+     * Gets the PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsClient object to access its operations.
      * 
-     * @return the HostPoolsClient object.
+     * @return the PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsClient object.
      */
-    public HostPoolsClient getHostPools() {
-        return this.hostPools;
-    }
-
-    /**
-     * The UserSessionsClient object to access its operations.
-     */
-    private final UserSessionsClient userSessions;
-
-    /**
-     * Gets the UserSessionsClient object to access its operations.
-     * 
-     * @return the UserSessionsClient object.
-     */
-    public UserSessionsClient getUserSessions() {
-        return this.userSessions;
+    public PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsClient
+        getPrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroups() {
+        return this.privateEndpointConnectionOnHostPoolWithSystemDataOperationGroups;
     }
 
     /**
@@ -337,59 +293,60 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
     }
 
     /**
-     * The MsixPackagesClient object to access its operations.
+     * The UserSessionsClient object to access its operations.
      */
-    private final MsixPackagesClient msixPackages;
+    private final UserSessionsClient userSessions;
 
     /**
-     * Gets the MsixPackagesClient object to access its operations.
+     * Gets the UserSessionsClient object to access its operations.
      * 
-     * @return the MsixPackagesClient object.
+     * @return the UserSessionsClient object.
      */
-    public MsixPackagesClient getMsixPackages() {
-        return this.msixPackages;
+    public UserSessionsClient getUserSessions() {
+        return this.userSessions;
     }
 
     /**
-     * The AppAttachPackageInfoesClient object to access its operations.
+     * The ScalingPlanPersonalSchedulesClient object to access its operations.
      */
-    private final AppAttachPackageInfoesClient appAttachPackageInfoes;
+    private final ScalingPlanPersonalSchedulesClient scalingPlanPersonalSchedules;
 
     /**
-     * Gets the AppAttachPackageInfoesClient object to access its operations.
+     * Gets the ScalingPlanPersonalSchedulesClient object to access its operations.
      * 
-     * @return the AppAttachPackageInfoesClient object.
+     * @return the ScalingPlanPersonalSchedulesClient object.
      */
-    public AppAttachPackageInfoesClient getAppAttachPackageInfoes() {
-        return this.appAttachPackageInfoes;
+    public ScalingPlanPersonalSchedulesClient getScalingPlanPersonalSchedules() {
+        return this.scalingPlanPersonalSchedules;
     }
 
     /**
-     * The MsixImagesClient object to access its operations.
+     * The ScalingPlanPooledSchedulesClient object to access its operations.
      */
-    private final MsixImagesClient msixImages;
+    private final ScalingPlanPooledSchedulesClient scalingPlanPooledSchedules;
 
     /**
-     * Gets the MsixImagesClient object to access its operations.
+     * Gets the ScalingPlanPooledSchedulesClient object to access its operations.
      * 
-     * @return the MsixImagesClient object.
+     * @return the ScalingPlanPooledSchedulesClient object.
      */
-    public MsixImagesClient getMsixImages() {
-        return this.msixImages;
+    public ScalingPlanPooledSchedulesClient getScalingPlanPooledSchedules() {
+        return this.scalingPlanPooledSchedules;
     }
 
     /**
-     * The AppAttachPackagesClient object to access its operations.
+     * The PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsClient object to access its operations.
      */
-    private final AppAttachPackagesClient appAttachPackages;
+    private final PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsClient privateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups;
 
     /**
-     * Gets the AppAttachPackagesClient object to access its operations.
+     * Gets the PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsClient object to access its operations.
      * 
-     * @return the AppAttachPackagesClient object.
+     * @return the PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsClient object.
      */
-    public AppAttachPackagesClient getAppAttachPackages() {
-        return this.appAttachPackages;
+    public PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsClient
+        getPrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups() {
+        return this.privateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups;
     }
 
     /**
@@ -409,25 +366,24 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-04-03";
+        this.apiVersion = "2024-09-10";
         this.operations = new OperationsClientImpl(this);
-        this.workspaces = new WorkspacesClientImpl(this);
-        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
-        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
-        this.scalingPlans = new ScalingPlansClientImpl(this);
-        this.scalingPlanPooledSchedules = new ScalingPlanPooledSchedulesClientImpl(this);
-        this.scalingPlanPersonalSchedules = new ScalingPlanPersonalSchedulesClientImpl(this);
+        this.appAttachPackages = new AppAttachPackagesClientImpl(this);
         this.applicationGroups = new ApplicationGroupsClientImpl(this);
-        this.startMenuItems = new StartMenuItemsClientImpl(this);
+        this.hostPools = new HostPoolsClientImpl(this);
+        this.msixPackages = new MsixPackagesClientImpl(this);
+        this.scalingPlans = new ScalingPlansClientImpl(this);
+        this.workspaces = new WorkspacesClientImpl(this);
         this.applications = new ApplicationsClientImpl(this);
         this.desktops = new DesktopsClientImpl(this);
-        this.hostPools = new HostPoolsClientImpl(this);
-        this.userSessions = new UserSessionsClientImpl(this);
+        this.privateEndpointConnectionOnHostPoolWithSystemDataOperationGroups
+            = new PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsClientImpl(this);
         this.sessionHosts = new SessionHostsClientImpl(this);
-        this.msixPackages = new MsixPackagesClientImpl(this);
-        this.appAttachPackageInfoes = new AppAttachPackageInfoesClientImpl(this);
-        this.msixImages = new MsixImagesClientImpl(this);
-        this.appAttachPackages = new AppAttachPackagesClientImpl(this);
+        this.userSessions = new UserSessionsClientImpl(this);
+        this.scalingPlanPersonalSchedules = new ScalingPlanPersonalSchedulesClientImpl(this);
+        this.scalingPlanPooledSchedules = new ScalingPlanPooledSchedulesClientImpl(this);
+        this.privateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups
+            = new PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsClientImpl(this);
     }
 
     /**

@@ -4,31 +4,24 @@
 
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolInner;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.RegistrationInfoInner;
-import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdatePatchProperties;
-import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdateProperties;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolPropertiesInner;
+import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackage;
+import com.azure.resourcemanager.desktopvirtualization.models.ExpandMsixImage;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPool;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolPatch;
-import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
-import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
-import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
-import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
-import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolPatchProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.ImportPackageInfoRequest;
+import com.azure.resourcemanager.desktopvirtualization.models.MsixImageUri;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfo;
-import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenList;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
-import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPool.Update {
@@ -61,148 +54,17 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         }
     }
 
-    public String managedBy() {
-        return this.innerModel().managedBy();
-    }
-
-    public String kind() {
-        return this.innerModel().kind();
-    }
-
-    public String etag() {
-        return this.innerModel().etag();
-    }
-
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
-        return this.innerModel().identity();
-    }
-
-    public ResourceModelWithAllowedPropertySetSku sku() {
-        return this.innerModel().sku();
-    }
-
-    public ResourceModelWithAllowedPropertySetPlan plan() {
-        return this.innerModel().plan();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
-    public String objectId() {
-        return this.innerModel().objectId();
-    }
-
-    public String friendlyName() {
-        return this.innerModel().friendlyName();
-    }
-
-    public String description() {
-        return this.innerModel().description();
-    }
-
-    public HostPoolType hostPoolType() {
-        return this.innerModel().hostPoolType();
-    }
-
-    public PersonalDesktopAssignmentType personalDesktopAssignmentType() {
-        return this.innerModel().personalDesktopAssignmentType();
-    }
-
-    public String customRdpProperty() {
-        return this.innerModel().customRdpProperty();
-    }
-
-    public Integer maxSessionLimit() {
-        return this.innerModel().maxSessionLimit();
-    }
-
-    public LoadBalancerType loadBalancerType() {
-        return this.innerModel().loadBalancerType();
-    }
-
-    public Integer ring() {
-        return this.innerModel().ring();
-    }
-
-    public Boolean validationEnvironment() {
-        return this.innerModel().validationEnvironment();
-    }
-
-    public RegistrationInfo registrationInfo() {
-        RegistrationInfoInner inner = this.innerModel().registrationInfo();
+    public HostPoolProperties properties() {
+        HostPoolPropertiesInner inner = this.innerModel().properties();
         if (inner != null) {
-            return new RegistrationInfoImpl(inner, this.manager());
+            return new HostPoolPropertiesImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public String vmTemplate() {
-        return this.innerModel().vmTemplate();
-    }
-
-    public List<String> applicationGroupReferences() {
-        List<String> inner = this.innerModel().applicationGroupReferences();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public List<String> appAttachPackageReferences() {
-        List<String> inner = this.innerModel().appAttachPackageReferences();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public String ssoadfsAuthority() {
-        return this.innerModel().ssoadfsAuthority();
-    }
-
-    public String ssoClientId() {
-        return this.innerModel().ssoClientId();
-    }
-
-    public String ssoClientSecretKeyVaultPath() {
-        return this.innerModel().ssoClientSecretKeyVaultPath();
-    }
-
-    public SsoSecretType ssoSecretType() {
-        return this.innerModel().ssoSecretType();
-    }
-
-    public PreferredAppGroupType preferredAppGroupType() {
-        return this.innerModel().preferredAppGroupType();
-    }
-
-    public Boolean startVMOnConnect() {
-        return this.innerModel().startVMOnConnect();
-    }
-
-    public Boolean cloudPcResource() {
-        return this.innerModel().cloudPcResource();
-    }
-
-    public HostpoolPublicNetworkAccess publicNetworkAccess() {
-        return this.innerModel().publicNetworkAccess();
-    }
-
-    public AgentUpdateProperties agentUpdate() {
-        return this.innerModel().agentUpdate();
-    }
-
-    public List<PrivateEndpointConnection> privateEndpointConnections() {
-        List<PrivateEndpointConnection> inner = this.innerModel().privateEndpointConnections();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public Region region() {
@@ -229,7 +91,7 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
 
     private String hostPoolName;
 
-    private HostPoolPatch updateHostPool;
+    private HostPoolPatch updateProperties;
 
     public HostPoolImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -260,14 +122,14 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
     }
 
     public HostPoolImpl update() {
-        this.updateHostPool = new HostPoolPatch();
+        this.updateProperties = new HostPoolPatch();
         return this;
     }
 
     public HostPool apply() {
         this.innerObject = serviceManager.serviceClient()
             .getHostPools()
-            .updateWithResponse(resourceGroupName, hostPoolName, updateHostPool, Context.NONE)
+            .updateWithResponse(resourceGroupName, hostPoolName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
@@ -275,7 +137,7 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
     public HostPool apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getHostPools()
-            .updateWithResponse(resourceGroupName, hostPoolName, updateHostPool, context)
+            .updateWithResponse(resourceGroupName, hostPoolName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -304,13 +166,20 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         return this;
     }
 
-    public Response<RegistrationInfo> retrieveRegistrationTokenWithResponse(Context context) {
-        return serviceManager.hostPools()
-            .retrieveRegistrationTokenWithResponse(resourceGroupName, hostPoolName, context);
+    public PagedIterable<ExpandMsixImage> expand(MsixImageUri body) {
+        return serviceManager.hostPools().expand(resourceGroupName, hostPoolName, body);
     }
 
-    public RegistrationInfo retrieveRegistrationToken() {
-        return serviceManager.hostPools().retrieveRegistrationToken(resourceGroupName, hostPoolName);
+    public PagedIterable<ExpandMsixImage> expand(MsixImageUri body, Context context) {
+        return serviceManager.hostPools().expand(resourceGroupName, hostPoolName, body, context);
+    }
+
+    public PagedIterable<AppAttachPackage> importAppAttachPackageInfo(ImportPackageInfoRequest body) {
+        return serviceManager.hostPools().importAppAttachPackageInfo(resourceGroupName, hostPoolName, body);
+    }
+
+    public PagedIterable<AppAttachPackage> importAppAttachPackageInfo(ImportPackageInfoRequest body, Context context) {
+        return serviceManager.hostPools().importAppAttachPackageInfo(resourceGroupName, hostPoolName, body, context);
     }
 
     public Response<RegistrationTokenList> listRegistrationTokensWithResponse(Context context) {
@@ -319,6 +188,15 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
 
     public RegistrationTokenList listRegistrationTokens() {
         return serviceManager.hostPools().listRegistrationTokens(resourceGroupName, hostPoolName);
+    }
+
+    public Response<RegistrationInfo> retrieveRegistrationTokenWithResponse(Context context) {
+        return serviceManager.hostPools()
+            .retrieveRegistrationTokenWithResponse(resourceGroupName, hostPoolName, context);
+    }
+
+    public RegistrationInfo retrieveRegistrationToken() {
+        return serviceManager.hostPools().retrieveRegistrationToken(resourceGroupName, hostPoolName);
     }
 
     public HostPoolImpl withRegion(Region location) {
@@ -331,29 +209,9 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         return this;
     }
 
-    public HostPoolImpl withHostPoolType(HostPoolType hostPoolType) {
-        this.innerModel().withHostPoolType(hostPoolType);
+    public HostPoolImpl withProperties(HostPoolPropertiesInner properties) {
+        this.innerModel().withProperties(properties);
         return this;
-    }
-
-    public HostPoolImpl withLoadBalancerType(LoadBalancerType loadBalancerType) {
-        if (isInCreateMode()) {
-            this.innerModel().withLoadBalancerType(loadBalancerType);
-            return this;
-        } else {
-            this.updateHostPool.withLoadBalancerType(loadBalancerType);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withPreferredAppGroupType(PreferredAppGroupType preferredAppGroupType) {
-        if (isInCreateMode()) {
-            this.innerModel().withPreferredAppGroupType(preferredAppGroupType);
-            return this;
-        } else {
-            this.updateHostPool.withPreferredAppGroupType(preferredAppGroupType);
-            return this;
-        }
     }
 
     public HostPoolImpl withTags(Map<String, String> tags) {
@@ -361,193 +219,13 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateHostPool.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }
 
-    public HostPoolImpl withManagedBy(String managedBy) {
-        this.innerModel().withManagedBy(managedBy);
-        return this;
-    }
-
-    public HostPoolImpl withKind(String kind) {
-        this.innerModel().withKind(kind);
-        return this;
-    }
-
-    public HostPoolImpl withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
-        this.innerModel().withIdentity(identity);
-        return this;
-    }
-
-    public HostPoolImpl withSku(ResourceModelWithAllowedPropertySetSku sku) {
-        this.innerModel().withSku(sku);
-        return this;
-    }
-
-    public HostPoolImpl withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
-        this.innerModel().withPlan(plan);
-        return this;
-    }
-
-    public HostPoolImpl withFriendlyName(String friendlyName) {
-        if (isInCreateMode()) {
-            this.innerModel().withFriendlyName(friendlyName);
-            return this;
-        } else {
-            this.updateHostPool.withFriendlyName(friendlyName);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withDescription(String description) {
-        if (isInCreateMode()) {
-            this.innerModel().withDescription(description);
-            return this;
-        } else {
-            this.updateHostPool.withDescription(description);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withPersonalDesktopAssignmentType(PersonalDesktopAssignmentType personalDesktopAssignmentType) {
-        if (isInCreateMode()) {
-            this.innerModel().withPersonalDesktopAssignmentType(personalDesktopAssignmentType);
-            return this;
-        } else {
-            this.updateHostPool.withPersonalDesktopAssignmentType(personalDesktopAssignmentType);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withCustomRdpProperty(String customRdpProperty) {
-        if (isInCreateMode()) {
-            this.innerModel().withCustomRdpProperty(customRdpProperty);
-            return this;
-        } else {
-            this.updateHostPool.withCustomRdpProperty(customRdpProperty);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withMaxSessionLimit(Integer maxSessionLimit) {
-        if (isInCreateMode()) {
-            this.innerModel().withMaxSessionLimit(maxSessionLimit);
-            return this;
-        } else {
-            this.updateHostPool.withMaxSessionLimit(maxSessionLimit);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withRing(Integer ring) {
-        if (isInCreateMode()) {
-            this.innerModel().withRing(ring);
-            return this;
-        } else {
-            this.updateHostPool.withRing(ring);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withValidationEnvironment(Boolean validationEnvironment) {
-        if (isInCreateMode()) {
-            this.innerModel().withValidationEnvironment(validationEnvironment);
-            return this;
-        } else {
-            this.updateHostPool.withValidationEnvironment(validationEnvironment);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withRegistrationInfo(RegistrationInfoInner registrationInfo) {
-        this.innerModel().withRegistrationInfo(registrationInfo);
-        return this;
-    }
-
-    public HostPoolImpl withVmTemplate(String vmTemplate) {
-        if (isInCreateMode()) {
-            this.innerModel().withVmTemplate(vmTemplate);
-            return this;
-        } else {
-            this.updateHostPool.withVmTemplate(vmTemplate);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withSsoadfsAuthority(String ssoadfsAuthority) {
-        if (isInCreateMode()) {
-            this.innerModel().withSsoadfsAuthority(ssoadfsAuthority);
-            return this;
-        } else {
-            this.updateHostPool.withSsoadfsAuthority(ssoadfsAuthority);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withSsoClientId(String ssoClientId) {
-        if (isInCreateMode()) {
-            this.innerModel().withSsoClientId(ssoClientId);
-            return this;
-        } else {
-            this.updateHostPool.withSsoClientId(ssoClientId);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withSsoClientSecretKeyVaultPath(String ssoClientSecretKeyVaultPath) {
-        if (isInCreateMode()) {
-            this.innerModel().withSsoClientSecretKeyVaultPath(ssoClientSecretKeyVaultPath);
-            return this;
-        } else {
-            this.updateHostPool.withSsoClientSecretKeyVaultPath(ssoClientSecretKeyVaultPath);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withSsoSecretType(SsoSecretType ssoSecretType) {
-        if (isInCreateMode()) {
-            this.innerModel().withSsoSecretType(ssoSecretType);
-            return this;
-        } else {
-            this.updateHostPool.withSsoSecretType(ssoSecretType);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withStartVMOnConnect(Boolean startVMOnConnect) {
-        if (isInCreateMode()) {
-            this.innerModel().withStartVMOnConnect(startVMOnConnect);
-            return this;
-        } else {
-            this.updateHostPool.withStartVMOnConnect(startVMOnConnect);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withPublicNetworkAccess(HostpoolPublicNetworkAccess publicNetworkAccess) {
-        if (isInCreateMode()) {
-            this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        } else {
-            this.updateHostPool.withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        }
-    }
-
-    public HostPoolImpl withAgentUpdate(AgentUpdateProperties agentUpdate) {
-        this.innerModel().withAgentUpdate(agentUpdate);
-        return this;
-    }
-
-    public HostPoolImpl withRegistrationInfo(RegistrationInfoPatch registrationInfo) {
-        this.updateHostPool.withRegistrationInfo(registrationInfo);
-        return this;
-    }
-
-    public HostPoolImpl withAgentUpdate(AgentUpdatePatchProperties agentUpdate) {
-        this.updateHostPool.withAgentUpdate(agentUpdate);
+    public HostPoolImpl withProperties(HostPoolPatchProperties properties) {
+        this.updateProperties.withProperties(properties);
         return this;
     }
 

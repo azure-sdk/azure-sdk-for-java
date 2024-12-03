@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
-import com.azure.resourcemanager.desktopvirtualization.models.CommandLineSetting;
+import com.azure.resourcemanager.desktopvirtualization.models.ApplicationProperties;
 
 /**
  * Samples for Applications CreateOrUpdate.
@@ -12,8 +12,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.CommandLineSetting
 public final class ApplicationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Application_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
+     * Applications_CreateOrUpdate.json
      */
     /**
      * Sample code: Application_Create.
@@ -25,14 +25,7 @@ public final class ApplicationsCreateOrUpdateSamples {
         manager.applications()
             .define("application1")
             .withExistingApplicationGroup("resourceGroup1", "applicationGroup1")
-            .withCommandLineSetting(CommandLineSetting.ALLOW)
-            .withDescription("des1")
-            .withFriendlyName("friendly")
-            .withFilePath("path")
-            .withCommandLineArguments("arguments")
-            .withShowInPortal(true)
-            .withIconPath("icon")
-            .withIconIndex(1)
+            .withProperties((ApplicationProperties) null)
             .create();
     }
 }

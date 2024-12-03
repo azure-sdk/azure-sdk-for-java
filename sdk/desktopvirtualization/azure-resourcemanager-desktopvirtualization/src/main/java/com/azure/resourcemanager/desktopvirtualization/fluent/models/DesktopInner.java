@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.desktopvirtualization.models.DesktopProperties;
 import java.io.IOException;
 
 /**
@@ -17,12 +18,10 @@ import java.io.IOException;
  */
 @Fluent
 public final class DesktopInner extends ProxyResource {
-    private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
-
     /*
      * Detailed properties for Desktop
      */
-    private DesktopProperties innerProperties;
+    private DesktopProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -51,12 +50,23 @@ public final class DesktopInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Detailed properties for Desktop.
+     * Get the properties property: Detailed properties for Desktop.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private DesktopProperties innerProperties() {
-        return this.innerProperties;
+    public DesktopProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Detailed properties for Desktop.
+     * 
+     * @param properties the properties value to set.
+     * @return the DesktopInner object itself.
+     */
+    public DesktopInner withProperties(DesktopProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -99,86 +109,13 @@ public final class DesktopInner extends ProxyResource {
     }
 
     /**
-     * Get the objectId property: ObjectId of Desktop. (internal use).
-     * 
-     * @return the objectId value.
-     */
-    public String objectId() {
-        return this.innerProperties() == null ? null : this.innerProperties().objectId();
-    }
-
-    /**
-     * Get the description property: Description of Desktop.
-     * 
-     * @return the description value.
-     */
-    public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
-    }
-
-    /**
-     * Set the description property: Description of Desktop.
-     * 
-     * @param description the description value to set.
-     * @return the DesktopInner object itself.
-     */
-    public DesktopInner withDescription(String description) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DesktopProperties();
-        }
-        this.innerProperties().withDescription(description);
-        return this;
-    }
-
-    /**
-     * Get the friendlyName property: Friendly name of Desktop.
-     * 
-     * @return the friendlyName value.
-     */
-    public String friendlyName() {
-        return this.innerProperties() == null ? null : this.innerProperties().friendlyName();
-    }
-
-    /**
-     * Set the friendlyName property: Friendly name of Desktop.
-     * 
-     * @param friendlyName the friendlyName value to set.
-     * @return the DesktopInner object itself.
-     */
-    public DesktopInner withFriendlyName(String friendlyName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DesktopProperties();
-        }
-        this.innerProperties().withFriendlyName(friendlyName);
-        return this;
-    }
-
-    /**
-     * Get the iconHash property: Hash of the icon.
-     * 
-     * @return the iconHash value.
-     */
-    public String iconHash() {
-        return this.innerProperties() == null ? null : this.innerProperties().iconHash();
-    }
-
-    /**
-     * Get the iconContent property: The icon a 64 bit string as a byte array.
-     * 
-     * @return the iconContent value.
-     */
-    public byte[] iconContent() {
-        return this.innerProperties() == null ? EMPTY_BYTE_ARRAY : this.innerProperties().iconContent();
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -188,7 +125,7 @@ public final class DesktopInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -215,7 +152,7 @@ public final class DesktopInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedDesktopInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedDesktopInner.innerProperties = DesktopProperties.fromJson(reader);
+                    deserializedDesktopInner.properties = DesktopProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedDesktopInner.systemData = SystemData.fromJson(reader);
                 } else {

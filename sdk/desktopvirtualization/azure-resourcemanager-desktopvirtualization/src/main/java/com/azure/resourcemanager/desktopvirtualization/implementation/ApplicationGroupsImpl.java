@@ -11,8 +11,10 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ApplicationGroupsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ApplicationGroupInner;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.StartMenuItemInner;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroup;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroups;
+import com.azure.resourcemanager.desktopvirtualization.models.StartMenuItem;
 
 public final class ApplicationGroupsImpl implements ApplicationGroups {
     private static final ClientLogger LOGGER = new ClientLogger(ApplicationGroupsImpl.class);
@@ -25,6 +27,28 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public PagedIterable<ApplicationGroup> listBySubscription() {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().listBySubscription();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ApplicationGroup> listBySubscription(String filter, Context context) {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().listBySubscription(filter, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName, String filter,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient()
+            .listByResourceGroup(resourceGroupName, filter, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
     }
 
     public Response<ApplicationGroup> getByResourceGroupWithResponse(String resourceGroupName,
@@ -57,26 +81,16 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
         this.serviceClient().delete(resourceGroupName, applicationGroupName);
     }
 
-    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    public PagedIterable<StartMenuItem> list(String resourceGroupName, String applicationGroupName) {
+        PagedIterable<StartMenuItemInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new StartMenuItemImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName, String filter,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<ApplicationGroupInner> inner = this.serviceClient()
-            .listByResourceGroup(resourceGroupName, filter, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ApplicationGroup> list() {
-        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ApplicationGroup> list(String filter, Context context) {
-        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().list(filter, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    public PagedIterable<StartMenuItem> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<StartMenuItemInner> inner = this.serviceClient()
+            .list(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new StartMenuItemImpl(inner1, this.manager()));
     }
 
     public ApplicationGroup getById(String id) {

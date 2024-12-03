@@ -7,8 +7,6 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.MsixPackageInner;
-import java.time.OffsetDateTime;
-import java.util.List;
 
 /**
  * An immutable client-side representation of MsixPackage.
@@ -36,96 +34,18 @@ public interface MsixPackage {
     String type();
 
     /**
+     * Gets the properties property: Detailed properties for MSIX Package.
+     * 
+     * @return the properties value.
+     */
+    MsixPackageProperties properties();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the imagePath property: VHD/CIM image path on Network Share.
-     * 
-     * @return the imagePath value.
-     */
-    String imagePath();
-
-    /**
-     * Gets the packageName property: Package Name from appxmanifest.xml.
-     * 
-     * @return the packageName value.
-     */
-    String packageName();
-
-    /**
-     * Gets the packageFamilyName property: Package Family Name from appxmanifest.xml. Contains Package Name and
-     * Publisher name.
-     * 
-     * @return the packageFamilyName value.
-     */
-    String packageFamilyName();
-
-    /**
-     * Gets the displayName property: User friendly Name to be displayed in the portal.
-     * 
-     * @return the displayName value.
-     */
-    String displayName();
-
-    /**
-     * Gets the packageRelativePath property: Relative Path to the package inside the image.
-     * 
-     * @return the packageRelativePath value.
-     */
-    String packageRelativePath();
-
-    /**
-     * Gets the isRegularRegistration property: Specifies how to register Package in feed.
-     * 
-     * @return the isRegularRegistration value.
-     */
-    Boolean isRegularRegistration();
-
-    /**
-     * Gets the isActive property: Make this version of the package the active one across the hostpool.
-     * 
-     * @return the isActive value.
-     */
-    Boolean isActive();
-
-    /**
-     * Gets the packageDependencies property: List of package dependencies.
-     * 
-     * @return the packageDependencies value.
-     */
-    List<MsixPackageDependencies> packageDependencies();
-
-    /**
-     * Gets the version property: Package version found in the appxmanifest.xml.
-     * 
-     * @return the version value.
-     */
-    String version();
-
-    /**
-     * Gets the lastUpdated property: Date Package was last updated, found in the appxmanifest.xml.
-     * 
-     * @return the lastUpdated value.
-     */
-    OffsetDateTime lastUpdated();
-
-    /**
-     * Gets the packageApplications property: List of package applications.
-     * 
-     * @return the packageApplications value.
-     */
-    List<MsixPackageApplications> packageApplications();
-
-    /**
-     * Gets the name of the resource group.
-     * 
-     * @return the name of the resource group.
-     */
-    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.MsixPackageInner object.
@@ -137,8 +57,7 @@ public interface MsixPackage {
     /**
      * The entirety of the MsixPackage definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithProperties, DefinitionStages.WithCreate {
     }
 
     /**
@@ -148,32 +67,27 @@ public interface MsixPackage {
         /**
          * The first stage of the MsixPackage definition.
          */
-        interface Blank extends WithParentResource {
+        interface Blank extends WithProperties {
         }
 
         /**
-         * The stage of the MsixPackage definition allowing to specify parent resource.
+         * The stage of the MsixPackage definition allowing to specify properties.
          */
-        interface WithParentResource {
+        interface WithProperties {
             /**
-             * Specifies resourceGroupName, hostPoolName.
+             * Specifies the properties property: Detailed properties for MSIX Package.
              * 
-             * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param hostPoolName The name of the host pool within the specified resource group.
+             * @param properties Detailed properties for MSIX Package.
              * @return the next definition stage.
              */
-            WithCreate withExistingHostPool(String resourceGroupName, String hostPoolName);
+            WithCreate withProperties(MsixPackageProperties properties);
         }
 
         /**
          * The stage of the MsixPackage definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithImagePath, DefinitionStages.WithPackageName,
-            DefinitionStages.WithPackageFamilyName, DefinitionStages.WithDisplayName,
-            DefinitionStages.WithPackageRelativePath, DefinitionStages.WithIsRegularRegistration,
-            DefinitionStages.WithIsActive, DefinitionStages.WithPackageDependencies, DefinitionStages.WithVersion,
-            DefinitionStages.WithLastUpdated, DefinitionStages.WithPackageApplications {
+        interface WithCreate {
             /**
              * Executes the create request.
              * 
@@ -189,151 +103,6 @@ public interface MsixPackage {
              */
             MsixPackage create(Context context);
         }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify imagePath.
-         */
-        interface WithImagePath {
-            /**
-             * Specifies the imagePath property: VHD/CIM image path on Network Share..
-             * 
-             * @param imagePath VHD/CIM image path on Network Share.
-             * @return the next definition stage.
-             */
-            WithCreate withImagePath(String imagePath);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify packageName.
-         */
-        interface WithPackageName {
-            /**
-             * Specifies the packageName property: Package Name from appxmanifest.xml. .
-             * 
-             * @param packageName Package Name from appxmanifest.xml.
-             * @return the next definition stage.
-             */
-            WithCreate withPackageName(String packageName);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify packageFamilyName.
-         */
-        interface WithPackageFamilyName {
-            /**
-             * Specifies the packageFamilyName property: Package Family Name from appxmanifest.xml. Contains Package
-             * Name and Publisher name. .
-             * 
-             * @param packageFamilyName Package Family Name from appxmanifest.xml. Contains Package Name and Publisher
-             * name.
-             * @return the next definition stage.
-             */
-            WithCreate withPackageFamilyName(String packageFamilyName);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify displayName.
-         */
-        interface WithDisplayName {
-            /**
-             * Specifies the displayName property: User friendly Name to be displayed in the portal. .
-             * 
-             * @param displayName User friendly Name to be displayed in the portal.
-             * @return the next definition stage.
-             */
-            WithCreate withDisplayName(String displayName);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify packageRelativePath.
-         */
-        interface WithPackageRelativePath {
-            /**
-             * Specifies the packageRelativePath property: Relative Path to the package inside the image. .
-             * 
-             * @param packageRelativePath Relative Path to the package inside the image.
-             * @return the next definition stage.
-             */
-            WithCreate withPackageRelativePath(String packageRelativePath);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify isRegularRegistration.
-         */
-        interface WithIsRegularRegistration {
-            /**
-             * Specifies the isRegularRegistration property: Specifies how to register Package in feed..
-             * 
-             * @param isRegularRegistration Specifies how to register Package in feed.
-             * @return the next definition stage.
-             */
-            WithCreate withIsRegularRegistration(Boolean isRegularRegistration);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify isActive.
-         */
-        interface WithIsActive {
-            /**
-             * Specifies the isActive property: Make this version of the package the active one across the hostpool. .
-             * 
-             * @param isActive Make this version of the package the active one across the hostpool.
-             * @return the next definition stage.
-             */
-            WithCreate withIsActive(Boolean isActive);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify packageDependencies.
-         */
-        interface WithPackageDependencies {
-            /**
-             * Specifies the packageDependencies property: List of package dependencies. .
-             * 
-             * @param packageDependencies List of package dependencies.
-             * @return the next definition stage.
-             */
-            WithCreate withPackageDependencies(List<MsixPackageDependencies> packageDependencies);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify version.
-         */
-        interface WithVersion {
-            /**
-             * Specifies the version property: Package version found in the appxmanifest.xml. .
-             * 
-             * @param version Package version found in the appxmanifest.xml.
-             * @return the next definition stage.
-             */
-            WithCreate withVersion(String version);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify lastUpdated.
-         */
-        interface WithLastUpdated {
-            /**
-             * Specifies the lastUpdated property: Date Package was last updated, found in the appxmanifest.xml. .
-             * 
-             * @param lastUpdated Date Package was last updated, found in the appxmanifest.xml.
-             * @return the next definition stage.
-             */
-            WithCreate withLastUpdated(OffsetDateTime lastUpdated);
-        }
-
-        /**
-         * The stage of the MsixPackage definition allowing to specify packageApplications.
-         */
-        interface WithPackageApplications {
-            /**
-             * Specifies the packageApplications property: List of package applications. .
-             * 
-             * @param packageApplications List of package applications.
-             * @return the next definition stage.
-             */
-            WithCreate withPackageApplications(List<MsixPackageApplications> packageApplications);
-        }
     }
 
     /**
@@ -346,8 +115,7 @@ public interface MsixPackage {
     /**
      * The template for MsixPackage update.
      */
-    interface Update
-        extends UpdateStages.WithIsActive, UpdateStages.WithIsRegularRegistration, UpdateStages.WithDisplayName {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -369,42 +137,16 @@ public interface MsixPackage {
      */
     interface UpdateStages {
         /**
-         * The stage of the MsixPackage update allowing to specify isActive.
+         * The stage of the MsixPackage update allowing to specify properties.
          */
-        interface WithIsActive {
+        interface WithProperties {
             /**
-             * Specifies the isActive property: Set a version of the package to be active across hostpool. .
+             * Specifies the properties property: Detailed properties for MSIX Package.
              * 
-             * @param isActive Set a version of the package to be active across hostpool.
+             * @param properties Detailed properties for MSIX Package.
              * @return the next definition stage.
              */
-            Update withIsActive(Boolean isActive);
-        }
-
-        /**
-         * The stage of the MsixPackage update allowing to specify isRegularRegistration.
-         */
-        interface WithIsRegularRegistration {
-            /**
-             * Specifies the isRegularRegistration property: Set Registration mode. Regular or Delayed..
-             * 
-             * @param isRegularRegistration Set Registration mode. Regular or Delayed.
-             * @return the next definition stage.
-             */
-            Update withIsRegularRegistration(Boolean isRegularRegistration);
-        }
-
-        /**
-         * The stage of the MsixPackage update allowing to specify displayName.
-         */
-        interface WithDisplayName {
-            /**
-             * Specifies the displayName property: Display name for MSIX Package..
-             * 
-             * @param displayName Display name for MSIX Package.
-             * @return the next definition stage.
-             */
-            Update withDisplayName(String displayName);
+            Update withProperties(MsixPackagePatchProperties properties);
         }
     }
 

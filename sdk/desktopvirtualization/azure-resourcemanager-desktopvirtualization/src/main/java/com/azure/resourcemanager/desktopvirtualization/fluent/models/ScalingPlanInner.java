@@ -5,46 +5,30 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
+import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanProperties;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
- * ScalingPlan
- * 
  * Represents a scaling plan definition.
  */
 @Fluent
-public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet {
+public final class ScalingPlanInner extends Resource {
     /*
      * Detailed properties for scaling plan.
      */
-    private ScalingPlanProperties innerProperties = new ScalingPlanProperties();
+    private ScalingPlanProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
-
-    /*
-     * The etag field is *not* required. If it is provided in the response body, it must also be provided as a header
-     * per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested
-     * resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section
-     * 14.26), and If-Range (section 14.27) header fields.
-     */
-    private String etag;
 
     /*
      * The type of the resource.
@@ -68,12 +52,23 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
     }
 
     /**
-     * Get the innerProperties property: Detailed properties for scaling plan.
+     * Get the properties property: Detailed properties for scaling plan.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private ScalingPlanProperties innerProperties() {
-        return this.innerProperties;
+    public ScalingPlanProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Detailed properties for scaling plan.
+     * 
+     * @param properties the properties value to set.
+     * @return the ScalingPlanInner object itself.
+     */
+    public ScalingPlanInner withProperties(ScalingPlanProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -81,22 +76,8 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
      * 
      * @return the systemData value.
      */
-    @Override
     public SystemData systemData() {
         return this.systemData;
-    }
-
-    /**
-     * Get the etag property: The etag field is *not* required. If it is provided in the response body, it must also be
-     * provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from
-     * the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24),
-     * If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
-     * 
-     * @return the etag value.
-     */
-    @Override
-    public String etag() {
-        return this.etag;
     }
 
     /**
@@ -133,51 +114,6 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
      * {@inheritDoc}
      */
     @Override
-    public ScalingPlanInner withManagedBy(String managedBy) {
-        super.withManagedBy(managedBy);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ScalingPlanInner withKind(String kind) {
-        super.withKind(kind);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ScalingPlanInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
-        super.withIdentity(identity);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ScalingPlanInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
-        super.withSku(sku);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ScalingPlanInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
-        super.withPlan(plan);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public ScalingPlanInner withLocation(String location) {
         super.withLocation(location);
         return this;
@@ -193,197 +129,16 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
     }
 
     /**
-     * Get the objectId property: ObjectId of scaling plan. (internal use).
-     * 
-     * @return the objectId value.
-     */
-    public String objectId() {
-        return this.innerProperties() == null ? null : this.innerProperties().objectId();
-    }
-
-    /**
-     * Get the description property: Description of scaling plan.
-     * 
-     * @return the description value.
-     */
-    public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
-    }
-
-    /**
-     * Set the description property: Description of scaling plan.
-     * 
-     * @param description the description value to set.
-     * @return the ScalingPlanInner object itself.
-     */
-    public ScalingPlanInner withDescription(String description) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanProperties();
-        }
-        this.innerProperties().withDescription(description);
-        return this;
-    }
-
-    /**
-     * Get the friendlyName property: User friendly name of scaling plan.
-     * 
-     * @return the friendlyName value.
-     */
-    public String friendlyName() {
-        return this.innerProperties() == null ? null : this.innerProperties().friendlyName();
-    }
-
-    /**
-     * Set the friendlyName property: User friendly name of scaling plan.
-     * 
-     * @param friendlyName the friendlyName value to set.
-     * @return the ScalingPlanInner object itself.
-     */
-    public ScalingPlanInner withFriendlyName(String friendlyName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanProperties();
-        }
-        this.innerProperties().withFriendlyName(friendlyName);
-        return this;
-    }
-
-    /**
-     * Get the timeZone property: Timezone of the scaling plan.
-     * 
-     * @return the timeZone value.
-     */
-    public String timeZone() {
-        return this.innerProperties() == null ? null : this.innerProperties().timeZone();
-    }
-
-    /**
-     * Set the timeZone property: Timezone of the scaling plan.
-     * 
-     * @param timeZone the timeZone value to set.
-     * @return the ScalingPlanInner object itself.
-     */
-    public ScalingPlanInner withTimeZone(String timeZone) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanProperties();
-        }
-        this.innerProperties().withTimeZone(timeZone);
-        return this;
-    }
-
-    /**
-     * Get the hostPoolType property: HostPool type for desktop.
-     * 
-     * @return the hostPoolType value.
-     */
-    public ScalingHostPoolType hostPoolType() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostPoolType();
-    }
-
-    /**
-     * Set the hostPoolType property: HostPool type for desktop.
-     * 
-     * @param hostPoolType the hostPoolType value to set.
-     * @return the ScalingPlanInner object itself.
-     */
-    public ScalingPlanInner withHostPoolType(ScalingHostPoolType hostPoolType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanProperties();
-        }
-        this.innerProperties().withHostPoolType(hostPoolType);
-        return this;
-    }
-
-    /**
-     * Get the exclusionTag property: Exclusion tag for scaling plan.
-     * 
-     * @return the exclusionTag value.
-     */
-    public String exclusionTag() {
-        return this.innerProperties() == null ? null : this.innerProperties().exclusionTag();
-    }
-
-    /**
-     * Set the exclusionTag property: Exclusion tag for scaling plan.
-     * 
-     * @param exclusionTag the exclusionTag value to set.
-     * @return the ScalingPlanInner object itself.
-     */
-    public ScalingPlanInner withExclusionTag(String exclusionTag) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanProperties();
-        }
-        this.innerProperties().withExclusionTag(exclusionTag);
-        return this;
-    }
-
-    /**
-     * Get the schedules property: List of ScalingPlanPooledSchedule definitions.
-     * 
-     * @return the schedules value.
-     */
-    public List<ScalingSchedule> schedules() {
-        return this.innerProperties() == null ? null : this.innerProperties().schedules();
-    }
-
-    /**
-     * Set the schedules property: List of ScalingPlanPooledSchedule definitions.
-     * 
-     * @param schedules the schedules value to set.
-     * @return the ScalingPlanInner object itself.
-     */
-    public ScalingPlanInner withSchedules(List<ScalingSchedule> schedules) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanProperties();
-        }
-        this.innerProperties().withSchedules(schedules);
-        return this;
-    }
-
-    /**
-     * Get the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     * 
-     * @return the hostPoolReferences value.
-     */
-    public List<ScalingHostPoolReference> hostPoolReferences() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostPoolReferences();
-    }
-
-    /**
-     * Set the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     * 
-     * @param hostPoolReferences the hostPoolReferences value to set.
-     * @return the ScalingPlanInner object itself.
-     */
-    public ScalingPlanInner withHostPoolReferences(List<ScalingHostPoolReference> hostPoolReferences) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanProperties();
-        }
-        this.innerProperties().withHostPoolReferences(hostPoolReferences);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        if (innerProperties() == null) {
+        if (properties() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property innerProperties in model ScalingPlanInner"));
+                .log(new IllegalArgumentException("Missing required property properties in model ScalingPlanInner"));
         } else {
-            innerProperties().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
-        }
-        if (sku() != null) {
-            sku().validate();
-        }
-        if (plan() != null) {
-            plan().validate();
+            properties().validate();
         }
     }
 
@@ -397,12 +152,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("managedBy", managedBy());
-        jsonWriter.writeStringField("kind", kind());
-        jsonWriter.writeJsonField("identity", identity());
-        jsonWriter.writeJsonField("sku", sku());
-        jsonWriter.writeJsonField("plan", plan());
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -433,23 +183,10 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedScalingPlanInner.withTags(tags);
-                } else if ("managedBy".equals(fieldName)) {
-                    deserializedScalingPlanInner.withManagedBy(reader.getString());
-                } else if ("kind".equals(fieldName)) {
-                    deserializedScalingPlanInner.withKind(reader.getString());
-                } else if ("etag".equals(fieldName)) {
-                    deserializedScalingPlanInner.etag = reader.getString();
-                } else if ("identity".equals(fieldName)) {
-                    deserializedScalingPlanInner
-                        .withIdentity(ResourceModelWithAllowedPropertySetIdentity.fromJson(reader));
-                } else if ("sku".equals(fieldName)) {
-                    deserializedScalingPlanInner.withSku(ResourceModelWithAllowedPropertySetSku.fromJson(reader));
-                } else if ("plan".equals(fieldName)) {
-                    deserializedScalingPlanInner.withPlan(ResourceModelWithAllowedPropertySetPlan.fromJson(reader));
+                } else if ("properties".equals(fieldName)) {
+                    deserializedScalingPlanInner.properties = ScalingPlanProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedScalingPlanInner.systemData = SystemData.fromJson(reader);
-                } else if ("properties".equals(fieldName)) {
-                    deserializedScalingPlanInner.innerProperties = ScalingPlanProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

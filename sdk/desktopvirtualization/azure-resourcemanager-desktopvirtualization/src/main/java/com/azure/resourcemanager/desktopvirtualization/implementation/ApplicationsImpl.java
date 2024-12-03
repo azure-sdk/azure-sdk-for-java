@@ -27,6 +27,18 @@ public final class ApplicationsImpl implements Applications {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<Application> list(String resourceGroupName, String applicationGroupName) {
+        PagedIterable<ApplicationInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Application> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<ApplicationInner> inner = this.serviceClient()
+            .list(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationImpl(inner1, this.manager()));
+    }
+
     public Response<Application> getWithResponse(String resourceGroupName, String applicationGroupName,
         String applicationName, Context context) {
         Response<ApplicationInner> inner
@@ -56,18 +68,6 @@ public final class ApplicationsImpl implements Applications {
 
     public void delete(String resourceGroupName, String applicationGroupName, String applicationName) {
         this.serviceClient().delete(resourceGroupName, applicationGroupName, applicationName);
-    }
-
-    public PagedIterable<Application> list(String resourceGroupName, String applicationGroupName) {
-        PagedIterable<ApplicationInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Application> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<ApplicationInner> inner = this.serviceClient()
-            .list(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationImpl(inner1, this.manager()));
     }
 
     public Application getById(String id) {

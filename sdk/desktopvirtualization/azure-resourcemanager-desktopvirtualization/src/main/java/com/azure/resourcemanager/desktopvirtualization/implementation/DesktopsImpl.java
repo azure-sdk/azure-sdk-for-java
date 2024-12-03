@@ -28,6 +28,18 @@ public final class DesktopsImpl implements Desktops {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName) {
+        PagedIterable<DesktopInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<DesktopInner> inner = this.serviceClient()
+            .list(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
+    }
+
     public Response<Desktop> getWithResponse(String resourceGroupName, String applicationGroupName, String desktopName,
         Context context) {
         Response<DesktopInner> inner
@@ -50,9 +62,9 @@ public final class DesktopsImpl implements Desktops {
     }
 
     public Response<Desktop> updateWithResponse(String resourceGroupName, String applicationGroupName,
-        String desktopName, DesktopPatch desktop, Context context) {
+        String desktopName, DesktopPatch properties, Context context) {
         Response<DesktopInner> inner = this.serviceClient()
-            .updateWithResponse(resourceGroupName, applicationGroupName, desktopName, desktop, context);
+            .updateWithResponse(resourceGroupName, applicationGroupName, desktopName, properties, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DesktopImpl(inner.getValue(), this.manager()));
@@ -61,25 +73,15 @@ public final class DesktopsImpl implements Desktops {
         }
     }
 
-    public Desktop update(String resourceGroupName, String applicationGroupName, String desktopName) {
-        DesktopInner inner = this.serviceClient().update(resourceGroupName, applicationGroupName, desktopName);
+    public Desktop update(String resourceGroupName, String applicationGroupName, String desktopName,
+        DesktopPatch properties) {
+        DesktopInner inner
+            = this.serviceClient().update(resourceGroupName, applicationGroupName, desktopName, properties);
         if (inner != null) {
             return new DesktopImpl(inner, this.manager());
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName) {
-        PagedIterable<DesktopInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<DesktopInner> inner = this.serviceClient()
-            .list(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
     }
 
     private DesktopsClient serviceClient() {

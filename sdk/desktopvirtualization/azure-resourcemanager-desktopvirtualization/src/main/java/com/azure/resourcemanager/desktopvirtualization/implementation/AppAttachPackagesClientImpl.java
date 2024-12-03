@@ -68,6 +68,23 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
     @ServiceInterface(name = "DesktopVirtualizatio")
     public interface AppAttachPackagesService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.DesktopVirtualization/appAttachPackages")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<AppAttachPackageList>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/appAttachPackages")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<AppAttachPackageList>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$filter") String filter,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/appAttachPackages/{appAttachPackageName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -85,7 +102,18 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("appAttachPackageName") String appAttachPackageName,
-            @BodyParam("application/json") AppAttachPackageInner appAttachPackage, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") AppAttachPackageInner resource, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/appAttachPackages/{appAttachPackageName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<AppAttachPackageInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("appAttachPackageName") String appAttachPackageName,
+            @BodyParam("application/json") AppAttachPackagePatch properties, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -99,32 +127,12 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/appAttachPackages/{appAttachPackageName}")
+        @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AppAttachPackageInner>> update(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("appAttachPackageName") String appAttachPackageName,
-            @BodyParam("application/json") AppAttachPackagePatch appAttachPackagePatch,
+        Mono<Response<AppAttachPackageList>> listBySubscriptionNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/appAttachPackages")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AppAttachPackageList>> listByResourceGroup(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$filter") String filter,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.DesktopVirtualization/appAttachPackages")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AppAttachPackageList>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -133,14 +141,296 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
         Mono<Response<AppAttachPackageList>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+    }
 
-        @Headers({ "Content-Type: application/json" })
-        @Get("{nextLink}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AppAttachPackageList>> listBySubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept, Context context);
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
+     * group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<AppAttachPackageInner>> listSinglePageAsync(String filter) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), filter, accept, context))
+            .<PagedResponse<AppAttachPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
+     * group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<AppAttachPackageInner>> listSinglePageAsync(String filter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), filter,
+                accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
+     * group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<AppAttachPackageInner> listAsync(String filter) {
+        return new PagedFlux<>(() -> listSinglePageAsync(filter),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<AppAttachPackageInner> listAsync() {
+        final String filter = null;
+        return new PagedFlux<>(() -> listSinglePageAsync(filter),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
+     * group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<AppAttachPackageInner> listAsync(String filter, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(filter, context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<AppAttachPackageInner> list() {
+        final String filter = null;
+        return new PagedIterable<>(listAsync(filter));
+    }
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
+     * group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<AppAttachPackageInner> list(String filter, Context context) {
+        return new PagedIterable<>(listAsync(filter, context));
+    }
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<AppAttachPackageInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String filter) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, filter, accept, context))
+            .<PagedResponse<AppAttachPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<AppAttachPackageInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String filter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, filter, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName, String filter) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, filter),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName) {
+        final String filter = null;
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, filter),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName, String filter,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, filter, context),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<AppAttachPackageInner> listByResourceGroup(String resourceGroupName) {
+        final String filter = null;
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, filter));
+    }
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<AppAttachPackageInner> listByResourceGroup(String resourceGroupName, String filter,
+        Context context) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, filter, context));
     }
 
     /**
@@ -268,7 +558,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackage Object containing App Attach Package definitions.
+     * @param resource Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -277,7 +567,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<AppAttachPackageInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String appAttachPackageName, AppAttachPackageInner appAttachPackage) {
+        String appAttachPackageName, AppAttachPackageInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -294,17 +584,15 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter appAttachPackageName is required and cannot be null."));
         }
-        if (appAttachPackage == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter appAttachPackage is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            appAttachPackage.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, appAttachPackageName, appAttachPackage, accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, appAttachPackageName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -313,7 +601,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackage Object containing App Attach Package definitions.
+     * @param resource Object containing App Attach Package definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -323,7 +611,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AppAttachPackageInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String appAttachPackageName, AppAttachPackageInner appAttachPackage, Context context) {
+        String appAttachPackageName, AppAttachPackageInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -340,17 +628,15 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter appAttachPackageName is required and cannot be null."));
         }
-        if (appAttachPackage == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter appAttachPackage is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            appAttachPackage.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, appAttachPackageName, appAttachPackage, accept,
-            context);
+            this.client.getSubscriptionId(), resourceGroupName, appAttachPackageName, resource, accept, context);
     }
 
     /**
@@ -358,7 +644,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackage Object containing App Attach Package definitions.
+     * @param resource Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -366,8 +652,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<AppAttachPackageInner> createOrUpdateAsync(String resourceGroupName, String appAttachPackageName,
-        AppAttachPackageInner appAttachPackage) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, appAttachPackageName, appAttachPackage)
+        AppAttachPackageInner resource) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, appAttachPackageName, resource)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -376,7 +662,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackage Object containing App Attach Package definitions.
+     * @param resource Object containing App Attach Package definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -385,9 +671,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AppAttachPackageInner> createOrUpdateWithResponse(String resourceGroupName,
-        String appAttachPackageName, AppAttachPackageInner appAttachPackage, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, appAttachPackageName, appAttachPackage, context)
-            .block();
+        String appAttachPackageName, AppAttachPackageInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, appAttachPackageName, resource, context).block();
     }
 
     /**
@@ -395,7 +680,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackage Object containing App Attach Package definitions.
+     * @param resource Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -403,9 +688,147 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AppAttachPackageInner createOrUpdate(String resourceGroupName, String appAttachPackageName,
-        AppAttachPackageInner appAttachPackage) {
-        return createOrUpdateWithResponse(resourceGroupName, appAttachPackageName, appAttachPackage, Context.NONE)
-            .getValue();
+        AppAttachPackageInner resource) {
+        return createOrUpdateWithResponse(resourceGroupName, appAttachPackageName, resource, Context.NONE).getValue();
+    }
+
+    /**
+     * Update an App Attach Package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appAttachPackageName The name of the App Attach package.
+     * @param properties Object containing App Attach Package definition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for App Attach Package properties along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<AppAttachPackageInner>> updateWithResponseAsync(String resourceGroupName,
+        String appAttachPackageName, AppAttachPackagePatch properties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (appAttachPackageName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter appAttachPackageName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, appAttachPackageName, properties, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update an App Attach Package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appAttachPackageName The name of the App Attach package.
+     * @param properties Object containing App Attach Package definition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for App Attach Package properties along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<AppAttachPackageInner>> updateWithResponseAsync(String resourceGroupName,
+        String appAttachPackageName, AppAttachPackagePatch properties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (appAttachPackageName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter appAttachPackageName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, appAttachPackageName, properties, accept, context);
+    }
+
+    /**
+     * Update an App Attach Package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appAttachPackageName The name of the App Attach package.
+     * @param properties Object containing App Attach Package definition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for App Attach Package properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<AppAttachPackageInner> updateAsync(String resourceGroupName, String appAttachPackageName,
+        AppAttachPackagePatch properties) {
+        return updateWithResponseAsync(resourceGroupName, appAttachPackageName, properties)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Update an App Attach Package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appAttachPackageName The name of the App Attach package.
+     * @param properties Object containing App Attach Package definition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for App Attach Package properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<AppAttachPackageInner> updateWithResponse(String resourceGroupName, String appAttachPackageName,
+        AppAttachPackagePatch properties, Context context) {
+        return updateWithResponseAsync(resourceGroupName, appAttachPackageName, properties, context).block();
+    }
+
+    /**
+     * Update an App Attach Package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appAttachPackageName The name of the App Attach package.
+     * @param properties Object containing App Attach Package definition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for App Attach Package properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AppAttachPackageInner update(String resourceGroupName, String appAttachPackageName,
+        AppAttachPackagePatch properties) {
+        return updateWithResponse(resourceGroupName, appAttachPackageName, properties, Context.NONE).getValue();
     }
 
     /**
@@ -525,488 +948,14 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
     }
 
     /**
-     * Update an App Attach Package.
+     * Get the next page of items.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackagePatch Object containing App Attach Package definition.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for App Attach Package properties along with {@link Response} on successful completion of
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<AppAttachPackageInner>> updateWithResponseAsync(String resourceGroupName,
-        String appAttachPackageName, AppAttachPackagePatch appAttachPackagePatch) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (appAttachPackageName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter appAttachPackageName is required and cannot be null."));
-        }
-        if (appAttachPackagePatch != null) {
-            appAttachPackagePatch.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, appAttachPackageName, appAttachPackagePatch, accept,
-                context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Update an App Attach Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackagePatch Object containing App Attach Package definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for App Attach Package properties along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AppAttachPackageInner>> updateWithResponseAsync(String resourceGroupName,
-        String appAttachPackageName, AppAttachPackagePatch appAttachPackagePatch, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (appAttachPackageName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter appAttachPackageName is required and cannot be null."));
-        }
-        if (appAttachPackagePatch != null) {
-            appAttachPackagePatch.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, appAttachPackageName, appAttachPackagePatch, accept, context);
-    }
-
-    /**
-     * Update an App Attach Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for App Attach Package properties on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<AppAttachPackageInner> updateAsync(String resourceGroupName, String appAttachPackageName) {
-        final AppAttachPackagePatch appAttachPackagePatch = null;
-        return updateWithResponseAsync(resourceGroupName, appAttachPackageName, appAttachPackagePatch)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update an App Attach Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackagePatch Object containing App Attach Package definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for App Attach Package properties along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AppAttachPackageInner> updateWithResponse(String resourceGroupName, String appAttachPackageName,
-        AppAttachPackagePatch appAttachPackagePatch, Context context) {
-        return updateWithResponseAsync(resourceGroupName, appAttachPackageName, appAttachPackagePatch, context).block();
-    }
-
-    /**
-     * Update an App Attach Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for App Attach Package properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AppAttachPackageInner update(String resourceGroupName, String appAttachPackageName) {
-        final AppAttachPackagePatch appAttachPackagePatch = null;
-        return updateWithResponse(resourceGroupName, appAttachPackageName, appAttachPackagePatch, Context.NONE)
-            .getValue();
-    }
-
-    /**
-     * List App Attach packages in resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AppAttachPackageInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
-        String filter) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, filter, accept, context))
-            .<PagedResponse<AppAttachPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List App Attach packages in resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AppAttachPackageInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
-        String filter, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, filter, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List App Attach packages in resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName, String filter) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, filter),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * List App Attach packages in resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName) {
-        final String filter = null;
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, filter),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * List App Attach packages in resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName, String filter,
-        Context context) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, filter, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * List App Attach packages in resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AppAttachPackageInner> listByResourceGroup(String resourceGroupName) {
-        final String filter = null;
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, filter));
-    }
-
-    /**
-     * List App Attach packages in resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AppAttachPackageInner> listByResourceGroup(String resourceGroupName, String filter,
-        Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, filter, context));
-    }
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AppAttachPackageInner>> listSinglePageAsync(String filter) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), filter, accept, context))
-            .<PagedResponse<AppAttachPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AppAttachPackageInner>> listSinglePageAsync(String filter, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), filter,
-                accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<AppAttachPackageInner> listAsync(String filter) {
-        return new PagedFlux<>(() -> listSinglePageAsync(filter),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<AppAttachPackageInner> listAsync() {
-        final String filter = null;
-        return new PagedFlux<>(() -> listSinglePageAsync(filter),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AppAttachPackageInner> listAsync(String filter, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(filter, context),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AppAttachPackageInner> list() {
-        final String filter = null;
-        return new PagedIterable<>(listAsync(filter));
-    }
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AppAttachPackageInner> list(String filter, Context context) {
-        return new PagedIterable<>(listAsync(filter, context));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AppAttachPackageInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<AppAttachPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AppAttachPackageInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
-        Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AppAttachPackageInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1034,7 +983,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AppAttachPackageInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
@@ -1049,6 +999,62 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<AppAttachPackageInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<AppAttachPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<AppAttachPackageInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

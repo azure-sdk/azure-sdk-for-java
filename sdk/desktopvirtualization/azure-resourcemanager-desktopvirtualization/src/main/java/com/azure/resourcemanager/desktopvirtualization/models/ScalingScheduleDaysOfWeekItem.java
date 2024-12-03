@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for ScalingScheduleDaysOfWeekItem.
+ * Days of Week that the Scaling Schedule is active.
  */
 public final class ScalingScheduleDaysOfWeekItem extends ExpandableStringEnum<ScalingScheduleDaysOfWeekItem> {
     /**

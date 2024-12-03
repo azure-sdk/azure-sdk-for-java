@@ -50,53 +50,11 @@ public interface ApplicationGroup {
     Map<String, String> tags();
 
     /**
-     * Gets the managedBy property: The fully qualified resource ID of the resource that manages this resource.
-     * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
-     * will not delete the resource if it is removed from the template since it is managed by another resource.
+     * Gets the properties property: Detailed properties for ApplicationGroup.
      * 
-     * @return the managedBy value.
+     * @return the properties value.
      */
-    String managedBy();
-
-    /**
-     * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
-     * the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
-     * validate and persist this value.
-     * 
-     * @return the kind value.
-     */
-    String kind();
-
-    /**
-     * Gets the etag property: The etag field is *not* required. If it is provided in the response body, it must also be
-     * provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from
-     * the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24),
-     * If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
-     * 
-     * @return the etag value.
-     */
-    String etag();
-
-    /**
-     * Gets the identity property: The identity property.
-     * 
-     * @return the identity value.
-     */
-    ResourceModelWithAllowedPropertySetIdentity identity();
-
-    /**
-     * Gets the sku property: The sku property.
-     * 
-     * @return the sku value.
-     */
-    ResourceModelWithAllowedPropertySetSku sku();
-
-    /**
-     * Gets the plan property: The plan property.
-     * 
-     * @return the plan value.
-     */
-    ResourceModelWithAllowedPropertySetPlan plan();
+    ApplicationGroupProperties properties();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -104,62 +62,6 @@ public interface ApplicationGroup {
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the objectId property: ObjectId of ApplicationGroup. (internal use).
-     * 
-     * @return the objectId value.
-     */
-    String objectId();
-
-    /**
-     * Gets the description property: Description of ApplicationGroup.
-     * 
-     * @return the description value.
-     */
-    String description();
-
-    /**
-     * Gets the friendlyName property: Friendly name of ApplicationGroup.
-     * 
-     * @return the friendlyName value.
-     */
-    String friendlyName();
-
-    /**
-     * Gets the hostPoolArmPath property: HostPool arm path of ApplicationGroup.
-     * 
-     * @return the hostPoolArmPath value.
-     */
-    String hostPoolArmPath();
-
-    /**
-     * Gets the workspaceArmPath property: Workspace arm path of ApplicationGroup.
-     * 
-     * @return the workspaceArmPath value.
-     */
-    String workspaceArmPath();
-
-    /**
-     * Gets the applicationGroupType property: Resource Type of ApplicationGroup.
-     * 
-     * @return the applicationGroupType value.
-     */
-    ApplicationGroupType applicationGroupType();
-
-    /**
-     * Gets the cloudPcResource property: Is cloud pc resource.
-     * 
-     * @return the cloudPcResource value.
-     */
-    Boolean cloudPcResource();
-
-    /**
-     * Gets the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     * 
-     * @return the showInFeed value.
-     */
-    Boolean showInFeed();
 
     /**
      * Gets the region of the resource.
@@ -192,9 +94,8 @@ public interface ApplicationGroup {
     /**
      * The entirety of the ApplicationGroup definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithResourceGroup,
-        DefinitionStages.WithHostPoolArmPath, DefinitionStages.WithApplicationGroupType, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithProperties, DefinitionStages.WithCreate {
     }
 
     /**
@@ -238,43 +139,27 @@ public interface ApplicationGroup {
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
-            WithHostPoolArmPath withExistingResourceGroup(String resourceGroupName);
+            WithProperties withExistingResourceGroup(String resourceGroupName);
         }
 
         /**
-         * The stage of the ApplicationGroup definition allowing to specify hostPoolArmPath.
+         * The stage of the ApplicationGroup definition allowing to specify properties.
          */
-        interface WithHostPoolArmPath {
+        interface WithProperties {
             /**
-             * Specifies the hostPoolArmPath property: HostPool arm path of ApplicationGroup..
+             * Specifies the properties property: Detailed properties for ApplicationGroup.
              * 
-             * @param hostPoolArmPath HostPool arm path of ApplicationGroup.
+             * @param properties Detailed properties for ApplicationGroup.
              * @return the next definition stage.
              */
-            WithApplicationGroupType withHostPoolArmPath(String hostPoolArmPath);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify applicationGroupType.
-         */
-        interface WithApplicationGroupType {
-            /**
-             * Specifies the applicationGroupType property: Resource Type of ApplicationGroup..
-             * 
-             * @param applicationGroupType Resource Type of ApplicationGroup.
-             * @return the next definition stage.
-             */
-            WithCreate withApplicationGroupType(ApplicationGroupType applicationGroupType);
+            WithCreate withProperties(ApplicationGroupProperties properties);
         }
 
         /**
          * The stage of the ApplicationGroup definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithManagedBy, DefinitionStages.WithKind,
-            DefinitionStages.WithIdentity, DefinitionStages.WithSku, DefinitionStages.WithPlan,
-            DefinitionStages.WithDescription, DefinitionStages.WithFriendlyName, DefinitionStages.WithShowInFeed {
+        interface WithCreate extends DefinitionStages.WithTags {
             /**
              * Executes the create request.
              * 
@@ -303,120 +188,6 @@ public interface ApplicationGroup {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify managedBy.
-         */
-        interface WithManagedBy {
-            /**
-             * Specifies the managedBy property: The fully qualified resource ID of the resource that manages this
-             * resource. Indicates if this resource is managed by another Azure resource. If this is present, complete
-             * mode deployment will not delete the resource if it is removed from the template since it is managed by
-             * another resource..
-             * 
-             * @param managedBy The fully qualified resource ID of the resource that manages this resource. Indicates if
-             * this resource is managed by another Azure resource. If this is present, complete mode deployment will not
-             * delete the resource if it is removed from the template since it is managed by another resource.
-             * @return the next definition stage.
-             */
-            WithCreate withManagedBy(String managedBy);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify kind.
-         */
-        interface WithKind {
-            /**
-             * Specifies the kind property: Metadata used by portal/tooling/etc to render different UX experiences for
-             * resources of the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the
-             * resource provider must validate and persist this value..
-             * 
-             * @param kind Metadata used by portal/tooling/etc to render different UX experiences for resources of the
-             * same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
-             * validate and persist this value.
-             * @return the next definition stage.
-             */
-            WithCreate withKind(String kind);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: The identity property..
-             * 
-             * @param identity The identity property.
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(ResourceModelWithAllowedPropertySetIdentity identity);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify sku.
-         */
-        interface WithSku {
-            /**
-             * Specifies the sku property: The sku property..
-             * 
-             * @param sku The sku property.
-             * @return the next definition stage.
-             */
-            WithCreate withSku(ResourceModelWithAllowedPropertySetSku sku);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify plan.
-         */
-        interface WithPlan {
-            /**
-             * Specifies the plan property: The plan property..
-             * 
-             * @param plan The plan property.
-             * @return the next definition stage.
-             */
-            WithCreate withPlan(ResourceModelWithAllowedPropertySetPlan plan);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify description.
-         */
-        interface WithDescription {
-            /**
-             * Specifies the description property: Description of ApplicationGroup..
-             * 
-             * @param description Description of ApplicationGroup.
-             * @return the next definition stage.
-             */
-            WithCreate withDescription(String description);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify friendlyName.
-         */
-        interface WithFriendlyName {
-            /**
-             * Specifies the friendlyName property: Friendly name of ApplicationGroup..
-             * 
-             * @param friendlyName Friendly name of ApplicationGroup.
-             * @return the next definition stage.
-             */
-            WithCreate withFriendlyName(String friendlyName);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify showInFeed.
-         */
-        interface WithShowInFeed {
-            /**
-             * Specifies the showInFeed property: Boolean representing whether the applicationGroup is show in the
-             * feed..
-             * 
-             * @param showInFeed Boolean representing whether the applicationGroup is show in the feed.
-             * @return the next definition stage.
-             */
-            WithCreate withShowInFeed(Boolean showInFeed);
-        }
     }
 
     /**
@@ -429,8 +200,7 @@ public interface ApplicationGroup {
     /**
      * The template for ApplicationGroup update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithDescription, UpdateStages.WithFriendlyName,
-        UpdateStages.WithShowInFeed {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -465,43 +235,16 @@ public interface ApplicationGroup {
         }
 
         /**
-         * The stage of the ApplicationGroup update allowing to specify description.
+         * The stage of the ApplicationGroup update allowing to specify properties.
          */
-        interface WithDescription {
+        interface WithProperties {
             /**
-             * Specifies the description property: Description of ApplicationGroup..
+             * Specifies the properties property: ApplicationGroup properties that can be patched..
              * 
-             * @param description Description of ApplicationGroup.
+             * @param properties ApplicationGroup properties that can be patched.
              * @return the next definition stage.
              */
-            Update withDescription(String description);
-        }
-
-        /**
-         * The stage of the ApplicationGroup update allowing to specify friendlyName.
-         */
-        interface WithFriendlyName {
-            /**
-             * Specifies the friendlyName property: Friendly name of ApplicationGroup..
-             * 
-             * @param friendlyName Friendly name of ApplicationGroup.
-             * @return the next definition stage.
-             */
-            Update withFriendlyName(String friendlyName);
-        }
-
-        /**
-         * The stage of the ApplicationGroup update allowing to specify showInFeed.
-         */
-        interface WithShowInFeed {
-            /**
-             * Specifies the showInFeed property: Boolean representing whether the applicationGroup is show in the
-             * feed..
-             * 
-             * @param showInFeed Boolean representing whether the applicationGroup is show in the feed.
-             * @return the next definition stage.
-             */
-            Update withShowInFeed(Boolean showInFeed);
+            Update withProperties(ApplicationGroupPatchProperties properties);
         }
     }
 

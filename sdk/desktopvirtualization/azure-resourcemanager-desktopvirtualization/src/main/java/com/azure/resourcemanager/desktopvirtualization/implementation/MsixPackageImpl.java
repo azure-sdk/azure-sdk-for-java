@@ -8,12 +8,9 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.MsixPackageInner;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackage;
-import com.azure.resourcemanager.desktopvirtualization.models.MsixPackageApplications;
-import com.azure.resourcemanager.desktopvirtualization.models.MsixPackageDependencies;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackagePatch;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.List;
+import com.azure.resourcemanager.desktopvirtualization.models.MsixPackagePatchProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.MsixPackageProperties;
 
 public final class MsixPackageImpl implements MsixPackage, MsixPackage.Definition, MsixPackage.Update {
     private MsixPackageInner innerObject;
@@ -32,66 +29,12 @@ public final class MsixPackageImpl implements MsixPackage, MsixPackage.Definitio
         return this.innerModel().type();
     }
 
+    public MsixPackageProperties properties() {
+        return this.innerModel().properties();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public String imagePath() {
-        return this.innerModel().imagePath();
-    }
-
-    public String packageName() {
-        return this.innerModel().packageName();
-    }
-
-    public String packageFamilyName() {
-        return this.innerModel().packageFamilyName();
-    }
-
-    public String displayName() {
-        return this.innerModel().displayName();
-    }
-
-    public String packageRelativePath() {
-        return this.innerModel().packageRelativePath();
-    }
-
-    public Boolean isRegularRegistration() {
-        return this.innerModel().isRegularRegistration();
-    }
-
-    public Boolean isActive() {
-        return this.innerModel().isActive();
-    }
-
-    public List<MsixPackageDependencies> packageDependencies() {
-        List<MsixPackageDependencies> inner = this.innerModel().packageDependencies();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public String version() {
-        return this.innerModel().version();
-    }
-
-    public OffsetDateTime lastUpdated() {
-        return this.innerModel().lastUpdated();
-    }
-
-    public List<MsixPackageApplications> packageApplications() {
-        List<MsixPackageApplications> inner = this.innerModel().packageApplications();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public String resourceGroupName() {
-        return resourceGroupName;
     }
 
     public MsixPackageInner innerModel() {
@@ -102,25 +45,14 @@ public final class MsixPackageImpl implements MsixPackage, MsixPackage.Definitio
         return this.serviceManager;
     }
 
-    private String resourceGroupName;
-
-    private String hostPoolName;
-
     private String msixPackageFullName;
 
-    private MsixPackagePatch updateMsixPackage;
-
-    public MsixPackageImpl withExistingHostPool(String resourceGroupName, String hostPoolName) {
-        this.resourceGroupName = resourceGroupName;
-        this.hostPoolName = hostPoolName;
-        return this;
-    }
+    private MsixPackagePatch updateProperties;
 
     public MsixPackage create() {
         this.innerObject = serviceManager.serviceClient()
             .getMsixPackages()
-            .createOrUpdateWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, this.innerModel(),
-                Context.NONE)
+            .createOrUpdateWithResponse(msixPackageFullName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
@@ -128,8 +60,7 @@ public final class MsixPackageImpl implements MsixPackage, MsixPackage.Definitio
     public MsixPackage create(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getMsixPackages()
-            .createOrUpdateWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, this.innerModel(),
-                context)
+            .createOrUpdateWithResponse(msixPackageFullName, this.innerModel(), context)
             .getValue();
         return this;
     }
@@ -142,14 +73,14 @@ public final class MsixPackageImpl implements MsixPackage, MsixPackage.Definitio
     }
 
     public MsixPackageImpl update() {
-        this.updateMsixPackage = new MsixPackagePatch();
+        this.updateProperties = new MsixPackagePatch();
         return this;
     }
 
     public MsixPackage apply() {
         this.innerObject = serviceManager.serviceClient()
             .getMsixPackages()
-            .updateWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, updateMsixPackage, Context.NONE)
+            .updateWithResponse(msixPackageFullName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
@@ -157,7 +88,7 @@ public final class MsixPackageImpl implements MsixPackage, MsixPackage.Definitio
     public MsixPackage apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getMsixPackages()
-            .updateWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, updateMsixPackage, context)
+            .updateWithResponse(msixPackageFullName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -166,98 +97,30 @@ public final class MsixPackageImpl implements MsixPackage, MsixPackage.Definitio
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourcegroups");
-        this.hostPoolName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "hostPools");
         this.msixPackageFullName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "msixPackages");
     }
 
     public MsixPackage refresh() {
         this.innerObject = serviceManager.serviceClient()
             .getMsixPackages()
-            .getWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, Context.NONE)
+            .getWithResponse(msixPackageFullName, Context.NONE)
             .getValue();
         return this;
     }
 
     public MsixPackage refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient()
-            .getMsixPackages()
-            .getWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, context)
-            .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getMsixPackages().getWithResponse(msixPackageFullName, context).getValue();
         return this;
     }
 
-    public MsixPackageImpl withImagePath(String imagePath) {
-        this.innerModel().withImagePath(imagePath);
+    public MsixPackageImpl withProperties(MsixPackageProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 
-    public MsixPackageImpl withPackageName(String packageName) {
-        this.innerModel().withPackageName(packageName);
+    public MsixPackageImpl withProperties(MsixPackagePatchProperties properties) {
+        this.updateProperties.withProperties(properties);
         return this;
-    }
-
-    public MsixPackageImpl withPackageFamilyName(String packageFamilyName) {
-        this.innerModel().withPackageFamilyName(packageFamilyName);
-        return this;
-    }
-
-    public MsixPackageImpl withDisplayName(String displayName) {
-        if (isInCreateMode()) {
-            this.innerModel().withDisplayName(displayName);
-            return this;
-        } else {
-            this.updateMsixPackage.withDisplayName(displayName);
-            return this;
-        }
-    }
-
-    public MsixPackageImpl withPackageRelativePath(String packageRelativePath) {
-        this.innerModel().withPackageRelativePath(packageRelativePath);
-        return this;
-    }
-
-    public MsixPackageImpl withIsRegularRegistration(Boolean isRegularRegistration) {
-        if (isInCreateMode()) {
-            this.innerModel().withIsRegularRegistration(isRegularRegistration);
-            return this;
-        } else {
-            this.updateMsixPackage.withIsRegularRegistration(isRegularRegistration);
-            return this;
-        }
-    }
-
-    public MsixPackageImpl withIsActive(Boolean isActive) {
-        if (isInCreateMode()) {
-            this.innerModel().withIsActive(isActive);
-            return this;
-        } else {
-            this.updateMsixPackage.withIsActive(isActive);
-            return this;
-        }
-    }
-
-    public MsixPackageImpl withPackageDependencies(List<MsixPackageDependencies> packageDependencies) {
-        this.innerModel().withPackageDependencies(packageDependencies);
-        return this;
-    }
-
-    public MsixPackageImpl withVersion(String version) {
-        this.innerModel().withVersion(version);
-        return this;
-    }
-
-    public MsixPackageImpl withLastUpdated(OffsetDateTime lastUpdated) {
-        this.innerModel().withLastUpdated(lastUpdated);
-        return this;
-    }
-
-    public MsixPackageImpl withPackageApplications(List<MsixPackageApplications> packageApplications) {
-        this.innerModel().withPackageApplications(packageApplications);
-        return this;
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
     }
 }

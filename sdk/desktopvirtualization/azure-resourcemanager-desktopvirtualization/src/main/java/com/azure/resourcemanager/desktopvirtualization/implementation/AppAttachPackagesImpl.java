@@ -27,6 +27,28 @@ public final class AppAttachPackagesImpl implements AppAttachPackages {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<AppAttachPackage> list() {
+        PagedIterable<AppAttachPackageInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AppAttachPackageImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<AppAttachPackage> list(String filter, Context context) {
+        PagedIterable<AppAttachPackageInner> inner = this.serviceClient().list(filter, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AppAttachPackageImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<AppAttachPackage> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<AppAttachPackageInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AppAttachPackageImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<AppAttachPackage> listByResourceGroup(String resourceGroupName, String filter,
+        Context context) {
+        PagedIterable<AppAttachPackageInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, filter, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AppAttachPackageImpl(inner1, this.manager()));
+    }
+
     public Response<AppAttachPackage> getByResourceGroupWithResponse(String resourceGroupName,
         String appAttachPackageName, Context context) {
         Response<AppAttachPackageInner> inner
@@ -55,28 +77,6 @@ public final class AppAttachPackagesImpl implements AppAttachPackages {
 
     public void deleteByResourceGroup(String resourceGroupName, String appAttachPackageName) {
         this.serviceClient().delete(resourceGroupName, appAttachPackageName);
-    }
-
-    public PagedIterable<AppAttachPackage> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<AppAttachPackageInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new AppAttachPackageImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<AppAttachPackage> listByResourceGroup(String resourceGroupName, String filter,
-        Context context) {
-        PagedIterable<AppAttachPackageInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, filter, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new AppAttachPackageImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<AppAttachPackage> list() {
-        PagedIterable<AppAttachPackageInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new AppAttachPackageImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<AppAttachPackage> list(String filter, Context context) {
-        PagedIterable<AppAttachPackageInner> inner = this.serviceClient().list(filter, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new AppAttachPackageImpl(inner1, this.manager()));
     }
 
     public AppAttachPackage getById(String id) {

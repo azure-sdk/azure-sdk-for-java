@@ -78,7 +78,7 @@ public final class AppAttachPackageImpl
 
     private String appAttachPackageName;
 
-    private AppAttachPackagePatch updateAppAttachPackagePatch;
+    private AppAttachPackagePatch updateProperties;
 
     public AppAttachPackageImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -109,14 +109,14 @@ public final class AppAttachPackageImpl
     }
 
     public AppAttachPackageImpl update() {
-        this.updateAppAttachPackagePatch = new AppAttachPackagePatch();
+        this.updateProperties = new AppAttachPackagePatch();
         return this;
     }
 
     public AppAttachPackage apply() {
         this.innerObject = serviceManager.serviceClient()
             .getAppAttachPackages()
-            .updateWithResponse(resourceGroupName, appAttachPackageName, updateAppAttachPackagePatch, Context.NONE)
+            .updateWithResponse(resourceGroupName, appAttachPackageName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
@@ -124,7 +124,7 @@ public final class AppAttachPackageImpl
     public AppAttachPackage apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getAppAttachPackages()
-            .updateWithResponse(resourceGroupName, appAttachPackageName, updateAppAttachPackagePatch, context)
+            .updateWithResponse(resourceGroupName, appAttachPackageName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -174,7 +174,7 @@ public final class AppAttachPackageImpl
     }
 
     public AppAttachPackageImpl withProperties(AppAttachPackagePatchProperties properties) {
-        this.updateAppAttachPackagePatch.withProperties(properties);
+        this.updateProperties.withProperties(properties);
         return this;
     }
 }

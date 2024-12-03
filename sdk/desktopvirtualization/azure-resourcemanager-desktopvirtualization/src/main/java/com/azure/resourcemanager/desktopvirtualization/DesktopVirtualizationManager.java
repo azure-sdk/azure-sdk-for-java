@@ -11,54 +11,48 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopVirtualizationApiClient;
-import com.azure.resourcemanager.desktopvirtualization.implementation.AppAttachPackageInfoesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.AppAttachPackagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ApplicationGroupsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ApplicationsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopVirtualizationApiClientBuilder;
+import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.HostPoolsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.MsixImagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixPackagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.OperationsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.PrivateEndpointConnectionsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.PrivateLinkResourcesImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlanPersonalSchedulesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlanPooledSchedulesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlansImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHostsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.StartMenuItemsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.UserSessionsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.WorkspacesImpl;
-import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackageInfoes;
 import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackages;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroups;
 import com.azure.resourcemanager.desktopvirtualization.models.Applications;
 import com.azure.resourcemanager.desktopvirtualization.models.Desktops;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPools;
-import com.azure.resourcemanager.desktopvirtualization.models.MsixImages;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackages;
 import com.azure.resourcemanager.desktopvirtualization.models.Operations;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnections;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkResources;
+import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroups;
+import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPersonalSchedules;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPooledSchedules;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlans;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHosts;
-import com.azure.resourcemanager.desktopvirtualization.models.StartMenuItems;
 import com.azure.resourcemanager.desktopvirtualization.models.UserSessions;
 import com.azure.resourcemanager.desktopvirtualization.models.Workspaces;
 import java.time.Duration;
@@ -70,43 +64,38 @@ import java.util.stream.Collectors;
 
 /**
  * Entry point to DesktopVirtualizationManager.
+ * This Typespec represents the Desktop Virtualization API interfaces.
  */
 public final class DesktopVirtualizationManager {
     private Operations operations;
 
-    private Workspaces workspaces;
-
-    private PrivateEndpointConnections privateEndpointConnections;
-
-    private PrivateLinkResources privateLinkResources;
-
-    private ScalingPlans scalingPlans;
-
-    private ScalingPlanPooledSchedules scalingPlanPooledSchedules;
-
-    private ScalingPlanPersonalSchedules scalingPlanPersonalSchedules;
+    private AppAttachPackages appAttachPackages;
 
     private ApplicationGroups applicationGroups;
 
-    private StartMenuItems startMenuItems;
+    private HostPools hostPools;
+
+    private MsixPackages msixPackages;
+
+    private ScalingPlans scalingPlans;
+
+    private Workspaces workspaces;
 
     private Applications applications;
 
     private Desktops desktops;
 
-    private HostPools hostPools;
-
-    private UserSessions userSessions;
+    private PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroups privateEndpointConnectionOnHostPoolWithSystemDataOperationGroups;
 
     private SessionHosts sessionHosts;
 
-    private MsixPackages msixPackages;
+    private UserSessions userSessions;
 
-    private AppAttachPackageInfoes appAttachPackageInfoes;
+    private ScalingPlanPersonalSchedules scalingPlanPersonalSchedules;
 
-    private MsixImages msixImages;
+    private ScalingPlanPooledSchedules scalingPlanPooledSchedules;
 
-    private AppAttachPackages appAttachPackages;
+    private PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups privateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups;
 
     private final DesktopVirtualizationApiClient clientObject;
 
@@ -273,7 +262,7 @@ public final class DesktopVirtualizationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.desktopvirtualization")
                 .append("/")
-                .append("1.2.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -306,7 +295,7 @@ public final class DesktopVirtualizationManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -332,78 +321,15 @@ public final class DesktopVirtualizationManager {
     }
 
     /**
-     * Gets the resource collection API of Workspaces. It manages Workspace.
+     * Gets the resource collection API of AppAttachPackages. It manages AppAttachPackage.
      * 
-     * @return Resource collection API of Workspaces.
+     * @return Resource collection API of AppAttachPackages.
      */
-    public Workspaces workspaces() {
-        if (this.workspaces == null) {
-            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
+    public AppAttachPackages appAttachPackages() {
+        if (this.appAttachPackages == null) {
+            this.appAttachPackages = new AppAttachPackagesImpl(clientObject.getAppAttachPackages(), this);
         }
-        return workspaces;
-    }
-
-    /**
-     * Gets the resource collection API of PrivateEndpointConnections.
-     * 
-     * @return Resource collection API of PrivateEndpointConnections.
-     */
-    public PrivateEndpointConnections privateEndpointConnections() {
-        if (this.privateEndpointConnections == null) {
-            this.privateEndpointConnections
-                = new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
-        }
-        return privateEndpointConnections;
-    }
-
-    /**
-     * Gets the resource collection API of PrivateLinkResources.
-     * 
-     * @return Resource collection API of PrivateLinkResources.
-     */
-    public PrivateLinkResources privateLinkResources() {
-        if (this.privateLinkResources == null) {
-            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
-        }
-        return privateLinkResources;
-    }
-
-    /**
-     * Gets the resource collection API of ScalingPlans. It manages ScalingPlan.
-     * 
-     * @return Resource collection API of ScalingPlans.
-     */
-    public ScalingPlans scalingPlans() {
-        if (this.scalingPlans == null) {
-            this.scalingPlans = new ScalingPlansImpl(clientObject.getScalingPlans(), this);
-        }
-        return scalingPlans;
-    }
-
-    /**
-     * Gets the resource collection API of ScalingPlanPooledSchedules. It manages ScalingPlanPooledSchedule.
-     * 
-     * @return Resource collection API of ScalingPlanPooledSchedules.
-     */
-    public ScalingPlanPooledSchedules scalingPlanPooledSchedules() {
-        if (this.scalingPlanPooledSchedules == null) {
-            this.scalingPlanPooledSchedules
-                = new ScalingPlanPooledSchedulesImpl(clientObject.getScalingPlanPooledSchedules(), this);
-        }
-        return scalingPlanPooledSchedules;
-    }
-
-    /**
-     * Gets the resource collection API of ScalingPlanPersonalSchedules. It manages ScalingPlanPersonalSchedule.
-     * 
-     * @return Resource collection API of ScalingPlanPersonalSchedules.
-     */
-    public ScalingPlanPersonalSchedules scalingPlanPersonalSchedules() {
-        if (this.scalingPlanPersonalSchedules == null) {
-            this.scalingPlanPersonalSchedules
-                = new ScalingPlanPersonalSchedulesImpl(clientObject.getScalingPlanPersonalSchedules(), this);
-        }
-        return scalingPlanPersonalSchedules;
+        return appAttachPackages;
     }
 
     /**
@@ -419,15 +345,51 @@ public final class DesktopVirtualizationManager {
     }
 
     /**
-     * Gets the resource collection API of StartMenuItems.
+     * Gets the resource collection API of HostPools. It manages HostPool.
      * 
-     * @return Resource collection API of StartMenuItems.
+     * @return Resource collection API of HostPools.
      */
-    public StartMenuItems startMenuItems() {
-        if (this.startMenuItems == null) {
-            this.startMenuItems = new StartMenuItemsImpl(clientObject.getStartMenuItems(), this);
+    public HostPools hostPools() {
+        if (this.hostPools == null) {
+            this.hostPools = new HostPoolsImpl(clientObject.getHostPools(), this);
         }
-        return startMenuItems;
+        return hostPools;
+    }
+
+    /**
+     * Gets the resource collection API of MsixPackages. It manages MsixPackage.
+     * 
+     * @return Resource collection API of MsixPackages.
+     */
+    public MsixPackages msixPackages() {
+        if (this.msixPackages == null) {
+            this.msixPackages = new MsixPackagesImpl(clientObject.getMsixPackages(), this);
+        }
+        return msixPackages;
+    }
+
+    /**
+     * Gets the resource collection API of ScalingPlans. It manages ScalingPlan.
+     * 
+     * @return Resource collection API of ScalingPlans.
+     */
+    public ScalingPlans scalingPlans() {
+        if (this.scalingPlans == null) {
+            this.scalingPlans = new ScalingPlansImpl(clientObject.getScalingPlans(), this);
+        }
+        return scalingPlans;
+    }
+
+    /**
+     * Gets the resource collection API of Workspaces. It manages Workspace.
+     * 
+     * @return Resource collection API of Workspaces.
+     */
+    public Workspaces workspaces() {
+        if (this.workspaces == null) {
+            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
+        }
+        return workspaces;
     }
 
     /**
@@ -455,27 +417,18 @@ public final class DesktopVirtualizationManager {
     }
 
     /**
-     * Gets the resource collection API of HostPools. It manages HostPool.
+     * Gets the resource collection API of PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroups.
      * 
-     * @return Resource collection API of HostPools.
+     * @return Resource collection API of PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroups.
      */
-    public HostPools hostPools() {
-        if (this.hostPools == null) {
-            this.hostPools = new HostPoolsImpl(clientObject.getHostPools(), this);
+    public PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroups
+        privateEndpointConnectionOnHostPoolWithSystemDataOperationGroups() {
+        if (this.privateEndpointConnectionOnHostPoolWithSystemDataOperationGroups == null) {
+            this.privateEndpointConnectionOnHostPoolWithSystemDataOperationGroups
+                = new PrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroupsImpl(
+                    clientObject.getPrivateEndpointConnectionOnHostPoolWithSystemDataOperationGroups(), this);
         }
-        return hostPools;
-    }
-
-    /**
-     * Gets the resource collection API of UserSessions.
-     * 
-     * @return Resource collection API of UserSessions.
-     */
-    public UserSessions userSessions() {
-        if (this.userSessions == null) {
-            this.userSessions = new UserSessionsImpl(clientObject.getUserSessions(), this);
-        }
-        return userSessions;
+        return privateEndpointConnectionOnHostPoolWithSystemDataOperationGroups;
     }
 
     /**
@@ -491,52 +444,56 @@ public final class DesktopVirtualizationManager {
     }
 
     /**
-     * Gets the resource collection API of MsixPackages. It manages MsixPackage.
+     * Gets the resource collection API of UserSessions.
      * 
-     * @return Resource collection API of MsixPackages.
+     * @return Resource collection API of UserSessions.
      */
-    public MsixPackages msixPackages() {
-        if (this.msixPackages == null) {
-            this.msixPackages = new MsixPackagesImpl(clientObject.getMsixPackages(), this);
+    public UserSessions userSessions() {
+        if (this.userSessions == null) {
+            this.userSessions = new UserSessionsImpl(clientObject.getUserSessions(), this);
         }
-        return msixPackages;
+        return userSessions;
     }
 
     /**
-     * Gets the resource collection API of AppAttachPackageInfoes.
+     * Gets the resource collection API of ScalingPlanPersonalSchedules. It manages ScalingPlanPersonalSchedule.
      * 
-     * @return Resource collection API of AppAttachPackageInfoes.
+     * @return Resource collection API of ScalingPlanPersonalSchedules.
      */
-    public AppAttachPackageInfoes appAttachPackageInfoes() {
-        if (this.appAttachPackageInfoes == null) {
-            this.appAttachPackageInfoes
-                = new AppAttachPackageInfoesImpl(clientObject.getAppAttachPackageInfoes(), this);
+    public ScalingPlanPersonalSchedules scalingPlanPersonalSchedules() {
+        if (this.scalingPlanPersonalSchedules == null) {
+            this.scalingPlanPersonalSchedules
+                = new ScalingPlanPersonalSchedulesImpl(clientObject.getScalingPlanPersonalSchedules(), this);
         }
-        return appAttachPackageInfoes;
+        return scalingPlanPersonalSchedules;
     }
 
     /**
-     * Gets the resource collection API of MsixImages.
+     * Gets the resource collection API of ScalingPlanPooledSchedules. It manages ScalingPlanPooledSchedule.
      * 
-     * @return Resource collection API of MsixImages.
+     * @return Resource collection API of ScalingPlanPooledSchedules.
      */
-    public MsixImages msixImages() {
-        if (this.msixImages == null) {
-            this.msixImages = new MsixImagesImpl(clientObject.getMsixImages(), this);
+    public ScalingPlanPooledSchedules scalingPlanPooledSchedules() {
+        if (this.scalingPlanPooledSchedules == null) {
+            this.scalingPlanPooledSchedules
+                = new ScalingPlanPooledSchedulesImpl(clientObject.getScalingPlanPooledSchedules(), this);
         }
-        return msixImages;
+        return scalingPlanPooledSchedules;
     }
 
     /**
-     * Gets the resource collection API of AppAttachPackages. It manages AppAttachPackage.
+     * Gets the resource collection API of PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups.
      * 
-     * @return Resource collection API of AppAttachPackages.
+     * @return Resource collection API of PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups.
      */
-    public AppAttachPackages appAttachPackages() {
-        if (this.appAttachPackages == null) {
-            this.appAttachPackages = new AppAttachPackagesImpl(clientObject.getAppAttachPackages(), this);
+    public PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups
+        privateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups() {
+        if (this.privateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups == null) {
+            this.privateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups
+                = new PrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroupsImpl(
+                    clientObject.getPrivateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups(), this);
         }
-        return appAttachPackages;
+        return privateEndpointConnectionOnWorkspaceWithSystemDataOperationGroups;
     }
 
     /**

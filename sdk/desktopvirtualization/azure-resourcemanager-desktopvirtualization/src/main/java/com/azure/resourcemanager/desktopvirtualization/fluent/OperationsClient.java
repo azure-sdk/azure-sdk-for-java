@@ -9,41 +9,44 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedFlux;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationInner;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.OperationInner;
 
 /**
  * An instance of this class provides access to all the operations defined in OperationsClient.
  */
 public interface OperationsClient {
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedFlux}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<ResourceProviderOperationInner> listAsync();
+    PagedFlux<OperationInner> listAsync();
 
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedIterable}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ResourceProviderOperationInner> list();
+    PagedIterable<OperationInner> list();
 
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedIterable}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ResourceProviderOperationInner> list(Context context);
+    PagedIterable<OperationInner> list(Context context);
 }

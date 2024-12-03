@@ -4,17 +4,14 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Samples for Workspaces CreateOrUpdate.
  */
 public final class WorkspacesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Workspace_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
+     * Workspaces_CreateOrUpdate.json
      */
     /**
      * Sample code: Workspace_Create.
@@ -25,23 +22,8 @@ public final class WorkspacesCreateOrUpdateSamples {
         workspaceCreate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.workspaces()
             .define("workspace1")
-            .withRegion("centralus")
+            .withRegion((String) null)
             .withExistingResourceGroup("resourceGroup1")
-            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withDescription("des1")
-            .withFriendlyName("friendly")
             .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }

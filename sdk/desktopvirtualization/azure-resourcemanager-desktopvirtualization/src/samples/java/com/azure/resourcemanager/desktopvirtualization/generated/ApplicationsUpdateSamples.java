@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.Application;
-import com.azure.resourcemanager.desktopvirtualization.models.CommandLineSetting;
-import com.azure.resourcemanager.desktopvirtualization.models.RemoteApplicationType;
 
 /**
  * Samples for Applications Update.
@@ -14,8 +12,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.RemoteApplicationT
 public final class ApplicationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Application_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
+     * Applications_Update.json
      */
     /**
      * Sample code: Application_Update.
@@ -27,16 +25,6 @@ public final class ApplicationsUpdateSamples {
         Application resource = manager.applications()
             .getWithResponse("resourceGroup1", "applicationGroup1", "application1", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update()
-            .withDescription("des1")
-            .withFriendlyName("friendly")
-            .withFilePath("path")
-            .withCommandLineSetting(CommandLineSetting.ALLOW)
-            .withCommandLineArguments("arguments")
-            .withShowInPortal(true)
-            .withIconPath("icon")
-            .withIconIndex(1)
-            .withApplicationType(RemoteApplicationType.IN_BUILT)
-            .apply();
+        resource.update().apply();
     }
 }

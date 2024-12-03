@@ -7,12 +7,7 @@ package com.azure.resourcemanager.desktopvirtualization.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.SessionHostInner;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHost;
-import com.azure.resourcemanager.desktopvirtualization.models.SessionHostHealthCheckReport;
-import com.azure.resourcemanager.desktopvirtualization.models.Status;
-import com.azure.resourcemanager.desktopvirtualization.models.UpdateState;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.List;
+import com.azure.resourcemanager.desktopvirtualization.models.SessionHostProperties;
 
 public final class SessionHostImpl implements SessionHost {
     private SessionHostInner innerObject;
@@ -37,81 +32,12 @@ public final class SessionHostImpl implements SessionHost {
         return this.innerModel().type();
     }
 
+    public SessionHostProperties properties() {
+        return this.innerModel().properties();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public String objectId() {
-        return this.innerModel().objectId();
-    }
-
-    public OffsetDateTime lastHeartBeat() {
-        return this.innerModel().lastHeartBeat();
-    }
-
-    public Integer sessions() {
-        return this.innerModel().sessions();
-    }
-
-    public String agentVersion() {
-        return this.innerModel().agentVersion();
-    }
-
-    public Boolean allowNewSession() {
-        return this.innerModel().allowNewSession();
-    }
-
-    public String virtualMachineId() {
-        return this.innerModel().virtualMachineId();
-    }
-
-    public String resourceId() {
-        return this.innerModel().resourceId();
-    }
-
-    public String assignedUser() {
-        return this.innerModel().assignedUser();
-    }
-
-    public String friendlyName() {
-        return this.innerModel().friendlyName();
-    }
-
-    public Status status() {
-        return this.innerModel().status();
-    }
-
-    public OffsetDateTime statusTimestamp() {
-        return this.innerModel().statusTimestamp();
-    }
-
-    public String osVersion() {
-        return this.innerModel().osVersion();
-    }
-
-    public String sxSStackVersion() {
-        return this.innerModel().sxSStackVersion();
-    }
-
-    public UpdateState updateState() {
-        return this.innerModel().updateState();
-    }
-
-    public OffsetDateTime lastUpdateTime() {
-        return this.innerModel().lastUpdateTime();
-    }
-
-    public String updateErrorMessage() {
-        return this.innerModel().updateErrorMessage();
-    }
-
-    public List<SessionHostHealthCheckReport> sessionHostHealthCheckResults() {
-        List<SessionHostHealthCheckReport> inner = this.innerModel().sessionHostHealthCheckResults();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
     }
 
     public SessionHostInner innerModel() {

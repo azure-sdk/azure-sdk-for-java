@@ -4,16 +4,14 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
-import com.azure.resourcemanager.desktopvirtualization.models.SendMessage;
-
 /**
  * Samples for UserSessions SendMessage.
  */
 public final class UserSessionsSendMessageSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * UserSession_SendMessage_Post.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
+     * UserSessions_SendMessage.json
      */
     /**
      * Sample code: UserSession_SendMessage_Post.
@@ -23,7 +21,7 @@ public final class UserSessionsSendMessageSamples {
     public static void userSessionSendMessagePost(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.userSessions()
-            .sendMessageWithResponse("resourceGroup1", "hostPool1", "sessionHost1.microsoft.com", "1",
-                new SendMessage().withMessageTitle("title").withMessageBody("body"), com.azure.core.util.Context.NONE);
+            .sendMessageWithResponse("resourceGroup1", "hostPool1", "sessionHost1.microsoft.com", "1", null,
+                com.azure.core.util.Context.NONE);
     }
 }

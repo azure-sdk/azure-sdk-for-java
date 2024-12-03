@@ -17,19 +17,20 @@ public interface UserSessions {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return userSessionList as paginated response with {@link PagedIterable}.
+     * @return list of UserSession definitions as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<UserSession> listByHostPool(String resourceGroupName, String hostPoolName);
+    PagedIterable<UserSession> list(String resourceGroupName, String hostPoolName, String sessionHostname);
 
     /**
      * List userSessions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param filter OData filter expression. Valid properties for filtering are userprincipalname and sessionstate.
+     * @param sessionHostname The name of the session host within the specified host pool.
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
@@ -37,9 +38,9 @@ public interface UserSessions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return userSessionList as paginated response with {@link PagedIterable}.
+     * @return list of UserSession definitions as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<UserSession> listByHostPool(String resourceGroupName, String hostPoolName, String filter,
+    PagedIterable<UserSession> list(String resourceGroupName, String hostPoolName, String sessionHostname,
         Integer pageSize, Boolean isDescending, Integer initialSkip, Context context);
 
     /**
@@ -103,37 +104,6 @@ public interface UserSessions {
     void delete(String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId);
 
     /**
-     * List userSessions.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return userSessionList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<UserSession> list(String resourceGroupName, String hostPoolName, String sessionHostname);
-
-    /**
-     * List userSessions.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return userSessionList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<UserSession> list(String resourceGroupName, String hostPoolName, String sessionHostname,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context);
-
-    /**
      * Disconnect a userSession.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -169,7 +139,7 @@ public interface UserSessions {
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
      * @param userSessionId The name of the user session within the specified session host.
-     * @param sendMessage Object containing message includes title and message body.
+     * @param body Object containing message includes title and message body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -177,7 +147,7 @@ public interface UserSessions {
      * @return the {@link Response}.
      */
     Response<Void> sendMessageWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
-        String userSessionId, SendMessage sendMessage, Context context);
+        String userSessionId, SendMessage body, Context context);
 
     /**
      * Send a message to a user.
@@ -186,9 +156,11 @@ public interface UserSessions {
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
      * @param userSessionId The name of the user session within the specified session host.
+     * @param body Object containing message includes title and message body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void sendMessage(String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId);
+    void sendMessage(String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId,
+        SendMessage body);
 }

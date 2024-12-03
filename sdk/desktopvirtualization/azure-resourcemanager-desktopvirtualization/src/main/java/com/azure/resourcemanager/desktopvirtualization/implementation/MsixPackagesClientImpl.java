@@ -68,56 +68,51 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
     @ServiceInterface(name = "DesktopVirtualizatio")
     public interface MsixPackagesService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/msixPackages/{msixPackageFullName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MsixPackageInner>> get(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
-            @PathParam("msixPackageFullName") String msixPackageFullName, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/msixPackages/{msixPackageFullName}")
-        @ExpectedResponses({ 200, 201 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MsixPackageInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
-            @PathParam("msixPackageFullName") String msixPackageFullName,
-            @BodyParam("application/json") MsixPackageInner msixPackage, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/msixPackages/{msixPackageFullName}")
-        @ExpectedResponses({ 200, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
-            @PathParam("msixPackageFullName") String msixPackageFullName, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/msixPackages/{msixPackageFullName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MsixPackageInner>> update(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
-            @PathParam("msixPackageFullName") String msixPackageFullName,
-            @BodyParam("application/json") MsixPackagePatch msixPackage, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/msixPackages")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.DesktopVirtualization/msixPackages")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MsixPackageList>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
             @QueryParam("pageSize") Integer pageSize, @QueryParam("isDescending") Boolean isDescending,
             @QueryParam("initialSkip") Integer initialSkip, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.DesktopVirtualization/msixPackages/{msixPackageFullName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<MsixPackageInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("msixPackageFullName") String msixPackageFullName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/providers/Microsoft.DesktopVirtualization/msixPackages/{msixPackageFullName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<MsixPackageInner>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("msixPackageFullName") String msixPackageFullName,
+            @BodyParam("application/json") MsixPackageInner resource, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/providers/Microsoft.DesktopVirtualization/msixPackages/{msixPackageFullName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<MsixPackageInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("msixPackageFullName") String msixPackageFullName,
+            @BodyParam("application/json") MsixPackagePatch properties, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/providers/Microsoft.DesktopVirtualization/msixPackages/{msixPackageFullName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("msixPackageFullName") String msixPackageFullName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -128,580 +123,20 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
     }
 
     /**
-     * Get a msixpackage.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a msixpackage along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<MsixPackageInner>> getWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (msixPackageFullName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, hostPoolName, msixPackageFullName, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get a msixpackage.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a msixpackage along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MsixPackageInner>> getWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (msixPackageFullName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, hostPoolName, msixPackageFullName, accept, context);
-    }
-
-    /**
-     * Get a msixpackage.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a msixpackage on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<MsixPackageInner> getAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
-        return getWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get a msixpackage.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a msixpackage along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<MsixPackageInner> getWithResponse(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, Context context) {
-        return getWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, context).block();
-    }
-
-    /**
-     * Get a msixpackage.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a msixpackage.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MsixPackageInner get(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
-        return getWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, Context.NONE).getValue();
-    }
-
-    /**
-     * Create or update a MSIX package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<MsixPackageInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String hostPoolName, String msixPackageFullName, MsixPackageInner msixPackage) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (msixPackageFullName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
-        }
-        if (msixPackage == null) {
-            return Mono.error(new IllegalArgumentException("Parameter msixPackage is required and cannot be null."));
-        } else {
-            msixPackage.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, hostPoolName, msixPackageFullName, msixPackage,
-                accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Create or update a MSIX package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MsixPackageInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String hostPoolName, String msixPackageFullName, MsixPackageInner msixPackage, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (msixPackageFullName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
-        }
-        if (msixPackage == null) {
-            return Mono.error(new IllegalArgumentException("Parameter msixPackage is required and cannot be null."));
-        } else {
-            msixPackage.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, hostPoolName, msixPackageFullName, msixPackage, accept,
-            context);
-    }
-
-    /**
-     * Create or update a MSIX package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<MsixPackageInner> createOrUpdateAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackageInner msixPackage) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Create or update a MSIX package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<MsixPackageInner> createOrUpdateWithResponse(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackageInner msixPackage, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage,
-            context).block();
-    }
-
-    /**
-     * Create or update a MSIX package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MsixPackageInner createOrUpdate(String resourceGroupName, String hostPoolName, String msixPackageFullName,
-        MsixPackageInner msixPackage) {
-        return createOrUpdateWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage,
-            Context.NONE).getValue();
-    }
-
-    /**
-     * Remove an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (msixPackageFullName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, hostPoolName, msixPackageFullName, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Remove an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (msixPackageFullName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, hostPoolName, msixPackageFullName, accept, context);
-    }
-
-    /**
-     * Remove an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
-        return deleteWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Remove an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String hostPoolName, String msixPackageFullName,
-        Context context) {
-        return deleteWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, context).block();
-    }
-
-    /**
-     * Remove an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
-        deleteWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, Context.NONE);
-    }
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<MsixPackageInner>> updateWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackagePatch msixPackage) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (msixPackageFullName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
-        }
-        if (msixPackage != null) {
-            msixPackage.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, hostPoolName, msixPackageFullName, msixPackage,
-                accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MsixPackageInner>> updateWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackagePatch msixPackage, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (msixPackageFullName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
-        }
-        if (msixPackage != null) {
-            msixPackage.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, hostPoolName, msixPackageFullName, msixPackage, accept, context);
-    }
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<MsixPackageInner> updateAsync(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName) {
-        final MsixPackagePatch msixPackage = null;
-        return updateWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @param msixPackage Object containing MSIX Package definitions.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<MsixPackageInner> updateWithResponse(String resourceGroupName, String hostPoolName,
-        String msixPackageFullName, MsixPackagePatch msixPackage, Context context) {
-        return updateWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage, context)
-            .block();
-    }
-
-    /**
-     * Update an MSIX Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for MSIX Package properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MsixPackageInner update(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
-        final MsixPackagePatch msixPackage = null;
-        return updateWithResponse(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage, Context.NONE)
-            .getValue();
-    }
-
-    /**
      * List MSIX packages in hostpool.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of MSIX Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MsixPackageInner>> listSinglePageAsync(String resourceGroupName, String hostPoolName,
-        Integer pageSize, Boolean isDescending, Integer initialSkip) {
+    private Mono<PagedResponse<MsixPackageInner>> listSinglePageAsync(Integer pageSize, Boolean isDescending,
+        Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -710,18 +145,10 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip,
-                accept, context))
+                this.client.getSubscriptionId(), pageSize, isDescending, initialSkip, accept, context))
             .<PagedResponse<MsixPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -730,8 +157,6 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
     /**
      * List MSIX packages in hostpool.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
@@ -739,11 +164,12 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of MSIX Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MsixPackageInner>> listSinglePageAsync(String resourceGroupName, String hostPoolName,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+    private Mono<PagedResponse<MsixPackageInner>> listSinglePageAsync(Integer pageSize, Boolean isDescending,
+        Integer initialSkip, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -752,18 +178,11 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), pageSize,
+                isDescending, initialSkip, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -771,49 +190,39 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
     /**
      * List MSIX packages in hostpool.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedFlux}.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<MsixPackageInner> listAsync(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
+    public PagedFlux<MsixPackageInner> listAsync(Integer pageSize, Boolean isDescending, Integer initialSkip) {
+        return new PagedFlux<>(() -> listSinglePageAsync(pageSize, isDescending, initialSkip),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List MSIX packages in hostpool.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedFlux}.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<MsixPackageInner> listAsync(String resourceGroupName, String hostPoolName) {
+    public PagedFlux<MsixPackageInner> listAsync() {
         final Integer pageSize = null;
         final Boolean isDescending = null;
         final Integer initialSkip = null;
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
+        return new PagedFlux<>(() -> listSinglePageAsync(pageSize, isDescending, initialSkip),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List MSIX packages in hostpool.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
@@ -821,39 +230,33 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedFlux}.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<MsixPackageInner> listAsync(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context),
+    private PagedFlux<MsixPackageInner> listAsync(Integer pageSize, Boolean isDescending, Integer initialSkip,
+        Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(pageSize, isDescending, initialSkip, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List MSIX packages in hostpool.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedIterable}.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<MsixPackageInner> list(String resourceGroupName, String hostPoolName) {
+    public PagedIterable<MsixPackageInner> list() {
         final Integer pageSize = null;
         final Boolean isDescending = null;
         final Integer initialSkip = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip));
+        return new PagedIterable<>(listAsync(pageSize, isDescending, initialSkip));
     }
 
     /**
      * List MSIX packages in hostpool.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
@@ -861,13 +264,461 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedIterable}.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<MsixPackageInner> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        return new PagedIterable<>(
-            listAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context));
+    public PagedIterable<MsixPackageInner> list(Integer pageSize, Boolean isDescending, Integer initialSkip,
+        Context context) {
+        return new PagedIterable<>(listAsync(pageSize, isDescending, initialSkip, context));
+    }
+
+    /**
+     * Get a msixpackage.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a msixpackage along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<MsixPackageInner>> getWithResponseAsync(String msixPackageFullName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (msixPackageFullName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), msixPackageFullName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get a msixpackage.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a msixpackage along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MsixPackageInner>> getWithResponseAsync(String msixPackageFullName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (msixPackageFullName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            msixPackageFullName, accept, context);
+    }
+
+    /**
+     * Get a msixpackage.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a msixpackage on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<MsixPackageInner> getAsync(String msixPackageFullName) {
+        return getWithResponseAsync(msixPackageFullName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get a msixpackage.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a msixpackage along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<MsixPackageInner> getWithResponse(String msixPackageFullName, Context context) {
+        return getWithResponseAsync(msixPackageFullName, context).block();
+    }
+
+    /**
+     * Get a msixpackage.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a msixpackage.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MsixPackageInner get(String msixPackageFullName) {
+        return getWithResponse(msixPackageFullName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create or update a MSIX package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param resource Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<MsixPackageInner>> createOrUpdateWithResponseAsync(String msixPackageFullName,
+        MsixPackageInner resource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (msixPackageFullName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), msixPackageFullName, resource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create or update a MSIX package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param resource Object containing MSIX Package definitions.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MsixPackageInner>> createOrUpdateWithResponseAsync(String msixPackageFullName,
+        MsixPackageInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (msixPackageFullName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), msixPackageFullName, resource, accept, context);
+    }
+
+    /**
+     * Create or update a MSIX package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param resource Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<MsixPackageInner> createOrUpdateAsync(String msixPackageFullName, MsixPackageInner resource) {
+        return createOrUpdateWithResponseAsync(msixPackageFullName, resource)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Create or update a MSIX package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param resource Object containing MSIX Package definitions.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<MsixPackageInner> createOrUpdateWithResponse(String msixPackageFullName, MsixPackageInner resource,
+        Context context) {
+        return createOrUpdateWithResponseAsync(msixPackageFullName, resource, context).block();
+    }
+
+    /**
+     * Create or update a MSIX package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param resource Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MsixPackageInner createOrUpdate(String msixPackageFullName, MsixPackageInner resource) {
+        return createOrUpdateWithResponse(msixPackageFullName, resource, Context.NONE).getValue();
+    }
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<MsixPackageInner>> updateWithResponseAsync(String msixPackageFullName,
+        MsixPackagePatch properties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (msixPackageFullName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), msixPackageFullName, properties, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MsixPackageInner>> updateWithResponseAsync(String msixPackageFullName,
+        MsixPackagePatch properties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (msixPackageFullName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            msixPackageFullName, properties, accept, context);
+    }
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<MsixPackageInner> updateAsync(String msixPackageFullName, MsixPackagePatch properties) {
+        return updateWithResponseAsync(msixPackageFullName, properties)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<MsixPackageInner> updateWithResponse(String msixPackageFullName, MsixPackagePatch properties,
+        Context context) {
+        return updateWithResponseAsync(msixPackageFullName, properties, context).block();
+    }
+
+    /**
+     * Update an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param properties Object containing MSIX Package definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schema for MSIX Package properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MsixPackageInner update(String msixPackageFullName, MsixPackagePatch properties) {
+        return updateWithResponse(msixPackageFullName, properties, Context.NONE).getValue();
+    }
+
+    /**
+     * Remove an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteWithResponseAsync(String msixPackageFullName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (msixPackageFullName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), msixPackageFullName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Remove an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(String msixPackageFullName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (msixPackageFullName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter msixPackageFullName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            msixPackageFullName, accept, context);
+    }
+
+    /**
+     * Remove an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteAsync(String msixPackageFullName) {
+        return deleteWithResponseAsync(msixPackageFullName).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Remove an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(String msixPackageFullName, Context context) {
+        return deleteWithResponseAsync(msixPackageFullName, context).block();
+    }
+
+    /**
+     * Remove an MSIX Package.
+     * 
+     * @param msixPackageFullName The version specific package full name of the MSIX package within specified hostpool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String msixPackageFullName) {
+        deleteWithResponse(msixPackageFullName, Context.NONE);
     }
 
     /**
@@ -877,7 +728,8 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of MSIX Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MsixPackageInner>> listNextSinglePageAsync(String nextLink) {
@@ -903,7 +755,8 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of MSIX Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MsixPackageInner>> listNextSinglePageAsync(String nextLink, Context context) {

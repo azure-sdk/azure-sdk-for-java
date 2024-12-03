@@ -12,8 +12,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlan;
 public final class ScalingPlansUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ScalingPlan_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
+     * ScalingPlans_Update.json
      */
     /**
      * Sample code: ScalingPlans_Update.

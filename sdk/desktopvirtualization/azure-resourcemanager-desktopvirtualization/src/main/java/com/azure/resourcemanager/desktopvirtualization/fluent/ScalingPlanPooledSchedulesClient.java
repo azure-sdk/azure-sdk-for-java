@@ -19,6 +19,67 @@ import reactor.core.publisher.Mono;
  */
 public interface ScalingPlanPooledSchedulesClient {
     /**
+     * List ScalingPlanPooledSchedules.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ScalingPlanPooledSchedule definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<ScalingPlanPooledScheduleInner> listAsync(String resourceGroupName, String scalingPlanName,
+        Integer pageSize, Boolean isDescending, Integer initialSkip);
+
+    /**
+     * List ScalingPlanPooledSchedules.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ScalingPlanPooledSchedule definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<ScalingPlanPooledScheduleInner> listAsync(String resourceGroupName, String scalingPlanName);
+
+    /**
+     * List ScalingPlanPooledSchedules.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ScalingPlanPooledSchedule definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ScalingPlanPooledScheduleInner> list(String resourceGroupName, String scalingPlanName);
+
+    /**
+     * List ScalingPlanPooledSchedules.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ScalingPlanPooledSchedule definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ScalingPlanPooledScheduleInner> list(String resourceGroupName, String scalingPlanName,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context);
+
+    /**
      * Get a ScalingPlanPooledSchedule.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -85,7 +146,7 @@ public interface ScalingPlanPooledSchedulesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param scalingPlanName The name of the scaling plan.
      * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
-     * @param scalingPlanSchedule Object containing ScalingPlanPooledSchedule definitions.
+     * @param resource Object containing ScalingPlanPooledSchedule definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -94,7 +155,7 @@ public interface ScalingPlanPooledSchedulesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ScalingPlanPooledScheduleInner>> createWithResponseAsync(String resourceGroupName,
-        String scalingPlanName, String scalingPlanScheduleName, ScalingPlanPooledScheduleInner scalingPlanSchedule);
+        String scalingPlanName, String scalingPlanScheduleName, ScalingPlanPooledScheduleInner resource);
 
     /**
      * Create or update a ScalingPlanPooledSchedule.
@@ -102,7 +163,7 @@ public interface ScalingPlanPooledSchedulesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param scalingPlanName The name of the scaling plan.
      * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
-     * @param scalingPlanSchedule Object containing ScalingPlanPooledSchedule definitions.
+     * @param resource Object containing ScalingPlanPooledSchedule definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -110,7 +171,7 @@ public interface ScalingPlanPooledSchedulesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ScalingPlanPooledScheduleInner> createAsync(String resourceGroupName, String scalingPlanName,
-        String scalingPlanScheduleName, ScalingPlanPooledScheduleInner scalingPlanSchedule);
+        String scalingPlanScheduleName, ScalingPlanPooledScheduleInner resource);
 
     /**
      * Create or update a ScalingPlanPooledSchedule.
@@ -118,7 +179,7 @@ public interface ScalingPlanPooledSchedulesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param scalingPlanName The name of the scaling plan.
      * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
-     * @param scalingPlanSchedule Object containing ScalingPlanPooledSchedule definitions.
+     * @param resource Object containing ScalingPlanPooledSchedule definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -127,7 +188,7 @@ public interface ScalingPlanPooledSchedulesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ScalingPlanPooledScheduleInner> createWithResponse(String resourceGroupName, String scalingPlanName,
-        String scalingPlanScheduleName, ScalingPlanPooledScheduleInner scalingPlanSchedule, Context context);
+        String scalingPlanScheduleName, ScalingPlanPooledScheduleInner resource, Context context);
 
     /**
      * Create or update a ScalingPlanPooledSchedule.
@@ -135,7 +196,7 @@ public interface ScalingPlanPooledSchedulesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param scalingPlanName The name of the scaling plan.
      * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
-     * @param scalingPlanSchedule Object containing ScalingPlanPooledSchedule definitions.
+     * @param resource Object containing ScalingPlanPooledSchedule definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -143,7 +204,73 @@ public interface ScalingPlanPooledSchedulesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ScalingPlanPooledScheduleInner create(String resourceGroupName, String scalingPlanName,
-        String scalingPlanScheduleName, ScalingPlanPooledScheduleInner scalingPlanSchedule);
+        String scalingPlanScheduleName, ScalingPlanPooledScheduleInner resource);
+
+    /**
+     * Update a ScalingPlanPooledSchedule.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
+     * @param properties Object containing ScalingPlanPooledSchedule definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a ScalingPlanPooledSchedule definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Response<ScalingPlanPooledScheduleInner>> updateWithResponseAsync(String resourceGroupName,
+        String scalingPlanName, String scalingPlanScheduleName, ScalingPlanPooledSchedulePatch properties);
+
+    /**
+     * Update a ScalingPlanPooledSchedule.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
+     * @param properties Object containing ScalingPlanPooledSchedule definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a ScalingPlanPooledSchedule definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<ScalingPlanPooledScheduleInner> updateAsync(String resourceGroupName, String scalingPlanName,
+        String scalingPlanScheduleName, ScalingPlanPooledSchedulePatch properties);
+
+    /**
+     * Update a ScalingPlanPooledSchedule.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
+     * @param properties Object containing ScalingPlanPooledSchedule definitions.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a ScalingPlanPooledSchedule definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ScalingPlanPooledScheduleInner> updateWithResponse(String resourceGroupName, String scalingPlanName,
+        String scalingPlanScheduleName, ScalingPlanPooledSchedulePatch properties, Context context);
+
+    /**
+     * Update a ScalingPlanPooledSchedule.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
+     * @param properties Object containing ScalingPlanPooledSchedule definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a ScalingPlanPooledSchedule definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ScalingPlanPooledScheduleInner update(String resourceGroupName, String scalingPlanName,
+        String scalingPlanScheduleName, ScalingPlanPooledSchedulePatch properties);
 
     /**
      * Remove a ScalingPlanPooledSchedule.
@@ -202,129 +329,4 @@ public interface ScalingPlanPooledSchedulesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String scalingPlanName, String scalingPlanScheduleName);
-
-    /**
-     * Update a ScalingPlanPooledSchedule.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
-     * @param scalingPlanSchedule Object containing ScalingPlanPooledSchedule definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a ScalingPlanPooledSchedule definition along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<ScalingPlanPooledScheduleInner>> updateWithResponseAsync(String resourceGroupName,
-        String scalingPlanName, String scalingPlanScheduleName, ScalingPlanPooledSchedulePatch scalingPlanSchedule);
-
-    /**
-     * Update a ScalingPlanPooledSchedule.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a ScalingPlanPooledSchedule definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<ScalingPlanPooledScheduleInner> updateAsync(String resourceGroupName, String scalingPlanName,
-        String scalingPlanScheduleName);
-
-    /**
-     * Update a ScalingPlanPooledSchedule.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
-     * @param scalingPlanSchedule Object containing ScalingPlanPooledSchedule definitions.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a ScalingPlanPooledSchedule definition along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ScalingPlanPooledScheduleInner> updateWithResponse(String resourceGroupName, String scalingPlanName,
-        String scalingPlanScheduleName, ScalingPlanPooledSchedulePatch scalingPlanSchedule, Context context);
-
-    /**
-     * Update a ScalingPlanPooledSchedule.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @param scalingPlanScheduleName The name of the ScalingPlanSchedule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a ScalingPlanPooledSchedule definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ScalingPlanPooledScheduleInner update(String resourceGroupName, String scalingPlanName,
-        String scalingPlanScheduleName);
-
-    /**
-     * List ScalingPlanPooledSchedules.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return scalingPlanPooledScheduleList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<ScalingPlanPooledScheduleInner> listAsync(String resourceGroupName, String scalingPlanName,
-        Integer pageSize, Boolean isDescending, Integer initialSkip);
-
-    /**
-     * List ScalingPlanPooledSchedules.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return scalingPlanPooledScheduleList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<ScalingPlanPooledScheduleInner> listAsync(String resourceGroupName, String scalingPlanName);
-
-    /**
-     * List ScalingPlanPooledSchedules.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return scalingPlanPooledScheduleList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ScalingPlanPooledScheduleInner> list(String resourceGroupName, String scalingPlanName);
-
-    /**
-     * List ScalingPlanPooledSchedules.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return scalingPlanPooledScheduleList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ScalingPlanPooledScheduleInner> list(String resourceGroupName, String scalingPlanName,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context);
 }

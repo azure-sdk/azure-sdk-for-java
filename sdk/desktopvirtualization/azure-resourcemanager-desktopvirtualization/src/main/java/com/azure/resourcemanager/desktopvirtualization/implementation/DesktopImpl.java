@@ -7,6 +7,7 @@ package com.azure.resourcemanager.desktopvirtualization.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopInner;
 import com.azure.resourcemanager.desktopvirtualization.models.Desktop;
+import com.azure.resourcemanager.desktopvirtualization.models.DesktopProperties;
 
 public final class DesktopImpl implements Desktop {
     private DesktopInner innerObject;
@@ -31,28 +32,12 @@ public final class DesktopImpl implements Desktop {
         return this.innerModel().type();
     }
 
+    public DesktopProperties properties() {
+        return this.innerModel().properties();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public String objectId() {
-        return this.innerModel().objectId();
-    }
-
-    public String description() {
-        return this.innerModel().description();
-    }
-
-    public String friendlyName() {
-        return this.innerModel().friendlyName();
-    }
-
-    public String iconHash() {
-        return this.innerModel().iconHash();
-    }
-
-    public byte[] iconContent() {
-        return this.innerModel().iconContent();
     }
 
     public DesktopInner innerModel() {

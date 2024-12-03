@@ -10,7 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.WorkspacesClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.PrivateLinkResourceInner;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkResource;
 import com.azure.resourcemanager.desktopvirtualization.models.Workspace;
 import com.azure.resourcemanager.desktopvirtualization.models.Workspaces;
 
@@ -25,6 +27,28 @@ public final class WorkspacesImpl implements Workspaces {
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public PagedIterable<Workspace> list() {
+        PagedIterable<WorkspaceInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Workspace> list(Context context) {
+        PagedIterable<WorkspaceInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<WorkspaceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<WorkspaceInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
     }
 
     public Response<Workspace> getByResourceGroupWithResponse(String resourceGroupName, String workspaceName,
@@ -57,26 +81,17 @@ public final class WorkspacesImpl implements Workspaces {
         this.serviceClient().delete(resourceGroupName, workspaceName);
     }
 
-    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<WorkspaceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    public PagedIterable<PrivateLinkResource> listByWorkspace(String resourceGroupName, String workspaceName) {
+        PagedIterable<PrivateLinkResourceInner> inner
+            = this.serviceClient().listByWorkspace(resourceGroupName, workspaceName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<WorkspaceInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Workspace> list() {
-        PagedIterable<WorkspaceInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Workspace> list(Context context) {
-        PagedIterable<WorkspaceInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    public PagedIterable<PrivateLinkResource> listByWorkspace(String resourceGroupName, String workspaceName,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<PrivateLinkResourceInner> inner = this.serviceClient()
+            .listByWorkspace(resourceGroupName, workspaceName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 
     public Workspace getById(String id) {

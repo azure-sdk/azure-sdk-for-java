@@ -4,9 +4,7 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
-import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupType;
-import java.util.HashMap;
-import java.util.Map;
+import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupProperties;
 
 /**
  * Samples for ApplicationGroups CreateOrUpdate.
@@ -14,8 +12,8 @@ import java.util.Map;
 public final class ApplicationGroupsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ApplicationGroup_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
+     * ApplicationGroups_CreateOrUpdate.json
      */
     /**
      * Sample code: ApplicationGroup_Create.
@@ -26,27 +24,9 @@ public final class ApplicationGroupsCreateOrUpdateSamples {
         applicationGroupCreate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.applicationGroups()
             .define("applicationGroup1")
-            .withRegion("centralus")
+            .withRegion((String) null)
             .withExistingResourceGroup("resourceGroup1")
-            .withHostPoolArmPath(
-                "/subscriptions/daefabc0-95b4-48b3-b645-8a753a63c4fa/resourceGroups/resourceGroup1/providers/Microsoft.DesktopVirtualization/hostPools/hostPool1")
-            .withApplicationGroupType(ApplicationGroupType.REMOTE_APP)
-            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withDescription("des1")
-            .withFriendlyName("friendly")
-            .withShowInFeed(true)
+            .withProperties((ApplicationGroupProperties) null)
             .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }

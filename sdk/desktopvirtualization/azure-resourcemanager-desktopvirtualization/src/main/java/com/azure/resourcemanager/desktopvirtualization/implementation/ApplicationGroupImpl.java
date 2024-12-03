@@ -10,10 +10,8 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ApplicationGroupInner;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroup;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupPatch;
-import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupPatchProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupProperties;
 import java.util.Collections;
 import java.util.Map;
 
@@ -48,64 +46,12 @@ public final class ApplicationGroupImpl
         }
     }
 
-    public String managedBy() {
-        return this.innerModel().managedBy();
-    }
-
-    public String kind() {
-        return this.innerModel().kind();
-    }
-
-    public String etag() {
-        return this.innerModel().etag();
-    }
-
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
-        return this.innerModel().identity();
-    }
-
-    public ResourceModelWithAllowedPropertySetSku sku() {
-        return this.innerModel().sku();
-    }
-
-    public ResourceModelWithAllowedPropertySetPlan plan() {
-        return this.innerModel().plan();
+    public ApplicationGroupProperties properties() {
+        return this.innerModel().properties();
     }
 
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public String objectId() {
-        return this.innerModel().objectId();
-    }
-
-    public String description() {
-        return this.innerModel().description();
-    }
-
-    public String friendlyName() {
-        return this.innerModel().friendlyName();
-    }
-
-    public String hostPoolArmPath() {
-        return this.innerModel().hostPoolArmPath();
-    }
-
-    public String workspaceArmPath() {
-        return this.innerModel().workspaceArmPath();
-    }
-
-    public ApplicationGroupType applicationGroupType() {
-        return this.innerModel().applicationGroupType();
-    }
-
-    public Boolean cloudPcResource() {
-        return this.innerModel().cloudPcResource();
-    }
-
-    public Boolean showInFeed() {
-        return this.innerModel().showInFeed();
     }
 
     public Region region() {
@@ -132,7 +78,7 @@ public final class ApplicationGroupImpl
 
     private String applicationGroupName;
 
-    private ApplicationGroupPatch updateApplicationGroup;
+    private ApplicationGroupPatch updateProperties;
 
     public ApplicationGroupImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -163,14 +109,14 @@ public final class ApplicationGroupImpl
     }
 
     public ApplicationGroupImpl update() {
-        this.updateApplicationGroup = new ApplicationGroupPatch();
+        this.updateProperties = new ApplicationGroupPatch();
         return this;
     }
 
     public ApplicationGroup apply() {
         this.innerObject = serviceManager.serviceClient()
             .getApplicationGroups()
-            .updateWithResponse(resourceGroupName, applicationGroupName, updateApplicationGroup, Context.NONE)
+            .updateWithResponse(resourceGroupName, applicationGroupName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
@@ -178,7 +124,7 @@ public final class ApplicationGroupImpl
     public ApplicationGroup apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getApplicationGroups()
-            .updateWithResponse(resourceGroupName, applicationGroupName, updateApplicationGroup, context)
+            .updateWithResponse(resourceGroupName, applicationGroupName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -217,13 +163,8 @@ public final class ApplicationGroupImpl
         return this;
     }
 
-    public ApplicationGroupImpl withHostPoolArmPath(String hostPoolArmPath) {
-        this.innerModel().withHostPoolArmPath(hostPoolArmPath);
-        return this;
-    }
-
-    public ApplicationGroupImpl withApplicationGroupType(ApplicationGroupType applicationGroupType) {
-        this.innerModel().withApplicationGroupType(applicationGroupType);
+    public ApplicationGroupImpl withProperties(ApplicationGroupProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 
@@ -232,64 +173,14 @@ public final class ApplicationGroupImpl
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateApplicationGroup.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }
 
-    public ApplicationGroupImpl withManagedBy(String managedBy) {
-        this.innerModel().withManagedBy(managedBy);
+    public ApplicationGroupImpl withProperties(ApplicationGroupPatchProperties properties) {
+        this.updateProperties.withProperties(properties);
         return this;
-    }
-
-    public ApplicationGroupImpl withKind(String kind) {
-        this.innerModel().withKind(kind);
-        return this;
-    }
-
-    public ApplicationGroupImpl withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
-        this.innerModel().withIdentity(identity);
-        return this;
-    }
-
-    public ApplicationGroupImpl withSku(ResourceModelWithAllowedPropertySetSku sku) {
-        this.innerModel().withSku(sku);
-        return this;
-    }
-
-    public ApplicationGroupImpl withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
-        this.innerModel().withPlan(plan);
-        return this;
-    }
-
-    public ApplicationGroupImpl withDescription(String description) {
-        if (isInCreateMode()) {
-            this.innerModel().withDescription(description);
-            return this;
-        } else {
-            this.updateApplicationGroup.withDescription(description);
-            return this;
-        }
-    }
-
-    public ApplicationGroupImpl withFriendlyName(String friendlyName) {
-        if (isInCreateMode()) {
-            this.innerModel().withFriendlyName(friendlyName);
-            return this;
-        } else {
-            this.updateApplicationGroup.withFriendlyName(friendlyName);
-            return this;
-        }
-    }
-
-    public ApplicationGroupImpl withShowInFeed(Boolean showInFeed) {
-        if (isInCreateMode()) {
-            this.innerModel().withShowInFeed(showInFeed);
-            return this;
-        } else {
-            this.updateApplicationGroup.withShowInFeed(showInFeed);
-            return this;
-        }
     }
 
     private boolean isInCreateMode() {
