@@ -25,17 +25,23 @@ import com.azure.resourcemanager.kubernetesconfiguration.fluent.FluxConfigOperat
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.OperationStatusResultInner;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in FluxConfigOperationStatusClient. */
+/**
+ * An instance of this class provides access to all the operations defined in FluxConfigOperationStatusClient.
+ */
 public final class FluxConfigOperationStatusClientImpl implements FluxConfigOperationStatusClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final FluxConfigOperationStatusService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final SourceControlConfigurationClientImpl client;
 
     /**
      * Initializes an instance of FluxConfigOperationStatusClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     FluxConfigOperationStatusClientImpl(SourceControlConfigurationClientImpl client) {
@@ -66,12 +72,12 @@ public final class FluxConfigOperationStatusClientImpl implements FluxConfigOper
 
     /**
      * Get Async Operation status.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
+     * Microsoft.HybridContainerService.
      * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
+     * provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
      * @param operationId operation Id.
@@ -112,22 +118,23 @@ public final class FluxConfigOperationStatusClientImpl implements FluxConfigOper
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName,
-                this.client.getApiVersion(), operationId, accept, context))
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, apiVersion,
+                operationId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get Async Operation status.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
+     * Microsoft.HybridContainerService.
      * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
+     * provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
      * @param operationId operation Id.
@@ -170,21 +177,21 @@ public final class FluxConfigOperationStatusClientImpl implements FluxConfigOper
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, clusterRp,
-            clusterResourceName, clusterName, fluxConfigurationName, this.client.getApiVersion(), operationId, accept,
-            context);
+            clusterResourceName, clusterName, fluxConfigurationName, apiVersion, operationId, accept, context);
     }
 
     /**
      * Get Async Operation status.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
+     * Microsoft.HybridContainerService.
      * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
+     * provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
      * @param operationId operation Id.
@@ -202,12 +209,12 @@ public final class FluxConfigOperationStatusClientImpl implements FluxConfigOper
 
     /**
      * Get Async Operation status.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
+     * Microsoft.HybridContainerService.
      * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
+     * provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
      * @param operationId operation Id.
@@ -227,12 +234,12 @@ public final class FluxConfigOperationStatusClientImpl implements FluxConfigOper
 
     /**
      * Get Async Operation status.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
+     * Microsoft.HybridContainerService.
      * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
+     * provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
      * @param operationId operation Id.
