@@ -26,7 +26,7 @@ public final class DatabasePrincipalAssignmentCheckNameRequest
     /*
      * The type of resource, Microsoft.Synapse/workspaces/kustoPools/databases/principalAssignments.
      */
-    private String type = "Microsoft.Synapse/workspaces/kustoPools/databases/principalAssignments";
+    private final String type = "Microsoft.Synapse/workspaces/kustoPools/databases/principalAssignments";
 
     /**
      * Creates an instance of DatabasePrincipalAssignmentCheckNameRequest class.
@@ -62,18 +62,6 @@ public final class DatabasePrincipalAssignmentCheckNameRequest
      */
     public String type() {
         return this.type;
-    }
-
-    /**
-     * Set the type property: The type of resource,
-     * Microsoft.Synapse/workspaces/kustoPools/databases/principalAssignments.
-     * 
-     * @param type the type value to set.
-     * @return the DatabasePrincipalAssignmentCheckNameRequest object itself.
-     */
-    public DatabasePrincipalAssignmentCheckNameRequest withType(String type) {
-        this.type = type;
-        return this;
     }
 
     /**

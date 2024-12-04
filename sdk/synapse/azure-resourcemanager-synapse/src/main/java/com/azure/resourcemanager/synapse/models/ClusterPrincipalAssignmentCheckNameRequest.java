@@ -26,7 +26,7 @@ public final class ClusterPrincipalAssignmentCheckNameRequest
     /*
      * The type of resource, Microsoft.Synapse/workspaces/kustoPools/principalAssignments.
      */
-    private String type = "Microsoft.Synapse/workspaces/kustoPools/principalAssignments";
+    private final String type = "Microsoft.Synapse/workspaces/kustoPools/principalAssignments";
 
     /**
      * Creates an instance of ClusterPrincipalAssignmentCheckNameRequest class.
@@ -61,17 +61,6 @@ public final class ClusterPrincipalAssignmentCheckNameRequest
      */
     public String type() {
         return this.type;
-    }
-
-    /**
-     * Set the type property: The type of resource, Microsoft.Synapse/workspaces/kustoPools/principalAssignments.
-     * 
-     * @param type the type value to set.
-     * @return the ClusterPrincipalAssignmentCheckNameRequest object itself.
-     */
-    public ClusterPrincipalAssignmentCheckNameRequest withType(String type) {
-        this.type = type;
-        return this;
     }
 
     /**

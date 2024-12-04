@@ -25,7 +25,7 @@ public final class KustoPoolCheckNameRequest implements JsonSerializable<KustoPo
     /*
      * The type of resource, Microsoft.Synapse/workspaces/kustoPools.
      */
-    private String type = "Microsoft.Synapse/workspaces/kustoPools";
+    private final String type = "Microsoft.Synapse/workspaces/kustoPools";
 
     /**
      * Creates an instance of KustoPoolCheckNameRequest class.
@@ -60,17 +60,6 @@ public final class KustoPoolCheckNameRequest implements JsonSerializable<KustoPo
      */
     public String type() {
         return this.type;
-    }
-
-    /**
-     * Set the type property: The type of resource, Microsoft.Synapse/workspaces/kustoPools.
-     * 
-     * @param type the type value to set.
-     * @return the KustoPoolCheckNameRequest object itself.
-     */
-    public KustoPoolCheckNameRequest withType(String type) {
-        this.type = type;
-        return this;
     }
 
     /**

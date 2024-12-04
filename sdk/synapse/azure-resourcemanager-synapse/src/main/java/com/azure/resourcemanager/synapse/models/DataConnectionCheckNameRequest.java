@@ -25,7 +25,7 @@ public final class DataConnectionCheckNameRequest implements JsonSerializable<Da
     /*
      * The type of resource, Microsoft.Synapse/workspaces/kustoPools/databases/dataConnections.
      */
-    private String type = "Microsoft.Synapse/workspaces/kustoPools/databases/dataConnections";
+    private final String type = "Microsoft.Synapse/workspaces/kustoPools/databases/dataConnections";
 
     /**
      * Creates an instance of DataConnectionCheckNameRequest class.
@@ -60,17 +60,6 @@ public final class DataConnectionCheckNameRequest implements JsonSerializable<Da
      */
     public String type() {
         return this.type;
-    }
-
-    /**
-     * Set the type property: The type of resource, Microsoft.Synapse/workspaces/kustoPools/databases/dataConnections.
-     * 
-     * @param type the type value to set.
-     * @return the DataConnectionCheckNameRequest object itself.
-     */
-    public DataConnectionCheckNameRequest withType(String type) {
-        this.type = type;
-        return this;
     }
 
     /**
