@@ -10,6 +10,8 @@
 
 ## Backups
 
+- [Create](#backups_create)
+- [Delete](#backups_delete)
 - [Get](#backups_get)
 - [ListByServer](#backups_listbyserver)
 
@@ -125,6 +127,12 @@
 - [Stop](#servers_stop)
 - [Update](#servers_update)
 
+## TuningOptions
+
+- [Get](#tuningoptions_get)
+- [ListByServer](#tuningoptions_listbyserver)
+- [ListRecommendations](#tuningoptions_listrecommendations)
+
 ## VirtualEndpoints
 
 - [Create](#virtualendpoints_create)
@@ -146,7 +154,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.PrincipalType;
  */
 public final class AdministratorsCreateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/AdministratorAdd.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * AdministratorAdd.json
      */
     /**
      * Sample code: Adds an Active DIrectory Administrator for the server.
@@ -174,7 +184,9 @@ public final class AdministratorsCreateSamples {
  */
 public final class AdministratorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/AdministratorDelete.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * AdministratorDelete.json
      */
     /**
      * Sample code: AdministratorDelete.
@@ -197,7 +209,9 @@ public final class AdministratorsDeleteSamples {
  */
 public final class AdministratorsGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/AdministratorGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * AdministratorGet.json
      */
     /**
      * Sample code: ServerGet.
@@ -220,7 +234,9 @@ public final class AdministratorsGetSamples {
  */
 public final class AdministratorsListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/AdministratorsListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * AdministratorsListByServer.json
      */
     /**
      * Sample code: AdministratorsListByServer.
@@ -234,6 +250,55 @@ public final class AdministratorsListByServerSamples {
 }
 ```
 
+### Backups_Create
+
+```java
+/**
+ * Samples for Backups Create.
+ */
+public final class BackupsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * BackupCreate.json
+     */
+    /**
+     * Sample code: Create a new Backup for a flexible server.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void createANewBackupForAFlexibleServer(
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.backups()
+            .create("TestGroup", "postgresqltestserver", "backup_20210615T160516", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Backups_Delete
+
+```java
+/**
+ * Samples for Backups Delete.
+ */
+public final class BackupsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * BackupDelete.json
+     */
+    /**
+     * Sample code: Delete a specific backup.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void
+        deleteASpecificBackup(com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.backups().delete("TestGroup", "testserver", "backup_20210615T160516", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Backups_Get
 
 ```java
@@ -242,7 +307,9 @@ public final class AdministratorsListByServerSamples {
  */
 public final class BackupsGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/BackupGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/BackupGet
+     * .json
      */
     /**
      * Sample code: Get a backup for a server.
@@ -266,7 +333,9 @@ public final class BackupsGetSamples {
  */
 public final class BackupsListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/BackupListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * BackupListByServer.json
      */
     /**
      * Sample code: List backups for a server.
@@ -290,7 +359,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.CheckNameAvaila
  */
 public final class CheckNameAvailabilityExecuteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/CheckNameAvailability.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * CheckNameAvailability.json
      */
     /**
      * Sample code: NameAvailability.
@@ -315,7 +386,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.CheckNameAvaila
  */
 public final class CheckNameAvailabilityWithLocationExecuteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/CheckNameAvailabilityLocationBased.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * CheckNameAvailabilityLocationBased.json
      */
     /**
      * Sample code: NameAvailability.
@@ -338,7 +411,9 @@ public final class CheckNameAvailabilityWithLocationExecuteSamples {
  */
 public final class ConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ConfigurationGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ConfigurationGet.json
      */
     /**
      * Sample code: ConfigurationGet.
@@ -360,7 +435,9 @@ public final class ConfigurationsGetSamples {
  */
 public final class ConfigurationsListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ConfigurationListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ConfigurationListByServer.json
      */
     /**
      * Sample code: ConfigurationList.
@@ -381,7 +458,9 @@ public final class ConfigurationsListByServerSamples {
  */
 public final class ConfigurationsPutSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ConfigurationUpdate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ConfigurationUpdate.json
      */
     /**
      * Sample code: Update a user configuration.
@@ -410,7 +489,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.Configuration;
  */
 public final class ConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ConfigurationUpdate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ConfigurationUpdate.json
      */
     /**
      * Sample code: Update a user configuration.
@@ -435,7 +516,9 @@ public final class ConfigurationsUpdateSamples {
  */
 public final class DatabasesCreateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/DatabaseCreate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * DatabaseCreate.json
      */
     /**
      * Sample code: Create a database.
@@ -461,7 +544,9 @@ public final class DatabasesCreateSamples {
  */
 public final class DatabasesDeleteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/DatabaseDelete.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * DatabaseDelete.json
      */
     /**
      * Sample code: Delete a database.
@@ -482,7 +567,9 @@ public final class DatabasesDeleteSamples {
  */
 public final class DatabasesGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/DatabaseGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * DatabaseGet.json
      */
     /**
      * Sample code: Get a database.
@@ -503,7 +590,9 @@ public final class DatabasesGetSamples {
  */
 public final class DatabasesListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/DatabasesListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * DatabasesListByServer.json
      */
     /**
      * Sample code: List databases in a server.
@@ -525,7 +614,9 @@ public final class DatabasesListByServerSamples {
  */
 public final class FirewallRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/FirewallRuleCreate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * FirewallRuleCreate.json
      */
     /**
      * Sample code: FirewallRuleCreate.
@@ -552,7 +643,9 @@ public final class FirewallRulesCreateOrUpdateSamples {
  */
 public final class FirewallRulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/FirewallRuleDelete.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * FirewallRuleDelete.json
      */
     /**
      * Sample code: FirewallRuleDelete.
@@ -574,7 +667,9 @@ public final class FirewallRulesDeleteSamples {
  */
 public final class FirewallRulesGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/FirewallRuleGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * FirewallRuleGet.json
      */
     /**
      * Sample code: FirewallRuleList.
@@ -595,7 +690,9 @@ public final class FirewallRulesGetSamples {
  */
 public final class FirewallRulesListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/FirewallRuleListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * FirewallRuleListByServer.json
      */
     /**
      * Sample code: FirewallRuleList.
@@ -621,7 +718,9 @@ import java.util.Arrays;
  */
 public final class FlexibleServerStartLtrBackupSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/LongTermRetentionBackup.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * LongTermRetentionBackup.json
      */
     /**
      * Sample code: Sample_ExecuteBackup.
@@ -650,7 +749,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.LtrPreBackupReq
  */
 public final class FlexibleServerTriggerLtrPreBackupSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/LongTermRetentionPreBackup.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * LongTermRetentionPreBackup.json
      */
     /**
      * Sample code: Sample_Prebackup.
@@ -674,7 +775,9 @@ public final class FlexibleServerTriggerLtrPreBackupSamples {
  */
 public final class GetPrivateDnsZoneSuffixExecuteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/GetPrivateDnsZoneSuffix.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * GetPrivateDnsZoneSuffix.json
      */
     /**
      * Sample code: GetPrivateDnsZoneSuffix.
@@ -696,7 +799,9 @@ public final class GetPrivateDnsZoneSuffixExecuteSamples {
  */
 public final class LocationBasedCapabilitiesExecuteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/CapabilitiesByLocation.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * CapabilitiesByLocation.json
      */
     /**
      * Sample code: CapabilitiesList.
@@ -704,7 +809,7 @@ public final class LocationBasedCapabilitiesExecuteSamples {
      * @param manager Entry point to PostgreSqlManager.
      */
     public static void capabilitiesList(com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
-        manager.locationBasedCapabilities().execute("westus", com.azure.core.util.Context.NONE);
+        manager.locationBasedCapabilities().execute("eastus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -717,7 +822,9 @@ public final class LocationBasedCapabilitiesExecuteSamples {
  */
 public final class LogFilesListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/LogFilesListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * LogFilesListByServer.json
      */
     /**
      * Sample code: List all server log files for a server.
@@ -739,7 +846,9 @@ public final class LogFilesListByServerSamples {
  */
 public final class LtrBackupOperationsGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/LongTermRetentionOperationGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * LongTermRetentionOperationGet.json
      */
     /**
      * Sample code: Sample.
@@ -761,7 +870,9 @@ public final class LtrBackupOperationsGetSamples {
  */
 public final class LtrBackupOperationsListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/LongTermRetentionOperationListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * LongTermRetentionOperationListByServer.json
      */
     /**
      * Sample code: Sample List of Long Tern Retention Operations by Flexible Server.
@@ -794,7 +905,9 @@ import java.util.Arrays;
  */
 public final class MigrationsCreateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Create_With_PrivateEndpoint_Servers.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Create_With_PrivateEndpoint_Servers.json
      */
     /**
      * Sample code: Migrations Create with private endpoint.
@@ -821,7 +934,9 @@ public final class MigrationsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Create_With_Roles.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Create_With_Roles.json
      */
     /**
      * Sample code: Migrations Create with roles.
@@ -847,7 +962,38 @@ public final class MigrationsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Create_Validate_Only.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Create_With_FullyQualifiedDomainName.json
+     */
+    /**
+     * Sample code: Migrations Create with fully qualified domain name.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void migrationsCreateWithFullyQualifiedDomainName(
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.migrations()
+            .define("testmigration")
+            .withRegion("westus")
+            .withExistingFlexibleServer("ffffffff-ffff-ffff-ffff-ffffffffffff", "testrg", "testtarget")
+            .withMigrationMode(MigrationMode.OFFLINE)
+            .withSourceDbServerResourceId(
+                "/subscriptions/ffffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/testrg/providers/Microsoft.DBForPostgreSql/servers/testsource")
+            .withSourceDbServerFullyQualifiedDomainName("testsourcefqdn.example.com")
+            .withTargetDbServerFullyQualifiedDomainName("test-target-fqdn.example.com")
+            .withSecretParameters(new MigrationSecretParameters()
+                .withAdminCredentials(new AdminCredentials().withSourceServerPassword("fakeTokenPlaceholder")
+                    .withTargetServerPassword("fakeTokenPlaceholder")))
+            .withDbsToMigrate(Arrays.asList("db1", "db2", "db3", "db4"))
+            .withOverwriteDbsInTarget(OverwriteDbsInTargetEnum.TRUE)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Create_Validate_Only.json
      */
     /**
      * Sample code: Create Pre-migration Validation.
@@ -873,7 +1019,9 @@ public final class MigrationsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Create_With_Other_Users.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Create_With_Other_Users.json
      */
     /**
      * Sample code: Migrations Create by passing user names.
@@ -899,7 +1047,9 @@ public final class MigrationsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Create.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Create.json
      */
     /**
      * Sample code: Migrations_Create.
@@ -911,8 +1061,6 @@ public final class MigrationsCreateSamples {
             .define("testmigration")
             .withRegion("westus")
             .withExistingFlexibleServer("ffffffff-ffff-ffff-ffff-ffffffffffff", "testrg", "testtarget")
-            .withMigrationInstanceResourceId(
-                "/subscriptions/ffffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/testrg/providers/Microsoft.DBForPostgreSql/flexibleServers/testsourcemigration")
             .withMigrationMode(MigrationMode.OFFLINE)
             .withSourceDbServerResourceId(
                 "/subscriptions/ffffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/testrg/providers/Microsoft.DBForPostgreSql/servers/testsource")
@@ -925,7 +1073,9 @@ public final class MigrationsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Create_Other_SourceTypes_Validate_Migrate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Create_Other_SourceTypes_Validate_Migrate.json
      */
     /**
      * Sample code: Create Migration with other source types for Validate and Migrate.
@@ -961,7 +1111,9 @@ public final class MigrationsCreateSamples {
  */
 public final class MigrationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Delete.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Delete.json
      */
     /**
      * Sample code: Migrations_Delete.
@@ -984,7 +1136,9 @@ public final class MigrationsDeleteSamples {
  */
 public final class MigrationsGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_GetMigrationWithSuccessfulValidationOnly.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_GetMigrationWithSuccessfulValidationOnly.json
      */
     /**
      * Sample code: Migrations_GetMigrationWithSuccessfulValidationOnly.
@@ -999,7 +1153,9 @@ public final class MigrationsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Get.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Get.json
      */
     /**
      * Sample code: Migrations_Get.
@@ -1013,7 +1169,9 @@ public final class MigrationsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_GetMigrationWithSuccessfulValidationButMigrationFailure.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_GetMigrationWithSuccessfulValidationButMigrationFailure.json
      */
     /**
      * Sample code: Migrations_GetMigrationWithSuccessfulValidationButMigrationFailure.
@@ -1028,7 +1186,9 @@ public final class MigrationsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_GetMigrationWithSuccessfulValidationAndMigration.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_GetMigrationWithSuccessfulValidationAndMigration.json
      */
     /**
      * Sample code: Migrations_GetMigrationWithSuccessfulValidationAndMigration.
@@ -1043,7 +1203,9 @@ public final class MigrationsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_GetMigrationWithValidationFailures.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_GetMigrationWithValidationFailures.json
      */
     /**
      * Sample code: Migrations_GetMigrationWithValidationFailures.
@@ -1069,7 +1231,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationListFi
  */
 public final class MigrationsListByTargetServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_ListByTargetServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_ListByTargetServer.json
      */
     /**
      * Sample code: Migrations_ListByTargetServer.
@@ -1097,7 +1261,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationResour
  */
 public final class MigrationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Cancel.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Cancel.json
      */
     /**
      * Sample code: Cancel migration.
@@ -1113,7 +1279,9 @@ public final class MigrationsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/Migrations_Update.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Migrations_Update.json
      */
     /**
      * Sample code: Migrations_Update.
@@ -1138,7 +1306,9 @@ public final class MigrationsUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/OperationList.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * OperationList.json
      */
     /**
      * Sample code: OperationList.
@@ -1159,7 +1329,9 @@ public final class OperationsListSamples {
  */
 public final class PrivateEndpointConnectionOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PrivateEndpointConnectionDelete.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PrivateEndpointConnectionDelete.json
      */
     /**
      * Sample code: Deletes a private endpoint connection with a given name.
@@ -1187,7 +1359,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.PrivateLinkServ
  */
 public final class PrivateEndpointConnectionOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PrivateEndpointConnectionUpdate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PrivateEndpointConnectionUpdate.json
      */
     /**
      * Sample code: Approve or reject a private endpoint connection with a given name.
@@ -1214,7 +1388,9 @@ public final class PrivateEndpointConnectionOperationUpdateSamples {
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PrivateEndpointConnectionGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PrivateEndpointConnectionGet.json
      */
     /**
      * Sample code: Gets private endpoint connection.
@@ -1239,7 +1415,9 @@ public final class PrivateEndpointConnectionsGetSamples {
  */
 public final class PrivateEndpointConnectionsListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PrivateEndpointConnectionList.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PrivateEndpointConnectionList.json
      */
     /**
      * Sample code: Gets list of private endpoint connections on a server.
@@ -1261,7 +1439,9 @@ public final class PrivateEndpointConnectionsListByServerSamples {
  */
 public final class PrivateLinkResourcesGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PrivateLinkResourcesGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PrivateLinkResourcesGet.json
      */
     /**
      * Sample code: Gets a private link resource for PostgreSQL.
@@ -1283,7 +1463,9 @@ public final class PrivateLinkResourcesGetSamples {
  */
 public final class PrivateLinkResourcesListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PrivateLinkResourcesList.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PrivateLinkResourcesList.json
      */
     /**
      * Sample code: Gets private link resources for PostgreSQL.
@@ -1305,7 +1487,9 @@ public final class PrivateLinkResourcesListByServerSamples {
  */
 public final class QuotaUsagesListSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/QuotaUsagesForFlexibleServers.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * QuotaUsagesForFlexibleServers.json
      */
     /**
      * Sample code: List of quota usages for flexible servers.
@@ -1327,7 +1511,9 @@ public final class QuotaUsagesListSamples {
  */
 public final class ReplicasListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ReplicasListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ReplicasListByServer.json
      */
     /**
      * Sample code: ReplicasListByServer.
@@ -1351,7 +1537,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.Migratio
  */
 public final class ResourceProviderCheckMigrationNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/CheckMigrationNameAvailability.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * CheckMigrationNameAvailability.json
      */
     /**
      * Sample code: CheckMigrationNameAvailability.
@@ -1377,7 +1565,9 @@ public final class ResourceProviderCheckMigrationNameAvailabilitySamples {
  */
 public final class ServerCapabilitiesListSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerCapabilities.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCapabilities.json
      */
     /**
      * Sample code: ServerCapabilitiesList.
@@ -1403,7 +1593,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.ThreatProtectio
  */
 public final class ServerThreatProtectionSettingsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerThreatProtectionSettingsCreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerThreatProtectionSettingsCreateOrUpdate.json
      */
     /**
      * Sample code: Update a server's Threat Protection settings.
@@ -1431,7 +1623,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.ThreatProtectio
  */
 public final class ServerThreatProtectionSettingsGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerThreatProtectionSettingsGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerThreatProtectionSettingsGet.json
      */
     /**
      * Sample code: Get a server's Threat Protection settings.
@@ -1455,7 +1649,9 @@ public final class ServerThreatProtectionSettingsGetSamples {
  */
 public final class ServerThreatProtectionSettingsListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerThreatProtectionSettingsListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerThreatProtectionSettingsListByServer.json
      */
     /**
      * Sample code: Get a server's Advanced Threat Protection settings.
@@ -1478,6 +1674,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.ArmServerKeyTyp
 import com.azure.resourcemanager.postgresqlflexibleserver.models.AuthConfig;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.AzureManagedDiskPerformanceTiers;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Backup;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.Cluster;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.GeoRedundantBackupEnum;
@@ -1486,6 +1683,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.HighAvailabilit
 import com.azure.resourcemanager.postgresqlflexibleserver.models.IdentityType;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Network;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.PasswordAuthEnum;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerPublicNetworkAccessState;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerVersion;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Sku;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.SkuTier;
@@ -1502,7 +1700,9 @@ import java.util.Map;
  */
 public final class ServersCreateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerCreateWithDataEncryptionEnabled.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCreateWithDataEncryptionEnabled.json
      */
     /**
      * Sample code: ServerCreateWithDataEncryptionEnabled.
@@ -1542,7 +1742,9 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerCreateReviveDropped.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCreateReviveDropped.json
      */
     /**
      * Sample code: ServerCreateReviveDropped.
@@ -1563,7 +1765,9 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerCreateGeoRestoreWithDataEncryptionEnabled.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCreateGeoRestoreWithDataEncryptionEnabled.json
      */
     /**
      * Sample code: Create a database as a geo-restore in geo-paired location.
@@ -1596,7 +1800,9 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerCreate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCreate.json
      */
     /**
      * Sample code: Create a new server.
@@ -1612,7 +1818,7 @@ public final class ServersCreateSamples {
             .withSku(new Sku().withName("Standard_D4s_v3").withTier(SkuTier.GENERAL_PURPOSE))
             .withAdministratorLogin("cloudsa")
             .withAdministratorLoginPassword("password")
-            .withVersion(ServerVersion.ONE_TWO)
+            .withVersion(ServerVersion.ONE_SIX)
             .withStorage(new Storage().withStorageSizeGB(512)
                 .withAutoGrow(StorageAutoGrow.DISABLED)
                 .withTier(AzureManagedDiskPerformanceTiers.P20))
@@ -1628,7 +1834,9 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerCreateWithAadAuthEnabled.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCreateWithAadAuthEnabled.json
      */
     /**
      * Sample code: Create a new server with active directory authentication enabled.
@@ -1665,7 +1873,9 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerCreateReplica.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCreateReplica.json
      */
     /**
      * Sample code: ServerCreateReplica.
@@ -1695,7 +1905,39 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerCreatePointInTimeRestore.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ClusterCreate.json
+     */
+    /**
+     * Sample code: ClusterCreate.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void clusterCreate(com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.servers()
+            .define("pgtestcluster")
+            .withRegion("westus")
+            .withExistingResourceGroup("testrg")
+            .withSku(new Sku().withName("Standard_D4s_v3").withTier(SkuTier.GENERAL_PURPOSE))
+            .withAdministratorLogin("cloudsa")
+            .withAdministratorLoginPassword("password")
+            .withVersion(ServerVersion.ONE_SIX)
+            .withStorage(new Storage().withStorageSizeGB(256)
+                .withAutoGrow(StorageAutoGrow.DISABLED)
+                .withTier(AzureManagedDiskPerformanceTiers.P15))
+            .withBackup(new Backup().withBackupRetentionDays(7).withGeoRedundantBackup(GeoRedundantBackupEnum.DISABLED))
+            .withNetwork(new Network().withPublicNetworkAccess(ServerPublicNetworkAccessState.DISABLED))
+            .withHighAvailability(new HighAvailability().withMode(HighAvailabilityMode.DISABLED))
+            .withCreateMode(CreateMode.CREATE)
+            .withCluster(new Cluster().withClusterSize(2))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCreatePointInTimeRestore.json
      */
     /**
      * Sample code: Create a database as a point in time restore.
@@ -1737,7 +1979,9 @@ public final class ServersCreateSamples {
  */
 public final class ServersDeleteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerDelete.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerDelete.json
      */
     /**
      * Sample code: ServerDelete.
@@ -1758,7 +2002,9 @@ public final class ServersDeleteSamples {
  */
 public final class ServersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerGetWithPrivateEndpoints.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerGetWithPrivateEndpoints.json
      */
     /**
      * Sample code: ServerGetWithPrivateEndpoints.
@@ -1771,7 +2017,9 @@ public final class ServersGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/ServerGet
+     * .json
      */
     /**
      * Sample code: ServerGet.
@@ -1783,7 +2031,9 @@ public final class ServersGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerGetWithVnet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerGetWithVnet.json
      */
     /**
      * Sample code: ServerGetWithVnet.
@@ -1804,7 +2054,9 @@ public final class ServersGetByResourceGroupSamples {
  */
 public final class ServersListSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerList.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerList.json
      */
     /**
      * Sample code: ServerList.
@@ -1825,7 +2077,9 @@ public final class ServersListSamples {
  */
 public final class ServersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerListByResourceGroup.json
      */
     /**
      * Sample code: ServerListByResourceGroup.
@@ -1850,7 +2104,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.RestartParamete
  */
 public final class ServersRestartSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerRestart.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerRestart.json
      */
     /**
      * Sample code: ServerRestart.
@@ -1862,7 +2118,9 @@ public final class ServersRestartSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerRestartWithFailover.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerRestartWithFailover.json
      */
     /**
      * Sample code: ServerRestartWithFailover.
@@ -1887,7 +2145,9 @@ public final class ServersRestartSamples {
  */
 public final class ServersStartSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerStart.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerStart.json
      */
     /**
      * Sample code: ServerStart.
@@ -1908,7 +2168,9 @@ public final class ServersStartSamples {
  */
 public final class ServersStopSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerStop.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerStop.json
      */
     /**
      * Sample code: ServerStop.
@@ -1953,7 +2215,9 @@ import java.util.Map;
  */
 public final class ServersUpdateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerUpdateWithAadAuthEnabled.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerUpdateWithAadAuthEnabled.json
      */
     /**
      * Sample code: ServerUpdateWithAadAuthEnabled.
@@ -1980,7 +2244,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerUpdateWithDataEncryptionEnabled.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerUpdateWithDataEncryptionEnabled.json
      */
     /**
      * Sample code: ServerUpdateWithDataEncryptionEnabled.
@@ -2013,7 +2279,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PromoteReplicaAsPlannedSwitchover.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PromoteReplicaAsPlannedSwitchover.json
      */
     /**
      * Sample code: SwitchOver a replica server as planned, i.e. it will wait for replication to complete before
@@ -2034,7 +2302,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PromoteReplicaAsForcedSwitchover.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PromoteReplicaAsForcedSwitchover.json
      */
     /**
      * Sample code: SwitchOver a replica server as forced, i.e. it will replica as Primary and original primary as
@@ -2055,7 +2325,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerUpdate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerUpdate.json
      */
     /**
      * Sample code: ServerUpdate.
@@ -2078,7 +2350,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerUpdateWithMajorVersionUpgrade.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerUpdateWithMajorVersionUpgrade.json
      */
     /**
      * Sample code: ServerUpdateWithMajorVersionUpgrade.
@@ -2094,7 +2368,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/ServerUpdateWithCustomerMaintenanceWindow.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerUpdateWithCustomerMaintenanceWindow.json
      */
     /**
      * Sample code: ServerUpdateWithCustomerMaintenanceWindow.
@@ -2116,7 +2392,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PromoteReplicaAsForcedStandaloneServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PromoteReplicaAsForcedStandaloneServer.json
      */
     /**
      * Sample code: Promote a replica server as a Standalone server as forced, i.e. it will promote a replica server
@@ -2137,7 +2415,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/PromoteReplicaAsPlannedStandaloneServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * PromoteReplicaAsPlannedStandaloneServer.json
      */
     /**
      * Sample code: Promote a replica server as a Standalone server as planned, i.e. it will wait for replication to
@@ -2170,6 +2450,102 @@ public final class ServersUpdateSamples {
 }
 ```
 
+### TuningOptions_Get
+
+```java
+import com.azure.resourcemanager.postgresqlflexibleserver.models.TuningOptionEnum;
+
+/**
+ * Samples for TuningOptions Get.
+ */
+public final class TuningOptionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Tuning_GetTuningOption.json
+     */
+    /**
+     * Sample code: TuningOptions_Get.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void tuningOptionsGet(com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.tuningOptions()
+            .getWithResponse("testrg", "testserver", TuningOptionEnum.INDEX, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### TuningOptions_ListByServer
+
+```java
+/**
+ * Samples for TuningOptions ListByServer.
+ */
+public final class TuningOptionsListByServerSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Tuning_ListTuningOptions.json
+     */
+    /**
+     * Sample code: TuningOptions_ListByServer.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void
+        tuningOptionsListByServer(com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.tuningOptions().listByServer("testrg", "testserver", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### TuningOptions_ListRecommendations
+
+```java
+import com.azure.resourcemanager.postgresqlflexibleserver.models.RecommendationType;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.TuningOptionEnum;
+
+/**
+ * Samples for TuningOptions ListRecommendations.
+ */
+public final class TuningOptionsListRecommendationsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Tuning_GetRecommendedIndexes.json
+     */
+    /**
+     * Sample code: TuningOptions_ListRecommendations.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void
+        tuningOptionsListRecommendations(com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.tuningOptions()
+            .listRecommendations("testrg", "pgtestsvc4", TuningOptionEnum.INDEX, null,
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * Tuning_GetFilteredRecommendedIndexes.json
+     */
+    /**
+     * Sample code: TuningOptions_ListFilteredRecommendations.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void tuningOptionsListFilteredRecommendations(
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.tuningOptions()
+            .listRecommendations("testrg", "pgtestrecs", TuningOptionEnum.INDEX, RecommendationType.CREATE_INDEX,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### VirtualEndpoints_Create
 
 ```java
@@ -2181,7 +2557,9 @@ import java.util.Arrays;
  */
 public final class VirtualEndpointsCreateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/VirtualEndpointCreate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * VirtualEndpointCreate.json
      */
     /**
      * Sample code: Create a new virtual endpoint for a flexible server.
@@ -2208,7 +2586,9 @@ public final class VirtualEndpointsCreateSamples {
  */
 public final class VirtualEndpointsDeleteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/VirtualEndpointDelete.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * VirtualEndpointDelete.json
      */
     /**
      * Sample code: Delete a virtual endpoint.
@@ -2231,7 +2611,9 @@ public final class VirtualEndpointsDeleteSamples {
  */
 public final class VirtualEndpointsGetSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/VirtualEndpointsGet.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * VirtualEndpointsGet.json
      */
     /**
      * Sample code: Get a virtual endpoint.
@@ -2254,7 +2636,9 @@ public final class VirtualEndpointsGetSamples {
  */
 public final class VirtualEndpointsListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/VirtualEndpointsListByServer.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * VirtualEndpointsListByServer.json
      */
     /**
      * Sample code: VirtualEndpointListByServer.
@@ -2280,7 +2664,9 @@ import java.util.Arrays;
  */
 public final class VirtualEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/VirtualEndpointUpdate.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * VirtualEndpointUpdate.json
      */
     /**
      * Sample code: Update a virtual endpoint for a server to update the.
@@ -2310,7 +2696,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.VirtualNetworkS
  */
 public final class VirtualNetworkSubnetUsageExecuteSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/VirtualNetworkSubnetUsage.json
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * VirtualNetworkSubnetUsage.json
      */
     /**
      * Sample code: VirtualNetworkSubnetUsageList.

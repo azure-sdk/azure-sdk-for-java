@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -45,8 +45,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.fluent.QuotaUsagesClie
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ReplicasClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerCapabilitiesClient;
-import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServersClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerThreatProtectionSettingsClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServersClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.TuningOptionsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.VirtualEndpointsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.VirtualNetworkSubnetUsagesClient;
 import java.io.IOException;
@@ -470,6 +471,20 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
     }
 
     /**
+     * The TuningOptionsClient object to access its operations.
+     */
+    private final TuningOptionsClient tuningOptions;
+
+    /**
+     * Gets the TuningOptionsClient object to access its operations.
+     * 
+     * @return the TuningOptionsClient object.
+     */
+    public TuningOptionsClient getTuningOptions() {
+        return this.tuningOptions;
+    }
+
+    /**
      * The VirtualEndpointsClient object to access its operations.
      */
     private final VirtualEndpointsClient virtualEndpoints;
@@ -514,7 +529,7 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-12-01-preview";
+        this.apiVersion = "2024-11-01-preview";
         this.administrators = new AdministratorsClientImpl(this);
         this.backups = new BackupsClientImpl(this);
         this.locationBasedCapabilities = new LocationBasedCapabilitiesClientImpl(this);
@@ -538,6 +553,7 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         this.replicas = new ReplicasClientImpl(this);
         this.logFiles = new LogFilesClientImpl(this);
         this.serverThreatProtectionSettings = new ServerThreatProtectionSettingsClientImpl(this);
+        this.tuningOptions = new TuningOptionsClientImpl(this);
         this.virtualEndpoints = new VirtualEndpointsClientImpl(this);
         this.virtualNetworkSubnetUsages = new VirtualNetworkSubnetUsagesClientImpl(this);
     }
