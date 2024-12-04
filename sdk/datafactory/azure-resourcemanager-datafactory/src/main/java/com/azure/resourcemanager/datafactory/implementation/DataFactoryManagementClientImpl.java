@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -39,11 +39,10 @@ import com.azure.resourcemanager.datafactory.fluent.IntegrationRuntimesClient;
 import com.azure.resourcemanager.datafactory.fluent.LinkedServicesClient;
 import com.azure.resourcemanager.datafactory.fluent.ManagedPrivateEndpointsClient;
 import com.azure.resourcemanager.datafactory.fluent.ManagedVirtualNetworksClient;
-import com.azure.resourcemanager.datafactory.fluent.OperationsClient;
 import com.azure.resourcemanager.datafactory.fluent.PipelineRunsClient;
 import com.azure.resourcemanager.datafactory.fluent.PipelinesClient;
-import com.azure.resourcemanager.datafactory.fluent.PrivateEndpointConnectionOperationsClient;
 import com.azure.resourcemanager.datafactory.fluent.PrivateEndPointConnectionsClient;
+import com.azure.resourcemanager.datafactory.fluent.PrivateEndpointConnectionOperationsClient;
 import com.azure.resourcemanager.datafactory.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.datafactory.fluent.TriggerRunsClient;
 import com.azure.resourcemanager.datafactory.fluent.TriggersClient;
@@ -146,17 +145,17 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
     }
 
     /**
-     * The OperationsClient object to access its operations.
+     * The ExposureControlsClient object to access its operations.
      */
-    private final OperationsClient operations;
+    private final ExposureControlsClient exposureControls;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the ExposureControlsClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the ExposureControlsClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public ExposureControlsClient getExposureControls() {
+        return this.exposureControls;
     }
 
     /**
@@ -171,20 +170,6 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
      */
     public FactoriesClient getFactories() {
         return this.factories;
-    }
-
-    /**
-     * The ExposureControlsClient object to access its operations.
-     */
-    private final ExposureControlsClient exposureControls;
-
-    /**
-     * Gets the ExposureControlsClient object to access its operations.
-     * 
-     * @return the ExposureControlsClient object.
-     */
-    public ExposureControlsClient getExposureControls() {
-        return this.exposureControls;
     }
 
     /**
@@ -485,9 +470,8 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2018-06-01";
-        this.operations = new OperationsClientImpl(this);
-        this.factories = new FactoriesClientImpl(this);
         this.exposureControls = new ExposureControlsClientImpl(this);
+        this.factories = new FactoriesClientImpl(this);
         this.integrationRuntimes = new IntegrationRuntimesClientImpl(this);
         this.integrationRuntimeObjectMetadatas = new IntegrationRuntimeObjectMetadatasClientImpl(this);
         this.integrationRuntimeNodes = new IntegrationRuntimeNodesClientImpl(this);

@@ -47,11 +47,11 @@ public interface DataFactoryManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the ExposureControlsClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the ExposureControlsClient object.
      */
-    OperationsClient getOperations();
+    ExposureControlsClient getExposureControls();
 
     /**
      * Gets the FactoriesClient object to access its operations.
@@ -59,13 +59,6 @@ public interface DataFactoryManagementClient {
      * @return the FactoriesClient object.
      */
     FactoriesClient getFactories();
-
-    /**
-     * Gets the ExposureControlsClient object to access its operations.
-     * 
-     * @return the ExposureControlsClient object.
-     */
-    ExposureControlsClient getExposureControls();
 
     /**
      * Gets the IntegrationRuntimesClient object to access its operations.
