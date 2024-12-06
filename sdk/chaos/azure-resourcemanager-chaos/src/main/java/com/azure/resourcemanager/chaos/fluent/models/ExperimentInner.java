@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
-import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import com.azure.resourcemanager.chaos.models.ResourceIdentity;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.chaos.models.Selector;
+import com.azure.resourcemanager.chaos.models.Step;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -24,20 +27,32 @@ public final class ExperimentInner extends Resource {
     /*
      * The system metadata of the experiment resource.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
     /*
      * The identity of the experiment resource.
      */
-    @JsonProperty(value = "identity")
     private ResourceIdentity identity;
 
     /*
      * The properties of the experiment resource.
      */
-    @JsonProperty(value = "properties", required = true)
     private ExperimentProperties innerProperties = new ExperimentProperties();
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
      * Creates an instance of ExperimentInner class.
@@ -84,6 +99,36 @@ public final class ExperimentInner extends Resource {
     }
 
     /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -115,7 +160,7 @@ public final class ExperimentInner extends Resource {
      * 
      * @return the steps value.
      */
-    public List<ChaosExperimentStep> steps() {
+    public List<Step> steps() {
         return this.innerProperties() == null ? null : this.innerProperties().steps();
     }
 
@@ -125,7 +170,7 @@ public final class ExperimentInner extends Resource {
      * @param steps the steps value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withSteps(List<ChaosExperimentStep> steps) {
+    public ExperimentInner withSteps(List<Step> steps) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ExperimentProperties();
         }
@@ -138,7 +183,7 @@ public final class ExperimentInner extends Resource {
      * 
      * @return the selectors value.
      */
-    public List<ChaosTargetSelector> selectors() {
+    public List<Selector> selectors() {
         return this.innerProperties() == null ? null : this.innerProperties().selectors();
     }
 
@@ -148,7 +193,7 @@ public final class ExperimentInner extends Resource {
      * @param selectors the selectors value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withSelectors(List<ChaosTargetSelector> selectors) {
+    public ExperimentInner withSelectors(List<Selector> selectors) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ExperimentProperties();
         }
@@ -166,12 +211,68 @@ public final class ExperimentInner extends Resource {
             identity().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model ExperimentInner"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property innerProperties in model ExperimentInner"));
         } else {
             innerProperties().validate();
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ExperimentInner.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("identity", this.identity);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ExperimentInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ExperimentInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ExperimentInner.
+     */
+    public static ExperimentInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ExperimentInner deserializedExperimentInner = new ExperimentInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedExperimentInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedExperimentInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedExperimentInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedExperimentInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedExperimentInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedExperimentInner.innerProperties = ExperimentProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedExperimentInner.systemData = SystemData.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedExperimentInner.identity = ResourceIdentity.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedExperimentInner;
+        });
+    }
 }

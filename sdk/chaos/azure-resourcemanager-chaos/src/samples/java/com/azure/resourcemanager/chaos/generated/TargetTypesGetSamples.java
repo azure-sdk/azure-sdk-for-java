@@ -10,7 +10,7 @@ package com.azure.resourcemanager.chaos.generated;
 public final class TargetTypesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetTargetType.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-12-01-preview/examples/GetTargetType.json
      */
     /**
      * Sample code: Get a Target Type for westus2 location.
