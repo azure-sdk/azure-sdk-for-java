@@ -63,7 +63,6 @@ public final class PartialMinimalTrackedResourceWithIdentity extends PartialMini
      */
     @Override
     public void validate() {
-        super.validate();
         if (identity() != null) {
             identity().validate();
         }
