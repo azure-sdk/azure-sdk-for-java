@@ -169,7 +169,7 @@ public final class ComputeScheduleClientImpl implements ComputeScheduleClient {
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
         this.subscriptionId = subscriptionId;
-        this.apiVersion = "2024-08-15-preview";
+        this.apiVersion = "2024-10-01";
         this.operations = new OperationsClientImpl(this);
         this.scheduledActions = new ScheduledActionsClientImpl(this);
     }
