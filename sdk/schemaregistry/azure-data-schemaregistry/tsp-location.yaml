@@ -1,0 +1,4 @@
+directory: specification/schemaregistry/SchemaRegistry
+commit: 8e89c3d0d28ca231e16c33c546978d28613bc4d4
+repo: test-repo-billy/azure-rest-api-specs
+additionalDirectories: 
