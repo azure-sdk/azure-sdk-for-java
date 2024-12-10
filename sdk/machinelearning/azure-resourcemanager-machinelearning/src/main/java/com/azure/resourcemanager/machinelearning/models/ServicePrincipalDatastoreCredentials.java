@@ -29,24 +29,24 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
     private String authorityUrl;
 
     /*
-     * Resource the service principal has access to.
-     */
-    private String resourceUrl;
-
-    /*
-     * [Required] ID of the tenant to which the service principal belongs.
-     */
-    private UUID tenantId;
-
-    /*
      * [Required] Service principal client ID.
      */
     private UUID clientId;
 
     /*
+     * Resource the service principal has access to.
+     */
+    private String resourceUrl;
+
+    /*
      * [Required] Service principal secrets.
      */
     private ServicePrincipalDatastoreSecrets secrets;
+
+    /*
+     * [Required] ID of the tenant to which the service principal belongs.
+     */
+    private UUID tenantId;
 
     /**
      * Creates an instance of ServicePrincipalDatastoreCredentials class.
@@ -85,46 +85,6 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
     }
 
     /**
-     * Get the resourceUrl property: Resource the service principal has access to.
-     * 
-     * @return the resourceUrl value.
-     */
-    public String resourceUrl() {
-        return this.resourceUrl;
-    }
-
-    /**
-     * Set the resourceUrl property: Resource the service principal has access to.
-     * 
-     * @param resourceUrl the resourceUrl value to set.
-     * @return the ServicePrincipalDatastoreCredentials object itself.
-     */
-    public ServicePrincipalDatastoreCredentials withResourceUrl(String resourceUrl) {
-        this.resourceUrl = resourceUrl;
-        return this;
-    }
-
-    /**
-     * Get the tenantId property: [Required] ID of the tenant to which the service principal belongs.
-     * 
-     * @return the tenantId value.
-     */
-    public UUID tenantId() {
-        return this.tenantId;
-    }
-
-    /**
-     * Set the tenantId property: [Required] ID of the tenant to which the service principal belongs.
-     * 
-     * @param tenantId the tenantId value to set.
-     * @return the ServicePrincipalDatastoreCredentials object itself.
-     */
-    public ServicePrincipalDatastoreCredentials withTenantId(UUID tenantId) {
-        this.tenantId = tenantId;
-        return this;
-    }
-
-    /**
      * Get the clientId property: [Required] Service principal client ID.
      * 
      * @return the clientId value.
@@ -141,6 +101,26 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
      */
     public ServicePrincipalDatastoreCredentials withClientId(UUID clientId) {
         this.clientId = clientId;
+        return this;
+    }
+
+    /**
+     * Get the resourceUrl property: Resource the service principal has access to.
+     * 
+     * @return the resourceUrl value.
+     */
+    public String resourceUrl() {
+        return this.resourceUrl;
+    }
+
+    /**
+     * Set the resourceUrl property: Resource the service principal has access to.
+     * 
+     * @param resourceUrl the resourceUrl value to set.
+     * @return the ServicePrincipalDatastoreCredentials object itself.
+     */
+    public ServicePrincipalDatastoreCredentials withResourceUrl(String resourceUrl) {
+        this.resourceUrl = resourceUrl;
         return this;
     }
 
@@ -165,18 +145,32 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
     }
 
     /**
+     * Get the tenantId property: [Required] ID of the tenant to which the service principal belongs.
+     * 
+     * @return the tenantId value.
+     */
+    public UUID tenantId() {
+        return this.tenantId;
+    }
+
+    /**
+     * Set the tenantId property: [Required] ID of the tenant to which the service principal belongs.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the ServicePrincipalDatastoreCredentials object itself.
+     */
+    public ServicePrincipalDatastoreCredentials withTenantId(UUID tenantId) {
+        this.tenantId = tenantId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
-        if (tenantId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property tenantId in model ServicePrincipalDatastoreCredentials"));
-        }
         if (clientId() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -189,6 +183,11 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
         } else {
             secrets().validate();
         }
+        if (tenantId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property tenantId in model ServicePrincipalDatastoreCredentials"));
+        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ServicePrincipalDatastoreCredentials.class);
@@ -199,9 +198,9 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("tenantId", Objects.toString(this.tenantId, null));
         jsonWriter.writeStringField("clientId", Objects.toString(this.clientId, null));
         jsonWriter.writeJsonField("secrets", this.secrets);
+        jsonWriter.writeStringField("tenantId", Objects.toString(this.tenantId, null));
         jsonWriter.writeStringField("credentialsType",
             this.credentialsType == null ? null : this.credentialsType.toString());
         jsonWriter.writeStringField("authorityUrl", this.authorityUrl);
@@ -226,15 +225,15 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("tenantId".equals(fieldName)) {
-                    deserializedServicePrincipalDatastoreCredentials.tenantId
-                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
-                } else if ("clientId".equals(fieldName)) {
+                if ("clientId".equals(fieldName)) {
                     deserializedServicePrincipalDatastoreCredentials.clientId
                         = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
                 } else if ("secrets".equals(fieldName)) {
                     deserializedServicePrincipalDatastoreCredentials.secrets
                         = ServicePrincipalDatastoreSecrets.fromJson(reader);
+                } else if ("tenantId".equals(fieldName)) {
+                    deserializedServicePrincipalDatastoreCredentials.tenantId
+                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
                 } else if ("credentialsType".equals(fieldName)) {
                     deserializedServicePrincipalDatastoreCredentials.credentialsType
                         = CredentialsType.fromString(reader.getString());

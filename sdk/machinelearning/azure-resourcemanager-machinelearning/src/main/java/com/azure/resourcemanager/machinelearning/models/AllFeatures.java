@@ -44,7 +44,6 @@ public final class AllFeatures extends MonitoringFeatureFilterBase {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
