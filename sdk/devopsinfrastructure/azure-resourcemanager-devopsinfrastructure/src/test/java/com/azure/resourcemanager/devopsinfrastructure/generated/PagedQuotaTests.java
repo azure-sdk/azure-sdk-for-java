@@ -12,12 +12,12 @@ public final class PagedQuotaTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         PagedQuota model = BinaryData.fromString(
-            "{\"value\":[{\"name\":{\"value\":\"cxrslpmutwuoe\",\"localizedValue\":\"pkhjwni\"},\"id\":\"qsluicp\",\"unit\":\"ggkzzlvmbmpa\",\"currentValue\":9089515784990551600,\"limit\":5163043580727063666},{\"name\":{\"value\":\"efyw\",\"localizedValue\":\"pfvmwyhrfou\"},\"id\":\"ft\",\"unit\":\"akcp\",\"currentValue\":1587260248401579893,\"limit\":4470731468497230822},{\"name\":{\"value\":\"mnubexkpzksmond\",\"localizedValue\":\"quxvypomgkop\"},\"id\":\"whojvp\",\"unit\":\"jqg\",\"currentValue\":8997316824402958697,\"limit\":2615560217287873521}],\"nextLink\":\"mbqfqvmk\"}")
+            "{\"value\":[{\"name\":{\"value\":\"fouyf\",\"localizedValue\":\"akcp\"},\"id\":\"iyzvqtmnub\",\"unit\":\"xkp\",\"currentValue\":6799001413428276597,\"limit\":4236701346011139908},{\"name\":{\"value\":\"jmquxvypomgk\",\"localizedValue\":\"kwhojvpaj\"},\"id\":\"gxysmocmbqfqvm\",\"unit\":\"cxozapvhelxp\",\"currentValue\":7142541999806077613,\"limit\":3216178139310379008},{\"name\":{\"value\":\"dckcbc\",\"localizedValue\":\"jrjxgciqibrhosx\"},\"id\":\"dqrhzoymib\",\"unit\":\"rq\",\"currentValue\":33494153525685392,\"limit\":5884169234745688104},{\"name\":{\"value\":\"luszdtmhrkwof\",\"localizedValue\":\"voqacpiexpbt\"},\"id\":\"iwbwoenwashrtdtk\",\"unit\":\"nqxwbp\",\"currentValue\":3970058282735667200,\"limit\":8644340540999896271}],\"nextLink\":\"ujw\"}")
             .toObject(PagedQuota.class);
-        Assertions.assertEquals("qsluicp", model.value().get(0).id());
-        Assertions.assertEquals("ggkzzlvmbmpa", model.value().get(0).unit());
-        Assertions.assertEquals(9089515784990551600L, model.value().get(0).currentValue());
-        Assertions.assertEquals(5163043580727063666L, model.value().get(0).limit());
-        Assertions.assertEquals("mbqfqvmk", model.nextLink());
+        Assertions.assertEquals("iyzvqtmnub", model.value().get(0).id());
+        Assertions.assertEquals("xkp", model.value().get(0).unit());
+        Assertions.assertEquals(6799001413428276597L, model.value().get(0).currentValue());
+        Assertions.assertEquals(4236701346011139908L, model.value().get(0).limit());
+        Assertions.assertEquals("ujw", model.nextLink());
     }
 }

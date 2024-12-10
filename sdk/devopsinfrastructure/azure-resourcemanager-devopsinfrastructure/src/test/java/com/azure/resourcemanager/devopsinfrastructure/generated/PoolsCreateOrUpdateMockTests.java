@@ -33,7 +33,7 @@ public final class PoolsCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"provisioningState\":\"Succeeded\",\"maximumConcurrency\":665760554,\"organizationProfile\":{\"kind\":\"OrganizationProfile\"},\"agentProfile\":{\"kind\":\"AgentProfile\",\"resourcePredictions\":{},\"resourcePredictionsProfile\":{\"kind\":\"ResourcePredictionsProfile\"}},\"fabricProfile\":{\"kind\":\"FabricProfile\"},\"devCenterProjectResourceId\":\"anvx\"},\"identity\":{\"principalId\":\"vudutncor\",\"tenantId\":\"lxqtvcofudfl\",\"type\":\"SystemAssigned,UserAssigned\",\"userAssignedIdentities\":{\"sgsahmkycgr\":{\"principalId\":\"bgdknnqv\",\"clientId\":\"znqntoru\"}}},\"location\":\"wjue\",\"tags\":{\"ovsm\":\"buruvd\",\"wabm\":\"l\"},\"id\":\"oefki\",\"name\":\"rvtp\",\"type\":\"qujmqlgkf\"}";
+            = "{\"properties\":{\"provisioningState\":\"Succeeded\",\"maximumConcurrency\":301965904,\"organizationProfile\":{\"kind\":\"OrganizationProfile\"},\"agentProfile\":{\"kind\":\"AgentProfile\",\"resourcePredictions\":{},\"resourcePredictionsProfile\":{\"kind\":\"ResourcePredictionsProfile\"}},\"fabricProfile\":{\"kind\":\"FabricProfile\"},\"devCenterProjectResourceId\":\"cqdpfuv\"},\"identity\":{\"principalId\":\"bjj\",\"tenantId\":\"nvxbvt\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"vkg\":{\"principalId\":\"ncormrlxqtvcof\",\"clientId\":\"f\"},\"sgsahmkycgr\":{\"principalId\":\"bgdknnqv\",\"clientId\":\"znqntoru\"}}},\"location\":\"wjue\",\"tags\":{\"ovsm\":\"buruvd\",\"wabm\":\"l\"},\"id\":\"oefki\",\"name\":\"rvtp\",\"type\":\"qujmqlgkf\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -42,31 +42,29 @@ public final class PoolsCreateOrUpdateMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        Pool response
-            = manager.pools()
-                .define("fw")
-                .withRegion("fz")
-                .withExistingResourceGroup("odtji")
-                .withTags(mapOf("xzfe", "xxbuyq"))
-                .withProperties(new PoolProperties().withProvisioningState(ProvisioningState.PROVISIONING)
-                    .withMaximumConcurrency(1139569570)
-                    .withOrganizationProfile(new OrganizationProfile())
-                    .withAgentProfile(new AgentProfile().withResourcePredictions(new ResourcePredictions())
-                        .withResourcePredictionsProfile(new ResourcePredictionsProfile()))
-                    .withFabricProfile(new FabricProfile())
-                    .withDevCenterProjectResourceId("cjvefkdlfo"))
-                .withIdentity(
-                    new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
-                        .withUserAssignedIdentities(mapOf("beyvpnqicvinvkjj", new UserAssignedIdentity(), "pofncck",
-                            new UserAssignedIdentity())))
-                .create();
+        Pool response = manager.pools()
+            .define("patdooaojkniodko")
+            .withRegion("xrbuukzclew")
+            .withExistingResourceGroup("wnwxuqlcvyd")
+            .withTags(mapOf("aztz", "lw", "yq", "ofncckwyfzqwhxxb"))
+            .withProperties(new PoolProperties().withProvisioningState(ProvisioningState.PROVISIONING)
+                .withMaximumConcurrency(719607713)
+                .withOrganizationProfile(new OrganizationProfile())
+                .withAgentProfile(new AgentProfile().withResourcePredictions(new ResourcePredictions())
+                    .withResourcePredictionsProfile(new ResourcePredictionsProfile()))
+                .withFabricProfile(new FabricProfile())
+                .withDevCenterProjectResourceId("hemms"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
+                .withUserAssignedIdentities(mapOf("pulpqblylsyxk", new UserAssignedIdentity(), "gxsds",
+                    new UserAssignedIdentity(), "beyvpnqicvinvkjj", new UserAssignedIdentity())))
+            .create();
 
         Assertions.assertEquals("wjue", response.location());
         Assertions.assertEquals("buruvd", response.tags().get("ovsm"));
         Assertions.assertEquals(ProvisioningState.SUCCEEDED, response.properties().provisioningState());
-        Assertions.assertEquals(665760554, response.properties().maximumConcurrency());
-        Assertions.assertEquals("anvx", response.properties().devCenterProjectResourceId());
-        Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED, response.identity().type());
+        Assertions.assertEquals(301965904, response.properties().maximumConcurrency());
+        Assertions.assertEquals("cqdpfuv", response.properties().devCenterProjectResourceId());
+        Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED, response.identity().type());
     }
 
     // Use "Map.of" if available

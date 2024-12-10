@@ -11,6 +11,7 @@
 
 ## Pools
 
+- [CheckNameAvailability](#pools_checknameavailability)
 - [CreateOrUpdate](#pools_createorupdate)
 - [Delete](#pools_delete)
 - [GetByResourceGroup](#pools_getbyresourcegroup)
@@ -69,6 +70,35 @@ public final class OperationsListSamples {
     public static void
         operationsList(com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Pools_CheckNameAvailability
+
+```java
+import com.azure.resourcemanager.devopsinfrastructure.models.CheckNameAvailability;
+import com.azure.resourcemanager.devopsinfrastructure.models.DevOpsInfrastructureResourceType;
+
+/**
+ * Samples for Pools CheckNameAvailability.
+ */
+public final class PoolsCheckNameAvailabilitySamples {
+    /*
+     * x-ms-original-file: 2024-10-19/Pools_CheckNameAvailability.json
+     */
+    /**
+     * Sample code: Pools_CheckNameAvailability.
+     * 
+     * @param manager Entry point to DevOpsInfrastructureManager.
+     */
+    public static void
+        poolsCheckNameAvailability(com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
+        manager.pools()
+            .checkNameAvailabilityWithResponse(
+                new CheckNameAvailability().withName("mydevopspool")
+                    .withType(DevOpsInfrastructureResourceType.MICROSOFT_DEV_OPS_INFRASTRUCTURE_POOLS),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```

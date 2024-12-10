@@ -24,7 +24,7 @@ public final class PoolsListMockTests {
     @Test
     public void testList() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"provisioningState\":\"Provisioning\",\"maximumConcurrency\":583924547,\"organizationProfile\":{\"kind\":\"OrganizationProfile\"},\"agentProfile\":{\"kind\":\"AgentProfile\",\"resourcePredictions\":{},\"resourcePredictionsProfile\":{\"kind\":\"ResourcePredictionsProfile\"}},\"fabricProfile\":{\"kind\":\"FabricProfile\"},\"devCenterProjectResourceId\":\"zqalkrmnjijpx\"},\"identity\":{\"principalId\":\"qudf\",\"tenantId\":\"yxbaaabjyvayf\",\"type\":\"UserAssigned\",\"userAssignedIdentities\":{\"wmewzsyy\":{\"principalId\":\"rtuzqogs\",\"clientId\":\"nevfdnw\"},\"frxtrthzvaytdwk\":{\"principalId\":\"uzsoi\",\"clientId\":\"ud\"},\"q\":{\"principalId\":\"rqubpaxhexiil\",\"clientId\":\"pdtii\"}}},\"location\":\"qoaxoruzfgs\",\"tags\":{\"tramxjez\":\"fxrxxle\",\"tdooaoj\":\"lwnwxuqlcvydyp\"},\"id\":\"niodkooeb\",\"name\":\"nuj\",\"type\":\"emmsbvdkc\"}]}";
+            = "{\"value\":[{\"properties\":{\"provisioningState\":\"Updating\",\"maximumConcurrency\":1133705641,\"organizationProfile\":{\"kind\":\"OrganizationProfile\"},\"agentProfile\":{\"kind\":\"AgentProfile\",\"resourcePredictions\":{},\"resourcePredictionsProfile\":{\"kind\":\"ResourcePredictionsProfile\"}},\"fabricProfile\":{\"kind\":\"FabricProfile\"},\"devCenterProjectResourceId\":\"p\"},\"identity\":{\"principalId\":\"gymare\",\"tenantId\":\"ajxq\",\"type\":\"UserAssigned\",\"userAssignedIdentities\":{\"i\":{\"principalId\":\"ycubeddgs\",\"clientId\":\"fwqmzqalkrmn\"}}},\"location\":\"xacqqudfnbyx\",\"tags\":{\"ayffim\":\"abjy\",\"gsexne\":\"zrtuzq\",\"wmewzsyy\":\"fdnw\",\"judpfrxt\":\"euzsoi\"},\"id\":\"thzvaytdwkqbrqu\",\"name\":\"paxh\",\"type\":\"xiilivpdtiirqt\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -35,12 +35,12 @@ public final class PoolsListMockTests {
 
         PagedIterable<Pool> response = manager.pools().list(com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("qoaxoruzfgs", response.iterator().next().location());
-        Assertions.assertEquals("fxrxxle", response.iterator().next().tags().get("tramxjez"));
-        Assertions.assertEquals(ProvisioningState.PROVISIONING,
+        Assertions.assertEquals("xacqqudfnbyx", response.iterator().next().location());
+        Assertions.assertEquals("abjy", response.iterator().next().tags().get("ayffim"));
+        Assertions.assertEquals(ProvisioningState.UPDATING,
             response.iterator().next().properties().provisioningState());
-        Assertions.assertEquals(583924547, response.iterator().next().properties().maximumConcurrency());
-        Assertions.assertEquals("zqalkrmnjijpx", response.iterator().next().properties().devCenterProjectResourceId());
+        Assertions.assertEquals(1133705641, response.iterator().next().properties().maximumConcurrency());
+        Assertions.assertEquals("p", response.iterator().next().properties().devCenterProjectResourceId());
         Assertions.assertEquals(ManagedServiceIdentityType.USER_ASSIGNED, response.iterator().next().identity().type());
     }
 }
