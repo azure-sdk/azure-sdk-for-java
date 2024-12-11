@@ -324,8 +324,8 @@ public final class SapTableLinkedService extends LinkedService {
     }
 
     /**
-     * Get the sncMode property: SNC activation indicator to access the SAP server where the table is located. Must be
-     * either 0 (off) or 1 (on). Type: string (or Expression with resultType string).
+     * Get the sncMode property: SNC activation flag (Boolean) to access the SAP server where the table is located.
+     * Type: boolean (or Expression with resultType boolean).
      * 
      * @return the sncMode value.
      */
@@ -334,8 +334,8 @@ public final class SapTableLinkedService extends LinkedService {
     }
 
     /**
-     * Set the sncMode property: SNC activation indicator to access the SAP server where the table is located. Must be
-     * either 0 (off) or 1 (on). Type: string (or Expression with resultType string).
+     * Set the sncMode property: SNC activation flag (Boolean) to access the SAP server where the table is located.
+     * Type: boolean (or Expression with resultType boolean).
      * 
      * @param sncMode the sncMode value to set.
      * @return the SapTableLinkedService object itself.
@@ -505,13 +505,22 @@ public final class SapTableLinkedService extends LinkedService {
      */
     @Override
     public void validate() {
-        super.validate();
         if (innerTypeProperties() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property innerTypeProperties in model SapTableLinkedService"));
         } else {
             innerTypeProperties().validate();
+        }
+        if (connectVia() != null) {
+            connectVia().validate();
+        }
+        if (parameters() != null) {
+            parameters().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 
