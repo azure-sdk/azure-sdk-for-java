@@ -34,7 +34,7 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     /**
      * An update operation is in-progress on the resource.
      */
-    public static final ProvisioningState UPDATING = fromString("Updating");
+    public static final ProvisioningState UPDATING_TEST2 = fromString("UpdatingTest2");
 
     /**
      * A drop operation is in-progress on the resource.

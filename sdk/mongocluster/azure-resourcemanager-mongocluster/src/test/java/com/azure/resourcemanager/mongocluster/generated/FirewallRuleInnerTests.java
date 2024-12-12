@@ -13,7 +13,7 @@ public final class FirewallRuleInnerTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         FirewallRuleInner model = BinaryData.fromString(
-            "{\"properties\":{\"provisioningState\":\"Updating\",\"startIpAddress\":\"keqsrxybzqqedq\",\"endIpAddress\":\"tbciqfouflmm\"},\"id\":\"zsm\",\"name\":\"dmgloug\",\"type\":\"b\"}")
+            "{\"properties\":{\"provisioningState\":\"UpdatingTest2\",\"startIpAddress\":\"keqsrxybzqqedq\",\"endIpAddress\":\"tbciqfouflmm\"},\"id\":\"zsm\",\"name\":\"dmgloug\",\"type\":\"b\"}")
             .toObject(FirewallRuleInner.class);
         Assertions.assertEquals("keqsrxybzqqedq", model.properties().startIpAddress());
         Assertions.assertEquals("tbciqfouflmm", model.properties().endIpAddress());

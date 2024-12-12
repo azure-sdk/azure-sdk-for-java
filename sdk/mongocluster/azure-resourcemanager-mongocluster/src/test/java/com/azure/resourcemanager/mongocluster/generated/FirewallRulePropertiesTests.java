@@ -11,9 +11,8 @@ import org.junit.jupiter.api.Assertions;
 public final class FirewallRulePropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        FirewallRuleProperties model = BinaryData
-            .fromString(
-                "{\"provisioningState\":\"Updating\",\"startIpAddress\":\"mutduqktaps\",\"endIpAddress\":\"wgcu\"}")
+        FirewallRuleProperties model = BinaryData.fromString(
+            "{\"provisioningState\":\"UpdatingTest2\",\"startIpAddress\":\"mutduqktaps\",\"endIpAddress\":\"wgcu\"}")
             .toObject(FirewallRuleProperties.class);
         Assertions.assertEquals("mutduqktaps", model.startIpAddress());
         Assertions.assertEquals("wgcu", model.endIpAddress());
