@@ -57,6 +57,11 @@ public final class GitRepositoryPatchDefinition implements JsonSerializable<GitR
      */
     private String localAuthRef;
 
+    /*
+     * Name of the provider used for authentication.
+     */
+    private String provider;
+
     /**
      * Creates an instance of GitRepositoryPatchDefinition class.
      */
@@ -234,6 +239,26 @@ public final class GitRepositoryPatchDefinition implements JsonSerializable<GitR
     }
 
     /**
+     * Get the provider property: Name of the provider used for authentication.
+     * 
+     * @return the provider value.
+     */
+    public String provider() {
+        return this.provider;
+    }
+
+    /**
+     * Set the provider property: Name of the provider used for authentication.
+     * 
+     * @param provider the provider value to set.
+     * @return the GitRepositoryPatchDefinition object itself.
+     */
+    public GitRepositoryPatchDefinition withProvider(String provider) {
+        this.provider = provider;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -258,6 +283,7 @@ public final class GitRepositoryPatchDefinition implements JsonSerializable<GitR
         jsonWriter.writeStringField("httpsUser", this.httpsUser);
         jsonWriter.writeStringField("httpsCACert", this.httpsCACert);
         jsonWriter.writeStringField("localAuthRef", this.localAuthRef);
+        jsonWriter.writeStringField("provider", this.provider);
         return jsonWriter.writeEndObject();
     }
 
@@ -293,6 +319,8 @@ public final class GitRepositoryPatchDefinition implements JsonSerializable<GitR
                     deserializedGitRepositoryPatchDefinition.httpsCACert = reader.getString();
                 } else if ("localAuthRef".equals(fieldName)) {
                     deserializedGitRepositoryPatchDefinition.localAuthRef = reader.getString();
+                } else if ("provider".equals(fieldName)) {
+                    deserializedGitRepositoryPatchDefinition.provider = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -57,6 +57,11 @@ public final class GitRepositoryDefinition implements JsonSerializable<GitReposi
      */
     private String localAuthRef;
 
+    /*
+     * Name of the provider used for authentication.
+     */
+    private ProviderType provider;
+
     /**
      * Creates an instance of GitRepositoryDefinition class.
      */
@@ -234,6 +239,26 @@ public final class GitRepositoryDefinition implements JsonSerializable<GitReposi
     }
 
     /**
+     * Get the provider property: Name of the provider used for authentication.
+     * 
+     * @return the provider value.
+     */
+    public ProviderType provider() {
+        return this.provider;
+    }
+
+    /**
+     * Set the provider property: Name of the provider used for authentication.
+     * 
+     * @param provider the provider value to set.
+     * @return the GitRepositoryDefinition object itself.
+     */
+    public GitRepositoryDefinition withProvider(ProviderType provider) {
+        this.provider = provider;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -258,6 +283,7 @@ public final class GitRepositoryDefinition implements JsonSerializable<GitReposi
         jsonWriter.writeStringField("httpsUser", this.httpsUser);
         jsonWriter.writeStringField("httpsCACert", this.httpsCACert);
         jsonWriter.writeStringField("localAuthRef", this.localAuthRef);
+        jsonWriter.writeStringField("provider", this.provider == null ? null : this.provider.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -292,6 +318,8 @@ public final class GitRepositoryDefinition implements JsonSerializable<GitReposi
                     deserializedGitRepositoryDefinition.httpsCACert = reader.getString();
                 } else if ("localAuthRef".equals(fieldName)) {
                     deserializedGitRepositoryDefinition.localAuthRef = reader.getString();
+                } else if ("provider".equals(fieldName)) {
+                    deserializedGitRepositoryDefinition.provider = ProviderType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

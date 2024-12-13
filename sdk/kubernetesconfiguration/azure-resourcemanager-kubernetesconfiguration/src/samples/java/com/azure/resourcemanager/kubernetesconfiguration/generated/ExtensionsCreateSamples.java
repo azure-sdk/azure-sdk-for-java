@@ -17,7 +17,7 @@ import java.util.Map;
 public final class ExtensionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2024-11-01/
      * examples/CreateExtension.json
      */
     /**
@@ -41,7 +41,7 @@ public final class ExtensionsCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2024-11-01/
      * examples/CreateExtensionWithPlan.json
      */
     /**

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.kubernetesconfiguration.generated;
 public final class ExtensionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2024-11-01/
      * examples/GetExtensionWithPlan.json
      */
     /**
@@ -27,7 +27,7 @@ public final class ExtensionsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2024-11-01/
      * examples/GetExtension.json
      */
     /**

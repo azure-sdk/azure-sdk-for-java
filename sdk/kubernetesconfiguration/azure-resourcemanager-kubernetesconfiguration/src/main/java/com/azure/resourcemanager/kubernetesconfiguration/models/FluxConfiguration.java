@@ -95,6 +95,13 @@ public interface FluxConfiguration {
     AzureBlobDefinition azureBlob();
 
     /**
+     * Gets the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @return the ociRepository value.
+     */
+    OciRepositoryDefinition ociRepository();
+
+    /**
      * Gets the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source
      * type on the cluster.
      * 
