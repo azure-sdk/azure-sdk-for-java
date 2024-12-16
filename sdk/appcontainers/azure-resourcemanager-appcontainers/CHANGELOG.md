@@ -1,14 +1,37 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2024-12-16)
+
+- Azure Resource Manager ContainerAppsApi client library for Java. This package contains Microsoft Azure SDK for ContainerAppsApi Management SDK.  Package tag package-2025-01-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+#### `models.QueueScaleRule` was modified
 
-### Bugs Fixed
+* `withAccountName(java.lang.String)` was added
+* `identity()` was added
+* `accountName()` was added
+* `withIdentity(java.lang.String)` was added
 
-### Other Changes
+#### `models.TcpScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.HttpScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.JobScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.CustomScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
 
 ## 1.1.0-beta.1 (2024-10-17)
 
