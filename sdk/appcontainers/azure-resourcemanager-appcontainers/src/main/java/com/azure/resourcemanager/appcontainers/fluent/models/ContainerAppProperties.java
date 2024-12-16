@@ -10,7 +10,6 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
-import com.azure.resourcemanager.appcontainers.models.ContainerAppPropertiesPatchingConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.Template;
 import java.io.IOException;
@@ -27,11 +26,6 @@ public final class ContainerAppProperties implements JsonSerializable<ContainerA
     private ContainerAppProvisioningState provisioningState;
 
     /*
-     * Any errors that occurred during deployment
-     */
-    private String deploymentErrors;
-
-    /*
      * Deprecated. Resource ID of the Container App's environment.
      */
     private String managedEnvironmentId;
@@ -45,11 +39,6 @@ public final class ContainerAppProperties implements JsonSerializable<ContainerA
      * Workload profile name to pin for container app execution.
      */
     private String workloadProfileName;
-
-    /*
-     * Container App auto patch configuration.
-     */
-    private ContainerAppPropertiesPatchingConfiguration patchingConfiguration;
 
     /*
      * Name of the latest revision of the Container App.
@@ -104,15 +93,6 @@ public final class ContainerAppProperties implements JsonSerializable<ContainerA
      */
     public ContainerAppProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Get the deploymentErrors property: Any errors that occurred during deployment.
-     * 
-     * @return the deploymentErrors value.
-     */
-    public String deploymentErrors() {
-        return this.deploymentErrors;
     }
 
     /**
@@ -172,27 +152,6 @@ public final class ContainerAppProperties implements JsonSerializable<ContainerA
      */
     public ContainerAppProperties withWorkloadProfileName(String workloadProfileName) {
         this.workloadProfileName = workloadProfileName;
-        return this;
-    }
-
-    /**
-     * Get the patchingConfiguration property: Container App auto patch configuration.
-     * 
-     * @return the patchingConfiguration value.
-     */
-    public ContainerAppPropertiesPatchingConfiguration patchingConfiguration() {
-        return this.patchingConfiguration;
-    }
-
-    /**
-     * Set the patchingConfiguration property: Container App auto patch configuration.
-     * 
-     * @param patchingConfiguration the patchingConfiguration value to set.
-     * @return the ContainerAppProperties object itself.
-     */
-    public ContainerAppProperties
-        withPatchingConfiguration(ContainerAppPropertiesPatchingConfiguration patchingConfiguration) {
-        this.patchingConfiguration = patchingConfiguration;
         return this;
     }
 
@@ -296,9 +255,6 @@ public final class ContainerAppProperties implements JsonSerializable<ContainerA
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (patchingConfiguration() != null) {
-            patchingConfiguration().validate();
-        }
         if (configuration() != null) {
             configuration().validate();
         }
@@ -316,7 +272,6 @@ public final class ContainerAppProperties implements JsonSerializable<ContainerA
         jsonWriter.writeStringField("managedEnvironmentId", this.managedEnvironmentId);
         jsonWriter.writeStringField("environmentId", this.environmentId);
         jsonWriter.writeStringField("workloadProfileName", this.workloadProfileName);
-        jsonWriter.writeJsonField("patchingConfiguration", this.patchingConfiguration);
         jsonWriter.writeJsonField("configuration", this.configuration);
         jsonWriter.writeJsonField("template", this.template);
         return jsonWriter.writeEndObject();
@@ -340,17 +295,12 @@ public final class ContainerAppProperties implements JsonSerializable<ContainerA
                 if ("provisioningState".equals(fieldName)) {
                     deserializedContainerAppProperties.provisioningState
                         = ContainerAppProvisioningState.fromString(reader.getString());
-                } else if ("deploymentErrors".equals(fieldName)) {
-                    deserializedContainerAppProperties.deploymentErrors = reader.getString();
                 } else if ("managedEnvironmentId".equals(fieldName)) {
                     deserializedContainerAppProperties.managedEnvironmentId = reader.getString();
                 } else if ("environmentId".equals(fieldName)) {
                     deserializedContainerAppProperties.environmentId = reader.getString();
                 } else if ("workloadProfileName".equals(fieldName)) {
                     deserializedContainerAppProperties.workloadProfileName = reader.getString();
-                } else if ("patchingConfiguration".equals(fieldName)) {
-                    deserializedContainerAppProperties.patchingConfiguration
-                        = ContainerAppPropertiesPatchingConfiguration.fromJson(reader);
                 } else if ("latestRevisionName".equals(fieldName)) {
                     deserializedContainerAppProperties.latestRevisionName = reader.getString();
                 } else if ("latestReadyRevisionName".equals(fieldName)) {
