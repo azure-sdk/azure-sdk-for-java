@@ -2400,7 +2400,7 @@ public final class BatchClientImpl {
      * last aggregation interval currently available.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -2465,7 +2465,7 @@ public final class BatchClientImpl {
      * last aggregation interval currently available.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -2548,7 +2548,7 @@ public final class BatchClientImpl {
      * last aggregation interval currently available.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -2611,7 +2611,7 @@ public final class BatchClientImpl {
      * last aggregation interval currently available.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -3281,7 +3281,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-pools.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-pools.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -3659,7 +3659,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-pools.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-pools.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -4055,7 +4055,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-pools.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-pools.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -4431,7 +4431,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-pools.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-pools.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -7410,7 +7410,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -7471,7 +7471,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -7550,7 +7550,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -7609,7 +7609,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -7691,7 +7691,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -7758,7 +7758,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -7843,7 +7843,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -7908,7 +7908,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-support-images.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -11932,7 +11932,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -12391,7 +12391,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -12868,7 +12868,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -13325,7 +13325,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -13802,7 +13802,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -14263,7 +14263,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -14742,7 +14742,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -15201,7 +15201,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -15687,7 +15687,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * </table>
@@ -15784,7 +15784,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * </table>
@@ -15900,7 +15900,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * </table>
@@ -15996,7 +15996,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * </table>
@@ -20397,7 +20397,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -20859,7 +20859,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -21339,7 +21339,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -21799,7 +21799,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -22618,7 +22618,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-tasks.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-tasks.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -22853,7 +22853,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-tasks.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-tasks.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -23105,7 +23105,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-tasks.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-tasks.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -23337,7 +23337,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-tasks.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-tasks.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * <tr><td>$expand</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $expand clause. In the form of ","
@@ -25919,7 +25919,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-task-files.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-task-files.</td></tr>
      * <tr><td>recursive</td><td>Boolean</td><td>No</td><td>Whether to list children of the Task directory. This
      * parameter can be used in
      * combination with the filter parameter to list specific type of files.</td></tr>
@@ -25979,7 +25979,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-task-files.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-task-files.</td></tr>
      * <tr><td>recursive</td><td>Boolean</td><td>No</td><td>Whether to list children of the Task directory. This
      * parameter can be used in
      * combination with the filter parameter to list specific type of files.</td></tr>
@@ -26058,7 +26058,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-task-files.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-task-files.</td></tr>
      * <tr><td>recursive</td><td>Boolean</td><td>No</td><td>Whether to list children of the Task directory. This
      * parameter can be used in
      * combination with the filter parameter to list specific type of files.</td></tr>
@@ -26117,7 +26117,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-task-files.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-task-files.</td></tr>
      * <tr><td>recursive</td><td>Boolean</td><td>No</td><td>Whether to list children of the Task directory. This
      * parameter can be used in
      * combination with the filter parameter to list specific type of files.</td></tr>
@@ -27605,7 +27605,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * </table>
@@ -27800,7 +27800,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * </table>
@@ -28012,7 +28012,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * </table>
@@ -28204,7 +28204,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.</td></tr>
      * <tr><td>$select</td><td>List&lt;String&gt;</td><td>No</td><td>An OData $select clause. In the form of ","
      * separated string.</td></tr>
      * </table>
@@ -29181,7 +29181,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.</td></tr>
      * <tr><td>recursive</td><td>Boolean</td><td>No</td><td>Whether to list children of a directory.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -29239,7 +29239,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.</td></tr>
      * <tr><td>recursive</td><td>Boolean</td><td>No</td><td>Whether to list children of a directory.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -29316,7 +29316,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.</td></tr>
      * <tr><td>recursive</td><td>Boolean</td><td>No</td><td>Whether to list children of a directory.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -29373,7 +29373,7 @@ public final class BatchClientImpl {
      * applications can be returned.</td></tr>
      * <tr><td>$filter</td><td>String</td><td>No</td><td>An OData $filter clause. For more information on constructing
      * this filter, see
-     * https://docs.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.</td></tr>
+     * https://learn.microsoft.com/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.</td></tr>
      * <tr><td>recursive</td><td>Boolean</td><td>No</td><td>Whether to list children of a directory.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
