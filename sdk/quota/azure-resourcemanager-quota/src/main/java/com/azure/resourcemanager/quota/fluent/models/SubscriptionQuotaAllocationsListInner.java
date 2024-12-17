@@ -10,18 +10,18 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.quota.models.GroupQuotasEntityProperties;
+import com.azure.resourcemanager.quota.models.SubscriptionQuotaAllocationsListProperties;
 import java.io.IOException;
 
 /**
- * Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified.
+ * Subscription quota list.
  */
 @Fluent
-public final class GroupQuotasEntityInner extends ProxyResource {
+public final class SubscriptionQuotaAllocationsListInner extends ProxyResource {
     /*
-     * Properties
+     * The properties property.
      */
-    private GroupQuotasEntityProperties properties;
+    private SubscriptionQuotaAllocationsListProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -44,27 +44,27 @@ public final class GroupQuotasEntityInner extends ProxyResource {
     private String id;
 
     /**
-     * Creates an instance of GroupQuotasEntityInner class.
+     * Creates an instance of SubscriptionQuotaAllocationsListInner class.
      */
-    public GroupQuotasEntityInner() {
+    public SubscriptionQuotaAllocationsListInner() {
     }
 
     /**
-     * Get the properties property: Properties.
+     * Get the properties property: The properties property.
      * 
      * @return the properties value.
      */
-    public GroupQuotasEntityProperties properties() {
+    public SubscriptionQuotaAllocationsListProperties properties() {
         return this.properties;
     }
 
     /**
-     * Set the properties property: Properties.
+     * Set the properties property: The properties property.
      * 
      * @param properties the properties value to set.
-     * @return the GroupQuotasEntityInner object itself.
+     * @return the SubscriptionQuotaAllocationsListInner object itself.
      */
-    public GroupQuotasEntityInner withProperties(GroupQuotasEntityProperties properties) {
+    public SubscriptionQuotaAllocationsListInner withProperties(SubscriptionQuotaAllocationsListProperties properties) {
         this.properties = properties;
         return this;
     }
@@ -130,37 +130,39 @@ public final class GroupQuotasEntityInner extends ProxyResource {
     }
 
     /**
-     * Reads an instance of GroupQuotasEntityInner from the JsonReader.
+     * Reads an instance of SubscriptionQuotaAllocationsListInner from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of GroupQuotasEntityInner if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
+     * @return An instance of SubscriptionQuotaAllocationsListInner if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the GroupQuotasEntityInner.
+     * @throws IOException If an error occurs while reading the SubscriptionQuotaAllocationsListInner.
      */
-    public static GroupQuotasEntityInner fromJson(JsonReader jsonReader) throws IOException {
+    public static SubscriptionQuotaAllocationsListInner fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            GroupQuotasEntityInner deserializedGroupQuotasEntityInner = new GroupQuotasEntityInner();
+            SubscriptionQuotaAllocationsListInner deserializedSubscriptionQuotaAllocationsListInner
+                = new SubscriptionQuotaAllocationsListInner();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("id".equals(fieldName)) {
-                    deserializedGroupQuotasEntityInner.id = reader.getString();
+                    deserializedSubscriptionQuotaAllocationsListInner.id = reader.getString();
                 } else if ("name".equals(fieldName)) {
-                    deserializedGroupQuotasEntityInner.name = reader.getString();
+                    deserializedSubscriptionQuotaAllocationsListInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
-                    deserializedGroupQuotasEntityInner.type = reader.getString();
+                    deserializedSubscriptionQuotaAllocationsListInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedGroupQuotasEntityInner.properties = GroupQuotasEntityProperties.fromJson(reader);
+                    deserializedSubscriptionQuotaAllocationsListInner.properties
+                        = SubscriptionQuotaAllocationsListProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
-                    deserializedGroupQuotasEntityInner.systemData = SystemData.fromJson(reader);
+                    deserializedSubscriptionQuotaAllocationsListInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedGroupQuotasEntityInner;
+            return deserializedSubscriptionQuotaAllocationsListInner;
         });
     }
 }
