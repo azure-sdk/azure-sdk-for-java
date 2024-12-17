@@ -5,11 +5,11 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -17,136 +17,93 @@ import java.util.Map;
 /**
  * IaaS VM workload specific backup copy.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    property = "objectType",
-    defaultImpl = IaasVMRecoveryPoint.class,
-    visible = true)
-@JsonTypeName("IaasVMRecoveryPoint")
 @Fluent
 public final class IaasVMRecoveryPoint extends RecoveryPoint {
     /*
-     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types.
+     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of
+     * types.
      */
-    @JsonTypeId
-    @JsonProperty(value = "objectType", required = true)
     private String objectType = "IaasVMRecoveryPoint";
 
     /*
      * Type of the backup copy.
      */
-    @JsonProperty(value = "recoveryPointType")
     private String recoveryPointType;
 
     /*
      * Time at which this backup copy was created.
      */
-    @JsonProperty(value = "recoveryPointTime")
     private OffsetDateTime recoveryPointTime;
 
     /*
      * Additional information associated with this backup copy.
      */
-    @JsonProperty(value = "recoveryPointAdditionalInfo")
     private String recoveryPointAdditionalInfo;
 
     /*
      * Storage type of the VM whose backup copy is created.
      */
-    @JsonProperty(value = "sourceVMStorageType")
     private String sourceVMStorageType;
 
     /*
      * Identifies whether the VM was encrypted when the backup copy is created.
      */
-    @JsonProperty(value = "isSourceVMEncrypted")
     private Boolean isSourceVMEncrypted;
 
     /*
      * Required details for recovering an encrypted VM. Applicable only when IsSourceVMEncrypted is true.
      */
-    @JsonProperty(value = "keyAndSecret")
     private KeyAndSecretDetails keyAndSecret;
 
     /*
      * Is the session to recover items from this backup copy still active.
      */
-    @JsonProperty(value = "isInstantIlrSessionActive")
     private Boolean isInstantIlrSessionActive;
 
     /*
      * Recovery point tier information.
      */
-    @JsonProperty(value = "recoveryPointTierDetails")
-    private List<RecoveryPointTierInformationV2> recoveryPointTierDetails;
+    private List<RecoveryPointTierInformation> recoveryPointTierDetails;
 
     /*
      * Whether VM is with Managed Disks
      */
-    @JsonProperty(value = "isManagedVirtualMachine")
     private Boolean isManagedVirtualMachine;
 
     /*
      * Virtual Machine Size
      */
-    @JsonProperty(value = "virtualMachineSize")
     private String virtualMachineSize;
 
     /*
      * Original Storage Account Option
      */
-    @JsonProperty(value = "originalStorageAccountOption")
     private Boolean originalStorageAccountOption;
 
     /*
      * OS type
      */
-    @JsonProperty(value = "osType")
     private String osType;
 
     /*
      * Disk configuration
      */
-    @JsonProperty(value = "recoveryPointDiskConfiguration")
     private RecoveryPointDiskConfiguration recoveryPointDiskConfiguration;
 
     /*
      * Identifies the zone of the VM at the time of backup. Applicable only for zone-pinned Vms
      */
-    @JsonProperty(value = "zones")
     private List<String> zones;
 
     /*
      * Eligibility of RP to be moved to another tier
      */
-    @JsonProperty(value = "recoveryPointMoveReadinessInfo")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, RecoveryPointMoveReadinessInfo> recoveryPointMoveReadinessInfo;
-
-    /*
-     * Security Type of the Disk
-     */
-    @JsonProperty(value = "securityType")
-    private String securityType;
 
     /*
      * Properties of Recovery Point
      */
-    @JsonProperty(value = "recoveryPointProperties")
     private RecoveryPointProperties recoveryPointProperties;
-
-    /*
-     * This flag denotes if any of the disks in the VM are using Private access network setting
-     */
-    @JsonProperty(value = "isPrivateAccessEnabledOnAnyDisk")
-    private Boolean isPrivateAccessEnabledOnAnyDisk;
-
-    /*
-     * Extended location of the VM recovery point,
-     * should be null if VM is in public cloud
-     */
-    @JsonProperty(value = "extendedLocation")
-    private ExtendedLocation extendedLocation;
 
     /**
      * Creates an instance of IaasVMRecoveryPoint class.
@@ -175,34 +132,12 @@ public final class IaasVMRecoveryPoint extends RecoveryPoint {
     }
 
     /**
-     * Set the recoveryPointType property: Type of the backup copy.
-     * 
-     * @param recoveryPointType the recoveryPointType value to set.
-     * @return the IaasVMRecoveryPoint object itself.
-     */
-    public IaasVMRecoveryPoint withRecoveryPointType(String recoveryPointType) {
-        this.recoveryPointType = recoveryPointType;
-        return this;
-    }
-
-    /**
      * Get the recoveryPointTime property: Time at which this backup copy was created.
      * 
      * @return the recoveryPointTime value.
      */
     public OffsetDateTime recoveryPointTime() {
         return this.recoveryPointTime;
-    }
-
-    /**
-     * Set the recoveryPointTime property: Time at which this backup copy was created.
-     * 
-     * @param recoveryPointTime the recoveryPointTime value to set.
-     * @return the IaasVMRecoveryPoint object itself.
-     */
-    public IaasVMRecoveryPoint withRecoveryPointTime(OffsetDateTime recoveryPointTime) {
-        this.recoveryPointTime = recoveryPointTime;
-        return this;
     }
 
     /**
@@ -215,17 +150,6 @@ public final class IaasVMRecoveryPoint extends RecoveryPoint {
     }
 
     /**
-     * Set the recoveryPointAdditionalInfo property: Additional information associated with this backup copy.
-     * 
-     * @param recoveryPointAdditionalInfo the recoveryPointAdditionalInfo value to set.
-     * @return the IaasVMRecoveryPoint object itself.
-     */
-    public IaasVMRecoveryPoint withRecoveryPointAdditionalInfo(String recoveryPointAdditionalInfo) {
-        this.recoveryPointAdditionalInfo = recoveryPointAdditionalInfo;
-        return this;
-    }
-
-    /**
      * Get the sourceVMStorageType property: Storage type of the VM whose backup copy is created.
      * 
      * @return the sourceVMStorageType value.
@@ -235,34 +159,12 @@ public final class IaasVMRecoveryPoint extends RecoveryPoint {
     }
 
     /**
-     * Set the sourceVMStorageType property: Storage type of the VM whose backup copy is created.
-     * 
-     * @param sourceVMStorageType the sourceVMStorageType value to set.
-     * @return the IaasVMRecoveryPoint object itself.
-     */
-    public IaasVMRecoveryPoint withSourceVMStorageType(String sourceVMStorageType) {
-        this.sourceVMStorageType = sourceVMStorageType;
-        return this;
-    }
-
-    /**
      * Get the isSourceVMEncrypted property: Identifies whether the VM was encrypted when the backup copy is created.
      * 
      * @return the isSourceVMEncrypted value.
      */
     public Boolean isSourceVMEncrypted() {
         return this.isSourceVMEncrypted;
-    }
-
-    /**
-     * Set the isSourceVMEncrypted property: Identifies whether the VM was encrypted when the backup copy is created.
-     * 
-     * @param isSourceVMEncrypted the isSourceVMEncrypted value to set.
-     * @return the IaasVMRecoveryPoint object itself.
-     */
-    public IaasVMRecoveryPoint withIsSourceVMEncrypted(Boolean isSourceVMEncrypted) {
-        this.isSourceVMEncrypted = isSourceVMEncrypted;
-        return this;
     }
 
     /**
@@ -312,7 +214,7 @@ public final class IaasVMRecoveryPoint extends RecoveryPoint {
      * 
      * @return the recoveryPointTierDetails value.
      */
-    public List<RecoveryPointTierInformationV2> recoveryPointTierDetails() {
+    public List<RecoveryPointTierInformation> recoveryPointTierDetails() {
         return this.recoveryPointTierDetails;
     }
 
@@ -323,7 +225,7 @@ public final class IaasVMRecoveryPoint extends RecoveryPoint {
      * @return the IaasVMRecoveryPoint object itself.
      */
     public IaasVMRecoveryPoint
-        withRecoveryPointTierDetails(List<RecoveryPointTierInformationV2> recoveryPointTierDetails) {
+        withRecoveryPointTierDetails(List<RecoveryPointTierInformation> recoveryPointTierDetails) {
         this.recoveryPointTierDetails = recoveryPointTierDetails;
         return this;
     }
@@ -471,26 +373,6 @@ public final class IaasVMRecoveryPoint extends RecoveryPoint {
     }
 
     /**
-     * Get the securityType property: Security Type of the Disk.
-     * 
-     * @return the securityType value.
-     */
-    public String securityType() {
-        return this.securityType;
-    }
-
-    /**
-     * Set the securityType property: Security Type of the Disk.
-     * 
-     * @param securityType the securityType value to set.
-     * @return the IaasVMRecoveryPoint object itself.
-     */
-    public IaasVMRecoveryPoint withSecurityType(String securityType) {
-        this.securityType = securityType;
-        return this;
-    }
-
-    /**
      * Get the recoveryPointProperties property: Properties of Recovery Point.
      * 
      * @return the recoveryPointProperties value.
@@ -511,57 +393,12 @@ public final class IaasVMRecoveryPoint extends RecoveryPoint {
     }
 
     /**
-     * Get the isPrivateAccessEnabledOnAnyDisk property: This flag denotes if any of the disks in the VM are using
-     * Private access network setting.
-     * 
-     * @return the isPrivateAccessEnabledOnAnyDisk value.
-     */
-    public Boolean isPrivateAccessEnabledOnAnyDisk() {
-        return this.isPrivateAccessEnabledOnAnyDisk;
-    }
-
-    /**
-     * Set the isPrivateAccessEnabledOnAnyDisk property: This flag denotes if any of the disks in the VM are using
-     * Private access network setting.
-     * 
-     * @param isPrivateAccessEnabledOnAnyDisk the isPrivateAccessEnabledOnAnyDisk value to set.
-     * @return the IaasVMRecoveryPoint object itself.
-     */
-    public IaasVMRecoveryPoint withIsPrivateAccessEnabledOnAnyDisk(Boolean isPrivateAccessEnabledOnAnyDisk) {
-        this.isPrivateAccessEnabledOnAnyDisk = isPrivateAccessEnabledOnAnyDisk;
-        return this;
-    }
-
-    /**
-     * Get the extendedLocation property: Extended location of the VM recovery point,
-     * should be null if VM is in public cloud.
-     * 
-     * @return the extendedLocation value.
-     */
-    public ExtendedLocation extendedLocation() {
-        return this.extendedLocation;
-    }
-
-    /**
-     * Set the extendedLocation property: Extended location of the VM recovery point,
-     * should be null if VM is in public cloud.
-     * 
-     * @param extendedLocation the extendedLocation value to set.
-     * @return the IaasVMRecoveryPoint object itself.
-     */
-    public IaasVMRecoveryPoint withExtendedLocation(ExtendedLocation extendedLocation) {
-        this.extendedLocation = extendedLocation;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (keyAndSecret() != null) {
             keyAndSecret().validate();
         }
@@ -581,8 +418,96 @@ public final class IaasVMRecoveryPoint extends RecoveryPoint {
         if (recoveryPointProperties() != null) {
             recoveryPointProperties().validate();
         }
-        if (extendedLocation() != null) {
-            extendedLocation().validate();
-        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("objectType", this.objectType);
+        jsonWriter.writeJsonField("keyAndSecret", this.keyAndSecret);
+        jsonWriter.writeBooleanField("isInstantIlrSessionActive", this.isInstantIlrSessionActive);
+        jsonWriter.writeArrayField("recoveryPointTierDetails", this.recoveryPointTierDetails,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeBooleanField("isManagedVirtualMachine", this.isManagedVirtualMachine);
+        jsonWriter.writeStringField("virtualMachineSize", this.virtualMachineSize);
+        jsonWriter.writeBooleanField("originalStorageAccountOption", this.originalStorageAccountOption);
+        jsonWriter.writeStringField("osType", this.osType);
+        jsonWriter.writeJsonField("recoveryPointDiskConfiguration", this.recoveryPointDiskConfiguration);
+        jsonWriter.writeArrayField("zones", this.zones, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("recoveryPointMoveReadinessInfo", this.recoveryPointMoveReadinessInfo,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("recoveryPointProperties", this.recoveryPointProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of IaasVMRecoveryPoint from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of IaasVMRecoveryPoint if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the IaasVMRecoveryPoint.
+     */
+    public static IaasVMRecoveryPoint fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            IaasVMRecoveryPoint deserializedIaasVMRecoveryPoint = new IaasVMRecoveryPoint();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("objectType".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.objectType = reader.getString();
+                } else if ("recoveryPointType".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.recoveryPointType = reader.getString();
+                } else if ("recoveryPointTime".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.recoveryPointTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("recoveryPointAdditionalInfo".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.recoveryPointAdditionalInfo = reader.getString();
+                } else if ("sourceVMStorageType".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.sourceVMStorageType = reader.getString();
+                } else if ("isSourceVMEncrypted".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.isSourceVMEncrypted = reader.getNullable(JsonReader::getBoolean);
+                } else if ("keyAndSecret".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.keyAndSecret = KeyAndSecretDetails.fromJson(reader);
+                } else if ("isInstantIlrSessionActive".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.isInstantIlrSessionActive
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("recoveryPointTierDetails".equals(fieldName)) {
+                    List<RecoveryPointTierInformation> recoveryPointTierDetails
+                        = reader.readArray(reader1 -> RecoveryPointTierInformation.fromJson(reader1));
+                    deserializedIaasVMRecoveryPoint.recoveryPointTierDetails = recoveryPointTierDetails;
+                } else if ("isManagedVirtualMachine".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.isManagedVirtualMachine
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("virtualMachineSize".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.virtualMachineSize = reader.getString();
+                } else if ("originalStorageAccountOption".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.originalStorageAccountOption
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("osType".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.osType = reader.getString();
+                } else if ("recoveryPointDiskConfiguration".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.recoveryPointDiskConfiguration
+                        = RecoveryPointDiskConfiguration.fromJson(reader);
+                } else if ("zones".equals(fieldName)) {
+                    List<String> zones = reader.readArray(reader1 -> reader1.getString());
+                    deserializedIaasVMRecoveryPoint.zones = zones;
+                } else if ("recoveryPointMoveReadinessInfo".equals(fieldName)) {
+                    Map<String, RecoveryPointMoveReadinessInfo> recoveryPointMoveReadinessInfo
+                        = reader.readMap(reader1 -> RecoveryPointMoveReadinessInfo.fromJson(reader1));
+                    deserializedIaasVMRecoveryPoint.recoveryPointMoveReadinessInfo = recoveryPointMoveReadinessInfo;
+                } else if ("recoveryPointProperties".equals(fieldName)) {
+                    deserializedIaasVMRecoveryPoint.recoveryPointProperties = RecoveryPointProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedIaasVMRecoveryPoint;
+        });
     }
 }

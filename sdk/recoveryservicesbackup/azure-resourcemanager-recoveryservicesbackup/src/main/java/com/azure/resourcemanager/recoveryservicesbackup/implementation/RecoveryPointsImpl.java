@@ -4,14 +4,14 @@
 
 package com.azure.resourcemanager.recoveryservicesbackup.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.RecoveryPointsClient;
-import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.RecoveryPointResourceInner;
-import com.azure.resourcemanager.recoveryservicesbackup.models.RecoveryPointResource;
+import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.AadPropertiesResourceInner;
+import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.CrrAccessTokenResourceInner;
+import com.azure.resourcemanager.recoveryservicesbackup.models.CrrAccessTokenResource;
 import com.azure.resourcemanager.recoveryservicesbackup.models.RecoveryPoints;
 
 public final class RecoveryPointsImpl implements RecoveryPoints {
@@ -27,39 +27,27 @@ public final class RecoveryPointsImpl implements RecoveryPoints {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<RecoveryPointResource> list(String vaultName, String resourceGroupName, String fabricName,
-        String containerName, String protectedItemName) {
-        PagedIterable<RecoveryPointResourceInner> inner
-            = this.serviceClient().list(vaultName, resourceGroupName, fabricName, containerName, protectedItemName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new RecoveryPointResourceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<RecoveryPointResource> list(String vaultName, String resourceGroupName, String fabricName,
-        String containerName, String protectedItemName, String filter, Context context) {
-        PagedIterable<RecoveryPointResourceInner> inner = this.serviceClient()
-            .list(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, filter, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new RecoveryPointResourceImpl(inner1, this.manager()));
-    }
-
-    public Response<RecoveryPointResource> getWithResponse(String vaultName, String resourceGroupName,
-        String fabricName, String containerName, String protectedItemName, String recoveryPointId, Context context) {
-        Response<RecoveryPointResourceInner> inner = this.serviceClient()
-            .getWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName,
-                recoveryPointId, context);
+    public Response<CrrAccessTokenResource> getAccessTokenWithResponse(String vaultName, String resourceGroupName,
+        String fabricName, String containerName, String protectedItemName, String recoveryPointId,
+        AadPropertiesResourceInner parameters, Context context) {
+        Response<CrrAccessTokenResourceInner> inner = this.serviceClient()
+            .getAccessTokenWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName,
+                recoveryPointId, parameters, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new RecoveryPointResourceImpl(inner.getValue(), this.manager()));
+                new CrrAccessTokenResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public RecoveryPointResource get(String vaultName, String resourceGroupName, String fabricName,
-        String containerName, String protectedItemName, String recoveryPointId) {
-        RecoveryPointResourceInner inner = this.serviceClient()
-            .get(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, recoveryPointId);
+    public CrrAccessTokenResource getAccessToken(String vaultName, String resourceGroupName, String fabricName,
+        String containerName, String protectedItemName, String recoveryPointId, AadPropertiesResourceInner parameters) {
+        CrrAccessTokenResourceInner inner = this.serviceClient()
+            .getAccessToken(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, recoveryPointId,
+                parameters);
         if (inner != null) {
-            return new RecoveryPointResourceImpl(inner, this.manager());
+            return new CrrAccessTokenResourceImpl(inner, this.manager());
         } else {
             return null;
         }

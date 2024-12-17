@@ -5,11 +5,10 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Type of workload for the backup management.
+ * Workload type of backup item.
  */
 public final class WorkloadType extends ExpandableStringEnum<WorkloadType> {
     /**
@@ -88,11 +87,6 @@ public final class WorkloadType extends ExpandableStringEnum<WorkloadType> {
     public static final WorkloadType SAPASE_DATABASE = fromString("SAPAseDatabase");
 
     /**
-     * Static value SAPHanaDBInstance for WorkloadType.
-     */
-    public static final WorkloadType SAPHANA_DBINSTANCE = fromString("SAPHanaDBInstance");
-
-    /**
      * Creates a new instance of WorkloadType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -107,7 +101,6 @@ public final class WorkloadType extends ExpandableStringEnum<WorkloadType> {
      * @param name a name to look for.
      * @return the corresponding WorkloadType.
      */
-    @JsonCreator
     public static WorkloadType fromString(String name) {
         return fromString(name, WorkloadType.class);
     }

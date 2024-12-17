@@ -5,11 +5,10 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Health status of protected item.
+ * backups running status for this backup item.
  */
 public final class HealthStatus extends ExpandableStringEnum<HealthStatus> {
     /**
@@ -47,7 +46,6 @@ public final class HealthStatus extends ExpandableStringEnum<HealthStatus> {
      * @param name a name to look for.
      * @return the corresponding HealthStatus.
      */
-    @JsonCreator
     public static HealthStatus fromString(String name) {
         return fromString(name, HealthStatus.class);
     }

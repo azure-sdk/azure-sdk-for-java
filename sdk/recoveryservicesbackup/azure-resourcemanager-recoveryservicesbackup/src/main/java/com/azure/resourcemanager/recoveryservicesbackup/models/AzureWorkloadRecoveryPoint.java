@@ -5,12 +5,11 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -18,56 +17,37 @@ import java.util.Map;
 /**
  * Workload specific recovery point, specifically encapsulates full/diff recovery point.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    property = "objectType",
-    defaultImpl = AzureWorkloadRecoveryPoint.class,
-    visible = true)
-@JsonTypeName("AzureWorkloadRecoveryPoint")
-@JsonSubTypes({
-    @JsonSubTypes.Type(
-        name = "AzureWorkloadPointInTimeRecoveryPoint",
-        value = AzureWorkloadPointInTimeRecoveryPoint.class),
-    @JsonSubTypes.Type(name = "AzureWorkloadSAPHanaRecoveryPoint", value = AzureWorkloadSapHanaRecoveryPoint.class),
-    @JsonSubTypes.Type(name = "AzureWorkloadSQLRecoveryPoint", value = AzureWorkloadSqlRecoveryPoint.class) })
 @Fluent
 public class AzureWorkloadRecoveryPoint extends RecoveryPoint {
     /*
-     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types.
+     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of
+     * types.
      */
-    @JsonTypeId
-    @JsonProperty(value = "objectType", required = true)
     private String objectType = "AzureWorkloadRecoveryPoint";
 
     /*
      * UTC time at which recovery point was created
      */
-    @JsonProperty(value = "recoveryPointTimeInUTC")
     private OffsetDateTime recoveryPointTimeInUtc;
 
     /*
      * Type of restore point
      */
-    @JsonProperty(value = "type")
     private RestorePointType type;
 
     /*
      * Recovery point tier information.
      */
-    @JsonProperty(value = "recoveryPointTierDetails")
-    private List<RecoveryPointTierInformationV2> recoveryPointTierDetails;
+    private List<RecoveryPointTierInformation> recoveryPointTierDetails;
 
     /*
      * Eligibility of RP to be moved to another tier
      */
-    @JsonProperty(value = "recoveryPointMoveReadinessInfo")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, RecoveryPointMoveReadinessInfo> recoveryPointMoveReadinessInfo;
 
     /*
      * Properties of Recovery Point
      */
-    @JsonProperty(value = "recoveryPointProperties")
     private RecoveryPointProperties recoveryPointProperties;
 
     /**
@@ -102,7 +82,7 @@ public class AzureWorkloadRecoveryPoint extends RecoveryPoint {
      * @param recoveryPointTimeInUtc the recoveryPointTimeInUtc value to set.
      * @return the AzureWorkloadRecoveryPoint object itself.
      */
-    public AzureWorkloadRecoveryPoint withRecoveryPointTimeInUtc(OffsetDateTime recoveryPointTimeInUtc) {
+    AzureWorkloadRecoveryPoint withRecoveryPointTimeInUtc(OffsetDateTime recoveryPointTimeInUtc) {
         this.recoveryPointTimeInUtc = recoveryPointTimeInUtc;
         return this;
     }
@@ -122,7 +102,7 @@ public class AzureWorkloadRecoveryPoint extends RecoveryPoint {
      * @param type the type value to set.
      * @return the AzureWorkloadRecoveryPoint object itself.
      */
-    public AzureWorkloadRecoveryPoint withType(RestorePointType type) {
+    AzureWorkloadRecoveryPoint withType(RestorePointType type) {
         this.type = type;
         return this;
     }
@@ -132,7 +112,7 @@ public class AzureWorkloadRecoveryPoint extends RecoveryPoint {
      * 
      * @return the recoveryPointTierDetails value.
      */
-    public List<RecoveryPointTierInformationV2> recoveryPointTierDetails() {
+    public List<RecoveryPointTierInformation> recoveryPointTierDetails() {
         return this.recoveryPointTierDetails;
     }
 
@@ -143,7 +123,7 @@ public class AzureWorkloadRecoveryPoint extends RecoveryPoint {
      * @return the AzureWorkloadRecoveryPoint object itself.
      */
     public AzureWorkloadRecoveryPoint
-        withRecoveryPointTierDetails(List<RecoveryPointTierInformationV2> recoveryPointTierDetails) {
+        withRecoveryPointTierDetails(List<RecoveryPointTierInformation> recoveryPointTierDetails) {
         this.recoveryPointTierDetails = recoveryPointTierDetails;
         return this;
     }
@@ -196,7 +176,6 @@ public class AzureWorkloadRecoveryPoint extends RecoveryPoint {
      */
     @Override
     public void validate() {
-        super.validate();
         if (recoveryPointTierDetails() != null) {
             recoveryPointTierDetails().forEach(e -> e.validate());
         }
@@ -210,5 +189,96 @@ public class AzureWorkloadRecoveryPoint extends RecoveryPoint {
         if (recoveryPointProperties() != null) {
             recoveryPointProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("objectType", this.objectType);
+        jsonWriter.writeArrayField("recoveryPointTierDetails", this.recoveryPointTierDetails,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeMapField("recoveryPointMoveReadinessInfo", this.recoveryPointMoveReadinessInfo,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("recoveryPointProperties", this.recoveryPointProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AzureWorkloadRecoveryPoint from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AzureWorkloadRecoveryPoint if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AzureWorkloadRecoveryPoint.
+     */
+    public static AzureWorkloadRecoveryPoint fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            String discriminatorValue = null;
+            try (JsonReader readerToUse = reader.bufferObject()) {
+                readerToUse.nextToken(); // Prepare for reading
+                while (readerToUse.nextToken() != JsonToken.END_OBJECT) {
+                    String fieldName = readerToUse.getFieldName();
+                    readerToUse.nextToken();
+                    if ("objectType".equals(fieldName)) {
+                        discriminatorValue = readerToUse.getString();
+                        break;
+                    } else {
+                        readerToUse.skipChildren();
+                    }
+                }
+                // Use the discriminator value to determine which subtype should be deserialized.
+                if ("AzureWorkloadPointInTimeRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadPointInTimeRecoveryPoint.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadSAPHanaPointInTimeRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadSapHanaPointInTimeRecoveryPoint.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadSAPHanaRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadSapHanaRecoveryPoint.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadSQLRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadSqlRecoveryPoint.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadSQLPointInTimeRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadSqlPointInTimeRecoveryPoint.fromJson(readerToUse.reset());
+                } else {
+                    return fromJsonKnownDiscriminator(readerToUse.reset());
+                }
+            }
+        });
+    }
+
+    static AzureWorkloadRecoveryPoint fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AzureWorkloadRecoveryPoint deserializedAzureWorkloadRecoveryPoint = new AzureWorkloadRecoveryPoint();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("objectType".equals(fieldName)) {
+                    deserializedAzureWorkloadRecoveryPoint.objectType = reader.getString();
+                } else if ("recoveryPointTimeInUTC".equals(fieldName)) {
+                    deserializedAzureWorkloadRecoveryPoint.recoveryPointTimeInUtc = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("type".equals(fieldName)) {
+                    deserializedAzureWorkloadRecoveryPoint.type = RestorePointType.fromString(reader.getString());
+                } else if ("recoveryPointTierDetails".equals(fieldName)) {
+                    List<RecoveryPointTierInformation> recoveryPointTierDetails
+                        = reader.readArray(reader1 -> RecoveryPointTierInformation.fromJson(reader1));
+                    deserializedAzureWorkloadRecoveryPoint.recoveryPointTierDetails = recoveryPointTierDetails;
+                } else if ("recoveryPointMoveReadinessInfo".equals(fieldName)) {
+                    Map<String, RecoveryPointMoveReadinessInfo> recoveryPointMoveReadinessInfo
+                        = reader.readMap(reader1 -> RecoveryPointMoveReadinessInfo.fromJson(reader1));
+                    deserializedAzureWorkloadRecoveryPoint.recoveryPointMoveReadinessInfo
+                        = recoveryPointMoveReadinessInfo;
+                } else if ("recoveryPointProperties".equals(fieldName)) {
+                    deserializedAzureWorkloadRecoveryPoint.recoveryPointProperties
+                        = RecoveryPointProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAzureWorkloadRecoveryPoint;
+        });
     }
 }

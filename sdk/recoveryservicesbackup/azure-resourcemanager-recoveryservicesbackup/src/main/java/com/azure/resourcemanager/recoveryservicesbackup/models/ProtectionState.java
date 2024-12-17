@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -43,11 +42,6 @@ public final class ProtectionState extends ExpandableStringEnum<ProtectionState>
     public static final ProtectionState PROTECTION_PAUSED = fromString("ProtectionPaused");
 
     /**
-     * Static value BackupsSuspended for ProtectionState.
-     */
-    public static final ProtectionState BACKUPS_SUSPENDED = fromString("BackupsSuspended");
-
-    /**
      * Creates a new instance of ProtectionState value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -62,7 +56,6 @@ public final class ProtectionState extends ExpandableStringEnum<ProtectionState>
      * @param name a name to look for.
      * @return the corresponding ProtectionState.
      */
-    @JsonCreator
     public static ProtectionState fromString(String name) {
         return fromString(name, ProtectionState.class);
     }

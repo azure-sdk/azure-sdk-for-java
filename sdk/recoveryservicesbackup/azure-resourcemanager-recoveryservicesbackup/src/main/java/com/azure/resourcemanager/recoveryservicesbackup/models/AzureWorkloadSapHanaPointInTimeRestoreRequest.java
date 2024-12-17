@@ -5,41 +5,29 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 /**
  * AzureWorkload SAP Hana -specific restore. Specifically for PointInTime/Log restore.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    property = "objectType",
-    defaultImpl = AzureWorkloadSapHanaPointInTimeRestoreRequest.class,
-    visible = true)
-@JsonTypeName("AzureWorkloadSAPHanaPointInTimeRestoreRequest")
-@JsonSubTypes({
-    @JsonSubTypes.Type(
-        name = "AzureWorkloadSAPHanaPointInTimeRestoreWithRehydrateRequest",
-        value = AzureWorkloadSapHanaPointInTimeRestoreWithRehydrateRequest.class) })
 @Fluent
-public class AzureWorkloadSapHanaPointInTimeRestoreRequest extends AzureWorkloadSapHanaRestoreRequest {
+public final class AzureWorkloadSapHanaPointInTimeRestoreRequest extends AzureWorkloadSapHanaRestoreRequest {
     /*
-     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types.
+     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of
+     * types.
      */
-    @JsonTypeId
-    @JsonProperty(value = "objectType", required = true)
     private String objectType = "AzureWorkloadSAPHanaPointInTimeRestoreRequest";
 
     /*
      * PointInTime value
      */
-    @JsonProperty(value = "pointInTime")
     private OffsetDateTime pointInTime;
 
     /**
@@ -128,47 +116,8 @@ public class AzureWorkloadSapHanaPointInTimeRestoreRequest extends AzureWorkload
      * {@inheritDoc}
      */
     @Override
-    public AzureWorkloadSapHanaPointInTimeRestoreRequest withTargetResourceGroupName(String targetResourceGroupName) {
-        super.withTargetResourceGroupName(targetResourceGroupName);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AzureWorkloadSapHanaPointInTimeRestoreRequest
-        withUserAssignedManagedIdentityDetails(UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails) {
-        super.withUserAssignedManagedIdentityDetails(userAssignedManagedIdentityDetails);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AzureWorkloadSapHanaPointInTimeRestoreRequest
-        withSnapshotRestoreParameters(SnapshotRestoreParameters snapshotRestoreParameters) {
-        super.withSnapshotRestoreParameters(snapshotRestoreParameters);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public AzureWorkloadSapHanaPointInTimeRestoreRequest withTargetVirtualMachineId(String targetVirtualMachineId) {
         super.withTargetVirtualMachineId(targetVirtualMachineId);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AzureWorkloadSapHanaPointInTimeRestoreRequest
-        withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
-        super.withResourceGuardOperationRequests(resourceGuardOperationRequests);
         return this;
     }
 
@@ -179,6 +128,73 @@ public class AzureWorkloadSapHanaPointInTimeRestoreRequest extends AzureWorkload
      */
     @Override
     public void validate() {
-        super.validate();
+        if (targetInfo() != null) {
+            targetInfo().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("recoveryType", recoveryType() == null ? null : recoveryType().toString());
+        jsonWriter.writeStringField("sourceResourceId", sourceResourceId());
+        jsonWriter.writeMapField("propertyBag", propertyBag(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("targetInfo", targetInfo());
+        jsonWriter.writeStringField("recoveryMode", recoveryMode() == null ? null : recoveryMode().toString());
+        jsonWriter.writeStringField("targetVirtualMachineId", targetVirtualMachineId());
+        jsonWriter.writeStringField("objectType", this.objectType);
+        jsonWriter.writeStringField("pointInTime",
+            this.pointInTime == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.pointInTime));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AzureWorkloadSapHanaPointInTimeRestoreRequest from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AzureWorkloadSapHanaPointInTimeRestoreRequest if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AzureWorkloadSapHanaPointInTimeRestoreRequest.
+     */
+    public static AzureWorkloadSapHanaPointInTimeRestoreRequest fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AzureWorkloadSapHanaPointInTimeRestoreRequest deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest
+                = new AzureWorkloadSapHanaPointInTimeRestoreRequest();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("recoveryType".equals(fieldName)) {
+                    deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest
+                        .withRecoveryType(RecoveryType.fromString(reader.getString()));
+                } else if ("sourceResourceId".equals(fieldName)) {
+                    deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest.withSourceResourceId(reader.getString());
+                } else if ("propertyBag".equals(fieldName)) {
+                    Map<String, String> propertyBag = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest.withPropertyBag(propertyBag);
+                } else if ("targetInfo".equals(fieldName)) {
+                    deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest
+                        .withTargetInfo(TargetRestoreInfo.fromJson(reader));
+                } else if ("recoveryMode".equals(fieldName)) {
+                    deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest
+                        .withRecoveryMode(RecoveryMode.fromString(reader.getString()));
+                } else if ("targetVirtualMachineId".equals(fieldName)) {
+                    deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest
+                        .withTargetVirtualMachineId(reader.getString());
+                } else if ("objectType".equals(fieldName)) {
+                    deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest.objectType = reader.getString();
+                } else if ("pointInTime".equals(fieldName)) {
+                    deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest.pointInTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAzureWorkloadSapHanaPointInTimeRestoreRequest;
+        });
     }
 }

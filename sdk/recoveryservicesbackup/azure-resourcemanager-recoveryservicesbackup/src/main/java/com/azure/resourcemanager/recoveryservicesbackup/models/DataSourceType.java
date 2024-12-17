@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -88,11 +87,6 @@ public final class DataSourceType extends ExpandableStringEnum<DataSourceType> {
     public static final DataSourceType SAPASE_DATABASE = fromString("SAPAseDatabase");
 
     /**
-     * Static value SAPHanaDBInstance for DataSourceType.
-     */
-    public static final DataSourceType SAPHANA_DBINSTANCE = fromString("SAPHanaDBInstance");
-
-    /**
      * Creates a new instance of DataSourceType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -107,7 +101,6 @@ public final class DataSourceType extends ExpandableStringEnum<DataSourceType> {
      * @param name a name to look for.
      * @return the corresponding DataSourceType.
      */
-    @JsonCreator
     public static DataSourceType fromString(String name) {
         return fromString(name, DataSourceType.class);
     }

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -28,21 +27,6 @@ public final class RecoveryMode extends ExpandableStringEnum<RecoveryMode> {
     public static final RecoveryMode WORKLOAD_RECOVERY = fromString("WorkloadRecovery");
 
     /**
-     * Static value SnapshotAttach for RecoveryMode.
-     */
-    public static final RecoveryMode SNAPSHOT_ATTACH = fromString("SnapshotAttach");
-
-    /**
-     * Static value RecoveryUsingSnapshot for RecoveryMode.
-     */
-    public static final RecoveryMode RECOVERY_USING_SNAPSHOT = fromString("RecoveryUsingSnapshot");
-
-    /**
-     * Static value SnapshotAttachAndRecover for RecoveryMode.
-     */
-    public static final RecoveryMode SNAPSHOT_ATTACH_AND_RECOVER = fromString("SnapshotAttachAndRecover");
-
-    /**
      * Creates a new instance of RecoveryMode value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -57,7 +41,6 @@ public final class RecoveryMode extends ExpandableStringEnum<RecoveryMode> {
      * @param name a name to look for.
      * @return the corresponding RecoveryMode.
      */
-    @JsonCreator
     public static RecoveryMode fromString(String name) {
         return fromString(name, RecoveryMode.class);
     }

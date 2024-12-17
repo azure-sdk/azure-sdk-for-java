@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -38,16 +37,6 @@ public final class RestorePointType extends ExpandableStringEnum<RestorePointTyp
     public static final RestorePointType INCREMENTAL = fromString("Incremental");
 
     /**
-     * Static value SnapshotFull for RestorePointType.
-     */
-    public static final RestorePointType SNAPSHOT_FULL = fromString("SnapshotFull");
-
-    /**
-     * Static value SnapshotCopyOnlyFull for RestorePointType.
-     */
-    public static final RestorePointType SNAPSHOT_COPY_ONLY_FULL = fromString("SnapshotCopyOnlyFull");
-
-    /**
      * Creates a new instance of RestorePointType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -62,7 +51,6 @@ public final class RestorePointType extends ExpandableStringEnum<RestorePointTyp
      * @param name a name to look for.
      * @return the corresponding RestorePointType.
      */
-    @JsonCreator
     public static RestorePointType fromString(String name) {
         return fromString(name, RestorePointType.class);
     }

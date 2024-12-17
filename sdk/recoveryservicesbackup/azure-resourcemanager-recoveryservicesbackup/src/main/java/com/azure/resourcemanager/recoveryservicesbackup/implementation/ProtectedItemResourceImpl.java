@@ -4,19 +4,22 @@
 
 package com.azure.resourcemanager.recoveryservicesbackup.implementation;
 
-import com.azure.core.management.Region;
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.ProtectedItemResourceInner;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ProtectedItem;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ProtectedItemResource;
 import java.util.Collections;
 import java.util.Map;
 
-public final class ProtectedItemResourceImpl
-    implements ProtectedItemResource, ProtectedItemResource.Definition, ProtectedItemResource.Update {
+public final class ProtectedItemResourceImpl implements ProtectedItemResource {
     private ProtectedItemResourceInner innerObject;
 
     private final com.azure.resourcemanager.recoveryservicesbackup.RecoveryServicesBackupManager serviceManager;
+
+    ProtectedItemResourceImpl(ProtectedItemResourceInner innerObject,
+        com.azure.resourcemanager.recoveryservicesbackup.RecoveryServicesBackupManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+    }
 
     public String id() {
         return this.innerModel().id();
@@ -51,145 +54,11 @@ public final class ProtectedItemResourceImpl
         return this.innerModel().etag();
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
-    }
-
-    public String resourceGroupName() {
-        return resourceGroupName;
-    }
-
     public ProtectedItemResourceInner innerModel() {
         return this.innerObject;
     }
 
     private com.azure.resourcemanager.recoveryservicesbackup.RecoveryServicesBackupManager manager() {
         return this.serviceManager;
-    }
-
-    private String vaultName;
-
-    private String resourceGroupName;
-
-    private String fabricName;
-
-    private String containerName;
-
-    private String protectedItemName;
-
-    public ProtectedItemResourceImpl withExistingProtectionContainer(String vaultName, String resourceGroupName,
-        String fabricName, String containerName) {
-        this.vaultName = vaultName;
-        this.resourceGroupName = resourceGroupName;
-        this.fabricName = fabricName;
-        this.containerName = containerName;
-        return this;
-    }
-
-    public ProtectedItemResource create() {
-        this.innerObject = serviceManager.serviceClient()
-            .getProtectedItems()
-            .createOrUpdateWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName,
-                this.innerModel(), Context.NONE)
-            .getValue();
-        return this;
-    }
-
-    public ProtectedItemResource create(Context context) {
-        this.innerObject = serviceManager.serviceClient()
-            .getProtectedItems()
-            .createOrUpdateWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName,
-                this.innerModel(), context)
-            .getValue();
-        return this;
-    }
-
-    ProtectedItemResourceImpl(String name,
-        com.azure.resourcemanager.recoveryservicesbackup.RecoveryServicesBackupManager serviceManager) {
-        this.innerObject = new ProtectedItemResourceInner();
-        this.serviceManager = serviceManager;
-        this.protectedItemName = name;
-    }
-
-    public ProtectedItemResourceImpl update() {
-        return this;
-    }
-
-    public ProtectedItemResource apply() {
-        this.innerObject = serviceManager.serviceClient()
-            .getProtectedItems()
-            .createOrUpdateWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName,
-                this.innerModel(), Context.NONE)
-            .getValue();
-        return this;
-    }
-
-    public ProtectedItemResource apply(Context context) {
-        this.innerObject = serviceManager.serviceClient()
-            .getProtectedItems()
-            .createOrUpdateWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName,
-                this.innerModel(), context)
-            .getValue();
-        return this;
-    }
-
-    ProtectedItemResourceImpl(ProtectedItemResourceInner innerObject,
-        com.azure.resourcemanager.recoveryservicesbackup.RecoveryServicesBackupManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-        this.vaultName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "vaults");
-        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.fabricName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "backupFabrics");
-        this.containerName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "protectionContainers");
-        this.protectedItemName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "protectedItems");
-    }
-
-    public ProtectedItemResource refresh() {
-        String localFilter = null;
-        this.innerObject = serviceManager.serviceClient()
-            .getProtectedItems()
-            .getWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, localFilter,
-                Context.NONE)
-            .getValue();
-        return this;
-    }
-
-    public ProtectedItemResource refresh(Context context) {
-        String localFilter = null;
-        this.innerObject = serviceManager.serviceClient()
-            .getProtectedItems()
-            .getWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, localFilter,
-                context)
-            .getValue();
-        return this;
-    }
-
-    public ProtectedItemResourceImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public ProtectedItemResourceImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public ProtectedItemResourceImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
-        return this;
-    }
-
-    public ProtectedItemResourceImpl withProperties(ProtectedItem properties) {
-        this.innerModel().withProperties(properties);
-        return this;
-    }
-
-    public ProtectedItemResourceImpl withEtag(String etag) {
-        this.innerModel().withEtag(etag);
-        return this;
     }
 }

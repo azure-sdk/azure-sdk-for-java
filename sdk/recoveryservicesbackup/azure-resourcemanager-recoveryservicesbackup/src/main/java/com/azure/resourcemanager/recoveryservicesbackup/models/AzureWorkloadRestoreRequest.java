@@ -5,95 +5,52 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.util.List;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
 /**
  * AzureWorkload-specific restore.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    property = "objectType",
-    defaultImpl = AzureWorkloadRestoreRequest.class,
-    visible = true)
-@JsonTypeName("AzureWorkloadRestoreRequest")
-@JsonSubTypes({
-    @JsonSubTypes.Type(
-        name = "AzureWorkloadPointInTimeRestoreRequest",
-        value = AzureWorkloadPointInTimeRestoreRequest.class),
-    @JsonSubTypes.Type(name = "AzureWorkloadSAPHanaRestoreRequest", value = AzureWorkloadSapHanaRestoreRequest.class),
-    @JsonSubTypes.Type(name = "AzureWorkloadSQLRestoreRequest", value = AzureWorkloadSqlRestoreRequest.class) })
 @Fluent
 public class AzureWorkloadRestoreRequest extends RestoreRequest {
     /*
-     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types.
+     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of
+     * types.
      */
-    @JsonTypeId
-    @JsonProperty(value = "objectType", required = true)
     private String objectType = "AzureWorkloadRestoreRequest";
 
     /*
      * Type of this recovery.
      */
-    @JsonProperty(value = "recoveryType")
     private RecoveryType recoveryType;
 
     /*
      * Fully qualified ARM ID of the VM on which workload that was running is being recovered.
      */
-    @JsonProperty(value = "sourceResourceId")
     private String sourceResourceId;
 
     /*
      * Workload specific property bag.
      */
-    @JsonProperty(value = "propertyBag")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> propertyBag;
 
     /*
      * Details of target database
      */
-    @JsonProperty(value = "targetInfo")
     private TargetRestoreInfo targetInfo;
 
     /*
      * Defines whether the current recovery mode is file restore or database restore
      */
-    @JsonProperty(value = "recoveryMode")
     private RecoveryMode recoveryMode;
-
-    /*
-     * Defines the Resource group of the Target VM
-     */
-    @JsonProperty(value = "targetResourceGroupName")
-    private String targetResourceGroupName;
-
-    /*
-     * User Assigned managed identity details
-     * Currently used for snapshot.
-     */
-    @JsonProperty(value = "userAssignedManagedIdentityDetails")
-    private UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails;
-
-    /*
-     * Additional details for snapshot recovery
-     * Currently used for snapshot for SAP Hana.
-     */
-    @JsonProperty(value = "snapshotRestoreParameters")
-    private SnapshotRestoreParameters snapshotRestoreParameters;
 
     /*
      * This is the complete ARM Id of the target VM
      * For e.g. /subscriptions/{subId}/resourcegroups/{rg}/provider/Microsoft.Compute/virtualmachines/{vm}
      */
-    @JsonProperty(value = "targetVirtualMachineId")
     private String targetVirtualMachineId;
 
     /**
@@ -216,72 +173,6 @@ public class AzureWorkloadRestoreRequest extends RestoreRequest {
     }
 
     /**
-     * Get the targetResourceGroupName property: Defines the Resource group of the Target VM.
-     * 
-     * @return the targetResourceGroupName value.
-     */
-    public String targetResourceGroupName() {
-        return this.targetResourceGroupName;
-    }
-
-    /**
-     * Set the targetResourceGroupName property: Defines the Resource group of the Target VM.
-     * 
-     * @param targetResourceGroupName the targetResourceGroupName value to set.
-     * @return the AzureWorkloadRestoreRequest object itself.
-     */
-    public AzureWorkloadRestoreRequest withTargetResourceGroupName(String targetResourceGroupName) {
-        this.targetResourceGroupName = targetResourceGroupName;
-        return this;
-    }
-
-    /**
-     * Get the userAssignedManagedIdentityDetails property: User Assigned managed identity details
-     * Currently used for snapshot.
-     * 
-     * @return the userAssignedManagedIdentityDetails value.
-     */
-    public UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails() {
-        return this.userAssignedManagedIdentityDetails;
-    }
-
-    /**
-     * Set the userAssignedManagedIdentityDetails property: User Assigned managed identity details
-     * Currently used for snapshot.
-     * 
-     * @param userAssignedManagedIdentityDetails the userAssignedManagedIdentityDetails value to set.
-     * @return the AzureWorkloadRestoreRequest object itself.
-     */
-    public AzureWorkloadRestoreRequest
-        withUserAssignedManagedIdentityDetails(UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails) {
-        this.userAssignedManagedIdentityDetails = userAssignedManagedIdentityDetails;
-        return this;
-    }
-
-    /**
-     * Get the snapshotRestoreParameters property: Additional details for snapshot recovery
-     * Currently used for snapshot for SAP Hana.
-     * 
-     * @return the snapshotRestoreParameters value.
-     */
-    public SnapshotRestoreParameters snapshotRestoreParameters() {
-        return this.snapshotRestoreParameters;
-    }
-
-    /**
-     * Set the snapshotRestoreParameters property: Additional details for snapshot recovery
-     * Currently used for snapshot for SAP Hana.
-     * 
-     * @param snapshotRestoreParameters the snapshotRestoreParameters value to set.
-     * @return the AzureWorkloadRestoreRequest object itself.
-     */
-    public AzureWorkloadRestoreRequest
-        withSnapshotRestoreParameters(SnapshotRestoreParameters snapshotRestoreParameters) {
-        this.snapshotRestoreParameters = snapshotRestoreParameters;
-        return this;
-    }
-
-    /**
      * Get the targetVirtualMachineId property: This is the complete ARM Id of the target VM
      * For e.g. /subscriptions/{subId}/resourcegroups/{rg}/provider/Microsoft.Compute/virtualmachines/{vm}.
      * 
@@ -304,30 +195,102 @@ public class AzureWorkloadRestoreRequest extends RestoreRequest {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AzureWorkloadRestoreRequest withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
-        super.withResourceGuardOperationRequests(resourceGuardOperationRequests);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (targetInfo() != null) {
             targetInfo().validate();
         }
-        if (userAssignedManagedIdentityDetails() != null) {
-            userAssignedManagedIdentityDetails().validate();
-        }
-        if (snapshotRestoreParameters() != null) {
-            snapshotRestoreParameters().validate();
-        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("objectType", this.objectType);
+        jsonWriter.writeStringField("recoveryType", this.recoveryType == null ? null : this.recoveryType.toString());
+        jsonWriter.writeStringField("sourceResourceId", this.sourceResourceId);
+        jsonWriter.writeMapField("propertyBag", this.propertyBag, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("targetInfo", this.targetInfo);
+        jsonWriter.writeStringField("recoveryMode", this.recoveryMode == null ? null : this.recoveryMode.toString());
+        jsonWriter.writeStringField("targetVirtualMachineId", this.targetVirtualMachineId);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AzureWorkloadRestoreRequest from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AzureWorkloadRestoreRequest if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AzureWorkloadRestoreRequest.
+     */
+    public static AzureWorkloadRestoreRequest fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            String discriminatorValue = null;
+            try (JsonReader readerToUse = reader.bufferObject()) {
+                readerToUse.nextToken(); // Prepare for reading
+                while (readerToUse.nextToken() != JsonToken.END_OBJECT) {
+                    String fieldName = readerToUse.getFieldName();
+                    readerToUse.nextToken();
+                    if ("objectType".equals(fieldName)) {
+                        discriminatorValue = readerToUse.getString();
+                        break;
+                    } else {
+                        readerToUse.skipChildren();
+                    }
+                }
+                // Use the discriminator value to determine which subtype should be deserialized.
+                if ("AzureWorkloadPointInTimeRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadPointInTimeRestoreRequest.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadSAPHanaRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadSapHanaRestoreRequest.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadSAPHanaPointInTimeRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadSapHanaPointInTimeRestoreRequest.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadSQLRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadSqlRestoreRequest.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadSQLPointInTimeRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadSqlPointInTimeRestoreRequest.fromJson(readerToUse.reset());
+                } else {
+                    return fromJsonKnownDiscriminator(readerToUse.reset());
+                }
+            }
+        });
+    }
+
+    static AzureWorkloadRestoreRequest fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AzureWorkloadRestoreRequest deserializedAzureWorkloadRestoreRequest = new AzureWorkloadRestoreRequest();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("objectType".equals(fieldName)) {
+                    deserializedAzureWorkloadRestoreRequest.objectType = reader.getString();
+                } else if ("recoveryType".equals(fieldName)) {
+                    deserializedAzureWorkloadRestoreRequest.recoveryType = RecoveryType.fromString(reader.getString());
+                } else if ("sourceResourceId".equals(fieldName)) {
+                    deserializedAzureWorkloadRestoreRequest.sourceResourceId = reader.getString();
+                } else if ("propertyBag".equals(fieldName)) {
+                    Map<String, String> propertyBag = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAzureWorkloadRestoreRequest.propertyBag = propertyBag;
+                } else if ("targetInfo".equals(fieldName)) {
+                    deserializedAzureWorkloadRestoreRequest.targetInfo = TargetRestoreInfo.fromJson(reader);
+                } else if ("recoveryMode".equals(fieldName)) {
+                    deserializedAzureWorkloadRestoreRequest.recoveryMode = RecoveryMode.fromString(reader.getString());
+                } else if ("targetVirtualMachineId".equals(fieldName)) {
+                    deserializedAzureWorkloadRestoreRequest.targetVirtualMachineId = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAzureWorkloadRestoreRequest;
+        });
     }
 }
