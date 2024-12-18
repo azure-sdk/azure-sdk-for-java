@@ -78,7 +78,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Microsoft.Datadog for the 2023-01-01 api version.
+     * List all operations provided by Microsoft.Datadog for the 2023-10-20 api version.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -101,7 +101,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Microsoft.Datadog for the 2023-01-01 api version.
+     * List all operations provided by Microsoft.Datadog for the 2023-10-20 api version.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -124,7 +124,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Microsoft.Datadog for the 2023-01-01 api version.
+     * List all operations provided by Microsoft.Datadog for the 2023-10-20 api version.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -137,7 +137,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Microsoft.Datadog for the 2023-01-01 api version.
+     * List all operations provided by Microsoft.Datadog for the 2023-10-20 api version.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -153,7 +153,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Microsoft.Datadog for the 2023-01-01 api version.
+     * List all operations provided by Microsoft.Datadog for the 2023-10-20 api version.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -166,7 +166,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Microsoft.Datadog for the 2023-01-01 api version.
+     * List all operations provided by Microsoft.Datadog for the 2023-10-20 api version.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

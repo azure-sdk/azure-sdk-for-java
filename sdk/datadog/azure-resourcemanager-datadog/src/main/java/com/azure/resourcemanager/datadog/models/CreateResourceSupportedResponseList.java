@@ -24,6 +24,11 @@ public final class CreateResourceSupportedResponseList
      */
     private List<CreateResourceSupportedResponseInner> value;
 
+    /*
+     * Link to the next set of results, if any.
+     */
+    private String nextLink;
+
     /**
      * Creates an instance of CreateResourceSupportedResponseList class.
      */
@@ -51,6 +56,26 @@ public final class CreateResourceSupportedResponseList
     }
 
     /**
+     * Get the nextLink property: Link to the next set of results, if any.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: Link to the next set of results, if any.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the CreateResourceSupportedResponseList object itself.
+     */
+    public CreateResourceSupportedResponseList withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -68,6 +93,7 @@ public final class CreateResourceSupportedResponseList
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -91,6 +117,8 @@ public final class CreateResourceSupportedResponseList
                     List<CreateResourceSupportedResponseInner> value
                         = reader.readArray(reader1 -> CreateResourceSupportedResponseInner.fromJson(reader1));
                     deserializedCreateResourceSupportedResponseList.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedCreateResourceSupportedResponseList.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -1,14 +1,41 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-12-18)
+
+- Azure Resource Manager MicrosoftDatadog client library for Java. This package contains Microsoft Azure SDK for MicrosoftDatadog Management SDK.  Package tag package-2023-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.BillingInfoResponse` was added
 
-### Bugs Fixed
+* `models.PartnerBillingEntity` was added
 
-### Other Changes
+* `models.BillingInfoes` was added
+
+* `models.MarketplaceSaaSInfo` was added
+
+#### `models.MonitoredSubscriptionPropertiesList` was modified
+
+* `withNextLink(java.lang.String)` was added
+* `nextLink()` was added
+
+#### `MicrosoftDatadogManager` was modified
+
+* `billingInfoes()` was added
+
+#### `models.LinkedResource` was modified
+
+* `location()` was added
+
+#### `models.CreateResourceSupportedResponseList` was modified
+
+* `withNextLink(java.lang.String)` was added
+* `nextLink()` was added
+
+#### `models.MonitoringTagRulesProperties` was modified
+
+* `customMetrics()` was added
+* `withCustomMetrics(java.lang.Boolean)` was added
 
 ## 1.1.0 (2024-12-11)
 
