@@ -195,6 +195,28 @@ public final class ContentSafetyClientImpl {
             @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
             @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData options,
             RequestOptions requestOptions, Context context);
+
+        @Post("/analyzeWithRaiPolicy")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> analyzeWithRaiPolicy(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData options,
+            RequestOptions requestOptions, Context context);
+
+        @Post("/analyzeWithRaiPolicy")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> analyzeWithRaiPolicySync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData options,
+            RequestOptions requestOptions, Context context);
     }
 
     /**
@@ -423,5 +445,249 @@ public final class ContentSafetyClientImpl {
         final String accept = "application/json";
         return service.analyzeTextSync(this.getEndpoint(), this.getServiceVersion().getVersion(), contentType, accept,
             options, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Rai Policy Analysis
+     * 
+     * A synchronous API for the rai policy analysis of input content.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     messages (Required): [
+     *          (Required){
+     *             source: String(messageToAI/messageFromAI) (Required)
+     *             role: String(all/user/system/assistant/tool) (Required)
+     *             contents (Required): [
+     *                  (Required){
+     *                     kind: String(text/image) (Required)
+     *                     text: String (Optional)
+     *                     imageBase64: String (Optional)
+     *                     imageBlob: String (Optional)
+     *                 }
+     *             ]
+     *         }
+     *     ]
+     *     raiPolicyInline (Optional): {
+     *         name: String (Required)
+     *         taskSettings (Optional, Required on create): [
+     *              (Optional, Required on create){
+     *                 settingId: String (Optional, Required on create)
+     *                 settingEnabled: boolean (Optional, Required on create)
+     *                 appliedFor (Optional, Required on create): [
+     *                      (Optional, Required on create){
+     *                         role: String(all/user/system/assistant/tool) (Optional, Required on create)
+     *                         source: String(messageToAI/messageFromAI) (Optional, Required on create)
+     *                     }
+     *                 ]
+     *                 kind: String(harmCategory/blocklist/safetyIncident/customHarmCategory) (Optional, Required on create)
+     *                 harmCategoryTaskSetting (Optional): {
+     *                     harmCategory: String(celebrity/drug/hate/promptInjection/protectedMaterial/sexual/selfHarm/violence) (Optional, Required on create)
+     *                     harmConfigId: String (Optional, Required on create)
+     *                 }
+     *                 blocklistTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 safetyIncidentTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 customHarmCategoryTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 blockingCriteria (Optional, Required on create): {
+     *                     enabled: boolean (Optional, Required on create)
+     *                     kind: String(severity/riskLevel/isDetected) (Optional, Required on create)
+     *                     allowedSeverity: int (Optional, Required on create)
+     *                     isDetected: boolean (Optional, Required on create)
+     *                     allowedRiskLevel: String(safe/low/medium/high) (Optional, Required on create)
+     *                 }
+     *             }
+     *         ]
+     *     }
+     *     raiPolicyName: String (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     taskResults (Required): [
+     *          (Required){
+     *             settingId: String (Required)
+     *             resultCode: String(oK/noValidInput/internalTimeout/internalError) (Required)
+     *             resultCodeDetail: String (Required)
+     *             isBlockingCriteriaMet: boolean (Required)
+     *             kind: String(harmCategory/blocklist/safetyIncident/customHarmCategory) (Required)
+     *             harmCategoryTaskResult (Optional): {
+     *                 harmCategory: String(celebrity/drug/hate/promptInjection/protectedMaterial/sexual/selfHarm/violence) (Required)
+     *                 harmConfigId: String (Required)
+     *                 isDetected: boolean (Required)
+     *                 severity: int (Required)
+     *                 riskLevel: String(safe/low/medium/high) (Required)
+     *                 details (Optional): {
+     *                     promptInjection: Boolean (Optional)
+     *                     crossDomain: Boolean (Optional)
+     *                 }
+     *             }
+     *             blocklistTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *             safetyIncidentTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *             customCategoryTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *         }
+     *     ]
+     * }
+     * }
+     * </pre>
+     * 
+     * @param options The rai policy analyze request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return represents the analysis response obtained by applying a rai policy along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> analyzeWithRaiPolicyWithResponseAsync(BinaryData options,
+        RequestOptions requestOptions) {
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.analyzeWithRaiPolicy(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), contentType, accept, options, requestOptions, context));
+    }
+
+    /**
+     * Rai Policy Analysis
+     * 
+     * A synchronous API for the rai policy analysis of input content.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     messages (Required): [
+     *          (Required){
+     *             source: String(messageToAI/messageFromAI) (Required)
+     *             role: String(all/user/system/assistant/tool) (Required)
+     *             contents (Required): [
+     *                  (Required){
+     *                     kind: String(text/image) (Required)
+     *                     text: String (Optional)
+     *                     imageBase64: String (Optional)
+     *                     imageBlob: String (Optional)
+     *                 }
+     *             ]
+     *         }
+     *     ]
+     *     raiPolicyInline (Optional): {
+     *         name: String (Required)
+     *         taskSettings (Optional, Required on create): [
+     *              (Optional, Required on create){
+     *                 settingId: String (Optional, Required on create)
+     *                 settingEnabled: boolean (Optional, Required on create)
+     *                 appliedFor (Optional, Required on create): [
+     *                      (Optional, Required on create){
+     *                         role: String(all/user/system/assistant/tool) (Optional, Required on create)
+     *                         source: String(messageToAI/messageFromAI) (Optional, Required on create)
+     *                     }
+     *                 ]
+     *                 kind: String(harmCategory/blocklist/safetyIncident/customHarmCategory) (Optional, Required on create)
+     *                 harmCategoryTaskSetting (Optional): {
+     *                     harmCategory: String(celebrity/drug/hate/promptInjection/protectedMaterial/sexual/selfHarm/violence) (Optional, Required on create)
+     *                     harmConfigId: String (Optional, Required on create)
+     *                 }
+     *                 blocklistTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 safetyIncidentTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 customHarmCategoryTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 blockingCriteria (Optional, Required on create): {
+     *                     enabled: boolean (Optional, Required on create)
+     *                     kind: String(severity/riskLevel/isDetected) (Optional, Required on create)
+     *                     allowedSeverity: int (Optional, Required on create)
+     *                     isDetected: boolean (Optional, Required on create)
+     *                     allowedRiskLevel: String(safe/low/medium/high) (Optional, Required on create)
+     *                 }
+     *             }
+     *         ]
+     *     }
+     *     raiPolicyName: String (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     taskResults (Required): [
+     *          (Required){
+     *             settingId: String (Required)
+     *             resultCode: String(oK/noValidInput/internalTimeout/internalError) (Required)
+     *             resultCodeDetail: String (Required)
+     *             isBlockingCriteriaMet: boolean (Required)
+     *             kind: String(harmCategory/blocklist/safetyIncident/customHarmCategory) (Required)
+     *             harmCategoryTaskResult (Optional): {
+     *                 harmCategory: String(celebrity/drug/hate/promptInjection/protectedMaterial/sexual/selfHarm/violence) (Required)
+     *                 harmConfigId: String (Required)
+     *                 isDetected: boolean (Required)
+     *                 severity: int (Required)
+     *                 riskLevel: String(safe/low/medium/high) (Required)
+     *                 details (Optional): {
+     *                     promptInjection: Boolean (Optional)
+     *                     crossDomain: Boolean (Optional)
+     *                 }
+     *             }
+     *             blocklistTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *             safetyIncidentTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *             customCategoryTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *         }
+     *     ]
+     * }
+     * }
+     * </pre>
+     * 
+     * @param options The rai policy analyze request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return represents the analysis response obtained by applying a rai policy along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> analyzeWithRaiPolicyWithResponse(BinaryData options, RequestOptions requestOptions) {
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return service.analyzeWithRaiPolicySync(this.getEndpoint(), this.getServiceVersion().getVersion(), contentType,
+            accept, options, requestOptions, Context.NONE);
     }
 }

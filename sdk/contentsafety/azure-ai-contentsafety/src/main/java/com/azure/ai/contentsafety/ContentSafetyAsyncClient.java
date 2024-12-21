@@ -9,6 +9,8 @@ import com.azure.ai.contentsafety.models.AnalyzeImageResult;
 import com.azure.ai.contentsafety.models.AnalyzeTextOptions;
 import com.azure.ai.contentsafety.models.AnalyzeTextResult;
 import com.azure.ai.contentsafety.models.ContentSafetyImageData;
+import com.azure.ai.contentsafety.models.RaiPolicyAnalyzeOption;
+import com.azure.ai.contentsafety.models.RaiPolicyAnalyzeResponse;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
@@ -264,5 +266,151 @@ public final class ContentSafetyAsyncClient {
         /// Customized convenience method for analyzeImage
         AnalyzeImageOptions options = new AnalyzeImageOptions(new ContentSafetyImageData().setContent(content));
         return analyzeImage(options);
+    }
+
+    /**
+     * Rai Policy Analysis
+     *
+     * A synchronous API for the rai policy analysis of input content.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     messages (Required): [
+     *          (Required){
+     *             source: String(messageToAI/messageFromAI) (Required)
+     *             role: String(all/user/system/assistant/tool) (Required)
+     *             contents (Required): [
+     *                  (Required){
+     *                     kind: String(text/image) (Required)
+     *                     text: String (Optional)
+     *                     imageBase64: String (Optional)
+     *                     imageBlob: String (Optional)
+     *                 }
+     *             ]
+     *         }
+     *     ]
+     *     raiPolicyInline (Optional): {
+     *         name: String (Required)
+     *         taskSettings (Optional, Required on create): [
+     *              (Optional, Required on create){
+     *                 settingId: String (Optional, Required on create)
+     *                 settingEnabled: boolean (Optional, Required on create)
+     *                 appliedFor (Optional, Required on create): [
+     *                      (Optional, Required on create){
+     *                         role: String(all/user/system/assistant/tool) (Optional, Required on create)
+     *                         source: String(messageToAI/messageFromAI) (Optional, Required on create)
+     *                     }
+     *                 ]
+     *                 kind: String(harmCategory/blocklist/safetyIncident/customHarmCategory) (Optional, Required on create)
+     *                 harmCategoryTaskSetting (Optional): {
+     *                     harmCategory: String(celebrity/drug/hate/promptInjection/protectedMaterial/sexual/selfHarm/violence) (Optional, Required on create)
+     *                     harmConfigId: String (Optional, Required on create)
+     *                 }
+     *                 blocklistTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 safetyIncidentTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 customHarmCategoryTaskSetting (Optional): {
+     *                     name: String (Optional, Required on create)
+     *                 }
+     *                 blockingCriteria (Optional, Required on create): {
+     *                     enabled: boolean (Optional, Required on create)
+     *                     kind: String(severity/riskLevel/isDetected) (Optional, Required on create)
+     *                     allowedSeverity: int (Optional, Required on create)
+     *                     isDetected: boolean (Optional, Required on create)
+     *                     allowedRiskLevel: String(safe/low/medium/high) (Optional, Required on create)
+     *                 }
+     *             }
+     *         ]
+     *     }
+     *     raiPolicyName: String (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     taskResults (Required): [
+     *          (Required){
+     *             settingId: String (Required)
+     *             resultCode: String(oK/noValidInput/internalTimeout/internalError) (Required)
+     *             resultCodeDetail: String (Required)
+     *             isBlockingCriteriaMet: boolean (Required)
+     *             kind: String(harmCategory/blocklist/safetyIncident/customHarmCategory) (Required)
+     *             harmCategoryTaskResult (Optional): {
+     *                 harmCategory: String(celebrity/drug/hate/promptInjection/protectedMaterial/sexual/selfHarm/violence) (Required)
+     *                 harmConfigId: String (Required)
+     *                 isDetected: boolean (Required)
+     *                 severity: int (Required)
+     *                 riskLevel: String(safe/low/medium/high) (Required)
+     *                 details (Optional): {
+     *                     promptInjection: Boolean (Optional)
+     *                     crossDomain: Boolean (Optional)
+     *                 }
+     *             }
+     *             blocklistTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *             safetyIncidentTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *             customCategoryTaskResult (Optional): {
+     *                 name: String (Required)
+     *                 isDetected: boolean (Required)
+     *             }
+     *         }
+     *     ]
+     * }
+     * }
+     * </pre>
+     *
+     * @param options The rai policy analyze request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return represents the analysis response obtained by applying a rai policy along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> analyzeWithRaiPolicyWithResponse(BinaryData options,
+        RequestOptions requestOptions) {
+        return this.serviceClient.analyzeWithRaiPolicyWithResponseAsync(options, requestOptions);
+    }
+
+    /**
+     * Rai Policy Analysis
+     *
+     * A synchronous API for the rai policy analysis of input content.
+     *
+     * @param options The rai policy analyze request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents the analysis response obtained by applying a rai policy on successful completion of
+     * {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<RaiPolicyAnalyzeResponse> analyzeWithRaiPolicy(RaiPolicyAnalyzeOption options) {
+        // Generated convenience method for analyzeWithRaiPolicyWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return analyzeWithRaiPolicyWithResponse(BinaryData.fromObject(options), requestOptions)
+            .flatMap(FluxUtil::toMono)
+            .map(protocolMethodData -> protocolMethodData.toObject(RaiPolicyAnalyzeResponse.class));
     }
 }

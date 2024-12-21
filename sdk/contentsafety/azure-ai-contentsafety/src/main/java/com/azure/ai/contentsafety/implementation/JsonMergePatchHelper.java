@@ -4,12 +4,153 @@
 
 package com.azure.ai.contentsafety.implementation;
 
+import com.azure.ai.contentsafety.models.AppliedFor;
+import com.azure.ai.contentsafety.models.BlockingCriteria;
+import com.azure.ai.contentsafety.models.BlocklistTaskSetting;
+import com.azure.ai.contentsafety.models.CustomHarmCategoryTaskSetting;
+import com.azure.ai.contentsafety.models.HarmCategoryTaskSetting;
+import com.azure.ai.contentsafety.models.RaiPolicy;
+import com.azure.ai.contentsafety.models.SafetyIncidentTaskSetting;
+import com.azure.ai.contentsafety.models.TaskSetting;
 import com.azure.ai.contentsafety.models.TextBlocklist;
 
 /**
  * This is the Helper class to enable json merge patch serialization for a model.
  */
 public class JsonMergePatchHelper {
+    private static RaiPolicyAccessor raiPolicyAccessor;
+
+    public interface RaiPolicyAccessor {
+        RaiPolicy prepareModelForJsonMergePatch(RaiPolicy raiPolicy, boolean jsonMergePatchEnabled);
+
+        boolean isJsonMergePatch(RaiPolicy raiPolicy);
+    }
+
+    public static void setRaiPolicyAccessor(RaiPolicyAccessor accessor) {
+        raiPolicyAccessor = accessor;
+    }
+
+    public static RaiPolicyAccessor getRaiPolicyAccessor() {
+        return raiPolicyAccessor;
+    }
+
+    private static TaskSettingAccessor taskSettingAccessor;
+
+    public interface TaskSettingAccessor {
+        TaskSetting prepareModelForJsonMergePatch(TaskSetting taskSetting, boolean jsonMergePatchEnabled);
+
+        boolean isJsonMergePatch(TaskSetting taskSetting);
+    }
+
+    public static void setTaskSettingAccessor(TaskSettingAccessor accessor) {
+        taskSettingAccessor = accessor;
+    }
+
+    public static TaskSettingAccessor getTaskSettingAccessor() {
+        return taskSettingAccessor;
+    }
+
+    private static AppliedForAccessor appliedForAccessor;
+
+    public interface AppliedForAccessor {
+        AppliedFor prepareModelForJsonMergePatch(AppliedFor appliedFor, boolean jsonMergePatchEnabled);
+
+        boolean isJsonMergePatch(AppliedFor appliedFor);
+    }
+
+    public static void setAppliedForAccessor(AppliedForAccessor accessor) {
+        appliedForAccessor = accessor;
+    }
+
+    public static AppliedForAccessor getAppliedForAccessor() {
+        return appliedForAccessor;
+    }
+
+    private static HarmCategoryTaskSettingAccessor harmCategoryTaskSettingAccessor;
+
+    public interface HarmCategoryTaskSettingAccessor {
+        HarmCategoryTaskSetting prepareModelForJsonMergePatch(HarmCategoryTaskSetting harmCategoryTaskSetting,
+            boolean jsonMergePatchEnabled);
+
+        boolean isJsonMergePatch(HarmCategoryTaskSetting harmCategoryTaskSetting);
+    }
+
+    public static void setHarmCategoryTaskSettingAccessor(HarmCategoryTaskSettingAccessor accessor) {
+        harmCategoryTaskSettingAccessor = accessor;
+    }
+
+    public static HarmCategoryTaskSettingAccessor getHarmCategoryTaskSettingAccessor() {
+        return harmCategoryTaskSettingAccessor;
+    }
+
+    private static BlocklistTaskSettingAccessor blocklistTaskSettingAccessor;
+
+    public interface BlocklistTaskSettingAccessor {
+        BlocklistTaskSetting prepareModelForJsonMergePatch(BlocklistTaskSetting blocklistTaskSetting,
+            boolean jsonMergePatchEnabled);
+
+        boolean isJsonMergePatch(BlocklistTaskSetting blocklistTaskSetting);
+    }
+
+    public static void setBlocklistTaskSettingAccessor(BlocklistTaskSettingAccessor accessor) {
+        blocklistTaskSettingAccessor = accessor;
+    }
+
+    public static BlocklistTaskSettingAccessor getBlocklistTaskSettingAccessor() {
+        return blocklistTaskSettingAccessor;
+    }
+
+    private static SafetyIncidentTaskSettingAccessor safetyIncidentTaskSettingAccessor;
+
+    public interface SafetyIncidentTaskSettingAccessor {
+        SafetyIncidentTaskSetting prepareModelForJsonMergePatch(SafetyIncidentTaskSetting safetyIncidentTaskSetting,
+            boolean jsonMergePatchEnabled);
+
+        boolean isJsonMergePatch(SafetyIncidentTaskSetting safetyIncidentTaskSetting);
+    }
+
+    public static void setSafetyIncidentTaskSettingAccessor(SafetyIncidentTaskSettingAccessor accessor) {
+        safetyIncidentTaskSettingAccessor = accessor;
+    }
+
+    public static SafetyIncidentTaskSettingAccessor getSafetyIncidentTaskSettingAccessor() {
+        return safetyIncidentTaskSettingAccessor;
+    }
+
+    private static CustomHarmCategoryTaskSettingAccessor customHarmCategoryTaskSettingAccessor;
+
+    public interface CustomHarmCategoryTaskSettingAccessor {
+        CustomHarmCategoryTaskSetting prepareModelForJsonMergePatch(
+            CustomHarmCategoryTaskSetting customHarmCategoryTaskSetting, boolean jsonMergePatchEnabled);
+
+        boolean isJsonMergePatch(CustomHarmCategoryTaskSetting customHarmCategoryTaskSetting);
+    }
+
+    public static void setCustomHarmCategoryTaskSettingAccessor(CustomHarmCategoryTaskSettingAccessor accessor) {
+        customHarmCategoryTaskSettingAccessor = accessor;
+    }
+
+    public static CustomHarmCategoryTaskSettingAccessor getCustomHarmCategoryTaskSettingAccessor() {
+        return customHarmCategoryTaskSettingAccessor;
+    }
+
+    private static BlockingCriteriaAccessor blockingCriteriaAccessor;
+
+    public interface BlockingCriteriaAccessor {
+        BlockingCriteria prepareModelForJsonMergePatch(BlockingCriteria blockingCriteria,
+            boolean jsonMergePatchEnabled);
+
+        boolean isJsonMergePatch(BlockingCriteria blockingCriteria);
+    }
+
+    public static void setBlockingCriteriaAccessor(BlockingCriteriaAccessor accessor) {
+        blockingCriteriaAccessor = accessor;
+    }
+
+    public static BlockingCriteriaAccessor getBlockingCriteriaAccessor() {
+        return blockingCriteriaAccessor;
+    }
+
     private static TextBlocklistAccessor textBlocklistAccessor;
 
     public interface TextBlocklistAccessor {

@@ -2,13 +2,228 @@
 
 ## 1.1.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.ContentSafetyClientImpl$ContentSafetyClientService` was modified
 
-### Other Changes
+* `analyzeText(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `analyzeImageSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `analyzeImage(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `analyzeTextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+
+#### `implementation.BlocklistClientImpl$BlocklistClientService` was modified
+
+* `removeBlocklistItemsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `addOrUpdateBlocklistItemsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `addOrUpdateBlocklistItems(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `removeBlocklistItems(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.BlockingCriteria` was added
+
+* `models.CustomCategoryTaskResult` was added
+
+* `models.BlocklistTaskResult` was added
+
+* `RaiPolicyClientBuilder` was added
+
+* `implementation.JsonMergePatchHelper$TaskSettingAccessor` was added
+
+* `implementation.JsonMergePatchHelper$BlockingCriteriaAccessor` was added
+
+* `models.UnifyContent` was added
+
+* `models.CustomHarmCategoryTaskSetting` was added
+
+* `models.RoleType` was added
+
+* `models.HarmCategory` was added
+
+* `implementation.JsonMergePatchHelper$SafetyIncidentTaskSettingAccessor` was added
+
+* `models.SafetyIncidentTaskResult` was added
+
+* `models.SafetyIncidentTaskSetting` was added
+
+* `implementation.JsonMergePatchHelper$HarmCategoryTaskSettingAccessor` was added
+
+* `models.BlocklistTaskSetting` was added
+
+* `models.UnifyMessage` was added
+
+* `models.TaskResult` was added
+
+* `models.RaiPolicy` was added
+
+* `models.RaiPolicyAnalyzeOption` was added
+
+* `models.SourceType` was added
+
+* `implementation.JsonMergePatchHelper$RaiPolicyAccessor` was added
+
+* `RaiPolicyClient` was added
+
+* `implementation.JsonMergePatchHelper$CustomHarmCategoryTaskSettingAccessor` was added
+
+* `models.RaiPolicyAnalyzeResponse` was added
+
+* `implementation.RaiPolicyClientImpl$RaiPolicyClientService` was added
+
+* `models.TaskType` was added
+
+* `models.AppliedFor` was added
+
+* `models.HarmCategoryTaskResult` was added
+
+* `RaiPolicyAsyncClient` was added
+
+* `models.BlockingCriteriaKind` was added
+
+* `models.PromptInjectionDetail` was added
+
+* `models.ResultCode` was added
+
+* `models.HarmCategoryTaskSetting` was added
+
+* `implementation.JsonMergePatchHelper$AppliedForAccessor` was added
+
+* `models.RiskLevel` was added
+
+* `models.Modality` was added
+
+* `implementation.JsonMergePatchHelper$BlocklistTaskSettingAccessor` was added
+
+* `implementation.RaiPolicyClientImpl` was added
+
+* `models.TaskSetting` was added
+
+#### `models.AddOrUpdateTextBlocklistItemsResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `BlocklistAsyncClient` was modified
+
+* `createOrUpdateTextBlocklist(java.lang.String,models.TextBlocklist)` was added
+
+#### `models.AnalyzeTextResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TextBlocklistItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RemoveTextBlocklistItemsOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AnalyzeTextOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `ContentSafetyClient` was modified
+
+* `analyzeWithRaiPolicy(models.RaiPolicyAnalyzeOption)` was added
+* `analyzeWithRaiPolicyWithResponse(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+
+#### `models.ImageCategoriesAnalysis` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AddOrUpdateTextBlocklistItemsOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.JsonMergePatchHelper` was modified
+
+* `getBlocklistTaskSettingAccessor()` was added
+* `getBlockingCriteriaAccessor()` was added
+* `getCustomHarmCategoryTaskSettingAccessor()` was added
+* `setBlocklistTaskSettingAccessor(implementation.JsonMergePatchHelper$BlocklistTaskSettingAccessor)` was added
+* `getSafetyIncidentTaskSettingAccessor()` was added
+* `getTaskSettingAccessor()` was added
+* `setAppliedForAccessor(implementation.JsonMergePatchHelper$AppliedForAccessor)` was added
+* `getHarmCategoryTaskSettingAccessor()` was added
+* `setHarmCategoryTaskSettingAccessor(implementation.JsonMergePatchHelper$HarmCategoryTaskSettingAccessor)` was added
+* `setRaiPolicyAccessor(implementation.JsonMergePatchHelper$RaiPolicyAccessor)` was added
+* `setBlockingCriteriaAccessor(implementation.JsonMergePatchHelper$BlockingCriteriaAccessor)` was added
+* `getAppliedForAccessor()` was added
+* `setCustomHarmCategoryTaskSettingAccessor(implementation.JsonMergePatchHelper$CustomHarmCategoryTaskSettingAccessor)` was added
+* `setSafetyIncidentTaskSettingAccessor(implementation.JsonMergePatchHelper$SafetyIncidentTaskSettingAccessor)` was added
+* `setTaskSettingAccessor(implementation.JsonMergePatchHelper$TaskSettingAccessor)` was added
+* `getRaiPolicyAccessor()` was added
+
+#### `models.TextCategoriesAnalysis` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TextBlocklistMatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AnalyzeImageOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.ContentSafetyClientImpl$ContentSafetyClientService` was modified
+
+* `analyzeTextSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `analyzeWithRaiPolicySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `analyzeText(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `analyzeImage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `analyzeImageSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `analyzeWithRaiPolicy(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `implementation.ContentSafetyClientImpl` was modified
+
+* `analyzeWithRaiPolicyWithResponse(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `analyzeWithRaiPolicyWithResponseAsync(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+
+#### `implementation.BlocklistClientImpl$BlocklistClientService` was modified
+
+* `addOrUpdateBlocklistItemsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `removeBlocklistItems(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `removeBlocklistItemsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `addOrUpdateBlocklistItems(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `models.TextBlocklist` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `ContentSafetyAsyncClient` was modified
+
+* `analyzeWithRaiPolicyWithResponse(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `analyzeWithRaiPolicy(models.RaiPolicyAnalyzeOption)` was added
+
+#### `implementation.JsonMergePatchHelper$TextBlocklistAccessor` was modified
+
+* `isJsonMergePatch(models.TextBlocklist)` was added
+
+#### `models.AnalyzeImageResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ContentSafetyImageData` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `BlocklistClient` was modified
+
+* `createOrUpdateTextBlocklist(java.lang.String,models.TextBlocklist)` was added
 
 ## 1.0.9 (2024-12-04)
 
