@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.confluent.models.SCMetadataEntity;
+import com.azure.resourcemanager.confluent.models.StreamGovernanceConfig;
 import java.io.IOException;
 
 /**
@@ -17,6 +18,11 @@ import java.io.IOException;
  */
 @Fluent
 public final class EnvironmentProperties implements JsonSerializable<EnvironmentProperties> {
+    /*
+     * Stream governance configuration
+     */
+    private StreamGovernanceConfig streamGovernanceConfig;
+
     /*
      * Metadata of the record
      */
@@ -26,6 +32,26 @@ public final class EnvironmentProperties implements JsonSerializable<Environment
      * Creates an instance of EnvironmentProperties class.
      */
     public EnvironmentProperties() {
+    }
+
+    /**
+     * Get the streamGovernanceConfig property: Stream governance configuration.
+     * 
+     * @return the streamGovernanceConfig value.
+     */
+    public StreamGovernanceConfig streamGovernanceConfig() {
+        return this.streamGovernanceConfig;
+    }
+
+    /**
+     * Set the streamGovernanceConfig property: Stream governance configuration.
+     * 
+     * @param streamGovernanceConfig the streamGovernanceConfig value to set.
+     * @return the EnvironmentProperties object itself.
+     */
+    public EnvironmentProperties withStreamGovernanceConfig(StreamGovernanceConfig streamGovernanceConfig) {
+        this.streamGovernanceConfig = streamGovernanceConfig;
+        return this;
     }
 
     /**
@@ -54,6 +80,9 @@ public final class EnvironmentProperties implements JsonSerializable<Environment
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (streamGovernanceConfig() != null) {
+            streamGovernanceConfig().validate();
+        }
         if (metadata() != null) {
             metadata().validate();
         }
@@ -65,6 +94,7 @@ public final class EnvironmentProperties implements JsonSerializable<Environment
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("streamGovernanceConfig", this.streamGovernanceConfig);
         jsonWriter.writeJsonField("metadata", this.metadata);
         return jsonWriter.writeEndObject();
     }
@@ -84,7 +114,9 @@ public final class EnvironmentProperties implements JsonSerializable<Environment
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("metadata".equals(fieldName)) {
+                if ("streamGovernanceConfig".equals(fieldName)) {
+                    deserializedEnvironmentProperties.streamGovernanceConfig = StreamGovernanceConfig.fromJson(reader);
+                } else if ("metadata".equals(fieldName)) {
                     deserializedEnvironmentProperties.metadata = SCMetadataEntity.fromJson(reader);
                 } else {
                     reader.skipChildren();
