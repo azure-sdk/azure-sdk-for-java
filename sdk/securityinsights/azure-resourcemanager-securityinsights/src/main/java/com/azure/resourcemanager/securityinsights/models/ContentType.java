@@ -17,6 +17,26 @@ public final class ContentType extends ExpandableStringEnum<ContentType> {
     public static final ContentType ANALYTIC_RULE = fromString("AnalyticRule");
 
     /**
+     * Static value AutomationRule for ContentType.
+     */
+    public static final ContentType AUTOMATION_RULE = fromString("AutomationRule");
+
+    /**
+     * Static value HuntingQuery for ContentType.
+     */
+    public static final ContentType HUNTING_QUERY = fromString("HuntingQuery");
+
+    /**
+     * Static value Parser for ContentType.
+     */
+    public static final ContentType PARSER = fromString("Parser");
+
+    /**
+     * Static value Playbook for ContentType.
+     */
+    public static final ContentType PLAYBOOK = fromString("Playbook");
+
+    /**
      * Static value Workbook for ContentType.
      */
     public static final ContentType WORKBOOK = fromString("Workbook");

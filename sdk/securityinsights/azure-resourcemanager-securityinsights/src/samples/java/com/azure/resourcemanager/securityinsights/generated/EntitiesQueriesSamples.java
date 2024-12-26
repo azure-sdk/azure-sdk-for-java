@@ -12,7 +12,7 @@ import com.azure.resourcemanager.securityinsights.models.EntityItemQueryKind;
 public final class EntitiesQueriesSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetQueries.json
      */
     /**
@@ -22,7 +22,7 @@ public final class EntitiesQueriesSamples {
      */
     public static void getEntityQuery(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.entities()
-            .queriesWithResponse("myRg", "myWorkspace", "e1d3d618-e11f-478b-98e3-bb381539a8e1",
-                EntityItemQueryKind.INSIGHT, com.azure.core.util.Context.NONE);
+            .queries("myRg", "myWorkspace", "e1d3d618-e11f-478b-98e3-bb381539a8e1", EntityItemQueryKind.INSIGHT,
+                com.azure.core.util.Context.NONE);
     }
 }

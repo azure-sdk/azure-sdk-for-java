@@ -7,7 +7,7 @@ package com.azure.resourcemanager.securityinsights.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.models.Entity;
-import com.azure.resourcemanager.securityinsights.models.EntityKind;
+import com.azure.resourcemanager.securityinsights.models.EntityKindEnum;
 
 public final class EntityImpl implements Entity {
     private EntityInner innerObject;
@@ -32,7 +32,7 @@ public final class EntityImpl implements Entity {
         return this.innerModel().type();
     }
 
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.innerModel().kind();
     }
 

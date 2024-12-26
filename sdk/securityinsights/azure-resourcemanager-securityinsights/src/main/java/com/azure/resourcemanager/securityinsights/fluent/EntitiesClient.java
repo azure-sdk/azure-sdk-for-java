@@ -12,15 +12,46 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityExpandResponseInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityGetInsightsResponseInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
-import com.azure.resourcemanager.securityinsights.fluent.models.GetQueriesResponseInner;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryItemInner;
 import com.azure.resourcemanager.securityinsights.models.EntityExpandParameters;
 import com.azure.resourcemanager.securityinsights.models.EntityGetInsightsParameters;
 import com.azure.resourcemanager.securityinsights.models.EntityItemQueryKind;
+import com.azure.resourcemanager.securityinsights.models.EntityManualTriggerRequestBody;
 
 /**
  * An instance of this class provides access to all the operations defined in EntitiesClient.
  */
 public interface EntitiesClient {
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> runPlaybookWithResponse(String resourceGroupName, String workspaceName, String entityIdentifier,
+        EntityManualTriggerRequestBody requestBody, Context context);
+
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void runPlaybook(String resourceGroupName, String workspaceName, String entityIdentifier);
+
     /**
      * Gets all entities.
      * 
@@ -118,15 +149,14 @@ public interface EntitiesClient {
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param kind The Kind parameter for queries.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity along with {@link Response}.
+     * @return insights and Activities for an entity as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<GetQueriesResponseInner> queriesWithResponse(String resourceGroupName, String workspaceName,
-        String entityId, EntityItemQueryKind kind, Context context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<EntityQueryItemInner> queries(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind);
 
     /**
      * Get Insights and Activities for an entity.
@@ -135,14 +165,15 @@ public interface EntitiesClient {
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param kind The Kind parameter for queries.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity.
+     * @return insights and Activities for an entity as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    GetQueriesResponseInner queries(String resourceGroupName, String workspaceName, String entityId,
-        EntityItemQueryKind kind);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<EntityQueryItemInner> queries(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind, Context context);
 
     /**
      * Execute Insights for an entity.

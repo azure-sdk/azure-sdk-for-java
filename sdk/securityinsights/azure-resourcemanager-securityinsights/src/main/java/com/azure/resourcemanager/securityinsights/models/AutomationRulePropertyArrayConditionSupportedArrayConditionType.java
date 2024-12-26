@@ -19,6 +19,12 @@ public final class AutomationRulePropertyArrayConditionSupportedArrayConditionTy
         = fromString("AnyItem");
 
     /**
+     * Static value AllItems for AutomationRulePropertyArrayConditionSupportedArrayConditionType.
+     */
+    public static final AutomationRulePropertyArrayConditionSupportedArrayConditionType ALL_ITEMS
+        = fromString("AllItems");
+
+    /**
      * Creates a new instance of AutomationRulePropertyArrayConditionSupportedArrayConditionType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

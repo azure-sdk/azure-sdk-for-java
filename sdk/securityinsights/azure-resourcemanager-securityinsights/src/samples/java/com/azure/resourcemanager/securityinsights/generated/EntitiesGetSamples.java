@@ -10,7 +10,7 @@ package com.azure.resourcemanager.securityinsights.generated;
 public final class EntitiesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetSubmissionMailEntityById.json
      */
     /**
@@ -27,7 +27,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetDnsEntityById.json
      */
     /**
@@ -43,7 +43,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetFileHashEntityById.json
      */
     /**
@@ -59,7 +59,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetIoTDeviceEntityById.json
      */
     /**
@@ -76,7 +76,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetRegistryKeyEntityById.json
      */
     /**
@@ -93,7 +93,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetMailboxEntityById.json
      */
     /**
@@ -109,7 +109,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetMalwareEntityById.json
      */
     /**
@@ -125,7 +125,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetSecurityAlertEntityById.json
      */
     /**
@@ -142,7 +142,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetIpEntityById.json
      */
     /**
@@ -158,7 +158,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetAccountEntityById.json
      */
     /**
@@ -174,7 +174,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetCloudApplicationEntityById.json
      */
     /**
@@ -191,7 +191,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetFileEntityById.json
      */
     /**
@@ -207,7 +207,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetRegistryValueEntityById.json
      */
     /**
@@ -224,7 +224,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetUrlEntityById.json
      */
     /**
@@ -240,7 +240,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetMailClusterEntityById.json
      */
     /**
@@ -257,7 +257,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetSecurityGroupEntityById.json
      */
     /**
@@ -274,7 +274,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetMailMessageEntityById.json
      */
     /**
@@ -291,7 +291,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetAzureResourceEntityById.json
      */
     /**
@@ -308,7 +308,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetHostEntityById.json
      */
     /**
@@ -324,7 +324,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetProcessEntityById.json
      */
     /**

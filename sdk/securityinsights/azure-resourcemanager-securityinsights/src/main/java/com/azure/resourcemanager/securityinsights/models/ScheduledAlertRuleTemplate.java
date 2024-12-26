@@ -436,6 +436,29 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.innerProperties() == null ? null : this.innerProperties().subTechniques();
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the ScheduledAlertRuleTemplate object itself.
+     */
+    public ScheduledAlertRuleTemplate withSubTechniques(List<String> subTechniques) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSubTechniques(subTechniques);
+        return this;
+    }
+
+    /**
      * Get the version property: The version of this template - in format &lt;a.b.c&gt;, where all are numbers. For
      * example &lt;1.0.2&gt;.
      * 
@@ -549,6 +572,30 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
             this.innerProperties = new ScheduledAlertRuleTemplateProperties();
         }
         this.innerProperties().withAlertDetailsOverride(alertDetailsOverride);
+        return this;
+    }
+
+    /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.innerProperties() == null ? null : this.innerProperties().sentinelEntitiesMappings();
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the ScheduledAlertRuleTemplate object itself.
+     */
+    public ScheduledAlertRuleTemplate
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSentinelEntitiesMappings(sentinelEntitiesMappings);
         return this;
     }
 

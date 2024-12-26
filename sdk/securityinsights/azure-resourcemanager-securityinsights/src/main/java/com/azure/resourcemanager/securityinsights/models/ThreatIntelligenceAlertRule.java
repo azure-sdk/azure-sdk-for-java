@@ -225,6 +225,15 @@ public final class ThreatIntelligenceAlertRule extends AlertRuleInner {
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.innerProperties() == null ? null : this.innerProperties().subTechniques();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

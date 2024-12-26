@@ -22,7 +22,7 @@ public final class UrlEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.URL;
+    private EntityKindEnum kind = EntityKindEnum.URL;
 
     /*
      * Url entity properties
@@ -61,7 +61,7 @@ public final class UrlEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -191,7 +191,7 @@ public final class UrlEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedUrlEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedUrlEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedUrlEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedUrlEntity.innerProperties = UrlEntityProperties.fromJson(reader);
                 } else {

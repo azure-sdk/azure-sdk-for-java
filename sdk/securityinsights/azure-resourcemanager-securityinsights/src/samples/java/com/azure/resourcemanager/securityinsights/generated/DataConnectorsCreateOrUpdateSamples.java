@@ -23,10 +23,26 @@ import com.azure.resourcemanager.securityinsights.models.CodelessUiConnectorConf
 import com.azure.resourcemanager.securityinsights.models.CodelessUiDataConnector;
 import com.azure.resourcemanager.securityinsights.models.ConnectivityType;
 import com.azure.resourcemanager.securityinsights.models.DataTypeState;
+import com.azure.resourcemanager.securityinsights.models.DcrConfiguration;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnector;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnectorDataTypes;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnectorDataTypesDynamics365CdsActivities;
+import com.azure.resourcemanager.securityinsights.models.GcpAuthProperties;
+import com.azure.resourcemanager.securityinsights.models.GcpDataConnector;
+import com.azure.resourcemanager.securityinsights.models.GcpRequestProperties;
 import com.azure.resourcemanager.securityinsights.models.InstructionStepsInstructionsItem;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionConnectorDataTypesLogs;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MstiDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MstiDataConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed;
+import com.azure.resourcemanager.securityinsights.models.MtpDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MtpDataConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MtpDataConnectorDataTypesAlerts;
+import com.azure.resourcemanager.securityinsights.models.MtpDataConnectorDataTypesIncidents;
+import com.azure.resourcemanager.securityinsights.models.MtpFilteredProviders;
+import com.azure.resourcemanager.securityinsights.models.MtpProvider;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectConnectorDataTypes;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectConnectorDataTypesLogs;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectDataConnector;
@@ -44,6 +60,9 @@ import com.azure.resourcemanager.securityinsights.models.PermissionsCustomsItem;
 import com.azure.resourcemanager.securityinsights.models.PermissionsResourceProviderItem;
 import com.azure.resourcemanager.securityinsights.models.PollingFrequency;
 import com.azure.resourcemanager.securityinsights.models.ProviderName;
+import com.azure.resourcemanager.securityinsights.models.PurviewAuditConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.PurviewAuditConnectorDataTypesLogs;
+import com.azure.resourcemanager.securityinsights.models.PurviewAuditDataConnector;
 import com.azure.resourcemanager.securityinsights.models.RequiredPermissions;
 import com.azure.resourcemanager.securityinsights.models.SettingType;
 import com.azure.resourcemanager.securityinsights.models.TIDataConnector;
@@ -62,101 +81,58 @@ import java.util.Arrays;
 public final class DataConnectorsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CreateOfficeDataConnetor.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateMicrosoftThreatProtectionDataConnetor.json
      */
     /**
-     * Sample code: Creates or updates an Office365 data connector.
+     * Sample code: Creates or updates a MicrosoftThreatProtection data connector.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void createsOrUpdatesAnOffice365DataConnector(
+    public static void createsOrUpdatesAMicrosoftThreatProtectionDataConnector(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.dataConnectors()
             .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
-                new OfficeDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
-                    .withDataTypes(new OfficeDataConnectorDataTypes()
-                        .withExchange(new OfficeDataConnectorDataTypesExchange().withState(DataTypeState.ENABLED))
-                        .withSharePoint(new OfficeDataConnectorDataTypesSharePoint().withState(DataTypeState.ENABLED))
-                        .withTeams(new OfficeDataConnectorDataTypesTeams().withState(DataTypeState.ENABLED)))
+                new MtpDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(new MtpDataConnectorDataTypes()
+                        .withIncidents(new MtpDataConnectorDataTypesIncidents().withState(DataTypeState.DISABLED))
+                        .withAlerts(new MtpDataConnectorDataTypesAlerts().withState(DataTypeState.ENABLED)))
+                    .withFilteredProviders(new MtpFilteredProviders()
+                        .withAlerts(Arrays.asList(MtpProvider.MICROSOFT_DEFENDER_FOR_CLOUD_APPS)))
+                    .withTenantId("178265c4-3136-4ff6-8ed1-b5b62b4cb5f5"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreatePurviewAuditDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates a PurviewAudit data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAPurviewAuditDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new PurviewAuditDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withConnectorDefinitionName("PowerAutomate")
+                    .withSourceType("MicrosoftFlow")
+                    .withDcrConfig(new DcrConfiguration().withDataCollectionEndpoint(
+                        "https://microsoft-sentinel-datacollectionendpoint-123m.westeurope-1.ingest.monitor.azure.com")
+                        .withDataCollectionRuleImmutableId("dcr-de21b053bd5a44beb99a256c9db85023")
+                        .withStreamName("OFFICEPOWERAUTOMATE_RESTAPI"))
+                    .withDataTypes(new PurviewAuditConnectorDataTypes()
+                        .withLogs(new PurviewAuditConnectorDataTypesLogs().withState(DataTypeState.ENABLED)))
                     .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CreateOfficePowerBIDataConnector.json
-     */
-    /**
-     * Sample code: Creates or updates an Office PowerBI data connector.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void createsOrUpdatesAnOfficePowerBIDataConnector(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.dataConnectors()
-            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
-                new OfficePowerBIDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
-                    .withDataTypes(new OfficePowerBIConnectorDataTypes()
-                        .withLogs(new OfficePowerBIConnectorDataTypesLogs().withState(DataTypeState.ENABLED)))
-                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CreateThreatIntelligenceTaxiiDataConnector.json
-     */
-    /**
-     * Sample code: Creates or updates a Threat Intelligence Taxii data connector.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void createsOrUpdatesAThreatIntelligenceTaxiiDataConnector(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.dataConnectors()
-            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
-                new TiTaxiiDataConnector().withEtag("d12423f6-a60b-4ca5-88c0-feb1a182d0f0")
-                    .withWorkspaceId("dd124572-4962-4495-9bd2-9dade12314b4")
-                    .withFriendlyName("testTaxii")
-                    .withTaxiiServer("https://limo.anomali.com/api/v1/taxii2/feeds")
-                    .withCollectionId("135")
-                    .withUsername("--")
-                    .withPassword("fakeTokenPlaceholder")
-                    .withTaxiiLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
-                    .withPollingFrequency(PollingFrequency.ONCE_ADAY)
-                    .withDataTypes(new TiTaxiiDataConnectorDataTypes().withTaxiiClient(
-                        new TiTaxiiDataConnectorDataTypesTaxiiClient().withState(DataTypeState.ENABLED)))
-                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CreateThreatIntelligenceDataConnector.json
-     */
-    /**
-     * Sample code: Creates or updates an Threat Intelligence Platform data connector.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void createsOrUpdatesAnThreatIntelligencePlatformDataConnector(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.dataConnectors()
-            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
-                new TIDataConnector().withTipLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
-                    .withDataTypes(new TIDataConnectorDataTypes()
-                        .withIndicators(new TIDataConnectorDataTypesIndicators().withState(DataTypeState.ENABLED)))
-                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CreateDynamics365DataConnetor.json
      */
     /**
@@ -178,7 +154,7 @@ public final class DataConnectorsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CreateGenericUI.json
      */
     /**
@@ -287,7 +263,7 @@ public final class DataConnectorsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CreateOffice365ProjectDataConnetor.json
      */
     /**
@@ -308,7 +284,174 @@ public final class DataConnectorsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateGoogleCloudPlatform.json
+     */
+    /**
+     * Sample code: Creates or updates a GCP data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        createsOrUpdatesAGCPDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "GCP_fce27b90-d6f5-4d30-991a-af509a2b50a1",
+                new GcpDataConnector().withConnectorDefinitionName("GcpConnector")
+                    .withAuth(new GcpAuthProperties()
+                        .withServiceAccountEmail("sentinel-service-account@project-id.iam.gserviceaccount.com")
+                        .withProjectNumber("123456789012")
+                        .withWorkloadIdentityProviderId("sentinel-identity-provider"))
+                    .withRequest(new GcpRequestProperties().withProjectId("project-id")
+                        .withSubscriptionNames(Arrays.asList("sentinel-subscription")))
+                    .withDcrConfig(new DcrConfiguration().withDataCollectionEndpoint(
+                        "https://microsoft-sentinel-datacollectionendpoint-123m.westeurope-1.ingest.monitor.azure.com")
+                        .withDataCollectionRuleImmutableId("dcr-de21b053bd5a44beb99a256c9db85023")
+                        .withStreamName("SENTINEL_GCP_AUDIT_LOGS")),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateMicrosoftThreatIntelligenceDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates a Microsoft Threat Intelligence data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAMicrosoftThreatIntelligenceDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "c345bf40-8509-4ed2-b947-50cb773aaf04",
+                new MstiDataConnector()
+                    .withDataTypes(new MstiDataConnectorDataTypes().withMicrosoftEmergingThreatFeed(
+                        new MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed().withState(DataTypeState.ENABLED)
+                            .withLookbackPeriod("1970-01-01T00:00:00.000Z")))
+                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateMicrosoftPurviewInformationProtectionDataConnetor.json
+     */
+    /**
+     * Sample code: Creates or updates an MicrosoftPurviewInformationProtection data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnMicrosoftPurviewInformationProtectionDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new MicrosoftPurviewInformationProtectionDataConnector()
+                    .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(new MicrosoftPurviewInformationProtectionConnectorDataTypes()
+                        .withLogs(new MicrosoftPurviewInformationProtectionConnectorDataTypesLogs()
+                            .withState(DataTypeState.ENABLED)))
+                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateOfficeDataConnetor.json
+     */
+    /**
+     * Sample code: Creates or updates an Office365 data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnOffice365DataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new OfficeDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(new OfficeDataConnectorDataTypes()
+                        .withExchange(new OfficeDataConnectorDataTypesExchange().withState(DataTypeState.ENABLED))
+                        .withSharePoint(new OfficeDataConnectorDataTypesSharePoint().withState(DataTypeState.ENABLED))
+                        .withTeams(new OfficeDataConnectorDataTypesTeams().withState(DataTypeState.ENABLED)))
+                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateOfficePowerBIDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates an Office PowerBI data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnOfficePowerBIDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new OfficePowerBIDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(new OfficePowerBIConnectorDataTypes()
+                        .withLogs(new OfficePowerBIConnectorDataTypesLogs().withState(DataTypeState.ENABLED)))
+                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateThreatIntelligenceTaxiiDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates a Threat Intelligence Taxii data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAThreatIntelligenceTaxiiDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new TiTaxiiDataConnector().withEtag("d12423f6-a60b-4ca5-88c0-feb1a182d0f0")
+                    .withWorkspaceId("dd124572-4962-4495-9bd2-9dade12314b4")
+                    .withFriendlyName("testTaxii")
+                    .withTaxiiServer("https://limo.anomali.com/api/v1/taxii2/feeds")
+                    .withCollectionId("135")
+                    .withUsername("--")
+                    .withPassword("fakeTokenPlaceholder")
+                    .withTaxiiLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
+                    .withPollingFrequency(PollingFrequency.ONCE_ADAY)
+                    .withDataTypes(new TiTaxiiDataConnectorDataTypes().withTaxiiClient(
+                        new TiTaxiiDataConnectorDataTypesTaxiiClient().withState(DataTypeState.ENABLED)))
+                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateThreatIntelligenceDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates an Threat Intelligence Platform data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnThreatIntelligencePlatformDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new TIDataConnector().withTipLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
+                    .withDataTypes(new TIDataConnectorDataTypes()
+                        .withIndicators(new TIDataConnectorDataTypesIndicators().withState(DataTypeState.ENABLED)))
+                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CreateAPIPolling.json
      */
     /**

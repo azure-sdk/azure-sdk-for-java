@@ -28,6 +28,11 @@ public final class RepoInner implements JsonSerializable<RepoInner> {
     private String fullName;
 
     /*
+     * The installation id of the repository.
+     */
+    private Long installationId;
+
+    /*
      * Array of branches.
      */
     private List<String> branches;
@@ -79,6 +84,26 @@ public final class RepoInner implements JsonSerializable<RepoInner> {
     }
 
     /**
+     * Get the installationId property: The installation id of the repository.
+     * 
+     * @return the installationId value.
+     */
+    public Long installationId() {
+        return this.installationId;
+    }
+
+    /**
+     * Set the installationId property: The installation id of the repository.
+     * 
+     * @param installationId the installationId value to set.
+     * @return the RepoInner object itself.
+     */
+    public RepoInner withInstallationId(Long installationId) {
+        this.installationId = installationId;
+        return this;
+    }
+
+    /**
      * Get the branches property: Array of branches.
      * 
      * @return the branches value.
@@ -114,6 +139,7 @@ public final class RepoInner implements JsonSerializable<RepoInner> {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("url", this.url);
         jsonWriter.writeStringField("fullName", this.fullName);
+        jsonWriter.writeNumberField("installationId", this.installationId);
         jsonWriter.writeArrayField("branches", this.branches, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
@@ -137,6 +163,8 @@ public final class RepoInner implements JsonSerializable<RepoInner> {
                     deserializedRepoInner.url = reader.getString();
                 } else if ("fullName".equals(fieldName)) {
                     deserializedRepoInner.fullName = reader.getString();
+                } else if ("installationId".equals(fieldName)) {
+                    deserializedRepoInner.installationId = reader.getNullable(JsonReader::getLong);
                 } else if ("branches".equals(fieldName)) {
                     List<String> branches = reader.readArray(reader1 -> reader1.getString());
                     deserializedRepoInner.branches = branches;

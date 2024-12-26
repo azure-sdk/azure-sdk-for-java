@@ -11,7 +11,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryInner;
 import com.azure.resourcemanager.securityinsights.models.CustomEntityQuery;
-import com.azure.resourcemanager.securityinsights.models.EntityQueriesKind;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplateKind;
 
 /**
  * An instance of this class provides access to all the operations defined in EntityQueriesClient.
@@ -43,7 +43,7 @@ public interface EntityQueriesClient {
      * @return all entity queries as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<EntityQueryInner> list(String resourceGroupName, String workspaceName, EntityQueriesKind kind,
+    PagedIterable<EntityQueryInner> list(String resourceGroupName, String workspaceName, EntityQueryTemplateKind kind,
         Context context);
 
     /**

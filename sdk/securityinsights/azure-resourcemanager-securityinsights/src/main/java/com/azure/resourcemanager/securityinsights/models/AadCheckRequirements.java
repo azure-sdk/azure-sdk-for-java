@@ -12,7 +12,7 @@ import com.azure.resourcemanager.securityinsights.fluent.models.AadCheckRequirem
 import java.io.IOException;
 
 /**
- * Represents AAD (Azure Active Directory) requirements check request.
+ * Represents AADIP (Azure Active Directory Identity Protection) requirements check request.
  */
 @Fluent
 public final class AadCheckRequirements extends DataConnectorsCheckRequirements {
@@ -22,7 +22,7 @@ public final class AadCheckRequirements extends DataConnectorsCheckRequirements 
     private DataConnectorKind kind = DataConnectorKind.AZURE_ACTIVE_DIRECTORY;
 
     /*
-     * AAD (Azure Active Directory) requirements check properties.
+     * AADIP (Azure Active Directory Identity Protection) requirements check properties.
      */
     private AadCheckRequirementsProperties innerProperties;
 
@@ -43,7 +43,8 @@ public final class AadCheckRequirements extends DataConnectorsCheckRequirements 
     }
 
     /**
-     * Get the innerProperties property: AAD (Azure Active Directory) requirements check properties.
+     * Get the innerProperties property: AADIP (Azure Active Directory Identity Protection) requirements check
+     * properties.
      * 
      * @return the innerProperties value.
      */

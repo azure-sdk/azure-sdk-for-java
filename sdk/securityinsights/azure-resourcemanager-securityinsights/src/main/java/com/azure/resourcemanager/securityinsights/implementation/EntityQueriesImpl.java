@@ -13,8 +13,8 @@ import com.azure.resourcemanager.securityinsights.fluent.EntityQueriesClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryInner;
 import com.azure.resourcemanager.securityinsights.models.CustomEntityQuery;
 import com.azure.resourcemanager.securityinsights.models.EntityQueries;
-import com.azure.resourcemanager.securityinsights.models.EntityQueriesKind;
 import com.azure.resourcemanager.securityinsights.models.EntityQuery;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplateKind;
 
 public final class EntityQueriesImpl implements EntityQueries {
     private static final ClientLogger LOGGER = new ClientLogger(EntityQueriesImpl.class);
@@ -34,7 +34,7 @@ public final class EntityQueriesImpl implements EntityQueries {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new EntityQueryImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<EntityQuery> list(String resourceGroupName, String workspaceName, EntityQueriesKind kind,
+    public PagedIterable<EntityQuery> list(String resourceGroupName, String workspaceName, EntityQueryTemplateKind kind,
         Context context) {
         PagedIterable<EntityQueryInner> inner
             = this.serviceClient().list(resourceGroupName, workspaceName, kind, context);

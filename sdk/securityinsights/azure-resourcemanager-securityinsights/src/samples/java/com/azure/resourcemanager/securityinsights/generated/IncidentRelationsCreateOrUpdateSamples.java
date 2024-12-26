@@ -12,7 +12,7 @@ import com.azure.resourcemanager.securityinsights.fluent.models.RelationInner;
 public final class IncidentRelationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * incidents/relations/CreateIncidentRelation.json
      */
     /**

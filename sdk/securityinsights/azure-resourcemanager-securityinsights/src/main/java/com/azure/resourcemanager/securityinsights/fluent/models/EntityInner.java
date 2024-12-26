@@ -14,7 +14,7 @@ import com.azure.resourcemanager.securityinsights.models.AccountEntity;
 import com.azure.resourcemanager.securityinsights.models.AzureResourceEntity;
 import com.azure.resourcemanager.securityinsights.models.CloudApplicationEntity;
 import com.azure.resourcemanager.securityinsights.models.DnsEntity;
-import com.azure.resourcemanager.securityinsights.models.EntityKind;
+import com.azure.resourcemanager.securityinsights.models.EntityKindEnum;
 import com.azure.resourcemanager.securityinsights.models.FileEntity;
 import com.azure.resourcemanager.securityinsights.models.FileHashEntity;
 import com.azure.resourcemanager.securityinsights.models.HostEntity;
@@ -43,7 +43,7 @@ public class EntityInner extends ProxyResource {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.fromString("Entity");
+    private EntityKindEnum kind = EntityKindEnum.fromString("Entity");
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -76,7 +76,7 @@ public class EntityInner extends ProxyResource {
      * 
      * @return the kind value.
      */
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -238,7 +238,7 @@ public class EntityInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedEntityInner.type = reader.getString();
                 } else if ("kind".equals(fieldName)) {
-                    deserializedEntityInner.kind = EntityKind.fromString(reader.getString());
+                    deserializedEntityInner.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("systemData".equals(fieldName)) {
                     deserializedEntityInner.systemData = SystemData.fromJson(reader);
                 } else {

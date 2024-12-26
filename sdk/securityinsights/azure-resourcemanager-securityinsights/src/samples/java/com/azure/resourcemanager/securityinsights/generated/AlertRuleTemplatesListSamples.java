@@ -10,7 +10,7 @@ package com.azure.resourcemanager.securityinsights.generated;
 public final class AlertRuleTemplatesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRuleTemplates/GetAlertRuleTemplates.json
      */
     /**

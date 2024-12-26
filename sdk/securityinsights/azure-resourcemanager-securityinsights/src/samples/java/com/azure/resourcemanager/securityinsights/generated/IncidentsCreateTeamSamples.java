@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.resourcemanager.securityinsights.models.TeamProperties;
+import com.azure.resourcemanager.securityinsights.fluent.models.TeamInformationInner;
 
 /**
  * Samples for Incidents CreateTeam.
@@ -12,20 +12,17 @@ import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 public final class IncidentsCreateTeamSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/CreateTeam.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentTeam/Incidents_CreateTeam.json
      */
     /**
-     * Sample code: Creates incident teams group.
+     * Sample code: Incidents_CreateTeam.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void
-        createsIncidentTeamsGroup(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentsCreateTeam(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
-            .createTeamWithResponse("ambawolvese5resourcegroup", "AmbaE5WestCentralUS",
-                "69a30280-6a4c-4aa7-9af0-5d63f335d600",
-                new TeamProperties().withTeamName("Team name").withTeamDescription("Team description"),
-                com.azure.core.util.Context.NONE);
+            .createTeamWithResponse("myRg", "myWorkspace", "69a30280-6a4c-4aa7-9af0-5d63f335d600",
+                new TeamInformationInner(), com.azure.core.util.Context.NONE);
     }
 }

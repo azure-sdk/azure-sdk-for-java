@@ -25,6 +25,12 @@ public final class AutomationRulePropertyArrayConditionSupportedArrayType
         = fromString("CustomDetailValues");
 
     /**
+     * Static value IncidentLabels for AutomationRulePropertyArrayConditionSupportedArrayType.
+     */
+    public static final AutomationRulePropertyArrayConditionSupportedArrayType INCIDENT_LABELS
+        = fromString("IncidentLabels");
+
+    /**
      * Creates a new instance of AutomationRulePropertyArrayConditionSupportedArrayType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

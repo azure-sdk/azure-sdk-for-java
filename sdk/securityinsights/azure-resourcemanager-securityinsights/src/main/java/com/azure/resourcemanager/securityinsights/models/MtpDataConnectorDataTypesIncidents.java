@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Data type for Microsoft Threat Protection Platforms data connector.
+ * Incidents data type for Microsoft Threat Protection Platforms data connector.
  */
 @Fluent
 public final class MtpDataConnectorDataTypesIncidents extends DataConnectorDataTypeCommon {

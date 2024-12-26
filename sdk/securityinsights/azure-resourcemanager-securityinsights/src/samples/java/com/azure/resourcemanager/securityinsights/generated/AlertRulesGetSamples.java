@@ -10,7 +10,7 @@ package com.azure.resourcemanager.securityinsights.generated;
 public final class AlertRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetScheduledAlertRule.json
      */
     /**
@@ -27,7 +27,7 @@ public final class AlertRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetNrtAlertRule.json
      */
     /**
@@ -43,7 +43,7 @@ public final class AlertRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetFusionAlertRule.json
      */
     /**
@@ -58,7 +58,7 @@ public final class AlertRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetMicrosoftSecurityIncidentCreationAlertRule.json
      */
     /**

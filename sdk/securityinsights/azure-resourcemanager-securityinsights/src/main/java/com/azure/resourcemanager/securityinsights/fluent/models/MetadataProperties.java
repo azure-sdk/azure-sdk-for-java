@@ -10,7 +10,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.securityinsights.models.Kind;
 import com.azure.resourcemanager.securityinsights.models.MetadataAuthor;
 import com.azure.resourcemanager.securityinsights.models.MetadataCategories;
 import com.azure.resourcemanager.securityinsights.models.MetadataDependencies;
@@ -47,7 +46,7 @@ public final class MetadataProperties implements JsonSerializable<MetadataProper
     /*
      * The kind of content the metadata is for.
      */
-    private Kind kind;
+    private String kind;
 
     /*
      * Source of the content. This is where/how it was created.
@@ -207,7 +206,7 @@ public final class MetadataProperties implements JsonSerializable<MetadataProper
      * 
      * @return the kind value.
      */
-    public Kind kind() {
+    public String kind() {
         return this.kind;
     }
 
@@ -217,7 +216,7 @@ public final class MetadataProperties implements JsonSerializable<MetadataProper
      * @param kind the kind value to set.
      * @return the MetadataProperties object itself.
      */
-    public MetadataProperties withKind(Kind kind) {
+    public MetadataProperties withKind(String kind) {
         this.kind = kind;
         return this;
     }
@@ -572,7 +571,7 @@ public final class MetadataProperties implements JsonSerializable<MetadataProper
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("parentId", this.parentId);
-        jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
         jsonWriter.writeStringField("contentId", this.contentId);
         jsonWriter.writeStringField("version", this.version);
         jsonWriter.writeJsonField("source", this.source);
@@ -616,7 +615,7 @@ public final class MetadataProperties implements JsonSerializable<MetadataProper
                 if ("parentId".equals(fieldName)) {
                     deserializedMetadataProperties.parentId = reader.getString();
                 } else if ("kind".equals(fieldName)) {
-                    deserializedMetadataProperties.kind = Kind.fromString(reader.getString());
+                    deserializedMetadataProperties.kind = reader.getString();
                 } else if ("contentId".equals(fieldName)) {
                     deserializedMetadataProperties.contentId = reader.getString();
                 } else if ("version".equals(fieldName)) {

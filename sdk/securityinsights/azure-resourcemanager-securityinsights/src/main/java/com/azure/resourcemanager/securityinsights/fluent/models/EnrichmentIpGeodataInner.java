@@ -34,7 +34,7 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
     /*
      * A numeric rating of confidence that the value in the 'city' field is correct, on a scale of 0-100
      */
-    private Integer cityCf;
+    private Integer cityConfidenceFactor;
 
     /*
      * The continent this IP address is located on
@@ -49,7 +49,7 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
     /*
      * A numeric rating of confidence that the value in the 'country' field is correct on a scale of 0-100
      */
-    private Integer countryCf;
+    private Integer countryConfidenceFactor;
 
     /*
      * The dotted-decimal or colon-separated string representation of the IP address
@@ -94,7 +94,7 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
     /*
      * A numeric rating of confidence that the value in the 'state' field is correct on a scale of 0-100
      */
-    private Integer stateCf;
+    private Integer stateConfidenceFactor;
 
     /*
      * The abbreviated name for the state this IP address is located in
@@ -168,24 +168,24 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
     }
 
     /**
-     * Get the cityCf property: A numeric rating of confidence that the value in the 'city' field is correct, on a scale
-     * of 0-100.
+     * Get the cityConfidenceFactor property: A numeric rating of confidence that the value in the 'city' field is
+     * correct, on a scale of 0-100.
      * 
-     * @return the cityCf value.
+     * @return the cityConfidenceFactor value.
      */
-    public Integer cityCf() {
-        return this.cityCf;
+    public Integer cityConfidenceFactor() {
+        return this.cityConfidenceFactor;
     }
 
     /**
-     * Set the cityCf property: A numeric rating of confidence that the value in the 'city' field is correct, on a scale
-     * of 0-100.
+     * Set the cityConfidenceFactor property: A numeric rating of confidence that the value in the 'city' field is
+     * correct, on a scale of 0-100.
      * 
-     * @param cityCf the cityCf value to set.
+     * @param cityConfidenceFactor the cityConfidenceFactor value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
-    public EnrichmentIpGeodataInner withCityCf(Integer cityCf) {
-        this.cityCf = cityCf;
+    public EnrichmentIpGeodataInner withCityConfidenceFactor(Integer cityConfidenceFactor) {
+        this.cityConfidenceFactor = cityConfidenceFactor;
         return this;
     }
 
@@ -230,24 +230,24 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
     }
 
     /**
-     * Get the countryCf property: A numeric rating of confidence that the value in the 'country' field is correct on a
-     * scale of 0-100.
+     * Get the countryConfidenceFactor property: A numeric rating of confidence that the value in the 'country' field is
+     * correct on a scale of 0-100.
      * 
-     * @return the countryCf value.
+     * @return the countryConfidenceFactor value.
      */
-    public Integer countryCf() {
-        return this.countryCf;
+    public Integer countryConfidenceFactor() {
+        return this.countryConfidenceFactor;
     }
 
     /**
-     * Set the countryCf property: A numeric rating of confidence that the value in the 'country' field is correct on a
-     * scale of 0-100.
+     * Set the countryConfidenceFactor property: A numeric rating of confidence that the value in the 'country' field is
+     * correct on a scale of 0-100.
      * 
-     * @param countryCf the countryCf value to set.
+     * @param countryConfidenceFactor the countryConfidenceFactor value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
-    public EnrichmentIpGeodataInner withCountryCf(Integer countryCf) {
-        this.countryCf = countryCf;
+    public EnrichmentIpGeodataInner withCountryConfidenceFactor(Integer countryConfidenceFactor) {
+        this.countryConfidenceFactor = countryConfidenceFactor;
         return this;
     }
 
@@ -412,24 +412,24 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
     }
 
     /**
-     * Get the stateCf property: A numeric rating of confidence that the value in the 'state' field is correct on a
-     * scale of 0-100.
+     * Get the stateConfidenceFactor property: A numeric rating of confidence that the value in the 'state' field is
+     * correct on a scale of 0-100.
      * 
-     * @return the stateCf value.
+     * @return the stateConfidenceFactor value.
      */
-    public Integer stateCf() {
-        return this.stateCf;
+    public Integer stateConfidenceFactor() {
+        return this.stateConfidenceFactor;
     }
 
     /**
-     * Set the stateCf property: A numeric rating of confidence that the value in the 'state' field is correct on a
-     * scale of 0-100.
+     * Set the stateConfidenceFactor property: A numeric rating of confidence that the value in the 'state' field is
+     * correct on a scale of 0-100.
      * 
-     * @param stateCf the stateCf value to set.
+     * @param stateConfidenceFactor the stateConfidenceFactor value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
-    public EnrichmentIpGeodataInner withStateCf(Integer stateCf) {
-        this.stateCf = stateCf;
+    public EnrichmentIpGeodataInner withStateConfidenceFactor(Integer stateConfidenceFactor) {
+        this.stateConfidenceFactor = stateConfidenceFactor;
         return this;
     }
 
@@ -470,10 +470,10 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
         jsonWriter.writeStringField("asn", this.asn);
         jsonWriter.writeStringField("carrier", this.carrier);
         jsonWriter.writeStringField("city", this.city);
-        jsonWriter.writeNumberField("cityCf", this.cityCf);
+        jsonWriter.writeNumberField("cityConfidenceFactor", this.cityConfidenceFactor);
         jsonWriter.writeStringField("continent", this.continent);
         jsonWriter.writeStringField("country", this.country);
-        jsonWriter.writeNumberField("countryCf", this.countryCf);
+        jsonWriter.writeNumberField("countryConfidenceFactor", this.countryConfidenceFactor);
         jsonWriter.writeStringField("ipAddr", this.ipAddr);
         jsonWriter.writeStringField("ipRoutingType", this.ipRoutingType);
         jsonWriter.writeStringField("latitude", this.latitude);
@@ -482,7 +482,7 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
         jsonWriter.writeStringField("organizationType", this.organizationType);
         jsonWriter.writeStringField("region", this.region);
         jsonWriter.writeStringField("state", this.state);
-        jsonWriter.writeNumberField("stateCf", this.stateCf);
+        jsonWriter.writeNumberField("stateConfidenceFactor", this.stateConfidenceFactor);
         jsonWriter.writeStringField("stateCode", this.stateCode);
         return jsonWriter.writeEndObject();
     }
@@ -508,14 +508,15 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
                     deserializedEnrichmentIpGeodataInner.carrier = reader.getString();
                 } else if ("city".equals(fieldName)) {
                     deserializedEnrichmentIpGeodataInner.city = reader.getString();
-                } else if ("cityCf".equals(fieldName)) {
-                    deserializedEnrichmentIpGeodataInner.cityCf = reader.getNullable(JsonReader::getInt);
+                } else if ("cityConfidenceFactor".equals(fieldName)) {
+                    deserializedEnrichmentIpGeodataInner.cityConfidenceFactor = reader.getNullable(JsonReader::getInt);
                 } else if ("continent".equals(fieldName)) {
                     deserializedEnrichmentIpGeodataInner.continent = reader.getString();
                 } else if ("country".equals(fieldName)) {
                     deserializedEnrichmentIpGeodataInner.country = reader.getString();
-                } else if ("countryCf".equals(fieldName)) {
-                    deserializedEnrichmentIpGeodataInner.countryCf = reader.getNullable(JsonReader::getInt);
+                } else if ("countryConfidenceFactor".equals(fieldName)) {
+                    deserializedEnrichmentIpGeodataInner.countryConfidenceFactor
+                        = reader.getNullable(JsonReader::getInt);
                 } else if ("ipAddr".equals(fieldName)) {
                     deserializedEnrichmentIpGeodataInner.ipAddr = reader.getString();
                 } else if ("ipRoutingType".equals(fieldName)) {
@@ -532,8 +533,8 @@ public final class EnrichmentIpGeodataInner implements JsonSerializable<Enrichme
                     deserializedEnrichmentIpGeodataInner.region = reader.getString();
                 } else if ("state".equals(fieldName)) {
                     deserializedEnrichmentIpGeodataInner.state = reader.getString();
-                } else if ("stateCf".equals(fieldName)) {
-                    deserializedEnrichmentIpGeodataInner.stateCf = reader.getNullable(JsonReader::getInt);
+                } else if ("stateConfidenceFactor".equals(fieldName)) {
+                    deserializedEnrichmentIpGeodataInner.stateConfidenceFactor = reader.getNullable(JsonReader::getInt);
                 } else if ("stateCode".equals(fieldName)) {
                     deserializedEnrichmentIpGeodataInner.stateCode = reader.getString();
                 } else {

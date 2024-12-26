@@ -35,7 +35,7 @@ public final class ExpansionResultAggregation implements JsonSerializable<Expans
     /*
      * The kind of the aggregated entity.
      */
-    private EntityKind entityKind;
+    private EntityKindEnum entityKind;
 
     /**
      * Creates an instance of ExpansionResultAggregation class.
@@ -110,7 +110,7 @@ public final class ExpansionResultAggregation implements JsonSerializable<Expans
      * 
      * @return the entityKind value.
      */
-    public EntityKind entityKind() {
+    public EntityKindEnum entityKind() {
         return this.entityKind;
     }
 
@@ -120,7 +120,7 @@ public final class ExpansionResultAggregation implements JsonSerializable<Expans
      * @param entityKind the entityKind value to set.
      * @return the ExpansionResultAggregation object itself.
      */
-    public ExpansionResultAggregation withEntityKind(EntityKind entityKind) {
+    public ExpansionResultAggregation withEntityKind(EntityKindEnum entityKind) {
         this.entityKind = entityKind;
         return this;
     }
@@ -172,7 +172,7 @@ public final class ExpansionResultAggregation implements JsonSerializable<Expans
                 if ("count".equals(fieldName)) {
                     deserializedExpansionResultAggregation.count = reader.getInt();
                 } else if ("entityKind".equals(fieldName)) {
-                    deserializedExpansionResultAggregation.entityKind = EntityKind.fromString(reader.getString());
+                    deserializedExpansionResultAggregation.entityKind = EntityKindEnum.fromString(reader.getString());
                 } else if ("aggregationType".equals(fieldName)) {
                     deserializedExpansionResultAggregation.aggregationType = reader.getString();
                 } else if ("displayName".equals(fieldName)) {

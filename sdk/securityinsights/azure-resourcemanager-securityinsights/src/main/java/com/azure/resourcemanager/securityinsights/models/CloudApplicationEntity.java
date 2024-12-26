@@ -22,7 +22,7 @@ public final class CloudApplicationEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.CLOUD_APPLICATION;
+    private EntityKindEnum kind = EntityKindEnum.CLOUD_APPLICATION;
 
     /*
      * CloudApplication entity properties
@@ -61,7 +61,7 @@ public final class CloudApplicationEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -210,7 +210,7 @@ public final class CloudApplicationEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedCloudApplicationEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedCloudApplicationEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedCloudApplicationEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedCloudApplicationEntity.innerProperties
                         = CloudApplicationEntityProperties.fromJson(reader);

@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
 import com.azure.resourcemanager.securityinsights.models.SourceType;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
@@ -599,6 +600,29 @@ public final class WatchlistInner extends ResourceWithEtag {
             this.innerProperties = new WatchlistProperties();
         }
         this.innerProperties().withUploadStatus(uploadStatus);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The triggered analytics rule run provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Set the provisioningState property: The triggered analytics rule run provisioning state.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the WatchlistInner object itself.
+     */
+    public WatchlistInner withProvisioningState(ProvisioningState provisioningState) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WatchlistProperties();
+        }
+        this.innerProperties().withProvisioningState(provisioningState);
         return this;
     }
 

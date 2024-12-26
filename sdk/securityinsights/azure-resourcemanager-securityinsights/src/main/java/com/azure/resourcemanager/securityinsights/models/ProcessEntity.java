@@ -23,7 +23,7 @@ public final class ProcessEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.PROCESS;
+    private EntityKindEnum kind = EntityKindEnum.PROCESS;
 
     /*
      * Process entity properties
@@ -62,7 +62,7 @@ public final class ProcessEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -278,7 +278,7 @@ public final class ProcessEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedProcessEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedProcessEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedProcessEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedProcessEntity.innerProperties = ProcessEntityProperties.fromJson(reader);
                 } else {

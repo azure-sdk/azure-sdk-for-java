@@ -75,6 +75,11 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
     private List<String> techniques;
 
     /*
+     * The sub-techniques of the alert rule
+     */
+    private List<String> subTechniques;
+
+    /*
      * All supported source signal configurations consumed in fusion detection.
      */
     private List<FusionTemplateSourceSetting> sourceSettings;
@@ -266,6 +271,26 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the FusionAlertRuleTemplateProperties object itself.
+     */
+    public FusionAlertRuleTemplateProperties withSubTechniques(List<String> subTechniques) {
+        this.subTechniques = subTechniques;
+        return this;
+    }
+
+    /**
      * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
      * 
      * @return the sourceSettings value.
@@ -315,6 +340,8 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
         jsonWriter.writeArrayField("tactics", this.tactics,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("techniques", this.techniques, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("subTechniques", this.subTechniques,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("sourceSettings", this.sourceSettings,
             (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
@@ -366,6 +393,9 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedFusionAlertRuleTemplateProperties.techniques = techniques;
+                } else if ("subTechniques".equals(fieldName)) {
+                    List<String> subTechniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedFusionAlertRuleTemplateProperties.subTechniques = subTechniques;
                 } else if ("sourceSettings".equals(fieldName)) {
                     List<FusionTemplateSourceSetting> sourceSettings
                         = reader.readArray(reader1 -> FusionTemplateSourceSetting.fromJson(reader1));

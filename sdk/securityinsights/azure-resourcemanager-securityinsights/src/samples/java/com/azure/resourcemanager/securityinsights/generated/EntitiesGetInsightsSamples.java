@@ -15,7 +15,7 @@ import java.util.UUID;
 public final class EntitiesGetInsightsSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/insights/PostGetInsights.json
      */
     /**

@@ -18,9 +18,11 @@ import com.azure.resourcemanager.securityinsights.models.CodelessApiPollingDataC
 import com.azure.resourcemanager.securityinsights.models.CodelessUiDataConnector;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorKind;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnector;
+import com.azure.resourcemanager.securityinsights.models.GcpDataConnector;
 import com.azure.resourcemanager.securityinsights.models.IoTDataConnector;
 import com.azure.resourcemanager.securityinsights.models.McasDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MdatpDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MstiDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MtpDataConnector;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectDataConnector;
@@ -28,7 +30,9 @@ import com.azure.resourcemanager.securityinsights.models.OfficeAtpDataConnector;
 import com.azure.resourcemanager.securityinsights.models.OfficeDataConnector;
 import com.azure.resourcemanager.securityinsights.models.OfficeIrmDataConnector;
 import com.azure.resourcemanager.securityinsights.models.OfficePowerBIDataConnector;
+import com.azure.resourcemanager.securityinsights.models.PurviewAuditDataConnector;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.azure.resourcemanager.securityinsights.models.RestApiPollerDataConnector;
 import com.azure.resourcemanager.securityinsights.models.TIDataConnector;
 import com.azure.resourcemanager.securityinsights.models.TiTaxiiDataConnector;
 import java.io.IOException;
@@ -186,16 +190,24 @@ public class DataConnectorInner extends ResourceWithEtag {
                     return AwsCloudTrailDataConnector.fromJson(readerToUse.reset());
                 } else if ("AmazonWebServicesS3".equals(discriminatorValue)) {
                     return AwsS3DataConnector.fromJson(readerToUse.reset());
+                } else if ("RestApiPoller".equals(discriminatorValue)) {
+                    return RestApiPollerDataConnector.fromJson(readerToUse.reset());
+                } else if ("GCP".equals(discriminatorValue)) {
+                    return GcpDataConnector.fromJson(readerToUse.reset());
                 } else if ("MicrosoftCloudAppSecurity".equals(discriminatorValue)) {
                     return McasDataConnector.fromJson(readerToUse.reset());
                 } else if ("Dynamics365".equals(discriminatorValue)) {
                     return Dynamics365DataConnector.fromJson(readerToUse.reset());
                 } else if ("OfficeATP".equals(discriminatorValue)) {
                     return OfficeAtpDataConnector.fromJson(readerToUse.reset());
+                } else if ("MicrosoftPurviewInformationProtection".equals(discriminatorValue)) {
+                    return MicrosoftPurviewInformationProtectionDataConnector.fromJson(readerToUse.reset());
                 } else if ("Office365Project".equals(discriminatorValue)) {
                     return Office365ProjectDataConnector.fromJson(readerToUse.reset());
                 } else if ("OfficePowerBI".equals(discriminatorValue)) {
                     return OfficePowerBIDataConnector.fromJson(readerToUse.reset());
+                } else if ("PurviewAudit".equals(discriminatorValue)) {
+                    return PurviewAuditDataConnector.fromJson(readerToUse.reset());
                 } else if ("OfficeIRM".equals(discriminatorValue)) {
                     return OfficeIrmDataConnector.fromJson(readerToUse.reset());
                 } else if ("MicrosoftDefenderAdvancedThreatProtection".equals(discriminatorValue)) {

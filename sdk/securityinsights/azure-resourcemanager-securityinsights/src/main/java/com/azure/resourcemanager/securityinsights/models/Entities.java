@@ -13,6 +13,34 @@ import com.azure.core.util.Context;
  */
 public interface Entities {
     /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> runPlaybookWithResponse(String resourceGroupName, String workspaceName, String entityIdentifier,
+        EntityManualTriggerRequestBody requestBody, Context context);
+
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void runPlaybook(String resourceGroupName, String workspaceName, String entityIdentifier);
+
+    /**
      * Gets all entities.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -102,14 +130,13 @@ public interface Entities {
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param kind The Kind parameter for queries.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity along with {@link Response}.
+     * @return insights and Activities for an entity as paginated response with {@link PagedIterable}.
      */
-    Response<GetQueriesResponse> queriesWithResponse(String resourceGroupName, String workspaceName, String entityId,
-        EntityItemQueryKind kind, Context context);
+    PagedIterable<EntityQueryItem> queries(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind);
 
     /**
      * Get Insights and Activities for an entity.
@@ -118,13 +145,14 @@ public interface Entities {
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param kind The Kind parameter for queries.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity.
+     * @return insights and Activities for an entity as paginated response with {@link PagedIterable}.
      */
-    GetQueriesResponse queries(String resourceGroupName, String workspaceName, String entityId,
-        EntityItemQueryKind kind);
+    PagedIterable<EntityQueryItem> queries(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind, Context context);
 
     /**
      * Execute Insights for an entity.

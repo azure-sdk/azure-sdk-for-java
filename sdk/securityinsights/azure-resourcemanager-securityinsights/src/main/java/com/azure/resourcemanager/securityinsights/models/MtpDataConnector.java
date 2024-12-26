@@ -146,6 +146,29 @@ public final class MtpDataConnector extends DataConnectorInner {
     }
 
     /**
+     * Get the filteredProviders property: The available filtered providers for the connector.
+     * 
+     * @return the filteredProviders value.
+     */
+    public MtpFilteredProviders filteredProviders() {
+        return this.innerProperties() == null ? null : this.innerProperties().filteredProviders();
+    }
+
+    /**
+     * Set the filteredProviders property: The available filtered providers for the connector.
+     * 
+     * @param filteredProviders the filteredProviders value to set.
+     * @return the MtpDataConnector object itself.
+     */
+    public MtpDataConnector withFilteredProviders(MtpFilteredProviders filteredProviders) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MtpDataConnectorProperties();
+        }
+        this.innerProperties().withFilteredProviders(filteredProviders);
+        return this;
+    }
+
+    /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
      * 
      * @return the tenantId value.

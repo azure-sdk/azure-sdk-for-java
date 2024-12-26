@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends DataConnectorDataTypeCommon {
     /*
-     * lookback period
+     * The lookback period for the feed to be imported.
      */
     private String lookbackPeriod;
 
@@ -28,7 +28,7 @@ public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends
     }
 
     /**
-     * Get the lookbackPeriod property: lookback period.
+     * Get the lookbackPeriod property: The lookback period for the feed to be imported.
      * 
      * @return the lookbackPeriod value.
      */
@@ -37,7 +37,7 @@ public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends
     }
 
     /**
-     * Set the lookbackPeriod property: lookback period.
+     * Set the lookbackPeriod property: The lookback period for the feed to be imported.
      * 
      * @param lookbackPeriod the lookbackPeriod value to set.
      * @return the MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed object itself.

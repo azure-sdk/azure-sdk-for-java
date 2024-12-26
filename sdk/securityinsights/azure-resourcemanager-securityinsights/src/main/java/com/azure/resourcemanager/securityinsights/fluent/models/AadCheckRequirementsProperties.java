@@ -13,7 +13,7 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import java.io.IOException;
 
 /**
- * AAD (Azure Active Directory) requirements check properties.
+ * AADIP (Azure Active Directory Identity Protection) requirements check properties.
  */
 @Fluent
 public final class AadCheckRequirementsProperties extends DataConnectorTenantId {

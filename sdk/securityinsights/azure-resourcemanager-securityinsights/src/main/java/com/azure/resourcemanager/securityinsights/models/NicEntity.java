@@ -23,7 +23,7 @@ public final class NicEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.NIC;
+    private EntityKindEnum kind = EntityKindEnum.NIC;
 
     /*
      * Network interface entity properties
@@ -62,7 +62,7 @@ public final class NicEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -210,7 +210,7 @@ public final class NicEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedNicEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedNicEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedNicEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedNicEntity.innerProperties = NicEntityProperties.fromJson(reader);
                 } else {

@@ -22,7 +22,7 @@ public final class HostEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.HOST;
+    private EntityKindEnum kind = EntityKindEnum.HOST;
 
     /*
      * Host entity properties
@@ -61,7 +61,7 @@ public final class HostEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -279,7 +279,7 @@ public final class HostEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedHostEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedHostEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedHostEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedHostEntity.innerProperties = HostEntityProperties.fromJson(reader);
                 } else {

@@ -22,7 +22,6 @@ import com.azure.resourcemanager.securityinsights.models.IncidentEntitiesRespons
 import com.azure.resourcemanager.securityinsights.models.Incidents;
 import com.azure.resourcemanager.securityinsights.models.ManualTriggerRequestBody;
 import com.azure.resourcemanager.securityinsights.models.TeamInformation;
-import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 
 public final class IncidentsImpl implements Incidents {
     private static final ClientLogger LOGGER = new ClientLogger(IncidentsImpl.class);
@@ -90,7 +89,7 @@ public final class IncidentsImpl implements Incidents {
     }
 
     public Response<TeamInformation> createTeamWithResponse(String resourceGroupName, String workspaceName,
-        String incidentId, TeamProperties teamProperties, Context context) {
+        String incidentId, TeamInformationInner teamProperties, Context context) {
         Response<TeamInformationInner> inner = this.serviceClient()
             .createTeamWithResponse(resourceGroupName, workspaceName, incidentId, teamProperties, context);
         if (inner != null) {
@@ -102,7 +101,7 @@ public final class IncidentsImpl implements Incidents {
     }
 
     public TeamInformation createTeam(String resourceGroupName, String workspaceName, String incidentId,
-        TeamProperties teamProperties) {
+        TeamInformationInner teamProperties) {
         TeamInformationInner inner
             = this.serviceClient().createTeam(resourceGroupName, workspaceName, incidentId, teamProperties);
         if (inner != null) {

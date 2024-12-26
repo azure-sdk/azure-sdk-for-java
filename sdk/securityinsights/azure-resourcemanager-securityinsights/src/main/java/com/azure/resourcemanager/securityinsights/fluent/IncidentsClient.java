@@ -15,7 +15,6 @@ import com.azure.resourcemanager.securityinsights.fluent.models.IncidentEntities
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.TeamInformationInner;
 import com.azure.resourcemanager.securityinsights.models.ManualTriggerRequestBody;
-import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 
 /**
  * An instance of this class provides access to all the operations defined in IncidentsClient.
@@ -127,7 +126,7 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights along with {@link Response}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IncidentInner> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
@@ -143,7 +142,7 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IncidentInner createOrUpdate(String resourceGroupName, String workspaceName, String incidentId,
@@ -193,7 +192,7 @@ public interface IncidentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TeamInformationInner> createTeamWithResponse(String resourceGroupName, String workspaceName,
-        String incidentId, TeamProperties teamProperties, Context context);
+        String incidentId, TeamInformationInner teamProperties, Context context);
 
     /**
      * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
@@ -209,7 +208,7 @@ public interface IncidentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     TeamInformationInner createTeam(String resourceGroupName, String workspaceName, String incidentId,
-        TeamProperties teamProperties);
+        TeamInformationInner teamProperties);
 
     /**
      * Gets all incident alerts.

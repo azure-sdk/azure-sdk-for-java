@@ -18,19 +18,39 @@ import java.io.IOException;
 @Fluent
 public final class IncidentEntitiesResultsMetadata implements JsonSerializable<IncidentEntitiesResultsMetadata> {
     /*
+     * The kind of the aggregated entity.
+     */
+    private EntityKindEnum entityKind;
+
+    /*
      * Total number of aggregations of the given kind in the incident related entities result.
      */
     private int count;
-
-    /*
-     * The kind of the aggregated entity.
-     */
-    private EntityKind entityKind;
 
     /**
      * Creates an instance of IncidentEntitiesResultsMetadata class.
      */
     public IncidentEntitiesResultsMetadata() {
+    }
+
+    /**
+     * Get the entityKind property: The kind of the aggregated entity.
+     * 
+     * @return the entityKind value.
+     */
+    public EntityKindEnum entityKind() {
+        return this.entityKind;
+    }
+
+    /**
+     * Set the entityKind property: The kind of the aggregated entity.
+     * 
+     * @param entityKind the entityKind value to set.
+     * @return the IncidentEntitiesResultsMetadata object itself.
+     */
+    public IncidentEntitiesResultsMetadata withEntityKind(EntityKindEnum entityKind) {
+        this.entityKind = entityKind;
+        return this;
     }
 
     /**
@@ -50,26 +70,6 @@ public final class IncidentEntitiesResultsMetadata implements JsonSerializable<I
      */
     public IncidentEntitiesResultsMetadata withCount(int count) {
         this.count = count;
-        return this;
-    }
-
-    /**
-     * Get the entityKind property: The kind of the aggregated entity.
-     * 
-     * @return the entityKind value.
-     */
-    public EntityKind entityKind() {
-        return this.entityKind;
-    }
-
-    /**
-     * Set the entityKind property: The kind of the aggregated entity.
-     * 
-     * @param entityKind the entityKind value to set.
-     * @return the IncidentEntitiesResultsMetadata object itself.
-     */
-    public IncidentEntitiesResultsMetadata withEntityKind(EntityKind entityKind) {
-        this.entityKind = entityKind;
         return this;
     }
 
@@ -94,8 +94,8 @@ public final class IncidentEntitiesResultsMetadata implements JsonSerializable<I
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeIntField("count", this.count);
         jsonWriter.writeStringField("entityKind", this.entityKind == null ? null : this.entityKind.toString());
+        jsonWriter.writeIntField("count", this.count);
         return jsonWriter.writeEndObject();
     }
 
@@ -116,10 +116,11 @@ public final class IncidentEntitiesResultsMetadata implements JsonSerializable<I
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("count".equals(fieldName)) {
+                if ("entityKind".equals(fieldName)) {
+                    deserializedIncidentEntitiesResultsMetadata.entityKind
+                        = EntityKindEnum.fromString(reader.getString());
+                } else if ("count".equals(fieldName)) {
                     deserializedIncidentEntitiesResultsMetadata.count = reader.getInt();
-                } else if ("entityKind".equals(fieldName)) {
-                    deserializedIncidentEntitiesResultsMetadata.entityKind = EntityKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

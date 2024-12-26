@@ -24,7 +24,7 @@ public final class HuntingBookmark extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.BOOKMARK;
+    private EntityKindEnum kind = EntityKindEnum.BOOKMARK;
 
     /*
      * HuntingBookmark entity properties
@@ -63,7 +63,7 @@ public final class HuntingBookmark extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -437,7 +437,7 @@ public final class HuntingBookmark extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedHuntingBookmark.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedHuntingBookmark.kind = EntityKind.fromString(reader.getString());
+                    deserializedHuntingBookmark.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedHuntingBookmark.innerProperties = HuntingBookmarkProperties.fromJson(reader);
                 } else {

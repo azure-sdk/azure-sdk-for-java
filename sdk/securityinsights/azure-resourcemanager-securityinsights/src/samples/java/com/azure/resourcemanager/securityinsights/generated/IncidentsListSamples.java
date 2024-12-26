@@ -10,15 +10,15 @@ package com.azure.resourcemanager.securityinsights.generated;
 public final class IncidentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/GetIncidents.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/Incidents_List.json
      */
     /**
-     * Sample code: Get all incidents.
+     * Sample code: Incidents_List.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void getAllIncidents(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentsList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
             .list("myRg", "myWorkspace", null, "properties/createdTimeUtc desc", 1, null,
                 com.azure.core.util.Context.NONE);

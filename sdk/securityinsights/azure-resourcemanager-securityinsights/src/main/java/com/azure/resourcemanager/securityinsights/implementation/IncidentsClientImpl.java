@@ -37,7 +37,6 @@ import com.azure.resourcemanager.securityinsights.fluent.models.IncidentInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.TeamInformationInner;
 import com.azure.resourcemanager.securityinsights.models.IncidentList;
 import com.azure.resourcemanager.securityinsights.models.ManualTriggerRequestBody;
-import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 import reactor.core.publisher.Mono;
 
 /**
@@ -129,8 +128,9 @@ public final class IncidentsClientImpl implements IncidentsClient {
         Mono<Response<TeamInformationInner>> createTeam(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
-            @PathParam("incidentId") String incidentId, @BodyParam("application/json") TeamProperties teamProperties,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("incidentId") String incidentId,
+            @BodyParam("application/json") TeamInformationInner teamProperties, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/alerts")
@@ -653,8 +653,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -701,8 +700,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -746,7 +744,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights on successful completion of {@link Mono}.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IncidentInner> createOrUpdateAsync(String resourceGroupName, String workspaceName, String incidentId,
@@ -766,7 +764,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights along with {@link Response}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IncidentInner> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
@@ -784,7 +782,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public IncidentInner createOrUpdate(String resourceGroupName, String workspaceName, String incidentId,
@@ -934,7 +932,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TeamInformationInner>> createTeamWithResponseAsync(String resourceGroupName,
-        String workspaceName, String incidentId, TeamProperties teamProperties) {
+        String workspaceName, String incidentId, TeamInformationInner teamProperties) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -981,7 +979,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TeamInformationInner>> createTeamWithResponseAsync(String resourceGroupName,
-        String workspaceName, String incidentId, TeamProperties teamProperties, Context context) {
+        String workspaceName, String incidentId, TeamInformationInner teamProperties, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1026,7 +1024,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TeamInformationInner> createTeamAsync(String resourceGroupName, String workspaceName,
-        String incidentId, TeamProperties teamProperties) {
+        String incidentId, TeamInformationInner teamProperties) {
         return createTeamWithResponseAsync(resourceGroupName, workspaceName, incidentId, teamProperties)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -1046,7 +1044,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TeamInformationInner> createTeamWithResponse(String resourceGroupName, String workspaceName,
-        String incidentId, TeamProperties teamProperties, Context context) {
+        String incidentId, TeamInformationInner teamProperties, Context context) {
         return createTeamWithResponseAsync(resourceGroupName, workspaceName, incidentId, teamProperties, context)
             .block();
     }
@@ -1065,7 +1063,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public TeamInformationInner createTeam(String resourceGroupName, String workspaceName, String incidentId,
-        TeamProperties teamProperties) {
+        TeamInformationInner teamProperties) {
         return createTeamWithResponse(resourceGroupName, workspaceName, incidentId, teamProperties, Context.NONE)
             .getValue();
     }

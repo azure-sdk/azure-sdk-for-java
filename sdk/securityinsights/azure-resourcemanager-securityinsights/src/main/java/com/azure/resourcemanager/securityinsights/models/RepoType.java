@@ -17,9 +17,9 @@ public final class RepoType extends ExpandableStringEnum<RepoType> {
     public static final RepoType GITHUB = fromString("Github");
 
     /**
-     * Static value DevOps for RepoType.
+     * Static value AzureDevOps for RepoType.
      */
-    public static final RepoType DEV_OPS = fromString("DevOps");
+    public static final RepoType AZURE_DEV_OPS = fromString("AzureDevOps");
 
     /**
      * Creates a new instance of RepoType value.

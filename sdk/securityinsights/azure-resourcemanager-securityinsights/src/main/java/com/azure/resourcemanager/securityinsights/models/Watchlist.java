@@ -202,6 +202,13 @@ public interface Watchlist {
     String uploadStatus();
 
     /**
+     * Gets the provisioningState property: The triggered analytics rule run provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
      * Gets the name of the resource group.
      * 
      * @return the name of the resource group.
@@ -257,7 +264,8 @@ public interface Watchlist {
             DefinitionStages.WithWatchlistType, DefinitionStages.WithWatchlistAlias, DefinitionStages.WithIsDeleted,
             DefinitionStages.WithLabels, DefinitionStages.WithDefaultDuration, DefinitionStages.WithTenantId,
             DefinitionStages.WithNumberOfLinesToSkip, DefinitionStages.WithRawContent,
-            DefinitionStages.WithItemsSearchKey, DefinitionStages.WithContentType, DefinitionStages.WithUploadStatus {
+            DefinitionStages.WithItemsSearchKey, DefinitionStages.WithContentType, DefinitionStages.WithUploadStatus,
+            DefinitionStages.WithProvisioningState {
             /**
              * Executes the create request.
              * 
@@ -569,6 +577,19 @@ public interface Watchlist {
              */
             WithCreate withUploadStatus(String uploadStatus);
         }
+
+        /**
+         * The stage of the Watchlist definition allowing to specify provisioningState.
+         */
+        interface WithProvisioningState {
+            /**
+             * Specifies the provisioningState property: The triggered analytics rule run provisioning state.
+             * 
+             * @param provisioningState The triggered analytics rule run provisioning state.
+             * @return the next definition stage.
+             */
+            WithCreate withProvisioningState(ProvisioningState provisioningState);
+        }
     }
 
     /**
@@ -587,7 +608,7 @@ public interface Watchlist {
         UpdateStages.WithWatchlistType, UpdateStages.WithWatchlistAlias, UpdateStages.WithIsDeleted,
         UpdateStages.WithLabels, UpdateStages.WithDefaultDuration, UpdateStages.WithTenantId,
         UpdateStages.WithNumberOfLinesToSkip, UpdateStages.WithRawContent, UpdateStages.WithItemsSearchKey,
-        UpdateStages.WithContentType, UpdateStages.WithUploadStatus {
+        UpdateStages.WithContentType, UpdateStages.WithUploadStatus, UpdateStages.WithProvisioningState {
         /**
          * Executes the update request.
          * 
@@ -902,6 +923,19 @@ public interface Watchlist {
              * @return the next definition stage.
              */
             Update withUploadStatus(String uploadStatus);
+        }
+
+        /**
+         * The stage of the Watchlist update allowing to specify provisioningState.
+         */
+        interface WithProvisioningState {
+            /**
+             * Specifies the provisioningState property: The triggered analytics rule run provisioning state.
+             * 
+             * @param provisioningState The triggered analytics rule run provisioning state.
+             * @return the next definition stage.
+             */
+            Update withProvisioningState(ProvisioningState provisioningState);
         }
     }
 

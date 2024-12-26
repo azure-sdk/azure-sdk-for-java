@@ -24,7 +24,7 @@ public final class IoTDeviceEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.IO_TDEVICE;
+    private EntityKindEnum kind = EntityKindEnum.IO_TDEVICE;
 
     /*
      * IoTDevice entity properties
@@ -63,7 +63,7 @@ public final class IoTDeviceEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -450,7 +450,7 @@ public final class IoTDeviceEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedIoTDeviceEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedIoTDeviceEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedIoTDeviceEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedIoTDeviceEntity.innerProperties = IoTDeviceEntityProperties.fromJson(reader);
                 } else {

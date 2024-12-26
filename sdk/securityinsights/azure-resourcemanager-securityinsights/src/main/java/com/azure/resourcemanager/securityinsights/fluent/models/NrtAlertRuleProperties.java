@@ -17,6 +17,7 @@ import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
 import com.azure.resourcemanager.securityinsights.models.IncidentConfiguration;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -58,6 +59,11 @@ public final class NrtAlertRuleProperties implements JsonSerializable<NrtAlertRu
      * The techniques of the alert rule
      */
     private List<String> techniques;
+
+    /*
+     * The sub-techniques of the alert rule
+     */
+    private List<String> subTechniques;
 
     /*
      * The display name for alerts created by this alert rule.
@@ -113,6 +119,11 @@ public final class NrtAlertRuleProperties implements JsonSerializable<NrtAlertRu
      * The event grouping settings.
      */
     private EventGroupingSettings eventGroupingSettings;
+
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
 
     /**
      * Creates an instance of NrtAlertRuleProperties class.
@@ -239,6 +250,26 @@ public final class NrtAlertRuleProperties implements JsonSerializable<NrtAlertRu
      */
     public NrtAlertRuleProperties withTechniques(List<String> techniques) {
         this.techniques = techniques;
+        return this;
+    }
+
+    /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the NrtAlertRuleProperties object itself.
+     */
+    public NrtAlertRuleProperties withSubTechniques(List<String> subTechniques) {
+        this.subTechniques = subTechniques;
         return this;
     }
 
@@ -458,6 +489,26 @@ public final class NrtAlertRuleProperties implements JsonSerializable<NrtAlertRu
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRuleProperties object itself.
+     */
+    public NrtAlertRuleProperties withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -494,6 +545,9 @@ public final class NrtAlertRuleProperties implements JsonSerializable<NrtAlertRu
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
         }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
+        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(NrtAlertRuleProperties.class);
@@ -517,12 +571,16 @@ public final class NrtAlertRuleProperties implements JsonSerializable<NrtAlertRu
         jsonWriter.writeArrayField("tactics", this.tactics,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("techniques", this.techniques, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("subTechniques", this.subTechniques,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("incidentConfiguration", this.incidentConfiguration);
         jsonWriter.writeMapField("customDetails", this.customDetails, (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("entityMappings", this.entityMappings,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("alertDetailsOverride", this.alertDetailsOverride);
         jsonWriter.writeJsonField("eventGroupingSettings", this.eventGroupingSettings);
+        jsonWriter.writeArrayField("sentinelEntitiesMappings", this.sentinelEntitiesMappings,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -568,6 +626,9 @@ public final class NrtAlertRuleProperties implements JsonSerializable<NrtAlertRu
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedNrtAlertRuleProperties.techniques = techniques;
+                } else if ("subTechniques".equals(fieldName)) {
+                    List<String> subTechniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedNrtAlertRuleProperties.subTechniques = subTechniques;
                 } else if ("lastModifiedUtc".equals(fieldName)) {
                     deserializedNrtAlertRuleProperties.lastModifiedUtc = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
@@ -583,6 +644,10 @@ public final class NrtAlertRuleProperties implements JsonSerializable<NrtAlertRu
                     deserializedNrtAlertRuleProperties.alertDetailsOverride = AlertDetailsOverride.fromJson(reader);
                 } else if ("eventGroupingSettings".equals(fieldName)) {
                     deserializedNrtAlertRuleProperties.eventGroupingSettings = EventGroupingSettings.fromJson(reader);
+                } else if ("sentinelEntitiesMappings".equals(fieldName)) {
+                    List<SentinelEntityMapping> sentinelEntitiesMappings
+                        = reader.readArray(reader1 -> SentinelEntityMapping.fromJson(reader1));
+                    deserializedNrtAlertRuleProperties.sentinelEntitiesMappings = sentinelEntitiesMappings;
                 } else {
                     reader.skipChildren();
                 }

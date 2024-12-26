@@ -14,7 +14,7 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import java.io.IOException;
 
 /**
- * AAD (Azure Active Directory) data connector properties.
+ * AADIP (Azure Active Directory Identity Protection) data connector properties.
  */
 @Fluent
 public final class AadDataConnectorProperties extends DataConnectorTenantId {

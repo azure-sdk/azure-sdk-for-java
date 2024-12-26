@@ -18,9 +18,14 @@ import java.io.IOException;
 @Fluent
 public final class MtpDataConnectorDataTypes implements JsonSerializable<MtpDataConnectorDataTypes> {
     /*
-     * Data type for Microsoft Threat Protection Platforms data connector.
+     * Incidents data type for Microsoft Threat Protection Platforms data connector.
      */
     private MtpDataConnectorDataTypesIncidents incidents;
+
+    /*
+     * Alerts data type for Microsoft Threat Protection Platforms data connector.
+     */
+    private MtpDataConnectorDataTypesAlerts alerts;
 
     /**
      * Creates an instance of MtpDataConnectorDataTypes class.
@@ -29,7 +34,7 @@ public final class MtpDataConnectorDataTypes implements JsonSerializable<MtpData
     }
 
     /**
-     * Get the incidents property: Data type for Microsoft Threat Protection Platforms data connector.
+     * Get the incidents property: Incidents data type for Microsoft Threat Protection Platforms data connector.
      * 
      * @return the incidents value.
      */
@@ -38,13 +43,33 @@ public final class MtpDataConnectorDataTypes implements JsonSerializable<MtpData
     }
 
     /**
-     * Set the incidents property: Data type for Microsoft Threat Protection Platforms data connector.
+     * Set the incidents property: Incidents data type for Microsoft Threat Protection Platforms data connector.
      * 
      * @param incidents the incidents value to set.
      * @return the MtpDataConnectorDataTypes object itself.
      */
     public MtpDataConnectorDataTypes withIncidents(MtpDataConnectorDataTypesIncidents incidents) {
         this.incidents = incidents;
+        return this;
+    }
+
+    /**
+     * Get the alerts property: Alerts data type for Microsoft Threat Protection Platforms data connector.
+     * 
+     * @return the alerts value.
+     */
+    public MtpDataConnectorDataTypesAlerts alerts() {
+        return this.alerts;
+    }
+
+    /**
+     * Set the alerts property: Alerts data type for Microsoft Threat Protection Platforms data connector.
+     * 
+     * @param alerts the alerts value to set.
+     * @return the MtpDataConnectorDataTypes object itself.
+     */
+    public MtpDataConnectorDataTypes withAlerts(MtpDataConnectorDataTypesAlerts alerts) {
+        this.alerts = alerts;
         return this;
     }
 
@@ -61,6 +86,9 @@ public final class MtpDataConnectorDataTypes implements JsonSerializable<MtpData
         } else {
             incidents().validate();
         }
+        if (alerts() != null) {
+            alerts().validate();
+        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(MtpDataConnectorDataTypes.class);
@@ -72,6 +100,7 @@ public final class MtpDataConnectorDataTypes implements JsonSerializable<MtpData
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("incidents", this.incidents);
+        jsonWriter.writeJsonField("alerts", this.alerts);
         return jsonWriter.writeEndObject();
     }
 
@@ -94,6 +123,8 @@ public final class MtpDataConnectorDataTypes implements JsonSerializable<MtpData
                 if ("incidents".equals(fieldName)) {
                     deserializedMtpDataConnectorDataTypes.incidents
                         = MtpDataConnectorDataTypesIncidents.fromJson(reader);
+                } else if ("alerts".equals(fieldName)) {
+                    deserializedMtpDataConnectorDataTypes.alerts = MtpDataConnectorDataTypesAlerts.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

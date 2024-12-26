@@ -30,8 +30,8 @@ public final class EnrichmentIpGeodataImpl implements EnrichmentIpGeodata {
         return this.innerModel().city();
     }
 
-    public Integer cityCf() {
-        return this.innerModel().cityCf();
+    public Integer cityConfidenceFactor() {
+        return this.innerModel().cityConfidenceFactor();
     }
 
     public String continent() {
@@ -42,8 +42,8 @@ public final class EnrichmentIpGeodataImpl implements EnrichmentIpGeodata {
         return this.innerModel().country();
     }
 
-    public Integer countryCf() {
-        return this.innerModel().countryCf();
+    public Integer countryConfidenceFactor() {
+        return this.innerModel().countryConfidenceFactor();
     }
 
     public String ipAddr() {
@@ -78,8 +78,8 @@ public final class EnrichmentIpGeodataImpl implements EnrichmentIpGeodata {
         return this.innerModel().state();
     }
 
-    public Integer stateCf() {
-        return this.innerModel().stateCf();
+    public Integer stateConfidenceFactor() {
+        return this.innerModel().stateConfidenceFactor();
     }
 
     public String stateCode() {

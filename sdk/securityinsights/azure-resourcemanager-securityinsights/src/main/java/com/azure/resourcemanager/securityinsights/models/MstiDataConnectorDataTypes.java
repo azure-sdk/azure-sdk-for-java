@@ -20,38 +20,12 @@ public final class MstiDataConnectorDataTypes implements JsonSerializable<MstiDa
     /*
      * Data type for Microsoft Threat Intelligence Platforms data connector.
      */
-    private MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl;
-
-    /*
-     * Data type for Microsoft Threat Intelligence Platforms data connector.
-     */
     private MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed microsoftEmergingThreatFeed;
 
     /**
      * Creates an instance of MstiDataConnectorDataTypes class.
      */
     public MstiDataConnectorDataTypes() {
-    }
-
-    /**
-     * Get the bingSafetyPhishingUrl property: Data type for Microsoft Threat Intelligence Platforms data connector.
-     * 
-     * @return the bingSafetyPhishingUrl value.
-     */
-    public MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl() {
-        return this.bingSafetyPhishingUrl;
-    }
-
-    /**
-     * Set the bingSafetyPhishingUrl property: Data type for Microsoft Threat Intelligence Platforms data connector.
-     * 
-     * @param bingSafetyPhishingUrl the bingSafetyPhishingUrl value to set.
-     * @return the MstiDataConnectorDataTypes object itself.
-     */
-    public MstiDataConnectorDataTypes
-        withBingSafetyPhishingUrl(MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl) {
-        this.bingSafetyPhishingUrl = bingSafetyPhishingUrl;
-        return this;
     }
 
     /**
@@ -83,13 +57,6 @@ public final class MstiDataConnectorDataTypes implements JsonSerializable<MstiDa
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (bingSafetyPhishingUrl() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property bingSafetyPhishingUrl in model MstiDataConnectorDataTypes"));
-        } else {
-            bingSafetyPhishingUrl().validate();
-        }
         if (microsoftEmergingThreatFeed() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -107,7 +74,6 @@ public final class MstiDataConnectorDataTypes implements JsonSerializable<MstiDa
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("bingSafetyPhishingURL", this.bingSafetyPhishingUrl);
         jsonWriter.writeJsonField("microsoftEmergingThreatFeed", this.microsoftEmergingThreatFeed);
         return jsonWriter.writeEndObject();
     }
@@ -128,10 +94,7 @@ public final class MstiDataConnectorDataTypes implements JsonSerializable<MstiDa
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("bingSafetyPhishingURL".equals(fieldName)) {
-                    deserializedMstiDataConnectorDataTypes.bingSafetyPhishingUrl
-                        = MstiDataConnectorDataTypesBingSafetyPhishingUrl.fromJson(reader);
-                } else if ("microsoftEmergingThreatFeed".equals(fieldName)) {
+                if ("microsoftEmergingThreatFeed".equals(fieldName)) {
                     deserializedMstiDataConnectorDataTypes.microsoftEmergingThreatFeed
                         = MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed.fromJson(reader);
                 } else {

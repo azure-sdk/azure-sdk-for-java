@@ -23,7 +23,7 @@ public final class MailboxEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.MAILBOX;
+    private EntityKindEnum kind = EntityKindEnum.MAILBOX;
 
     /*
      * Mailbox entity properties
@@ -62,7 +62,7 @@ public final class MailboxEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -220,7 +220,7 @@ public final class MailboxEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedMailboxEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedMailboxEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedMailboxEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedMailboxEntity.innerProperties = MailboxEntityProperties.fromJson(reader);
                 } else {

@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.resourcemanager.securityinsights.models.EntityQueriesKind;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplateKind;
 
 /**
  * Samples for EntityQueries List.
@@ -12,7 +12,7 @@ import com.azure.resourcemanager.securityinsights.models.EntityQueriesKind;
 public final class EntityQueriesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entityQueries/GetEntityQueries.json
      */
     /**
@@ -22,6 +22,6 @@ public final class EntityQueriesListSamples {
      */
     public static void getAllEntityQueries(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.entityQueries()
-            .list("myRg", "myWorkspace", EntityQueriesKind.EXPANSION, com.azure.core.util.Context.NONE);
+            .list("myRg", "myWorkspace", EntityQueryTemplateKind.EXPANSION, com.azure.core.util.Context.NONE);
     }
 }

@@ -74,6 +74,11 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
      */
     private List<String> techniques;
 
+    /*
+     * The sub-techniques of the alert rule
+     */
+    private List<String> subTechniques;
+
     /**
      * Creates an instance of FusionAlertRuleProperties class.
      */
@@ -216,6 +221,15 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -295,6 +309,9 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedFusionAlertRuleProperties.techniques = techniques;
+                } else if ("subTechniques".equals(fieldName)) {
+                    List<String> subTechniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedFusionAlertRuleProperties.subTechniques = subTechniques;
                 } else {
                     reader.skipChildren();
                 }

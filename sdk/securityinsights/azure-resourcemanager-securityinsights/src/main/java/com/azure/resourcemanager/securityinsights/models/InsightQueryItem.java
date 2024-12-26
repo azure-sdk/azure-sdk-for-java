@@ -8,13 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryItemInner;
 import java.io.IOException;
 
 /**
  * Represents Insight Query.
  */
 @Fluent
-public final class InsightQueryItem extends EntityQueryItem {
+public final class InsightQueryItem extends EntityQueryItemInner {
     /*
      * The kind of the entity query
      */

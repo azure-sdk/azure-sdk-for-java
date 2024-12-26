@@ -8,6 +8,10 @@
 - [Get](#actions_get)
 - [ListByAlertRule](#actions_listbyalertrule)
 
+## AlertRuleOperation
+
+- [TriggerRuleRun](#alertruleoperation_triggerrulerun)
+
 ## AlertRuleTemplates
 
 - [Get](#alertruletemplates_get)
@@ -27,6 +31,11 @@
 - [Get](#automationrules_get)
 - [List](#automationrules_list)
 
+## BillingStatistics
+
+- [Get](#billingstatistics_get)
+- [List](#billingstatistics_list)
+
 ## BookmarkOperation
 
 - [Expand](#bookmarkoperation_expand)
@@ -45,6 +54,43 @@
 - [Get](#bookmarks_get)
 - [List](#bookmarks_list)
 
+## BusinessApplicationAgentOperation
+
+- [Get](#businessapplicationagentoperation_get)
+
+## BusinessApplicationAgents
+
+- [CreateOrUpdate](#businessapplicationagents_createorupdate)
+- [Delete](#businessapplicationagents_delete)
+- [List](#businessapplicationagents_list)
+
+## ContentPackageOperation
+
+- [Install](#contentpackageoperation_install)
+- [Uninstall](#contentpackageoperation_uninstall)
+
+## ContentPackages
+
+- [Get](#contentpackages_get)
+- [List](#contentpackages_list)
+
+## ContentTemplateOperation
+
+- [Delete](#contenttemplateoperation_delete)
+- [Get](#contenttemplateoperation_get)
+- [Install](#contenttemplateoperation_install)
+
+## ContentTemplates
+
+- [List](#contenttemplates_list)
+
+## DataConnectorDefinitions
+
+- [CreateOrUpdate](#dataconnectordefinitions_createorupdate)
+- [Delete](#dataconnectordefinitions_delete)
+- [Get](#dataconnectordefinitions_get)
+- [List](#dataconnectordefinitions_list)
+
 ## DataConnectors
 
 - [Connect](#dataconnectors_connect)
@@ -58,10 +104,6 @@
 
 - [Post](#dataconnectorscheckrequirementsoperation_post)
 
-## DomainWhois
-
-- [Get](#domainwhois_get)
-
 ## Entities
 
 - [Expand](#entities_expand)
@@ -69,6 +111,7 @@
 - [GetInsights](#entities_getinsights)
 - [List](#entities_list)
 - [Queries](#entities_queries)
+- [RunPlaybook](#entities_runplaybook)
 
 ## EntitiesGetTimeline
 
@@ -101,6 +144,39 @@
 - [Get](#fileimports_get)
 - [List](#fileimports_list)
 
+## Get
+
+- [SingleRecommendation](#get_singlerecommendation)
+
+## GetRecommendations
+
+- [List](#getrecommendations_list)
+
+## GetTriggeredAnalyticsRuleRuns
+
+- [List](#gettriggeredanalyticsruleruns_list)
+
+## HuntComments
+
+- [CreateOrUpdate](#huntcomments_createorupdate)
+- [Delete](#huntcomments_delete)
+- [Get](#huntcomments_get)
+- [List](#huntcomments_list)
+
+## HuntRelations
+
+- [CreateOrUpdate](#huntrelations_createorupdate)
+- [Delete](#huntrelations_delete)
+- [Get](#huntrelations_get)
+- [List](#huntrelations_list)
+
+## Hunts
+
+- [CreateOrUpdate](#hunts_createorupdate)
+- [Delete](#hunts_delete)
+- [Get](#hunts_get)
+- [List](#hunts_list)
+
 ## IncidentComments
 
 - [CreateOrUpdate](#incidentcomments_createorupdate)
@@ -115,6 +191,13 @@
 - [Get](#incidentrelations_get)
 - [List](#incidentrelations_list)
 
+## IncidentTasks
+
+- [CreateOrUpdate](#incidenttasks_createorupdate)
+- [Delete](#incidenttasks_delete)
+- [Get](#incidenttasks_get)
+- [List](#incidenttasks_list)
+
 ## Incidents
 
 - [CreateOrUpdate](#incidents_createorupdate)
@@ -126,10 +209,6 @@
 - [ListBookmarks](#incidents_listbookmarks)
 - [ListEntities](#incidents_listentities)
 - [RunPlaybook](#incidents_runplaybook)
-
-## IpGeodata
-
-- [Get](#ipgeodata_get)
 
 ## Metadata
 
@@ -149,12 +228,37 @@
 
 - [List](#operations_list)
 
+## ProductPackageOperation
+
+- [Get](#productpackageoperation_get)
+
+## ProductPackages
+
+- [List](#productpackages_list)
+
 ## ProductSettings
 
 - [Delete](#productsettings_delete)
 - [Get](#productsettings_get)
 - [List](#productsettings_list)
 - [Update](#productsettings_update)
+
+## ProductTemplateOperation
+
+- [Get](#producttemplateoperation_get)
+
+## ProductTemplates
+
+- [List](#producttemplates_list)
+
+## Reevaluate
+
+- [Recommendation](#reevaluate_recommendation)
+
+## ResourceProvider
+
+- [ListGeodataByIp](#resourceprovider_listgeodatabyip)
+- [ListWhoisByDomain](#resourceprovider_listwhoisbydomain)
 
 ## SecurityMLAnalyticsSettings
 
@@ -181,6 +285,21 @@
 - [Get](#sourcecontrolsoperation_get)
 - [List](#sourcecontrolsoperation_list)
 
+## Systems
+
+- [CreateOrUpdate](#systems_createorupdate)
+- [Delete](#systems_delete)
+- [Get](#systems_get)
+- [List](#systems_list)
+- [ListActions](#systems_listactions)
+- [ReportActionStatus](#systems_reportactionstatus)
+- [UndoAction](#systems_undoaction)
+
+## ThreatIntelligence
+
+- [Count](#threatintelligence_count)
+- [Query](#threatintelligence_query)
+
 ## ThreatIntelligenceIndicator
 
 - [AppendTags](#threatintelligenceindicator_appendtags)
@@ -199,6 +318,14 @@
 
 - [List](#threatintelligenceindicatorsoperation_list)
 
+## TriggeredAnalyticsRuleRunOperation
+
+- [Get](#triggeredanalyticsrulerunoperation_get)
+
+## Update
+
+- [Recommendation](#update_recommendation)
+
 ## WatchlistItems
 
 - [CreateOrUpdate](#watchlistitems_createorupdate)
@@ -212,6 +339,41 @@
 - [Delete](#watchlists_delete)
 - [Get](#watchlists_get)
 - [List](#watchlists_list)
+
+## WorkspaceManagerAssignmentJobs
+
+- [Create](#workspacemanagerassignmentjobs_create)
+- [Delete](#workspacemanagerassignmentjobs_delete)
+- [Get](#workspacemanagerassignmentjobs_get)
+- [List](#workspacemanagerassignmentjobs_list)
+
+## WorkspaceManagerAssignments
+
+- [CreateOrUpdate](#workspacemanagerassignments_createorupdate)
+- [Delete](#workspacemanagerassignments_delete)
+- [Get](#workspacemanagerassignments_get)
+- [List](#workspacemanagerassignments_list)
+
+## WorkspaceManagerConfigurations
+
+- [CreateOrUpdate](#workspacemanagerconfigurations_createorupdate)
+- [Delete](#workspacemanagerconfigurations_delete)
+- [Get](#workspacemanagerconfigurations_get)
+- [List](#workspacemanagerconfigurations_list)
+
+## WorkspaceManagerGroups
+
+- [CreateOrUpdate](#workspacemanagergroups_createorupdate)
+- [Delete](#workspacemanagergroups_delete)
+- [Get](#workspacemanagergroups_get)
+- [List](#workspacemanagergroups_list)
+
+## WorkspaceManagerMembers
+
+- [CreateOrUpdate](#workspacemanagermembers_createorupdate)
+- [Delete](#workspacemanagermembers_delete)
+- [Get](#workspacemanagermembers_get)
+- [List](#workspacemanagermembers_list)
 ### Actions_CreateOrUpdate
 
 ```java
@@ -221,7 +383,7 @@
 public final class ActionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * actions/CreateActionOfAlertRule.json
      */
     /**
@@ -253,7 +415,7 @@ public final class ActionsCreateOrUpdateSamples {
 public final class ActionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * actions/DeleteActionOfAlertRule.json
      */
     /**
@@ -279,7 +441,7 @@ public final class ActionsDeleteSamples {
 public final class ActionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * actions/GetActionOfAlertRuleById.json
      */
     /**
@@ -305,7 +467,7 @@ public final class ActionsGetSamples {
 public final class ActionsListByAlertRuleSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * actions/GetAllActionsByAlertRule.json
      */
     /**
@@ -322,6 +484,35 @@ public final class ActionsListByAlertRuleSamples {
 }
 ```
 
+### AlertRuleOperation_TriggerRuleRun
+
+```java
+import com.azure.resourcemanager.securityinsights.models.AnalyticsRuleRunTrigger;
+import java.time.OffsetDateTime;
+
+/**
+ * Samples for AlertRuleOperation TriggerRuleRun.
+ */
+public final class AlertRuleOperationTriggerRuleRunSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * triggeredAnalyticsRuleRuns/triggerRuleRun_Post.json
+     */
+    /**
+     * Sample code: triggerRuleRun_Post.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void triggerRuleRunPost(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.alertRuleOperations()
+            .triggerRuleRun("myRg", "myWorkspace", "65360bb0-8986-4ade-a89d-af3cf44d28aa",
+                new AnalyticsRuleRunTrigger().withExecutionTimeUtc(OffsetDateTime.parse("2022-12-22T15:37:03.074Z")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### AlertRuleTemplates_Get
 
 ```java
@@ -331,7 +522,7 @@ public final class ActionsListByAlertRuleSamples {
 public final class AlertRuleTemplatesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRuleTemplates/GetAlertRuleTemplateById.json
      */
     /**
@@ -357,7 +548,7 @@ public final class AlertRuleTemplatesGetSamples {
 public final class AlertRuleTemplatesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRuleTemplates/GetAlertRuleTemplates.json
      */
     /**
@@ -377,6 +568,8 @@ public final class AlertRuleTemplatesListSamples {
 ```java
 import com.azure.resourcemanager.securityinsights.models.AlertDetail;
 import com.azure.resourcemanager.securityinsights.models.AlertDetailsOverride;
+import com.azure.resourcemanager.securityinsights.models.AlertProperty;
+import com.azure.resourcemanager.securityinsights.models.AlertPropertyMapping;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
@@ -396,6 +589,7 @@ import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityIncide
 import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityProductName;
 import com.azure.resourcemanager.securityinsights.models.NrtAlertRule;
 import com.azure.resourcemanager.securityinsights.models.ScheduledAlertRule;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TriggerOperator;
 import java.time.Duration;
 import java.util.Arrays;
@@ -408,7 +602,7 @@ import java.util.Map;
 public final class AlertRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateFusionAlertRule.json
      */
     /**
@@ -537,7 +731,7 @@ public final class AlertRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateMicrosoftSecurityIncidentCreationAlertRule.json
      */
     /**
@@ -558,7 +752,7 @@ public final class AlertRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateScheduledAlertRule.json
      */
     /**
@@ -602,15 +796,23 @@ public final class AlertRulesCreateOrUpdateSamples {
                         new EntityMapping().withEntityType(EntityMappingType.IP)
                             .withFieldMappings(Arrays
                                 .asList(new FieldMapping().withIdentifier("Address").withColumnName("ComputerIP")))))
-                    .withAlertDetailsOverride(
-                        new AlertDetailsOverride().withAlertDisplayNameFormat("Alert from {{Computer}}")
-                            .withAlertDescriptionFormat("Suspicious activity was made by {{ComputerIP}}")),
+                    .withAlertDetailsOverride(new AlertDetailsOverride()
+                        .withAlertDisplayNameFormat("Alert from {{Computer}}")
+                        .withAlertDescriptionFormat("Suspicious activity was made by {{ComputerIP}}")
+                        .withAlertDynamicProperties(Arrays.asList(
+                            new AlertPropertyMapping().withAlertProperty(AlertProperty.PRODUCT_COMPONENT_NAME)
+                                .withValue("ProductComponentNameCustomColumn"),
+                            new AlertPropertyMapping().withAlertProperty(AlertProperty.PRODUCT_NAME)
+                                .withValue("ProductNameCustomColumn"),
+                            new AlertPropertyMapping().withAlertProperty(AlertProperty.ALERT_LINK).withValue("Link"))))
+                    .withSentinelEntitiesMappings(
+                        Arrays.asList(new SentinelEntityMapping().withColumnName("Entities"))),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateFusionAlertRuleWithFusionScenarioExclusion.json
      */
     /**
@@ -739,7 +941,7 @@ public final class AlertRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateNrtAlertRule.json
      */
     /**
@@ -796,7 +998,7 @@ public final class AlertRulesCreateOrUpdateSamples {
 public final class AlertRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/DeleteAlertRule.json
      */
     /**
@@ -821,7 +1023,7 @@ public final class AlertRulesDeleteSamples {
 public final class AlertRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetScheduledAlertRule.json
      */
     /**
@@ -838,7 +1040,7 @@ public final class AlertRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetNrtAlertRule.json
      */
     /**
@@ -854,7 +1056,7 @@ public final class AlertRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetFusionAlertRule.json
      */
     /**
@@ -869,7 +1071,7 @@ public final class AlertRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetMicrosoftSecurityIncidentCreationAlertRule.json
      */
     /**
@@ -895,7 +1097,7 @@ public final class AlertRulesGetSamples {
 public final class AlertRulesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/GetAllAlertRules.json
      */
     /**
@@ -922,7 +1124,7 @@ import java.util.List;
 public final class AutomationRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * automationRules/AutomationRules_CreateOrUpdate.json
      */
     /**
@@ -953,7 +1155,7 @@ public final class AutomationRulesCreateOrUpdateSamples {
 public final class AutomationRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * automationRules/AutomationRules_Delete.json
      */
     /**
@@ -979,7 +1181,7 @@ public final class AutomationRulesDeleteSamples {
 public final class AutomationRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * automationRules/AutomationRules_Get.json
      */
     /**
@@ -1004,7 +1206,7 @@ public final class AutomationRulesGetSamples {
 public final class AutomationRulesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * automationRules/AutomationRules_List.json
      */
     /**
@@ -1014,6 +1216,55 @@ public final class AutomationRulesListSamples {
      */
     public static void automationRulesList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.automationRules().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BillingStatistics_Get
+
+```java
+/**
+ * Samples for BillingStatistics Get.
+ */
+public final class BillingStatisticsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * billingStatistics/GetBillingStatistic.json
+     */
+    /**
+     * Sample code: Get a billing statistic.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getABillingStatistic(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.billingStatistics()
+            .getWithResponse("myRg", "myWorkspace", "sapSolutionUsage", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BillingStatistics_List
+
+```java
+/**
+ * Samples for BillingStatistics List.
+ */
+public final class BillingStatisticsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * billingStatistics/GetAllBillingStatistics.json
+     */
+    /**
+     * Sample code: Get all Microsoft Sentinel billing statistics.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAllMicrosoftSentinelBillingStatistics(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.billingStatistics().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1031,7 +1282,7 @@ import java.util.UUID;
 public final class BookmarkOperationExpandSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/expand/PostExpandBookmark.json
      */
     /**
@@ -1059,7 +1310,7 @@ public final class BookmarkOperationExpandSamples {
 public final class BookmarkRelationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/relations/CreateBookmarkRelation.json
      */
     /**
@@ -1088,7 +1339,7 @@ public final class BookmarkRelationsCreateOrUpdateSamples {
 public final class BookmarkRelationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/relations/DeleteBookmarkRelation.json
      */
     /**
@@ -1114,7 +1365,7 @@ public final class BookmarkRelationsDeleteSamples {
 public final class BookmarkRelationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/relations/GetBookmarkRelationByName.json
      */
     /**
@@ -1140,7 +1391,7 @@ public final class BookmarkRelationsGetSamples {
 public final class BookmarkRelationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/relations/GetAllBookmarkRelations.json
      */
     /**
@@ -1174,7 +1425,7 @@ import java.util.UUID;
 public final class BookmarksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/CreateBookmark.json
      */
     /**
@@ -1216,7 +1467,7 @@ public final class BookmarksCreateOrUpdateSamples {
 public final class BookmarksDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/DeleteBookmark.json
      */
     /**
@@ -1241,7 +1492,7 @@ public final class BookmarksDeleteSamples {
 public final class BookmarksGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/GetBookmarkById.json
      */
     /**
@@ -1266,7 +1517,7 @@ public final class BookmarksGetSamples {
 public final class BookmarksListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * bookmarks/GetBookmarks.json
      */
     /**
@@ -1276,6 +1527,518 @@ public final class BookmarksListSamples {
      */
     public static void getAllBookmarks(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.bookmarks().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessApplicationAgentOperation_Get
+
+```java
+/**
+ * Samples for BusinessApplicationAgentOperation Get.
+ */
+public final class BusinessApplicationAgentOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/BusinessApplicationAgent_Get.json
+     */
+    /**
+     * Sample code: BusinessApplicationAgent_Get.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        businessApplicationAgentGet(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.businessApplicationAgentOperations()
+            .getWithResponse("myRg", "myWorkspace", "3d69632b-0b60-4af3-8720-77f01a25d34a",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessApplicationAgents_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.securityinsights.models.AgentConfiguration;
+
+/**
+ * Samples for BusinessApplicationAgents CreateOrUpdate.
+ */
+public final class BusinessApplicationAgentsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/BusinessApplicationAgents_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: BusinessApplicationAgents_CreateOrUpdate.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void businessApplicationAgentsCreateOrUpdate(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.businessApplicationAgents()
+            .define("3d69632b-0b60-4af3-8720-77f01a25d34a")
+            .withExistingWorkspace("myRg", "myWorkspace")
+            .withConfiguration((AgentConfiguration) null)
+            .withDisplayName((String) null)
+            .create();
+    }
+}
+```
+
+### BusinessApplicationAgents_Delete
+
+```java
+/**
+ * Samples for BusinessApplicationAgents Delete.
+ */
+public final class BusinessApplicationAgentsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/BusinessApplicationAgents_Delete.json
+     */
+    /**
+     * Sample code: BusinessApplicationAgents_Delete.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        businessApplicationAgentsDelete(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.businessApplicationAgents()
+            .deleteWithResponse("myRg", "myWorkspace", "3d69632b-0b60-4af3-8720-77f01a25d34a",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessApplicationAgents_List
+
+```java
+/**
+ * Samples for BusinessApplicationAgents List.
+ */
+public final class BusinessApplicationAgentsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/BusinessApplicationAgents_List.json
+     */
+    /**
+     * Sample code: BusinessApplicationAgents_List.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        businessApplicationAgentsList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.businessApplicationAgents().list("myRg", "myWorkspace", null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ContentPackageOperation_Install
+
+```java
+import com.azure.resourcemanager.securityinsights.models.PackageKind;
+
+/**
+ * Samples for ContentPackageOperation Install.
+ */
+public final class ContentPackageOperationInstallSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentPackages/InstallPackage.json
+     */
+    /**
+     * Sample code: Install a package to the workspace.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        installAPackageToTheWorkspace(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.contentPackageOperations()
+            .define("str.azure-sentinel-solution-str")
+            .withExistingWorkspace("myRg", "myWorkspace")
+            .withContentId("str.azure-sentinel-solution-str")
+            .withContentProductId("str.azure-sentinel-solution-str-sl-igl6jawr4gwmu")
+            .withContentKind(PackageKind.SOLUTION)
+            .withVersion("2.0.0")
+            .withDisplayName("str")
+            .create();
+    }
+}
+```
+
+### ContentPackageOperation_Uninstall
+
+```java
+/**
+ * Samples for ContentPackageOperation Uninstall.
+ */
+public final class ContentPackageOperationUninstallSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentPackages/UninstallPackage.json
+     */
+    /**
+     * Sample code: Uninstall a package from the workspace.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        uninstallAPackageFromTheWorkspace(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.contentPackageOperations()
+            .uninstallWithResponse("myRg", "myWorkspace", "str.azure-sentinel-solution-str",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ContentPackages_Get
+
+```java
+/**
+ * Samples for ContentPackages Get.
+ */
+public final class ContentPackagesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentPackages/GetPackageById.json
+     */
+    /**
+     * Sample code: Get installed packages by id.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getInstalledPackagesById(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.contentPackages()
+            .getWithResponse("myRg", "myWorkspace", "str.azure-sentinel-solution-str",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ContentPackages_List
+
+```java
+/**
+ * Samples for ContentPackages List.
+ */
+public final class ContentPackagesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentPackages/GetPackages.json
+     */
+    /**
+     * Sample code: Get all available packages.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAllAvailablePackages(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.contentPackages()
+            .list("myRg", "myWorkspace", null, null, null, null, null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ContentTemplateOperation_Delete
+
+```java
+/**
+ * Samples for ContentTemplateOperation Delete.
+ */
+public final class ContentTemplateOperationDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentTemplates/DeleteTemplate.json
+     */
+    /**
+     * Sample code: Delete metadata.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void deleteMetadata(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.contentTemplateOperations()
+            .deleteWithResponse("myRg", "myWorkspace", "8365ebfe-a381-45b7-ad08-7d818070e11f",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ContentTemplateOperation_Get
+
+```java
+/**
+ * Samples for ContentTemplateOperation Get.
+ */
+public final class ContentTemplateOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentTemplates/GetTemplateById.json
+     */
+    /**
+     * Sample code: Get a template.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getATemplate(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.contentTemplateOperations()
+            .getWithResponse("myRg", "myWorkspace", "8365ebfe-a381-45b7-ad08-7d818070e11f",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ContentTemplateOperation_Install
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.securityinsights.models.Kind;
+import com.azure.resourcemanager.securityinsights.models.MetadataAuthor;
+import com.azure.resourcemanager.securityinsights.models.MetadataSource;
+import com.azure.resourcemanager.securityinsights.models.MetadataSupport;
+import com.azure.resourcemanager.securityinsights.models.PackageKind;
+import com.azure.resourcemanager.securityinsights.models.SourceKind;
+import com.azure.resourcemanager.securityinsights.models.SupportTier;
+import java.io.IOException;
+
+/**
+ * Samples for ContentTemplateOperation Install.
+ */
+public final class ContentTemplateOperationInstallSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentTemplates/InstallTemplate.json
+     */
+    /**
+     * Sample code: Get a template.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getATemplate(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager)
+        throws IOException {
+        manager.contentTemplateOperations()
+            .define("str.azure-sentinel-solution-str")
+            .withExistingWorkspace("myRg", "myWorkspace")
+            .withMainTemplate(SerializerFactory.createDefaultManagementSerializerAdapter()
+                .deserialize(
+                    "{\"$schema\":\"https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#\",\"contentVersion\":\"1.0.1\",\"resources\":[{\"name\":\"8365ebfe-a381-45b7-ad08-7d818070e11f\",\"type\":\"Microsoft.SecurityInsights/AlertRuleTemplates\",\"apiVersion\":\"2022-04-01-preview\",\"kind\":\"Scheduled\",\"location\":\"[parameters('workspace-location')]\",\"properties\":{\"description\":\"Creates an incident when a large number of Critical/High severity CrowdStrike Falcon sensor detections is triggered by a single user\",\"displayName\":\"Critical or High Severity Detections by User\",\"enabled\":false,\"query\":\"...\",\"queryFrequency\":\"PT1H\",\"queryPeriod\":\"PT1H\",\"severity\":\"High\",\"status\":\"Available\",\"suppressionDuration\":\"PT1H\",\"suppressionEnabled\":false,\"triggerOperator\":\"GreaterThan\",\"triggerThreshold\":0}},{\"name\":\"[concat(parameters('workspace'),'/Microsoft.SecurityInsights/',concat('AnalyticsRule-', last(split([resourceId('Microsoft.SecurityInsights/AlertRuleTemplates', 8365ebfe-a381-45b7-ad08-7d818070e11f)],'/'))))]\",\"type\":\"Microsoft.OperationalInsights/workspaces/providers/metadata\",\"apiVersion\":\"2022-01-01-preview\",\"properties\":{\"description\":\"CrowdStrike Falcon Endpoint Protection Analytics Rule 1\",\"author\":{\"name\":\"Microsoft\",\"email\":\"support@microsoft.com\"},\"contentId\":\"4465ebde-b381-45f7-ad08-7d818070a11c\",\"kind\":\"AnalyticsRule\",\"parentId\":\"[resourceId('Microsoft.SecurityInsights/AlertRuleTemplates', 8365ebfe-a381-45b7-ad08-7d818070e11f)]\",\"source\":{\"name\":\"str\",\"kind\":\"Solution\",\"sourceId\":\"str.azure-sentinel-solution-str\"},\"support\":{\"name\":\"Microsoft Corporation\",\"email\":\"support@microsoft.com\",\"link\":\"https://support.microsoft.com/\",\"tier\":\"Microsoft\"},\"version\":\"1.0.0\"}}]}",
+                    Object.class, SerializerEncoding.JSON))
+            .withContentId("8365ebfe-a381-45b7-ad08-7d818070e11f")
+            .withContentProductId("str.azure-sentinel-solution-str-ar-cbfe4fndz66bi")
+            .withPackageVersion("1.0.0")
+            .withVersion("1.0.1")
+            .withDisplayName("API Protection workbook template")
+            .withContentKind(Kind.ANALYTICS_RULE)
+            .withSource(new MetadataSource().withKind(SourceKind.SOLUTION)
+                .withName("str")
+                .withSourceId("str.azure-sentinel-solution-str"))
+            .withAuthor(new MetadataAuthor().withName("Microsoft").withEmail("support@microsoft.com"))
+            .withSupport(new MetadataSupport().withTier(SupportTier.MICROSOFT)
+                .withName("Microsoft Corporation")
+                .withEmail("support@microsoft.com")
+                .withLink("https://support.microsoft.com/"))
+            .withPackageId("str.azure-sentinel-solution-str")
+            .withPackageKind(PackageKind.SOLUTION)
+            .withPackageName("str")
+            .create();
+    }
+}
+```
+
+### ContentTemplates_List
+
+```java
+/**
+ * Samples for ContentTemplates List.
+ */
+public final class ContentTemplatesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentTemplates/GetTemplates.json
+     */
+    /**
+     * Sample code: Get all installed templates.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAllInstalledTemplates(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.contentTemplates()
+            .list("myRg", "myWorkspace", null, null, null, null, null, null, null, null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataConnectorDefinitions_CreateOrUpdate
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.securityinsights.models.ConnectivityCriterion;
+import com.azure.resourcemanager.securityinsights.models.ConnectorDataType;
+import com.azure.resourcemanager.securityinsights.models.ConnectorDefinitionsAvailability;
+import com.azure.resourcemanager.securityinsights.models.ConnectorDefinitionsPermissions;
+import com.azure.resourcemanager.securityinsights.models.ConnectorDefinitionsResourceProvider;
+import com.azure.resourcemanager.securityinsights.models.CustomPermissionDetails;
+import com.azure.resourcemanager.securityinsights.models.CustomizableConnectorDefinition;
+import com.azure.resourcemanager.securityinsights.models.CustomizableConnectorUiConfig;
+import com.azure.resourcemanager.securityinsights.models.GraphQuery;
+import com.azure.resourcemanager.securityinsights.models.InstructionStep;
+import com.azure.resourcemanager.securityinsights.models.InstructionStepDetails;
+import com.azure.resourcemanager.securityinsights.models.ProviderPermissionsScope;
+import com.azure.resourcemanager.securityinsights.models.ResourceProviderRequiredPermissions;
+import java.io.IOException;
+import java.util.Arrays;
+
+/**
+ * Samples for DataConnectorDefinitions CreateOrUpdate.
+ */
+public final class DataConnectorDefinitionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectorDefinitions/CreateCustomizableDataConnectorDefinition.json
+     */
+    /**
+     * Sample code: Create data connector definition.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createDataConnectorDefinition(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) throws IOException {
+        manager.dataConnectorDefinitions()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new CustomizableConnectorDefinition().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withConnectorUiConfig(new CustomizableConnectorUiConfig().withTitle("GitHub Enterprise Audit Log")
+                        .withPublisher("GitHub")
+                        .withDescriptionMarkdown(
+                            "The GitHub audit log connector provides the capability to ingest GitHub logs into Azure Sentinel. By connecting GitHub audit logs into Azure Sentinel, you can view this data in workbooks, use it to create custom alerts, and improve your investigation process.")
+                        .withGraphQueries(Arrays.asList(new GraphQuery().withMetricName("Total events received")
+                            .withLegend("GitHub audit log events")
+                            .withBaseQuery("GitHubAuditLogPolling_CL")))
+                        .withDataTypes(Arrays.asList(new ConnectorDataType().withName("GitHubAuditLogPolling_CL")
+                            .withLastDataReceivedQuery(
+                                "GitHubAuditLogPolling_CL \n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)")))
+                        .withConnectivityCriteria(Arrays.asList(new ConnectivityCriterion().withType("IsConnectedQuery")
+                            .withValue(Arrays.asList(
+                                "GitHubAuditLogPolling_CL \n | summarize LastLogReceived = max(TimeGenerated)\n | project IsConnected = LastLogReceived > ago(30d)"))))
+                        .withAvailability(new ConnectorDefinitionsAvailability().withStatus(1).withIsPreview(false))
+                        .withPermissions(new ConnectorDefinitionsPermissions()
+                            .withResourceProvider(Arrays.asList(new ConnectorDefinitionsResourceProvider()
+                                .withProvider("Microsoft.OperationalInsights/workspaces")
+                                .withPermissionsDisplayText("read and write permissions are required.")
+                                .withProviderDisplayName("Workspace")
+                                .withScope(ProviderPermissionsScope.WORKSPACE)
+                                .withRequiredPermissions(new ResourceProviderRequiredPermissions().withRead(false)
+                                    .withWrite(true)
+                                    .withDelete(false)
+                                    .withAction(false))))
+                            .withCustoms(Arrays.asList(new CustomPermissionDetails()
+                                .withName("GitHub API personal token Key")
+                                .withDescription(
+                                    "You need access to GitHub personal token, the key should have 'admin:org' scope"))))
+                        .withInstructionSteps(Arrays.asList(new InstructionStep()
+                            .withTitle("Connect GitHub Enterprise Audit Log to Azure Sentinel")
+                            .withDescription(
+                                "Enable GitHub audit Logs. \n Follow [this](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) to create or find your personal key")
+                            .withInstructions(Arrays.asList(new InstructionStepDetails()
+                                .withParameters(SerializerFactory.createDefaultManagementSerializerAdapter()
+                                    .deserialize(
+                                        "{\"clientIdLabel\":\"Client ID\",\"clientSecretLabel\":\"Client Secret\",\"connectButtonLabel\":\"Connect\",\"disconnectButtonLabel\":\"Disconnect\"}",
+                                        Object.class, SerializerEncoding.JSON))
+                                .withType("OAuthForm")))))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataConnectorDefinitions_Delete
+
+```java
+/**
+ * Samples for DataConnectorDefinitions Delete.
+ */
+public final class DataConnectorDefinitionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectorDefinitions/DeleteDataConnectorDefinitionById.json
+     */
+    /**
+     * Sample code: Delete data connector definition.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        deleteDataConnectorDefinition(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectorDefinitions()
+            .deleteWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataConnectorDefinitions_Get
+
+```java
+/**
+ * Samples for DataConnectorDefinitions Get.
+ */
+public final class DataConnectorDefinitionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectorDefinitions/GetCustomizableDataConnectorDefinitionById.json
+     */
+    /**
+     * Sample code: Get customize data connector definition.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getCustomizeDataConnectorDefinition(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectorDefinitions()
+            .getWithResponse("myRg", "myWorkspace", "763f9fa1-c2d3-4fa2-93e9-bccd4899aa12",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataConnectorDefinitions_List
+
+```java
+/**
+ * Samples for DataConnectorDefinitions List.
+ */
+public final class DataConnectorDefinitionsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectorDefinitions/GetDataConnectorDefinitions.json
+     */
+    /**
+     * Sample code: Get all data connector definitions.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAllDataConnectorDefinitions(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectorDefinitions().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1296,7 +2059,7 @@ import java.util.Arrays;
 public final class DataConnectorsConnectSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/ConnectAPIPollingV2Logs.json
      */
     /**
@@ -1323,7 +2086,7 @@ public final class DataConnectorsConnectSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/ConnectAPIPolling.json
      */
     /**
@@ -1369,10 +2132,26 @@ import com.azure.resourcemanager.securityinsights.models.CodelessUiConnectorConf
 import com.azure.resourcemanager.securityinsights.models.CodelessUiDataConnector;
 import com.azure.resourcemanager.securityinsights.models.ConnectivityType;
 import com.azure.resourcemanager.securityinsights.models.DataTypeState;
+import com.azure.resourcemanager.securityinsights.models.DcrConfiguration;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnector;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnectorDataTypes;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnectorDataTypesDynamics365CdsActivities;
+import com.azure.resourcemanager.securityinsights.models.GcpAuthProperties;
+import com.azure.resourcemanager.securityinsights.models.GcpDataConnector;
+import com.azure.resourcemanager.securityinsights.models.GcpRequestProperties;
 import com.azure.resourcemanager.securityinsights.models.InstructionStepsInstructionsItem;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionConnectorDataTypesLogs;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MstiDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MstiDataConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed;
+import com.azure.resourcemanager.securityinsights.models.MtpDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MtpDataConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MtpDataConnectorDataTypesAlerts;
+import com.azure.resourcemanager.securityinsights.models.MtpDataConnectorDataTypesIncidents;
+import com.azure.resourcemanager.securityinsights.models.MtpFilteredProviders;
+import com.azure.resourcemanager.securityinsights.models.MtpProvider;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectConnectorDataTypes;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectConnectorDataTypesLogs;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectDataConnector;
@@ -1390,6 +2169,9 @@ import com.azure.resourcemanager.securityinsights.models.PermissionsCustomsItem;
 import com.azure.resourcemanager.securityinsights.models.PermissionsResourceProviderItem;
 import com.azure.resourcemanager.securityinsights.models.PollingFrequency;
 import com.azure.resourcemanager.securityinsights.models.ProviderName;
+import com.azure.resourcemanager.securityinsights.models.PurviewAuditConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.PurviewAuditConnectorDataTypesLogs;
+import com.azure.resourcemanager.securityinsights.models.PurviewAuditDataConnector;
 import com.azure.resourcemanager.securityinsights.models.RequiredPermissions;
 import com.azure.resourcemanager.securityinsights.models.SettingType;
 import com.azure.resourcemanager.securityinsights.models.TIDataConnector;
@@ -1408,101 +2190,58 @@ import java.util.Arrays;
 public final class DataConnectorsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CreateOfficeDataConnetor.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateMicrosoftThreatProtectionDataConnetor.json
      */
     /**
-     * Sample code: Creates or updates an Office365 data connector.
+     * Sample code: Creates or updates a MicrosoftThreatProtection data connector.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void createsOrUpdatesAnOffice365DataConnector(
+    public static void createsOrUpdatesAMicrosoftThreatProtectionDataConnector(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.dataConnectors()
             .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
-                new OfficeDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
-                    .withDataTypes(new OfficeDataConnectorDataTypes()
-                        .withExchange(new OfficeDataConnectorDataTypesExchange().withState(DataTypeState.ENABLED))
-                        .withSharePoint(new OfficeDataConnectorDataTypesSharePoint().withState(DataTypeState.ENABLED))
-                        .withTeams(new OfficeDataConnectorDataTypesTeams().withState(DataTypeState.ENABLED)))
+                new MtpDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(new MtpDataConnectorDataTypes()
+                        .withIncidents(new MtpDataConnectorDataTypesIncidents().withState(DataTypeState.DISABLED))
+                        .withAlerts(new MtpDataConnectorDataTypesAlerts().withState(DataTypeState.ENABLED)))
+                    .withFilteredProviders(new MtpFilteredProviders()
+                        .withAlerts(Arrays.asList(MtpProvider.MICROSOFT_DEFENDER_FOR_CLOUD_APPS)))
+                    .withTenantId("178265c4-3136-4ff6-8ed1-b5b62b4cb5f5"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreatePurviewAuditDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates a PurviewAudit data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAPurviewAuditDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new PurviewAuditDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withConnectorDefinitionName("PowerAutomate")
+                    .withSourceType("MicrosoftFlow")
+                    .withDcrConfig(new DcrConfiguration().withDataCollectionEndpoint(
+                        "https://microsoft-sentinel-datacollectionendpoint-123m.westeurope-1.ingest.monitor.azure.com")
+                        .withDataCollectionRuleImmutableId("dcr-de21b053bd5a44beb99a256c9db85023")
+                        .withStreamName("OFFICEPOWERAUTOMATE_RESTAPI"))
+                    .withDataTypes(new PurviewAuditConnectorDataTypes()
+                        .withLogs(new PurviewAuditConnectorDataTypesLogs().withState(DataTypeState.ENABLED)))
                     .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CreateOfficePowerBIDataConnector.json
-     */
-    /**
-     * Sample code: Creates or updates an Office PowerBI data connector.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void createsOrUpdatesAnOfficePowerBIDataConnector(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.dataConnectors()
-            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
-                new OfficePowerBIDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
-                    .withDataTypes(new OfficePowerBIConnectorDataTypes()
-                        .withLogs(new OfficePowerBIConnectorDataTypesLogs().withState(DataTypeState.ENABLED)))
-                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CreateThreatIntelligenceTaxiiDataConnector.json
-     */
-    /**
-     * Sample code: Creates or updates a Threat Intelligence Taxii data connector.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void createsOrUpdatesAThreatIntelligenceTaxiiDataConnector(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.dataConnectors()
-            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
-                new TiTaxiiDataConnector().withEtag("d12423f6-a60b-4ca5-88c0-feb1a182d0f0")
-                    .withWorkspaceId("dd124572-4962-4495-9bd2-9dade12314b4")
-                    .withFriendlyName("testTaxii")
-                    .withTaxiiServer("https://limo.anomali.com/api/v1/taxii2/feeds")
-                    .withCollectionId("135")
-                    .withUsername("--")
-                    .withPassword("fakeTokenPlaceholder")
-                    .withTaxiiLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
-                    .withPollingFrequency(PollingFrequency.ONCE_ADAY)
-                    .withDataTypes(new TiTaxiiDataConnectorDataTypes().withTaxiiClient(
-                        new TiTaxiiDataConnectorDataTypesTaxiiClient().withState(DataTypeState.ENABLED)))
-                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CreateThreatIntelligenceDataConnector.json
-     */
-    /**
-     * Sample code: Creates or updates an Threat Intelligence Platform data connector.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void createsOrUpdatesAnThreatIntelligencePlatformDataConnector(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.dataConnectors()
-            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
-                new TIDataConnector().withTipLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
-                    .withDataTypes(new TIDataConnectorDataTypes()
-                        .withIndicators(new TIDataConnectorDataTypesIndicators().withState(DataTypeState.ENABLED)))
-                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CreateDynamics365DataConnetor.json
      */
     /**
@@ -1524,7 +2263,7 @@ public final class DataConnectorsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CreateGenericUI.json
      */
     /**
@@ -1633,7 +2372,7 @@ public final class DataConnectorsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CreateOffice365ProjectDataConnetor.json
      */
     /**
@@ -1654,7 +2393,174 @@ public final class DataConnectorsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateGoogleCloudPlatform.json
+     */
+    /**
+     * Sample code: Creates or updates a GCP data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        createsOrUpdatesAGCPDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "GCP_fce27b90-d6f5-4d30-991a-af509a2b50a1",
+                new GcpDataConnector().withConnectorDefinitionName("GcpConnector")
+                    .withAuth(new GcpAuthProperties()
+                        .withServiceAccountEmail("sentinel-service-account@project-id.iam.gserviceaccount.com")
+                        .withProjectNumber("123456789012")
+                        .withWorkloadIdentityProviderId("sentinel-identity-provider"))
+                    .withRequest(new GcpRequestProperties().withProjectId("project-id")
+                        .withSubscriptionNames(Arrays.asList("sentinel-subscription")))
+                    .withDcrConfig(new DcrConfiguration().withDataCollectionEndpoint(
+                        "https://microsoft-sentinel-datacollectionendpoint-123m.westeurope-1.ingest.monitor.azure.com")
+                        .withDataCollectionRuleImmutableId("dcr-de21b053bd5a44beb99a256c9db85023")
+                        .withStreamName("SENTINEL_GCP_AUDIT_LOGS")),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateMicrosoftThreatIntelligenceDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates a Microsoft Threat Intelligence data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAMicrosoftThreatIntelligenceDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "c345bf40-8509-4ed2-b947-50cb773aaf04",
+                new MstiDataConnector()
+                    .withDataTypes(new MstiDataConnectorDataTypes().withMicrosoftEmergingThreatFeed(
+                        new MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed().withState(DataTypeState.ENABLED)
+                            .withLookbackPeriod("1970-01-01T00:00:00.000Z")))
+                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateMicrosoftPurviewInformationProtectionDataConnetor.json
+     */
+    /**
+     * Sample code: Creates or updates an MicrosoftPurviewInformationProtection data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnMicrosoftPurviewInformationProtectionDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new MicrosoftPurviewInformationProtectionDataConnector()
+                    .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(new MicrosoftPurviewInformationProtectionConnectorDataTypes()
+                        .withLogs(new MicrosoftPurviewInformationProtectionConnectorDataTypesLogs()
+                            .withState(DataTypeState.ENABLED)))
+                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateOfficeDataConnetor.json
+     */
+    /**
+     * Sample code: Creates or updates an Office365 data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnOffice365DataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new OfficeDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(new OfficeDataConnectorDataTypes()
+                        .withExchange(new OfficeDataConnectorDataTypesExchange().withState(DataTypeState.ENABLED))
+                        .withSharePoint(new OfficeDataConnectorDataTypesSharePoint().withState(DataTypeState.ENABLED))
+                        .withTeams(new OfficeDataConnectorDataTypesTeams().withState(DataTypeState.ENABLED)))
+                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateOfficePowerBIDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates an Office PowerBI data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnOfficePowerBIDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new OfficePowerBIDataConnector().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(new OfficePowerBIConnectorDataTypes()
+                        .withLogs(new OfficePowerBIConnectorDataTypesLogs().withState(DataTypeState.ENABLED)))
+                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateThreatIntelligenceTaxiiDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates a Threat Intelligence Taxii data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAThreatIntelligenceTaxiiDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new TiTaxiiDataConnector().withEtag("d12423f6-a60b-4ca5-88c0-feb1a182d0f0")
+                    .withWorkspaceId("dd124572-4962-4495-9bd2-9dade12314b4")
+                    .withFriendlyName("testTaxii")
+                    .withTaxiiServer("https://limo.anomali.com/api/v1/taxii2/feeds")
+                    .withCollectionId("135")
+                    .withUsername("--")
+                    .withPassword("fakeTokenPlaceholder")
+                    .withTaxiiLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
+                    .withPollingFrequency(PollingFrequency.ONCE_ADAY)
+                    .withDataTypes(new TiTaxiiDataConnectorDataTypes().withTaxiiClient(
+                        new TiTaxiiDataConnectorDataTypesTaxiiClient().withState(DataTypeState.ENABLED)))
+                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CreateThreatIntelligenceDataConnector.json
+     */
+    /**
+     * Sample code: Creates or updates an Threat Intelligence Platform data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnThreatIntelligencePlatformDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .createOrUpdateWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new TIDataConnector().withTipLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
+                    .withDataTypes(new TIDataConnectorDataTypes()
+                        .withIndicators(new TIDataConnectorDataTypesIndicators().withState(DataTypeState.ENABLED)))
+                    .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CreateAPIPolling.json
      */
     /**
@@ -1749,7 +2655,7 @@ public final class DataConnectorsCreateOrUpdateSamples {
 public final class DataConnectorsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/DeleteOffice365ProjectDataConnetor.json
      */
     /**
@@ -1766,7 +2672,41 @@ public final class DataConnectorsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/DeleteMicrosoftPurviewInformationProtectionDataConnetor.json
+     */
+    /**
+     * Sample code: Delete an MicrosoftPurviewInformationProtection data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void deleteAnMicrosoftPurviewInformationProtectionDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .deleteWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/DeleteGoogleCloudPlatform.json
+     */
+    /**
+     * Sample code: Delete a GCP data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        deleteAGCPDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .deleteWithResponse("myRg", "myWorkspace", "GCP_fce27b90-d6f5-4d30-991a-af509a2b50a1",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/DeleteGenericUI.json
      */
     /**
@@ -1783,7 +2723,7 @@ public final class DataConnectorsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/DeleteOfficeDataConnetor.json
      */
     /**
@@ -1800,7 +2740,24 @@ public final class DataConnectorsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/DeletePurviewAuditDataConnector.json
+     */
+    /**
+     * Sample code: Delete a PurviewAudit data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        deleteAPurviewAuditDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .deleteWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/DeleteOfficePowerBIDataConnetor.json
      */
     /**
@@ -1817,7 +2774,7 @@ public final class DataConnectorsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/DeleteAPIPolling.json
      */
     /**
@@ -1829,6 +2786,23 @@ public final class DataConnectorsDeleteSamples {
         deleteAAPIPollingDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.dataConnectors()
             .deleteWithResponse("myRg", "myWorkspace", "316ec55e-7138-4d63-ab18-90c8a60fd1c8",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/DeleteMicrosoftThreatIntelligenceDataConnector.json
+     */
+    /**
+     * Sample code: Delete an MicrosoftThreatIntelligence data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void deleteAnMicrosoftThreatIntelligenceDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .deleteWithResponse("myRg", "myWorkspace", "c345bf40-8509-4ed2-b947-50cb773aaf04",
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -1843,7 +2817,7 @@ public final class DataConnectorsDeleteSamples {
 public final class DataConnectorsDisconnectSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/DisconnectAPIPolling.json
      */
     /**
@@ -1869,7 +2843,24 @@ public final class DataConnectorsDisconnectSamples {
 public final class DataConnectorsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/GetAzureActiveDirectoryById.json
+     */
+    /**
+     * Sample code: Get an AADIP (Azure Active Directory Identity Protection) data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAnAADIPAzureActiveDirectoryIdentityProtectionDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .getWithResponse("myRg", "myWorkspace", "f0cd27d2-5f03-4c06-ba31-d2dc82dcb51d",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetOffice365ProjectDataConnetorById.json
      */
     /**
@@ -1886,7 +2877,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetGenericUI.json
      */
     /**
@@ -1903,7 +2894,24 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/GetPurviewAuditDataConnectorById.json
+     */
+    /**
+     * Sample code: Get a PurviewAudit data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAPurviewAuditDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .getWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetOffice365AdvancedThreatProtectionById.json
      */
     /**
@@ -1920,7 +2928,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetIoTById.json
      */
     /**
@@ -1937,7 +2945,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetMicrosoftCloudAppSecurityById.json
      */
     /**
@@ -1954,7 +2962,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetThreatIntelligenceTaxiiById.json
      */
     /**
@@ -1971,7 +2979,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetMicrosoftThreatIntelligenceById.json
      */
     /**
@@ -1988,7 +2996,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetAzureSecurityCenterById.json
      */
     /**
@@ -2005,7 +3013,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetThreatIntelligenceById.json
      */
     /**
@@ -2021,7 +3029,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetAmazonWebServicesCloudTrailById.json
      */
     /**
@@ -2038,7 +3046,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetMicrosoftDefenderAdvancedThreatProtectionById.json
      */
     /**
@@ -2055,7 +3063,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetMicrosoftThreatProtectionById.json
      */
     /**
@@ -2072,24 +3080,24 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/GetAzureActiveDirectoryById.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/GetMicrosoftPurviewInformationProtectionDataConnetorById.json
      */
     /**
-     * Sample code: Get an AAD data connector.
+     * Sample code: Get a MicrosoftPurviewInformationProtection data connector.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void
-        getAnAADDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void getAMicrosoftPurviewInformationProtectionDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.dataConnectors()
-            .getWithResponse("myRg", "myWorkspace", "f0cd27d2-5f03-4c06-ba31-d2dc82dcb51d",
+            .getWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
                 com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetAzureAdvancedThreatProtectionById.json
      */
     /**
@@ -2106,7 +3114,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetAPIPolling.json
      */
     /**
@@ -2123,7 +3131,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetMicrosoftInsiderRiskManagementById.json
      */
     /**
@@ -2140,7 +3148,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetDynamics365DataConnectorById.json
      */
     /**
@@ -2157,7 +3165,7 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetOfficeDataConnetorById.json
      */
     /**
@@ -2174,7 +3182,24 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/GetGoogleCloudPlatformById.json
+     */
+    /**
+     * Sample code: Get a GCP data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAGCPDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .getWithResponse("myRg", "myWorkspace", "GCP_fce27b90-d6f5-4d30-991a-af509a2b50a1",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetAmazonWebServicesS3ById.json
      */
     /**
@@ -2191,7 +3216,24 @@ public final class DataConnectorsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/GetRestApiPollerById.json
+     */
+    /**
+     * Sample code: Get a RestApiPoller data connector.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getARestApiPollerDataConnector(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectors()
+            .getWithResponse("myRg", "myWorkspace", "RestApiPoller_fce27b90-d6f5-4d30-991a-af509a2b50a1",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetOfficePowerBIDataConnetorById.json
      */
     /**
@@ -2217,7 +3259,7 @@ public final class DataConnectorsGetSamples {
 public final class DataConnectorsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/GetDataConnectors.json
      */
     /**
@@ -2240,12 +3282,14 @@ import com.azure.resourcemanager.securityinsights.models.AscCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365CheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.IoTCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.McasCheckRequirements;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.MstiCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.MtpCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.OfficeAtpCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.OfficeIrmCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.OfficePowerBICheckRequirements;
+import com.azure.resourcemanager.securityinsights.models.PurviewAuditCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.TICheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.TiTaxiiCheckRequirements;
 
@@ -2255,7 +3299,7 @@ import com.azure.resourcemanager.securityinsights.models.TiTaxiiCheckRequirement
 public final class DataConnectorsCheckRequirementsOperationPostSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsOfficeATP.json
      */
     /**
@@ -2273,7 +3317,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsOffice365Project.json
      */
     /**
@@ -2291,16 +3335,16 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CheckRequirementsAzureActiveDirectory.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CheckRequirementsAzureActiveDirectoryNoAuthorization.json
      */
     /**
-     * Sample code: Check requirements for AAD.
+     * Sample code: Check requirements for AADIP (Azure Active Directory Identity Protection) - no authorization.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void
-        checkRequirementsForAAD(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void checkRequirementsForAADIPAzureActiveDirectoryIdentityProtectionNoAuthorization(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.dataConnectorsCheckRequirementsOperations()
             .postWithResponse("myRg", "myWorkspace",
                 new AadCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
@@ -2309,7 +3353,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsMicrosoftCloudAppSecurity.json
      */
     /**
@@ -2327,7 +3371,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsIoT.json
      */
     /**
@@ -2345,7 +3389,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsMdatp.json
      */
     /**
@@ -2363,25 +3407,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * dataConnectors/CheckRequirementsAzureActiveDirectoryNoAuthorization.json
-     */
-    /**
-     * Sample code: Check requirements for AAD - no authorization.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void checkRequirementsForAADNoAuthorization(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace",
-                new AadCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsAzureSecurityCenter.json
      */
     /**
@@ -2399,7 +3425,24 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CheckRequirementsMicrosoftPurviewInformationProtection.json
+     */
+    /**
+     * Sample code: Check requirements for MicrosoftPurviewInformationProtection.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void checkRequirementsForMicrosoftPurviewInformationProtection(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectorsCheckRequirementsOperations()
+            .postWithResponse("myRg", "myWorkspace", new MicrosoftPurviewInformationProtectionCheckRequirements()
+                .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"), com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsMicrosoftThreatProtection.json
      */
     /**
@@ -2417,7 +3460,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsThreatIntelligenceTaxii.json
      */
     /**
@@ -2435,7 +3478,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsOfficeIRM.json
      */
     /**
@@ -2453,7 +3496,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsMicrosoftThreatIntelligence.json
      */
     /**
@@ -2465,13 +3508,49 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.dataConnectorsCheckRequirementsOperations()
             .postWithResponse("myRg", "myWorkspace",
-                new MstiCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                new MstiCheckRequirements().withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CheckRequirementsPurviewAudit.json
+     */
+    /**
+     * Sample code: Check requirements for PurviewAudit.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        checkRequirementsForPurviewAudit(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectorsCheckRequirementsOperations()
+            .postWithResponse("myRg", "myWorkspace",
+                new PurviewAuditCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * dataConnectors/CheckRequirementsAzureActiveDirectory.json
+     */
+    /**
+     * Sample code: Check requirements for AADIP (Azure Active Directory Identity Protection).
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void checkRequirementsForAADIPAzureActiveDirectoryIdentityProtection(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.dataConnectorsCheckRequirementsOperations()
+            .postWithResponse("myRg", "myWorkspace",
+                new AadCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsOfficePowerBI.json
      */
     /**
@@ -2489,7 +3568,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsDynamics365.json
      */
     /**
@@ -2507,16 +3586,16 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsAzureActiveDirectoryNoLicense.json
      */
     /**
-     * Sample code: Check requirements for AAD - no license.
+     * Sample code: Check requirements for AADIP (Azure Active Directory Identity Protection) - no license.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void
-        checkRequirementsForAADNoLicense(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void checkRequirementsForAADIPAzureActiveDirectoryIdentityProtectionNoLicense(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.dataConnectorsCheckRequirementsOperations()
             .postWithResponse("myRg", "myWorkspace",
                 new AadCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
@@ -2525,7 +3604,7 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * dataConnectors/CheckRequirementsThreatIntelligence.json
      */
     /**
@@ -2543,30 +3622,6 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
 }
 ```
 
-### DomainWhois_Get
-
-```java
-/**
- * Samples for DomainWhois Get.
- */
-public final class DomainWhoisGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * enrichment/GetWhoisByDomainName.json
-     */
-    /**
-     * Sample code: Get whois information for a single domain name.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void getWhoisInformationForASingleDomainName(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.domainWhois().getWithResponse("myRg", "microsoft.com", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Entities_Expand
 
 ```java
@@ -2580,7 +3635,7 @@ import java.util.UUID;
 public final class EntitiesExpandSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/expand/PostExpandEntity.json
      */
     /**
@@ -2608,7 +3663,7 @@ public final class EntitiesExpandSamples {
 public final class EntitiesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetSubmissionMailEntityById.json
      */
     /**
@@ -2625,7 +3680,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetDnsEntityById.json
      */
     /**
@@ -2641,7 +3696,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetFileHashEntityById.json
      */
     /**
@@ -2657,7 +3712,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetIoTDeviceEntityById.json
      */
     /**
@@ -2674,7 +3729,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetRegistryKeyEntityById.json
      */
     /**
@@ -2691,7 +3746,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetMailboxEntityById.json
      */
     /**
@@ -2707,7 +3762,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetMalwareEntityById.json
      */
     /**
@@ -2723,7 +3778,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetSecurityAlertEntityById.json
      */
     /**
@@ -2740,7 +3795,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetIpEntityById.json
      */
     /**
@@ -2756,7 +3811,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetAccountEntityById.json
      */
     /**
@@ -2772,7 +3827,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetCloudApplicationEntityById.json
      */
     /**
@@ -2789,7 +3844,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetFileEntityById.json
      */
     /**
@@ -2805,7 +3860,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetRegistryValueEntityById.json
      */
     /**
@@ -2822,7 +3877,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetUrlEntityById.json
      */
     /**
@@ -2838,7 +3893,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetMailClusterEntityById.json
      */
     /**
@@ -2855,7 +3910,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetSecurityGroupEntityById.json
      */
     /**
@@ -2872,7 +3927,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetMailMessageEntityById.json
      */
     /**
@@ -2889,7 +3944,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetAzureResourceEntityById.json
      */
     /**
@@ -2906,7 +3961,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetHostEntityById.json
      */
     /**
@@ -2922,7 +3977,7 @@ public final class EntitiesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetProcessEntityById.json
      */
     /**
@@ -2952,7 +4007,7 @@ import java.util.UUID;
 public final class EntitiesGetInsightsSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/insights/PostGetInsights.json
      */
     /**
@@ -2981,7 +4036,7 @@ public final class EntitiesGetInsightsSamples {
 public final class EntitiesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetEntities.json
      */
     /**
@@ -3006,7 +4061,7 @@ import com.azure.resourcemanager.securityinsights.models.EntityItemQueryKind;
 public final class EntitiesQueriesSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/GetQueries.json
      */
     /**
@@ -3016,8 +4071,34 @@ public final class EntitiesQueriesSamples {
      */
     public static void getEntityQuery(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.entities()
-            .queriesWithResponse("myRg", "myWorkspace", "e1d3d618-e11f-478b-98e3-bb381539a8e1",
-                EntityItemQueryKind.INSIGHT, com.azure.core.util.Context.NONE);
+            .queries("myRg", "myWorkspace", "e1d3d618-e11f-478b-98e3-bb381539a8e1", EntityItemQueryKind.INSIGHT,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Entities_RunPlaybook
+
+```java
+
+/**
+ * Samples for Entities RunPlaybook.
+ */
+public final class EntitiesRunPlaybookSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * manualTrigger/Entities_RunPlaybook.json
+     */
+    /**
+     * Sample code: Entities_RunPlaybook.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void entitiesRunPlaybook(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.entities()
+            .runPlaybookWithResponse("myRg", "myWorkspace", "72e01a22-5cd2-4139-a149-9f2736ff2ar2", null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3034,7 +4115,7 @@ import java.time.OffsetDateTime;
 public final class EntitiesGetTimelineListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/timeline/PostTimelineEntity.json
      */
     /**
@@ -3062,7 +4143,7 @@ public final class EntitiesGetTimelineListSamples {
 public final class EntitiesRelationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/relations/GetAllEntityRelations.json
      */
     /**
@@ -3095,7 +4176,7 @@ import java.util.Map;
 public final class EntityQueriesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entityQueries/CreateEntityQueryActivity.json
      */
     /**
@@ -3145,7 +4226,7 @@ public final class EntityQueriesCreateOrUpdateSamples {
 public final class EntityQueriesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entityQueries/DeleteEntityQuery.json
      */
     /**
@@ -3170,7 +4251,7 @@ public final class EntityQueriesDeleteSamples {
 public final class EntityQueriesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entityQueries/GetActivityEntityQueryById.json
      */
     /**
@@ -3187,7 +4268,7 @@ public final class EntityQueriesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entityQueries/GetExpansionEntityQueryById.json
      */
     /**
@@ -3207,7 +4288,7 @@ public final class EntityQueriesGetSamples {
 ### EntityQueries_List
 
 ```java
-import com.azure.resourcemanager.securityinsights.models.EntityQueriesKind;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplateKind;
 
 /**
  * Samples for EntityQueries List.
@@ -3215,7 +4296,7 @@ import com.azure.resourcemanager.securityinsights.models.EntityQueriesKind;
 public final class EntityQueriesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entityQueries/GetEntityQueries.json
      */
     /**
@@ -3225,7 +4306,7 @@ public final class EntityQueriesListSamples {
      */
     public static void getAllEntityQueries(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.entityQueries()
-            .list("myRg", "myWorkspace", EntityQueriesKind.EXPANSION, com.azure.core.util.Context.NONE);
+            .list("myRg", "myWorkspace", EntityQueryTemplateKind.EXPANSION, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3239,7 +4320,7 @@ public final class EntityQueriesListSamples {
 public final class EntityQueryTemplatesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entityQueryTemplates/GetActivityEntityQueryTemplateById.json
      */
     /**
@@ -3259,7 +4340,7 @@ public final class EntityQueryTemplatesGetSamples {
 ### EntityQueryTemplates_List
 
 ```java
-import com.azure.resourcemanager.securityinsights.models.Constant88;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplateKind;
 
 /**
  * Samples for EntityQueryTemplates List.
@@ -3267,7 +4348,7 @@ import com.azure.resourcemanager.securityinsights.models.Constant88;
 public final class EntityQueryTemplatesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entityQueryTemplates/GetEntityQueryTemplates.json
      */
     /**
@@ -3278,7 +4359,7 @@ public final class EntityQueryTemplatesListSamples {
     public static void
         getAllEntityQueryTemplates(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.entityQueryTemplates()
-            .list("myRg", "myWorkspace", Constant88.ACTIVITY, com.azure.core.util.Context.NONE);
+            .list("myRg", "myWorkspace", EntityQueryTemplateKind.ACTIVITY, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3292,7 +4373,7 @@ public final class EntityQueryTemplatesListSamples {
 public final class EntityRelationsGetRelationSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * entities/relations/GetEntityRelationByName.json
      */
     /**
@@ -3322,7 +4403,7 @@ import com.azure.resourcemanager.securityinsights.models.IngestionMode;
 public final class FileImportsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * fileImports/CreateFileImport.json
      */
     /**
@@ -3353,7 +4434,7 @@ public final class FileImportsCreateSamples {
 public final class FileImportsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * fileImports/DeleteFileImport.json
      */
     /**
@@ -3377,7 +4458,7 @@ public final class FileImportsDeleteSamples {
 public final class FileImportsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * fileImports/GetFileImportById.json
      */
     /**
@@ -3402,7 +4483,7 @@ public final class FileImportsGetSamples {
 public final class FileImportsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * fileImports/GetFileImports.json
      */
     /**
@@ -3418,6 +4499,406 @@ public final class FileImportsListSamples {
 }
 ```
 
+### Get_SingleRecommendation
+
+```java
+import java.util.UUID;
+
+/**
+ * Samples for Get SingleRecommendation.
+ */
+public final class GetSingleRecommendationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * recommendations/GetRecommendation.json
+     */
+    /**
+     * Sample code: Get a recommendation.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getARecommendation(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.gets()
+            .singleRecommendationWithResponse("myRg", "myWorkspace",
+                UUID.fromString("6d4b54eb-8684-4aa3-a156-3aa37b8014bc"), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GetRecommendations_List
+
+```java
+/**
+ * Samples for GetRecommendations List.
+ */
+public final class GetRecommendationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * recommendations/GetRecommendations.json
+     */
+    /**
+     * Sample code: Get Recommendations list.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getRecommendationsList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.getRecommendations().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GetTriggeredAnalyticsRuleRuns_List
+
+```java
+/**
+ * Samples for GetTriggeredAnalyticsRuleRuns List.
+ */
+public final class GetTriggeredAnalyticsRuleRunsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * triggeredAnalyticsRuleRuns/triggeredAnalyticsRuleRuns_Get.json
+     */
+    /**
+     * Sample code: triggeredAnalyticsRuleRuns_Get.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        triggeredAnalyticsRuleRunsGet(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.getTriggeredAnalyticsRuleRuns().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HuntComments_CreateOrUpdate
+
+```java
+/**
+ * Samples for HuntComments CreateOrUpdate.
+ */
+public final class HuntCommentsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/CreateHuntComment.json
+     */
+    /**
+     * Sample code: Creates or updates a hunt comment.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        createsOrUpdatesAHuntComment(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.huntComments()
+            .define("2216d0e1-91e3-4902-89fd-d2df8c535096")
+            .withExistingHunt("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f")
+            .withMessage("This is a test comment.")
+            .create();
+    }
+}
+```
+
+### HuntComments_Delete
+
+```java
+/**
+ * Samples for HuntComments Delete.
+ */
+public final class HuntCommentsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/DeleteHuntComment.json
+     */
+    /**
+     * Sample code: Delete a hunt comment.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void deleteAHuntComment(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.huntComments()
+            .deleteWithResponse("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f",
+                "2216d0e1-91e3-4902-89fd-d2df8c123456", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HuntComments_Get
+
+```java
+/**
+ * Samples for HuntComments Get.
+ */
+public final class HuntCommentsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/GetHuntCommentById.json
+     */
+    /**
+     * Sample code: Get a hunt comment.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAHuntComment(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.huntComments()
+            .getWithResponse("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f",
+                "2216d0e1-91e3-4902-89fd-d2df8c535096", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HuntComments_List
+
+```java
+/**
+ * Samples for HuntComments List.
+ */
+public final class HuntCommentsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/GetHuntComments.json
+     */
+    /**
+     * Sample code: Get all hunt comments.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAllHuntComments(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.huntComments()
+            .list("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f", null, null, null, null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HuntRelations_CreateOrUpdate
+
+```java
+import java.util.Arrays;
+
+/**
+ * Samples for HuntRelations CreateOrUpdate.
+ */
+public final class HuntRelationsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/CreateHuntRelation.json
+     */
+    /**
+     * Sample code: Creates or updates a hunt relation.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        createsOrUpdatesAHuntRelation(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.huntRelations()
+            .define("2216d0e1-91e3-4902-89fd-d2df8c535096")
+            .withExistingHunt("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f")
+            .withRelatedResourceId(
+                "/subscriptions/bd794837-4d29-4647-9105-6339bfdb4e6a/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/workspaces/avdvirint/providers/Microsoft.SecurityInsights/Bookmarks/2216d0e1-91e3-4902-89fd-d2df8c535096")
+            .withLabels(Arrays.asList("Test Label"))
+            .create();
+    }
+}
+```
+
+### HuntRelations_Delete
+
+```java
+/**
+ * Samples for HuntRelations Delete.
+ */
+public final class HuntRelationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/DeleteHuntRelation.json
+     */
+    /**
+     * Sample code: Delete a hunt relation.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void deleteAHuntRelation(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.huntRelations()
+            .deleteWithResponse("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f",
+                "2216d0e1-91e3-4902-89fd-d2df8c535096", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HuntRelations_Get
+
+```java
+/**
+ * Samples for HuntRelations Get.
+ */
+public final class HuntRelationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/GetHuntRelationById.json
+     */
+    /**
+     * Sample code: Get a hunt relation.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAHuntRelation(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.huntRelations()
+            .getWithResponse("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f",
+                "2216d0e1-91e3-4902-89fd-d2df8c535096", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HuntRelations_List
+
+```java
+/**
+ * Samples for HuntRelations List.
+ */
+public final class HuntRelationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/GetHuntRelations.json
+     */
+    /**
+     * Sample code: Get all hunt relations.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAllHuntRelations(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.huntRelations()
+            .list("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f", null, null, null, null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Hunts_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.securityinsights.models.AttackTactic;
+import com.azure.resourcemanager.securityinsights.models.HuntOwner;
+import com.azure.resourcemanager.securityinsights.models.HypothesisStatus;
+import com.azure.resourcemanager.securityinsights.models.Status;
+import java.util.Arrays;
+import java.util.UUID;
+
+/**
+ * Samples for Hunts CreateOrUpdate.
+ */
+public final class HuntsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/CreateHunt.json
+     */
+    /**
+     * Sample code: Creates or updates a hunt.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        createsOrUpdatesAHunt(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.hunts()
+            .define("163e7b2a-a2ec-4041-aaba-d878a38f265f")
+            .withExistingWorkspace("myRg", "myWorkspace")
+            .withDisplayName("Log4J new hunt")
+            .withDescription("Log4J Hunt Description")
+            .withStatus(Status.NEW)
+            .withHypothesisStatus(HypothesisStatus.UNKNOWN)
+            .withAttackTactics(Arrays.asList(AttackTactic.RECONNAISSANCE))
+            .withAttackTechniques(Arrays.asList("T1595"))
+            .withLabels(Arrays.asList("Label1", "Label2"))
+            .withOwner(new HuntOwner().withObjectId(UUID.fromString("873b5263-5d34-4149-b356-ad341b01e123")))
+            .create();
+    }
+}
+```
+
+### Hunts_Delete
+
+```java
+/**
+ * Samples for Hunts Delete.
+ */
+public final class HuntsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/DeleteHunt.json
+     */
+    /**
+     * Sample code: Delete a hunt.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void deleteAHunt(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.hunts()
+            .deleteWithResponse("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Hunts_Get
+
+```java
+/**
+ * Samples for Hunts Get.
+ */
+public final class HuntsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/GetHuntById.json
+     */
+    /**
+     * Sample code: Get a hunt.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAHunt(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.hunts()
+            .getWithResponse("myRg", "myWorkspace", "163e7b2a-a2ec-4041-aaba-d878a38f265f",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Hunts_List
+
+```java
+/**
+ * Samples for Hunts List.
+ */
+public final class HuntsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * hunts/GetHunts.json
+     */
+    /**
+     * Sample code: Get all hunts.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAllHunts(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.hunts().list("myRg", "myWorkspace", null, null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### IncidentComments_CreateOrUpdate
 
 ```java
@@ -3427,16 +4908,16 @@ public final class FileImportsListSamples {
 public final class IncidentCommentsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/comments/CreateIncidentComment.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentComments/IncidentComments_CreateOrUpdate.json
      */
     /**
-     * Sample code: Creates or updates an incident comment.
+     * Sample code: IncidentComments_CreateOrUpdate.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void
-        createsOrUpdatesAnIncidentComment(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        incidentCommentsCreateOrUpdate(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidentComments()
             .define("4bb36b7b-26ff-4d1c-9cbe-0d8ab3da0014")
             .withExistingIncident("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5")
@@ -3455,16 +4936,16 @@ public final class IncidentCommentsCreateOrUpdateSamples {
 public final class IncidentCommentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/comments/DeleteIncidentComment.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentComments/IncidentComments_Delete.json
      */
     /**
-     * Sample code: Delete the incident comment.
+     * Sample code: IncidentComments_Delete.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void
-        deleteTheIncidentComment(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        incidentCommentsDelete(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidentComments()
             .deleteWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
                 "4bb36b7b-26ff-4d1c-9cbe-0d8ab3da0014", com.azure.core.util.Context.NONE);
@@ -3481,16 +4962,15 @@ public final class IncidentCommentsDeleteSamples {
 public final class IncidentCommentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/comments/GetIncidentCommentById.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentComments/IncidentComments_Get.json
      */
     /**
-     * Sample code: Get an incident comment.
+     * Sample code: IncidentComments_Get.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void
-        getAnIncidentComment(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentCommentsGet(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidentComments()
             .getWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
                 "4bb36b7b-26ff-4d1c-9cbe-0d8ab3da0014", com.azure.core.util.Context.NONE);
@@ -3507,16 +4987,16 @@ public final class IncidentCommentsGetSamples {
 public final class IncidentCommentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/comments/GetAllIncidentComments.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentComments/IncidentComments_List.json
      */
     /**
-     * Sample code: Get all incident comments.
+     * Sample code: IncidentComments_List.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void
-        getAllIncidentComments(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        incidentCommentsList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidentComments()
             .list("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5", null, null, null, null,
                 com.azure.core.util.Context.NONE);
@@ -3535,7 +5015,7 @@ import com.azure.resourcemanager.securityinsights.fluent.models.RelationInner;
 public final class IncidentRelationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * incidents/relations/CreateIncidentRelation.json
      */
     /**
@@ -3564,7 +5044,7 @@ public final class IncidentRelationsCreateOrUpdateSamples {
 public final class IncidentRelationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * incidents/relations/DeleteIncidentRelation.json
      */
     /**
@@ -3590,7 +5070,7 @@ public final class IncidentRelationsDeleteSamples {
 public final class IncidentRelationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * incidents/relations/GetIncidentRelationByName.json
      */
     /**
@@ -3616,7 +5096,7 @@ public final class IncidentRelationsGetSamples {
 public final class IncidentRelationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * incidents/relations/GetAllIncidentRelations.json
      */
     /**
@@ -3629,6 +5109,112 @@ public final class IncidentRelationsListSamples {
         manager.incidentRelations()
             .list("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812", null, null, null, null,
                 com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IncidentTasks_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.securityinsights.models.IncidentTaskStatus;
+
+/**
+ * Samples for IncidentTasks CreateOrUpdate.
+ */
+public final class IncidentTasksCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentTasks/IncidentTasks_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: IncidentTasks_CreateOrUpdate.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        incidentTasksCreateOrUpdate(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.incidentTasks()
+            .define("4bb36b7b-26ff-4d1c-9cbe-0d8ab3da0014")
+            .withExistingIncident("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5")
+            .withTitle("Task title")
+            .withStatus(IncidentTaskStatus.NEW)
+            .withDescription("Task description")
+            .create();
+    }
+}
+```
+
+### IncidentTasks_Delete
+
+```java
+/**
+ * Samples for IncidentTasks Delete.
+ */
+public final class IncidentTasksDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentTasks/IncidentTasks_Delete.json
+     */
+    /**
+     * Sample code: IncidentTasks_Delete.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void incidentTasksDelete(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.incidentTasks()
+            .deleteWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                "4bb36b7b-26ff-4d1c-9cbe-0d8ab3da0014", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IncidentTasks_Get
+
+```java
+/**
+ * Samples for IncidentTasks Get.
+ */
+public final class IncidentTasksGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentTasks/IncidentTasks_Get.json
+     */
+    /**
+     * Sample code: IncidentTasks_Get.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void incidentTasksGet(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.incidentTasks()
+            .getWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                "4bb36b7b-26ff-4d1c-9cbe-0d8ab3da0014", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IncidentTasks_List
+
+```java
+/**
+ * Samples for IncidentTasks List.
+ */
+public final class IncidentTasksListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentTasks/IncidentTasks_List.json
+     */
+    /**
+     * Sample code: IncidentTasks_List.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void incidentTasksList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.incidentTasks()
+            .list("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3650,30 +5236,30 @@ import java.util.UUID;
 public final class IncidentsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/CreateIncident.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/Incidents_CreateOrUpdate.json
      */
     /**
-     * Sample code: Creates or updates an incident.
+     * Sample code: Incidents_CreateOrUpdate.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void
-        createsOrUpdatesAnIncident(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        incidentsCreateOrUpdate(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
             .define("73e01a99-5cd7-4139-a149-9f2736ff2ab5")
             .withExistingWorkspace("myRg", "myWorkspace")
             .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
-            .withClassification(IncidentClassification.FALSE_POSITIVE)
-            .withClassificationComment("Not a malicious activity")
-            .withClassificationReason(IncidentClassificationReason.INCORRECT_ALERT_LOGIC)
+            .withTitle("My incident")
             .withDescription("This is a demo incident")
-            .withFirstActivityTimeUtc(OffsetDateTime.parse("2019-01-01T13:00:30Z"))
-            .withLastActivityTimeUtc(OffsetDateTime.parse("2019-01-01T13:05:30Z"))
-            .withOwner(new IncidentOwnerInfo().withObjectId(UUID.fromString("2046feea-040d-4a46-9e2b-91c2941bfa70")))
             .withSeverity(IncidentSeverity.HIGH)
             .withStatus(IncidentStatus.CLOSED)
-            .withTitle("My incident")
+            .withClassification(IncidentClassification.FALSE_POSITIVE)
+            .withClassificationReason(IncidentClassificationReason.INACCURATE_DATA)
+            .withClassificationComment("Not a malicious activity")
+            .withOwner(new IncidentOwnerInfo().withObjectId(UUID.fromString("2046feea-040d-4a46-9e2b-91c2941bfa70")))
+            .withFirstActivityTimeUtc(OffsetDateTime.parse("2019-01-01T13:00:30Z"))
+            .withLastActivityTimeUtc(OffsetDateTime.parse("2019-01-01T13:05:30Z"))
             .create();
     }
 }
@@ -3682,7 +5268,7 @@ public final class IncidentsCreateOrUpdateSamples {
 ### Incidents_CreateTeam
 
 ```java
-import com.azure.resourcemanager.securityinsights.models.TeamProperties;
+import com.azure.resourcemanager.securityinsights.fluent.models.TeamInformationInner;
 
 /**
  * Samples for Incidents CreateTeam.
@@ -3690,21 +5276,18 @@ import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 public final class IncidentsCreateTeamSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/CreateTeam.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentTeam/Incidents_CreateTeam.json
      */
     /**
-     * Sample code: Creates incident teams group.
+     * Sample code: Incidents_CreateTeam.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void
-        createsIncidentTeamsGroup(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentsCreateTeam(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
-            .createTeamWithResponse("ambawolvese5resourcegroup", "AmbaE5WestCentralUS",
-                "69a30280-6a4c-4aa7-9af0-5d63f335d600",
-                new TeamProperties().withTeamName("Team name").withTeamDescription("Team description"),
-                com.azure.core.util.Context.NONE);
+            .createTeamWithResponse("myRg", "myWorkspace", "69a30280-6a4c-4aa7-9af0-5d63f335d600",
+                new TeamInformationInner(), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3718,15 +5301,15 @@ public final class IncidentsCreateTeamSamples {
 public final class IncidentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/DeleteIncident.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/Incidents_Delete.json
      */
     /**
-     * Sample code: Delete an incident.
+     * Sample code: Incidents_Delete.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void deleteAnIncident(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentsDelete(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
             .deleteWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
                 com.azure.core.util.Context.NONE);
@@ -3743,15 +5326,15 @@ public final class IncidentsDeleteSamples {
 public final class IncidentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/GetIncidentById.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/Incidents_Get.json
      */
     /**
-     * Sample code: Get an incident.
+     * Sample code: Incidents_Get.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void getAnIncident(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentsGet(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
             .getWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
                 com.azure.core.util.Context.NONE);
@@ -3768,15 +5351,15 @@ public final class IncidentsGetSamples {
 public final class IncidentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/GetIncidents.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/Incidents_List.json
      */
     /**
-     * Sample code: Get all incidents.
+     * Sample code: Incidents_List.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void getAllIncidents(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentsList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
             .list("myRg", "myWorkspace", null, "properties/createdTimeUtc desc", 1, null,
                 com.azure.core.util.Context.NONE);
@@ -3793,18 +5376,17 @@ public final class IncidentsListSamples {
 public final class IncidentsListAlertsSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/GetAllIncidentAlerts.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentAlerts/Incidents_ListAlerts.json
      */
     /**
-     * Sample code: Get all incident alerts.
+     * Sample code: Incidents_ListAlerts.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void
-        getAllIncidentAlerts(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentsListAlerts(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
-            .listAlertsWithResponse("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812",
+            .listAlertsWithResponse("myRg", "myWorkspace", "69a30280-6a4c-4aa7-9af0-5d63f335d600",
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -3819,18 +5401,18 @@ public final class IncidentsListAlertsSamples {
 public final class IncidentsListBookmarksSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/GetAllIncidentBookmarks.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentBookmarks/Incidents_ListBookmarks.json
      */
     /**
-     * Sample code: Get all incident bookmarks.
+     * Sample code: Incidents_ListBookmarks.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void
-        getAllIncidentBookmarks(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        incidentsListBookmarks(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
-            .listBookmarksWithResponse("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812",
+            .listBookmarksWithResponse("myRg", "myWorkspace", "69a30280-6a4c-4aa7-9af0-5d63f335d600",
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -3845,18 +5427,18 @@ public final class IncidentsListBookmarksSamples {
 public final class IncidentsListEntitiesSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * incidents/entities/GetAllIncidentEntities.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * incidents/IncidentEntities/Incidents_ListEntities.json
      */
     /**
-     * Sample code: Gets all incident related entities.
+     * Sample code: Incidents_ListEntities.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void
-        getsAllIncidentRelatedEntities(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        incidentsListEntities(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.incidents()
-            .listEntitiesWithResponse("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812",
+            .listEntitiesWithResponse("myRg", "myWorkspace", "69a30280-6a4c-4aa7-9af0-5d63f335d600",
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -3872,7 +5454,7 @@ public final class IncidentsListEntitiesSamples {
 public final class IncidentsRunPlaybookSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * manualTrigger/Incidents_RunPlaybook.json
      */
     /**
@@ -3885,30 +5467,6 @@ public final class IncidentsRunPlaybookSamples {
         manager.incidents()
             .runPlaybookWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ar4", null,
                 com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IpGeodata_Get
-
-```java
-/**
- * Samples for IpGeodata Get.
- */
-public final class IpGeodataGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
-     * enrichment/GetGeodataByIp.json
-     */
-    /**
-     * Sample code: Get geodata for a single IP address.
-     * 
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void
-        getGeodataForASingleIPAddress(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.ipGeodatas().getWithResponse("myRg", "1.2.3.4", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3934,7 +5492,7 @@ import java.util.Arrays;
 public final class MetadataCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/PutMetadata.json
      */
     /**
@@ -3951,7 +5509,7 @@ public final class MetadataCreateSamples {
             .withParentId(
                 "/subscriptions/2e1dc338-d04d-4443-b721-037eff4fdcac/resourceGroups/myRg/providers/Microsoft.OperationalInsights/workspaces/myWorkspace/providers/Microsoft.SecurityInsights/alertRules/ruleName")
             .withVersion("1.0.0.0")
-            .withKind(Kind.ANALYTICS_RULE)
+            .withKind("AnalyticsRule")
             .withSource(new MetadataSource().withKind(SourceKind.SOLUTION)
                 .withName("Contoso Solution 1.0")
                 .withSourceId("b688a130-76f4-4a07-bf57-762222a3cadf"))
@@ -3960,9 +5518,9 @@ public final class MetadataCreateSamples {
                 .withName("Microsoft")
                 .withEmail("support@microsoft.com")
                 .withLink("https://support.microsoft.com/"))
-            .withDependencies(new MetadataDependencies().withOperator(Operator.AND)
+            .withDependencies(new MetadataDependencies().withOperator(Operator.fromString("AND"))
                 .withCriteria(Arrays.asList(
-                    new MetadataDependencies().withOperator(Operator.OR)
+                    new MetadataDependencies().withOperator(Operator.fromString("OR"))
                         .withCriteria(Arrays.asList(
                             new MetadataDependencies().withContentId("045d06d0-ee72-4794-aba4-cf5646e4c756")
                                 .withKind(Kind.DATA_CONNECTOR)
@@ -3994,7 +5552,7 @@ public final class MetadataCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/PutMetadataMinimal.json
      */
     /**
@@ -4010,7 +5568,7 @@ public final class MetadataCreateSamples {
             .withContentId("c00ee137-7475-47c8-9cce-ec6f0f1bedd0")
             .withParentId(
                 "/subscriptions/2e1dc338-d04d-4443-b721-037eff4fdcac/resourceGroups/myRg/providers/Microsoft.OperationalInsights/workspaces/myWorkspace/providers/Microsoft.SecurityInsights/alertRules/ruleName")
-            .withKind(Kind.ANALYTICS_RULE)
+            .withKind("AnalyticsRule")
             .create();
     }
 }
@@ -4025,7 +5583,7 @@ public final class MetadataCreateSamples {
 public final class MetadataDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/DeleteMetadata.json
      */
     /**
@@ -4048,7 +5606,7 @@ public final class MetadataDeleteSamples {
 public final class MetadataGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/GetMetadata.json
      */
     /**
@@ -4072,7 +5630,7 @@ public final class MetadataGetSamples {
 public final class MetadataListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/GetAllMetadata.json
      */
     /**
@@ -4086,7 +5644,7 @@ public final class MetadataListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/GetAllMetadataOData.json
      */
     /**
@@ -4113,7 +5671,7 @@ import com.azure.resourcemanager.securityinsights.models.MetadataModel;
 public final class MetadataUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/PatchMetadata.json
      */
     /**
@@ -4141,7 +5699,7 @@ public final class MetadataUpdateSamples {
 public final class OfficeConsentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * officeConsents/DeleteOfficeConsents.json
      */
     /**
@@ -4167,7 +5725,7 @@ public final class OfficeConsentsDeleteSamples {
 public final class OfficeConsentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * officeConsents/GetOfficeConsentsById.json
      */
     /**
@@ -4192,7 +5750,7 @@ public final class OfficeConsentsGetSamples {
 public final class OfficeConsentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * officeConsents/GetOfficeConsents.json
      */
     /**
@@ -4216,7 +5774,7 @@ public final class OfficeConsentsListSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * operations/ListOperations.json
      */
     /**
@@ -4230,6 +5788,56 @@ public final class OperationsListSamples {
 }
 ```
 
+### ProductPackageOperation_Get
+
+```java
+/**
+ * Samples for ProductPackageOperation Get.
+ */
+public final class ProductPackageOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentPackages/GetProductPackageById.json
+     */
+    /**
+     * Sample code: Get a package.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAPackage(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.productPackageOperations()
+            .getWithResponse("myRg", "myWorkspace", "str.azure-sentinel-solution-str",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProductPackages_List
+
+```java
+/**
+ * Samples for ProductPackages List.
+ */
+public final class ProductPackagesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentPackages/GetProductPackages.json
+     */
+    /**
+     * Sample code: Get all available packages.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAllAvailablePackages(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.productPackages()
+            .list("myRg", "myWorkspace", null, null, null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### ProductSettings_Delete
 
 ```java
@@ -4239,7 +5847,7 @@ public final class OperationsListSamples {
 public final class ProductSettingsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * settings/DeleteEyesOnSetting.json
      */
     /**
@@ -4263,7 +5871,7 @@ public final class ProductSettingsDeleteSamples {
 public final class ProductSettingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * settings/GetEyesOnSetting.json
      */
     /**
@@ -4286,7 +5894,7 @@ public final class ProductSettingsGetSamples {
 public final class ProductSettingsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * settings/GetAllSettings.json
      */
     /**
@@ -4295,7 +5903,7 @@ public final class ProductSettingsListSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void getAllSettings(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.productSettings().listWithResponse("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
+        manager.productSettings().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4311,7 +5919,7 @@ import com.azure.resourcemanager.securityinsights.models.EyesOn;
 public final class ProductSettingsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * settings/UpdateEyesOnSetting.json
      */
     /**
@@ -4324,6 +5932,142 @@ public final class ProductSettingsUpdateSamples {
         manager.productSettings()
             .updateWithResponse("myRg", "myWorkspace", "EyesOn",
                 new EyesOn().withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\""), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProductTemplateOperation_Get
+
+```java
+/**
+ * Samples for ProductTemplateOperation Get.
+ */
+public final class ProductTemplateOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentTemplates/GetProductTemplateById.json
+     */
+    /**
+     * Sample code: Get a template.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getATemplate(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.productTemplateOperations()
+            .getWithResponse("myRg", "myWorkspace", "8365ebfe-a381-45b7-ad08-7d818070e11f",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProductTemplates_List
+
+```java
+/**
+ * Samples for ProductTemplates List.
+ */
+public final class ProductTemplatesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * contentTemplates/GetProductTemplates.json
+     */
+    /**
+     * Sample code: Get all installed templates.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAllInstalledTemplates(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.productTemplates()
+            .list("myRg", "myWorkspace", null, null, null, null, null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Reevaluate_Recommendation
+
+```java
+import java.util.UUID;
+
+/**
+ * Samples for Reevaluate Recommendation.
+ */
+public final class ReevaluateRecommendationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * recommendations/ReevaluateRecommendation.json
+     */
+    /**
+     * Sample code: Reevaluate a recommendation.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        reevaluateARecommendation(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.reevaluates()
+            .recommendationWithResponse("myRg", "myWorkspace", UUID.fromString("6d4b54eb-8684-4aa3-a156-3aa37b8014bc"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_ListGeodataByIp
+
+```java
+import com.azure.resourcemanager.securityinsights.models.EnrichmentIpAddressBody;
+import com.azure.resourcemanager.securityinsights.models.EnrichmentType;
+
+/**
+ * Samples for ResourceProvider ListGeodataByIp.
+ */
+public final class ResourceProviderListGeodataByIpSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * enrichment/GetGeodataWithWorkspaceByIp.json
+     */
+    /**
+     * Sample code: Get geodata for a single IP address.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getGeodataForASingleIPAddress(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.resourceProviders()
+            .listGeodataByIpWithResponse("myRg", "myWorkspace", EnrichmentType.MAIN,
+                new EnrichmentIpAddressBody().withIpAddress("1.2.3.4"), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_ListWhoisByDomain
+
+```java
+import com.azure.resourcemanager.securityinsights.models.EnrichmentDomainBody;
+import com.azure.resourcemanager.securityinsights.models.EnrichmentType;
+
+/**
+ * Samples for ResourceProvider ListWhoisByDomain.
+ */
+public final class ResourceProviderListWhoisByDomainSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * enrichment/GetWhoisWithWorkspaceByDomainName.json
+     */
+    /**
+     * Sample code: Get whois information for a single domain name.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getWhoisInformationForASingleDomainName(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.resourceProviders()
+            .listWhoisByDomainWithResponse("myRg", "myWorkspace", EnrichmentType.MAIN,
+                new EnrichmentDomainBody().withDomain("microsoft.com"), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4348,7 +6092,7 @@ import java.util.UUID;
 public final class SecurityMLAnalyticsSettingsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * securityMLAnalyticsSettings/CreateAnomalySecurityMLAnalyticsSetting.json
      */
     /**
@@ -4394,7 +6138,7 @@ public final class SecurityMLAnalyticsSettingsCreateOrUpdateSamples {
 public final class SecurityMLAnalyticsSettingsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * securityMLAnalyticsSettings/DeleteSecurityMLAnalyticsSetting.json
      */
     /**
@@ -4420,7 +6164,7 @@ public final class SecurityMLAnalyticsSettingsDeleteSamples {
 public final class SecurityMLAnalyticsSettingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * securityMLAnalyticsSettings/GetAnomalySecurityMLAnalyticsSetting.json
      */
     /**
@@ -4445,7 +6189,7 @@ public final class SecurityMLAnalyticsSettingsGetSamples {
 public final class SecurityMLAnalyticsSettingsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * securityMLAnalyticsSettings/GetAllSecurityMLAnalyticsSettings.json
      */
     /**
@@ -4469,7 +6213,7 @@ public final class SecurityMLAnalyticsSettingsListSamples {
 public final class SentinelOnboardingStatesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * onboardingStates/CreateSentinelOnboardingState.json
      */
     /**
@@ -4497,7 +6241,7 @@ public final class SentinelOnboardingStatesCreateSamples {
 public final class SentinelOnboardingStatesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * onboardingStates/DeleteSentinelOnboardingState.json
      */
     /**
@@ -4522,7 +6266,7 @@ public final class SentinelOnboardingStatesDeleteSamples {
 public final class SentinelOnboardingStatesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * onboardingStates/GetSentinelOnboardingState.json
      */
     /**
@@ -4547,7 +6291,7 @@ public final class SentinelOnboardingStatesGetSamples {
 public final class SentinelOnboardingStatesListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * onboardingStates/GetAllSentinelOnboardingStates.json
      */
     /**
@@ -4565,7 +6309,8 @@ public final class SentinelOnboardingStatesListSamples {
 ### SourceControl_ListRepositories
 
 ```java
-import com.azure.resourcemanager.securityinsights.models.RepoType;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessKind;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 
 /**
  * Samples for SourceControl ListRepositories.
@@ -4573,7 +6318,7 @@ import com.azure.resourcemanager.securityinsights.models.RepoType;
 public final class SourceControlListRepositoriesSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * repositories/GetRepositories.json
      */
     /**
@@ -4583,7 +6328,12 @@ public final class SourceControlListRepositoriesSamples {
      */
     public static void getRepositoryList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.sourceControls()
-            .listRepositories("myRg", "myWorkspace", RepoType.GITHUB, com.azure.core.util.Context.NONE);
+            .listRepositories("myRg", "myWorkspace",
+                new RepositoryAccessProperties().withKind(RepositoryAccessKind.OAUTH)
+                    .withCode("fakeTokenPlaceholder")
+                    .withState("state")
+                    .withClientId("54b3c2c0-1f48-4a1c-af9f-6399c3240b73"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4591,10 +6341,11 @@ public final class SourceControlListRepositoriesSamples {
 ### SourceControlsOperation_Create
 
 ```java
-import com.azure.resourcemanager.securityinsights.models.ContentPathMap;
+import com.azure.resourcemanager.securityinsights.fluent.models.RepositoryAccess;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessKind;
 import java.util.Arrays;
 
 /**
@@ -4603,31 +6354,31 @@ import java.util.Arrays;
 public final class SourceControlsOperationCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * sourcecontrols/CreateSourceControl.json
      */
     /**
-     * Sample code: Creates a source control.
+     * Sample code: Creates or updates a source control.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void
-        createsASourceControl(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        createsOrUpdatesASourceControl(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.sourceControlsOperations()
             .define("789e0c1f-4a3d-43ad-809c-e713b677b04a")
             .withExistingWorkspace("myRg", "myWorkspace")
-            .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
             .withDisplayName("My Source Control")
-            .withDescription("This is a source control")
             .withRepoType(RepoType.GITHUB)
             .withContentTypes(Arrays.asList(ContentType.fromString("AnalyticRules"), ContentType.WORKBOOK))
             .withRepository(new Repository().withUrl("https://github.com/user/repo")
                 .withBranch("master")
-                .withDisplayUrl("https://github.com/user/repo")
-                .withPathMapping(Arrays.asList(
-                    new ContentPathMap().withContentType(ContentType.fromString("AnalyticRules"))
-                        .withPath("path/to/rules"),
-                    new ContentPathMap().withContentType(ContentType.WORKBOOK).withPath("path/to/workbooks"))))
+                .withDisplayUrl("https://github.com/user/repo"))
+            .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+            .withDescription("This is a source control")
+            .withRepositoryAccess(new RepositoryAccess().withKind(RepositoryAccessKind.OAUTH)
+                .withCode("fakeTokenPlaceholder")
+                .withState("state")
+                .withClientId("54b3c2c0-1f48-4a1c-af9f-6399c3240b73"))
             .create();
     }
 }
@@ -4636,13 +6387,16 @@ public final class SourceControlsOperationCreateSamples {
 ### SourceControlsOperation_Delete
 
 ```java
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessKind;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
+
 /**
  * Samples for SourceControlsOperation Delete.
  */
 public final class SourceControlsOperationDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * sourcecontrols/DeleteSourceControl.json
      */
     /**
@@ -4654,6 +6408,10 @@ public final class SourceControlsOperationDeleteSamples {
         deleteASourceControl(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.sourceControlsOperations()
             .deleteWithResponse("myRg", "myWorkspace", "789e0c1f-4a3d-43ad-809c-e713b677b04a",
+                new RepositoryAccessProperties().withKind(RepositoryAccessKind.OAUTH)
+                    .withCode("fakeTokenPlaceholder")
+                    .withState("state")
+                    .withClientId("54b3c2c0-1f48-4a1c-af9f-6399c3240b73"),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -4668,7 +6426,7 @@ public final class SourceControlsOperationDeleteSamples {
 public final class SourceControlsOperationGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * sourcecontrols/GetSourceControlById.json
      */
     /**
@@ -4693,7 +6451,7 @@ public final class SourceControlsOperationGetSamples {
 public final class SourceControlsOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * sourcecontrols/GetSourceControls.json
      */
     /**
@@ -4704,6 +6462,287 @@ public final class SourceControlsOperationListSamples {
     public static void
         getAllSourceControls(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.sourceControlsOperations().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Systems_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.securityinsights.models.IngestionType;
+import com.azure.resourcemanager.securityinsights.models.Log;
+import com.azure.resourcemanager.securityinsights.models.LogStatusType;
+import com.azure.resourcemanager.securityinsights.models.LogType;
+import com.azure.resourcemanager.securityinsights.models.RfcConnector;
+import com.azure.resourcemanager.securityinsights.models.SapAuthenticationType;
+import com.azure.resourcemanager.securityinsights.models.SapSystemsConfiguration;
+import com.azure.resourcemanager.securityinsights.models.SystemStatusType;
+import java.util.Arrays;
+
+/**
+ * Samples for Systems CreateOrUpdate.
+ */
+public final class SystemsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/systems/Systems_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Systems_CreateOrUpdate.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        systemsCreateOrUpdate(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.systems()
+            .define("3d69632b-0b60-4af3-8720-77f01a25d34a")
+            .withExistingBusinessApplicationAgent("myRg", "myWorkspace", "3123432b-0b60-4af3-8720-77f01a25d34a")
+            .withConfiguration(new SapSystemsConfiguration().withAzureResourceId(
+                "/subscriptions/d0cfe6b2-9ac0-4464-9919-dccaee2e48c0/resourceGroups/myRg/providers/Microsoft.OperationalInsights/workspaces/myWorkspace")
+                .withConnector(new RfcConnector().withAbapServerHost("1.1.1.1")
+                    .withSystemNumber("001")
+                    .withSystemId("A4H")
+                    .withClient("001")
+                    .withAuthenticationType(SapAuthenticationType.USERNAME_PASSWORD))
+                .withLogs(Arrays.asList(
+                    new Log().withType(LogType.ABAP_AUDIT_LOG)
+                        .withIngestionType(IngestionType.INCREMENTAL)
+                        .withStatus(LogStatusType.ENABLED)
+                        .withScheduleInterval(60)
+                        .withBulkSize(100)
+                        .withFilters(Arrays.asList("filter1", "filter2")),
+                    new Log().withType(LogType.USR01)
+                        .withIngestionType(IngestionType.INCREMENTAL)
+                        .withStatus(LogStatusType.ENABLED)
+                        .withScheduleInterval(60)
+                        .withBulkSize(100)
+                        .withFilters(Arrays.asList("filter1", "filter2")))))
+            .withDisplayName("A4H_System")
+            .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+            .withStatus(SystemStatusType.RUNNING)
+            .create();
+    }
+}
+```
+
+### Systems_Delete
+
+```java
+/**
+ * Samples for Systems Delete.
+ */
+public final class SystemsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/systems/Systems_Delete.json
+     */
+    /**
+     * Sample code: Systems_Delete.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void systemsDelete(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.systems()
+            .deleteWithResponse("myRg", "myWorkspace", "3123432b-0b60-4af3-8720-77f01a25d34a",
+                "3d69632b-0b60-4af3-8720-77f01a25d34a", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Systems_Get
+
+```java
+/**
+ * Samples for Systems Get.
+ */
+public final class SystemsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/systems/Systems_Get.json
+     */
+    /**
+     * Sample code: Systems_Get.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void systemsGet(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.systems()
+            .getWithResponse("myRg", "myWorkspace", "3123432b-0b60-4af3-8720-77f01a25d34a",
+                "3d69632b-0b60-4af3-8720-77f01a25d34a", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Systems_List
+
+```java
+/**
+ * Samples for Systems List.
+ */
+public final class SystemsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/systems/Systems_List.json
+     */
+    /**
+     * Sample code: Systems_List.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void systemsList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.systems()
+            .list("myRg", "myWorkspace", "3123432b-0b60-4af3-8720-77f01a25d34a", null, null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Systems_ListActions
+
+```java
+/**
+ * Samples for Systems ListActions.
+ */
+public final class SystemsListActionsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/actions/ListActions.json
+     */
+    /**
+     * Sample code: ListActions.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void listActions(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.systems()
+            .listActions("myRg", "myWorkspace", "247b377a-7137-4b3c-bf15-df1d3260ef1b",
+                "3d69632b-0b60-4af3-8720-77f01a25d34a", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Systems_ReportActionStatus
+
+```java
+
+/**
+ * Samples for Systems ReportActionStatus.
+ */
+public final class SystemsReportActionStatusSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/actions/ReportActionStatus.json
+     */
+    /**
+     * Sample code: ReportActionStatus.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void reportActionStatus(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.systems()
+            .reportActionStatusWithResponse("myRg", "myWorkspace", "247b377a-7137-4b3c-bf15-df1d3260ef1b",
+                "3d69632b-0b60-4af3-8720-77f01a25d34a", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Systems_UndoAction
+
+```java
+
+/**
+ * Samples for Systems UndoAction.
+ */
+public final class SystemsUndoActionSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * businessApplicationAgents/actions/UndoAction.json
+     */
+    /**
+     * Sample code: UndoAction.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void undoAction(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.systems()
+            .undoActionWithResponse("myRg", "myWorkspace", "247b377a-7137-4b3c-bf15-df1d3260ef1b",
+                "3d69632b-0b60-4af3-8720-77f01a25d34a", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ThreatIntelligence_Count
+
+```java
+import com.azure.resourcemanager.securityinsights.models.CountQuery;
+import com.azure.resourcemanager.securityinsights.models.TiType;
+
+/**
+ * Samples for ThreatIntelligence Count.
+ */
+public final class ThreatIntelligenceCountSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * threatintelligence/PostThreatIntelligenceCount.json
+     */
+    /**
+     * Sample code: Get TI object count.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getTIObjectCount(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.threatIntelligences()
+            .countWithResponse("myRg", "myWorkspace", TiType.MAIN, new CountQuery(), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ThreatIntelligence_Query
+
+```java
+import com.azure.resourcemanager.securityinsights.models.ConditionClause;
+import com.azure.resourcemanager.securityinsights.models.Operator;
+import com.azure.resourcemanager.securityinsights.models.Query;
+import com.azure.resourcemanager.securityinsights.models.QueryCondition;
+import com.azure.resourcemanager.securityinsights.models.QuerySortBy;
+import com.azure.resourcemanager.securityinsights.models.SortingDirection;
+import com.azure.resourcemanager.securityinsights.models.TiType;
+import java.util.Arrays;
+
+/**
+ * Samples for ThreatIntelligence Query.
+ */
+public final class ThreatIntelligenceQuerySamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * threatintelligence/PostThreatIntelligenceQuery.json
+     */
+    /**
+     * Sample code: Get TI objects.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getTIObjects(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.threatIntelligences()
+            .query("myRg", "myWorkspace", TiType.MAIN,
+                new Query()
+                    .withCondition(new QueryCondition().withStixObjectType("attack-pattern")
+                        .withClauses(Arrays.asList(new ConditionClause().withField("lastUpdatedTimeUtc")
+                            .withOperator(Operator.ON_OR_BEFORE_ABSOLUTE)
+                            .withValues(Arrays.asList("2024-02-09T23:59:59.999Z")))))
+                    .withSortBy(new QuerySortBy().withDirection(SortingDirection.DESC).withField("lastUpdatedTimeUtc"))
+                    .withMaxPageSize(100)
+                    .withMinPageSize(100),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4720,7 +6759,7 @@ import java.util.Arrays;
 public final class ThreatIntelligenceIndicatorAppendTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/AppendTagsThreatIntelligence.json
      */
     /**
@@ -4750,7 +6789,7 @@ import java.util.Arrays;
 public final class ThreatIntelligenceIndicatorCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/UpdateThreatIntelligence.json
      */
     /**
@@ -4796,7 +6835,7 @@ import java.util.Arrays;
 public final class ThreatIntelligenceIndicatorCreateIndicatorSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/CreateThreatIntelligence.json
      */
     /**
@@ -4839,7 +6878,7 @@ public final class ThreatIntelligenceIndicatorCreateIndicatorSamples {
 public final class ThreatIntelligenceIndicatorDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/DeleteThreatIntelligence.json
      */
     /**
@@ -4865,7 +6904,7 @@ public final class ThreatIntelligenceIndicatorDeleteSamples {
 public final class ThreatIntelligenceIndicatorGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/GetThreatIntelligenceById.json
      */
     /**
@@ -4887,7 +6926,7 @@ public final class ThreatIntelligenceIndicatorGetSamples {
 ```java
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceFilteringCriteria;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceSortingCriteria;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceSortingCriteriaEnum;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceSortingOrder;
 import java.util.Arrays;
 
 /**
@@ -4896,7 +6935,7 @@ import java.util.Arrays;
 public final class ThreatIntelligenceIndicatorQueryIndicatorsSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/QueryThreatIntelligence.json
      */
     /**
@@ -4913,7 +6952,7 @@ public final class ThreatIntelligenceIndicatorQueryIndicatorsSamples {
                 .withMinValidUntil("2021-04-05T17:44:00.114052Z")
                 .withMaxValidUntil("2021-04-25T17:44:00.114052Z")
                 .withSortBy(Arrays.asList(new ThreatIntelligenceSortingCriteria().withItemKey("fakeTokenPlaceholder")
-                    .withSortOrder(ThreatIntelligenceSortingCriteriaEnum.DESCENDING)))
+                    .withSortOrder(ThreatIntelligenceSortingOrder.DESCENDING)))
                 .withSources(Arrays.asList("Azure Sentinel")), com.azure.core.util.Context.NONE);
     }
 }
@@ -4931,7 +6970,7 @@ import java.util.Arrays;
 public final class ThreatIntelligenceIndicatorReplaceTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/ReplaceTagsThreatIntelligence.json
      */
     /**
@@ -4959,7 +6998,7 @@ public final class ThreatIntelligenceIndicatorReplaceTagsSamples {
 public final class ThreatIntelligenceIndicatorMetricsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/CollectThreatIntelligenceMetrics.json
      */
     /**
@@ -4984,7 +7023,7 @@ public final class ThreatIntelligenceIndicatorMetricsListSamples {
 public final class ThreatIntelligenceIndicatorsOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/GetThreatIntelligence.json
      */
     /**
@@ -5000,11 +7039,70 @@ public final class ThreatIntelligenceIndicatorsOperationListSamples {
 }
 ```
 
+### TriggeredAnalyticsRuleRunOperation_Get
+
+```java
+/**
+ * Samples for TriggeredAnalyticsRuleRunOperation Get.
+ */
+public final class TriggeredAnalyticsRuleRunOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * triggeredAnalyticsRuleRuns/triggeredAnalyticsRuleRun_Get.json
+     */
+    /**
+     * Sample code: triggeredAnalyticsRuleRun_Get.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        triggeredAnalyticsRuleRunGet(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.triggeredAnalyticsRuleRunOperations()
+            .getWithResponse("myRg", "myWorkspace", "65360bb0-8986-4ade-a89d-af3cf44d28aa",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Update_Recommendation
+
+```java
+import com.azure.resourcemanager.securityinsights.models.RecommendationPatch;
+import com.azure.resourcemanager.securityinsights.models.RecommendationPatchProperties;
+import com.azure.resourcemanager.securityinsights.models.State;
+import java.util.UUID;
+
+/**
+ * Samples for Update Recommendation.
+ */
+public final class UpdateRecommendationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * recommendations/PatchRecommendation.json
+     */
+    /**
+     * Sample code: Creates a recommendation.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        createsARecommendation(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.updates()
+            .recommendationWithResponse("myRg", "myWorkspace", UUID.fromString("6d4b54eb-8684-4aa3-a156-3aa37b8014bc"),
+                new RecommendationPatch().withProperties(new RecommendationPatchProperties().withState(State.ACTIVE)),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### WatchlistItems_CreateOrUpdate
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import java.io.IOException;
 
 /**
  * Samples for WatchlistItems CreateOrUpdate.
@@ -5012,7 +7110,7 @@ import java.util.Map;
 public final class WatchlistItemsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/CreateWatchlistItem.json
      */
     /**
@@ -5020,28 +7118,17 @@ public final class WatchlistItemsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void
-        createsOrUpdatesAWatchlistItem(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void createsOrUpdatesAWatchlistItem(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) throws IOException {
         manager.watchlistItems()
             .define("82ba292c-dc97-4dfc-969d-d4dd9e666842")
             .withExistingWatchlist("myRg", "myWorkspace", "highValueAsset")
             .withEtag("0300bf09-0000-0000-0000-5c37296e0000")
-            .withItemsKeyValue(
-                mapOf("Business tier", "10.0.2.0/24", "Data tier", "10.0.2.0/24", "Gateway subnet", "10.0.255.224/27",
-                    "Private DMZ in", "10.0.0.0/27", "Public DMZ out", "10.0.0.96/27", "Web Tier", "10.0.1.0/24"))
+            .withItemsKeyValue(SerializerFactory.createDefaultManagementSerializerAdapter()
+                .deserialize(
+                    "{\"Business tier\":\"10.0.2.0/24\",\"Data tier\":\"10.0.2.0/24\",\"Gateway subnet\":\"10.0.255.224/27\",\"Private DMZ in\":\"10.0.0.0/27\",\"Public DMZ out\":\"10.0.0.96/27\",\"Web Tier\":\"10.0.1.0/24\"}",
+                    Object.class, SerializerEncoding.JSON))
             .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }
 ```
@@ -5055,7 +7142,7 @@ public final class WatchlistItemsCreateOrUpdateSamples {
 public final class WatchlistItemsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/DeleteWatchlistItem.json
      */
     /**
@@ -5081,7 +7168,7 @@ public final class WatchlistItemsDeleteSamples {
 public final class WatchlistItemsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/GetWatchlistItemById.json
      */
     /**
@@ -5106,7 +7193,7 @@ public final class WatchlistItemsGetSamples {
 public final class WatchlistItemsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/GetWatchlistItems.json
      */
     /**
@@ -5132,7 +7219,7 @@ import com.azure.resourcemanager.securityinsights.models.SourceType;
 public final class WatchlistsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/CreateWatchlistAndWatchlistItems.json
      */
     /**
@@ -5160,7 +7247,7 @@ public final class WatchlistsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/CreateWatchlist.json
      */
     /**
@@ -5194,7 +7281,7 @@ public final class WatchlistsCreateOrUpdateSamples {
 public final class WatchlistsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/DeleteWatchlist.json
      */
     /**
@@ -5203,8 +7290,7 @@ public final class WatchlistsDeleteSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void deleteAWatchlist(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.watchlists()
-            .deleteWithResponse("myRg", "myWorkspace", "highValueAsset", com.azure.core.util.Context.NONE);
+        manager.watchlists().delete("myRg", "myWorkspace", "highValueAsset", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5218,7 +7304,7 @@ public final class WatchlistsDeleteSamples {
 public final class WatchlistsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/GetWatchlistByAlias.json
      */
     /**
@@ -5241,7 +7327,7 @@ public final class WatchlistsGetSamples {
 public final class WatchlistsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/GetWatchlists.json
      */
     /**
@@ -5251,6 +7337,544 @@ public final class WatchlistsListSamples {
      */
     public static void getAllWatchlists(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager.watchlists().list("myRg", "myWorkspace", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerAssignmentJobs_Create
+
+```java
+/**
+ * Samples for WorkspaceManagerAssignmentJobs Create.
+ */
+public final class WorkspaceManagerAssignmentJobsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerAssignments/CreateJob.json
+     */
+    /**
+     * Sample code: Creates a job for the specified workspace manager assignment.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsAJobForTheSpecifiedWorkspaceManagerAssignment(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerAssignmentJobs()
+            .createWithResponse("myRg", "myWorkspace", "47cdc5f5-37c4-47b5-bd5f-83c84b8bdd58",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerAssignmentJobs_Delete
+
+```java
+/**
+ * Samples for WorkspaceManagerAssignmentJobs Delete.
+ */
+public final class WorkspaceManagerAssignmentJobsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerAssignments/DeleteJob.json
+     */
+    /**
+     * Sample code: Delete a workspace manager job.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        deleteAWorkspaceManagerJob(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerAssignmentJobs()
+            .deleteWithResponse("myRg", "myWorkspace", "47cdc5f5-37c4-47b5-bd5f-83c84b8bdd58",
+                "cfbe1338-8276-4d5d-8b96-931117f9fa0e", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerAssignmentJobs_Get
+
+```java
+/**
+ * Samples for WorkspaceManagerAssignmentJobs Get.
+ */
+public final class WorkspaceManagerAssignmentJobsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerAssignments/GetJob.json
+     */
+    /**
+     * Sample code: Get a workspace manager job.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAWorkspaceManagerJob(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerAssignmentJobs()
+            .getWithResponse("myRg", "myWorkspace", "47cdc5f5-37c4-47b5-bd5f-83c84b8bdd58",
+                "cfbe1338-8276-4d5d-8b96-931117f9fa0e", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerAssignmentJobs_List
+
+```java
+/**
+ * Samples for WorkspaceManagerAssignmentJobs List.
+ */
+public final class WorkspaceManagerAssignmentJobsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerAssignments/GetAllJobs.json
+     */
+    /**
+     * Sample code: Get all jobs for the specified Sentinel workspace manager assignment.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAllJobsForTheSpecifiedSentinelWorkspaceManagerAssignment(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerAssignmentJobs()
+            .list("myRg", "myWorkspace", "47cdc5f5-37c4-47b5-bd5f-83c84b8bdd58", null, null, null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerAssignments_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.securityinsights.models.AssignmentItem;
+import java.util.Arrays;
+
+/**
+ * Samples for WorkspaceManagerAssignments CreateOrUpdate.
+ */
+public final class WorkspaceManagerAssignmentsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerAssignments/CreateOrUpdateWorkspaceManagerAssignment.json
+     */
+    /**
+     * Sample code: Creates or updates a workspace manager assignment.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAWorkspaceManagerAssignment(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerAssignments()
+            .define("47cdc5f5-37c4-47b5-bd5f-83c84b8bdd58")
+            .withExistingWorkspace("myRg", "myWorkspace")
+            .withTargetResourceName("37207a7a-3b8a-438f-a559-c7df400e1b96")
+            .withItems(Arrays.asList(new AssignmentItem().withResourceId(
+                "/subscriptions/d0cfe6b2-9ac0-4464-9919-dccaee2e48c0/resourceGroups/myRg/providers/Microsoft.OperationalInsights/workspac-es/myWorkspace/providers/Microsoft.SecurityInsights/alertRules/microsoftSecurityIncidentCreationRuleExampleOne"),
+                new AssignmentItem().withResourceId(
+                    "/subscriptions/d0cfe6b2-9ac0-4464-9919-dccaee2e48c0/resourceGroups/myRg/providers/Microsoft.OperationalInsights/workspac-es/myWorkspace/providers/Microsoft.SecurityInsights/alertRules/microsoftSecurityIncidentCreationRuleExampleTwo")))
+            .create();
+    }
+}
+```
+
+### WorkspaceManagerAssignments_Delete
+
+```java
+/**
+ * Samples for WorkspaceManagerAssignments Delete.
+ */
+public final class WorkspaceManagerAssignmentsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerAssignments/DeleteWorkspaceManagerAssignment.json
+     */
+    /**
+     * Sample code: Delete a workspace manager assignment.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        deleteAWorkspaceManagerAssignment(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerAssignments()
+            .deleteWithResponse("myRg", "myWorkspace", "47cdc5f5-37c4-47b5-bd5f-83c84b8bdd58",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerAssignments_Get
+
+```java
+/**
+ * Samples for WorkspaceManagerAssignments Get.
+ */
+public final class WorkspaceManagerAssignmentsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerAssignments/GetWorkspaceManagerAssignment.json
+     */
+    /**
+     * Sample code: Get a workspace manager assignment.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAWorkspaceManagerAssignment(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerAssignments()
+            .getWithResponse("myRg", "myWorkspace", "47cdc5f5-37c4-47b5-bd5f-83c84b8bdd58",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerAssignments_List
+
+```java
+/**
+ * Samples for WorkspaceManagerAssignments List.
+ */
+public final class WorkspaceManagerAssignmentsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerAssignments/GetAllWorkspaceManagerAssignments.json
+     */
+    /**
+     * Sample code: Get all workspace manager assignments for the Sentinel workspace manager.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAllWorkspaceManagerAssignmentsForTheSentinelWorkspaceManager(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerAssignments()
+            .list("myRg", "myWorkspace", null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerConfigurations_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.securityinsights.models.Mode;
+
+/**
+ * Samples for WorkspaceManagerConfigurations CreateOrUpdate.
+ */
+public final class WorkspaceManagerConfigurationsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerConfigurations/CreateOrUpdateWorkspaceManagerConfiguration.json
+     */
+    /**
+     * Sample code: Create or Update a workspace manager Configuration.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createOrUpdateAWorkspaceManagerConfiguration(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerConfigurations()
+            .define("default")
+            .withExistingWorkspace("myRg", "myWorkspace")
+            .withMode(Mode.ENABLED)
+            .create();
+    }
+}
+```
+
+### WorkspaceManagerConfigurations_Delete
+
+```java
+/**
+ * Samples for WorkspaceManagerConfigurations Delete.
+ */
+public final class WorkspaceManagerConfigurationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerConfigurations/DeleteWorkspaceManagerConfiguration.json
+     */
+    /**
+     * Sample code: Delete a workspace manager configuration.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void deleteAWorkspaceManagerConfiguration(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerConfigurations()
+            .deleteWithResponse("myRg", "myWorkspace", "default", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerConfigurations_Get
+
+```java
+/**
+ * Samples for WorkspaceManagerConfigurations Get.
+ */
+public final class WorkspaceManagerConfigurationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerConfigurations/GetWorkspaceManagerConfiguration.json
+     */
+    /**
+     * Sample code: Get a workspace manager configuration.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAWorkspaceManagerConfiguration(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerConfigurations()
+            .getWithResponse("myRg", "myWorkspace", "default", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerConfigurations_List
+
+```java
+/**
+ * Samples for WorkspaceManagerConfigurations List.
+ */
+public final class WorkspaceManagerConfigurationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerConfigurations/GetAllWorkspaceManagerConfigurations.json
+     */
+    /**
+     * Sample code: Get all workspace manager configurations for a Sentinel workspace.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAllWorkspaceManagerConfigurationsForASentinelWorkspace(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerConfigurations()
+            .list("myRg", "myWorkspace", null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerGroups_CreateOrUpdate
+
+```java
+import java.util.Arrays;
+
+/**
+ * Samples for WorkspaceManagerGroups CreateOrUpdate.
+ */
+public final class WorkspaceManagerGroupsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerGroups/CreateOrUpdateWorkspaceManagerGroup.json
+     */
+    /**
+     * Sample code: Creates or updates a workspace manager group.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAWorkspaceManagerGroup(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerGroups()
+            .define("37207a7a-3b8a-438f-a559-c7df400e1b96")
+            .withExistingWorkspace("myRg", "myWorkspace")
+            .withDescription("Group of all financial and banking institutions")
+            .withDisplayName("Banks")
+            .withMemberResourceNames(
+                Arrays.asList("afbd324f-6c48-459c-8710-8d1e1cd03812", "f5fa104e-c0e3-4747-9182-d342dc048a9e"))
+            .create();
+    }
+}
+```
+
+### WorkspaceManagerGroups_Delete
+
+```java
+/**
+ * Samples for WorkspaceManagerGroups Delete.
+ */
+public final class WorkspaceManagerGroupsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerGroups/DeleteWorkspaceManagerGroup.json
+     */
+    /**
+     * Sample code: Delete a workspace manager group.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        deleteAWorkspaceManagerGroup(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerGroups()
+            .deleteWithResponse("myRg", "myWorkspace", "37207a7a-3b8a-438f-a559-c7df400e1b96",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerGroups_Get
+
+```java
+/**
+ * Samples for WorkspaceManagerGroups Get.
+ */
+public final class WorkspaceManagerGroupsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerGroups/GetWorkspaceManagerGroup.json
+     */
+    /**
+     * Sample code: Get a workspace manager group.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAWorkspaceManagerGroup(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerGroups()
+            .getWithResponse("myRg", "myWorkspace", "37207a7a-3b8a-438f-a559-c7df400e1b96",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerGroups_List
+
+```java
+/**
+ * Samples for WorkspaceManagerGroups List.
+ */
+public final class WorkspaceManagerGroupsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerGroups/GetAllWorkspaceManagerGroups.json
+     */
+    /**
+     * Sample code: Get all workspace manager groups in the Sentinel workspace manager.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void getAllWorkspaceManagerGroupsInTheSentinelWorkspaceManager(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerGroups()
+            .list("myRg", "myWorkspace", null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerMembers_CreateOrUpdate
+
+```java
+/**
+ * Samples for WorkspaceManagerMembers CreateOrUpdate.
+ */
+public final class WorkspaceManagerMembersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerMembers/CreateOrUpdateWorkspaceManagerMember.json
+     */
+    /**
+     * Sample code: Create or Update a workspace manager member.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createOrUpdateAWorkspaceManagerMember(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerMembers()
+            .define("afbd324f-6c48-459c-8710-8d1e1cd03812")
+            .withExistingWorkspace("myRg", "myWorkspace")
+            .withTargetWorkspaceResourceId(
+                "/subscriptions/7aef9d48-814f-45ad-b644-b0343316e174/resourceGroups/otherRg/providers/Microsoft.OperationalInsights/workspaces/Example_Workspace")
+            .withTargetWorkspaceTenantId("f676d436-8d16-42db-81b7-ab578e110ccd")
+            .create();
+    }
+}
+```
+
+### WorkspaceManagerMembers_Delete
+
+```java
+/**
+ * Samples for WorkspaceManagerMembers Delete.
+ */
+public final class WorkspaceManagerMembersDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerMembers/DeleteWorkspaceManagerMember.json
+     */
+    /**
+     * Sample code: Delete a workspace manager member.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        deleteAWorkspaceManagerMember(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerMembers()
+            .deleteWithResponse("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerMembers_Get
+
+```java
+/**
+ * Samples for WorkspaceManagerMembers Get.
+ */
+public final class WorkspaceManagerMembersGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerMembers/GetWorkspaceManagerMember.json
+     */
+    /**
+     * Sample code: Get a workspace manager member.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAWorkspaceManagerMember(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerMembers()
+            .getWithResponse("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WorkspaceManagerMembers_List
+
+```java
+/**
+ * Samples for WorkspaceManagerMembers List.
+ */
+public final class WorkspaceManagerMembersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * workspaceManagerMembers/GetAllWorkspaceManagerMembers.json
+     */
+    /**
+     * Sample code: Get all workspace manager members.
+     * 
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void
+        getAllWorkspaceManagerMembers(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager.workspaceManagerMembers()
+            .list("myRg", "myWorkspace", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```

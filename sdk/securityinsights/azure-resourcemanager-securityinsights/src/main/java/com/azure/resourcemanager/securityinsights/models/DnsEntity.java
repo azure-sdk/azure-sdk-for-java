@@ -23,7 +23,7 @@ public final class DnsEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.DNS_RESOLUTION;
+    private EntityKindEnum kind = EntityKindEnum.DNS_RESOLUTION;
 
     /*
      * Dns entity properties
@@ -62,7 +62,7 @@ public final class DnsEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -219,7 +219,7 @@ public final class DnsEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedDnsEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedDnsEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedDnsEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedDnsEntity.innerProperties = DnsEntityProperties.fromJson(reader);
                 } else {

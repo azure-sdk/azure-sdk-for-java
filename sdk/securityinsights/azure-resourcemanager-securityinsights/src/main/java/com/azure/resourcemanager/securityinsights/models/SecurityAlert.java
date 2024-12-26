@@ -24,7 +24,7 @@ public final class SecurityAlert extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.SECURITY_ALERT;
+    private EntityKindEnum kind = EntityKindEnum.SECURITY_ALERT;
 
     /*
      * SecurityAlert entity properties
@@ -63,7 +63,7 @@ public final class SecurityAlert extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -426,7 +426,7 @@ public final class SecurityAlert extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedSecurityAlert.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedSecurityAlert.kind = EntityKind.fromString(reader.getString());
+                    deserializedSecurityAlert.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedSecurityAlert.innerProperties = SecurityAlertProperties.fromJson(reader);
                 } else {

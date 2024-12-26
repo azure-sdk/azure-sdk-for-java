@@ -11,6 +11,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
 import com.azure.resourcemanager.securityinsights.models.SourceType;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
 import java.io.IOException;
@@ -132,6 +133,11 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
      * equal to InProgress, the Watchlist cannot be deleted
      */
     private String uploadStatus;
+
+    /*
+     * The triggered analytics rule run provisioning state
+     */
+    private ProvisioningState provisioningState;
 
     /**
      * Creates an instance of WatchlistProperties class.
@@ -568,6 +574,26 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
+     * Get the provisioningState property: The triggered analytics rule run provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Set the provisioningState property: The triggered analytics rule run provisioning state.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the WatchlistProperties object itself.
+     */
+    public WatchlistProperties withProvisioningState(ProvisioningState provisioningState) {
+        this.provisioningState = provisioningState;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -626,6 +652,8 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
         jsonWriter.writeStringField("rawContent", this.rawContent);
         jsonWriter.writeStringField("contentType", this.contentType);
         jsonWriter.writeStringField("uploadStatus", this.uploadStatus);
+        jsonWriter.writeStringField("provisioningState",
+            this.provisioningState == null ? null : this.provisioningState.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -691,6 +719,9 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
                     deserializedWatchlistProperties.contentType = reader.getString();
                 } else if ("uploadStatus".equals(fieldName)) {
                     deserializedWatchlistProperties.uploadStatus = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedWatchlistProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

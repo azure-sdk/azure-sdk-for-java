@@ -23,7 +23,7 @@ public final class SecurityGroupEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.SECURITY_GROUP;
+    private EntityKindEnum kind = EntityKindEnum.SECURITY_GROUP;
 
     /*
      * SecurityGroup entity properties
@@ -62,7 +62,7 @@ public final class SecurityGroupEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -212,7 +212,7 @@ public final class SecurityGroupEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedSecurityGroupEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedSecurityGroupEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedSecurityGroupEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedSecurityGroupEntity.innerProperties = SecurityGroupEntityProperties.fromJson(reader);
                 } else {

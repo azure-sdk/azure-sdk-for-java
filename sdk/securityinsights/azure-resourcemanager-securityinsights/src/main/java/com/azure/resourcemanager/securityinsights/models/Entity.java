@@ -37,7 +37,7 @@ public interface Entity {
      * 
      * @return the kind value.
      */
-    EntityKind kind();
+    EntityKindEnum kind();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.

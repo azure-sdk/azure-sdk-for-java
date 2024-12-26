@@ -80,7 +80,7 @@ public interface MetadataModel {
      * 
      * @return the kind value.
      */
-    Kind kind();
+    String kind();
 
     /**
      * Gets the source property: Source of the content. This is where/how it was created.
@@ -337,7 +337,7 @@ public interface MetadataModel {
              * @param kind The kind of content the metadata is for.
              * @return the next definition stage.
              */
-            WithCreate withKind(Kind kind);
+            WithCreate withKind(String kind);
         }
 
         /**
@@ -657,7 +657,7 @@ public interface MetadataModel {
              * @param kind The kind of content the metadata is for.
              * @return the next definition stage.
              */
-            Update withKind(Kind kind);
+            Update withKind(String kind);
         }
 
         /**

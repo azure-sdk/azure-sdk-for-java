@@ -102,10 +102,14 @@ public class DataConnectorsCheckRequirements implements JsonSerializable<DataCon
                     return OfficeAtpCheckRequirements.fromJson(readerToUse.reset());
                 } else if ("OfficeIRM".equals(discriminatorValue)) {
                     return OfficeIrmCheckRequirements.fromJson(readerToUse.reset());
+                } else if ("MicrosoftPurviewInformationProtection".equals(discriminatorValue)) {
+                    return MicrosoftPurviewInformationProtectionCheckRequirements.fromJson(readerToUse.reset());
                 } else if ("Office365Project".equals(discriminatorValue)) {
                     return Office365ProjectCheckRequirements.fromJson(readerToUse.reset());
                 } else if ("OfficePowerBI".equals(discriminatorValue)) {
                     return OfficePowerBICheckRequirements.fromJson(readerToUse.reset());
+                } else if ("PurviewAudit".equals(discriminatorValue)) {
+                    return PurviewAuditCheckRequirements.fromJson(readerToUse.reset());
                 } else if ("ThreatIntelligence".equals(discriminatorValue)) {
                     return TICheckRequirements.fromJson(readerToUse.reset());
                 } else if ("ThreatIntelligenceTaxii".equals(discriminatorValue)) {

@@ -67,34 +67,12 @@ public final class RepositoryResourceInfo implements JsonSerializable<Repository
     }
 
     /**
-     * Set the gitHubResourceInfo property: Resources created in GitHub for this source-control.
-     * 
-     * @param gitHubResourceInfo the gitHubResourceInfo value to set.
-     * @return the RepositoryResourceInfo object itself.
-     */
-    public RepositoryResourceInfo withGitHubResourceInfo(GitHubResourceInfo gitHubResourceInfo) {
-        this.gitHubResourceInfo = gitHubResourceInfo;
-        return this;
-    }
-
-    /**
      * Get the azureDevOpsResourceInfo property: Resources created in Azure DevOps for this source-control.
      * 
      * @return the azureDevOpsResourceInfo value.
      */
     public AzureDevOpsResourceInfo azureDevOpsResourceInfo() {
         return this.azureDevOpsResourceInfo;
-    }
-
-    /**
-     * Set the azureDevOpsResourceInfo property: Resources created in Azure DevOps for this source-control.
-     * 
-     * @param azureDevOpsResourceInfo the azureDevOpsResourceInfo value to set.
-     * @return the RepositoryResourceInfo object itself.
-     */
-    public RepositoryResourceInfo withAzureDevOpsResourceInfo(AzureDevOpsResourceInfo azureDevOpsResourceInfo) {
-        this.azureDevOpsResourceInfo = azureDevOpsResourceInfo;
-        return this;
     }
 
     /**
@@ -121,8 +99,6 @@ public final class RepositoryResourceInfo implements JsonSerializable<Repository
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("webhook", this.webhook);
-        jsonWriter.writeJsonField("gitHubResourceInfo", this.gitHubResourceInfo);
-        jsonWriter.writeJsonField("azureDevOpsResourceInfo", this.azureDevOpsResourceInfo);
         return jsonWriter.writeEndObject();
     }
 

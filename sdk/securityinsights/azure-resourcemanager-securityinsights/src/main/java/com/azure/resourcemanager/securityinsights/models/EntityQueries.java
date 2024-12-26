@@ -36,7 +36,7 @@ public interface EntityQueries {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all entity queries as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<EntityQuery> list(String resourceGroupName, String workspaceName, EntityQueriesKind kind,
+    PagedIterable<EntityQuery> list(String resourceGroupName, String workspaceName, EntityQueryTemplateKind kind,
         Context context);
 
     /**

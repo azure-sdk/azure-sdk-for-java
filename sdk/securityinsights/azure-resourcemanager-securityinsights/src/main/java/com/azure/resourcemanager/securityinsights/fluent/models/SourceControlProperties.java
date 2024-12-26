@@ -12,9 +12,11 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.Version;
 import java.io.IOException;
 import java.util.List;
@@ -60,6 +62,16 @@ public final class SourceControlProperties implements JsonSerializable<SourceCon
     private Repository repository;
 
     /*
+     * Service principal metadata.
+     */
+    private ServicePrincipal servicePrincipal;
+
+    /*
+     * Repository access credentials. This is write-only object and it never returns back to a user.
+     */
+    private RepositoryAccess repositoryAccess;
+
+    /*
      * Information regarding the resources created in user's repository.
      */
     private RepositoryResourceInfo repositoryResourceInfo;
@@ -68,6 +80,11 @@ public final class SourceControlProperties implements JsonSerializable<SourceCon
      * Information regarding the latest deployment for the source control.
      */
     private DeploymentInfo lastDeploymentInfo;
+
+    /*
+     * Information regarding the pull request of the source control.
+     */
+    private PullRequest pullRequest;
 
     /**
      * Creates an instance of SourceControlProperties class.
@@ -85,34 +102,12 @@ public final class SourceControlProperties implements JsonSerializable<SourceCon
     }
 
     /**
-     * Set the id property: The id (a Guid) of the source control.
-     * 
-     * @param id the id value to set.
-     * @return the SourceControlProperties object itself.
-     */
-    public SourceControlProperties withId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
      * Get the version property: The version number associated with the source control.
      * 
      * @return the version value.
      */
     public Version version() {
         return this.version;
-    }
-
-    /**
-     * Set the version property: The version number associated with the source control.
-     * 
-     * @param version the version value to set.
-     * @return the SourceControlProperties object itself.
-     */
-    public SourceControlProperties withVersion(Version version) {
-        this.version = version;
-        return this;
     }
 
     /**
@@ -216,6 +211,48 @@ public final class SourceControlProperties implements JsonSerializable<SourceCon
     }
 
     /**
+     * Get the servicePrincipal property: Service principal metadata.
+     * 
+     * @return the servicePrincipal value.
+     */
+    public ServicePrincipal servicePrincipal() {
+        return this.servicePrincipal;
+    }
+
+    /**
+     * Set the servicePrincipal property: Service principal metadata.
+     * 
+     * @param servicePrincipal the servicePrincipal value to set.
+     * @return the SourceControlProperties object itself.
+     */
+    public SourceControlProperties withServicePrincipal(ServicePrincipal servicePrincipal) {
+        this.servicePrincipal = servicePrincipal;
+        return this;
+    }
+
+    /**
+     * Get the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     * 
+     * @return the repositoryAccess value.
+     */
+    public RepositoryAccess repositoryAccess() {
+        return this.repositoryAccess;
+    }
+
+    /**
+     * Set the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     * 
+     * @param repositoryAccess the repositoryAccess value to set.
+     * @return the SourceControlProperties object itself.
+     */
+    public SourceControlProperties withRepositoryAccess(RepositoryAccess repositoryAccess) {
+        this.repositoryAccess = repositoryAccess;
+        return this;
+    }
+
+    /**
      * Get the repositoryResourceInfo property: Information regarding the resources created in user's repository.
      * 
      * @return the repositoryResourceInfo value.
@@ -245,14 +282,12 @@ public final class SourceControlProperties implements JsonSerializable<SourceCon
     }
 
     /**
-     * Set the lastDeploymentInfo property: Information regarding the latest deployment for the source control.
+     * Get the pullRequest property: Information regarding the pull request of the source control.
      * 
-     * @param lastDeploymentInfo the lastDeploymentInfo value to set.
-     * @return the SourceControlProperties object itself.
+     * @return the pullRequest value.
      */
-    public SourceControlProperties withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo) {
-        this.lastDeploymentInfo = lastDeploymentInfo;
-        return this;
+    public PullRequest pullRequest() {
+        return this.pullRequest;
     }
 
     /**
@@ -283,11 +318,20 @@ public final class SourceControlProperties implements JsonSerializable<SourceCon
         } else {
             repository().validate();
         }
+        if (servicePrincipal() != null) {
+            servicePrincipal().validate();
+        }
+        if (repositoryAccess() != null) {
+            repositoryAccess().validate();
+        }
         if (repositoryResourceInfo() != null) {
             repositoryResourceInfo().validate();
         }
         if (lastDeploymentInfo() != null) {
             lastDeploymentInfo().validate();
+        }
+        if (pullRequest() != null) {
+            pullRequest().validate();
         }
     }
 
@@ -304,11 +348,10 @@ public final class SourceControlProperties implements JsonSerializable<SourceCon
         jsonWriter.writeArrayField("contentTypes", this.contentTypes,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeJsonField("repository", this.repository);
-        jsonWriter.writeStringField("id", this.id);
-        jsonWriter.writeStringField("version", this.version == null ? null : this.version.toString());
         jsonWriter.writeStringField("description", this.description);
+        jsonWriter.writeJsonField("servicePrincipal", this.servicePrincipal);
+        jsonWriter.writeJsonField("repositoryAccess", this.repositoryAccess);
         jsonWriter.writeJsonField("repositoryResourceInfo", this.repositoryResourceInfo);
-        jsonWriter.writeJsonField("lastDeploymentInfo", this.lastDeploymentInfo);
         return jsonWriter.writeEndObject();
     }
 
@@ -344,11 +387,17 @@ public final class SourceControlProperties implements JsonSerializable<SourceCon
                     deserializedSourceControlProperties.version = Version.fromString(reader.getString());
                 } else if ("description".equals(fieldName)) {
                     deserializedSourceControlProperties.description = reader.getString();
+                } else if ("servicePrincipal".equals(fieldName)) {
+                    deserializedSourceControlProperties.servicePrincipal = ServicePrincipal.fromJson(reader);
+                } else if ("repositoryAccess".equals(fieldName)) {
+                    deserializedSourceControlProperties.repositoryAccess = RepositoryAccess.fromJson(reader);
                 } else if ("repositoryResourceInfo".equals(fieldName)) {
                     deserializedSourceControlProperties.repositoryResourceInfo
                         = RepositoryResourceInfo.fromJson(reader);
                 } else if ("lastDeploymentInfo".equals(fieldName)) {
                     deserializedSourceControlProperties.lastDeploymentInfo = DeploymentInfo.fromJson(reader);
+                } else if ("pullRequest".equals(fieldName)) {
+                    deserializedSourceControlProperties.pullRequest = PullRequest.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

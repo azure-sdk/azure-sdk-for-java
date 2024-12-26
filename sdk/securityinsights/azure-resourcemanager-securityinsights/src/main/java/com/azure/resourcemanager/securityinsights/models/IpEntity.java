@@ -23,7 +23,7 @@ public final class IpEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.IP;
+    private EntityKindEnum kind = EntityKindEnum.IP;
 
     /*
      * Ip entity properties
@@ -62,7 +62,7 @@ public final class IpEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -210,7 +210,7 @@ public final class IpEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedIpEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedIpEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedIpEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedIpEntity.innerProperties = IpEntityProperties.fromJson(reader);
                 } else {

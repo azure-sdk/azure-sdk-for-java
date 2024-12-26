@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * Represents security alert timeline item.
@@ -68,6 +69,16 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
      * The name of the alert type.
      */
     private String alertType;
+
+    /*
+     * The intent of the alert.
+     */
+    private KillChainIntent intent;
+
+    /*
+     * The techniques of the alert.
+     */
+    private List<String> techniques;
 
     /**
      * Creates an instance of SecurityAlertTimelineItem class.
@@ -266,6 +277,35 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
     }
 
     /**
+     * Get the intent property: The intent of the alert.
+     * 
+     * @return the intent value.
+     */
+    public KillChainIntent intent() {
+        return this.intent;
+    }
+
+    /**
+     * Get the techniques property: The techniques of the alert.
+     * 
+     * @return the techniques value.
+     */
+    public List<String> techniques() {
+        return this.techniques;
+    }
+
+    /**
+     * Set the techniques property: The techniques of the alert.
+     * 
+     * @param techniques the techniques value to set.
+     * @return the SecurityAlertTimelineItem object itself.
+     */
+    public SecurityAlertTimelineItem withTechniques(List<String> techniques) {
+        this.techniques = techniques;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -330,6 +370,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
         jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
         jsonWriter.writeStringField("productName", this.productName);
         jsonWriter.writeStringField("description", this.description);
+        jsonWriter.writeArrayField("techniques", this.techniques, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -372,6 +413,11 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
                     deserializedSecurityAlertTimelineItem.productName = reader.getString();
                 } else if ("description".equals(fieldName)) {
                     deserializedSecurityAlertTimelineItem.description = reader.getString();
+                } else if ("intent".equals(fieldName)) {
+                    deserializedSecurityAlertTimelineItem.intent = KillChainIntent.fromString(reader.getString());
+                } else if ("techniques".equals(fieldName)) {
+                    List<String> techniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedSecurityAlertTimelineItem.techniques = techniques;
                 } else {
                     reader.skipChildren();
                 }

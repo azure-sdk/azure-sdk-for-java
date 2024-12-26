@@ -9,7 +9,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.securityinsights.models.Kind;
 import com.azure.resourcemanager.securityinsights.models.MetadataAuthor;
 import com.azure.resourcemanager.securityinsights.models.MetadataCategories;
 import com.azure.resourcemanager.securityinsights.models.MetadataDependencies;
@@ -46,7 +45,7 @@ public final class MetadataPropertiesPatch implements JsonSerializable<MetadataP
     /*
      * The kind of content the metadata is for.
      */
-    private Kind kind;
+    private String kind;
 
     /*
      * Source of the content. This is where/how it was created.
@@ -206,7 +205,7 @@ public final class MetadataPropertiesPatch implements JsonSerializable<MetadataP
      * 
      * @return the kind value.
      */
-    public Kind kind() {
+    public String kind() {
         return this.kind;
     }
 
@@ -216,7 +215,7 @@ public final class MetadataPropertiesPatch implements JsonSerializable<MetadataP
      * @param kind the kind value to set.
      * @return the MetadataPropertiesPatch object itself.
      */
-    public MetadataPropertiesPatch withKind(Kind kind) {
+    public MetadataPropertiesPatch withKind(String kind) {
         this.kind = kind;
         return this;
     }
@@ -563,7 +562,7 @@ public final class MetadataPropertiesPatch implements JsonSerializable<MetadataP
         jsonWriter.writeStringField("contentId", this.contentId);
         jsonWriter.writeStringField("parentId", this.parentId);
         jsonWriter.writeStringField("version", this.version);
-        jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
         jsonWriter.writeJsonField("source", this.source);
         jsonWriter.writeJsonField("author", this.author);
         jsonWriter.writeJsonField("support", this.support);
@@ -608,7 +607,7 @@ public final class MetadataPropertiesPatch implements JsonSerializable<MetadataP
                 } else if ("version".equals(fieldName)) {
                     deserializedMetadataPropertiesPatch.version = reader.getString();
                 } else if ("kind".equals(fieldName)) {
-                    deserializedMetadataPropertiesPatch.kind = Kind.fromString(reader.getString());
+                    deserializedMetadataPropertiesPatch.kind = reader.getString();
                 } else if ("source".equals(fieldName)) {
                     deserializedMetadataPropertiesPatch.source = MetadataSource.fromJson(reader);
                 } else if ("author".equals(fieldName)) {

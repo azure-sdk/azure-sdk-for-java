@@ -13,7 +13,6 @@ import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.WatchlistInner;
 import com.azure.resourcemanager.securityinsights.models.Watchlist;
 import com.azure.resourcemanager.securityinsights.models.Watchlists;
-import com.azure.resourcemanager.securityinsights.models.WatchlistsDeleteResponse;
 
 public final class WatchlistsImpl implements Watchlists {
     private static final ClientLogger LOGGER = new ClientLogger(WatchlistsImpl.class);
@@ -61,13 +60,12 @@ public final class WatchlistsImpl implements Watchlists {
         }
     }
 
-    public WatchlistsDeleteResponse deleteWithResponse(String resourceGroupName, String workspaceName,
-        String watchlistAlias, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, watchlistAlias, context);
-    }
-
     public void delete(String resourceGroupName, String workspaceName, String watchlistAlias) {
         this.serviceClient().delete(resourceGroupName, workspaceName, watchlistAlias);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String watchlistAlias, Context context) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, watchlistAlias, context);
     }
 
     public Watchlist getById(String id) {
@@ -124,10 +122,10 @@ public final class WatchlistsImpl implements Watchlists {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'watchlists'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, workspaceName, watchlistAlias, Context.NONE);
+        this.delete(resourceGroupName, workspaceName, watchlistAlias, Context.NONE);
     }
 
-    public WatchlistsDeleteResponse deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -143,7 +141,7 @@ public final class WatchlistsImpl implements Watchlists {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'watchlists'.", id)));
         }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, watchlistAlias, context);
+        this.delete(resourceGroupName, workspaceName, watchlistAlias, context);
     }
 
     private WatchlistsClient serviceClient() {

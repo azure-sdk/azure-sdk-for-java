@@ -4,15 +4,14 @@
 
 package com.azure.resourcemanager.securityinsights.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.ProductSettingsClient;
-import com.azure.resourcemanager.securityinsights.fluent.models.SettingListInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.SettingsInner;
 import com.azure.resourcemanager.securityinsights.models.ProductSettings;
-import com.azure.resourcemanager.securityinsights.models.SettingList;
 import com.azure.resourcemanager.securityinsights.models.Settings;
 
 public final class ProductSettingsImpl implements ProductSettings {
@@ -28,24 +27,14 @@ public final class ProductSettingsImpl implements ProductSettings {
         this.serviceManager = serviceManager;
     }
 
-    public Response<SettingList> listWithResponse(String resourceGroupName, String workspaceName, Context context) {
-        Response<SettingListInner> inner
-            = this.serviceClient().listWithResponse(resourceGroupName, workspaceName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new SettingListImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public PagedIterable<Settings> list(String resourceGroupName, String workspaceName) {
+        PagedIterable<SettingsInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SettingsImpl(inner1, this.manager()));
     }
 
-    public SettingList list(String resourceGroupName, String workspaceName) {
-        SettingListInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        if (inner != null) {
-            return new SettingListImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<Settings> list(String resourceGroupName, String workspaceName, Context context) {
+        PagedIterable<SettingsInner> inner = this.serviceClient().list(resourceGroupName, workspaceName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SettingsImpl(inner1, this.manager()));
     }
 
     public Response<Settings> getWithResponse(String resourceGroupName, String workspaceName, String settingsName,

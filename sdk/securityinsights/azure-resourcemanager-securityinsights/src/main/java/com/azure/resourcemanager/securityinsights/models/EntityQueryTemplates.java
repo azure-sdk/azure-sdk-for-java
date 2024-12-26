@@ -36,8 +36,8 @@ public interface EntityQueryTemplates {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all entity query templates as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<EntityQueryTemplate> list(String resourceGroupName, String workspaceName, Constant88 kind,
-        Context context);
+    PagedIterable<EntityQueryTemplate> list(String resourceGroupName, String workspaceName,
+        EntityQueryTemplateKind kind, Context context);
 
     /**
      * Gets an entity query.

@@ -24,7 +24,7 @@ public final class MailClusterEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.MAIL_CLUSTER;
+    private EntityKindEnum kind = EntityKindEnum.MAIL_CLUSTER;
 
     /*
      * Mail cluster entity properties
@@ -63,7 +63,7 @@ public final class MailClusterEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -319,7 +319,7 @@ public final class MailClusterEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedMailClusterEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedMailClusterEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedMailClusterEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedMailClusterEntity.innerProperties = MailClusterEntityProperties.fromJson(reader);
                 } else {

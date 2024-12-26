@@ -63,6 +63,11 @@ public final class ThreatIntelligenceAlertRuleProperties
      */
     private List<String> techniques;
 
+    /*
+     * The sub-techniques of the alert rule
+     */
+    private List<String> subTechniques;
+
     /**
      * Creates an instance of ThreatIntelligenceAlertRuleProperties class.
      */
@@ -164,6 +169,15 @@ public final class ThreatIntelligenceAlertRuleProperties
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -227,6 +241,9 @@ public final class ThreatIntelligenceAlertRuleProperties
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedThreatIntelligenceAlertRuleProperties.techniques = techniques;
+                } else if ("subTechniques".equals(fieldName)) {
+                    List<String> subTechniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedThreatIntelligenceAlertRuleProperties.subTechniques = subTechniques;
                 } else {
                     reader.skipChildren();
                 }

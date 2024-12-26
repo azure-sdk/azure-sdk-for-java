@@ -31,11 +31,13 @@ import com.azure.resourcemanager.securityinsights.fluent.EntitiesClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityExpandResponseInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityGetInsightsResponseInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
-import com.azure.resourcemanager.securityinsights.fluent.models.GetQueriesResponseInner;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryItemInner;
 import com.azure.resourcemanager.securityinsights.models.EntityExpandParameters;
 import com.azure.resourcemanager.securityinsights.models.EntityGetInsightsParameters;
 import com.azure.resourcemanager.securityinsights.models.EntityItemQueryKind;
 import com.azure.resourcemanager.securityinsights.models.EntityList;
+import com.azure.resourcemanager.securityinsights.models.EntityManualTriggerRequestBody;
+import com.azure.resourcemanager.securityinsights.models.GetQueriesResponse;
 import reactor.core.publisher.Mono;
 
 /**
@@ -70,6 +72,17 @@ public final class EntitiesClientImpl implements EntitiesClient {
     @ServiceInterface(name = "SecurityInsightsEnti")
     public interface EntitiesService {
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityIdentifier}/runPlaybook")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> runPlaybook(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("entityIdentifier") String entityIdentifier,
+            @BodyParam("application/json") EntityManualTriggerRequestBody requestBody,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -101,7 +114,7 @@ public final class EntitiesClientImpl implements EntitiesClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/queries")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<GetQueriesResponseInner>> queries(@HostParam("$host") String endpoint,
+        Mono<Response<GetQueriesResponse>> queries(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("entityId") String entityId, @QueryParam("kind") EntityItemQueryKind kind,
@@ -124,6 +137,150 @@ public final class EntitiesClientImpl implements EntitiesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> runPlaybookWithResponseAsync(String resourceGroupName, String workspaceName,
+        String entityIdentifier, EntityManualTriggerRequestBody requestBody) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (entityIdentifier == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter entityIdentifier is required and cannot be null."));
+        }
+        if (requestBody != null) {
+            requestBody.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.runPlaybook(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, entityIdentifier, requestBody,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> runPlaybookWithResponseAsync(String resourceGroupName, String workspaceName,
+        String entityIdentifier, EntityManualTriggerRequestBody requestBody, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (entityIdentifier == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter entityIdentifier is required and cannot be null."));
+        }
+        if (requestBody != null) {
+            requestBody.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.runPlaybook(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workspaceName, entityIdentifier, requestBody, accept,
+            context);
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> runPlaybookAsync(String resourceGroupName, String workspaceName, String entityIdentifier) {
+        final EntityManualTriggerRequestBody requestBody = null;
+        return runPlaybookWithResponseAsync(resourceGroupName, workspaceName, entityIdentifier, requestBody)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> runPlaybookWithResponse(String resourceGroupName, String workspaceName,
+        String entityIdentifier, EntityManualTriggerRequestBody requestBody, Context context) {
+        return runPlaybookWithResponseAsync(resourceGroupName, workspaceName, entityIdentifier, requestBody, context)
+            .block();
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void runPlaybook(String resourceGroupName, String workspaceName, String entityIdentifier) {
+        final EntityManualTriggerRequestBody requestBody = null;
+        runPlaybookWithResponse(resourceGroupName, workspaceName, entityIdentifier, requestBody, Context.NONE);
     }
 
     /**
@@ -550,11 +707,11 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity along with {@link Response} on successful completion of
+     * @return insights and Activities for an entity along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GetQueriesResponseInner>> queriesWithResponseAsync(String resourceGroupName,
+    private Mono<PagedResponse<EntityQueryItemInner>> queriesSinglePageAsync(String resourceGroupName,
         String workspaceName, String entityId, EntityItemQueryKind kind) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -581,6 +738,8 @@ public final class EntitiesClientImpl implements EntitiesClient {
         return FluxUtil
             .withContext(context -> service.queries(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, entityId, kind, accept, context))
+            .<PagedResponse<EntityQueryItemInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -595,11 +754,11 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity along with {@link Response} on successful completion of
+     * @return insights and Activities for an entity along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GetQueriesResponseInner>> queriesWithResponseAsync(String resourceGroupName,
+    private Mono<PagedResponse<EntityQueryItemInner>> queriesSinglePageAsync(String resourceGroupName,
         String workspaceName, String entityId, EntityItemQueryKind kind, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -624,8 +783,11 @@ public final class EntitiesClientImpl implements EntitiesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.queries(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, entityId, kind, accept, context);
+        return service
+            .queries(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, entityId, kind, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), null, null));
     }
 
     /**
@@ -638,13 +800,12 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity on successful completion of {@link Mono}.
+     * @return insights and Activities for an entity as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<GetQueriesResponseInner> queriesAsync(String resourceGroupName, String workspaceName, String entityId,
-        EntityItemQueryKind kind) {
-        return queriesWithResponseAsync(resourceGroupName, workspaceName, entityId, kind)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<EntityQueryItemInner> queriesAsync(String resourceGroupName, String workspaceName,
+        String entityId, EntityItemQueryKind kind) {
+        return new PagedFlux<>(() -> queriesSinglePageAsync(resourceGroupName, workspaceName, entityId, kind));
     }
 
     /**
@@ -658,12 +819,12 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity along with {@link Response}.
+     * @return insights and Activities for an entity as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<GetQueriesResponseInner> queriesWithResponse(String resourceGroupName, String workspaceName,
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<EntityQueryItemInner> queriesAsync(String resourceGroupName, String workspaceName,
         String entityId, EntityItemQueryKind kind, Context context) {
-        return queriesWithResponseAsync(resourceGroupName, workspaceName, entityId, kind, context).block();
+        return new PagedFlux<>(() -> queriesSinglePageAsync(resourceGroupName, workspaceName, entityId, kind, context));
     }
 
     /**
@@ -676,12 +837,31 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity.
+     * @return insights and Activities for an entity as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetQueriesResponseInner queries(String resourceGroupName, String workspaceName, String entityId,
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<EntityQueryItemInner> queries(String resourceGroupName, String workspaceName, String entityId,
         EntityItemQueryKind kind) {
-        return queriesWithResponse(resourceGroupName, workspaceName, entityId, kind, Context.NONE).getValue();
+        return new PagedIterable<>(queriesAsync(resourceGroupName, workspaceName, entityId, kind));
+    }
+
+    /**
+     * Get Insights and Activities for an entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityId entity ID.
+     * @param kind The Kind parameter for queries.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return insights and Activities for an entity as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<EntityQueryItemInner> queries(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind, Context context) {
+        return new PagedIterable<>(queriesAsync(resourceGroupName, workspaceName, entityId, kind, context));
     }
 
     /**

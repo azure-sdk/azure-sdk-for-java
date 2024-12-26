@@ -22,7 +22,7 @@ public final class AzureResourceEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.AZURE_RESOURCE;
+    private EntityKindEnum kind = EntityKindEnum.AZURE_RESOURCE;
 
     /*
      * AzureResource entity properties
@@ -61,7 +61,7 @@ public final class AzureResourceEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -200,7 +200,7 @@ public final class AzureResourceEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedAzureResourceEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedAzureResourceEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedAzureResourceEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedAzureResourceEntity.innerProperties = AzureResourceEntityProperties.fromJson(reader);
                 } else {

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.securityinsights.generated;
 public final class ProductSettingsListSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * settings/GetAllSettings.json
      */
     /**
@@ -19,6 +19,6 @@ public final class ProductSettingsListSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void getAllSettings(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.productSettings().listWithResponse("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
+        manager.productSettings().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }

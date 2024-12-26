@@ -16,6 +16,7 @@ import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -61,6 +62,11 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
      * The event grouping settings.
      */
     private EventGroupingSettings eventGroupingSettings;
+
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
 
     /*
      * The time that this alert rule template has been added.
@@ -221,6 +227,27 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRuleTemplateProperties object itself.
+     */
+    public NrtAlertRuleTemplateProperties
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Get the createdDateUtc property: The time that this alert rule template has been added.
      * 
      * @return the createdDateUtc value.
@@ -321,6 +348,9 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
         }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
+        }
         if (requiredDataConnectors() != null) {
             requiredDataConnectors().forEach(e -> e.validate());
         }
@@ -349,6 +379,8 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("alertDetailsOverride", this.alertDetailsOverride);
         jsonWriter.writeJsonField("eventGroupingSettings", this.eventGroupingSettings);
+        jsonWriter.writeArrayField("sentinelEntitiesMappings", this.sentinelEntitiesMappings,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -413,6 +445,10 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
                 } else if ("eventGroupingSettings".equals(fieldName)) {
                     deserializedNrtAlertRuleTemplateProperties.eventGroupingSettings
                         = EventGroupingSettings.fromJson(reader);
+                } else if ("sentinelEntitiesMappings".equals(fieldName)) {
+                    List<SentinelEntityMapping> sentinelEntitiesMappings
+                        = reader.readArray(reader1 -> SentinelEntityMapping.fromJson(reader1));
+                    deserializedNrtAlertRuleTemplateProperties.sentinelEntitiesMappings = sentinelEntitiesMappings;
                 } else {
                     reader.skipChildren();
                 }

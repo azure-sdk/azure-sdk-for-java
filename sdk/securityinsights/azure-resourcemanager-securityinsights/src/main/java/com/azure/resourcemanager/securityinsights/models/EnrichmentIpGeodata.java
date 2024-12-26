@@ -32,12 +32,12 @@ public interface EnrichmentIpGeodata {
     String city();
 
     /**
-     * Gets the cityCf property: A numeric rating of confidence that the value in the 'city' field is correct, on a
-     * scale of 0-100.
+     * Gets the cityConfidenceFactor property: A numeric rating of confidence that the value in the 'city' field is
+     * correct, on a scale of 0-100.
      * 
-     * @return the cityCf value.
+     * @return the cityConfidenceFactor value.
      */
-    Integer cityCf();
+    Integer cityConfidenceFactor();
 
     /**
      * Gets the continent property: The continent this IP address is located on.
@@ -54,12 +54,12 @@ public interface EnrichmentIpGeodata {
     String country();
 
     /**
-     * Gets the countryCf property: A numeric rating of confidence that the value in the 'country' field is correct on a
-     * scale of 0-100.
+     * Gets the countryConfidenceFactor property: A numeric rating of confidence that the value in the 'country' field
+     * is correct on a scale of 0-100.
      * 
-     * @return the countryCf value.
+     * @return the countryConfidenceFactor value.
      */
-    Integer countryCf();
+    Integer countryConfidenceFactor();
 
     /**
      * Gets the ipAddr property: The dotted-decimal or colon-separated string representation of the IP address.
@@ -118,12 +118,12 @@ public interface EnrichmentIpGeodata {
     String state();
 
     /**
-     * Gets the stateCf property: A numeric rating of confidence that the value in the 'state' field is correct on a
-     * scale of 0-100.
+     * Gets the stateConfidenceFactor property: A numeric rating of confidence that the value in the 'state' field is
+     * correct on a scale of 0-100.
      * 
-     * @return the stateCf value.
+     * @return the stateConfidenceFactor value.
      */
-    Integer stateCf();
+    Integer stateConfidenceFactor();
 
     /**
      * Gets the stateCode property: The abbreviated name for the state this IP address is located in.

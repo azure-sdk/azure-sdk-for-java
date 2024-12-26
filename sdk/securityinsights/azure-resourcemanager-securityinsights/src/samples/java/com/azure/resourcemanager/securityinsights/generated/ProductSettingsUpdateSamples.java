@@ -12,7 +12,7 @@ import com.azure.resourcemanager.securityinsights.models.EyesOn;
 public final class ProductSettingsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * settings/UpdateEyesOnSetting.json
      */
     /**

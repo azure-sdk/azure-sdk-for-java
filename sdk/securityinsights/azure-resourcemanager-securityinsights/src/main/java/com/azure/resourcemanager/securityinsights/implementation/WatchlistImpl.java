@@ -7,6 +7,7 @@ package com.azure.resourcemanager.securityinsights.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.WatchlistInner;
+import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
 import com.azure.resourcemanager.securityinsights.models.SourceType;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
 import com.azure.resourcemanager.securityinsights.models.Watchlist;
@@ -129,6 +130,10 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
         return this.innerModel().uploadStatus();
     }
 
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
     public String resourceGroupName() {
         return resourceGroupName;
     }
@@ -156,17 +161,14 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
     public Watchlist create() {
         this.innerObject = serviceManager.serviceClient()
             .getWatchlists()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, watchlistAlias, this.innerModel(),
-                Context.NONE)
-            .getValue();
+            .createOrUpdate(resourceGroupName, workspaceName, watchlistAlias, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Watchlist create(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getWatchlists()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, watchlistAlias, this.innerModel(), context)
-            .getValue();
+            .createOrUpdate(resourceGroupName, workspaceName, watchlistAlias, this.innerModel(), context);
         return this;
     }
 
@@ -183,17 +185,14 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
     public Watchlist apply() {
         this.innerObject = serviceManager.serviceClient()
             .getWatchlists()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, watchlistAlias, this.innerModel(),
-                Context.NONE)
-            .getValue();
+            .createOrUpdate(resourceGroupName, workspaceName, watchlistAlias, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Watchlist apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getWatchlists()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, watchlistAlias, this.innerModel(), context)
-            .getValue();
+            .createOrUpdate(resourceGroupName, workspaceName, watchlistAlias, this.innerModel(), context);
         return this;
     }
 
@@ -329,6 +328,11 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
 
     public WatchlistImpl withUploadStatus(String uploadStatus) {
         this.innerModel().withUploadStatus(uploadStatus);
+        return this;
+    }
+
+    public WatchlistImpl withProvisioningState(ProvisioningState provisioningState) {
+        this.innerModel().withProvisioningState(provisioningState);
         return this;
     }
 }

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.SettingsInner;
@@ -17,25 +18,25 @@ public interface ProductSettings {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the settings along with {@link Response}.
+     * @return list of all the settings as paginated response with {@link PagedIterable}.
      */
-    Response<SettingList> listWithResponse(String resourceGroupName, String workspaceName, Context context);
+    PagedIterable<Settings> list(String resourceGroupName, String workspaceName);
 
     /**
      * List of all the settings.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the settings.
+     * @return list of all the settings as paginated response with {@link PagedIterable}.
      */
-    SettingList list(String resourceGroupName, String workspaceName);
+    PagedIterable<Settings> list(String resourceGroupName, String workspaceName, Context context);
 
     /**
      * Gets a setting.

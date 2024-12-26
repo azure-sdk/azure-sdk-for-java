@@ -7,6 +7,7 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.securityinsights.fluent.models.TeamInformationInner;
 
 /**
  * Resource collection API of Incidents.
@@ -142,7 +143,7 @@ public interface Incidents {
      * @return describes team information along with {@link Response}.
      */
     Response<TeamInformation> createTeamWithResponse(String resourceGroupName, String workspaceName, String incidentId,
-        TeamProperties teamProperties, Context context);
+        TeamInformationInner teamProperties, Context context);
 
     /**
      * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
@@ -157,7 +158,7 @@ public interface Incidents {
      * @return describes team information.
      */
     TeamInformation createTeam(String resourceGroupName, String workspaceName, String incidentId,
-        TeamProperties teamProperties);
+        TeamInformationInner teamProperties);
 
     /**
      * Gets all incident alerts.

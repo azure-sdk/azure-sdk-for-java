@@ -10,7 +10,7 @@ package com.azure.resourcemanager.securityinsights.generated;
 public final class WatchlistsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * watchlists/DeleteWatchlist.json
      */
     /**
@@ -19,7 +19,6 @@ public final class WatchlistsDeleteSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void deleteAWatchlist(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.watchlists()
-            .deleteWithResponse("myRg", "myWorkspace", "highValueAsset", com.azure.core.util.Context.NONE);
+        manager.watchlists().delete("myRg", "myWorkspace", "highValueAsset", com.azure.core.util.Context.NONE);
     }
 }

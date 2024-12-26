@@ -22,7 +22,7 @@ public final class FileHashEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.FILE_HASH;
+    private EntityKindEnum kind = EntityKindEnum.FILE_HASH;
 
     /*
      * FileHash entity properties
@@ -61,7 +61,7 @@ public final class FileHashEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -200,7 +200,7 @@ public final class FileHashEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedFileHashEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedFileHashEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedFileHashEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedFileHashEntity.innerProperties = FileHashEntityProperties.fromJson(reader);
                 } else {

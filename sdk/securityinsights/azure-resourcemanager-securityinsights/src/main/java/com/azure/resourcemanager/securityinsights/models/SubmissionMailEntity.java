@@ -24,7 +24,7 @@ public final class SubmissionMailEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.SUBMISSION_MAIL;
+    private EntityKindEnum kind = EntityKindEnum.SUBMISSION_MAIL;
 
     /*
      * Submission mail entity properties
@@ -63,7 +63,7 @@ public final class SubmissionMailEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -275,7 +275,7 @@ public final class SubmissionMailEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedSubmissionMailEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedSubmissionMailEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedSubmissionMailEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedSubmissionMailEntity.innerProperties = SubmissionMailEntityProperties.fromJson(reader);
                 } else {

@@ -38,19 +38,19 @@ public final class IncidentAdditionalData implements JsonSerializable<IncidentAd
     private List<String> alertProductNames;
 
     /*
-     * The provider incident url to the incident in Microsoft 365 Defender portal
-     */
-    private String providerIncidentUrl;
-
-    /*
      * The tactics associated with incident
      */
     private List<AttackTactic> tactics;
 
     /*
-     * The techniques associated with incident's tactics'
+     * The techniques associated with incident's tactics
      */
     private List<String> techniques;
+
+    /*
+     * The provider incident url to the incident in Microsoft 365 Defender portal
+     */
+    private String providerIncidentUrl;
 
     /**
      * Creates an instance of IncidentAdditionalData class.
@@ -95,15 +95,6 @@ public final class IncidentAdditionalData implements JsonSerializable<IncidentAd
     }
 
     /**
-     * Get the providerIncidentUrl property: The provider incident url to the incident in Microsoft 365 Defender portal.
-     * 
-     * @return the providerIncidentUrl value.
-     */
-    public String providerIncidentUrl() {
-        return this.providerIncidentUrl;
-    }
-
-    /**
      * Get the tactics property: The tactics associated with incident.
      * 
      * @return the tactics value.
@@ -113,12 +104,21 @@ public final class IncidentAdditionalData implements JsonSerializable<IncidentAd
     }
 
     /**
-     * Get the techniques property: The techniques associated with incident's tactics'.
+     * Get the techniques property: The techniques associated with incident's tactics.
      * 
      * @return the techniques value.
      */
     public List<String> techniques() {
         return this.techniques;
+    }
+
+    /**
+     * Get the providerIncidentUrl property: The provider incident url to the incident in Microsoft 365 Defender portal.
+     * 
+     * @return the providerIncidentUrl value.
+     */
+    public String providerIncidentUrl() {
+        return this.providerIncidentUrl;
     }
 
     /**
@@ -162,8 +162,6 @@ public final class IncidentAdditionalData implements JsonSerializable<IncidentAd
                 } else if ("alertProductNames".equals(fieldName)) {
                     List<String> alertProductNames = reader.readArray(reader1 -> reader1.getString());
                     deserializedIncidentAdditionalData.alertProductNames = alertProductNames;
-                } else if ("providerIncidentUrl".equals(fieldName)) {
-                    deserializedIncidentAdditionalData.providerIncidentUrl = reader.getString();
                 } else if ("tactics".equals(fieldName)) {
                     List<AttackTactic> tactics
                         = reader.readArray(reader1 -> AttackTactic.fromString(reader1.getString()));
@@ -171,6 +169,8 @@ public final class IncidentAdditionalData implements JsonSerializable<IncidentAd
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedIncidentAdditionalData.techniques = techniques;
+                } else if ("providerIncidentUrl".equals(fieldName)) {
+                    deserializedIncidentAdditionalData.providerIncidentUrl = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

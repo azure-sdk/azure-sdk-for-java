@@ -53,6 +53,11 @@ public class QueryBasedAlertRuleTemplateProperties implements JsonSerializable<Q
      */
     private EventGroupingSettings eventGroupingSettings;
 
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
     /**
      * Creates an instance of QueryBasedAlertRuleTemplateProperties class.
      */
@@ -203,6 +208,27 @@ public class QueryBasedAlertRuleTemplateProperties implements JsonSerializable<Q
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the QueryBasedAlertRuleTemplateProperties object itself.
+     */
+    public QueryBasedAlertRuleTemplateProperties
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -216,6 +242,9 @@ public class QueryBasedAlertRuleTemplateProperties implements JsonSerializable<Q
         }
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 
@@ -233,6 +262,8 @@ public class QueryBasedAlertRuleTemplateProperties implements JsonSerializable<Q
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("alertDetailsOverride", this.alertDetailsOverride);
         jsonWriter.writeJsonField("eventGroupingSettings", this.eventGroupingSettings);
+        jsonWriter.writeArrayField("sentinelEntitiesMappings", this.sentinelEntitiesMappings,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -271,6 +302,11 @@ public class QueryBasedAlertRuleTemplateProperties implements JsonSerializable<Q
                 } else if ("eventGroupingSettings".equals(fieldName)) {
                     deserializedQueryBasedAlertRuleTemplateProperties.eventGroupingSettings
                         = EventGroupingSettings.fromJson(reader);
+                } else if ("sentinelEntitiesMappings".equals(fieldName)) {
+                    List<SentinelEntityMapping> sentinelEntitiesMappings
+                        = reader.readArray(reader1 -> SentinelEntityMapping.fromJson(reader1));
+                    deserializedQueryBasedAlertRuleTemplateProperties.sentinelEntitiesMappings
+                        = sentinelEntitiesMappings;
                 } else {
                     reader.skipChildren();
                 }

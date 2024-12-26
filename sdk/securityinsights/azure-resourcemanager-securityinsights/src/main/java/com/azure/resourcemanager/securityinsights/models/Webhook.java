@@ -5,11 +5,13 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 /**
  * Detail about the webhook object.
@@ -29,7 +31,7 @@ public final class Webhook implements JsonSerializable<Webhook> {
     /*
      * Time when the webhook secret was updated.
      */
-    private String webhookSecretUpdateTime;
+    private OffsetDateTime webhookSecretUpdateTime;
 
     /*
      * A flag to instruct the backend service to rotate webhook secret.
@@ -52,17 +54,6 @@ public final class Webhook implements JsonSerializable<Webhook> {
     }
 
     /**
-     * Set the webhookId property: Unique identifier for the webhook.
-     * 
-     * @param webhookId the webhookId value to set.
-     * @return the Webhook object itself.
-     */
-    public Webhook withWebhookId(String webhookId) {
-        this.webhookId = webhookId;
-        return this;
-    }
-
-    /**
      * Get the webhookUrl property: URL that gets invoked by the webhook.
      * 
      * @return the webhookUrl value.
@@ -72,34 +63,12 @@ public final class Webhook implements JsonSerializable<Webhook> {
     }
 
     /**
-     * Set the webhookUrl property: URL that gets invoked by the webhook.
-     * 
-     * @param webhookUrl the webhookUrl value to set.
-     * @return the Webhook object itself.
-     */
-    public Webhook withWebhookUrl(String webhookUrl) {
-        this.webhookUrl = webhookUrl;
-        return this;
-    }
-
-    /**
      * Get the webhookSecretUpdateTime property: Time when the webhook secret was updated.
      * 
      * @return the webhookSecretUpdateTime value.
      */
-    public String webhookSecretUpdateTime() {
+    public OffsetDateTime webhookSecretUpdateTime() {
         return this.webhookSecretUpdateTime;
-    }
-
-    /**
-     * Set the webhookSecretUpdateTime property: Time when the webhook secret was updated.
-     * 
-     * @param webhookSecretUpdateTime the webhookSecretUpdateTime value to set.
-     * @return the Webhook object itself.
-     */
-    public Webhook withWebhookSecretUpdateTime(String webhookSecretUpdateTime) {
-        this.webhookSecretUpdateTime = webhookSecretUpdateTime;
-        return this;
     }
 
     /**
@@ -136,9 +105,6 @@ public final class Webhook implements JsonSerializable<Webhook> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("webhookId", this.webhookId);
-        jsonWriter.writeStringField("webhookUrl", this.webhookUrl);
-        jsonWriter.writeStringField("webhookSecretUpdateTime", this.webhookSecretUpdateTime);
         jsonWriter.writeBooleanField("rotateWebhookSecret", this.rotateWebhookSecret);
         return jsonWriter.writeEndObject();
     }
@@ -163,7 +129,8 @@ public final class Webhook implements JsonSerializable<Webhook> {
                 } else if ("webhookUrl".equals(fieldName)) {
                     deserializedWebhook.webhookUrl = reader.getString();
                 } else if ("webhookSecretUpdateTime".equals(fieldName)) {
-                    deserializedWebhook.webhookSecretUpdateTime = reader.getString();
+                    deserializedWebhook.webhookSecretUpdateTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("rotateWebhookSecret".equals(fieldName)) {
                     deserializedWebhook.rotateWebhookSecret = reader.getNullable(JsonReader::getBoolean);
                 } else {

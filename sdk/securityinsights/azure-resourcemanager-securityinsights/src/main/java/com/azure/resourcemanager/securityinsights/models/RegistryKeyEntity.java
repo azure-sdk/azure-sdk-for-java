@@ -22,7 +22,7 @@ public final class RegistryKeyEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.REGISTRY_KEY;
+    private EntityKindEnum kind = EntityKindEnum.REGISTRY_KEY;
 
     /*
      * RegistryKey entity properties
@@ -61,7 +61,7 @@ public final class RegistryKeyEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -200,7 +200,7 @@ public final class RegistryKeyEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedRegistryKeyEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedRegistryKeyEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedRegistryKeyEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedRegistryKeyEntity.innerProperties = RegistryKeyEntityProperties.fromJson(reader);
                 } else {

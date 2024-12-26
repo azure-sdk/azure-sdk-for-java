@@ -57,6 +57,12 @@ public final class DataConnectorKind extends ExpandableStringEnum<DataConnectorK
     public static final DataConnectorKind OFFICE365PROJECT = fromString("Office365Project");
 
     /**
+     * Static value MicrosoftPurviewInformationProtection for DataConnectorKind.
+     */
+    public static final DataConnectorKind MICROSOFT_PURVIEW_INFORMATION_PROTECTION
+        = fromString("MicrosoftPurviewInformationProtection");
+
+    /**
      * Static value OfficePowerBI for DataConnectorKind.
      */
     public static final DataConnectorKind OFFICE_POWER_BI = fromString("OfficePowerBI");
@@ -112,6 +118,21 @@ public final class DataConnectorKind extends ExpandableStringEnum<DataConnectorK
      * Static value IOT for DataConnectorKind.
      */
     public static final DataConnectorKind IOT = fromString("IOT");
+
+    /**
+     * Static value GCP for DataConnectorKind.
+     */
+    public static final DataConnectorKind GCP = fromString("GCP");
+
+    /**
+     * Static value RestApiPoller for DataConnectorKind.
+     */
+    public static final DataConnectorKind REST_API_POLLER = fromString("RestApiPoller");
+
+    /**
+     * Static value PurviewAudit for DataConnectorKind.
+     */
+    public static final DataConnectorKind PURVIEW_AUDIT = fromString("PurviewAudit");
 
     /**
      * Creates a new instance of DataConnectorKind value.

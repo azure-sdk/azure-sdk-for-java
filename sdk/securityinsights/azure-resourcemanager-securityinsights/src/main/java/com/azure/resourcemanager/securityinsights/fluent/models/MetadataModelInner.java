@@ -9,7 +9,6 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.securityinsights.models.Kind;
 import com.azure.resourcemanager.securityinsights.models.MetadataAuthor;
 import com.azure.resourcemanager.securityinsights.models.MetadataCategories;
 import com.azure.resourcemanager.securityinsights.models.MetadataDependencies;
@@ -198,7 +197,7 @@ public final class MetadataModelInner extends ResourceWithEtag {
      * 
      * @return the kind value.
      */
-    public Kind kind() {
+    public String kind() {
         return this.innerProperties() == null ? null : this.innerProperties().kind();
     }
 
@@ -208,7 +207,7 @@ public final class MetadataModelInner extends ResourceWithEtag {
      * @param kind the kind value to set.
      * @return the MetadataModelInner object itself.
      */
-    public MetadataModelInner withKind(Kind kind) {
+    public MetadataModelInner withKind(String kind) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MetadataProperties();
         }

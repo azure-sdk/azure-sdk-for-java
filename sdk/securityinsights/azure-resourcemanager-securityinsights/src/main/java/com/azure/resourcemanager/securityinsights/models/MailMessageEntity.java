@@ -25,7 +25,7 @@ public final class MailMessageEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.MAIL_MESSAGE;
+    private EntityKindEnum kind = EntityKindEnum.MAIL_MESSAGE;
 
     /*
      * Mail message entity properties
@@ -64,7 +64,7 @@ public final class MailMessageEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -523,7 +523,7 @@ public final class MailMessageEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedMailMessageEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedMailMessageEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedMailMessageEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedMailMessageEntity.innerProperties = MailMessageEntityProperties.fromJson(reader);
                 } else {

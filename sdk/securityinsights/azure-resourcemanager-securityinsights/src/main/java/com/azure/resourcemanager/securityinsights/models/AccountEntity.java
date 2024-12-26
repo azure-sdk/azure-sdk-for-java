@@ -23,7 +23,7 @@ public final class AccountEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
-    private EntityKind kind = EntityKind.ACCOUNT;
+    private EntityKindEnum kind = EntityKindEnum.ACCOUNT;
 
     /*
      * Account entity properties
@@ -62,7 +62,7 @@ public final class AccountEntity extends EntityInner {
      * @return the kind value.
      */
     @Override
-    public EntityKind kind() {
+    public EntityKindEnum kind() {
         return this.kind;
     }
 
@@ -296,7 +296,7 @@ public final class AccountEntity extends EntityInner {
                 } else if ("systemData".equals(fieldName)) {
                     deserializedAccountEntity.systemData = SystemData.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
-                    deserializedAccountEntity.kind = EntityKind.fromString(reader.getString());
+                    deserializedAccountEntity.kind = EntityKindEnum.fromString(reader.getString());
                 } else if ("properties".equals(fieldName)) {
                     deserializedAccountEntity.innerProperties = AccountEntityProperties.fromJson(reader);
                 } else {

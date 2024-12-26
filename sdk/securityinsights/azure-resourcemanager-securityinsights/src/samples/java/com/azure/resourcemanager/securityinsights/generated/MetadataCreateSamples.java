@@ -22,7 +22,7 @@ import java.util.Arrays;
 public final class MetadataCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/PutMetadata.json
      */
     /**
@@ -39,7 +39,7 @@ public final class MetadataCreateSamples {
             .withParentId(
                 "/subscriptions/2e1dc338-d04d-4443-b721-037eff4fdcac/resourceGroups/myRg/providers/Microsoft.OperationalInsights/workspaces/myWorkspace/providers/Microsoft.SecurityInsights/alertRules/ruleName")
             .withVersion("1.0.0.0")
-            .withKind(Kind.ANALYTICS_RULE)
+            .withKind("AnalyticsRule")
             .withSource(new MetadataSource().withKind(SourceKind.SOLUTION)
                 .withName("Contoso Solution 1.0")
                 .withSourceId("b688a130-76f4-4a07-bf57-762222a3cadf"))
@@ -48,9 +48,9 @@ public final class MetadataCreateSamples {
                 .withName("Microsoft")
                 .withEmail("support@microsoft.com")
                 .withLink("https://support.microsoft.com/"))
-            .withDependencies(new MetadataDependencies().withOperator(Operator.AND)
+            .withDependencies(new MetadataDependencies().withOperator(Operator.fromString("AND"))
                 .withCriteria(Arrays.asList(
-                    new MetadataDependencies().withOperator(Operator.OR)
+                    new MetadataDependencies().withOperator(Operator.fromString("OR"))
                         .withCriteria(Arrays.asList(
                             new MetadataDependencies().withContentId("045d06d0-ee72-4794-aba4-cf5646e4c756")
                                 .withKind(Kind.DATA_CONNECTOR)
@@ -82,7 +82,7 @@ public final class MetadataCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * metadata/PutMetadataMinimal.json
      */
     /**
@@ -98,7 +98,7 @@ public final class MetadataCreateSamples {
             .withContentId("c00ee137-7475-47c8-9cce-ec6f0f1bedd0")
             .withParentId(
                 "/subscriptions/2e1dc338-d04d-4443-b721-037eff4fdcac/resourceGroups/myRg/providers/Microsoft.OperationalInsights/workspaces/myWorkspace/providers/Microsoft.SecurityInsights/alertRules/ruleName")
-            .withKind(Kind.ANALYTICS_RULE)
+            .withKind("AnalyticsRule")
             .create();
     }
 }

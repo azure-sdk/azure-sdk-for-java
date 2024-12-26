@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.azure.resourcemanager.securityinsights.models.MtpDataConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MtpFilteredProviders;
 import java.io.IOException;
 
 /**
@@ -22,6 +23,11 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
      * The available data types for the connector.
      */
     private MtpDataConnectorDataTypes dataTypes;
+
+    /*
+     * The available filtered providers for the connector.
+     */
+    private MtpFilteredProviders filteredProviders;
 
     /**
      * Creates an instance of MtpDataConnectorProperties class.
@@ -50,6 +56,26 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
     }
 
     /**
+     * Get the filteredProviders property: The available filtered providers for the connector.
+     * 
+     * @return the filteredProviders value.
+     */
+    public MtpFilteredProviders filteredProviders() {
+        return this.filteredProviders;
+    }
+
+    /**
+     * Set the filteredProviders property: The available filtered providers for the connector.
+     * 
+     * @param filteredProviders the filteredProviders value to set.
+     * @return the MtpDataConnectorProperties object itself.
+     */
+    public MtpDataConnectorProperties withFilteredProviders(MtpFilteredProviders filteredProviders) {
+        this.filteredProviders = filteredProviders;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -72,6 +98,9 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
         } else {
             dataTypes().validate();
         }
+        if (filteredProviders() != null) {
+            filteredProviders().validate();
+        }
         if (tenantId() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -89,6 +118,7 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("tenantId", tenantId());
         jsonWriter.writeJsonField("dataTypes", this.dataTypes);
+        jsonWriter.writeJsonField("filteredProviders", this.filteredProviders);
         return jsonWriter.writeEndObject();
     }
 
@@ -112,6 +142,8 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
                     deserializedMtpDataConnectorProperties.withTenantId(reader.getString());
                 } else if ("dataTypes".equals(fieldName)) {
                     deserializedMtpDataConnectorProperties.dataTypes = MtpDataConnectorDataTypes.fromJson(reader);
+                } else if ("filteredProviders".equals(fieldName)) {
+                    deserializedMtpDataConnectorProperties.filteredProviders = MtpFilteredProviders.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

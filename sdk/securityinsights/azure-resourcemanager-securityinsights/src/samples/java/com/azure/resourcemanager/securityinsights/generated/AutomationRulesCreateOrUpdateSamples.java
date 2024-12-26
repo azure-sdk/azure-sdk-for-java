@@ -14,7 +14,7 @@ import java.util.List;
 public final class AutomationRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * automationRules/AutomationRules_CreateOrUpdate.json
      */
     /**

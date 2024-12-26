@@ -6,6 +6,8 @@ package com.azure.resourcemanager.securityinsights.generated;
 
 import com.azure.resourcemanager.securityinsights.models.AlertDetail;
 import com.azure.resourcemanager.securityinsights.models.AlertDetailsOverride;
+import com.azure.resourcemanager.securityinsights.models.AlertProperty;
+import com.azure.resourcemanager.securityinsights.models.AlertPropertyMapping;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
@@ -25,6 +27,7 @@ import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityIncide
 import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityProductName;
 import com.azure.resourcemanager.securityinsights.models.NrtAlertRule;
 import com.azure.resourcemanager.securityinsights.models.ScheduledAlertRule;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TriggerOperator;
 import java.time.Duration;
 import java.util.Arrays;
@@ -37,7 +40,7 @@ import java.util.Map;
 public final class AlertRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateFusionAlertRule.json
      */
     /**
@@ -166,7 +169,7 @@ public final class AlertRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateMicrosoftSecurityIncidentCreationAlertRule.json
      */
     /**
@@ -187,7 +190,7 @@ public final class AlertRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateScheduledAlertRule.json
      */
     /**
@@ -231,15 +234,23 @@ public final class AlertRulesCreateOrUpdateSamples {
                         new EntityMapping().withEntityType(EntityMappingType.IP)
                             .withFieldMappings(Arrays
                                 .asList(new FieldMapping().withIdentifier("Address").withColumnName("ComputerIP")))))
-                    .withAlertDetailsOverride(
-                        new AlertDetailsOverride().withAlertDisplayNameFormat("Alert from {{Computer}}")
-                            .withAlertDescriptionFormat("Suspicious activity was made by {{ComputerIP}}")),
+                    .withAlertDetailsOverride(new AlertDetailsOverride()
+                        .withAlertDisplayNameFormat("Alert from {{Computer}}")
+                        .withAlertDescriptionFormat("Suspicious activity was made by {{ComputerIP}}")
+                        .withAlertDynamicProperties(Arrays.asList(
+                            new AlertPropertyMapping().withAlertProperty(AlertProperty.PRODUCT_COMPONENT_NAME)
+                                .withValue("ProductComponentNameCustomColumn"),
+                            new AlertPropertyMapping().withAlertProperty(AlertProperty.PRODUCT_NAME)
+                                .withValue("ProductNameCustomColumn"),
+                            new AlertPropertyMapping().withAlertProperty(AlertProperty.ALERT_LINK).withValue("Link"))))
+                    .withSentinelEntitiesMappings(
+                        Arrays.asList(new SentinelEntityMapping().withColumnName("Entities"))),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateFusionAlertRuleWithFusionScenarioExclusion.json
      */
     /**
@@ -368,7 +379,7 @@ public final class AlertRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * alertRules/CreateNrtAlertRule.json
      */
     /**

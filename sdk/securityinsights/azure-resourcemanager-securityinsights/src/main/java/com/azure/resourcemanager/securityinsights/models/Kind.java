@@ -97,6 +97,26 @@ public final class Kind extends ExpandableStringEnum<Kind> {
     public static final Kind AUTOMATION_RULE = fromString("AutomationRule");
 
     /**
+     * Static value ResourcesDataConnector for Kind.
+     */
+    public static final Kind RESOURCES_DATA_CONNECTOR = fromString("ResourcesDataConnector");
+
+    /**
+     * Static value Notebook for Kind.
+     */
+    public static final Kind NOTEBOOK = fromString("Notebook");
+
+    /**
+     * Static value Standalone for Kind.
+     */
+    public static final Kind STANDALONE = fromString("Standalone");
+
+    /**
+     * Static value SummaryRule for Kind.
+     */
+    public static final Kind SUMMARY_RULE = fromString("SummaryRule");
+
+    /**
      * Creates a new instance of Kind value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

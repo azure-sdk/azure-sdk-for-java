@@ -319,6 +319,29 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.innerProperties() == null ? null : this.innerProperties().subTechniques();
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the FusionAlertRuleTemplate object itself.
+     */
+    public FusionAlertRuleTemplate withSubTechniques(List<String> subTechniques) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FusionAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSubTechniques(subTechniques);
+        return this;
+    }
+
+    /**
      * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
      * 
      * @return the sourceSettings value.
