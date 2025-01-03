@@ -1,14 +1,8 @@
 # Release History
 
-## 1.4.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-03)
 
-### Features Added
-
-### Breaking Changes
-
-### Bugs Fixed
-
-### Other Changes
+- Azure Resource Manager Storage Mover client library for Java. This package contains Microsoft Azure SDK for Storage Mover Management SDK. The Azure Storage Mover REST API. Package tag package-2024-07. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## 1.3.0 (2024-12-23)
 

@@ -229,7 +229,7 @@ public final class StorageMoverManager {
                 .append("-")
                 .append("com.azure.resourcemanager.storagemover")
                 .append("/")
-                .append("1.3.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
