@@ -32,7 +32,7 @@ import java.util.Map;
 public final class VaultsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples/
      * PUTVault_WithCMK.json
      */
     /**
@@ -62,7 +62,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/PUTVault.
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples/PUTVault.
      * json
      */
     /**
@@ -84,7 +84,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples/
      * PUTVault_ResourceGuardEnabled.json
      */
     /**
@@ -116,7 +116,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples/
      * PUTVault_WithUserAssignedIdentity.json
      */
     /**
@@ -141,7 +141,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples/
      * PUTVault_WithMonitoringSettings.json
      */
     /**
@@ -171,7 +171,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples/
      * PUTVault_WithRedundancySettings.json
      */
     /**
