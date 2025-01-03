@@ -80,4 +80,32 @@ public interface ConfluentManagementClient {
      * @return the AccessClient object.
      */
     AccessClient getAccess();
+
+    /**
+     * Gets the EnvironmentsClient object to access its operations.
+     * 
+     * @return the EnvironmentsClient object.
+     */
+    EnvironmentsClient getEnvironments();
+
+    /**
+     * Gets the ClustersClient object to access its operations.
+     * 
+     * @return the ClustersClient object.
+     */
+    ClustersClient getClusters();
+
+    /**
+     * Gets the ConnectorsClient object to access its operations.
+     * 
+     * @return the ConnectorsClient object.
+     */
+    ConnectorsClient getConnectors();
+
+    /**
+     * Gets the TopicsClient object to access its operations.
+     * 
+     * @return the TopicsClient object.
+     */
+    TopicsClient getTopics();
 }

@@ -1,14 +1,129 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-03)
+
+- Azure Resource Manager Confluent client library for Java. This package contains Microsoft Azure SDK for Confluent Management SDK.  Package tag package-2024-07. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.ConnectorStatus` was added
 
-### Bugs Fixed
+* `models.DataFormatType` was added
 
-### Other Changes
+* `models.Clusters` was added
+
+* `models.ConnectorResource` was added
+
+* `models.KafkaAzureBlobStorageSourceConnectorInfo` was added
+
+* `models.TopicMetadataEntity` was added
+
+* `models.ListTopicsSuccessResponse` was added
+
+* `models.ConnectorServiceTypeInfoBase` was added
+
+* `models.PartnerConnectorType` was added
+
+* `models.Topics` was added
+
+* `models.SCEnvironmentRecord$DefinitionStages` was added
+
+* `models.SCEnvironmentRecord$UpdateStages` was added
+
+* `models.TopicRecord$DefinitionStages` was added
+
+* `models.ConnectorServiceType` was added
+
+* `models.ConnectorResource$Update` was added
+
+* `models.KafkaAzureSynapseAnalyticsSinkConnectorInfo` was added
+
+* `models.StreamGovernanceConfig` was added
+
+* `models.SCClusterRecord$DefinitionStages` was added
+
+* `models.AuthType` was added
+
+* `models.AzureSynapseAnalyticsSinkConnectorServiceInfo` was added
+
+* `models.AzureCosmosDBSourceConnectorServiceInfo` was added
+
+* `models.ConnectorResource$DefinitionStages` was added
+
+* `models.Connectors` was added
+
+* `models.Package` was added
+
+* `models.SCEnvironmentRecord$Update` was added
+
+* `models.SCClusterRecord$UpdateStages` was added
+
+* `models.KafkaAzureCosmosDBSinkConnectorInfo` was added
+
+* `models.TopicsInputConfig` was added
+
+* `models.PartnerInfoBase` was added
+
+* `models.AzureBlobStorageSourceConnectorServiceInfo` was added
+
+* `models.TopicsRelatedLink` was added
+
+* `models.KafkaAzureCosmosDBSourceConnectorInfo` was added
+
+* `models.SCEnvironmentRecord$Definition` was added
+
+* `models.TopicRecord` was added
+
+* `models.TopicRecord$Definition` was added
+
+* `models.ConnectorResource$Definition` was added
+
+* `models.ConnectorInfoBase` was added
+
+* `models.ConnectorResource$UpdateStages` was added
+
+* `models.AzureBlobStorageSinkConnectorServiceInfo` was added
+
+* `models.ListConnectorsSuccessResponse` was added
+
+* `models.ConnectorType` was added
+
+* `models.SCClusterRecord$Update` was added
+
+* `models.KafkaAzureBlobStorageSinkConnectorInfo` was added
+
+* `models.AzureCosmosDBSinkConnectorServiceInfo` was added
+
+* `models.Environments` was added
+
+* `models.ConnectorClass` was added
+
+* `models.SCClusterRecord$Definition` was added
+
+#### `models.SCEnvironmentRecord` was modified
+
+* `type()` was added
+* `streamGovernanceConfig()` was added
+* `update()` was added
+* `resourceGroupName()` was added
+
+#### `models.SCClusterSpecEntity` was modified
+
+* `packageProperty()` was added
+* `withPackageProperty(models.Package)` was added
+
+#### `ConfluentManager` was modified
+
+* `clusters()` was added
+* `environments()` was added
+* `connectors()` was added
+* `topics()` was added
+
+#### `models.SCClusterRecord` was modified
+
+* `update()` was added
+* `resourceGroupName()` was added
+* `type()` was added
 
 ## 1.2.0 (2024-12-19)
 

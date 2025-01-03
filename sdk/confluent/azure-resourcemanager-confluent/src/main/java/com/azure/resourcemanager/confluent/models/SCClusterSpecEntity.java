@@ -37,6 +37,11 @@ public final class SCClusterSpecEntity implements JsonSerializable<SCClusterSpec
     private String zone;
 
     /*
+     * Stream governance configuration
+     */
+    private Package packageProperty;
+
+    /*
      * The cloud service provider region
      */
     private String region;
@@ -159,6 +164,26 @@ public final class SCClusterSpecEntity implements JsonSerializable<SCClusterSpec
      */
     public SCClusterSpecEntity withZone(String zone) {
         this.zone = zone;
+        return this;
+    }
+
+    /**
+     * Get the packageProperty property: Stream governance configuration.
+     * 
+     * @return the packageProperty value.
+     */
+    public Package packageProperty() {
+        return this.packageProperty;
+    }
+
+    /**
+     * Set the packageProperty property: Stream governance configuration.
+     * 
+     * @param packageProperty the packageProperty value to set.
+     * @return the SCClusterSpecEntity object itself.
+     */
+    public SCClusterSpecEntity withPackageProperty(Package packageProperty) {
+        this.packageProperty = packageProperty;
         return this;
     }
 
@@ -352,6 +377,7 @@ public final class SCClusterSpecEntity implements JsonSerializable<SCClusterSpec
         jsonWriter.writeStringField("availability", this.availability);
         jsonWriter.writeStringField("cloud", this.cloud);
         jsonWriter.writeStringField("zone", this.zone);
+        jsonWriter.writeStringField("package", this.packageProperty == null ? null : this.packageProperty.toString());
         jsonWriter.writeStringField("region", this.region);
         jsonWriter.writeStringField("kafkaBootstrapEndpoint", this.kafkaBootstrapEndpoint);
         jsonWriter.writeStringField("httpEndpoint", this.httpEndpoint);
@@ -386,6 +412,8 @@ public final class SCClusterSpecEntity implements JsonSerializable<SCClusterSpec
                     deserializedSCClusterSpecEntity.cloud = reader.getString();
                 } else if ("zone".equals(fieldName)) {
                     deserializedSCClusterSpecEntity.zone = reader.getString();
+                } else if ("package".equals(fieldName)) {
+                    deserializedSCClusterSpecEntity.packageProperty = Package.fromString(reader.getString());
                 } else if ("region".equals(fieldName)) {
                     deserializedSCClusterSpecEntity.region = reader.getString();
                 } else if ("kafkaBootstrapEndpoint".equals(fieldName)) {
