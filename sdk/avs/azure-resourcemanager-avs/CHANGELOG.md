@@ -1,14 +1,394 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-06)
 
-### Features Added
+- Azure Resource Manager Avs client library for Java. This package contains Microsoft Azure SDK for Avs Management SDK. Azure VMware Solution API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.DatastoreList` was removed
 
-### Other Changes
+#### `models.ClusterList` was removed
+
+#### `models.GlobalReachConnectionList` was removed
+
+#### `models.AddonList` was removed
+
+#### `models.VirtualMachinesList` was removed
+
+#### `models.WorkloadNetworkDhcpList` was removed
+
+#### `models.ScriptCmdletsList` was removed
+
+#### `models.CloudLinkList` was removed
+
+#### `models.WorkloadNetworkVMGroupsList` was removed
+
+#### `models.ScriptExecutionsList` was removed
+
+#### `models.HcxEnterpriseSiteList` was removed
+
+#### `models.WorkloadNetworkPortMirroringList` was removed
+
+#### `models.WorkloadNetworkVirtualMachinesList` was removed
+
+#### `models.ResourceIdentityType` was removed
+
+#### `models.WorkloadNetworkList` was removed
+
+#### `models.PlacementPoliciesList` was removed
+
+#### `models.WorkloadNetworkPublicIPsList` was removed
+
+#### `models.WorkloadNetworkSegmentsList` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.WorkloadNetworkDnsServicesList` was removed
+
+#### `models.PrivateCloudList` was removed
+
+#### `models.ExpressRouteAuthorizationList` was removed
+
+#### `models.WorkloadNetworkDnsZonesList` was removed
+
+#### `models.WorkloadNetworkGatewayList` was removed
+
+#### `models.ScriptPackagesList` was removed
+
+#### `models.IscsiPathListResult` was removed
+
+#### `models.WorkloadNetworkDnsService$DefinitionStages` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.WorkloadNetworkDhcp$DefinitionStages` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.WorkloadNetworkDnsZone$DefinitionStages` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.WorkloadNetworkPortMirroring$DefinitionStages` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.WorkloadNetworkSegment$DefinitionStages` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.WorkloadNetworkPublicIp$DefinitionStages` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.WorkloadNetworkVMGroup$DefinitionStages` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.WorkloadNetworkSegmentPortVif` was modified
+
+* `withPortName(java.lang.String)` was removed
+
+#### `models.WorkloadNetworkDhcpRelay` was modified
+
+* `provisioningState()` was removed
+* `segments()` was removed
+
+#### `models.WorkloadNetworks` was modified
+
+* `deleteVMGroupByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deletePublicIpByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getVMGroupWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteSegment(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listGateways(java.lang.String,java.lang.String)` was removed
+* `getSegmentWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getGateway(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listPublicIPs(java.lang.String,java.lang.String)` was removed
+* `deletePublicIpById(java.lang.String)` was removed
+* `getDnsService(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getDnsServiceWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getPublicIp(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listDnsZones(java.lang.String,java.lang.String)` was removed
+* `listGateways(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getPublicIpWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteSegment(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listSegments(java.lang.String,java.lang.String)` was removed
+* `deletePortMirroringById(java.lang.String)` was removed
+* `getPortMirroringWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listPortMirroring(java.lang.String,java.lang.String)` was removed
+* `getDhcpByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteVMGroupById(java.lang.String)` was removed
+* `deleteDhcp(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteDnsServiceByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `listVirtualMachines(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getVirtualMachine(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listVMGroups(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `get(java.lang.String,java.lang.String)` was removed
+* `getVirtualMachineWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listDhcp(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDnsZone(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteDhcp(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listDnsServices(java.lang.String,java.lang.String)` was removed
+* `listSegments(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getVMGroup(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteDnsServiceById(java.lang.String)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listVirtualMachines(java.lang.String,java.lang.String)` was removed
+* `listDnsZones(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteDnsZoneById(java.lang.String)` was removed
+* `getDhcpById(java.lang.String)` was removed
+* `getPortMirroring(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteDnsZoneByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `defineSegments(java.lang.String)` was removed
+* `deletePortMirroringByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `listPublicIPs(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listDhcp(java.lang.String,java.lang.String)` was removed
+* `getDnsZoneWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSegment(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listVMGroups(java.lang.String,java.lang.String)` was removed
+* `listPortMirroring(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listDnsServices(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getGatewayWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.WorkloadNetworkDhcp$Definition` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed
+
+#### `models.AddonArcProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.VmPlacementPolicyProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworkSegment$Definition` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed
+
+#### `models.WorkloadNetworkPublicIp$Definition` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed
+
+#### `models.IscsiPaths` was modified
+
+* `get(java.lang.String,java.lang.String)` was removed
+* `deleteByResourceGroup(java.lang.String,java.lang.String)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,fluent.models.IscsiPathInner,com.azure.core.util.Context)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `delete(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,fluent.models.IscsiPathInner)` was removed
+
+#### `models.AddonVrProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.ScriptParameter` was modified
+
+* `withName(java.lang.String)` was removed
+
+#### `models.WorkloadNetworkVMGroup$Definition` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed
+
+#### `models.WorkloadNetworkDnsZone$Definition` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed
+
+#### `models.VmHostPlacementPolicyProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworkPortMirroring$Definition` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed
+
+#### `models.AddonHcxProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworkDnsService$Definition` was modified
+
+* `withExistingPrivateCloud(java.lang.String,java.lang.String)` was removed
+
+#### `models.PrivateCloudIdentity` was modified
+
+* `models.ResourceIdentityType type()` -> `models.SystemAssignedServiceIdentityType type()`
+* `withType(models.ResourceIdentityType)` was removed
+
+#### `models.AddonSrmProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworkDhcp` was modified
+
+* `refresh(com.azure.core.util.Context)` was removed
+* `refresh()` was removed
+
+#### `models.WorkloadNetworkDhcpServer` was modified
+
+* `provisioningState()` was removed
+* `segments()` was removed
+
+### Features Added
+
+* `models.IscsiPath$UpdateStages` was added
+
+* `implementation.models.DatastoreList` was added
+
+* `implementation.models.ScriptPackagesList` was added
+
+* `models.IscsiPath$Update` was added
+
+* `models.IscsiPath$DefinitionStages` was added
+
+* `implementation.models.VirtualMachinesList` was added
+
+* `implementation.models.ExpressRouteAuthorizationList` was added
+
+* `implementation.models.WorkloadNetworkList` was added
+
+* `models.SystemAssignedServiceIdentityType` was added
+
+* `models.IscsiPath$Definition` was added
+
+* `implementation.models.PrivateCloudList` was added
+
+* `implementation.models.ClusterList` was added
+
+* `implementation.models.CloudLinkList` was added
+
+* `implementation.models.AddonList` was added
+
+* `implementation.models.WorkloadNetworkDnsServicesList` was added
+
+* `implementation.models.WorkloadNetworkGatewayList` was added
+
+* `implementation.models.PlacementPoliciesList` was added
+
+* `models.ScriptExecutionPropertiesNamedOutput` was added
+
+* `implementation.models.WorkloadNetworkVMGroupsList` was added
+
+* `implementation.models.WorkloadNetworkDhcpList` was added
+
+* `implementation.models.WorkloadNetworkVirtualMachinesList` was added
+
+* `implementation.models.ScriptExecutionsList` was added
+
+* `implementation.models.WorkloadNetworkDnsZonesList` was added
+
+* `implementation.models.HcxEnterpriseSiteList` was added
+
+* `implementation.models.IscsiPathListResult` was added
+
+* `implementation.models.WorkloadNetworkSegmentsList` was added
+
+* `implementation.models.WorkloadNetworkPublicIPsList` was added
+
+* `implementation.models.ScriptCmdletsList` was added
+
+* `implementation.models.WorkloadNetworkPortMirroringList` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `implementation.models.GlobalReachConnectionList` was added
+
+#### `models.IscsiPath` was modified
+
+* `resourceGroupName()` was added
+* `update()` was added
+* `refresh(com.azure.core.util.Context)` was added
+* `refresh()` was added
+
+#### `models.WorkloadNetworks` was modified
+
+* `get(java.lang.String,java.lang.String,java.lang.String)` was added
+* `listVMGroups(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listSegments(java.lang.String,java.lang.String,java.lang.String)` was added
+* `listPortMirroring(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listSegments(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteSegment(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getSegmentWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteDhcp(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getDnsServiceWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getVirtualMachineWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getPortMirroringWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listVMGroups(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getVMGroup(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getPublicIpWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteSegment(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getDnsZone(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `listDhcp(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listDnsZones(java.lang.String,java.lang.String,java.lang.String)` was added
+* `listPortMirroring(java.lang.String,java.lang.String,java.lang.String)` was added
+* `defineSegment(java.lang.String)` was added
+* `getVMGroupWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listVirtualMachines(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listPublicIps(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getPortMirroring(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getSegment(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `listPublicIps(java.lang.String,java.lang.String,java.lang.String)` was added
+* `listDnsServices(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getDnsZoneWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listDnsZones(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listGateways(java.lang.String,java.lang.String,java.lang.String)` was added
+* `listGateways(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getGateway(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `listDhcp(java.lang.String,java.lang.String,java.lang.String)` was added
+* `listVirtualMachines(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getPublicIp(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `listDnsServices(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getVirtualMachine(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `deleteDhcp(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getGatewayWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getDnsService(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.WorkloadNetworkDhcp$Definition` was modified
+
+* `withExistingWorkloadNetwork(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.WorkloadNetworkSegment$Definition` was modified
+
+* `withExistingWorkloadNetwork(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.WorkloadNetworkPublicIp$Definition` was modified
+
+* `withExistingWorkloadNetwork(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.IscsiPaths` was modified
+
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `get(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getById(java.lang.String)` was added
+* `define(java.lang.String)` was added
+* `deleteById(java.lang.String)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `delete(java.lang.String,java.lang.String,java.lang.String)` was added
+* `delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.WorkloadNetworkVMGroup$Definition` was modified
+
+* `withExistingWorkloadNetwork(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.WorkloadNetworkDnsZone$Definition` was modified
+
+* `withExistingWorkloadNetwork(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.WorkloadNetworkPortMirroring$Definition` was modified
+
+* `withExistingWorkloadNetwork(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.WorkloadNetworkDnsService$Definition` was modified
+
+* `withExistingWorkloadNetwork(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.PrivateCloudIdentity` was modified
+
+* `withType(models.SystemAssignedServiceIdentityType)` was added
 
 ## 1.2.0 (2024-09-11)
 
