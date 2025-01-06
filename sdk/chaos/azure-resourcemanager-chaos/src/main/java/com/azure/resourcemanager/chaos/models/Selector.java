@@ -18,11 +18,11 @@ import java.util.Map;
  * Model that represents a selector in the Experiment resource.
  */
 @Fluent
-public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector> {
+public class Selector implements JsonSerializable<Selector> {
     /*
      * Enum of the selector type.
      */
-    private SelectorType type = SelectorType.fromString("ChaosTargetSelector");
+    private SelectorType type = SelectorType.fromString("Selector");
 
     /*
      * String of the selector ID.
@@ -32,7 +32,7 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
     /*
      * Model that represents available filter types that can be applied to a targets list.
      */
-    private ChaosTargetFilter filter;
+    private Filter filter;
 
     /*
      * Model that represents a selector in the Experiment resource.
@@ -40,9 +40,9 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
     private Map<String, Object> additionalProperties;
 
     /**
-     * Creates an instance of ChaosTargetSelector class.
+     * Creates an instance of Selector class.
      */
-    public ChaosTargetSelector() {
+    public Selector() {
     }
 
     /**
@@ -67,9 +67,9 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
      * Set the id property: String of the selector ID.
      * 
      * @param id the id value to set.
-     * @return the ChaosTargetSelector object itself.
+     * @return the Selector object itself.
      */
-    public ChaosTargetSelector withId(String id) {
+    public Selector withId(String id) {
         this.id = id;
         return this;
     }
@@ -79,7 +79,7 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
      * 
      * @return the filter value.
      */
-    public ChaosTargetFilter filter() {
+    public Filter filter() {
         return this.filter;
     }
 
@@ -87,9 +87,9 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
      * Set the filter property: Model that represents available filter types that can be applied to a targets list.
      * 
      * @param filter the filter value to set.
-     * @return the ChaosTargetSelector object itself.
+     * @return the Selector object itself.
      */
-    public ChaosTargetSelector withFilter(ChaosTargetFilter filter) {
+    public Selector withFilter(Filter filter) {
         this.filter = filter;
         return this;
     }
@@ -107,9 +107,9 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
      * Set the additionalProperties property: Model that represents a selector in the Experiment resource.
      * 
      * @param additionalProperties the additionalProperties value to set.
-     * @return the ChaosTargetSelector object itself.
+     * @return the Selector object itself.
      */
-    public ChaosTargetSelector withAdditionalProperties(Map<String, Object> additionalProperties) {
+    public Selector withAdditionalProperties(Map<String, Object> additionalProperties) {
         this.additionalProperties = additionalProperties;
         return this;
     }
@@ -121,15 +121,14 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property id in model ChaosTargetSelector"));
+            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property id in model Selector"));
         }
         if (filter() != null) {
             filter().validate();
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ChaosTargetSelector.class);
+    private static final ClientLogger LOGGER = new ClientLogger(Selector.class);
 
     /**
      * {@inheritDoc}
@@ -149,15 +148,15 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
     }
 
     /**
-     * Reads an instance of ChaosTargetSelector from the JsonReader.
+     * Reads an instance of Selector from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ChaosTargetSelector if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
+     * @return An instance of Selector if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the ChaosTargetSelector.
+     * @throws IOException If an error occurs while reading the Selector.
      */
-    public static ChaosTargetSelector fromJson(JsonReader jsonReader) throws IOException {
+    public static Selector fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
             String discriminatorValue = null;
             try (JsonReader readerToUse = reader.bufferObject()) {
@@ -174,9 +173,9 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
                 }
                 // Use the discriminator value to determine which subtype should be deserialized.
                 if ("List".equals(discriminatorValue)) {
-                    return ChaosTargetListSelector.fromJson(readerToUse.reset());
+                    return ListSelector.fromJson(readerToUse.reset());
                 } else if ("Query".equals(discriminatorValue)) {
-                    return ChaosTargetQuerySelector.fromJson(readerToUse.reset());
+                    return QuerySelector.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }
@@ -184,20 +183,20 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
         });
     }
 
-    static ChaosTargetSelector fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
+    static Selector fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ChaosTargetSelector deserializedChaosTargetSelector = new ChaosTargetSelector();
+            Selector deserializedSelector = new Selector();
             Map<String, Object> additionalProperties = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("id".equals(fieldName)) {
-                    deserializedChaosTargetSelector.id = reader.getString();
+                    deserializedSelector.id = reader.getString();
                 } else if ("type".equals(fieldName)) {
-                    deserializedChaosTargetSelector.type = SelectorType.fromString(reader.getString());
+                    deserializedSelector.type = SelectorType.fromString(reader.getString());
                 } else if ("filter".equals(fieldName)) {
-                    deserializedChaosTargetSelector.filter = ChaosTargetFilter.fromJson(reader);
+                    deserializedSelector.filter = Filter.fromJson(reader);
                 } else {
                     if (additionalProperties == null) {
                         additionalProperties = new LinkedHashMap<>();
@@ -206,9 +205,9 @@ public class ChaosTargetSelector implements JsonSerializable<ChaosTargetSelector
                     additionalProperties.put(fieldName, reader.readUntyped());
                 }
             }
-            deserializedChaosTargetSelector.additionalProperties = additionalProperties;
+            deserializedSelector.additionalProperties = additionalProperties;
 
-            return deserializedChaosTargetSelector;
+            return deserializedSelector;
         });
     }
 }

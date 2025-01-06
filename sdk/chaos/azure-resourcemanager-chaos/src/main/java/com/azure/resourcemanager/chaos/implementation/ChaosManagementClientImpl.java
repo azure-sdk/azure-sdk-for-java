@@ -172,20 +172,6 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
     }
 
     /**
-     * The OperationStatusesClient object to access its operations.
-     */
-    private final OperationStatusesClient operationStatuses;
-
-    /**
-     * Gets the OperationStatusesClient object to access its operations.
-     * 
-     * @return the OperationStatusesClient object.
-     */
-    public OperationStatusesClient getOperationStatuses() {
-        return this.operationStatuses;
-    }
-
-    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -200,17 +186,17 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
     }
 
     /**
-     * The TargetTypesClient object to access its operations.
+     * The OperationStatusesClient object to access its operations.
      */
-    private final TargetTypesClient targetTypes;
+    private final OperationStatusesClient operationStatuses;
 
     /**
-     * Gets the TargetTypesClient object to access its operations.
+     * Gets the OperationStatusesClient object to access its operations.
      * 
-     * @return the TargetTypesClient object.
+     * @return the OperationStatusesClient object.
      */
-    public TargetTypesClient getTargetTypes() {
-        return this.targetTypes;
+    public OperationStatusesClient getOperationStatuses() {
+        return this.operationStatuses;
     }
 
     /**
@@ -225,6 +211,20 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
      */
     public TargetsClient getTargets() {
         return this.targets;
+    }
+
+    /**
+     * The TargetTypesClient object to access its operations.
+     */
+    private final TargetTypesClient targetTypes;
+
+    /**
+     * Gets the TargetTypesClient object to access its operations.
+     * 
+     * @return the TargetTypesClient object.
+     */
+    public TargetTypesClient getTargetTypes() {
+        return this.targetTypes;
     }
 
     /**
@@ -244,14 +244,14 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-01-01";
+        this.apiVersion = "2024-12-01-preview";
         this.capabilities = new CapabilitiesClientImpl(this);
         this.capabilityTypes = new CapabilityTypesClientImpl(this);
         this.experiments = new ExperimentsClientImpl(this);
-        this.operationStatuses = new OperationStatusesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
-        this.targetTypes = new TargetTypesClientImpl(this);
+        this.operationStatuses = new OperationStatusesClientImpl(this);
         this.targets = new TargetsClientImpl(this);
+        this.targetTypes = new TargetTypesClientImpl(this);
     }
 
     /**

@@ -15,16 +15,16 @@ import java.io.IOException;
  * Model that represents available filter types that can be applied to a targets list.
  */
 @Immutable
-public class ChaosTargetFilter implements JsonSerializable<ChaosTargetFilter> {
+public class Filter implements JsonSerializable<Filter> {
     /*
      * Enum that discriminates between filter types. Currently only `Simple` type is supported.
      */
-    private FilterType type = FilterType.fromString("ChaosTargetFilter");
+    private FilterType type = FilterType.fromString("Filter");
 
     /**
-     * Creates an instance of ChaosTargetFilter class.
+     * Creates an instance of Filter class.
      */
-    public ChaosTargetFilter() {
+    public Filter() {
     }
 
     /**
@@ -55,14 +55,14 @@ public class ChaosTargetFilter implements JsonSerializable<ChaosTargetFilter> {
     }
 
     /**
-     * Reads an instance of ChaosTargetFilter from the JsonReader.
+     * Reads an instance of Filter from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ChaosTargetFilter if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the ChaosTargetFilter.
+     * @return An instance of Filter if the JsonReader was pointing to an instance of it, or null if it was pointing to
+     * JSON null.
+     * @throws IOException If an error occurs while reading the Filter.
      */
-    public static ChaosTargetFilter fromJson(JsonReader jsonReader) throws IOException {
+    public static Filter fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
             String discriminatorValue = null;
             try (JsonReader readerToUse = reader.bufferObject()) {
@@ -79,7 +79,7 @@ public class ChaosTargetFilter implements JsonSerializable<ChaosTargetFilter> {
                 }
                 // Use the discriminator value to determine which subtype should be deserialized.
                 if ("Simple".equals(discriminatorValue)) {
-                    return ChaosTargetSimpleFilter.fromJson(readerToUse.reset());
+                    return SimpleFilter.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }
@@ -87,21 +87,21 @@ public class ChaosTargetFilter implements JsonSerializable<ChaosTargetFilter> {
         });
     }
 
-    static ChaosTargetFilter fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
+    static Filter fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ChaosTargetFilter deserializedChaosTargetFilter = new ChaosTargetFilter();
+            Filter deserializedFilter = new Filter();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("type".equals(fieldName)) {
-                    deserializedChaosTargetFilter.type = FilterType.fromString(reader.getString());
+                    deserializedFilter.type = FilterType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedChaosTargetFilter;
+            return deserializedFilter;
         });
     }
 }

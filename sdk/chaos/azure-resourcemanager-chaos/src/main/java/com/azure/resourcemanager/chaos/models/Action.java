@@ -16,11 +16,11 @@ import java.io.IOException;
  * Model that represents the base action model. 9 total per experiment.
  */
 @Fluent
-public class ChaosExperimentAction implements JsonSerializable<ChaosExperimentAction> {
+public class Action implements JsonSerializable<Action> {
     /*
      * Enum that discriminates between action models.
      */
-    private String type = "ChaosExperimentAction";
+    private String type = "Action";
 
     /*
      * String that represents a Capability URN.
@@ -28,9 +28,9 @@ public class ChaosExperimentAction implements JsonSerializable<ChaosExperimentAc
     private String name;
 
     /**
-     * Creates an instance of ChaosExperimentAction class.
+     * Creates an instance of Action class.
      */
-    public ChaosExperimentAction() {
+    public Action() {
     }
 
     /**
@@ -55,9 +55,9 @@ public class ChaosExperimentAction implements JsonSerializable<ChaosExperimentAc
      * Set the name property: String that represents a Capability URN.
      * 
      * @param name the name value to set.
-     * @return the ChaosExperimentAction object itself.
+     * @return the Action object itself.
      */
-    public ChaosExperimentAction withName(String name) {
+    public Action withName(String name) {
         this.name = name;
         return this;
     }
@@ -69,12 +69,11 @@ public class ChaosExperimentAction implements JsonSerializable<ChaosExperimentAc
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property name in model ChaosExperimentAction"));
+            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property name in model Action"));
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ChaosExperimentAction.class);
+    private static final ClientLogger LOGGER = new ClientLogger(Action.class);
 
     /**
      * {@inheritDoc}
@@ -88,15 +87,15 @@ public class ChaosExperimentAction implements JsonSerializable<ChaosExperimentAc
     }
 
     /**
-     * Reads an instance of ChaosExperimentAction from the JsonReader.
+     * Reads an instance of Action from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ChaosExperimentAction if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
+     * @return An instance of Action if the JsonReader was pointing to an instance of it, or null if it was pointing to
+     * JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the ChaosExperimentAction.
+     * @throws IOException If an error occurs while reading the Action.
      */
-    public static ChaosExperimentAction fromJson(JsonReader jsonReader) throws IOException {
+    public static Action fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
             String discriminatorValue = null;
             try (JsonReader readerToUse = reader.bufferObject()) {
@@ -125,23 +124,23 @@ public class ChaosExperimentAction implements JsonSerializable<ChaosExperimentAc
         });
     }
 
-    static ChaosExperimentAction fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
+    static Action fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ChaosExperimentAction deserializedChaosExperimentAction = new ChaosExperimentAction();
+            Action deserializedAction = new Action();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("name".equals(fieldName)) {
-                    deserializedChaosExperimentAction.name = reader.getString();
+                    deserializedAction.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
-                    deserializedChaosExperimentAction.type = reader.getString();
+                    deserializedAction.type = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedChaosExperimentAction;
+            return deserializedAction;
         });
     }
 }

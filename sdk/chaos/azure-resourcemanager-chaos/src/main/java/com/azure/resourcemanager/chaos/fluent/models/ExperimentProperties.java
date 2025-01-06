@@ -10,9 +10,9 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
-import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
+import com.azure.resourcemanager.chaos.models.Selector;
+import com.azure.resourcemanager.chaos.models.Step;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,12 +29,12 @@ public final class ExperimentProperties implements JsonSerializable<ExperimentPr
     /*
      * List of steps.
      */
-    private List<ChaosExperimentStep> steps;
+    private List<Step> steps;
 
     /*
      * List of selectors.
      */
-    private List<ChaosTargetSelector> selectors;
+    private List<Selector> selectors;
 
     /**
      * Creates an instance of ExperimentProperties class.
@@ -56,7 +56,7 @@ public final class ExperimentProperties implements JsonSerializable<ExperimentPr
      * 
      * @return the steps value.
      */
-    public List<ChaosExperimentStep> steps() {
+    public List<Step> steps() {
         return this.steps;
     }
 
@@ -66,7 +66,7 @@ public final class ExperimentProperties implements JsonSerializable<ExperimentPr
      * @param steps the steps value to set.
      * @return the ExperimentProperties object itself.
      */
-    public ExperimentProperties withSteps(List<ChaosExperimentStep> steps) {
+    public ExperimentProperties withSteps(List<Step> steps) {
         this.steps = steps;
         return this;
     }
@@ -76,7 +76,7 @@ public final class ExperimentProperties implements JsonSerializable<ExperimentPr
      * 
      * @return the selectors value.
      */
-    public List<ChaosTargetSelector> selectors() {
+    public List<Selector> selectors() {
         return this.selectors;
     }
 
@@ -86,7 +86,7 @@ public final class ExperimentProperties implements JsonSerializable<ExperimentPr
      * @param selectors the selectors value to set.
      * @return the ExperimentProperties object itself.
      */
-    public ExperimentProperties withSelectors(List<ChaosTargetSelector> selectors) {
+    public ExperimentProperties withSelectors(List<Selector> selectors) {
         this.selectors = selectors;
         return this;
     }
@@ -141,12 +141,10 @@ public final class ExperimentProperties implements JsonSerializable<ExperimentPr
                 reader.nextToken();
 
                 if ("steps".equals(fieldName)) {
-                    List<ChaosExperimentStep> steps
-                        = reader.readArray(reader1 -> ChaosExperimentStep.fromJson(reader1));
+                    List<Step> steps = reader.readArray(reader1 -> Step.fromJson(reader1));
                     deserializedExperimentProperties.steps = steps;
                 } else if ("selectors".equals(fieldName)) {
-                    List<ChaosTargetSelector> selectors
-                        = reader.readArray(reader1 -> ChaosTargetSelector.fromJson(reader1));
+                    List<Selector> selectors = reader.readArray(reader1 -> Selector.fromJson(reader1));
                     deserializedExperimentProperties.selectors = selectors;
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedExperimentProperties.provisioningState

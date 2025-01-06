@@ -10,7 +10,7 @@ package com.azure.resourcemanager.chaos.generated;
 public final class OperationStatusesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetOperationStatus.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-12-01-preview/examples/GetOperationStatus.json
      */
     /**
      * Sample code: Get specific operation status.

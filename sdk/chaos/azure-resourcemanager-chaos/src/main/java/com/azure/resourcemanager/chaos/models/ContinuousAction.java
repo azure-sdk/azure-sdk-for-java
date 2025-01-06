@@ -18,7 +18,7 @@ import java.util.List;
  * Model that represents a continuous action.
  */
 @Fluent
-public final class ContinuousAction extends ChaosExperimentAction {
+public final class ContinuousAction extends Action {
     /*
      * Enum that discriminates between action models.
      */

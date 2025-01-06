@@ -1,14 +1,60 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-06)
 
-### Features Added
+- Azure Resource Manager Chaos client library for Java. This package contains Microsoft Azure SDK for Chaos Management SDK. Chaos Management Client. Package tag package-preview-2024-12. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ChaosTargetListSelector` was removed
 
-### Other Changes
+#### `models.ChaosTargetSimpleFilterParameters` was removed
+
+#### `models.ChaosTargetQuerySelector` was removed
+
+#### `models.ChaosExperimentBranch` was removed
+
+#### `models.ChaosTargetFilter` was removed
+
+#### `models.ChaosTargetSimpleFilter` was removed
+
+#### `models.ChaosExperimentStep` was removed
+
+#### `models.ChaosExperimentAction` was removed
+
+#### `models.ChaosTargetSelector` was removed
+
+#### `models.DelayAction` was modified
+
+* `models.ChaosExperimentAction withName(java.lang.String)` -> `models.Action withName(java.lang.String)`
+
+#### `models.ContinuousAction` was modified
+
+* `models.ChaosExperimentAction withName(java.lang.String)` -> `models.Action withName(java.lang.String)`
+
+#### `models.DiscreteAction` was modified
+
+* `models.ChaosExperimentAction withName(java.lang.String)` -> `models.Action withName(java.lang.String)`
+
+### Features Added
+
+* `models.Selector` was added
+
+* `models.SimpleFilter` was added
+
+* `models.Action` was added
+
+* `models.Filter` was added
+
+* `models.Branch` was added
+
+* `models.QuerySelector` was added
+
+* `models.SimpleFilterParameters` was added
+
+* `models.Step` was added
+
+* `models.ListSelector` was added
 
 ## 1.2.0 (2024-12-19)
 

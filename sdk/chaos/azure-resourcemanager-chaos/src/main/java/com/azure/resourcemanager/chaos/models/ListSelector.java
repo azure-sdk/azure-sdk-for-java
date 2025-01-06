@@ -18,7 +18,7 @@ import java.util.Map;
  * Model that represents a list selector.
  */
 @Fluent
-public final class ChaosTargetListSelector extends ChaosTargetSelector {
+public final class ListSelector extends Selector {
     /*
      * Enum of the selector type.
      */
@@ -30,9 +30,9 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
     private List<TargetReference> targets;
 
     /**
-     * Creates an instance of ChaosTargetListSelector class.
+     * Creates an instance of ListSelector class.
      */
-    public ChaosTargetListSelector() {
+    public ListSelector() {
     }
 
     /**
@@ -58,9 +58,9 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
      * Set the targets property: List of Target references.
      * 
      * @param targets the targets value to set.
-     * @return the ChaosTargetListSelector object itself.
+     * @return the ListSelector object itself.
      */
-    public ChaosTargetListSelector withTargets(List<TargetReference> targets) {
+    public ListSelector withTargets(List<TargetReference> targets) {
         this.targets = targets;
         return this;
     }
@@ -69,7 +69,7 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
      * {@inheritDoc}
      */
     @Override
-    public ChaosTargetListSelector withId(String id) {
+    public ListSelector withId(String id) {
         super.withId(id);
         return this;
     }
@@ -78,7 +78,7 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
      * {@inheritDoc}
      */
     @Override
-    public ChaosTargetListSelector withFilter(ChaosTargetFilter filter) {
+    public ListSelector withFilter(Filter filter) {
         super.withFilter(filter);
         return this;
     }
@@ -92,21 +92,20 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
     public void validate() {
         if (targets() == null) {
             throw LOGGER.atError()
-                .log(
-                    new IllegalArgumentException("Missing required property targets in model ChaosTargetListSelector"));
+                .log(new IllegalArgumentException("Missing required property targets in model ListSelector"));
         } else {
             targets().forEach(e -> e.validate());
         }
         if (id() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property id in model ChaosTargetListSelector"));
+                .log(new IllegalArgumentException("Missing required property id in model ListSelector"));
         }
         if (filter() != null) {
             filter().validate();
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ChaosTargetListSelector.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ListSelector.class);
 
     /**
      * {@inheritDoc}
@@ -127,31 +126,31 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
     }
 
     /**
-     * Reads an instance of ChaosTargetListSelector from the JsonReader.
+     * Reads an instance of ListSelector from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ChaosTargetListSelector if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
+     * @return An instance of ListSelector if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the ChaosTargetListSelector.
+     * @throws IOException If an error occurs while reading the ListSelector.
      */
-    public static ChaosTargetListSelector fromJson(JsonReader jsonReader) throws IOException {
+    public static ListSelector fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ChaosTargetListSelector deserializedChaosTargetListSelector = new ChaosTargetListSelector();
+            ListSelector deserializedListSelector = new ListSelector();
             Map<String, Object> additionalProperties = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("id".equals(fieldName)) {
-                    deserializedChaosTargetListSelector.withId(reader.getString());
+                    deserializedListSelector.withId(reader.getString());
                 } else if ("filter".equals(fieldName)) {
-                    deserializedChaosTargetListSelector.withFilter(ChaosTargetFilter.fromJson(reader));
+                    deserializedListSelector.withFilter(Filter.fromJson(reader));
                 } else if ("targets".equals(fieldName)) {
                     List<TargetReference> targets = reader.readArray(reader1 -> TargetReference.fromJson(reader1));
-                    deserializedChaosTargetListSelector.targets = targets;
+                    deserializedListSelector.targets = targets;
                 } else if ("type".equals(fieldName)) {
-                    deserializedChaosTargetListSelector.type = SelectorType.fromString(reader.getString());
+                    deserializedListSelector.type = SelectorType.fromString(reader.getString());
                 } else {
                     if (additionalProperties == null) {
                         additionalProperties = new LinkedHashMap<>();
@@ -160,9 +159,9 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
                     additionalProperties.put(fieldName, reader.readUntyped());
                 }
             }
-            deserializedChaosTargetListSelector.withAdditionalProperties(additionalProperties);
+            deserializedListSelector.withAdditionalProperties(additionalProperties);
 
-            return deserializedChaosTargetListSelector;
+            return deserializedListSelector;
         });
     }
 }

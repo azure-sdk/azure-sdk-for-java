@@ -16,16 +16,16 @@ import java.util.List;
  * Model that represents the Simple filter parameters.
  */
 @Fluent
-public final class ChaosTargetSimpleFilterParameters implements JsonSerializable<ChaosTargetSimpleFilterParameters> {
+public final class SimpleFilterParameters implements JsonSerializable<SimpleFilterParameters> {
     /*
      * List of Azure availability zones to filter targets by.
      */
     private List<String> zones;
 
     /**
-     * Creates an instance of ChaosTargetSimpleFilterParameters class.
+     * Creates an instance of SimpleFilterParameters class.
      */
-    public ChaosTargetSimpleFilterParameters() {
+    public SimpleFilterParameters() {
     }
 
     /**
@@ -41,9 +41,9 @@ public final class ChaosTargetSimpleFilterParameters implements JsonSerializable
      * Set the zones property: List of Azure availability zones to filter targets by.
      * 
      * @param zones the zones value to set.
-     * @return the ChaosTargetSimpleFilterParameters object itself.
+     * @return the SimpleFilterParameters object itself.
      */
-    public ChaosTargetSimpleFilterParameters withZones(List<String> zones) {
+    public SimpleFilterParameters withZones(List<String> zones) {
         this.zones = zones;
         return this;
     }
@@ -67,30 +67,29 @@ public final class ChaosTargetSimpleFilterParameters implements JsonSerializable
     }
 
     /**
-     * Reads an instance of ChaosTargetSimpleFilterParameters from the JsonReader.
+     * Reads an instance of SimpleFilterParameters from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ChaosTargetSimpleFilterParameters if the JsonReader was pointing to an instance of it, or
-     * null if it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the ChaosTargetSimpleFilterParameters.
+     * @return An instance of SimpleFilterParameters if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the SimpleFilterParameters.
      */
-    public static ChaosTargetSimpleFilterParameters fromJson(JsonReader jsonReader) throws IOException {
+    public static SimpleFilterParameters fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ChaosTargetSimpleFilterParameters deserializedChaosTargetSimpleFilterParameters
-                = new ChaosTargetSimpleFilterParameters();
+            SimpleFilterParameters deserializedSimpleFilterParameters = new SimpleFilterParameters();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("zones".equals(fieldName)) {
                     List<String> zones = reader.readArray(reader1 -> reader1.getString());
-                    deserializedChaosTargetSimpleFilterParameters.zones = zones;
+                    deserializedSimpleFilterParameters.zones = zones;
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedChaosTargetSimpleFilterParameters;
+            return deserializedSimpleFilterParameters;
         });
     }
 }

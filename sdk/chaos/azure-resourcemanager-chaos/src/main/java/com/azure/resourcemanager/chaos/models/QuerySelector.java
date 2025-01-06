@@ -18,7 +18,7 @@ import java.util.Map;
  * Model that represents a query selector.
  */
 @Fluent
-public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
+public final class QuerySelector extends Selector {
     /*
      * Enum of the selector type.
      */
@@ -35,9 +35,9 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
     private List<String> subscriptionIds;
 
     /**
-     * Creates an instance of ChaosTargetQuerySelector class.
+     * Creates an instance of QuerySelector class.
      */
-    public ChaosTargetQuerySelector() {
+    public QuerySelector() {
     }
 
     /**
@@ -63,9 +63,9 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
      * Set the queryString property: Azure Resource Graph (ARG) Query Language query for target resources.
      * 
      * @param queryString the queryString value to set.
-     * @return the ChaosTargetQuerySelector object itself.
+     * @return the QuerySelector object itself.
      */
-    public ChaosTargetQuerySelector withQueryString(String queryString) {
+    public QuerySelector withQueryString(String queryString) {
         this.queryString = queryString;
         return this;
     }
@@ -83,9 +83,9 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
      * Set the subscriptionIds property: Subscription id list to scope resource query.
      * 
      * @param subscriptionIds the subscriptionIds value to set.
-     * @return the ChaosTargetQuerySelector object itself.
+     * @return the QuerySelector object itself.
      */
-    public ChaosTargetQuerySelector withSubscriptionIds(List<String> subscriptionIds) {
+    public QuerySelector withSubscriptionIds(List<String> subscriptionIds) {
         this.subscriptionIds = subscriptionIds;
         return this;
     }
@@ -94,7 +94,7 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
      * {@inheritDoc}
      */
     @Override
-    public ChaosTargetQuerySelector withId(String id) {
+    public QuerySelector withId(String id) {
         super.withId(id);
         return this;
     }
@@ -103,7 +103,7 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
      * {@inheritDoc}
      */
     @Override
-    public ChaosTargetQuerySelector withFilter(ChaosTargetFilter filter) {
+    public QuerySelector withFilter(Filter filter) {
         super.withFilter(filter);
         return this;
     }
@@ -117,24 +117,22 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
     public void validate() {
         if (queryString() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property queryString in model ChaosTargetQuerySelector"));
+                .log(new IllegalArgumentException("Missing required property queryString in model QuerySelector"));
         }
         if (subscriptionIds() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property subscriptionIds in model ChaosTargetQuerySelector"));
+                .log(new IllegalArgumentException("Missing required property subscriptionIds in model QuerySelector"));
         }
         if (id() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property id in model ChaosTargetQuerySelector"));
+                .log(new IllegalArgumentException("Missing required property id in model QuerySelector"));
         }
         if (filter() != null) {
             filter().validate();
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ChaosTargetQuerySelector.class);
+    private static final ClientLogger LOGGER = new ClientLogger(QuerySelector.class);
 
     /**
      * {@inheritDoc}
@@ -157,33 +155,33 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
     }
 
     /**
-     * Reads an instance of ChaosTargetQuerySelector from the JsonReader.
+     * Reads an instance of QuerySelector from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ChaosTargetQuerySelector if the JsonReader was pointing to an instance of it, or null if
-     * it was pointing to JSON null.
+     * @return An instance of QuerySelector if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the ChaosTargetQuerySelector.
+     * @throws IOException If an error occurs while reading the QuerySelector.
      */
-    public static ChaosTargetQuerySelector fromJson(JsonReader jsonReader) throws IOException {
+    public static QuerySelector fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ChaosTargetQuerySelector deserializedChaosTargetQuerySelector = new ChaosTargetQuerySelector();
+            QuerySelector deserializedQuerySelector = new QuerySelector();
             Map<String, Object> additionalProperties = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("id".equals(fieldName)) {
-                    deserializedChaosTargetQuerySelector.withId(reader.getString());
+                    deserializedQuerySelector.withId(reader.getString());
                 } else if ("filter".equals(fieldName)) {
-                    deserializedChaosTargetQuerySelector.withFilter(ChaosTargetFilter.fromJson(reader));
+                    deserializedQuerySelector.withFilter(Filter.fromJson(reader));
                 } else if ("queryString".equals(fieldName)) {
-                    deserializedChaosTargetQuerySelector.queryString = reader.getString();
+                    deserializedQuerySelector.queryString = reader.getString();
                 } else if ("subscriptionIds".equals(fieldName)) {
                     List<String> subscriptionIds = reader.readArray(reader1 -> reader1.getString());
-                    deserializedChaosTargetQuerySelector.subscriptionIds = subscriptionIds;
+                    deserializedQuerySelector.subscriptionIds = subscriptionIds;
                 } else if ("type".equals(fieldName)) {
-                    deserializedChaosTargetQuerySelector.type = SelectorType.fromString(reader.getString());
+                    deserializedQuerySelector.type = SelectorType.fromString(reader.getString());
                 } else {
                     if (additionalProperties == null) {
                         additionalProperties = new LinkedHashMap<>();
@@ -192,9 +190,9 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
                     additionalProperties.put(fieldName, reader.readUntyped());
                 }
             }
-            deserializedChaosTargetQuerySelector.withAdditionalProperties(additionalProperties);
+            deserializedQuerySelector.withAdditionalProperties(additionalProperties);
 
-            return deserializedChaosTargetQuerySelector;
+            return deserializedQuerySelector;
         });
     }
 }

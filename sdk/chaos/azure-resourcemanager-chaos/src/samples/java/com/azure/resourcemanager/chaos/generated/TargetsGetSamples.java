@@ -10,7 +10,7 @@ package com.azure.resourcemanager.chaos.generated;
 public final class TargetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetTarget.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-12-01-preview/examples/GetTarget.json
      */
     /**
      * Sample code: Get a Target that extends a virtual machine resource.

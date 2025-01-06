@@ -11,10 +11,10 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
-import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import com.azure.resourcemanager.chaos.models.ResourceIdentity;
+import com.azure.resourcemanager.chaos.models.Selector;
+import com.azure.resourcemanager.chaos.models.Step;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -160,7 +160,7 @@ public final class ExperimentInner extends Resource {
      * 
      * @return the steps value.
      */
-    public List<ChaosExperimentStep> steps() {
+    public List<Step> steps() {
         return this.innerProperties() == null ? null : this.innerProperties().steps();
     }
 
@@ -170,7 +170,7 @@ public final class ExperimentInner extends Resource {
      * @param steps the steps value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withSteps(List<ChaosExperimentStep> steps) {
+    public ExperimentInner withSteps(List<Step> steps) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ExperimentProperties();
         }
@@ -183,7 +183,7 @@ public final class ExperimentInner extends Resource {
      * 
      * @return the selectors value.
      */
-    public List<ChaosTargetSelector> selectors() {
+    public List<Selector> selectors() {
         return this.innerProperties() == null ? null : this.innerProperties().selectors();
     }
 
@@ -193,7 +193,7 @@ public final class ExperimentInner extends Resource {
      * @param selectors the selectors value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withSelectors(List<ChaosTargetSelector> selectors) {
+    public ExperimentInner withSelectors(List<Selector> selectors) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ExperimentProperties();
         }

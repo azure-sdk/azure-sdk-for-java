@@ -17,7 +17,7 @@ import java.time.Duration;
  * Model that represents a delay action.
  */
 @Fluent
-public final class DelayAction extends ChaosExperimentAction {
+public final class DelayAction extends Action {
     /*
      * Enum that discriminates between action models.
      */

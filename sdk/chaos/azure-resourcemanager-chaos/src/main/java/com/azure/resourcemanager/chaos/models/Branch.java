@@ -17,7 +17,7 @@ import java.util.List;
  * Model that represents a branch in the step. 9 total per experiment.
  */
 @Fluent
-public final class ChaosExperimentBranch implements JsonSerializable<ChaosExperimentBranch> {
+public final class Branch implements JsonSerializable<Branch> {
     /*
      * String of the branch name.
      */
@@ -26,12 +26,12 @@ public final class ChaosExperimentBranch implements JsonSerializable<ChaosExperi
     /*
      * List of actions.
      */
-    private List<ChaosExperimentAction> actions;
+    private List<Action> actions;
 
     /**
-     * Creates an instance of ChaosExperimentBranch class.
+     * Creates an instance of Branch class.
      */
-    public ChaosExperimentBranch() {
+    public Branch() {
     }
 
     /**
@@ -47,9 +47,9 @@ public final class ChaosExperimentBranch implements JsonSerializable<ChaosExperi
      * Set the name property: String of the branch name.
      * 
      * @param name the name value to set.
-     * @return the ChaosExperimentBranch object itself.
+     * @return the Branch object itself.
      */
-    public ChaosExperimentBranch withName(String name) {
+    public Branch withName(String name) {
         this.name = name;
         return this;
     }
@@ -59,7 +59,7 @@ public final class ChaosExperimentBranch implements JsonSerializable<ChaosExperi
      * 
      * @return the actions value.
      */
-    public List<ChaosExperimentAction> actions() {
+    public List<Action> actions() {
         return this.actions;
     }
 
@@ -67,9 +67,9 @@ public final class ChaosExperimentBranch implements JsonSerializable<ChaosExperi
      * Set the actions property: List of actions.
      * 
      * @param actions the actions value to set.
-     * @return the ChaosExperimentBranch object itself.
+     * @return the Branch object itself.
      */
-    public ChaosExperimentBranch withActions(List<ChaosExperimentAction> actions) {
+    public Branch withActions(List<Action> actions) {
         this.actions = actions;
         return this;
     }
@@ -81,18 +81,17 @@ public final class ChaosExperimentBranch implements JsonSerializable<ChaosExperi
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property name in model ChaosExperimentBranch"));
+            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property name in model Branch"));
         }
         if (actions() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property actions in model ChaosExperimentBranch"));
+                .log(new IllegalArgumentException("Missing required property actions in model Branch"));
         } else {
             actions().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ChaosExperimentBranch.class);
+    private static final ClientLogger LOGGER = new ClientLogger(Branch.class);
 
     /**
      * {@inheritDoc}
@@ -106,33 +105,32 @@ public final class ChaosExperimentBranch implements JsonSerializable<ChaosExperi
     }
 
     /**
-     * Reads an instance of ChaosExperimentBranch from the JsonReader.
+     * Reads an instance of Branch from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ChaosExperimentBranch if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
+     * @return An instance of Branch if the JsonReader was pointing to an instance of it, or null if it was pointing to
+     * JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the ChaosExperimentBranch.
+     * @throws IOException If an error occurs while reading the Branch.
      */
-    public static ChaosExperimentBranch fromJson(JsonReader jsonReader) throws IOException {
+    public static Branch fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ChaosExperimentBranch deserializedChaosExperimentBranch = new ChaosExperimentBranch();
+            Branch deserializedBranch = new Branch();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("name".equals(fieldName)) {
-                    deserializedChaosExperimentBranch.name = reader.getString();
+                    deserializedBranch.name = reader.getString();
                 } else if ("actions".equals(fieldName)) {
-                    List<ChaosExperimentAction> actions
-                        = reader.readArray(reader1 -> ChaosExperimentAction.fromJson(reader1));
-                    deserializedChaosExperimentBranch.actions = actions;
+                    List<Action> actions = reader.readArray(reader1 -> Action.fromJson(reader1));
+                    deserializedBranch.actions = actions;
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedChaosExperimentBranch;
+            return deserializedBranch;
         });
     }
 }

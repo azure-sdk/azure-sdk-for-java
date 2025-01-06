@@ -16,7 +16,7 @@ import java.util.List;
  * Model that represents a discrete action.
  */
 @Fluent
-public final class DiscreteAction extends ChaosExperimentAction {
+public final class DiscreteAction extends Action {
     /*
      * Enum that discriminates between action models.
      */
