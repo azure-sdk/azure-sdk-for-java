@@ -1,14 +1,73 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-01-06)
+
+- Azure Resource Manager ContainerAppsApi client library for Java. This package contains Microsoft Azure SDK for ContainerAppsApi Management SDK.  Package tag package-2025-01-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.Runtime` was added
 
-### Bugs Fixed
+* `models.DaprAppHealth` was added
 
-### Other Changes
+* `models.NfsAzureFileProperties` was added
+
+* `models.ContainerAppRunningStatus` was added
+
+* `models.RuntimeJava` was added
+
+#### `models.QueueScaleRule` was modified
+
+* `identity()` was added
+* `withAccountName(java.lang.String)` was added
+* `withIdentity(java.lang.String)` was added
+* `accountName()` was added
+
+#### `models.ManagedEnvironmentStorageProperties` was modified
+
+* `nfsAzureFile()` was added
+* `withNfsAzureFile(models.NfsAzureFileProperties)` was added
+
+#### `models.TcpScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.Scale` was modified
+
+* `withCooldownPeriod(java.lang.Integer)` was added
+* `cooldownPeriod()` was added
+* `pollingInterval()` was added
+* `withPollingInterval(java.lang.Integer)` was added
+
+#### `models.HttpScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.ContainerApp` was modified
+
+* `runningStatus()` was added
+
+#### `models.JobScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.CustomScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.Dapr` was modified
+
+* `appHealth()` was added
+* `withAppHealth(models.DaprAppHealth)` was added
+
+#### `models.Configuration` was modified
+
+* `runtime()` was added
+* `withRuntime(models.Runtime)` was added
 
 ## 1.1.0-beta.1 (2024-10-17)
 
