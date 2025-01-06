@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class PrefixListGlobalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * PrefixListGlobalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -23,16 +23,18 @@ public final class PrefixListGlobalRulestackCreateOrUpdateSamples {
      */
     public static void prefixListGlobalRulestackCreateOrUpdateMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.prefixListGlobalRulestacks().createOrUpdate("praval", "armid1",
-            new PrefixListGlobalRulestackResourceInner().withDescription("string")
-                .withPrefixList(Arrays.asList("1.0.0.0/24")).withEtag("2bf4a339-294d-4c25-b0b2-ef649e9f5c27")
-                .withAuditComment("comment"),
-            com.azure.core.util.Context.NONE);
+        manager.prefixListGlobalRulestacks()
+            .createOrUpdate("praval", "armid1",
+                new PrefixListGlobalRulestackResourceInner().withDescription("string")
+                    .withPrefixList(Arrays.asList("1.0.0.0/24"))
+                    .withEtag("2bf4a339-294d-4c25-b0b2-ef649e9f5c27")
+                    .withAuditComment("comment"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * PrefixListGlobalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -42,8 +44,9 @@ public final class PrefixListGlobalRulestackCreateOrUpdateSamples {
      */
     public static void prefixListGlobalRulestackCreateOrUpdateMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.prefixListGlobalRulestacks().createOrUpdate("praval", "armid1",
-            new PrefixListGlobalRulestackResourceInner().withPrefixList(Arrays.asList("1.0.0.0/24")),
-            com.azure.core.util.Context.NONE);
+        manager.prefixListGlobalRulestacks()
+            .createOrUpdate("praval", "armid1",
+                new PrefixListGlobalRulestackResourceInner().withPrefixList(Arrays.asList("1.0.0.0/24")),
+                com.azure.core.util.Context.NONE);
     }
 }

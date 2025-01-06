@@ -10,7 +10,7 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.generated;
 public final class LocalRulesResetCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * LocalRules_resetCounters_MaximumSet_Gen.json
      */
     /**
@@ -20,13 +20,13 @@ public final class LocalRulesResetCountersSamples {
      */
     public static void localRulesResetCountersMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRules().resetCountersWithResponse("firewall-rg", "lrs1", "1", "firewall1",
-            com.azure.core.util.Context.NONE);
+        manager.localRules()
+            .resetCountersWithResponse("firewall-rg", "lrs1", "1", "firewall1", com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * LocalRules_resetCounters_MinimumSet_Gen.json
      */
     /**
@@ -36,7 +36,7 @@ public final class LocalRulesResetCountersSamples {
      */
     public static void localRulesResetCountersMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRules().resetCountersWithResponse("firewall-rg", "lrs1", "1", null,
-            com.azure.core.util.Context.NONE);
+        manager.localRules()
+            .resetCountersWithResponse("firewall-rg", "lrs1", "1", null, com.azure.core.util.Context.NONE);
     }
 }

@@ -4,47 +4,57 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.HealthStatus;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaStatus;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ReadOnlyProvisioningState;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerInfo;
+import java.io.IOException;
 
 /**
  * Firewall Status.
  */
-@Immutable
-public final class FirewallStatusProperty {
+@Fluent
+public final class FirewallStatusProperty implements JsonSerializable<FirewallStatusProperty> {
     /*
      * Panorama Managed: Default is False. Default will be CloudSec managed
      */
-    @JsonProperty(value = "isPanoramaManaged", access = JsonProperty.Access.WRITE_ONLY)
     private BooleanEnum isPanoramaManaged;
 
     /*
      * Current status of the Firewall
      */
-    @JsonProperty(value = "healthStatus", access = JsonProperty.Access.WRITE_ONLY)
     private HealthStatus healthStatus;
 
     /*
      * Detail description of current health of the Firewall
      */
-    @JsonProperty(value = "healthReason", access = JsonProperty.Access.WRITE_ONLY)
     private String healthReason;
 
     /*
      * Panorama Status
      */
-    @JsonProperty(value = "panoramaStatus", access = JsonProperty.Access.WRITE_ONLY)
     private PanoramaStatus panoramaStatus;
 
     /*
      * Provisioning state of the resource.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ReadOnlyProvisioningState provisioningState;
+
+    /*
+     * Strata Cloud Manager
+     */
+    private BooleanEnum isStrataCloudManaged;
+
+    /*
+     * This field is only present if Strata Cloud Manager is managing the policy for this firewall
+     */
+    private StrataCloudManagerInfo strataCloudManagerInfo;
 
     /**
      * Creates an instance of FirewallStatusProperty class.
@@ -98,6 +108,37 @@ public final class FirewallStatusProperty {
     }
 
     /**
+     * Get the isStrataCloudManaged property: Strata Cloud Manager.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    public BooleanEnum isStrataCloudManaged() {
+        return this.isStrataCloudManaged;
+    }
+
+    /**
+     * Get the strataCloudManagerInfo property: This field is only present if Strata Cloud Manager is managing the
+     * policy for this firewall.
+     * 
+     * @return the strataCloudManagerInfo value.
+     */
+    public StrataCloudManagerInfo strataCloudManagerInfo() {
+        return this.strataCloudManagerInfo;
+    }
+
+    /**
+     * Set the strataCloudManagerInfo property: This field is only present if Strata Cloud Manager is managing the
+     * policy for this firewall.
+     * 
+     * @param strataCloudManagerInfo the strataCloudManagerInfo value to set.
+     * @return the FirewallStatusProperty object itself.
+     */
+    public FirewallStatusProperty withStrataCloudManagerInfo(StrataCloudManagerInfo strataCloudManagerInfo) {
+        this.strataCloudManagerInfo = strataCloudManagerInfo;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -106,5 +147,58 @@ public final class FirewallStatusProperty {
         if (panoramaStatus() != null) {
             panoramaStatus().validate();
         }
+        if (strataCloudManagerInfo() != null) {
+            strataCloudManagerInfo().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("strataCloudManagerInfo", this.strataCloudManagerInfo);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of FirewallStatusProperty from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of FirewallStatusProperty if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the FirewallStatusProperty.
+     */
+    public static FirewallStatusProperty fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            FirewallStatusProperty deserializedFirewallStatusProperty = new FirewallStatusProperty();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("isPanoramaManaged".equals(fieldName)) {
+                    deserializedFirewallStatusProperty.isPanoramaManaged = BooleanEnum.fromString(reader.getString());
+                } else if ("healthStatus".equals(fieldName)) {
+                    deserializedFirewallStatusProperty.healthStatus = HealthStatus.fromString(reader.getString());
+                } else if ("healthReason".equals(fieldName)) {
+                    deserializedFirewallStatusProperty.healthReason = reader.getString();
+                } else if ("panoramaStatus".equals(fieldName)) {
+                    deserializedFirewallStatusProperty.panoramaStatus = PanoramaStatus.fromJson(reader);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedFirewallStatusProperty.provisioningState
+                        = ReadOnlyProvisioningState.fromString(reader.getString());
+                } else if ("isStrataCloudManaged".equals(fieldName)) {
+                    deserializedFirewallStatusProperty.isStrataCloudManaged
+                        = BooleanEnum.fromString(reader.getString());
+                } else if ("strataCloudManagerInfo".equals(fieldName)) {
+                    deserializedFirewallStatusProperty.strataCloudManagerInfo = StrataCloudManagerInfo.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedFirewallStatusProperty;
+        });
     }
 }

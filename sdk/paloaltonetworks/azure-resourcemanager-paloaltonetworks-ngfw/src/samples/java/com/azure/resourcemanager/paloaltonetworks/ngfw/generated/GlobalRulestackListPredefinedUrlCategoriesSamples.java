@@ -10,7 +10,7 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.generated;
 public final class GlobalRulestackListPredefinedUrlCategoriesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * GlobalRulestack_listPredefinedUrlCategories_MaximumSet_Gen.json
      */
     /**
@@ -20,13 +20,13 @@ public final class GlobalRulestackListPredefinedUrlCategoriesSamples {
      */
     public static void globalRulestackListPredefinedUrlCategoriesMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.globalRulestacks().listPredefinedUrlCategoriesWithResponse("praval", "a6a321", 20,
-            com.azure.core.util.Context.NONE);
+        manager.globalRulestacks()
+            .listPredefinedUrlCategoriesWithResponse("praval", "a6a321", 20, com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * GlobalRulestack_listPredefinedUrlCategories_MinimumSet_Gen.json
      */
     /**
@@ -36,7 +36,7 @@ public final class GlobalRulestackListPredefinedUrlCategoriesSamples {
      */
     public static void globalRulestackListPredefinedUrlCategoriesMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.globalRulestacks().listPredefinedUrlCategoriesWithResponse("praval", null, null,
-            com.azure.core.util.Context.NONE);
+        manager.globalRulestacks()
+            .listPredefinedUrlCategoriesWithResponse("praval", null, null, com.azure.core.util.Context.NONE);
     }
 }

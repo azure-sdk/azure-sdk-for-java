@@ -10,7 +10,7 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.generated;
 public final class LocalRulestacksListPredefinedUrlCategoriesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * LocalRulestacks_listPredefinedUrlCategories_MinimumSet_Gen.json
      */
     /**
@@ -20,13 +20,13 @@ public final class LocalRulestacksListPredefinedUrlCategoriesSamples {
      */
     public static void localRulestacksListPredefinedUrlCategoriesMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listPredefinedUrlCategoriesWithResponse("rgopenapi", "lrs1", null, null,
-            com.azure.core.util.Context.NONE);
+        manager.localRulestacks()
+            .listPredefinedUrlCategoriesWithResponse("rgopenapi", "lrs1", null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * LocalRulestacks_listPredefinedUrlCategories_MaximumSet_Gen.json
      */
     /**
@@ -36,7 +36,8 @@ public final class LocalRulestacksListPredefinedUrlCategoriesSamples {
      */
     public static void localRulestacksListPredefinedUrlCategoriesMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listPredefinedUrlCategoriesWithResponse("rgopenapi", "lrs1", "a6a321", 20,
-            com.azure.core.util.Context.NONE);
+        manager.localRulestacks()
+            .listPredefinedUrlCategoriesWithResponse("rgopenapi", "lrs1", "a6a321", 20,
+                com.azure.core.util.Context.NONE);
     }
 }

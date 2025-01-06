@@ -10,7 +10,7 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.generated;
 public final class LocalRulestacksListCountriesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * LocalRulestacks_listCountries_MaximumSet_Gen.json
      */
     /**
@@ -20,13 +20,13 @@ public final class LocalRulestacksListCountriesSamples {
      */
     public static void localRulestacksListCountriesMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listCountriesWithResponse("rgopenapi", "lrs1", "a6a321", 20,
-            com.azure.core.util.Context.NONE);
+        manager.localRulestacks()
+            .listCountriesWithResponse("rgopenapi", "lrs1", "a6a321", 20, com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * LocalRulestacks_listCountries_MinimumSet_Gen.json
      */
     /**
@@ -36,7 +36,7 @@ public final class LocalRulestacksListCountriesSamples {
      */
     public static void localRulestacksListCountriesMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listCountriesWithResponse("rgopenapi", "lrs1", null, null,
-            com.azure.core.util.Context.NONE);
+        manager.localRulestacks()
+            .listCountriesWithResponse("rgopenapi", "lrs1", null, null, com.azure.core.util.Context.NONE);
     }
 }

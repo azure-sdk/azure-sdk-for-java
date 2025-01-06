@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.paloaltonetworks.ngfw.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -33,6 +34,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.LocalRulesClient;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.LocalRulestacksClient;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.OperationsClient;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.PaloAltoNetworksCloudngfw;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.PaloAltoNetworksCloudngfwsClient;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.PostRulesClient;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.PreRulesClient;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.PrefixListGlobalRulestacksClient;
@@ -234,6 +236,20 @@ public final class PaloAltoNetworksCloudngfwImpl implements PaloAltoNetworksClou
     }
 
     /**
+     * The PaloAltoNetworksCloudngfwsClient object to access its operations.
+     */
+    private final PaloAltoNetworksCloudngfwsClient paloAltoNetworksCloudngfws;
+
+    /**
+     * Gets the PaloAltoNetworksCloudngfwsClient object to access its operations.
+     * 
+     * @return the PaloAltoNetworksCloudngfwsClient object.
+     */
+    public PaloAltoNetworksCloudngfwsClient getPaloAltoNetworksCloudngfws() {
+        return this.paloAltoNetworksCloudngfws;
+    }
+
+    /**
      * The FirewallsClient object to access its operations.
      */
     private final FirewallsClient firewalls;
@@ -348,7 +364,7 @@ public final class PaloAltoNetworksCloudngfwImpl implements PaloAltoNetworksClou
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-01";
+        this.apiVersion = "2024-02-07-preview";
         this.globalRulestacks = new GlobalRulestacksClientImpl(this);
         this.certificateObjectGlobalRulestacks = new CertificateObjectGlobalRulestacksClientImpl(this);
         this.fqdnListGlobalRulestacks = new FqdnListGlobalRulestacksClientImpl(this);
@@ -356,6 +372,7 @@ public final class PaloAltoNetworksCloudngfwImpl implements PaloAltoNetworksClou
         this.prefixListGlobalRulestacks = new PrefixListGlobalRulestacksClientImpl(this);
         this.preRules = new PreRulesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.paloAltoNetworksCloudngfws = new PaloAltoNetworksCloudngfwsClientImpl(this);
         this.firewalls = new FirewallsClientImpl(this);
         this.localRulestacks = new LocalRulestacksClientImpl(this);
         this.firewallStatus = new FirewallStatusClientImpl(this);
@@ -467,7 +484,7 @@ public final class PaloAltoNetworksCloudngfwImpl implements PaloAltoNetworksClou
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {

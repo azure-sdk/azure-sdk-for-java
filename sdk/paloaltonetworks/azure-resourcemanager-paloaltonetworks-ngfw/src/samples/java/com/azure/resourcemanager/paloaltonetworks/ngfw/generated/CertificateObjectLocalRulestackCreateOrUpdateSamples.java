@@ -12,7 +12,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 public final class CertificateObjectLocalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * CertificateObjectLocalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -22,13 +22,16 @@ public final class CertificateObjectLocalRulestackCreateOrUpdateSamples {
      */
     public static void certificateObjectLocalRulestackCreateOrUpdateMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.certificateObjectLocalRulestacks().define("armid1").withExistingLocalRulestack("rgopenapi", "lrs1")
-            .withCertificateSelfSigned(BooleanEnum.TRUE).create();
+        manager.certificateObjectLocalRulestacks()
+            .define("armid1")
+            .withExistingLocalRulestack("rgopenapi", "lrs1")
+            .withCertificateSelfSigned(BooleanEnum.TRUE)
+            .create();
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * CertificateObjectLocalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -38,8 +41,14 @@ public final class CertificateObjectLocalRulestackCreateOrUpdateSamples {
      */
     public static void certificateObjectLocalRulestackCreateOrUpdateMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.certificateObjectLocalRulestacks().define("armid1").withExistingLocalRulestack("rgopenapi", "lrs1")
-            .withCertificateSelfSigned(BooleanEnum.TRUE).withCertificateSignerResourceId("").withAuditComment("comment")
-            .withDescription("description").withEtag("2bf4a339-294d-4c25-b0b2-ef649e9f5c27").create();
+        manager.certificateObjectLocalRulestacks()
+            .define("armid1")
+            .withExistingLocalRulestack("rgopenapi", "lrs1")
+            .withCertificateSelfSigned(BooleanEnum.TRUE)
+            .withCertificateSignerResourceId("")
+            .withAuditComment("comment")
+            .withDescription("description")
+            .withEtag("2bf4a339-294d-4c25-b0b2-ef649e9f5c27")
+            .create();
     }
 }

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.generated;
 public final class CertificateObjectGlobalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * CertificateObjectGlobalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -20,13 +20,13 @@ public final class CertificateObjectGlobalRulestackGetSamples {
      */
     public static void certificateObjectGlobalRulestackGetMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.certificateObjectGlobalRulestacks().getWithResponse("praval", "armid1",
-            com.azure.core.util.Context.NONE);
+        manager.certificateObjectGlobalRulestacks()
+            .getWithResponse("praval", "armid1", com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * CertificateObjectGlobalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -36,7 +36,7 @@ public final class CertificateObjectGlobalRulestackGetSamples {
      */
     public static void certificateObjectGlobalRulestackGetMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.certificateObjectGlobalRulestacks().getWithResponse("praval", "armid1",
-            com.azure.core.util.Context.NONE);
+        manager.certificateObjectGlobalRulestacks()
+            .getWithResponse("praval", "armid1", com.azure.core.util.Context.NONE);
     }
 }

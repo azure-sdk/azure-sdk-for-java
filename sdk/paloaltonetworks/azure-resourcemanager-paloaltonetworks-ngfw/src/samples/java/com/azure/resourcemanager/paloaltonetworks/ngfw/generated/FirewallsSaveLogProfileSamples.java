@@ -19,7 +19,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StorageAccount;
 public final class FirewallsSaveLogProfileSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * Firewalls_saveLogProfile_MaximumSet_Gen.json
      */
     /**
@@ -29,48 +29,74 @@ public final class FirewallsSaveLogProfileSamples {
      */
     public static void firewallsSaveLogProfileMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.firewalls().saveLogProfileWithResponse("firewall-rg", "firewall1",
-            new LogSettingsInner().withLogType(LogType.TRAFFIC).withLogOption(LogOption.SAME_DESTINATION)
-                .withApplicationInsights(
-                    new ApplicationInsights().withId("aaaaaaaaaaaaaaaa").withKey("fakeTokenPlaceholder"))
-                .withCommonDestination(new LogDestination()
-                    .withStorageConfigurations(new StorageAccount().withId("aaaaaaaaaaaaaaa")
-                        .withSubscriptionId("aaaaaaaaa").withAccountName("aaaaaaaaaaaaaaaaaaaaaaa"))
-                    .withEventHubConfigurations(new EventHub().withId("aaaaaaaaaa").withSubscriptionId("aaaaaaaaaa")
-                        .withName("aaaaaaaa").withNameSpace("aaaaaaaaaaaaaaaaaaaaa").withPolicyName("aaaaaaaaaaaa"))
-                    .withMonitorConfigurations(new MonitorLog().withId("aaaaaaaaaaaaaaaaaaa")
-                        .withSubscriptionId("aaaaaaaaaaaaa").withWorkspace("aaaaaaaaaaa")
-                        .withPrimaryKey("fakeTokenPlaceholder").withSecondaryKey("fakeTokenPlaceholder")))
-                .withTrafficLogDestination(new LogDestination()
-                    .withStorageConfigurations(new StorageAccount().withId("aaaaaaaaaaaaaaa")
-                        .withSubscriptionId("aaaaaaaaa").withAccountName("aaaaaaaaaaaaaaaaaaaaaaa"))
-                    .withEventHubConfigurations(new EventHub().withId("aaaaaaaaaa").withSubscriptionId("aaaaaaaaaa")
-                        .withName("aaaaaaaa").withNameSpace("aaaaaaaaaaaaaaaaaaaaa").withPolicyName("aaaaaaaaaaaa"))
-                    .withMonitorConfigurations(new MonitorLog().withId("aaaaaaaaaaaaaaaaaaa")
-                        .withSubscriptionId("aaaaaaaaaaaaa").withWorkspace("aaaaaaaaaaa")
-                        .withPrimaryKey("fakeTokenPlaceholder").withSecondaryKey("fakeTokenPlaceholder")))
-                .withThreatLogDestination(new LogDestination()
-                    .withStorageConfigurations(new StorageAccount().withId("aaaaaaaaaaaaaaa")
-                        .withSubscriptionId("aaaaaaaaa").withAccountName("aaaaaaaaaaaaaaaaaaaaaaa"))
-                    .withEventHubConfigurations(new EventHub().withId("aaaaaaaaaa").withSubscriptionId("aaaaaaaaaa")
-                        .withName("aaaaaaaa").withNameSpace("aaaaaaaaaaaaaaaaaaaaa").withPolicyName("aaaaaaaaaaaa"))
-                    .withMonitorConfigurations(new MonitorLog().withId("aaaaaaaaaaaaaaaaaaa")
-                        .withSubscriptionId("aaaaaaaaaaaaa").withWorkspace("aaaaaaaaaaa")
-                        .withPrimaryKey("fakeTokenPlaceholder").withSecondaryKey("fakeTokenPlaceholder")))
-                .withDecryptLogDestination(new LogDestination()
-                    .withStorageConfigurations(new StorageAccount().withId("aaaaaaaaaaaaaaa")
-                        .withSubscriptionId("aaaaaaaaa").withAccountName("aaaaaaaaaaaaaaaaaaaaaaa"))
-                    .withEventHubConfigurations(new EventHub().withId("aaaaaaaaaa").withSubscriptionId("aaaaaaaaaa")
-                        .withName("aaaaaaaa").withNameSpace("aaaaaaaaaaaaaaaaaaaaa").withPolicyName("aaaaaaaaaaaa"))
-                    .withMonitorConfigurations(new MonitorLog().withId("aaaaaaaaaaaaaaaaaaa")
-                        .withSubscriptionId("aaaaaaaaaaaaa").withWorkspace("aaaaaaaaaaa")
-                        .withPrimaryKey("fakeTokenPlaceholder").withSecondaryKey("fakeTokenPlaceholder"))),
-            com.azure.core.util.Context.NONE);
+        manager.firewalls()
+            .saveLogProfileWithResponse("firewall-rg", "firewall1",
+                new LogSettingsInner().withLogType(LogType.TRAFFIC)
+                    .withLogOption(LogOption.SAME_DESTINATION)
+                    .withApplicationInsights(
+                        new ApplicationInsights().withId("aaaaaaaaaaaaaaaa").withKey("fakeTokenPlaceholder"))
+                    .withCommonDestination(new LogDestination()
+                        .withStorageConfigurations(new StorageAccount().withId("aaaaaaaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaa")
+                            .withAccountName("aaaaaaaaaaaaaaaaaaaaaaa"))
+                        .withEventHubConfigurations(new EventHub().withId("aaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaaa")
+                            .withName("aaaaaaaa")
+                            .withNameSpace("aaaaaaaaaaaaaaaaaaaaa")
+                            .withPolicyName("aaaaaaaaaaaa"))
+                        .withMonitorConfigurations(new MonitorLog().withId("aaaaaaaaaaaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaaaaaa")
+                            .withWorkspace("aaaaaaaaaaa")
+                            .withPrimaryKey("fakeTokenPlaceholder")
+                            .withSecondaryKey("fakeTokenPlaceholder")))
+                    .withTrafficLogDestination(new LogDestination()
+                        .withStorageConfigurations(new StorageAccount().withId("aaaaaaaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaa")
+                            .withAccountName("aaaaaaaaaaaaaaaaaaaaaaa"))
+                        .withEventHubConfigurations(new EventHub().withId("aaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaaa")
+                            .withName("aaaaaaaa")
+                            .withNameSpace("aaaaaaaaaaaaaaaaaaaaa")
+                            .withPolicyName("aaaaaaaaaaaa"))
+                        .withMonitorConfigurations(new MonitorLog().withId("aaaaaaaaaaaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaaaaaa")
+                            .withWorkspace("aaaaaaaaaaa")
+                            .withPrimaryKey("fakeTokenPlaceholder")
+                            .withSecondaryKey("fakeTokenPlaceholder")))
+                    .withThreatLogDestination(new LogDestination()
+                        .withStorageConfigurations(new StorageAccount().withId("aaaaaaaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaa")
+                            .withAccountName("aaaaaaaaaaaaaaaaaaaaaaa"))
+                        .withEventHubConfigurations(new EventHub().withId("aaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaaa")
+                            .withName("aaaaaaaa")
+                            .withNameSpace("aaaaaaaaaaaaaaaaaaaaa")
+                            .withPolicyName("aaaaaaaaaaaa"))
+                        .withMonitorConfigurations(new MonitorLog().withId("aaaaaaaaaaaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaaaaaa")
+                            .withWorkspace("aaaaaaaaaaa")
+                            .withPrimaryKey("fakeTokenPlaceholder")
+                            .withSecondaryKey("fakeTokenPlaceholder")))
+                    .withDecryptLogDestination(new LogDestination()
+                        .withStorageConfigurations(new StorageAccount().withId("aaaaaaaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaa")
+                            .withAccountName("aaaaaaaaaaaaaaaaaaaaaaa"))
+                        .withEventHubConfigurations(new EventHub().withId("aaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaaa")
+                            .withName("aaaaaaaa")
+                            .withNameSpace("aaaaaaaaaaaaaaaaaaaaa")
+                            .withPolicyName("aaaaaaaaaaaa"))
+                        .withMonitorConfigurations(new MonitorLog().withId("aaaaaaaaaaaaaaaaaaa")
+                            .withSubscriptionId("aaaaaaaaaaaaa")
+                            .withWorkspace("aaaaaaaaaaa")
+                            .withPrimaryKey("fakeTokenPlaceholder")
+                            .withSecondaryKey("fakeTokenPlaceholder"))),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * Firewalls_saveLogProfile_MinimumSet_Gen.json
      */
     /**
@@ -80,7 +106,7 @@ public final class FirewallsSaveLogProfileSamples {
      */
     public static void firewallsSaveLogProfileMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.firewalls().saveLogProfileWithResponse("firewall-rg", "firewall1", null,
-            com.azure.core.util.Context.NONE);
+        manager.firewalls()
+            .saveLogProfileWithResponse("firewall-rg", "firewall1", null, com.azure.core.util.Context.NONE);
     }
 }
