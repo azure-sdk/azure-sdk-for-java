@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.RegistryKeyEntityProperties;
 import java.io.IOException;
 import java.util.Map;
@@ -17,7 +18,7 @@ import java.util.Map;
  * Represents a registry key entity.
  */
 @Immutable
-public final class RegistryKeyEntity extends Entity {
+public final class RegistryKeyEntity extends EntityInner {
     /*
      * The kind of the entity.
      */

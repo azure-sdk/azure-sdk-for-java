@@ -10,6 +10,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.fluent.models.CloudApplicationEntityProperties;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import java.io.IOException;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ import java.util.Map;
  * Represents a cloud application entity.
  */
 @Immutable
-public final class CloudApplicationEntity extends Entity {
+public final class CloudApplicationEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
