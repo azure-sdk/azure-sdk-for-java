@@ -1,14 +1,71 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-01-08)
+
+- Azure Resource Manager ContainerAppsApi client library for Java. This package contains Microsoft Azure SDK for ContainerAppsApi Management SDK.  Package tag package-2025-01-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.Runtime` was added
 
-### Bugs Fixed
+* `models.NfsAzureFileProperties` was added
 
-### Other Changes
+* `models.ContainerAppRunningStatus` was added
+
+* `models.RuntimeJava` was added
+
+#### `models.WorkloadProfile` was modified
+
+* `enableFips()` was added
+* `withEnableFips(java.lang.Boolean)` was added
+
+#### `models.QueueScaleRule` was modified
+
+* `accountName()` was added
+* `withAccountName(java.lang.String)` was added
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.ManagedEnvironmentStorageProperties` was modified
+
+* `nfsAzureFile()` was added
+* `withNfsAzureFile(models.NfsAzureFileProperties)` was added
+
+#### `models.TcpScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.Scale` was modified
+
+* `withPollingInterval(java.lang.Integer)` was added
+* `cooldownPeriod()` was added
+* `pollingInterval()` was added
+* `withCooldownPeriod(java.lang.Integer)` was added
+
+#### `models.HttpScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.ContainerApp` was modified
+
+* `runningStatus()` was added
+
+#### `models.JobScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.CustomScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.Configuration` was modified
+
+* `runtime()` was added
+* `withRuntime(models.Runtime)` was added
 
 ## 1.1.0-beta.1 (2024-10-17)
 
