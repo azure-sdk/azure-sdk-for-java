@@ -1,14 +1,96 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-08)
 
-### Features Added
+- Azure Resource Manager Chaos client library for Java. This package contains Microsoft Azure SDK for Chaos Management SDK. Chaos Management Client. Package tag package-preview-2024-03. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ResourceIdentity` was removed
 
-### Other Changes
+#### `models.ResourceIdentityType` was removed
+
+#### `models.Experiment` was modified
+
+* `models.ResourceIdentity identity()` -> `models.ExperimentIdentity identity()`
+
+#### `models.ExperimentUpdate` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+* `models.ResourceIdentity identity()` -> `models.ExperimentIdentity identity()`
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+### Features Added
+
+* `models.PrivateEndpointConnectionProvisioningState` was added
+
+* `models.PrivateAccess` was added
+
+* `models.PrivateEndpointConnection` was added
+
+* `models.PrivateEndpointServiceConnectionStatus` was added
+
+* `models.CustomerDataStorageProperties` was added
+
+* `models.PrivateLinkResource` was added
+
+* `models.PrivateAccess$Update` was added
+
+* `models.PublicNetworkAccessOption` was added
+
+* `models.PrivateAccessPatch` was added
+
+* `models.PrivateAccess$DefinitionStages` was added
+
+* `models.PrivateAccess$Definition` was added
+
+* `models.PrivateLinkServiceConnectionState` was added
+
+* `models.PrivateEndpoint` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.PrivateAccessListResult` was added
+
+* `models.PrivateAccess$UpdateStages` was added
+
+* `models.PrivateEndpointConnectionListResult` was added
+
+* `models.PrivateAccesses` was added
+
+* `models.ManagedServiceIdentity` was added
+
+* `models.PrivateLinkResourceListResult` was added
+
+* `models.ExperimentIdentity` was added
+
+#### `models.Experiment` was modified
+
+* `customerDataStorage()` was added
+
+#### `models.ExperimentUpdate` was modified
+
+* `withIdentity(models.ExperimentIdentity)` was added
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ExperimentIdentity)` was added
+* `withCustomerDataStorage(models.CustomerDataStorageProperties)` was added
+
+#### `ChaosManager` was modified
+
+* `privateAccesses()` was added
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ExperimentIdentity)` was added
 
 ## 1.2.0 (2024-12-19)
 

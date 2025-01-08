@@ -20,11 +20,6 @@ import java.util.List;
 @Fluent
 public final class CapabilityTypeInner extends ProxyResource {
     /*
-     * The system metadata properties of the capability type resource.
-     */
-    private SystemData systemData;
-
-    /*
      * Location of the Capability Type resource.
      */
     private String location;
@@ -33,6 +28,11 @@ public final class CapabilityTypeInner extends ProxyResource {
      * The properties of the capability type resource.
      */
     private CapabilityTypeProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -53,15 +53,6 @@ public final class CapabilityTypeInner extends ProxyResource {
      * Creates an instance of CapabilityTypeInner class.
      */
     public CapabilityTypeInner() {
-    }
-
-    /**
-     * Get the systemData property: The system metadata properties of the capability type resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -91,6 +82,15 @@ public final class CapabilityTypeInner extends ProxyResource {
      */
     private CapabilityTypeProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -298,12 +298,12 @@ public final class CapabilityTypeInner extends ProxyResource {
                     deserializedCapabilityTypeInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedCapabilityTypeInner.type = reader.getString();
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedCapabilityTypeInner.systemData = SystemData.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedCapabilityTypeInner.location = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedCapabilityTypeInner.innerProperties = CapabilityTypeProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedCapabilityTypeInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

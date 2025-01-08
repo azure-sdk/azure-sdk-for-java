@@ -51,18 +51,18 @@ public interface Experiment {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: The system metadata of the experiment resource.
-     * 
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the identity property: The identity of the experiment resource.
      * 
      * @return the identity value.
      */
-    ResourceIdentity identity();
+    ExperimentIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Most recent provisioning state for the given experiment resource.
@@ -84,6 +84,14 @@ public interface Experiment {
      * @return the selectors value.
      */
     List<ChaosTargetSelector> selectors();
+
+    /**
+     * Gets the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @return the customerDataStorage value.
+     */
+    CustomerDataStorageProperties customerDataStorage();
 
     /**
      * Gets the region of the resource.
@@ -195,7 +203,8 @@ public interface Experiment {
          * The stage of the Experiment definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithCustomerDataStorage {
             /**
              * Executes the create request.
              * 
@@ -235,7 +244,22 @@ public interface Experiment {
              * @param identity The identity of the experiment resource.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(ResourceIdentity identity);
+            WithCreate withIdentity(ExperimentIdentity identity);
+        }
+
+        /**
+         * The stage of the Experiment definition allowing to specify customerDataStorage.
+         */
+        interface WithCustomerDataStorage {
+            /**
+             * Specifies the customerDataStorage property: Optional customer-managed Storage account where Experiment
+             * schema will be stored..
+             * 
+             * @param customerDataStorage Optional customer-managed Storage account where Experiment schema will be
+             * stored.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage);
         }
     }
 
@@ -293,7 +317,7 @@ public interface Experiment {
              * @param identity The identity of the experiment resource.
              * @return the next definition stage.
              */
-            Update withIdentity(ResourceIdentity identity);
+            Update withIdentity(ExperimentIdentity identity);
         }
     }
 

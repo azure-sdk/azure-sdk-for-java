@@ -20,11 +20,6 @@ import java.util.Map;
 @Fluent
 public final class TargetInner extends ProxyResource {
     /*
-     * The system metadata of the target resource.
-     */
-    private SystemData systemData;
-
-    /*
      * Location of the target resource.
      */
     private String location;
@@ -33,6 +28,11 @@ public final class TargetInner extends ProxyResource {
      * The properties of the target resource.
      */
     private Map<String, Object> properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -53,15 +53,6 @@ public final class TargetInner extends ProxyResource {
      * Creates an instance of TargetInner class.
      */
     public TargetInner() {
-    }
-
-    /**
-     * Get the systemData property: The system metadata of the target resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -102,6 +93,15 @@ public final class TargetInner extends ProxyResource {
     public TargetInner withProperties(Map<String, Object> properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -184,10 +184,10 @@ public final class TargetInner extends ProxyResource {
                 } else if ("properties".equals(fieldName)) {
                     Map<String, Object> properties = reader.readMap(reader1 -> reader1.readUntyped());
                     deserializedTargetInner.properties = properties;
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedTargetInner.systemData = SystemData.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedTargetInner.location = reader.getString();
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedTargetInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

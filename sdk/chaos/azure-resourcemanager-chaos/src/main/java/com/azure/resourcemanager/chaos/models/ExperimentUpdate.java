@@ -20,7 +20,7 @@ public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate
     /*
      * The identity of the experiment resource.
      */
-    private ResourceIdentity identity;
+    private ExperimentIdentity identity;
 
     /*
      * The tags of the experiment resource.
@@ -38,7 +38,7 @@ public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate
      * 
      * @return the identity value.
      */
-    public ResourceIdentity identity() {
+    public ExperimentIdentity identity() {
         return this.identity;
     }
 
@@ -48,7 +48,7 @@ public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate
      * @param identity the identity value to set.
      * @return the ExperimentUpdate object itself.
      */
-    public ExperimentUpdate withIdentity(ResourceIdentity identity) {
+    public ExperimentUpdate withIdentity(ExperimentIdentity identity) {
         this.identity = identity;
         return this;
     }
@@ -111,7 +111,7 @@ public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate
                 reader.nextToken();
 
                 if ("identity".equals(fieldName)) {
-                    deserializedExperimentUpdate.identity = ResourceIdentity.fromJson(reader);
+                    deserializedExperimentUpdate.identity = ExperimentIdentity.fromJson(reader);
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedExperimentUpdate.tags = tags;
