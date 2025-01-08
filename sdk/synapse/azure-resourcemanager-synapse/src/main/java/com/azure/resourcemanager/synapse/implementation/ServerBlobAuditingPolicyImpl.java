@@ -72,6 +72,10 @@ public final class ServerBlobAuditingPolicyImpl
         return this.innerModel().queueDelayMs();
     }
 
+    public Boolean isDevopsAuditEnabled() {
+        return this.innerModel().isDevopsAuditEnabled();
+    }
+
     public String resourceGroupName() {
         return resourceGroupName;
     }
@@ -203,6 +207,11 @@ public final class ServerBlobAuditingPolicyImpl
 
     public ServerBlobAuditingPolicyImpl withQueueDelayMs(Integer queueDelayMs) {
         this.innerModel().withQueueDelayMs(queueDelayMs);
+        return this;
+    }
+
+    public ServerBlobAuditingPolicyImpl withIsDevopsAuditEnabled(Boolean isDevopsAuditEnabled) {
+        this.innerModel().withIsDevopsAuditEnabled(isDevopsAuditEnabled);
         return this;
     }
 }
