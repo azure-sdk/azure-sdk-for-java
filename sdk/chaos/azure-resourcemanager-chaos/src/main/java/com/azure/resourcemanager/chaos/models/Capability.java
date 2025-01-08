@@ -33,7 +33,7 @@ public interface Capability {
     String type();
 
     /**
-     * Gets the systemData property: The standard system metadata of a resource type.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -73,6 +73,14 @@ public interface Capability {
      * @return the urn value.
      */
     String urn();
+
+    /**
+     * Gets the provisioningState property: Resource provisioning state. Not currently in use because resource is
+     * created synchronously.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
 
     /**
      * Gets the inner com.azure.resourcemanager.chaos.fluent.models.CapabilityInner object.

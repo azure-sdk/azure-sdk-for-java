@@ -4,8 +4,10 @@
 
 package com.azure.resourcemanager.chaos.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
 import com.azure.resourcemanager.chaos.models.ExperimentExecution;
+import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import java.time.OffsetDateTime;
 
 public final class ExperimentExecutionImpl implements ExperimentExecution {
@@ -19,16 +21,20 @@ public final class ExperimentExecutionImpl implements ExperimentExecution {
         this.serviceManager = serviceManager;
     }
 
-    public String type() {
-        return this.innerModel().type();
-    }
-
     public String id() {
         return this.innerModel().id();
     }
 
     public String name() {
         return this.innerModel().name();
+    }
+
+    public String type() {
+        return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String status() {
@@ -41,6 +47,10 @@ public final class ExperimentExecutionImpl implements ExperimentExecution {
 
     public OffsetDateTime stoppedAt() {
         return this.innerModel().stoppedAt();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
     }
 
     public ExperimentExecutionInner innerModel() {

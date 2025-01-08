@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import java.io.IOException;
 
 /**
@@ -18,14 +19,14 @@ import java.io.IOException;
 @Immutable
 public final class CapabilityInner extends ProxyResource {
     /*
-     * The standard system metadata of a resource type.
-     */
-    private SystemData systemData;
-
-    /*
      * The properties of a capability resource.
      */
     private CapabilityProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -49,21 +50,21 @@ public final class CapabilityInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The standard system metadata of a resource type.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
      * Get the innerProperties property: The properties of a capability resource.
      * 
      * @return the innerProperties value.
      */
     private CapabilityProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -142,6 +143,16 @@ public final class CapabilityInner extends ProxyResource {
     }
 
     /**
+     * Get the provisioningState property: Resource provisioning state. Not currently in use because resource is created
+     * synchronously.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -158,6 +169,7 @@ public final class CapabilityInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -183,10 +195,10 @@ public final class CapabilityInner extends ProxyResource {
                     deserializedCapabilityInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedCapabilityInner.type = reader.getString();
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedCapabilityInner.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedCapabilityInner.innerProperties = CapabilityProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedCapabilityInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

@@ -1,14 +1,185 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-08)
 
-### Features Added
+- Azure Resource Manager Chaos client library for Java. This package contains Microsoft Azure SDK for Chaos Management SDK. Chaos Management Client. Package tag package-preview-2024-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ResourceIdentity` was removed
 
-### Other Changes
+#### `models.ResourceIdentityType` was removed
+
+#### `models.OperationStatus` was removed
+
+#### `models.TargetType` was modified
+
+* `location()` was removed
+
+#### `models.ContinuousAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.ChaosExperimentAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.Experiment` was modified
+
+* `models.ResourceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.DiscreteAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.ExperimentUpdate` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+* `models.ResourceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.ExperimentExecutionDetails` was modified
+
+* `status()` was removed
+* `lastActionAt()` was removed
+* `failureReason()` was removed
+* `startedAt()` was removed
+* `runInformation()` was removed
+* `stoppedAt()` was removed
+
+#### `models.DelayAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.CapabilityType` was modified
+
+* `location()` was removed
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.ChaosTargetSelector` was modified
+
+* `additionalProperties()` was removed
+* `withAdditionalProperties(java.util.Map)` was removed
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.OperationStatuses` was modified
+
+* `models.OperationStatus get(java.lang.String,java.lang.String)` -> `models.OperationStatusResult get(java.lang.String,java.lang.String)`
+
+### Features Added
+
+* `models.PrivateAccess` was added
+
+* `models.PrivateEndpointConnection` was added
+
+* `models.PrivateEndpointServiceConnectionStatus` was added
+
+* `models.CustomerDataStorageProperties` was added
+
+* `models.PrivateLinkResource` was added
+
+* `models.OperationStatusResult` was added
+
+* `models.PrivateAccess$Update` was added
+
+* `models.PublicNetworkAccessOption` was added
+
+* `models.PrivateAccessPatch` was added
+
+* `models.PrivateAccess$DefinitionStages` was added
+
+* `models.ExperimentActionType` was added
+
+* `models.PrivateAccess$Definition` was added
+
+* `models.PrivateLinkServiceConnectionState` was added
+
+* `models.ExperimentExecutionDetailsProperties` was added
+
+* `models.PrivateEndpoint` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.PrivateAccessListResult` was added
+
+* `models.PrivateAccess$UpdateStages` was added
+
+* `models.PrivateEndpointConnectionListResult` was added
+
+* `models.PrivateAccesses` was added
+
+* `models.ManagedServiceIdentity` was added
+
+* `models.PrivateLinkResourceListResult` was added
+
+#### `models.ExperimentExecution` was modified
+
+* `provisioningState()` was added
+* `systemData()` was added
+
+#### `models.Experiment` was modified
+
+* `customerDataStorage()` was added
+
+#### `models.CapabilityListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ExperimentUpdate` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.TargetListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ExperimentExecutionDetails` was modified
+
+* `properties()` was added
+
+#### `models.CapabilityTypeListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+* `withValue(java.util.List)` was added
+
+#### `models.ExperimentListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ExperimentExecutionListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+* `withValue(java.util.List)` was added
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withCustomerDataStorage(models.CustomerDataStorageProperties)` was added
+
+#### `models.TargetTypeListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.Capability` was modified
+
+* `provisioningState()` was added
+
+#### `ChaosManager` was modified
+
+* `privateAccesses()` was added
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
 
 ## 1.2.0 (2024-12-19)
 
