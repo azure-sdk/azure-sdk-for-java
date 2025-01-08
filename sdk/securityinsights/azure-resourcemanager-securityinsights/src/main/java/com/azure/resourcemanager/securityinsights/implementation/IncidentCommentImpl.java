@@ -36,16 +36,16 @@ public final class IncidentCommentImpl implements IncidentComment, IncidentComme
         return this.innerModel().systemData();
     }
 
+    public String message() {
+        return this.innerModel().message();
+    }
+
     public OffsetDateTime createdTimeUtc() {
         return this.innerModel().createdTimeUtc();
     }
 
     public OffsetDateTime lastModifiedTimeUtc() {
         return this.innerModel().lastModifiedTimeUtc();
-    }
-
-    public String message() {
-        return this.innerModel().message();
     }
 
     public ClientInfo author() {

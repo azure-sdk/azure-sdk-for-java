@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * The type of the owner the incident is assigned to.
+ * The type of the owner the hunt is assigned to.
  */
 public final class OwnerType extends ExpandableStringEnum<OwnerType> {
     /**

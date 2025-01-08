@@ -10,8 +10,8 @@ package com.azure.resourcemanager.securityinsights.generated;
 public final class AlertRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2022-11-01/examples/alertRules/
-     * DeleteAlertRule.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
+     * alertRules/DeleteAlertRule.json
      */
     /**
      * Sample code: Delete an alert rule.
