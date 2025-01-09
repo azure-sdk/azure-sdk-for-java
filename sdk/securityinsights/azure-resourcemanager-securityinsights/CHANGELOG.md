@@ -1,14 +1,1274 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-09)
 
-### Features Added
+- Azure Resource Manager SecurityInsights client library for Java. This package contains Microsoft Azure SDK for SecurityInsights Management SDK. API spec for Microsoft.SecurityInsights (Azure Security Insights) resource provider. Package tag package-preview-2024-10-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.Source` was removed
 
-### Other Changes
+#### `models.Relation$DefinitionStages` was modified
+
+* `withExistingIncident(java.lang.String,java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.Watchlist$Update` was modified
+
+* `withSource(models.Source)` was removed
+
+#### `models.Watchlist$Definition` was modified
+
+* `withSource(models.Source)` was removed
+
+#### `models.Relation$Definition` was modified
+
+* `withExistingIncident(java.lang.String,java.lang.String,java.lang.String)` was removed
+
+#### `models.Entity` was modified
+
+* `java.lang.String type()` -> `java.lang.String type()`
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `validate()` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+* `java.lang.String name()` -> `java.lang.String name()`
+* `java.lang.String id()` -> `java.lang.String id()`
+* `models.EntityKindEnum kind()` -> `models.EntityKindEnum kind()`
+* `com.azure.core.management.SystemData systemData()` -> `com.azure.core.management.SystemData systemData()`
+
+#### `models.Watchlist` was modified
+
+* `models.Source source()` -> `java.lang.String source()`
+
+#### `models.Watchlists` was modified
+
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `com.azure.core.http.rest.Response deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` -> `void deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)`
+
+#### `models.IncidentRelations` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+
+### Features Added
+
+* `models.InsightQueryItemPropertiesReferenceTimeRange` was added
+
+* `models.FusionSourceSettings` was added
+
+* `models.SystemResource$UpdateStages` was added
+
+* `models.WorkspaceManagerGroupList` was added
+
+* `models.AwsS3CheckRequirements` was added
+
+* `models.ExpansionResultsMetadata` was added
+
+* `models.MetadataList` was added
+
+* `models.MdatpCheckRequirements` was added
+
+* `models.Metadatas` was added
+
+* `models.DeploymentState` was added
+
+* `models.ExpansionEntityQuery` was added
+
+* `models.GcpAuthProperties` was added
+
+* `models.WorkspaceManagerGroups` was added
+
+* `models.ConnectorDefinitionsAvailability` was added
+
+* `models.EnrichmentDomainWhoisContact` was added
+
+* `models.EntityQueries` was added
+
+* `models.SourceKind` was added
+
+* `models.ThreatIntelligenceAlertRuleTemplate` was added
+
+* `models.EntityQueryItemProperties` was added
+
+* `models.ThreatIntelligenceAlertRule` was added
+
+* `models.Flag` was added
+
+* `models.Anomalies` was added
+
+* `models.IoTCheckRequirements` was added
+
+* `models.Hunt$Update` was added
+
+* `models.TimelineError` was added
+
+* `models.EntityTimelineParameters` was added
+
+* `models.DeploymentFetchStatus` was added
+
+* `models.SystemsList` was added
+
+* `models.SettingList` was added
+
+* `models.AlertPropertyMapping` was added
+
+* `models.NicEntity` was added
+
+* `models.TiTaxiiCheckRequirements` was added
+
+* `models.WorkspaceManagerMember` was added
+
+* `models.Hunt$DefinitionStages` was added
+
+* `models.CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem` was added
+
+* `models.HuntRelation$Update` was added
+
+* `models.ThreatIntelligences` was added
+
+* `models.GitHubResourceInfo` was added
+
+* `models.ApiKeyAuthModel` was added
+
+* `models.MetadataDependencies` was added
+
+* `models.RestApiPollerDataConnector` was added
+
+* `models.ActivityEntityQueriesPropertiesQueryDefinitions` was added
+
+* `models.IncidentTask$DefinitionStages` was added
+
+* `models.RestApiPollerRequestPagingTokenConfig` was added
+
+* `models.ProductPackageAdditionalProperties` was added
+
+* `models.BookmarkEntityMappings` was added
+
+* `models.ResourceProviders` was added
+
+* `models.EntityGetInsightsResponse` was added
+
+* `models.RelationshipHint` was added
+
+* `models.TimelineAggregation` was added
+
+* `models.EyesOn` was added
+
+* `models.GcpRequestProperties` was added
+
+* `models.PropertyArrayConditionProperties` was added
+
+* `models.ConnectorDefinitionsPermissions` was added
+
+* `models.FusionSubTypeSeverityFilter` was added
+
+* `models.IncidentProperties` was added
+
+* `models.Error` was added
+
+* `models.AutomationRulePropertyArrayConditionSupportedArrayConditionType` was added
+
+* `models.ContentType` was added
+
+* `models.OfficeIrmCheckRequirements` was added
+
+* `models.DeviceImportance` was added
+
+* `models.FusionScenarioExclusionPattern` was added
+
+* `models.SystemResource$Update` was added
+
+* `models.HuntRelationList` was added
+
+* `models.PackageModel$DefinitionStages` was added
+
+* `models.Office365ProjectCheckRequirements` was added
+
+* `models.EntityExpandParameters` was added
+
+* `models.SessionAuthModel` was added
+
+* `models.Systems` was added
+
+* `models.DataConnectorAuthorizationState` was added
+
+* `models.PurviewAuditCheckRequirements` was added
+
+* `models.IndicatorObservablesItem` was added
+
+* `models.GetQueriesResponse` was added
+
+* `models.AlertProperty` was added
+
+* `models.ProductTemplateOperations` was added
+
+* `models.QuerySortBy` was added
+
+* `models.WorkspaceManagerAssignments` was added
+
+* `models.InsightsTableResultColumnsItem` was added
+
+* `models.UnlockUserAction` was added
+
+* `models.SourceControl` was added
+
+* `models.ContentPackages` was added
+
+* `models.EntitiesGetTimelines` was added
+
+* `models.TiTaxiiDataConnectorDataTypesTaxiiClient` was added
+
+* `models.ActivityEntityQueryTemplatePropertiesQueryDefinitions` was added
+
+* `models.MstiDataConnectorDataTypes` was added
+
+* `models.ConnectedEntity` was added
+
+* `models.ConditionProperties` was added
+
+* `models.RfcConnector` was added
+
+* `models.PermissionsCustomsItem` was added
+
+* `models.ProductTemplateList` was added
+
+* `models.DataConnectorConnectBody` was added
+
+* `models.RestApiPollerRequestConfig` was added
+
+* `models.AutomationRuleAddIncidentTaskAction` was added
+
+* `models.GitHubAuthModel` was added
+
+* `models.FusionTemplateSourceSubType` was added
+
+* `models.ConnectorInstructionModelBase` was added
+
+* `models.WorkspaceManagerMember$Definition` was added
+
+* `models.HuntComment$Definition` was added
+
+* `models.ConnectivityCriteria` was added
+
+* `models.RepositoryAccessKind` was added
+
+* `models.SourceControlList` was added
+
+* `models.WorkspaceManagerGroup$UpdateStages` was added
+
+* `models.EntityInsightItem` was added
+
+* `models.McasCheckRequirements` was added
+
+* `models.MetadataAuthor` was added
+
+* `models.SourceControlsOperations` was added
+
+* `models.CcpAuthConfig` was added
+
+* `models.FusionSubTypeSeverityFiltersItem` was added
+
+* `models.RepoList` was added
+
+* `models.AgentType` was added
+
+* `models.TemplateAdditionalProperties` was added
+
+* `models.CustomPermissionDetails` was added
+
+* `models.TriggeredAnalyticsRuleRuns` was added
+
+* `models.CodelessConnectorPollingResponseProperties` was added
+
+* `models.SystemResource$Definition` was added
+
+* `models.LogStatusType` was added
+
+* `models.RecommendationPatchProperties` was added
+
+* `models.AwsS3DataConnectorDataTypesLogs` was added
+
+* `models.EntityItemQueryKind` was added
+
+* `models.QueryCondition` was added
+
+* `models.DcrConfiguration` was added
+
+* `models.EntityType` was added
+
+* `models.DataConnectorRequirementsState` was added
+
+* `models.MtpDataConnectorDataTypesIncidents` was added
+
+* `models.TemplateModel$Definition` was added
+
+* `models.HuntComment` was added
+
+* `models.WorkspaceManagerMember$UpdateStages` was added
+
+* `models.BillingStatisticList` was added
+
+* `models.EntityTimelineResponse` was added
+
+* `models.AutomationRulePropertyArrayValuesCondition` was added
+
+* `models.AlertRuleTemplatePropertiesBase` was added
+
+* `models.GetInsightsErrorKind` was added
+
+* `models.WorkspaceManagerGroup$Definition` was added
+
+* `models.WorkspaceManagerAssignment$UpdateStages` was added
+
+* `models.EntityInsightItemQueryTimeInterval` was added
+
+* `models.Connective` was added
+
+* `models.BusinessApplicationAgentResource$Update` was added
+
+* `models.HuntList` was added
+
+* `models.TIObjectKind` was added
+
+* `models.TemplateModel$UpdateStages` was added
+
+* `models.AscCheckRequirements` was added
+
+* `models.ProductTemplates` was added
+
+* `models.HuntComment$UpdateStages` was added
+
+* `models.ProvisioningState` was added
+
+* `models.HuntComment$Update` was added
+
+* `models.SortingDirection` was added
+
+* `models.BookmarkExpandResponse` was added
+
+* `models.AlertRuleTemplateWithMitreProperties` was added
+
+* `models.CustomEntityQueryKind` was added
+
+* `models.Warning` was added
+
+* `models.ResourceProvider` was added
+
+* `models.AadCheckRequirements` was added
+
+* `models.MicrosoftPurviewInformationProtectionDataConnector` was added
+
+* `models.ConfigurationType` was added
+
+* `models.MicrosoftPurviewInformationProtectionConnectorDataTypesLogs` was added
+
+* `models.Indicator` was added
+
+* `models.MetadataModel$UpdateStages` was added
+
+* `models.SystemsConfigurationConnector` was added
+
+* `models.PackageModel` was added
+
+* `models.MetadataSupport` was added
+
+* `models.PackageModel$Update` was added
+
+* `models.PurviewAuditConnectorDataTypesLogs` was added
+
+* `models.WorkspaceManagerConfiguration$Definition` was added
+
+* `models.ExpansionResultAggregation` was added
+
+* `models.WorkspaceManagerAssignment` was added
+
+* `models.ProviderPermissionsScope` was added
+
+* `models.BookmarkOperations` was added
+
+* `models.AssignmentItem` was added
+
+* `models.MtpDataConnector` was added
+
+* `models.NrtAlertRule` was added
+
+* `models.Query` was added
+
+* `models.WorkspaceManagerConfiguration$Update` was added
+
+* `models.LogType` was added
+
+* `models.ActivityTimelineItem` was added
+
+* `models.TriggeredAnalyticsRuleRun` was added
+
+* `models.CustomsPermission` was added
+
+* `models.RecommendationPatch` was added
+
+* `models.CodelessUiConnectorConfigPropertiesSampleQueriesItem` was added
+
+* `models.RestApiPollerRequestPagingLinkHeaderConfig` was added
+
+* `models.Dynamics365DataConnectorDataTypes` was added
+
+* `models.ConnectorDataType` was added
+
+* `models.NoneAuthModel` was added
+
+* `models.WorkspaceManagerGroup$Update` was added
+
+* `models.Mode` was added
+
+* `models.MetadataSource` was added
+
+* `models.TemplateModel$Update` was added
+
+* `models.RequiredPermissions` was added
+
+* `models.ReportActionStatusPayload` was added
+
+* `models.Deployment` was added
+
+* `models.Hunt$Definition` was added
+
+* `models.MtpProvider` was added
+
+* `models.BillingStatisticKind` was added
+
+* `models.MicrosoftPurviewInformationProtectionConnectorDataTypes` was added
+
+* `models.ContentTemplates` was added
+
+* `models.AddIncidentTaskActionProperties` was added
+
+* `models.ReevaluateResponse` was added
+
+* `models.CodelessConnectorPollingPagingProperties` was added
+
+* `models.Recommendation` was added
+
+* `models.InsightQueryItem` was added
+
+* `models.GcpDataConnector` was added
+
+* `models.SentinelEntityMapping` was added
+
+* `models.BusinessApplicationAgentOperations` was added
+
+* `models.TiTaxiiDataConnector` was added
+
+* `models.Hunt$UpdateStages` was added
+
+* `models.MetadataModel$DefinitionStages` was added
+
+* `models.MtpDataConnectorDataTypesAlerts` was added
+
+* `models.TimelineResultsMetadata` was added
+
+* `models.MstiDataConnector` was added
+
+* `models.AwsCloudTrailCheckRequirements` was added
+
+* `models.EntityQueryTemplateList` was added
+
+* `models.EntityQuery` was added
+
+* `models.PackageModel$UpdateStages` was added
+
+* `models.SecurityAlertTimelineItem` was added
+
+* `models.WorkspaceManagerMembersList` was added
+
+* `models.AzureEntityResource` was added
+
+* `models.SapSystemsConfiguration` was added
+
+* `models.AwsS3DataConnector` was added
+
+* `models.RecommendationList` was added
+
+* `models.MLBehaviorAnalyticsAlertRule` was added
+
+* `models.PackageKind` was added
+
+* `models.Permissions` was added
+
+* `models.ProductPackageOperations` was added
+
+* `models.CodelessUiDataConnector` was added
+
+* `models.AzureDevOpsResourceInfo` was added
+
+* `models.CustomEntityQuery` was added
+
+* `models.SupportTier` was added
+
+* `models.EntityList` was added
+
+* `models.BillingStatistics` was added
+
+* `models.Version` was added
+
+* `models.LastDataReceivedDataType` was added
+
+* `models.WorkspaceManagerMember$Update` was added
+
+* `models.MetadataPatch` was added
+
+* `models.GetTriggeredAnalyticsRuleRuns` was added
+
+* `models.LockUserAction` was added
+
+* `models.ActivityEntityQueryTemplate` was added
+
+* `models.ListActionsResponse` was added
+
+* `models.Office365ProjectConnectorDataTypesLogs` was added
+
+* `models.RepositoryResourceInfo` was added
+
+* `models.SecretSource` was added
+
+* `models.ValidationError` was added
+
+* `models.CodelessUiConnectorConfigPropertiesGraphQueriesItem` was added
+
+* `models.RepoType` was added
+
+* `models.ProductPackageList` was added
+
+* `models.TemplateModel$DefinitionStages` was added
+
+* `models.ListActionKind` was added
+
+* `models.OfficePowerBIConnectorDataTypes` was added
+
+* `models.OutputType` was added
+
+* `models.ConnectivityCriterion` was added
+
+* `models.SettingKind` was added
+
+* `models.OfficePowerBICheckRequirements` was added
+
+* `models.WarningCode` was added
+
+* `models.Dynamics365CheckRequirements` was added
+
+* `models.GcpAuthModel` was added
+
+* `models.SourceControl$DefinitionStages` was added
+
+* `models.CodelessUiConnectorConfigProperties` was added
+
+* `models.BusinessApplicationAgentResource$DefinitionStages` was added
+
+* `models.PollingFrequency` was added
+
+* `models.GraphQuery` was added
+
+* `models.Repository` was added
+
+* `models.EntityQueryTemplate` was added
+
+* `models.WorkspaceManagerAssignment$DefinitionStages` was added
+
+* `models.InstructionStepsInstructionsItem` was added
+
+* `models.EntityEdges` was added
+
+* `models.EntityFieldMapping` was added
+
+* `models.InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem` was added
+
+* `models.FileImportList` was added
+
+* `models.BusinessApplicationAgentResource$Definition` was added
+
+* `models.MetadataModel$Definition` was added
+
+* `models.WorkspaceManagerConfiguration` was added
+
+* `models.DeleteStatus` was added
+
+* `models.WorkspaceManagerAssignmentList` was added
+
+* `models.IncidentTask$Update` was added
+
+* `models.AutomationRuleBooleanCondition` was added
+
+* `models.HttpsConfigurationType` was added
+
+* `models.DataConnectorsCheckRequirements` was added
+
+* `models.CodelessConnectorPollingConfigProperties` was added
+
+* `models.ActivityEntityQuery` was added
+
+* `models.WorkspaceManagerConfigurationList` was added
+
+* `models.BusinessApplicationAgents` was added
+
+* `models.DeploymentInfo` was added
+
+* `models.InsightQueryItemPropertiesTableQuery` was added
+
+* `models.AutomationRulePropertyArrayConditionSupportedArrayType` was added
+
+* `models.InsightQueryItemPropertiesDefaultTimeRange` was added
+
+* `models.Updates` was added
+
+* `models.InsightQueryItemProperties` was added
+
+* `models.AlertRuleOperations` was added
+
+* `models.IncidentTaskList` was added
+
+* `models.ProductTemplateAdditionalProperties` was added
+
+* `models.RestApiPollerRequestPagingKind` was added
+
+* `models.SystemsConfiguration` was added
+
+* `models.EntityAnalytics` was added
+
+* `models.ProductPackageModel` was added
+
+* `models.IncidentTaskStatus` was added
+
+* `models.CodelessUiConnectorConfigPropertiesDataTypesItem` was added
+
+* `models.EntityExpandResponse` was added
+
+* `models.IncidentTask$Definition` was added
+
+* `models.AatpCheckRequirements` was added
+
+* `models.SourceType` was added
+
+* `models.MLBehaviorAnalyticsAlertRuleTemplate` was added
+
+* `models.HuntComment$DefinitionStages` was added
+
+* `models.Relationship` was added
+
+* `models.TIObject` was added
+
+* `models.GetRecommendations` was added
+
+* `models.MicrosoftPurviewInformationProtectionCheckRequirements` was added
+
+* `models.CustomizableConnectorDefinition` was added
+
+* `models.BasicAuthModel` was added
+
+* `models.HttpMethodVerb` was added
+
+* `models.Repo` was added
+
+* `models.EntityGetInsightsParameters` was added
+
+* `models.CustomizableConnectionsConfig` was added
+
+* `models.TriggeredAnalyticsRuleRunOperations` was added
+
+* `models.SystemResource` was added
+
+* `models.IncidentTask$UpdateStages` was added
+
+* `models.EntityTimelineKind` was added
+
+* `models.NrtAlertRuleTemplate` was added
+
+* `models.AwsS3DataConnectorDataTypes` was added
+
+* `models.RestApiPollerRequestPagingCountBaseConfig` was added
+
+* `models.Hunt` was added
+
+* `models.ProviderName` was added
+
+* `models.PermissionsResourceProviderItem` was added
+
+* `models.PackageBaseProperties` was added
+
+* `models.BookmarkTimelineItem` was added
+
+* `models.SourceControls` was added
+
+* `models.ServicePrincipal` was added
+
+* `models.DataConnectorDefinitionArmCollectionWrapper` was added
+
+* `models.PullRequest` was added
+
+* `models.SystemResource$DefinitionStages` was added
+
+* `models.DataConnectorDefinitions` was added
+
+* `models.PackageModel$Definition` was added
+
+* `models.Kind` was added
+
+* `models.HuntRelation$DefinitionStages` was added
+
+* `models.OfficeConsentList` was added
+
+* `models.InstructionSteps` was added
+
+* `models.IncidentTasks` was added
+
+* `models.IncidentTask` was added
+
+* `models.IngestionMode` was added
+
+* `models.CodelessConnectorPollingAuthProperties` was added
+
+* `models.BookmarkExpandResponseValue` was added
+
+* `models.DataTypeDefinitions` was added
+
+* `models.FileImport$DefinitionStages` was added
+
+* `models.GetInsightsError` was added
+
+* `models.Log` was added
+
+* `models.EntityQueryKind` was added
+
+* `models.TemplateBaseProperties` was added
+
+* `models.GetInsightsResultsMetadata` was added
+
+* `models.Operator` was added
+
+* `models.MtpCheckRequirements` was added
+
+* `models.MetadataModel` was added
+
+* `models.UndoActionPayload` was added
+
+* `models.Gets` was added
+
+* `models.HuntOwner` was added
+
+* `models.BusinessApplicationAgentResource` was added
+
+* `models.EntityTimelineItem` was added
+
+* `models.ManualTriggerRequestBody` was added
+
+* `models.JobList` was added
+
+* `models.AnomalyTimelineItem` was added
+
+* `models.ThreatIntelligenceList` was added
+
+* `models.AgentSystem` was added
+
+* `models.MtpFilteredProviders` was added
+
+* `models.HypothesisStatus` was added
+
+* `models.Entities` was added
+
+* `models.ConnectivityType` was added
+
+* `models.JwtAuthModel` was added
+
+* `models.DataConnectorTenantId` was added
+
+* `models.EnrichmentDomainBody` was added
+
+* `models.AwsAuthModel` was added
+
+* `models.TemplateList` was added
+
+* `models.ProductTemplateModel` was added
+
+* `models.PermissionProviderScope` was added
+
+* `models.PurviewAuditDataConnector` was added
+
+* `models.OracleAuthModel` was added
+
+* `models.MetadataModel$Update` was added
+
+* `models.InsightQueryItemPropertiesAdditionalQuery` was added
+
+* `models.Job` was added
+
+* `models.EntityManualTriggerRequestBody` was added
+
+* `models.SystemConfigurationConnectorType` was added
+
+* `models.SourceControl$Definition` was added
+
+* `models.DataConnectorLicenseState` was added
+
+* `models.EntityQueryItem` was added
+
+* `models.Hunts` was added
+
+* `models.ThreatActor` was added
+
+* `models.MtpDataConnectorDataTypes` was added
+
+* `models.SapAgentConfiguration` was added
+
+* `models.BusinessApplicationAgentResource$UpdateStages` was added
+
+* `models.ProductPackages` was added
+
+* `models.ResourceProviderRequiredPermissions` was added
+
+* `models.SapSolutionUsageStatistic` was added
+
+* `models.InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem` was added
+
+* `models.CustomizableConnectorUiConfig` was added
+
+* `models.WorkspaceManagerConfiguration$UpdateStages` was added
+
+* `models.Settings` was added
+
+* `models.Dynamics365DataConnectorDataTypesDynamics365CdsActivities` was added
+
+* `models.EntityExpandResponseValue` was added
+
+* `models.MetadataCategories` was added
+
+* `models.EntityProviders` was added
+
+* `models.SapAuthenticationType` was added
+
+* `models.HuntRelations` was added
+
+* `models.ConnectorDefinitionsResourceProvider` was added
+
+* `models.ContentTemplateOperations` was added
+
+* `models.EntitiesRelations` was added
+
+* `models.CodelessConnectorPollingRequestProperties` was added
+
+* `models.FileImportState` was added
+
+* `models.ConnectAuthKind` was added
+
+* `models.PurviewAuditConnectorDataTypes` was added
+
+* `models.EntityQueryTemplateKind` was added
+
+* `models.ThreatIntelligenceCount` was added
+
+* `models.Office365ProjectConnectorDataTypes` was added
+
+* `models.FileMetadata` was added
+
+* `models.EnrichmentIpAddressBody` was added
+
+* `models.FileFormat` was added
+
+* `models.AgentConfiguration` was added
+
+* `models.CcpAuthType` was added
+
+* `models.PackageList` was added
+
+* `models.CcpResponseConfig` was added
+
+* `models.FusionSourceSubTypeSetting` was added
+
+* `models.DataConnectorDefinition` was added
+
+* `models.EnrichmentDomainWhoisContacts` was added
+
+* `models.FileImport` was added
+
+* `models.EntityRelations` was added
+
+* `models.FileImportContentType` was added
+
+* `models.AnalyticsRuleRunTrigger` was added
+
+* `models.ContentPackageOperations` was added
+
+* `models.WarningBody` was added
+
+* `models.Office365ProjectDataConnector` was added
+
+* `models.RepositoryAccessProperties` was added
+
+* `models.EnrichmentDomainWhoisDetails` was added
+
+* `models.EnrichmentIpGeodata` was added
+
+* `models.TICheckRequirements` was added
+
+* `models.WorkspaceManagerMembers` was added
+
+* `models.ProductSettings` was added
+
+* `models.HuntComments` was added
+
+* `models.EntityQueryItemPropertiesDataTypesItem` was added
+
+* `models.AttackPattern` was added
+
+* `models.IoTDataConnector` was added
+
+* `models.WorkspaceManagerConfiguration$DefinitionStages` was added
+
+* `models.State` was added
+
+* `models.TeamInformation` was added
+
+* `models.QueryBasedAlertRuleTemplateProperties` was added
+
+* `models.OfficePowerBIConnectorDataTypesLogs` was added
+
+* `models.TiType` was added
+
+* `models.Reevaluates` was added
+
+* `models.WorkspaceManagerGroup` was added
+
+* `models.FileImports` was added
+
+* `models.TiTaxiiDataConnectorDataTypes` was added
+
+* `models.DataConnectorDefinitionKind` was added
+
+* `models.TemplateModel` was added
+
+* `models.ConditionClause` was added
+
+* `models.Identity` was added
+
+* `models.WorkspaceManagerAssignment$Update` was added
+
+* `models.CodelessUiConnectorConfigPropertiesInstructionStepsItem` was added
+
+* `models.CodelessApiPollingDataConnector` was added
+
+* `models.Webhook` was added
+
+* `models.SystemStatusType` was added
+
+* `models.WorkspaceManagerConfigurations` was added
+
+* `models.InstructionStep` was added
+
+* `models.RestApiPollerRequestPagingNextPageUrlConfig` was added
+
+* `models.DeploymentResult` was added
+
+* `models.OfficeConsent` was added
+
+* `models.BooleanConditionProperties` was added
+
+* `models.AvailabilityStatus` was added
+
+* `models.ActivityCustomEntityQuery` was added
+
+* `models.CountQuery` was added
+
+* `models.RestApiPollerRequestPagingConfig` was added
+
+* `models.HuntRelation` was added
+
+* `models.WorkspaceManagerAssignment$Definition` was added
+
+* `models.WorkspaceManagerAssignmentJobs` was added
+
+* `models.SettingType` was added
+
+* `models.InsightsTableResult` was added
+
+* `models.GraphQueries` was added
+
+* `models.OfficeAtpDataConnector` was added
+
+* `models.Status` was added
+
+* `models.OfficeConsents` was added
+
+* `models.DataConnectorsCheckRequirementsOperations` was added
+
+* `models.EnrichmentDomainWhois` was added
+
+* `models.Dynamics365DataConnector` was added
+
+* `models.BillingStatistic` was added
+
+* `models.Action` was added
+
+* `models.OfficePowerBIDataConnector` was added
+
+* `models.EnrichmentDomainWhoisRegistrarDetails` was added
+
+* `models.OAuthModel` was added
+
+* `models.BookmarkExpandParameters` was added
+
+* `models.IngestionType` was added
+
+* `models.FileImport$Definition` was added
+
+* `models.BookmarkRelations` was added
+
+* `models.JobItem` was added
+
+* `models.WorkspaceManagerMember$DefinitionStages` was added
+
+* `models.EnrichmentType` was added
+
+* `models.AutomationRuleBooleanConditionSupportedOperator` was added
+
+* `models.SampleQueries` was added
+
+* `models.MstiCheckRequirements` was added
+
+* `models.UebaDataSources` was added
+
+* `models.BusinessApplicationAgentsList` was added
+
+* `models.HuntRelation$UpdateStages` was added
+
+* `models.FusionTemplateSubTypeSeverityFilter` was added
+
+* `models.RecommendedSuggestion` was added
+
+* `models.InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem` was added
+
+* `models.RestApiPollerRequestPagingOffsetConfig` was added
+
+* `models.SapControlConnector` was added
+
+* `models.HuntRelation$Definition` was added
+
+* `models.OfficeAtpCheckRequirements` was added
+
+* `models.Customs` was added
+
+* `models.Ueba` was added
+
+* `models.OfficeIrmDataConnector` was added
+
+* `models.WorkspaceManagerGroup$DefinitionStages` was added
+
+* `models.GenericBlobSbsAuthModel` was added
+
+* `models.Availability` was added
+
+* `models.HuntCommentList` was added
+
+* `models.MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed` was added
+
+* `models.KeyVaultAuthenticationMode` was added
+
+* `models.EntityQueryTemplates` was added
+
+* `models.FusionTemplateSourceSetting` was added
+
+* `models.InstructionStepDetails` was added
+
+* `models.EntityQueryList` was added
+
+#### `models.IncidentAdditionalData` was modified
+
+* `providerIncidentUrl()` was added
+* `techniques()` was added
+
+#### `models.ScheduledAlertRuleTemplate` was modified
+
+* `sentinelEntitiesMappings()` was added
+* `withSubTechniques(java.util.List)` was added
+* `withSentinelEntitiesMappings(java.util.List)` was added
+* `subTechniques()` was added
+
+#### `models.FusionAlertRuleTemplate` was modified
+
+* `subTechniques()` was added
+* `withSourceSettings(java.util.List)` was added
+* `sourceSettings()` was added
+* `withSubTechniques(java.util.List)` was added
+
+#### `models.Watchlist$Update` was modified
+
+* `withProvisioningState(models.ProvisioningState)` was added
+* `withSourceType(models.SourceType)` was added
+* `withSource(java.lang.String)` was added
+
+#### `models.IoTDeviceEntity` was modified
+
+* `site()` was added
+* `isScanner()` was added
+* `isProgramming()` was added
+* `importance()` was added
+* `nicEntityIds()` was added
+* `deviceSubType()` was added
+* `isAuthorized()` was added
+* `sensor()` was added
+* `purdueLayer()` was added
+* `withImportance(models.DeviceImportance)` was added
+* `owners()` was added
+* `zone()` was added
+
+#### `models.Watchlist$Definition` was modified
+
+* `withSource(java.lang.String)` was added
+* `withProvisioningState(models.ProvisioningState)` was added
+* `withSourceType(models.SourceType)` was added
+
+#### `models.Bookmark$Update` was modified
+
+* `withTactics(java.util.List)` was added
+* `withEntityMappings(java.util.List)` was added
+* `withTechniques(java.util.List)` was added
+
+#### `models.Relation$Definition` was modified
+
+* `withExistingBookmark(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.Incident$Definition` was modified
+
+* `withTeamInformation(fluent.models.TeamInformationInner)` was added
+
+#### `models.ScheduledAlertRuleCommonProperties` was modified
+
+* `withSentinelEntitiesMappings(java.util.List)` was added
+* `sentinelEntitiesMappings()` was added
+
+#### `models.ScheduledAlertRule` was modified
+
+* `sentinelEntitiesMappings()` was added
+* `withSentinelEntitiesMappings(java.util.List)` was added
+* `withSubTechniques(java.util.List)` was added
+* `subTechniques()` was added
+
+#### `models.Bookmark$Definition` was modified
+
+* `withTechniques(java.util.List)` was added
+* `withEntityMappings(java.util.List)` was added
+* `withTactics(java.util.List)` was added
+
+#### `models.AlertDetailsOverride` was modified
+
+* `alertDynamicProperties()` was added
+* `withAlertDynamicProperties(java.util.List)` was added
+
+#### `models.Entity` was modified
+
+* `innerModel()` was added
+
+#### `models.Watchlist` was modified
+
+* `provisioningState()` was added
+* `sourceType()` was added
+
+#### `models.Bookmark` was modified
+
+* `tactics()` was added
+* `techniques()` was added
+* `entityMappings()` was added
+
+#### `models.DataConnectors` was modified
+
+* `connectWithResponse(java.lang.String,java.lang.String,java.lang.String,models.DataConnectorConnectBody,com.azure.core.util.Context)` was added
+* `disconnect(java.lang.String,java.lang.String,java.lang.String)` was added
+* `connect(java.lang.String,java.lang.String,java.lang.String,models.DataConnectorConnectBody)` was added
+* `disconnectWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.Incidents` was modified
+
+* `createTeamWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.TeamInformationInner,com.azure.core.util.Context)` was added
+* `createTeam(java.lang.String,java.lang.String,java.lang.String,fluent.models.TeamInformationInner)` was added
+* `runPlaybook(java.lang.String,java.lang.String,java.lang.String)` was added
+* `runPlaybookWithResponse(java.lang.String,java.lang.String,java.lang.String,models.ManualTriggerRequestBody,com.azure.core.util.Context)` was added
+
+#### `models.Incident` was modified
+
+* `createTeam(fluent.models.TeamInformationInner)` was added
+* `providerIncidentId()` was added
+* `teamInformation()` was added
+* `createTeamWithResponse(fluent.models.TeamInformationInner,com.azure.core.util.Context)` was added
+* `providerName()` was added
+
+#### `SecurityInsightsManager` was modified
+
+* `huntComments()` was added
+* `dataConnectorsCheckRequirementsOperations()` was added
+* `metadatas()` was added
+* `billingStatistics()` was added
+* `workspaceManagerConfigurations()` was added
+* `gets()` was added
+* `productPackageOperations()` was added
+* `entityQueryTemplates()` was added
+* `bookmarkRelations()` was added
+* `contentPackages()` was added
+* `workspaceManagerGroups()` was added
+* `entityRelations()` was added
+* `huntRelations()` was added
+* `productPackages()` was added
+* `entities()` was added
+* `threatIntelligences()` was added
+* `alertRuleOperations()` was added
+* `productTemplates()` was added
+* `dataConnectorDefinitions()` was added
+* `contentTemplates()` was added
+* `systems()` was added
+* `entitiesGetTimelines()` was added
+* `businessApplicationAgents()` was added
+* `officeConsents()` was added
+* `productSettings()` was added
+* `hunts()` was added
+* `incidentTasks()` was added
+* `updates()` was added
+* `getRecommendations()` was added
+* `getTriggeredAnalyticsRuleRuns()` was added
+* `productTemplateOperations()` was added
+* `contentPackageOperations()` was added
+* `bookmarkOperations()` was added
+* `workspaceManagerAssignments()` was added
+* `resourceProviders()` was added
+* `entityQueries()` was added
+* `reevaluates()` was added
+* `entitiesRelations()` was added
+* `workspaceManagerMembers()` was added
+* `contentTemplateOperations()` was added
+* `sourceControls()` was added
+* `triggeredAnalyticsRuleRunOperations()` was added
+* `workspaceManagerAssignmentJobs()` was added
+* `businessApplicationAgentOperations()` was added
+* `fileImports()` was added
+* `sourceControlsOperations()` was added
+
+#### `models.Watchlists` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.FusionAlertRule` was modified
+
+* `sourceSettings()` was added
+* `withScenarioExclusionPatterns(java.util.List)` was added
+* `subTechniques()` was added
+* `withSourceSettings(java.util.List)` was added
+* `scenarioExclusionPatterns()` was added
+
+#### `models.IncidentRelations` was modified
+
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.RelationInner,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.RelationInner)` was added
+
+#### `models.Incident$Update` was modified
+
+* `withTeamInformation(fluent.models.TeamInformationInner)` was added
 
 ## 1.0.0 (2025-01-03)
 
