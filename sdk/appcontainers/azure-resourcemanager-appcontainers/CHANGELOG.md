@@ -1,14 +1,90 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-01-10)
+
+- Azure Resource Manager ContainerAppsApi client library for Java. This package contains Microsoft Azure SDK for ContainerAppsApi Management SDK.  Package tag package-2025-01-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.Runtime` was added
 
-### Bugs Fixed
+* `models.CertificateKeyVaultProperties` was added
 
-### Other Changes
+* `models.NfsAzureFileProperties` was added
+
+* `models.ContainerAppRunningStatus` was added
+
+* `models.RuntimeJava` was added
+
+#### `models.ManagedEnvironment$Update` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.QueueScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+* `withAccountName(java.lang.String)` was added
+* `accountName()` was added
+
+#### `models.ManagedEnvironment$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.ManagedEnvironmentStorageProperties` was modified
+
+* `withNfsAzureFile(models.NfsAzureFileProperties)` was added
+* `nfsAzureFile()` was added
+
+#### `models.TcpScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.Scale` was modified
+
+* `pollingInterval()` was added
+* `cooldownPeriod()` was added
+* `withCooldownPeriod(java.lang.Integer)` was added
+* `withPollingInterval(java.lang.Integer)` was added
+
+#### `models.ManagedEnvironment` was modified
+
+* `identity()` was added
+
+#### `models.HttpScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.CertificateProperties` was modified
+
+* `certificateKeyVaultProperties()` was added
+* `withCertificateKeyVaultProperties(models.CertificateKeyVaultProperties)` was added
+
+#### `models.ContainerApp` was modified
+
+* `runningStatus()` was added
+
+#### `models.JobScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.CustomScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.CustomDomainConfiguration` was modified
+
+* `certificateKeyVaultProperties()` was added
+* `withCertificateKeyVaultProperties(models.CertificateKeyVaultProperties)` was added
+
+#### `models.Configuration` was modified
+
+* `runtime()` was added
+* `withRuntime(models.Runtime)` was added
 
 ## 1.1.0-beta.1 (2024-10-17)
 
