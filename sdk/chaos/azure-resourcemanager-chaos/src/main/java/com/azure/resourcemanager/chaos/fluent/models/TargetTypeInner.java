@@ -20,12 +20,7 @@ import java.util.List;
 @Fluent
 public final class TargetTypeInner extends ProxyResource {
     /*
-     * The system metadata properties of the target type resource.
-     */
-    private SystemData systemData;
-
-    /*
-     * Location of the Target Type resource.
+     * Azure resource location.
      */
     private String location;
 
@@ -33,6 +28,11 @@ public final class TargetTypeInner extends ProxyResource {
      * The properties of the target type resource.
      */
     private TargetTypeProperties innerProperties = new TargetTypeProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -56,16 +56,7 @@ public final class TargetTypeInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The system metadata properties of the target type resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the location property: Location of the Target Type resource.
+     * Get the location property: Azure resource location.
      * 
      * @return the location value.
      */
@@ -74,7 +65,7 @@ public final class TargetTypeInner extends ProxyResource {
     }
 
     /**
-     * Set the location property: Location of the Target Type resource.
+     * Set the location property: Azure resource location.
      * 
      * @param location the location value to set.
      * @return the TargetTypeInner object itself.
@@ -91,6 +82,15 @@ public final class TargetTypeInner extends ProxyResource {
      */
     private TargetTypeProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -211,10 +211,10 @@ public final class TargetTypeInner extends ProxyResource {
                     deserializedTargetTypeInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedTargetTypeInner.innerProperties = TargetTypeProperties.fromJson(reader);
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedTargetTypeInner.systemData = SystemData.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedTargetTypeInner.location = reader.getString();
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedTargetTypeInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

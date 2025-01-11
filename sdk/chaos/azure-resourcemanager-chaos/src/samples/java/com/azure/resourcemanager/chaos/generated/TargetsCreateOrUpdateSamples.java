@@ -4,10 +4,7 @@
 
 package com.azure.resourcemanager.chaos.generated;
 
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.chaos.fluent.models.TargetInner;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,22 +14,19 @@ import java.util.Map;
 public final class TargetsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CreateUpdateTarget.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Targets_CreateOrUpdate.
+     * json
      */
     /**
      * Sample code: Create/update a Target that extends a virtual machine resource.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void createUpdateATargetThatExtendsAVirtualMachineResource(
-        com.azure.resourcemanager.chaos.ChaosManager manager) throws IOException {
+    public static void
+        createUpdateATargetThatExtendsAVirtualMachineResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
         manager.targets()
             .createOrUpdateWithResponse("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM",
-                "Microsoft-Agent",
-                new TargetInner().withProperties(mapOf("identities",
-                    SerializerFactory.createDefaultManagementSerializerAdapter()
-                        .deserialize("[{\"type\":\"CertificateSubjectIssuer\",\"subject\":\"CN=example.subject\"}]",
-                            Object.class, SerializerEncoding.JSON))),
+                "Microsoft-VirtualMachine", new TargetInner().withProperties(mapOf()),
                 com.azure.core.util.Context.NONE);
     }
 

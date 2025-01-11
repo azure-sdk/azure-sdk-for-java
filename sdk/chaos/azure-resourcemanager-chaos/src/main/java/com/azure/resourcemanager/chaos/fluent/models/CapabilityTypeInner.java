@@ -20,12 +20,7 @@ import java.util.List;
 @Fluent
 public final class CapabilityTypeInner extends ProxyResource {
     /*
-     * The system metadata properties of the capability type resource.
-     */
-    private SystemData systemData;
-
-    /*
-     * Location of the Capability Type resource.
+     * Azure resource location.
      */
     private String location;
 
@@ -33,6 +28,11 @@ public final class CapabilityTypeInner extends ProxyResource {
      * The properties of the capability type resource.
      */
     private CapabilityTypeProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -56,16 +56,7 @@ public final class CapabilityTypeInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The system metadata properties of the capability type resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the location property: Location of the Capability Type resource.
+     * Get the location property: Azure resource location.
      * 
      * @return the location value.
      */
@@ -74,7 +65,7 @@ public final class CapabilityTypeInner extends ProxyResource {
     }
 
     /**
-     * Set the location property: Location of the Capability Type resource.
+     * Set the location property: Azure resource location.
      * 
      * @param location the location value to set.
      * @return the CapabilityTypeInner object itself.
@@ -91,6 +82,15 @@ public final class CapabilityTypeInner extends ProxyResource {
      */
     private CapabilityTypeProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -196,20 +196,6 @@ public final class CapabilityTypeInner extends ProxyResource {
     }
 
     /**
-     * Set the azureRbacActions property: Control plane actions necessary to execute capability type.
-     * 
-     * @param azureRbacActions the azureRbacActions value to set.
-     * @return the CapabilityTypeInner object itself.
-     */
-    public CapabilityTypeInner withAzureRbacActions(List<String> azureRbacActions) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CapabilityTypeProperties();
-        }
-        this.innerProperties().withAzureRbacActions(azureRbacActions);
-        return this;
-    }
-
-    /**
      * Get the azureRbacDataActions property: Data plane actions necessary to execute capability type.
      * 
      * @return the azureRbacDataActions value.
@@ -219,40 +205,12 @@ public final class CapabilityTypeInner extends ProxyResource {
     }
 
     /**
-     * Set the azureRbacDataActions property: Data plane actions necessary to execute capability type.
-     * 
-     * @param azureRbacDataActions the azureRbacDataActions value to set.
-     * @return the CapabilityTypeInner object itself.
-     */
-    public CapabilityTypeInner withAzureRbacDataActions(List<String> azureRbacDataActions) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CapabilityTypeProperties();
-        }
-        this.innerProperties().withAzureRbacDataActions(azureRbacDataActions);
-        return this;
-    }
-
-    /**
      * Get the runtimeProperties property: Runtime properties of this Capability Type.
      * 
      * @return the runtimeProperties value.
      */
     public CapabilityTypePropertiesRuntimeProperties runtimeProperties() {
         return this.innerProperties() == null ? null : this.innerProperties().runtimeProperties();
-    }
-
-    /**
-     * Set the runtimeProperties property: Runtime properties of this Capability Type.
-     * 
-     * @param runtimeProperties the runtimeProperties value to set.
-     * @return the CapabilityTypeInner object itself.
-     */
-    public CapabilityTypeInner withRuntimeProperties(CapabilityTypePropertiesRuntimeProperties runtimeProperties) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CapabilityTypeProperties();
-        }
-        this.innerProperties().withRuntimeProperties(runtimeProperties);
-        return this;
     }
 
     /**
@@ -273,6 +231,7 @@ public final class CapabilityTypeInner extends ProxyResource {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", this.location);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -298,12 +257,12 @@ public final class CapabilityTypeInner extends ProxyResource {
                     deserializedCapabilityTypeInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedCapabilityTypeInner.type = reader.getString();
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedCapabilityTypeInner.systemData = SystemData.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedCapabilityTypeInner.location = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedCapabilityTypeInner.innerProperties = CapabilityTypeProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedCapabilityTypeInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

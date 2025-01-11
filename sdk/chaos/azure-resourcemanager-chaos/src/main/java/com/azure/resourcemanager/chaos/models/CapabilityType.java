@@ -34,18 +34,18 @@ public interface CapabilityType {
     String type();
 
     /**
-     * Gets the systemData property: The system metadata properties of the capability type resource.
-     * 
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
-     * Gets the location property: Location of the Capability Type resource.
+     * Gets the location property: Azure resource location.
      * 
      * @return the location value.
      */
     String location();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the publisher property: String of the Publisher that this Capability Type extends.

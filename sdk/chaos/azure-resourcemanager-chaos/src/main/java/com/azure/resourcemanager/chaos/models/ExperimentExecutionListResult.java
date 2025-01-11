@@ -4,7 +4,8 @@
 
 package com.azure.resourcemanager.chaos.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,15 +17,15 @@ import java.util.List;
 /**
  * Model that represents a list of Experiment executions and a link for pagination.
  */
-@Immutable
+@Fluent
 public final class ExperimentExecutionListResult implements JsonSerializable<ExperimentExecutionListResult> {
     /*
-     * List of Experiment executions.
+     * The ExperimentExecution items on this page
      */
     private List<ExperimentExecutionInner> value;
 
     /*
-     * URL to retrieve the next page of Experiment executions.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -35,7 +36,7 @@ public final class ExperimentExecutionListResult implements JsonSerializable<Exp
     }
 
     /**
-     * Get the value property: List of Experiment executions.
+     * Get the value property: The ExperimentExecution items on this page.
      * 
      * @return the value value.
      */
@@ -44,7 +45,18 @@ public final class ExperimentExecutionListResult implements JsonSerializable<Exp
     }
 
     /**
-     * Get the nextLink property: URL to retrieve the next page of Experiment executions.
+     * Set the value property: The ExperimentExecution items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the ExperimentExecutionListResult object itself.
+     */
+    public ExperimentExecutionListResult withValue(List<ExperimentExecutionInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -53,15 +65,32 @@ public final class ExperimentExecutionListResult implements JsonSerializable<Exp
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the ExperimentExecutionListResult object itself.
+     */
+    public ExperimentExecutionListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model ExperimentExecutionListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ExperimentExecutionListResult.class);
 
     /**
      * {@inheritDoc}
@@ -69,6 +98,8 @@ public final class ExperimentExecutionListResult implements JsonSerializable<Exp
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -78,6 +109,7 @@ public final class ExperimentExecutionListResult implements JsonSerializable<Exp
      * @param jsonReader The JsonReader being read.
      * @return An instance of ExperimentExecutionListResult if the JsonReader was pointing to an instance of it, or null
      * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ExperimentExecutionListResult.
      */
     public static ExperimentExecutionListResult fromJson(JsonReader jsonReader) throws IOException {

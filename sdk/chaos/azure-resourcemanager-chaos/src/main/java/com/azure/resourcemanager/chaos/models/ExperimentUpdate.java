@@ -18,12 +18,12 @@ import java.util.Map;
 @Fluent
 public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate> {
     /*
-     * The identity of the experiment resource.
+     * The managed service identities assigned to this resource.
      */
-    private ResourceIdentity identity;
+    private ManagedServiceIdentity identity;
 
     /*
-     * The tags of the experiment resource.
+     * Resource tags.
      */
     private Map<String, String> tags;
 
@@ -34,27 +34,27 @@ public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate
     }
 
     /**
-     * Get the identity property: The identity of the experiment resource.
+     * Get the identity property: The managed service identities assigned to this resource.
      * 
      * @return the identity value.
      */
-    public ResourceIdentity identity() {
+    public ManagedServiceIdentity identity() {
         return this.identity;
     }
 
     /**
-     * Set the identity property: The identity of the experiment resource.
+     * Set the identity property: The managed service identities assigned to this resource.
      * 
      * @param identity the identity value to set.
      * @return the ExperimentUpdate object itself.
      */
-    public ExperimentUpdate withIdentity(ResourceIdentity identity) {
+    public ExperimentUpdate withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
         return this;
     }
 
     /**
-     * Get the tags property: The tags of the experiment resource.
+     * Get the tags property: Resource tags.
      * 
      * @return the tags value.
      */
@@ -63,7 +63,7 @@ public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate
     }
 
     /**
-     * Set the tags property: The tags of the experiment resource.
+     * Set the tags property: Resource tags.
      * 
      * @param tags the tags value to set.
      * @return the ExperimentUpdate object itself.
@@ -111,7 +111,7 @@ public final class ExperimentUpdate implements JsonSerializable<ExperimentUpdate
                 reader.nextToken();
 
                 if ("identity".equals(fieldName)) {
-                    deserializedExperimentUpdate.identity = ResourceIdentity.fromJson(reader);
+                    deserializedExperimentUpdate.identity = ManagedServiceIdentity.fromJson(reader);
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedExperimentUpdate.tags = tags;

@@ -81,33 +81,6 @@ public final class ExperimentExecutionDetailsInner implements JsonSerializable<E
     }
 
     /**
-     * Get the failureReason property: The reason why the execution failed.
-     * 
-     * @return the failureReason value.
-     */
-    public String failureReason() {
-        return this.innerProperties() == null ? null : this.innerProperties().failureReason();
-    }
-
-    /**
-     * Get the lastActionAt property: String that represents the last action date time.
-     * 
-     * @return the lastActionAt value.
-     */
-    public OffsetDateTime lastActionAt() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastActionAt();
-    }
-
-    /**
-     * Get the runInformation property: The information of the experiment run.
-     * 
-     * @return the runInformation value.
-     */
-    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
-        return this.innerProperties() == null ? null : this.innerProperties().runInformation();
-    }
-
-    /**
      * Get the status property: The status of the execution.
      * 
      * @return the status value.
@@ -132,6 +105,33 @@ public final class ExperimentExecutionDetailsInner implements JsonSerializable<E
      */
     public OffsetDateTime stoppedAt() {
         return this.innerProperties() == null ? null : this.innerProperties().stoppedAt();
+    }
+
+    /**
+     * Get the failureReason property: The reason why the execution failed.
+     * 
+     * @return the failureReason value.
+     */
+    public String failureReason() {
+        return this.innerProperties() == null ? null : this.innerProperties().failureReason();
+    }
+
+    /**
+     * Get the lastActionAt property: String that represents the last action date time.
+     * 
+     * @return the lastActionAt value.
+     */
+    public OffsetDateTime lastActionAt() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastActionAt();
+    }
+
+    /**
+     * Get the runInformation property: The information of the experiment run.
+     * 
+     * @return the runInformation value.
+     */
+    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
+        return this.innerProperties() == null ? null : this.innerProperties().runInformation();
     }
 
     /**
