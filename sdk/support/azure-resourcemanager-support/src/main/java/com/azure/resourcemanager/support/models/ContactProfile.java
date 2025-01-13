@@ -44,7 +44,8 @@ public final class ContactProfile implements JsonSerializable<ContactProfile> {
     private List<String> additionalEmailAddresses;
 
     /*
-     * Phone number. This is required if preferred contact method is phone.
+     * Phone number. This is required if preferred contact method is phone. It is also required when submitting
+     * "critical" or "highestcriticalimpact" severity cases.
      */
     private String phoneNumber;
 
@@ -178,7 +179,8 @@ public final class ContactProfile implements JsonSerializable<ContactProfile> {
     }
 
     /**
-     * Get the phoneNumber property: Phone number. This is required if preferred contact method is phone.
+     * Get the phoneNumber property: Phone number. This is required if preferred contact method is phone. It is also
+     * required when submitting "critical" or "highestcriticalimpact" severity cases.
      * 
      * @return the phoneNumber value.
      */
@@ -187,7 +189,8 @@ public final class ContactProfile implements JsonSerializable<ContactProfile> {
     }
 
     /**
-     * Set the phoneNumber property: Phone number. This is required if preferred contact method is phone.
+     * Set the phoneNumber property: Phone number. This is required if preferred contact method is phone. It is also
+     * required when submitting "critical" or "highestcriticalimpact" severity cases.
      * 
      * @param phoneNumber the phoneNumber value to set.
      * @return the ContactProfile object itself.

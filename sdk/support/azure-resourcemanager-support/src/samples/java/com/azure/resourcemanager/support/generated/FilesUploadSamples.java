@@ -11,9 +11,8 @@ import com.azure.resourcemanager.support.models.UploadFile;
  */
 public final class FilesUploadSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/UploadFileForSubscription.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UploadFileForSubscription.json
      */
     /**
      * Sample code: UploadFileForSubscription.

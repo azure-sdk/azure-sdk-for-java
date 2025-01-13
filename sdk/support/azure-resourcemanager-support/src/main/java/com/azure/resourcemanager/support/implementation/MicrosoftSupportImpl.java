@@ -31,9 +31,13 @@ import com.azure.resourcemanager.support.fluent.FileWorkspacesClient;
 import com.azure.resourcemanager.support.fluent.FileWorkspacesNoSubscriptionsClient;
 import com.azure.resourcemanager.support.fluent.FilesClient;
 import com.azure.resourcemanager.support.fluent.FilesNoSubscriptionsClient;
+import com.azure.resourcemanager.support.fluent.LookUpResourceIdsClient;
 import com.azure.resourcemanager.support.fluent.MicrosoftSupport;
 import com.azure.resourcemanager.support.fluent.OperationsClient;
 import com.azure.resourcemanager.support.fluent.ProblemClassificationsClient;
+import com.azure.resourcemanager.support.fluent.ProblemClassificationsNoSubscriptionsClient;
+import com.azure.resourcemanager.support.fluent.ServiceClassificationsClient;
+import com.azure.resourcemanager.support.fluent.ServiceClassificationsNoSubscriptionsClient;
 import com.azure.resourcemanager.support.fluent.ServicesClient;
 import com.azure.resourcemanager.support.fluent.SupportTicketsClient;
 import com.azure.resourcemanager.support.fluent.SupportTicketsNoSubscriptionsClient;
@@ -161,6 +165,48 @@ public final class MicrosoftSupportImpl implements MicrosoftSupport {
      */
     public ServicesClient getServices() {
         return this.services;
+    }
+
+    /**
+     * The ServiceClassificationsNoSubscriptionsClient object to access its operations.
+     */
+    private final ServiceClassificationsNoSubscriptionsClient serviceClassificationsNoSubscriptions;
+
+    /**
+     * Gets the ServiceClassificationsNoSubscriptionsClient object to access its operations.
+     * 
+     * @return the ServiceClassificationsNoSubscriptionsClient object.
+     */
+    public ServiceClassificationsNoSubscriptionsClient getServiceClassificationsNoSubscriptions() {
+        return this.serviceClassificationsNoSubscriptions;
+    }
+
+    /**
+     * The ServiceClassificationsClient object to access its operations.
+     */
+    private final ServiceClassificationsClient serviceClassifications;
+
+    /**
+     * Gets the ServiceClassificationsClient object to access its operations.
+     * 
+     * @return the ServiceClassificationsClient object.
+     */
+    public ServiceClassificationsClient getServiceClassifications() {
+        return this.serviceClassifications;
+    }
+
+    /**
+     * The ProblemClassificationsNoSubscriptionsClient object to access its operations.
+     */
+    private final ProblemClassificationsNoSubscriptionsClient problemClassificationsNoSubscriptions;
+
+    /**
+     * Gets the ProblemClassificationsNoSubscriptionsClient object to access its operations.
+     * 
+     * @return the ProblemClassificationsNoSubscriptionsClient object.
+     */
+    public ProblemClassificationsNoSubscriptionsClient getProblemClassificationsNoSubscriptions() {
+        return this.problemClassificationsNoSubscriptions;
     }
 
     /**
@@ -318,6 +364,20 @@ public final class MicrosoftSupportImpl implements MicrosoftSupport {
     }
 
     /**
+     * The LookUpResourceIdsClient object to access its operations.
+     */
+    private final LookUpResourceIdsClient lookUpResourceIds;
+
+    /**
+     * Gets the LookUpResourceIdsClient object to access its operations.
+     * 
+     * @return the LookUpResourceIdsClient object.
+     */
+    public LookUpResourceIdsClient getLookUpResourceIds() {
+        return this.lookUpResourceIds;
+    }
+
+    /**
      * Initializes an instance of MicrosoftSupport client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -334,9 +394,12 @@ public final class MicrosoftSupportImpl implements MicrosoftSupport {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-04-01";
+        this.apiVersion = "2023-06-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.services = new ServicesClientImpl(this);
+        this.serviceClassificationsNoSubscriptions = new ServiceClassificationsNoSubscriptionsClientImpl(this);
+        this.serviceClassifications = new ServiceClassificationsClientImpl(this);
+        this.problemClassificationsNoSubscriptions = new ProblemClassificationsNoSubscriptionsClientImpl(this);
         this.problemClassifications = new ProblemClassificationsClientImpl(this);
         this.supportTickets = new SupportTicketsClientImpl(this);
         this.supportTicketsNoSubscriptions = new SupportTicketsNoSubscriptionsClientImpl(this);
@@ -348,6 +411,7 @@ public final class MicrosoftSupportImpl implements MicrosoftSupport {
         this.fileWorkspacesNoSubscriptions = new FileWorkspacesNoSubscriptionsClientImpl(this);
         this.files = new FilesClientImpl(this);
         this.filesNoSubscriptions = new FilesNoSubscriptionsClientImpl(this);
+        this.lookUpResourceIds = new LookUpResourceIdsClientImpl(this);
     }
 
     /**

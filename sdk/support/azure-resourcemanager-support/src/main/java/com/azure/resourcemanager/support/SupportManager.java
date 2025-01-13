@@ -32,9 +32,13 @@ import com.azure.resourcemanager.support.implementation.FileWorkspacesImpl;
 import com.azure.resourcemanager.support.implementation.FileWorkspacesNoSubscriptionsImpl;
 import com.azure.resourcemanager.support.implementation.FilesImpl;
 import com.azure.resourcemanager.support.implementation.FilesNoSubscriptionsImpl;
+import com.azure.resourcemanager.support.implementation.LookUpResourceIdsImpl;
 import com.azure.resourcemanager.support.implementation.MicrosoftSupportBuilder;
 import com.azure.resourcemanager.support.implementation.OperationsImpl;
 import com.azure.resourcemanager.support.implementation.ProblemClassificationsImpl;
+import com.azure.resourcemanager.support.implementation.ProblemClassificationsNoSubscriptionsImpl;
+import com.azure.resourcemanager.support.implementation.ServiceClassificationsImpl;
+import com.azure.resourcemanager.support.implementation.ServiceClassificationsNoSubscriptionsImpl;
 import com.azure.resourcemanager.support.implementation.ServicesImpl;
 import com.azure.resourcemanager.support.implementation.SupportTicketsImpl;
 import com.azure.resourcemanager.support.implementation.SupportTicketsNoSubscriptionsImpl;
@@ -46,8 +50,12 @@ import com.azure.resourcemanager.support.models.FileWorkspaces;
 import com.azure.resourcemanager.support.models.FileWorkspacesNoSubscriptions;
 import com.azure.resourcemanager.support.models.Files;
 import com.azure.resourcemanager.support.models.FilesNoSubscriptions;
+import com.azure.resourcemanager.support.models.LookUpResourceIds;
 import com.azure.resourcemanager.support.models.Operations;
 import com.azure.resourcemanager.support.models.ProblemClassifications;
+import com.azure.resourcemanager.support.models.ProblemClassificationsNoSubscriptions;
+import com.azure.resourcemanager.support.models.ServiceClassifications;
+import com.azure.resourcemanager.support.models.ServiceClassificationsNoSubscriptions;
 import com.azure.resourcemanager.support.models.Services;
 import com.azure.resourcemanager.support.models.SupportTickets;
 import com.azure.resourcemanager.support.models.SupportTicketsNoSubscriptions;
@@ -66,6 +74,12 @@ public final class SupportManager {
     private Operations operations;
 
     private Services services;
+
+    private ServiceClassificationsNoSubscriptions serviceClassificationsNoSubscriptions;
+
+    private ServiceClassifications serviceClassifications;
+
+    private ProblemClassificationsNoSubscriptions problemClassificationsNoSubscriptions;
 
     private ProblemClassifications problemClassifications;
 
@@ -88,6 +102,8 @@ public final class SupportManager {
     private Files files;
 
     private FilesNoSubscriptions filesNoSubscriptions;
+
+    private LookUpResourceIds lookUpResourceIds;
 
     private final MicrosoftSupport clientObject;
 
@@ -253,7 +269,7 @@ public final class SupportManager {
                 .append("-")
                 .append("com.azure.resourcemanager.support")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -321,6 +337,45 @@ public final class SupportManager {
             this.services = new ServicesImpl(clientObject.getServices(), this);
         }
         return services;
+    }
+
+    /**
+     * Gets the resource collection API of ServiceClassificationsNoSubscriptions.
+     * 
+     * @return Resource collection API of ServiceClassificationsNoSubscriptions.
+     */
+    public ServiceClassificationsNoSubscriptions serviceClassificationsNoSubscriptions() {
+        if (this.serviceClassificationsNoSubscriptions == null) {
+            this.serviceClassificationsNoSubscriptions = new ServiceClassificationsNoSubscriptionsImpl(
+                clientObject.getServiceClassificationsNoSubscriptions(), this);
+        }
+        return serviceClassificationsNoSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of ServiceClassifications.
+     * 
+     * @return Resource collection API of ServiceClassifications.
+     */
+    public ServiceClassifications serviceClassifications() {
+        if (this.serviceClassifications == null) {
+            this.serviceClassifications
+                = new ServiceClassificationsImpl(clientObject.getServiceClassifications(), this);
+        }
+        return serviceClassifications;
+    }
+
+    /**
+     * Gets the resource collection API of ProblemClassificationsNoSubscriptions.
+     * 
+     * @return Resource collection API of ProblemClassificationsNoSubscriptions.
+     */
+    public ProblemClassificationsNoSubscriptions problemClassificationsNoSubscriptions() {
+        if (this.problemClassificationsNoSubscriptions == null) {
+            this.problemClassificationsNoSubscriptions = new ProblemClassificationsNoSubscriptionsImpl(
+                clientObject.getProblemClassificationsNoSubscriptions(), this);
+        }
+        return problemClassificationsNoSubscriptions;
     }
 
     /**
@@ -458,6 +513,18 @@ public final class SupportManager {
             this.filesNoSubscriptions = new FilesNoSubscriptionsImpl(clientObject.getFilesNoSubscriptions(), this);
         }
         return filesNoSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of LookUpResourceIds.
+     * 
+     * @return Resource collection API of LookUpResourceIds.
+     */
+    public LookUpResourceIds lookUpResourceIds() {
+        if (this.lookUpResourceIds == null) {
+            this.lookUpResourceIds = new LookUpResourceIdsImpl(clientObject.getLookUpResourceIds(), this);
+        }
+        return lookUpResourceIds;
     }
 
     /**

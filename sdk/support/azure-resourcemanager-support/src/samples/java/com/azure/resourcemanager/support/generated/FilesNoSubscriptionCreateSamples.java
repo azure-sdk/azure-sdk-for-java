@@ -12,7 +12,7 @@ import com.azure.resourcemanager.support.fluent.models.FileDetailsInner;
 public final class FilesNoSubscriptionCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateFile.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/CreateFile.json
      */
     /**
      * Sample code: Create a file workspace.

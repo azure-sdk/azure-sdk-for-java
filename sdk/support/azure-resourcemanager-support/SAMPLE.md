@@ -49,14 +49,31 @@
 - [List](#filesnosubscription_list)
 - [Upload](#filesnosubscription_upload)
 
+## LookUpResourceId
+
+- [Post](#lookupresourceid_post)
+
 ## Operations
 
 - [List](#operations_list)
 
 ## ProblemClassifications
 
+- [ClassifyProblems](#problemclassifications_classifyproblems)
 - [Get](#problemclassifications_get)
 - [List](#problemclassifications_list)
+
+## ProblemClassificationsNoSubscription
+
+- [ClassifyProblems](#problemclassificationsnosubscription_classifyproblems)
+
+## ServiceClassifications
+
+- [ClassifyServices](#serviceclassifications_classifyservices)
+
+## ServiceClassificationsNoSubscription
+
+- [ClassifyServices](#serviceclassificationsnosubscription_classifyservices)
 
 ## Services
 
@@ -86,7 +103,7 @@
  */
 public final class ChatTranscriptsGetSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * GetchatTranscriptDetailsForSubscriptionSupportTicket.json
      */
     /**
@@ -110,7 +127,7 @@ public final class ChatTranscriptsGetSamples {
  */
 public final class ChatTranscriptsListSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListChatTranscriptsForSubscriptionSupportTicket.json
      */
     /**
@@ -133,7 +150,7 @@ public final class ChatTranscriptsListSamples {
  */
 public final class ChatTranscriptsNoSubscriptionGetSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * GetchatTranscriptDetailsForSupportTicket.json
      */
     /**
@@ -157,7 +174,7 @@ public final class ChatTranscriptsNoSubscriptionGetSamples {
  */
 public final class ChatTranscriptsNoSubscriptionListSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListChatTranscriptsForSupportTicket.json
      */
     /**
@@ -183,15 +200,15 @@ import com.azure.resourcemanager.support.models.Type;
  */
 public final class CommunicationsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CheckNameAvailabilityForSupportTicketCommunication.json
      */
     /**
-     * Sample code: Checks whether name is available for Communication resource for a subscription support ticket.
+     * Sample code: Checks whether name is available for subscription scoped Communication resource.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void checksWhetherNameIsAvailableForCommunicationResourceForASubscriptionSupportTicket(
+    public static void checksWhetherNameIsAvailableForSubscriptionScopedCommunicationResource(
         com.azure.resourcemanager.support.SupportManager manager) {
         manager.communications()
             .checkNameAvailabilityWithResponse("testticket",
@@ -209,7 +226,7 @@ public final class CommunicationsCheckNameAvailabilitySamples {
  */
 public final class CommunicationsCreateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateSupportTicketCommunication.json
      */
     /**
@@ -221,9 +238,9 @@ public final class CommunicationsCreateSamples {
         manager.communications()
             .define("testcommunication")
             .withExistingSupportTicket("testticket")
+            .withSender("user@contoso.com")
             .withSubject("This is a test message from a customer!")
             .withBody("This is a test message from a customer!")
-            .withSender("user@contoso.com")
             .create();
     }
 }
@@ -237,7 +254,7 @@ public final class CommunicationsCreateSamples {
  */
 public final class CommunicationsGetSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * GetCommunicationDetailsForSubscriptionSupportTicket.json
      */
     /**
@@ -260,7 +277,7 @@ public final class CommunicationsGetSamples {
  */
 public final class CommunicationsListSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListCommunicationsForSubscriptionSupportTicket.json
      */
     /**
@@ -274,7 +291,7 @@ public final class CommunicationsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListWebCommunicationsForSubscriptionSupportTicket.json
      */
     /**
@@ -289,7 +306,7 @@ public final class CommunicationsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListWebCommunicationsForSubscriptionSupportTicketCreatedOnOrAfter.json
      */
     /**
@@ -317,7 +334,7 @@ import com.azure.resourcemanager.support.models.Type;
  */
 public final class CommunicationsNoSubscriptionCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CheckNameAvailabilityForNoSubscriptionSupportTicketCommunication.json
      */
     /**
@@ -345,7 +362,7 @@ import com.azure.resourcemanager.support.fluent.models.CommunicationDetailsInner
  */
 public final class CommunicationsNoSubscriptionCreateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateNoSubscriptionSupportTicketCommunication.json
      */
     /**
@@ -373,7 +390,7 @@ public final class CommunicationsNoSubscriptionCreateSamples {
  */
 public final class CommunicationsNoSubscriptionGetSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * GetCommunicationDetailsForSupportTicket.json
      */
     /**
@@ -397,7 +414,7 @@ public final class CommunicationsNoSubscriptionGetSamples {
  */
 public final class CommunicationsNoSubscriptionListSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListCommunicationsForSupportTicket.json
      */
     /**
@@ -411,7 +428,7 @@ public final class CommunicationsNoSubscriptionListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListWebCommunicationsForSupportTicketCreatedOnOrAfter.json
      */
     /**
@@ -427,7 +444,7 @@ public final class CommunicationsNoSubscriptionListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListWebCommunicationsForSupportTicket.json
      */
     /**
@@ -451,15 +468,16 @@ public final class CommunicationsNoSubscriptionListSamples {
  */
 public final class FileWorkspacesCreateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateFileWorkspaceForSubscription.json
      */
     /**
-     * Sample code: Create a file workspace for a subscription.
+     * Sample code: Create a subscription scoped file workspace.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void createAFileWorkspaceForASubscription(com.azure.resourcemanager.support.SupportManager manager) {
+    public static void
+        createASubscriptionScopedFileWorkspace(com.azure.resourcemanager.support.SupportManager manager) {
         manager.fileWorkspaces().createWithResponse("testworkspace", com.azure.core.util.Context.NONE);
     }
 }
@@ -473,7 +491,7 @@ public final class FileWorkspacesCreateSamples {
  */
 public final class FileWorkspacesGetSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * GetFileWorkspaceDetailsForSubscription.json
      */
     /**
@@ -497,7 +515,8 @@ public final class FileWorkspacesGetSamples {
 public final class FileWorkspacesNoSubscriptionCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateFileWorkspace.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/CreateFileWorkspace.
+     * json
      */
     /**
      * Sample code: Create a file workspace.
@@ -518,8 +537,8 @@ public final class FileWorkspacesNoSubscriptionCreateSamples {
  */
 public final class FileWorkspacesNoSubscriptionGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/GetFileWorkspaceDetails.json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * GetFileWorkspaceDetails.json
      */
     /**
      * Sample code: Get details of a file workspace.
@@ -540,17 +559,15 @@ public final class FileWorkspacesNoSubscriptionGetSamples {
  */
 public final class FilesCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateFileForSubscription.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateFileForSubscription.json
      */
     /**
-     * Sample code: Create a file under a subscription workspace.
+     * Sample code: Create a subscription scoped file.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void
-        createAFileUnderASubscriptionWorkspace(com.azure.resourcemanager.support.SupportManager manager) {
+    public static void createASubscriptionScopedFile(com.azure.resourcemanager.support.SupportManager manager) {
         manager.files()
             .define("test.txt")
             .withExistingFileWorkspace("testworkspace")
@@ -570,9 +587,8 @@ public final class FilesCreateSamples {
  */
 public final class FilesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/GetFileDetailsForSubscription
-     * .json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * GetFileDetailsForSubscription.json
      */
     /**
      * Sample code: Get details of a subscription file.
@@ -593,7 +609,7 @@ public final class FilesGetSamples {
  */
 public final class FilesListSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListFilesForSubscriptionUnderFileWorkspace.json
      */
     /**
@@ -618,9 +634,8 @@ import com.azure.resourcemanager.support.models.UploadFile;
  */
 public final class FilesUploadSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/UploadFileForSubscription.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UploadFileForSubscription.json
      */
     /**
      * Sample code: UploadFileForSubscription.
@@ -647,7 +662,7 @@ import com.azure.resourcemanager.support.fluent.models.FileDetailsInner;
 public final class FilesNoSubscriptionCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateFile.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/CreateFile.json
      */
     /**
      * Sample code: Create a file workspace.
@@ -672,7 +687,7 @@ public final class FilesNoSubscriptionCreateSamples {
 public final class FilesNoSubscriptionGetSamples {
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/GetFileDetails.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/GetFileDetails.json
      */
     /**
      * Sample code: Get details of a subscription file.
@@ -693,9 +708,8 @@ public final class FilesNoSubscriptionGetSamples {
  */
 public final class FilesNoSubscriptionListSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/ListFilesUnderFileWorkspace.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * ListFilesUnderFileWorkspace.json
      */
     /**
      * Sample code: List files under a workspace.
@@ -719,7 +733,7 @@ import com.azure.resourcemanager.support.models.UploadFile;
 public final class FilesNoSubscriptionUploadSamples {
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/UploadFile.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/UploadFile.json
      */
     /**
      * Sample code: UploadFile.
@@ -735,6 +749,34 @@ public final class FilesNoSubscriptionUploadSamples {
 }
 ```
 
+### LookUpResourceId_Post
+
+```java
+import com.azure.resourcemanager.support.models.LookUpResourceIdRequest;
+import com.azure.resourcemanager.support.models.ResourceType;
+
+/**
+ * Samples for LookUpResourceId Post.
+ */
+public final class LookUpResourceIdPostSamples {
+    /*
+     * x-ms-original-file:
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/LookUpResourceId.
+     * json
+     */
+    /**
+     * Sample code: Look up resource id of support resource type.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void lookUpResourceIdOfSupportResourceType(com.azure.resourcemanager.support.SupportManager manager) {
+        manager.lookUpResourceIds()
+            .postWithResponse(new LookUpResourceIdRequest().withIdentifier("1234668596")
+                .withType(ResourceType.MICROSOFT_SUPPORT_SUPPORT_TICKETS), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Operations_List
 
 ```java
@@ -744,7 +786,7 @@ public final class FilesNoSubscriptionUploadSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/ListOperations.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/ListOperations.json
      */
     /**
      * Sample code: Get all operations.
@@ -757,6 +799,36 @@ public final class OperationsListSamples {
 }
 ```
 
+### ProblemClassifications_ClassifyProblems
+
+```java
+import com.azure.resourcemanager.support.models.ProblemClassificationsClassificationInput;
+
+/**
+ * Samples for ProblemClassifications ClassifyProblems.
+ */
+public final class ProblemClassificationsClassifyProblemsSamples {
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * ClassifyProblemClassificationsForSubscription.json
+     */
+    /**
+     * Sample code: Classify list of problemClassifications for a specified Azure service for a subscription.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void classifyListOfProblemClassificationsForASpecifiedAzureServiceForASubscription(
+        com.azure.resourcemanager.support.SupportManager manager) {
+        manager.problemClassifications()
+            .classifyProblemsWithResponse("serviceId1", new ProblemClassificationsClassificationInput()
+                .withIssueSummary("Can not connect to Windows VM")
+                .withResourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgname/providers/Microsoft.Compute/virtualMachines/vmname"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### ProblemClassifications_Get
 
 ```java
@@ -765,8 +837,8 @@ public final class OperationsListSamples {
  */
 public final class ProblemClassificationsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/GetProblemClassification.json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * GetProblemClassification.json
      */
     /**
      * Sample code: Gets details of problemClassification for Azure service.
@@ -789,9 +861,8 @@ public final class ProblemClassificationsGetSamples {
  */
 public final class ProblemClassificationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/ListProblemClassifications.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * ListProblemClassifications.json
      */
     /**
      * Sample code: Gets list of problemClassifications for a service for which a support ticket can be created.
@@ -805,6 +876,94 @@ public final class ProblemClassificationsListSamples {
 }
 ```
 
+### ProblemClassificationsNoSubscription_ClassifyProblems
+
+```java
+import com.azure.resourcemanager.support.models.ProblemClassificationsClassificationInput;
+
+/**
+ * Samples for ProblemClassificationsNoSubscription ClassifyProblems.
+ */
+public final class ProblemClassificationsNoSubscriptionClassifyProblemsSamples {
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * ClassifyProblemClassifications.json
+     */
+    /**
+     * Sample code: Classify list of problemClassifications for a specified Azure service.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void classifyListOfProblemClassificationsForASpecifiedAzureService(
+        com.azure.resourcemanager.support.SupportManager manager) {
+        manager.problemClassificationsNoSubscriptions()
+            .classifyProblemsWithResponse("serviceId1",
+                new ProblemClassificationsClassificationInput().withIssueSummary("Can not connect to Windows VM"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServiceClassifications_ClassifyServices
+
+```java
+import com.azure.resourcemanager.support.models.ServiceClassificationRequest;
+
+/**
+ * Samples for ServiceClassifications ClassifyServices.
+ */
+public final class ServiceClassificationsClassifyServicesSamples {
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * ClassifyServicesForSubscription.json
+     */
+    /**
+     * Sample code: Classify list of Azure services for a subscription.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void
+        classifyListOfAzureServicesForASubscription(com.azure.resourcemanager.support.SupportManager manager) {
+        manager.serviceClassifications()
+            .classifyServicesWithResponse(new ServiceClassificationRequest()
+                .withIssueSummary("Can not connect to Windows VM")
+                .withResourceId(
+                    "/subscriptions/76cb77fa-8b17-4eab-9493-b65dace99813/resourceGroups/rgname/providers/Microsoft.Compute/virtualMachines/vmname"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServiceClassificationsNoSubscription_ClassifyServices
+
+```java
+import com.azure.resourcemanager.support.models.ServiceClassificationRequest;
+
+/**
+ * Samples for ServiceClassificationsNoSubscription ClassifyServices.
+ */
+public final class ServiceClassificationsNoSubscriptionClassifyServicesSamples {
+    /*
+     * x-ms-original-file:
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/ClassifyServices.
+     * json
+     */
+    /**
+     * Sample code: Classify list of Azure services.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void classifyListOfAzureServices(com.azure.resourcemanager.support.SupportManager manager) {
+        manager.serviceClassificationsNoSubscriptions()
+            .classifyServicesWithResponse(new ServiceClassificationRequest()
+                .withIssueSummary("Can not connect to Windows VM")
+                .withResourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgname/providers/Microsoft.Compute/virtualMachines/vmname"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Services_Get
 
 ```java
@@ -814,7 +973,7 @@ public final class ProblemClassificationsListSamples {
 public final class ServicesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/GetService.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/GetService.json
      */
     /**
      * Sample code: Gets details of the Azure service.
@@ -836,7 +995,7 @@ public final class ServicesGetSamples {
 public final class ServicesListSamples {
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/ListServices.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/ListServices.json
      */
     /**
      * Sample code: Gets list of services for which a support ticket can be created.
@@ -861,15 +1020,15 @@ import com.azure.resourcemanager.support.models.Type;
  */
 public final class SupportTicketsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CheckNameAvailabilityWithSubscription.json
      */
     /**
-     * Sample code: Checks whether name is available for a subscription support ticket resource.
+     * Sample code: Checks whether name is available for subscription scoped SupportTicket resource.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void checksWhetherNameIsAvailableForASubscriptionSupportTicketResource(
+    public static void checksWhetherNameIsAvailableForSubscriptionScopedSupportTicketResource(
         com.azure.resourcemanager.support.SupportManager manager) {
         manager.supportTickets()
             .checkNameAvailabilityWithResponse(new CheckNameAvailabilityInput().withName("sampleName")
@@ -897,7 +1056,7 @@ import java.util.Arrays;
  */
 public final class SupportTicketsCreateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateSqlDatawarehouseQuotaTicketForDTUs.json
      */
     /**
@@ -914,6 +1073,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/sql_datawarehouse_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -923,8 +1084,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("DTUs")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -933,7 +1092,39 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateSubMgmtSupportTicketForSubscription.json
+     */
+    /**
+     * Sample code: Create a subscription scoped ticket for Subscription Management related issues.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void createASubscriptionScopedTicketForSubscriptionManagementRelatedIssues(
+        com.azure.resourcemanager.support.SupportManager manager) {
+        manager.supportTickets()
+            .define("testticket")
+            .withDescription("my description")
+            .withProblemClassificationId(
+                "/providers/Microsoft.Support/services/subscription_management_service_guid/problemClassifications/subscription_management_problemClassification_guid")
+            .withSeverity(SeverityLevel.MODERATE)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
+            .withContactDetails(new ContactProfile().withFirstName("abc")
+                .withLastName("xyz")
+                .withPreferredContactMethod(PreferredContactMethod.EMAIL)
+                .withPrimaryEmailAddress("abc@contoso.com")
+                .withPreferredTimeZone("Pacific Standard Time")
+                .withCountry("usa")
+                .withPreferredSupportLanguage("en-US"))
+            .withTitle("my title")
+            .withServiceId("/providers/Microsoft.Support/services/subscription_management_service_guid")
+            .withFileWorkspaceName("6f16735c-1530836f-e9970f1a-2e49-47b7-96cd-9746b83aa066")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateBatchQuotaTicketForSpecificBatchAccountForActiveJobs.json
      */
     /**
@@ -950,6 +1141,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/batch_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -959,8 +1152,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("Account")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -969,7 +1160,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateMachineLearningQuotaTicketForLowPriorityCores.json
      */
     /**
@@ -986,6 +1177,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/machine_learning_service_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -995,8 +1188,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("BatchAml")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -1005,7 +1196,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateBatchQuotaTicketForSubscription.json
      */
     /**
@@ -1022,6 +1213,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/batch_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1031,8 +1224,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("Subscription")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -1041,7 +1232,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateSqlDatabaseQuotaTicketForDTUs.json
      */
     /**
@@ -1058,6 +1249,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/sql_database_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1067,8 +1260,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("DTUs")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -1077,8 +1268,8 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateGenericQuotaTicket.json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateGenericQuotaTicket.json
      */
     /**
      * Sample code: Create a ticket to request Quota increase for services that do not require additional details in the
@@ -1095,7 +1286,6 @@ public final class SupportTicketsCreateSamples {
             .withProblemClassificationId(
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/cosmosdb_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
-            .withAdvancedDiagnosticConsent(Consent.YES)
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1109,7 +1299,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateBatchQuotaTicketForSpecificBatchAccountForLowPriorityCores.json
      */
     /**
@@ -1126,6 +1316,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/batch_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1135,8 +1327,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("Account")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -1145,7 +1335,39 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateBillingSupportTicketForSubscription.json
+     */
+    /**
+     * Sample code: Create a subscription scoped ticket for Billing related issues.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void createASubscriptionScopedTicketForBillingRelatedIssues(
+        com.azure.resourcemanager.support.SupportManager manager) {
+        manager.supportTickets()
+            .define("testticket")
+            .withDescription("my description")
+            .withProblemClassificationId(
+                "/providers/Microsoft.Support/services/billing_service_guid/problemClassifications/billing_problemClassification_guid")
+            .withSeverity(SeverityLevel.MODERATE)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
+            .withContactDetails(new ContactProfile().withFirstName("abc")
+                .withLastName("xyz")
+                .withPreferredContactMethod(PreferredContactMethod.EMAIL)
+                .withPrimaryEmailAddress("abc@contoso.com")
+                .withPreferredTimeZone("Pacific Standard Time")
+                .withCountry("usa")
+                .withPreferredSupportLanguage("en-US"))
+            .withTitle("my title")
+            .withServiceId("/providers/Microsoft.Support/services/billing_service_guid")
+            .withFileWorkspaceName("6f16735c-1530836f-e9970f1a-2e49-47b7-96cd-9746b83aa066")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateSqlManagedInstanceQuotaTicket.json
      */
     /**
@@ -1162,6 +1384,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/sql_managedinstance_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1171,8 +1395,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("SQLMI")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(
@@ -1184,79 +1406,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
-     * CreateSubMgmtSupportTicketForSubscription.json
-     */
-    /**
-     * Sample code: Create a ticket for Subscription Management related issues for a subscription.
-     * 
-     * @param manager Entry point to SupportManager.
-     */
-    public static void createATicketForSubscriptionManagementRelatedIssuesForASubscription(
-        com.azure.resourcemanager.support.SupportManager manager) {
-        manager.supportTickets()
-            .define("testticket")
-            .withDescription("my description")
-            .withProblemClassificationId(
-                "/providers/Microsoft.Support/services/subscription_management_service_guid/problemClassifications/subscription_management_problemClassification_guid")
-            .withSeverity(SeverityLevel.MODERATE)
-            .withAdvancedDiagnosticConsent(Consent.NO)
-            .withContactDetails(new ContactProfile().withFirstName("abc")
-                .withLastName("xyz")
-                .withPreferredContactMethod(PreferredContactMethod.EMAIL)
-                .withPrimaryEmailAddress("abc@contoso.com")
-                .withPreferredTimeZone("Pacific Standard Time")
-                .withCountry("usa")
-                .withPreferredSupportLanguage("en-US"))
-            .withTitle("my title")
-            .withServiceId("/providers/Microsoft.Support/services/subscription_management_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
-            .withFileWorkspaceName("6f16735c-1530836f-e9970f1a-2e49-47b7-96cd-9746b83aa066")
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
-     * CreateTechnicalSupportTicketForSubscription.json
-     */
-    /**
-     * Sample code: Create a ticket for Technical issue related to a specific resource for a subscription.
-     * 
-     * @param manager Entry point to SupportManager.
-     */
-    public static void createATicketForTechnicalIssueRelatedToASpecificResourceForASubscription(
-        com.azure.resourcemanager.support.SupportManager manager) {
-        manager.supportTickets()
-            .define("testticket")
-            .withDescription("my description")
-            .withProblemClassificationId(
-                "/providers/Microsoft.Support/services/virtual_machine_running_linux_service_guid/problemClassifications/problemClassification_guid")
-            .withSeverity(SeverityLevel.MODERATE)
-            .withAdvancedDiagnosticConsent(Consent.YES)
-            .withContactDetails(new ContactProfile().withFirstName("abc")
-                .withLastName("xyz")
-                .withPreferredContactMethod(PreferredContactMethod.EMAIL)
-                .withPrimaryEmailAddress("abc@contoso.com")
-                .withPreferredTimeZone("Pacific Standard Time")
-                .withCountry("usa")
-                .withPreferredSupportLanguage("en-US"))
-            .withTitle("my title")
-            .withServiceId("/providers/Microsoft.Support/services/cddd3eb5-1830-b494-44fd-782f691479dc")
-            .withProblemScopingQuestions(
-                "{\"articleId\":\"076846c1-4c0b-4b21-91c6-1a30246b3867\",\"scopingDetails\":[{\"question\":\"When did the problem begin?\",\"controlId\":\"problem_start_time\",\"orderId\":1,\"inputType\":\"static\",\"answer\":{\"displayValue\":\"2023-08-31T18:55:00.739Z\",\"value\":\"2023-08-31T18:55:00.739Z\",\"type\":\"datetime\"}},{\"question\":\"API Type of the Cosmos DB account\",\"controlId\":\"api_type\",\"orderId\":2,\"inputType\":\"static\",\"answer\":{\"displayValue\":\"Table\",\"value\":\"tables\",\"type\":\"string\"}},{\"question\":\"Table name\",\"controlId\":\"collection_name_table\",\"orderId\":11,\"inputType\":\"nonstatic\",\"answer\":{\"displayValue\":\"Select Table Name\",\"value\":\"dont_know_answer\",\"type\":\"string\"}},{\"question\":\"Provide additional details about the issue you're facing\",\"controlId\":\"problem_description\",\"orderId\":12,\"inputType\":\"nonstatic\",\"answer\":{\"displayValue\":\"test ticket, please ignore and close\",\"value\":\"test ticket, please ignore and close\",\"type\":\"string\"}}]}")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
-            .withFileWorkspaceName("6f16735c-1530836f-e9970f1a-2e49-47b7-96cd-9746b83aa066")
-            .withTechnicalTicketDetails(new TechnicalTicketDetails().withResourceId(
-                "/subscriptions/132d901f-189d-4381-9214-fe68e27e05a1/resourceGroups/test/providers/Microsoft.Compute/virtualMachines/testserver"))
-            .withSecondaryConsent(Arrays.asList(
-                new SecondaryConsent().withUserConsent(UserConsent.YES).withType("virtualmachinerunninglinuxservice")))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateBatchQuotaTicketForSpecificBatchAccountForPools.json
      */
     /**
@@ -1273,6 +1423,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/batch_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1282,8 +1434,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("Account")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -1292,7 +1442,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateBatchQuotaTicketForSpecificBatchAccountForDedicatedCores.json
      */
     /**
@@ -1309,6 +1459,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/batch_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1318,8 +1470,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("Account")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -1329,7 +1479,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateSqlDatabaseQuotaTicketForServers.json
      */
     /**
@@ -1346,6 +1496,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/sql_database_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1355,8 +1507,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("Servers")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(
@@ -1365,22 +1515,27 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
-     * CreateBillingSupportTicketForSubscription.json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateTechnicalSupportTicketForSubscription.json
      */
     /**
-     * Sample code: Create a ticket for Billing related issues.
+     * Sample code: Create a subscription scoped ticket for Technical issue related to a specific resource.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void createATicketForBillingRelatedIssues(com.azure.resourcemanager.support.SupportManager manager) {
+    public static void createASubscriptionScopedTicketForTechnicalIssueRelatedToASpecificResource(
+        com.azure.resourcemanager.support.SupportManager manager) {
         manager.supportTickets()
             .define("testticket")
             .withDescription("my description")
             .withProblemClassificationId(
-                "/providers/Microsoft.Support/services/billing_service_guid/problemClassifications/billing_problemClassification_guid")
+                "/providers/Microsoft.Support/services/virtual_machine_running_linux_service_guid/problemClassifications/problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
-            .withAdvancedDiagnosticConsent(Consent.NO)
+            .withAdvancedDiagnosticConsent(Consent.YES)
+            .withProblemScopingQuestions(
+                "{\"articleId\":\"076846c1-4c0b-4b21-91c6-1a30246b3867\",\"scopingDetails\":[{\"question\":\"When did the problem begin?\",\"controlId\":\"problem_start_time\",\"orderId\":1,\"inputType\":\"static\",\"answer\":{\"displayValue\":\"2023-08-31T18:55:00.739Z\",\"value\":\"2023-08-31T18:55:00.739Z\",\"type\":\"datetime\"}},{\"question\":\"API Type of the Cosmos DB account\",\"controlId\":\"api_type\",\"orderId\":2,\"inputType\":\"static\",\"answer\":{\"displayValue\":\"Table\",\"value\":\"tables\",\"type\":\"string\"}},{\"question\":\"Table name\",\"controlId\":\"collection_name_table\",\"orderId\":11,\"inputType\":\"nonstatic\",\"answer\":{\"displayValue\":\"Select Table Name\",\"value\":\"dont_know_answer\",\"type\":\"string\"}},{\"question\":\"Provide additional details about the issue you're facing\",\"controlId\":\"problem_description\",\"orderId\":12,\"inputType\":\"nonstatic\",\"answer\":{\"displayValue\":\"test ticket, please ignore and close\",\"value\":\"test ticket, please ignore and close\",\"type\":\"string\"}}]}")
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1389,15 +1544,17 @@ public final class SupportTicketsCreateSamples {
                 .withCountry("usa")
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
-            .withServiceId("/providers/Microsoft.Support/services/billing_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
+            .withServiceId("/providers/Microsoft.Support/services/cddd3eb5-1830-b494-44fd-782f691479dc")
             .withFileWorkspaceName("6f16735c-1530836f-e9970f1a-2e49-47b7-96cd-9746b83aa066")
+            .withTechnicalTicketDetails(new TechnicalTicketDetails().withResourceId(
+                "/subscriptions/subid/resourceGroups/test/providers/Microsoft.Compute/virtualMachines/testserver"))
+            .withSecondaryConsent(Arrays.asList(
+                new SecondaryConsent().withUserConsent(UserConsent.YES).withType("virtualmachinerunninglinuxservice")))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateMachineLearningQuotaTicketForDedicatedCores.json
      */
     /**
@@ -1414,6 +1571,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/machine_learning_service_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1423,8 +1582,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("BatchAml")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
@@ -1433,7 +1590,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateSqlDatawarehouseQuotaTicketForServers.json
      */
     /**
@@ -1450,6 +1607,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/sql_datawarehouse_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1459,8 +1618,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestSubType("Servers")
                 .withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(
@@ -1469,7 +1626,7 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateCoresQuotaTicketForSubscription.json
      */
     /**
@@ -1486,6 +1643,8 @@ public final class SupportTicketsCreateSamples {
                 "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/cores_problemClassification_guid")
             .withSeverity(SeverityLevel.MODERATE)
             .withAdvancedDiagnosticConsent(Consent.YES)
+            .withSupportPlanId(
+                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withContactDetails(new ContactProfile().withFirstName("abc")
                 .withLastName("xyz")
                 .withPreferredContactMethod(PreferredContactMethod.EMAIL)
@@ -1495,8 +1654,6 @@ public final class SupportTicketsCreateSamples {
                 .withPreferredSupportLanguage("en-US"))
             .withTitle("my title")
             .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
-            .withSupportPlanId(
-                "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
             .withQuotaTicketDetails(new QuotaTicketDetails().withQuotaChangeRequestVersion("1.0")
                 .withQuotaChangeRequests(Arrays.asList(new QuotaChangeRequest().withRegion("EastUS")
                     .withPayload("{\"SKU\":\"DSv3 Series\",\"NewLimit\":104}"))))
@@ -1513,7 +1670,7 @@ public final class SupportTicketsCreateSamples {
  */
 public final class SupportTicketsGetSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * GetSubscriptionSupportTicketDetails.json
      */
     /**
@@ -1535,7 +1692,7 @@ public final class SupportTicketsGetSamples {
  */
 public final class SupportTicketsListSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsServiceIdEqualsForSubscription.json
      */
     /**
@@ -1549,7 +1706,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsCreatedOnOrAfterAndInOpenStateBySubscription.json
      */
     /**
@@ -1564,7 +1721,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsInUpdatingStateBySubscription.json
      */
     /**
@@ -1578,7 +1735,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsCreatedOnOrAfterAndInUpdatingStateBySubscription.json
      */
     /**
@@ -1594,7 +1751,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsProblemClassificationIdEqualsForSubscription.json
      */
     /**
@@ -1610,7 +1767,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsBySubscription.json
      */
     /**
@@ -1623,7 +1780,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsInOpenStateBySubscription.json
      */
     /**
@@ -1654,64 +1811,32 @@ import java.util.Arrays;
  */
 public final class SupportTicketsUpdateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * UpdateAdvancedDiagnosticConsentOfSupportTicketForSubscription.json
      */
     /**
-     * Sample code: Update advanced diagnostic consent of a subscription support ticket.
+     * Sample code: Update advanced diagnostic consent of a support ticket.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void updateAdvancedDiagnosticConsentOfASubscriptionSupportTicket(
-        com.azure.resourcemanager.support.SupportManager manager) {
+    public static void
+        updateAdvancedDiagnosticConsentOfASupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
         SupportTicketDetails resource
             = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
         resource.update().withAdvancedDiagnosticConsent(Consent.YES).apply();
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
-     * UpdateSeverityOfSupportTicketForSubscription.json
-     */
-    /**
-     * Sample code: Update severity of a subscription support ticket.
-     * 
-     * @param manager Entry point to SupportManager.
-     */
-    public static void
-        updateSeverityOfASubscriptionSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
-        SupportTicketDetails resource
-            = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withSeverity(SeverityLevel.CRITICAL).apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
-     * UpdateStatusOfSupportTicketForSubscription.json
-     */
-    /**
-     * Sample code: Update status of a subscription support ticket.
-     * 
-     * @param manager Entry point to SupportManager.
-     */
-    public static void
-        updateStatusOfASubscriptionSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
-        SupportTicketDetails resource
-            = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withStatus(Status.CLOSED).apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * UpdateContactDetailsOfSupportTicketForSubscription.json
      */
     /**
-     * Sample code: Update contact details of a subscription support ticket.
+     * Sample code: Update contact details of a subscription scoped support ticket.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void
-        updateContactDetailsOfASubscriptionSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
+    public static void updateContactDetailsOfASubscriptionScopedSupportTicket(
+        com.azure.resourcemanager.support.SupportManager manager) {
         SupportTicketDetails resource
             = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
         resource.update()
@@ -1725,6 +1850,38 @@ public final class SupportTicketsUpdateSamples {
                 .withCountry("USA")
                 .withPreferredSupportLanguage("en-US"))
             .apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UpdateStatusOfSupportTicketForSubscription.json
+     */
+    /**
+     * Sample code: Update status of a subscription scoped support ticket.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void
+        updateStatusOfASubscriptionScopedSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
+        SupportTicketDetails resource
+            = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
+        resource.update().withStatus(Status.CLOSED).apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UpdateSeverityOfSupportTicketForSubscription.json
+     */
+    /**
+     * Sample code: Update severity of a subscription scoped support ticket.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void
+        updateSeverityOfASubscriptionScopedSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
+        SupportTicketDetails resource
+            = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
+        resource.update().withSeverity(SeverityLevel.CRITICAL).apply();
     }
 }
 ```
@@ -1740,8 +1897,8 @@ import com.azure.resourcemanager.support.models.Type;
  */
 public final class SupportTicketsNoSubscriptionCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CheckNameAvailability.json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CheckNameAvailability.json
      */
     /**
      * Sample code: Checks whether name is available for SupportTicket resource.
@@ -1774,9 +1931,8 @@ import java.util.Arrays;
  */
 public final class SupportTicketsNoSubscriptionCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateBillingSupportTicket.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateBillingSupportTicket.json
      */
     /**
      * Sample code: Create a ticket for Billing related issues.
@@ -1789,7 +1945,6 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
                 .withProblemClassificationId(
                     "/providers/Microsoft.Support/services/billing_service_guid/problemClassifications/billing_problemClassification_guid")
                 .withSeverity(SeverityLevel.MODERATE)
-                .withAdvancedDiagnosticConsent(Consent.NO)
                 .withSupportPlanId(
                     "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
                 .withContactDetails(new ContactProfile().withFirstName("abc")
@@ -1806,9 +1961,8 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateSubMgmtSupportTicket.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateSubMgmtSupportTicket.json
      */
     /**
      * Sample code: Create a ticket for Subscription Management related issues.
@@ -1822,7 +1976,6 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
                 .withProblemClassificationId(
                     "/providers/Microsoft.Support/services/subscription_management_service_guid/problemClassifications/subscription_management_problemClassification_guid")
                 .withSeverity(SeverityLevel.MODERATE)
-                .withAdvancedDiagnosticConsent(Consent.YES)
                 .withSupportPlanId(
                     "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
                 .withContactDetails(new ContactProfile().withFirstName("abc")
@@ -1839,9 +1992,8 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateTechnicalSupportTicket.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateTechnicalSupportTicket.json
      */
     /**
      * Sample code: Create a ticket for Technical issue related to a specific resource.
@@ -1885,8 +2037,8 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
  */
 public final class SupportTicketsNoSubscriptionGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/GetSupportTicketDetails.json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * GetSupportTicketDetails.json
      */
     /**
      * Sample code: Get details of a ticket.
@@ -1907,7 +2059,7 @@ public final class SupportTicketsNoSubscriptionGetSamples {
  */
 public final class SupportTicketsNoSubscriptionListSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsCreatedOnOrAfterAndInUpdatingState.json
      */
     /**
@@ -1923,9 +2075,8 @@ public final class SupportTicketsNoSubscriptionListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/ListSupportTicketsInOpenState
-     * .json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * ListSupportTicketsInOpenState.json
      */
     /**
      * Sample code: List support tickets in open state.
@@ -1938,7 +2089,8 @@ public final class SupportTicketsNoSubscriptionListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/ListSupportTickets.json
+     * specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/ListSupportTickets.
+     * json
      */
     /**
      * Sample code: List support tickets.
@@ -1950,7 +2102,7 @@ public final class SupportTicketsNoSubscriptionListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsInUpdatingState.json
      */
     /**
@@ -1963,7 +2115,7 @@ public final class SupportTicketsNoSubscriptionListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsCreatedOnOrAfterAndInOpenState.json
      */
     /**
@@ -1978,7 +2130,7 @@ public final class SupportTicketsNoSubscriptionListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsServiceIdEquals.json
      */
     /**
@@ -1993,7 +2145,7 @@ public final class SupportTicketsNoSubscriptionListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsProblemClassificationIdEquals.json
      */
     /**
@@ -2026,7 +2178,7 @@ import java.util.Arrays;
  */
 public final class SupportTicketsNoSubscriptionUpdateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * UpdateAdvancedDiagnosticConsentOfSupportTicket.json
      */
     /**
@@ -2042,9 +2194,8 @@ public final class SupportTicketsNoSubscriptionUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/UpdateSeverityOfSupportTicket
-     * .json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UpdateSeverityOfSupportTicket.json
      */
     /**
      * Sample code: Update severity of a support ticket.
@@ -2058,9 +2209,8 @@ public final class SupportTicketsNoSubscriptionUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/UpdateStatusOfSupportTicket.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UpdateStatusOfSupportTicket.json
      */
     /**
      * Sample code: Update status of a support ticket.
@@ -2074,7 +2224,7 @@ public final class SupportTicketsNoSubscriptionUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * UpdateContactDetailsOfSupportTicket.json
      */
     /**

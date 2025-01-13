@@ -9,7 +9,7 @@ package com.azure.resourcemanager.support.generated;
  */
 public final class CommunicationsCreateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CreateSupportTicketCommunication.json
      */
     /**
@@ -21,9 +21,9 @@ public final class CommunicationsCreateSamples {
         manager.communications()
             .define("testcommunication")
             .withExistingSupportTicket("testticket")
+            .withSender("user@contoso.com")
             .withSubject("This is a test message from a customer!")
             .withBody("This is a test message from a customer!")
-            .withSender("user@contoso.com")
             .create();
     }
 }

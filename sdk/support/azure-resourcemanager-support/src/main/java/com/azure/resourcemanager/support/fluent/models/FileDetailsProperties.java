@@ -24,17 +24,17 @@ public final class FileDetailsProperties implements JsonSerializable<FileDetails
     private OffsetDateTime createdOn;
 
     /*
-     * Size of each chunk. The size of each chunk should be provided in bytes and must not exceed 2.5 megabytes (MB).
+     * Size of each chunk
      */
     private Integer chunkSize;
 
     /*
-     * Size of the file to be uploaded. The file size must not exceed 5 MB and should be provided in bytes.
+     * Size of the file to be uploaded
      */
     private Integer fileSize;
 
     /*
-     * Number of chunks to be uploaded. The maximum number of allowed chunks is 2.
+     * Number of chunks to be uploaded
      */
     private Integer numberOfChunks;
 
@@ -54,8 +54,7 @@ public final class FileDetailsProperties implements JsonSerializable<FileDetails
     }
 
     /**
-     * Get the chunkSize property: Size of each chunk. The size of each chunk should be provided in bytes and must not
-     * exceed 2.5 megabytes (MB).
+     * Get the chunkSize property: Size of each chunk.
      * 
      * @return the chunkSize value.
      */
@@ -64,8 +63,7 @@ public final class FileDetailsProperties implements JsonSerializable<FileDetails
     }
 
     /**
-     * Set the chunkSize property: Size of each chunk. The size of each chunk should be provided in bytes and must not
-     * exceed 2.5 megabytes (MB).
+     * Set the chunkSize property: Size of each chunk.
      * 
      * @param chunkSize the chunkSize value to set.
      * @return the FileDetailsProperties object itself.
@@ -76,8 +74,7 @@ public final class FileDetailsProperties implements JsonSerializable<FileDetails
     }
 
     /**
-     * Get the fileSize property: Size of the file to be uploaded. The file size must not exceed 5 MB and should be
-     * provided in bytes.
+     * Get the fileSize property: Size of the file to be uploaded.
      * 
      * @return the fileSize value.
      */
@@ -86,8 +83,7 @@ public final class FileDetailsProperties implements JsonSerializable<FileDetails
     }
 
     /**
-     * Set the fileSize property: Size of the file to be uploaded. The file size must not exceed 5 MB and should be
-     * provided in bytes.
+     * Set the fileSize property: Size of the file to be uploaded.
      * 
      * @param fileSize the fileSize value to set.
      * @return the FileDetailsProperties object itself.
@@ -98,7 +94,7 @@ public final class FileDetailsProperties implements JsonSerializable<FileDetails
     }
 
     /**
-     * Get the numberOfChunks property: Number of chunks to be uploaded. The maximum number of allowed chunks is 2.
+     * Get the numberOfChunks property: Number of chunks to be uploaded.
      * 
      * @return the numberOfChunks value.
      */
@@ -107,7 +103,7 @@ public final class FileDetailsProperties implements JsonSerializable<FileDetails
     }
 
     /**
-     * Set the numberOfChunks property: Number of chunks to be uploaded. The maximum number of allowed chunks is 2.
+     * Set the numberOfChunks property: Number of chunks to be uploaded.
      * 
      * @param numberOfChunks the numberOfChunks value to set.
      * @return the FileDetailsProperties object itself.
