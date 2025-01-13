@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.IpEntityProperties;
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.Map;
  * Represents an ip entity.
  */
 @Immutable
-public final class IpEntity extends Entity {
+public final class IpEntity extends EntityInner {
     /*
      * The kind of the entity.
      */

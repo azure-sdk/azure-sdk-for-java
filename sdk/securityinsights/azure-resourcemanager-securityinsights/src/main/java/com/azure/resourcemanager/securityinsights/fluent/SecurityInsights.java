@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface SecurityInsights {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -75,11 +75,130 @@ public interface SecurityInsights {
     AutomationRulesClient getAutomationRules();
 
     /**
+     * Gets the EntitiesClient object to access its operations.
+     * 
+     * @return the EntitiesClient object.
+     */
+    EntitiesClient getEntities();
+
+    /**
+     * Gets the IncidentsClient object to access its operations.
+     * 
+     * @return the IncidentsClient object.
+     */
+    IncidentsClient getIncidents();
+
+    /**
+     * Gets the BillingStatisticsClient object to access its operations.
+     * 
+     * @return the BillingStatisticsClient object.
+     */
+    BillingStatisticsClient getBillingStatistics();
+
+    /**
      * Gets the BookmarksClient object to access its operations.
      * 
      * @return the BookmarksClient object.
      */
     BookmarksClient getBookmarks();
+
+    /**
+     * Gets the BookmarkRelationsClient object to access its operations.
+     * 
+     * @return the BookmarkRelationsClient object.
+     */
+    BookmarkRelationsClient getBookmarkRelations();
+
+    /**
+     * Gets the BookmarkOperationsClient object to access its operations.
+     * 
+     * @return the BookmarkOperationsClient object.
+     */
+    BookmarkOperationsClient getBookmarkOperations();
+
+    /**
+     * Gets the BusinessApplicationAgentsClient object to access its operations.
+     * 
+     * @return the BusinessApplicationAgentsClient object.
+     */
+    BusinessApplicationAgentsClient getBusinessApplicationAgents();
+
+    /**
+     * Gets the BusinessApplicationAgentOperationsClient object to access its operations.
+     * 
+     * @return the BusinessApplicationAgentOperationsClient object.
+     */
+    BusinessApplicationAgentOperationsClient getBusinessApplicationAgentOperations();
+
+    /**
+     * Gets the SystemsClient object to access its operations.
+     * 
+     * @return the SystemsClient object.
+     */
+    SystemsClient getSystems();
+
+    /**
+     * Gets the ContentPackagesClient object to access its operations.
+     * 
+     * @return the ContentPackagesClient object.
+     */
+    ContentPackagesClient getContentPackages();
+
+    /**
+     * Gets the ContentPackageOperationsClient object to access its operations.
+     * 
+     * @return the ContentPackageOperationsClient object.
+     */
+    ContentPackageOperationsClient getContentPackageOperations();
+
+    /**
+     * Gets the ProductPackagesClient object to access its operations.
+     * 
+     * @return the ProductPackagesClient object.
+     */
+    ProductPackagesClient getProductPackages();
+
+    /**
+     * Gets the ProductPackageOperationsClient object to access its operations.
+     * 
+     * @return the ProductPackageOperationsClient object.
+     */
+    ProductPackageOperationsClient getProductPackageOperations();
+
+    /**
+     * Gets the ProductTemplatesClient object to access its operations.
+     * 
+     * @return the ProductTemplatesClient object.
+     */
+    ProductTemplatesClient getProductTemplates();
+
+    /**
+     * Gets the ProductTemplateOperationsClient object to access its operations.
+     * 
+     * @return the ProductTemplateOperationsClient object.
+     */
+    ProductTemplateOperationsClient getProductTemplateOperations();
+
+    /**
+     * Gets the ContentTemplatesClient object to access its operations.
+     * 
+     * @return the ContentTemplatesClient object.
+     */
+    ContentTemplatesClient getContentTemplates();
+
+    /**
+     * Gets the ContentTemplateOperationsClient object to access its operations.
+     * 
+     * @return the ContentTemplateOperationsClient object.
+     */
+    ContentTemplateOperationsClient getContentTemplateOperations();
+
+    /**
+     * Gets the DataConnectorDefinitionsClient object to access its operations.
+     * 
+     * @return the DataConnectorDefinitionsClient object.
+     */
+    DataConnectorDefinitionsClient getDataConnectorDefinitions();
 
     /**
      * Gets the DataConnectorsClient object to access its operations.
@@ -89,11 +208,81 @@ public interface SecurityInsights {
     DataConnectorsClient getDataConnectors();
 
     /**
-     * Gets the IncidentsClient object to access its operations.
+     * Gets the DataConnectorsCheckRequirementsOperationsClient object to access its operations.
      * 
-     * @return the IncidentsClient object.
+     * @return the DataConnectorsCheckRequirementsOperationsClient object.
      */
-    IncidentsClient getIncidents();
+    DataConnectorsCheckRequirementsOperationsClient getDataConnectorsCheckRequirementsOperations();
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     * 
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
+     * Gets the EntitiesGetTimelinesClient object to access its operations.
+     * 
+     * @return the EntitiesGetTimelinesClient object.
+     */
+    EntitiesGetTimelinesClient getEntitiesGetTimelines();
+
+    /**
+     * Gets the EntitiesRelationsClient object to access its operations.
+     * 
+     * @return the EntitiesRelationsClient object.
+     */
+    EntitiesRelationsClient getEntitiesRelations();
+
+    /**
+     * Gets the EntityRelationsClient object to access its operations.
+     * 
+     * @return the EntityRelationsClient object.
+     */
+    EntityRelationsClient getEntityRelations();
+
+    /**
+     * Gets the EntityQueriesClient object to access its operations.
+     * 
+     * @return the EntityQueriesClient object.
+     */
+    EntityQueriesClient getEntityQueries();
+
+    /**
+     * Gets the EntityQueryTemplatesClient object to access its operations.
+     * 
+     * @return the EntityQueryTemplatesClient object.
+     */
+    EntityQueryTemplatesClient getEntityQueryTemplates();
+
+    /**
+     * Gets the FileImportsClient object to access its operations.
+     * 
+     * @return the FileImportsClient object.
+     */
+    FileImportsClient getFileImports();
+
+    /**
+     * Gets the HuntsClient object to access its operations.
+     * 
+     * @return the HuntsClient object.
+     */
+    HuntsClient getHunts();
+
+    /**
+     * Gets the HuntRelationsClient object to access its operations.
+     * 
+     * @return the HuntRelationsClient object.
+     */
+    HuntRelationsClient getHuntRelations();
+
+    /**
+     * Gets the HuntCommentsClient object to access its operations.
+     * 
+     * @return the HuntCommentsClient object.
+     */
+    HuntCommentsClient getHuntComments();
 
     /**
      * Gets the IncidentCommentsClient object to access its operations.
@@ -110,6 +299,27 @@ public interface SecurityInsights {
     IncidentRelationsClient getIncidentRelations();
 
     /**
+     * Gets the IncidentTasksClient object to access its operations.
+     * 
+     * @return the IncidentTasksClient object.
+     */
+    IncidentTasksClient getIncidentTasks();
+
+    /**
+     * Gets the MetadatasClient object to access its operations.
+     * 
+     * @return the MetadatasClient object.
+     */
+    MetadatasClient getMetadatas();
+
+    /**
+     * Gets the OfficeConsentsClient object to access its operations.
+     * 
+     * @return the OfficeConsentsClient object.
+     */
+    OfficeConsentsClient getOfficeConsents();
+
+    /**
      * Gets the SentinelOnboardingStatesClient object to access its operations.
      * 
      * @return the SentinelOnboardingStatesClient object.
@@ -117,11 +327,67 @@ public interface SecurityInsights {
     SentinelOnboardingStatesClient getSentinelOnboardingStates();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     * 
+     * @return the GetRecommendationsClient object.
+     */
+    GetRecommendationsClient getGetRecommendations();
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     * 
+     * @return the GetsClient object.
+     */
+    GetsClient getGets();
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     * 
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
+
+    /**
+     * Gets the ReevaluatesClient object to access its operations.
+     * 
+     * @return the ReevaluatesClient object.
+     */
+    ReevaluatesClient getReevaluates();
+
+    /**
      * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
      * 
      * @return the SecurityMLAnalyticsSettingsClient object.
      */
     SecurityMLAnalyticsSettingsClient getSecurityMLAnalyticsSettings();
+
+    /**
+     * Gets the ProductSettingsClient object to access its operations.
+     * 
+     * @return the ProductSettingsClient object.
+     */
+    ProductSettingsClient getProductSettings();
+
+    /**
+     * Gets the SourceControlsClient object to access its operations.
+     * 
+     * @return the SourceControlsClient object.
+     */
+    SourceControlsClient getSourceControls();
+
+    /**
+     * Gets the SourceControlsOperationsClient object to access its operations.
+     * 
+     * @return the SourceControlsOperationsClient object.
+     */
+    SourceControlsOperationsClient getSourceControlsOperations();
 
     /**
      * Gets the ThreatIntelligenceIndicatorsClient object to access its operations.
@@ -145,6 +411,34 @@ public interface SecurityInsights {
     ThreatIntelligenceIndicatorMetricsClient getThreatIntelligenceIndicatorMetrics();
 
     /**
+     * Gets the ThreatIntelligencesClient object to access its operations.
+     * 
+     * @return the ThreatIntelligencesClient object.
+     */
+    ThreatIntelligencesClient getThreatIntelligences();
+
+    /**
+     * Gets the TriggeredAnalyticsRuleRunOperationsClient object to access its operations.
+     * 
+     * @return the TriggeredAnalyticsRuleRunOperationsClient object.
+     */
+    TriggeredAnalyticsRuleRunOperationsClient getTriggeredAnalyticsRuleRunOperations();
+
+    /**
+     * Gets the GetTriggeredAnalyticsRuleRunsClient object to access its operations.
+     * 
+     * @return the GetTriggeredAnalyticsRuleRunsClient object.
+     */
+    GetTriggeredAnalyticsRuleRunsClient getGetTriggeredAnalyticsRuleRuns();
+
+    /**
+     * Gets the AlertRuleOperationsClient object to access its operations.
+     * 
+     * @return the AlertRuleOperationsClient object.
+     */
+    AlertRuleOperationsClient getAlertRuleOperations();
+
+    /**
      * Gets the WatchlistsClient object to access its operations.
      * 
      * @return the WatchlistsClient object.
@@ -159,9 +453,37 @@ public interface SecurityInsights {
     WatchlistItemsClient getWatchlistItems();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the WorkspaceManagerAssignmentsClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the WorkspaceManagerAssignmentsClient object.
      */
-    OperationsClient getOperations();
+    WorkspaceManagerAssignmentsClient getWorkspaceManagerAssignments();
+
+    /**
+     * Gets the WorkspaceManagerAssignmentJobsClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerAssignmentJobsClient object.
+     */
+    WorkspaceManagerAssignmentJobsClient getWorkspaceManagerAssignmentJobs();
+
+    /**
+     * Gets the WorkspaceManagerConfigurationsClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerConfigurationsClient object.
+     */
+    WorkspaceManagerConfigurationsClient getWorkspaceManagerConfigurations();
+
+    /**
+     * Gets the WorkspaceManagerGroupsClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerGroupsClient object.
+     */
+    WorkspaceManagerGroupsClient getWorkspaceManagerGroups();
+
+    /**
+     * Gets the WorkspaceManagerMembersClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerMembersClient object.
+     */
+    WorkspaceManagerMembersClient getWorkspaceManagerMembers();
 }

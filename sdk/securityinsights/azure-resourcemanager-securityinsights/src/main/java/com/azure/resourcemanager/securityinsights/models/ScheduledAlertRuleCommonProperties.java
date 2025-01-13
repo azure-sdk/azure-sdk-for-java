@@ -70,6 +70,11 @@ public class ScheduledAlertRuleCommonProperties implements JsonSerializable<Sche
      */
     private AlertDetailsOverride alertDetailsOverride;
 
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
     /**
      * Creates an instance of ScheduledAlertRuleCommonProperties class.
      */
@@ -277,6 +282,27 @@ public class ScheduledAlertRuleCommonProperties implements JsonSerializable<Sche
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the ScheduledAlertRuleCommonProperties object itself.
+     */
+    public ScheduledAlertRuleCommonProperties
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -290,6 +316,9 @@ public class ScheduledAlertRuleCommonProperties implements JsonSerializable<Sche
         }
         if (alertDetailsOverride() != null) {
             alertDetailsOverride().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 
@@ -311,6 +340,8 @@ public class ScheduledAlertRuleCommonProperties implements JsonSerializable<Sche
         jsonWriter.writeArrayField("entityMappings", this.entityMappings,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("alertDetailsOverride", this.alertDetailsOverride);
+        jsonWriter.writeArrayField("sentinelEntitiesMappings", this.sentinelEntitiesMappings,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -359,6 +390,10 @@ public class ScheduledAlertRuleCommonProperties implements JsonSerializable<Sche
                 } else if ("alertDetailsOverride".equals(fieldName)) {
                     deserializedScheduledAlertRuleCommonProperties.alertDetailsOverride
                         = AlertDetailsOverride.fromJson(reader);
+                } else if ("sentinelEntitiesMappings".equals(fieldName)) {
+                    List<SentinelEntityMapping> sentinelEntitiesMappings
+                        = reader.readArray(reader1 -> SentinelEntityMapping.fromJson(reader1));
+                    deserializedScheduledAlertRuleCommonProperties.sentinelEntitiesMappings = sentinelEntitiesMappings;
                 } else {
                     reader.skipChildren();
                 }
