@@ -14,11 +14,11 @@ public final class ScheduledEventsProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ScheduledEventsProfile model = BinaryData.fromString(
-            "{\"terminateNotificationProfile\":{\"notBeforeTimeout\":\"qwgxhniskx\",\"enable\":true},\"osImageNotificationProfile\":{\"notBeforeTimeout\":\"cg\",\"enable\":false}}")
+            "{\"terminateNotificationProfile\":{\"notBeforeTimeout\":\"cym\",\"enable\":true},\"osImageNotificationProfile\":{\"notBeforeTimeout\":\"ssl\",\"enable\":false}}")
             .toObject(ScheduledEventsProfile.class);
-        Assertions.assertEquals("qwgxhniskx", model.terminateNotificationProfile().notBeforeTimeout());
+        Assertions.assertEquals("cym", model.terminateNotificationProfile().notBeforeTimeout());
         Assertions.assertEquals(true, model.terminateNotificationProfile().enable());
-        Assertions.assertEquals("cg", model.osImageNotificationProfile().notBeforeTimeout());
+        Assertions.assertEquals("ssl", model.osImageNotificationProfile().notBeforeTimeout());
         Assertions.assertEquals(false, model.osImageNotificationProfile().enable());
     }
 
@@ -26,13 +26,13 @@ public final class ScheduledEventsProfileTests {
     public void testSerialize() throws Exception {
         ScheduledEventsProfile model = new ScheduledEventsProfile()
             .withTerminateNotificationProfile(
-                new TerminateNotificationProfile().withNotBeforeTimeout("qwgxhniskx").withEnable(true))
+                new TerminateNotificationProfile().withNotBeforeTimeout("cym").withEnable(true))
             .withOsImageNotificationProfile(
-                new OSImageNotificationProfile().withNotBeforeTimeout("cg").withEnable(false));
+                new OSImageNotificationProfile().withNotBeforeTimeout("ssl").withEnable(false));
         model = BinaryData.fromObject(model).toObject(ScheduledEventsProfile.class);
-        Assertions.assertEquals("qwgxhniskx", model.terminateNotificationProfile().notBeforeTimeout());
+        Assertions.assertEquals("cym", model.terminateNotificationProfile().notBeforeTimeout());
         Assertions.assertEquals(true, model.terminateNotificationProfile().enable());
-        Assertions.assertEquals("cg", model.osImageNotificationProfile().notBeforeTimeout());
+        Assertions.assertEquals("ssl", model.osImageNotificationProfile().notBeforeTimeout());
         Assertions.assertEquals(false, model.osImageNotificationProfile().enable());
     }
 }

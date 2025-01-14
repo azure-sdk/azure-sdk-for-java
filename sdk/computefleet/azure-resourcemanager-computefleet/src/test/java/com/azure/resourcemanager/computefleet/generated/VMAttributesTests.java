@@ -22,96 +22,97 @@ public final class VMAttributesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VMAttributes model = BinaryData.fromString(
-            "{\"vCpuCount\":{\"min\":1969125414,\"max\":1742159588},\"memoryInGiB\":{\"min\":49.296618686162205,\"max\":46.151559748687454},\"memoryInGiBPerVCpu\":{\"min\":15.72140906109526,\"max\":33.70355434967512},\"localStorageSupport\":\"Excluded\",\"localStorageInGiB\":{\"min\":34.26097915956968,\"max\":39.601987566482045},\"localStorageDiskTypes\":[\"HDD\",\"HDD\"],\"dataDiskCount\":{\"min\":681393134,\"max\":264024813},\"networkInterfaceCount\":{\"min\":1130701644,\"max\":1278778169},\"networkBandwidthInMbps\":{\"min\":44.56756335924435,\"max\":21.074497607942167},\"rdmaSupport\":\"Excluded\",\"rdmaNetworkInterfaceCount\":{\"min\":1936335434,\"max\":1618302294},\"acceleratorSupport\":\"Included\",\"acceleratorManufacturers\":[\"Nvidia\",\"Nvidia\",\"Nvidia\",\"Nvidia\"],\"acceleratorTypes\":[\"FPGA\",\"GPU\",\"FPGA\"],\"acceleratorCount\":{\"min\":2125910534,\"max\":1296548216},\"vmCategories\":[\"FpgaAccelerated\",\"GpuAccelerated\",\"GpuAccelerated\",\"GeneralPurpose\"],\"architectureTypes\":[\"X64\"],\"cpuManufacturers\":[\"Ampere\"],\"burstableSupport\":\"Excluded\",\"excludedVMSizes\":[\"kao\",\"wyiftyhxhur\",\"k\",\"tyxolniwpwc\"]}")
+            "{\"vCpuCount\":{\"min\":1485441711,\"max\":2066415804},\"memoryInGiB\":{\"min\":42.57060019084744,\"max\":67.58120246972788},\"memoryInGiBPerVCpu\":{\"min\":47.13013088759639,\"max\":34.71329293163695},\"localStorageSupport\":\"Excluded\",\"localStorageInGiB\":{\"min\":18.998142520154726,\"max\":99.13788031873139},\"localStorageDiskTypes\":[\"SSD\",\"HDD\",\"HDD\",\"SSD\"],\"dataDiskCount\":{\"min\":1035420183,\"max\":1593608704},\"networkInterfaceCount\":{\"min\":270738088,\"max\":1184138450},\"networkBandwidthInMbps\":{\"min\":92.81123284066689,\"max\":79.55595715763151},\"rdmaSupport\":\"Excluded\",\"rdmaNetworkInterfaceCount\":{\"min\":813702940,\"max\":1497620633},\"acceleratorSupport\":\"Excluded\",\"acceleratorManufacturers\":[\"Nvidia\",\"AMD\"],\"acceleratorTypes\":[\"GPU\",\"GPU\",\"GPU\",\"FPGA\"],\"acceleratorCount\":{\"min\":1535190702,\"max\":388497474},\"vmCategories\":[\"StorageOptimized\",\"HighPerformanceCompute\"],\"architectureTypes\":[\"ARM64\",\"X64\",\"X64\",\"ARM64\"],\"cpuManufacturers\":[\"AMD\",\"AMD\"],\"burstableSupport\":\"Required\",\"excludedVMSizes\":[\"gjyjgzjaoyfhrtxi\",\"n\"]}")
             .toObject(VMAttributes.class);
-        Assertions.assertEquals(1969125414, model.vCpuCount().min());
-        Assertions.assertEquals(1742159588, model.vCpuCount().max());
-        Assertions.assertEquals(49.296618686162205D, model.memoryInGiB().min());
-        Assertions.assertEquals(46.151559748687454D, model.memoryInGiB().max());
-        Assertions.assertEquals(15.72140906109526D, model.memoryInGiBPerVCpu().min());
-        Assertions.assertEquals(33.70355434967512D, model.memoryInGiBPerVCpu().max());
+        Assertions.assertEquals(1485441711, model.vCpuCount().min());
+        Assertions.assertEquals(2066415804, model.vCpuCount().max());
+        Assertions.assertEquals(42.57060019084744D, model.memoryInGiB().min());
+        Assertions.assertEquals(67.58120246972788D, model.memoryInGiB().max());
+        Assertions.assertEquals(47.13013088759639D, model.memoryInGiBPerVCpu().min());
+        Assertions.assertEquals(34.71329293163695D, model.memoryInGiBPerVCpu().max());
         Assertions.assertEquals(VMAttributeSupport.EXCLUDED, model.localStorageSupport());
-        Assertions.assertEquals(34.26097915956968D, model.localStorageInGiB().min());
-        Assertions.assertEquals(39.601987566482045D, model.localStorageInGiB().max());
-        Assertions.assertEquals(LocalStorageDiskType.HDD, model.localStorageDiskTypes().get(0));
-        Assertions.assertEquals(681393134, model.dataDiskCount().min());
-        Assertions.assertEquals(264024813, model.dataDiskCount().max());
-        Assertions.assertEquals(1130701644, model.networkInterfaceCount().min());
-        Assertions.assertEquals(1278778169, model.networkInterfaceCount().max());
-        Assertions.assertEquals(44.56756335924435D, model.networkBandwidthInMbps().min());
-        Assertions.assertEquals(21.074497607942167D, model.networkBandwidthInMbps().max());
+        Assertions.assertEquals(18.998142520154726D, model.localStorageInGiB().min());
+        Assertions.assertEquals(99.13788031873139D, model.localStorageInGiB().max());
+        Assertions.assertEquals(LocalStorageDiskType.SSD, model.localStorageDiskTypes().get(0));
+        Assertions.assertEquals(1035420183, model.dataDiskCount().min());
+        Assertions.assertEquals(1593608704, model.dataDiskCount().max());
+        Assertions.assertEquals(270738088, model.networkInterfaceCount().min());
+        Assertions.assertEquals(1184138450, model.networkInterfaceCount().max());
+        Assertions.assertEquals(92.81123284066689D, model.networkBandwidthInMbps().min());
+        Assertions.assertEquals(79.55595715763151D, model.networkBandwidthInMbps().max());
         Assertions.assertEquals(VMAttributeSupport.EXCLUDED, model.rdmaSupport());
-        Assertions.assertEquals(1936335434, model.rdmaNetworkInterfaceCount().min());
-        Assertions.assertEquals(1618302294, model.rdmaNetworkInterfaceCount().max());
-        Assertions.assertEquals(VMAttributeSupport.INCLUDED, model.acceleratorSupport());
+        Assertions.assertEquals(813702940, model.rdmaNetworkInterfaceCount().min());
+        Assertions.assertEquals(1497620633, model.rdmaNetworkInterfaceCount().max());
+        Assertions.assertEquals(VMAttributeSupport.EXCLUDED, model.acceleratorSupport());
         Assertions.assertEquals(AcceleratorManufacturer.NVIDIA, model.acceleratorManufacturers().get(0));
-        Assertions.assertEquals(AcceleratorType.FPGA, model.acceleratorTypes().get(0));
-        Assertions.assertEquals(2125910534, model.acceleratorCount().min());
-        Assertions.assertEquals(1296548216, model.acceleratorCount().max());
-        Assertions.assertEquals(VMCategory.FPGA_ACCELERATED, model.vmCategories().get(0));
-        Assertions.assertEquals(ArchitectureType.X64, model.architectureTypes().get(0));
-        Assertions.assertEquals(CpuManufacturer.AMPERE, model.cpuManufacturers().get(0));
-        Assertions.assertEquals(VMAttributeSupport.EXCLUDED, model.burstableSupport());
-        Assertions.assertEquals("kao", model.excludedVMSizes().get(0));
+        Assertions.assertEquals(AcceleratorType.GPU, model.acceleratorTypes().get(0));
+        Assertions.assertEquals(1535190702, model.acceleratorCount().min());
+        Assertions.assertEquals(388497474, model.acceleratorCount().max());
+        Assertions.assertEquals(VMCategory.STORAGE_OPTIMIZED, model.vmCategories().get(0));
+        Assertions.assertEquals(ArchitectureType.ARM64, model.architectureTypes().get(0));
+        Assertions.assertEquals(CpuManufacturer.AMD, model.cpuManufacturers().get(0));
+        Assertions.assertEquals(VMAttributeSupport.REQUIRED, model.burstableSupport());
+        Assertions.assertEquals("gjyjgzjaoyfhrtxi", model.excludedVMSizes().get(0));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         VMAttributes model = new VMAttributes()
-            .withVCpuCount(new VMAttributeMinMaxInteger().withMin(1969125414).withMax(1742159588))
-            .withMemoryInGiB(new VMAttributeMinMaxDouble().withMin(49.296618686162205D).withMax(46.151559748687454D))
+            .withVCpuCount(new VMAttributeMinMaxInteger().withMin(1485441711).withMax(2066415804))
+            .withMemoryInGiB(new VMAttributeMinMaxDouble().withMin(42.57060019084744D).withMax(67.58120246972788D))
             .withMemoryInGiBPerVCpu(
-                new VMAttributeMinMaxDouble().withMin(15.72140906109526D).withMax(33.70355434967512D))
+                new VMAttributeMinMaxDouble().withMin(47.13013088759639D).withMax(34.71329293163695D))
             .withLocalStorageSupport(VMAttributeSupport.EXCLUDED)
             .withLocalStorageInGiB(
-                new VMAttributeMinMaxDouble().withMin(34.26097915956968D).withMax(39.601987566482045D))
-            .withLocalStorageDiskTypes(Arrays.asList(LocalStorageDiskType.HDD, LocalStorageDiskType.HDD))
-            .withDataDiskCount(new VMAttributeMinMaxInteger().withMin(681393134).withMax(264024813))
-            .withNetworkInterfaceCount(new VMAttributeMinMaxInteger().withMin(1130701644).withMax(1278778169))
+                new VMAttributeMinMaxDouble().withMin(18.998142520154726D).withMax(99.13788031873139D))
+            .withLocalStorageDiskTypes(Arrays.asList(LocalStorageDiskType.SSD, LocalStorageDiskType.HDD,
+                LocalStorageDiskType.HDD, LocalStorageDiskType.SSD))
+            .withDataDiskCount(new VMAttributeMinMaxInteger().withMin(1035420183).withMax(1593608704))
+            .withNetworkInterfaceCount(new VMAttributeMinMaxInteger().withMin(270738088).withMax(1184138450))
             .withNetworkBandwidthInMbps(
-                new VMAttributeMinMaxDouble().withMin(44.56756335924435D).withMax(21.074497607942167D))
+                new VMAttributeMinMaxDouble().withMin(92.81123284066689D).withMax(79.55595715763151D))
             .withRdmaSupport(VMAttributeSupport.EXCLUDED)
-            .withRdmaNetworkInterfaceCount(new VMAttributeMinMaxInteger().withMin(1936335434).withMax(1618302294))
-            .withAcceleratorSupport(VMAttributeSupport.INCLUDED)
-            .withAcceleratorManufacturers(Arrays.asList(AcceleratorManufacturer.NVIDIA, AcceleratorManufacturer.NVIDIA,
-                AcceleratorManufacturer.NVIDIA, AcceleratorManufacturer.NVIDIA))
-            .withAcceleratorTypes(Arrays.asList(AcceleratorType.FPGA, AcceleratorType.GPU, AcceleratorType.FPGA))
-            .withAcceleratorCount(new VMAttributeMinMaxInteger().withMin(2125910534).withMax(1296548216))
-            .withVmCategories(Arrays.asList(VMCategory.FPGA_ACCELERATED, VMCategory.GPU_ACCELERATED,
-                VMCategory.GPU_ACCELERATED, VMCategory.GENERAL_PURPOSE))
-            .withArchitectureTypes(Arrays.asList(ArchitectureType.X64))
-            .withCpuManufacturers(Arrays.asList(CpuManufacturer.AMPERE))
-            .withBurstableSupport(VMAttributeSupport.EXCLUDED)
-            .withExcludedVMSizes(Arrays.asList("kao", "wyiftyhxhur", "k", "tyxolniwpwc"));
+            .withRdmaNetworkInterfaceCount(new VMAttributeMinMaxInteger().withMin(813702940).withMax(1497620633))
+            .withAcceleratorSupport(VMAttributeSupport.EXCLUDED)
+            .withAcceleratorManufacturers(Arrays.asList(AcceleratorManufacturer.NVIDIA, AcceleratorManufacturer.AMD))
+            .withAcceleratorTypes(
+                Arrays.asList(AcceleratorType.GPU, AcceleratorType.GPU, AcceleratorType.GPU, AcceleratorType.FPGA))
+            .withAcceleratorCount(new VMAttributeMinMaxInteger().withMin(1535190702).withMax(388497474))
+            .withVmCategories(Arrays.asList(VMCategory.STORAGE_OPTIMIZED, VMCategory.HIGH_PERFORMANCE_COMPUTE))
+            .withArchitectureTypes(Arrays.asList(ArchitectureType.ARM64, ArchitectureType.X64, ArchitectureType.X64,
+                ArchitectureType.ARM64))
+            .withCpuManufacturers(Arrays.asList(CpuManufacturer.AMD, CpuManufacturer.AMD))
+            .withBurstableSupport(VMAttributeSupport.REQUIRED)
+            .withExcludedVMSizes(Arrays.asList("gjyjgzjaoyfhrtxi", "n"));
         model = BinaryData.fromObject(model).toObject(VMAttributes.class);
-        Assertions.assertEquals(1969125414, model.vCpuCount().min());
-        Assertions.assertEquals(1742159588, model.vCpuCount().max());
-        Assertions.assertEquals(49.296618686162205D, model.memoryInGiB().min());
-        Assertions.assertEquals(46.151559748687454D, model.memoryInGiB().max());
-        Assertions.assertEquals(15.72140906109526D, model.memoryInGiBPerVCpu().min());
-        Assertions.assertEquals(33.70355434967512D, model.memoryInGiBPerVCpu().max());
+        Assertions.assertEquals(1485441711, model.vCpuCount().min());
+        Assertions.assertEquals(2066415804, model.vCpuCount().max());
+        Assertions.assertEquals(42.57060019084744D, model.memoryInGiB().min());
+        Assertions.assertEquals(67.58120246972788D, model.memoryInGiB().max());
+        Assertions.assertEquals(47.13013088759639D, model.memoryInGiBPerVCpu().min());
+        Assertions.assertEquals(34.71329293163695D, model.memoryInGiBPerVCpu().max());
         Assertions.assertEquals(VMAttributeSupport.EXCLUDED, model.localStorageSupport());
-        Assertions.assertEquals(34.26097915956968D, model.localStorageInGiB().min());
-        Assertions.assertEquals(39.601987566482045D, model.localStorageInGiB().max());
-        Assertions.assertEquals(LocalStorageDiskType.HDD, model.localStorageDiskTypes().get(0));
-        Assertions.assertEquals(681393134, model.dataDiskCount().min());
-        Assertions.assertEquals(264024813, model.dataDiskCount().max());
-        Assertions.assertEquals(1130701644, model.networkInterfaceCount().min());
-        Assertions.assertEquals(1278778169, model.networkInterfaceCount().max());
-        Assertions.assertEquals(44.56756335924435D, model.networkBandwidthInMbps().min());
-        Assertions.assertEquals(21.074497607942167D, model.networkBandwidthInMbps().max());
+        Assertions.assertEquals(18.998142520154726D, model.localStorageInGiB().min());
+        Assertions.assertEquals(99.13788031873139D, model.localStorageInGiB().max());
+        Assertions.assertEquals(LocalStorageDiskType.SSD, model.localStorageDiskTypes().get(0));
+        Assertions.assertEquals(1035420183, model.dataDiskCount().min());
+        Assertions.assertEquals(1593608704, model.dataDiskCount().max());
+        Assertions.assertEquals(270738088, model.networkInterfaceCount().min());
+        Assertions.assertEquals(1184138450, model.networkInterfaceCount().max());
+        Assertions.assertEquals(92.81123284066689D, model.networkBandwidthInMbps().min());
+        Assertions.assertEquals(79.55595715763151D, model.networkBandwidthInMbps().max());
         Assertions.assertEquals(VMAttributeSupport.EXCLUDED, model.rdmaSupport());
-        Assertions.assertEquals(1936335434, model.rdmaNetworkInterfaceCount().min());
-        Assertions.assertEquals(1618302294, model.rdmaNetworkInterfaceCount().max());
-        Assertions.assertEquals(VMAttributeSupport.INCLUDED, model.acceleratorSupport());
+        Assertions.assertEquals(813702940, model.rdmaNetworkInterfaceCount().min());
+        Assertions.assertEquals(1497620633, model.rdmaNetworkInterfaceCount().max());
+        Assertions.assertEquals(VMAttributeSupport.EXCLUDED, model.acceleratorSupport());
         Assertions.assertEquals(AcceleratorManufacturer.NVIDIA, model.acceleratorManufacturers().get(0));
-        Assertions.assertEquals(AcceleratorType.FPGA, model.acceleratorTypes().get(0));
-        Assertions.assertEquals(2125910534, model.acceleratorCount().min());
-        Assertions.assertEquals(1296548216, model.acceleratorCount().max());
-        Assertions.assertEquals(VMCategory.FPGA_ACCELERATED, model.vmCategories().get(0));
-        Assertions.assertEquals(ArchitectureType.X64, model.architectureTypes().get(0));
-        Assertions.assertEquals(CpuManufacturer.AMPERE, model.cpuManufacturers().get(0));
-        Assertions.assertEquals(VMAttributeSupport.EXCLUDED, model.burstableSupport());
-        Assertions.assertEquals("kao", model.excludedVMSizes().get(0));
+        Assertions.assertEquals(AcceleratorType.GPU, model.acceleratorTypes().get(0));
+        Assertions.assertEquals(1535190702, model.acceleratorCount().min());
+        Assertions.assertEquals(388497474, model.acceleratorCount().max());
+        Assertions.assertEquals(VMCategory.STORAGE_OPTIMIZED, model.vmCategories().get(0));
+        Assertions.assertEquals(ArchitectureType.ARM64, model.architectureTypes().get(0));
+        Assertions.assertEquals(CpuManufacturer.AMD, model.cpuManufacturers().get(0));
+        Assertions.assertEquals(VMAttributeSupport.REQUIRED, model.burstableSupport());
+        Assertions.assertEquals("gjyjgzjaoyfhrtxi", model.excludedVMSizes().get(0));
     }
 }

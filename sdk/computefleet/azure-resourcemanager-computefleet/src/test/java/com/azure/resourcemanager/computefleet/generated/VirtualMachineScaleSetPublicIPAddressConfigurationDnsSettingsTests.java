@@ -13,20 +13,20 @@ public final class VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings model
-            = BinaryData.fromString("{\"domainNameLabel\":\"ghxpkdw\",\"domainNameLabelScope\":\"NoReuse\"}")
+            = BinaryData.fromString("{\"domainNameLabel\":\"sd\",\"domainNameLabelScope\":\"NoReuse\"}")
                 .toObject(VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings.class);
-        Assertions.assertEquals("ghxpkdw", model.domainNameLabel());
+        Assertions.assertEquals("sd", model.domainNameLabel());
         Assertions.assertEquals(DomainNameLabelScopeTypes.NO_REUSE, model.domainNameLabelScope());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings model
-            = new VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings().withDomainNameLabel("ghxpkdw")
+            = new VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings().withDomainNameLabel("sd")
                 .withDomainNameLabelScope(DomainNameLabelScopeTypes.NO_REUSE);
         model = BinaryData.fromObject(model)
             .toObject(VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings.class);
-        Assertions.assertEquals("ghxpkdw", model.domainNameLabel());
+        Assertions.assertEquals("sd", model.domainNameLabel());
         Assertions.assertEquals(DomainNameLabelScopeTypes.NO_REUSE, model.domainNameLabelScope());
     }
 }

@@ -11,14 +11,14 @@ import org.junit.jupiter.api.Assertions;
 public final class VirtualHardDiskTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        VirtualHardDisk model = BinaryData.fromString("{\"uri\":\"uvcc\"}").toObject(VirtualHardDisk.class);
-        Assertions.assertEquals("uvcc", model.uri());
+        VirtualHardDisk model = BinaryData.fromString("{\"uri\":\"ej\"}").toObject(VirtualHardDisk.class);
+        Assertions.assertEquals("ej", model.uri());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        VirtualHardDisk model = new VirtualHardDisk().withUri("uvcc");
+        VirtualHardDisk model = new VirtualHardDisk().withUri("ej");
         model = BinaryData.fromObject(model).toObject(VirtualHardDisk.class);
-        Assertions.assertEquals("uvcc", model.uri());
+        Assertions.assertEquals("ej", model.uri());
     }
 }

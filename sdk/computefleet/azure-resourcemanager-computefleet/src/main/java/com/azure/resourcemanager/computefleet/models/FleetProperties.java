@@ -51,11 +51,6 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     private AdditionalLocationsProfile additionalLocationsProfile;
 
     /*
-     * Compute Profile to use for running user's workloads.
-     */
-    private ComputeProfile computeProfile;
-
-    /*
      * Specifies the time at which the Compute Fleet is created.
      */
     private OffsetDateTime timeCreated;
@@ -183,26 +178,6 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     }
 
     /**
-     * Get the computeProfile property: Compute Profile to use for running user's workloads.
-     * 
-     * @return the computeProfile value.
-     */
-    public ComputeProfile computeProfile() {
-        return this.computeProfile;
-    }
-
-    /**
-     * Set the computeProfile property: Compute Profile to use for running user's workloads.
-     * 
-     * @param computeProfile the computeProfile value to set.
-     * @return the FleetProperties object itself.
-     */
-    public FleetProperties withComputeProfile(ComputeProfile computeProfile) {
-        this.computeProfile = computeProfile;
-        return this;
-    }
-
-    /**
      * Get the timeCreated property: Specifies the time at which the Compute Fleet is created.
      * 
      * @return the timeCreated value.
@@ -244,12 +219,6 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
         if (additionalLocationsProfile() != null) {
             additionalLocationsProfile().validate();
         }
-        if (computeProfile() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property computeProfile in model FleetProperties"));
-        } else {
-            computeProfile().validate();
-        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(FleetProperties.class);
@@ -262,7 +231,6 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("vmSizesProfile", this.vmSizesProfile,
             (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeJsonField("computeProfile", this.computeProfile);
         jsonWriter.writeJsonField("spotPriorityProfile", this.spotPriorityProfile);
         jsonWriter.writeJsonField("regularPriorityProfile", this.regularPriorityProfile);
         jsonWriter.writeJsonField("vmAttributes", this.vmAttributes);
@@ -289,8 +257,6 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
                 if ("vmSizesProfile".equals(fieldName)) {
                     List<VmSizeProfile> vmSizesProfile = reader.readArray(reader1 -> VmSizeProfile.fromJson(reader1));
                     deserializedFleetProperties.vmSizesProfile = vmSizesProfile;
-                } else if ("computeProfile".equals(fieldName)) {
-                    deserializedFleetProperties.computeProfile = ComputeProfile.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedFleetProperties.provisioningState = ProvisioningState.fromString(reader.getString());
                 } else if ("spotPriorityProfile".equals(fieldName)) {

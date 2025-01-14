@@ -169,7 +169,7 @@ public final class ComputeFleetManagementClientImpl implements ComputeFleetManag
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
         this.subscriptionId = subscriptionId;
-        this.apiVersion = "2024-11-01";
+        this.apiVersion = "2024-12-01";
         this.operations = new OperationsClientImpl(this);
         this.fleets = new FleetsClientImpl(this);
     }

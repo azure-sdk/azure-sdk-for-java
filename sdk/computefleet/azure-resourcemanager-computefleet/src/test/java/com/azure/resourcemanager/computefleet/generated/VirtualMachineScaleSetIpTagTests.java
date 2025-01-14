@@ -11,19 +11,17 @@ import org.junit.jupiter.api.Assertions;
 public final class VirtualMachineScaleSetIpTagTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        VirtualMachineScaleSetIpTag model
-            = BinaryData.fromString("{\"ipTagType\":\"uebbaumnyqup\",\"tag\":\"eojnabc\"}")
-                .toObject(VirtualMachineScaleSetIpTag.class);
-        Assertions.assertEquals("uebbaumnyqup", model.ipTagType());
-        Assertions.assertEquals("eojnabc", model.tag());
+        VirtualMachineScaleSetIpTag model = BinaryData.fromString("{\"ipTagType\":\"waboe\",\"tag\":\"v\"}")
+            .toObject(VirtualMachineScaleSetIpTag.class);
+        Assertions.assertEquals("waboe", model.ipTagType());
+        Assertions.assertEquals("v", model.tag());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        VirtualMachineScaleSetIpTag model
-            = new VirtualMachineScaleSetIpTag().withIpTagType("uebbaumnyqup").withTag("eojnabc");
+        VirtualMachineScaleSetIpTag model = new VirtualMachineScaleSetIpTag().withIpTagType("waboe").withTag("v");
         model = BinaryData.fromObject(model).toObject(VirtualMachineScaleSetIpTag.class);
-        Assertions.assertEquals("uebbaumnyqup", model.ipTagType());
-        Assertions.assertEquals("eojnabc", model.tag());
+        Assertions.assertEquals("waboe", model.ipTagType());
+        Assertions.assertEquals("v", model.tag());
     }
 }
