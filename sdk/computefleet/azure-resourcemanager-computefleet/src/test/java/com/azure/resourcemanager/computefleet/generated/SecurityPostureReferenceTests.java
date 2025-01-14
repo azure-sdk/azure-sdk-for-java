@@ -12,22 +12,22 @@ import org.junit.jupiter.api.Assertions;
 public final class SecurityPostureReferenceTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        SecurityPostureReference model
-            = BinaryData.fromString("{\"id\":\"ah\",\"excludeExtensions\":[\"y\",\"hpvgqz\"],\"isOverridable\":true}")
-                .toObject(SecurityPostureReference.class);
-        Assertions.assertEquals("ah", model.id());
-        Assertions.assertEquals("y", model.excludeExtensions().get(0));
-        Assertions.assertEquals(true, model.isOverridable());
+        SecurityPostureReference model = BinaryData.fromString(
+            "{\"id\":\"xtibqdxbxwakbog\",\"excludeExtensions\":[\"dlkzgxhuri\",\"lbpodxunk\",\"ebxmubyynt\"],\"isOverridable\":false}")
+            .toObject(SecurityPostureReference.class);
+        Assertions.assertEquals("xtibqdxbxwakbog", model.id());
+        Assertions.assertEquals("dlkzgxhuri", model.excludeExtensions().get(0));
+        Assertions.assertEquals(false, model.isOverridable());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        SecurityPostureReference model = new SecurityPostureReference().withId("ah")
-            .withExcludeExtensions(Arrays.asList("y", "hpvgqz"))
-            .withIsOverridable(true);
+        SecurityPostureReference model = new SecurityPostureReference().withId("xtibqdxbxwakbog")
+            .withExcludeExtensions(Arrays.asList("dlkzgxhuri", "lbpodxunk", "ebxmubyynt"))
+            .withIsOverridable(false);
         model = BinaryData.fromObject(model).toObject(SecurityPostureReference.class);
-        Assertions.assertEquals("ah", model.id());
-        Assertions.assertEquals("y", model.excludeExtensions().get(0));
-        Assertions.assertEquals(true, model.isOverridable());
+        Assertions.assertEquals("xtibqdxbxwakbog", model.id());
+        Assertions.assertEquals("dlkzgxhuri", model.excludeExtensions().get(0));
+        Assertions.assertEquals(false, model.isOverridable());
     }
 }
