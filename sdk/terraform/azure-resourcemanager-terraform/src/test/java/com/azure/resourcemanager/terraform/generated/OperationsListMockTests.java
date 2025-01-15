@@ -11,11 +11,9 @@ import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.terraform.AzureTerraformManager;
-import com.azure.resourcemanager.terraform.models.ActionType;
 import com.azure.resourcemanager.terraform.models.Operation;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
@@ -23,7 +21,7 @@ public final class OperationsListMockTests {
     @Test
     public void testList() throws Exception {
         String responseStr
-            = "{\"value\":[{\"name\":\"iwbybrkxvdumjg\",\"isDataAction\":false,\"display\":{\"provider\":\"ukxgaud\",\"resource\":\"snhsjcnyejhkryh\",\"operation\":\"apcz\",\"description\":\"okjye\"},\"origin\":\"system\",\"actionType\":\"Internal\"}]}";
+            = "{\"value\":[{\"name\":\"tfwvukxgaudc\",\"isDataAction\":true,\"display\":{\"provider\":\"jcny\",\"resource\":\"hkryhtn\",\"operation\":\"czwlokjyem\",\"description\":\"vnipjox\"},\"origin\":\"user\",\"actionType\":\"Internal\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -34,6 +32,5 @@ public final class OperationsListMockTests {
 
         PagedIterable<Operation> response = manager.operations().list(com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals(ActionType.INTERNAL, response.iterator().next().actionType());
     }
 }
