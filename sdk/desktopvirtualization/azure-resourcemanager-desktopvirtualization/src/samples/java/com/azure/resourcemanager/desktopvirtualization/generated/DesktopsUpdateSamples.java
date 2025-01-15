@@ -12,7 +12,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.DesktopPatch;
 public final class DesktopsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
      * Desktop_Update.json
      */
     /**

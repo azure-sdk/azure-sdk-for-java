@@ -10,7 +10,7 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
      * OperationDescription_List.json
      */
     /**
