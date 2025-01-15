@@ -14,7 +14,7 @@ import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInn
 import java.io.IOException;
 
 /**
- * Represents AAD (Azure Active Directory) data connector.
+ * Represents AADIP (Azure Active Directory Identity Protection) data connector.
  */
 @Fluent
 public final class AadDataConnector extends DataConnectorInner {
@@ -24,7 +24,7 @@ public final class AadDataConnector extends DataConnectorInner {
     private DataConnectorKind kind = DataConnectorKind.AZURE_ACTIVE_DIRECTORY;
 
     /*
-     * AAD (Azure Active Directory) data connector properties.
+     * AADIP (Azure Active Directory Identity Protection) data connector properties.
      */
     private AadDataConnectorProperties innerProperties;
 
@@ -65,7 +65,7 @@ public final class AadDataConnector extends DataConnectorInner {
     }
 
     /**
-     * Get the innerProperties property: AAD (Azure Active Directory) data connector properties.
+     * Get the innerProperties property: AADIP (Azure Active Directory Identity Protection) data connector properties.
      * 
      * @return the innerProperties value.
      */
@@ -123,29 +123,6 @@ public final class AadDataConnector extends DataConnectorInner {
     }
 
     /**
-     * Get the tenantId property: The tenant id to connect to, and get the data from.
-     * 
-     * @return the tenantId value.
-     */
-    public String tenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
-    }
-
-    /**
-     * Set the tenantId property: The tenant id to connect to, and get the data from.
-     * 
-     * @param tenantId the tenantId value to set.
-     * @return the AadDataConnector object itself.
-     */
-    public AadDataConnector withTenantId(String tenantId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AadDataConnectorProperties();
-        }
-        this.innerProperties().withTenantId(tenantId);
-        return this;
-    }
-
-    /**
      * Get the dataTypes property: The available data types for the connector.
      * 
      * @return the dataTypes value.
@@ -165,6 +142,29 @@ public final class AadDataConnector extends DataConnectorInner {
             this.innerProperties = new AadDataConnectorProperties();
         }
         this.innerProperties().withDataTypes(dataTypes);
+        return this;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the AadDataConnector object itself.
+     */
+    public AadDataConnector withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AadDataConnectorProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
         return this;
     }
 

@@ -23,7 +23,7 @@ import java.util.Map;
 @Fluent
 public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
     /*
-     * The alert rule kind
+     * The kind of the alert rule
      */
     private AlertRuleKind kind = AlertRuleKind.SCHEDULED;
 
@@ -59,7 +59,7 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the kind property: The alert rule kind.
+     * Get the kind property: The kind of the alert rule.
      * 
      * @return the kind value.
      */
@@ -413,7 +413,7 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule template.
+     * Get the techniques property: The techniques of the alert rule.
      * 
      * @return the techniques value.
      */
@@ -422,7 +422,7 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Set the techniques property: The techniques of the alert rule template.
+     * Set the techniques property: The techniques of the alert rule.
      * 
      * @param techniques the techniques value to set.
      * @return the ScheduledAlertRuleTemplate object itself.
@@ -432,6 +432,29 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
             this.innerProperties = new ScheduledAlertRuleTemplateProperties();
         }
         this.innerProperties().withTechniques(techniques);
+        return this;
+    }
+
+    /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.innerProperties() == null ? null : this.innerProperties().subTechniques();
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the ScheduledAlertRuleTemplate object itself.
+     */
+    public ScheduledAlertRuleTemplate withSubTechniques(List<String> subTechniques) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSubTechniques(subTechniques);
         return this;
     }
 
@@ -549,6 +572,30 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
             this.innerProperties = new ScheduledAlertRuleTemplateProperties();
         }
         this.innerProperties().withAlertDetailsOverride(alertDetailsOverride);
+        return this;
+    }
+
+    /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.innerProperties() == null ? null : this.innerProperties().sentinelEntitiesMappings();
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the ScheduledAlertRuleTemplate object itself.
+     */
+    public ScheduledAlertRuleTemplate
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSentinelEntitiesMappings(sentinelEntitiesMappings);
         return this;
     }
 
