@@ -14,23 +14,22 @@ import java.io.IOException;
 /**
  * Persistence settings
  * 
- * Persistence-related configuration for the Redis Enterprise database.
+ * Persistence-related configuration for the RedisEnterprise database.
  */
 @Fluent
 public final class Persistence implements JsonSerializable<Persistence> {
     /*
-     * Sets whether AOF is enabled. Note that at most one of AOF or RDB persistence may be enabled.
+     * Sets whether AOF is enabled.
      */
     private Boolean aofEnabled;
 
     /*
-     * Sets whether RDB is enabled. Note that at most one of AOF or RDB persistence may be enabled.
+     * Sets whether RDB is enabled.
      */
     private Boolean rdbEnabled;
 
     /*
-     * Sets the frequency at which data is written to disk. Defaults to '1s', meaning 'every second'. Note that the
-     * 'always' setting is deprecated, because of its performance impact.
+     * Sets the frequency at which data is written to disk.
      */
     private AofFrequency aofFrequency;
 
@@ -46,8 +45,7 @@ public final class Persistence implements JsonSerializable<Persistence> {
     }
 
     /**
-     * Get the aofEnabled property: Sets whether AOF is enabled. Note that at most one of AOF or RDB persistence may be
-     * enabled.
+     * Get the aofEnabled property: Sets whether AOF is enabled.
      * 
      * @return the aofEnabled value.
      */
@@ -56,8 +54,7 @@ public final class Persistence implements JsonSerializable<Persistence> {
     }
 
     /**
-     * Set the aofEnabled property: Sets whether AOF is enabled. Note that at most one of AOF or RDB persistence may be
-     * enabled.
+     * Set the aofEnabled property: Sets whether AOF is enabled.
      * 
      * @param aofEnabled the aofEnabled value to set.
      * @return the Persistence object itself.
@@ -68,8 +65,7 @@ public final class Persistence implements JsonSerializable<Persistence> {
     }
 
     /**
-     * Get the rdbEnabled property: Sets whether RDB is enabled. Note that at most one of AOF or RDB persistence may be
-     * enabled.
+     * Get the rdbEnabled property: Sets whether RDB is enabled.
      * 
      * @return the rdbEnabled value.
      */
@@ -78,8 +74,7 @@ public final class Persistence implements JsonSerializable<Persistence> {
     }
 
     /**
-     * Set the rdbEnabled property: Sets whether RDB is enabled. Note that at most one of AOF or RDB persistence may be
-     * enabled.
+     * Set the rdbEnabled property: Sets whether RDB is enabled.
      * 
      * @param rdbEnabled the rdbEnabled value to set.
      * @return the Persistence object itself.
@@ -90,8 +85,7 @@ public final class Persistence implements JsonSerializable<Persistence> {
     }
 
     /**
-     * Get the aofFrequency property: Sets the frequency at which data is written to disk. Defaults to '1s', meaning
-     * 'every second'. Note that the 'always' setting is deprecated, because of its performance impact.
+     * Get the aofFrequency property: Sets the frequency at which data is written to disk.
      * 
      * @return the aofFrequency value.
      */
@@ -100,8 +94,7 @@ public final class Persistence implements JsonSerializable<Persistence> {
     }
 
     /**
-     * Set the aofFrequency property: Sets the frequency at which data is written to disk. Defaults to '1s', meaning
-     * 'every second'. Note that the 'always' setting is deprecated, because of its performance impact.
+     * Set the aofFrequency property: Sets the frequency at which data is written to disk.
      * 
      * @param aofFrequency the aofFrequency value to set.
      * @return the Persistence object itself.

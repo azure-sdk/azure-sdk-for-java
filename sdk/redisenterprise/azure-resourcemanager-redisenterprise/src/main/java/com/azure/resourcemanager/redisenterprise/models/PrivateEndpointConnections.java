@@ -13,10 +13,11 @@ import com.azure.core.util.Context;
  */
 public interface PrivateEndpointConnections {
     /**
-     * Lists all the private endpoint connections associated with the Redis Enterprise cluster.
+     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -26,10 +27,11 @@ public interface PrivateEndpointConnections {
     PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String clusterName);
 
     /**
-     * Lists all the private endpoint connections associated with the Redis Enterprise cluster.
+     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -40,41 +42,44 @@ public interface PrivateEndpointConnections {
     PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String clusterName, Context context);
 
     /**
-     * Gets the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the Redis Enterprise cluster along with
+     * @return the specified private endpoint connection associated with the RedisEnterprise cluster along with
      * {@link Response}.
      */
     Response<PrivateEndpointConnection> getWithResponse(String resourceGroupName, String clusterName,
         String privateEndpointConnectionName, Context context);
 
     /**
-     * Gets the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * @return the specified private endpoint connection associated with the RedisEnterprise cluster.
      */
     PrivateEndpointConnection get(String resourceGroupName, String clusterName, String privateEndpointConnectionName);
 
     /**
-     * Deletes the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -84,10 +89,11 @@ public interface PrivateEndpointConnections {
     void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName);
 
     /**
-     * Deletes the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
      * @param context The context to associate with this operation.
@@ -98,32 +104,32 @@ public interface PrivateEndpointConnections {
     void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context);
 
     /**
-     * Gets the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the Redis Enterprise cluster along with
+     * @return the specified private endpoint connection associated with the RedisEnterprise cluster along with
      * {@link Response}.
      */
     PrivateEndpointConnection getById(String id);
 
     /**
-     * Gets the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the Redis Enterprise cluster along with
+     * @return the specified private endpoint connection associated with the RedisEnterprise cluster along with
      * {@link Response}.
      */
     Response<PrivateEndpointConnection> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -133,7 +139,7 @@ public interface PrivateEndpointConnections {
     void deleteById(String id);
 
     /**
-     * Deletes the specified private endpoint connection associated with the Redis Enterprise cluster.
+     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.

@@ -5,16 +5,13 @@
 package com.azure.resourcemanager.redisenterprise.implementation;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner;
 import com.azure.resourcemanager.redisenterprise.models.AccessKeys;
-import com.azure.resourcemanager.redisenterprise.models.AccessKeysAuthentication;
 import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
 import com.azure.resourcemanager.redisenterprise.models.Database;
 import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
 import com.azure.resourcemanager.redisenterprise.models.DatabaseUpdate;
-import com.azure.resourcemanager.redisenterprise.models.DeferUpgradeSetting;
 import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
 import com.azure.resourcemanager.redisenterprise.models.ExportClusterParameters;
 import com.azure.resourcemanager.redisenterprise.models.FlushParameters;
@@ -45,10 +42,6 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public Protocol clientProtocol() {
@@ -90,18 +83,6 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
 
     public DatabasePropertiesGeoReplication geoReplication() {
         return this.innerModel().geoReplication();
-    }
-
-    public String redisVersion() {
-        return this.innerModel().redisVersion();
-    }
-
-    public DeferUpgradeSetting deferUpgrade() {
-        return this.innerModel().deferUpgrade();
-    }
-
-    public AccessKeysAuthentication accessKeysAuthentication() {
-        return this.innerModel().accessKeysAuthentication();
     }
 
     public String resourceGroupName() {
@@ -253,14 +234,6 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         serviceManager.databases().flush(resourceGroupName, clusterName, databaseName, parameters, context);
     }
 
-    public void upgradeDBRedisVersion() {
-        serviceManager.databases().upgradeDBRedisVersion(resourceGroupName, clusterName, databaseName);
-    }
-
-    public void upgradeDBRedisVersion(Context context) {
-        serviceManager.databases().upgradeDBRedisVersion(resourceGroupName, clusterName, databaseName, context);
-    }
-
     public DatabaseImpl withClientProtocol(Protocol clientProtocol) {
         if (isInCreateMode()) {
             this.innerModel().withClientProtocol(clientProtocol);
@@ -309,26 +282,6 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
     public DatabaseImpl withGeoReplication(DatabasePropertiesGeoReplication geoReplication) {
         this.innerModel().withGeoReplication(geoReplication);
         return this;
-    }
-
-    public DatabaseImpl withDeferUpgrade(DeferUpgradeSetting deferUpgrade) {
-        if (isInCreateMode()) {
-            this.innerModel().withDeferUpgrade(deferUpgrade);
-            return this;
-        } else {
-            this.updateParameters.withDeferUpgrade(deferUpgrade);
-            return this;
-        }
-    }
-
-    public DatabaseImpl withAccessKeysAuthentication(AccessKeysAuthentication accessKeysAuthentication) {
-        if (isInCreateMode()) {
-            this.innerModel().withAccessKeysAuthentication(accessKeysAuthentication);
-            return this;
-        } else {
-            this.updateParameters.withAccessKeysAuthentication(accessKeysAuthentication);
-            return this;
-        }
     }
 
     private boolean isInCreateMode() {
