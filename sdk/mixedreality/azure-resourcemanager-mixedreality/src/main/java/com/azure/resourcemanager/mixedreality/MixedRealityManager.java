@@ -28,11 +28,9 @@ import com.azure.resourcemanager.mixedreality.implementation.MixedRealityClientB
 import com.azure.resourcemanager.mixedreality.implementation.OperationsImpl;
 import com.azure.resourcemanager.mixedreality.implementation.RemoteRenderingAccountsImpl;
 import com.azure.resourcemanager.mixedreality.implementation.ResourceProvidersImpl;
-import com.azure.resourcemanager.mixedreality.implementation.SpatialAnchorsAccountsImpl;
 import com.azure.resourcemanager.mixedreality.models.Operations;
 import com.azure.resourcemanager.mixedreality.models.RemoteRenderingAccounts;
 import com.azure.resourcemanager.mixedreality.models.ResourceProviders;
-import com.azure.resourcemanager.mixedreality.models.SpatialAnchorsAccounts;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -48,8 +46,6 @@ public final class MixedRealityManager {
     private Operations operations;
 
     private ResourceProviders resourceProviders;
-
-    private SpatialAnchorsAccounts spatialAnchorsAccounts;
 
     private RemoteRenderingAccounts remoteRenderingAccounts;
 
@@ -217,7 +213,7 @@ public final class MixedRealityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.mixedreality")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -285,19 +281,6 @@ public final class MixedRealityManager {
             this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
         }
         return resourceProviders;
-    }
-
-    /**
-     * Gets the resource collection API of SpatialAnchorsAccounts. It manages SpatialAnchorsAccount.
-     * 
-     * @return Resource collection API of SpatialAnchorsAccounts.
-     */
-    public SpatialAnchorsAccounts spatialAnchorsAccounts() {
-        if (this.spatialAnchorsAccounts == null) {
-            this.spatialAnchorsAccounts
-                = new SpatialAnchorsAccountsImpl(clientObject.getSpatialAnchorsAccounts(), this);
-        }
-        return spatialAnchorsAccounts;
     }
 
     /**

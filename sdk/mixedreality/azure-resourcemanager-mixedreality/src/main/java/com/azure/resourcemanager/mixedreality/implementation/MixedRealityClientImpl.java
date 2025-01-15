@@ -27,7 +27,6 @@ import com.azure.resourcemanager.mixedreality.fluent.MixedRealityClient;
 import com.azure.resourcemanager.mixedreality.fluent.OperationsClient;
 import com.azure.resourcemanager.mixedreality.fluent.RemoteRenderingAccountsClient;
 import com.azure.resourcemanager.mixedreality.fluent.ResourceProvidersClient;
-import com.azure.resourcemanager.mixedreality.fluent.SpatialAnchorsAccountsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -155,20 +154,6 @@ public final class MixedRealityClientImpl implements MixedRealityClient {
     }
 
     /**
-     * The SpatialAnchorsAccountsClient object to access its operations.
-     */
-    private final SpatialAnchorsAccountsClient spatialAnchorsAccounts;
-
-    /**
-     * Gets the SpatialAnchorsAccountsClient object to access its operations.
-     * 
-     * @return the SpatialAnchorsAccountsClient object.
-     */
-    public SpatialAnchorsAccountsClient getSpatialAnchorsAccounts() {
-        return this.spatialAnchorsAccounts;
-    }
-
-    /**
      * The RemoteRenderingAccountsClient object to access its operations.
      */
     private final RemoteRenderingAccountsClient remoteRenderingAccounts;
@@ -200,10 +185,9 @@ public final class MixedRealityClientImpl implements MixedRealityClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-01-01";
+        this.apiVersion = "2021-03-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
-        this.spatialAnchorsAccounts = new SpatialAnchorsAccountsClientImpl(this);
         this.remoteRenderingAccounts = new RemoteRenderingAccountsClientImpl(this);
     }
 

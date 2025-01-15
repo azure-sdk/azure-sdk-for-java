@@ -61,13 +61,6 @@ public interface MixedRealityClient {
     ResourceProvidersClient getResourceProviders();
 
     /**
-     * Gets the SpatialAnchorsAccountsClient object to access its operations.
-     * 
-     * @return the SpatialAnchorsAccountsClient object.
-     */
-    SpatialAnchorsAccountsClient getSpatialAnchorsAccounts();
-
-    /**
      * Gets the RemoteRenderingAccountsClient object to access its operations.
      * 
      * @return the RemoteRenderingAccountsClient object.
