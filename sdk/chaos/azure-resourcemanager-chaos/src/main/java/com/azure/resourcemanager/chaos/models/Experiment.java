@@ -51,18 +51,18 @@ public interface Experiment {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: The system metadata of the experiment resource.
+     * Gets the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the identity property: The identity of the experiment resource.
-     * 
-     * @return the identity value.
-     */
-    ResourceIdentity identity();
 
     /**
      * Gets the provisioningState property: Most recent provisioning state for the given experiment resource.
@@ -84,6 +84,14 @@ public interface Experiment {
      * @return the selectors value.
      */
     List<ChaosTargetSelector> selectors();
+
+    /**
+     * Gets the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @return the customerDataStorage value.
+     */
+    CustomerDataStorageProperties customerDataStorage();
 
     /**
      * Gets the region of the resource.
@@ -159,7 +167,7 @@ public interface Experiment {
             /**
              * Specifies resourceGroupName.
              * 
-             * @param resourceGroupName String that represents an Azure resource group.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithSteps withExistingResourceGroup(String resourceGroupName);
@@ -195,7 +203,8 @@ public interface Experiment {
          * The stage of the Experiment definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithCustomerDataStorage {
             /**
              * Executes the create request.
              * 
@@ -230,12 +239,27 @@ public interface Experiment {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the experiment resource..
+             * Specifies the identity property: The managed service identities assigned to this resource..
              * 
-             * @param identity The identity of the experiment resource.
+             * @param identity The managed service identities assigned to this resource.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(ResourceIdentity identity);
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the Experiment definition allowing to specify customerDataStorage.
+         */
+        interface WithCustomerDataStorage {
+            /**
+             * Specifies the customerDataStorage property: Optional customer-managed Storage account where Experiment
+             * schema will be stored..
+             * 
+             * @param customerDataStorage Optional customer-managed Storage account where Experiment schema will be
+             * stored.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage);
         }
     }
 
@@ -275,9 +299,9 @@ public interface Experiment {
          */
         interface WithTags {
             /**
-             * Specifies the tags property: The tags of the experiment resource..
+             * Specifies the tags property: Resource tags..
              * 
-             * @param tags The tags of the experiment resource.
+             * @param tags Resource tags.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
@@ -288,12 +312,12 @@ public interface Experiment {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the experiment resource..
+             * Specifies the identity property: The managed service identities assigned to this resource..
              * 
-             * @param identity The identity of the experiment resource.
+             * @param identity The managed service identities assigned to this resource.
              * @return the next definition stage.
              */
-            Update withIdentity(ResourceIdentity identity);
+            Update withIdentity(ManagedServiceIdentity identity);
         }
     }
 

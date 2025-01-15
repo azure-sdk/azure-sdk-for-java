@@ -10,6 +10,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
@@ -17,7 +18,7 @@ import java.time.OffsetDateTime;
  * Model that represents the execution properties of an Experiment.
  */
 @Immutable
-public class ExperimentExecutionProperties implements JsonSerializable<ExperimentExecutionProperties> {
+public final class ExperimentExecutionProperties implements JsonSerializable<ExperimentExecutionProperties> {
     /*
      * The status of the execution.
      */
@@ -32,6 +33,11 @@ public class ExperimentExecutionProperties implements JsonSerializable<Experimen
      * String that represents the stop date time.
      */
     private OffsetDateTime stoppedAt;
+
+    /*
+     * Resource provisioning state. Not currently in use for executions.
+     */
+    private ProvisioningState provisioningState;
 
     /**
      * Creates an instance of ExperimentExecutionProperties class.
@@ -49,34 +55,12 @@ public class ExperimentExecutionProperties implements JsonSerializable<Experimen
     }
 
     /**
-     * Set the status property: The status of the execution.
-     * 
-     * @param status the status value to set.
-     * @return the ExperimentExecutionProperties object itself.
-     */
-    ExperimentExecutionProperties withStatus(String status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
      * Get the startedAt property: String that represents the start date time.
      * 
      * @return the startedAt value.
      */
     public OffsetDateTime startedAt() {
         return this.startedAt;
-    }
-
-    /**
-     * Set the startedAt property: String that represents the start date time.
-     * 
-     * @param startedAt the startedAt value to set.
-     * @return the ExperimentExecutionProperties object itself.
-     */
-    ExperimentExecutionProperties withStartedAt(OffsetDateTime startedAt) {
-        this.startedAt = startedAt;
-        return this;
     }
 
     /**
@@ -89,14 +73,12 @@ public class ExperimentExecutionProperties implements JsonSerializable<Experimen
     }
 
     /**
-     * Set the stoppedAt property: String that represents the stop date time.
+     * Get the provisioningState property: Resource provisioning state. Not currently in use for executions.
      * 
-     * @param stoppedAt the stoppedAt value to set.
-     * @return the ExperimentExecutionProperties object itself.
+     * @return the provisioningState value.
      */
-    ExperimentExecutionProperties withStoppedAt(OffsetDateTime stoppedAt) {
-        this.stoppedAt = stoppedAt;
-        return this;
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -140,6 +122,9 @@ public class ExperimentExecutionProperties implements JsonSerializable<Experimen
                 } else if ("stoppedAt".equals(fieldName)) {
                     deserializedExperimentExecutionProperties.stoppedAt = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedExperimentExecutionProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

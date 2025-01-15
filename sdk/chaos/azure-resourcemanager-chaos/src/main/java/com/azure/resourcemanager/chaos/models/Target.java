@@ -34,25 +34,25 @@ public interface Target {
     String type();
 
     /**
-     * Gets the systemData property: The system metadata of the target resource.
+     * Gets the properties property: The properties of the target resource.
      * 
-     * @return the systemData value.
+     * @return the properties value.
      */
-    SystemData systemData();
+    Map<String, Object> properties();
 
     /**
-     * Gets the location property: Location of the target resource.
+     * Gets the location property: Azure resource location.
      * 
      * @return the location value.
      */
     String location();
 
     /**
-     * Gets the properties property: The properties of the target resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the properties value.
+     * @return the systemData value.
      */
-    Map<String, Object> properties();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.chaos.fluent.models.TargetInner object.

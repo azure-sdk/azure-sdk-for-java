@@ -31,6 +31,23 @@
 
 - [Get](#operationstatuses_get)
 
+## Operations
+
+- [ListAll](#operations_listall)
+
+## PrivateAccesses
+
+- [CreateOrUpdate](#privateaccesses_createorupdate)
+- [Delete](#privateaccesses_delete)
+- [DeleteAPrivateEndpointConnection](#privateaccesses_deleteaprivateendpointconnection)
+- [GetAPrivateEndpointConnection](#privateaccesses_getaprivateendpointconnection)
+- [GetByResourceGroup](#privateaccesses_getbyresourcegroup)
+- [GetPrivateLinkResources](#privateaccesses_getprivatelinkresources)
+- [List](#privateaccesses_list)
+- [ListByResourceGroup](#privateaccesses_listbyresourcegroup)
+- [ListPrivateEndpointConnections](#privateaccesses_listprivateendpointconnections)
+- [Update](#privateaccesses_update)
+
 ## TargetTypes
 
 - [Get](#targettypes_get)
@@ -52,8 +69,8 @@ import com.azure.resourcemanager.chaos.fluent.models.CapabilityInner;
  */
 public final class CapabilitiesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CreateUpdateCapability.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * Capabilities_CreateOrUpdate.json
      */
     /**
      * Sample code: Create/update a Capability that extends a virtual machine Target resource.
@@ -78,7 +95,7 @@ public final class CapabilitiesCreateOrUpdateSamples {
 public final class CapabilitiesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DeleteCapability.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Capabilities_Delete.json
      */
     /**
      * Sample code: Delete a Capability that extends a virtual machine Target resource.
@@ -103,7 +120,7 @@ public final class CapabilitiesDeleteSamples {
 public final class CapabilitiesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetCapability.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Capabilities_Get.json
      */
     /**
      * Sample code: Get a Capability that extends a virtual machine Target resource.
@@ -128,7 +145,7 @@ public final class CapabilitiesGetSamples {
 public final class CapabilitiesListSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListCapabilities.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Capabilities_List.json
      */
     /**
      * Sample code: List all Capabilities that extend a virtual machine Target resource.
@@ -153,7 +170,7 @@ public final class CapabilitiesListSamples {
 public final class CapabilityTypesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetCapabilityType.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/CapabilityTypes_Get.json
      */
     /**
      * Sample code: Get a Capability Type for a virtual machine Target resource on westus2 location.
@@ -177,7 +194,8 @@ public final class CapabilityTypesGetSamples {
 public final class CapabilityTypesListSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListCapabilityTypes.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/CapabilityTypes_List.
+     * json
      */
     /**
      * Sample code: List all Capability Types for a virtual machine Target resource on westus2 location.
@@ -200,7 +218,7 @@ public final class CapabilityTypesListSamples {
 public final class ExperimentsCancelSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CancelExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Experiments_Cancel.json
      */
     /**
      * Sample code: Cancel a running Experiment.
@@ -220,21 +238,24 @@ import com.azure.resourcemanager.chaos.models.ChaosExperimentBranch;
 import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
 import com.azure.resourcemanager.chaos.models.ChaosTargetListSelector;
 import com.azure.resourcemanager.chaos.models.ContinuousAction;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.KeyValuePair;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
-import com.azure.resourcemanager.chaos.models.ResourceIdentityType;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.chaos.models.TargetReference;
 import com.azure.resourcemanager.chaos.models.TargetReferenceType;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Samples for Experiments CreateOrUpdate.
  */
 public final class ExperimentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CreateUpdateExperiment.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * Experiments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create/update a Experiment in a resource group.
@@ -259,8 +280,24 @@ public final class ExperimentsCreateOrUpdateSamples {
                 .withTargets(Arrays.asList(new TargetReference().withType(TargetReferenceType.CHAOS_TARGET)
                     .withId(
                         "/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.Compute/virtualMachines/exampleVM/providers/Microsoft.Chaos/targets/Microsoft-VirtualMachine")))))
-            .withIdentity(new ResourceIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withTags(mapOf("key2138", "fakeTokenPlaceholder", "key7131", "fakeTokenPlaceholder"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+            .withCustomerDataStorage(new CustomerDataStorageProperties().withStorageAccountResourceId(
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/exampleRG/providers/Microsoft.Storage/storageAccounts/exampleStorage")
+                .withBlobContainerName("azurechaosstudioexperiments"))
             .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -274,7 +311,7 @@ public final class ExperimentsCreateOrUpdateSamples {
 public final class ExperimentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DeleteExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Experiments_Delete.json
      */
     /**
      * Sample code: Delete a Experiment in a resource group.
@@ -295,8 +332,8 @@ public final class ExperimentsDeleteSamples {
  */
 public final class ExperimentsExecutionDetailsSamples {
     /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DetailsExperiment.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * Experiments_ExecutionDetails.json
      */
     /**
      * Sample code: Get experiment execution details.
@@ -320,7 +357,7 @@ public final class ExperimentsExecutionDetailsSamples {
 public final class ExperimentsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Experiments_Get.json
      */
     /**
      * Sample code: Get a Experiment in a resource group.
@@ -343,7 +380,8 @@ public final class ExperimentsGetByResourceGroupSamples {
 public final class ExperimentsGetExecutionSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetExperimentExecution.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Experiments_GetExecution
+     * .json
      */
     /**
      * Sample code: Get the execution of a Experiment.
@@ -367,8 +405,7 @@ public final class ExperimentsGetExecutionSamples {
 public final class ExperimentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListExperimentsInASubscription.
-     * json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Experiments_ListAll.json
      */
     /**
      * Sample code: List all Experiments in a subscription.
@@ -389,8 +426,8 @@ public final class ExperimentsListSamples {
  */
 public final class ExperimentsListAllExecutionsSamples {
     /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListExperimentExecutions.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * Experiments_ListAllExecutions.json
      */
     /**
      * Sample code: List all executions of an Experiment.
@@ -412,8 +449,7 @@ public final class ExperimentsListAllExecutionsSamples {
 public final class ExperimentsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListExperimentsInAResourceGroup.
-     * json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Experiments_List.json
      */
     /**
      * Sample code: List all Experiments in a resource group.
@@ -435,7 +471,7 @@ public final class ExperimentsListByResourceGroupSamples {
 public final class ExperimentsStartSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/StartExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Experiments_Start.json
      */
     /**
      * Sample code: Start a Experiment.
@@ -452,8 +488,8 @@ public final class ExperimentsStartSamples {
 
 ```java
 import com.azure.resourcemanager.chaos.models.Experiment;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
-import com.azure.resourcemanager.chaos.models.ResourceIdentityType;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.chaos.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -464,7 +500,7 @@ import java.util.Map;
 public final class ExperimentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/UpdateExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Experiments_Update.json
      */
     /**
      * Sample code: Update an Experiment in a resource group.
@@ -477,7 +513,7 @@ public final class ExperimentsUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withIdentity(new ResourceIdentity().withType(ResourceIdentityType.USER_ASSIGNED)
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
                 .withUserAssignedIdentities(mapOf(
                     "/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.ManagedIdentity/userAssignedIdentity/exampleUMI",
                     new UserAssignedIdentity())))
@@ -507,16 +543,333 @@ public final class ExperimentsUpdateSamples {
 public final class OperationStatusesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetOperationStatus.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/OperationStatuses_Get.
+     * json
      */
     /**
-     * Sample code: Get specific operation status.
+     * Sample code: Gets Chaos Studio async operation status.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void getSpecificOperationStatus(com.azure.resourcemanager.chaos.ChaosManager manager) {
+    public static void getsChaosStudioAsyncOperationStatus(com.azure.resourcemanager.chaos.ChaosManager manager) {
         manager.operationStatuses()
-            .getWithResponse("West US", "713192d7-503f-477a-9cfe-4efc3ee2bd11", com.azure.core.util.Context.NONE);
+            .getWithResponse("westus2", "4bdadd97-207c-4de8-9bba-08339ae099c7", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_ListAll
+
+```java
+/**
+ * Samples for Operations ListAll.
+ */
+public final class OperationsListAllSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Operations_List.json
+     */
+    /**
+     * Sample code: Lists all Chaos Studio operations.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void listsAllChaosStudioOperations(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.operations().listAll(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.chaos.models.PublicNetworkAccessOption;
+
+/**
+ * Samples for PrivateAccesses CreateOrUpdate.
+ */
+public final class PrivateAccessesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * PrivateAccesses_CreateOrUpdate_Create_Or_Update_A_Private_Access_Resource.json
+     */
+    /**
+     * Sample code: Create or Update a private access resource.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void createOrUpdateAPrivateAccessResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses()
+            .define("myPrivateAccess")
+            .withRegion("centraluseuap")
+            .withExistingResourceGroup("myResourceGroup")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * PrivateAccesses_CreateOrUpdate_Create_Or_Update_A_Private_Access_Resource_With_Public_Network_Access.json
+     */
+    /**
+     * Sample code: Create or Update a private access resource with publicNetworkAccess.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void createOrUpdateAPrivateAccessResourceWithPublicNetworkAccess(
+        com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses()
+            .define("myPrivateAccess")
+            .withRegion("centraluseuap")
+            .withExistingResourceGroup("myResourceGroup")
+            .withPublicNetworkAccess(PublicNetworkAccessOption.ENABLED)
+            .create();
+    }
+}
+```
+
+### PrivateAccesses_Delete
+
+```java
+/**
+ * Samples for PrivateAccesses Delete.
+ */
+public final class PrivateAccessesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/PrivateAccesses_Delete.
+     * json
+     */
+    /**
+     * Sample code: Delete a private access resource.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void deleteAPrivateAccessResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses().delete("myResourceGroup", "myPrivateAccess", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_DeleteAPrivateEndpointConnection
+
+```java
+/**
+ * Samples for PrivateAccesses DeleteAPrivateEndpointConnection.
+ */
+public final class PrivateAccessesDeleteAPrivateEndpointConnectionSamples {
+    /*
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * PrivateAccesses_DeleteAPrivateEndpointConnection.json
+     */
+    /**
+     * Sample code: Delete a private endpoint connection under a private access resource.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void deleteAPrivateEndpointConnectionUnderAPrivateAccessResource(
+        com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses()
+            .deleteAPrivateEndpointConnection("myResourceGroup", "myPrivateAccess", "myPrivateEndpointConnection",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_GetAPrivateEndpointConnection
+
+```java
+/**
+ * Samples for PrivateAccesses GetAPrivateEndpointConnection.
+ */
+public final class PrivateAccessesGetAPrivateEndpointConnectionSamples {
+    /*
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * PrivateAccesses_GetAPrivateEndpointConnection.json
+     */
+    /**
+     * Sample code: Get information about a private endpoint connection under a private access resource.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void getInformationAboutAPrivateEndpointConnectionUnderAPrivateAccessResource(
+        com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses()
+            .getAPrivateEndpointConnectionWithResponse("myResourceGroup", "myPrivateAccess",
+                "myPrivateEndpointConnection", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_GetByResourceGroup
+
+```java
+/**
+ * Samples for PrivateAccesses GetByResourceGroup.
+ */
+public final class PrivateAccessesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * PrivateAccesses_Get_Get_A_Private_Access_Resource.json
+     */
+    /**
+     * Sample code: Get a private access resource.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void getAPrivateAccessResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses()
+            .getByResourceGroupWithResponse("myResourceGroup", "myPrivateAccess", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * PrivateAccesses_Get_Get_A_Private_Access_Resource_With_Private_Endpoint.json
+     */
+    /**
+     * Sample code: Get a private access resource with private endpoint.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void
+        getAPrivateAccessResourceWithPrivateEndpoint(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses()
+            .getByResourceGroupWithResponse("myResourceGroup", "myPrivateAccess", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_GetPrivateLinkResources
+
+```java
+/**
+ * Samples for PrivateAccesses GetPrivateLinkResources.
+ */
+public final class PrivateAccessesGetPrivateLinkResourcesSamples {
+    /*
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * PrivateAccesses_GetPrivateLinkResources.json
+     */
+    /**
+     * Sample code: List all possible private link resources under private access resource.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void listAllPossiblePrivateLinkResourcesUnderPrivateAccessResource(
+        com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses()
+            .getPrivateLinkResources("myResourceGroup", "myPrivateAccess", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_List
+
+```java
+/**
+ * Samples for PrivateAccesses List.
+ */
+public final class PrivateAccessesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/PrivateAccesses_ListAll.
+     * json
+     */
+    /**
+     * Sample code: List all private accesses in a subscription.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void listAllPrivateAccessesInASubscription(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses().list(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_ListByResourceGroup
+
+```java
+/**
+ * Samples for PrivateAccesses ListByResourceGroup.
+ */
+public final class PrivateAccessesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/PrivateAccesses_List.
+     * json
+     */
+    /**
+     * Sample code: List all private access in a resource group.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void listAllPrivateAccessInAResourceGroup(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses().listByResourceGroup("myResourceGroup", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_ListPrivateEndpointConnections
+
+```java
+/**
+ * Samples for PrivateAccesses ListPrivateEndpointConnections.
+ */
+public final class PrivateAccessesListPrivateEndpointConnectionsSamples {
+    /*
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/
+     * PrivateAccesses_ListPrivateEndpointConnections.json
+     */
+    /**
+     * Sample code: List all private endpoint connections under a private access resource.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void listAllPrivateEndpointConnectionsUnderAPrivateAccessResource(
+        com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.privateAccesses()
+            .listPrivateEndpointConnections("myResourceGroup", "myPrivateAccess", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateAccesses_Update
+
+```java
+import com.azure.resourcemanager.chaos.models.PrivateAccess;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for PrivateAccesses Update.
+ */
+public final class PrivateAccessesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/PrivateAccesses_Update.
+     * json
+     */
+    /**
+     * Sample code: Update a private access resource's tags.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void updateAPrivateAccessResourceSTags(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        PrivateAccess resource = manager.privateAccesses()
+            .getByResourceGroupWithResponse("myResourceGroup", "myPrivateAccess", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -530,7 +883,7 @@ public final class OperationStatusesGetSamples {
 public final class TargetTypesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetTargetType.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/TargetTypes_Get.json
      */
     /**
      * Sample code: Get a Target Type for westus2 location.
@@ -552,7 +905,7 @@ public final class TargetTypesGetSamples {
 public final class TargetTypesListSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListTargetTypes.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/TargetTypes_List.json
      */
     /**
      * Sample code: List all Target Types for westus2 location.
@@ -568,10 +921,7 @@ public final class TargetTypesListSamples {
 ### Targets_CreateOrUpdate
 
 ```java
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.chaos.fluent.models.TargetInner;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -581,22 +931,19 @@ import java.util.Map;
 public final class TargetsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CreateUpdateTarget.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Targets_CreateOrUpdate.
+     * json
      */
     /**
      * Sample code: Create/update a Target that extends a virtual machine resource.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void createUpdateATargetThatExtendsAVirtualMachineResource(
-        com.azure.resourcemanager.chaos.ChaosManager manager) throws IOException {
+    public static void
+        createUpdateATargetThatExtendsAVirtualMachineResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
         manager.targets()
             .createOrUpdateWithResponse("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM",
-                "Microsoft-Agent",
-                new TargetInner().withProperties(mapOf("identities",
-                    SerializerFactory.createDefaultManagementSerializerAdapter()
-                        .deserialize("[{\"type\":\"CertificateSubjectIssuer\",\"subject\":\"CN=example.subject\"}]",
-                            Object.class, SerializerEncoding.JSON))),
+                "Microsoft-VirtualMachine", new TargetInner().withProperties(mapOf()),
                 com.azure.core.util.Context.NONE);
     }
 
@@ -623,7 +970,7 @@ public final class TargetsCreateOrUpdateSamples {
 public final class TargetsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DeleteTarget.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Targets_Delete.json
      */
     /**
      * Sample code: Delete a Target that extends a virtual machine resource.
@@ -648,7 +995,7 @@ public final class TargetsDeleteSamples {
 public final class TargetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetTarget.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Targets_Get.json
      */
     /**
      * Sample code: Get a Target that extends a virtual machine resource.
@@ -673,7 +1020,7 @@ public final class TargetsGetSamples {
 public final class TargetsListSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListTargets.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-11-01-preview/examples/Targets_List.json
      */
     /**
      * Sample code: List all Targets that extend a virtual machine resource.

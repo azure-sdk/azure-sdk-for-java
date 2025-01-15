@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface ChaosManagementClient {
     /**
-     * Gets GUID that represents an Azure subscription ID.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -47,18 +47,11 @@ public interface ChaosManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the CapabilitiesClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      * 
-     * @return the CapabilitiesClient object.
+     * @return the OperationsClient object.
      */
-    CapabilitiesClient getCapabilities();
-
-    /**
-     * Gets the CapabilityTypesClient object to access its operations.
-     * 
-     * @return the CapabilityTypesClient object.
-     */
-    CapabilityTypesClient getCapabilityTypes();
+    OperationsClient getOperations();
 
     /**
      * Gets the ExperimentsClient object to access its operations.
@@ -75,13 +68,6 @@ public interface ChaosManagementClient {
     OperationStatusesClient getOperationStatuses();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the TargetTypesClient object to access its operations.
      * 
      * @return the TargetTypesClient object.
@@ -89,9 +75,30 @@ public interface ChaosManagementClient {
     TargetTypesClient getTargetTypes();
 
     /**
+     * Gets the CapabilityTypesClient object to access its operations.
+     * 
+     * @return the CapabilityTypesClient object.
+     */
+    CapabilityTypesClient getCapabilityTypes();
+
+    /**
+     * Gets the PrivateAccessesClient object to access its operations.
+     * 
+     * @return the PrivateAccessesClient object.
+     */
+    PrivateAccessesClient getPrivateAccesses();
+
+    /**
      * Gets the TargetsClient object to access its operations.
      * 
      * @return the TargetsClient object.
      */
     TargetsClient getTargets();
+
+    /**
+     * Gets the CapabilitiesClient object to access its operations.
+     * 
+     * @return the CapabilitiesClient object.
+     */
+    CapabilitiesClient getCapabilities();
 }

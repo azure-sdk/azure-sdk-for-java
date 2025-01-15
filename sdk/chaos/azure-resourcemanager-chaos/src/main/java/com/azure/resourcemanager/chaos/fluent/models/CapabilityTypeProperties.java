@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.chaos.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Model that represents the Capability Type properties model.
  */
-@Fluent
+@Immutable
 public final class CapabilityTypeProperties implements JsonSerializable<CapabilityTypeProperties> {
     /*
      * String of the Publisher that this Capability Type extends.
@@ -147,17 +147,6 @@ public final class CapabilityTypeProperties implements JsonSerializable<Capabili
     }
 
     /**
-     * Set the azureRbacActions property: Control plane actions necessary to execute capability type.
-     * 
-     * @param azureRbacActions the azureRbacActions value to set.
-     * @return the CapabilityTypeProperties object itself.
-     */
-    public CapabilityTypeProperties withAzureRbacActions(List<String> azureRbacActions) {
-        this.azureRbacActions = azureRbacActions;
-        return this;
-    }
-
-    /**
      * Get the azureRbacDataActions property: Data plane actions necessary to execute capability type.
      * 
      * @return the azureRbacDataActions value.
@@ -167,34 +156,12 @@ public final class CapabilityTypeProperties implements JsonSerializable<Capabili
     }
 
     /**
-     * Set the azureRbacDataActions property: Data plane actions necessary to execute capability type.
-     * 
-     * @param azureRbacDataActions the azureRbacDataActions value to set.
-     * @return the CapabilityTypeProperties object itself.
-     */
-    public CapabilityTypeProperties withAzureRbacDataActions(List<String> azureRbacDataActions) {
-        this.azureRbacDataActions = azureRbacDataActions;
-        return this;
-    }
-
-    /**
      * Get the runtimeProperties property: Runtime properties of this Capability Type.
      * 
      * @return the runtimeProperties value.
      */
     public CapabilityTypePropertiesRuntimeProperties runtimeProperties() {
         return this.runtimeProperties;
-    }
-
-    /**
-     * Set the runtimeProperties property: Runtime properties of this Capability Type.
-     * 
-     * @param runtimeProperties the runtimeProperties value to set.
-     * @return the CapabilityTypeProperties object itself.
-     */
-    public CapabilityTypeProperties withRuntimeProperties(CapabilityTypePropertiesRuntimeProperties runtimeProperties) {
-        this.runtimeProperties = runtimeProperties;
-        return this;
     }
 
     /**
@@ -214,11 +181,6 @@ public final class CapabilityTypeProperties implements JsonSerializable<Capabili
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("azureRbacActions", this.azureRbacActions,
-            (writer, element) -> writer.writeString(element));
-        jsonWriter.writeArrayField("azureRbacDataActions", this.azureRbacDataActions,
-            (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("runtimeProperties", this.runtimeProperties);
         return jsonWriter.writeEndObject();
     }
 
