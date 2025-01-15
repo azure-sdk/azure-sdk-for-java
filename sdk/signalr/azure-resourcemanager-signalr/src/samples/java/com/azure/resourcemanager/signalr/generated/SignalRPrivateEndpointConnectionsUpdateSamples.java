@@ -14,7 +14,8 @@ import com.azure.resourcemanager.signalr.models.PrivateLinkServiceConnectionStat
  */
 public final class SignalRPrivateEndpointConnectionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/signalr/resource-manager/Microsoft.SignalRService/stable/2023-02-01/examples/
+     * x-ms-original-file:
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2025-01-01-preview/examples/
      * SignalRPrivateEndpointConnections_Update.json
      */
     /**
@@ -27,8 +28,7 @@ public final class SignalRPrivateEndpointConnectionsUpdateSamples {
         manager.signalRPrivateEndpointConnections()
             .updateWithResponse("mysignalrservice.1fa229cd-bf3f-47f0-8c49-afb36723997e", "myResourceGroup",
                 "mySignalRService",
-                new PrivateEndpointConnectionInner().withPrivateEndpoint(new PrivateEndpoint().withId(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/Microsoft.Network/privateEndpoints/myPrivateEndpoint"))
+                new PrivateEndpointConnectionInner().withPrivateEndpoint(new PrivateEndpoint())
                     .withPrivateLinkServiceConnectionState(
                         new PrivateLinkServiceConnectionState().withStatus(PrivateLinkServiceConnectionStatus.APPROVED)
                             .withActionsRequired("None")),

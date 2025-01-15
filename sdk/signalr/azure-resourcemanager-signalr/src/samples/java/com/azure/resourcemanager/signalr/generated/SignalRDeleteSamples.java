@@ -10,7 +10,8 @@ package com.azure.resourcemanager.signalr.generated;
 public final class SignalRDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/signalr/resource-manager/Microsoft.SignalRService/stable/2023-02-01/examples/SignalR_Delete.json
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2025-01-01-preview/examples/
+     * SignalR_Delete.json
      */
     /**
      * Sample code: SignalR_Delete.

@@ -29,6 +29,8 @@ import com.azure.resourcemanager.signalr.fluent.SignalRCustomDomainsClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRManagementClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateLinkResourcesClient;
+import com.azure.resourcemanager.signalr.fluent.SignalRReplicaSharedPrivateLinkResourcesClient;
+import com.azure.resourcemanager.signalr.fluent.SignalRReplicasClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRSharedPrivateLinkResourcesClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRsClient;
 import com.azure.resourcemanager.signalr.fluent.UsagesClient;
@@ -47,14 +49,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = SignalRManagementClientBuilder.class)
 public final class SignalRManagementClientImpl implements SignalRManagementClient {
     /**
-     * Gets subscription Id which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of
-     * the URI for every service call.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets Gets subscription Id which uniquely identify the Microsoft Azure subscription. The subscription ID forms
-     * part of the URI for every service call.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -231,6 +231,34 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
     }
 
     /**
+     * The SignalRReplicasClient object to access its operations.
+     */
+    private final SignalRReplicasClient signalRReplicas;
+
+    /**
+     * Gets the SignalRReplicasClient object to access its operations.
+     * 
+     * @return the SignalRReplicasClient object.
+     */
+    public SignalRReplicasClient getSignalRReplicas() {
+        return this.signalRReplicas;
+    }
+
+    /**
+     * The SignalRReplicaSharedPrivateLinkResourcesClient object to access its operations.
+     */
+    private final SignalRReplicaSharedPrivateLinkResourcesClient signalRReplicaSharedPrivateLinkResources;
+
+    /**
+     * Gets the SignalRReplicaSharedPrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the SignalRReplicaSharedPrivateLinkResourcesClient object.
+     */
+    public SignalRReplicaSharedPrivateLinkResourcesClient getSignalRReplicaSharedPrivateLinkResources() {
+        return this.signalRReplicaSharedPrivateLinkResources;
+    }
+
+    /**
      * The SignalRSharedPrivateLinkResourcesClient object to access its operations.
      */
     private final SignalRSharedPrivateLinkResourcesClient signalRSharedPrivateLinkResources;
@@ -251,8 +279,7 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId Gets subscription Id which uniquely identify the Microsoft Azure subscription. The
-     * subscription ID forms part of the URI for every service call.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     SignalRManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -262,7 +289,7 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-02-01";
+        this.apiVersion = "2025-01-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.signalRs = new SignalRsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
@@ -270,6 +297,8 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
         this.signalRCustomDomains = new SignalRCustomDomainsClientImpl(this);
         this.signalRPrivateEndpointConnections = new SignalRPrivateEndpointConnectionsClientImpl(this);
         this.signalRPrivateLinkResources = new SignalRPrivateLinkResourcesClientImpl(this);
+        this.signalRReplicas = new SignalRReplicasClientImpl(this);
+        this.signalRReplicaSharedPrivateLinkResources = new SignalRReplicaSharedPrivateLinkResourcesClientImpl(this);
         this.signalRSharedPrivateLinkResources = new SignalRSharedPrivateLinkResourcesClientImpl(this);
     }
 

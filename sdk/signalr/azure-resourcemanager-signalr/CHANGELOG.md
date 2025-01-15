@@ -1,14 +1,133 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-15)
 
-### Features Added
+- Azure Resource Manager SignalR client library for Java. This package contains Microsoft Azure SDK for SignalR Management SDK. REST API for Azure SignalR Service. Package tag package-2025-01-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.SharedPrivateLinkResource$DefinitionStages` was modified
 
-### Other Changes
+* `withExistingSignalR(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.SignalRSharedPrivateLinkResources` was modified
+
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `define(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.SharedPrivateLinkResource$Definition` was modified
+
+* `withExistingSignalR(java.lang.String,java.lang.String)` was removed
+
+### Features Added
+
+* `models.ClientConnectionCountRuleDiscriminator` was added
+
+* `models.ClientTrafficControlRuleDiscriminator` was added
+
+* `models.SignalRReplicas` was added
+
+* `models.SignalRReplicaSharedPrivateLinkResources` was added
+
+* `models.TrafficThrottleByJwtCustomClaimRule` was added
+
+* `models.TrafficThrottleByJwtSignatureRule` was added
+
+* `models.ThrottleByUserIdRule` was added
+
+* `models.Replica` was added
+
+* `models.IpRule` was added
+
+* `models.Replica$Update` was added
+
+* `models.ClientTrafficControlRule` was added
+
+* `models.ThrottleByJwtSignatureRule` was added
+
+* `models.TrafficThrottleByUserIdRule` was added
+
+* `models.ApplicationFirewallSettings` was added
+
+* `models.ReplicaList` was added
+
+* `models.Replica$DefinitionStages` was added
+
+* `models.Replica$UpdateStages` was added
+
+* `models.ThrottleByJwtCustomClaimRule` was added
+
+* `models.Replica$Definition` was added
+
+* `models.ClientConnectionCountRule` was added
+
+* `models.RouteSettings` was added
+
+#### `models.ServerlessSettings` was modified
+
+* `keepAliveIntervalInSeconds()` was added
+* `withKeepAliveIntervalInSeconds(java.lang.Integer)` was added
+
+#### `models.SignalRSharedPrivateLinkResources` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.SharedPrivateLinkResourceInner,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.SharedPrivateLinkResourceInner)` was added
+
+#### `models.SignalRs` was modified
+
+* `listReplicaSkusWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listReplicaSkus(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.SharedPrivateLinkResource` was modified
+
+* `fqdns()` was added
+
+#### `models.PrivateLinkResource` was modified
+
+* `systemData()` was added
+
+#### `models.SharedPrivateLinkResource$Definition` was modified
+
+* `withFqdns(java.util.List)` was added
+* `withExistingReplica(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.SignalRNetworkACLs` was modified
+
+* `withIpRules(java.util.List)` was added
+* `ipRules()` was added
+
+#### `models.SignalRResource$Definition` was modified
+
+* `withResourceStopped(java.lang.String)` was added
+* `withRegionEndpointEnabled(java.lang.String)` was added
+* `withRouteSettings(models.RouteSettings)` was added
+* `withApplicationFirewall(models.ApplicationFirewallSettings)` was added
+
+#### `models.SignalRResource` was modified
+
+* `applicationFirewall()` was added
+* `regionEndpointEnabled()` was added
+* `resourceStopped()` was added
+* `routeSettings()` was added
+
+#### `models.SignalRResource$Update` was modified
+
+* `withRouteSettings(models.RouteSettings)` was added
+* `withRegionEndpointEnabled(java.lang.String)` was added
+* `withResourceStopped(java.lang.String)` was added
+* `withApplicationFirewall(models.ApplicationFirewallSettings)` was added
+
+#### `models.SharedPrivateLinkResource$Update` was modified
+
+* `withFqdns(java.util.List)` was added
+
+#### `SignalRManager` was modified
+
+* `signalRReplicaSharedPrivateLinkResources()` was added
+* `signalRReplicas()` was added
 
 ## 1.0.0 (2024-12-24)
 

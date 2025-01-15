@@ -12,8 +12,7 @@ import java.time.Duration;
  */
 public interface SignalRManagementClient {
     /**
-     * Gets Gets subscription Id which uniquely identify the Microsoft Azure subscription. The subscription ID forms
-     * part of the URI for every service call.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -95,6 +94,20 @@ public interface SignalRManagementClient {
      * @return the SignalRPrivateLinkResourcesClient object.
      */
     SignalRPrivateLinkResourcesClient getSignalRPrivateLinkResources();
+
+    /**
+     * Gets the SignalRReplicasClient object to access its operations.
+     * 
+     * @return the SignalRReplicasClient object.
+     */
+    SignalRReplicasClient getSignalRReplicas();
+
+    /**
+     * Gets the SignalRReplicaSharedPrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the SignalRReplicaSharedPrivateLinkResourcesClient object.
+     */
+    SignalRReplicaSharedPrivateLinkResourcesClient getSignalRReplicaSharedPrivateLinkResources();
 
     /**
      * Gets the SignalRSharedPrivateLinkResourcesClient object to access its operations.

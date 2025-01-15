@@ -11,7 +11,8 @@ import com.azure.resourcemanager.signalr.models.ResourceReference;
  */
 public final class SignalRCustomDomainsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/signalr/resource-manager/Microsoft.SignalRService/stable/2023-02-01/examples/
+     * x-ms-original-file:
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2025-01-01-preview/examples/
      * SignalRCustomDomains_CreateOrUpdate.json
      */
     /**

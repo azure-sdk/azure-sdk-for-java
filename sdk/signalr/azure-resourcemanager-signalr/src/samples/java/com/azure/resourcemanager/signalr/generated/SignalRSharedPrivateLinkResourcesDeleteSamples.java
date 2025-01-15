@@ -9,7 +9,8 @@ package com.azure.resourcemanager.signalr.generated;
  */
 public final class SignalRSharedPrivateLinkResourcesDeleteSamples {
     /*
-     * x-ms-original-file: specification/signalr/resource-manager/Microsoft.SignalRService/stable/2023-02-01/examples/
+     * x-ms-original-file:
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2025-01-01-preview/examples/
      * SignalRSharedPrivateLinkResources_Delete.json
      */
     /**

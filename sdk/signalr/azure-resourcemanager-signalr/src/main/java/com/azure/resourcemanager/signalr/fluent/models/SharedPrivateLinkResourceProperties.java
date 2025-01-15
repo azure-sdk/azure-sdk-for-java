@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.azure.resourcemanager.signalr.models.SharedPrivateLinkResourceStatus;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Describes the properties of an existing Shared Private Link Resource.
@@ -39,6 +40,11 @@ public final class SharedPrivateLinkResourceProperties
      * The request message for requesting approval of the shared private link resource
      */
     private String requestMessage;
+
+    /*
+     * A list of FQDNs for third party private link service
+     */
+    private List<String> fqdns;
 
     /*
      * Status of the shared private link resource
@@ -121,6 +127,26 @@ public final class SharedPrivateLinkResourceProperties
     }
 
     /**
+     * Get the fqdns property: A list of FQDNs for third party private link service.
+     * 
+     * @return the fqdns value.
+     */
+    public List<String> fqdns() {
+        return this.fqdns;
+    }
+
+    /**
+     * Set the fqdns property: A list of FQDNs for third party private link service.
+     * 
+     * @param fqdns the fqdns value to set.
+     * @return the SharedPrivateLinkResourceProperties object itself.
+     */
+    public SharedPrivateLinkResourceProperties withFqdns(List<String> fqdns) {
+        this.fqdns = fqdns;
+        return this;
+    }
+
+    /**
      * Get the status property: Status of the shared private link resource.
      * 
      * @return the status value.
@@ -158,6 +184,7 @@ public final class SharedPrivateLinkResourceProperties
         jsonWriter.writeStringField("groupId", this.groupId);
         jsonWriter.writeStringField("privateLinkResourceId", this.privateLinkResourceId);
         jsonWriter.writeStringField("requestMessage", this.requestMessage);
+        jsonWriter.writeArrayField("fqdns", this.fqdns, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -187,6 +214,9 @@ public final class SharedPrivateLinkResourceProperties
                         = ProvisioningState.fromString(reader.getString());
                 } else if ("requestMessage".equals(fieldName)) {
                     deserializedSharedPrivateLinkResourceProperties.requestMessage = reader.getString();
+                } else if ("fqdns".equals(fieldName)) {
+                    List<String> fqdns = reader.readArray(reader1 -> reader1.getString());
+                    deserializedSharedPrivateLinkResourceProperties.fqdns = fqdns;
                 } else if ("status".equals(fieldName)) {
                     deserializedSharedPrivateLinkResourceProperties.status
                         = SharedPrivateLinkResourceStatus.fromString(reader.getString());

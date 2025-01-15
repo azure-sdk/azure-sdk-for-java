@@ -10,7 +10,8 @@ package com.azure.resourcemanager.signalr.generated;
 public final class SignalRGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/signalr/resource-manager/Microsoft.SignalRService/stable/2023-02-01/examples/SignalR_Get.json
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2025-01-01-preview/examples/SignalR_Get.
+     * json
      */
     /**
      * Sample code: SignalR_Get.

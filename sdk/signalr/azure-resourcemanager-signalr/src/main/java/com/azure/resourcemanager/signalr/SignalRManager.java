@@ -30,6 +30,8 @@ import com.azure.resourcemanager.signalr.implementation.SignalRCustomDomainsImpl
 import com.azure.resourcemanager.signalr.implementation.SignalRManagementClientBuilder;
 import com.azure.resourcemanager.signalr.implementation.SignalRPrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.signalr.implementation.SignalRPrivateLinkResourcesImpl;
+import com.azure.resourcemanager.signalr.implementation.SignalRReplicaSharedPrivateLinkResourcesImpl;
+import com.azure.resourcemanager.signalr.implementation.SignalRReplicasImpl;
 import com.azure.resourcemanager.signalr.implementation.SignalRSharedPrivateLinkResourcesImpl;
 import com.azure.resourcemanager.signalr.implementation.SignalRsImpl;
 import com.azure.resourcemanager.signalr.implementation.UsagesImpl;
@@ -38,6 +40,8 @@ import com.azure.resourcemanager.signalr.models.SignalRCustomCertificates;
 import com.azure.resourcemanager.signalr.models.SignalRCustomDomains;
 import com.azure.resourcemanager.signalr.models.SignalRPrivateEndpointConnections;
 import com.azure.resourcemanager.signalr.models.SignalRPrivateLinkResources;
+import com.azure.resourcemanager.signalr.models.SignalRReplicaSharedPrivateLinkResources;
+import com.azure.resourcemanager.signalr.models.SignalRReplicas;
 import com.azure.resourcemanager.signalr.models.SignalRSharedPrivateLinkResources;
 import com.azure.resourcemanager.signalr.models.SignalRs;
 import com.azure.resourcemanager.signalr.models.Usages;
@@ -66,6 +70,10 @@ public final class SignalRManager {
     private SignalRPrivateEndpointConnections signalRPrivateEndpointConnections;
 
     private SignalRPrivateLinkResources signalRPrivateLinkResources;
+
+    private SignalRReplicas signalRReplicas;
+
+    private SignalRReplicaSharedPrivateLinkResources signalRReplicaSharedPrivateLinkResources;
 
     private SignalRSharedPrivateLinkResources signalRSharedPrivateLinkResources;
 
@@ -233,7 +241,7 @@ public final class SignalRManager {
                 .append("-")
                 .append("com.azure.resourcemanager.signalr")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -367,7 +375,33 @@ public final class SignalRManager {
     }
 
     /**
-     * Gets the resource collection API of SignalRSharedPrivateLinkResources. It manages SharedPrivateLinkResource.
+     * Gets the resource collection API of SignalRReplicas. It manages Replica.
+     * 
+     * @return Resource collection API of SignalRReplicas.
+     */
+    public SignalRReplicas signalRReplicas() {
+        if (this.signalRReplicas == null) {
+            this.signalRReplicas = new SignalRReplicasImpl(clientObject.getSignalRReplicas(), this);
+        }
+        return signalRReplicas;
+    }
+
+    /**
+     * Gets the resource collection API of SignalRReplicaSharedPrivateLinkResources. It manages
+     * SharedPrivateLinkResource.
+     * 
+     * @return Resource collection API of SignalRReplicaSharedPrivateLinkResources.
+     */
+    public SignalRReplicaSharedPrivateLinkResources signalRReplicaSharedPrivateLinkResources() {
+        if (this.signalRReplicaSharedPrivateLinkResources == null) {
+            this.signalRReplicaSharedPrivateLinkResources = new SignalRReplicaSharedPrivateLinkResourcesImpl(
+                clientObject.getSignalRReplicaSharedPrivateLinkResources(), this);
+        }
+        return signalRReplicaSharedPrivateLinkResources;
+    }
+
+    /**
+     * Gets the resource collection API of SignalRSharedPrivateLinkResources.
      * 
      * @return Resource collection API of SignalRSharedPrivateLinkResources.
      */

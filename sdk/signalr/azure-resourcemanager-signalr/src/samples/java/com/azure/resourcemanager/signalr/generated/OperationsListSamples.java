@@ -10,7 +10,8 @@ package com.azure.resourcemanager.signalr.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/signalr/resource-manager/Microsoft.SignalRService/stable/2023-02-01/examples/Operations_List.json
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2025-01-01-preview/examples/
+     * Operations_List.json
      */
     /**
      * Sample code: Operations_List.

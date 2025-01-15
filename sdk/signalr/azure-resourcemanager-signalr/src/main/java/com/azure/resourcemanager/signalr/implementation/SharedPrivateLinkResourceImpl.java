@@ -10,6 +10,8 @@ import com.azure.resourcemanager.signalr.fluent.models.SharedPrivateLinkResource
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.azure.resourcemanager.signalr.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.signalr.models.SharedPrivateLinkResourceStatus;
+import java.util.Collections;
+import java.util.List;
 
 public final class SharedPrivateLinkResourceImpl
     implements SharedPrivateLinkResource, SharedPrivateLinkResource.Definition, SharedPrivateLinkResource.Update {
@@ -49,6 +51,15 @@ public final class SharedPrivateLinkResourceImpl
         return this.innerModel().requestMessage();
     }
 
+    public List<String> fqdns() {
+        List<String> inner = this.innerModel().fqdns();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public SharedPrivateLinkResourceStatus status() {
         return this.innerModel().status();
     }
@@ -65,30 +76,35 @@ public final class SharedPrivateLinkResourceImpl
         return this.serviceManager;
     }
 
-    private String sharedPrivateLinkResourceName;
-
     private String resourceGroupName;
 
     private String resourceName;
 
-    public SharedPrivateLinkResourceImpl withExistingSignalR(String resourceGroupName, String resourceName) {
+    private String replicaName;
+
+    private String sharedPrivateLinkResourceName;
+
+    public SharedPrivateLinkResourceImpl withExistingReplica(String resourceGroupName, String resourceName,
+        String replicaName) {
         this.resourceGroupName = resourceGroupName;
         this.resourceName = resourceName;
+        this.replicaName = replicaName;
         return this;
     }
 
     public SharedPrivateLinkResource create() {
         this.innerObject = serviceManager.serviceClient()
-            .getSignalRSharedPrivateLinkResources()
-            .createOrUpdate(sharedPrivateLinkResourceName, resourceGroupName, resourceName, this.innerModel(),
-                Context.NONE);
+            .getSignalRReplicaSharedPrivateLinkResources()
+            .createOrUpdate(resourceGroupName, resourceName, replicaName, sharedPrivateLinkResourceName,
+                this.innerModel(), Context.NONE);
         return this;
     }
 
     public SharedPrivateLinkResource create(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getSignalRSharedPrivateLinkResources()
-            .createOrUpdate(sharedPrivateLinkResourceName, resourceGroupName, resourceName, this.innerModel(), context);
+            .getSignalRReplicaSharedPrivateLinkResources()
+            .createOrUpdate(resourceGroupName, resourceName, replicaName, sharedPrivateLinkResourceName,
+                this.innerModel(), context);
         return this;
     }
 
@@ -104,16 +120,17 @@ public final class SharedPrivateLinkResourceImpl
 
     public SharedPrivateLinkResource apply() {
         this.innerObject = serviceManager.serviceClient()
-            .getSignalRSharedPrivateLinkResources()
-            .createOrUpdate(sharedPrivateLinkResourceName, resourceGroupName, resourceName, this.innerModel(),
-                Context.NONE);
+            .getSignalRReplicaSharedPrivateLinkResources()
+            .createOrUpdate(resourceGroupName, resourceName, replicaName, sharedPrivateLinkResourceName,
+                this.innerModel(), Context.NONE);
         return this;
     }
 
     public SharedPrivateLinkResource apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getSignalRSharedPrivateLinkResources()
-            .createOrUpdate(sharedPrivateLinkResourceName, resourceGroupName, resourceName, this.innerModel(), context);
+            .getSignalRReplicaSharedPrivateLinkResources()
+            .createOrUpdate(resourceGroupName, resourceName, replicaName, sharedPrivateLinkResourceName,
+                this.innerModel(), context);
         return this;
     }
 
@@ -121,24 +138,25 @@ public final class SharedPrivateLinkResourceImpl
         com.azure.resourcemanager.signalr.SignalRManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.sharedPrivateLinkResourceName
-            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "sharedPrivateLinkResources");
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
         this.resourceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "signalR");
+        this.replicaName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "replicas");
+        this.sharedPrivateLinkResourceName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "sharedPrivateLinkResources");
     }
 
     public SharedPrivateLinkResource refresh() {
         this.innerObject = serviceManager.serviceClient()
-            .getSignalRSharedPrivateLinkResources()
-            .getWithResponse(sharedPrivateLinkResourceName, resourceGroupName, resourceName, Context.NONE)
+            .getSignalRReplicaSharedPrivateLinkResources()
+            .getWithResponse(resourceGroupName, resourceName, replicaName, sharedPrivateLinkResourceName, Context.NONE)
             .getValue();
         return this;
     }
 
     public SharedPrivateLinkResource refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getSignalRSharedPrivateLinkResources()
-            .getWithResponse(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context)
+            .getSignalRReplicaSharedPrivateLinkResources()
+            .getWithResponse(resourceGroupName, resourceName, replicaName, sharedPrivateLinkResourceName, context)
             .getValue();
         return this;
     }
@@ -155,6 +173,11 @@ public final class SharedPrivateLinkResourceImpl
 
     public SharedPrivateLinkResourceImpl withRequestMessage(String requestMessage) {
         this.innerModel().withRequestMessage(requestMessage);
+        return this;
+    }
+
+    public SharedPrivateLinkResourceImpl withFqdns(List<String> fqdns) {
+        this.innerModel().withFqdns(fqdns);
         return this;
     }
 }

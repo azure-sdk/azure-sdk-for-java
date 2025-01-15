@@ -152,13 +152,23 @@ public final class SignalRsClientImpl implements SignalRsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/signalR/{resourceName}/regenerateKey")
-        @ExpectedResponses({ 202 })
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> regenerateKey(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
             @BodyParam("application/json") RegenerateKeyParameters parameters, @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/signalR/{resourceName}/replicas/{replicaName}/skus")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SkuListInner>> listReplicaSkus(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
+            @PathParam("replicaName") String replicaName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/signalR/{resourceName}/restart")
@@ -198,7 +208,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Checks that the resource name is valid and is not already in use.
      * 
-     * @param location the region.
+     * @param location The region.
      * @param parameters Parameters supplied to the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -235,7 +245,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Checks that the resource name is valid and is not already in use.
      * 
-     * @param location the region.
+     * @param location The region.
      * @param parameters Parameters supplied to the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -272,7 +282,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Checks that the resource name is valid and is not already in use.
      * 
-     * @param location the region.
+     * @param location The region.
      * @param parameters Parameters supplied to the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -289,7 +299,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Checks that the resource name is valid and is not already in use.
      * 
-     * @param location the region.
+     * @param location The region.
      * @param parameters Parameters supplied to the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -306,7 +316,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Checks that the resource name is valid and is not already in use.
      * 
-     * @param location the region.
+     * @param location The region.
      * @param parameters Parameters supplied to the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -435,8 +445,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Handles requests to list all resources in a resource group.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -469,8 +478,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Handles requests to list all resources in a resource group.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -505,8 +513,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Handles requests to list all resources in a resource group.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -522,8 +529,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Handles requests to list all resources in a resource group.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -540,8 +546,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Handles requests to list all resources in a resource group.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -556,8 +561,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Handles requests to list all resources in a resource group.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -573,8 +577,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the resource and its properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -609,8 +612,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the resource and its properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -645,8 +647,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the resource and its properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -662,8 +663,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the resource and its properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -680,8 +680,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the resource and its properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -696,8 +695,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -738,8 +736,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -780,8 +777,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -801,8 +797,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -824,8 +819,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -842,8 +836,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -861,8 +854,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -880,8 +872,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -900,8 +891,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -918,8 +908,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Create or update a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -937,8 +926,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -972,8 +960,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1008,8 +995,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1026,8 +1012,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1047,8 +1032,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1063,8 +1047,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1081,8 +1064,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1097,8 +1079,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1115,8 +1096,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1130,8 +1110,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to delete a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1146,8 +1125,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1188,8 +1166,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @param context The context to associate with this operation.
@@ -1230,8 +1207,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1250,8 +1226,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @param context The context to associate with this operation.
@@ -1273,8 +1248,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1291,8 +1265,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @param context The context to associate with this operation.
@@ -1310,8 +1283,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1329,8 +1301,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @param context The context to associate with this operation.
@@ -1349,8 +1320,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1366,8 +1336,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to update an exiting resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameters for the update operation.
      * @param context The context to associate with this operation.
@@ -1385,8 +1354,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the access keys of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1420,8 +1388,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the access keys of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1456,8 +1423,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the access keys of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1473,8 +1439,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the access keys of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1491,8 +1456,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Get the access keys of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1507,8 +1471,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1550,8 +1513,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @param context The context to associate with this operation.
@@ -1593,8 +1555,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1614,8 +1575,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @param context The context to associate with this operation.
@@ -1637,8 +1597,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1655,8 +1614,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @param context The context to associate with this operation.
@@ -1674,8 +1632,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1693,8 +1650,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @param context The context to associate with this operation.
@@ -1713,8 +1669,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1731,8 +1686,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @param context The context to associate with this operation.
@@ -1748,10 +1702,138 @@ public final class SignalRsClientImpl implements SignalRsClient {
     }
 
     /**
+     * List all available skus of the replica resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName The name of the resource.
+     * @param replicaName The name of the replica.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list skus operation response along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SkuListInner>> listReplicaSkusWithResponseAsync(String resourceGroupName, String resourceName,
+        String replicaName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        if (replicaName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter replicaName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listReplicaSkus(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, resourceName, replicaName, this.client.getApiVersion(), accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List all available skus of the replica resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName The name of the resource.
+     * @param replicaName The name of the replica.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list skus operation response along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SkuListInner>> listReplicaSkusWithResponseAsync(String resourceGroupName, String resourceName,
+        String replicaName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        if (replicaName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter replicaName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listReplicaSkus(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            resourceName, replicaName, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * List all available skus of the replica resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName The name of the resource.
+     * @param replicaName The name of the replica.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list skus operation response on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SkuListInner> listReplicaSkusAsync(String resourceGroupName, String resourceName, String replicaName) {
+        return listReplicaSkusWithResponseAsync(resourceGroupName, resourceName, replicaName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * List all available skus of the replica resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName The name of the resource.
+     * @param replicaName The name of the replica.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list skus operation response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SkuListInner> listReplicaSkusWithResponse(String resourceGroupName, String resourceName,
+        String replicaName, Context context) {
+        return listReplicaSkusWithResponseAsync(resourceGroupName, resourceName, replicaName, context).block();
+    }
+
+    /**
+     * List all available skus of the replica resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName The name of the resource.
+     * @param replicaName The name of the replica.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list skus operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SkuListInner listReplicaSkus(String resourceGroupName, String resourceName, String replicaName) {
+        return listReplicaSkusWithResponse(resourceGroupName, resourceName, replicaName, Context.NONE).getValue();
+    }
+
+    /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1785,8 +1867,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1821,8 +1902,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1839,8 +1919,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1860,8 +1939,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1876,8 +1954,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1894,8 +1971,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1910,8 +1986,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1928,8 +2003,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1943,8 +2017,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * Operation to restart a resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1959,8 +2032,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * List all available skus of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1994,8 +2066,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * List all available skus of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2030,8 +2101,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * List all available skus of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2047,8 +2117,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * List all available skus of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2064,8 +2133,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     /**
      * List all available skus of the resource.
      * 
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     * from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -36,7 +36,8 @@ import java.util.Map;
 public final class SignalRUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/signalr/resource-manager/Microsoft.SignalRService/stable/2023-02-01/examples/SignalR_Update.json
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2025-01-01-preview/examples/
+     * SignalR_Update.json
      */
     /**
      * Sample code: SignalR_Update.
@@ -69,7 +70,8 @@ public final class SignalRUpdateSamples {
                 .withCategories(
                     Arrays.asList(new LiveTraceCategory().withName("ConnectivityLogs").withEnabled("true"))))
             .withCors(new SignalRCorsSettings().withAllowedOrigins(Arrays.asList("https://foo.com", "https://bar.com")))
-            .withServerless(new ServerlessSettings().withConnectionTimeoutInSeconds(5))
+            .withServerless(
+                new ServerlessSettings().withConnectionTimeoutInSeconds(5).withKeepAliveIntervalInSeconds(5))
             .withUpstream(
                 new ServerlessUpstreamSettings().withTemplates(Arrays.asList(new UpstreamTemplate().withHubPattern("*")
                     .withEventPattern("connect,disconnect")
