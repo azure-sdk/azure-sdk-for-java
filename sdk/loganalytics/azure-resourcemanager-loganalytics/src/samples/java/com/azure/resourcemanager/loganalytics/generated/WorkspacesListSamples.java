@@ -10,7 +10,7 @@ package com.azure.resourcemanager.loganalytics.generated;
 public final class WorkspacesListSamples {
     /*
      * x-ms-original-file:
-     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/
      * WorkspacesSubscriptionList.json
      */
     /**

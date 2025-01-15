@@ -165,11 +165,10 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<ClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -201,11 +200,10 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, apiVersion,
+            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
                 this.client.getSubscriptionId(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -289,11 +287,10 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<ClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -319,10 +316,11 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -415,11 +413,10 @@ public final class ClustersClientImpl implements ClustersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, apiVersion,
-                this.client.getSubscriptionId(), clusterName, parameters, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), clusterName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -459,10 +456,9 @@ public final class ClustersClientImpl implements ClustersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, apiVersion,
+        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), clusterName, parameters, accept, context);
     }
 
@@ -641,11 +637,10 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName, clusterName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -678,10 +673,9 @@ public final class ClustersClientImpl implements ClustersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, clusterName, apiVersion,
+        return service.delete(this.client.getEndpoint(), resourceGroupName, clusterName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), accept, context);
     }
 
@@ -843,11 +837,11 @@ public final class ClustersClientImpl implements ClustersClient {
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, apiVersion, clusterName, accept, context))
+            .withContext(
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, this.client.getApiVersion(), clusterName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -880,11 +874,10 @@ public final class ClustersClientImpl implements ClustersClient {
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            apiVersion, clusterName, accept, context);
+            this.client.getApiVersion(), clusterName, accept, context);
     }
 
     /**
@@ -970,11 +963,10 @@ public final class ClustersClientImpl implements ClustersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), resourceGroupName, clusterName,
-                apiVersion, this.client.getSubscriptionId(), parameters, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1014,10 +1006,9 @@ public final class ClustersClientImpl implements ClustersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), resourceGroupName, clusterName, apiVersion,
+        return service.update(this.client.getEndpoint(), resourceGroupName, clusterName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), parameters, accept, context);
     }
 

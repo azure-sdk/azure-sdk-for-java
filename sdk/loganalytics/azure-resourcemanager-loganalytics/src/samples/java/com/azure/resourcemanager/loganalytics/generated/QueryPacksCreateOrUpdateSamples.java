@@ -13,7 +13,7 @@ import java.util.Map;
 public final class QueryPacksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/
      * QueryPacksCreate.json
      */
     /**
@@ -31,7 +31,7 @@ public final class QueryPacksCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/
      * QueryPacksUpdate.json
      */
     /**

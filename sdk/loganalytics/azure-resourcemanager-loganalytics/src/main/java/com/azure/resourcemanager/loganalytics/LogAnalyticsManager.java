@@ -81,13 +81,19 @@ import java.util.stream.Collectors;
  * Operational Insights Client.
  */
 public final class LogAnalyticsManager {
+    private AvailableServiceTiers availableServiceTiers;
+
     private QueryPacks queryPacks;
 
     private Queries queries;
 
+    private Clusters clusters;
+
     private DataExports dataExports;
 
     private DataSources dataSources;
+
+    private Gateways gateways;
 
     private IntelligencePacks intelligencePacks;
 
@@ -97,33 +103,27 @@ public final class LogAnalyticsManager {
 
     private ManagementGroups managementGroups;
 
+    private Operations operations;
+
     private OperationStatuses operationStatuses;
-
-    private SharedKeysOperations sharedKeysOperations;
-
-    private Usages usages;
-
-    private StorageInsightConfigs storageInsightConfigs;
 
     private SavedSearches savedSearches;
 
-    private AvailableServiceTiers availableServiceTiers;
-
-    private Gateways gateways;
-
     private Schemas schemas;
 
+    private SharedKeysOperations sharedKeysOperations;
+
+    private StorageInsightConfigs storageInsightConfigs;
+
+    private Tables tables;
+
+    private Usages usages;
+
     private WorkspacePurges workspacePurges;
-
-    private Clusters clusters;
-
-    private Operations operations;
 
     private Workspaces workspaces;
 
     private DeletedWorkspaces deletedWorkspaces;
-
-    private Tables tables;
 
     private final OperationalInsightsManagementClient clientObject;
 
@@ -289,7 +289,7 @@ public final class LogAnalyticsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.loganalytics")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -336,6 +336,18 @@ public final class LogAnalyticsManager {
     }
 
     /**
+     * Gets the resource collection API of AvailableServiceTiers.
+     * 
+     * @return Resource collection API of AvailableServiceTiers.
+     */
+    public AvailableServiceTiers availableServiceTiers() {
+        if (this.availableServiceTiers == null) {
+            this.availableServiceTiers = new AvailableServiceTiersImpl(clientObject.getAvailableServiceTiers(), this);
+        }
+        return availableServiceTiers;
+    }
+
+    /**
      * Gets the resource collection API of QueryPacks. It manages LogAnalyticsQueryPack.
      * 
      * @return Resource collection API of QueryPacks.
@@ -360,6 +372,18 @@ public final class LogAnalyticsManager {
     }
 
     /**
+     * Gets the resource collection API of Clusters. It manages Cluster.
+     * 
+     * @return Resource collection API of Clusters.
+     */
+    public Clusters clusters() {
+        if (this.clusters == null) {
+            this.clusters = new ClustersImpl(clientObject.getClusters(), this);
+        }
+        return clusters;
+    }
+
+    /**
      * Gets the resource collection API of DataExports. It manages DataExport.
      * 
      * @return Resource collection API of DataExports.
@@ -381,6 +405,18 @@ public final class LogAnalyticsManager {
             this.dataSources = new DataSourcesImpl(clientObject.getDataSources(), this);
         }
         return dataSources;
+    }
+
+    /**
+     * Gets the resource collection API of Gateways.
+     * 
+     * @return Resource collection API of Gateways.
+     */
+    public Gateways gateways() {
+        if (this.gateways == null) {
+            this.gateways = new GatewaysImpl(clientObject.getGateways(), this);
+        }
+        return gateways;
     }
 
     /**
@@ -432,6 +468,18 @@ public final class LogAnalyticsManager {
     }
 
     /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
      * Gets the resource collection API of OperationStatuses.
      * 
      * @return Resource collection API of OperationStatuses.
@@ -441,42 +489,6 @@ public final class LogAnalyticsManager {
             this.operationStatuses = new OperationStatusesImpl(clientObject.getOperationStatuses(), this);
         }
         return operationStatuses;
-    }
-
-    /**
-     * Gets the resource collection API of SharedKeysOperations.
-     * 
-     * @return Resource collection API of SharedKeysOperations.
-     */
-    public SharedKeysOperations sharedKeysOperations() {
-        if (this.sharedKeysOperations == null) {
-            this.sharedKeysOperations = new SharedKeysOperationsImpl(clientObject.getSharedKeysOperations(), this);
-        }
-        return sharedKeysOperations;
-    }
-
-    /**
-     * Gets the resource collection API of Usages.
-     * 
-     * @return Resource collection API of Usages.
-     */
-    public Usages usages() {
-        if (this.usages == null) {
-            this.usages = new UsagesImpl(clientObject.getUsages(), this);
-        }
-        return usages;
-    }
-
-    /**
-     * Gets the resource collection API of StorageInsightConfigs. It manages StorageInsight.
-     * 
-     * @return Resource collection API of StorageInsightConfigs.
-     */
-    public StorageInsightConfigs storageInsightConfigs() {
-        if (this.storageInsightConfigs == null) {
-            this.storageInsightConfigs = new StorageInsightConfigsImpl(clientObject.getStorageInsightConfigs(), this);
-        }
-        return storageInsightConfigs;
     }
 
     /**
@@ -492,30 +504,6 @@ public final class LogAnalyticsManager {
     }
 
     /**
-     * Gets the resource collection API of AvailableServiceTiers.
-     * 
-     * @return Resource collection API of AvailableServiceTiers.
-     */
-    public AvailableServiceTiers availableServiceTiers() {
-        if (this.availableServiceTiers == null) {
-            this.availableServiceTiers = new AvailableServiceTiersImpl(clientObject.getAvailableServiceTiers(), this);
-        }
-        return availableServiceTiers;
-    }
-
-    /**
-     * Gets the resource collection API of Gateways.
-     * 
-     * @return Resource collection API of Gateways.
-     */
-    public Gateways gateways() {
-        if (this.gateways == null) {
-            this.gateways = new GatewaysImpl(clientObject.getGateways(), this);
-        }
-        return gateways;
-    }
-
-    /**
      * Gets the resource collection API of Schemas.
      * 
      * @return Resource collection API of Schemas.
@@ -528,6 +516,54 @@ public final class LogAnalyticsManager {
     }
 
     /**
+     * Gets the resource collection API of SharedKeysOperations.
+     * 
+     * @return Resource collection API of SharedKeysOperations.
+     */
+    public SharedKeysOperations sharedKeysOperations() {
+        if (this.sharedKeysOperations == null) {
+            this.sharedKeysOperations = new SharedKeysOperationsImpl(clientObject.getSharedKeysOperations(), this);
+        }
+        return sharedKeysOperations;
+    }
+
+    /**
+     * Gets the resource collection API of StorageInsightConfigs. It manages StorageInsight.
+     * 
+     * @return Resource collection API of StorageInsightConfigs.
+     */
+    public StorageInsightConfigs storageInsightConfigs() {
+        if (this.storageInsightConfigs == null) {
+            this.storageInsightConfigs = new StorageInsightConfigsImpl(clientObject.getStorageInsightConfigs(), this);
+        }
+        return storageInsightConfigs;
+    }
+
+    /**
+     * Gets the resource collection API of Tables. It manages Table.
+     * 
+     * @return Resource collection API of Tables.
+     */
+    public Tables tables() {
+        if (this.tables == null) {
+            this.tables = new TablesImpl(clientObject.getTables(), this);
+        }
+        return tables;
+    }
+
+    /**
+     * Gets the resource collection API of Usages.
+     * 
+     * @return Resource collection API of Usages.
+     */
+    public Usages usages() {
+        if (this.usages == null) {
+            this.usages = new UsagesImpl(clientObject.getUsages(), this);
+        }
+        return usages;
+    }
+
+    /**
      * Gets the resource collection API of WorkspacePurges.
      * 
      * @return Resource collection API of WorkspacePurges.
@@ -537,30 +573,6 @@ public final class LogAnalyticsManager {
             this.workspacePurges = new WorkspacePurgesImpl(clientObject.getWorkspacePurges(), this);
         }
         return workspacePurges;
-    }
-
-    /**
-     * Gets the resource collection API of Clusters. It manages Cluster.
-     * 
-     * @return Resource collection API of Clusters.
-     */
-    public Clusters clusters() {
-        if (this.clusters == null) {
-            this.clusters = new ClustersImpl(clientObject.getClusters(), this);
-        }
-        return clusters;
-    }
-
-    /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
     }
 
     /**
@@ -585,18 +597,6 @@ public final class LogAnalyticsManager {
             this.deletedWorkspaces = new DeletedWorkspacesImpl(clientObject.getDeletedWorkspaces(), this);
         }
         return deletedWorkspaces;
-    }
-
-    /**
-     * Gets the resource collection API of Tables. It manages Table.
-     * 
-     * @return Resource collection API of Tables.
-     */
-    public Tables tables() {
-        if (this.tables == null) {
-            this.tables = new TablesImpl(clientObject.getTables(), this);
-        }
-        return tables;
     }
 
     /**

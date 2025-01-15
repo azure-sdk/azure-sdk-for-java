@@ -26,6 +26,13 @@ public interface OperationalInsightsManagementClient {
     String getEndpoint();
 
     /**
+     * Gets Api Version.
+     * 
+     * @return the apiVersion value.
+     */
+    String getApiVersion();
+
+    /**
      * Gets The HTTP pipeline to send requests through.
      * 
      * @return the httpPipeline value.
@@ -38,6 +45,13 @@ public interface OperationalInsightsManagementClient {
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
+
+    /**
+     * Gets the AvailableServiceTiersClient object to access its operations.
+     * 
+     * @return the AvailableServiceTiersClient object.
+     */
+    AvailableServiceTiersClient getAvailableServiceTiers();
 
     /**
      * Gets the QueryPacksClient object to access its operations.
@@ -54,6 +68,13 @@ public interface OperationalInsightsManagementClient {
     QueriesClient getQueries();
 
     /**
+     * Gets the ClustersClient object to access its operations.
+     * 
+     * @return the ClustersClient object.
+     */
+    ClustersClient getClusters();
+
+    /**
      * Gets the DataExportsClient object to access its operations.
      * 
      * @return the DataExportsClient object.
@@ -66,6 +87,13 @@ public interface OperationalInsightsManagementClient {
      * @return the DataSourcesClient object.
      */
     DataSourcesClient getDataSources();
+
+    /**
+     * Gets the GatewaysClient object to access its operations.
+     * 
+     * @return the GatewaysClient object.
+     */
+    GatewaysClient getGateways();
 
     /**
      * Gets the IntelligencePacksClient object to access its operations.
@@ -96,32 +124,18 @@ public interface OperationalInsightsManagementClient {
     ManagementGroupsClient getManagementGroups();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
      * Gets the OperationStatusesClient object to access its operations.
      * 
      * @return the OperationStatusesClient object.
      */
     OperationStatusesClient getOperationStatuses();
-
-    /**
-     * Gets the SharedKeysOperationsClient object to access its operations.
-     * 
-     * @return the SharedKeysOperationsClient object.
-     */
-    SharedKeysOperationsClient getSharedKeysOperations();
-
-    /**
-     * Gets the UsagesClient object to access its operations.
-     * 
-     * @return the UsagesClient object.
-     */
-    UsagesClient getUsages();
-
-    /**
-     * Gets the StorageInsightConfigsClient object to access its operations.
-     * 
-     * @return the StorageInsightConfigsClient object.
-     */
-    StorageInsightConfigsClient getStorageInsightConfigs();
 
     /**
      * Gets the SavedSearchesClient object to access its operations.
@@ -131,20 +145,6 @@ public interface OperationalInsightsManagementClient {
     SavedSearchesClient getSavedSearches();
 
     /**
-     * Gets the AvailableServiceTiersClient object to access its operations.
-     * 
-     * @return the AvailableServiceTiersClient object.
-     */
-    AvailableServiceTiersClient getAvailableServiceTiers();
-
-    /**
-     * Gets the GatewaysClient object to access its operations.
-     * 
-     * @return the GatewaysClient object.
-     */
-    GatewaysClient getGateways();
-
-    /**
      * Gets the SchemasClient object to access its operations.
      * 
      * @return the SchemasClient object.
@@ -152,25 +152,39 @@ public interface OperationalInsightsManagementClient {
     SchemasClient getSchemas();
 
     /**
+     * Gets the SharedKeysOperationsClient object to access its operations.
+     * 
+     * @return the SharedKeysOperationsClient object.
+     */
+    SharedKeysOperationsClient getSharedKeysOperations();
+
+    /**
+     * Gets the StorageInsightConfigsClient object to access its operations.
+     * 
+     * @return the StorageInsightConfigsClient object.
+     */
+    StorageInsightConfigsClient getStorageInsightConfigs();
+
+    /**
+     * Gets the TablesClient object to access its operations.
+     * 
+     * @return the TablesClient object.
+     */
+    TablesClient getTables();
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     * 
+     * @return the UsagesClient object.
+     */
+    UsagesClient getUsages();
+
+    /**
      * Gets the WorkspacePurgesClient object to access its operations.
      * 
      * @return the WorkspacePurgesClient object.
      */
     WorkspacePurgesClient getWorkspacePurges();
-
-    /**
-     * Gets the ClustersClient object to access its operations.
-     * 
-     * @return the ClustersClient object.
-     */
-    ClustersClient getClusters();
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
 
     /**
      * Gets the WorkspacesClient object to access its operations.
@@ -185,11 +199,4 @@ public interface OperationalInsightsManagementClient {
      * @return the DeletedWorkspacesClient object.
      */
     DeletedWorkspacesClient getDeletedWorkspaces();
-
-    /**
-     * Gets the TablesClient object to access its operations.
-     * 
-     * @return the TablesClient object.
-     */
-    TablesClient getTables();
 }

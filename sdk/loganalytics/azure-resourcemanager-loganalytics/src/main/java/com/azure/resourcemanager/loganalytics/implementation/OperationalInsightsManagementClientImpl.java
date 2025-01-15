@@ -89,6 +89,20 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
     }
 
     /**
+     * Api Version.
+     */
+    private final String apiVersion;
+
+    /**
+     * Gets Api Version.
+     * 
+     * @return the apiVersion value.
+     */
+    public String getApiVersion() {
+        return this.apiVersion;
+    }
+
+    /**
      * The HTTP pipeline to send requests through.
      */
     private final HttpPipeline httpPipeline;
@@ -131,6 +145,20 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
     }
 
     /**
+     * The AvailableServiceTiersClient object to access its operations.
+     */
+    private final AvailableServiceTiersClient availableServiceTiers;
+
+    /**
+     * Gets the AvailableServiceTiersClient object to access its operations.
+     * 
+     * @return the AvailableServiceTiersClient object.
+     */
+    public AvailableServiceTiersClient getAvailableServiceTiers() {
+        return this.availableServiceTiers;
+    }
+
+    /**
      * The QueryPacksClient object to access its operations.
      */
     private final QueryPacksClient queryPacks;
@@ -159,6 +187,20 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
     }
 
     /**
+     * The ClustersClient object to access its operations.
+     */
+    private final ClustersClient clusters;
+
+    /**
+     * Gets the ClustersClient object to access its operations.
+     * 
+     * @return the ClustersClient object.
+     */
+    public ClustersClient getClusters() {
+        return this.clusters;
+    }
+
+    /**
      * The DataExportsClient object to access its operations.
      */
     private final DataExportsClient dataExports;
@@ -184,6 +226,20 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
      */
     public DataSourcesClient getDataSources() {
         return this.dataSources;
+    }
+
+    /**
+     * The GatewaysClient object to access its operations.
+     */
+    private final GatewaysClient gateways;
+
+    /**
+     * Gets the GatewaysClient object to access its operations.
+     * 
+     * @return the GatewaysClient object.
+     */
+    public GatewaysClient getGateways() {
+        return this.gateways;
     }
 
     /**
@@ -243,6 +299,20 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
     }
 
     /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
      * The OperationStatusesClient object to access its operations.
      */
     private final OperationStatusesClient operationStatuses;
@@ -254,48 +324,6 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
      */
     public OperationStatusesClient getOperationStatuses() {
         return this.operationStatuses;
-    }
-
-    /**
-     * The SharedKeysOperationsClient object to access its operations.
-     */
-    private final SharedKeysOperationsClient sharedKeysOperations;
-
-    /**
-     * Gets the SharedKeysOperationsClient object to access its operations.
-     * 
-     * @return the SharedKeysOperationsClient object.
-     */
-    public SharedKeysOperationsClient getSharedKeysOperations() {
-        return this.sharedKeysOperations;
-    }
-
-    /**
-     * The UsagesClient object to access its operations.
-     */
-    private final UsagesClient usages;
-
-    /**
-     * Gets the UsagesClient object to access its operations.
-     * 
-     * @return the UsagesClient object.
-     */
-    public UsagesClient getUsages() {
-        return this.usages;
-    }
-
-    /**
-     * The StorageInsightConfigsClient object to access its operations.
-     */
-    private final StorageInsightConfigsClient storageInsightConfigs;
-
-    /**
-     * Gets the StorageInsightConfigsClient object to access its operations.
-     * 
-     * @return the StorageInsightConfigsClient object.
-     */
-    public StorageInsightConfigsClient getStorageInsightConfigs() {
-        return this.storageInsightConfigs;
     }
 
     /**
@@ -313,34 +341,6 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
     }
 
     /**
-     * The AvailableServiceTiersClient object to access its operations.
-     */
-    private final AvailableServiceTiersClient availableServiceTiers;
-
-    /**
-     * Gets the AvailableServiceTiersClient object to access its operations.
-     * 
-     * @return the AvailableServiceTiersClient object.
-     */
-    public AvailableServiceTiersClient getAvailableServiceTiers() {
-        return this.availableServiceTiers;
-    }
-
-    /**
-     * The GatewaysClient object to access its operations.
-     */
-    private final GatewaysClient gateways;
-
-    /**
-     * Gets the GatewaysClient object to access its operations.
-     * 
-     * @return the GatewaysClient object.
-     */
-    public GatewaysClient getGateways() {
-        return this.gateways;
-    }
-
-    /**
      * The SchemasClient object to access its operations.
      */
     private final SchemasClient schemas;
@@ -355,6 +355,62 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
     }
 
     /**
+     * The SharedKeysOperationsClient object to access its operations.
+     */
+    private final SharedKeysOperationsClient sharedKeysOperations;
+
+    /**
+     * Gets the SharedKeysOperationsClient object to access its operations.
+     * 
+     * @return the SharedKeysOperationsClient object.
+     */
+    public SharedKeysOperationsClient getSharedKeysOperations() {
+        return this.sharedKeysOperations;
+    }
+
+    /**
+     * The StorageInsightConfigsClient object to access its operations.
+     */
+    private final StorageInsightConfigsClient storageInsightConfigs;
+
+    /**
+     * Gets the StorageInsightConfigsClient object to access its operations.
+     * 
+     * @return the StorageInsightConfigsClient object.
+     */
+    public StorageInsightConfigsClient getStorageInsightConfigs() {
+        return this.storageInsightConfigs;
+    }
+
+    /**
+     * The TablesClient object to access its operations.
+     */
+    private final TablesClient tables;
+
+    /**
+     * Gets the TablesClient object to access its operations.
+     * 
+     * @return the TablesClient object.
+     */
+    public TablesClient getTables() {
+        return this.tables;
+    }
+
+    /**
+     * The UsagesClient object to access its operations.
+     */
+    private final UsagesClient usages;
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     * 
+     * @return the UsagesClient object.
+     */
+    public UsagesClient getUsages() {
+        return this.usages;
+    }
+
+    /**
      * The WorkspacePurgesClient object to access its operations.
      */
     private final WorkspacePurgesClient workspacePurges;
@@ -366,34 +422,6 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
      */
     public WorkspacePurgesClient getWorkspacePurges() {
         return this.workspacePurges;
-    }
-
-    /**
-     * The ClustersClient object to access its operations.
-     */
-    private final ClustersClient clusters;
-
-    /**
-     * Gets the ClustersClient object to access its operations.
-     * 
-     * @return the ClustersClient object.
-     */
-    public ClustersClient getClusters() {
-        return this.clusters;
-    }
-
-    /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
     }
 
     /**
@@ -425,20 +453,6 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
     }
 
     /**
-     * The TablesClient object to access its operations.
-     */
-    private final TablesClient tables;
-
-    /**
-     * Gets the TablesClient object to access its operations.
-     * 
-     * @return the TablesClient object.
-     */
-    public TablesClient getTables() {
-        return this.tables;
-    }
-
-    /**
      * Initializes an instance of OperationalInsightsManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -455,28 +469,29 @@ public final class OperationalInsightsManagementClientImpl implements Operationa
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
+        this.apiVersion = "2023-09-01";
+        this.availableServiceTiers = new AvailableServiceTiersClientImpl(this);
         this.queryPacks = new QueryPacksClientImpl(this);
         this.queries = new QueriesClientImpl(this);
+        this.clusters = new ClustersClientImpl(this);
         this.dataExports = new DataExportsClientImpl(this);
         this.dataSources = new DataSourcesClientImpl(this);
+        this.gateways = new GatewaysClientImpl(this);
         this.intelligencePacks = new IntelligencePacksClientImpl(this);
         this.linkedServices = new LinkedServicesClientImpl(this);
         this.linkedStorageAccounts = new LinkedStorageAccountsClientImpl(this);
         this.managementGroups = new ManagementGroupsClientImpl(this);
-        this.operationStatuses = new OperationStatusesClientImpl(this);
-        this.sharedKeysOperations = new SharedKeysOperationsClientImpl(this);
-        this.usages = new UsagesClientImpl(this);
-        this.storageInsightConfigs = new StorageInsightConfigsClientImpl(this);
-        this.savedSearches = new SavedSearchesClientImpl(this);
-        this.availableServiceTiers = new AvailableServiceTiersClientImpl(this);
-        this.gateways = new GatewaysClientImpl(this);
-        this.schemas = new SchemasClientImpl(this);
-        this.workspacePurges = new WorkspacePurgesClientImpl(this);
-        this.clusters = new ClustersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.operationStatuses = new OperationStatusesClientImpl(this);
+        this.savedSearches = new SavedSearchesClientImpl(this);
+        this.schemas = new SchemasClientImpl(this);
+        this.sharedKeysOperations = new SharedKeysOperationsClientImpl(this);
+        this.storageInsightConfigs = new StorageInsightConfigsClientImpl(this);
+        this.tables = new TablesClientImpl(this);
+        this.usages = new UsagesClientImpl(this);
+        this.workspacePurges = new WorkspacePurgesClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
         this.deletedWorkspaces = new DeletedWorkspacesClientImpl(this);
-        this.tables = new TablesClientImpl(this);
     }
 
     /**
