@@ -23,7 +23,7 @@ public final class FabricCapacitiesListSkusForCapacityMockTests {
     @Test
     public void testListSkusForCapacity() throws Exception {
         String responseStr
-            = "{\"value\":[{\"resourceType\":\"xlefgugnxkrx\",\"sku\":{\"name\":\"qmi\",\"tier\":\"Fabric\"}}]}";
+            = "{\"value\":[{\"resourceType\":\"ccfwnfnbacfion\",\"sku\":{\"name\":\"ebxetqgtzxdp\",\"tier\":\"Fabric\"}}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,10 +33,10 @@ public final class FabricCapacitiesListSkusForCapacityMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         PagedIterable<RpSkuDetailsForExistingResource> response
-            = manager.fabricCapacities().listSkusForCapacity("gvdfgiotkftutq", "ln", com.azure.core.util.Context.NONE);
+            = manager.fabricCapacities().listSkusForCapacity("c", "pmivkwlzu", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("xlefgugnxkrx", response.iterator().next().resourceType());
-        Assertions.assertEquals("qmi", response.iterator().next().sku().name());
+        Assertions.assertEquals("ccfwnfnbacfion", response.iterator().next().resourceType());
+        Assertions.assertEquals("ebxetqgtzxdp", response.iterator().next().sku().name());
         Assertions.assertEquals(RpSkuTier.FABRIC, response.iterator().next().sku().tier());
     }
 }

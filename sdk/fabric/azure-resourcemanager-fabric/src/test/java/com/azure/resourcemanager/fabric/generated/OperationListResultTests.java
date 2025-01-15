@@ -12,8 +12,8 @@ public final class OperationListResultTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         OperationListResult model = BinaryData.fromString(
-            "{\"value\":[{\"name\":\"ktapspwgcuertu\",\"isDataAction\":true,\"display\":{\"provider\":\"vqwhbmdgbbjfd\",\"resource\":\"mbmbexppbh\",\"operation\":\"qrolfpf\",\"description\":\"algbquxigjyjg\"},\"origin\":\"user,system\",\"actionType\":\"Internal\"},{\"name\":\"hr\",\"isDataAction\":true,\"display\":{\"provider\":\"erkujys\",\"resource\":\"eju\",\"operation\":\"qawrlyxwj\",\"description\":\"prbnwbxgjvtbv\"},\"origin\":\"user,system\",\"actionType\":\"Internal\"}],\"nextLink\":\"nruj\"}")
+            "{\"value\":[{\"name\":\"zxufiz\",\"isDataAction\":false,\"display\":{\"provider\":\"i\",\"resource\":\"fidfvzw\",\"operation\":\"uht\",\"description\":\"wisdkft\"},\"origin\":\"user,system\",\"actionType\":\"Internal\"},{\"name\":\"eiwaopvkmi\",\"isDataAction\":false,\"display\":{\"provider\":\"dcuf\",\"resource\":\"srp\",\"operation\":\"zidnsezcxtbzsgfy\",\"description\":\"sne\"},\"origin\":\"system\",\"actionType\":\"Internal\"}],\"nextLink\":\"eiachboosflnr\"}")
             .toObject(OperationListResult.class);
-        Assertions.assertEquals("nruj", model.nextLink());
+        Assertions.assertEquals("eiachboosflnr", model.nextLink());
     }
 }

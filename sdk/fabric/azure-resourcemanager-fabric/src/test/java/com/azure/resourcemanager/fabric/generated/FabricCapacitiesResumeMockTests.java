@@ -27,7 +27,7 @@ public final class FabricCapacitiesResumeMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        manager.fabricCapacities().resume("dntwndeicbtw", "pzaoqvuhr", com.azure.core.util.Context.NONE);
+        manager.fabricCapacities().resume("mi", "tthzrvqd", com.azure.core.util.Context.NONE);
 
     }
 }

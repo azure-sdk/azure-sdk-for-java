@@ -11,6 +11,7 @@
 - [ListByResourceGroup](#fabriccapacities_listbyresourcegroup)
 - [ListSkus](#fabriccapacities_listskus)
 - [ListSkusForCapacity](#fabriccapacities_listskusforcapacity)
+- [ListUsages](#fabriccapacities_listusages)
 - [Resume](#fabriccapacities_resume)
 - [Suspend](#fabriccapacities_suspend)
 - [Update](#fabriccapacities_update)
@@ -201,6 +202,27 @@ public final class FabricCapacitiesListSkusForCapacitySamples {
      */
     public static void listEligibleSKUsForAnExistingCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
         manager.fabricCapacities().listSkusForCapacity("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_ListUsages
+
+```java
+/**
+ * Samples for FabricCapacities ListUsages.
+ */
+public final class FabricCapacitiesListUsagesSamples {
+    /*
+     * x-ms-original-file: 2023-11-01/FabricCapacities_ListUsagesBySubscription.json
+     */
+    /**
+     * Sample code: List quota usages for a subscription.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void listQuotaUsagesForASubscription(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().listUsages("centraluseuap", com.azure.core.util.Context.NONE);
     }
 }
 ```
