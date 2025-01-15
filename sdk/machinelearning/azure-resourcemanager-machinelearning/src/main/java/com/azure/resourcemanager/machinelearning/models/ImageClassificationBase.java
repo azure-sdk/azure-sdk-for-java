@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -117,14 +118,28 @@ public class ImageClassificationBase extends ImageVertical {
      */
     @Override
     public void validate() {
-        super.validate();
         if (modelSettings() != null) {
             modelSettings().validate();
         }
         if (searchSpace() != null) {
             searchSpace().forEach(e -> e.validate());
         }
+        if (limitSettings() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property limitSettings in model ImageClassificationBase"));
+        } else {
+            limitSettings().validate();
+        }
+        if (sweepSettings() != null) {
+            sweepSettings().validate();
+        }
+        if (validationData() != null) {
+            validationData().validate();
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ImageClassificationBase.class);
 
     /**
      * {@inheritDoc}
