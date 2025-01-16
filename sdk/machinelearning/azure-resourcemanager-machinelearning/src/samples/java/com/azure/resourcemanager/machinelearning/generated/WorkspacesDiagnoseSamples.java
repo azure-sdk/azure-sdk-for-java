@@ -15,8 +15,8 @@ import java.util.Map;
 public final class WorkspacesDiagnoseSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/diagnose.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/diagnose.json
      */
     /**
      * Sample code: Diagnose Workspace.
@@ -26,15 +26,16 @@ public final class WorkspacesDiagnoseSamples {
     public static void diagnoseWorkspace(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.workspaces()
             .diagnose("workspace-1234", "testworkspace",
-                new DiagnoseWorkspaceParameters().withValue(new DiagnoseRequestProperties().withUdr(mapOf())
-                    .withNsg(mapOf())
-                    .withResourceLock(mapOf())
-                    .withDnsResolution(mapOf())
-                    .withStorageAccount(mapOf())
-                    .withKeyVault(mapOf())
-                    .withContainerRegistry(mapOf())
-                    .withApplicationInsights(mapOf())
-                    .withOthers(mapOf())),
+                new DiagnoseWorkspaceParameters()
+                    .withValue(new DiagnoseRequestProperties().withApplicationInsights(mapOf())
+                        .withContainerRegistry(mapOf())
+                        .withDnsResolution(mapOf())
+                        .withKeyVault(mapOf())
+                        .withNsg(mapOf())
+                        .withOthers(mapOf())
+                        .withResourceLock(mapOf())
+                        .withStorageAccount(mapOf())
+                        .withUdr(mapOf())),
                 com.azure.core.util.Context.NONE);
     }
 

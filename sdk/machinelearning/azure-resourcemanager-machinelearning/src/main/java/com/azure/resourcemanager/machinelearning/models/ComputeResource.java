@@ -10,6 +10,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeResourceInner;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -295,6 +296,28 @@ public interface ComputeResource {
     ComputeResource refresh(Context context);
 
     /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     * 
+     * @param customServices New list of Custom Services.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateCustomServicesWithResponse(List<CustomService> customServices, Context context);
+
+    /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     * 
+     * @param customServices New list of Custom Services.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateCustomServices(List<CustomService> customServices);
+
+    /**
      * Get the details (e.g IP address, port etc) of all the compute nodes in the compute.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -336,6 +359,28 @@ public interface ComputeResource {
      * @return secrets related to Machine Learning compute (storage keys, service credentials, etc).
      */
     ComputeSecrets listKeys();
+
+    /**
+     * Update Data Mounts of a Machine Learning compute.
+     * 
+     * @param dataMounts The parameters for creating or updating a machine learning workspace.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateDataMountsWithResponse(List<ComputeInstanceDataMount> dataMounts, Context context);
+
+    /**
+     * Update Data Mounts of a Machine Learning compute.
+     * 
+     * @param dataMounts The parameters for creating or updating a machine learning workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateDataMounts(List<ComputeInstanceDataMount> dataMounts);
 
     /**
      * Posts a start action to a compute instance.
@@ -390,4 +435,67 @@ public interface ComputeResource {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void restart(Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     * 
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateIdleShutdownSettingWithResponse(IdleShutdownSetting parameters, Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     * 
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateIdleShutdownSetting(IdleShutdownSetting parameters);
+
+    /**
+     * Returns supported virtual machine sizes for resize.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Virtual Machine size operation response along with {@link Response}.
+     */
+    Response<VirtualMachineSizeListResult> getAllowedResizeSizesWithResponse(Context context);
+
+    /**
+     * Returns supported virtual machine sizes for resize.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Virtual Machine size operation response.
+     */
+    VirtualMachineSizeListResult getAllowedResizeSizes();
+
+    /**
+     * Updates the size of a Compute Instance.
+     * 
+     * @param parameters The object for updating VM size setting of specified Compute Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resize(ResizeSchema parameters);
+
+    /**
+     * Updates the size of a Compute Instance.
+     * 
+     * @param parameters The object for updating VM size setting of specified Compute Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resize(ResizeSchema parameters, Context context);
 }
