@@ -23,14 +23,14 @@ public final class ComponentContainerProperties extends AssetContainer {
     private AssetProvisioningState provisioningState;
 
     /*
-     * The latest version inside this container.
-     */
-    private String latestVersion;
-
-    /*
      * The next auto incremental version
      */
     private String nextVersion;
+
+    /*
+     * The latest version inside this container.
+     */
+    private String latestVersion;
 
     /**
      * Creates an instance of ComponentContainerProperties class.
@@ -48,16 +48,6 @@ public final class ComponentContainerProperties extends AssetContainer {
     }
 
     /**
-     * Get the latestVersion property: The latest version inside this container.
-     * 
-     * @return the latestVersion value.
-     */
-    @Override
-    public String latestVersion() {
-        return this.latestVersion;
-    }
-
-    /**
      * Get the nextVersion property: The next auto incremental version.
      * 
      * @return the nextVersion value.
@@ -65,6 +55,16 @@ public final class ComponentContainerProperties extends AssetContainer {
     @Override
     public String nextVersion() {
         return this.nextVersion;
+    }
+
+    /**
+     * Get the latestVersion property: The latest version inside this container.
+     * 
+     * @return the latestVersion value.
+     */
+    @Override
+    public String latestVersion() {
+        return this.latestVersion;
     }
 
     /**
@@ -89,8 +89,8 @@ public final class ComponentContainerProperties extends AssetContainer {
      * {@inheritDoc}
      */
     @Override
-    public ComponentContainerProperties withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public ComponentContainerProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -98,8 +98,8 @@ public final class ComponentContainerProperties extends AssetContainer {
      * {@inheritDoc}
      */
     @Override
-    public ComponentContainerProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public ComponentContainerProperties withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -110,7 +110,6 @@ public final class ComponentContainerProperties extends AssetContainer {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -120,8 +119,8 @@ public final class ComponentContainerProperties extends AssetContainer {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isArchived", isArchived());
         return jsonWriter.writeEndObject();
     }
@@ -143,12 +142,12 @@ public final class ComponentContainerProperties extends AssetContainer {
 
                 if ("description".equals(fieldName)) {
                     deserializedComponentContainerProperties.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedComponentContainerProperties.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedComponentContainerProperties.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedComponentContainerProperties.withTags(tags);
                 } else if ("isArchived".equals(fieldName)) {
                     deserializedComponentContainerProperties.withIsArchived(reader.getNullable(JsonReader::getBoolean));
                 } else if ("latestVersion".equals(fieldName)) {

@@ -71,7 +71,6 @@ public final class FeatureSubset extends MonitoringFeatureFilterBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (features() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property features in model FeatureSubset"));

@@ -12,8 +12,8 @@ import com.azure.resourcemanager.machinelearning.models.ListViewType;
 public final class FeaturestoreEntityContainersListSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/FeaturestoreEntityContainer/list.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/FeaturestoreEntityContainer/list.json
      */
     /**
      * Sample code: List Workspace Featurestore Entity Container.
