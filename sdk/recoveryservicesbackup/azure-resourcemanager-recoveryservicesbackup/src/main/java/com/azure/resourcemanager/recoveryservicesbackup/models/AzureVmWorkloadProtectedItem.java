@@ -531,6 +531,15 @@ public class AzureVmWorkloadProtectedItem extends ProtectedItem {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AzureVmWorkloadProtectedItem withPolicyType(String policyType) {
+        super.withPolicyType(policyType);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -581,6 +590,7 @@ public class AzureVmWorkloadProtectedItem extends ProtectedItem {
         jsonWriter.writeBooleanField("isArchiveEnabled", isArchiveEnabled());
         jsonWriter.writeStringField("policyName", policyName());
         jsonWriter.writeNumberField("softDeleteRetentionPeriodInDays", softDeleteRetentionPeriod());
+        jsonWriter.writeStringField("policyType", policyType());
         jsonWriter.writeStringField("protectedItemType", this.protectedItemType);
         jsonWriter.writeStringField("serverName", this.serverName);
         jsonWriter.writeStringField("parentName", this.parentName);
@@ -694,6 +704,8 @@ public class AzureVmWorkloadProtectedItem extends ProtectedItem {
                         .withSoftDeleteRetentionPeriod(reader.getNullable(JsonReader::getInt));
                 } else if ("vaultId".equals(fieldName)) {
                     deserializedAzureVmWorkloadProtectedItem.withVaultId(reader.getString());
+                } else if ("policyType".equals(fieldName)) {
+                    deserializedAzureVmWorkloadProtectedItem.withPolicyType(reader.getString());
                 } else if ("protectedItemType".equals(fieldName)) {
                     deserializedAzureVmWorkloadProtectedItem.protectedItemType = reader.getString();
                 } else if ("friendlyName".equals(fieldName)) {

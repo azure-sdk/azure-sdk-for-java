@@ -276,6 +276,15 @@ public final class DpmProtectedItem extends ProtectedItem {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DpmProtectedItem withPolicyType(String policyType) {
+        super.withPolicyType(policyType);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -313,6 +322,7 @@ public final class DpmProtectedItem extends ProtectedItem {
         jsonWriter.writeBooleanField("isArchiveEnabled", isArchiveEnabled());
         jsonWriter.writeStringField("policyName", policyName());
         jsonWriter.writeNumberField("softDeleteRetentionPeriodInDays", softDeleteRetentionPeriod());
+        jsonWriter.writeStringField("policyType", policyType());
         jsonWriter.writeStringField("protectedItemType", this.protectedItemType);
         jsonWriter.writeStringField("friendlyName", this.friendlyName);
         jsonWriter.writeStringField("backupEngineName", this.backupEngineName);
@@ -379,6 +389,8 @@ public final class DpmProtectedItem extends ProtectedItem {
                     deserializedDpmProtectedItem.withSoftDeleteRetentionPeriod(reader.getNullable(JsonReader::getInt));
                 } else if ("vaultId".equals(fieldName)) {
                     deserializedDpmProtectedItem.withVaultId(reader.getString());
+                } else if ("policyType".equals(fieldName)) {
+                    deserializedDpmProtectedItem.withPolicyType(reader.getString());
                 } else if ("protectedItemType".equals(fieldName)) {
                     deserializedDpmProtectedItem.protectedItemType = reader.getString();
                 } else if ("friendlyName".equals(fieldName)) {

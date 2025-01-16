@@ -352,6 +352,15 @@ public final class AzureFileshareProtectedItem extends ProtectedItem {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AzureFileshareProtectedItem withPolicyType(String policyType) {
+        super.withPolicyType(policyType);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -396,6 +405,7 @@ public final class AzureFileshareProtectedItem extends ProtectedItem {
         jsonWriter.writeBooleanField("isArchiveEnabled", isArchiveEnabled());
         jsonWriter.writeStringField("policyName", policyName());
         jsonWriter.writeNumberField("softDeleteRetentionPeriodInDays", softDeleteRetentionPeriod());
+        jsonWriter.writeStringField("policyType", policyType());
         jsonWriter.writeStringField("protectedItemType", this.protectedItemType);
         jsonWriter.writeStringField("friendlyName", this.friendlyName);
         jsonWriter.writeStringField("protectionStatus", this.protectionStatus);
@@ -470,6 +480,8 @@ public final class AzureFileshareProtectedItem extends ProtectedItem {
                         .withSoftDeleteRetentionPeriod(reader.getNullable(JsonReader::getInt));
                 } else if ("vaultId".equals(fieldName)) {
                     deserializedAzureFileshareProtectedItem.withVaultId(reader.getString());
+                } else if ("policyType".equals(fieldName)) {
+                    deserializedAzureFileshareProtectedItem.withPolicyType(reader.getString());
                 } else if ("protectedItemType".equals(fieldName)) {
                     deserializedAzureFileshareProtectedItem.protectedItemType = reader.getString();
                 } else if ("friendlyName".equals(fieldName)) {
