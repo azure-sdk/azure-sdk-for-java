@@ -20,39 +20,19 @@ import java.util.List;
 public final class CodeContainerResourceArmPaginatedResult
     implements JsonSerializable<CodeContainerResourceArmPaginatedResult> {
     /*
-     * An array of objects of type CodeContainer.
-     */
-    private List<CodeContainerInner> value;
-
-    /*
      * The link to the next page of CodeContainer objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type CodeContainer.
+     */
+    private List<CodeContainerInner> value;
 
     /**
      * Creates an instance of CodeContainerResourceArmPaginatedResult class.
      */
     public CodeContainerResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type CodeContainer.
-     * 
-     * @return the value value.
-     */
-    public List<CodeContainerInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type CodeContainer.
-     * 
-     * @param value the value value to set.
-     * @return the CodeContainerResourceArmPaginatedResult object itself.
-     */
-    public CodeContainerResourceArmPaginatedResult withValue(List<CodeContainerInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class CodeContainerResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type CodeContainer.
+     * 
+     * @return the value value.
+     */
+    public List<CodeContainerInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type CodeContainer.
+     * 
+     * @param value the value value to set.
+     * @return the CodeContainerResourceArmPaginatedResult object itself.
+     */
+    public CodeContainerResourceArmPaginatedResult withValue(List<CodeContainerInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class CodeContainerResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,11 +115,11 @@ public final class CodeContainerResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedCodeContainerResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<CodeContainerInner> value = reader.readArray(reader1 -> CodeContainerInner.fromJson(reader1));
                     deserializedCodeContainerResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedCodeContainerResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
