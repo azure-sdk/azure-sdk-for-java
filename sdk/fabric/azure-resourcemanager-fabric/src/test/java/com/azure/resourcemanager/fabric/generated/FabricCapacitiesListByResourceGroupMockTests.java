@@ -23,7 +23,7 @@ public final class FabricCapacitiesListByResourceGroupMockTests {
     @Test
     public void testListByResourceGroup() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"provisioningState\":\"Canceled\",\"state\":\"Updating\",\"administration\":{\"members\":[\"ulpkudjkrl\",\"hbzhfepg\",\"gqexzlocxs\"]}},\"sku\":{\"name\":\"paierh\",\"tier\":\"Fabric\"},\"location\":\"sglumma\",\"tags\":{\"nbdxk\":\"aodxo\"},\"id\":\"pxokajionp\",\"name\":\"mexgstxgcp\",\"type\":\"dg\"}]}";
+            = "{\"value\":[{\"properties\":{\"provisioningState\":\"Canceled\",\"state\":\"Scaling\",\"administration\":{\"members\":[\"r\",\"vdjwzrlovm\",\"lwhijcoejctbzaq\"]}},\"sku\":{\"name\":\"qsycbkbfkgu\",\"tier\":\"Fabric\"},\"location\":\"exxppofmxaxcfjp\",\"tags\":{\"j\":\"toc\",\"hd\":\"hvpmoue\"},\"id\":\"xibqeojnx\",\"name\":\"bzv\",\"type\":\"dntwndeicbtw\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,13 +33,12 @@ public final class FabricCapacitiesListByResourceGroupMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         PagedIterable<FabricCapacity> response
-            = manager.fabricCapacities().listByResourceGroup("vbqid", com.azure.core.util.Context.NONE);
+            = manager.fabricCapacities().listByResourceGroup("po", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("sglumma", response.iterator().next().location());
-        Assertions.assertEquals("aodxo", response.iterator().next().tags().get("nbdxk"));
-        Assertions.assertEquals("ulpkudjkrl",
-            response.iterator().next().properties().administration().members().get(0));
-        Assertions.assertEquals("paierh", response.iterator().next().sku().name());
+        Assertions.assertEquals("exxppofmxaxcfjp", response.iterator().next().location());
+        Assertions.assertEquals("toc", response.iterator().next().tags().get("j"));
+        Assertions.assertEquals("r", response.iterator().next().properties().administration().members().get(0));
+        Assertions.assertEquals("qsycbkbfkgu", response.iterator().next().sku().name());
         Assertions.assertEquals(RpSkuTier.FABRIC, response.iterator().next().sku().tier());
     }
 }

@@ -23,7 +23,7 @@ public final class FabricCapacitiesListMockTests {
     @Test
     public void testList() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"provisioningState\":\"Provisioning\",\"state\":\"Preparing\",\"administration\":{\"members\":[\"vdjwzrlovm\",\"lwhijcoejctbzaq\",\"qsycbkbfkgu\"]}},\"sku\":{\"name\":\"dkexxppofm\",\"tier\":\"Fabric\"},\"location\":\"c\",\"tags\":{\"xhvpmoue\":\"gddtocj\"},\"id\":\"hd\",\"name\":\"xibqeojnx\",\"type\":\"bzv\"}]}";
+            = "{\"value\":[{\"properties\":{\"provisioningState\":\"Deleting\",\"state\":\"Deleting\",\"administration\":{\"members\":[\"vuhrhcffcyddgl\",\"jthjqkwpyei\",\"xmqci\",\"q\"]}},\"sku\":{\"name\":\"hkh\",\"tier\":\"Fabric\"},\"location\":\"igdtopbob\",\"tags\":{\"w\":\"hm\",\"a\":\"a\"},\"id\":\"hrzayvvtpgvdf\",\"name\":\"iotkftutqxl\",\"type\":\"gxlefgugnxkrxd\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -34,11 +34,11 @@ public final class FabricCapacitiesListMockTests {
 
         PagedIterable<FabricCapacity> response = manager.fabricCapacities().list(com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("c", response.iterator().next().location());
-        Assertions.assertEquals("gddtocj", response.iterator().next().tags().get("xhvpmoue"));
-        Assertions.assertEquals("vdjwzrlovm",
+        Assertions.assertEquals("igdtopbob", response.iterator().next().location());
+        Assertions.assertEquals("hm", response.iterator().next().tags().get("w"));
+        Assertions.assertEquals("vuhrhcffcyddgl",
             response.iterator().next().properties().administration().members().get(0));
-        Assertions.assertEquals("dkexxppofm", response.iterator().next().sku().name());
+        Assertions.assertEquals("hkh", response.iterator().next().sku().name());
         Assertions.assertEquals(RpSkuTier.FABRIC, response.iterator().next().sku().tier());
     }
 }

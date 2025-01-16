@@ -6,19 +6,23 @@ package com.azure.resourcemanager.fabric.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.fabric.FabricManager;
+import com.azure.resourcemanager.fabric.models.Quota;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
-public final class FabricCapacitiesSuspendMockTests {
+public final class FabricCapacitiesListUsagesMockTests {
     @Test
-    public void testSuspend() throws Exception {
-        String responseStr = "{}";
+    public void testListUsages() throws Exception {
+        String responseStr
+            = "{\"value\":[{\"name\":{\"value\":\"jbdlwtgrhpdjpju\",\"localizedValue\":\"sxazjpq\"},\"id\":\"e\",\"unit\":\"ualhbxxhejj\",\"currentValue\":8715875295307686786,\"limit\":3751338225556478431}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -27,7 +31,12 @@ public final class FabricCapacitiesSuspendMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        manager.fabricCapacities().suspend("abhjybi", "ehoqfbowskan", com.azure.core.util.Context.NONE);
+        PagedIterable<Quota> response
+            = manager.fabricCapacities().listUsages("pheoflokeyy", com.azure.core.util.Context.NONE);
 
+        Assertions.assertEquals("e", response.iterator().next().id());
+        Assertions.assertEquals("ualhbxxhejj", response.iterator().next().unit());
+        Assertions.assertEquals(8715875295307686786L, response.iterator().next().currentValue());
+        Assertions.assertEquals(3751338225556478431L, response.iterator().next().limit());
     }
 }
