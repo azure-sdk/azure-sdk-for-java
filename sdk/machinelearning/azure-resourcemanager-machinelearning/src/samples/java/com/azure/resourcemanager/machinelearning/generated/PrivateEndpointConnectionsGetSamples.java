@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class PrivateEndpointConnectionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/PrivateEndpointConnection/get.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/PrivateEndpointConnection/get.json
      */
     /**
      * Sample code: WorkspaceGetPrivateEndpointConnection.
