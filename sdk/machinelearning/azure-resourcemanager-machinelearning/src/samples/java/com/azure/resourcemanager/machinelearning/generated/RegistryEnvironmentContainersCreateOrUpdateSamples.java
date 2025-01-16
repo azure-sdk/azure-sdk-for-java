@@ -15,8 +15,8 @@ import java.util.Map;
 public final class RegistryEnvironmentContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/EnvironmentContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registry/EnvironmentContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Environment Container.
@@ -29,9 +29,9 @@ public final class RegistryEnvironmentContainersCreateOrUpdateSamples {
             .createOrUpdate("testrg123", "testregistry", "testEnvironment",
                 new EnvironmentContainerInner().withProperties(new EnvironmentContainerProperties()
                     .withDescription("string")
-                    .withTags(
-                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
                     .withProperties(
+                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
+                    .withTags(
                         mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))),
                 com.azure.core.util.Context.NONE);
     }

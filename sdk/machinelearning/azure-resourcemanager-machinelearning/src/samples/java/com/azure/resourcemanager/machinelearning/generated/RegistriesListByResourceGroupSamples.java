@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class RegistriesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/list-UserCreated.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registries/list-UserCreated.json
      */
     /**
      * Sample code: List registries with user created accounts.
@@ -25,8 +25,8 @@ public final class RegistriesListByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/list-SystemCreated.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registries/list-SystemCreated.json
      */
     /**
      * Sample code: List registries with system created accounts.
