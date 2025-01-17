@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/ci.yml
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/
+    exclude:
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/pom.xml
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/ci.yml
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/
+    exclude:
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/pom.xml
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerkubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes
+    displayName: azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes
+    Artifacts:
+      - name: azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerkubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerkubernetesconfigurationmicrosoftkubernetesconfigurationprivatelinkscopes }}
