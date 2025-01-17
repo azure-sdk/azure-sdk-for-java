@@ -42,6 +42,16 @@ public final class IncidentAdditionalData implements JsonSerializable<IncidentAd
      */
     private List<AttackTactic> tactics;
 
+    /*
+     * The techniques associated with incident's tactics
+     */
+    private List<String> techniques;
+
+    /*
+     * The provider incident url to the incident in Microsoft 365 Defender portal
+     */
+    private String providerIncidentUrl;
+
     /**
      * Creates an instance of IncidentAdditionalData class.
      */
@@ -94,6 +104,24 @@ public final class IncidentAdditionalData implements JsonSerializable<IncidentAd
     }
 
     /**
+     * Get the techniques property: The techniques associated with incident's tactics.
+     * 
+     * @return the techniques value.
+     */
+    public List<String> techniques() {
+        return this.techniques;
+    }
+
+    /**
+     * Get the providerIncidentUrl property: The provider incident url to the incident in Microsoft 365 Defender portal.
+     * 
+     * @return the providerIncidentUrl value.
+     */
+    public String providerIncidentUrl() {
+        return this.providerIncidentUrl;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -138,6 +166,11 @@ public final class IncidentAdditionalData implements JsonSerializable<IncidentAd
                     List<AttackTactic> tactics
                         = reader.readArray(reader1 -> AttackTactic.fromString(reader1.getString()));
                     deserializedIncidentAdditionalData.tactics = tactics;
+                } else if ("techniques".equals(fieldName)) {
+                    List<String> techniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedIncidentAdditionalData.techniques = techniques;
+                } else if ("providerIncidentUrl".equals(fieldName)) {
+                    deserializedIncidentAdditionalData.providerIncidentUrl = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

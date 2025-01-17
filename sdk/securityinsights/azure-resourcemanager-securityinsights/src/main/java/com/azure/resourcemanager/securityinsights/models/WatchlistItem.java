@@ -158,7 +158,7 @@ public interface WatchlistItem {
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param workspaceName The name of the workspace.
-             * @param watchlistAlias The watchlist alias.
+             * @param watchlistAlias Watchlist Alias.
              * @return the next definition stage.
              */
             WithCreate withExistingWatchlist(String resourceGroupName, String workspaceName, String watchlistAlias);
