@@ -1,14 +1,43 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-17)
+
+- Azure Resource Manager DataFactory client library for Java. This package contains Microsoft Azure SDK for DataFactory Management SDK. The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services. Package tag package-2018-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.OracleAuthenticationType` was added
 
-### Bugs Fixed
+#### `models.OracleLinkedService` was modified
 
-### Other Changes
+* `withEnableBulkLoad(java.lang.Object)` was added
+* `encryptionTypesClient()` was added
+* `withAuthenticationType(models.OracleAuthenticationType)` was added
+* `initializationString()` was added
+* `withUsername(java.lang.Object)` was added
+* `fetchSize()` was added
+* `withEncryptionTypesClient(java.lang.Object)` was added
+* `encryptionClient()` was added
+* `cryptoChecksumClient()` was added
+* `withCryptoChecksumClient(java.lang.Object)` was added
+* `withInitializationString(java.lang.Object)` was added
+* `supportV1DataTypes()` was added
+* `withFetchTswtzAsTimestamp(java.lang.Object)` was added
+* `fetchTswtzAsTimestamp()` was added
+* `withFetchSize(java.lang.Object)` was added
+* `withServer(java.lang.Object)` was added
+* `authenticationType()` was added
+* `withCryptoChecksumTypesClient(java.lang.Object)` was added
+* `cryptoChecksumTypesClient()` was added
+* `withEncryptionClient(java.lang.Object)` was added
+* `username()` was added
+* `withStatementCacheSize(java.lang.Object)` was added
+* `withSupportV1DataTypes(java.lang.Object)` was added
+* `initialLobFetchSize()` was added
+* `withInitialLobFetchSize(java.lang.Object)` was added
+* `enableBulkLoad()` was added
+* `server()` was added
+* `statementCacheSize()` was added
 
 ## 1.0.0 (2024-12-16)
 
