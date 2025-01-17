@@ -121,6 +121,7 @@
     <module>sdk/iotoperations</module>
     <module>sdk/keyvault</module>
     <module>sdk/kubernetesconfiguration</module>
+    <module>sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes</module>
     <module>sdk/kusto</module>
     <module>sdk/labservices</module>
     <module>sdk/largeinstance</module>
