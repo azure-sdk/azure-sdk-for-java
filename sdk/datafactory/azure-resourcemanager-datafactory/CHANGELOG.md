@@ -1,14 +1,33 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-20)
+
+- Azure Resource Manager DataFactory client library for Java. This package contains Microsoft Azure SDK for DataFactory Management SDK. The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services. Package tag package-2018-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.GreenplumAuthenticationType` was added
 
-### Bugs Fixed
+#### `models.GreenplumLinkedService` was modified
 
-### Other Changes
+* `withSslMode(java.lang.Object)` was added
+* `password()` was added
+* `authenticationType()` was added
+* `host()` was added
+* `withDatabase(java.lang.Object)` was added
+* `commandTimeout()` was added
+* `withUsername(java.lang.Object)` was added
+* `connectionTimeout()` was added
+* `database()` was added
+* `withHost(java.lang.Object)` was added
+* `withPassword(models.SecretBase)` was added
+* `withAuthenticationType(models.GreenplumAuthenticationType)` was added
+* `username()` was added
+* `port()` was added
+* `withConnectionTimeout(java.lang.Object)` was added
+* `withCommandTimeout(java.lang.Object)` was added
+* `withPort(java.lang.Object)` was added
+* `sslMode()` was added
 
 ## 1.0.0 (2024-12-16)
 
