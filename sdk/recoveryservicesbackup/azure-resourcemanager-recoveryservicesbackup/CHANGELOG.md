@@ -1,14 +1,72 @@
 # Release History
 
-## 1.6.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-20)
+
+- Azure Resource Manager RecoveryServicesBackup client library for Java. This package contains Microsoft Azure SDK for RecoveryServicesBackup Management SDK. Open API 2.0 Specs for Azure RecoveryServices Backup service. Package tag package-2025-01-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+#### `models.AzureIaaSComputeVMProtectedItem` was modified
 
-### Bugs Fixed
+* `withPolicyType(java.lang.String)` was added
 
-### Other Changes
+#### `models.MabFileFolderProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureVmWorkloadSapHanaDatabaseProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureVmWorkloadSapAseDatabaseProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureIaaSvmProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureVmWorkloadSqlDatabaseProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureVmWorkloadProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.ProtectedItem` was modified
+
+* `policyType()` was added
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureVmWorkloadSapHanaDBInstanceProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureIaaSClassicComputeVMProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.GenericProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureFileshareProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureSqlProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
+
+#### `models.AzureStorageContainer` was modified
+
+* `withOperationType(models.OperationType)` was added
+* `operationType()` was added
+
+#### `models.DpmProtectedItem` was modified
+
+* `withPolicyType(java.lang.String)` was added
 
 ## 1.5.0 (2024-12-19)
 

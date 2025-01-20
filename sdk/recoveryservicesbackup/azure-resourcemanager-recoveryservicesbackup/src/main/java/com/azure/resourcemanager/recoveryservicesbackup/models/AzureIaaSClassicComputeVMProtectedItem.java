@@ -243,6 +243,15 @@ public final class AzureIaaSClassicComputeVMProtectedItem extends AzureIaaSvmPro
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AzureIaaSClassicComputeVMProtectedItem withPolicyType(String policyType) {
+        super.withPolicyType(policyType);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -293,6 +302,7 @@ public final class AzureIaaSClassicComputeVMProtectedItem extends AzureIaaSvmPro
         jsonWriter.writeBooleanField("isArchiveEnabled", isArchiveEnabled());
         jsonWriter.writeStringField("policyName", policyName());
         jsonWriter.writeNumberField("softDeleteRetentionPeriodInDays", softDeleteRetentionPeriod());
+        jsonWriter.writeStringField("policyType", policyType());
         jsonWriter.writeStringField("protectionStatus", protectionStatus());
         jsonWriter.writeStringField("protectionState", protectionState() == null ? null : protectionState().toString());
         jsonWriter.writeArrayField("healthDetails", healthDetails(), (writer, element) -> writer.writeJson(element));
@@ -369,6 +379,8 @@ public final class AzureIaaSClassicComputeVMProtectedItem extends AzureIaaSvmPro
                         .withSoftDeleteRetentionPeriod(reader.getNullable(JsonReader::getInt));
                 } else if ("vaultId".equals(fieldName)) {
                     deserializedAzureIaaSClassicComputeVMProtectedItem.withVaultId(reader.getString());
+                } else if ("policyType".equals(fieldName)) {
+                    deserializedAzureIaaSClassicComputeVMProtectedItem.withPolicyType(reader.getString());
                 } else if ("friendlyName".equals(fieldName)) {
                     deserializedAzureIaaSClassicComputeVMProtectedItem.withFriendlyName(reader.getString());
                 } else if ("virtualMachineId".equals(fieldName)) {

@@ -477,6 +477,15 @@ public class AzureIaaSvmProtectedItem extends ProtectedItem {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AzureIaaSvmProtectedItem withPolicyType(String policyType) {
+        super.withPolicyType(policyType);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -527,6 +536,7 @@ public class AzureIaaSvmProtectedItem extends ProtectedItem {
         jsonWriter.writeBooleanField("isArchiveEnabled", isArchiveEnabled());
         jsonWriter.writeStringField("policyName", policyName());
         jsonWriter.writeNumberField("softDeleteRetentionPeriodInDays", softDeleteRetentionPeriod());
+        jsonWriter.writeStringField("policyType", policyType());
         jsonWriter.writeStringField("protectedItemType", this.protectedItemType);
         jsonWriter.writeStringField("protectionStatus", this.protectionStatus);
         jsonWriter.writeStringField("protectionState",
@@ -627,6 +637,8 @@ public class AzureIaaSvmProtectedItem extends ProtectedItem {
                         .withSoftDeleteRetentionPeriod(reader.getNullable(JsonReader::getInt));
                 } else if ("vaultId".equals(fieldName)) {
                     deserializedAzureIaaSvmProtectedItem.withVaultId(reader.getString());
+                } else if ("policyType".equals(fieldName)) {
+                    deserializedAzureIaaSvmProtectedItem.withPolicyType(reader.getString());
                 } else if ("protectedItemType".equals(fieldName)) {
                     deserializedAzureIaaSvmProtectedItem.protectedItemType = reader.getString();
                 } else if ("friendlyName".equals(fieldName)) {

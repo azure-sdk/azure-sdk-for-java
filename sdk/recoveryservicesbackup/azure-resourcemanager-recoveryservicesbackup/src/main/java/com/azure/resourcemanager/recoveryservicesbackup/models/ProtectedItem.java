@@ -115,6 +115,11 @@ public class ProtectedItem implements JsonSerializable<ProtectedItem> {
      */
     private String vaultId;
 
+    /*
+     * Type of the policy used for protection
+     */
+    private String policyType;
+
     /**
      * Creates an instance of ProtectedItem class.
      */
@@ -501,6 +506,26 @@ public class ProtectedItem implements JsonSerializable<ProtectedItem> {
     }
 
     /**
+     * Get the policyType property: Type of the policy used for protection.
+     * 
+     * @return the policyType value.
+     */
+    public String policyType() {
+        return this.policyType;
+    }
+
+    /**
+     * Set the policyType property: Type of the policy used for protection.
+     * 
+     * @param policyType the policyType value to set.
+     * @return the ProtectedItem object itself.
+     */
+    public ProtectedItem withPolicyType(String policyType) {
+        this.policyType = policyType;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -537,6 +562,7 @@ public class ProtectedItem implements JsonSerializable<ProtectedItem> {
         jsonWriter.writeBooleanField("isArchiveEnabled", this.isArchiveEnabled);
         jsonWriter.writeStringField("policyName", this.policyName);
         jsonWriter.writeNumberField("softDeleteRetentionPeriodInDays", this.softDeleteRetentionPeriod);
+        jsonWriter.writeStringField("policyType", this.policyType);
         return jsonWriter.writeEndObject();
     }
 
@@ -647,6 +673,8 @@ public class ProtectedItem implements JsonSerializable<ProtectedItem> {
                     deserializedProtectedItem.softDeleteRetentionPeriod = reader.getNullable(JsonReader::getInt);
                 } else if ("vaultId".equals(fieldName)) {
                     deserializedProtectedItem.vaultId = reader.getString();
+                } else if ("policyType".equals(fieldName)) {
+                    deserializedProtectedItem.policyType = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
