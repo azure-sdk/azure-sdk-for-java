@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * the types of identities associated with this resource; currently restricted to 'None and UserAssigned'.
+ * the types of identities associated with this resource.
  */
 public final class IdentityType extends ExpandableStringEnum<IdentityType> {
     /**

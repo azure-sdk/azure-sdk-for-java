@@ -10,7 +10,8 @@ package com.azure.resourcemanager.postgresqlflexibleserver.generated;
 public final class BackupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/BackupGet.json
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/BackupGet
+     * .json
      */
     /**
      * Sample code: Get a backup for a server.

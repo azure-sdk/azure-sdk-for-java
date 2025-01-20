@@ -24,7 +24,7 @@ public final class UserAssignedIdentity implements JsonSerializable<UserAssigned
     private Map<String, UserIdentity> userAssignedIdentities;
 
     /*
-     * the types of identities associated with this resource; currently restricted to 'None and UserAssigned'
+     * the types of identities associated with this resource
      */
     private IdentityType type;
 
@@ -60,8 +60,7 @@ public final class UserAssignedIdentity implements JsonSerializable<UserAssigned
     }
 
     /**
-     * Get the type property: the types of identities associated with this resource; currently restricted to 'None and
-     * UserAssigned'.
+     * Get the type property: the types of identities associated with this resource.
      * 
      * @return the type value.
      */
@@ -70,8 +69,7 @@ public final class UserAssignedIdentity implements JsonSerializable<UserAssigned
     }
 
     /**
-     * Set the type property: the types of identities associated with this resource; currently restricted to 'None and
-     * UserAssigned'.
+     * Set the type property: the types of identities associated with this resource.
      * 
      * @param type the type value to set.
      * @return the UserAssignedIdentity object itself.
