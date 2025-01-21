@@ -23,10 +23,13 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.apicenter.fluent.AnalyzerConfigsClient;
 import com.azure.resourcemanager.apicenter.fluent.ApiDefinitionsClient;
+import com.azure.resourcemanager.apicenter.fluent.ApiSourcesClient;
 import com.azure.resourcemanager.apicenter.fluent.ApiVersionsClient;
 import com.azure.resourcemanager.apicenter.fluent.ApisClient;
 import com.azure.resourcemanager.apicenter.fluent.AzureApiCenter;
+import com.azure.resourcemanager.apicenter.fluent.DeletedServicesClient;
 import com.azure.resourcemanager.apicenter.fluent.DeploymentsClient;
 import com.azure.resourcemanager.apicenter.fluent.EnvironmentsClient;
 import com.azure.resourcemanager.apicenter.fluent.MetadataSchemasClient;
@@ -146,6 +149,20 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
     }
 
     /**
+     * The DeletedServicesClient object to access its operations.
+     */
+    private final DeletedServicesClient deletedServices;
+
+    /**
+     * Gets the DeletedServicesClient object to access its operations.
+     * 
+     * @return the DeletedServicesClient object.
+     */
+    public DeletedServicesClient getDeletedServices() {
+        return this.deletedServices;
+    }
+
+    /**
      * The ServicesClient object to access its operations.
      */
     private final ServicesClient services;
@@ -185,6 +202,34 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
      */
     public WorkspacesClient getWorkspaces() {
         return this.workspaces;
+    }
+
+    /**
+     * The AnalyzerConfigsClient object to access its operations.
+     */
+    private final AnalyzerConfigsClient analyzerConfigs;
+
+    /**
+     * Gets the AnalyzerConfigsClient object to access its operations.
+     * 
+     * @return the AnalyzerConfigsClient object.
+     */
+    public AnalyzerConfigsClient getAnalyzerConfigs() {
+        return this.analyzerConfigs;
+    }
+
+    /**
+     * The ApiSourcesClient object to access its operations.
+     */
+    private final ApiSourcesClient apiSources;
+
+    /**
+     * Gets the ApiSourcesClient object to access its operations.
+     * 
+     * @return the ApiSourcesClient object.
+     */
+    public ApiSourcesClient getApiSources() {
+        return this.apiSources;
     }
 
     /**
@@ -274,11 +319,14 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-03-01";
+        this.apiVersion = "2024-12-15-preview";
         this.operations = new OperationsClientImpl(this);
+        this.deletedServices = new DeletedServicesClientImpl(this);
         this.services = new ServicesClientImpl(this);
         this.metadataSchemas = new MetadataSchemasClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
+        this.analyzerConfigs = new AnalyzerConfigsClientImpl(this);
+        this.apiSources = new ApiSourcesClientImpl(this);
         this.apis = new ApisClientImpl(this);
         this.deployments = new DeploymentsClientImpl(this);
         this.apiVersions = new ApiVersionsClientImpl(this);
