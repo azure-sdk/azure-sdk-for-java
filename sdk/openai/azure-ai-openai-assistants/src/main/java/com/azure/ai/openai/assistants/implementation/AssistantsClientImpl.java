@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
+import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
@@ -34,6 +35,9 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import reactor.core.publisher.Mono;
 
 /**
@@ -428,9 +432,9 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> createRun(@HostParam("endpoint") String endpoint,
-            @PathParam("threadId") String threadId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRunOptions,
-            RequestOptions requestOptions, Context context);
+            @PathParam("threadId") String threadId, @QueryParam("include[]") String include,
+            @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") BinaryData createRunOptions, RequestOptions requestOptions, Context context);
 
         @Post("/threads/{threadId}/runs")
         @ExpectedResponses({ 200 })
@@ -439,9 +443,9 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> createRunSync(@HostParam("endpoint") String endpoint,
-            @PathParam("threadId") String threadId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRunOptions,
-            RequestOptions requestOptions, Context context);
+            @PathParam("threadId") String threadId, @QueryParam("include[]") String include,
+            @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") BinaryData createRunOptions, RequestOptions requestOptions, Context context);
 
         @Get("/threads/{threadId}/runs")
         @ExpectedResponses({ 200 })
@@ -579,8 +583,8 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getRunStep(@HostParam("endpoint") String endpoint,
             @PathParam("threadId") String threadId, @PathParam("runId") String runId,
-            @PathParam("stepId") String stepId, @HeaderParam("Accept") String accept, RequestOptions requestOptions,
-            Context context);
+            @PathParam("stepId") String stepId, @QueryParam("include[]") String include,
+            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
 
         @Get("/threads/{threadId}/runs/{runId}/steps/{stepId}")
         @ExpectedResponses({ 200 })
@@ -590,8 +594,8 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getRunStepSync(@HostParam("endpoint") String endpoint,
             @PathParam("threadId") String threadId, @PathParam("runId") String runId,
-            @PathParam("stepId") String stepId, @HeaderParam("Accept") String accept, RequestOptions requestOptions,
-            Context context);
+            @PathParam("stepId") String stepId, @QueryParam("include[]") String include,
+            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
 
         @Get("/threads/{threadId}/runs/{runId}/steps")
         @ExpectedResponses({ 200 })
@@ -601,7 +605,8 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listRunSteps(@HostParam("endpoint") String endpoint,
             @PathParam("threadId") String threadId, @PathParam("runId") String runId,
-            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
+            @QueryParam("include[]") String include, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
 
         @Get("/threads/{threadId}/runs/{runId}/steps")
         @ExpectedResponses({ 200 })
@@ -611,7 +616,8 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listRunStepsSync(@HostParam("endpoint") String endpoint,
             @PathParam("threadId") String threadId, @PathParam("runId") String runId,
-            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
+            @QueryParam("include[]") String include, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
 
         @Get("/files")
         @ExpectedResponses({ 200 })
@@ -1178,7 +1184,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -1259,7 +1265,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -2320,7 +2326,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -2402,7 +2408,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -2773,6 +2779,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     parallel_tool_calls: Boolean (Optional)
      *     stream: Boolean (Optional)
      *     temperature: Double (Optional)
      *     top_p: Double (Optional)
@@ -2836,6 +2843,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -2845,6 +2853,7 @@ public final class AssistantsClientImpl {
      * </pre>
      * 
      * @param threadId The ID of the thread to run.
+     * @param include A list of additional fields to include in the response.
      * @param createRunOptions The details used when creating a new run of an assistant thread.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -2855,12 +2864,15 @@ public final class AssistantsClientImpl {
      * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createRunWithResponseAsync(String threadId, BinaryData createRunOptions,
-        RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> createRunWithResponseAsync(String threadId, List<String> include,
+        BinaryData createRunOptions, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.createRun(this.getEndpoint(), threadId, contentType, accept,
-            createRunOptions, requestOptions, context));
+        String includeConverted = include.stream()
+            .map(paramItemValue -> Objects.toString(paramItemValue, ""))
+            .collect(Collectors.joining(","));
+        return FluxUtil.withContext(context -> service.createRun(this.getEndpoint(), threadId, includeConverted,
+            contentType, accept, createRunOptions, requestOptions, context));
     }
 
     /**
@@ -2912,6 +2924,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     parallel_tool_calls: Boolean (Optional)
      *     stream: Boolean (Optional)
      *     temperature: Double (Optional)
      *     top_p: Double (Optional)
@@ -2975,6 +2988,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -2984,6 +2998,7 @@ public final class AssistantsClientImpl {
      * </pre>
      * 
      * @param threadId The ID of the thread to run.
+     * @param include A list of additional fields to include in the response.
      * @param createRunOptions The details used when creating a new run of an assistant thread.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -2993,12 +3008,15 @@ public final class AssistantsClientImpl {
      * @return data representing a single evaluation run of an assistant thread along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createRunWithResponse(String threadId, BinaryData createRunOptions,
-        RequestOptions requestOptions) {
+    public Response<BinaryData> createRunWithResponse(String threadId, List<String> include,
+        BinaryData createRunOptions, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
-        return service.createRunSync(this.getEndpoint(), threadId, contentType, accept, createRunOptions,
-            requestOptions, Context.NONE);
+        String includeConverted = include.stream()
+            .map(paramItemValue -> Objects.toString(paramItemValue, ""))
+            .collect(Collectors.joining(","));
+        return service.createRunSync(this.getEndpoint(), threadId, includeConverted, contentType, accept,
+            createRunOptions, requestOptions, Context.NONE);
     }
 
     /**
@@ -3015,7 +3033,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -3068,6 +3086,7 @@ public final class AssistantsClientImpl {
      *                 last_messages: Integer (Optional)
      *             }
      *             tool_choice: BinaryData (Required)
+     *             parallel_tool_calls: boolean (Required)
      *             response_format: BinaryData (Required)
      *             metadata (Required): {
      *                 String: String (Required)
@@ -3111,7 +3130,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -3164,6 +3183,7 @@ public final class AssistantsClientImpl {
      *                 last_messages: Integer (Optional)
      *             }
      *             tool_choice: BinaryData (Required)
+     *             parallel_tool_calls: boolean (Required)
      *             response_format: BinaryData (Required)
      *             metadata (Required): {
      *                 String: String (Required)
@@ -3238,6 +3258,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3311,6 +3332,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3393,6 +3415,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3480,6 +3503,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3571,6 +3595,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3663,6 +3688,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3737,6 +3763,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3810,6 +3837,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3878,6 +3906,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     parallel_tool_calls: Boolean (Optional)
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
      *             file_ids (Optional): [
@@ -3953,6 +3982,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -4024,6 +4054,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     parallel_tool_calls: Boolean (Optional)
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
      *             file_ids (Optional): [
@@ -4099,6 +4130,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -4165,6 +4197,7 @@ public final class AssistantsClientImpl {
      * @param threadId The ID of the thread that was run.
      * @param runId The ID of the specific run to retrieve the step from.
      * @param stepId The ID of the step to retrieve information about.
+     * @param include A list of additional fields to include in the response.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -4174,10 +4207,13 @@ public final class AssistantsClientImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getRunStepWithResponseAsync(String threadId, String runId, String stepId,
-        RequestOptions requestOptions) {
+        List<String> include, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getRunStep(this.getEndpoint(), threadId, runId, stepId, accept,
-            requestOptions, context));
+        String includeConverted = include.stream()
+            .map(paramItemValue -> Objects.toString(paramItemValue, ""))
+            .collect(Collectors.joining(","));
+        return FluxUtil.withContext(context -> service.getRunStep(this.getEndpoint(), threadId, runId, stepId,
+            includeConverted, accept, requestOptions, context));
     }
 
     /**
@@ -4221,6 +4257,7 @@ public final class AssistantsClientImpl {
      * @param threadId The ID of the thread that was run.
      * @param runId The ID of the specific run to retrieve the step from.
      * @param stepId The ID of the step to retrieve information about.
+     * @param include A list of additional fields to include in the response.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -4230,10 +4267,13 @@ public final class AssistantsClientImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getRunStepWithResponse(String threadId, String runId, String stepId,
-        RequestOptions requestOptions) {
+        List<String> include, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getRunStepSync(this.getEndpoint(), threadId, runId, stepId, accept, requestOptions,
-            Context.NONE);
+        String includeConverted = include.stream()
+            .map(paramItemValue -> Objects.toString(paramItemValue, ""))
+            .collect(Collectors.joining(","));
+        return service.getRunStepSync(this.getEndpoint(), threadId, runId, stepId, includeConverted, accept,
+            requestOptions, Context.NONE);
     }
 
     /**
@@ -4250,7 +4290,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -4301,6 +4341,7 @@ public final class AssistantsClientImpl {
      * 
      * @param threadId The ID of the thread that was run.
      * @param runId The ID of the run to list steps from.
+     * @param include A list of additional fields to include in the response.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -4310,11 +4351,14 @@ public final class AssistantsClientImpl {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> listRunStepsWithResponseAsync(String threadId, String runId,
+    public Mono<Response<BinaryData>> listRunStepsWithResponseAsync(String threadId, String runId, List<String> include,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(
-            context -> service.listRunSteps(this.getEndpoint(), threadId, runId, accept, requestOptions, context));
+        String includeConverted = include.stream()
+            .map(paramItemValue -> Objects.toString(paramItemValue, ""))
+            .collect(Collectors.joining(","));
+        return FluxUtil.withContext(context -> service.listRunSteps(this.getEndpoint(), threadId, runId,
+            includeConverted, accept, requestOptions, context));
     }
 
     /**
@@ -4331,7 +4375,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -4382,6 +4426,7 @@ public final class AssistantsClientImpl {
      * 
      * @param threadId The ID of the thread that was run.
      * @param runId The ID of the run to list steps from.
+     * @param include A list of additional fields to include in the response.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -4390,9 +4435,14 @@ public final class AssistantsClientImpl {
      * @return a list of run steps from a thread run along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> listRunStepsWithResponse(String threadId, String runId, RequestOptions requestOptions) {
+    public Response<BinaryData> listRunStepsWithResponse(String threadId, String runId, List<String> include,
+        RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.listRunStepsSync(this.getEndpoint(), threadId, runId, accept, requestOptions, Context.NONE);
+        String includeConverted = include.stream()
+            .map(paramItemValue -> Objects.toString(paramItemValue, ""))
+            .collect(Collectors.joining(","));
+        return service.listRunStepsSync(this.getEndpoint(), threadId, runId, includeConverted, accept, requestOptions,
+            Context.NONE);
     }
 
     /**
@@ -4748,7 +4798,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -4821,7 +4871,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -5337,7 +5387,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -5357,7 +5407,7 @@ public final class AssistantsClientImpl {
      *             vector_store_id: String (Required)
      *             status: String(in_progress/completed/failed/cancelled) (Required)
      *             last_error (Required): {
-     *                 code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
+     *                 code: String(server_error/unsupported_file/invalid_file) (Required)
      *                 message: String (Required)
      *             }
      *             chunking_strategy (Required): {
@@ -5405,7 +5455,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -5425,7 +5475,7 @@ public final class AssistantsClientImpl {
      *             vector_store_id: String (Required)
      *             status: String(in_progress/completed/failed/cancelled) (Required)
      *             last_error (Required): {
-     *                 code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
+     *                 code: String(server_error/unsupported_file/invalid_file) (Required)
      *                 message: String (Required)
      *             }
      *             chunking_strategy (Required): {
@@ -5482,7 +5532,7 @@ public final class AssistantsClientImpl {
      *     vector_store_id: String (Required)
      *     status: String(in_progress/completed/failed/cancelled) (Required)
      *     last_error (Required): {
-     *         code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
+     *         code: String(server_error/unsupported_file/invalid_file) (Required)
      *         message: String (Required)
      *     }
      *     chunking_strategy (Required): {
@@ -5538,7 +5588,7 @@ public final class AssistantsClientImpl {
      *     vector_store_id: String (Required)
      *     status: String(in_progress/completed/failed/cancelled) (Required)
      *     last_error (Required): {
-     *         code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
+     *         code: String(server_error/unsupported_file/invalid_file) (Required)
      *         message: String (Required)
      *     }
      *     chunking_strategy (Required): {
@@ -5580,7 +5630,7 @@ public final class AssistantsClientImpl {
      *     vector_store_id: String (Required)
      *     status: String(in_progress/completed/failed/cancelled) (Required)
      *     last_error (Required): {
-     *         code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
+     *         code: String(server_error/unsupported_file/invalid_file) (Required)
      *         message: String (Required)
      *     }
      *     chunking_strategy (Required): {
@@ -5622,7 +5672,7 @@ public final class AssistantsClientImpl {
      *     vector_store_id: String (Required)
      *     status: String(in_progress/completed/failed/cancelled) (Required)
      *     last_error (Required): {
-     *         code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
+     *         code: String(server_error/unsupported_file/invalid_file) (Required)
      *         message: String (Required)
      *     }
      *     chunking_strategy (Required): {
@@ -6009,7 +6059,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -6029,7 +6079,7 @@ public final class AssistantsClientImpl {
      *             vector_store_id: String (Required)
      *             status: String(in_progress/completed/failed/cancelled) (Required)
      *             last_error (Required): {
-     *                 code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
+     *                 code: String(server_error/unsupported_file/invalid_file) (Required)
      *                 message: String (Required)
      *             }
      *             chunking_strategy (Required): {
@@ -6078,7 +6128,7 @@ public final class AssistantsClientImpl {
      * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
      * obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.</td></tr>
      * <tr><td>before</td><td>String</td><td>No</td><td>A cursor for use in pagination. before is an object ID that
-     * defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with
+     * defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with
      * obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the
      * list.</td></tr>
      * </table>
@@ -6098,7 +6148,7 @@ public final class AssistantsClientImpl {
      *             vector_store_id: String (Required)
      *             status: String(in_progress/completed/failed/cancelled) (Required)
      *             last_error (Required): {
-     *                 code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
+     *                 code: String(server_error/unsupported_file/invalid_file) (Required)
      *                 message: String (Required)
      *             }
      *             chunking_strategy (Required): {
