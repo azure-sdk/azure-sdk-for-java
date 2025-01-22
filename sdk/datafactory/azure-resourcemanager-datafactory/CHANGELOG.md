@@ -1,14 +1,52 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-22)
+
+- Azure Resource Manager DataFactory client library for Java. This package contains Microsoft Azure SDK for DataFactory Management SDK. The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services. Package tag package-2018-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.GreenplumAuthenticationType` was added
 
-### Bugs Fixed
+* `models.TeradataSink` was added
 
-### Other Changes
+* `models.TeradataImportCommand` was added
+
+#### `models.GreenplumLinkedService` was modified
+
+* `withPassword(models.SecretBase)` was added
+* `password()` was added
+* `host()` was added
+* `withDatabase(java.lang.Object)` was added
+* `withUsername(java.lang.Object)` was added
+* `authenticationType()` was added
+* `database()` was added
+* `withHost(java.lang.Object)` was added
+* `withPort(java.lang.Object)` was added
+* `port()` was added
+* `commandTimeout()` was added
+* `withAuthenticationType(models.GreenplumAuthenticationType)` was added
+* `withSslMode(java.lang.Object)` was added
+* `username()` was added
+* `withCommandTimeout(java.lang.Object)` was added
+* `connectionTimeout()` was added
+* `withConnectionTimeout(java.lang.Object)` was added
+* `sslMode()` was added
+
+#### `models.TeradataLinkedService` was modified
+
+* `maxRespSize()` was added
+* `withMaxRespSize(java.lang.Object)` was added
+* `withPortNumber(java.lang.Object)` was added
+* `httpsPortNumber()` was added
+* `portNumber()` was added
+* `withSslMode(java.lang.Object)` was added
+* `withHttpsPortNumber(java.lang.Object)` was added
+* `withUseDataEncryption(java.lang.Object)` was added
+* `withCharacterSet(java.lang.Object)` was added
+* `sslMode()` was added
+* `characterSet()` was added
+* `useDataEncryption()` was added
 
 ## 1.0.0 (2024-12-16)
 
