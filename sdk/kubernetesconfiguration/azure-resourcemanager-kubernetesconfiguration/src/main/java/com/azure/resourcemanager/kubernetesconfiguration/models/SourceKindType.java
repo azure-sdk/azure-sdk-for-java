@@ -27,6 +27,11 @@ public final class SourceKindType extends ExpandableStringEnum<SourceKindType> {
     public static final SourceKindType AZURE_BLOB = fromString("AzureBlob");
 
     /**
+     * Static value OCIRepository for SourceKindType.
+     */
+    public static final SourceKindType OCIREPOSITORY = fromString("OCIRepository");
+
+    /**
      * Creates a new instance of SourceKindType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

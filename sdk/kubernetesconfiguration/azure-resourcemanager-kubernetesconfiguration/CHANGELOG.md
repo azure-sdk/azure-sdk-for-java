@@ -1,14 +1,60 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-22)
 
-### Features Added
+- Azure Resource Manager SourceControlConfiguration client library for Java. This package contains Microsoft Azure SDK for SourceControlConfiguration Management SDK. KubernetesConfiguration Client. Package tag package-preview-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.KustomizationPatchDefinition` was modified
 
-### Other Changes
+* `withPostBuild(models.PostBuildDefinition)` was removed
+* `models.PostBuildDefinition postBuild()` -> `models.PostBuildPatchDefinition postBuild()`
+
+### Features Added
+
+* `models.SubstituteFromPatchDefinition` was added
+
+* `models.OciRepositoryRefPatchDefinition` was added
+
+* `models.MatchOidcIdentityDefinition` was added
+
+* `models.OperationType` was added
+
+* `models.OciRepositoryDefinition` was added
+
+* `models.VerifyPatchDefinition` was added
+
+* `models.VerifyDefinition` was added
+
+* `models.LayerSelectorPatchDefinition` was added
+
+* `models.LayerSelectorDefinition` was added
+
+* `models.TlsConfigPatchDefinition` was added
+
+* `models.OciRepositoryRefDefinition` was added
+
+* `models.MatchOidcIdentityPatchDefinition` was added
+
+* `models.TlsConfigDefinition` was added
+
+* `models.OciRepositoryPatchDefinition` was added
+
+* `models.PostBuildPatchDefinition` was added
+
+#### `models.FluxConfiguration` was modified
+
+* `ociRepository()` was added
+
+#### `models.KustomizationPatchDefinition` was modified
+
+* `withPostBuild(models.PostBuildPatchDefinition)` was added
+
+#### `models.FluxConfigurationPatch` was modified
+
+* `ociRepository()` was added
+* `withOciRepository(models.OciRepositoryPatchDefinition)` was added
 
 ## 1.1.0 (2024-12-11)
 

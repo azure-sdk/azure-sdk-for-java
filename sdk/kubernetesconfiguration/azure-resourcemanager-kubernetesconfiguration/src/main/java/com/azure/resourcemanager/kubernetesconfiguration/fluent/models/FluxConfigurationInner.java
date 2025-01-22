@@ -16,6 +16,7 @@ import com.azure.resourcemanager.kubernetesconfiguration.models.FluxComplianceSt
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ObjectStatusDefinition;
+import com.azure.resourcemanager.kubernetesconfiguration.models.OciRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ScopeType;
 import com.azure.resourcemanager.kubernetesconfiguration.models.SourceKindType;
@@ -273,6 +274,29 @@ public final class FluxConfigurationInner extends ProxyResource {
             this.innerProperties = new FluxConfigurationProperties();
         }
         this.innerProperties().withAzureBlob(azureBlob);
+        return this;
+    }
+
+    /**
+     * Get the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @return the ociRepository value.
+     */
+    public OciRepositoryDefinition ociRepository() {
+        return this.innerProperties() == null ? null : this.innerProperties().ociRepository();
+    }
+
+    /**
+     * Set the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @param ociRepository the ociRepository value to set.
+     * @return the FluxConfigurationInner object itself.
+     */
+    public FluxConfigurationInner withOciRepository(OciRepositoryDefinition ociRepository) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FluxConfigurationProperties();
+        }
+        this.innerProperties().withOciRepository(ociRepository);
         return this;
     }
 
