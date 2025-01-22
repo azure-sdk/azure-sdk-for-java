@@ -33,6 +33,7 @@ import com.azure.resourcemanager.machinelearning.fluent.DatastoresClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreSecretsInner;
 import com.azure.resourcemanager.machinelearning.models.DatastoreResourceArmPaginatedResult;
+import com.azure.resourcemanager.machinelearning.models.SecretExpiry;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -122,7 +123,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("name") String name, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") SecretExpiry body, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -777,6 +778,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
+     * @param body Secret expiry information.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -784,7 +786,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DatastoreSecretsInner>> listSecretsWithResponseAsync(String resourceGroupName,
-        String workspaceName, String name) {
+        String workspaceName, String name, SecretExpiry body) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -803,10 +805,13 @@ public final class DatastoresClientImpl implements DatastoresClient {
         if (name == null) {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
+        if (body != null) {
+            body.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSecrets(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, name, this.client.getApiVersion(), accept, context))
+                resourceGroupName, workspaceName, name, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -816,6 +821,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
+     * @param body Secret expiry information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -824,7 +830,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DatastoreSecretsInner>> listSecretsWithResponseAsync(String resourceGroupName,
-        String workspaceName, String name, Context context) {
+        String workspaceName, String name, SecretExpiry body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -843,10 +849,13 @@ public final class DatastoresClientImpl implements DatastoresClient {
         if (name == null) {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
+        if (body != null) {
+            body.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listSecrets(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, name, this.client.getApiVersion(), accept, context);
+            workspaceName, name, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -862,7 +871,8 @@ public final class DatastoresClientImpl implements DatastoresClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DatastoreSecretsInner> listSecretsAsync(String resourceGroupName, String workspaceName, String name) {
-        return listSecretsWithResponseAsync(resourceGroupName, workspaceName, name)
+        final SecretExpiry body = null;
+        return listSecretsWithResponseAsync(resourceGroupName, workspaceName, name, body)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -872,6 +882,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
+     * @param body Secret expiry information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -880,8 +891,8 @@ public final class DatastoresClientImpl implements DatastoresClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DatastoreSecretsInner> listSecretsWithResponse(String resourceGroupName, String workspaceName,
-        String name, Context context) {
-        return listSecretsWithResponseAsync(resourceGroupName, workspaceName, name, context).block();
+        String name, SecretExpiry body, Context context) {
+        return listSecretsWithResponseAsync(resourceGroupName, workspaceName, name, body, context).block();
     }
 
     /**
@@ -897,7 +908,8 @@ public final class DatastoresClientImpl implements DatastoresClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DatastoreSecretsInner listSecrets(String resourceGroupName, String workspaceName, String name) {
-        return listSecretsWithResponse(resourceGroupName, workspaceName, name, Context.NONE).getValue();
+        final SecretExpiry body = null;
+        return listSecretsWithResponse(resourceGroupName, workspaceName, name, body, Context.NONE).getValue();
     }
 
     /**

@@ -48,12 +48,34 @@ public final class PrivateLinkResourceProperties implements JsonSerializable<Pri
     }
 
     /**
+     * Set the groupId property: The private link resource group id.
+     * 
+     * @param groupId the groupId value to set.
+     * @return the PrivateLinkResourceProperties object itself.
+     */
+    public PrivateLinkResourceProperties withGroupId(String groupId) {
+        this.groupId = groupId;
+        return this;
+    }
+
+    /**
      * Get the requiredMembers property: The private link resource required member names.
      * 
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
         return this.requiredMembers;
+    }
+
+    /**
+     * Set the requiredMembers property: The private link resource required member names.
+     * 
+     * @param requiredMembers the requiredMembers value to set.
+     * @return the PrivateLinkResourceProperties object itself.
+     */
+    public PrivateLinkResourceProperties withRequiredMembers(List<String> requiredMembers) {
+        this.requiredMembers = requiredMembers;
+        return this;
     }
 
     /**
@@ -90,6 +112,9 @@ public final class PrivateLinkResourceProperties implements JsonSerializable<Pri
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("groupId", this.groupId);
+        jsonWriter.writeArrayField("requiredMembers", this.requiredMembers,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("requiredZoneNames", this.requiredZoneNames,
             (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
