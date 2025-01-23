@@ -40,7 +40,6 @@ import com.azure.resourcemanager.datafactory.implementation.IntegrationRuntimesI
 import com.azure.resourcemanager.datafactory.implementation.LinkedServicesImpl;
 import com.azure.resourcemanager.datafactory.implementation.ManagedPrivateEndpointsImpl;
 import com.azure.resourcemanager.datafactory.implementation.ManagedVirtualNetworksImpl;
-import com.azure.resourcemanager.datafactory.implementation.OperationsImpl;
 import com.azure.resourcemanager.datafactory.implementation.PipelineRunsImpl;
 import com.azure.resourcemanager.datafactory.implementation.PipelinesImpl;
 import com.azure.resourcemanager.datafactory.implementation.PrivateEndPointConnectionsImpl;
@@ -63,7 +62,6 @@ import com.azure.resourcemanager.datafactory.models.IntegrationRuntimes;
 import com.azure.resourcemanager.datafactory.models.LinkedServices;
 import com.azure.resourcemanager.datafactory.models.ManagedPrivateEndpoints;
 import com.azure.resourcemanager.datafactory.models.ManagedVirtualNetworks;
-import com.azure.resourcemanager.datafactory.models.Operations;
 import com.azure.resourcemanager.datafactory.models.PipelineRuns;
 import com.azure.resourcemanager.datafactory.models.Pipelines;
 import com.azure.resourcemanager.datafactory.models.PrivateEndPointConnections;
@@ -84,11 +82,9 @@ import java.util.stream.Collectors;
  * V2 services.
  */
 public final class DataFactoryManager {
-    private Operations operations;
+    private ExposureControls exposureControls;
 
     private Factories factories;
-
-    private ExposureControls exposureControls;
 
     private IntegrationRuntimes integrationRuntimes;
 
@@ -294,7 +290,7 @@ public final class DataFactoryManager {
                 .append("-")
                 .append("com.azure.resourcemanager.datafactory")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -341,15 +337,15 @@ public final class DataFactoryManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
+     * Gets the resource collection API of ExposureControls.
      * 
-     * @return Resource collection API of Operations.
+     * @return Resource collection API of ExposureControls.
      */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+    public ExposureControls exposureControls() {
+        if (this.exposureControls == null) {
+            this.exposureControls = new ExposureControlsImpl(clientObject.getExposureControls(), this);
         }
-        return operations;
+        return exposureControls;
     }
 
     /**
@@ -362,18 +358,6 @@ public final class DataFactoryManager {
             this.factories = new FactoriesImpl(clientObject.getFactories(), this);
         }
         return factories;
-    }
-
-    /**
-     * Gets the resource collection API of ExposureControls.
-     * 
-     * @return Resource collection API of ExposureControls.
-     */
-    public ExposureControls exposureControls() {
-        if (this.exposureControls == null) {
-            this.exposureControls = new ExposureControlsImpl(clientObject.getExposureControls(), this);
-        }
-        return exposureControls;
     }
 
     /**

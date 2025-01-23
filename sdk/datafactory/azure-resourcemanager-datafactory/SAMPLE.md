@@ -52,13 +52,11 @@
 
 ## Factories
 
-- [ConfigureFactoryRepo](#factories_configurefactoryrepo)
 - [CreateOrUpdate](#factories_createorupdate)
 - [Delete](#factories_delete)
 - [GetByResourceGroup](#factories_getbyresourcegroup)
 - [GetDataPlaneAccess](#factories_getdataplaneaccess)
 - [GetGitHubAccessToken](#factories_getgithubaccesstoken)
-- [List](#factories_list)
 - [ListByResourceGroup](#factories_listbyresourcegroup)
 - [Update](#factories_update)
 
@@ -120,10 +118,6 @@
 - [CreateOrUpdate](#managedvirtualnetworks_createorupdate)
 - [Get](#managedvirtualnetworks_get)
 - [ListByFactory](#managedvirtualnetworks_listbyfactory)
-
-## Operations
-
-- [List](#operations_list)
 
 ## PipelineRuns
 
@@ -1161,41 +1155,6 @@ public final class ExposureControlQueryFeatureValuesByFactorySamples {
 }
 ```
 
-### Factories_ConfigureFactoryRepo
-
-```java
-import com.azure.resourcemanager.datafactory.models.FactoryRepoUpdate;
-import com.azure.resourcemanager.datafactory.models.FactoryVstsConfiguration;
-
-/**
- * Samples for Factories ConfigureFactoryRepo.
- */
-public final class FactoriesConfigureFactoryRepoSamples {
-    /*
-     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/
-     * Factories_ConfigureFactoryRepo.json
-     */
-    /**
-     * Sample code: Factories_ConfigureFactoryRepo.
-     * 
-     * @param manager Entry point to DataFactoryManager.
-     */
-    public static void factoriesConfigureFactoryRepo(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.factories()
-            .configureFactoryRepoWithResponse("East US", new FactoryRepoUpdate().withFactoryResourceId(
-                "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName")
-                .withRepoConfiguration(new FactoryVstsConfiguration().withAccountName("ADF")
-                    .withRepositoryName("repo")
-                    .withCollaborationBranch("master")
-                    .withRootFolder("/")
-                    .withLastCommitId("")
-                    .withProjectName("project")
-                    .withTenantId("")),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Factories_CreateOrUpdate
 
 ```java
@@ -1326,28 +1285,6 @@ public final class FactoriesGetGitHubAccessTokenSamples {
                     .withGitHubClientId("some")
                     .withGitHubAccessTokenBaseUrl("fakeTokenPlaceholder"),
                 com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Factories_List
-
-```java
-/**
- * Samples for Factories List.
- */
-public final class FactoriesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/Factories_List.json
-     */
-    /**
-     * Sample code: Factories_List.
-     * 
-     * @param manager Entry point to DataFactoryManager.
-     */
-    public static void factoriesList(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.factories().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2465,28 +2402,6 @@ public final class ManagedVirtualNetworksListByFactorySamples {
         managedVirtualNetworksListByFactory(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
         manager.managedVirtualNetworks()
             .listByFactory("exampleResourceGroup", "exampleFactoryName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/Operations_List.json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to DataFactoryManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
