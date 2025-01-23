@@ -12,7 +12,7 @@ import com.azure.core.util.Context;
  */
 public interface PrivateLinks {
     /**
-     * List private links on the given resource.
+     * List private links on the given resource. Test changes.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deidServiceName The name of the deid service.
@@ -24,7 +24,7 @@ public interface PrivateLinks {
     PagedIterable<PrivateLinkResource> listByDeidService(String resourceGroupName, String deidServiceName);
 
     /**
-     * List private links on the given resource.
+     * List private links on the given resource. Test changes.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deidServiceName The name of the deid service.

@@ -15,7 +15,7 @@ import com.azure.resourcemanager.healthdataaiservices.fluent.models.PrivateLinkR
  */
 public interface PrivateLinksClient {
     /**
-     * List private links on the given resource.
+     * List private links on the given resource. Test changes.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deidServiceName The name of the deid service.
@@ -28,7 +28,7 @@ public interface PrivateLinksClient {
     PagedIterable<PrivateLinkResourceInner> listByDeidService(String resourceGroupName, String deidServiceName);
 
     /**
-     * List private links on the given resource.
+     * List private links on the given resource. Test changes.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deidServiceName The name of the deid service.
