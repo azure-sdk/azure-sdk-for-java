@@ -86,9 +86,9 @@ import java.util.stream.Collectors;
 public final class DataFactoryManager {
     private Operations operations;
 
-    private Factories factories;
-
     private ExposureControls exposureControls;
+
+    private Factories factories;
 
     private IntegrationRuntimes integrationRuntimes;
 
@@ -294,7 +294,7 @@ public final class DataFactoryManager {
                 .append("-")
                 .append("com.azure.resourcemanager.datafactory")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -353,18 +353,6 @@ public final class DataFactoryManager {
     }
 
     /**
-     * Gets the resource collection API of Factories. It manages Factory.
-     * 
-     * @return Resource collection API of Factories.
-     */
-    public Factories factories() {
-        if (this.factories == null) {
-            this.factories = new FactoriesImpl(clientObject.getFactories(), this);
-        }
-        return factories;
-    }
-
-    /**
      * Gets the resource collection API of ExposureControls.
      * 
      * @return Resource collection API of ExposureControls.
@@ -374,6 +362,18 @@ public final class DataFactoryManager {
             this.exposureControls = new ExposureControlsImpl(clientObject.getExposureControls(), this);
         }
         return exposureControls;
+    }
+
+    /**
+     * Gets the resource collection API of Factories. It manages Factory.
+     * 
+     * @return Resource collection API of Factories.
+     */
+    public Factories factories() {
+        if (this.factories == null) {
+            this.factories = new FactoriesImpl(clientObject.getFactories(), this);
+        }
+        return factories;
     }
 
     /**
