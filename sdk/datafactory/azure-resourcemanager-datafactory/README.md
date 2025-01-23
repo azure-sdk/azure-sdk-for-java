@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-datafactory</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -73,19 +73,19 @@ See [API design][design] for general introduction on design and key concepts on 
 ```java
 // storage account
 StorageAccount storageAccount = storageManager.storageAccounts()
-    .define(STORAGE_ACCOUNT)
+    .define(storageAccountName)
     .withRegion(REGION)
     .withExistingResourceGroup(resourceGroup)
     .create();
 final String storageAccountKey = storageAccount.getKeys().iterator().next().value();
 final String connectionString
-    = getStorageConnectionString(STORAGE_ACCOUNT, storageAccountKey, storageManager.environment());
+    = getStorageConnectionString(storageAccountName, storageAccountKey, storageManager.environment());
 
 // container
 final String containerName = "adf";
 storageManager.blobContainers()
     .defineContainer(containerName)
-    .withExistingStorageAccount(resourceGroup, STORAGE_ACCOUNT)
+    .withExistingStorageAccount(resourceGroup, storageAccountName)
     .withPublicAccess(PublicAccess.NONE)
     .create();
 
