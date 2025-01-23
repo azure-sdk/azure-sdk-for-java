@@ -1,14 +1,130 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-01-23)
 
-### Features Added
+- Azure Resource Manager Traffic Controller client library for Java. This package contains Microsoft Azure SDK for Traffic Controller Management SDK. Traffic Controller Provider management API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.FrontendListResult` was removed
 
-### Other Changes
+#### `models.OperationListResult` was removed
+
+#### `models.AssociationListResult` was removed
+
+#### `models.TrafficControllerListResult` was removed
+
+#### `models.ResourceId` was modified
+
+* `withId(java.lang.String)` was removed
+
+### Features Added
+
+* `models.WafSecurityPolicy` was added
+
+* `models.SecurityPolicy$Update` was added
+
+* `models.SecurityPoliciesInterfaces` was added
+
+* `implementation.models.AssociationListResult` was added
+
+* `models.SecurityPolicy$UpdateStages` was added
+
+* `implementation.models.FrontendListResult` was added
+
+* `models.SecurityPolicy$DefinitionStages` was added
+
+* `implementation.models.TrafficControllerListResult` was added
+
+* `implementation.models.SecurityPolicyListResult` was added
+
+* `models.TrafficControllerUpdateProperties` was added
+
+* `models.SecurityPolicyProperties` was added
+
+* `models.SecurityPolicyConfigurations` was added
+
+* `models.SecurityPolicyUpdate` was added
+
+* `models.SecurityPolicy` was added
+
+* `models.SecurityPolicy$Definition` was added
+
+* `models.SecurityPolicyUpdateProperties` was added
+
+* `models.WafPolicy` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `models.PolicyType` was added
+
+#### `models.TrafficControllerUpdate` was modified
+
+* `withProperties(models.TrafficControllerUpdateProperties)` was added
+* `properties()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `TrafficControllerManager` was modified
+
+* `securityPoliciesInterfaces()` was added
+
+#### `models.AssociationUpdate` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AssociationSubnet` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AssociationSubnetUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TrafficControllerProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withSecurityPolicyConfigurations(models.SecurityPolicyConfigurations)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `securityPolicyConfigurations()` was added
+* `securityPolicies()` was added
+
+#### `models.FrontendUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AssociationProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceId` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TrafficController$Update` was modified
+
+* `withProperties(models.TrafficControllerUpdateProperties)` was added
+
+#### `models.AssociationUpdateProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FrontendProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.1.0-beta.1 (2024-09-30)
 
