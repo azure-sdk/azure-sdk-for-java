@@ -1,14 +1,52 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-24)
+
+- Azure Resource Manager DataFactory client library for Java. This package contains Microsoft Azure SDK for DataFactory Management SDK. The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services. Package tag package-2018-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.GreenplumAuthenticationType` was added
 
-### Bugs Fixed
+#### `models.GreenplumLinkedService` was modified
 
-### Other Changes
+* `withAuthenticationType(models.GreenplumAuthenticationType)` was added
+* `password()` was added
+* `connectionTimeout()` was added
+* `withUsername(java.lang.Object)` was added
+* `authenticationType()` was added
+* `withConnectionTimeout(java.lang.Object)` was added
+* `commandTimeout()` was added
+* `withDatabase(java.lang.Object)` was added
+* `sslMode()` was added
+* `username()` was added
+* `port()` was added
+* `host()` was added
+* `withHost(java.lang.Object)` was added
+* `withPassword(models.SecretBase)` was added
+* `withCommandTimeout(java.lang.Object)` was added
+* `withSslMode(java.lang.Object)` was added
+* `database()` was added
+* `withPort(java.lang.Object)` was added
+
+#### `models.AzurePostgreSqlLinkedService` was modified
+
+* `servicePrincipalEmbeddedCertPassword()` was added
+* `withServicePrincipalId(java.lang.Object)` was added
+* `withServicePrincipalKey(models.SecretBase)` was added
+* `tenant()` was added
+* `servicePrincipalKey()` was added
+* `withServicePrincipalCredentialType(java.lang.Object)` was added
+* `credential()` was added
+* `withCredential(models.CredentialReference)` was added
+* `withAzureCloudType(java.lang.Object)` was added
+* `servicePrincipalId()` was added
+* `servicePrincipalCredentialType()` was added
+* `withServicePrincipalEmbeddedCert(models.SecretBase)` was added
+* `servicePrincipalEmbeddedCert()` was added
+* `withTenant(java.lang.Object)` was added
+* `azureCloudType()` was added
+* `withServicePrincipalEmbeddedCertPassword(models.SecretBase)` was added
 
 ## 1.0.0 (2024-12-16)
 
