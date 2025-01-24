@@ -5,14 +5,16 @@
 package com.azure.resourcemanager.databox.generated;
 
 import com.azure.resourcemanager.databox.models.DataBoxScheduleAvailabilityRequest;
+import com.azure.resourcemanager.databox.models.DeviceCapabilityRequest;
 import com.azure.resourcemanager.databox.models.RegionConfigurationRequest;
+import com.azure.resourcemanager.databox.models.SkuName;
 
 /**
  * Samples for Service RegionConfigurationByResourceGroup.
  */
 public final class ServiceRegionConfigurationByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/
      * RegionConfigurationByResourceGroup.json
      */
     /**
@@ -23,8 +25,10 @@ public final class ServiceRegionConfigurationByResourceGroupSamples {
     public static void regionConfigurationByResourceGroup(com.azure.resourcemanager.databox.DataBoxManager manager) {
         manager.services()
             .regionConfigurationByResourceGroupWithResponse("YourResourceGroupName", "westus",
-                new RegionConfigurationRequest().withScheduleAvailabilityRequest(
-                    new DataBoxScheduleAvailabilityRequest().withStorageLocation("westus")),
+                new RegionConfigurationRequest()
+                    .withScheduleAvailabilityRequest(
+                        new DataBoxScheduleAvailabilityRequest().withStorageLocation("westus"))
+                    .withDeviceCapabilityRequest(new DeviceCapabilityRequest().withSkuName(SkuName.DATA_BOX_DISK)),
                 com.azure.core.util.Context.NONE);
     }
 }

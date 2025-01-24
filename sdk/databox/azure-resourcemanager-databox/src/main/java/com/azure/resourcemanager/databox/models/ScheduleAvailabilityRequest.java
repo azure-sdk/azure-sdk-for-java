@@ -33,6 +33,11 @@ public class ScheduleAvailabilityRequest implements JsonSerializable<ScheduleAva
      */
     private String country;
 
+    /*
+     * The model name.
+     */
+    private ModelName model;
+
     /**
      * Creates an instance of ScheduleAvailabilityRequest class.
      */
@@ -87,6 +92,26 @@ public class ScheduleAvailabilityRequest implements JsonSerializable<ScheduleAva
      */
     public ScheduleAvailabilityRequest withCountry(String country) {
         this.country = country;
+        return this;
+    }
+
+    /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
+     * Set the model property: The model name.
+     * 
+     * @param model the model value to set.
+     * @return the ScheduleAvailabilityRequest object itself.
+     */
+    ScheduleAvailabilityRequest withModel(ModelName model) {
+        this.model = model;
         return this;
     }
 
@@ -168,6 +193,8 @@ public class ScheduleAvailabilityRequest implements JsonSerializable<ScheduleAva
                     deserializedScheduleAvailabilityRequest.skuName = SkuName.fromString(reader.getString());
                 } else if ("country".equals(fieldName)) {
                     deserializedScheduleAvailabilityRequest.country = reader.getString();
+                } else if ("model".equals(fieldName)) {
+                    deserializedScheduleAvailabilityRequest.model = ModelName.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

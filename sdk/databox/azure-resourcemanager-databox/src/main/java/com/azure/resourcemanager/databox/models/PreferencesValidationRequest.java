@@ -31,6 +31,11 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
      */
     private SkuName deviceType;
 
+    /*
+     * The model name.
+     */
+    private ModelName model;
+
     /**
      * Creates an instance of PreferencesValidationRequest class.
      */
@@ -88,6 +93,15 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -142,6 +156,8 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
                         = ValidationInputDiscriminator.fromString(reader.getString());
                 } else if ("preference".equals(fieldName)) {
                     deserializedPreferencesValidationRequest.preference = Preferences.fromJson(reader);
+                } else if ("model".equals(fieldName)) {
+                    deserializedPreferencesValidationRequest.model = ModelName.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

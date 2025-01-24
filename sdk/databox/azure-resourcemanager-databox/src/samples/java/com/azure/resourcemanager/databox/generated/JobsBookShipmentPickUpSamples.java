@@ -12,8 +12,8 @@ import java.time.OffsetDateTime;
  */
 public final class JobsBookShipmentPickUpSamples {
     /*
-     * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/BookShipmentPickupPost.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/
+     * BookShipmentPickupPost.json
      */
     /**
      * Sample code: BookShipmentPickupPost.

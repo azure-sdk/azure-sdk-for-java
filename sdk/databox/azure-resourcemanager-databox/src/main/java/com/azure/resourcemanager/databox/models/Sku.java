@@ -32,6 +32,11 @@ public final class Sku implements JsonSerializable<Sku> {
      */
     private String family;
 
+    /*
+     * The model name.
+     */
+    private ModelName model;
+
     /**
      * Creates an instance of Sku class.
      */
@@ -99,6 +104,15 @@ public final class Sku implements JsonSerializable<Sku> {
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -145,6 +159,8 @@ public final class Sku implements JsonSerializable<Sku> {
                     deserializedSku.displayName = reader.getString();
                 } else if ("family".equals(fieldName)) {
                     deserializedSku.family = reader.getString();
+                } else if ("model".equals(fieldName)) {
+                    deserializedSku.model = ModelName.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

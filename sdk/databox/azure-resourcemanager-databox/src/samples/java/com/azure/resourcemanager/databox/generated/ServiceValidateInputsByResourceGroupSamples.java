@@ -27,9 +27,8 @@ import java.util.Arrays;
  */
 public final class ServiceValidateInputsByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/ValidateInputsByResourceGroup
-     * .json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/
+     * ValidateInputsByResourceGroup.json
      */
     /**
      * Sample code: ValidateInputsByResourceGroup.

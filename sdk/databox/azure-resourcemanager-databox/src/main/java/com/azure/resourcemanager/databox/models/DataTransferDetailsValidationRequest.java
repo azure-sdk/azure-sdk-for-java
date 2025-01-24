@@ -42,6 +42,11 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
      */
     private TransferType transferType;
 
+    /*
+     * The model name.
+     */
+    private ModelName model;
+
     /**
      * Creates an instance of DataTransferDetailsValidationRequest class.
      */
@@ -139,6 +144,15 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -216,6 +230,8 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
                     List<DataImportDetails> dataImportDetails
                         = reader.readArray(reader1 -> DataImportDetails.fromJson(reader1));
                     deserializedDataTransferDetailsValidationRequest.dataImportDetails = dataImportDetails;
+                } else if ("model".equals(fieldName)) {
+                    deserializedDataTransferDetailsValidationRequest.model = ModelName.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

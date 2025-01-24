@@ -104,6 +104,8 @@ public final class DataBoxScheduleAvailabilityRequest extends ScheduleAvailabili
                     deserializedDataBoxScheduleAvailabilityRequest.withStorageLocation(reader.getString());
                 } else if ("country".equals(fieldName)) {
                     deserializedDataBoxScheduleAvailabilityRequest.withCountry(reader.getString());
+                } else if ("model".equals(fieldName)) {
+                    deserializedDataBoxScheduleAvailabilityRequest.withModel(ModelName.fromString(reader.getString()));
                 } else if ("skuName".equals(fieldName)) {
                     deserializedDataBoxScheduleAvailabilityRequest.skuName = SkuName.fromString(reader.getString());
                 } else {

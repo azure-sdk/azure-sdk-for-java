@@ -33,8 +33,8 @@ import java.util.Map;
  */
 public final class JobsCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreateDevicePassword.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/
+     * JobsCreateDevicePassword.json
      */
     /**
      * Sample code: JobsCreateDevicePassword.
@@ -71,7 +71,7 @@ public final class JobsCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreate.json
+     * specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/JobsCreate.json
      */
     /**
      * Sample code: JobsCreate.
@@ -105,9 +105,8 @@ public final class JobsCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreateDoubleEncryption.
-     * json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/
+     * JobsCreateDoubleEncryption.json
      */
     /**
      * Sample code: JobsCreateDoubleEncryption.
@@ -143,7 +142,7 @@ public final class JobsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/
      * JobsCreateWithUserAssignedIdentity.json
      */
     /**
@@ -183,7 +182,8 @@ public final class JobsCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreateExport.json
+     * specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/JobsCreateExport.
+     * json
      */
     /**
      * Sample code: JobsCreateExport.
