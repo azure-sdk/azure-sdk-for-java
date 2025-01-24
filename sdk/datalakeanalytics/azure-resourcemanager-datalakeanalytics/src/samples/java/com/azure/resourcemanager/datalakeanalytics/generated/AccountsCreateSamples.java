@@ -23,8 +23,8 @@ import java.util.UUID;
 public final class AccountsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Create.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Create.json
      */
     /**
      * Sample code: Creates the specified Data Lake Analytics account. This supplies the user with computation services

@@ -229,7 +229,7 @@ public final class DataLakeAnalyticsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.datalakeanalytics")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))

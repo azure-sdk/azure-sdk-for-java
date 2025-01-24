@@ -10,8 +10,8 @@ package com.azure.resourcemanager.datalakeanalytics.generated;
 public final class ComputePoliciesListByAccountSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * ComputePolicies_ListByAccount.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /ComputePolicies_ListByAccount.json
      */
     /**
      * Sample code: Lists the compute policies within the adla account.
