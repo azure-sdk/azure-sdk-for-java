@@ -4,7 +4,7 @@
 /**
  * <!-- start generated doc -->
  * Package containing the data models for Messages.
- * Azure Communication Messages Service.
+ * Azure Communication Messages Service test.
  * <!-- end generated doc -->
  */
 package com.azure.communication.messages.models.channels;
