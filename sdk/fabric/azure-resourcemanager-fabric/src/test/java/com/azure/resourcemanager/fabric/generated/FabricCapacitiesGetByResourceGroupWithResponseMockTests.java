@@ -22,7 +22,7 @@ public final class FabricCapacitiesGetByResourceGroupWithResponseMockTests {
     @Test
     public void testGetByResourceGroupWithResponse() throws Exception {
         String responseStr
-            = "{\"properties\":{\"provisioningState\":\"Updating\",\"state\":\"Active\",\"administration\":{\"members\":[\"h\",\"oosflnr\",\"sfqpteehz\",\"vypyqrimzinpv\"]}},\"sku\":{\"name\":\"wjdk\",\"tier\":\"Fabric\"},\"location\":\"oodqxhcrm\",\"tags\":{\"fiyipjxsqwpgrj\":\"jtckwhdso\",\"vsnb\":\"znorcj\"},\"id\":\"xqabnmocpcysh\",\"name\":\"rzafbljjgpbtoqcj\",\"type\":\"klj\"}";
+            = "{\"properties\":{\"provisioningState\":\"Canceled\",\"state\":\"Updating\",\"administration\":{\"members\":[\"ulpkudjkrl\",\"hbzhfepg\",\"gqexzlocxs\"]}},\"sku\":{\"name\":\"paierh\",\"tier\":\"Fabric\"},\"location\":\"sglumma\",\"tags\":{\"nbdxk\":\"aodxo\"},\"id\":\"pxokajionp\",\"name\":\"mexgstxgcp\",\"type\":\"dg\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -32,13 +32,13 @@ public final class FabricCapacitiesGetByResourceGroupWithResponseMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         FabricCapacity response = manager.fabricCapacities()
-            .getByResourceGroupWithResponse("cs", "ewmdw", com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("gpbtoqcjmklj", "vbqid", com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals("oodqxhcrm", response.location());
-        Assertions.assertEquals("jtckwhdso", response.tags().get("fiyipjxsqwpgrj"));
-        Assertions.assertEquals("h", response.properties().administration().members().get(0));
-        Assertions.assertEquals("wjdk", response.sku().name());
+        Assertions.assertEquals("sglumma", response.location());
+        Assertions.assertEquals("aodxo", response.tags().get("nbdxk"));
+        Assertions.assertEquals("ulpkudjkrl", response.properties().administration().members().get(0));
+        Assertions.assertEquals("paierh", response.sku().name());
         Assertions.assertEquals(RpSkuTier.FABRIC, response.sku().tier());
     }
 }

@@ -27,7 +27,7 @@ public final class FabricCapacitiesSuspendMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        manager.fabricCapacities().suspend("cffcyddglmj", "hjq", com.azure.core.util.Context.NONE);
+        manager.fabricCapacities().suspend("c", "pmivkwlzu", com.azure.core.util.Context.NONE);
 
     }
 }

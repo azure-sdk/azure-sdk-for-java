@@ -28,7 +28,7 @@ public final class FabricCapacitiesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"provisioningState\":\"Succeeded\",\"state\":\"Resuming\",\"administration\":{\"members\":[\"xhejjzzvdud\",\"wdslfhotwmcy\",\"pwlbjnpg\"]}},\"sku\":{\"name\":\"cftadeh\",\"tier\":\"Fabric\"},\"location\":\"tyfsoppusuesn\",\"tags\":{\"avo\":\"ej\",\"vudwx\":\"xzdmohctb\"},\"id\":\"ndnvo\",\"name\":\"gujjugwdkcglh\",\"type\":\"lazjdyggdtjixhbk\"}";
+            = "{\"properties\":{\"provisioningState\":\"Succeeded\",\"state\":\"Pausing\",\"administration\":{\"members\":[\"jpkcattpng\",\"cr\",\"czsqpjhvm\",\"ajvnysounqe\"]}},\"sku\":{\"name\":\"a\",\"tier\":\"Fabric\"},\"location\":\"eupfhyhltrpm\",\"tags\":{\"odsfcpkvxodpuozm\":\"mcmatuokthfuiu\",\"ktwh\":\"zydagfuaxbezyiuo\",\"o\":\"dxwzywqsmbsurexi\",\"fksymddystki\":\"yocf\"},\"id\":\"uxh\",\"name\":\"yudxorrqnbp\",\"type\":\"czvyifq\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -38,19 +38,20 @@ public final class FabricCapacitiesCreateOrUpdateMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         FabricCapacity response = manager.fabricCapacities()
-            .define("fsxlzevgbmqjqa")
-            .withRegion("c")
-            .withExistingResourceGroup("ocpecfvmmco")
-            .withProperties(new FabricCapacityProperties().withAdministration(new CapacityAdministration()
-                .withMembers(Arrays.asList("vkwlzuvccfwnf", "bacfionlebxetq", "tzxdpnqbqqwx", "jfeallnwsub"))))
-            .withSku(new RpSku().withName("snjampmng").withTier(RpSkuTier.FABRIC))
-            .withTags(mapOf("cbonqvpk", "wooc", "f", "lrxnjeaseiphe", "dlwtgrhpdj", "okeyyienj"))
+            .define("ynpwlbj")
+            .withRegion("dwxdndnv")
+            .withExistingResourceGroup("gwdslfhotwm")
+            .withProperties(new FabricCapacityProperties().withAdministration(
+                new CapacityAdministration().withMembers(Arrays.asList("tadehxnltyfsopp", "suesnzw", "ej", "avo"))))
+            .withSku(new RpSku().withName("xzdmohctb").withTier(RpSkuTier.FABRIC))
+            .withTags(mapOf("lazjdyggdtjixhbk", "ujjugwdkcglh", "fwhybcibvy", "ofqweykhmenevfye", "ynnaam", "dcsi",
+                "qsc", "ectehf"))
             .create();
 
-        Assertions.assertEquals("tyfsoppusuesn", response.location());
-        Assertions.assertEquals("ej", response.tags().get("avo"));
-        Assertions.assertEquals("xhejjzzvdud", response.properties().administration().members().get(0));
-        Assertions.assertEquals("cftadeh", response.sku().name());
+        Assertions.assertEquals("eupfhyhltrpm", response.location());
+        Assertions.assertEquals("mcmatuokthfuiu", response.tags().get("odsfcpkvxodpuozm"));
+        Assertions.assertEquals("jpkcattpng", response.properties().administration().members().get(0));
+        Assertions.assertEquals("a", response.sku().name());
         Assertions.assertEquals(RpSkuTier.FABRIC, response.sku().tier());
     }
 

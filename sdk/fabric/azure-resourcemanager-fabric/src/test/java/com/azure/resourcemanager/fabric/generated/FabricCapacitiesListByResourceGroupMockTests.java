@@ -23,7 +23,7 @@ public final class FabricCapacitiesListByResourceGroupMockTests {
     @Test
     public void testListByResourceGroup() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"provisioningState\":\"Canceled\",\"state\":\"Updating\",\"administration\":{\"members\":[\"ulpkudjkrl\",\"hbzhfepg\",\"gqexzlocxs\"]}},\"sku\":{\"name\":\"paierh\",\"tier\":\"Fabric\"},\"location\":\"sglumma\",\"tags\":{\"nbdxk\":\"aodxo\"},\"id\":\"pxokajionp\",\"name\":\"mexgstxgcp\",\"type\":\"dg\"}]}";
+            = "{\"value\":[{\"properties\":{\"provisioningState\":\"Failed\",\"state\":\"Failed\",\"administration\":{\"members\":[\"lovmclwhijcoe\",\"ctbzaq\",\"qsycbkbfkgu\",\"dkexxppofm\"]}},\"sku\":{\"name\":\"axcfjpgddtocjjx\",\"tier\":\"Fabric\"},\"location\":\"mouexhdzx\",\"tags\":{\"wndeicbtwnp\":\"eojnxqbzvddn\",\"hcffcyddglmjthjq\":\"aoqvuh\",\"hix\":\"wpyeicxmqciwqvh\",\"og\":\"igdtopbob\"},\"id\":\"m\",\"name\":\"w\",\"type\":\"a\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,13 +33,13 @@ public final class FabricCapacitiesListByResourceGroupMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         PagedIterable<FabricCapacity> response
-            = manager.fabricCapacities().listByResourceGroup("vbqid", com.azure.core.util.Context.NONE);
+            = manager.fabricCapacities().listByResourceGroup("aajrm", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("sglumma", response.iterator().next().location());
-        Assertions.assertEquals("aodxo", response.iterator().next().tags().get("nbdxk"));
-        Assertions.assertEquals("ulpkudjkrl",
+        Assertions.assertEquals("mouexhdzx", response.iterator().next().location());
+        Assertions.assertEquals("eojnxqbzvddn", response.iterator().next().tags().get("wndeicbtwnp"));
+        Assertions.assertEquals("lovmclwhijcoe",
             response.iterator().next().properties().administration().members().get(0));
-        Assertions.assertEquals("paierh", response.iterator().next().sku().name());
+        Assertions.assertEquals("axcfjpgddtocjjx", response.iterator().next().sku().name());
         Assertions.assertEquals(RpSkuTier.FABRIC, response.iterator().next().sku().tier());
     }
 }

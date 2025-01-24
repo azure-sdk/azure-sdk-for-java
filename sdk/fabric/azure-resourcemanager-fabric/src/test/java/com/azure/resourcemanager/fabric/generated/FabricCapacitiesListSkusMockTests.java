@@ -22,7 +22,7 @@ public final class FabricCapacitiesListSkusMockTests {
     @Test
     public void testListSkus() throws Exception {
         String responseStr
-            = "{\"value\":[{\"resourceType\":\"thz\",\"name\":\"vqdra\",\"locations\":[\"jybige\",\"oqfbowskanyk\",\"zlcuiywgqywgndrv\",\"nhzgpphrcgyn\"]}]}";
+            = "{\"value\":[{\"resourceType\":\"njeaseipheofloke\",\"name\":\"y\",\"locations\":[\"nj\",\"dlwtgrhpdj\",\"jumasx\"]}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -34,8 +34,8 @@ public final class FabricCapacitiesListSkusMockTests {
         PagedIterable<RpSkuDetailsForNewResource> response
             = manager.fabricCapacities().listSkus(com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("thz", response.iterator().next().resourceType());
-        Assertions.assertEquals("vqdra", response.iterator().next().name());
-        Assertions.assertEquals("jybige", response.iterator().next().locations().get(0));
+        Assertions.assertEquals("njeaseipheofloke", response.iterator().next().resourceType());
+        Assertions.assertEquals("y", response.iterator().next().name());
+        Assertions.assertEquals("nj", response.iterator().next().locations().get(0));
     }
 }
