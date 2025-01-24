@@ -22,7 +22,7 @@ import java.util.Arrays;
 public final class EventSubscriptionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForCustomTopic_EventHubDestination.json
      */
     /**
@@ -48,7 +48,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForCustomTopic_AzureFunctionDestination.json
      */
     /**
@@ -76,7 +76,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForCustomTopic_WebhookDestination.json
      */
     /**
@@ -102,7 +102,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForCustomTopic_StorageQueueDestination.json
      */
     /**
@@ -132,7 +132,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForCustomTopic_ServiceBusTopicDestination.json
      */
     /**
@@ -158,7 +158,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForCustomTopic_HybridConnectionDestination.json
      */
     /**
@@ -184,7 +184,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForCustomTopic_ServiceBusQueueDestination.json
      */
     /**
@@ -212,7 +212,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForCustomTopic.json
      */
     /**
@@ -238,7 +238,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForResource.json
      */
     /**
@@ -264,7 +264,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForResourceGroup.json
      */
     /**
@@ -289,7 +289,7 @@ public final class EventSubscriptionsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * EventSubscriptions_UpdateForSubscription.json
      */
     /**

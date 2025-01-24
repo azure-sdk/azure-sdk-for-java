@@ -15,7 +15,7 @@ import java.util.Arrays;
 public final class TopicEventSubscriptionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-06-01-preview/examples/
+     * specification/eventgrid/resource-manager/Microsoft.EventGrid/preview/2024-12-15-preview/examples/
      * TopicEventSubscriptions_Update.json
      */
     /**

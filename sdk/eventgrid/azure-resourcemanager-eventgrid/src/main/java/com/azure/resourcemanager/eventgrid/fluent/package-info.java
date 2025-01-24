@@ -4,6 +4,6 @@
 
 /**
  * Package containing the service clients for EventGridManagementClient.
- * Azure EventGrid Management Client.
+ * Azure EventGrid Management Client test.
  */
 package com.azure.resourcemanager.eventgrid.fluent;

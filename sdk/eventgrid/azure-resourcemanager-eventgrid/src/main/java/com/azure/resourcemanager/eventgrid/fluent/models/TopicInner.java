@@ -57,7 +57,7 @@ public final class TopicInner extends Resource {
     private ExtendedLocation extendedLocation;
 
     /*
-     * The system metadata relating to Topic resource.
+     * The system metadata relating to the Event Grid resource.
      */
     private SystemData systemData;
 
@@ -172,7 +172,7 @@ public final class TopicInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system metadata relating to Topic resource.
+     * Get the systemData property: The system metadata relating to the Event Grid resource.
      * 
      * @return the systemData value.
      */

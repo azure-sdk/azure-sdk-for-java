@@ -4,6 +4,6 @@
 
 /**
  * Package containing the implementations for EventGridManagementClient.
- * Azure EventGrid Management Client.
+ * Azure EventGrid Management Client test.
  */
 package com.azure.resourcemanager.eventgrid.implementation;

@@ -45,7 +45,7 @@ public final class DomainInner extends Resource {
     private IdentityInfo identity;
 
     /*
-     * The system metadata relating to the Event Grid Domain resource.
+     * The system metadata relating to the Event Grid resource.
      */
     private SystemData systemData;
 
@@ -120,7 +120,7 @@ public final class DomainInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system metadata relating to the Event Grid Domain resource.
+     * Get the systemData property: The system metadata relating to the Event Grid resource.
      * 
      * @return the systemData value.
      */

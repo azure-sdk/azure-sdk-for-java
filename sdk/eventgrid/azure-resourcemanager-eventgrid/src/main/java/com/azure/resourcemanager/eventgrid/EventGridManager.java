@@ -96,7 +96,7 @@ import java.util.stream.Collectors;
 
 /**
  * Entry point to EventGridManager.
- * Azure EventGrid Management Client.
+ * Azure EventGrid Management Client test.
  */
 public final class EventGridManager {
     private CaCertificates caCertificates;
@@ -325,7 +325,7 @@ public final class EventGridManager {
                 .append("-")
                 .append("com.azure.resourcemanager.eventgrid")
                 .append("/")
-                .append("1.2.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
