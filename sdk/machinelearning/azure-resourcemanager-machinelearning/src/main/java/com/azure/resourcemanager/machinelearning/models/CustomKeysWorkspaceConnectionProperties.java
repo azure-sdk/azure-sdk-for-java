@@ -34,16 +34,6 @@ public final class CustomKeysWorkspaceConnectionProperties extends WorkspaceConn
      */
     private CustomKeys credentials;
 
-    /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
-     * Group based on connection category
-     */
-    private ConnectionGroup group;
-
     /**
      * Creates an instance of CustomKeysWorkspaceConnectionProperties class.
      */
@@ -78,26 +68,6 @@ public final class CustomKeysWorkspaceConnectionProperties extends WorkspaceConn
     public CustomKeysWorkspaceConnectionProperties withCredentials(CustomKeys credentials) {
         this.credentials = credentials;
         return this;
-    }
-
-    /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
-     * Get the group property: Group based on connection category.
-     * 
-     * @return the group value.
-     */
-    @Override
-    public ConnectionGroup group() {
-        return this.group;
     }
 
     /**
@@ -179,7 +149,6 @@ public final class CustomKeysWorkspaceConnectionProperties extends WorkspaceConn
      */
     @Override
     public void validate() {
-        super.validate();
         if (credentials() != null) {
             credentials().validate();
         }
@@ -226,13 +195,13 @@ public final class CustomKeysWorkspaceConnectionProperties extends WorkspaceConn
                     deserializedCustomKeysWorkspaceConnectionProperties
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
-                    deserializedCustomKeysWorkspaceConnectionProperties.createdByWorkspaceArmId = reader.getString();
+                    deserializedCustomKeysWorkspaceConnectionProperties.withCreatedByWorkspaceArmId(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedCustomKeysWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("group".equals(fieldName)) {
-                    deserializedCustomKeysWorkspaceConnectionProperties.group
-                        = ConnectionGroup.fromString(reader.getString());
+                    deserializedCustomKeysWorkspaceConnectionProperties
+                        .withGroup(ConnectionGroup.fromString(reader.getString()));
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedCustomKeysWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));
