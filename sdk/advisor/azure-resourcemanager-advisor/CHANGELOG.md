@@ -1,14 +1,59 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-24)
+
+- Azure Resource Manager Advisor client library for Java. This package contains Microsoft Azure SDK for Advisor Management SDK. REST APIs for Azure Advisor. Package tag package-2023-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.Risk` was added
 
-### Bugs Fixed
+* `models.AdvisorScoreEntityProperties` was added
 
-### Other Changes
+* `models.AdvisorScores` was added
+
+* `models.PredictionType` was added
+
+* `models.DurationModel` was added
+
+* `models.AdvisorScoreResponse` was added
+
+* `models.AdvisorScoreEntity` was added
+
+* `models.ScoreEntity` was added
+
+* `models.PredictionRequest` was added
+
+* `models.PredictionResponse` was added
+
+* `models.ResourceProviders` was added
+
+* `models.TimeSeriesEntityItem` was added
+
+* `models.Aggregated` was added
+
+#### `models.ConfigData` was modified
+
+* `systemData()` was added
+* `duration()` was added
+
+#### `models.ConfigData$Definition` was modified
+
+* `withDuration(models.DurationModel)` was added
+
+#### `AdvisorManager` was modified
+
+* `advisorScores()` was added
+* `resourceProviders()` was added
+
+#### `models.SuppressionContract` was modified
+
+* `systemData()` was added
+
+#### `models.ResourceRecommendationBase` was modified
+
+* `risk()` was added
+* `systemData()` was added
 
 ## 1.0.0 (2024-12-23)
 
