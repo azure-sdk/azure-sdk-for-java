@@ -624,7 +624,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     private Mono<Void> deleteAsync(String resourceGroupName, String ifMatch, String provisioningServiceName,
         String certificateName) {
         final String certificateName1 = null;
-        final byte[] certificateRawBytes = new byte[0];
+        final byte[] certificateRawBytes = EMPTY_BYTE_ARRAY;
         final Boolean certificateIsVerified = null;
         final CertificatePurpose certificatePurpose = null;
         final OffsetDateTime certificateCreated = null;
@@ -688,7 +688,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     public void delete(String resourceGroupName, String ifMatch, String provisioningServiceName,
         String certificateName) {
         final String certificateName1 = null;
-        final byte[] certificateRawBytes = new byte[0];
+        final byte[] certificateRawBytes = EMPTY_BYTE_ARRAY;
         final Boolean certificateIsVerified = null;
         final CertificatePurpose certificatePurpose = null;
         final OffsetDateTime certificateCreated = null;
@@ -966,7 +966,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     private Mono<VerificationCodeResponseInner> generateVerificationCodeAsync(String certificateName, String ifMatch,
         String resourceGroupName, String provisioningServiceName) {
         final String certificateName1 = null;
-        final byte[] certificateRawBytes = new byte[0];
+        final byte[] certificateRawBytes = EMPTY_BYTE_ARRAY;
         final Boolean certificateIsVerified = null;
         final CertificatePurpose certificatePurpose = null;
         final OffsetDateTime certificateCreated = null;
@@ -1031,7 +1031,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     public VerificationCodeResponseInner generateVerificationCode(String certificateName, String ifMatch,
         String resourceGroupName, String provisioningServiceName) {
         final String certificateName1 = null;
-        final byte[] certificateRawBytes = new byte[0];
+        final byte[] certificateRawBytes = EMPTY_BYTE_ARRAY;
         final Boolean certificateIsVerified = null;
         final CertificatePurpose certificatePurpose = null;
         final OffsetDateTime certificateCreated = null;
@@ -1205,7 +1205,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     private Mono<CertificateResponseInner> verifyCertificateAsync(String certificateName, String ifMatch,
         String resourceGroupName, String provisioningServiceName, VerificationCodeRequest request) {
         final String certificateName1 = null;
-        final byte[] certificateRawBytes = new byte[0];
+        final byte[] certificateRawBytes = EMPTY_BYTE_ARRAY;
         final Boolean certificateIsVerified = null;
         final CertificatePurpose certificatePurpose = null;
         final OffsetDateTime certificateCreated = null;
@@ -1276,7 +1276,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     public CertificateResponseInner verifyCertificate(String certificateName, String ifMatch, String resourceGroupName,
         String provisioningServiceName, VerificationCodeRequest request) {
         final String certificateName1 = null;
-        final byte[] certificateRawBytes = new byte[0];
+        final byte[] certificateRawBytes = EMPTY_BYTE_ARRAY;
         final Boolean certificateIsVerified = null;
         final CertificatePurpose certificatePurpose = null;
         final OffsetDateTime certificateCreated = null;

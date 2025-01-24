@@ -10,8 +10,8 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class IotDpsResourceListKeysForKeyNameSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSGetKey.
-     * json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGetKey.json
      */
     /**
      * Sample code: DPSGetKey.
