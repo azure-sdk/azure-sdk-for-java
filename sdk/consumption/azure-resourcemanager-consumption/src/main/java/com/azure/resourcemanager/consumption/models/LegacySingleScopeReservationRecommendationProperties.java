@@ -135,6 +135,12 @@ public final class LegacySingleScopeReservationRecommendationProperties
                 } else if ("skuProperties".equals(fieldName)) {
                     List<SkuProperty> skuProperties = reader.readArray(reader1 -> SkuProperty.fromJson(reader1));
                     deserializedLegacySingleScopeReservationRecommendationProperties.withSkuProperties(skuProperties);
+                } else if ("lastUsageDate".equals(fieldName)) {
+                    deserializedLegacySingleScopeReservationRecommendationProperties.withLastUsageDate(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
+                } else if ("totalHours".equals(fieldName)) {
+                    deserializedLegacySingleScopeReservationRecommendationProperties
+                        .withTotalHours(reader.getNullable(JsonReader::getInt));
                 } else if ("scope".equals(fieldName)) {
                     deserializedLegacySingleScopeReservationRecommendationProperties.scope = reader.getString();
                 } else if ("subscriptionId".equals(fieldName)) {

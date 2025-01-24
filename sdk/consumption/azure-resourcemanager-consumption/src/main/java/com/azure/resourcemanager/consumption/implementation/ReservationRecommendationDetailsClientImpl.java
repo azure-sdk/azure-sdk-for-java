@@ -69,7 +69,7 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
             @PathParam(value = "resourceScope", encoded = true) String resourceScope, @QueryParam("scope") Scope scope,
             @QueryParam("region") String region, @QueryParam("term") Term term,
             @QueryParam("lookBackPeriod") LookBackPeriod lookBackPeriod, @QueryParam("product") String product,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
@@ -87,6 +87,8 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
      * @param lookBackPeriod Filter the time period on which reservation recommendation results are based.
      * @param product Filter the products for which reservation recommendation results are generated. Examples:
      * Standard_DS1_v2 (for VM), Premium_SSD_Managed_Disks_P30 (for Managed Disks).
+     * @param filter Used to filter reservation recommendation details by: properties/subscriptionId can be specified
+     * for billing account and billing profile paths.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -94,7 +96,7 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ReservationRecommendationDetailsModelInner>> getWithResponseAsync(String resourceScope,
-        Scope scope, String region, Term term, LookBackPeriod lookBackPeriod, String product) {
+        Scope scope, String region, Term term, LookBackPeriod lookBackPeriod, String product, String filter) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -120,7 +122,7 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceScope,
-                scope, region, term, lookBackPeriod, product, accept, context))
+                scope, region, term, lookBackPeriod, product, filter, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -139,6 +141,8 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
      * @param lookBackPeriod Filter the time period on which reservation recommendation results are based.
      * @param product Filter the products for which reservation recommendation results are generated. Examples:
      * Standard_DS1_v2 (for VM), Premium_SSD_Managed_Disks_P30 (for Managed Disks).
+     * @param filter Used to filter reservation recommendation details by: properties/subscriptionId can be specified
+     * for billing account and billing profile paths.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -147,7 +151,8 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ReservationRecommendationDetailsModelInner>> getWithResponseAsync(String resourceScope,
-        Scope scope, String region, Term term, LookBackPeriod lookBackPeriod, String product, Context context) {
+        Scope scope, String region, Term term, LookBackPeriod lookBackPeriod, String product, String filter,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -173,7 +178,7 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceScope, scope, region, term,
-            lookBackPeriod, product, accept, context);
+            lookBackPeriod, product, filter, accept, context);
     }
 
     /**
@@ -199,7 +204,8 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ReservationRecommendationDetailsModelInner> getAsync(String resourceScope, Scope scope, String region,
         Term term, LookBackPeriod lookBackPeriod, String product) {
-        return getWithResponseAsync(resourceScope, scope, region, term, lookBackPeriod, product)
+        final String filter = null;
+        return getWithResponseAsync(resourceScope, scope, region, term, lookBackPeriod, product, filter)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -218,6 +224,8 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
      * @param lookBackPeriod Filter the time period on which reservation recommendation results are based.
      * @param product Filter the products for which reservation recommendation results are generated. Examples:
      * Standard_DS1_v2 (for VM), Premium_SSD_Managed_Disks_P30 (for Managed Disks).
+     * @param filter Used to filter reservation recommendation details by: properties/subscriptionId can be specified
+     * for billing account and billing profile paths.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -226,8 +234,9 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ReservationRecommendationDetailsModelInner> getWithResponse(String resourceScope, Scope scope,
-        String region, Term term, LookBackPeriod lookBackPeriod, String product, Context context) {
-        return getWithResponseAsync(resourceScope, scope, region, term, lookBackPeriod, product, context).block();
+        String region, Term term, LookBackPeriod lookBackPeriod, String product, String filter, Context context) {
+        return getWithResponseAsync(resourceScope, scope, region, term, lookBackPeriod, product, filter, context)
+            .block();
     }
 
     /**
@@ -253,6 +262,8 @@ public final class ReservationRecommendationDetailsClientImpl implements Reserva
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ReservationRecommendationDetailsModelInner get(String resourceScope, Scope scope, String region, Term term,
         LookBackPeriod lookBackPeriod, String product) {
-        return getWithResponse(resourceScope, scope, region, term, lookBackPeriod, product, Context.NONE).getValue();
+        final String filter = null;
+        return getWithResponse(resourceScope, scope, region, term, lookBackPeriod, product, filter, Context.NONE)
+            .getValue();
     }
 }

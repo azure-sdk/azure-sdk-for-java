@@ -120,7 +120,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param grain Can be daily or monthly.
@@ -156,7 +158,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param grain Can be daily or monthly.
@@ -193,7 +197,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param grain Can be daily or monthly.
@@ -212,7 +218,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param grain Can be daily or monthly.
@@ -229,7 +237,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param grain Can be daily or monthly.
@@ -249,7 +259,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param grain Can be daily or monthly.
@@ -265,7 +277,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param grain Can be daily or monthly.
@@ -284,7 +298,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -324,7 +340,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -365,7 +383,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -386,7 +406,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -406,7 +428,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -428,7 +452,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -447,7 +473,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for daily or monthly grain.
+     * Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so
+     * currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made
+     * with smaller date ranges.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -468,7 +496,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for the defined scope daily or monthly grain.
+     * Lists the reservations summaries for the defined scope daily or monthly grain. Note: ARM has a payload size limit
+     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
+     * should be made with smaller date ranges.
      * 
      * @param resourceScope The scope associated with reservations summaries operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -512,7 +542,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for the defined scope daily or monthly grain.
+     * Lists the reservations summaries for the defined scope daily or monthly grain. Note: ARM has a payload size limit
+     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
+     * should be made with smaller date ranges.
      * 
      * @param resourceScope The scope associated with reservations summaries operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -558,7 +590,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for the defined scope daily or monthly grain.
+     * Lists the reservations summaries for the defined scope daily or monthly grain. Note: ARM has a payload size limit
+     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
+     * should be made with smaller date ranges.
      * 
      * @param resourceScope The scope associated with reservations summaries operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -586,7 +620,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for the defined scope daily or monthly grain.
+     * Lists the reservations summaries for the defined scope daily or monthly grain. Note: ARM has a payload size limit
+     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
+     * should be made with smaller date ranges.
      * 
      * @param resourceScope The scope associated with reservations summaries operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -610,7 +646,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for the defined scope daily or monthly grain.
+     * Lists the reservations summaries for the defined scope daily or monthly grain. Note: ARM has a payload size limit
+     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
+     * should be made with smaller date ranges.
      * 
      * @param resourceScope The scope associated with reservations summaries operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -639,7 +677,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for the defined scope daily or monthly grain.
+     * Lists the reservations summaries for the defined scope daily or monthly grain. Note: ARM has a payload size limit
+     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
+     * should be made with smaller date ranges.
      * 
      * @param resourceScope The scope associated with reservations summaries operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -663,7 +703,9 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     }
 
     /**
-     * Lists the reservations summaries for the defined scope daily or monthly grain.
+     * Lists the reservations summaries for the defined scope daily or monthly grain. Note: ARM has a payload size limit
+     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
+     * should be made with smaller date ranges.
      * 
      * @param resourceScope The scope associated with reservations summaries operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
