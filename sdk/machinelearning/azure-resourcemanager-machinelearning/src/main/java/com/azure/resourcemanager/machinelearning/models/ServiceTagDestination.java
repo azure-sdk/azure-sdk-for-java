@@ -78,6 +78,17 @@ public final class ServiceTagDestination implements JsonSerializable<ServiceTagD
     }
 
     /**
+     * Set the addressPrefixes property: Optional, if provided, the ServiceTag property will be ignored.
+     * 
+     * @param addressPrefixes the addressPrefixes value to set.
+     * @return the ServiceTagDestination object itself.
+     */
+    public ServiceTagDestination withAddressPrefixes(List<String> addressPrefixes) {
+        this.addressPrefixes = addressPrefixes;
+        return this;
+    }
+
+    /**
      * Get the portRanges property: The portRanges property.
      * 
      * @return the portRanges value.
@@ -152,6 +163,8 @@ public final class ServiceTagDestination implements JsonSerializable<ServiceTagD
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("action", this.action == null ? null : this.action.toString());
+        jsonWriter.writeArrayField("addressPrefixes", this.addressPrefixes,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("portRanges", this.portRanges);
         jsonWriter.writeStringField("protocol", this.protocol);
         jsonWriter.writeStringField("serviceTag", this.serviceTag);
