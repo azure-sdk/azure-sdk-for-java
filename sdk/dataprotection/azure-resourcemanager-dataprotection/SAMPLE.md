@@ -175,9 +175,9 @@ public final class BackupInstancesAdhocBackupSamples {
 ```java
 import com.azure.resourcemanager.dataprotection.models.AzureOperationalStoreParameters;
 import com.azure.resourcemanager.dataprotection.models.BackupInstance;
+import com.azure.resourcemanager.dataprotection.models.DataStoreTypes;
 import com.azure.resourcemanager.dataprotection.models.Datasource;
 import com.azure.resourcemanager.dataprotection.models.DatasourceSet;
-import com.azure.resourcemanager.dataprotection.models.DataStoreTypes;
 import com.azure.resourcemanager.dataprotection.models.PolicyInfo;
 import com.azure.resourcemanager.dataprotection.models.PolicyParameters;
 import com.azure.resourcemanager.dataprotection.models.SecretStoreBasedAuthCredentials;
