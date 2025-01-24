@@ -10,7 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanPooledScheduleProperties;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanPooledSchedulePatchProperties;
 import java.io.IOException;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     /*
      * Detailed properties for ScalingPlanPooledSchedule
      */
-    private ScalingPlanPooledScheduleProperties innerProperties;
+    private ScalingPlanPooledSchedulePatchProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -55,7 +55,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      * 
      * @return the innerProperties value.
      */
-    private ScalingPlanPooledScheduleProperties innerProperties() {
+    private ScalingPlanPooledSchedulePatchProperties innerProperties() {
         return this.innerProperties;
     }
 
@@ -99,6 +99,15 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     }
 
     /**
+     * Get the name property: Name of the ScalingPlanPooledSchedule.
+     * 
+     * @return the name value.
+     */
+    public String namePropertiesName() {
+        return this.innerProperties() == null ? null : this.innerProperties().name();
+    }
+
+    /**
      * Get the daysOfWeek property: Set of days of the week on which this schedule is active.
      * 
      * @return the daysOfWeek value.
@@ -115,7 +124,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withDaysOfWeek(List<DayOfWeek> daysOfWeek) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withDaysOfWeek(daysOfWeek);
         return this;
@@ -138,7 +147,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampUpStartTime(Time rampUpStartTime) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampUpStartTime(rampUpStartTime);
         return this;
@@ -162,7 +171,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     public ScalingPlanPooledSchedulePatch
         withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm rampUpLoadBalancingAlgorithm) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampUpLoadBalancingAlgorithm(rampUpLoadBalancingAlgorithm);
         return this;
@@ -185,7 +194,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampUpMinimumHostsPct(Integer rampUpMinimumHostsPct) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampUpMinimumHostsPct(rampUpMinimumHostsPct);
         return this;
@@ -208,7 +217,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampUpCapacityThresholdPct(Integer rampUpCapacityThresholdPct) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampUpCapacityThresholdPct(rampUpCapacityThresholdPct);
         return this;
@@ -231,7 +240,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withPeakStartTime(Time peakStartTime) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withPeakStartTime(peakStartTime);
         return this;
@@ -255,7 +264,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     public ScalingPlanPooledSchedulePatch
         withPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm peakLoadBalancingAlgorithm) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withPeakLoadBalancingAlgorithm(peakLoadBalancingAlgorithm);
         return this;
@@ -278,7 +287,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampDownStartTime(Time rampDownStartTime) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampDownStartTime(rampDownStartTime);
         return this;
@@ -302,7 +311,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     public ScalingPlanPooledSchedulePatch
         withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm rampDownLoadBalancingAlgorithm) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampDownLoadBalancingAlgorithm(rampDownLoadBalancingAlgorithm);
         return this;
@@ -325,7 +334,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampDownMinimumHostsPct(Integer rampDownMinimumHostsPct) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampDownMinimumHostsPct(rampDownMinimumHostsPct);
         return this;
@@ -348,7 +357,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampDownCapacityThresholdPct(Integer rampDownCapacityThresholdPct) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampDownCapacityThresholdPct(rampDownCapacityThresholdPct);
         return this;
@@ -371,7 +380,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampDownForceLogoffUsers(Boolean rampDownForceLogoffUsers) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampDownForceLogoffUsers(rampDownForceLogoffUsers);
         return this;
@@ -394,7 +403,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampDownStopHostsWhen(StopHostsWhen rampDownStopHostsWhen) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampDownStopHostsWhen(rampDownStopHostsWhen);
         return this;
@@ -417,7 +426,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampDownWaitTimeMinutes(Integer rampDownWaitTimeMinutes) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampDownWaitTimeMinutes(rampDownWaitTimeMinutes);
         return this;
@@ -440,7 +449,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withRampDownNotificationMessage(String rampDownNotificationMessage) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withRampDownNotificationMessage(rampDownNotificationMessage);
         return this;
@@ -463,7 +472,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
      */
     public ScalingPlanPooledSchedulePatch withOffPeakStartTime(Time offPeakStartTime) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withOffPeakStartTime(offPeakStartTime);
         return this;
@@ -487,7 +496,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     public ScalingPlanPooledSchedulePatch
         withOffPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm offPeakLoadBalancingAlgorithm) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+            this.innerProperties = new ScalingPlanPooledSchedulePatchProperties();
         }
         this.innerProperties().withOffPeakLoadBalancingAlgorithm(offPeakLoadBalancingAlgorithm);
         return this;
@@ -539,7 +548,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
                     deserializedScalingPlanPooledSchedulePatch.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedScalingPlanPooledSchedulePatch.innerProperties
-                        = ScalingPlanPooledScheduleProperties.fromJson(reader);
+                        = ScalingPlanPooledSchedulePatchProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedScalingPlanPooledSchedulePatch.systemData = SystemData.fromJson(reader);
                 } else {
