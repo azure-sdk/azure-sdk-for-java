@@ -23,6 +23,11 @@ public final class NodeList implements JsonSerializable<NodeList> {
      */
     private List<NodeInner> value;
 
+    /*
+     * Link to the next set of results.
+     */
+    private String nextLink;
+
     /**
      * Creates an instance of NodeList class.
      */
@@ -36,6 +41,15 @@ public final class NodeList implements JsonSerializable<NodeList> {
      */
     public List<NodeInner> value() {
         return this.value;
+    }
+
+    /**
+     * Get the nextLink property: Link to the next set of results.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**
@@ -76,6 +90,8 @@ public final class NodeList implements JsonSerializable<NodeList> {
                 if ("value".equals(fieldName)) {
                     List<NodeInner> value = reader.readArray(reader1 -> NodeInner.fromJson(reader1));
                     deserializedNodeList.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedNodeList.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

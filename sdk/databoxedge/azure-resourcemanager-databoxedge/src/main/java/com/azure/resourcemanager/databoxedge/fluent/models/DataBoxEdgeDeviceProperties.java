@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDeviceStatus;
+import com.azure.resourcemanager.databoxedge.models.DataResidency;
 import com.azure.resourcemanager.databoxedge.models.DeviceType;
+import com.azure.resourcemanager.databoxedge.models.EdgeProfile;
+import com.azure.resourcemanager.databoxedge.models.ResourceMoveDetails;
 import com.azure.resourcemanager.databoxedge.models.RoleTypes;
 import java.io.IOException;
 import java.util.List;
@@ -20,6 +24,11 @@ import java.util.List;
  */
 @Fluent
 public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataBoxEdgeDeviceProperties> {
+    /*
+     * DataBoxEdge Device Properties
+     */
+    private SystemData systemData;
+
     /*
      * The status of the Data Box Edge/Gateway device.
      */
@@ -90,10 +99,39 @@ public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataB
      */
     private Integer nodeCount;
 
+    /*
+     * The details of the move operation on this resource.
+     */
+    private ResourceMoveDetails resourceMoveDetails;
+
+    /*
+     * The details of Edge Profile for this resource
+     */
+    private EdgeProfile edgeProfile;
+
+    /*
+     * The details of data-residency related properties for this resource
+     */
+    private DataResidency dataResidency;
+
+    /*
+     * Kubernetes Workload Profile
+     */
+    private String kubernetesWorkloadProfile;
+
     /**
      * Creates an instance of DataBoxEdgeDeviceProperties class.
      */
     public DataBoxEdgeDeviceProperties() {
+    }
+
+    /**
+     * Get the systemData property: DataBoxEdge Device Properties.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -103,17 +141,6 @@ public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataB
      */
     public DataBoxEdgeDeviceStatus dataBoxEdgeDeviceStatus() {
         return this.dataBoxEdgeDeviceStatus;
-    }
-
-    /**
-     * Set the dataBoxEdgeDeviceStatus property: The status of the Data Box Edge/Gateway device.
-     * 
-     * @param dataBoxEdgeDeviceStatus the dataBoxEdgeDeviceStatus value to set.
-     * @return the DataBoxEdgeDeviceProperties object itself.
-     */
-    public DataBoxEdgeDeviceProperties withDataBoxEdgeDeviceStatus(DataBoxEdgeDeviceStatus dataBoxEdgeDeviceStatus) {
-        this.dataBoxEdgeDeviceStatus = dataBoxEdgeDeviceStatus;
-        return this;
     }
 
     /**
@@ -135,34 +162,12 @@ public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataB
     }
 
     /**
-     * Set the description property: The Description of the Data Box Edge/Gateway device.
-     * 
-     * @param description the description value to set.
-     * @return the DataBoxEdgeDeviceProperties object itself.
-     */
-    public DataBoxEdgeDeviceProperties withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
      * Get the modelDescription property: The description of the Data Box Edge/Gateway device model.
      * 
      * @return the modelDescription value.
      */
     public String modelDescription() {
         return this.modelDescription;
-    }
-
-    /**
-     * Set the modelDescription property: The description of the Data Box Edge/Gateway device model.
-     * 
-     * @param modelDescription the modelDescription value to set.
-     * @return the DataBoxEdgeDeviceProperties object itself.
-     */
-    public DataBoxEdgeDeviceProperties withModelDescription(String modelDescription) {
-        this.modelDescription = modelDescription;
-        return this;
     }
 
     /**
@@ -181,17 +186,6 @@ public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataB
      */
     public String friendlyName() {
         return this.friendlyName;
-    }
-
-    /**
-     * Set the friendlyName property: The Data Box Edge/Gateway device name.
-     * 
-     * @param friendlyName the friendlyName value to set.
-     * @return the DataBoxEdgeDeviceProperties object itself.
-     */
-    public DataBoxEdgeDeviceProperties withFriendlyName(String friendlyName) {
-        this.friendlyName = friendlyName;
-        return this;
     }
 
     /**
@@ -267,11 +261,67 @@ public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataB
     }
 
     /**
+     * Get the resourceMoveDetails property: The details of the move operation on this resource.
+     * 
+     * @return the resourceMoveDetails value.
+     */
+    public ResourceMoveDetails resourceMoveDetails() {
+        return this.resourceMoveDetails;
+    }
+
+    /**
+     * Get the edgeProfile property: The details of Edge Profile for this resource.
+     * 
+     * @return the edgeProfile value.
+     */
+    public EdgeProfile edgeProfile() {
+        return this.edgeProfile;
+    }
+
+    /**
+     * Get the dataResidency property: The details of data-residency related properties for this resource.
+     * 
+     * @return the dataResidency value.
+     */
+    public DataResidency dataResidency() {
+        return this.dataResidency;
+    }
+
+    /**
+     * Set the dataResidency property: The details of data-residency related properties for this resource.
+     * 
+     * @param dataResidency the dataResidency value to set.
+     * @return the DataBoxEdgeDeviceProperties object itself.
+     */
+    public DataBoxEdgeDeviceProperties withDataResidency(DataResidency dataResidency) {
+        this.dataResidency = dataResidency;
+        return this;
+    }
+
+    /**
+     * Get the kubernetesWorkloadProfile property: Kubernetes Workload Profile.
+     * 
+     * @return the kubernetesWorkloadProfile value.
+     */
+    public String kubernetesWorkloadProfile() {
+        return this.kubernetesWorkloadProfile;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (resourceMoveDetails() != null) {
+            resourceMoveDetails().validate();
+        }
+        if (edgeProfile() != null) {
+            edgeProfile().validate();
+        }
+        if (dataResidency() != null) {
+            dataResidency().validate();
+        }
     }
 
     /**
@@ -280,11 +330,7 @@ public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataB
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("dataBoxEdgeDeviceStatus",
-            this.dataBoxEdgeDeviceStatus == null ? null : this.dataBoxEdgeDeviceStatus.toString());
-        jsonWriter.writeStringField("description", this.description);
-        jsonWriter.writeStringField("modelDescription", this.modelDescription);
-        jsonWriter.writeStringField("friendlyName", this.friendlyName);
+        jsonWriter.writeJsonField("dataResidency", this.dataResidency);
         return jsonWriter.writeEndObject();
     }
 
@@ -303,7 +349,9 @@ public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataB
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("dataBoxEdgeDeviceStatus".equals(fieldName)) {
+                if ("systemData".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceProperties.systemData = SystemData.fromJson(reader);
+                } else if ("dataBoxEdgeDeviceStatus".equals(fieldName)) {
                     deserializedDataBoxEdgeDeviceProperties.dataBoxEdgeDeviceStatus
                         = DataBoxEdgeDeviceStatus.fromString(reader.getString());
                 } else if ("serialNumber".equals(fieldName)) {
@@ -335,6 +383,14 @@ public final class DataBoxEdgeDeviceProperties implements JsonSerializable<DataB
                     deserializedDataBoxEdgeDeviceProperties.configuredRoleTypes = configuredRoleTypes;
                 } else if ("nodeCount".equals(fieldName)) {
                     deserializedDataBoxEdgeDeviceProperties.nodeCount = reader.getNullable(JsonReader::getInt);
+                } else if ("resourceMoveDetails".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceProperties.resourceMoveDetails = ResourceMoveDetails.fromJson(reader);
+                } else if ("edgeProfile".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceProperties.edgeProfile = EdgeProfile.fromJson(reader);
+                } else if ("dataResidency".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceProperties.dataResidency = DataResidency.fromJson(reader);
+                } else if ("kubernetesWorkloadProfile".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceProperties.kubernetesWorkloadProfile = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

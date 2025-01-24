@@ -12,7 +12,7 @@ import com.azure.resourcemanager.databoxedge.models.UploadCertificateRequest;
 public final class DevicesUploadCertificateSamples {
     /*
      * x-ms-original-file:
-     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UploadCertificatePost
+     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/UploadCertificatePost
      * .json
      */
     /**

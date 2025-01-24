@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -25,6 +26,11 @@ public final class ContainerInner extends ArmBaseModel {
      * The container properties.
      */
     private ContainerProperties innerProperties = new ContainerProperties();
+
+    /*
+     * Metadata pertaining to creation and last modification of Container
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -54,6 +60,15 @@ public final class ContainerInner extends ArmBaseModel {
      */
     private ContainerProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Container.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -187,6 +202,8 @@ public final class ContainerInner extends ArmBaseModel {
                     deserializedContainerInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedContainerInner.innerProperties = ContainerProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedContainerInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

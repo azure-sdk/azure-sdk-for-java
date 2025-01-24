@@ -10,7 +10,7 @@ package com.azure.resourcemanager.databoxedge.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OperationsGet.json
+     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/OperationsGet.json
      */
     /**
      * Sample code: OperationsGet.
