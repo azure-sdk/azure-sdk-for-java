@@ -24,6 +24,7 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datadog.fluent.MicrosoftDatadogClient;
+import com.azure.resourcemanager.datadog.implementation.BillingInfoesImpl;
 import com.azure.resourcemanager.datadog.implementation.CreationSupportedsImpl;
 import com.azure.resourcemanager.datadog.implementation.MarketplaceAgreementsImpl;
 import com.azure.resourcemanager.datadog.implementation.MicrosoftDatadogClientBuilder;
@@ -32,6 +33,7 @@ import com.azure.resourcemanager.datadog.implementation.MonitorsImpl;
 import com.azure.resourcemanager.datadog.implementation.OperationsImpl;
 import com.azure.resourcemanager.datadog.implementation.SingleSignOnConfigurationsImpl;
 import com.azure.resourcemanager.datadog.implementation.TagRulesImpl;
+import com.azure.resourcemanager.datadog.models.BillingInfoes;
 import com.azure.resourcemanager.datadog.models.CreationSupporteds;
 import com.azure.resourcemanager.datadog.models.MarketplaceAgreements;
 import com.azure.resourcemanager.datadog.models.MonitoredSubscriptions;
@@ -57,6 +59,8 @@ public final class MicrosoftDatadogManager {
     private Monitors monitors;
 
     private Operations operations;
+
+    private BillingInfoes billingInfoes;
 
     private TagRules tagRules;
 
@@ -228,7 +232,7 @@ public final class MicrosoftDatadogManager {
                 .append("-")
                 .append("com.azure.resourcemanager.datadog")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -320,6 +324,18 @@ public final class MicrosoftDatadogManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of BillingInfoes.
+     * 
+     * @return Resource collection API of BillingInfoes.
+     */
+    public BillingInfoes billingInfoes() {
+        if (this.billingInfoes == null) {
+            this.billingInfoes = new BillingInfoesImpl(clientObject.getBillingInfoes(), this);
+        }
+        return billingInfoes;
     }
 
     /**
