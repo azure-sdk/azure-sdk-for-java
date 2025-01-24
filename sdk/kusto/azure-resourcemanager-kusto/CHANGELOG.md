@@ -1,14 +1,93 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-24)
+
+- Azure Resource Manager Kusto client library for Java. This package contains Microsoft Azure SDK for Kusto Management SDK. The Azure Kusto management API provides a RESTful set of web services that interact with Azure Kusto services to manage your clusters and databases. The API enables you to create, update, and delete clusters and databases. Package tag package-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.FollowerDatabaseDefinitionGet` was added
 
-### Bugs Fixed
+* `models.FollowerDatabaseListResultGet` was added
 
-### Other Changes
+* `models.ScriptLevel` was added
+
+* `models.ZoneStatus` was added
+
+* `models.CalloutType` was added
+
+* `models.CalloutPolicyToRemove` was added
+
+* `models.PrincipalPermissionsAction` was added
+
+* `models.CalloutPoliciesList` was added
+
+* `models.OutboundAccess` was added
+
+* `models.CalloutPolicy` was added
+
+#### `models.Clusters` was modified
+
+* `addCalloutPolicies(java.lang.String,java.lang.String,models.CalloutPoliciesList)` was added
+* `listCalloutPolicies(java.lang.String,java.lang.String)` was added
+* `addCalloutPolicies(java.lang.String,java.lang.String,models.CalloutPoliciesList,com.azure.core.util.Context)` was added
+* `listCalloutPolicies(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listFollowerDatabasesGet(java.lang.String,java.lang.String)` was added
+* `removeCalloutPolicy(java.lang.String,java.lang.String,models.CalloutPolicyToRemove,com.azure.core.util.Context)` was added
+* `listFollowerDatabasesGet(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `removeCalloutPolicy(java.lang.String,java.lang.String,models.CalloutPolicyToRemove)` was added
+
+#### `models.Script$Definition` was modified
+
+* `withPrincipalPermissionsAction(models.PrincipalPermissionsAction)` was added
+* `withScriptLevel(models.ScriptLevel)` was added
+
+#### `models.SandboxCustomImage$Definition` was modified
+
+* `withBaseImageName(java.lang.String)` was added
+
+#### `models.Cluster` was modified
+
+* `listCalloutPolicies(com.azure.core.util.Context)` was added
+* `removeCalloutPolicy(models.CalloutPolicyToRemove)` was added
+* `addCalloutPolicies(models.CalloutPoliciesList)` was added
+* `listCalloutPolicies()` was added
+* `calloutPolicies()` was added
+* `addCalloutPolicies(models.CalloutPoliciesList,com.azure.core.util.Context)` was added
+* `removeCalloutPolicy(models.CalloutPolicyToRemove,com.azure.core.util.Context)` was added
+* `zoneStatus()` was added
+
+#### `models.SandboxCustomImage` was modified
+
+* `baseImageName()` was added
+
+#### `models.Cluster$Definition` was modified
+
+* `withCalloutPolicies(java.util.List)` was added
+
+#### `models.Script` was modified
+
+* `principalPermissionsAction()` was added
+* `scriptLevel()` was added
+
+#### `models.ClusterUpdate` was modified
+
+* `withCalloutPolicies(java.util.List)` was added
+* `calloutPolicies()` was added
+* `zoneStatus()` was added
+
+#### `models.SandboxCustomImage$Update` was modified
+
+* `withBaseImageName(java.lang.String)` was added
+
+#### `models.Cluster$Update` was modified
+
+* `withCalloutPolicies(java.util.List)` was added
+
+#### `models.Script$Update` was modified
+
+* `withPrincipalPermissionsAction(models.PrincipalPermissionsAction)` was added
+* `withScriptLevel(models.ScriptLevel)` was added
 
 ## 1.1.0 (2024-12-11)
 
