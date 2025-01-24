@@ -12,7 +12,7 @@ import com.azure.resourcemanager.confluent.models.AccessCreateRoleBindingRequest
 public final class AccessCreateRoleBindingSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/Access_CreateRoleBinding.
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/Access_CreateRoleBinding.
      * json
      */
     /**
