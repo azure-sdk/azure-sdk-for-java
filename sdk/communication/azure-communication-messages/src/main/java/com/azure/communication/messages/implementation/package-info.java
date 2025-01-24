@@ -4,7 +4,7 @@
 /**
  * <!-- start generated doc -->
  * Package containing the implementations for Messages.
- * Azure Communication Messages Service.
+ * Azure Communication Messages Service test.
  * <!-- end generated doc -->
  */
 package com.azure.communication.messages.implementation;

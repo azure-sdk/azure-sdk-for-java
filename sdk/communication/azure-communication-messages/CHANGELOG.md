@@ -4,12 +4,9 @@
 
 ### Features Added
 
-### Breaking Changes
+#### `models.channels.WhatsAppMessageTemplateItem` was modified
 
-### Bugs Fixed
-
-### Other Changes
-
+* `getName()` was added
 
 ## 1.1.1 (2024-12-04)
 
