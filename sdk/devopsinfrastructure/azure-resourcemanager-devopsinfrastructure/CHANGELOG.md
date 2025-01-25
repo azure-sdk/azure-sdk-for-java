@@ -1,6 +1,48 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.1.0-beta.1 (2025-01-25)
+
+- Azure Resource Manager DevOps Infrastructure client library for Java. This package contains Microsoft Azure SDK for DevOps Infrastructure Management SDK. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+
+### Features Added
+
+* `models.CheckNameAvailability` was added
+
+* `models.CheckNameAvailabilityResult` was added
+
+* `models.DevOpsInfrastructureResourceType` was added
+
+* `models.CheckNameAvailabilityReason` was added
+
+* `models.AvailabilityStatus` was added
+
+* `models.CertificateStoreNameOption` was added
+
+* `models.EphemeralType` was added
+
+#### `models.PoolImage` was modified
+
+* `withEphemeralType(models.EphemeralType)` was added
+* `ephemeralType()` was added
+
+#### `models.Organization` was modified
+
+* `withOpenAccess(java.lang.Boolean)` was added
+* `openAccess()` was added
+
+#### `models.SecretsManagementSettings` was modified
+
+* `certificateStoreName()` was added
+* `withCertificateStoreName(models.CertificateStoreNameOption)` was added
+
+#### `models.Pools` was modified
+
+* `checkNameAvailabilityWithResponse(models.CheckNameAvailability,com.azure.core.util.Context)` was added
+* `checkNameAvailability(models.CheckNameAvailability)` was added
+
+## 1.0.0-beta.1 (2025-01-25)
+
+- Azure Resource Manager DevOps Infrastructure client library for Java. This package contains Microsoft Azure SDK for DevOps Infrastructure Management SDK. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
