@@ -1,14 +1,128 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-01-25)
+
+- Azure Resource Manager ContainerAppsApi client library for Java. This package contains Microsoft Azure SDK for ContainerAppsApi Management SDK.  Package tag package-2025-01-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.Runtime` was added
 
-### Bugs Fixed
+* `models.JavaComponentPropertiesScale` was added
 
-### Other Changes
+* `models.CertificateKeyVaultProperties` was added
+
+* `models.SpringBootAdminComponent` was added
+
+* `models.JavaComponentServiceBind` was added
+
+* `models.JavaComponentConfigurationProperty` was added
+
+* `models.SpringCloudConfigComponent` was added
+
+* `models.JavaComponent$Definition` was added
+
+* `models.NfsAzureFileProperties` was added
+
+* `models.ContainerAppRunningStatus` was added
+
+* `models.JavaComponentsCollection` was added
+
+* `models.JavaComponent` was added
+
+* `models.RuntimeJava` was added
+
+* `models.JavaComponent$UpdateStages` was added
+
+* `models.JavaComponentProvisioningState` was added
+
+* `models.JavaComponent$DefinitionStages` was added
+
+* `models.JavaComponentType` was added
+
+* `models.JavaComponentProperties` was added
+
+* `models.JavaComponent$Update` was added
+
+* `models.JavaComponentIngress` was added
+
+* `models.JavaComponents` was added
+
+* `models.SpringCloudEurekaComponent` was added
+
+#### `models.ManagedEnvironment$Update` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.QueueScaleRule` was modified
+
+* `withAccountName(java.lang.String)` was added
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+* `accountName()` was added
+
+#### `models.ManagedEnvironment$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.ManagedEnvironmentStorageProperties` was modified
+
+* `nfsAzureFile()` was added
+* `withNfsAzureFile(models.NfsAzureFileProperties)` was added
+
+#### `models.TcpScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.Scale` was modified
+
+* `pollingInterval()` was added
+* `withPollingInterval(java.lang.Integer)` was added
+* `withCooldownPeriod(java.lang.Integer)` was added
+* `cooldownPeriod()` was added
+
+#### `models.ManagedEnvironment` was modified
+
+* `identity()` was added
+
+#### `models.HttpScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.CertificateProperties` was modified
+
+* `withCertificateKeyVaultProperties(models.CertificateKeyVaultProperties)` was added
+* `certificateKeyVaultProperties()` was added
+
+#### `models.ContainerApp` was modified
+
+* `runningStatus()` was added
+
+#### `models.JobScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `ContainerAppsApiManager` was modified
+
+* `javaComponents()` was added
+
+#### `models.CustomScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.CustomDomainConfiguration` was modified
+
+* `certificateKeyVaultProperties()` was added
+* `withCertificateKeyVaultProperties(models.CertificateKeyVaultProperties)` was added
+
+#### `models.Configuration` was modified
+
+* `runtime()` was added
+* `withRuntime(models.Runtime)` was added
 
 ## 1.1.0-beta.1 (2024-10-17)
 
