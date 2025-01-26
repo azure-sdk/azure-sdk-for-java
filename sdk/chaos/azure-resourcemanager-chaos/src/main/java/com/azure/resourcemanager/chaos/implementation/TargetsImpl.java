@@ -65,6 +65,32 @@ public final class TargetsImpl implements Targets {
         }
     }
 
+    public Response<Target> createOrUpdateWithResponse(String resourceGroupName, String parentProviderNamespace,
+        String parentResourceType, String parentResourceName, String targetName, TargetInner resource,
+        Context context) {
+        Response<TargetInner> inner = this.serviceClient()
+            .createOrUpdateWithResponse(resourceGroupName, parentProviderNamespace, parentResourceType,
+                parentResourceName, targetName, resource, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new TargetImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Target createOrUpdate(String resourceGroupName, String parentProviderNamespace, String parentResourceType,
+        String parentResourceName, String targetName, TargetInner resource) {
+        TargetInner inner = this.serviceClient()
+            .createOrUpdate(resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName,
+                targetName, resource);
+        if (inner != null) {
+            return new TargetImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public Response<Void> deleteWithResponse(String resourceGroupName, String parentProviderNamespace,
         String parentResourceType, String parentResourceName, String targetName, Context context) {
         return this.serviceClient()
@@ -76,31 +102,6 @@ public final class TargetsImpl implements Targets {
         String parentResourceName, String targetName) {
         this.serviceClient()
             .delete(resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName, targetName);
-    }
-
-    public Response<Target> createOrUpdateWithResponse(String resourceGroupName, String parentProviderNamespace,
-        String parentResourceType, String parentResourceName, String targetName, TargetInner target, Context context) {
-        Response<TargetInner> inner = this.serviceClient()
-            .createOrUpdateWithResponse(resourceGroupName, parentProviderNamespace, parentResourceType,
-                parentResourceName, targetName, target, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new TargetImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public Target createOrUpdate(String resourceGroupName, String parentProviderNamespace, String parentResourceType,
-        String parentResourceName, String targetName, TargetInner target) {
-        TargetInner inner = this.serviceClient()
-            .createOrUpdate(resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName,
-                targetName, target);
-        if (inner != null) {
-            return new TargetImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     private TargetsClient serviceClient() {
