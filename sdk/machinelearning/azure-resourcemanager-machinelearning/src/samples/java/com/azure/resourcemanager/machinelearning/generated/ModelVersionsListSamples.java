@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class ModelVersionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/ModelVersion/list.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/ModelVersion/list.json
      */
     /**
      * Sample code: List Workspace Model Version.
