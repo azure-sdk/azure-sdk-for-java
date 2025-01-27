@@ -217,7 +217,7 @@ public final class StorageActionsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.storageactions")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
