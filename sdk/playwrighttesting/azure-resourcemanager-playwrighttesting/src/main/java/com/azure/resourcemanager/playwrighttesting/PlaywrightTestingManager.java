@@ -217,7 +217,7 @@ public final class PlaywrightTestingManager {
                 .append("-")
                 .append("com.azure.resourcemanager.playwrighttesting")
                 .append("/")
-                .append("1.0.0-beta.1");
+                .append("1.1.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
