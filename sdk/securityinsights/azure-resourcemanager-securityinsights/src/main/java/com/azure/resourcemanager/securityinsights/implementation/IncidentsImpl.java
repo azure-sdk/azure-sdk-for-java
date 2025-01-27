@@ -19,6 +19,7 @@ import com.azure.resourcemanager.securityinsights.models.IncidentAlertList;
 import com.azure.resourcemanager.securityinsights.models.IncidentBookmarkList;
 import com.azure.resourcemanager.securityinsights.models.IncidentEntitiesResponse;
 import com.azure.resourcemanager.securityinsights.models.Incidents;
+import com.azure.resourcemanager.securityinsights.models.ManualTriggerRequestBody;
 
 public final class IncidentsImpl implements Incidents {
     private static final ClientLogger LOGGER = new ClientLogger(IncidentsImpl.class);
@@ -31,6 +32,16 @@ public final class IncidentsImpl implements Incidents {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public Response<Object> runPlaybookWithResponse(String resourceGroupName, String workspaceName,
+        String incidentIdentifier, ManualTriggerRequestBody requestBody, Context context) {
+        return this.serviceClient()
+            .runPlaybookWithResponse(resourceGroupName, workspaceName, incidentIdentifier, requestBody, context);
+    }
+
+    public Object runPlaybook(String resourceGroupName, String workspaceName, String incidentIdentifier) {
+        return this.serviceClient().runPlaybook(resourceGroupName, workspaceName, incidentIdentifier);
     }
 
     public PagedIterable<Incident> list(String resourceGroupName, String workspaceName) {

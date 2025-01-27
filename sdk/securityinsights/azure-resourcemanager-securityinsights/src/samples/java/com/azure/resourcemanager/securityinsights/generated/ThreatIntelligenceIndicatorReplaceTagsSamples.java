@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class ThreatIntelligenceIndicatorReplaceTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2022-11-01/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2024-10-01-preview/examples/
      * threatintelligence/ReplaceTagsThreatIntelligence.json
      */
     /**

@@ -13,6 +13,8 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
+import com.azure.resourcemanager.securityinsights.models.FusionScenarioExclusionPattern;
+import com.azure.resourcemanager.securityinsights.models.FusionSourceSettings;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -43,6 +45,16 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
     private boolean enabled;
 
     /*
+     * Configuration for all supported source signals in fusion detection.
+     */
+    private List<FusionSourceSettings> sourceSettings;
+
+    /*
+     * Configuration to exclude scenarios in fusion detection.
+     */
+    private List<FusionScenarioExclusionPattern> scenarioExclusionPatterns;
+
+    /*
      * The last time that this alert has been modified.
      */
     private OffsetDateTime lastModifiedUtc;
@@ -61,6 +73,11 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
      * The techniques of the alert rule
      */
     private List<String> techniques;
+
+    /*
+     * The sub-techniques of the alert rule
+     */
+    private List<String> subTechniques;
 
     /**
      * Creates an instance of FusionAlertRuleProperties class.
@@ -127,6 +144,47 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
     }
 
     /**
+     * Get the sourceSettings property: Configuration for all supported source signals in fusion detection.
+     * 
+     * @return the sourceSettings value.
+     */
+    public List<FusionSourceSettings> sourceSettings() {
+        return this.sourceSettings;
+    }
+
+    /**
+     * Set the sourceSettings property: Configuration for all supported source signals in fusion detection.
+     * 
+     * @param sourceSettings the sourceSettings value to set.
+     * @return the FusionAlertRuleProperties object itself.
+     */
+    public FusionAlertRuleProperties withSourceSettings(List<FusionSourceSettings> sourceSettings) {
+        this.sourceSettings = sourceSettings;
+        return this;
+    }
+
+    /**
+     * Get the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
+     * 
+     * @return the scenarioExclusionPatterns value.
+     */
+    public List<FusionScenarioExclusionPattern> scenarioExclusionPatterns() {
+        return this.scenarioExclusionPatterns;
+    }
+
+    /**
+     * Set the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
+     * 
+     * @param scenarioExclusionPatterns the scenarioExclusionPatterns value to set.
+     * @return the FusionAlertRuleProperties object itself.
+     */
+    public FusionAlertRuleProperties
+        withScenarioExclusionPatterns(List<FusionScenarioExclusionPattern> scenarioExclusionPatterns) {
+        this.scenarioExclusionPatterns = scenarioExclusionPatterns;
+        return this;
+    }
+
+    /**
      * Get the lastModifiedUtc property: The last time that this alert has been modified.
      * 
      * @return the lastModifiedUtc value.
@@ -163,6 +221,15 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -172,6 +239,12 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property alertRuleTemplateName in model FusionAlertRuleProperties"));
+        }
+        if (sourceSettings() != null) {
+            sourceSettings().forEach(e -> e.validate());
+        }
+        if (scenarioExclusionPatterns() != null) {
+            scenarioExclusionPatterns().forEach(e -> e.validate());
         }
     }
 
@@ -185,6 +258,10 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("alertRuleTemplateName", this.alertRuleTemplateName);
         jsonWriter.writeBooleanField("enabled", this.enabled);
+        jsonWriter.writeArrayField("sourceSettings", this.sourceSettings,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("scenarioExclusionPatterns", this.scenarioExclusionPatterns,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -212,6 +289,14 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
                     deserializedFusionAlertRuleProperties.description = reader.getString();
                 } else if ("displayName".equals(fieldName)) {
                     deserializedFusionAlertRuleProperties.displayName = reader.getString();
+                } else if ("sourceSettings".equals(fieldName)) {
+                    List<FusionSourceSettings> sourceSettings
+                        = reader.readArray(reader1 -> FusionSourceSettings.fromJson(reader1));
+                    deserializedFusionAlertRuleProperties.sourceSettings = sourceSettings;
+                } else if ("scenarioExclusionPatterns".equals(fieldName)) {
+                    List<FusionScenarioExclusionPattern> scenarioExclusionPatterns
+                        = reader.readArray(reader1 -> FusionScenarioExclusionPattern.fromJson(reader1));
+                    deserializedFusionAlertRuleProperties.scenarioExclusionPatterns = scenarioExclusionPatterns;
                 } else if ("lastModifiedUtc".equals(fieldName)) {
                     deserializedFusionAlertRuleProperties.lastModifiedUtc = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
@@ -224,6 +309,9 @@ public final class FusionAlertRuleProperties implements JsonSerializable<FusionA
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedFusionAlertRuleProperties.techniques = techniques;
+                } else if ("subTechniques".equals(fieldName)) {
+                    List<String> subTechniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedFusionAlertRuleProperties.subTechniques = subTechniques;
                 } else {
                     reader.skipChildren();
                 }
