@@ -42,11 +42,13 @@ import com.azure.resourcemanager.postgresqlflexibleserver.implementation.Postgre
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.PrivateEndpointConnectionOperationsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.PrivateLinkResourcesImpl;
+import com.azure.resourcemanager.postgresqlflexibleserver.implementation.QuotaUsagesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ReplicasImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServerCapabilitiesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServerThreatProtectionSettingsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServersImpl;
+import com.azure.resourcemanager.postgresqlflexibleserver.implementation.TuningOptionsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.VirtualEndpointsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.VirtualNetworkSubnetUsagesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Administrators;
@@ -66,11 +68,13 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.Operations;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.PrivateEndpointConnectionOperations;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.PrivateLinkResources;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.QuotaUsages;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Replicas;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ResourceProviders;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerCapabilities;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerThreatProtectionSettings;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Servers;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.TuningOptions;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.VirtualEndpoints;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.VirtualNetworkSubnetUsages;
 import java.time.Duration;
@@ -125,11 +129,15 @@ public final class PostgreSqlManager {
 
     private PrivateLinkResources privateLinkResources;
 
+    private QuotaUsages quotaUsages;
+
     private Replicas replicas;
 
     private LogFiles logFiles;
 
     private ServerThreatProtectionSettings serverThreatProtectionSettings;
+
+    private TuningOptions tuningOptions;
 
     private VirtualEndpoints virtualEndpoints;
 
@@ -299,7 +307,7 @@ public final class PostgreSqlManager {
                 .append("-")
                 .append("com.azure.resourcemanager.postgresqlflexibleserver")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -580,6 +588,18 @@ public final class PostgreSqlManager {
     }
 
     /**
+     * Gets the resource collection API of QuotaUsages.
+     * 
+     * @return Resource collection API of QuotaUsages.
+     */
+    public QuotaUsages quotaUsages() {
+        if (this.quotaUsages == null) {
+            this.quotaUsages = new QuotaUsagesImpl(clientObject.getQuotaUsages(), this);
+        }
+        return quotaUsages;
+    }
+
+    /**
      * Gets the resource collection API of Replicas.
      * 
      * @return Resource collection API of Replicas.
@@ -615,6 +635,18 @@ public final class PostgreSqlManager {
                 = new ServerThreatProtectionSettingsImpl(clientObject.getServerThreatProtectionSettings(), this);
         }
         return serverThreatProtectionSettings;
+    }
+
+    /**
+     * Gets the resource collection API of TuningOptions.
+     * 
+     * @return Resource collection API of TuningOptions.
+     */
+    public TuningOptions tuningOptions() {
+        if (this.tuningOptions == null) {
+            this.tuningOptions = new TuningOptionsImpl(clientObject.getTuningOptions(), this);
+        }
+        return tuningOptions;
     }
 
     /**
