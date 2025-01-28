@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -23,6 +24,11 @@ public class TriggerInner extends ArmBaseModel {
      * Trigger Kind.
      */
     private TriggerEventType kind = TriggerEventType.fromString("Trigger");
+
+    /*
+     * Metadata pertaining to creation and last modification of Trigger
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -52,6 +58,26 @@ public class TriggerInner extends ArmBaseModel {
      */
     public TriggerEventType kind() {
         return this.kind;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Trigger.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Set the systemData property: Metadata pertaining to creation and last modification of Trigger.
+     * 
+     * @param systemData the systemData value to set.
+     * @return the TriggerInner object itself.
+     */
+    TriggerInner withSystemData(SystemData systemData) {
+        this.systemData = systemData;
+        return this;
     }
 
     /**
@@ -154,6 +180,8 @@ public class TriggerInner extends ArmBaseModel {
                     deserializedTriggerInner.type = reader.getString();
                 } else if ("kind".equals(fieldName)) {
                     deserializedTriggerInner.kind = TriggerEventType.fromString(reader.getString());
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedTriggerInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

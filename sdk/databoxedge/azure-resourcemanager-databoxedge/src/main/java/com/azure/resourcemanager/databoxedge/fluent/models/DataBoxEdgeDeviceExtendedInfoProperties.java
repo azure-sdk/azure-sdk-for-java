@@ -9,7 +9,11 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.databoxedge.models.ClusterWitnessType;
+import com.azure.resourcemanager.databoxedge.models.KeyVaultSyncStatus;
+import com.azure.resourcemanager.databoxedge.models.Secret;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * The properties of the Data Box Edge/Gateway device extended info.
@@ -31,6 +35,66 @@ public final class DataBoxEdgeDeviceExtendedInfoProperties
      * The Resource ID of the Resource.
      */
     private String resourceKey;
+
+    /*
+     * The Key Vault ARM Id for client secrets
+     */
+    private String clientSecretStoreId;
+
+    /*
+     * The url to access the Client Key Vault
+     */
+    private String clientSecretStoreUrl;
+
+    /*
+     * The name of Channel Integrity Key stored in the Client Key Vault
+     */
+    private String channelIntegrityKeyName;
+
+    /*
+     * The version of Channel Integrity Key stored in the Client Key Vault
+     */
+    private String channelIntegrityKeyVersion;
+
+    /*
+     * Key vault sync status
+     */
+    private KeyVaultSyncStatus keyVaultSyncStatus;
+
+    /*
+     * Device secrets, will be returned only with ODataFilter $expand=deviceSecrets
+     */
+    private Map<String, Secret> deviceSecrets;
+
+    /*
+     * Cluster Witness Type
+     */
+    private ClusterWitnessType clusterWitnessType;
+
+    /*
+     * The witness location of file share.
+     */
+    private String fileShareWitnessLocation;
+
+    /*
+     * The username of file share.
+     */
+    private String fileShareWitnessUsername;
+
+    /*
+     * The Cloud Witness Storage account name.
+     */
+    private String cloudWitnessStorageAccountName;
+
+    /*
+     * The Container for cloud witness in the storage account.
+     */
+    private String cloudWitnessContainerName;
+
+    /*
+     * The Azure service endpoint of the cloud witness storage account.
+     */
+    private String cloudWitnessStorageEndpoint;
 
     /**
      * Creates an instance of DataBoxEdgeDeviceExtendedInfoProperties class.
@@ -90,11 +154,181 @@ public final class DataBoxEdgeDeviceExtendedInfoProperties
     }
 
     /**
+     * Get the clientSecretStoreId property: The Key Vault ARM Id for client secrets.
+     * 
+     * @return the clientSecretStoreId value.
+     */
+    public String clientSecretStoreId() {
+        return this.clientSecretStoreId;
+    }
+
+    /**
+     * Set the clientSecretStoreId property: The Key Vault ARM Id for client secrets.
+     * 
+     * @param clientSecretStoreId the clientSecretStoreId value to set.
+     * @return the DataBoxEdgeDeviceExtendedInfoProperties object itself.
+     */
+    public DataBoxEdgeDeviceExtendedInfoProperties withClientSecretStoreId(String clientSecretStoreId) {
+        this.clientSecretStoreId = clientSecretStoreId;
+        return this;
+    }
+
+    /**
+     * Get the clientSecretStoreUrl property: The url to access the Client Key Vault.
+     * 
+     * @return the clientSecretStoreUrl value.
+     */
+    public String clientSecretStoreUrl() {
+        return this.clientSecretStoreUrl;
+    }
+
+    /**
+     * Set the clientSecretStoreUrl property: The url to access the Client Key Vault.
+     * 
+     * @param clientSecretStoreUrl the clientSecretStoreUrl value to set.
+     * @return the DataBoxEdgeDeviceExtendedInfoProperties object itself.
+     */
+    public DataBoxEdgeDeviceExtendedInfoProperties withClientSecretStoreUrl(String clientSecretStoreUrl) {
+        this.clientSecretStoreUrl = clientSecretStoreUrl;
+        return this;
+    }
+
+    /**
+     * Get the channelIntegrityKeyName property: The name of Channel Integrity Key stored in the Client Key Vault.
+     * 
+     * @return the channelIntegrityKeyName value.
+     */
+    public String channelIntegrityKeyName() {
+        return this.channelIntegrityKeyName;
+    }
+
+    /**
+     * Set the channelIntegrityKeyName property: The name of Channel Integrity Key stored in the Client Key Vault.
+     * 
+     * @param channelIntegrityKeyName the channelIntegrityKeyName value to set.
+     * @return the DataBoxEdgeDeviceExtendedInfoProperties object itself.
+     */
+    public DataBoxEdgeDeviceExtendedInfoProperties withChannelIntegrityKeyName(String channelIntegrityKeyName) {
+        this.channelIntegrityKeyName = channelIntegrityKeyName;
+        return this;
+    }
+
+    /**
+     * Get the channelIntegrityKeyVersion property: The version of Channel Integrity Key stored in the Client Key Vault.
+     * 
+     * @return the channelIntegrityKeyVersion value.
+     */
+    public String channelIntegrityKeyVersion() {
+        return this.channelIntegrityKeyVersion;
+    }
+
+    /**
+     * Set the channelIntegrityKeyVersion property: The version of Channel Integrity Key stored in the Client Key Vault.
+     * 
+     * @param channelIntegrityKeyVersion the channelIntegrityKeyVersion value to set.
+     * @return the DataBoxEdgeDeviceExtendedInfoProperties object itself.
+     */
+    public DataBoxEdgeDeviceExtendedInfoProperties withChannelIntegrityKeyVersion(String channelIntegrityKeyVersion) {
+        this.channelIntegrityKeyVersion = channelIntegrityKeyVersion;
+        return this;
+    }
+
+    /**
+     * Get the keyVaultSyncStatus property: Key vault sync status.
+     * 
+     * @return the keyVaultSyncStatus value.
+     */
+    public KeyVaultSyncStatus keyVaultSyncStatus() {
+        return this.keyVaultSyncStatus;
+    }
+
+    /**
+     * Set the keyVaultSyncStatus property: Key vault sync status.
+     * 
+     * @param keyVaultSyncStatus the keyVaultSyncStatus value to set.
+     * @return the DataBoxEdgeDeviceExtendedInfoProperties object itself.
+     */
+    public DataBoxEdgeDeviceExtendedInfoProperties withKeyVaultSyncStatus(KeyVaultSyncStatus keyVaultSyncStatus) {
+        this.keyVaultSyncStatus = keyVaultSyncStatus;
+        return this;
+    }
+
+    /**
+     * Get the deviceSecrets property: Device secrets, will be returned only with ODataFilter $expand=deviceSecrets.
+     * 
+     * @return the deviceSecrets value.
+     */
+    public Map<String, Secret> deviceSecrets() {
+        return this.deviceSecrets;
+    }
+
+    /**
+     * Get the clusterWitnessType property: Cluster Witness Type.
+     * 
+     * @return the clusterWitnessType value.
+     */
+    public ClusterWitnessType clusterWitnessType() {
+        return this.clusterWitnessType;
+    }
+
+    /**
+     * Get the fileShareWitnessLocation property: The witness location of file share.
+     * 
+     * @return the fileShareWitnessLocation value.
+     */
+    public String fileShareWitnessLocation() {
+        return this.fileShareWitnessLocation;
+    }
+
+    /**
+     * Get the fileShareWitnessUsername property: The username of file share.
+     * 
+     * @return the fileShareWitnessUsername value.
+     */
+    public String fileShareWitnessUsername() {
+        return this.fileShareWitnessUsername;
+    }
+
+    /**
+     * Get the cloudWitnessStorageAccountName property: The Cloud Witness Storage account name.
+     * 
+     * @return the cloudWitnessStorageAccountName value.
+     */
+    public String cloudWitnessStorageAccountName() {
+        return this.cloudWitnessStorageAccountName;
+    }
+
+    /**
+     * Get the cloudWitnessContainerName property: The Container for cloud witness in the storage account.
+     * 
+     * @return the cloudWitnessContainerName value.
+     */
+    public String cloudWitnessContainerName() {
+        return this.cloudWitnessContainerName;
+    }
+
+    /**
+     * Get the cloudWitnessStorageEndpoint property: The Azure service endpoint of the cloud witness storage account.
+     * 
+     * @return the cloudWitnessStorageEndpoint value.
+     */
+    public String cloudWitnessStorageEndpoint() {
+        return this.cloudWitnessStorageEndpoint;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (deviceSecrets() != null) {
+            deviceSecrets().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
+        }
     }
 
     /**
@@ -105,6 +339,12 @@ public final class DataBoxEdgeDeviceExtendedInfoProperties
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("encryptionKeyThumbprint", this.encryptionKeyThumbprint);
         jsonWriter.writeStringField("encryptionKey", this.encryptionKey);
+        jsonWriter.writeStringField("clientSecretStoreId", this.clientSecretStoreId);
+        jsonWriter.writeStringField("clientSecretStoreUrl", this.clientSecretStoreUrl);
+        jsonWriter.writeStringField("channelIntegrityKeyName", this.channelIntegrityKeyName);
+        jsonWriter.writeStringField("channelIntegrityKeyVersion", this.channelIntegrityKeyVersion);
+        jsonWriter.writeStringField("keyVaultSyncStatus",
+            this.keyVaultSyncStatus == null ? null : this.keyVaultSyncStatus.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -130,6 +370,35 @@ public final class DataBoxEdgeDeviceExtendedInfoProperties
                     deserializedDataBoxEdgeDeviceExtendedInfoProperties.encryptionKey = reader.getString();
                 } else if ("resourceKey".equals(fieldName)) {
                     deserializedDataBoxEdgeDeviceExtendedInfoProperties.resourceKey = reader.getString();
+                } else if ("clientSecretStoreId".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.clientSecretStoreId = reader.getString();
+                } else if ("clientSecretStoreUrl".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.clientSecretStoreUrl = reader.getString();
+                } else if ("channelIntegrityKeyName".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.channelIntegrityKeyName = reader.getString();
+                } else if ("channelIntegrityKeyVersion".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.channelIntegrityKeyVersion = reader.getString();
+                } else if ("keyVaultSyncStatus".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.keyVaultSyncStatus
+                        = KeyVaultSyncStatus.fromString(reader.getString());
+                } else if ("deviceSecrets".equals(fieldName)) {
+                    Map<String, Secret> deviceSecrets = reader.readMap(reader1 -> Secret.fromJson(reader1));
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.deviceSecrets = deviceSecrets;
+                } else if ("clusterWitnessType".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.clusterWitnessType
+                        = ClusterWitnessType.fromString(reader.getString());
+                } else if ("fileShareWitnessLocation".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.fileShareWitnessLocation = reader.getString();
+                } else if ("fileShareWitnessUsername".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.fileShareWitnessUsername = reader.getString();
+                } else if ("cloudWitnessStorageAccountName".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.cloudWitnessStorageAccountName
+                        = reader.getString();
+                } else if ("cloudWitnessContainerName".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.cloudWitnessContainerName = reader.getString();
+                } else if ("cloudWitnessStorageEndpoint".equals(fieldName)) {
+                    deserializedDataBoxEdgeDeviceExtendedInfoProperties.cloudWitnessStorageEndpoint
+                        = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

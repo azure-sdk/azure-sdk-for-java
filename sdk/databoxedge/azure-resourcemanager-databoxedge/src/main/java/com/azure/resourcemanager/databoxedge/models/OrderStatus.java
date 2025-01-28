@@ -36,6 +36,11 @@ public final class OrderStatus implements JsonSerializable<OrderStatus> {
     private String comments;
 
     /*
+     * Tracking information related to the state in the ordering flow
+     */
+    private TrackingInfo trackingInformation;
+
+    /*
      * Dictionary to hold generic information which is not stored
      * by the already existing properties
      */
@@ -97,6 +102,15 @@ public final class OrderStatus implements JsonSerializable<OrderStatus> {
     }
 
     /**
+     * Get the trackingInformation property: Tracking information related to the state in the ordering flow.
+     * 
+     * @return the trackingInformation value.
+     */
+    public TrackingInfo trackingInformation() {
+        return this.trackingInformation;
+    }
+
+    /**
      * Get the additionalOrderDetails property: Dictionary to hold generic information which is not stored
      * by the already existing properties.
      * 
@@ -115,6 +129,9 @@ public final class OrderStatus implements JsonSerializable<OrderStatus> {
         if (status() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property status in model OrderStatus"));
+        }
+        if (trackingInformation() != null) {
+            trackingInformation().validate();
         }
     }
 
@@ -154,6 +171,8 @@ public final class OrderStatus implements JsonSerializable<OrderStatus> {
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("comments".equals(fieldName)) {
                     deserializedOrderStatus.comments = reader.getString();
+                } else if ("trackingInformation".equals(fieldName)) {
+                    deserializedOrderStatus.trackingInformation = TrackingInfo.fromJson(reader);
                 } else if ("additionalOrderDetails".equals(fieldName)) {
                     Map<String, String> additionalOrderDetails = reader.readMap(reader1 -> reader1.getString());
                     deserializedOrderStatus.additionalOrderDetails = additionalOrderDetails;

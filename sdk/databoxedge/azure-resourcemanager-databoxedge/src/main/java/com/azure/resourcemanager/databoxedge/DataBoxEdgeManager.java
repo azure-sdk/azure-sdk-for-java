@@ -24,37 +24,49 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.fluent.DataBoxEdgeManagementClient;
+import com.azure.resourcemanager.databoxedge.implementation.AddonsImpl;
 import com.azure.resourcemanager.databoxedge.implementation.AlertsImpl;
+import com.azure.resourcemanager.databoxedge.implementation.AvailableSkusImpl;
 import com.azure.resourcemanager.databoxedge.implementation.BandwidthSchedulesImpl;
 import com.azure.resourcemanager.databoxedge.implementation.ContainersImpl;
 import com.azure.resourcemanager.databoxedge.implementation.DataBoxEdgeManagementClientBuilder;
+import com.azure.resourcemanager.databoxedge.implementation.DeviceCapacityChecksImpl;
+import com.azure.resourcemanager.databoxedge.implementation.DeviceCapacityInfoesImpl;
 import com.azure.resourcemanager.databoxedge.implementation.DevicesImpl;
+import com.azure.resourcemanager.databoxedge.implementation.DiagnosticSettingsImpl;
 import com.azure.resourcemanager.databoxedge.implementation.JobsImpl;
+import com.azure.resourcemanager.databoxedge.implementation.MonitoringConfigsImpl;
 import com.azure.resourcemanager.databoxedge.implementation.NodesImpl;
 import com.azure.resourcemanager.databoxedge.implementation.OperationsImpl;
 import com.azure.resourcemanager.databoxedge.implementation.OperationsStatusImpl;
 import com.azure.resourcemanager.databoxedge.implementation.OrdersImpl;
 import com.azure.resourcemanager.databoxedge.implementation.RolesImpl;
 import com.azure.resourcemanager.databoxedge.implementation.SharesImpl;
-import com.azure.resourcemanager.databoxedge.implementation.SkusImpl;
 import com.azure.resourcemanager.databoxedge.implementation.StorageAccountCredentialsImpl;
 import com.azure.resourcemanager.databoxedge.implementation.StorageAccountsImpl;
+import com.azure.resourcemanager.databoxedge.implementation.SupportPackagesImpl;
 import com.azure.resourcemanager.databoxedge.implementation.TriggersImpl;
 import com.azure.resourcemanager.databoxedge.implementation.UsersImpl;
+import com.azure.resourcemanager.databoxedge.models.Addons;
 import com.azure.resourcemanager.databoxedge.models.Alerts;
+import com.azure.resourcemanager.databoxedge.models.AvailableSkus;
 import com.azure.resourcemanager.databoxedge.models.BandwidthSchedules;
 import com.azure.resourcemanager.databoxedge.models.Containers;
+import com.azure.resourcemanager.databoxedge.models.DeviceCapacityChecks;
+import com.azure.resourcemanager.databoxedge.models.DeviceCapacityInfoes;
 import com.azure.resourcemanager.databoxedge.models.Devices;
+import com.azure.resourcemanager.databoxedge.models.DiagnosticSettings;
 import com.azure.resourcemanager.databoxedge.models.Jobs;
+import com.azure.resourcemanager.databoxedge.models.MonitoringConfigs;
 import com.azure.resourcemanager.databoxedge.models.Nodes;
 import com.azure.resourcemanager.databoxedge.models.Operations;
 import com.azure.resourcemanager.databoxedge.models.OperationsStatus;
 import com.azure.resourcemanager.databoxedge.models.Orders;
 import com.azure.resourcemanager.databoxedge.models.Roles;
 import com.azure.resourcemanager.databoxedge.models.Shares;
-import com.azure.resourcemanager.databoxedge.models.Skus;
 import com.azure.resourcemanager.databoxedge.models.StorageAccountCredentials;
 import com.azure.resourcemanager.databoxedge.models.StorageAccounts;
+import com.azure.resourcemanager.databoxedge.models.SupportPackages;
 import com.azure.resourcemanager.databoxedge.models.Triggers;
 import com.azure.resourcemanager.databoxedge.models.Users;
 import java.time.Duration;
@@ -70,11 +82,19 @@ import java.util.stream.Collectors;
 public final class DataBoxEdgeManager {
     private Operations operations;
 
+    private AvailableSkus availableSkus;
+
     private Devices devices;
 
     private Alerts alerts;
 
     private BandwidthSchedules bandwidthSchedules;
+
+    private DeviceCapacityChecks deviceCapacityChecks;
+
+    private DeviceCapacityInfoes deviceCapacityInfoes;
+
+    private DiagnosticSettings diagnosticSettings;
 
     private Jobs jobs;
 
@@ -86,6 +106,10 @@ public final class DataBoxEdgeManager {
 
     private Roles roles;
 
+    private Addons addons;
+
+    private MonitoringConfigs monitoringConfigs;
+
     private Shares shares;
 
     private StorageAccountCredentials storageAccountCredentials;
@@ -96,9 +120,9 @@ public final class DataBoxEdgeManager {
 
     private Triggers triggers;
 
-    private Users users;
+    private SupportPackages supportPackages;
 
-    private Skus skus;
+    private Users users;
 
     private final DataBoxEdgeManagementClient clientObject;
 
@@ -264,7 +288,7 @@ public final class DataBoxEdgeManager {
                 .append("-")
                 .append("com.azure.resourcemanager.databoxedge")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -323,6 +347,18 @@ public final class DataBoxEdgeManager {
     }
 
     /**
+     * Gets the resource collection API of AvailableSkus.
+     * 
+     * @return Resource collection API of AvailableSkus.
+     */
+    public AvailableSkus availableSkus() {
+        if (this.availableSkus == null) {
+            this.availableSkus = new AvailableSkusImpl(clientObject.getAvailableSkus(), this);
+        }
+        return availableSkus;
+    }
+
+    /**
      * Gets the resource collection API of Devices. It manages DataBoxEdgeDevice.
      * 
      * @return Resource collection API of Devices.
@@ -356,6 +392,42 @@ public final class DataBoxEdgeManager {
             this.bandwidthSchedules = new BandwidthSchedulesImpl(clientObject.getBandwidthSchedules(), this);
         }
         return bandwidthSchedules;
+    }
+
+    /**
+     * Gets the resource collection API of DeviceCapacityChecks.
+     * 
+     * @return Resource collection API of DeviceCapacityChecks.
+     */
+    public DeviceCapacityChecks deviceCapacityChecks() {
+        if (this.deviceCapacityChecks == null) {
+            this.deviceCapacityChecks = new DeviceCapacityChecksImpl(clientObject.getDeviceCapacityChecks(), this);
+        }
+        return deviceCapacityChecks;
+    }
+
+    /**
+     * Gets the resource collection API of DeviceCapacityInfoes.
+     * 
+     * @return Resource collection API of DeviceCapacityInfoes.
+     */
+    public DeviceCapacityInfoes deviceCapacityInfoes() {
+        if (this.deviceCapacityInfoes == null) {
+            this.deviceCapacityInfoes = new DeviceCapacityInfoesImpl(clientObject.getDeviceCapacityInfoes(), this);
+        }
+        return deviceCapacityInfoes;
+    }
+
+    /**
+     * Gets the resource collection API of DiagnosticSettings.
+     * 
+     * @return Resource collection API of DiagnosticSettings.
+     */
+    public DiagnosticSettings diagnosticSettings() {
+        if (this.diagnosticSettings == null) {
+            this.diagnosticSettings = new DiagnosticSettingsImpl(clientObject.getDiagnosticSettings(), this);
+        }
+        return diagnosticSettings;
     }
 
     /**
@@ -416,6 +488,30 @@ public final class DataBoxEdgeManager {
             this.roles = new RolesImpl(clientObject.getRoles(), this);
         }
         return roles;
+    }
+
+    /**
+     * Gets the resource collection API of Addons.
+     * 
+     * @return Resource collection API of Addons.
+     */
+    public Addons addons() {
+        if (this.addons == null) {
+            this.addons = new AddonsImpl(clientObject.getAddons(), this);
+        }
+        return addons;
+    }
+
+    /**
+     * Gets the resource collection API of MonitoringConfigs.
+     * 
+     * @return Resource collection API of MonitoringConfigs.
+     */
+    public MonitoringConfigs monitoringConfigs() {
+        if (this.monitoringConfigs == null) {
+            this.monitoringConfigs = new MonitoringConfigsImpl(clientObject.getMonitoringConfigs(), this);
+        }
+        return monitoringConfigs;
     }
 
     /**
@@ -480,6 +576,18 @@ public final class DataBoxEdgeManager {
     }
 
     /**
+     * Gets the resource collection API of SupportPackages.
+     * 
+     * @return Resource collection API of SupportPackages.
+     */
+    public SupportPackages supportPackages() {
+        if (this.supportPackages == null) {
+            this.supportPackages = new SupportPackagesImpl(clientObject.getSupportPackages(), this);
+        }
+        return supportPackages;
+    }
+
+    /**
      * Gets the resource collection API of Users. It manages User.
      * 
      * @return Resource collection API of Users.
@@ -489,18 +597,6 @@ public final class DataBoxEdgeManager {
             this.users = new UsersImpl(clientObject.getUsers(), this);
         }
         return users;
-    }
-
-    /**
-     * Gets the resource collection API of Skus.
-     * 
-     * @return Resource collection API of Skus.
-     */
-    public Skus skus() {
-        if (this.skus == null) {
-            this.skus = new SkusImpl(clientObject.getSkus(), this);
-        }
-        return skus;
     }
 
     /**

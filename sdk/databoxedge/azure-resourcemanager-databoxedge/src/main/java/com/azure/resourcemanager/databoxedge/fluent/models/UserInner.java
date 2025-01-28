@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -25,6 +26,11 @@ public final class UserInner extends ArmBaseModel {
      * The storage account credential properties.
      */
     private UserProperties innerProperties = new UserProperties();
+
+    /*
+     * Metadata pertaining to creation and last modification of User
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -54,6 +60,15 @@ public final class UserInner extends ArmBaseModel {
      */
     private UserProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of User.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -117,21 +132,6 @@ public final class UserInner extends ArmBaseModel {
      */
     public List<ShareAccessRight> shareAccessRights() {
         return this.innerProperties() == null ? null : this.innerProperties().shareAccessRights();
-    }
-
-    /**
-     * Set the shareAccessRights property: List of shares that the user has rights on. This field should not be
-     * specified during user creation.
-     * 
-     * @param shareAccessRights the shareAccessRights value to set.
-     * @return the UserInner object itself.
-     */
-    public UserInner withShareAccessRights(List<ShareAccessRight> shareAccessRights) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new UserProperties();
-        }
-        this.innerProperties().withShareAccessRights(shareAccessRights);
-        return this;
     }
 
     /**
@@ -208,6 +208,8 @@ public final class UserInner extends ArmBaseModel {
                     deserializedUserInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedUserInner.innerProperties = UserProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedUserInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
