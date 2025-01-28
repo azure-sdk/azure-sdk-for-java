@@ -11,7 +11,7 @@ import com.azure.resourcemanager.consumption.models.Metrictype;
  */
 public final class UsageDetailsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListForBillingPeriodByBillingAccount.json
      */
     /**
@@ -27,7 +27,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByMCAInvoiceSection.json
      */
     /**
@@ -44,7 +44,7 @@ public final class UsageDetailsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsList.json
+     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/UsageDetailsList.json
      */
     /**
      * Sample code: UsageDetailsList-Legacy.
@@ -58,7 +58,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListFilterByTag.json
      */
     /**
@@ -74,7 +74,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByBillingAccount.json
      */
     /**
@@ -90,7 +90,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByMCABillingProfile.json
      */
     /**
@@ -106,7 +106,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListForBillingPeriodByDepartment.json
      */
     /**
@@ -122,7 +122,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListForBillingPeriodByManagementGroup.json
      */
     /**
@@ -138,7 +138,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByMetricAmortizedCost.json
      */
     /**
@@ -154,7 +154,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByMetricUsage.json
      */
     /**
@@ -170,7 +170,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByManagementGroup.json
      */
     /**
@@ -186,7 +186,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByDepartment.json
      */
     /**
@@ -202,7 +202,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByMetricActualCost.json
      */
     /**
@@ -218,7 +218,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByEnrollmentAccount.json
      */
     /**
@@ -234,7 +234,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByMCABillingAccount.json
      */
     /**
@@ -250,7 +250,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListByMCACustomer.json
      */
     /**
@@ -268,7 +268,7 @@ public final class UsageDetailsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsExpand.
+     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/UsageDetailsExpand.
      * json
      */
     /**
@@ -283,7 +283,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListForBillingPeriodByEnrollmentAccount.json
      */
     /**
@@ -299,7 +299,7 @@ public final class UsageDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * UsageDetailsListForBillingPeriod.json
      */
     /**

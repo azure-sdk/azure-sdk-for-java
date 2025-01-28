@@ -170,12 +170,31 @@ public final class EventSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the closedBalance property: The balance after the event.
+     * Get the closedBalance property: The balance after the event, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
      * 
      * @return the closedBalance value.
      */
     public Amount closedBalance() {
         return this.innerProperties() == null ? null : this.innerProperties().closedBalance();
+    }
+
+    /**
+     * Get the billingAccountId property: Identifier of the billing account.
+     * 
+     * @return the billingAccountId value.
+     */
+    public String billingAccountId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingAccountId();
+    }
+
+    /**
+     * Get the billingAccountDisplayName property: Name of the billing account.
+     * 
+     * @return the billingAccountDisplayName value.
+     */
+    public String billingAccountDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingAccountDisplayName();
     }
 
     /**
@@ -325,12 +344,23 @@ public final class EventSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the closedBalanceInBillingCurrency property: The balance in billing currency after the event.
+     * Get the closedBalanceInBillingCurrency property: The balance in billing currency after the event, Note: This will
+     * not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
      * 
      * @return the closedBalanceInBillingCurrency value.
      */
     public AmountWithExchangeRate closedBalanceInBillingCurrency() {
         return this.innerProperties() == null ? null : this.innerProperties().closedBalanceInBillingCurrency();
+    }
+
+    /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.innerProperties() == null ? null : this.innerProperties().isEstimatedBalance();
     }
 
     /**

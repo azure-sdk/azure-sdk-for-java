@@ -1,14 +1,75 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-28)
 
-### Features Added
+- Azure Resource Manager Consumption client library for Java. This package contains Microsoft Azure SDK for Consumption Management SDK. Consumption management client provides access to consumption resources for Azure Enterprise Subscriptions. Package tag package-2024-08. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ReservationRecommendationDetails` was modified
 
-### Other Changes
+* `getWithResponse(java.lang.String,models.Scope,java.lang.String,models.Term,models.LookBackPeriod,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ReservationTransactions` was modified
+
+* `list(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.SavingsPlan` was added
+
+* `models.OrganizationType` was added
+
+* `models.OperationStatus` was added
+
+* `models.OperationStatusType` was added
+
+#### `models.LotSummary` was modified
+
+* `usedAmount()` was added
+* `isEstimatedBalance()` was added
+* `organizationType()` was added
+
+#### `models.PriceSheetProperties` was modified
+
+* `savingsPlan()` was added
+
+#### `models.ReservationRecommendationDetails` was modified
+
+* `getWithResponse(java.lang.String,models.Scope,java.lang.String,models.Term,models.LookBackPeriod,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.Balance` was modified
+
+* `overageRefund()` was added
+
+#### `models.EventSummary` was modified
+
+* `isEstimatedBalance()` was added
+* `billingAccountId()` was added
+* `billingAccountDisplayName()` was added
+
+#### `models.ReservationTransactions` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.Boolean,java.math.BigDecimal,com.azure.core.util.Context)` was added
+
+#### `models.ModernReservationRecommendationProperties` was modified
+
+* `totalHours()` was added
+* `lastUsageDate()` was added
+
+#### `models.PriceSheets` was modified
+
+* `downloadByBillingAccountPeriod(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `downloadByBillingAccountPeriod(java.lang.String,java.lang.String)` was added
+
+#### `models.CreditSummary` was modified
+
+* `isEstimatedBalance()` was added
+
+#### `models.LegacyReservationRecommendationProperties` was modified
+
+* `totalHours()` was added
+* `lastUsageDate()` was added
 
 ## 1.0.0 (2024-12-24)
 
