@@ -104,6 +104,8 @@ public final class HeavyScheduleAvailabilityRequest extends ScheduleAvailability
                     deserializedHeavyScheduleAvailabilityRequest.withStorageLocation(reader.getString());
                 } else if ("country".equals(fieldName)) {
                     deserializedHeavyScheduleAvailabilityRequest.withCountry(reader.getString());
+                } else if ("model".equals(fieldName)) {
+                    deserializedHeavyScheduleAvailabilityRequest.withModel(ModelName.fromString(reader.getString()));
                 } else if ("skuName".equals(fieldName)) {
                     deserializedHeavyScheduleAvailabilityRequest.skuName = SkuName.fromString(reader.getString());
                 } else {

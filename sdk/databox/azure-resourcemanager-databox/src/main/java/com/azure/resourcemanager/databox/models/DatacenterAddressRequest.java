@@ -28,6 +28,11 @@ public final class DatacenterAddressRequest implements JsonSerializable<Datacent
      */
     private SkuName skuName;
 
+    /*
+     * The model name.
+     */
+    private ModelName model;
+
     /**
      * Creates an instance of DatacenterAddressRequest class.
      */
@@ -74,6 +79,15 @@ public final class DatacenterAddressRequest implements JsonSerializable<Datacent
     public DatacenterAddressRequest withSkuName(SkuName skuName) {
         this.skuName = skuName;
         return this;
+    }
+
+    /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
     }
 
     /**
@@ -127,6 +141,8 @@ public final class DatacenterAddressRequest implements JsonSerializable<Datacent
                     deserializedDatacenterAddressRequest.storageLocation = reader.getString();
                 } else if ("skuName".equals(fieldName)) {
                     deserializedDatacenterAddressRequest.skuName = SkuName.fromString(reader.getString());
+                } else if ("model".equals(fieldName)) {
+                    deserializedDatacenterAddressRequest.model = ModelName.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

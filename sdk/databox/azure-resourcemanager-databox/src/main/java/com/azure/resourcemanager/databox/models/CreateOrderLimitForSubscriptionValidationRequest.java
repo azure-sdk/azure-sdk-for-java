@@ -26,6 +26,11 @@ public final class CreateOrderLimitForSubscriptionValidationRequest extends Vali
      */
     private SkuName deviceType;
 
+    /*
+     * Error, if any, in the stage
+     */
+    private ModelName model;
+
     /**
      * Creates an instance of CreateOrderLimitForSubscriptionValidationRequest class.
      */
@@ -60,6 +65,15 @@ public final class CreateOrderLimitForSubscriptionValidationRequest extends Vali
     public CreateOrderLimitForSubscriptionValidationRequest withDeviceType(SkuName deviceType) {
         this.deviceType = deviceType;
         return this;
+    }
+
+    /**
+     * Get the model property: Error, if any, in the stage.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
     }
 
     /**
@@ -113,6 +127,9 @@ public final class CreateOrderLimitForSubscriptionValidationRequest extends Vali
                 } else if ("validationType".equals(fieldName)) {
                     deserializedCreateOrderLimitForSubscriptionValidationRequest.validationType
                         = ValidationInputDiscriminator.fromString(reader.getString());
+                } else if ("model".equals(fieldName)) {
+                    deserializedCreateOrderLimitForSubscriptionValidationRequest.model
+                        = ModelName.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

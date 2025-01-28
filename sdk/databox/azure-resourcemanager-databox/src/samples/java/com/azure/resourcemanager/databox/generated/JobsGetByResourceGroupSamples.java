@@ -10,7 +10,7 @@ package com.azure.resourcemanager.databox.generated;
 public final class JobsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGet.json
+     * specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/JobsGet.json
      */
     /**
      * Sample code: JobsGet.
@@ -25,7 +25,7 @@ public final class JobsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGetCmk.json
+     * specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/JobsGetCmk.json
      */
     /**
      * Sample code: JobsGetCmk.
@@ -40,7 +40,7 @@ public final class JobsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGetExport.json
+     * specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/JobsGetExport.json
      */
     /**
      * Sample code: JobsGetExport.
@@ -55,7 +55,8 @@ public final class JobsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGetCopyStuck.json
+     * specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/JobsGetCopyStuck.
+     * json
      */
     /**
      * Sample code: JobsGetCopyStuck.
@@ -69,8 +70,8 @@ public final class JobsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGetWaitingForAction.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/
+     * JobsGetWaitingForAction.json
      */
     /**
      * Sample code: JobsGetWaitingForAction.

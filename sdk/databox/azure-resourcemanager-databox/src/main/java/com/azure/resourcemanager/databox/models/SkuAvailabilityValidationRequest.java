@@ -43,6 +43,11 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
      */
     private String location;
 
+    /*
+     * The model name.
+     */
+    private ModelName model;
+
     /**
      * Creates an instance of SkuAvailabilityValidationRequest class.
      */
@@ -144,6 +149,15 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -218,6 +232,8 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
                 } else if ("validationType".equals(fieldName)) {
                     deserializedSkuAvailabilityValidationRequest.validationType
                         = ValidationInputDiscriminator.fromString(reader.getString());
+                } else if ("model".equals(fieldName)) {
+                    deserializedSkuAvailabilityValidationRequest.model = ModelName.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

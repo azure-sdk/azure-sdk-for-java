@@ -132,6 +132,8 @@ public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityR
                     deserializedDiskScheduleAvailabilityRequest.withStorageLocation(reader.getString());
                 } else if ("country".equals(fieldName)) {
                     deserializedDiskScheduleAvailabilityRequest.withCountry(reader.getString());
+                } else if ("model".equals(fieldName)) {
+                    deserializedDiskScheduleAvailabilityRequest.withModel(ModelName.fromString(reader.getString()));
                 } else if ("expectedDataSizeInTeraBytes".equals(fieldName)) {
                     deserializedDiskScheduleAvailabilityRequest.expectedDataSizeInTeraBytes = reader.getInt();
                 } else if ("skuName".equals(fieldName)) {

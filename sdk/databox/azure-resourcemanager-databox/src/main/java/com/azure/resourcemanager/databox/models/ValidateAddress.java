@@ -36,6 +36,11 @@ public final class ValidateAddress extends ValidationInputRequest {
      */
     private TransportPreferences transportPreferences;
 
+    /*
+     * The model name.
+     */
+    private ModelName model;
+
     /**
      * Creates an instance of ValidateAddress class.
      */
@@ -113,6 +118,15 @@ public final class ValidateAddress extends ValidationInputRequest {
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -176,6 +190,8 @@ public final class ValidateAddress extends ValidationInputRequest {
                         = ValidationInputDiscriminator.fromString(reader.getString());
                 } else if ("transportPreferences".equals(fieldName)) {
                     deserializedValidateAddress.transportPreferences = TransportPreferences.fromJson(reader);
+                } else if ("model".equals(fieldName)) {
+                    deserializedValidateAddress.model = ModelName.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

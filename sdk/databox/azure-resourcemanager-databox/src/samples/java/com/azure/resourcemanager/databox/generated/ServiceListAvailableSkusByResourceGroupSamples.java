@@ -13,7 +13,8 @@ import com.azure.resourcemanager.databox.models.TransferType;
 public final class ServiceListAvailableSkusByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/AvailableSkusPost.json
+     * specification/databox/resource-manager/Microsoft.DataBox/preview/2024-03-01-preview/examples/AvailableSkusPost.
+     * json
      */
     /**
      * Sample code: AvailableSkusPost.
