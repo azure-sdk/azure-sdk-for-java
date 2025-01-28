@@ -1,14 +1,165 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-01-28)
 
-### Features Added
+- Azure Resource Manager DevOpsInfrastructure client library for Java. This package contains Microsoft Azure SDK for DevOpsInfrastructure Management SDK.  Package tag package-stable-2025-01-21. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.models.PagedQuota` was removed
 
-### Other Changes
+#### `implementation.models.ImageVersionListResult` was removed
+
+#### `implementation.models.OperationListResult` was removed
+
+#### `implementation.models.ResourceDetailsObjectListResult` was removed
+
+#### `implementation.models.PoolListResult` was removed
+
+#### `implementation.models.ResourceSkuListResult` was removed
+
+#### `models.ResourcePredictions` was removed
+
+#### `models.StatelessAgentProfile` was modified
+
+* `withResourcePredictions(models.ResourcePredictions)` was removed
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `java.lang.String principalId()` -> `java.util.UUID principalId()`
+* `java.lang.String tenantId()` -> `java.util.UUID tenantId()`
+
+#### `models.AgentProfile` was modified
+
+* `models.ResourcePredictions resourcePredictions()` -> `java.lang.Object resourcePredictions()`
+* `withResourcePredictions(models.ResourcePredictions)` was removed
+
+#### `models.Stateful` was modified
+
+* `withResourcePredictions(models.ResourcePredictions)` was removed
+
+#### `models.UserAssignedIdentity` was modified
+
+* `java.lang.String clientId()` -> `java.util.UUID clientId()`
+* `java.lang.String principalId()` -> `java.util.UUID principalId()`
+
+#### `DevOpsInfrastructureManager` was modified
+
+* `fluent.DevOpsInfrastructureManagementClient serviceClient()` -> `fluent.ManagedDevOpsInfrastructure serviceClient()`
+
+### Features Added
+
+* `models.CheckNameAvailability` was added
+
+* `models.ResourceDetailsObjectListResult` was added
+
+* `models.ImageVersionListResult` was added
+
+* `models.PagedQuota` was added
+
+* `models.CheckNameAvailabilityReason` was added
+
+* `models.EphemeralType` was added
+
+* `models.CheckNameAvailabilityResult` was added
+
+* `models.DevOpsInfrastructureResourceType` was added
+
+* `models.AvailabilityStatus` was added
+
+* `models.CertificateStoreNameOption` was added
+
+* `models.ResourceSkuListResult` was added
+
+* `models.PoolListResult` was added
+
+* `models.OperationListResult` was added
+
+#### `models.ImageVersionProperties` was modified
+
+* `withVersion(java.lang.String)` was added
+
+#### `models.PoolImage` was modified
+
+* `ephemeralType()` was added
+* `withEphemeralType(models.EphemeralType)` was added
+
+#### `models.ResourceDetailsObjectProperties` was modified
+
+* `withImage(java.lang.String)` was added
+* `withStatus(models.ResourceStatus)` was added
+* `withImageVersion(java.lang.String)` was added
+
+#### `models.QuotaName` was modified
+
+* `withLocalizedValue(java.lang.String)` was added
+* `withValue(java.lang.String)` was added
+
+#### `models.ResourceSkuZoneDetails` was modified
+
+* `withName(java.util.List)` was added
+* `withCapabilities(java.util.List)` was added
+
+#### `models.ResourceSkuLocationInfo` was modified
+
+* `withLocation(java.lang.String)` was added
+* `withZoneDetails(java.util.List)` was added
+* `withZones(java.util.List)` was added
+
+#### `models.ResourceSkuProperties` was modified
+
+* `withResourceType(java.lang.String)` was added
+* `withRestrictions(java.util.List)` was added
+* `withSize(java.lang.String)` was added
+* `withCapabilities(java.util.List)` was added
+* `withLocations(java.util.List)` was added
+* `withTier(java.lang.String)` was added
+* `withFamily(java.lang.String)` was added
+* `withLocationInfo(java.util.List)` was added
+
+#### `models.StatelessAgentProfile` was modified
+
+* `withResourcePredictions(java.lang.Object)` was added
+
+#### `models.ResourceSkuRestrictions` was modified
+
+* `withRestrictionInfo(models.ResourceSkuRestrictionInfo)` was added
+* `withReasonCode(models.ResourceSkuRestrictionsReasonCode)` was added
+* `withValues(java.util.List)` was added
+* `withType(models.ResourceSkuRestrictionsType)` was added
+
+#### `models.AgentProfile` was modified
+
+* `withResourcePredictions(java.lang.Object)` was added
+
+#### `models.Stateful` was modified
+
+* `withResourcePredictions(java.lang.Object)` was added
+
+#### `models.Organization` was modified
+
+* `openAccess()` was added
+* `withOpenAccess(java.lang.Boolean)` was added
+
+#### `models.SecretsManagementSettings` was modified
+
+* `withCertificateStoreName(models.CertificateStoreNameOption)` was added
+* `certificateStoreName()` was added
+
+#### `models.Pools` was modified
+
+* `checkNameAvailability(models.CheckNameAvailability)` was added
+* `checkNameAvailabilityWithResponse(models.CheckNameAvailability,com.azure.core.util.Context)` was added
+
+#### `models.ResourceSkuCapabilities` was modified
+
+* `withValue(java.lang.String)` was added
+* `withName(java.lang.String)` was added
+
+#### `models.ResourceSkuRestrictionInfo` was modified
+
+* `withZones(java.util.List)` was added
+* `withLocations(java.util.List)` was added
 
 ## 1.0.0 (2024-11-21)
 
