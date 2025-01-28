@@ -69,7 +69,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/projects")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProjectList>> listByResourceGroup(@HostParam("$host") String endpoint,
+        Mono<Response<ProjectList>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
             @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
@@ -117,9 +117,8 @@ public final class ProjectsClientImpl implements ProjectsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProjectList>> listByResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<ProjectList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
@@ -137,7 +136,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProjectInner>> listByResourceGroupSinglePageAsync(String groupName, String serviceName) {
+    private Mono<PagedResponse<ProjectInner>> listSinglePageAsync(String groupName, String serviceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -154,8 +153,8 @@ public final class ProjectsClientImpl implements ProjectsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), groupName, serviceName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName,
+                serviceName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<ProjectInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -177,7 +176,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProjectInner>> listByResourceGroupSinglePageAsync(String groupName, String serviceName,
+    private Mono<PagedResponse<ProjectInner>> listSinglePageAsync(String groupName, String serviceName,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -196,7 +195,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName, serviceName,
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName, serviceName,
                 this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -216,9 +215,9 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProjectInner> listByResourceGroupAsync(String groupName, String serviceName) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(groupName, serviceName),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+    private PagedFlux<ProjectInner> listAsync(String groupName, String serviceName) {
+        return new PagedFlux<>(() -> listSinglePageAsync(groupName, serviceName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -236,9 +235,9 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProjectInner> listByResourceGroupAsync(String groupName, String serviceName, Context context) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(groupName, serviceName, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
+    private PagedFlux<ProjectInner> listAsync(String groupName, String serviceName, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(groupName, serviceName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -255,8 +254,8 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ProjectInner> listByResourceGroup(String groupName, String serviceName) {
-        return new PagedIterable<>(listByResourceGroupAsync(groupName, serviceName));
+    public PagedIterable<ProjectInner> list(String groupName, String serviceName) {
+        return new PagedIterable<>(listAsync(groupName, serviceName));
     }
 
     /**
@@ -274,8 +273,8 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ProjectInner> listByResourceGroup(String groupName, String serviceName, Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(groupName, serviceName, context));
+    public PagedIterable<ProjectInner> list(String groupName, String serviceName, Context context) {
+        return new PagedIterable<>(listAsync(groupName, serviceName, context));
     }
 
     /**
@@ -894,7 +893,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProjectInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ProjectInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -903,9 +902,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<ProjectInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -923,7 +920,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProjectInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<ProjectInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -933,7 +930,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
