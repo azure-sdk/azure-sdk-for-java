@@ -70,7 +70,6 @@ public final class BlobBackupDatasourceParameters extends BackupDatasourceParame
      */
     @Override
     public void validate() {
-        super.validate();
         if (containersList() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
