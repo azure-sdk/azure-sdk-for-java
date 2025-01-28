@@ -80,6 +80,27 @@ public interface ProvisioningServiceDescription {
     SystemData systemData();
 
     /**
+     * Gets the identity property: The managed identities for a provisioning service.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the resourcegroup property: The resource group of the resource.
+     * 
+     * @return the resourcegroup value.
+     */
+    String resourcegroup();
+
+    /**
+     * Gets the subscriptionid property: The subscription id of the resource.
+     * 
+     * @return the subscriptionid value.
+     */
+    String subscriptionid();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -190,7 +211,8 @@ public interface ProvisioningServiceDescription {
          * The stage of the ProvisioningServiceDescription definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithEtag {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithEtag, DefinitionStages.WithIdentity {
             /**
              * Executes the create request.
              * 
@@ -233,6 +255,19 @@ public interface ProvisioningServiceDescription {
              * @return the next definition stage.
              */
             WithCreate withEtag(String etag);
+        }
+
+        /**
+         * The stage of the ProvisioningServiceDescription definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed identities for a provisioning service..
+             * 
+             * @param identity The managed identities for a provisioning service.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
     }
 
