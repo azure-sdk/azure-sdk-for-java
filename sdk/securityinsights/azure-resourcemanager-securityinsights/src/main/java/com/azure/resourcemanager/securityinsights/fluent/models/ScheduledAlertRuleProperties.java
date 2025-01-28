@@ -17,6 +17,7 @@ import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
 import com.azure.resourcemanager.securityinsights.models.IncidentConfiguration;
 import com.azure.resourcemanager.securityinsights.models.ScheduledAlertRuleCommonProperties;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TriggerOperator;
 import java.io.IOException;
 import java.time.Duration;
@@ -79,6 +80,11 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
      * The techniques of the alert rule
      */
     private List<String> techniques;
+
+    /*
+     * The sub-techniques of the alert rule
+     */
+    private List<String> subTechniques;
 
     /*
      * The settings of the incidents that created from alerts triggered by this analytics rule
@@ -287,6 +293,26 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the ScheduledAlertRuleProperties object itself.
+     */
+    public ScheduledAlertRuleProperties withSubTechniques(List<String> subTechniques) {
+        this.subTechniques = subTechniques;
+        return this;
+    }
+
+    /**
      * Get the incidentConfiguration property: The settings of the incidents that created from alerts triggered by this
      * analytics rule.
      * 
@@ -399,6 +425,16 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ScheduledAlertRuleProperties
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        super.withSentinelEntitiesMappings(sentinelEntitiesMappings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -427,6 +463,9 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
         if (alertDetailsOverride() != null) {
             alertDetailsOverride().validate();
         }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
+        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ScheduledAlertRuleProperties.class);
@@ -447,6 +486,8 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
         jsonWriter.writeMapField("customDetails", customDetails(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("entityMappings", entityMappings(), (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("alertDetailsOverride", alertDetailsOverride());
+        jsonWriter.writeArrayField("sentinelEntitiesMappings", sentinelEntitiesMappings(),
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("displayName", this.displayName);
         jsonWriter.writeBooleanField("enabled", this.enabled);
         jsonWriter.writeStringField("suppressionDuration",
@@ -458,6 +499,8 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
         jsonWriter.writeArrayField("tactics", this.tactics,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("techniques", this.techniques, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("subTechniques", this.subTechniques,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("incidentConfiguration", this.incidentConfiguration);
         return jsonWriter.writeEndObject();
     }
@@ -506,6 +549,10 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
                 } else if ("alertDetailsOverride".equals(fieldName)) {
                     deserializedScheduledAlertRuleProperties
                         .withAlertDetailsOverride(AlertDetailsOverride.fromJson(reader));
+                } else if ("sentinelEntitiesMappings".equals(fieldName)) {
+                    List<SentinelEntityMapping> sentinelEntitiesMappings
+                        = reader.readArray(reader1 -> SentinelEntityMapping.fromJson(reader1));
+                    deserializedScheduledAlertRuleProperties.withSentinelEntitiesMappings(sentinelEntitiesMappings);
                 } else if ("displayName".equals(fieldName)) {
                     deserializedScheduledAlertRuleProperties.displayName = reader.getString();
                 } else if ("enabled".equals(fieldName)) {
@@ -531,6 +578,9 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedScheduledAlertRuleProperties.techniques = techniques;
+                } else if ("subTechniques".equals(fieldName)) {
+                    List<String> subTechniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedScheduledAlertRuleProperties.subTechniques = subTechniques;
                 } else if ("incidentConfiguration".equals(fieldName)) {
                     deserializedScheduledAlertRuleProperties.incidentConfiguration
                         = IncidentConfiguration.fromJson(reader);

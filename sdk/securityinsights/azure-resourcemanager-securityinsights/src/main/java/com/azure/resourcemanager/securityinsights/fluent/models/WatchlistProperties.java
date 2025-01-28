@@ -11,7 +11,8 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.securityinsights.models.Source;
+import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
+import com.azure.resourcemanager.securityinsights.models.SourceType;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
 import java.io.IOException;
 import java.time.Duration;
@@ -40,9 +41,14 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     private String provider;
 
     /*
-     * The source of the watchlist
+     * The filename of the watchlist, called 'source'
      */
-    private Source source;
+    private String source;
+
+    /*
+     * The sourceType of the watchlist
+     */
+    private SourceType sourceType;
 
     /*
      * The time the watchlist was created
@@ -100,14 +106,13 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     private String tenantId;
 
     /*
-     * The number of lines in a csv content to skip before the header
+     * The number of lines in a csv/tsv content to skip before the header
      */
     private Integer numberOfLinesToSkip;
 
     /*
-     * The raw content that represents to watchlist items to create. Example : This line will be skipped
-     * header1,header2
-     * value1,value2
+     * The raw content that represents to watchlist items to create. In case of csv/tsv content type, it's the content
+     * of the file that will parsed by the endpoint
      */
     private String rawContent;
 
@@ -119,15 +124,20 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     private String itemsSearchKey;
 
     /*
-     * The content type of the raw content. For now, only text/csv is valid
+     * The content type of the raw content. Example : text/csv or text/tsv
      */
     private String contentType;
 
     /*
-     * The status of the Watchlist upload : New, InProgress or Complete. **Note** : When a Watchlist upload status is
-     * InProgress, the Watchlist cannot be deleted
+     * The status of the Watchlist upload : New, InProgress or Complete. Pls note : When a Watchlist upload status is
+     * equal to InProgress, the Watchlist cannot be deleted
      */
     private String uploadStatus;
+
+    /*
+     * The triggered analytics rule run provisioning state
+     */
+    private ProvisioningState provisioningState;
 
     /**
      * Creates an instance of WatchlistProperties class.
@@ -196,22 +206,42 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Get the source property: The source of the watchlist.
+     * Get the source property: The filename of the watchlist, called 'source'.
      * 
      * @return the source value.
      */
-    public Source source() {
+    public String source() {
         return this.source;
     }
 
     /**
-     * Set the source property: The source of the watchlist.
+     * Set the source property: The filename of the watchlist, called 'source'.
      * 
      * @param source the source value to set.
      * @return the WatchlistProperties object itself.
      */
-    public WatchlistProperties withSource(Source source) {
+    public WatchlistProperties withSource(String source) {
         this.source = source;
+        return this;
+    }
+
+    /**
+     * Get the sourceType property: The sourceType of the watchlist.
+     * 
+     * @return the sourceType value.
+     */
+    public SourceType sourceType() {
+        return this.sourceType;
+    }
+
+    /**
+     * Set the sourceType property: The sourceType of the watchlist.
+     * 
+     * @param sourceType the sourceType value to set.
+     * @return the WatchlistProperties object itself.
+     */
+    public WatchlistProperties withSourceType(SourceType sourceType) {
+        this.sourceType = sourceType;
         return this;
     }
 
@@ -436,7 +466,7 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Get the numberOfLinesToSkip property: The number of lines in a csv content to skip before the header.
+     * Get the numberOfLinesToSkip property: The number of lines in a csv/tsv content to skip before the header.
      * 
      * @return the numberOfLinesToSkip value.
      */
@@ -445,7 +475,7 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Set the numberOfLinesToSkip property: The number of lines in a csv content to skip before the header.
+     * Set the numberOfLinesToSkip property: The number of lines in a csv/tsv content to skip before the header.
      * 
      * @param numberOfLinesToSkip the numberOfLinesToSkip value to set.
      * @return the WatchlistProperties object itself.
@@ -456,10 +486,8 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Get the rawContent property: The raw content that represents to watchlist items to create. Example : This line
-     * will be skipped
-     * header1,header2
-     * value1,value2.
+     * Get the rawContent property: The raw content that represents to watchlist items to create. In case of csv/tsv
+     * content type, it's the content of the file that will parsed by the endpoint.
      * 
      * @return the rawContent value.
      */
@@ -468,10 +496,8 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Set the rawContent property: The raw content that represents to watchlist items to create. Example : This line
-     * will be skipped
-     * header1,header2
-     * value1,value2.
+     * Set the rawContent property: The raw content that represents to watchlist items to create. In case of csv/tsv
+     * content type, it's the content of the file that will parsed by the endpoint.
      * 
      * @param rawContent the rawContent value to set.
      * @return the WatchlistProperties object itself.
@@ -506,7 +532,7 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Get the contentType property: The content type of the raw content. For now, only text/csv is valid.
+     * Get the contentType property: The content type of the raw content. Example : text/csv or text/tsv.
      * 
      * @return the contentType value.
      */
@@ -515,7 +541,7 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Set the contentType property: The content type of the raw content. For now, only text/csv is valid.
+     * Set the contentType property: The content type of the raw content. Example : text/csv or text/tsv.
      * 
      * @param contentType the contentType value to set.
      * @return the WatchlistProperties object itself.
@@ -526,8 +552,8 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Get the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. **Note** : When
-     * a Watchlist upload status is InProgress, the Watchlist cannot be deleted.
+     * Get the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. Pls note : When
+     * a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted.
      * 
      * @return the uploadStatus value.
      */
@@ -536,14 +562,34 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
     }
 
     /**
-     * Set the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. **Note** : When
-     * a Watchlist upload status is InProgress, the Watchlist cannot be deleted.
+     * Set the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. Pls note : When
+     * a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted.
      * 
      * @param uploadStatus the uploadStatus value to set.
      * @return the WatchlistProperties object itself.
      */
     public WatchlistProperties withUploadStatus(String uploadStatus) {
         this.uploadStatus = uploadStatus;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The triggered analytics rule run provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Set the provisioningState property: The triggered analytics rule run provisioning state.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the WatchlistProperties object itself.
+     */
+    public WatchlistProperties withProvisioningState(ProvisioningState provisioningState) {
+        this.provisioningState = provisioningState;
         return this;
     }
 
@@ -561,10 +607,6 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
         if (provider() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property provider in model WatchlistProperties"));
-        }
-        if (source() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property source in model WatchlistProperties"));
         }
         if (createdBy() != null) {
             createdBy().validate();
@@ -589,9 +631,10 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("displayName", this.displayName);
         jsonWriter.writeStringField("provider", this.provider);
-        jsonWriter.writeStringField("source", this.source == null ? null : this.source.toString());
         jsonWriter.writeStringField("itemsSearchKey", this.itemsSearchKey);
         jsonWriter.writeStringField("watchlistId", this.watchlistId);
+        jsonWriter.writeStringField("source", this.source);
+        jsonWriter.writeStringField("sourceType", this.sourceType == null ? null : this.sourceType.toString());
         jsonWriter.writeStringField("created",
             this.created == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.created));
         jsonWriter.writeStringField("updated",
@@ -609,6 +652,8 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
         jsonWriter.writeStringField("rawContent", this.rawContent);
         jsonWriter.writeStringField("contentType", this.contentType);
         jsonWriter.writeStringField("uploadStatus", this.uploadStatus);
+        jsonWriter.writeStringField("provisioningState",
+            this.provisioningState == null ? null : this.provisioningState.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -632,12 +677,14 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
                     deserializedWatchlistProperties.displayName = reader.getString();
                 } else if ("provider".equals(fieldName)) {
                     deserializedWatchlistProperties.provider = reader.getString();
-                } else if ("source".equals(fieldName)) {
-                    deserializedWatchlistProperties.source = Source.fromString(reader.getString());
                 } else if ("itemsSearchKey".equals(fieldName)) {
                     deserializedWatchlistProperties.itemsSearchKey = reader.getString();
                 } else if ("watchlistId".equals(fieldName)) {
                     deserializedWatchlistProperties.watchlistId = reader.getString();
+                } else if ("source".equals(fieldName)) {
+                    deserializedWatchlistProperties.source = reader.getString();
+                } else if ("sourceType".equals(fieldName)) {
+                    deserializedWatchlistProperties.sourceType = SourceType.fromString(reader.getString());
                 } else if ("created".equals(fieldName)) {
                     deserializedWatchlistProperties.created = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
@@ -672,6 +719,9 @@ public final class WatchlistProperties implements JsonSerializable<WatchlistProp
                     deserializedWatchlistProperties.contentType = reader.getString();
                 } else if ("uploadStatus".equals(fieldName)) {
                     deserializedWatchlistProperties.uploadStatus = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedWatchlistProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
