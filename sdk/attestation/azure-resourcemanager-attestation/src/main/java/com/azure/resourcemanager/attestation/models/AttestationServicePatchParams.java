@@ -22,6 +22,11 @@ public final class AttestationServicePatchParams implements JsonSerializable<Att
      */
     private Map<String, String> tags;
 
+    /*
+     * Properties of the attestation provider
+     */
+    private AttestationServicePatchSpecificParams properties;
+
     /**
      * Creates an instance of AttestationServicePatchParams class.
      */
@@ -49,11 +54,34 @@ public final class AttestationServicePatchParams implements JsonSerializable<Att
     }
 
     /**
+     * Get the properties property: Properties of the attestation provider.
+     * 
+     * @return the properties value.
+     */
+    public AttestationServicePatchSpecificParams properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the attestation provider.
+     * 
+     * @param properties the properties value to set.
+     * @return the AttestationServicePatchParams object itself.
+     */
+    public AttestationServicePatchParams withProperties(AttestationServicePatchSpecificParams properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (properties() != null) {
+            properties().validate();
+        }
     }
 
     /**
@@ -63,6 +91,7 @@ public final class AttestationServicePatchParams implements JsonSerializable<Att
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -85,6 +114,9 @@ public final class AttestationServicePatchParams implements JsonSerializable<Att
                 if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedAttestationServicePatchParams.tags = tags;
+                } else if ("properties".equals(fieldName)) {
+                    deserializedAttestationServicePatchParams.properties
+                        = AttestationServicePatchSpecificParams.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
