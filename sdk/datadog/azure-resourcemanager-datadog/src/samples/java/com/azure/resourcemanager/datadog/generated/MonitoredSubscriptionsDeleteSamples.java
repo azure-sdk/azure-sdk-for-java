@@ -10,7 +10,7 @@ package com.azure.resourcemanager.datadog.generated;
 public final class MonitoredSubscriptionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/MonitoredSubscriptions_Delete
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/MonitoredSubscriptions_Delete
      * .json
      */
     /**
