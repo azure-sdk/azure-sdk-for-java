@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.confluent.models;
 
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.confluent.fluent.models.SCEnvironmentRecordInner;
 
 /**
@@ -25,11 +26,25 @@ public interface SCEnvironmentRecord {
     String id();
 
     /**
+     * Gets the type property: Type of the resource.
+     * 
+     * @return the type value.
+     */
+    String type();
+
+    /**
      * Gets the name property: Display name of the environment.
      * 
      * @return the name value.
      */
     String name();
+
+    /**
+     * Gets the streamGovernanceConfig property: Stream governance configuration.
+     * 
+     * @return the streamGovernanceConfig value.
+     */
+    StreamGovernanceConfig streamGovernanceConfig();
 
     /**
      * Gets the metadata property: Metadata of the record.
@@ -39,9 +54,233 @@ public interface SCEnvironmentRecord {
     SCMetadataEntity metadata();
 
     /**
+     * Gets the name of the resource group.
+     * 
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.confluent.fluent.models.SCEnvironmentRecordInner object.
      * 
      * @return the inner object.
      */
     SCEnvironmentRecordInner innerModel();
+
+    /**
+     * The entirety of the SCEnvironmentRecord definition.
+     */
+    interface Definition
+        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+    }
+
+    /**
+     * The SCEnvironmentRecord definition stages.
+     */
+    interface DefinitionStages {
+        /**
+         * The first stage of the SCEnvironmentRecord definition.
+         */
+        interface Blank extends WithParentResource {
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord definition allowing to specify parent resource.
+         */
+        interface WithParentResource {
+            /**
+             * Specifies resourceGroupName, organizationName.
+             * 
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @param organizationName Organization resource name.
+             * @return the next definition stage.
+             */
+            WithCreate withExistingOrganization(String resourceGroupName, String organizationName);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord definition which contains all the minimum required properties for the
+         * resource to be created, but also allows for any other optional properties to be specified.
+         */
+        interface WithCreate extends DefinitionStages.WithKind, DefinitionStages.WithType, DefinitionStages.WithName,
+            DefinitionStages.WithStreamGovernanceConfig, DefinitionStages.WithMetadata {
+            /**
+             * Executes the create request.
+             * 
+             * @return the created resource.
+             */
+            SCEnvironmentRecord create();
+
+            /**
+             * Executes the create request.
+             * 
+             * @param context The context to associate with this operation.
+             * @return the created resource.
+             */
+            SCEnvironmentRecord create(Context context);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Type of environment.
+             * 
+             * @param kind Type of environment.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord definition allowing to specify type.
+         */
+        interface WithType {
+            /**
+             * Specifies the type property: Type of the resource.
+             * 
+             * @param type Type of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withType(String type);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord definition allowing to specify name.
+         */
+        interface WithName {
+            /**
+             * Specifies the name property: Display name of the environment.
+             * 
+             * @param name Display name of the environment.
+             * @return the next definition stage.
+             */
+            WithCreate withName(String name);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord definition allowing to specify streamGovernanceConfig.
+         */
+        interface WithStreamGovernanceConfig {
+            /**
+             * Specifies the streamGovernanceConfig property: Stream governance configuration.
+             * 
+             * @param streamGovernanceConfig Stream governance configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withStreamGovernanceConfig(StreamGovernanceConfig streamGovernanceConfig);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord definition allowing to specify metadata.
+         */
+        interface WithMetadata {
+            /**
+             * Specifies the metadata property: Metadata of the record.
+             * 
+             * @param metadata Metadata of the record.
+             * @return the next definition stage.
+             */
+            WithCreate withMetadata(SCMetadataEntity metadata);
+        }
+    }
+
+    /**
+     * Begins update for the SCEnvironmentRecord resource.
+     * 
+     * @return the stage of resource update.
+     */
+    SCEnvironmentRecord.Update update();
+
+    /**
+     * The template for SCEnvironmentRecord update.
+     */
+    interface Update extends UpdateStages.WithKind, UpdateStages.WithType, UpdateStages.WithName,
+        UpdateStages.WithStreamGovernanceConfig, UpdateStages.WithMetadata {
+        /**
+         * Executes the update request.
+         * 
+         * @return the updated resource.
+         */
+        SCEnvironmentRecord apply();
+
+        /**
+         * Executes the update request.
+         * 
+         * @param context The context to associate with this operation.
+         * @return the updated resource.
+         */
+        SCEnvironmentRecord apply(Context context);
+    }
+
+    /**
+     * The SCEnvironmentRecord update stages.
+     */
+    interface UpdateStages {
+        /**
+         * The stage of the SCEnvironmentRecord update allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Type of environment.
+             * 
+             * @param kind Type of environment.
+             * @return the next definition stage.
+             */
+            Update withKind(String kind);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord update allowing to specify type.
+         */
+        interface WithType {
+            /**
+             * Specifies the type property: Type of the resource.
+             * 
+             * @param type Type of the resource.
+             * @return the next definition stage.
+             */
+            Update withType(String type);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord update allowing to specify name.
+         */
+        interface WithName {
+            /**
+             * Specifies the name property: Display name of the environment.
+             * 
+             * @param name Display name of the environment.
+             * @return the next definition stage.
+             */
+            Update withName(String name);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord update allowing to specify streamGovernanceConfig.
+         */
+        interface WithStreamGovernanceConfig {
+            /**
+             * Specifies the streamGovernanceConfig property: Stream governance configuration.
+             * 
+             * @param streamGovernanceConfig Stream governance configuration.
+             * @return the next definition stage.
+             */
+            Update withStreamGovernanceConfig(StreamGovernanceConfig streamGovernanceConfig);
+        }
+
+        /**
+         * The stage of the SCEnvironmentRecord update allowing to specify metadata.
+         */
+        interface WithMetadata {
+            /**
+             * Specifies the metadata property: Metadata of the record.
+             * 
+             * @param metadata Metadata of the record.
+             * @return the next definition stage.
+             */
+            Update withMetadata(SCMetadataEntity metadata);
+        }
+    }
 }
