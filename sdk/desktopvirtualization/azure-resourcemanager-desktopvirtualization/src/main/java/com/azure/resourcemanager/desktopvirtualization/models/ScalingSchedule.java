@@ -25,7 +25,7 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
     /*
      * Set of days of the week on which this schedule is active.
      */
-    private List<ScalingScheduleDaysOfWeekItem> daysOfWeek;
+    private List<DayOfWeek> daysOfWeek;
 
     /*
      * Starting time for ramp up period.
@@ -138,7 +138,7 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
      * 
      * @return the daysOfWeek value.
      */
-    public List<ScalingScheduleDaysOfWeekItem> daysOfWeek() {
+    public List<DayOfWeek> daysOfWeek() {
         return this.daysOfWeek;
     }
 
@@ -148,7 +148,7 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
      * @param daysOfWeek the daysOfWeek value to set.
      * @return the ScalingSchedule object itself.
      */
-    public ScalingSchedule withDaysOfWeek(List<ScalingScheduleDaysOfWeekItem> daysOfWeek) {
+    public ScalingSchedule withDaysOfWeek(List<DayOfWeek> daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
         return this;
     }
@@ -548,8 +548,7 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
                 if ("name".equals(fieldName)) {
                     deserializedScalingSchedule.name = reader.getString();
                 } else if ("daysOfWeek".equals(fieldName)) {
-                    List<ScalingScheduleDaysOfWeekItem> daysOfWeek
-                        = reader.readArray(reader1 -> ScalingScheduleDaysOfWeekItem.fromString(reader1.getString()));
+                    List<DayOfWeek> daysOfWeek = reader.readArray(reader1 -> DayOfWeek.fromString(reader1.getString()));
                     deserializedScalingSchedule.daysOfWeek = daysOfWeek;
                 } else if ("rampUpStartTime".equals(fieldName)) {
                     deserializedScalingSchedule.rampUpStartTime = Time.fromJson(reader);

@@ -18,8 +18,8 @@ import java.util.Arrays;
 public final class AppAttachPackageCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * AppAttachPackage_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/AppAttachPackage_Create.json
      */
     /**
      * Sample code: AppAttachPackage_Create.
@@ -59,7 +59,9 @@ public final class AppAttachPackageCreateOrUpdateSamples {
                     .withCertificateExpiry(OffsetDateTime.parse("2023-01-02T17:18:19.1234567Z")))
                 .withHostPoolReferences(Arrays.asList())
                 .withKeyVaultUrl("fakeTokenPlaceholder")
-                .withFailHealthCheckOnStagingFailure(FailHealthCheckOnStagingFailure.NEEDS_ASSISTANCE))
+                .withFailHealthCheckOnStagingFailure(FailHealthCheckOnStagingFailure.NEEDS_ASSISTANCE)
+                .withPackageOwnerName("App Attach")
+                .withCustomData(""))
             .create();
     }
 }

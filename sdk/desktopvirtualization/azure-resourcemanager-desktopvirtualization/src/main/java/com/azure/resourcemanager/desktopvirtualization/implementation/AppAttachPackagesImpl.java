@@ -48,12 +48,12 @@ public final class AppAttachPackagesImpl implements AppAttachPackages {
         }
     }
 
-    public Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String appAttachPackageName,
+    public Response<Void> deleteWithResponse(String resourceGroupName, String appAttachPackageName, Boolean force,
         Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, appAttachPackageName, context);
+        return this.serviceClient().deleteWithResponse(resourceGroupName, appAttachPackageName, force, context);
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String appAttachPackageName) {
+    public void delete(String resourceGroupName, String appAttachPackageName) {
         this.serviceClient().delete(resourceGroupName, appAttachPackageName);
     }
 
@@ -118,10 +118,11 @@ public final class AppAttachPackagesImpl implements AppAttachPackages {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'appAttachPackages'.", id)));
         }
-        this.deleteByResourceGroupWithResponse(resourceGroupName, appAttachPackageName, Context.NONE);
+        Boolean localForce = null;
+        this.deleteWithResponse(resourceGroupName, appAttachPackageName, localForce, Context.NONE);
     }
 
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
+    public Response<Void> deleteByIdWithResponse(String id, Boolean force, Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -132,7 +133,7 @@ public final class AppAttachPackagesImpl implements AppAttachPackages {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'appAttachPackages'.", id)));
         }
-        return this.deleteByResourceGroupWithResponse(resourceGroupName, appAttachPackageName, context);
+        return this.deleteWithResponse(resourceGroupName, appAttachPackageName, force, context);
     }
 
     private AppAttachPackagesClient serviceClient() {
