@@ -5,21 +5,22 @@
 package com.azure.resourcemanager.extendedlocation.generated;
 
 /**
- * Samples for CustomLocations List.
+ * Samples for ResourceSyncRules Get.
  */
-public final class CustomLocationsListSamples {
+public final class ResourceSyncRulesGetSamples {
     /*
      * x-ms-original-file:
      * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
-     * CustomLocationsListBySubscription.json
+     * ResourceSyncRulesGet.json
      */
     /**
-     * Sample code: List Custom Locations by subscription.
+     * Sample code: Get Custom Location.
      * 
      * @param manager Entry point to CustomLocationsManager.
      */
-    public static void
-        listCustomLocationsBySubscription(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().list(com.azure.core.util.Context.NONE);
+    public static void getCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager.resourceSyncRules()
+            .getWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01",
+                com.azure.core.util.Context.NONE);
     }
 }

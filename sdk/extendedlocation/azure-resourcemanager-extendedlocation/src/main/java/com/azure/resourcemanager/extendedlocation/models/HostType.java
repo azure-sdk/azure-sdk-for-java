@@ -8,13 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Type of host the Custom Locations is referencing (Kubernetes, etc...).
+ * Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
  */
 public final class HostType extends ExpandableStringEnum<HostType> {
     /**
      * Static value Kubernetes for HostType.
      */
     public static final HostType KUBERNETES = fromString("Kubernetes");
+
+    /**
+     * Static value EdgeCluster for HostType.
+     */
+    public static final HostType EDGE_CLUSTER = fromString("EdgeCluster");
 
     /**
      * Creates a new instance of HostType value.

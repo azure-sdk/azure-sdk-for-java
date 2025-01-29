@@ -52,4 +52,11 @@ public interface CustomLocationsManagementClient {
      * @return the CustomLocationsClient object.
      */
     CustomLocationsClient getCustomLocations();
+
+    /**
+     * Gets the ResourceSyncRulesClient object to access its operations.
+     * 
+     * @return the ResourceSyncRulesClient object.
+     */
+    ResourceSyncRulesClient getResourceSyncRules();
 }
