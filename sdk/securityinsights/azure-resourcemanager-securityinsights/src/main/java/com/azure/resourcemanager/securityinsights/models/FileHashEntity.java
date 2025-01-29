@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.FileHashEntityProperties;
 import java.io.IOException;
 import java.util.Map;
@@ -17,7 +18,7 @@ import java.util.Map;
  * Represents a file hash entity.
  */
 @Immutable
-public final class FileHashEntity extends Entity {
+public final class FileHashEntity extends EntityInner {
     /*
      * The kind of the entity.
      */

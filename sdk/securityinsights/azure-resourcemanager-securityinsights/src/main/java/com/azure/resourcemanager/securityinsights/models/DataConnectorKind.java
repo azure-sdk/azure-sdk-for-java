@@ -32,14 +32,50 @@ public final class DataConnectorKind extends ExpandableStringEnum<DataConnectorK
     public static final DataConnectorKind THREAT_INTELLIGENCE = fromString("ThreatIntelligence");
 
     /**
+     * Static value ThreatIntelligenceTaxii for DataConnectorKind.
+     */
+    public static final DataConnectorKind THREAT_INTELLIGENCE_TAXII = fromString("ThreatIntelligenceTaxii");
+
+    /**
      * Static value Office365 for DataConnectorKind.
      */
     public static final DataConnectorKind OFFICE365 = fromString("Office365");
 
     /**
+     * Static value OfficeATP for DataConnectorKind.
+     */
+    public static final DataConnectorKind OFFICE_ATP = fromString("OfficeATP");
+
+    /**
+     * Static value OfficeIRM for DataConnectorKind.
+     */
+    public static final DataConnectorKind OFFICE_IRM = fromString("OfficeIRM");
+
+    /**
+     * Static value Office365Project for DataConnectorKind.
+     */
+    public static final DataConnectorKind OFFICE365PROJECT = fromString("Office365Project");
+
+    /**
+     * Static value MicrosoftPurviewInformationProtection for DataConnectorKind.
+     */
+    public static final DataConnectorKind MICROSOFT_PURVIEW_INFORMATION_PROTECTION
+        = fromString("MicrosoftPurviewInformationProtection");
+
+    /**
+     * Static value OfficePowerBI for DataConnectorKind.
+     */
+    public static final DataConnectorKind OFFICE_POWER_BI = fromString("OfficePowerBI");
+
+    /**
      * Static value AmazonWebServicesCloudTrail for DataConnectorKind.
      */
     public static final DataConnectorKind AMAZON_WEB_SERVICES_CLOUD_TRAIL = fromString("AmazonWebServicesCloudTrail");
+
+    /**
+     * Static value AmazonWebServicesS3 for DataConnectorKind.
+     */
+    public static final DataConnectorKind AMAZON_WEB_SERVICES_S3 = fromString("AmazonWebServicesS3");
 
     /**
      * Static value AzureAdvancedThreatProtection for DataConnectorKind.
@@ -52,6 +88,51 @@ public final class DataConnectorKind extends ExpandableStringEnum<DataConnectorK
      */
     public static final DataConnectorKind MICROSOFT_DEFENDER_ADVANCED_THREAT_PROTECTION
         = fromString("MicrosoftDefenderAdvancedThreatProtection");
+
+    /**
+     * Static value Dynamics365 for DataConnectorKind.
+     */
+    public static final DataConnectorKind DYNAMICS365 = fromString("Dynamics365");
+
+    /**
+     * Static value MicrosoftThreatProtection for DataConnectorKind.
+     */
+    public static final DataConnectorKind MICROSOFT_THREAT_PROTECTION = fromString("MicrosoftThreatProtection");
+
+    /**
+     * Static value MicrosoftThreatIntelligence for DataConnectorKind.
+     */
+    public static final DataConnectorKind MICROSOFT_THREAT_INTELLIGENCE = fromString("MicrosoftThreatIntelligence");
+
+    /**
+     * Static value GenericUI for DataConnectorKind.
+     */
+    public static final DataConnectorKind GENERIC_UI = fromString("GenericUI");
+
+    /**
+     * Static value APIPolling for DataConnectorKind.
+     */
+    public static final DataConnectorKind APIPOLLING = fromString("APIPolling");
+
+    /**
+     * Static value IOT for DataConnectorKind.
+     */
+    public static final DataConnectorKind IOT = fromString("IOT");
+
+    /**
+     * Static value GCP for DataConnectorKind.
+     */
+    public static final DataConnectorKind GCP = fromString("GCP");
+
+    /**
+     * Static value RestApiPoller for DataConnectorKind.
+     */
+    public static final DataConnectorKind REST_API_POLLER = fromString("RestApiPoller");
+
+    /**
+     * Static value PurviewAudit for DataConnectorKind.
+     */
+    public static final DataConnectorKind PURVIEW_AUDIT = fromString("PurviewAudit");
 
     /**
      * Creates a new instance of DataConnectorKind value.
