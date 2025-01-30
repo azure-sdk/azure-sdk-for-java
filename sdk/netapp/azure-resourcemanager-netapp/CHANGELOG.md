@@ -1,14 +1,58 @@
 # Release History
 
-## 1.6.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-01-30)
+
+- Azure Resource Manager NetAppFiles client library for Java. This package contains Microsoft Azure SDK for NetAppFiles Management SDK. Microsoft NetApp Files Azure Resource Provider specification. Package tag package-preview-2024-09-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.CoolAccessTieringPolicy` was added
 
-### Bugs Fixed
+* `models.EncryptionTransitionRequest` was added
 
-### Other Changes
+* `models.KeyVaultPrivateEndpoint` was added
+
+* `models.ChangeKeyVault` was added
+
+#### `models.Volume` was modified
+
+* `coolAccessTieringPolicy()` was added
+
+#### `models.Volume$Update` was modified
+
+* `withCoolAccessTieringPolicy(models.CoolAccessTieringPolicy)` was added
+
+#### `models.VolumePatch` was modified
+
+* `withCoolAccessTieringPolicy(models.CoolAccessTieringPolicy)` was added
+* `coolAccessTieringPolicy()` was added
+
+#### `models.Volume$Definition` was modified
+
+* `withCoolAccessTieringPolicy(models.CoolAccessTieringPolicy)` was added
+
+#### `models.VolumeGroupVolumeProperties` was modified
+
+* `withCoolAccessTieringPolicy(models.CoolAccessTieringPolicy)` was added
+* `coolAccessTieringPolicy()` was added
+
+#### `models.Accounts` was modified
+
+* `transitionToCmk(java.lang.String,java.lang.String)` was added
+* `transitionToCmk(java.lang.String,java.lang.String,models.EncryptionTransitionRequest,com.azure.core.util.Context)` was added
+* `changeKeyVault(java.lang.String,java.lang.String)` was added
+* `changeKeyVault(java.lang.String,java.lang.String,models.ChangeKeyVault,com.azure.core.util.Context)` was added
+* `getChangeKeyVaultInformation(java.lang.String,java.lang.String)` was added
+* `getChangeKeyVaultInformation(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.NetAppAccount` was modified
+
+* `changeKeyVault()` was added
+* `changeKeyVault(models.ChangeKeyVault,com.azure.core.util.Context)` was added
+* `transitionToCmk(models.EncryptionTransitionRequest,com.azure.core.util.Context)` was added
+* `getChangeKeyVaultInformation()` was added
+* `getChangeKeyVaultInformation(com.azure.core.util.Context)` was added
+* `transitionToCmk()` was added
 
 ## 1.6.0-beta.1 (2024-11-18)
 
