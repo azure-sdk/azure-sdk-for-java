@@ -14,8 +14,8 @@ import java.util.Map;
 public final class CodeContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/CodeContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/CodeContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Code Container.
