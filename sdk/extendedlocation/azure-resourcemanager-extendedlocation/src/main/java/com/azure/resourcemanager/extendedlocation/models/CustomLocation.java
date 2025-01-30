@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.extendedlocation.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -74,7 +75,7 @@ public interface CustomLocation {
 
     /**
      * Gets the clusterExtensionIds property: Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
+     * and operators. Optional for EdgeCluster hostType.
      * 
      * @return the clusterExtensionIds value.
      */
@@ -88,22 +89,23 @@ public interface CustomLocation {
     String displayName();
 
     /**
-     * Gets the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
+     * Gets the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+     * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
      * 
      * @return the hostResourceId value.
      */
     String hostResourceId();
 
     /**
-     * Gets the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...).
+     * Gets the hostType property: Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
      * 
      * @return the hostType value.
      */
     HostType hostType();
 
     /**
-     * Gets the namespace property: Kubernetes namespace that will be created on the specified cluster.
+     * Gets the namespace property: Kubernetes namespace that will be created on the specified cluster. Optional for
+     * EdgeCluster hostType.
      * 
      * @return the namespace value.
      */
@@ -266,10 +268,10 @@ public interface CustomLocation {
         interface WithClusterExtensionIds {
             /**
              * Specifies the clusterExtensionIds property: Contains the reference to the add-on that contains charts to
-             * deploy CRDs and operators..
+             * deploy CRDs and operators. Optional for EdgeCluster hostType..
              * 
              * @param clusterExtensionIds Contains the reference to the add-on that contains charts to deploy CRDs and
-             * operators.
+             * operators. Optional for EdgeCluster hostType.
              * @return the next definition stage.
              */
             WithCreate withClusterExtensionIds(List<String> clusterExtensionIds);
@@ -293,11 +295,12 @@ public interface CustomLocation {
          */
         interface WithHostResourceId {
             /**
-             * Specifies the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will
-             * perform a checkAccess API for listAdminCredentials permissions..
+             * Specifies the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom
+             * Locations RP will perform a checkAccess API for listAdminCredentials permissions for Connected Cluster
+             * and AKS Cluster..
              * 
-             * @param hostResourceId Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-             * checkAccess API for listAdminCredentials permissions.
+             * @param hostResourceId Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+             * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
              * @return the next definition stage.
              */
             WithCreate withHostResourceId(String hostResourceId);
@@ -308,9 +311,10 @@ public interface CustomLocation {
          */
         interface WithHostType {
             /**
-             * Specifies the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...)..
+             * Specifies the hostType property: Type of host the Custom Locations is referencing (Kubernetes,
+             * EdgeCluster, etc...)..
              * 
-             * @param hostType Type of host the Custom Locations is referencing (Kubernetes, etc...).
+             * @param hostType Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
              * @return the next definition stage.
              */
             WithCreate withHostType(HostType hostType);
@@ -321,9 +325,11 @@ public interface CustomLocation {
          */
         interface WithNamespace {
             /**
-             * Specifies the namespace property: Kubernetes namespace that will be created on the specified cluster..
+             * Specifies the namespace property: Kubernetes namespace that will be created on the specified cluster.
+             * Optional for EdgeCluster hostType..
              * 
-             * @param namespace Kubernetes namespace that will be created on the specified cluster.
+             * @param namespace Kubernetes namespace that will be created on the specified cluster. Optional for
+             * EdgeCluster hostType.
              * @return the next definition stage.
              */
             WithCreate withNamespace(String namespace);
@@ -423,10 +429,10 @@ public interface CustomLocation {
         interface WithClusterExtensionIds {
             /**
              * Specifies the clusterExtensionIds property: Contains the reference to the add-on that contains charts to
-             * deploy CRDs and operators..
+             * deploy CRDs and operators. Optional for EdgeCluster hostType..
              * 
              * @param clusterExtensionIds Contains the reference to the add-on that contains charts to deploy CRDs and
-             * operators.
+             * operators. Optional for EdgeCluster hostType.
              * @return the next definition stage.
              */
             Update withClusterExtensionIds(List<String> clusterExtensionIds);
@@ -450,11 +456,12 @@ public interface CustomLocation {
          */
         interface WithHostResourceId {
             /**
-             * Specifies the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will
-             * perform a checkAccess API for listAdminCredentials permissions..
+             * Specifies the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom
+             * Locations RP will perform a checkAccess API for listAdminCredentials permissions for Connected Cluster
+             * and AKS Cluster..
              * 
-             * @param hostResourceId Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-             * checkAccess API for listAdminCredentials permissions.
+             * @param hostResourceId Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+             * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
              * @return the next definition stage.
              */
             Update withHostResourceId(String hostResourceId);
@@ -465,9 +472,10 @@ public interface CustomLocation {
          */
         interface WithHostType {
             /**
-             * Specifies the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...)..
+             * Specifies the hostType property: Type of host the Custom Locations is referencing (Kubernetes,
+             * EdgeCluster, etc...)..
              * 
-             * @param hostType Type of host the Custom Locations is referencing (Kubernetes, etc...).
+             * @param hostType Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
              * @return the next definition stage.
              */
             Update withHostType(HostType hostType);
@@ -478,9 +486,11 @@ public interface CustomLocation {
          */
         interface WithNamespace {
             /**
-             * Specifies the namespace property: Kubernetes namespace that will be created on the specified cluster..
+             * Specifies the namespace property: Kubernetes namespace that will be created on the specified cluster.
+             * Optional for EdgeCluster hostType..
              * 
-             * @param namespace Kubernetes namespace that will be created on the specified cluster.
+             * @param namespace Kubernetes namespace that will be created on the specified cluster. Optional for
+             * EdgeCluster hostType.
              * @return the next definition stage.
              */
             Update withNamespace(String namespace);
@@ -514,4 +524,35 @@ public interface CustomLocation {
      * @return the refreshed resource.
      */
     CustomLocation refresh(Context context);
+
+    /**
+     * Gets matching target resource group for resource sync.
+     * 
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param parameters Parameters of the find target resource group request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response along with {@link Response}.
+     */
+    Response<CustomLocationFindTargetResourceGroupResult> findTargetResourceGroupWithResponse(
+        CustomLocationFindTargetResourceGroupProperties parameters, Context context);
+
+    /**
+     * Gets matching target resource group for resource sync.
+     * 
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param parameters Parameters of the find target resource group request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response.
+     */
+    CustomLocationFindTargetResourceGroupResult
+        findTargetResourceGroup(CustomLocationFindTargetResourceGroupProperties parameters);
 }

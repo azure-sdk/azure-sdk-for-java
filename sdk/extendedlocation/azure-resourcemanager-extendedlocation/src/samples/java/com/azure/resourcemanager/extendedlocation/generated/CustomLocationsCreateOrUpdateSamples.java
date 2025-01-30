@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.extendedlocation.generated;
 
 import com.azure.resourcemanager.extendedlocation.models.CustomLocationPropertiesAuthentication;
+import com.azure.resourcemanager.extendedlocation.models.HostType;
 import com.azure.resourcemanager.extendedlocation.models.Identity;
 import com.azure.resourcemanager.extendedlocation.models.ResourceIdentityType;
 import java.util.Arrays;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 public final class CustomLocationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/stable/2021-08-15/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsCreate_Update.json
      */
     /**
@@ -37,6 +38,7 @@ public final class CustomLocationsCreateOrUpdateSamples {
             .withDisplayName("customLocationLocation01")
             .withHostResourceId(
                 "/subscriptions/11111111-2222-3333-4444-555555555555/resourceGroups/testresourcegroup/providers/Microsoft.ContainerService/managedClusters/cluster01")
+            .withHostType(HostType.KUBERNETES)
             .withNamespace("namespace01")
             .create();
     }
