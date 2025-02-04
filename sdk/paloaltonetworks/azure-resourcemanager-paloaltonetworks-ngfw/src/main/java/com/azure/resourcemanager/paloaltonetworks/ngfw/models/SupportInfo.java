@@ -32,11 +32,26 @@ public interface SupportInfo {
     BooleanEnum accountRegistered();
 
     /**
-     * Gets the accountId property: Support account associated with given resource.
+     * Gets the accountId property: Support account associated with given resource when association type is tenant.
      * 
      * @return the accountId value.
      */
     String accountId();
+
+    /**
+     * Gets the accountIdForBilling property: Support account associated with given resource when association type is
+     * billing.
+     * 
+     * @return the accountIdForBilling value.
+     */
+    String accountIdForBilling();
+
+    /**
+     * Gets the associationType property: Association Type.
+     * 
+     * @return the associationType value.
+     */
+    String associationType();
 
     /**
      * Gets the userDomainSupported property: user domain is supported in Customer Support Portal.

@@ -22,7 +22,7 @@ import java.util.Map;
 public final class GlobalRulestackUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_Update_MaximumSet_Gen.json
      */
     /**
@@ -59,7 +59,7 @@ public final class GlobalRulestackUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_Update_MinimumSet_Gen.json
      */
     /**

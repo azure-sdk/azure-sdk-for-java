@@ -19,6 +19,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaConfig;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PlanData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ProvisioningState;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.RulestackDetails;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerConfig;
 import java.io.IOException;
 import java.util.List;
 
@@ -43,9 +44,19 @@ public final class FirewallDeploymentProperties implements JsonSerializable<Fire
     private BooleanEnum isPanoramaManaged;
 
     /*
+     * Strata Cloud Managed: Default is False. Default will be CloudSec managed
+     */
+    private BooleanEnum isStrataCloudManaged;
+
+    /*
      * Panorama Configuration
      */
     private PanoramaConfig panoramaConfig;
+
+    /*
+     * Strata Cloud Manager Configuration, only applicable if Strata Cloud Manager is selected.
+     */
+    private StrataCloudManagerConfig strataCloudManagerConfig;
 
     /*
      * Associated Rulestack
@@ -144,6 +155,26 @@ public final class FirewallDeploymentProperties implements JsonSerializable<Fire
     }
 
     /**
+     * Get the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    public BooleanEnum isStrataCloudManaged() {
+        return this.isStrataCloudManaged;
+    }
+
+    /**
+     * Set the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @param isStrataCloudManaged the isStrataCloudManaged value to set.
+     * @return the FirewallDeploymentProperties object itself.
+     */
+    public FirewallDeploymentProperties withIsStrataCloudManaged(BooleanEnum isStrataCloudManaged) {
+        this.isStrataCloudManaged = isStrataCloudManaged;
+        return this;
+    }
+
+    /**
      * Get the panoramaConfig property: Panorama Configuration.
      * 
      * @return the panoramaConfig value.
@@ -160,6 +191,29 @@ public final class FirewallDeploymentProperties implements JsonSerializable<Fire
      */
     public FirewallDeploymentProperties withPanoramaConfig(PanoramaConfig panoramaConfig) {
         this.panoramaConfig = panoramaConfig;
+        return this;
+    }
+
+    /**
+     * Get the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @return the strataCloudManagerConfig value.
+     */
+    public StrataCloudManagerConfig strataCloudManagerConfig() {
+        return this.strataCloudManagerConfig;
+    }
+
+    /**
+     * Set the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @param strataCloudManagerConfig the strataCloudManagerConfig value to set.
+     * @return the FirewallDeploymentProperties object itself.
+     */
+    public FirewallDeploymentProperties
+        withStrataCloudManagerConfig(StrataCloudManagerConfig strataCloudManagerConfig) {
+        this.strataCloudManagerConfig = strataCloudManagerConfig;
         return this;
     }
 
@@ -288,6 +342,9 @@ public final class FirewallDeploymentProperties implements JsonSerializable<Fire
         if (panoramaConfig() != null) {
             panoramaConfig().validate();
         }
+        if (strataCloudManagerConfig() != null) {
+            strataCloudManagerConfig().validate();
+        }
         if (associatedRulestack() != null) {
             associatedRulestack().validate();
         }
@@ -332,7 +389,10 @@ public final class FirewallDeploymentProperties implements JsonSerializable<Fire
         jsonWriter.writeStringField("panEtag", this.panEtag);
         jsonWriter.writeStringField("isPanoramaManaged",
             this.isPanoramaManaged == null ? null : this.isPanoramaManaged.toString());
+        jsonWriter.writeStringField("isStrataCloudManaged",
+            this.isStrataCloudManaged == null ? null : this.isStrataCloudManaged.toString());
         jsonWriter.writeJsonField("panoramaConfig", this.panoramaConfig);
+        jsonWriter.writeJsonField("strataCloudManagerConfig", this.strataCloudManagerConfig);
         jsonWriter.writeJsonField("associatedRulestack", this.associatedRulestack);
         jsonWriter.writeArrayField("frontEndSettings", this.frontEndSettings,
             (writer, element) -> writer.writeJson(element));
@@ -368,8 +428,14 @@ public final class FirewallDeploymentProperties implements JsonSerializable<Fire
                 } else if ("isPanoramaManaged".equals(fieldName)) {
                     deserializedFirewallDeploymentProperties.isPanoramaManaged
                         = BooleanEnum.fromString(reader.getString());
+                } else if ("isStrataCloudManaged".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.isStrataCloudManaged
+                        = BooleanEnum.fromString(reader.getString());
                 } else if ("panoramaConfig".equals(fieldName)) {
                     deserializedFirewallDeploymentProperties.panoramaConfig = PanoramaConfig.fromJson(reader);
+                } else if ("strataCloudManagerConfig".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.strataCloudManagerConfig
+                        = StrataCloudManagerConfig.fromJson(reader);
                 } else if ("associatedRulestack".equals(fieldName)) {
                     deserializedFirewallDeploymentProperties.associatedRulestack = RulestackDetails.fromJson(reader);
                 } else if ("frontEndSettings".equals(fieldName)) {

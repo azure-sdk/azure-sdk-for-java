@@ -25,6 +25,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaConfig;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PlanData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ProvisioningState;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.RulestackDetails;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerConfig;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.SupportInfo;
 import java.util.Collections;
 import java.util.List;
@@ -81,8 +82,16 @@ public final class FirewallResourceImpl
         return this.innerModel().isPanoramaManaged();
     }
 
+    public BooleanEnum isStrataCloudManaged() {
+        return this.innerModel().isStrataCloudManaged();
+    }
+
     public PanoramaConfig panoramaConfig() {
         return this.innerModel().panoramaConfig();
+    }
+
+    public StrataCloudManagerConfig strataCloudManagerConfig() {
+        return this.innerModel().strataCloudManagerConfig();
     }
 
     public RulestackDetails associatedRulestack() {
@@ -304,8 +313,18 @@ public final class FirewallResourceImpl
         return this;
     }
 
+    public FirewallResourceImpl withIsStrataCloudManaged(BooleanEnum isStrataCloudManaged) {
+        this.innerModel().withIsStrataCloudManaged(isStrataCloudManaged);
+        return this;
+    }
+
     public FirewallResourceImpl withPanoramaConfig(PanoramaConfig panoramaConfig) {
         this.innerModel().withPanoramaConfig(panoramaConfig);
+        return this;
+    }
+
+    public FirewallResourceImpl withStrataCloudManagerConfig(StrataCloudManagerConfig strataCloudManagerConfig) {
+        this.innerModel().withStrataCloudManagerConfig(strataCloudManagerConfig);
         return this;
     }
 

@@ -97,6 +97,13 @@
 
 - [List](#operations_list)
 
+## PaloAltoNetworksCloudngfw
+
+- [CreateProductSerialNumber](#paloaltonetworkscloudngfw_createproductserialnumber)
+- [ListCloudManagerTenants](#paloaltonetworkscloudngfw_listcloudmanagertenants)
+- [ListProductSerialNumberStatus](#paloaltonetworkscloudngfw_listproductserialnumberstatus)
+- [ListSupportInfo](#paloaltonetworkscloudngfw_listsupportinfo)
+
 ## PostRules
 
 - [CreateOrUpdate](#postrules_createorupdate)
@@ -142,7 +149,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 public final class CertificateObjectGlobalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectGlobalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -160,7 +167,7 @@ public final class CertificateObjectGlobalRulestackCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectGlobalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -191,7 +198,7 @@ public final class CertificateObjectGlobalRulestackCreateOrUpdateSamples {
 public final class CertificateObjectGlobalRulestackDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectGlobalRulestack_Delete_MaximumSet_Gen.json
      */
     /**
@@ -206,7 +213,7 @@ public final class CertificateObjectGlobalRulestackDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectGlobalRulestack_Delete_MinimumSet_Gen.json
      */
     /**
@@ -230,7 +237,7 @@ public final class CertificateObjectGlobalRulestackDeleteSamples {
 public final class CertificateObjectGlobalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectGlobalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -246,7 +253,7 @@ public final class CertificateObjectGlobalRulestackGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectGlobalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -271,7 +278,7 @@ public final class CertificateObjectGlobalRulestackGetSamples {
 public final class CertificateObjectGlobalRulestackListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectGlobalRulestack_List_MaximumSet_Gen.json
      */
     /**
@@ -286,7 +293,7 @@ public final class CertificateObjectGlobalRulestackListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectGlobalRulestack_List_MinimumSet_Gen.json
      */
     /**
@@ -312,7 +319,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 public final class CertificateObjectLocalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectLocalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -331,7 +338,7 @@ public final class CertificateObjectLocalRulestackCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectLocalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -363,7 +370,7 @@ public final class CertificateObjectLocalRulestackCreateOrUpdateSamples {
 public final class CertificateObjectLocalRulestackDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectLocalRulestack_Delete_MaximumSet_Gen.json
      */
     /**
@@ -379,7 +386,7 @@ public final class CertificateObjectLocalRulestackDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectLocalRulestack_Delete_MinimumSet_Gen.json
      */
     /**
@@ -404,7 +411,7 @@ public final class CertificateObjectLocalRulestackDeleteSamples {
 public final class CertificateObjectLocalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectLocalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -420,7 +427,7 @@ public final class CertificateObjectLocalRulestackGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectLocalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -445,7 +452,7 @@ public final class CertificateObjectLocalRulestackGetSamples {
 public final class CertificateObjectLocalRulestackListByLocalRulestacksSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectLocalRulestack_ListByLocalRulestacks_MaximumSet_Gen.json
      */
     /**
@@ -461,7 +468,7 @@ public final class CertificateObjectLocalRulestackListByLocalRulestacksSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * CertificateObjectLocalRulestack_ListByLocalRulestacks_MinimumSet_Gen.json
      */
     /**
@@ -486,7 +493,7 @@ public final class CertificateObjectLocalRulestackListByLocalRulestacksSamples {
 public final class FirewallStatusGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FirewallStatus_Get_MinimumSet_Gen.json
      */
     /**
@@ -501,7 +508,7 @@ public final class FirewallStatusGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FirewallStatus_Get_MaximumSet_Gen.json
      */
     /**
@@ -525,7 +532,7 @@ public final class FirewallStatusGetSamples {
 public final class FirewallStatusListByFirewallsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FirewallStatus_ListByFirewalls_MaximumSet_Gen.json
      */
     /**
@@ -540,7 +547,7 @@ public final class FirewallStatusListByFirewallsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FirewallStatus_ListByFirewalls_MinimumSet_Gen.json
      */
     /**
@@ -592,7 +599,7 @@ import java.util.Map;
 public final class FirewallsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -641,7 +648,8 @@ public final class FirewallsCreateOrUpdateSamples {
                 .withEgressNatIp(Arrays.asList(new IpAddress().withResourceId(
                     "/subscriptions/01c7d41f-afaf-464e-8a8b-5c6f9f98cee8/resourceGroups/mj-liftr-integration/providers/Microsoft.Network/publicIPAddresses/mj-liftr-integration-egressNatIp1")
                     .withAddress("20.22.92.111")))
-                .withTrustedRanges(Arrays.asList("20.22.92.11")))
+                .withTrustedRanges(Arrays.asList("20.22.92.11"))
+                .withPrivateSourceNatRulesDestination(Arrays.asList("20.22.92.11")))
             .withDnsSettings(new DnsSettings().withEnableDnsProxy(DnsProxy.DISABLED)
                 .withEnabledDnsType(EnabledDnsType.CUSTOM)
                 .withDnsServers(Arrays.asList(new IpAddress().withResourceId(
@@ -678,7 +686,7 @@ public final class FirewallsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -727,7 +735,7 @@ public final class FirewallsCreateOrUpdateSamples {
 public final class FirewallsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_Delete_MinimumSet_Gen.json
      */
     /**
@@ -742,7 +750,7 @@ public final class FirewallsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_Delete_MaximumSet_Gen.json
      */
     /**
@@ -766,7 +774,7 @@ public final class FirewallsDeleteSamples {
 public final class FirewallsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_Get_MaximumSet_Gen.json
      */
     /**
@@ -782,7 +790,7 @@ public final class FirewallsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_Get_MinimumSet_Gen.json
      */
     /**
@@ -807,7 +815,7 @@ public final class FirewallsGetByResourceGroupSamples {
 public final class FirewallsGetGlobalRulestackSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_getGlobalRulestack_MaximumSet_Gen.json
      */
     /**
@@ -823,7 +831,7 @@ public final class FirewallsGetGlobalRulestackSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_getGlobalRulestack_MinimumSet_Gen.json
      */
     /**
@@ -848,7 +856,7 @@ public final class FirewallsGetGlobalRulestackSamples {
 public final class FirewallsGetLogProfileSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_getLogProfile_MinimumSet_Gen.json
      */
     /**
@@ -863,7 +871,7 @@ public final class FirewallsGetLogProfileSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_getLogProfile_MaximumSet_Gen.json
      */
     /**
@@ -887,7 +895,7 @@ public final class FirewallsGetLogProfileSamples {
 public final class FirewallsGetSupportInfoSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_getSupportInfo_MinimumSet_Gen.json
      */
     /**
@@ -903,7 +911,7 @@ public final class FirewallsGetSupportInfoSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_getSupportInfo_MaximumSet_Gen.json
      */
     /**
@@ -928,7 +936,7 @@ public final class FirewallsGetSupportInfoSamples {
 public final class FirewallsListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -943,7 +951,7 @@ public final class FirewallsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -967,7 +975,7 @@ public final class FirewallsListSamples {
 public final class FirewallsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -982,7 +990,7 @@ public final class FirewallsListByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -1015,7 +1023,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StorageAccount;
 public final class FirewallsSaveLogProfileSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_saveLogProfile_MaximumSet_Gen.json
      */
     /**
@@ -1092,7 +1100,7 @@ public final class FirewallsSaveLogProfileSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_saveLogProfile_MinimumSet_Gen.json
      */
     /**
@@ -1147,7 +1155,7 @@ import java.util.Map;
 public final class FirewallsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_Update_MinimumSet_Gen.json
      */
     /**
@@ -1165,7 +1173,7 @@ public final class FirewallsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Firewalls_Update_MaximumSet_Gen.json
      */
     /**
@@ -1220,7 +1228,8 @@ public final class FirewallsUpdateSamples {
                     .withEgressNatIp(Arrays.asList(new IpAddress().withResourceId(
                         "/subscriptions/01c7d41f-afaf-464e-8a8b-5c6f9f98cee8/resourceGroups/mj-liftr-integration/providers/Microsoft.Network/publicIPAddresses/mj-liftr-integration-egressNatIp1")
                         .withAddress("20.22.92.111")))
-                    .withTrustedRanges(Arrays.asList("20.22.92.11")))
+                    .withTrustedRanges(Arrays.asList("20.22.92.11"))
+                    .withPrivateSourceNatRulesDestination(Arrays.asList("20.22.92.11")))
                 .withIsPanoramaManaged(BooleanEnum.TRUE)
                 .withPanoramaConfig(new PanoramaConfig().withConfigString("bas64EncodedString"))
                 .withAssociatedRulestack(new RulestackDetails().withResourceId("aaaaaaaaaa")
@@ -1276,7 +1285,7 @@ import java.util.Arrays;
 public final class FqdnListGlobalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListGlobalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -1297,7 +1306,7 @@ public final class FqdnListGlobalRulestackCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListGlobalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -1324,7 +1333,7 @@ public final class FqdnListGlobalRulestackCreateOrUpdateSamples {
 public final class FqdnListGlobalRulestackDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListGlobalRulestack_Delete_MaximumSet_Gen.json
      */
     /**
@@ -1339,7 +1348,7 @@ public final class FqdnListGlobalRulestackDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListGlobalRulestack_Delete_MinimumSet_Gen.json
      */
     /**
@@ -1363,7 +1372,7 @@ public final class FqdnListGlobalRulestackDeleteSamples {
 public final class FqdnListGlobalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListGlobalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -1378,7 +1387,7 @@ public final class FqdnListGlobalRulestackGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListGlobalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -1402,7 +1411,7 @@ public final class FqdnListGlobalRulestackGetSamples {
 public final class FqdnListGlobalRulestackListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListGlobalRulestack_List_MinimumSet_Gen.json
      */
     /**
@@ -1417,7 +1426,7 @@ public final class FqdnListGlobalRulestackListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListGlobalRulestack_List_MaximumSet_Gen.json
      */
     /**
@@ -1443,7 +1452,7 @@ import java.util.Arrays;
 public final class FqdnListLocalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListLocalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -1465,7 +1474,7 @@ public final class FqdnListLocalRulestackCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListLocalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -1493,7 +1502,7 @@ public final class FqdnListLocalRulestackCreateOrUpdateSamples {
 public final class FqdnListLocalRulestackDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListLocalRulestack_Delete_MinimumSet_Gen.json
      */
     /**
@@ -1508,7 +1517,7 @@ public final class FqdnListLocalRulestackDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListLocalRulestack_Delete_MaximumSet_Gen.json
      */
     /**
@@ -1532,7 +1541,7 @@ public final class FqdnListLocalRulestackDeleteSamples {
 public final class FqdnListLocalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListLocalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -1548,7 +1557,7 @@ public final class FqdnListLocalRulestackGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListLocalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -1573,7 +1582,7 @@ public final class FqdnListLocalRulestackGetSamples {
 public final class FqdnListLocalRulestackListByLocalRulestacksSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListLocalRulestack_ListByLocalRulestacks_MinimumSet_Gen.json
      */
     /**
@@ -1588,7 +1597,7 @@ public final class FqdnListLocalRulestackListByLocalRulestacksSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * FqdnListLocalRulestack_ListByLocalRulestacks_MaximumSet_Gen.json
      */
     /**
@@ -1612,7 +1621,7 @@ public final class FqdnListLocalRulestackListByLocalRulestacksSamples {
 public final class GlobalRulestackCommitSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_commit_MaximumSet_Gen.json
      */
     /**
@@ -1627,7 +1636,7 @@ public final class GlobalRulestackCommitSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_commit_MinimumSet_Gen.json
      */
     /**
@@ -1662,7 +1671,7 @@ import java.util.Map;
 public final class GlobalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -1679,7 +1688,7 @@ public final class GlobalRulestackCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -1737,7 +1746,7 @@ public final class GlobalRulestackCreateOrUpdateSamples {
 public final class GlobalRulestackDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_Delete_MaximumSet_Gen.json
      */
     /**
@@ -1752,7 +1761,7 @@ public final class GlobalRulestackDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_Delete_MinimumSet_Gen.json
      */
     /**
@@ -1776,7 +1785,7 @@ public final class GlobalRulestackDeleteSamples {
 public final class GlobalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -1791,7 +1800,7 @@ public final class GlobalRulestackGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -1815,7 +1824,7 @@ public final class GlobalRulestackGetSamples {
 public final class GlobalRulestackGetChangeLogSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_getChangeLog_MinimumSet_Gen.json
      */
     /**
@@ -1830,7 +1839,7 @@ public final class GlobalRulestackGetChangeLogSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_getChangeLog_MaximumSet_Gen.json
      */
     /**
@@ -1854,7 +1863,7 @@ public final class GlobalRulestackGetChangeLogSamples {
 public final class GlobalRulestackListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_List_MinimumSet_Gen.json
      */
     /**
@@ -1869,7 +1878,7 @@ public final class GlobalRulestackListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_List_MaximumSet_Gen.json
      */
     /**
@@ -1895,7 +1904,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.AdvSecurityObjectT
 public final class GlobalRulestackListAdvancedSecurityObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listAdvancedSecurityObjects_MaximumSet_Gen.json
      */
     /**
@@ -1912,7 +1921,7 @@ public final class GlobalRulestackListAdvancedSecurityObjectsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listAdvancedSecurityObjects_MinimumSet_Gen.json
      */
     /**
@@ -1938,7 +1947,7 @@ public final class GlobalRulestackListAdvancedSecurityObjectsSamples {
 public final class GlobalRulestackListAppIdsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listAppIds_MaximumSet_Gen.json
      */
     /**
@@ -1954,7 +1963,7 @@ public final class GlobalRulestackListAppIdsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listAppIds_MinimumSet_Gen.json
      */
     /**
@@ -1979,7 +1988,7 @@ public final class GlobalRulestackListAppIdsSamples {
 public final class GlobalRulestackListCountriesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listCountries_MinimumSet_Gen.json
      */
     /**
@@ -1994,7 +2003,7 @@ public final class GlobalRulestackListCountriesSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listCountries_MaximumSet_Gen.json
      */
     /**
@@ -2018,7 +2027,7 @@ public final class GlobalRulestackListCountriesSamples {
 public final class GlobalRulestackListFirewallsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listFirewalls_MaximumSet_Gen.json
      */
     /**
@@ -2033,7 +2042,7 @@ public final class GlobalRulestackListFirewallsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listFirewalls_MinimumSet_Gen.json
      */
     /**
@@ -2057,7 +2066,7 @@ public final class GlobalRulestackListFirewallsSamples {
 public final class GlobalRulestackListPredefinedUrlCategoriesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listPredefinedUrlCategories_MaximumSet_Gen.json
      */
     /**
@@ -2073,7 +2082,7 @@ public final class GlobalRulestackListPredefinedUrlCategoriesSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listPredefinedUrlCategories_MinimumSet_Gen.json
      */
     /**
@@ -2100,7 +2109,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.SecurityServicesTy
 public final class GlobalRulestackListSecurityServicesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listSecurityServices_MinimumSet_Gen.json
      */
     /**
@@ -2117,7 +2126,7 @@ public final class GlobalRulestackListSecurityServicesSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_listSecurityServices_MaximumSet_Gen.json
      */
     /**
@@ -2143,7 +2152,7 @@ public final class GlobalRulestackListSecurityServicesSamples {
 public final class GlobalRulestackRevertSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_revert_MinimumSet_Gen.json
      */
     /**
@@ -2158,7 +2167,7 @@ public final class GlobalRulestackRevertSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_revert_MaximumSet_Gen.json
      */
     /**
@@ -2194,7 +2203,7 @@ import java.util.Map;
 public final class GlobalRulestackUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_Update_MaximumSet_Gen.json
      */
     /**
@@ -2231,7 +2240,7 @@ public final class GlobalRulestackUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * GlobalRulestack_Update_MinimumSet_Gen.json
      */
     /**
@@ -2278,7 +2287,7 @@ import java.util.Arrays;
 public final class LocalRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -2297,7 +2306,7 @@ public final class LocalRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -2350,7 +2359,7 @@ public final class LocalRulesCreateOrUpdateSamples {
 public final class LocalRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_Delete_MaximumSet_Gen.json
      */
     /**
@@ -2365,7 +2374,7 @@ public final class LocalRulesDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_Delete_MinimumSet_Gen.json
      */
     /**
@@ -2389,7 +2398,7 @@ public final class LocalRulesDeleteSamples {
 public final class LocalRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_Get_MaximumSet_Gen.json
      */
     /**
@@ -2404,7 +2413,7 @@ public final class LocalRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_Get_MinimumSet_Gen.json
      */
     /**
@@ -2428,7 +2437,7 @@ public final class LocalRulesGetSamples {
 public final class LocalRulesGetCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_getCounters_MaximumSet_Gen.json
      */
     /**
@@ -2444,7 +2453,7 @@ public final class LocalRulesGetCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_getCounters_MinimumSet_Gen.json
      */
     /**
@@ -2469,7 +2478,7 @@ public final class LocalRulesGetCountersSamples {
 public final class LocalRulesListByLocalRulestacksSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_ListByLocalRulestacks_MinimumSet_Gen.json
      */
     /**
@@ -2484,7 +2493,7 @@ public final class LocalRulesListByLocalRulestacksSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_ListByLocalRulestacks_MaximumSet_Gen.json
      */
     /**
@@ -2508,7 +2517,7 @@ public final class LocalRulesListByLocalRulestacksSamples {
 public final class LocalRulesRefreshCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_refreshCounters_MinimumSet_Gen.json
      */
     /**
@@ -2524,7 +2533,7 @@ public final class LocalRulesRefreshCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_refreshCounters_MaximumSet_Gen.json
      */
     /**
@@ -2549,7 +2558,7 @@ public final class LocalRulesRefreshCountersSamples {
 public final class LocalRulesResetCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_resetCounters_MaximumSet_Gen.json
      */
     /**
@@ -2565,7 +2574,7 @@ public final class LocalRulesResetCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRules_resetCounters_MinimumSet_Gen.json
      */
     /**
@@ -2590,7 +2599,7 @@ public final class LocalRulesResetCountersSamples {
 public final class LocalRulestacksCommitSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_commit_MinimumSet_Gen.json
      */
     /**
@@ -2605,7 +2614,7 @@ public final class LocalRulestacksCommitSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_commit_MaximumSet_Gen.json
      */
     /**
@@ -2639,7 +2648,7 @@ import java.util.Map;
 public final class LocalRulestacksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -2654,7 +2663,7 @@ public final class LocalRulestacksCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -2714,7 +2723,7 @@ public final class LocalRulestacksCreateOrUpdateSamples {
 public final class LocalRulestacksDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_Delete_MaximumSet_Gen.json
      */
     /**
@@ -2729,7 +2738,7 @@ public final class LocalRulestacksDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_Delete_MinimumSet_Gen.json
      */
     /**
@@ -2753,7 +2762,7 @@ public final class LocalRulestacksDeleteSamples {
 public final class LocalRulestacksGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_Get_MaximumSet_Gen.json
      */
     /**
@@ -2768,7 +2777,7 @@ public final class LocalRulestacksGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_Get_MinimumSet_Gen.json
      */
     /**
@@ -2792,7 +2801,7 @@ public final class LocalRulestacksGetByResourceGroupSamples {
 public final class LocalRulestacksGetChangeLogSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_getChangeLog_MinimumSet_Gen.json
      */
     /**
@@ -2807,7 +2816,7 @@ public final class LocalRulestacksGetChangeLogSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_getChangeLog_MaximumSet_Gen.json
      */
     /**
@@ -2831,7 +2840,7 @@ public final class LocalRulestacksGetChangeLogSamples {
 public final class LocalRulestacksGetSupportInfoSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_getSupportInfo_MinimumSet_Gen.json
      */
     /**
@@ -2847,7 +2856,7 @@ public final class LocalRulestacksGetSupportInfoSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_getSupportInfo_MaximumSet_Gen.json
      */
     /**
@@ -2872,7 +2881,7 @@ public final class LocalRulestacksGetSupportInfoSamples {
 public final class LocalRulestacksListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -2887,7 +2896,7 @@ public final class LocalRulestacksListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -2913,7 +2922,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.AdvSecurityObjectT
 public final class LocalRulestacksListAdvancedSecurityObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listAdvancedSecurityObjects_MaximumSet_Gen.json
      */
     /**
@@ -2931,7 +2940,7 @@ public final class LocalRulestacksListAdvancedSecurityObjectsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listAdvancedSecurityObjects_MinimumSet_Gen.json
      */
     /**
@@ -2957,7 +2966,7 @@ public final class LocalRulestacksListAdvancedSecurityObjectsSamples {
 public final class LocalRulestacksListAppIdsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listAppIds_MaximumSet_Gen.json
      */
     /**
@@ -2974,7 +2983,7 @@ public final class LocalRulestacksListAppIdsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listAppIds_MinimumSet_Gen.json
      */
     /**
@@ -2999,7 +3008,7 @@ public final class LocalRulestacksListAppIdsSamples {
 public final class LocalRulestacksListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -3014,7 +3023,7 @@ public final class LocalRulestacksListByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -3038,7 +3047,7 @@ public final class LocalRulestacksListByResourceGroupSamples {
 public final class LocalRulestacksListCountriesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listCountries_MaximumSet_Gen.json
      */
     /**
@@ -3054,7 +3063,7 @@ public final class LocalRulestacksListCountriesSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listCountries_MinimumSet_Gen.json
      */
     /**
@@ -3079,7 +3088,7 @@ public final class LocalRulestacksListCountriesSamples {
 public final class LocalRulestacksListFirewallsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listFirewalls_MinimumSet_Gen.json
      */
     /**
@@ -3094,7 +3103,7 @@ public final class LocalRulestacksListFirewallsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listFirewalls_MaximumSet_Gen.json
      */
     /**
@@ -3118,7 +3127,7 @@ public final class LocalRulestacksListFirewallsSamples {
 public final class LocalRulestacksListPredefinedUrlCategoriesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listPredefinedUrlCategories_MinimumSet_Gen.json
      */
     /**
@@ -3134,7 +3143,7 @@ public final class LocalRulestacksListPredefinedUrlCategoriesSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listPredefinedUrlCategories_MaximumSet_Gen.json
      */
     /**
@@ -3162,7 +3171,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.SecurityServicesTy
 public final class LocalRulestacksListSecurityServicesSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listSecurityServices_MinimumSet_Gen.json
      */
     /**
@@ -3179,7 +3188,7 @@ public final class LocalRulestacksListSecurityServicesSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_listSecurityServices_MaximumSet_Gen.json
      */
     /**
@@ -3205,7 +3214,7 @@ public final class LocalRulestacksListSecurityServicesSamples {
 public final class LocalRulestacksRevertSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_revert_MaximumSet_Gen.json
      */
     /**
@@ -3220,7 +3229,7 @@ public final class LocalRulestacksRevertSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_revert_MinimumSet_Gen.json
      */
     /**
@@ -3256,7 +3265,7 @@ import java.util.Map;
 public final class LocalRulestacksUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_Update_MaximumSet_Gen.json
      */
     /**
@@ -3296,7 +3305,7 @@ public final class LocalRulestacksUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * LocalRulestacks_Update_MinimumSet_Gen.json
      */
     /**
@@ -3335,7 +3344,7 @@ public final class LocalRulestacksUpdateSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Operations_List_MinimumSet_Gen.json
      */
     /**
@@ -3350,7 +3359,7 @@ public final class OperationsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * Operations_List_MaximumSet_Gen.json
      */
     /**
@@ -3361,6 +3370,164 @@ public final class OperationsListSamples {
     public static void operationsListMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PaloAltoNetworksCloudngfw_CreateProductSerialNumber
+
+```java
+/**
+ * Samples for PaloAltoNetworksCloudngfw CreateProductSerialNumber.
+ */
+public final class PaloAltoNetworksCloudngfwCreateProductSerialNumberSamples {
+    /*
+     * x-ms-original-file:
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
+     * PaloAltoNetworksCloudngfw_createProductSerialNumber_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: PaloAltoNetworksCloudngfw_createProductSerialNumber_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to PaloAltoNetworksNgfwManager.
+     */
+    public static void paloAltoNetworksCloudngfwCreateProductSerialNumberMaximumSetGen(
+        com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
+        manager.paloAltoNetworksCloudngfws().createProductSerialNumberWithResponse(com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
+     * PaloAltoNetworksCloudngfw_createProductSerialNumber_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: PaloAltoNetworksCloudngfw_createProductSerialNumber_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to PaloAltoNetworksNgfwManager.
+     */
+    public static void paloAltoNetworksCloudngfwCreateProductSerialNumberMinimumSetGen(
+        com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
+        manager.paloAltoNetworksCloudngfws().createProductSerialNumberWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PaloAltoNetworksCloudngfw_ListCloudManagerTenants
+
+```java
+/**
+ * Samples for PaloAltoNetworksCloudngfw ListCloudManagerTenants.
+ */
+public final class PaloAltoNetworksCloudngfwListCloudManagerTenantsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
+     * PaloAltoNetworksCloudngfw_listCloudManagerTenants_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: PaloAltoNetworksCloudngfw_listCloudManagerTenants_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to PaloAltoNetworksNgfwManager.
+     */
+    public static void paloAltoNetworksCloudngfwListCloudManagerTenantsMaximumSetGen(
+        com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
+        manager.paloAltoNetworksCloudngfws().listCloudManagerTenantsWithResponse(com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
+     * PaloAltoNetworksCloudngfw_listCloudManagerTenants_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: PaloAltoNetworksCloudngfw_listCloudManagerTenants_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to PaloAltoNetworksNgfwManager.
+     */
+    public static void paloAltoNetworksCloudngfwListCloudManagerTenantsMinimumSetGen(
+        com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
+        manager.paloAltoNetworksCloudngfws().listCloudManagerTenantsWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PaloAltoNetworksCloudngfw_ListProductSerialNumberStatus
+
+```java
+/**
+ * Samples for PaloAltoNetworksCloudngfw ListProductSerialNumberStatus.
+ */
+public final class PaloAltoNetworksCloudngfwListProductSerialNumberStatusSamples {
+    /*
+     * x-ms-original-file:
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
+     * PaloAltoNetworksCloudngfw_listProductSerialNumberStatus_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: PaloAltoNetworksCloudngfw_listProductSerialNumberStatus_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to PaloAltoNetworksNgfwManager.
+     */
+    public static void paloAltoNetworksCloudngfwListProductSerialNumberStatusMinimumSetGen(
+        com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
+        manager.paloAltoNetworksCloudngfws()
+            .listProductSerialNumberStatusWithResponse(com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
+     * PaloAltoNetworksCloudngfw_listProductSerialNumberStatus_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: PaloAltoNetworksCloudngfw_listProductSerialNumberStatus_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to PaloAltoNetworksNgfwManager.
+     */
+    public static void paloAltoNetworksCloudngfwListProductSerialNumberStatusMaximumSetGen(
+        com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
+        manager.paloAltoNetworksCloudngfws()
+            .listProductSerialNumberStatusWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PaloAltoNetworksCloudngfw_ListSupportInfo
+
+```java
+/**
+ * Samples for PaloAltoNetworksCloudngfw ListSupportInfo.
+ */
+public final class PaloAltoNetworksCloudngfwListSupportInfoSamples {
+    /*
+     * x-ms-original-file:
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
+     * PaloAltoNetworksCloudngfw_listSupportInfo_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: PaloAltoNetworksCloudngfw_listSupportInfo_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to PaloAltoNetworksNgfwManager.
+     */
+    public static void paloAltoNetworksCloudngfwListSupportInfoMaximumSetGen(
+        com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
+        manager.paloAltoNetworksCloudngfws().listSupportInfoWithResponse(com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
+     * PaloAltoNetworksCloudngfw_listSupportInfo_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: PaloAltoNetworksCloudngfw_listSupportInfo_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to PaloAltoNetworksNgfwManager.
+     */
+    public static void paloAltoNetworksCloudngfwListSupportInfoMinimumSetGen(
+        com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
+        manager.paloAltoNetworksCloudngfws().listSupportInfoWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3385,7 +3552,7 @@ import java.util.Arrays;
 public final class PostRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -3428,7 +3595,7 @@ public final class PostRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -3454,7 +3621,7 @@ public final class PostRulesCreateOrUpdateSamples {
 public final class PostRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_Delete_MinimumSet_Gen.json
      */
     /**
@@ -3469,7 +3636,7 @@ public final class PostRulesDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_Delete_MaximumSet_Gen.json
      */
     /**
@@ -3493,7 +3660,7 @@ public final class PostRulesDeleteSamples {
 public final class PostRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_Get_MinimumSet_Gen.json
      */
     /**
@@ -3508,7 +3675,7 @@ public final class PostRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_Get_MaximumSet_Gen.json
      */
     /**
@@ -3532,7 +3699,7 @@ public final class PostRulesGetSamples {
 public final class PostRulesGetCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_getCounters_MinimumSet_Gen.json
      */
     /**
@@ -3547,7 +3714,7 @@ public final class PostRulesGetCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_getCounters_MaximumSet_Gen.json
      */
     /**
@@ -3571,7 +3738,7 @@ public final class PostRulesGetCountersSamples {
 public final class PostRulesListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_List_MinimumSet_Gen.json
      */
     /**
@@ -3586,7 +3753,7 @@ public final class PostRulesListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_List_MaximumSet_Gen.json
      */
     /**
@@ -3610,7 +3777,7 @@ public final class PostRulesListSamples {
 public final class PostRulesRefreshCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_refreshCounters_MaximumSet_Gen.json
      */
     /**
@@ -3625,7 +3792,7 @@ public final class PostRulesRefreshCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_refreshCounters_MinimumSet_Gen.json
      */
     /**
@@ -3649,7 +3816,7 @@ public final class PostRulesRefreshCountersSamples {
 public final class PostRulesResetCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_resetCounters_MaximumSet_Gen.json
      */
     /**
@@ -3664,7 +3831,7 @@ public final class PostRulesResetCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PostRules_resetCounters_MinimumSet_Gen.json
      */
     /**
@@ -3699,7 +3866,7 @@ import java.util.Arrays;
 public final class PreRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -3742,7 +3909,7 @@ public final class PreRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -3768,7 +3935,7 @@ public final class PreRulesCreateOrUpdateSamples {
 public final class PreRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_Delete_MinimumSet_Gen.json
      */
     /**
@@ -3783,7 +3950,7 @@ public final class PreRulesDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_Delete_MaximumSet_Gen.json
      */
     /**
@@ -3807,7 +3974,7 @@ public final class PreRulesDeleteSamples {
 public final class PreRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_Get_MaximumSet_Gen.json
      */
     /**
@@ -3822,7 +3989,7 @@ public final class PreRulesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_Get_MinimumSet_Gen.json
      */
     /**
@@ -3846,7 +4013,7 @@ public final class PreRulesGetSamples {
 public final class PreRulesGetCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_getCounters_MinimumSet_Gen.json
      */
     /**
@@ -3861,7 +4028,7 @@ public final class PreRulesGetCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_getCounters_MaximumSet_Gen.json
      */
     /**
@@ -3885,7 +4052,7 @@ public final class PreRulesGetCountersSamples {
 public final class PreRulesListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_List_MinimumSet_Gen.json
      */
     /**
@@ -3900,7 +4067,7 @@ public final class PreRulesListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_List_MaximumSet_Gen.json
      */
     /**
@@ -3924,7 +4091,7 @@ public final class PreRulesListSamples {
 public final class PreRulesRefreshCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_refreshCounters_MaximumSet_Gen.json
      */
     /**
@@ -3939,7 +4106,7 @@ public final class PreRulesRefreshCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_refreshCounters_MinimumSet_Gen.json
      */
     /**
@@ -3963,7 +4130,7 @@ public final class PreRulesRefreshCountersSamples {
 public final class PreRulesResetCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_resetCounters_MinimumSet_Gen.json
      */
     /**
@@ -3978,7 +4145,7 @@ public final class PreRulesResetCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PreRules_resetCounters_MaximumSet_Gen.json
      */
     /**
@@ -4005,7 +4172,7 @@ import java.util.Arrays;
 public final class PrefixListGlobalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListGlobalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -4026,7 +4193,7 @@ public final class PrefixListGlobalRulestackCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListGlobalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -4053,7 +4220,7 @@ public final class PrefixListGlobalRulestackCreateOrUpdateSamples {
 public final class PrefixListGlobalRulestackDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListGlobalRulestack_Delete_MaximumSet_Gen.json
      */
     /**
@@ -4068,7 +4235,7 @@ public final class PrefixListGlobalRulestackDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListGlobalRulestack_Delete_MinimumSet_Gen.json
      */
     /**
@@ -4092,7 +4259,7 @@ public final class PrefixListGlobalRulestackDeleteSamples {
 public final class PrefixListGlobalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListGlobalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -4107,7 +4274,7 @@ public final class PrefixListGlobalRulestackGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListGlobalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -4131,7 +4298,7 @@ public final class PrefixListGlobalRulestackGetSamples {
 public final class PrefixListGlobalRulestackListSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListGlobalRulestack_List_MaximumSet_Gen.json
      */
     /**
@@ -4146,7 +4313,7 @@ public final class PrefixListGlobalRulestackListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListGlobalRulestack_List_MinimumSet_Gen.json
      */
     /**
@@ -4172,7 +4339,7 @@ import java.util.Arrays;
 public final class PrefixListLocalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListLocalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -4191,7 +4358,7 @@ public final class PrefixListLocalRulestackCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListLocalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -4222,7 +4389,7 @@ public final class PrefixListLocalRulestackCreateOrUpdateSamples {
 public final class PrefixListLocalRulestackDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListLocalRulestack_Delete_MinimumSet_Gen.json
      */
     /**
@@ -4237,7 +4404,7 @@ public final class PrefixListLocalRulestackDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListLocalRulestack_Delete_MaximumSet_Gen.json
      */
     /**
@@ -4261,7 +4428,7 @@ public final class PrefixListLocalRulestackDeleteSamples {
 public final class PrefixListLocalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListLocalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -4277,7 +4444,7 @@ public final class PrefixListLocalRulestackGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListLocalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -4302,7 +4469,7 @@ public final class PrefixListLocalRulestackGetSamples {
 public final class PrefixListLocalRulestackListByLocalRulestacksSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListLocalRulestack_ListByLocalRulestacks_MaximumSet_Gen.json
      */
     /**
@@ -4318,7 +4485,7 @@ public final class PrefixListLocalRulestackListByLocalRulestacksSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2025-02-06-preview/examples/
      * PrefixListLocalRulestack_ListByLocalRulestacks_MinimumSet_Gen.json
      */
     /**

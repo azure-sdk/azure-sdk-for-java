@@ -35,6 +35,14 @@ public final class SupportInfoImpl implements SupportInfo {
         return this.innerModel().accountId();
     }
 
+    public String accountIdForBilling() {
+        return this.innerModel().accountIdForBilling();
+    }
+
+    public String associationType() {
+        return this.innerModel().associationType();
+    }
+
     public BooleanEnum userDomainSupported() {
         return this.innerModel().userDomainSupported();
     }

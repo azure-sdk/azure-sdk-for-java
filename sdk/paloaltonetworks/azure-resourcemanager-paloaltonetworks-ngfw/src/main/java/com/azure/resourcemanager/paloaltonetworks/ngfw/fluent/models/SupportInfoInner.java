@@ -33,9 +33,19 @@ public final class SupportInfoInner implements JsonSerializable<SupportInfoInner
     private BooleanEnum accountRegistered;
 
     /*
-     * Support account associated with given resource
+     * Support account associated with given resource when association type is tenant
      */
     private String accountId;
+
+    /*
+     * Support account associated with given resource when association type is billing
+     */
+    private String accountIdForBilling;
+
+    /*
+     * Association Type
+     */
+    private String associationType;
 
     /*
      * user domain is supported in Customer Support Portal
@@ -144,7 +154,7 @@ public final class SupportInfoInner implements JsonSerializable<SupportInfoInner
     }
 
     /**
-     * Get the accountId property: Support account associated with given resource.
+     * Get the accountId property: Support account associated with given resource when association type is tenant.
      * 
      * @return the accountId value.
      */
@@ -153,13 +163,55 @@ public final class SupportInfoInner implements JsonSerializable<SupportInfoInner
     }
 
     /**
-     * Set the accountId property: Support account associated with given resource.
+     * Set the accountId property: Support account associated with given resource when association type is tenant.
      * 
      * @param accountId the accountId value to set.
      * @return the SupportInfoInner object itself.
      */
     public SupportInfoInner withAccountId(String accountId) {
         this.accountId = accountId;
+        return this;
+    }
+
+    /**
+     * Get the accountIdForBilling property: Support account associated with given resource when association type is
+     * billing.
+     * 
+     * @return the accountIdForBilling value.
+     */
+    public String accountIdForBilling() {
+        return this.accountIdForBilling;
+    }
+
+    /**
+     * Set the accountIdForBilling property: Support account associated with given resource when association type is
+     * billing.
+     * 
+     * @param accountIdForBilling the accountIdForBilling value to set.
+     * @return the SupportInfoInner object itself.
+     */
+    public SupportInfoInner withAccountIdForBilling(String accountIdForBilling) {
+        this.accountIdForBilling = accountIdForBilling;
+        return this;
+    }
+
+    /**
+     * Get the associationType property: Association Type.
+     * 
+     * @return the associationType value.
+     */
+    public String associationType() {
+        return this.associationType;
+    }
+
+    /**
+     * Set the associationType property: Association Type.
+     * 
+     * @param associationType the associationType value to set.
+     * @return the SupportInfoInner object itself.
+     */
+    public SupportInfoInner withAssociationType(String associationType) {
+        this.associationType = associationType;
         return this;
     }
 
@@ -342,6 +394,8 @@ public final class SupportInfoInner implements JsonSerializable<SupportInfoInner
         jsonWriter.writeStringField("accountRegistered",
             this.accountRegistered == null ? null : this.accountRegistered.toString());
         jsonWriter.writeStringField("accountId", this.accountId);
+        jsonWriter.writeStringField("accountIdForBilling", this.accountIdForBilling);
+        jsonWriter.writeStringField("associationType", this.associationType);
         jsonWriter.writeStringField("userDomainSupported",
             this.userDomainSupported == null ? null : this.userDomainSupported.toString());
         jsonWriter.writeStringField("userRegistered",
@@ -378,6 +432,10 @@ public final class SupportInfoInner implements JsonSerializable<SupportInfoInner
                     deserializedSupportInfoInner.accountRegistered = BooleanEnum.fromString(reader.getString());
                 } else if ("accountId".equals(fieldName)) {
                     deserializedSupportInfoInner.accountId = reader.getString();
+                } else if ("accountIdForBilling".equals(fieldName)) {
+                    deserializedSupportInfoInner.accountIdForBilling = reader.getString();
+                } else if ("associationType".equals(fieldName)) {
+                    deserializedSupportInfoInner.associationType = reader.getString();
                 } else if ("userDomainSupported".equals(fieldName)) {
                     deserializedSupportInfoInner.userDomainSupported = BooleanEnum.fromString(reader.getString());
                 } else if ("userRegistered".equals(fieldName)) {

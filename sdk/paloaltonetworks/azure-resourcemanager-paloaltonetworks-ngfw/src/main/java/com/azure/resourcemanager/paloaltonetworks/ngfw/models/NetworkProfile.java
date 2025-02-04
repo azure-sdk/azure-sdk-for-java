@@ -53,6 +53,11 @@ public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
      */
     private List<String> trustedRanges;
 
+    /*
+     * Array of ipv4 destination address for which source NAT is to be performed
+     */
+    private List<String> privateSourceNatRulesDestination;
+
     /**
      * Creates an instance of NetworkProfile class.
      */
@@ -200,6 +205,28 @@ public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
     }
 
     /**
+     * Get the privateSourceNatRulesDestination property: Array of ipv4 destination address for which source NAT is to
+     * be performed.
+     * 
+     * @return the privateSourceNatRulesDestination value.
+     */
+    public List<String> privateSourceNatRulesDestination() {
+        return this.privateSourceNatRulesDestination;
+    }
+
+    /**
+     * Set the privateSourceNatRulesDestination property: Array of ipv4 destination address for which source NAT is to
+     * be performed.
+     * 
+     * @param privateSourceNatRulesDestination the privateSourceNatRulesDestination value to set.
+     * @return the NetworkProfile object itself.
+     */
+    public NetworkProfile withPrivateSourceNatRulesDestination(List<String> privateSourceNatRulesDestination) {
+        this.privateSourceNatRulesDestination = privateSourceNatRulesDestination;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -247,6 +274,8 @@ public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
         jsonWriter.writeArrayField("egressNatIp", this.egressNatIp, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeArrayField("trustedRanges", this.trustedRanges,
             (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("privateSourceNatRulesDestination", this.privateSourceNatRulesDestination,
+            (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -283,6 +312,9 @@ public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
                 } else if ("trustedRanges".equals(fieldName)) {
                     List<String> trustedRanges = reader.readArray(reader1 -> reader1.getString());
                     deserializedNetworkProfile.trustedRanges = trustedRanges;
+                } else if ("privateSourceNatRulesDestination".equals(fieldName)) {
+                    List<String> privateSourceNatRulesDestination = reader.readArray(reader1 -> reader1.getString());
+                    deserializedNetworkProfile.privateSourceNatRulesDestination = privateSourceNatRulesDestination;
                 } else {
                     reader.skipChildren();
                 }
