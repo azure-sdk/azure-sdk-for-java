@@ -20,7 +20,7 @@ public final class IpRule implements JsonSerializable<IpRule> {
     /*
      * Action when client IP address is matched.
      */
-    private String action = "Allow";
+    private final String action = "Allow";
 
     /*
      * IPv4 address, or IPv4 address range in CIDR format.
@@ -40,17 +40,6 @@ public final class IpRule implements JsonSerializable<IpRule> {
      */
     public String action() {
         return this.action;
-    }
-
-    /**
-     * Set the action property: Action when client IP address is matched.
-     * 
-     * @param action the action value to set.
-     * @return the IpRule object itself.
-     */
-    public IpRule withAction(String action) {
-        this.action = action;
-        return this;
     }
 
     /**

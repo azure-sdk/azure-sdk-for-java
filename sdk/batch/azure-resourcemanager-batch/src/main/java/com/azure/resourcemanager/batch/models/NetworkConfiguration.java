@@ -26,9 +26,9 @@ public final class NetworkConfiguration implements JsonSerializable<NetworkConfi
      * has any associated Network Security Groups (NSG). If communication to the compute nodes in the specified subnet
      * is denied by an NSG, then the Batch service will set the state of the compute nodes to unusable. If the specified
      * VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for
-     * inbound communication. Enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows. Also
-     * enable outbound connections to Azure Storage on port 443. For more details see:
-     * https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
+     * inbound communication，including ports 29876 and 29877. Also enable outbound connections to Azure Storage on port
+     * 443. For more details see:
+     * https://learn.microsoft.com/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
      */
     private String subnetId;
 
@@ -70,10 +70,9 @@ public final class NetworkConfiguration implements JsonSerializable<NetworkConfi
      * verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to
      * the compute nodes in the specified subnet is denied by an NSG, then the Batch service will set the state of the
      * compute nodes to unusable. If the specified VNet has any associated Network Security Groups (NSG), then a few
-     * reserved system ports must be enabled for inbound communication. Enable ports 29876 and 29877, as well as port 22
-     * for Linux and port 3389 for Windows. Also enable outbound connections to Azure Storage on port 443. For more
-     * details see:
-     * https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration.
+     * reserved system ports must be enabled for inbound communication，including ports 29876 and 29877. Also enable
+     * outbound connections to Azure Storage on port 443. For more details see:
+     * https://learn.microsoft.com/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration.
      * 
      * @return the subnetId value.
      */
@@ -91,10 +90,9 @@ public final class NetworkConfiguration implements JsonSerializable<NetworkConfi
      * verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to
      * the compute nodes in the specified subnet is denied by an NSG, then the Batch service will set the state of the
      * compute nodes to unusable. If the specified VNet has any associated Network Security Groups (NSG), then a few
-     * reserved system ports must be enabled for inbound communication. Enable ports 29876 and 29877, as well as port 22
-     * for Linux and port 3389 for Windows. Also enable outbound connections to Azure Storage on port 443. For more
-     * details see:
-     * https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration.
+     * reserved system ports must be enabled for inbound communication，including ports 29876 and 29877. Also enable
+     * outbound connections to Azure Storage on port 443. For more details see:
+     * https://learn.microsoft.com/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration.
      * 
      * @param subnetId the subnetId value to set.
      * @return the NetworkConfiguration object itself.

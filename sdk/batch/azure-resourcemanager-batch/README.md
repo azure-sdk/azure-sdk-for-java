@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-batch</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -72,8 +72,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ```java
 // batch account
-account = batchManager
-    .batchAccounts()
+account = batchManager.batchAccounts()
     .define(batchAccountName)
     .withRegion(REGION)
     .withExistingResourceGroup(resourceGroup)
@@ -84,21 +83,16 @@ pool = batchManager.pools()
     .define(poolName)
     .withExistingBatchAccount(resourceGroup, batchAccountName)
     .withDisplayName(poolDisplayName)
-    .withDeploymentConfiguration(
-        new DeploymentConfiguration()
-            .withVirtualMachineConfiguration(
-                new VirtualMachineConfiguration()
-                    .withImageReference(new ImageReference().withPublisher("Canonical")
-                        .withOffer("UbuntuServer").withSku("18.04-LTS").withVersion("latest"))
-                    .withNodeAgentSkuId("batch.node.ubuntu 18.04")))
-    .withScaleSettings(
-        new ScaleSettings()
-            .withFixedScale(
-                new FixedScaleSettings()
-                    .withResizeTimeout(Duration.parse("PT8M"))
-                    .withTargetDedicatedNodes(1)
-                    .withTargetLowPriorityNodes(1)
-                    .withNodeDeallocationOption(ComputeNodeDeallocationOption.TASK_COMPLETION)))
+    .withDeploymentConfiguration(new DeploymentConfiguration().withVirtualMachineConfiguration(
+        new VirtualMachineConfiguration().withImageReference(new ImageReference().withPublisher("Canonical")
+            .withOffer("UbuntuServer")
+            .withSku("18.04-LTS")
+            .withVersion("latest")).withNodeAgentSkuId("batch.node.ubuntu 18.04")))
+    .withScaleSettings(new ScaleSettings()
+        .withFixedScale(new FixedScaleSettings().withResizeTimeout(Duration.parse("PT8M"))
+            .withTargetDedicatedNodes(1)
+            .withTargetLowPriorityNodes(1)
+            .withNodeDeallocationOption(ComputeNodeDeallocationOption.TASK_COMPLETION)))
     .withVmSize("Standard_D1")
     .create();
 ```
