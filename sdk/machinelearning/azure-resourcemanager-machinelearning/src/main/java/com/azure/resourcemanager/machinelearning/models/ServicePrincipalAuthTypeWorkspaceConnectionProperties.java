@@ -30,16 +30,6 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
      */
     private WorkspaceConnectionServicePrincipal credentials;
 
-    /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
-     * Group based on connection category
-     */
-    private ConnectionGroup group;
-
     /**
      * Creates an instance of ServicePrincipalAuthTypeWorkspaceConnectionProperties class.
      */
@@ -78,31 +68,20 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
     }
 
     /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
+     * {@inheritDoc}
      */
     @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
-     * Get the group property: Group based on connection category.
-     * 
-     * @return the group value.
-     */
-    @Override
-    public ConnectionGroup group() {
-        return this.group;
+    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
+        super.withCategory(category);
+        return this;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
-        super.withCategory(category);
+    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withError(String error) {
+        super.withError(error);
         return this;
     }
 
@@ -128,8 +107,8 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
      * {@inheritDoc}
      */
     @Override
-    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withTarget(String target) {
-        super.withTarget(target);
+    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withMetadata(Map<String, String> metadata) {
+        super.withMetadata(metadata);
         return this;
     }
 
@@ -137,8 +116,17 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
      * {@inheritDoc}
      */
     @Override
-    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withMetadata(Map<String, String> metadata) {
-        super.withMetadata(metadata);
+    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withPeRequirement(ManagedPERequirement peRequirement) {
+        super.withPeRequirement(peRequirement);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withPeStatus(ManagedPEStatus peStatus) {
+        super.withPeStatus(peStatus);
         return this;
     }
 
@@ -155,8 +143,8 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
      * {@inheritDoc}
      */
     @Override
-    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
+    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withTarget(String target) {
+        super.withTarget(target);
         return this;
     }
 
@@ -164,8 +152,9 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
      * {@inheritDoc}
      */
     @Override
-    public ServicePrincipalAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
+    public ServicePrincipalAuthTypeWorkspaceConnectionProperties
+        withUseWorkspaceManagedIdentity(Boolean useWorkspaceManagedIdentity) {
+        super.withUseWorkspaceManagedIdentity(useWorkspaceManagedIdentity);
         return this;
     }
 
@@ -176,7 +165,6 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
      */
     @Override
     public void validate() {
-        super.validate();
         if (credentials() != null) {
             credentials().validate();
         }
@@ -189,15 +177,17 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("category", category() == null ? null : category().toString());
+        jsonWriter.writeStringField("error", error());
         jsonWriter.writeStringField("expiryTime",
             expiryTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(expiryTime()));
         jsonWriter.writeBooleanField("isSharedToAll", isSharedToAll());
-        jsonWriter.writeStringField("target", target());
         jsonWriter.writeMapField("metadata", metadata(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("peRequirement", peRequirement() == null ? null : peRequirement().toString());
+        jsonWriter.writeStringField("peStatus", peStatus() == null ? null : peStatus().toString());
         jsonWriter.writeArrayField("sharedUserList", sharedUserList(),
             (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("value", value());
-        jsonWriter.writeStringField("valueFormat", valueFormat() == null ? null : valueFormat().toString());
+        jsonWriter.writeStringField("target", target());
+        jsonWriter.writeBooleanField("useWorkspaceManagedIdentity", useWorkspaceManagedIdentity());
         jsonWriter.writeStringField("authType", this.authType == null ? null : this.authType.toString());
         jsonWriter.writeJsonField("credentials", this.credentials);
         return jsonWriter.writeEndObject();
@@ -224,31 +214,37 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
-                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.createdByWorkspaceArmId
-                        = reader.getString();
+                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
+                        .withCreatedByWorkspaceArmId(reader.getString());
+                } else if ("error".equals(fieldName)) {
+                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.withError(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("group".equals(fieldName)) {
-                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.group
-                        = ConnectionGroup.fromString(reader.getString());
+                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
+                        .withGroup(ConnectionGroup.fromString(reader.getString()));
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));
-                } else if ("target".equals(fieldName)) {
-                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.withTarget(reader.getString());
                 } else if ("metadata".equals(fieldName)) {
                     Map<String, String> metadata = reader.readMap(reader1 -> reader1.getString());
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.withMetadata(metadata);
+                } else if ("peRequirement".equals(fieldName)) {
+                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
+                        .withPeRequirement(ManagedPERequirement.fromString(reader.getString()));
+                } else if ("peStatus".equals(fieldName)) {
+                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
+                        .withPeStatus(ManagedPEStatus.fromString(reader.getString()));
                 } else if ("sharedUserList".equals(fieldName)) {
                     List<String> sharedUserList = reader.readArray(reader1 -> reader1.getString());
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
                         .withSharedUserList(sharedUserList);
-                } else if ("value".equals(fieldName)) {
-                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.withValue(reader.getString());
-                } else if ("valueFormat".equals(fieldName)) {
+                } else if ("target".equals(fieldName)) {
+                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.withTarget(reader.getString());
+                } else if ("useWorkspaceManagedIdentity".equals(fieldName)) {
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
-                        .withValueFormat(ValueFormat.fromString(reader.getString()));
+                        .withUseWorkspaceManagedIdentity(reader.getNullable(JsonReader::getBoolean));
                 } else if ("authType".equals(fieldName)) {
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.authType
                         = ConnectionAuthType.fromString(reader.getString());

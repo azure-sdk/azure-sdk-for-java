@@ -23,11 +23,6 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     private DatastoreType datastoreType = DatastoreType.AZURE_DATA_LAKE_GEN2;
 
     /*
-     * [Required] The name of the Data Lake Gen2 filesystem.
-     */
-    private String filesystem;
-
-    /*
      * [Required] Storage account name.
      */
     private String accountName;
@@ -36,6 +31,11 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
      * Azure cloud endpoint for the storage account.
      */
     private String endpoint;
+
+    /*
+     * [Required] The name of the Data Lake Gen2 filesystem.
+     */
+    private String filesystem;
 
     /*
      * Protocol used to communicate with the storage account.
@@ -48,19 +48,14 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
 
     /*
-     * Azure Subscription Id
-     */
-    private String subscriptionId;
-
-    /*
      * Azure Resource Group name
      */
     private String resourceGroup;
 
     /*
-     * Readonly property to indicate if datastore is the workspace default datastore
+     * Azure Subscription Id
      */
-    private Boolean isDefault;
+    private String subscriptionId;
 
     /**
      * Creates an instance of AzureDataLakeGen2Datastore class.
@@ -76,26 +71,6 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     @Override
     public DatastoreType datastoreType() {
         return this.datastoreType;
-    }
-
-    /**
-     * Get the filesystem property: [Required] The name of the Data Lake Gen2 filesystem.
-     * 
-     * @return the filesystem value.
-     */
-    public String filesystem() {
-        return this.filesystem;
-    }
-
-    /**
-     * Set the filesystem property: [Required] The name of the Data Lake Gen2 filesystem.
-     * 
-     * @param filesystem the filesystem value to set.
-     * @return the AzureDataLakeGen2Datastore object itself.
-     */
-    public AzureDataLakeGen2Datastore withFilesystem(String filesystem) {
-        this.filesystem = filesystem;
-        return this;
     }
 
     /**
@@ -135,6 +110,26 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
      */
     public AzureDataLakeGen2Datastore withEndpoint(String endpoint) {
         this.endpoint = endpoint;
+        return this;
+    }
+
+    /**
+     * Get the filesystem property: [Required] The name of the Data Lake Gen2 filesystem.
+     * 
+     * @return the filesystem value.
+     */
+    public String filesystem() {
+        return this.filesystem;
+    }
+
+    /**
+     * Set the filesystem property: [Required] The name of the Data Lake Gen2 filesystem.
+     * 
+     * @param filesystem the filesystem value to set.
+     * @return the AzureDataLakeGen2Datastore object itself.
+     */
+    public AzureDataLakeGen2Datastore withFilesystem(String filesystem) {
+        this.filesystem = filesystem;
         return this;
     }
 
@@ -182,26 +177,6 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     }
 
     /**
-     * Get the subscriptionId property: Azure Subscription Id.
-     * 
-     * @return the subscriptionId value.
-     */
-    public String subscriptionId() {
-        return this.subscriptionId;
-    }
-
-    /**
-     * Set the subscriptionId property: Azure Subscription Id.
-     * 
-     * @param subscriptionId the subscriptionId value to set.
-     * @return the AzureDataLakeGen2Datastore object itself.
-     */
-    public AzureDataLakeGen2Datastore withSubscriptionId(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
-        return this;
-    }
-
-    /**
      * Get the resourceGroup property: Azure Resource Group name.
      * 
      * @return the resourceGroup value.
@@ -222,13 +197,23 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     }
 
     /**
-     * Get the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
+     * Get the subscriptionId property: Azure Subscription Id.
      * 
-     * @return the isDefault value.
+     * @return the subscriptionId value.
      */
-    @Override
-    public Boolean isDefault() {
-        return this.isDefault;
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     * 
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureDataLakeGen2Datastore object itself.
+     */
+    public AzureDataLakeGen2Datastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
     }
 
     /**
@@ -253,8 +238,8 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
      * {@inheritDoc}
      */
     @Override
-    public AzureDataLakeGen2Datastore withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public AzureDataLakeGen2Datastore withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -262,8 +247,8 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
      * {@inheritDoc}
      */
     @Override
-    public AzureDataLakeGen2Datastore withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public AzureDataLakeGen2Datastore withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -274,16 +259,22 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (accountName() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property accountName in model AzureDataLakeGen2Datastore"));
+        }
         if (filesystem() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property filesystem in model AzureDataLakeGen2Datastore"));
         }
-        if (accountName() == null) {
+        if (credentials() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property accountName in model AzureDataLakeGen2Datastore"));
+                    "Missing required property credentials in model AzureDataLakeGen2Datastore"));
+        } else {
+            credentials().validate();
         }
     }
 
@@ -297,17 +288,17 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("credentials", credentials());
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("filesystem", this.filesystem);
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("accountName", this.accountName);
+        jsonWriter.writeStringField("filesystem", this.filesystem);
         jsonWriter.writeStringField("datastoreType", this.datastoreType == null ? null : this.datastoreType.toString());
         jsonWriter.writeStringField("endpoint", this.endpoint);
         jsonWriter.writeStringField("protocol", this.protocol);
         jsonWriter.writeStringField("serviceDataAccessAuthIdentity",
             this.serviceDataAccessAuthIdentity == null ? null : this.serviceDataAccessAuthIdentity.toString());
-        jsonWriter.writeStringField("subscriptionId", this.subscriptionId);
         jsonWriter.writeStringField("resourceGroup", this.resourceGroup);
+        jsonWriter.writeStringField("subscriptionId", this.subscriptionId);
         return jsonWriter.writeEndObject();
     }
 
@@ -331,18 +322,18 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
                     deserializedAzureDataLakeGen2Datastore.withCredentials(DatastoreCredentials.fromJson(reader));
                 } else if ("description".equals(fieldName)) {
                     deserializedAzureDataLakeGen2Datastore.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedAzureDataLakeGen2Datastore.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedAzureDataLakeGen2Datastore.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAzureDataLakeGen2Datastore.withTags(tags);
                 } else if ("isDefault".equals(fieldName)) {
-                    deserializedAzureDataLakeGen2Datastore.isDefault = reader.getNullable(JsonReader::getBoolean);
-                } else if ("filesystem".equals(fieldName)) {
-                    deserializedAzureDataLakeGen2Datastore.filesystem = reader.getString();
+                    deserializedAzureDataLakeGen2Datastore.withIsDefault(reader.getNullable(JsonReader::getBoolean));
                 } else if ("accountName".equals(fieldName)) {
                     deserializedAzureDataLakeGen2Datastore.accountName = reader.getString();
+                } else if ("filesystem".equals(fieldName)) {
+                    deserializedAzureDataLakeGen2Datastore.filesystem = reader.getString();
                 } else if ("datastoreType".equals(fieldName)) {
                     deserializedAzureDataLakeGen2Datastore.datastoreType = DatastoreType.fromString(reader.getString());
                 } else if ("endpoint".equals(fieldName)) {
@@ -352,10 +343,10 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
                 } else if ("serviceDataAccessAuthIdentity".equals(fieldName)) {
                     deserializedAzureDataLakeGen2Datastore.serviceDataAccessAuthIdentity
                         = ServiceDataAccessAuthIdentity.fromString(reader.getString());
-                } else if ("subscriptionId".equals(fieldName)) {
-                    deserializedAzureDataLakeGen2Datastore.subscriptionId = reader.getString();
                 } else if ("resourceGroup".equals(fieldName)) {
                     deserializedAzureDataLakeGen2Datastore.resourceGroup = reader.getString();
+                } else if ("subscriptionId".equals(fieldName)) {
+                    deserializedAzureDataLakeGen2Datastore.subscriptionId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
