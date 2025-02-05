@@ -111,14 +111,14 @@ public interface Relation {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, incidentId.
+             * Specifies resourceGroupName, workspaceName, bookmarkId.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param workspaceName The name of the workspace.
-             * @param incidentId Incident ID.
+             * @param bookmarkId Bookmark ID.
              * @return the next definition stage.
              */
-            WithCreate withExistingIncident(String resourceGroupName, String workspaceName, String incidentId);
+            WithCreate withExistingBookmark(String resourceGroupName, String workspaceName, String bookmarkId);
         }
 
         /**
