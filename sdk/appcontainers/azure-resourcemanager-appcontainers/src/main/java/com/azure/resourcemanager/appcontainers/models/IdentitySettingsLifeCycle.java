@@ -8,28 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Use to select the lifecycle stages of a Container App during which the Managed Identity should be available.
+ * Use to select the lifecycle stages of a Session Pool during which the Managed Identity should be available.
  */
 public final class IdentitySettingsLifeCycle extends ExpandableStringEnum<IdentitySettingsLifeCycle> {
-    /**
-     * Static value Init for IdentitySettingsLifeCycle.
-     */
-    public static final IdentitySettingsLifeCycle INIT = fromString("Init");
-
-    /**
-     * Static value Main for IdentitySettingsLifeCycle.
-     */
-    public static final IdentitySettingsLifeCycle MAIN = fromString("Main");
-
     /**
      * Static value None for IdentitySettingsLifeCycle.
      */
     public static final IdentitySettingsLifeCycle NONE = fromString("None");
 
     /**
-     * Static value All for IdentitySettingsLifeCycle.
+     * Static value Main for IdentitySettingsLifeCycle.
      */
-    public static final IdentitySettingsLifeCycle ALL = fromString("All");
+    public static final IdentitySettingsLifeCycle MAIN = fromString("Main");
 
     /**
      * Creates a new instance of IdentitySettingsLifeCycle value.
