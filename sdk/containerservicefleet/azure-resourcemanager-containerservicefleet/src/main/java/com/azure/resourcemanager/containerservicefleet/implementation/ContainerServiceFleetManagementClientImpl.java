@@ -229,7 +229,7 @@ public final class ContainerServiceFleetManagementClientImpl implements Containe
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-05-02-preview";
+        this.apiVersion = "2025-03-01";
         this.operations = new OperationsClientImpl(this);
         this.fleets = new FleetsClientImpl(this);
         this.autoUpgradeProfiles = new AutoUpgradeProfilesClientImpl(this);
