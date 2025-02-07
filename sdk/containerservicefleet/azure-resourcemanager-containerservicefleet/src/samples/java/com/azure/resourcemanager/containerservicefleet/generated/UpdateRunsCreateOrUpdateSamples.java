@@ -20,8 +20,8 @@ import java.util.Arrays;
 public final class UpdateRunsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2024-05-02-preview/
-     * examples/UpdateRuns_CreateOrUpdate.json
+     * specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/stable/2025-03-01/examples/
+     * UpdateRuns_CreateOrUpdate.json
      */
     /**
      * Sample code: Create an UpdateRun.
