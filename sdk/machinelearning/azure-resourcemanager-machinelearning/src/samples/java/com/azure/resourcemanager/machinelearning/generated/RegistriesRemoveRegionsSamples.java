@@ -32,8 +32,8 @@ import java.util.Map;
 public final class RegistriesRemoveRegionsSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/removeRegions.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registries/removeRegions.json
      */
     /**
      * Sample code: Remove regions from registry.
