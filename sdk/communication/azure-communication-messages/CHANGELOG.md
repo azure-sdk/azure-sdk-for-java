@@ -4,12 +4,51 @@
 
 ### Features Added
 
-### Breaking Changes
+* `models.channels.WhatsAppListActionBindings` was added
 
-### Bugs Fixed
+* `models.ActionGroupItem` was added
 
-### Other Changes
+* `models.ImageMessageContent` was added
 
+* `models.ButtonSetContent` was added
+
+* `models.MessageContent` was added
+
+* `models.StickerNotificationContent` was added
+
+* `models.channels.WhatsAppUrlActionBindings` was added
+
+* `models.ActionGroup` was added
+
+* `models.InteractiveMessage` was added
+
+* `models.VideoMessageContent` was added
+
+* `models.InteractiveNotificationContent` was added
+
+* `models.ReactionNotificationContent` was added
+
+* `models.DocumentMessageContent` was added
+
+* `models.ButtonContent` was added
+
+* `models.ActionGroupContent` was added
+
+* `models.LinkContent` was added
+
+* `models.MessageContentKind` was added
+
+* `models.ActionBindings` was added
+
+* `models.MessageActionBindingKind` was added
+
+* `models.channels.WhatsAppButtonActionBindings` was added
+
+* `models.TextMessageContent` was added
+
+#### `models.channels.WhatsAppMessageTemplateItem` was modified
+
+* `getName()` was added
 
 ## 1.1.1 (2024-12-04)
 
