@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Outbound Rule for the managed network of a machine learning workspace.
@@ -25,6 +26,11 @@ public class OutboundRule implements JsonSerializable<OutboundRule> {
      * Category of a managed network Outbound Rule of a machine learning workspace.
      */
     private RuleCategory category;
+
+    /*
+     * The parentRuleNames property.
+     */
+    private List<String> parentRuleNames;
 
     /*
      * Type of a managed network Outbound Rule of a machine learning workspace.
@@ -63,6 +69,26 @@ public class OutboundRule implements JsonSerializable<OutboundRule> {
      */
     public OutboundRule withCategory(RuleCategory category) {
         this.category = category;
+        return this;
+    }
+
+    /**
+     * Get the parentRuleNames property: The parentRuleNames property.
+     * 
+     * @return the parentRuleNames value.
+     */
+    public List<String> parentRuleNames() {
+        return this.parentRuleNames;
+    }
+
+    /**
+     * Set the parentRuleNames property: The parentRuleNames property.
+     * 
+     * @param parentRuleNames the parentRuleNames value to set.
+     * @return the OutboundRule object itself.
+     */
+    OutboundRule withParentRuleNames(List<String> parentRuleNames) {
+        this.parentRuleNames = parentRuleNames;
         return this;
     }
 
@@ -130,12 +156,12 @@ public class OutboundRule implements JsonSerializable<OutboundRule> {
                     }
                 }
                 // Use the discriminator value to determine which subtype should be deserialized.
-                if ("PrivateEndpoint".equals(discriminatorValue)) {
+                if ("FQDN".equals(discriminatorValue)) {
+                    return FqdnOutboundRule.fromJson(readerToUse.reset());
+                } else if ("PrivateEndpoint".equals(discriminatorValue)) {
                     return PrivateEndpointOutboundRule.fromJson(readerToUse.reset());
                 } else if ("ServiceTag".equals(discriminatorValue)) {
                     return ServiceTagOutboundRule.fromJson(readerToUse.reset());
-                } else if ("FQDN".equals(discriminatorValue)) {
-                    return FqdnOutboundRule.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }
@@ -154,6 +180,9 @@ public class OutboundRule implements JsonSerializable<OutboundRule> {
                     deserializedOutboundRule.type = RuleType.fromString(reader.getString());
                 } else if ("category".equals(fieldName)) {
                     deserializedOutboundRule.category = RuleCategory.fromString(reader.getString());
+                } else if ("parentRuleNames".equals(fieldName)) {
+                    List<String> parentRuleNames = reader.readArray(reader1 -> reader1.getString());
+                    deserializedOutboundRule.parentRuleNames = parentRuleNames;
                 } else if ("status".equals(fieldName)) {
                     deserializedOutboundRule.status = RuleStatus.fromString(reader.getString());
                 } else {

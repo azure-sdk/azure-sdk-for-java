@@ -15,8 +15,8 @@ import java.util.Map;
 public final class RegistryModelContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/ModelContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registry/ModelContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Model Container.
