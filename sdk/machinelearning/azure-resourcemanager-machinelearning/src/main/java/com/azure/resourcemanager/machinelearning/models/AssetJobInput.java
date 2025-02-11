@@ -18,39 +18,19 @@ import java.io.IOException;
 @Fluent
 public class AssetJobInput implements JsonSerializable<AssetJobInput> {
     /*
-     * [Required] Input Asset URI.
-     */
-    private String uri;
-
-    /*
      * Input Asset Delivery Mode.
      */
     private InputDeliveryMode mode;
+
+    /*
+     * [Required] Input Asset URI.
+     */
+    private String uri;
 
     /**
      * Creates an instance of AssetJobInput class.
      */
     public AssetJobInput() {
-    }
-
-    /**
-     * Get the uri property: [Required] Input Asset URI.
-     * 
-     * @return the uri value.
-     */
-    public String uri() {
-        return this.uri;
-    }
-
-    /**
-     * Set the uri property: [Required] Input Asset URI.
-     * 
-     * @param uri the uri value to set.
-     * @return the AssetJobInput object itself.
-     */
-    public AssetJobInput withUri(String uri) {
-        this.uri = uri;
-        return this;
     }
 
     /**
@@ -70,6 +50,26 @@ public class AssetJobInput implements JsonSerializable<AssetJobInput> {
      */
     public AssetJobInput withMode(InputDeliveryMode mode) {
         this.mode = mode;
+        return this;
+    }
+
+    /**
+     * Get the uri property: [Required] Input Asset URI.
+     * 
+     * @return the uri value.
+     */
+    public String uri() {
+        return this.uri;
+    }
+
+    /**
+     * Set the uri property: [Required] Input Asset URI.
+     * 
+     * @param uri the uri value to set.
+     * @return the AssetJobInput object itself.
+     */
+    public AssetJobInput withUri(String uri) {
+        this.uri = uri;
         return this;
     }
 
