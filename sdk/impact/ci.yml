@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/impact/ci.yml
+      - sdk/impact/azure-resourcemanager-impact/
+    exclude:
+      - sdk/impact/pom.xml
+      - sdk/impact/azure-resourcemanager-impact/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/impact/ci.yml
+      - sdk/impact/azure-resourcemanager-impact/
+    exclude:
+      - sdk/impact/pom.xml
+      - sdk/impact/azure-resourcemanager-impact/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerimpact
+    displayName: azure-resourcemanager-impact
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: impact
+    Artifacts:
+      - name: azure-resourcemanager-impact
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerimpact
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerimpact }}
