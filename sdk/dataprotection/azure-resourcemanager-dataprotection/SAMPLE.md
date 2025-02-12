@@ -19,6 +19,7 @@
 - [TriggerRestore](#backupinstances_triggerrestore)
 - [ValidateCrossRegionRestore](#backupinstances_validatecrossregionrestore)
 - [ValidateForBackup](#backupinstances_validateforbackup)
+- [ValidateForModifyBackup](#backupinstances_validateformodifybackup)
 - [ValidateForRestore](#backupinstances_validateforrestore)
 
 ## BackupInstancesExtensionRouting
@@ -151,7 +152,7 @@ import com.azure.resourcemanager.dataprotection.models.TriggerBackupRequest;
 public final class BackupInstancesAdhocBackupSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/TriggerBackup.json
      */
     /**
@@ -173,11 +174,13 @@ public final class BackupInstancesAdhocBackupSamples {
 ### BackupInstances_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.dataprotection.models.AksVolumeTypes;
 import com.azure.resourcemanager.dataprotection.models.AzureOperationalStoreParameters;
 import com.azure.resourcemanager.dataprotection.models.BackupInstance;
+import com.azure.resourcemanager.dataprotection.models.DataStoreTypes;
 import com.azure.resourcemanager.dataprotection.models.Datasource;
 import com.azure.resourcemanager.dataprotection.models.DatasourceSet;
-import com.azure.resourcemanager.dataprotection.models.DataStoreTypes;
+import com.azure.resourcemanager.dataprotection.models.KubernetesClusterBackupDatasourceParameters;
 import com.azure.resourcemanager.dataprotection.models.PolicyInfo;
 import com.azure.resourcemanager.dataprotection.models.PolicyParameters;
 import com.azure.resourcemanager.dataprotection.models.SecretStoreBasedAuthCredentials;
@@ -194,7 +197,7 @@ import java.util.Map;
 public final class BackupInstancesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/PutBackupInstance.json
      */
     /**
@@ -241,7 +244,7 @@ public final class BackupInstancesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/PutBackupInstance_ResourceGuardEnabled.json
      */
     /**
@@ -289,6 +292,63 @@ public final class BackupInstancesCreateOrUpdateSamples {
             .create();
     }
 
+    /*
+     * x-ms-original-file:
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
+     * BackupInstanceOperations/PutBackupInstance_KubernetesClusterBackupDatasourceParameters.json
+     */
+    /**
+     * Sample code: Create BackupInstance With KubernetesClusterBackupDatasourceParameters.
+     * 
+     * @param manager Entry point to DataProtectionManager.
+     */
+    public static void createBackupInstanceWithKubernetesClusterBackupDatasourceParameters(
+        com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
+        manager.backupInstances()
+            .define("aksbi")
+            .withExistingBackupVault("aksrg", "aksvault")
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
+            .withProperties(new BackupInstance().withFriendlyName("aksbi")
+                .withDataSourceInfo(new Datasource().withDatasourceType("Microsoft.ContainerService/managedclusters")
+                    .withObjectType("Datasource")
+                    .withResourceId(
+                        "/subscriptions/62b829ee-7936-40c9-a1c9-47a93f9f3965/resourceGroups/aksrg/providers/Microsoft.ContainerService/managedClusters/akscluster")
+                    .withResourceLocation("eastus2euap")
+                    .withResourceName("akscluster")
+                    .withResourceType("Microsoft.ContainerService/managedclusters")
+                    .withResourceUri(
+                        "/subscriptions/62b829ee-7936-40c9-a1c9-47a93f9f3965/resourceGroups/aksrg/providers/Microsoft.ContainerService/managedClusters/akscluster"))
+                .withDataSourceSetInfo(new DatasourceSet()
+                    .withDatasourceType("Microsoft.ContainerService/managedclusters")
+                    .withObjectType("DatasourceSet")
+                    .withResourceId(
+                        "/subscriptions/62b829ee-7936-40c9-a1c9-47a93f9f3965/resourceGroups/aksrg/providers/Microsoft.ContainerService/managedClusters/akscluster")
+                    .withResourceLocation("eastus2euap")
+                    .withResourceName("akscluster")
+                    .withResourceType("Microsoft.ContainerService/managedclusters")
+                    .withResourceUri(
+                        "/subscriptions/62b829ee-7936-40c9-a1c9-47a93f9f3965/resourceGroups/aksrg/providers/Microsoft.ContainerService/managedClusters/akscluster"))
+                .withPolicyInfo(new PolicyInfo().withPolicyId(
+                    "/subscriptions/62b829ee-7936-40c9-a1c9-47a93f9f3965/resourcegroups/aksrg/providers/Microsoft.DataProtection/BackupVaults/aksvault/backupPolicies/akspolicy")
+                    .withPolicyParameters(new PolicyParameters()
+                        .withDataStoreParametersList(Arrays.asList(
+                            new AzureOperationalStoreParameters().withDataStoreType(DataStoreTypes.OPERATIONAL_STORE)
+                                .withResourceGroupId(
+                                    "/subscriptions/62b829ee-7936-40c9-a1c9-47a93f9f3965/resourceGroups/aksrg")))
+                        .withBackupDatasourceParametersList(
+                            Arrays.asList(new KubernetesClusterBackupDatasourceParameters().withSnapshotVolumes(true)
+                                .withIncludedVolumeTypes(
+                                    Arrays.asList(AksVolumeTypes.AZURE_DISK, AksVolumeTypes.AZURE_FILE_SHARE_SMB))
+                                .withIncludeClusterScopeResources(true)
+                                .withIncludedNamespaces(Arrays.asList("test"))
+                                .withExcludedNamespaces(Arrays.asList("kube-system"))
+                                .withIncludedResourceTypes(Arrays.asList())
+                                .withExcludedResourceTypes(Arrays.asList("v1/Secret"))
+                                .withLabelSelectors(Arrays.asList())))))
+                .withObjectType("BackupInstance"))
+            .create();
+    }
+
     // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
@@ -312,7 +372,7 @@ public final class BackupInstancesCreateOrUpdateSamples {
 public final class BackupInstancesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/DeleteBackupInstance.json
      */
     /**
@@ -336,7 +396,7 @@ public final class BackupInstancesDeleteSamples {
 public final class BackupInstancesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/GetBackupInstance.json
      */
     /**
@@ -361,7 +421,7 @@ public final class BackupInstancesGetSamples {
 public final class BackupInstancesGetBackupInstanceOperationResultSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/GetBackupInstanceOperationResult.json
      */
     /**
@@ -388,7 +448,7 @@ public final class BackupInstancesGetBackupInstanceOperationResultSamples {
 public final class BackupInstancesListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/ListBackupInstances.json
      */
     /**
@@ -412,7 +472,7 @@ public final class BackupInstancesListSamples {
 public final class BackupInstancesResumeBackupsSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/ResumeBackups.json
      */
     /**
@@ -435,7 +495,7 @@ public final class BackupInstancesResumeBackupsSamples {
 public final class BackupInstancesResumeProtectionSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/ResumeProtection.json
      */
     /**
@@ -461,7 +521,7 @@ import java.util.Arrays;
 public final class BackupInstancesStopProtectionSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/StopProtection.json
      */
     /**
@@ -476,7 +536,7 @@ public final class BackupInstancesStopProtectionSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/StopProtection_ResourceGuardEnabled.json
      */
     /**
@@ -506,7 +566,7 @@ import java.util.Arrays;
 public final class BackupInstancesSuspendBackupsSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/SuspendBackups.json
      */
     /**
@@ -521,7 +581,7 @@ public final class BackupInstancesSuspendBackupsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/SuspendBackup_ResourceGuardEnabled.json
      */
     /**
@@ -551,7 +611,7 @@ import com.azure.resourcemanager.dataprotection.models.SyncType;
 public final class BackupInstancesSyncBackupInstanceSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/SyncBackupInstance.json
      */
     /**
@@ -588,7 +648,7 @@ import com.azure.resourcemanager.dataprotection.models.SourceDataStoreType;
 public final class BackupInstancesTriggerCrossRegionRestoreSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * CrossRegionRestore/TriggerCrossRegionRestore.json
      */
     /**
@@ -648,7 +708,7 @@ import com.azure.resourcemanager.dataprotection.models.RehydrationPriority;
 public final class BackupInstancesTriggerRehydrateSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/TriggerRehydrate.json
      */
     /**
@@ -691,7 +751,7 @@ import com.azure.resourcemanager.dataprotection.models.TargetDetails;
 public final class BackupInstancesTriggerRestoreSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/TriggerRestoreAsFiles.json
      */
     /**
@@ -718,7 +778,7 @@ public final class BackupInstancesTriggerRestoreSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/TriggerRestoreWithRehydration.json
      */
     /**
@@ -760,7 +820,7 @@ public final class BackupInstancesTriggerRestoreSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/TriggerRestore.json
      */
     /**
@@ -825,7 +885,7 @@ import com.azure.resourcemanager.dataprotection.models.ValidateCrossRegionRestor
 public final class BackupInstancesValidateCrossRegionRestoreSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * CrossRegionRestore/ValidateCrossRegionRestore.json
      */
     /**
@@ -891,7 +951,7 @@ import com.azure.resourcemanager.dataprotection.models.ValidateForBackupRequest;
 public final class BackupInstancesValidateForBackupSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/ValidateForBackup.json
      */
     /**
@@ -903,6 +963,64 @@ public final class BackupInstancesValidateForBackupSamples {
         manager.backupInstances()
             .validateForBackup("000pikumar", "PratikPrivatePreviewVault1",
                 new ValidateForBackupRequest().withBackupInstance(new BackupInstance().withFriendlyName("harshitbi2")
+                    .withDataSourceInfo(new Datasource().withDatasourceType("OssDB")
+                        .withObjectType("Datasource")
+                        .withResourceId(
+                            "/subscriptions/f75d8d8b-6735-4697-82e1-1a7a3ff0d5d4/resourceGroups/viveksipgtest/providers/Microsoft.DBforPostgreSQL/servers/viveksipgtest/databases/testdb")
+                        .withResourceLocation("")
+                        .withResourceName("testdb")
+                        .withResourceType("Microsoft.DBforPostgreSQL/servers/databases")
+                        .withResourceUri(""))
+                    .withDataSourceSetInfo(new DatasourceSet().withDatasourceType("OssDB")
+                        .withObjectType("DatasourceSet")
+                        .withResourceId(
+                            "/subscriptions/f75d8d8b-6735-4697-82e1-1a7a3ff0d5d4/resourceGroups/viveksipgtest/providers/Microsoft.DBforPostgreSQL/servers/viveksipgtest")
+                        .withResourceLocation("")
+                        .withResourceName("viveksipgtest")
+                        .withResourceType("Microsoft.DBforPostgreSQL/servers")
+                        .withResourceUri(""))
+                    .withPolicyInfo(new PolicyInfo().withPolicyId(
+                        "/subscriptions/04cf684a-d41f-4550-9f70-7708a3a2283b/resourceGroups/000pikumar/providers/Microsoft.DataProtection/Backupvaults/PratikPrivatePreviewVault1/backupPolicies/PratikPolicy1"))
+                    .withDatasourceAuthCredentials(new SecretStoreBasedAuthCredentials().withSecretStoreResource(
+                        new SecretStoreResource().withUri("https://samplevault.vault.azure.net/secrets/credentials")
+                            .withSecretStoreType(SecretStoreType.AZURE_KEY_VAULT)))
+                    .withObjectType("BackupInstance")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BackupInstances_ValidateForModifyBackup
+
+```java
+import com.azure.resourcemanager.dataprotection.models.BackupInstance;
+import com.azure.resourcemanager.dataprotection.models.Datasource;
+import com.azure.resourcemanager.dataprotection.models.DatasourceSet;
+import com.azure.resourcemanager.dataprotection.models.PolicyInfo;
+import com.azure.resourcemanager.dataprotection.models.SecretStoreBasedAuthCredentials;
+import com.azure.resourcemanager.dataprotection.models.SecretStoreResource;
+import com.azure.resourcemanager.dataprotection.models.SecretStoreType;
+import com.azure.resourcemanager.dataprotection.models.ValidateForModifyBackupRequest;
+
+/**
+ * Samples for BackupInstances ValidateForModifyBackup.
+ */
+public final class BackupInstancesValidateForModifyBackupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
+     * BackupInstanceOperations/ValidateForModifyBackup.json
+     */
+    /**
+     * Sample code: Validate For Modify Backup.
+     * 
+     * @param manager Entry point to DataProtectionManager.
+     */
+    public static void validateForModifyBackup(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
+        manager.backupInstances()
+            .validateForModifyBackup("000pikumar", "PratikPrivatePreviewVault1", "testInstance1",
+                new ValidateForModifyBackupRequest().withBackupInstance(new BackupInstance()
+                    .withFriendlyName("harshitbi2")
                     .withDataSourceInfo(new Datasource().withDatasourceType("OssDB")
                         .withObjectType("Datasource")
                         .withResourceId(
@@ -950,7 +1068,7 @@ import com.azure.resourcemanager.dataprotection.models.ValidateRestoreRequestObj
 public final class BackupInstancesValidateForRestoreSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/ValidateRestore.json
      */
     /**
@@ -1004,7 +1122,7 @@ public final class BackupInstancesValidateForRestoreSamples {
 public final class BackupInstancesExtensionRoutingListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/ListBackupInstancesExtensionRouting.json
      */
     /**
@@ -1048,7 +1166,7 @@ import java.util.Arrays;
 public final class BackupPoliciesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/PolicyCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/PolicyCRUD/
      * CreateOrUpdateBackupPolicy.json
      */
     /**
@@ -1121,7 +1239,7 @@ public final class BackupPoliciesCreateOrUpdateSamples {
 public final class BackupPoliciesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/PolicyCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/PolicyCRUD/
      * DeleteBackupPolicy.json
      */
     /**
@@ -1145,7 +1263,7 @@ public final class BackupPoliciesDeleteSamples {
 public final class BackupPoliciesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/PolicyCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/PolicyCRUD/
      * GetBackupPolicy.json
      */
     /**
@@ -1169,7 +1287,7 @@ public final class BackupPoliciesGetSamples {
 public final class BackupPoliciesListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/PolicyCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/PolicyCRUD/
      * ListBackupPolicy.json
      */
     /**
@@ -1192,7 +1310,7 @@ public final class BackupPoliciesListSamples {
 public final class BackupVaultOperationResultsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * GetOperationResultPatch.json
      */
     /**
@@ -1220,7 +1338,7 @@ import com.azure.resourcemanager.dataprotection.models.CheckNameAvailabilityRequ
 public final class BackupVaultsCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * CheckBackupVaultsNameAvailability.json
      */
     /**
@@ -1274,7 +1392,7 @@ import java.util.Map;
 public final class BackupVaultsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * PutBackupVault.json
      */
     /**
@@ -1305,7 +1423,7 @@ public final class BackupVaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * PutBackupVaultWithCMK.json
      */
     /**
@@ -1342,7 +1460,7 @@ public final class BackupVaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * PutBackupVaultWithMSI.json
      */
     /**
@@ -1395,7 +1513,7 @@ public final class BackupVaultsCreateOrUpdateSamples {
 public final class BackupVaultsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * DeleteBackupVault.json
      */
     /**
@@ -1418,7 +1536,7 @@ public final class BackupVaultsDeleteSamples {
 public final class BackupVaultsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * GetBackupVault.json
      */
     /**
@@ -1433,7 +1551,7 @@ public final class BackupVaultsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * GetBackupVaultWithMSI.json
      */
     /**
@@ -1448,7 +1566,7 @@ public final class BackupVaultsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * GetBackupVaultWithCMK.json
      */
     /**
@@ -1472,7 +1590,7 @@ public final class BackupVaultsGetByResourceGroupSamples {
 public final class BackupVaultsListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * GetBackupVaultsInSubscription.json
      */
     /**
@@ -1496,7 +1614,7 @@ public final class BackupVaultsListSamples {
 public final class BackupVaultsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * GetBackupVaultsInResourceGroup.json
      */
     /**
@@ -1539,7 +1657,7 @@ import java.util.Map;
 public final class BackupVaultsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * PatchBackupVault.json
      */
     /**
@@ -1561,7 +1679,7 @@ public final class BackupVaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/VaultCRUD/
      * PatchBackupVaultWithCMK.json
      */
     /**
@@ -1615,7 +1733,7 @@ import com.azure.resourcemanager.dataprotection.models.FeatureValidationRequest;
 public final class DataProtectionCheckFeatureSupportSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * CheckfeatureSupport.json
      */
     /**
@@ -1642,7 +1760,7 @@ public final class DataProtectionCheckFeatureSupportSamples {
 public final class DataProtectionOperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/Operations/List
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/Operations/List
      * .json
      */
     /**
@@ -1666,7 +1784,7 @@ public final class DataProtectionOperationsListSamples {
 public final class DeletedBackupInstancesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * DeletedBackupInstanceOperations/GetDeletedBackupInstance.json
      */
     /**
@@ -1692,7 +1810,7 @@ public final class DeletedBackupInstancesGetSamples {
 public final class DeletedBackupInstancesListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * DeletedBackupInstanceOperations/ListDeletedBackupInstances.json
      */
     /**
@@ -1717,7 +1835,7 @@ public final class DeletedBackupInstancesListSamples {
 public final class DeletedBackupInstancesUndeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * DeletedBackupInstanceOperations/UndeleteDeletedBackupInstance.json
      */
     /**
@@ -1743,7 +1861,7 @@ import com.azure.resourcemanager.dataprotection.models.ResourceGuardProxyBase;
 public final class DppResourceGuardProxyCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardProxyCRUD/PutResourceGuardProxy.json
      */
     /**
@@ -1772,7 +1890,7 @@ public final class DppResourceGuardProxyCreateOrUpdateSamples {
 public final class DppResourceGuardProxyDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardProxyCRUD/DeleteResourceGuardProxy.json
      */
     /**
@@ -1798,7 +1916,7 @@ public final class DppResourceGuardProxyDeleteSamples {
 public final class DppResourceGuardProxyGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardProxyCRUD/GetResourceGuardProxy.json
      */
     /**
@@ -1822,7 +1940,7 @@ public final class DppResourceGuardProxyGetSamples {
 public final class DppResourceGuardProxyListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardProxyCRUD/ListResourceGuardProxy.json
      */
     /**
@@ -1848,7 +1966,7 @@ import java.util.Arrays;
 public final class DppResourceGuardProxyUnlockDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardProxyCRUD/UnlockDeleteResourceGuardProxy.json
      */
     /**
@@ -1878,7 +1996,7 @@ public final class DppResourceGuardProxyUnlockDeleteSamples {
 public final class ExportJobsTriggerSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/JobCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/JobCRUD/
      * TriggerExportJobs.json
      */
     /**
@@ -1901,7 +2019,7 @@ public final class ExportJobsTriggerSamples {
 public final class ExportJobsOperationResultGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/JobCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/JobCRUD/
      * GetExportJobsOperationResult.json
      */
     /**
@@ -1929,7 +2047,7 @@ import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreJobRequ
 public final class FetchCrossRegionRestoreJobGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * CrossRegionRestore/FetchCrossRegionRestoreJob.json
      */
     /**
@@ -1959,7 +2077,7 @@ import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreJobsReq
 public final class FetchCrossRegionRestoreJobsOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * CrossRegionRestore/FetchCrossRegionRestoreJobs.json
      */
     /**
@@ -1989,7 +2107,7 @@ import com.azure.resourcemanager.dataprotection.models.FetchSecondaryRPsRequestP
 public final class FetchSecondaryRecoveryPointsListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * CrossRegionRestore/FetchSecondaryRPs.json
      */
     /**
@@ -2016,7 +2134,7 @@ public final class FetchSecondaryRecoveryPointsListSamples {
 public final class JobsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/JobCRUD/GetJob.
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/JobCRUD/GetJob.
      * json
      */
     /**
@@ -2041,7 +2159,7 @@ public final class JobsGetSamples {
 public final class JobsListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/JobCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/JobCRUD/
      * ListJobs.json
      */
     /**
@@ -2064,7 +2182,7 @@ public final class JobsListSamples {
 public final class OperationResultGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * GetOperationResult.json
      */
     /**
@@ -2090,7 +2208,7 @@ public final class OperationResultGetSamples {
 public final class OperationStatusGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * GetOperationStatus.json
      */
     /**
@@ -2116,7 +2234,7 @@ public final class OperationStatusGetSamples {
 public final class OperationStatusBackupVaultContextGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * GetOperationStatusVaultContext.json
      */
     /**
@@ -2142,7 +2260,7 @@ public final class OperationStatusBackupVaultContextGetSamples {
 public final class OperationStatusResourceGroupContextGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * GetOperationStatusRGContext.json
      */
     /**
@@ -2168,7 +2286,7 @@ public final class OperationStatusResourceGroupContextGetByResourceGroupSamples 
 public final class RecoveryPointsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/GetRecoveryPoint.json
      */
     /**
@@ -2193,7 +2311,7 @@ public final class RecoveryPointsGetSamples {
 public final class RecoveryPointsListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/ListRecoveryPoints.json
      */
     /**
@@ -2219,7 +2337,7 @@ public final class RecoveryPointsListSamples {
 public final class ResourceGuardsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/DeleteResourceGuard.json
      */
     /**
@@ -2244,7 +2362,7 @@ public final class ResourceGuardsDeleteSamples {
 public final class ResourceGuardsGetBackupSecurityPinRequestsObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/ListBackupSecurityPINRequests.json
      */
     /**
@@ -2270,7 +2388,7 @@ public final class ResourceGuardsGetBackupSecurityPinRequestsObjectsSamples {
 public final class ResourceGuardsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetResourceGuard.json
      */
     /**
@@ -2294,7 +2412,7 @@ public final class ResourceGuardsGetByResourceGroupSamples {
 public final class ResourceGuardsGetDefaultBackupSecurityPinRequestsObjectSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetDefaultBackupSecurityPINRequests.json
      */
     /**
@@ -2320,7 +2438,7 @@ public final class ResourceGuardsGetDefaultBackupSecurityPinRequestsObjectSample
 public final class ResourceGuardsGetDefaultDeleteProtectedItemRequestsObjectSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetDefaultDeleteProtectedItemRequests.json
      */
     /**
@@ -2346,7 +2464,7 @@ public final class ResourceGuardsGetDefaultDeleteProtectedItemRequestsObjectSamp
 public final class ResourceGuardsGetDefaultDeleteResourceGuardProxyRequestsObjectSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetDefaultDeleteResourceGuardProxyRequests.json
      */
     /**
@@ -2372,7 +2490,7 @@ public final class ResourceGuardsGetDefaultDeleteResourceGuardProxyRequestsObjec
 public final class ResourceGuardsGetDefaultDisableSoftDeleteRequestsObjectSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetDefaultDisableSoftDeleteRequests.json
      */
     /**
@@ -2398,7 +2516,7 @@ public final class ResourceGuardsGetDefaultDisableSoftDeleteRequestsObjectSample
 public final class ResourceGuardsGetDefaultUpdateProtectedItemRequestsObjectSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetDefaultUpdateProtectedItemRequests.json
      */
     /**
@@ -2424,7 +2542,7 @@ public final class ResourceGuardsGetDefaultUpdateProtectedItemRequestsObjectSamp
 public final class ResourceGuardsGetDefaultUpdateProtectionPolicyRequestsObjectSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetDefaultUpdateProtectionPolicyRequests.json
      */
     /**
@@ -2450,7 +2568,7 @@ public final class ResourceGuardsGetDefaultUpdateProtectionPolicyRequestsObjectS
 public final class ResourceGuardsGetDeleteProtectedItemRequestsObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/ListDeleteProtectedItemRequests.json
      */
     /**
@@ -2476,7 +2594,7 @@ public final class ResourceGuardsGetDeleteProtectedItemRequestsObjectsSamples {
 public final class ResourceGuardsGetDeleteResourceGuardProxyRequestsObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/ListDeleteResourceGuardProxyRequests.json
      */
     /**
@@ -2502,7 +2620,7 @@ public final class ResourceGuardsGetDeleteResourceGuardProxyRequestsObjectsSampl
 public final class ResourceGuardsGetDisableSoftDeleteRequestsObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/ListDisableSoftDeleteRequests.json
      */
     /**
@@ -2528,7 +2646,7 @@ public final class ResourceGuardsGetDisableSoftDeleteRequestsObjectsSamples {
 public final class ResourceGuardsGetUpdateProtectedItemRequestsObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/ListUpdateProtectedItemRequests.json
      */
     /**
@@ -2554,7 +2672,7 @@ public final class ResourceGuardsGetUpdateProtectedItemRequestsObjectsSamples {
 public final class ResourceGuardsGetUpdateProtectionPolicyRequestsObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/ListUpdateProtectionPolicyRequests.json
      */
     /**
@@ -2580,7 +2698,7 @@ public final class ResourceGuardsGetUpdateProtectionPolicyRequestsObjectsSamples
 public final class ResourceGuardsListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetResourceGuardsInSubscription.json
      */
     /**
@@ -2604,7 +2722,7 @@ public final class ResourceGuardsListSamples {
 public final class ResourceGuardsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/GetResourceGuardsInResourceGroup.json
      */
     /**
@@ -2632,7 +2750,7 @@ import java.util.Map;
 public final class ResourceGuardsPatchSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/PatchResourceGuard.json
      */
     /**
@@ -2673,7 +2791,7 @@ import java.util.Map;
 public final class ResourceGuardsPutSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * ResourceGuardCRUD/PutResourceGuard.json
      */
     /**
@@ -2716,7 +2834,7 @@ import com.azure.resourcemanager.dataprotection.models.RestoreSourceDataStoreTyp
 public final class RestorableTimeRangesFindSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
      * BackupInstanceOperations/FindRestorableTimeRanges.json
      */
     /**
