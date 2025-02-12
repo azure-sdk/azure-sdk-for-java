@@ -69,7 +69,6 @@ public final class IdAssetReference extends AssetReferenceBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (assetId() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property assetId in model IdAssetReference"));
