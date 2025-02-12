@@ -27,22 +27,27 @@ public final class AcsMessageInteractiveContent implements JsonSerializable<AcsM
      * The Message Sent when a customer clicks a button
      */
     @Generated
-    private AcsMessageInteractiveButtonReplyContent buttonReply;
+    private final AcsMessageInteractiveButtonReplyContent buttonReply;
 
     /*
      * The Message Sent when a customer selects an item from a list
      */
     @Generated
-    private AcsMessageInteractiveListReplyContent listReply;
+    private final AcsMessageInteractiveListReplyContent listReply;
 
     /**
      * Creates an instance of AcsMessageInteractiveContent class.
      * 
      * @param replyKind the replyKind value to set.
+     * @param buttonReply the buttonReply value to set.
+     * @param listReply the listReply value to set.
      */
     @Generated
-    private AcsMessageInteractiveContent(AcsInteractiveReplyKind replyKind) {
+    private AcsMessageInteractiveContent(AcsInteractiveReplyKind replyKind,
+        AcsMessageInteractiveButtonReplyContent buttonReply, AcsMessageInteractiveListReplyContent listReply) {
         this.replyKind = replyKind;
+        this.buttonReply = buttonReply;
+        this.listReply = listReply;
     }
 
     /**
@@ -117,12 +122,7 @@ public final class AcsMessageInteractiveContent implements JsonSerializable<AcsM
                     reader.skipChildren();
                 }
             }
-            AcsMessageInteractiveContent deserializedAcsMessageInteractiveContent
-                = new AcsMessageInteractiveContent(replyKind);
-            deserializedAcsMessageInteractiveContent.buttonReply = buttonReply;
-            deserializedAcsMessageInteractiveContent.listReply = listReply;
-
-            return deserializedAcsMessageInteractiveContent;
+            return new AcsMessageInteractiveContent(replyKind, buttonReply, listReply);
         });
     }
 }
