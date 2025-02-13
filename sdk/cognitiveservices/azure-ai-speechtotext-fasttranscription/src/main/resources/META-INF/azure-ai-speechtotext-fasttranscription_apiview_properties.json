@@ -1,0 +1,21 @@
+{
+  "flavor": "azure", 
+  "CrossLanguageDefinitionId": {
+    "com.azure.ai.speechtotext.fasttranscription.SpeechToTextAsyncClient": "SpeechToText.FastTranscription",
+    "com.azure.ai.speechtotext.fasttranscription.SpeechToTextAsyncClient.transcribe": "SpeechToText.FastTranscription.transcribe",
+    "com.azure.ai.speechtotext.fasttranscription.SpeechToTextAsyncClient.transcribeWithResponse": "SpeechToText.FastTranscription.transcribe",
+    "com.azure.ai.speechtotext.fasttranscription.SpeechToTextClient": "SpeechToText.FastTranscription",
+    "com.azure.ai.speechtotext.fasttranscription.SpeechToTextClient.transcribe": "SpeechToText.FastTranscription.transcribe",
+    "com.azure.ai.speechtotext.fasttranscription.SpeechToTextClient.transcribeWithResponse": "SpeechToText.FastTranscription.transcribe",
+    "com.azure.ai.speechtotext.fasttranscription.SpeechToTextClientBuilder": "SpeechToText",
+    "com.azure.ai.speechtotext.fasttranscription.implementation.models.TranscribeRequest": "SpeechToText.FastTranscription.transcribe.Request.anonymous",
+    "com.azure.ai.speechtotext.fasttranscription.models.AudioFileDetails": null,
+    "com.azure.ai.speechtotext.fasttranscription.models.ChannelCombinedPhrases": "SpeechToText.ChannelCombinedPhrases",
+    "com.azure.ai.speechtotext.fasttranscription.models.Phrase": "SpeechToText.Phrase",
+    "com.azure.ai.speechtotext.fasttranscription.models.ProfanityFilterMode": "SpeechToText.ProfanityFilterMode",
+    "com.azure.ai.speechtotext.fasttranscription.models.TranscribeDefinition": "SpeechToText.TranscribeDefinition",
+    "com.azure.ai.speechtotext.fasttranscription.models.TranscribeDiarizationProperties": "SpeechToText.TranscribeDiarizationProperties",
+    "com.azure.ai.speechtotext.fasttranscription.models.TranscribeResult": "SpeechToText.TranscribeResult",
+    "com.azure.ai.speechtotext.fasttranscription.models.Word": "SpeechToText.Word"
+  }
+}
