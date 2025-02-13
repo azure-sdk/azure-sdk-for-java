@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/cognitivelanguage/ci.yml
+      - sdk/cognitivelanguage/azure-ai-language-conversations-authoring/
+    exclude:
+      - sdk/cognitivelanguage/pom.xml
+      - sdk/cognitivelanguage/azure-ai-language-conversations-authoring/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/cognitivelanguage/ci.yml
+      - sdk/cognitivelanguage/azure-ai-language-conversations-authoring/
+    exclude:
+      - sdk/cognitivelanguage/pom.xml
+      - sdk/cognitivelanguage/azure-ai-language-conversations-authoring/pom.xml
+
+parameters:
+  - name: release_azureailanguageconversationsauthoring
+    displayName: azure-ai-language-conversations-authoring
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: cognitivelanguage
+    Artifacts:
+      - name: azure-ai-language-conversations-authoring
+        groupId: com.azure
+        safeName: azureailanguageconversationsauthoring
+        releaseInBatch: ${{ parameters.release_azureailanguageconversationsauthoring }}
