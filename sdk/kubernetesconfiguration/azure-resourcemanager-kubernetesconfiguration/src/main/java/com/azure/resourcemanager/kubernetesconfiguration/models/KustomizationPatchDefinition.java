@@ -62,7 +62,7 @@ public final class KustomizationPatchDefinition implements JsonSerializable<Kust
     /*
      * Used for variable substitution for this Kustomization after kustomize build.
      */
-    private PostBuildDefinition postBuild;
+    private PostBuildPatchDefinition postBuild;
 
     /**
      * Creates an instance of KustomizationPatchDefinition class.
@@ -243,7 +243,7 @@ public final class KustomizationPatchDefinition implements JsonSerializable<Kust
      * 
      * @return the postBuild value.
      */
-    public PostBuildDefinition postBuild() {
+    public PostBuildPatchDefinition postBuild() {
         return this.postBuild;
     }
 
@@ -253,7 +253,7 @@ public final class KustomizationPatchDefinition implements JsonSerializable<Kust
      * @param postBuild the postBuild value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
-    public KustomizationPatchDefinition withPostBuild(PostBuildDefinition postBuild) {
+    public KustomizationPatchDefinition withPostBuild(PostBuildPatchDefinition postBuild) {
         this.postBuild = postBuild;
         return this;
     }
@@ -322,7 +322,7 @@ public final class KustomizationPatchDefinition implements JsonSerializable<Kust
                 } else if ("wait".equals(fieldName)) {
                     deserializedKustomizationPatchDefinition.enableWait = reader.getNullable(JsonReader::getBoolean);
                 } else if ("postBuild".equals(fieldName)) {
-                    deserializedKustomizationPatchDefinition.postBuild = PostBuildDefinition.fromJson(reader);
+                    deserializedKustomizationPatchDefinition.postBuild = PostBuildPatchDefinition.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
