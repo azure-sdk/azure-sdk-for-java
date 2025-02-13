@@ -15,7 +15,7 @@ import com.azure.resourcemanager.digitaltwins.models.RecordPropertyAndItemRemova
 public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * TimeSeriesDatabaseConnectionsPut_example.json
      */
     /**
@@ -45,7 +45,7 @@ public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * TimeSeriesDatabaseConnectionsPut_WithUserIdentity_example.json
      */
     /**

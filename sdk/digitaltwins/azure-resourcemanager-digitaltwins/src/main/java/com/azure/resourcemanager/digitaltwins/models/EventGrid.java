@@ -11,7 +11,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Properties related to EventGrid.
@@ -24,29 +23,19 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     private EndpointType endpointType = EndpointType.EVENT_GRID;
 
     /*
-     * EventGrid Topic Endpoint.
+     * EventGrid Topic Endpoint for key-based or identity-based authentication.
      */
     private String topicEndpoint;
 
     /*
-     * EventGrid secondary accesskey. Will be obfuscated during read.
+     * EventGrid primary accesskey for key-based authentication. Will be obfuscated during read.
      */
     private String accessKey1;
 
     /*
-     * EventGrid secondary accesskey. Will be obfuscated during read.
+     * EventGrid secondary accesskey for key-based authentication. Will be obfuscated during read.
      */
     private String accessKey2;
-
-    /*
-     * Time when the Endpoint was added to DigitalTwinsInstance.
-     */
-    private OffsetDateTime createdTime;
-
-    /*
-     * The provisioning state.
-     */
-    private EndpointProvisioningState provisioningState;
 
     /**
      * Creates an instance of EventGrid class.
@@ -65,7 +54,7 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     }
 
     /**
-     * Get the topicEndpoint property: EventGrid Topic Endpoint.
+     * Get the topicEndpoint property: EventGrid Topic Endpoint for key-based or identity-based authentication.
      * 
      * @return the topicEndpoint value.
      */
@@ -74,7 +63,7 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     }
 
     /**
-     * Set the topicEndpoint property: EventGrid Topic Endpoint.
+     * Set the topicEndpoint property: EventGrid Topic Endpoint for key-based or identity-based authentication.
      * 
      * @param topicEndpoint the topicEndpoint value to set.
      * @return the EventGrid object itself.
@@ -85,7 +74,8 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     }
 
     /**
-     * Get the accessKey1 property: EventGrid secondary accesskey. Will be obfuscated during read.
+     * Get the accessKey1 property: EventGrid primary accesskey for key-based authentication. Will be obfuscated during
+     * read.
      * 
      * @return the accessKey1 value.
      */
@@ -94,7 +84,8 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     }
 
     /**
-     * Set the accessKey1 property: EventGrid secondary accesskey. Will be obfuscated during read.
+     * Set the accessKey1 property: EventGrid primary accesskey for key-based authentication. Will be obfuscated during
+     * read.
      * 
      * @param accessKey1 the accessKey1 value to set.
      * @return the EventGrid object itself.
@@ -105,7 +96,8 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     }
 
     /**
-     * Get the accessKey2 property: EventGrid secondary accesskey. Will be obfuscated during read.
+     * Get the accessKey2 property: EventGrid secondary accesskey for key-based authentication. Will be obfuscated
+     * during read.
      * 
      * @return the accessKey2 value.
      */
@@ -114,7 +106,8 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     }
 
     /**
-     * Set the accessKey2 property: EventGrid secondary accesskey. Will be obfuscated during read.
+     * Set the accessKey2 property: EventGrid secondary accesskey for key-based authentication. Will be obfuscated
+     * during read.
      * 
      * @param accessKey2 the accessKey2 value to set.
      * @return the EventGrid object itself.
@@ -122,26 +115,6 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     public EventGrid withAccessKey2(String accessKey2) {
         this.accessKey2 = accessKey2;
         return this;
-    }
-
-    /**
-     * Get the createdTime property: Time when the Endpoint was added to DigitalTwinsInstance.
-     * 
-     * @return the createdTime value.
-     */
-    @Override
-    public OffsetDateTime createdTime() {
-        return this.createdTime;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public EndpointProvisioningState provisioningState() {
-        return this.provisioningState;
     }
 
     /**
@@ -191,10 +164,6 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property topicEndpoint in model EventGrid"));
         }
-        if (accessKey1() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property accessKey1 in model EventGrid"));
-        }
         if (identity() != null) {
             identity().validate();
         }
@@ -214,8 +183,8 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
         jsonWriter.writeStringField("deadLetterUri", deadLetterUri());
         jsonWriter.writeJsonField("identity", identity());
         jsonWriter.writeStringField("TopicEndpoint", this.topicEndpoint);
-        jsonWriter.writeStringField("accessKey1", this.accessKey1);
         jsonWriter.writeStringField("endpointType", this.endpointType == null ? null : this.endpointType.toString());
+        jsonWriter.writeStringField("accessKey1", this.accessKey1);
         jsonWriter.writeStringField("accessKey2", this.accessKey2);
         return jsonWriter.writeEndObject();
     }
@@ -237,10 +206,11 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedEventGrid.provisioningState = EndpointProvisioningState.fromString(reader.getString());
+                    deserializedEventGrid
+                        .withProvisioningState(EndpointProvisioningState.fromString(reader.getString()));
                 } else if ("createdTime".equals(fieldName)) {
-                    deserializedEventGrid.createdTime = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedEventGrid.withCreatedTime(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("authenticationType".equals(fieldName)) {
                     deserializedEventGrid.withAuthenticationType(AuthenticationType.fromString(reader.getString()));
                 } else if ("deadLetterSecret".equals(fieldName)) {
@@ -251,10 +221,10 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
                     deserializedEventGrid.withIdentity(ManagedIdentityReference.fromJson(reader));
                 } else if ("TopicEndpoint".equals(fieldName)) {
                     deserializedEventGrid.topicEndpoint = reader.getString();
-                } else if ("accessKey1".equals(fieldName)) {
-                    deserializedEventGrid.accessKey1 = reader.getString();
                 } else if ("endpointType".equals(fieldName)) {
                     deserializedEventGrid.endpointType = EndpointType.fromString(reader.getString());
+                } else if ("accessKey1".equals(fieldName)) {
+                    deserializedEventGrid.accessKey1 = reader.getString();
                 } else if ("accessKey2".equals(fieldName)) {
                     deserializedEventGrid.accessKey2 = reader.getString();
                 } else {

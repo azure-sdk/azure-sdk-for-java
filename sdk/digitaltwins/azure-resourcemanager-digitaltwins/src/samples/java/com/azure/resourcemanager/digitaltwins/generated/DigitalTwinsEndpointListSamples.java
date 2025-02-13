@@ -10,7 +10,7 @@ package com.azure.resourcemanager.digitaltwins.generated;
 public final class DigitalTwinsEndpointListSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointsGet_example.json
      */
     /**
@@ -25,7 +25,7 @@ public final class DigitalTwinsEndpointListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointsGet_WithIdentity_example.json
      */
     /**

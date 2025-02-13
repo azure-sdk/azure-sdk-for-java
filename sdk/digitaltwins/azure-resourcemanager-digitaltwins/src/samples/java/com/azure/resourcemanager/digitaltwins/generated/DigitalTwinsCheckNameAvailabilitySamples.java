@@ -12,7 +12,7 @@ import com.azure.resourcemanager.digitaltwins.models.CheckNameRequest;
 public final class DigitalTwinsCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsCheckNameAvailability_example.json
      */
     /**

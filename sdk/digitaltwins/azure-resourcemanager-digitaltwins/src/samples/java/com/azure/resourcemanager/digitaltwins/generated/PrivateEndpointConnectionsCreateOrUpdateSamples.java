@@ -15,7 +15,7 @@ import com.azure.resourcemanager.digitaltwins.models.PrivateLinkServiceConnectio
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * PrivateEndpointConnectionPut_example.json
      */
     /**

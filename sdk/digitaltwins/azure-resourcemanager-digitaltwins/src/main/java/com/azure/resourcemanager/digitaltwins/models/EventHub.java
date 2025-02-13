@@ -10,7 +10,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Properties related to EventHub.
@@ -41,16 +40,6 @@ public final class EventHub extends DigitalTwinsEndpointResourceProperties {
      * The EventHub name in the EventHub namespace for identity-based authentication.
      */
     private String entityPath;
-
-    /*
-     * Time when the Endpoint was added to DigitalTwinsInstance.
-     */
-    private OffsetDateTime createdTime;
-
-    /*
-     * The provisioning state.
-     */
-    private EndpointProvisioningState provisioningState;
 
     /**
      * Creates an instance of EventHub class.
@@ -155,26 +144,6 @@ public final class EventHub extends DigitalTwinsEndpointResourceProperties {
     }
 
     /**
-     * Get the createdTime property: Time when the Endpoint was added to DigitalTwinsInstance.
-     * 
-     * @return the createdTime value.
-     */
-    @Override
-    public OffsetDateTime createdTime() {
-        return this.createdTime;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public EndpointProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -257,10 +226,11 @@ public final class EventHub extends DigitalTwinsEndpointResourceProperties {
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedEventHub.provisioningState = EndpointProvisioningState.fromString(reader.getString());
+                    deserializedEventHub
+                        .withProvisioningState(EndpointProvisioningState.fromString(reader.getString()));
                 } else if ("createdTime".equals(fieldName)) {
-                    deserializedEventHub.createdTime = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedEventHub.withCreatedTime(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("authenticationType".equals(fieldName)) {
                     deserializedEventHub.withAuthenticationType(AuthenticationType.fromString(reader.getString()));
                 } else if ("deadLetterSecret".equals(fieldName)) {

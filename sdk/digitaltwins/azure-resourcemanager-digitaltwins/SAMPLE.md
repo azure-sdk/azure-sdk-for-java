@@ -51,7 +51,7 @@ import com.azure.resourcemanager.digitaltwins.models.CheckNameRequest;
 public final class DigitalTwinsCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsCheckNameAvailability_example.json
      */
     /**
@@ -83,7 +83,7 @@ import java.util.Map;
 public final class DigitalTwinsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPut_example.json
      */
     /**
@@ -102,7 +102,7 @@ public final class DigitalTwinsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPut_WithPublicNetworkAccess.json
      */
     /**
@@ -122,7 +122,7 @@ public final class DigitalTwinsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPut_WithIdentity_example.json
      */
     /**
@@ -166,7 +166,7 @@ public final class DigitalTwinsCreateOrUpdateSamples {
 public final class DigitalTwinsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsDelete_example.json
      */
     /**
@@ -181,7 +181,7 @@ public final class DigitalTwinsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsDelete_WithIdentity_example.json
      */
     /**
@@ -205,7 +205,7 @@ public final class DigitalTwinsDeleteSamples {
 public final class DigitalTwinsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsGet_WithIdentity_example.json
      */
     /**
@@ -221,7 +221,7 @@ public final class DigitalTwinsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsGet_WithPrivateEndpointConnection_example.json
      */
     /**
@@ -237,7 +237,7 @@ public final class DigitalTwinsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsGet_example.json
      */
     /**
@@ -262,7 +262,7 @@ public final class DigitalTwinsGetByResourceGroupSamples {
 public final class DigitalTwinsListSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsList_example.json
      */
     /**
@@ -286,7 +286,7 @@ public final class DigitalTwinsListSamples {
 public final class DigitalTwinsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsListByResourceGroup_example.json
      */
     /**
@@ -318,7 +318,7 @@ import java.util.Map;
 public final class DigitalTwinsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPatch_example.json
      */
     /**
@@ -336,7 +336,7 @@ public final class DigitalTwinsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPatch_WithPublicNetworkAccess.json
      */
     /**
@@ -356,7 +356,7 @@ public final class DigitalTwinsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPatch_WithIdentity_example.json
      */
     /**
@@ -400,7 +400,7 @@ import com.azure.resourcemanager.digitaltwins.models.ServiceBus;
 public final class DigitalTwinsEndpointCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointPut_example.json
      */
     /**
@@ -423,7 +423,7 @@ public final class DigitalTwinsEndpointCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointPut_WithIdentity_example.json
      */
     /**
@@ -444,7 +444,7 @@ public final class DigitalTwinsEndpointCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointPut_WithUserIdentity_example.json
      */
     /**
@@ -477,7 +477,7 @@ public final class DigitalTwinsEndpointCreateOrUpdateSamples {
 public final class DigitalTwinsEndpointDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointDelete_example.json
      */
     /**
@@ -493,7 +493,7 @@ public final class DigitalTwinsEndpointDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointDelete_WithIdentity_example.json
      */
     /**
@@ -518,7 +518,7 @@ public final class DigitalTwinsEndpointDeleteSamples {
 public final class DigitalTwinsEndpointGetSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointGet_example.json
      */
     /**
@@ -534,7 +534,7 @@ public final class DigitalTwinsEndpointGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointGet_WithIdentity_example.json
      */
     /**
@@ -559,7 +559,7 @@ public final class DigitalTwinsEndpointGetSamples {
 public final class DigitalTwinsEndpointListSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointsGet_example.json
      */
     /**
@@ -574,7 +574,7 @@ public final class DigitalTwinsEndpointListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointsGet_WithIdentity_example.json
      */
     /**
@@ -598,7 +598,7 @@ public final class DigitalTwinsEndpointListSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsOperationsList_example.json
      */
     /**
@@ -626,7 +626,7 @@ import com.azure.resourcemanager.digitaltwins.models.PrivateLinkServiceConnectio
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * PrivateEndpointConnectionPut_example.json
      */
     /**
@@ -658,7 +658,7 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * PrivateEndpointConnectionDelete_example.json
      */
     /**
@@ -683,7 +683,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 public final class PrivateEndpointConnectionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * PrivateEndpointConnectionByConnectionName_example.json
      */
     /**
@@ -708,7 +708,7 @@ public final class PrivateEndpointConnectionsGetSamples {
 public final class PrivateEndpointConnectionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * PrivateEndpointConnectionsList_example.json
      */
     /**
@@ -733,7 +733,7 @@ public final class PrivateEndpointConnectionsListSamples {
 public final class PrivateLinkResourcesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * PrivateLinkResourcesByGroupId_example.json
      */
     /**
@@ -758,7 +758,7 @@ public final class PrivateLinkResourcesGetSamples {
 public final class PrivateLinkResourcesListSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * PrivateLinkResourcesList_example.json
      */
     /**
@@ -788,7 +788,7 @@ import com.azure.resourcemanager.digitaltwins.models.RecordPropertyAndItemRemova
 public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * TimeSeriesDatabaseConnectionsPut_example.json
      */
     /**
@@ -818,7 +818,7 @@ public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * TimeSeriesDatabaseConnectionsPut_WithUserIdentity_example.json
      */
     /**
@@ -860,7 +860,7 @@ public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
 public final class TimeSeriesDatabaseConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * TimeSeriesDatabaseConnectionsDelete_example.json
      */
     /**
@@ -885,7 +885,7 @@ public final class TimeSeriesDatabaseConnectionsDeleteSamples {
 public final class TimeSeriesDatabaseConnectionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * TimeSeriesDatabaseConnectionsGet_example.json
      */
     /**
@@ -910,7 +910,7 @@ public final class TimeSeriesDatabaseConnectionsGetSamples {
 public final class TimeSeriesDatabaseConnectionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * TimeSeriesDatabaseConnectionsList_example.json
      */
     /**

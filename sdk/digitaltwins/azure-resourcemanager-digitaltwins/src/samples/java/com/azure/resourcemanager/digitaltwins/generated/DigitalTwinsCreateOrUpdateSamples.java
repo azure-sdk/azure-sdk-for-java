@@ -17,7 +17,7 @@ import java.util.Map;
 public final class DigitalTwinsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPut_example.json
      */
     /**
@@ -36,7 +36,7 @@ public final class DigitalTwinsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPut_WithPublicNetworkAccess.json
      */
     /**
@@ -56,7 +56,7 @@ public final class DigitalTwinsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsPut_WithIdentity_example.json
      */
     /**

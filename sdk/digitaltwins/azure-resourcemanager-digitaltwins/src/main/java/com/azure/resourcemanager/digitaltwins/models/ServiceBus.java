@@ -10,7 +10,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Properties related to ServiceBus.
@@ -41,16 +40,6 @@ public final class ServiceBus extends DigitalTwinsEndpointResourceProperties {
      * The ServiceBus Topic name for identity-based authentication.
      */
     private String entityPath;
-
-    /*
-     * Time when the Endpoint was added to DigitalTwinsInstance.
-     */
-    private OffsetDateTime createdTime;
-
-    /*
-     * The provisioning state.
-     */
-    private EndpointProvisioningState provisioningState;
 
     /**
      * Creates an instance of ServiceBus class.
@@ -155,26 +144,6 @@ public final class ServiceBus extends DigitalTwinsEndpointResourceProperties {
     }
 
     /**
-     * Get the createdTime property: Time when the Endpoint was added to DigitalTwinsInstance.
-     * 
-     * @return the createdTime value.
-     */
-    @Override
-    public OffsetDateTime createdTime() {
-        return this.createdTime;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public EndpointProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -257,10 +226,11 @@ public final class ServiceBus extends DigitalTwinsEndpointResourceProperties {
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedServiceBus.provisioningState = EndpointProvisioningState.fromString(reader.getString());
+                    deserializedServiceBus
+                        .withProvisioningState(EndpointProvisioningState.fromString(reader.getString()));
                 } else if ("createdTime".equals(fieldName)) {
-                    deserializedServiceBus.createdTime = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedServiceBus.withCreatedTime(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("authenticationType".equals(fieldName)) {
                     deserializedServiceBus.withAuthenticationType(AuthenticationType.fromString(reader.getString()));
                 } else if ("deadLetterSecret".equals(fieldName)) {

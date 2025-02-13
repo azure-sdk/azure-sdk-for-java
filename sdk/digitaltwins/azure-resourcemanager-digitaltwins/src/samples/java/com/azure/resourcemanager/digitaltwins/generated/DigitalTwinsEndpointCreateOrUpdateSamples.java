@@ -15,7 +15,7 @@ import com.azure.resourcemanager.digitaltwins.models.ServiceBus;
 public final class DigitalTwinsEndpointCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointPut_example.json
      */
     /**
@@ -38,7 +38,7 @@ public final class DigitalTwinsEndpointCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointPut_WithIdentity_example.json
      */
     /**
@@ -59,7 +59,7 @@ public final class DigitalTwinsEndpointCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * DigitalTwinsEndpointPut_WithUserIdentity_example.json
      */
     /**

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.digitaltwins.generated;
 public final class TimeSeriesDatabaseConnectionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2025-03-31/examples/
      * TimeSeriesDatabaseConnectionsGet_example.json
      */
     /**
