@@ -60,4 +60,10 @@ public final class OutputFileUploadCondition extends ExpandableStringEnum<Output
     public static Collection<OutputFileUploadCondition> values() {
         return values(OutputFileUploadCondition.class);
     }
+
+    /**
+     * Upload the file(s) after the Task process exits, no matter what the exit code was.
+     */
+    @Generated
+    public static final OutputFileUploadCondition TASK_CANCELLED = fromString("taskcancelled");
 }
