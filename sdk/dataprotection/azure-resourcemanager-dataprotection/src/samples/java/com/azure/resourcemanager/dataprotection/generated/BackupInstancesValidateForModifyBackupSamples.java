@@ -11,26 +11,27 @@ import com.azure.resourcemanager.dataprotection.models.PolicyInfo;
 import com.azure.resourcemanager.dataprotection.models.SecretStoreBasedAuthCredentials;
 import com.azure.resourcemanager.dataprotection.models.SecretStoreResource;
 import com.azure.resourcemanager.dataprotection.models.SecretStoreType;
-import com.azure.resourcemanager.dataprotection.models.ValidateForBackupRequest;
+import com.azure.resourcemanager.dataprotection.models.ValidateForModifyBackupRequest;
 
 /**
- * Samples for BackupInstances ValidateForBackup.
+ * Samples for BackupInstances ValidateForModifyBackup.
  */
-public final class BackupInstancesValidateForBackupSamples {
+public final class BackupInstancesValidateForModifyBackupSamples {
     /*
      * x-ms-original-file:
      * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-01-01/examples/
-     * BackupInstanceOperations/ValidateForBackup.json
+     * BackupInstanceOperations/ValidateForModifyBackup.json
      */
     /**
-     * Sample code: Validate For Backup.
+     * Sample code: Validate For Modify Backup.
      * 
      * @param manager Entry point to DataProtectionManager.
      */
-    public static void validateForBackup(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
+    public static void validateForModifyBackup(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
         manager.backupInstances()
-            .validateForBackup("000pikumar", "PratikPrivatePreviewVault1",
-                new ValidateForBackupRequest().withBackupInstance(new BackupInstance().withFriendlyName("harshitbi2")
+            .validateForModifyBackup("000pikumar", "PratikPrivatePreviewVault1", "testInstance1",
+                new ValidateForModifyBackupRequest().withBackupInstance(new BackupInstance()
+                    .withFriendlyName("harshitbi2")
                     .withDataSourceInfo(new Datasource().withDatasourceType("OssDB")
                         .withObjectType("Datasource")
                         .withResourceId(
