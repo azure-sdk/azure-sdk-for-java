@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Resource usage statistics for a Job Schedule.
@@ -326,13 +327,13 @@ public final class BatchJobScheduleStatistics implements JsonSerializable<BatchJ
         jsonWriter.writeStringField("userCPUTime", CoreUtils.durationToStringWithDays(this.userCpuTime));
         jsonWriter.writeStringField("kernelCPUTime", CoreUtils.durationToStringWithDays(this.kernelCpuTime));
         jsonWriter.writeStringField("wallClockTime", CoreUtils.durationToStringWithDays(this.wallClockTime));
-        jsonWriter.writeLongField("readIOps", this.readIOps);
-        jsonWriter.writeLongField("writeIOps", this.writeIOps);
+        jsonWriter.writeStringField("readIOps", Objects.toString(this.readIOps, null));
+        jsonWriter.writeStringField("writeIOps", Objects.toString(this.writeIOps, null));
         jsonWriter.writeDoubleField("readIOGiB", this.readIOGiB);
         jsonWriter.writeDoubleField("writeIOGiB", this.writeIOGiB);
-        jsonWriter.writeLongField("numSucceededTasks", this.numSucceededTasks);
-        jsonWriter.writeLongField("numFailedTasks", this.numFailedTasks);
-        jsonWriter.writeLongField("numTaskRetries", this.numTaskRetries);
+        jsonWriter.writeStringField("numSucceededTasks", Objects.toString(this.numSucceededTasks, null));
+        jsonWriter.writeStringField("numFailedTasks", Objects.toString(this.numFailedTasks, null));
+        jsonWriter.writeStringField("numTaskRetries", Objects.toString(this.numTaskRetries, null));
         jsonWriter.writeStringField("waitTime", CoreUtils.durationToStringWithDays(this.waitTime));
         return jsonWriter.writeEndObject();
     }

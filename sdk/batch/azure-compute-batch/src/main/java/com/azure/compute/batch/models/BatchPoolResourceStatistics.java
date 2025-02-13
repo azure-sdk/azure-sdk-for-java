@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Statistics related to resource consumption by Compute Nodes in a Pool.
@@ -287,8 +288,8 @@ public final class BatchPoolResourceStatistics implements JsonSerializable<Batch
         jsonWriter.writeDoubleField("peakMemoryGiB", this.peakMemoryGiB);
         jsonWriter.writeDoubleField("avgDiskGiB", this.avgDiskGiB);
         jsonWriter.writeDoubleField("peakDiskGiB", this.peakDiskGiB);
-        jsonWriter.writeLongField("diskReadIOps", this.diskReadIOps);
-        jsonWriter.writeLongField("diskWriteIOps", this.diskWriteIOps);
+        jsonWriter.writeStringField("diskReadIOps", Objects.toString(this.diskReadIOps, null));
+        jsonWriter.writeStringField("diskWriteIOps", Objects.toString(this.diskWriteIOps, null));
         jsonWriter.writeDoubleField("diskReadGiB", this.diskReadGiB);
         jsonWriter.writeDoubleField("diskWriteGiB", this.diskWriteGiB);
         jsonWriter.writeDoubleField("networkReadGiB", this.networkReadGiB);

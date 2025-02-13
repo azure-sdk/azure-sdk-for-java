@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Resource usage statistics for a Task.
@@ -257,8 +258,8 @@ public final class BatchTaskStatistics implements JsonSerializable<BatchTaskStat
         jsonWriter.writeStringField("userCPUTime", CoreUtils.durationToStringWithDays(this.userCpuTime));
         jsonWriter.writeStringField("kernelCPUTime", CoreUtils.durationToStringWithDays(this.kernelCpuTime));
         jsonWriter.writeStringField("wallClockTime", CoreUtils.durationToStringWithDays(this.wallClockTime));
-        jsonWriter.writeLongField("readIOps", this.readIOps);
-        jsonWriter.writeLongField("writeIOps", this.writeIOps);
+        jsonWriter.writeStringField("readIOps", Objects.toString(this.readIOps, null));
+        jsonWriter.writeStringField("writeIOps", Objects.toString(this.writeIOps, null));
         jsonWriter.writeDoubleField("readIOGiB", this.readIOGiB);
         jsonWriter.writeDoubleField("writeIOGiB", this.writeIOGiB);
         jsonWriter.writeStringField("waitTime", CoreUtils.durationToStringWithDays(this.waitTime));
