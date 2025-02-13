@@ -5,21 +5,23 @@
 package com.azure.resourcemanager.communication.generated;
 
 /**
- * Samples for EmailServices Delete.
+ * Samples for SuppressionLists ListByDomain.
  */
-public final class EmailServicesDeleteSamples {
+public final class SuppressionListsListByDomainSamples {
     /*
      * x-ms-original-file:
      * specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/
-     * emailServices/delete.json
+     * suppressionLists/getSuppressionLists.json
      */
     /**
-     * Sample code: Delete EmailService resource.
+     * Sample code: Get all SuppressionLists resources.
      * 
      * @param manager Entry point to CommunicationManager.
      */
     public static void
-        deleteEmailServiceResource(com.azure.resourcemanager.communication.CommunicationManager manager) {
-        manager.emailServices().delete("MyResourceGroup", "MyEmailServiceResource", com.azure.core.util.Context.NONE);
+        getAllSuppressionListsResources(com.azure.resourcemanager.communication.CommunicationManager manager) {
+        manager.suppressionLists()
+            .listByDomain("contosoResourceGroup", "contosoEmailService", "contoso.com",
+                com.azure.core.util.Context.NONE);
     }
 }
