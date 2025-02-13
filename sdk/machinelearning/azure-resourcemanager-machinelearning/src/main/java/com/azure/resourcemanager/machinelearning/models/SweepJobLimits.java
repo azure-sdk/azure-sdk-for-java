@@ -23,14 +23,14 @@ public final class SweepJobLimits extends JobLimits {
     private JobLimitsType jobLimitsType = JobLimitsType.SWEEP;
 
     /*
-     * Sweep Job max total trials.
-     */
-    private Integer maxTotalTrials;
-
-    /*
      * Sweep Job max concurrent trials.
      */
     private Integer maxConcurrentTrials;
+
+    /*
+     * Sweep Job max total trials.
+     */
+    private Integer maxTotalTrials;
 
     /*
      * Sweep Job Trial timeout value.
@@ -54,26 +54,6 @@ public final class SweepJobLimits extends JobLimits {
     }
 
     /**
-     * Get the maxTotalTrials property: Sweep Job max total trials.
-     * 
-     * @return the maxTotalTrials value.
-     */
-    public Integer maxTotalTrials() {
-        return this.maxTotalTrials;
-    }
-
-    /**
-     * Set the maxTotalTrials property: Sweep Job max total trials.
-     * 
-     * @param maxTotalTrials the maxTotalTrials value to set.
-     * @return the SweepJobLimits object itself.
-     */
-    public SweepJobLimits withMaxTotalTrials(Integer maxTotalTrials) {
-        this.maxTotalTrials = maxTotalTrials;
-        return this;
-    }
-
-    /**
      * Get the maxConcurrentTrials property: Sweep Job max concurrent trials.
      * 
      * @return the maxConcurrentTrials value.
@@ -90,6 +70,26 @@ public final class SweepJobLimits extends JobLimits {
      */
     public SweepJobLimits withMaxConcurrentTrials(Integer maxConcurrentTrials) {
         this.maxConcurrentTrials = maxConcurrentTrials;
+        return this;
+    }
+
+    /**
+     * Get the maxTotalTrials property: Sweep Job max total trials.
+     * 
+     * @return the maxTotalTrials value.
+     */
+    public Integer maxTotalTrials() {
+        return this.maxTotalTrials;
+    }
+
+    /**
+     * Set the maxTotalTrials property: Sweep Job max total trials.
+     * 
+     * @param maxTotalTrials the maxTotalTrials value to set.
+     * @return the SweepJobLimits object itself.
+     */
+    public SweepJobLimits withMaxTotalTrials(Integer maxTotalTrials) {
+        this.maxTotalTrials = maxTotalTrials;
         return this;
     }
 
@@ -129,7 +129,6 @@ public final class SweepJobLimits extends JobLimits {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -140,8 +139,8 @@ public final class SweepJobLimits extends JobLimits {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("timeout", CoreUtils.durationToStringWithDays(timeout()));
         jsonWriter.writeStringField("jobLimitsType", this.jobLimitsType == null ? null : this.jobLimitsType.toString());
-        jsonWriter.writeNumberField("maxTotalTrials", this.maxTotalTrials);
         jsonWriter.writeNumberField("maxConcurrentTrials", this.maxConcurrentTrials);
+        jsonWriter.writeNumberField("maxTotalTrials", this.maxTotalTrials);
         jsonWriter.writeStringField("trialTimeout", CoreUtils.durationToStringWithDays(this.trialTimeout));
         return jsonWriter.writeEndObject();
     }
@@ -166,10 +165,10 @@ public final class SweepJobLimits extends JobLimits {
                         .withTimeout(reader.getNullable(nonNullReader -> Duration.parse(nonNullReader.getString())));
                 } else if ("jobLimitsType".equals(fieldName)) {
                     deserializedSweepJobLimits.jobLimitsType = JobLimitsType.fromString(reader.getString());
-                } else if ("maxTotalTrials".equals(fieldName)) {
-                    deserializedSweepJobLimits.maxTotalTrials = reader.getNullable(JsonReader::getInt);
                 } else if ("maxConcurrentTrials".equals(fieldName)) {
                     deserializedSweepJobLimits.maxConcurrentTrials = reader.getNullable(JsonReader::getInt);
+                } else if ("maxTotalTrials".equals(fieldName)) {
+                    deserializedSweepJobLimits.maxTotalTrials = reader.getNullable(JsonReader::getInt);
                 } else if ("trialTimeout".equals(fieldName)) {
                     deserializedSweepJobLimits.trialTimeout
                         = reader.getNullable(nonNullReader -> Duration.parse(nonNullReader.getString()));
