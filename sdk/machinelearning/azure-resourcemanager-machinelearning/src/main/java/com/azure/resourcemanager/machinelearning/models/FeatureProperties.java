@@ -17,39 +17,19 @@ import java.util.Map;
 @Fluent
 public final class FeatureProperties extends ResourceBase {
     /*
-     * Specifies name
-     */
-    private String featureName;
-
-    /*
      * Specifies type
      */
     private FeatureDataType dataType;
+
+    /*
+     * Specifies name
+     */
+    private String featureName;
 
     /**
      * Creates an instance of FeatureProperties class.
      */
     public FeatureProperties() {
-    }
-
-    /**
-     * Get the featureName property: Specifies name.
-     * 
-     * @return the featureName value.
-     */
-    public String featureName() {
-        return this.featureName;
-    }
-
-    /**
-     * Set the featureName property: Specifies name.
-     * 
-     * @param featureName the featureName value to set.
-     * @return the FeatureProperties object itself.
-     */
-    public FeatureProperties withFeatureName(String featureName) {
-        this.featureName = featureName;
-        return this;
     }
 
     /**
@@ -73,11 +53,22 @@ public final class FeatureProperties extends ResourceBase {
     }
 
     /**
-     * {@inheritDoc}
+     * Get the featureName property: Specifies name.
+     * 
+     * @return the featureName value.
      */
-    @Override
-    public FeatureProperties withDescription(String description) {
-        super.withDescription(description);
+    public String featureName() {
+        return this.featureName;
+    }
+
+    /**
+     * Set the featureName property: Specifies name.
+     * 
+     * @param featureName the featureName value to set.
+     * @return the FeatureProperties object itself.
+     */
+    public FeatureProperties withFeatureName(String featureName) {
+        this.featureName = featureName;
         return this;
     }
 
@@ -85,8 +76,8 @@ public final class FeatureProperties extends ResourceBase {
      * {@inheritDoc}
      */
     @Override
-    public FeatureProperties withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public FeatureProperties withDescription(String description) {
+        super.withDescription(description);
         return this;
     }
 
@@ -100,13 +91,21 @@ public final class FeatureProperties extends ResourceBase {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public FeatureProperties withTags(Map<String, String> tags) {
+        super.withTags(tags);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -116,10 +115,10 @@ public final class FeatureProperties extends ResourceBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("featureName", this.featureName);
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
+        jsonWriter.writeStringField("featureName", this.featureName);
         return jsonWriter.writeEndObject();
     }
 
@@ -140,16 +139,16 @@ public final class FeatureProperties extends ResourceBase {
 
                 if ("description".equals(fieldName)) {
                     deserializedFeatureProperties.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedFeatureProperties.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedFeatureProperties.withProperties(properties);
-                } else if ("featureName".equals(fieldName)) {
-                    deserializedFeatureProperties.featureName = reader.getString();
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedFeatureProperties.withTags(tags);
                 } else if ("dataType".equals(fieldName)) {
                     deserializedFeatureProperties.dataType = FeatureDataType.fromString(reader.getString());
+                } else if ("featureName".equals(fieldName)) {
+                    deserializedFeatureProperties.featureName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
