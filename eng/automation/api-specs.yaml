@@ -80,6 +80,8 @@ msi:
   suffix: generated
 mysql:
   service: mysqlflexibleserver
+mysqldiscovery/Microsoft.MySQLDiscovery:
+  service: mysqldiscoverymicrosoftmysqldiscovery
 network:
   suffix: generated
 newrelic:
