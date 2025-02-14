@@ -18,49 +18,38 @@ import java.io.IOException;
 @Immutable
 public final class AcsMessageMediaContent implements JsonSerializable<AcsMessageMediaContent> {
     /*
-     * Required. The MIME type of the file this media represents
+     * The MIME type of the file this media represents
      */
     @Generated
-    private final String mimeType;
+    private String mimeType;
 
     /*
-     * Required. The media identifier
+     * The media identifier
      */
     @Generated
-    private final String mediaId;
+    private String mediaId;
 
     /*
-     * Optional. The filename of the underlying media file as specified when uploaded
+     * The filename of the underlying media file as specified when uploaded
      */
     @Generated
     private String fileName;
 
     /*
-     * Optional. The caption for the media object, if supported and provided
+     * The caption for the media object, if supported and provided
      */
     @Generated
     private String caption;
 
-    /*
-     * Optional. Set to true if the sticker is animated; false otherwise.
-     */
-    @Generated
-    private Boolean animated;
-
     /**
      * Creates an instance of AcsMessageMediaContent class.
-     * 
-     * @param mimeType the mimeType value to set.
-     * @param mediaId the mediaId value to set.
      */
     @Generated
-    private AcsMessageMediaContent(String mimeType, String mediaId) {
-        this.mimeType = mimeType;
-        this.mediaId = mediaId;
+    private AcsMessageMediaContent() {
     }
 
     /**
-     * Get the mimeType property: Required. The MIME type of the file this media represents.
+     * Get the mimeType property: The MIME type of the file this media represents.
      * 
      * @return the mimeType value.
      */
@@ -70,7 +59,7 @@ public final class AcsMessageMediaContent implements JsonSerializable<AcsMessage
     }
 
     /**
-     * Get the mediaId property: Required. The media identifier.
+     * Get the mediaId property: The media identifier.
      * 
      * @return the mediaId value.
      */
@@ -80,7 +69,7 @@ public final class AcsMessageMediaContent implements JsonSerializable<AcsMessage
     }
 
     /**
-     * Get the fileName property: Optional. The filename of the underlying media file as specified when uploaded.
+     * Get the fileName property: The filename of the underlying media file as specified when uploaded.
      * 
      * @return the fileName value.
      */
@@ -90,23 +79,13 @@ public final class AcsMessageMediaContent implements JsonSerializable<AcsMessage
     }
 
     /**
-     * Get the caption property: Optional. The caption for the media object, if supported and provided.
+     * Get the caption property: The caption for the media object, if supported and provided.
      * 
      * @return the caption value.
      */
     @Generated
     public String getCaption() {
         return this.caption;
-    }
-
-    /**
-     * Get the animated property: Optional. Set to true if the sticker is animated; false otherwise.
-     * 
-     * @return the animated value.
-     */
-    @Generated
-    public Boolean isAnimated() {
-        return this.animated;
     }
 
     /**
@@ -120,7 +99,6 @@ public final class AcsMessageMediaContent implements JsonSerializable<AcsMessage
         jsonWriter.writeStringField("id", this.mediaId);
         jsonWriter.writeStringField("fileName", this.fileName);
         jsonWriter.writeStringField("caption", this.caption);
-        jsonWriter.writeBooleanField("animated", this.animated);
         return jsonWriter.writeEndObject();
     }
 
@@ -130,39 +108,28 @@ public final class AcsMessageMediaContent implements JsonSerializable<AcsMessage
      * @param jsonReader The JsonReader being read.
      * @return An instance of AcsMessageMediaContent if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the AcsMessageMediaContent.
      */
     @Generated
     public static AcsMessageMediaContent fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            String mimeType = null;
-            String mediaId = null;
-            String fileName = null;
-            String caption = null;
-            Boolean animated = null;
+            AcsMessageMediaContent deserializedAcsMessageMediaContent = new AcsMessageMediaContent();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("mimeType".equals(fieldName)) {
-                    mimeType = reader.getString();
+                    deserializedAcsMessageMediaContent.mimeType = reader.getString();
                 } else if ("id".equals(fieldName)) {
-                    mediaId = reader.getString();
+                    deserializedAcsMessageMediaContent.mediaId = reader.getString();
                 } else if ("fileName".equals(fieldName)) {
-                    fileName = reader.getString();
+                    deserializedAcsMessageMediaContent.fileName = reader.getString();
                 } else if ("caption".equals(fieldName)) {
-                    caption = reader.getString();
-                } else if ("animated".equals(fieldName)) {
-                    animated = reader.getNullable(JsonReader::getBoolean);
+                    deserializedAcsMessageMediaContent.caption = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
-            AcsMessageMediaContent deserializedAcsMessageMediaContent = new AcsMessageMediaContent(mimeType, mediaId);
-            deserializedAcsMessageMediaContent.fileName = fileName;
-            deserializedAcsMessageMediaContent.caption = caption;
-            deserializedAcsMessageMediaContent.animated = animated;
 
             return deserializedAcsMessageMediaContent;
         });
