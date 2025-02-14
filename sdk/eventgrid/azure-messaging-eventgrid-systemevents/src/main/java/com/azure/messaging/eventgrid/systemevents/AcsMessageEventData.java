@@ -26,13 +26,13 @@ public class AcsMessageEventData implements JsonSerializable<AcsMessageEventData
      * The message sender
      */
     @Generated
-    private final String from;
+    private String from;
 
     /*
      * The message recipient
      */
     @Generated
-    private final String to;
+    private String to;
 
     /*
      * The time message was received
@@ -44,20 +44,18 @@ public class AcsMessageEventData implements JsonSerializable<AcsMessageEventData
      * The channel event error
      */
     @Generated
-    private AcsMessageChannelEventError error;
+    private final AcsMessageChannelEventError error;
 
     /**
      * Creates an instance of AcsMessageEventData class.
      *
-     * @param from the from value to set.
-     * @param to the to value to set.
      * @param receivedTimestamp the receivedTimestamp value to set.
+     * @param error the error value to set.
      */
     @Generated
-    protected AcsMessageEventData(String from, String to, OffsetDateTime receivedTimestamp) {
-        this.from = from;
-        this.to = to;
+    protected AcsMessageEventData(OffsetDateTime receivedTimestamp, AcsMessageChannelEventError error) {
         this.receivedTimestamp = receivedTimestamp;
+        this.error = error;
     }
 
     /**
@@ -71,6 +69,18 @@ public class AcsMessageEventData implements JsonSerializable<AcsMessageEventData
     }
 
     /**
+     * Set the from property: The message sender.
+     *
+     * @param from the from value to set.
+     * @return the AcsMessageEventData object itself.
+     */
+    @Generated
+    AcsMessageEventData setFrom(String from) {
+        this.from = from;
+        return this;
+    }
+
+    /**
      * Get the to property: The message recipient.
      *
      * @return the to value.
@@ -78,6 +88,18 @@ public class AcsMessageEventData implements JsonSerializable<AcsMessageEventData
     @Generated
     public String getTo() {
         return this.to;
+    }
+
+    /**
+     * Set the to property: The message recipient.
+     *
+     * @param to the to value to set.
+     * @return the AcsMessageEventData object itself.
+     */
+    @Generated
+    AcsMessageEventData setTo(String to) {
+        this.to = to;
+        return this;
     }
 
     /**
@@ -101,31 +123,19 @@ public class AcsMessageEventData implements JsonSerializable<AcsMessageEventData
     }
 
     /**
-     * Set the error property: The channel event error.
-     *
-     * @param error the error value to set.
-     * @return the AcsMessageEventData object itself.
-     */
-    @Generated
-    AcsMessageEventData setError(AcsMessageChannelEventError error) {
-        this.error = error;
-        return this;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Generated
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("from", this.from);
-        jsonWriter.writeStringField("to", this.to);
         jsonWriter.writeStringField("receivedTimeStamp",
             this.receivedTimestamp == null
                 ? null
                 : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.receivedTimestamp));
         jsonWriter.writeJsonField("error", this.error);
+        jsonWriter.writeStringField("from", this.from);
+        jsonWriter.writeStringField("to", this.to);
         return jsonWriter.writeEndObject();
     }
 
@@ -141,28 +151,29 @@ public class AcsMessageEventData implements JsonSerializable<AcsMessageEventData
     @Generated
     public static AcsMessageEventData fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            String from = null;
-            String to = null;
             OffsetDateTime receivedTimestamp = null;
             AcsMessageChannelEventError error = null;
+            String from = null;
+            String to = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("from".equals(fieldName)) {
-                    from = reader.getString();
-                } else if ("to".equals(fieldName)) {
-                    to = reader.getString();
-                } else if ("receivedTimeStamp".equals(fieldName)) {
+                if ("receivedTimeStamp".equals(fieldName)) {
                     receivedTimestamp = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("error".equals(fieldName)) {
                     error = AcsMessageChannelEventError.fromJson(reader);
+                } else if ("from".equals(fieldName)) {
+                    from = reader.getString();
+                } else if ("to".equals(fieldName)) {
+                    to = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
-            AcsMessageEventData deserializedAcsMessageEventData = new AcsMessageEventData(from, to, receivedTimestamp);
-            deserializedAcsMessageEventData.error = error;
+            AcsMessageEventData deserializedAcsMessageEventData = new AcsMessageEventData(receivedTimestamp, error);
+            deserializedAcsMessageEventData.from = from;
+            deserializedAcsMessageEventData.to = to;
             return deserializedAcsMessageEventData;
         });
     }

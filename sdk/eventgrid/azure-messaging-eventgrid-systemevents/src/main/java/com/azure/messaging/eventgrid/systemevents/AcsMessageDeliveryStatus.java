@@ -16,7 +16,7 @@ public final class AcsMessageDeliveryStatus extends ExpandableStringEnum<AcsMess
      * Read.
      */
     @Generated
-    public static final AcsMessageDeliveryStatus READ = fromString("read");
+    public static final AcsMessageDeliveryStatus READ = fromString("Read");
 
     /**
      * Delivered.
