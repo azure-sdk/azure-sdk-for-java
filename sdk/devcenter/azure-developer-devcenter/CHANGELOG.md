@@ -2,13 +2,37 @@
 
 ## 1.1.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.DevCenterOperationDetails` was modified
 
-### Other Changes
+* `java.lang.Object getProperties()` -> `java.util.Map getProperties()`
+
+#### `models.DevBox` was modified
+
+* `setLocalAdministratorStatus(models.LocalAdministratorStatus)` was removed
+
+#### `implementation.DeploymentEnvironmentsClientImpl$DeploymentEnvironmentsClientService` was modified
+
+* `createOrUpdateEnvironmentSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `createOrUpdateEnvironment(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+
+#### `implementation.DevBoxesClientImpl$DevBoxesClientService` was modified
+
+* `createDevBox(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `createDevBoxSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+#### `implementation.DeploymentEnvironmentsClientImpl$DeploymentEnvironmentsClientService` was modified
+
+* `createOrUpdateEnvironment(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createOrUpdateEnvironmentSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `implementation.DevBoxesClientImpl$DevBoxesClientService` was modified
+
+* `createDevBox(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createDevBoxSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
 
 ## 1.0.6 (2024-12-04)
 
