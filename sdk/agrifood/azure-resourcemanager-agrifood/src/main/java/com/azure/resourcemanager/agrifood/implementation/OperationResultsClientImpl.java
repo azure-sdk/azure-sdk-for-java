@@ -68,15 +68,15 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get operationResults for a FarmBeats resource.
+     * Get operationResults for a Data Manager For Agriculture resource.
      * 
      * @param locations Location.
-     * @param operationResultsId operation Results Id.
+     * @param operationResultsId operationResultsId for a specific location.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operationResults for a FarmBeats resource along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return operationResults for a Data Manager For Agriculture resource along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ArmAsyncOperationInner>> getWithResponseAsync(String locations, String operationResultsId) {
@@ -103,16 +103,16 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get operationResults for a FarmBeats resource.
+     * Get operationResults for a Data Manager For Agriculture resource.
      * 
      * @param locations Location.
-     * @param operationResultsId operation Results Id.
+     * @param operationResultsId operationResultsId for a specific location.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operationResults for a FarmBeats resource along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return operationResults for a Data Manager For Agriculture resource along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ArmAsyncOperationInner>> getWithResponseAsync(String locations, String operationResultsId,
@@ -139,14 +139,14 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get operationResults for a FarmBeats resource.
+     * Get operationResults for a Data Manager For Agriculture resource.
      * 
      * @param locations Location.
-     * @param operationResultsId operation Results Id.
+     * @param operationResultsId operationResultsId for a specific location.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operationResults for a FarmBeats resource on successful completion of {@link Mono}.
+     * @return operationResults for a Data Manager For Agriculture resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ArmAsyncOperationInner> getAsync(String locations, String operationResultsId) {
@@ -154,15 +154,15 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get operationResults for a FarmBeats resource.
+     * Get operationResults for a Data Manager For Agriculture resource.
      * 
      * @param locations Location.
-     * @param operationResultsId operation Results Id.
+     * @param operationResultsId operationResultsId for a specific location.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operationResults for a FarmBeats resource along with {@link Response}.
+     * @return operationResults for a Data Manager For Agriculture resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ArmAsyncOperationInner> getWithResponse(String locations, String operationResultsId,
@@ -171,14 +171,14 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get operationResults for a FarmBeats resource.
+     * Get operationResults for a Data Manager For Agriculture resource.
      * 
      * @param locations Location.
-     * @param operationResultsId operation Results Id.
+     * @param operationResultsId operationResultsId for a specific location.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operationResults for a FarmBeats resource.
+     * @return operationResults for a Data Manager For Agriculture resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ArmAsyncOperationInner get(String locations, String operationResultsId) {

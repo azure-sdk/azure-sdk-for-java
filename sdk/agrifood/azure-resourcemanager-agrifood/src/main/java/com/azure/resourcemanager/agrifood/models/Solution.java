@@ -90,13 +90,13 @@ public interface Solution {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, farmBeatsResourceName.
+             * Specifies resourceGroupName, dataManagerForAgricultureResourceName.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param farmBeatsResourceName FarmBeats resource name.
+             * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
              * @return the next definition stage.
              */
-            WithCreate withExistingFarmBeat(String resourceGroupName, String farmBeatsResourceName);
+            WithCreate withExistingFarmBeat(String resourceGroupName, String dataManagerForAgricultureResourceName);
         }
 
         /**

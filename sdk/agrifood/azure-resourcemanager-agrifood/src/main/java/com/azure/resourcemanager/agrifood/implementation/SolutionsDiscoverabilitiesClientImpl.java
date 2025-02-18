@@ -26,8 +26,8 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.agrifood.fluent.SolutionsDiscoverabilitiesClient;
-import com.azure.resourcemanager.agrifood.fluent.models.FarmBeatsSolutionInner;
-import com.azure.resourcemanager.agrifood.models.FarmBeatsSolutionListResponse;
+import com.azure.resourcemanager.agrifood.fluent.models.DataManagerForAgricultureSolutionInner;
+import com.azure.resourcemanager.agrifood.models.DataManagerForAgricultureSolutionListResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -70,7 +70,7 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
         @Get("/providers/Microsoft.AgFoodPlatform/farmBeatsSolutionDefinitions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FarmBeatsSolutionListResponse>> list(@HostParam("$host") String endpoint,
+        Mono<Response<DataManagerForAgricultureSolutionListResponse>> list(@HostParam("$host") String endpoint,
             @QueryParam(value = "farmBeatsSolutionIds", multipleQueryParams = true) List<String> farmBeatsSolutionIds,
             @QueryParam(
                 value = "farmBeatsSolutionNames",
@@ -79,37 +79,39 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/providers/Microsoft.AgFoodPlatform/farmBeatsSolutionDefinitions/{farmBeatsSolutionId}")
+        @Get("/providers/Microsoft.AgFoodPlatform/farmBeatsSolutionDefinitions/{dataManagerForAgricultureSolutionId}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FarmBeatsSolutionInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("farmBeatsSolutionId") String farmBeatsSolutionId, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<DataManagerForAgricultureSolutionInner>> get(@HostParam("$host") String endpoint,
+            @PathParam("dataManagerForAgricultureSolutionId") String dataManagerForAgricultureSolutionId,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FarmBeatsSolutionListResponse>> listNext(
+        Mono<Response<DataManagerForAgricultureSolutionListResponse>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
-     * @param farmBeatsSolutionIds Ids of FarmBeats Solutions which the customer requests to fetch.
-     * @param farmBeatsSolutionNames Names of FarmBeats Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionIds Ids of Data Manager For Agriculture Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionNames Names of Data Manager For Agriculture Solutions which the customer requests to
+     * fetch.
      * @param maxPageSize Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of Data Manager For Agriculture solutions along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FarmBeatsSolutionInner>> listSinglePageAsync(List<String> farmBeatsSolutionIds,
-        List<String> farmBeatsSolutionNames, Integer maxPageSize) {
+    private Mono<PagedResponse<DataManagerForAgricultureSolutionInner>> listSinglePageAsync(
+        List<String> farmBeatsSolutionIds, List<String> farmBeatsSolutionNames, Integer maxPageSize) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -124,27 +126,29 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), farmBeatsSolutionIdsConverted,
                 farmBeatsSolutionNamesConverted, maxPageSize, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<FarmBeatsSolutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<DataManagerForAgricultureSolutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
-     * @param farmBeatsSolutionIds Ids of FarmBeats Solutions which the customer requests to fetch.
-     * @param farmBeatsSolutionNames Names of FarmBeats Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionIds Ids of Data Manager For Agriculture Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionNames Names of Data Manager For Agriculture Solutions which the customer requests to
+     * fetch.
      * @param maxPageSize Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of Data Manager For Agriculture solutions along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FarmBeatsSolutionInner>> listSinglePageAsync(List<String> farmBeatsSolutionIds,
-        List<String> farmBeatsSolutionNames, Integer maxPageSize, Context context) {
+    private Mono<PagedResponse<DataManagerForAgricultureSolutionInner>> listSinglePageAsync(
+        List<String> farmBeatsSolutionIds, List<String> farmBeatsSolutionNames, Integer maxPageSize, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -165,33 +169,34 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
     }
 
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
-     * @param farmBeatsSolutionIds Ids of FarmBeats Solutions which the customer requests to fetch.
-     * @param farmBeatsSolutionNames Names of FarmBeats Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionIds Ids of Data Manager For Agriculture Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionNames Names of Data Manager For Agriculture Solutions which the customer requests to
+     * fetch.
      * @param maxPageSize Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions as paginated response with {@link PagedFlux}.
+     * @return list of Data Manager For Agriculture solutions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FarmBeatsSolutionInner> listAsync(List<String> farmBeatsSolutionIds,
+    private PagedFlux<DataManagerForAgricultureSolutionInner> listAsync(List<String> farmBeatsSolutionIds,
         List<String> farmBeatsSolutionNames, Integer maxPageSize) {
         return new PagedFlux<>(() -> listSinglePageAsync(farmBeatsSolutionIds, farmBeatsSolutionNames, maxPageSize),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions as paginated response with {@link PagedFlux}.
+     * @return list of Data Manager For Agriculture solutions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FarmBeatsSolutionInner> listAsync() {
+    private PagedFlux<DataManagerForAgricultureSolutionInner> listAsync() {
         final List<String> farmBeatsSolutionIds = null;
         final List<String> farmBeatsSolutionNames = null;
         final Integer maxPageSize = null;
@@ -200,20 +205,21 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
     }
 
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
-     * @param farmBeatsSolutionIds Ids of FarmBeats Solutions which the customer requests to fetch.
-     * @param farmBeatsSolutionNames Names of FarmBeats Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionIds Ids of Data Manager For Agriculture Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionNames Names of Data Manager For Agriculture Solutions which the customer requests to
+     * fetch.
      * @param maxPageSize Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions as paginated response with {@link PagedFlux}.
+     * @return list of Data Manager For Agriculture solutions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FarmBeatsSolutionInner> listAsync(List<String> farmBeatsSolutionIds,
+    private PagedFlux<DataManagerForAgricultureSolutionInner> listAsync(List<String> farmBeatsSolutionIds,
         List<String> farmBeatsSolutionNames, Integer maxPageSize, Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(farmBeatsSolutionIds, farmBeatsSolutionNames, maxPageSize, context),
@@ -221,14 +227,14 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
     }
 
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions as paginated response with {@link PagedIterable}.
+     * @return list of Data Manager For Agriculture solutions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FarmBeatsSolutionInner> list() {
+    public PagedIterable<DataManagerForAgricultureSolutionInner> list() {
         final List<String> farmBeatsSolutionIds = null;
         final List<String> farmBeatsSolutionNames = null;
         final Integer maxPageSize = null;
@@ -236,117 +242,124 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
     }
 
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
-     * @param farmBeatsSolutionIds Ids of FarmBeats Solutions which the customer requests to fetch.
-     * @param farmBeatsSolutionNames Names of FarmBeats Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionIds Ids of Data Manager For Agriculture Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionNames Names of Data Manager For Agriculture Solutions which the customer requests to
+     * fetch.
      * @param maxPageSize Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions as paginated response with {@link PagedIterable}.
+     * @return list of Data Manager For Agriculture solutions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FarmBeatsSolutionInner> list(List<String> farmBeatsSolutionIds,
+    public PagedIterable<DataManagerForAgricultureSolutionInner> list(List<String> farmBeatsSolutionIds,
         List<String> farmBeatsSolutionNames, Integer maxPageSize, Context context) {
         return new PagedIterable<>(listAsync(farmBeatsSolutionIds, farmBeatsSolutionNames, maxPageSize, context));
     }
 
     /**
-     * Get farmBeats solution by id.
+     * Get Data Manager For Agriculture solution by id.
      * 
-     * @param farmBeatsSolutionId farmBeatsSolutionId to be queried.
+     * @param dataManagerForAgricultureSolutionId dataManagerForAgricultureSolutionId to be queried.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats solution by id along with {@link Response} on successful completion of {@link Mono}.
+     * @return data Manager For Agriculture solution by id along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FarmBeatsSolutionInner>> getWithResponseAsync(String farmBeatsSolutionId) {
+    private Mono<Response<DataManagerForAgricultureSolutionInner>>
+        getWithResponseAsync(String dataManagerForAgricultureSolutionId) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (farmBeatsSolutionId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsSolutionId is required and cannot be null."));
+        if (dataManagerForAgricultureSolutionId == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureSolutionId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), farmBeatsSolutionId,
+            .withContext(context -> service.get(this.client.getEndpoint(), dataManagerForAgricultureSolutionId,
                 this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get farmBeats solution by id.
+     * Get Data Manager For Agriculture solution by id.
      * 
-     * @param farmBeatsSolutionId farmBeatsSolutionId to be queried.
+     * @param dataManagerForAgricultureSolutionId dataManagerForAgricultureSolutionId to be queried.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats solution by id along with {@link Response} on successful completion of {@link Mono}.
+     * @return data Manager For Agriculture solution by id along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FarmBeatsSolutionInner>> getWithResponseAsync(String farmBeatsSolutionId, Context context) {
+    private Mono<Response<DataManagerForAgricultureSolutionInner>>
+        getWithResponseAsync(String dataManagerForAgricultureSolutionId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (farmBeatsSolutionId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsSolutionId is required and cannot be null."));
+        if (dataManagerForAgricultureSolutionId == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureSolutionId is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), farmBeatsSolutionId, this.client.getApiVersion(), accept,
-            context);
+        return service.get(this.client.getEndpoint(), dataManagerForAgricultureSolutionId, this.client.getApiVersion(),
+            accept, context);
     }
 
     /**
-     * Get farmBeats solution by id.
+     * Get Data Manager For Agriculture solution by id.
      * 
-     * @param farmBeatsSolutionId farmBeatsSolutionId to be queried.
+     * @param dataManagerForAgricultureSolutionId dataManagerForAgricultureSolutionId to be queried.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats solution by id on successful completion of {@link Mono}.
+     * @return data Manager For Agriculture solution by id on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FarmBeatsSolutionInner> getAsync(String farmBeatsSolutionId) {
-        return getWithResponseAsync(farmBeatsSolutionId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<DataManagerForAgricultureSolutionInner> getAsync(String dataManagerForAgricultureSolutionId) {
+        return getWithResponseAsync(dataManagerForAgricultureSolutionId)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get farmBeats solution by id.
+     * Get Data Manager For Agriculture solution by id.
      * 
-     * @param farmBeatsSolutionId farmBeatsSolutionId to be queried.
+     * @param dataManagerForAgricultureSolutionId dataManagerForAgricultureSolutionId to be queried.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats solution by id along with {@link Response}.
+     * @return data Manager For Agriculture solution by id along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<FarmBeatsSolutionInner> getWithResponse(String farmBeatsSolutionId, Context context) {
-        return getWithResponseAsync(farmBeatsSolutionId, context).block();
+    public Response<DataManagerForAgricultureSolutionInner> getWithResponse(String dataManagerForAgricultureSolutionId,
+        Context context) {
+        return getWithResponseAsync(dataManagerForAgricultureSolutionId, context).block();
     }
 
     /**
-     * Get farmBeats solution by id.
+     * Get Data Manager For Agriculture solution by id.
      * 
-     * @param farmBeatsSolutionId farmBeatsSolutionId to be queried.
+     * @param dataManagerForAgricultureSolutionId dataManagerForAgricultureSolutionId to be queried.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats solution by id.
+     * @return data Manager For Agriculture solution by id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FarmBeatsSolutionInner get(String farmBeatsSolutionId) {
-        return getWithResponse(farmBeatsSolutionId, Context.NONE).getValue();
+    public DataManagerForAgricultureSolutionInner get(String dataManagerForAgricultureSolutionId) {
+        return getWithResponse(dataManagerForAgricultureSolutionId, Context.NONE).getValue();
     }
 
     /**
@@ -360,7 +373,7 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
      * with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FarmBeatsSolutionInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<DataManagerForAgricultureSolutionInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -370,7 +383,7 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
         }
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<FarmBeatsSolutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<DataManagerForAgricultureSolutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -387,7 +400,8 @@ public final class SolutionsDiscoverabilitiesClientImpl implements SolutionsDisc
      * with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FarmBeatsSolutionInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<DataManagerForAgricultureSolutionInner>> listNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
