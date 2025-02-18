@@ -10,8 +10,8 @@ package com.azure.resourcemanager.containerservicefleet.generated;
 public final class FleetsListCredentialsSamples {
     /*
      * x-ms-original-file:
-     * specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2024-05-02-preview/
-     * examples/Fleets_ListCredentialsResult.json
+     * specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/stable/2025-03-01/examples/
+     * Fleets_ListCredentialsResult.json
      */
     /**
      * Sample code: Lists the user credentials of a Fleet.

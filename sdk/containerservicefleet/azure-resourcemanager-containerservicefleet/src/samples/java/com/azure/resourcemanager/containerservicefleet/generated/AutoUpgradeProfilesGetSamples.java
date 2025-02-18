@@ -10,8 +10,8 @@ package com.azure.resourcemanager.containerservicefleet.generated;
 public final class AutoUpgradeProfilesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2024-05-02-preview/
-     * examples/AutoUpgradeProfiles_Get.json
+     * specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/stable/2025-03-01/examples/
+     * AutoUpgradeProfiles_Get.json
      */
     /**
      * Sample code: Gets an AutoUpgradeProfile resource.
