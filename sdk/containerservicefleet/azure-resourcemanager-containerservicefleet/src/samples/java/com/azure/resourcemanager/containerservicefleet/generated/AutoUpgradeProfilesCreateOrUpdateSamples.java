@@ -12,8 +12,8 @@ import com.azure.resourcemanager.containerservicefleet.models.UpgradeChannel;
 public final class AutoUpgradeProfilesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2024-05-02-preview/
-     * examples/AutoUpgradeProfiles_CreateOrUpdate.json
+     * specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/stable/2025-03-01/examples/
+     * AutoUpgradeProfiles_CreateOrUpdate.json
      */
     /**
      * Sample code: Create an AutoUpgradeProfile.
