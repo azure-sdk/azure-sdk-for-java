@@ -9,6 +9,7 @@ import com.azure.resourcemanager.advisor.models.ConfigurationName;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
 import com.azure.resourcemanager.advisor.models.DigestConfigState;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import java.util.Arrays;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Arrays;
 public final class ConfigurationsCreateInResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/CreateConfiguration.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/CreateConfiguration.json
      */
     /**
      * Sample code: PutConfigurations.
@@ -30,6 +31,7 @@ public final class ConfigurationsCreateInResourceGroupSamples {
             .withExistingResourceGroup("resourceGroup")
             .withExclude(true)
             .withLowCpuThreshold(CpuThreshold.FIVE)
+            .withDuration(DurationModel.SEVEN)
             .withDigests(Arrays.asList(new DigestConfig().withName("digestConfigName")
                 .withActionGroupResourceId(
                     "/subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/microsoft.insights/actionGroups/actionGroupName")

@@ -7,7 +7,6 @@ package com.azure.resourcemanager.advisor.fluent;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.advisor.fluent.models.MetadataEntityInner;
 
@@ -15,35 +14,6 @@ import com.azure.resourcemanager.advisor.fluent.models.MetadataEntityInner;
  * An instance of this class provides access to all the operations defined in RecommendationMetadatasClient.
  */
 public interface RecommendationMetadatasClient {
-    /**
-     * Gets the metadata entity.
-     * 
-     * @param name Name of metadata entity.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata entity along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<MetadataEntityInner> getWithResponse(String name, Context context);
-
-    /**
-     * Gets the metadata entity.
-     * 
-     * @param name Name of metadata entity.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MetadataEntityInner get(String name);
-
     /**
      * Gets the list of metadata entities.
      * 
