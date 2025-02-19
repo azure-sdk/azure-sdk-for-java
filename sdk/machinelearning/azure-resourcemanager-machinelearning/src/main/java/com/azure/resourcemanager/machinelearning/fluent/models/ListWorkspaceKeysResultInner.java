@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -15,20 +15,10 @@ import java.io.IOException;
 /**
  * The ListWorkspaceKeysResult model.
  */
-@Immutable
+@Fluent
 public final class ListWorkspaceKeysResultInner implements JsonSerializable<ListWorkspaceKeysResultInner> {
     /*
-     * The userStorageKey property.
-     */
-    private String userStorageKey;
-
-    /*
-     * The userStorageResourceId property.
-     */
-    private String userStorageResourceId;
-
-    /*
-     * The appInsightsInstrumentationKey property.
+     * The access key of the workspace app insights
      */
     private String appInsightsInstrumentationKey;
 
@@ -42,6 +32,16 @@ public final class ListWorkspaceKeysResultInner implements JsonSerializable<List
      */
     private ListNotebookKeysResultInner notebookAccessKeys;
 
+    /*
+     * The arm Id key of the workspace storage
+     */
+    private String userStorageArmId;
+
+    /*
+     * The access key of the workspace storage
+     */
+    private String userStorageKey;
+
     /**
      * Creates an instance of ListWorkspaceKeysResultInner class.
      */
@@ -49,25 +49,7 @@ public final class ListWorkspaceKeysResultInner implements JsonSerializable<List
     }
 
     /**
-     * Get the userStorageKey property: The userStorageKey property.
-     * 
-     * @return the userStorageKey value.
-     */
-    public String userStorageKey() {
-        return this.userStorageKey;
-    }
-
-    /**
-     * Get the userStorageResourceId property: The userStorageResourceId property.
-     * 
-     * @return the userStorageResourceId value.
-     */
-    public String userStorageResourceId() {
-        return this.userStorageResourceId;
-    }
-
-    /**
-     * Get the appInsightsInstrumentationKey property: The appInsightsInstrumentationKey property.
+     * Get the appInsightsInstrumentationKey property: The access key of the workspace app insights.
      * 
      * @return the appInsightsInstrumentationKey value.
      */
@@ -85,12 +67,53 @@ public final class ListWorkspaceKeysResultInner implements JsonSerializable<List
     }
 
     /**
+     * Set the containerRegistryCredentials property: The containerRegistryCredentials property.
+     * 
+     * @param containerRegistryCredentials the containerRegistryCredentials value to set.
+     * @return the ListWorkspaceKeysResultInner object itself.
+     */
+    public ListWorkspaceKeysResultInner
+        withContainerRegistryCredentials(RegistryListCredentialsResult containerRegistryCredentials) {
+        this.containerRegistryCredentials = containerRegistryCredentials;
+        return this;
+    }
+
+    /**
      * Get the notebookAccessKeys property: The notebookAccessKeys property.
      * 
      * @return the notebookAccessKeys value.
      */
     public ListNotebookKeysResultInner notebookAccessKeys() {
         return this.notebookAccessKeys;
+    }
+
+    /**
+     * Set the notebookAccessKeys property: The notebookAccessKeys property.
+     * 
+     * @param notebookAccessKeys the notebookAccessKeys value to set.
+     * @return the ListWorkspaceKeysResultInner object itself.
+     */
+    public ListWorkspaceKeysResultInner withNotebookAccessKeys(ListNotebookKeysResultInner notebookAccessKeys) {
+        this.notebookAccessKeys = notebookAccessKeys;
+        return this;
+    }
+
+    /**
+     * Get the userStorageArmId property: The arm Id key of the workspace storage.
+     * 
+     * @return the userStorageArmId value.
+     */
+    public String userStorageArmId() {
+        return this.userStorageArmId;
+    }
+
+    /**
+     * Get the userStorageKey property: The access key of the workspace storage.
+     * 
+     * @return the userStorageKey value.
+     */
+    public String userStorageKey() {
+        return this.userStorageKey;
     }
 
     /**
@@ -113,6 +136,8 @@ public final class ListWorkspaceKeysResultInner implements JsonSerializable<List
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("containerRegistryCredentials", this.containerRegistryCredentials);
+        jsonWriter.writeJsonField("notebookAccessKeys", this.notebookAccessKeys);
         return jsonWriter.writeEndObject();
     }
 
@@ -131,11 +156,7 @@ public final class ListWorkspaceKeysResultInner implements JsonSerializable<List
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("userStorageKey".equals(fieldName)) {
-                    deserializedListWorkspaceKeysResultInner.userStorageKey = reader.getString();
-                } else if ("userStorageResourceId".equals(fieldName)) {
-                    deserializedListWorkspaceKeysResultInner.userStorageResourceId = reader.getString();
-                } else if ("appInsightsInstrumentationKey".equals(fieldName)) {
+                if ("appInsightsInstrumentationKey".equals(fieldName)) {
                     deserializedListWorkspaceKeysResultInner.appInsightsInstrumentationKey = reader.getString();
                 } else if ("containerRegistryCredentials".equals(fieldName)) {
                     deserializedListWorkspaceKeysResultInner.containerRegistryCredentials
@@ -143,6 +164,10 @@ public final class ListWorkspaceKeysResultInner implements JsonSerializable<List
                 } else if ("notebookAccessKeys".equals(fieldName)) {
                     deserializedListWorkspaceKeysResultInner.notebookAccessKeys
                         = ListNotebookKeysResultInner.fromJson(reader);
+                } else if ("userStorageArmId".equals(fieldName)) {
+                    deserializedListWorkspaceKeysResultInner.userStorageArmId = reader.getString();
+                } else if ("userStorageKey".equals(fieldName)) {
+                    deserializedListWorkspaceKeysResultInner.userStorageKey = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

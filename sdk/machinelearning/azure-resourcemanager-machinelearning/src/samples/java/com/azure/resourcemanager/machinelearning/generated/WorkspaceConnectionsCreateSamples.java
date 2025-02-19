@@ -6,6 +6,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 
 import com.azure.resourcemanager.machinelearning.models.ConnectionCategory;
 import com.azure.resourcemanager.machinelearning.models.NoneAuthTypeWorkspaceConnectionProperties;
+import java.time.OffsetDateTime;
 
 /**
  * Samples for WorkspaceConnections Create.
@@ -13,8 +14,8 @@ import com.azure.resourcemanager.machinelearning.models.NoneAuthTypeWorkspaceCon
 public final class WorkspaceConnectionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/WorkspaceConnection/create.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/WorkspaceConnection/create.json
      */
     /**
      * Sample code: CreateWorkspaceConnection.
@@ -28,6 +29,7 @@ public final class WorkspaceConnectionsCreateSamples {
             .withExistingWorkspace("resourceGroup-1", "workspace-1")
             .withProperties(
                 new NoneAuthTypeWorkspaceConnectionProperties().withCategory(ConnectionCategory.CONTAINER_REGISTRY)
+                    .withExpiryTime(OffsetDateTime.parse("2024-03-15T14:30:00Z"))
                     .withTarget("www.facebook.com"))
             .create();
     }
