@@ -10,7 +10,7 @@ package com.azure.resourcemanager.advisor.generated;
 public final class RecommendationMetadataListSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListRecommendationMetadata.
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/ListRecommendationMetadata.
      * json
      */
     /**
