@@ -10,7 +10,7 @@ package com.azure.resourcemanager.databoxedge.generated;
 public final class ContainersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerDelete.json
+     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/ContainerDelete.json
      */
     /**
      * Sample code: ContainerDelete.
