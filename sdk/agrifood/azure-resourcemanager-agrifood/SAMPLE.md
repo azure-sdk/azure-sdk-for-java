@@ -1,30 +1,33 @@
 # Code snippets and samples
 
 
+## DataConnectors
+
+- [CreateOrUpdate](#dataconnectors_createorupdate)
+- [Delete](#dataconnectors_delete)
+- [Get](#dataconnectors_get)
+- [List](#dataconnectors_list)
+
+## DataManagerForAgricultureExtensions
+
+- [Get](#datamanagerforagricultureextensions_get)
+- [List](#datamanagerforagricultureextensions_list)
+
+## DataManagerForAgricultureResources
+
+- [CreateOrUpdate](#datamanagerforagricultureresources_createorupdate)
+- [Delete](#datamanagerforagricultureresources_delete)
+- [GetByResourceGroup](#datamanagerforagricultureresources_getbyresourcegroup)
+- [List](#datamanagerforagricultureresources_list)
+- [ListByResourceGroup](#datamanagerforagricultureresources_listbyresourcegroup)
+- [Update](#datamanagerforagricultureresources_update)
+
 ## Extensions
 
 - [CreateOrUpdate](#extensions_createorupdate)
 - [Delete](#extensions_delete)
 - [Get](#extensions_get)
-- [ListByFarmBeats](#extensions_listbyfarmbeats)
-
-## FarmBeatsExtensions
-
-- [Get](#farmbeatsextensions_get)
-- [List](#farmbeatsextensions_list)
-
-## FarmBeatsModels
-
-- [CreateOrUpdate](#farmbeatsmodels_createorupdate)
-- [Delete](#farmbeatsmodels_delete)
-- [GetByResourceGroup](#farmbeatsmodels_getbyresourcegroup)
-- [List](#farmbeatsmodels_list)
-- [ListByResourceGroup](#farmbeatsmodels_listbyresourcegroup)
-- [Update](#farmbeatsmodels_update)
-
-## Locations
-
-- [CheckNameAvailability](#locations_checknameavailability)
+- [ListByDataManagerForAgriculture](#extensions_listbydatamanagerforagriculture)
 
 ## OperationResults
 
@@ -57,6 +60,355 @@
 
 - [Get](#solutionsdiscoverability_get)
 - [List](#solutionsdiscoverability_list)
+### DataConnectors_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.agrifood.models.ApiKeyAuthCredentials;
+import com.azure.resourcemanager.agrifood.models.DataConnectorProperties;
+import com.azure.resourcemanager.agrifood.models.KeyVaultProperties;
+
+/**
+ * Samples for DataConnectors CreateOrUpdate.
+ */
+public final class DataConnectorsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataConnectors_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: DataConnectors_CreateOrUpdate.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void dataConnectorsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataConnectors()
+            .define("WeatherIBM")
+            .withExistingFarmBeat("examples-rg", "examples-dataManagerForAgricultureResourceName")
+            .withProperties(new DataConnectorProperties().withCredentials(
+                new ApiKeyAuthCredentials().withApiKey(new KeyVaultProperties().withKeyVaultUri("fakeTokenPlaceholder")
+                    .withKeyName("fakeTokenPlaceholder")
+                    .withKeyVersion("fakeTokenPlaceholder"))))
+            .create();
+    }
+}
+```
+
+### DataConnectors_Delete
+
+```java
+/**
+ * Samples for DataConnectors Delete.
+ */
+public final class DataConnectorsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataConnectors_Delete.json
+     */
+    /**
+     * Sample code: DataConnectors_Delete.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void dataConnectorsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataConnectors()
+            .deleteWithResponse("examples-rg", "examples-dataManagerForAgricultureResourceName", "SatelliteSentinelHub",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataConnectors_Get
+
+```java
+/**
+ * Samples for DataConnectors Get.
+ */
+public final class DataConnectorsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataConnectors_Get.json
+     */
+    /**
+     * Sample code: DataConnectors_Get.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void dataConnectorsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataConnectors()
+            .getWithResponse("examples-rg", "examples-dataManagerForAgricultureResourceName", "SatelliteSentinelHub",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataConnectors_List
+
+```java
+/**
+ * Samples for DataConnectors List.
+ */
+public final class DataConnectorsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataConnectors_List.json
+     */
+    /**
+     * Sample code: DataConnectors_List.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void dataConnectorsList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataConnectors()
+            .list("examples-rg", "examples-dataManagerForAgricultureResourceName", null, null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataManagerForAgricultureExtensions_Get
+
+```java
+/**
+ * Samples for DataManagerForAgricultureExtensions Get.
+ */
+public final class DataManagerForAgricultureExtensionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataManagerForAgricultureExtensions_Get.json
+     */
+    /**
+     * Sample code: DataManagerForAgricultureExtensions_Get.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void
+        dataManagerForAgricultureExtensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataManagerForAgricultureExtensions()
+            .getWithResponse("DTN.ContentServices", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataManagerForAgricultureExtensions_List
+
+```java
+
+/**
+ * Samples for DataManagerForAgricultureExtensions List.
+ */
+public final class DataManagerForAgricultureExtensionsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataManagerForAgricultureExtensions_List.json
+     */
+    /**
+     * Sample code: DataManagerForAgricultureExtensions_List.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void
+        dataManagerForAgricultureExtensionsList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataManagerForAgricultureExtensions()
+            .list(null, null, null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataManagerForAgricultureResources_CreateOrUpdate
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for DataManagerForAgricultureResources CreateOrUpdate.
+ */
+public final class DataManagerForAgricultureResourcesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataManagerForAgricultureResources_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: DataManagerForAgricultureResources_CreateOrUpdate.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void
+        dataManagerForAgricultureResourcesCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataManagerForAgricultureResources()
+            .define("examples-farmbeatsResourceName")
+            .withRegion("eastus2")
+            .withExistingResourceGroup("examples-rg")
+            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### DataManagerForAgricultureResources_Delete
+
+```java
+/**
+ * Samples for DataManagerForAgricultureResources Delete.
+ */
+public final class DataManagerForAgricultureResourcesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataManagerForAgricultureResources_Delete.json
+     */
+    /**
+     * Sample code: DataManagerForAgricultureResources_Delete.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void
+        dataManagerForAgricultureResourcesDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataManagerForAgricultureResources()
+            .deleteByResourceGroupWithResponse("examples-rg", "examples-dataManagerForAgricultureResourceName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataManagerForAgricultureResources_GetByResourceGroup
+
+```java
+/**
+ * Samples for DataManagerForAgricultureResources GetByResourceGroup.
+ */
+public final class DataManagerForAgricultureResourcesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataManagerForAgricultureResources_Get.json
+     */
+    /**
+     * Sample code: DataManagerForAgricultureResources_Get.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void
+        dataManagerForAgricultureResourcesGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataManagerForAgricultureResources()
+            .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataManagerForAgricultureResources_List
+
+```java
+/**
+ * Samples for DataManagerForAgricultureResources List.
+ */
+public final class DataManagerForAgricultureResourcesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataManagerForAgricultureResources_ListBySubscription.json
+     */
+    /**
+     * Sample code: DataManagerForAgricultureResources_ListBySubscription.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void dataManagerForAgricultureResourcesListBySubscription(
+        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataManagerForAgricultureResources().list(null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataManagerForAgricultureResources_ListByResourceGroup
+
+```java
+/**
+ * Samples for DataManagerForAgricultureResources ListByResourceGroup.
+ */
+public final class DataManagerForAgricultureResourcesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataManagerForAgricultureResources_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: DataManagerForAgricultureResources_ListByResourceGroup.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void dataManagerForAgricultureResourcesListByResourceGroup(
+        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.dataManagerForAgricultureResources()
+            .listByResourceGroup("examples-rg", null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataManagerForAgricultureResources_Update
+
+```java
+import com.azure.resourcemanager.agrifood.models.DataManagerForAgriculture;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for DataManagerForAgricultureResources Update.
+ */
+public final class DataManagerForAgricultureResourcesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * DataManagerForAgricultureResources_Update.json
+     */
+    /**
+     * Sample code: DataManagerForAgricultureResources_Update.
+     * 
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void
+        dataManagerForAgricultureResourcesUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        DataManagerForAgriculture resource = manager.dataManagerForAgricultureResources()
+            .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
 ### Extensions_CreateOrUpdate
 
 ```java
@@ -66,7 +418,7 @@
 public final class ExtensionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Extensions_CreateOrUpdate.json
      */
     /**
@@ -77,7 +429,7 @@ public final class ExtensionsCreateOrUpdateSamples {
     public static void extensionsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager.extensions()
             .define("provider.extension")
-            .withExistingFarmBeat("examples-rg", "examples-farmbeatsResourceName")
+            .withExistingFarmBeat("examples-rg", "examples-dataManagerForAgricultureResourceName")
             .create();
     }
 }
@@ -92,7 +444,7 @@ public final class ExtensionsCreateOrUpdateSamples {
 public final class ExtensionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Extensions_Delete.json
      */
     /**
@@ -117,7 +469,7 @@ public final class ExtensionsDeleteSamples {
 public final class ExtensionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Extensions_Get.json
      */
     /**
@@ -133,329 +485,29 @@ public final class ExtensionsGetSamples {
 }
 ```
 
-### Extensions_ListByFarmBeats
+### Extensions_ListByDataManagerForAgriculture
 
 ```java
 
 /**
- * Samples for Extensions ListByFarmBeats.
+ * Samples for Extensions ListByDataManagerForAgriculture.
  */
-public final class ExtensionsListByFarmBeatsSamples {
+public final class ExtensionsListByDataManagerForAgricultureSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * Extensions_ListByFarmBeats.json
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
+     * Extensions_ListByDataManagerForAgriculture.json
      */
     /**
-     * Sample code: Extensions_ListByFarmBeats.
+     * Sample code: Extensions_ListByDataManagerForAgriculture.
      * 
      * @param manager Entry point to AgriFoodManager.
      */
-    public static void extensionsListByFarmBeats(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void
+        extensionsListByDataManagerForAgriculture(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager.extensions()
-            .listByFarmBeats("examples-rg", "examples-farmbeatsResourceName", null, null, null, null,
+            .listByDataManagerForAgriculture("examples-rg", "examples-farmbeatsResourceName", null, null, null, null,
                 com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FarmBeatsExtensions_Get
-
-```java
-/**
- * Samples for FarmBeatsExtensions Get.
- */
-public final class FarmBeatsExtensionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsExtensions_Get.json
-     */
-    /**
-     * Sample code: FarmBeatsExtensions_Get.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsExtensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsExtensions().getWithResponse("DTN.ContentServices", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FarmBeatsExtensions_List
-
-```java
-
-/**
- * Samples for FarmBeatsExtensions List.
- */
-public final class FarmBeatsExtensionsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsExtensions_List.json
-     */
-    /**
-     * Sample code: FarmBeatsExtensions_List.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsExtensionsList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsExtensions().list(null, null, null, null, null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FarmBeatsModels_CreateOrUpdate
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for FarmBeatsModels CreateOrUpdate.
- */
-public final class FarmBeatsModelsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsModels_CreateOrUpdate.json
-     */
-    /**
-     * Sample code: FarmBeatsModels_CreateOrUpdate.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsModelsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels()
-            .define("examples-farmbeatsResourceName")
-            .withRegion("eastus2")
-            .withExistingResourceGroup("examples-rg")
-            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### FarmBeatsModels_Delete
-
-```java
-/**
- * Samples for FarmBeatsModels Delete.
- */
-public final class FarmBeatsModelsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsModels_Delete.json
-     */
-    /**
-     * Sample code: FarmBeatsModels_Delete.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsModelsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels()
-            .deleteByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FarmBeatsModels_GetByResourceGroup
-
-```java
-/**
- * Samples for FarmBeatsModels GetByResourceGroup.
- */
-public final class FarmBeatsModelsGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsModels_Get.json
-     */
-    /**
-     * Sample code: FarmBeatsModels_Get.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsModelsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels()
-            .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FarmBeatsModels_List
-
-```java
-/**
- * Samples for FarmBeatsModels List.
- */
-public final class FarmBeatsModelsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsModels_ListBySubscription.json
-     */
-    /**
-     * Sample code: FarmBeatsModels_ListBySubscription.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsModelsListBySubscription(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels().list(null, null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FarmBeatsModels_ListByResourceGroup
-
-```java
-/**
- * Samples for FarmBeatsModels ListByResourceGroup.
- */
-public final class FarmBeatsModelsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsModels_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: FarmBeatsModels_ListByResourceGroup.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsModelsListByResourceGroup(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels().listByResourceGroup("examples-rg", null, null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FarmBeatsModels_Update
-
-```java
-import com.azure.resourcemanager.agrifood.models.FarmBeats;
-import com.azure.resourcemanager.agrifood.models.FarmBeatsUpdateProperties;
-import com.azure.resourcemanager.agrifood.models.Identity;
-import com.azure.resourcemanager.agrifood.models.ResourceIdentityType;
-import com.azure.resourcemanager.agrifood.models.SensorIntegration;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for FarmBeatsModels Update.
- */
-public final class FarmBeatsModelsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsModels_Update.json
-     */
-    /**
-     * Sample code: FarmBeatsModels_Update.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsModelsUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        FarmBeats resource = manager.farmBeatsModels()
-            .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName",
-                com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).apply();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * FarmBeatsModels_UpdateWithSensor.json
-     */
-    /**
-     * Sample code: FarmBeatsModels_UpdateWithSensor.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void farmBeatsModelsUpdateWithSensor(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        FarmBeats resource = manager.farmBeatsModels()
-            .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName",
-                com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
-            .withProperties(
-                new FarmBeatsUpdateProperties().withSensorIntegration(new SensorIntegration().withEnabled("True")))
-            .apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### Locations_CheckNameAvailability
-
-```java
-import com.azure.resourcemanager.agrifood.models.CheckNameAvailabilityRequest;
-
-/**
- * Samples for Locations CheckNameAvailability.
- */
-public final class LocationsCheckNameAvailabilitySamples {
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * Locations_CheckNameAvailability_Available.json
-     */
-    /**
-     * Sample code: Locations_CheckNameAvailability_Available.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void
-        locationsCheckNameAvailabilityAvailable(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.locations()
-            .checkNameAvailabilityWithResponse(new CheckNameAvailabilityRequest().withName("newaccountname")
-                .withType("Microsoft.AgFoodPlatform/farmBeats"), com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
-     * Locations_CheckNameAvailability_AlreadyExists.json
-     */
-    /**
-     * Sample code: Locations_CheckNameAvailability_AlreadyExists.
-     * 
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void
-        locationsCheckNameAvailabilityAlreadyExists(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.locations()
-            .checkNameAvailabilityWithResponse(new CheckNameAvailabilityRequest().withName("existingaccountname")
-                .withType("Microsoft.AgFoodPlatform/farmBeats"), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -469,7 +521,7 @@ public final class LocationsCheckNameAvailabilitySamples {
 public final class OperationResultsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * OperationResults_Get.json
      */
     /**
@@ -494,7 +546,7 @@ public final class OperationResultsGetSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Operations_List.json
      */
     /**
@@ -520,7 +572,7 @@ import com.azure.resourcemanager.agrifood.models.PrivateLinkServiceConnectionSta
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * PrivateEndpointConnections_CreateOrUpdate.json
      */
     /**
@@ -550,7 +602,7 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * PrivateEndpointConnections_Delete.json
      */
     /**
@@ -575,7 +627,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 public final class PrivateEndpointConnectionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * PrivateEndpointConnections_Get.json
      */
     /**
@@ -600,7 +652,7 @@ public final class PrivateEndpointConnectionsGetSamples {
 public final class PrivateEndpointConnectionsListByResourceSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * PrivateEndpointConnections_ListByResource.json
      */
     /**
@@ -611,7 +663,8 @@ public final class PrivateEndpointConnectionsListByResourceSamples {
     public static void
         privateEndpointConnectionsListByResource(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager.privateEndpointConnections()
-            .listByResource("examples-rg", "examples-farmbeatsResourceName", com.azure.core.util.Context.NONE);
+            .listByResourceWithResponse("examples-rg", "examples-farmbeatsResourceName",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -625,7 +678,7 @@ public final class PrivateEndpointConnectionsListByResourceSamples {
 public final class PrivateLinkResourcesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * PrivateLinkResources_Get.json
      */
     /**
@@ -650,7 +703,7 @@ public final class PrivateLinkResourcesGetSamples {
 public final class PrivateLinkResourcesListByResourceSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * PrivateLinkResources_ListByResource.json
      */
     /**
@@ -660,7 +713,8 @@ public final class PrivateLinkResourcesListByResourceSamples {
      */
     public static void privateLinkResourcesListByResource(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager.privateLinkResources()
-            .listByResource("examples-rg", "examples-farmbeatsResourceName", com.azure.core.util.Context.NONE);
+            .listByResourceWithResponse("examples-rg", "examples-farmbeatsResourceName",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -668,17 +722,13 @@ public final class PrivateLinkResourcesListByResourceSamples {
 ### Solutions_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.agrifood.models.SolutionProperties;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Samples for Solutions CreateOrUpdate.
  */
 public final class SolutionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Solutions_CreateOrUpdate.json
      */
     /**
@@ -690,26 +740,7 @@ public final class SolutionsCreateOrUpdateSamples {
         manager.solutions()
             .define("abc.partner")
             .withExistingFarmBeat("examples-rg", "examples-farmbeatsResourceName")
-            .withProperties(new SolutionProperties().withSaasSubscriptionId("123")
-                .withSaasSubscriptionName("name")
-                .withMarketplacePublisherId("publisherId")
-                .withPlanId("planId")
-                .withOfferId("offerId")
-                .withTermId("termId")
-                .withAdditionalProperties(mapOf()))
             .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }
 ```
@@ -723,7 +754,7 @@ public final class SolutionsCreateOrUpdateSamples {
 public final class SolutionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Solutions_Delete.json
      */
     /**
@@ -748,7 +779,7 @@ public final class SolutionsDeleteSamples {
 public final class SolutionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Solutions_Get.json
      */
     /**
@@ -774,7 +805,7 @@ public final class SolutionsGetSamples {
 public final class SolutionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Solutions_List.json
      */
     /**
@@ -799,7 +830,7 @@ public final class SolutionsListSamples {
 public final class SolutionsDiscoverabilityGetSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * SolutionsDiscoverability_Get.json
      */
     /**
@@ -823,7 +854,7 @@ public final class SolutionsDiscoverabilityGetSamples {
 public final class SolutionsDiscoverabilityListSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * SolutionsDiscoverability_List.json
      */
     /**

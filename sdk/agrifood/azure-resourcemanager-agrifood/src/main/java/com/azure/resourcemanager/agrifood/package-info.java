@@ -4,6 +4,6 @@
 
 /**
  * Package containing the classes for AgriFoodManagementClient.
- * APIs documentation for Azure AgFoodPlatform Resource Provider Service.
+ * APIs documentation for Microsoft Azure Data Manager for Agriculture Service.
  */
 package com.azure.resourcemanager.agrifood;

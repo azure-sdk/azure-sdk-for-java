@@ -29,10 +29,10 @@ public final class SolutionsImpl implements Solutions {
         this.serviceManager = serviceManager;
     }
 
-    public Response<Solution> getWithResponse(String resourceGroupName, String farmBeatsResourceName, String solutionId,
-        Context context) {
-        Response<SolutionInner> inner
-            = this.serviceClient().getWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, context);
+    public Response<Solution> getWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId, Context context) {
+        Response<SolutionInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SolutionImpl(inner.getValue(), this.manager()));
@@ -41,8 +41,9 @@ public final class SolutionsImpl implements Solutions {
         }
     }
 
-    public Solution get(String resourceGroupName, String farmBeatsResourceName, String solutionId) {
-        SolutionInner inner = this.serviceClient().get(resourceGroupName, farmBeatsResourceName, solutionId);
+    public Solution get(String resourceGroupName, String dataManagerForAgricultureResourceName, String solutionId) {
+        SolutionInner inner
+            = this.serviceClient().get(resourceGroupName, dataManagerForAgricultureResourceName, solutionId);
         if (inner != null) {
             return new SolutionImpl(inner, this.manager());
         } else {
@@ -50,29 +51,31 @@ public final class SolutionsImpl implements Solutions {
         }
     }
 
-    public Response<Void> deleteWithResponse(String resourceGroupName, String farmBeatsResourceName, String solutionId,
-        Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, context);
+    public Response<Void> deleteWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId, Context context) {
+        return this.serviceClient()
+            .deleteWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, context);
     }
 
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String solutionId) {
-        this.serviceClient().delete(resourceGroupName, farmBeatsResourceName, solutionId);
+    public void delete(String resourceGroupName, String dataManagerForAgricultureResourceName, String solutionId) {
+        this.serviceClient().delete(resourceGroupName, dataManagerForAgricultureResourceName, solutionId);
     }
 
-    public PagedIterable<Solution> list(String resourceGroupName, String farmBeatsResourceName) {
-        PagedIterable<SolutionInner> inner = this.serviceClient().list(resourceGroupName, farmBeatsResourceName);
+    public PagedIterable<Solution> list(String resourceGroupName, String dataManagerForAgricultureResourceName) {
+        PagedIterable<SolutionInner> inner
+            = this.serviceClient().list(resourceGroupName, dataManagerForAgricultureResourceName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SolutionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Solution> list(String resourceGroupName, String farmBeatsResourceName,
+    public PagedIterable<Solution> list(String resourceGroupName, String dataManagerForAgricultureResourceName,
         List<String> solutionIds, List<String> ids, List<String> names, List<String> propertyFilters,
         List<String> statuses, OffsetDateTime minCreatedDateTime, OffsetDateTime maxCreatedDateTime,
         OffsetDateTime minLastModifiedDateTime, OffsetDateTime maxLastModifiedDateTime, Integer maxPageSize,
         String skipToken, Context context) {
         PagedIterable<SolutionInner> inner = this.serviceClient()
-            .list(resourceGroupName, farmBeatsResourceName, solutionIds, ids, names, propertyFilters, statuses,
-                minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize,
-                skipToken, context);
+            .list(resourceGroupName, dataManagerForAgricultureResourceName, solutionIds, ids, names, propertyFilters,
+                statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime,
+                maxPageSize, skipToken, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SolutionImpl(inner1, this.manager()));
     }
 
@@ -82,8 +85,8 @@ public final class SolutionsImpl implements Solutions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
@@ -92,7 +95,8 @@ public final class SolutionsImpl implements Solutions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'solutions'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, Context.NONE).getValue();
+        return this.getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, Context.NONE)
+            .getValue();
     }
 
     public Response<Solution> getByIdWithResponse(String id, Context context) {
@@ -101,8 +105,8 @@ public final class SolutionsImpl implements Solutions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
@@ -111,7 +115,7 @@ public final class SolutionsImpl implements Solutions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'solutions'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, context);
+        return this.getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, context);
     }
 
     public void deleteById(String id) {
@@ -120,8 +124,8 @@ public final class SolutionsImpl implements Solutions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
@@ -130,7 +134,7 @@ public final class SolutionsImpl implements Solutions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'solutions'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
@@ -139,8 +143,8 @@ public final class SolutionsImpl implements Solutions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
@@ -149,7 +153,7 @@ public final class SolutionsImpl implements Solutions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'solutions'.", id)));
         }
-        return this.deleteWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, context);
+        return this.deleteWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, context);
     }
 
     private SolutionsClient serviceClient() {
