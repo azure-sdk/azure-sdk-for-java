@@ -10,7 +10,7 @@ package com.azure.resourcemanager.agrifood.generated;
 public final class PrivateLinkResourcesListByResourceSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * PrivateLinkResources_ListByResource.json
      */
     /**
@@ -20,6 +20,7 @@ public final class PrivateLinkResourcesListByResourceSamples {
      */
     public static void privateLinkResourcesListByResource(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager.privateLinkResources()
-            .listByResource("examples-rg", "examples-farmbeatsResourceName", com.azure.core.util.Context.NONE);
+            .listByResourceWithResponse("examples-rg", "examples-farmbeatsResourceName",
+                com.azure.core.util.Context.NONE);
     }
 }

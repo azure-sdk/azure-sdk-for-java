@@ -20,11 +20,6 @@ import java.util.Map;
 @Fluent
 public final class SolutionProperties implements JsonSerializable<SolutionProperties> {
     /*
-     * Solution Id.
-     */
-    private String solutionId;
-
-    /*
      * Partner Id of the Solution.
      */
     private String partnerId;
@@ -40,7 +35,7 @@ public final class SolutionProperties implements JsonSerializable<SolutionProper
     private String saasSubscriptionName;
 
     /*
-     * SaaS application Publisher Id.
+     * SaaS application Marketplace Publisher Id.
      */
     private String marketplacePublisherId;
 
@@ -48,6 +43,11 @@ public final class SolutionProperties implements JsonSerializable<SolutionProper
      * SaaS application Plan Id.
      */
     private String planId;
+
+    /*
+     * Role Assignment Id.
+     */
+    private String roleAssignmentId;
 
     /*
      * SaaS application Offer Id.
@@ -68,15 +68,6 @@ public final class SolutionProperties implements JsonSerializable<SolutionProper
      * Creates an instance of SolutionProperties class.
      */
     public SolutionProperties() {
-    }
-
-    /**
-     * Get the solutionId property: Solution Id.
-     * 
-     * @return the solutionId value.
-     */
-    public String solutionId() {
-        return this.solutionId;
     }
 
     /**
@@ -129,7 +120,7 @@ public final class SolutionProperties implements JsonSerializable<SolutionProper
     }
 
     /**
-     * Get the marketplacePublisherId property: SaaS application Publisher Id.
+     * Get the marketplacePublisherId property: SaaS application Marketplace Publisher Id.
      * 
      * @return the marketplacePublisherId value.
      */
@@ -138,7 +129,7 @@ public final class SolutionProperties implements JsonSerializable<SolutionProper
     }
 
     /**
-     * Set the marketplacePublisherId property: SaaS application Publisher Id.
+     * Set the marketplacePublisherId property: SaaS application Marketplace Publisher Id.
      * 
      * @param marketplacePublisherId the marketplacePublisherId value to set.
      * @return the SolutionProperties object itself.
@@ -165,6 +156,26 @@ public final class SolutionProperties implements JsonSerializable<SolutionProper
      */
     public SolutionProperties withPlanId(String planId) {
         this.planId = planId;
+        return this;
+    }
+
+    /**
+     * Get the roleAssignmentId property: Role Assignment Id.
+     * 
+     * @return the roleAssignmentId value.
+     */
+    public String roleAssignmentId() {
+        return this.roleAssignmentId;
+    }
+
+    /**
+     * Set the roleAssignmentId property: Role Assignment Id.
+     * 
+     * @param roleAssignmentId the roleAssignmentId value to set.
+     * @return the SolutionProperties object itself.
+     */
+    public SolutionProperties withRoleAssignmentId(String roleAssignmentId) {
+        this.roleAssignmentId = roleAssignmentId;
         return this;
     }
 
@@ -277,6 +288,7 @@ public final class SolutionProperties implements JsonSerializable<SolutionProper
         jsonWriter.writeStringField("planId", this.planId);
         jsonWriter.writeStringField("offerId", this.offerId);
         jsonWriter.writeStringField("termId", this.termId);
+        jsonWriter.writeStringField("roleAssignmentId", this.roleAssignmentId);
         if (additionalProperties != null) {
             for (Map.Entry<String, Object> additionalProperty : additionalProperties.entrySet()) {
                 jsonWriter.writeUntypedField(additionalProperty.getKey(), additionalProperty.getValue());
@@ -314,10 +326,10 @@ public final class SolutionProperties implements JsonSerializable<SolutionProper
                     deserializedSolutionProperties.offerId = reader.getString();
                 } else if ("termId".equals(fieldName)) {
                     deserializedSolutionProperties.termId = reader.getString();
-                } else if ("solutionId".equals(fieldName)) {
-                    deserializedSolutionProperties.solutionId = reader.getString();
                 } else if ("partnerId".equals(fieldName)) {
                     deserializedSolutionProperties.partnerId = reader.getString();
+                } else if ("roleAssignmentId".equals(fieldName)) {
+                    deserializedSolutionProperties.roleAssignmentId = reader.getString();
                 } else {
                     if (additionalProperties == null) {
                         additionalProperties = new LinkedHashMap<>();

@@ -24,10 +24,10 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.agrifood.fluent.AgriFoodManagementClient;
+import com.azure.resourcemanager.agrifood.fluent.DataConnectorsClient;
+import com.azure.resourcemanager.agrifood.fluent.DataManagerForAgricultureExtensionsClient;
+import com.azure.resourcemanager.agrifood.fluent.DataManagerForAgricultureResourcesClient;
 import com.azure.resourcemanager.agrifood.fluent.ExtensionsClient;
-import com.azure.resourcemanager.agrifood.fluent.FarmBeatsExtensionsClient;
-import com.azure.resourcemanager.agrifood.fluent.FarmBeatsModelsClient;
-import com.azure.resourcemanager.agrifood.fluent.LocationsClient;
 import com.azure.resourcemanager.agrifood.fluent.OperationResultsClient;
 import com.azure.resourcemanager.agrifood.fluent.OperationsClient;
 import com.azure.resourcemanager.agrifood.fluent.PrivateEndpointConnectionsClient;
@@ -133,45 +133,45 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
     }
 
     /**
-     * The ExtensionsClient object to access its operations.
+     * The DataConnectorsClient object to access its operations.
      */
-    private final ExtensionsClient extensions;
+    private final DataConnectorsClient dataConnectors;
 
     /**
-     * Gets the ExtensionsClient object to access its operations.
+     * Gets the DataConnectorsClient object to access its operations.
      * 
-     * @return the ExtensionsClient object.
+     * @return the DataConnectorsClient object.
      */
-    public ExtensionsClient getExtensions() {
-        return this.extensions;
+    public DataConnectorsClient getDataConnectors() {
+        return this.dataConnectors;
     }
 
     /**
-     * The FarmBeatsExtensionsClient object to access its operations.
+     * The DataManagerForAgricultureExtensionsClient object to access its operations.
      */
-    private final FarmBeatsExtensionsClient farmBeatsExtensions;
+    private final DataManagerForAgricultureExtensionsClient dataManagerForAgricultureExtensions;
 
     /**
-     * Gets the FarmBeatsExtensionsClient object to access its operations.
+     * Gets the DataManagerForAgricultureExtensionsClient object to access its operations.
      * 
-     * @return the FarmBeatsExtensionsClient object.
+     * @return the DataManagerForAgricultureExtensionsClient object.
      */
-    public FarmBeatsExtensionsClient getFarmBeatsExtensions() {
-        return this.farmBeatsExtensions;
+    public DataManagerForAgricultureExtensionsClient getDataManagerForAgricultureExtensions() {
+        return this.dataManagerForAgricultureExtensions;
     }
 
     /**
-     * The FarmBeatsModelsClient object to access its operations.
+     * The DataManagerForAgricultureResourcesClient object to access its operations.
      */
-    private final FarmBeatsModelsClient farmBeatsModels;
+    private final DataManagerForAgricultureResourcesClient dataManagerForAgricultureResources;
 
     /**
-     * Gets the FarmBeatsModelsClient object to access its operations.
+     * Gets the DataManagerForAgricultureResourcesClient object to access its operations.
      * 
-     * @return the FarmBeatsModelsClient object.
+     * @return the DataManagerForAgricultureResourcesClient object.
      */
-    public FarmBeatsModelsClient getFarmBeatsModels() {
-        return this.farmBeatsModels;
+    public DataManagerForAgricultureResourcesClient getDataManagerForAgricultureResources() {
+        return this.dataManagerForAgricultureResources;
     }
 
     /**
@@ -189,17 +189,17 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
     }
 
     /**
-     * The LocationsClient object to access its operations.
+     * The ExtensionsClient object to access its operations.
      */
-    private final LocationsClient locations;
+    private final ExtensionsClient extensions;
 
     /**
-     * Gets the LocationsClient object to access its operations.
+     * Gets the ExtensionsClient object to access its operations.
      * 
-     * @return the LocationsClient object.
+     * @return the ExtensionsClient object.
      */
-    public LocationsClient getLocations() {
-        return this.locations;
+    public ExtensionsClient getExtensions() {
+        return this.extensions;
     }
 
     /**
@@ -289,12 +289,12 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-09-01-preview";
-        this.extensions = new ExtensionsClientImpl(this);
-        this.farmBeatsExtensions = new FarmBeatsExtensionsClientImpl(this);
-        this.farmBeatsModels = new FarmBeatsModelsClientImpl(this);
+        this.apiVersion = "2023-06-01-preview";
+        this.dataConnectors = new DataConnectorsClientImpl(this);
+        this.dataManagerForAgricultureExtensions = new DataManagerForAgricultureExtensionsClientImpl(this);
+        this.dataManagerForAgricultureResources = new DataManagerForAgricultureResourcesClientImpl(this);
         this.operationResults = new OperationResultsClientImpl(this);
-        this.locations = new LocationsClientImpl(this);
+        this.extensions = new ExtensionsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
