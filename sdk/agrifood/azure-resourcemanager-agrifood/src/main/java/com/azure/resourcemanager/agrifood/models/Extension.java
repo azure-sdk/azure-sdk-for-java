@@ -84,7 +84,7 @@ public interface Extension {
     String extensionApiDocsLink();
 
     /**
-     * Gets the additionalApiProperties property: Additional api properties.
+     * Gets the additionalApiProperties property: Additional Api Properties.
      * 
      * @return the additionalApiProperties value.
      */
@@ -126,13 +126,13 @@ public interface Extension {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, farmBeatsResourceName.
+             * Specifies resourceGroupName, dataManagerForAgricultureResourceName.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param farmBeatsResourceName FarmBeats resource name.
+             * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
              * @return the next definition stage.
              */
-            WithCreate withExistingFarmBeat(String resourceGroupName, String farmBeatsResourceName);
+            WithCreate withExistingFarmBeat(String resourceGroupName, String dataManagerForAgricultureResourceName);
         }
 
         /**
