@@ -18,7 +18,7 @@ import java.util.Map;
 public final class RegistryEnvironmentVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Registry/EnvironmentVersion/createOrUpdate.json
      */
     /**
@@ -32,14 +32,14 @@ public final class RegistryEnvironmentVersionsCreateOrUpdateSamples {
             .createOrUpdate("test-rg", "my-aml-registry", "string", "string",
                 new EnvironmentVersionInner().withProperties(new EnvironmentVersionProperties()
                     .withDescription("string")
-                    .withTags(mapOf("string", "string"))
                     .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
                     .withIsAnonymous(false)
-                    .withImage("docker.io/tensorflow/serving:latest")
-                    .withCondaFile("string")
                     .withBuild(new BuildContext().withContextUri(
                         "https://storage-account.blob.core.windows.net/azureml/DockerBuildContext/95ddede6b9b8c4e90472db3acd0a8d28/")
                         .withDockerfilePath("prod/Dockerfile"))
+                    .withCondaFile("string")
+                    .withImage("docker.io/tensorflow/serving:latest")
                     .withInferenceConfig(
                         new InferenceContainerProperties().withLivenessRoute(new Route().withPath("string").withPort(1))
                             .withReadinessRoute(new Route().withPath("string").withPort(1))

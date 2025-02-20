@@ -68,7 +68,6 @@ public final class SasCredential extends DataReferenceCredential {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
