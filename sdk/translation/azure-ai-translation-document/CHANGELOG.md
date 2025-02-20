@@ -2,13 +2,42 @@
 
 ## 1.1.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `SingleDocumentTranslationClient` was modified
 
-### Other Changes
+* `translate(java.lang.String,models.DocumentTranslateContent,java.lang.String,java.lang.String,java.lang.Boolean)` was removed
+
+#### `SingleDocumentTranslationAsyncClient` was modified
+
+* `translate(java.lang.String,models.DocumentTranslateContent,java.lang.String,java.lang.String,java.lang.Boolean)` was removed
+
+### Features Added
+
+* `models.BatchOptions` was added
+
+#### `SingleDocumentTranslationClient` was modified
+
+* `translate(java.lang.String,models.DocumentTranslateContent,java.lang.String,java.lang.String,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean)` was added
+
+#### `SingleDocumentTranslationAsyncClient` was modified
+
+* `translate(java.lang.String,models.DocumentTranslateContent,java.lang.String,java.lang.String,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean)` was added
+
+#### `models.TranslationStatusSummary` was modified
+
+* `getTotalImageScansFailed()` was added
+* `getTotalImageScansSucceeded()` was added
+
+#### `models.TranslationBatch` was modified
+
+* `setOptions(models.BatchOptions)` was added
+* `getOptions()` was added
+
+#### `models.DocumentStatusResult` was modified
+
+* `getTotalImageScansSucceeded()` was added
+* `getTotalImageScansFailed()` was added
 
 ## 1.0.0 (2024-11-20)
 
