@@ -12,9 +12,12 @@ import com.azure.resourcemanager.devcenter.models.HealthStatus;
 import com.azure.resourcemanager.devcenter.models.HealthStatusDetail;
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinition;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinitionType;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
+import com.azure.resourcemanager.devcenter.models.StopOnNoConnectConfiguration;
 import com.azure.resourcemanager.devcenter.models.VirtualNetworkType;
 import java.io.IOException;
 import java.util.List;
@@ -93,8 +96,26 @@ public final class PoolProperties extends PoolUpdateProperties {
      * {@inheritDoc}
      */
     @Override
+    public PoolProperties withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType) {
+        super.withDevBoxDefinitionType(devBoxDefinitionType);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public PoolProperties withDevBoxDefinitionName(String devBoxDefinitionName) {
         super.withDevBoxDefinitionName(devBoxDefinitionName);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PoolProperties withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition) {
+        super.withDevBoxDefinition(devBoxDefinition);
         return this;
     }
 
@@ -131,6 +152,15 @@ public final class PoolProperties extends PoolUpdateProperties {
     @Override
     public PoolProperties withStopOnDisconnect(StopOnDisconnectConfiguration stopOnDisconnect) {
         super.withStopOnDisconnect(stopOnDisconnect);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PoolProperties withStopOnNoConnect(StopOnNoConnectConfiguration stopOnNoConnect) {
+        super.withStopOnNoConnect(stopOnNoConnect);
         return this;
     }
 
@@ -180,8 +210,14 @@ public final class PoolProperties extends PoolUpdateProperties {
         if (healthStatusDetails() != null) {
             healthStatusDetails().forEach(e -> e.validate());
         }
+        if (devBoxDefinition() != null) {
+            devBoxDefinition().validate();
+        }
         if (stopOnDisconnect() != null) {
             stopOnDisconnect().validate();
+        }
+        if (stopOnNoConnect() != null) {
+            stopOnNoConnect().validate();
         }
     }
 
@@ -191,12 +227,16 @@ public final class PoolProperties extends PoolUpdateProperties {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("devBoxDefinitionType",
+            devBoxDefinitionType() == null ? null : devBoxDefinitionType().toString());
         jsonWriter.writeStringField("devBoxDefinitionName", devBoxDefinitionName());
+        jsonWriter.writeJsonField("devBoxDefinition", devBoxDefinition());
         jsonWriter.writeStringField("networkConnectionName", networkConnectionName());
         jsonWriter.writeStringField("licenseType", licenseType() == null ? null : licenseType().toString());
         jsonWriter.writeStringField("localAdministrator",
             localAdministrator() == null ? null : localAdministrator().toString());
         jsonWriter.writeJsonField("stopOnDisconnect", stopOnDisconnect());
+        jsonWriter.writeJsonField("stopOnNoConnect", stopOnNoConnect());
         jsonWriter.writeStringField("singleSignOnStatus",
             singleSignOnStatus() == null ? null : singleSignOnStatus().toString());
         jsonWriter.writeStringField("displayName", displayName());
@@ -222,8 +262,13 @@ public final class PoolProperties extends PoolUpdateProperties {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("devBoxDefinitionName".equals(fieldName)) {
+                if ("devBoxDefinitionType".equals(fieldName)) {
+                    deserializedPoolProperties
+                        .withDevBoxDefinitionType(PoolDevBoxDefinitionType.fromString(reader.getString()));
+                } else if ("devBoxDefinitionName".equals(fieldName)) {
                     deserializedPoolProperties.withDevBoxDefinitionName(reader.getString());
+                } else if ("devBoxDefinition".equals(fieldName)) {
+                    deserializedPoolProperties.withDevBoxDefinition(PoolDevBoxDefinition.fromJson(reader));
                 } else if ("networkConnectionName".equals(fieldName)) {
                     deserializedPoolProperties.withNetworkConnectionName(reader.getString());
                 } else if ("licenseType".equals(fieldName)) {
@@ -232,6 +277,8 @@ public final class PoolProperties extends PoolUpdateProperties {
                     deserializedPoolProperties.withLocalAdministrator(LocalAdminStatus.fromString(reader.getString()));
                 } else if ("stopOnDisconnect".equals(fieldName)) {
                     deserializedPoolProperties.withStopOnDisconnect(StopOnDisconnectConfiguration.fromJson(reader));
+                } else if ("stopOnNoConnect".equals(fieldName)) {
+                    deserializedPoolProperties.withStopOnNoConnect(StopOnNoConnectConfiguration.fromJson(reader));
                 } else if ("singleSignOnStatus".equals(fieldName)) {
                     deserializedPoolProperties
                         .withSingleSignOnStatus(SingleSignOnStatus.fromString(reader.getString()));

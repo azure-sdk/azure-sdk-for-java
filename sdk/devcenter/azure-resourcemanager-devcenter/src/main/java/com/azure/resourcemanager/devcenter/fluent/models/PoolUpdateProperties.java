@@ -11,8 +11,11 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinition;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinitionType;
 import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
+import com.azure.resourcemanager.devcenter.models.StopOnNoConnectConfiguration;
 import com.azure.resourcemanager.devcenter.models.VirtualNetworkType;
 import java.io.IOException;
 import java.util.List;
@@ -23,9 +26,20 @@ import java.util.List;
 @Fluent
 public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperties> {
     /*
-     * Name of a Dev Box definition in parent Project of this Pool
+     * Indicates if the pool is created from an existing Dev Box Definition or if one is provided directly.
+     */
+    private PoolDevBoxDefinitionType devBoxDefinitionType;
+
+    /*
+     * Name of a Dev Box definition in parent Project of this Pool. Will be ignored if devBoxDefinitionType is Value.
      */
     private String devBoxDefinitionName;
+
+    /*
+     * A definition of the machines that are created from this Pool. Will be ignored if devBoxDefinitionType is
+     * Reference or not provided.
+     */
+    private PoolDevBoxDefinition devBoxDefinition;
 
     /*
      * Name of a Network Connection in parent Project of this Pool
@@ -47,6 +61,11 @@ public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperti
      * Stop on disconnect configuration settings for Dev Boxes created in this pool.
      */
     private StopOnDisconnectConfiguration stopOnDisconnect;
+
+    /*
+     * Stop on no connect configuration settings for Dev Boxes created in this pool.
+     */
+    private StopOnNoConnectConfiguration stopOnNoConnect;
 
     /*
      * Indicates whether Dev Boxes in this pool are created with single sign on enabled. The also requires that single
@@ -76,7 +95,30 @@ public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperti
     }
 
     /**
-     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Get the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @return the devBoxDefinitionType value.
+     */
+    public PoolDevBoxDefinitionType devBoxDefinitionType() {
+        return this.devBoxDefinitionType;
+    }
+
+    /**
+     * Set the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @param devBoxDefinitionType the devBoxDefinitionType value to set.
+     * @return the PoolUpdateProperties object itself.
+     */
+    public PoolUpdateProperties withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType) {
+        this.devBoxDefinitionType = devBoxDefinitionType;
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @return the devBoxDefinitionName value.
      */
@@ -85,13 +127,36 @@ public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperti
     }
 
     /**
-     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @param devBoxDefinitionName the devBoxDefinitionName value to set.
      * @return the PoolUpdateProperties object itself.
      */
     public PoolUpdateProperties withDevBoxDefinitionName(String devBoxDefinitionName) {
         this.devBoxDefinitionName = devBoxDefinitionName;
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @return the devBoxDefinition value.
+     */
+    public PoolDevBoxDefinition devBoxDefinition() {
+        return this.devBoxDefinition;
+    }
+
+    /**
+     * Set the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @param devBoxDefinition the devBoxDefinition value to set.
+     * @return the PoolUpdateProperties object itself.
+     */
+    public PoolUpdateProperties withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition) {
+        this.devBoxDefinition = devBoxDefinition;
         return this;
     }
 
@@ -176,6 +241,26 @@ public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperti
      */
     public PoolUpdateProperties withStopOnDisconnect(StopOnDisconnectConfiguration stopOnDisconnect) {
         this.stopOnDisconnect = stopOnDisconnect;
+        return this;
+    }
+
+    /**
+     * Get the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @return the stopOnNoConnect value.
+     */
+    public StopOnNoConnectConfiguration stopOnNoConnect() {
+        return this.stopOnNoConnect;
+    }
+
+    /**
+     * Set the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @param stopOnNoConnect the stopOnNoConnect value to set.
+     * @return the PoolUpdateProperties object itself.
+     */
+    public PoolUpdateProperties withStopOnNoConnect(StopOnNoConnectConfiguration stopOnNoConnect) {
+        this.stopOnNoConnect = stopOnNoConnect;
         return this;
     }
 
@@ -271,8 +356,14 @@ public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperti
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (devBoxDefinition() != null) {
+            devBoxDefinition().validate();
+        }
         if (stopOnDisconnect() != null) {
             stopOnDisconnect().validate();
+        }
+        if (stopOnNoConnect() != null) {
+            stopOnNoConnect().validate();
         }
     }
 
@@ -282,12 +373,16 @@ public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperti
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("devBoxDefinitionType",
+            this.devBoxDefinitionType == null ? null : this.devBoxDefinitionType.toString());
         jsonWriter.writeStringField("devBoxDefinitionName", this.devBoxDefinitionName);
+        jsonWriter.writeJsonField("devBoxDefinition", this.devBoxDefinition);
         jsonWriter.writeStringField("networkConnectionName", this.networkConnectionName);
         jsonWriter.writeStringField("licenseType", this.licenseType == null ? null : this.licenseType.toString());
         jsonWriter.writeStringField("localAdministrator",
             this.localAdministrator == null ? null : this.localAdministrator.toString());
         jsonWriter.writeJsonField("stopOnDisconnect", this.stopOnDisconnect);
+        jsonWriter.writeJsonField("stopOnNoConnect", this.stopOnNoConnect);
         jsonWriter.writeStringField("singleSignOnStatus",
             this.singleSignOnStatus == null ? null : this.singleSignOnStatus.toString());
         jsonWriter.writeStringField("displayName", this.displayName);
@@ -313,8 +408,13 @@ public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperti
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("devBoxDefinitionName".equals(fieldName)) {
+                if ("devBoxDefinitionType".equals(fieldName)) {
+                    deserializedPoolUpdateProperties.devBoxDefinitionType
+                        = PoolDevBoxDefinitionType.fromString(reader.getString());
+                } else if ("devBoxDefinitionName".equals(fieldName)) {
                     deserializedPoolUpdateProperties.devBoxDefinitionName = reader.getString();
+                } else if ("devBoxDefinition".equals(fieldName)) {
+                    deserializedPoolUpdateProperties.devBoxDefinition = PoolDevBoxDefinition.fromJson(reader);
                 } else if ("networkConnectionName".equals(fieldName)) {
                     deserializedPoolUpdateProperties.networkConnectionName = reader.getString();
                 } else if ("licenseType".equals(fieldName)) {
@@ -324,6 +424,8 @@ public class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperti
                         = LocalAdminStatus.fromString(reader.getString());
                 } else if ("stopOnDisconnect".equals(fieldName)) {
                     deserializedPoolUpdateProperties.stopOnDisconnect = StopOnDisconnectConfiguration.fromJson(reader);
+                } else if ("stopOnNoConnect".equals(fieldName)) {
+                    deserializedPoolUpdateProperties.stopOnNoConnect = StopOnNoConnectConfiguration.fromJson(reader);
                 } else if ("singleSignOnStatus".equals(fieldName)) {
                     deserializedPoolUpdateProperties.singleSignOnStatus
                         = SingleSignOnStatus.fromString(reader.getString());

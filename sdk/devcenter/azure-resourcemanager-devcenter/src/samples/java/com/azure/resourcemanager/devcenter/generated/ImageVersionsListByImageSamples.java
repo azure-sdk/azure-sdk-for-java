@@ -10,7 +10,7 @@ package com.azure.resourcemanager.devcenter.generated;
 public final class ImageVersionsListByImageSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ImageVersions_List.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/ImageVersions_List.json
      */
     /**
      * Sample code: ImageVersions_ListByImage.

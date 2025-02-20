@@ -13,7 +13,7 @@ import com.azure.resourcemanager.devcenter.models.ImageReference;
 public final class DevBoxDefinitionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevBoxDefinitions_Patch.
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/DevBoxDefinitions_Patch.
      * json
      */
     /**
