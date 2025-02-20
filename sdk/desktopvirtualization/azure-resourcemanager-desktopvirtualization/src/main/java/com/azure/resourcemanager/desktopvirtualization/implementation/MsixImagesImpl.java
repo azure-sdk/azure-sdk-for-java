@@ -10,8 +10,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.MsixImagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ExpandMsixImageInner;
 import com.azure.resourcemanager.desktopvirtualization.models.ExpandMsixImage;
-import com.azure.resourcemanager.desktopvirtualization.models.MsixImages;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixImageUri;
+import com.azure.resourcemanager.desktopvirtualization.models.MsixImages;
 
 public final class MsixImagesImpl implements MsixImages {
     private static final ClientLogger LOGGER = new ClientLogger(MsixImagesImpl.class);

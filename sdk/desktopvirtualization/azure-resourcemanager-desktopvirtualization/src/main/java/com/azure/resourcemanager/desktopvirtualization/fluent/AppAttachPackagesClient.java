@@ -22,7 +22,7 @@ public interface AppAttachPackagesClient {
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -36,7 +36,7 @@ public interface AppAttachPackagesClient {
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -49,7 +49,7 @@ public interface AppAttachPackagesClient {
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -64,7 +64,7 @@ public interface AppAttachPackagesClient {
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -77,7 +77,7 @@ public interface AppAttachPackagesClient {
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -93,7 +93,7 @@ public interface AppAttachPackagesClient {
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -108,7 +108,7 @@ public interface AppAttachPackagesClient {
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -124,7 +124,7 @@ public interface AppAttachPackagesClient {
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -139,20 +139,21 @@ public interface AppAttachPackagesClient {
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
+     * @param force Force flag to delete App Attach package.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String appAttachPackageName);
+    Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String appAttachPackageName, Boolean force);
 
     /**
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -165,7 +166,8 @@ public interface AppAttachPackagesClient {
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
+     * @param force Force flag to delete App Attach package.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -173,13 +175,14 @@ public interface AppAttachPackagesClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroupName, String appAttachPackageName, Context context);
+    Response<Void> deleteWithResponse(String resourceGroupName, String appAttachPackageName, Boolean force,
+        Context context);
 
     /**
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -191,7 +194,7 @@ public interface AppAttachPackagesClient {
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackagePatch Object containing App Attach Package definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -207,7 +210,7 @@ public interface AppAttachPackagesClient {
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -220,7 +223,7 @@ public interface AppAttachPackagesClient {
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackagePatch Object containing App Attach Package definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -236,7 +239,7 @@ public interface AppAttachPackagesClient {
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -249,7 +252,8 @@ public interface AppAttachPackagesClient {
      * List App Attach packages in resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, package owner
+     * name, and custom data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -286,7 +290,8 @@ public interface AppAttachPackagesClient {
      * List App Attach packages in resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, package owner
+     * name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -299,8 +304,8 @@ public interface AppAttachPackagesClient {
     /**
      * List App Attach packages in subscription.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param filter OData filter expression. Valid properties for filtering are package name, resource group, host
+     * pool, package owner name, and custom data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -332,8 +337,8 @@ public interface AppAttachPackagesClient {
     /**
      * List App Attach packages in subscription.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param filter OData filter expression. Valid properties for filtering are package name, resource group, host
+     * pool, package owner name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
