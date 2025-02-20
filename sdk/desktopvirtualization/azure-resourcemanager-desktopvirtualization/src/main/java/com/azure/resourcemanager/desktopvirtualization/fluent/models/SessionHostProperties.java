@@ -104,6 +104,17 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
     private String updateErrorMessage;
 
     /*
+     * The last time update was completed.
+     */
+    private OffsetDateTime lastSessionHostUpdateTime;
+
+    /*
+     * SessionHostConfiguration version reference at the time the update is initiated, in the format of date time.
+     * Example: 2024-04-26T04:56:45Z
+     */
+    private String sessionHostConfiguration;
+
+    /*
      * List of SessionHostHealthCheckReports
      */
     private List<SessionHostHealthCheckReport> sessionHostHealthCheckResults;
@@ -380,6 +391,25 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
     }
 
     /**
+     * Get the lastSessionHostUpdateTime property: The last time update was completed.
+     * 
+     * @return the lastSessionHostUpdateTime value.
+     */
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.lastSessionHostUpdateTime;
+    }
+
+    /**
+     * Get the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time. Example: 2024-04-26T04:56:45Z.
+     * 
+     * @return the sessionHostConfiguration value.
+     */
+    public String sessionHostConfiguration() {
+        return this.sessionHostConfiguration;
+    }
+
+    /**
      * Get the sessionHostHealthCheckResults property: List of SessionHostHealthCheckReports.
      * 
      * @return the sessionHostHealthCheckResults value.
@@ -470,6 +500,11 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("updateErrorMessage".equals(fieldName)) {
                     deserializedSessionHostProperties.updateErrorMessage = reader.getString();
+                } else if ("lastSessionHostUpdateTime".equals(fieldName)) {
+                    deserializedSessionHostProperties.lastSessionHostUpdateTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("sessionHostConfiguration".equals(fieldName)) {
+                    deserializedSessionHostProperties.sessionHostConfiguration = reader.getString();
                 } else if ("sessionHostHealthCheckResults".equals(fieldName)) {
                     List<SessionHostHealthCheckReport> sessionHostHealthCheckResults
                         = reader.readArray(reader1 -> SessionHostHealthCheckReport.fromJson(reader1));

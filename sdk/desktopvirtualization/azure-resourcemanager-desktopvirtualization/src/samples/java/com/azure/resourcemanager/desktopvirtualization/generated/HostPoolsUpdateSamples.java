@@ -6,12 +6,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdatePatchProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.DayOfWeek;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPool;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.MaintenanceWindowPatchProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenOperation;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostComponentUpdateType;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.time.OffsetDateTime;
@@ -25,8 +29,8 @@ import java.util.Map;
 public final class HostPoolsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * HostPool_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/HostPool_Update.json
      */
     /**
      * Sample code: HostPool_Update.
@@ -61,6 +65,10 @@ public final class HostPoolsUpdateSamples {
                     .withMaintenanceWindows(Arrays.asList(
                         new MaintenanceWindowPatchProperties().withHour(7).withDayOfWeek(DayOfWeek.FRIDAY),
                         new MaintenanceWindowPatchProperties().withHour(8).withDayOfWeek(DayOfWeek.SATURDAY))))
+            .withManagedPrivateUdp(ManagedPrivateUdp.ENABLED)
+            .withDirectUdp(DirectUdp.ENABLED)
+            .withPublicUdp(PublicUdp.ENABLED)
+            .withRelayUdp(RelayUdp.ENABLED)
             .apply();
     }
 

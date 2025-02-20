@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -742,19 +743,42 @@ public final class ScalingPlanPersonalScheduleProperties
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (rampUpStartTime() != null) {
+        if (daysOfWeek() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property daysOfWeek in model ScalingPlanPersonalScheduleProperties"));
+        }
+        if (rampUpStartTime() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rampUpStartTime in model ScalingPlanPersonalScheduleProperties"));
+        } else {
             rampUpStartTime().validate();
         }
-        if (peakStartTime() != null) {
+        if (peakStartTime() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property peakStartTime in model ScalingPlanPersonalScheduleProperties"));
+        } else {
             peakStartTime().validate();
         }
-        if (rampDownStartTime() != null) {
+        if (rampDownStartTime() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rampDownStartTime in model ScalingPlanPersonalScheduleProperties"));
+        } else {
             rampDownStartTime().validate();
         }
-        if (offPeakStartTime() != null) {
+        if (offPeakStartTime() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property offPeakStartTime in model ScalingPlanPersonalScheduleProperties"));
+        } else {
             offPeakStartTime().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ScalingPlanPersonalScheduleProperties.class);
 
     /**
      * {@inheritDoc}
@@ -765,6 +789,9 @@ public final class ScalingPlanPersonalScheduleProperties
         jsonWriter.writeArrayField("daysOfWeek", this.daysOfWeek,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeJsonField("rampUpStartTime", this.rampUpStartTime);
+        jsonWriter.writeJsonField("peakStartTime", this.peakStartTime);
+        jsonWriter.writeJsonField("rampDownStartTime", this.rampDownStartTime);
+        jsonWriter.writeJsonField("offPeakStartTime", this.offPeakStartTime);
         jsonWriter.writeStringField("rampUpAutoStartHosts",
             this.rampUpAutoStartHosts == null ? null : this.rampUpAutoStartHosts.toString());
         jsonWriter.writeStringField("rampUpStartVMOnConnect",
@@ -775,7 +802,6 @@ public final class ScalingPlanPersonalScheduleProperties
         jsonWriter.writeStringField("rampUpActionOnLogoff",
             this.rampUpActionOnLogoff == null ? null : this.rampUpActionOnLogoff.toString());
         jsonWriter.writeNumberField("rampUpMinutesToWaitOnLogoff", this.rampUpMinutesToWaitOnLogoff);
-        jsonWriter.writeJsonField("peakStartTime", this.peakStartTime);
         jsonWriter.writeStringField("peakStartVMOnConnect",
             this.peakStartVMOnConnect == null ? null : this.peakStartVMOnConnect.toString());
         jsonWriter.writeStringField("peakActionOnDisconnect",
@@ -784,7 +810,6 @@ public final class ScalingPlanPersonalScheduleProperties
         jsonWriter.writeStringField("peakActionOnLogoff",
             this.peakActionOnLogoff == null ? null : this.peakActionOnLogoff.toString());
         jsonWriter.writeNumberField("peakMinutesToWaitOnLogoff", this.peakMinutesToWaitOnLogoff);
-        jsonWriter.writeJsonField("rampDownStartTime", this.rampDownStartTime);
         jsonWriter.writeStringField("rampDownStartVMOnConnect",
             this.rampDownStartVMOnConnect == null ? null : this.rampDownStartVMOnConnect.toString());
         jsonWriter.writeStringField("rampDownActionOnDisconnect",
@@ -793,7 +818,6 @@ public final class ScalingPlanPersonalScheduleProperties
         jsonWriter.writeStringField("rampDownActionOnLogoff",
             this.rampDownActionOnLogoff == null ? null : this.rampDownActionOnLogoff.toString());
         jsonWriter.writeNumberField("rampDownMinutesToWaitOnLogoff", this.rampDownMinutesToWaitOnLogoff);
-        jsonWriter.writeJsonField("offPeakStartTime", this.offPeakStartTime);
         jsonWriter.writeStringField("offPeakStartVMOnConnect",
             this.offPeakStartVMOnConnect == null ? null : this.offPeakStartVMOnConnect.toString());
         jsonWriter.writeStringField("offPeakActionOnDisconnect",
@@ -811,6 +835,7 @@ public final class ScalingPlanPersonalScheduleProperties
      * @param jsonReader The JsonReader being read.
      * @return An instance of ScalingPlanPersonalScheduleProperties if the JsonReader was pointing to an instance of it,
      * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ScalingPlanPersonalScheduleProperties.
      */
     public static ScalingPlanPersonalScheduleProperties fromJson(JsonReader jsonReader) throws IOException {
@@ -826,6 +851,12 @@ public final class ScalingPlanPersonalScheduleProperties
                     deserializedScalingPlanPersonalScheduleProperties.daysOfWeek = daysOfWeek;
                 } else if ("rampUpStartTime".equals(fieldName)) {
                     deserializedScalingPlanPersonalScheduleProperties.rampUpStartTime = Time.fromJson(reader);
+                } else if ("peakStartTime".equals(fieldName)) {
+                    deserializedScalingPlanPersonalScheduleProperties.peakStartTime = Time.fromJson(reader);
+                } else if ("rampDownStartTime".equals(fieldName)) {
+                    deserializedScalingPlanPersonalScheduleProperties.rampDownStartTime = Time.fromJson(reader);
+                } else if ("offPeakStartTime".equals(fieldName)) {
+                    deserializedScalingPlanPersonalScheduleProperties.offPeakStartTime = Time.fromJson(reader);
                 } else if ("rampUpAutoStartHosts".equals(fieldName)) {
                     deserializedScalingPlanPersonalScheduleProperties.rampUpAutoStartHosts
                         = StartupBehavior.fromString(reader.getString());
@@ -844,8 +875,6 @@ public final class ScalingPlanPersonalScheduleProperties
                 } else if ("rampUpMinutesToWaitOnLogoff".equals(fieldName)) {
                     deserializedScalingPlanPersonalScheduleProperties.rampUpMinutesToWaitOnLogoff
                         = reader.getNullable(JsonReader::getInt);
-                } else if ("peakStartTime".equals(fieldName)) {
-                    deserializedScalingPlanPersonalScheduleProperties.peakStartTime = Time.fromJson(reader);
                 } else if ("peakStartVMOnConnect".equals(fieldName)) {
                     deserializedScalingPlanPersonalScheduleProperties.peakStartVMOnConnect
                         = SetStartVMOnConnect.fromString(reader.getString());
@@ -861,8 +890,6 @@ public final class ScalingPlanPersonalScheduleProperties
                 } else if ("peakMinutesToWaitOnLogoff".equals(fieldName)) {
                     deserializedScalingPlanPersonalScheduleProperties.peakMinutesToWaitOnLogoff
                         = reader.getNullable(JsonReader::getInt);
-                } else if ("rampDownStartTime".equals(fieldName)) {
-                    deserializedScalingPlanPersonalScheduleProperties.rampDownStartTime = Time.fromJson(reader);
                 } else if ("rampDownStartVMOnConnect".equals(fieldName)) {
                     deserializedScalingPlanPersonalScheduleProperties.rampDownStartVMOnConnect
                         = SetStartVMOnConnect.fromString(reader.getString());
@@ -878,8 +905,6 @@ public final class ScalingPlanPersonalScheduleProperties
                 } else if ("rampDownMinutesToWaitOnLogoff".equals(fieldName)) {
                     deserializedScalingPlanPersonalScheduleProperties.rampDownMinutesToWaitOnLogoff
                         = reader.getNullable(JsonReader::getInt);
-                } else if ("offPeakStartTime".equals(fieldName)) {
-                    deserializedScalingPlanPersonalScheduleProperties.offPeakStartTime = Time.fromJson(reader);
                 } else if ("offPeakStartVMOnConnect".equals(fieldName)) {
                     deserializedScalingPlanPersonalScheduleProperties.offPeakStartVMOnConnect
                         = SetStartVMOnConnect.fromString(reader.getString());
