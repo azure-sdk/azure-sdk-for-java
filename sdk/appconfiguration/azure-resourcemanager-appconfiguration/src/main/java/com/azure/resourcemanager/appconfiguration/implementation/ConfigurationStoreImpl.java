@@ -16,12 +16,18 @@ import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdat
 import com.azure.resourcemanager.appconfiguration.models.CreateMode;
 import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
+import com.azure.resourcemanager.appconfiguration.models.ExperimentationProperties;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
+import com.azure.resourcemanager.appconfiguration.models.ResetSasKindParameters;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
+import com.azure.resourcemanager.appconfiguration.models.SasProperties;
+import com.azure.resourcemanager.appconfiguration.models.SasTokenGenerationParameters;
+import com.azure.resourcemanager.appconfiguration.models.SasTokenGenerationResult;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -103,6 +109,10 @@ public final class ConfigurationStoreImpl
         return this.innerModel().disableLocalAuth();
     }
 
+    public SasProperties sas() {
+        return this.innerModel().sas();
+    }
+
     public Integer softDeleteRetentionInDays() {
         return this.innerModel().softDeleteRetentionInDays();
     }
@@ -117,6 +127,14 @@ public final class ConfigurationStoreImpl
 
     public CreateMode createMode() {
         return this.innerModel().createMode();
+    }
+
+    public TelemetryProperties telemetry() {
+        return this.innerModel().telemetry();
+    }
+
+    public ExperimentationProperties experimentation() {
+        return this.innerModel().experimentation();
     }
 
     public Region region() {
@@ -233,6 +251,28 @@ public final class ConfigurationStoreImpl
             .regenerateKey(resourceGroupName, configStoreName, regenerateKeyParameters);
     }
 
+    public Response<SasTokenGenerationResult>
+        generateSasTokenWithResponse(SasTokenGenerationParameters sasTokenGenerationParameters, Context context) {
+        return serviceManager.configurationStores()
+            .generateSasTokenWithResponse(resourceGroupName, configStoreName, sasTokenGenerationParameters, context);
+    }
+
+    public SasTokenGenerationResult generateSasToken(SasTokenGenerationParameters sasTokenGenerationParameters) {
+        return serviceManager.configurationStores()
+            .generateSasToken(resourceGroupName, configStoreName, sasTokenGenerationParameters);
+    }
+
+    public Response<ConfigurationStore> resetSasKindWithResponse(ResetSasKindParameters resetSasKindParameters,
+        Context context) {
+        return serviceManager.configurationStores()
+            .resetSasKindWithResponse(resourceGroupName, configStoreName, resetSasKindParameters, context);
+    }
+
+    public ConfigurationStore resetSasKind(ResetSasKindParameters resetSasKindParameters) {
+        return serviceManager.configurationStores()
+            .resetSasKind(resourceGroupName, configStoreName, resetSasKindParameters);
+    }
+
     public ConfigurationStoreImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -303,6 +343,16 @@ public final class ConfigurationStoreImpl
         }
     }
 
+    public ConfigurationStoreImpl withSas(SasProperties sas) {
+        if (isInCreateMode()) {
+            this.innerModel().withSas(sas);
+            return this;
+        } else {
+            this.updateConfigStoreUpdateParameters.withSas(sas);
+            return this;
+        }
+    }
+
     public ConfigurationStoreImpl withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
         this.innerModel().withSoftDeleteRetentionInDays(softDeleteRetentionInDays);
         return this;
@@ -331,6 +381,26 @@ public final class ConfigurationStoreImpl
     public ConfigurationStoreImpl withCreateMode(CreateMode createMode) {
         this.innerModel().withCreateMode(createMode);
         return this;
+    }
+
+    public ConfigurationStoreImpl withTelemetry(TelemetryProperties telemetry) {
+        if (isInCreateMode()) {
+            this.innerModel().withTelemetry(telemetry);
+            return this;
+        } else {
+            this.updateConfigStoreUpdateParameters.withTelemetry(telemetry);
+            return this;
+        }
+    }
+
+    public ConfigurationStoreImpl withExperimentation(ExperimentationProperties experimentation) {
+        if (isInCreateMode()) {
+            this.innerModel().withExperimentation(experimentation);
+            return this;
+        } else {
+            this.updateConfigStoreUpdateParameters.withExperimentation(experimentation);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {

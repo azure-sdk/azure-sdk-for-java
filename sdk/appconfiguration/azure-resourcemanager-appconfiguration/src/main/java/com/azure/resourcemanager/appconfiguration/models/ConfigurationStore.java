@@ -119,11 +119,18 @@ public interface ConfigurationStore {
     PublicNetworkAccess publicNetworkAccess();
 
     /**
-     * Gets the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
+     * Gets the disableLocalAuth property: Disables access key authentication.
      * 
      * @return the disableLocalAuth value.
      */
     Boolean disableLocalAuth();
+
+    /**
+     * Gets the sas property: The SAS authentication settings of the configuration store.
+     * 
+     * @return the sas value.
+     */
+    SasProperties sas();
 
     /**
      * Gets the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
@@ -155,6 +162,21 @@ public interface ConfigurationStore {
      * @return the createMode value.
      */
     CreateMode createMode();
+
+    /**
+     * Gets the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @return the telemetry value.
+     */
+    TelemetryProperties telemetry();
+
+    /**
+     * Gets the experimentation property: Property specifying the configuration of experimentation for this
+     * configuration store.
+     * 
+     * @return the experimentation value.
+     */
+    ExperimentationProperties experimentation();
 
     /**
      * Gets the region of the resource.
@@ -254,9 +276,10 @@ public interface ConfigurationStore {
          */
         interface WithCreate
             extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithEncryption,
-            DefinitionStages.WithPublicNetworkAccess, DefinitionStages.WithDisableLocalAuth,
+            DefinitionStages.WithPublicNetworkAccess, DefinitionStages.WithDisableLocalAuth, DefinitionStages.WithSas,
             DefinitionStages.WithSoftDeleteRetentionInDays, DefinitionStages.WithEnablePurgeProtection,
-            DefinitionStages.WithDataPlaneProxy, DefinitionStages.WithCreateMode {
+            DefinitionStages.WithDataPlaneProxy, DefinitionStages.WithCreateMode, DefinitionStages.WithTelemetry,
+            DefinitionStages.WithExperimentation {
             /**
              * Executes the create request.
              * 
@@ -332,13 +355,25 @@ public interface ConfigurationStore {
          */
         interface WithDisableLocalAuth {
             /**
-             * Specifies the disableLocalAuth property: Disables all authentication methods other than AAD
-             * authentication..
+             * Specifies the disableLocalAuth property: Disables access key authentication..
              * 
-             * @param disableLocalAuth Disables all authentication methods other than AAD authentication.
+             * @param disableLocalAuth Disables access key authentication.
              * @return the next definition stage.
              */
             WithCreate withDisableLocalAuth(Boolean disableLocalAuth);
+        }
+
+        /**
+         * The stage of the ConfigurationStore definition allowing to specify sas.
+         */
+        interface WithSas {
+            /**
+             * Specifies the sas property: The SAS authentication settings of the configuration store..
+             * 
+             * @param sas The SAS authentication settings of the configuration store.
+             * @return the next definition stage.
+             */
+            WithCreate withSas(SasProperties sas);
         }
 
         /**
@@ -398,6 +433,35 @@ public interface ConfigurationStore {
              */
             WithCreate withCreateMode(CreateMode createMode);
         }
+
+        /**
+         * The stage of the ConfigurationStore definition allowing to specify telemetry.
+         */
+        interface WithTelemetry {
+            /**
+             * Specifies the telemetry property: Property specifying the configuration of telemetry for this
+             * configuration store.
+             * 
+             * @param telemetry Property specifying the configuration of telemetry for this configuration store.
+             * @return the next definition stage.
+             */
+            WithCreate withTelemetry(TelemetryProperties telemetry);
+        }
+
+        /**
+         * The stage of the ConfigurationStore definition allowing to specify experimentation.
+         */
+        interface WithExperimentation {
+            /**
+             * Specifies the experimentation property: Property specifying the configuration of experimentation for this
+             * configuration store.
+             * 
+             * @param experimentation Property specifying the configuration of experimentation for this configuration
+             * store.
+             * @return the next definition stage.
+             */
+            WithCreate withExperimentation(ExperimentationProperties experimentation);
+        }
     }
 
     /**
@@ -411,8 +475,9 @@ public interface ConfigurationStore {
      * The template for ConfigurationStore update.
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithSku,
-        UpdateStages.WithEncryption, UpdateStages.WithDisableLocalAuth, UpdateStages.WithPublicNetworkAccess,
-        UpdateStages.WithEnablePurgeProtection, UpdateStages.WithDataPlaneProxy {
+        UpdateStages.WithEncryption, UpdateStages.WithDisableLocalAuth, UpdateStages.WithSas,
+        UpdateStages.WithPublicNetworkAccess, UpdateStages.WithEnablePurgeProtection, UpdateStages.WithDataPlaneProxy,
+        UpdateStages.WithTelemetry, UpdateStages.WithExperimentation {
         /**
          * Executes the update request.
          * 
@@ -490,13 +555,25 @@ public interface ConfigurationStore {
          */
         interface WithDisableLocalAuth {
             /**
-             * Specifies the disableLocalAuth property: Disables all authentication methods other than AAD
-             * authentication..
+             * Specifies the disableLocalAuth property: Disables access key authentication..
              * 
-             * @param disableLocalAuth Disables all authentication methods other than AAD authentication.
+             * @param disableLocalAuth Disables access key authentication.
              * @return the next definition stage.
              */
             Update withDisableLocalAuth(Boolean disableLocalAuth);
+        }
+
+        /**
+         * The stage of the ConfigurationStore update allowing to specify sas.
+         */
+        interface WithSas {
+            /**
+             * Specifies the sas property: The SAS authentication settings of the configuration store..
+             * 
+             * @param sas The SAS authentication settings of the configuration store.
+             * @return the next definition stage.
+             */
+            Update withSas(SasProperties sas);
         }
 
         /**
@@ -542,6 +619,36 @@ public interface ConfigurationStore {
              * @return the next definition stage.
              */
             Update withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy);
+        }
+
+        /**
+         * The stage of the ConfigurationStore update allowing to specify telemetry.
+         */
+        interface WithTelemetry {
+            /**
+             * Specifies the telemetry property: Property specifying the configuration of telemetry to update for this
+             * configuration store.
+             * 
+             * @param telemetry Property specifying the configuration of telemetry to update for this configuration
+             * store.
+             * @return the next definition stage.
+             */
+            Update withTelemetry(TelemetryProperties telemetry);
+        }
+
+        /**
+         * The stage of the ConfigurationStore update allowing to specify experimentation.
+         */
+        interface WithExperimentation {
+            /**
+             * Specifies the experimentation property: Property specifying the configuration of experimentation to
+             * update for this configuration store.
+             * 
+             * @param experimentation Property specifying the configuration of experimentation to update for this
+             * configuration store.
+             * @return the next definition stage.
+             */
+            Update withExperimentation(ExperimentationProperties experimentation);
         }
     }
 
@@ -605,4 +712,52 @@ public interface ConfigurationStore {
      * @return an API key used for authenticating with a configuration store endpoint.
      */
     ApiKey regenerateKey(RegenerateKeyParameters regenerateKeyParameters);
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token along with {@link Response}.
+     */
+    Response<SasTokenGenerationResult>
+        generateSasTokenWithResponse(SasTokenGenerationParameters sasTokenGenerationParameters, Context context);
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token.
+     */
+    SasTokenGenerationResult generateSasToken(SasTokenGenerationParameters sasTokenGenerationParameters);
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties along with {@link Response}.
+     */
+    Response<ConfigurationStore> resetSasKindWithResponse(ResetSasKindParameters resetSasKindParameters,
+        Context context);
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties.
+     */
+    ConfigurationStore resetSasKind(ResetSasKindParameters resetSasKindParameters);
 }

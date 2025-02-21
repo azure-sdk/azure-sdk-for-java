@@ -6,10 +6,14 @@ package com.azure.resourcemanager.appconfiguration.generated;
 
 import com.azure.resourcemanager.appconfiguration.models.AuthenticationMode;
 import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
+import com.azure.resourcemanager.appconfiguration.models.ExperimentationProperties;
 import com.azure.resourcemanager.appconfiguration.models.IdentityType;
 import com.azure.resourcemanager.appconfiguration.models.PrivateLinkDelegation;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
+import com.azure.resourcemanager.appconfiguration.models.SasProperties;
+import com.azure.resourcemanager.appconfiguration.models.SasStatus;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import com.azure.resourcemanager.appconfiguration.models.UserIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +24,7 @@ import java.util.Map;
 public final class ConfigurationStoresCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
      * ConfigurationStoresCreate.json
      */
     /**
@@ -41,7 +45,7 @@ public final class ConfigurationStoresCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
      * ConfigurationStoresCreateWithIdentity.json
      */
     /**
@@ -66,7 +70,7 @@ public final class ConfigurationStoresCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
      * ConfigurationStoresCreateWithDataPlaneProxy.json
      */
     /**
@@ -88,7 +92,7 @@ public final class ConfigurationStoresCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
      * ConfigurationStoresCreateWithLocalAuthDisabled.json
      */
     /**
@@ -104,6 +108,53 @@ public final class ConfigurationStoresCreateSamples {
             .withExistingResourceGroup("myResourceGroup")
             .withSku(new Sku().withName("Standard"))
             .withDisableLocalAuth(true)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
+     * ConfigurationStoresCreateWithTelemetryAndExperimentation.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Create_With_Telemetry_And_Experimentation.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresCreateWithTelemetryAndExperimentation(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.configurationStores()
+            .define("contoso")
+            .withRegion("westus")
+            .withExistingResourceGroup("myResourceGroup")
+            .withSku(new Sku().withName("Standard"))
+            .withTags(mapOf("myTag", "myTagValue"))
+            .withTelemetry(new TelemetryProperties().withResourceId(
+                "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourceGroups/myResourceGroup/providers/microsoft.insights/components/appInsightsName"))
+            .withExperimentation(new ExperimentationProperties().withResourceId(
+                "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourceGroups/myResourceGroup/providers/SplitIO.Experimentation/experimentationWorkspaces/myWorkspaceName")
+                .withDataPlaneEndpoint("https://asi.eu.az.split.io"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
+     * ConfigurationStoresCreateWithSasEnabled.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Create_With_Sas_Auth_Enabled.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresCreateWithSasAuthEnabled(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.configurationStores()
+            .define("contoso")
+            .withRegion("westus")
+            .withExistingResourceGroup("myResourceGroup")
+            .withSku(new Sku().withName("Standard"))
+            .withSas(new SasProperties().withStatus(SasStatus.ENABLED))
             .create();
     }
 

@@ -14,8 +14,11 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ApiKeyInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationStoreInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.DeletedConfigurationStoreInner;
+import com.azure.resourcemanager.appconfiguration.fluent.models.SasTokenGenerationResultInner;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdateParameters;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
+import com.azure.resourcemanager.appconfiguration.models.ResetSasKindParameters;
+import com.azure.resourcemanager.appconfiguration.models.SasTokenGenerationParameters;
 
 /**
  * An instance of this class provides access to all the operations defined in ConfigurationStoresClient.
@@ -340,6 +343,68 @@ public interface ConfigurationStoresClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiKeyInner regenerateKey(String resourceGroupName, String configStoreName,
         RegenerateKeyParameters regenerateKeyParameters);
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SasTokenGenerationResultInner> generateSasTokenWithResponse(String resourceGroupName,
+        String configStoreName, SasTokenGenerationParameters sasTokenGenerationParameters, Context context);
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SasTokenGenerationResultInner generateSasToken(String resourceGroupName, String configStoreName,
+        SasTokenGenerationParameters sasTokenGenerationParameters);
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ConfigurationStoreInner> resetSasKindWithResponse(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters, Context context);
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ConfigurationStoreInner resetSasKind(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters);
 
     /**
      * Gets information about the deleted configuration stores in a subscription.

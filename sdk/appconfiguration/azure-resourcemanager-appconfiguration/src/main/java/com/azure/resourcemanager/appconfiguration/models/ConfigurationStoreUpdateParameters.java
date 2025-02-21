@@ -137,7 +137,7 @@ public final class ConfigurationStoreUpdateParameters implements JsonSerializabl
     }
 
     /**
-     * Get the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
+     * Get the disableLocalAuth property: Disables access key authentication.
      * 
      * @return the disableLocalAuth value.
      */
@@ -146,7 +146,7 @@ public final class ConfigurationStoreUpdateParameters implements JsonSerializabl
     }
 
     /**
-     * Set the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
+     * Set the disableLocalAuth property: Disables access key authentication.
      * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ConfigurationStoreUpdateParameters object itself.
@@ -156,6 +156,29 @@ public final class ConfigurationStoreUpdateParameters implements JsonSerializabl
             this.innerProperties = new ConfigurationStorePropertiesUpdateParameters();
         }
         this.innerProperties().withDisableLocalAuth(disableLocalAuth);
+        return this;
+    }
+
+    /**
+     * Get the sas property: The SAS authentication settings of the configuration store.
+     * 
+     * @return the sas value.
+     */
+    public SasProperties sas() {
+        return this.innerProperties() == null ? null : this.innerProperties().sas();
+    }
+
+    /**
+     * Set the sas property: The SAS authentication settings of the configuration store.
+     * 
+     * @param sas the sas value to set.
+     * @return the ConfigurationStoreUpdateParameters object itself.
+     */
+    public ConfigurationStoreUpdateParameters withSas(SasProperties sas) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStorePropertiesUpdateParameters();
+        }
+        this.innerProperties().withSas(sas);
         return this;
     }
 
@@ -231,6 +254,56 @@ public final class ConfigurationStoreUpdateParameters implements JsonSerializabl
             this.innerProperties = new ConfigurationStorePropertiesUpdateParameters();
         }
         this.innerProperties().withDataPlaneProxy(dataPlaneProxy);
+        return this;
+    }
+
+    /**
+     * Get the telemetry property: Property specifying the configuration of telemetry to update for this configuration
+     * store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.innerProperties() == null ? null : this.innerProperties().telemetry();
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry to update for this configuration
+     * store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStoreUpdateParameters object itself.
+     */
+    public ConfigurationStoreUpdateParameters withTelemetry(TelemetryProperties telemetry) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStorePropertiesUpdateParameters();
+        }
+        this.innerProperties().withTelemetry(telemetry);
+        return this;
+    }
+
+    /**
+     * Get the experimentation property: Property specifying the configuration of experimentation to update for this
+     * configuration store.
+     * 
+     * @return the experimentation value.
+     */
+    public ExperimentationProperties experimentation() {
+        return this.innerProperties() == null ? null : this.innerProperties().experimentation();
+    }
+
+    /**
+     * Set the experimentation property: Property specifying the configuration of experimentation to update for this
+     * configuration store.
+     * 
+     * @param experimentation the experimentation value to set.
+     * @return the ConfigurationStoreUpdateParameters object itself.
+     */
+    public ConfigurationStoreUpdateParameters withExperimentation(ExperimentationProperties experimentation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStorePropertiesUpdateParameters();
+        }
+        this.innerProperties().withExperimentation(experimentation);
         return this;
     }
 

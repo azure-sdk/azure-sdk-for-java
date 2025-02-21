@@ -7,6 +7,8 @@ package com.azure.resourcemanager.appconfiguration.generated;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStore;
 import com.azure.resourcemanager.appconfiguration.models.IdentityType;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
+import com.azure.resourcemanager.appconfiguration.models.SasProperties;
+import com.azure.resourcemanager.appconfiguration.models.SasStatus;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
 import com.azure.resourcemanager.appconfiguration.models.UserIdentity;
 import java.util.HashMap;
@@ -18,7 +20,7 @@ import java.util.Map;
 public final class ConfigurationStoresUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
      * ConfigurationStoresUpdateDisableLocalAuth.json
      */
     /**
@@ -36,7 +38,7 @@ public final class ConfigurationStoresUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
      * ConfigurationStoresUpdate.json
      */
     /**
@@ -54,7 +56,7 @@ public final class ConfigurationStoresUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
      * ConfigurationStoresUpdateWithIdentity.json
      */
     /**
@@ -74,6 +76,27 @@ public final class ConfigurationStoresUpdateSamples {
                     "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourcegroups/myResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity2",
                     new UserIdentity())))
             .withSku(new Sku().withName("Standard"))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-06-01-preview/examples/
+     * ConfigurationStoresUpdateEnableSas.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Update_Enable_Sas_Auth.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresUpdateEnableSasAuth(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        ConfigurationStore resource = manager.configurationStores()
+            .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withSku(new Sku().withName("Standard"))
+            .withSas(new SasProperties().withStatus(SasStatus.ENABLED))
             .apply();
     }
 

@@ -37,11 +37,14 @@ import com.azure.resourcemanager.appconfiguration.fluent.ConfigurationStoresClie
 import com.azure.resourcemanager.appconfiguration.fluent.models.ApiKeyInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationStoreInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.DeletedConfigurationStoreInner;
+import com.azure.resourcemanager.appconfiguration.fluent.models.SasTokenGenerationResultInner;
 import com.azure.resourcemanager.appconfiguration.models.ApiKeyListResult;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreListResult;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdateParameters;
 import com.azure.resourcemanager.appconfiguration.models.DeletedConfigurationStoreListResult;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
+import com.azure.resourcemanager.appconfiguration.models.ResetSasKindParameters;
+import com.azure.resourcemanager.appconfiguration.models.SasTokenGenerationParameters;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -156,6 +159,28 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("configStoreName") String configStoreName, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") RegenerateKeyParameters regenerateKeyParameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/generateSasToken")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SasTokenGenerationResultInner>> generateSasToken(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("configStoreName") String configStoreName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") SasTokenGenerationParameters sasTokenGenerationParameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/resetSasKind")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ConfigurationStoreInner>> resetSasKind(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("configStoreName") String configStoreName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") ResetSasKindParameters resetSasKindParameters,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -1651,6 +1676,294 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     public ApiKeyInner regenerateKey(String resourceGroupName, String configStoreName,
         RegenerateKeyParameters regenerateKeyParameters) {
         return regenerateKeyWithResponse(resourceGroupName, configStoreName, regenerateKeyParameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SasTokenGenerationResultInner>> generateSasTokenWithResponseAsync(String resourceGroupName,
+        String configStoreName, SasTokenGenerationParameters sasTokenGenerationParameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (sasTokenGenerationParameters == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter sasTokenGenerationParameters is required and cannot be null."));
+        } else {
+            sasTokenGenerationParameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.generateSasToken(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, configStoreName, this.client.getApiVersion(), sasTokenGenerationParameters, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SasTokenGenerationResultInner>> generateSasTokenWithResponseAsync(String resourceGroupName,
+        String configStoreName, SasTokenGenerationParameters sasTokenGenerationParameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (sasTokenGenerationParameters == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter sasTokenGenerationParameters is required and cannot be null."));
+        } else {
+            sasTokenGenerationParameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.generateSasToken(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            configStoreName, this.client.getApiVersion(), sasTokenGenerationParameters, accept, context);
+    }
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SasTokenGenerationResultInner> generateSasTokenAsync(String resourceGroupName, String configStoreName,
+        SasTokenGenerationParameters sasTokenGenerationParameters) {
+        return generateSasTokenWithResponseAsync(resourceGroupName, configStoreName, sasTokenGenerationParameters)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SasTokenGenerationResultInner> generateSasTokenWithResponse(String resourceGroupName,
+        String configStoreName, SasTokenGenerationParameters sasTokenGenerationParameters, Context context) {
+        return generateSasTokenWithResponseAsync(resourceGroupName, configStoreName, sasTokenGenerationParameters,
+            context).block();
+    }
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SasTokenGenerationResultInner generateSasToken(String resourceGroupName, String configStoreName,
+        SasTokenGenerationParameters sasTokenGenerationParameters) {
+        return generateSasTokenWithResponse(resourceGroupName, configStoreName, sasTokenGenerationParameters,
+            Context.NONE).getValue();
+    }
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ConfigurationStoreInner>> resetSasKindWithResponseAsync(String resourceGroupName,
+        String configStoreName, ResetSasKindParameters resetSasKindParameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (resetSasKindParameters == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter resetSasKindParameters is required and cannot be null."));
+        } else {
+            resetSasKindParameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.resetSasKind(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, configStoreName, this.client.getApiVersion(), resetSasKindParameters, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ConfigurationStoreInner>> resetSasKindWithResponseAsync(String resourceGroupName,
+        String configStoreName, ResetSasKindParameters resetSasKindParameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (resetSasKindParameters == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter resetSasKindParameters is required and cannot be null."));
+        } else {
+            resetSasKindParameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.resetSasKind(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            configStoreName, this.client.getApiVersion(), resetSasKindParameters, accept, context);
+    }
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ConfigurationStoreInner> resetSasKindAsync(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters) {
+        return resetSasKindWithResponseAsync(resourceGroupName, configStoreName, resetSasKindParameters)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ConfigurationStoreInner> resetSasKindWithResponse(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters, Context context) {
+        return resetSasKindWithResponseAsync(resourceGroupName, configStoreName, resetSasKindParameters, context)
+            .block();
+    }
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ConfigurationStoreInner resetSasKind(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters) {
+        return resetSasKindWithResponse(resourceGroupName, configStoreName, resetSasKindParameters, Context.NONE)
             .getValue();
     }
 

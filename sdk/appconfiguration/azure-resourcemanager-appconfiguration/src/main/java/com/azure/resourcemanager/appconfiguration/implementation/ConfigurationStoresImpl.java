@@ -13,11 +13,15 @@ import com.azure.resourcemanager.appconfiguration.fluent.ConfigurationStoresClie
 import com.azure.resourcemanager.appconfiguration.fluent.models.ApiKeyInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationStoreInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.DeletedConfigurationStoreInner;
+import com.azure.resourcemanager.appconfiguration.fluent.models.SasTokenGenerationResultInner;
 import com.azure.resourcemanager.appconfiguration.models.ApiKey;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStore;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStores;
 import com.azure.resourcemanager.appconfiguration.models.DeletedConfigurationStore;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
+import com.azure.resourcemanager.appconfiguration.models.ResetSasKindParameters;
+import com.azure.resourcemanager.appconfiguration.models.SasTokenGenerationParameters;
+import com.azure.resourcemanager.appconfiguration.models.SasTokenGenerationResult;
 
 public final class ConfigurationStoresImpl implements ConfigurationStores {
     private static final ClientLogger LOGGER = new ClientLogger(ConfigurationStoresImpl.class);
@@ -113,6 +117,52 @@ public final class ConfigurationStoresImpl implements ConfigurationStores {
             = this.serviceClient().regenerateKey(resourceGroupName, configStoreName, regenerateKeyParameters);
         if (inner != null) {
             return new ApiKeyImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<SasTokenGenerationResult> generateSasTokenWithResponse(String resourceGroupName,
+        String configStoreName, SasTokenGenerationParameters sasTokenGenerationParameters, Context context) {
+        Response<SasTokenGenerationResultInner> inner = this.serviceClient()
+            .generateSasTokenWithResponse(resourceGroupName, configStoreName, sasTokenGenerationParameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new SasTokenGenerationResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SasTokenGenerationResult generateSasToken(String resourceGroupName, String configStoreName,
+        SasTokenGenerationParameters sasTokenGenerationParameters) {
+        SasTokenGenerationResultInner inner
+            = this.serviceClient().generateSasToken(resourceGroupName, configStoreName, sasTokenGenerationParameters);
+        if (inner != null) {
+            return new SasTokenGenerationResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ConfigurationStore> resetSasKindWithResponse(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters, Context context) {
+        Response<ConfigurationStoreInner> inner = this.serviceClient()
+            .resetSasKindWithResponse(resourceGroupName, configStoreName, resetSasKindParameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ConfigurationStoreImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ConfigurationStore resetSasKind(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters) {
+        ConfigurationStoreInner inner
+            = this.serviceClient().resetSasKind(resourceGroupName, configStoreName, resetSasKindParameters);
+        if (inner != null) {
+            return new ConfigurationStoreImpl(inner, this.manager());
         } else {
             return null;
         }

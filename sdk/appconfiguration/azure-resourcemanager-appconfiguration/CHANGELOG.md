@@ -1,14 +1,74 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-02-21)
+
+- Azure Resource Manager AppConfiguration client library for Java. This package contains Microsoft Azure SDK for AppConfiguration Management SDK.  Package tag package-preview-2024-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.SasTokenGenerationParameters` was added
 
-### Bugs Fixed
+* `models.SasKindInfo` was added
 
-### Other Changes
+* `models.SasStatus` was added
+
+* `models.TelemetryProperties` was added
+
+* `models.ExperimentationProperties` was added
+
+* `models.ResourceType` was added
+
+* `models.SasTokenScope` was added
+
+* `models.SnapshotSasTokenScope` was added
+
+* `models.KvSasTokenScope` was added
+
+* `models.SasKind` was added
+
+* `models.ResetSasKindParameters` was added
+
+* `models.SasTokenGenerationResult` was added
+
+* `models.SasProperties` was added
+
+#### `models.ConfigurationStoreUpdateParameters` was modified
+
+* `sas()` was added
+* `withExperimentation(models.ExperimentationProperties)` was added
+* `withTelemetry(models.TelemetryProperties)` was added
+* `withSas(models.SasProperties)` was added
+* `experimentation()` was added
+* `telemetry()` was added
+
+#### `models.ConfigurationStores` was modified
+
+* `generateSasTokenWithResponse(java.lang.String,java.lang.String,models.SasTokenGenerationParameters,com.azure.core.util.Context)` was added
+* `resetSasKindWithResponse(java.lang.String,java.lang.String,models.ResetSasKindParameters,com.azure.core.util.Context)` was added
+* `generateSasToken(java.lang.String,java.lang.String,models.SasTokenGenerationParameters)` was added
+* `resetSasKind(java.lang.String,java.lang.String,models.ResetSasKindParameters)` was added
+
+#### `models.ConfigurationStore$Definition` was modified
+
+* `withSas(models.SasProperties)` was added
+* `withExperimentation(models.ExperimentationProperties)` was added
+* `withTelemetry(models.TelemetryProperties)` was added
+
+#### `models.ConfigurationStore$Update` was modified
+
+* `withSas(models.SasProperties)` was added
+* `withExperimentation(models.ExperimentationProperties)` was added
+* `withTelemetry(models.TelemetryProperties)` was added
+
+#### `models.ConfigurationStore` was modified
+
+* `generateSasToken(models.SasTokenGenerationParameters)` was added
+* `telemetry()` was added
+* `resetSasKindWithResponse(models.ResetSasKindParameters,com.azure.core.util.Context)` was added
+* `experimentation()` was added
+* `resetSasKind(models.ResetSasKindParameters)` was added
+* `generateSasTokenWithResponse(models.SasTokenGenerationParameters,com.azure.core.util.Context)` was added
+* `sas()` was added
 
 ## 1.0.0 (2024-11-20)
 
