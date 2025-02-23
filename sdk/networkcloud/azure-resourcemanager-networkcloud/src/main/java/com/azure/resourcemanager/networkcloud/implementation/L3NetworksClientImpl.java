@@ -106,6 +106,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l3NetworkName") String l3NetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") L3NetworkInner l3NetworkParameters, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -116,6 +117,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l3NetworkName") String l3NetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -125,6 +127,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
         Mono<Response<L3NetworkInner>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l3NetworkName") String l3NetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") L3NetworkPatchParameters l3NetworkUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -553,6 +556,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @param l3NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -561,7 +568,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String l3NetworkName, L3NetworkInner l3NetworkParameters) {
+        String l3NetworkName, L3NetworkInner l3NetworkParameters, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -586,8 +593,8 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, l3NetworkName, l3NetworkParameters, accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch,
+                l3NetworkParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -599,6 +606,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @param l3NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -608,7 +619,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String l3NetworkName, L3NetworkInner l3NetworkParameters, Context context) {
+        String l3NetworkName, L3NetworkInner l3NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -633,7 +644,35 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, l3NetworkName, l3NetworkParameters, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch,
+            l3NetworkParameters, accept, context);
+    }
+
+    /**
+     * Create or update the layer 3 (L3) network.
+     * 
+     * Create a new layer 3 (L3) network or update the properties of the existing network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l3NetworkName The name of the L3 network.
+     * @param l3NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of l3Network represents a network that utilizes a single isolation
+     * domain set up for layer-3 resources.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<L3NetworkInner>, L3NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String l3NetworkName, L3NetworkInner l3NetworkParameters, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, l3NetworkName,
+            l3NetworkParameters, ifMatch, ifNoneMatch);
+        return this.client.<L3NetworkInner, L3NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            L3NetworkInner.class, L3NetworkInner.class, this.client.getContext());
     }
 
     /**
@@ -653,8 +692,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<L3NetworkInner>, L3NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
         String l3NetworkName, L3NetworkInner l3NetworkParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, l3NetworkName, l3NetworkParameters);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, l3NetworkName,
+            l3NetworkParameters, ifMatch, ifNoneMatch);
         return this.client.<L3NetworkInner, L3NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
             L3NetworkInner.class, L3NetworkInner.class, this.client.getContext());
     }
@@ -667,6 +708,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @param l3NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -676,10 +721,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<L3NetworkInner>, L3NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
-        String l3NetworkName, L3NetworkInner l3NetworkParameters, Context context) {
+        String l3NetworkName, L3NetworkInner l3NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, l3NetworkName,
+            l3NetworkParameters, ifMatch, ifNoneMatch, context);
         return this.client.<L3NetworkInner, L3NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
             L3NetworkInner.class, L3NetworkInner.class, context);
     }
@@ -701,28 +746,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<L3NetworkInner>, L3NetworkInner> beginCreateOrUpdate(String resourceGroupName,
         String l3NetworkName, L3NetworkInner l3NetworkParameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters).getSyncPoller();
-    }
-
-    /**
-     * Create or update the layer 3 (L3) network.
-     * 
-     * Create a new layer 3 (L3) network or update the properties of the existing network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param l3NetworkName The name of the L3 network.
-     * @param l3NetworkParameters The request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of l3Network represents a network that utilizes a single isolation
-     * domain set up for layer-3 resources.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<L3NetworkInner>, L3NetworkInner> beginCreateOrUpdate(String resourceGroupName,
-        String l3NetworkName, L3NetworkInner l3NetworkParameters, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, context)
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, ifMatch, ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -734,6 +761,38 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @param l3NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of l3Network represents a network that utilizes a single isolation
+     * domain set up for layer-3 resources.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<L3NetworkInner>, L3NetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String l3NetworkName, L3NetworkInner l3NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, ifMatch, ifNoneMatch,
+                context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create or update the layer 3 (L3) network.
+     * 
+     * Create a new layer 3 (L3) network or update the properties of the existing network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l3NetworkName The name of the L3 network.
+     * @param l3NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -742,8 +801,9 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<L3NetworkInner> createOrUpdateAsync(String resourceGroupName, String l3NetworkName,
-        L3NetworkInner l3NetworkParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters).last()
+        L3NetworkInner l3NetworkParameters, String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, ifMatch, ifNoneMatch)
+            .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -755,6 +815,34 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @param l3NetworkParameters The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return l3Network represents a network that utilizes a single isolation domain set up for layer-3 resources on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<L3NetworkInner> createOrUpdateAsync(String resourceGroupName, String l3NetworkName,
+        L3NetworkInner l3NetworkParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, ifMatch, ifNoneMatch)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the layer 3 (L3) network.
+     * 
+     * Create a new layer 3 (L3) network or update the properties of the existing network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l3NetworkName The name of the L3 network.
+     * @param l3NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -764,9 +852,9 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<L3NetworkInner> createOrUpdateAsync(String resourceGroupName, String l3NetworkName,
-        L3NetworkInner l3NetworkParameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        L3NetworkInner l3NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, ifMatch, ifNoneMatch,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -785,7 +873,9 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public L3NetworkInner createOrUpdate(String resourceGroupName, String l3NetworkName,
         L3NetworkInner l3NetworkParameters) {
-        return createOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -796,6 +886,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @param l3NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -804,8 +898,9 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public L3NetworkInner createOrUpdate(String resourceGroupName, String l3NetworkName,
-        L3NetworkInner l3NetworkParameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, context).block();
+        L3NetworkInner l3NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, l3NetworkName, l3NetworkParameters, ifMatch, ifNoneMatch, context)
+            .block();
     }
 
     /**
@@ -815,6 +910,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -822,7 +921,8 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String l3NetworkName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String l3NetworkName,
+        String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -839,9 +939,8 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
             return Mono.error(new IllegalArgumentException("Parameter l3NetworkName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, l3NetworkName, accept, context))
+        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -852,6 +951,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -861,7 +964,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String l3NetworkName,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -880,7 +983,33 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, l3NetworkName, accept, context);
+            resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the layer 3 (L3) network.
+     * 
+     * Delete the provided layer 3 (L3) network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginDeleteAsync(String resourceGroupName, String l3NetworkName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -898,7 +1027,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String l3NetworkName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, l3NetworkName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -911,6 +1043,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -918,10 +1054,11 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String l3NetworkName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String l3NetworkName, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, l3NetworkName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -941,7 +1078,9 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String l3NetworkName) {
-        return this.beginDeleteAsync(resourceGroupName, l3NetworkName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -951,6 +1090,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -958,9 +1101,32 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String l3NetworkName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, l3NetworkName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String l3NetworkName, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch, context).getSyncPoller();
+    }
+
+    /**
+     * Delete the layer 3 (L3) network.
+     * 
+     * Delete the provided layer 3 (L3) network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String l3NetworkName, String ifMatch,
+        String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -977,7 +1143,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String l3NetworkName) {
-        return beginDeleteAsync(resourceGroupName, l3NetworkName).last().flatMap(this.client::getLroFinalResultOrError);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -987,6 +1156,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -994,9 +1167,9 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @return the current status of an async operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String l3NetworkName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, l3NetworkName, context).last()
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String l3NetworkName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1014,7 +1187,9 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String l3NetworkName) {
-        return deleteAsync(resourceGroupName, l3NetworkName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1024,6 +1199,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1031,8 +1210,9 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String l3NetworkName, Context context) {
-        return deleteAsync(resourceGroupName, l3NetworkName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String l3NetworkName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1042,6 +1222,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param l3NetworkUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1051,7 +1235,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<L3NetworkInner>> updateWithResponseAsync(String resourceGroupName, String l3NetworkName,
-        L3NetworkPatchParameters l3NetworkUpdateParameters) {
+        String ifMatch, String ifNoneMatch, L3NetworkPatchParameters l3NetworkUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1073,8 +1257,8 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, l3NetworkName, l3NetworkUpdateParameters, accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch,
+                l3NetworkUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1085,6 +1269,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param l3NetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1095,7 +1283,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<L3NetworkInner>> updateWithResponseAsync(String resourceGroupName, String l3NetworkName,
-        L3NetworkPatchParameters l3NetworkUpdateParameters, Context context) {
+        String ifMatch, String ifNoneMatch, L3NetworkPatchParameters l3NetworkUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1117,7 +1305,7 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, l3NetworkName, l3NetworkUpdateParameters, accept, context);
+            resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch, l3NetworkUpdateParameters, accept, context);
     }
 
     /**
@@ -1135,9 +1323,11 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<L3NetworkInner> updateAsync(String resourceGroupName, String l3NetworkName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final L3NetworkPatchParameters l3NetworkUpdateParameters = null;
-        return updateWithResponseAsync(resourceGroupName, l3NetworkName, l3NetworkUpdateParameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return updateWithResponseAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch,
+            l3NetworkUpdateParameters).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1147,6 +1337,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param l3NetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1156,9 +1350,10 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<L3NetworkInner> updateWithResponse(String resourceGroupName, String l3NetworkName,
-        L3NetworkPatchParameters l3NetworkUpdateParameters, Context context) {
-        return updateWithResponseAsync(resourceGroupName, l3NetworkName, l3NetworkUpdateParameters, context).block();
+    public Response<L3NetworkInner> updateWithResponse(String resourceGroupName, String l3NetworkName, String ifMatch,
+        String ifNoneMatch, L3NetworkPatchParameters l3NetworkUpdateParameters, Context context) {
+        return updateWithResponseAsync(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch,
+            l3NetworkUpdateParameters, context).block();
     }
 
     /**
@@ -1175,8 +1370,11 @@ public final class L3NetworksClientImpl implements L3NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public L3NetworkInner update(String resourceGroupName, String l3NetworkName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final L3NetworkPatchParameters l3NetworkUpdateParameters = null;
-        return updateWithResponse(resourceGroupName, l3NetworkName, l3NetworkUpdateParameters, Context.NONE).getValue();
+        return updateWithResponse(resourceGroupName, l3NetworkName, ifMatch, ifNoneMatch, l3NetworkUpdateParameters,
+            Context.NONE).getValue();
     }
 
     /**

@@ -100,6 +100,7 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("clusterName") String clusterName,
             @PathParam("metricsConfigurationName") String metricsConfigurationName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") ClusterMetricsConfigurationInner metricsConfigurationParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -111,6 +112,7 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("clusterName") String clusterName,
             @PathParam("metricsConfigurationName") String metricsConfigurationName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -121,6 +123,7 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("clusterName") String clusterName,
             @PathParam("metricsConfigurationName") String metricsConfigurationName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -444,6 +447,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
      * @param metricsConfigurationParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -453,7 +460,7 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
         String clusterName, String metricsConfigurationName,
-        ClusterMetricsConfigurationInner metricsConfigurationParameters) {
+        ClusterMetricsConfigurationInner metricsConfigurationParameters, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -482,8 +489,8 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, clusterName, metricsConfigurationName,
-                metricsConfigurationParameters, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, clusterName, metricsConfigurationName, ifMatch,
+                ifNoneMatch, metricsConfigurationParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -496,6 +503,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
      * @param metricsConfigurationParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -506,7 +517,8 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
         String clusterName, String metricsConfigurationName,
-        ClusterMetricsConfigurationInner metricsConfigurationParameters, Context context) {
+        ClusterMetricsConfigurationInner metricsConfigurationParameters, String ifMatch, String ifNoneMatch,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -535,8 +547,38 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, clusterName, metricsConfigurationName,
-            metricsConfigurationParameters, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, clusterName, metricsConfigurationName, ifMatch,
+            ifNoneMatch, metricsConfigurationParameters, accept, context);
+    }
+
+    /**
+     * Create or update metrics configuration of the cluster.
+     * 
+     * Create new or update the existing metrics configuration of the provided cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param metricsConfigurationParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of clusterMetricsConfiguration represents the metrics configuration of
+     * an on-premises Network Cloud cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner>
+        beginCreateOrUpdateAsync(String resourceGroupName, String clusterName, String metricsConfigurationName,
+            ClusterMetricsConfigurationInner metricsConfigurationParameters, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, clusterName,
+            metricsConfigurationName, metricsConfigurationParameters, ifMatch, ifNoneMatch);
+        return this.client.<ClusterMetricsConfigurationInner, ClusterMetricsConfigurationInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ClusterMetricsConfigurationInner.class,
+            ClusterMetricsConfigurationInner.class, this.client.getContext());
     }
 
     /**
@@ -558,8 +600,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     private PollerFlux<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner>
         beginCreateOrUpdateAsync(String resourceGroupName, String clusterName, String metricsConfigurationName,
             ClusterMetricsConfigurationInner metricsConfigurationParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, clusterName,
-            metricsConfigurationName, metricsConfigurationParameters);
+            metricsConfigurationName, metricsConfigurationParameters, ifMatch, ifNoneMatch);
         return this.client.<ClusterMetricsConfigurationInner, ClusterMetricsConfigurationInner>getLroResult(mono,
             this.client.getHttpPipeline(), ClusterMetricsConfigurationInner.class,
             ClusterMetricsConfigurationInner.class, this.client.getContext());
@@ -574,6 +618,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
      * @param metricsConfigurationParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -584,10 +632,11 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner>
         beginCreateOrUpdateAsync(String resourceGroupName, String clusterName, String metricsConfigurationName,
-            ClusterMetricsConfigurationInner metricsConfigurationParameters, Context context) {
+            ClusterMetricsConfigurationInner metricsConfigurationParameters, String ifMatch, String ifNoneMatch,
+            Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, clusterName,
-            metricsConfigurationName, metricsConfigurationParameters, context);
+            metricsConfigurationName, metricsConfigurationParameters, ifMatch, ifNoneMatch, context);
         return this.client.<ClusterMetricsConfigurationInner, ClusterMetricsConfigurationInner>getLroResult(mono,
             this.client.getHttpPipeline(), ClusterMetricsConfigurationInner.class,
             ClusterMetricsConfigurationInner.class, context);
@@ -612,9 +661,11 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     public SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner>
         beginCreateOrUpdate(String resourceGroupName, String clusterName, String metricsConfigurationName,
             ClusterMetricsConfigurationInner metricsConfigurationParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         return this
             .beginCreateOrUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
-                metricsConfigurationParameters)
+                metricsConfigurationParameters, ifMatch, ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -627,6 +678,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
      * @param metricsConfigurationParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -637,10 +692,11 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner>
         beginCreateOrUpdate(String resourceGroupName, String clusterName, String metricsConfigurationName,
-            ClusterMetricsConfigurationInner metricsConfigurationParameters, Context context) {
+            ClusterMetricsConfigurationInner metricsConfigurationParameters, String ifMatch, String ifNoneMatch,
+            Context context) {
         return this
             .beginCreateOrUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
-                metricsConfigurationParameters, context)
+                metricsConfigurationParameters, ifMatch, ifNoneMatch, context)
             .getSyncPoller();
     }
 
@@ -653,6 +709,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
      * @param metricsConfigurationParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -661,9 +721,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterMetricsConfigurationInner> createOrUpdateAsync(String resourceGroupName, String clusterName,
-        String metricsConfigurationName, ClusterMetricsConfigurationInner metricsConfigurationParameters) {
+        String metricsConfigurationName, ClusterMetricsConfigurationInner metricsConfigurationParameters,
+        String ifMatch, String ifNoneMatch) {
         return beginCreateOrUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
-            metricsConfigurationParameters).last().flatMap(this.client::getLroFinalResultOrError);
+            metricsConfigurationParameters, ifMatch, ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -675,6 +736,34 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
      * @param metricsConfigurationParameters The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return clusterMetricsConfiguration represents the metrics configuration of an on-premises Network Cloud cluster
+     * on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ClusterMetricsConfigurationInner> createOrUpdateAsync(String resourceGroupName, String clusterName,
+        String metricsConfigurationName, ClusterMetricsConfigurationInner metricsConfigurationParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
+            metricsConfigurationParameters, ifMatch, ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update metrics configuration of the cluster.
+     * 
+     * Create new or update the existing metrics configuration of the provided cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param metricsConfigurationParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -685,9 +774,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterMetricsConfigurationInner> createOrUpdateAsync(String resourceGroupName, String clusterName,
         String metricsConfigurationName, ClusterMetricsConfigurationInner metricsConfigurationParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
-            metricsConfigurationParameters, context).last().flatMap(this.client::getLroFinalResultOrError);
+            metricsConfigurationParameters, ifMatch, ifNoneMatch, context).last()
+                .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -707,8 +797,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterMetricsConfigurationInner createOrUpdate(String resourceGroupName, String clusterName,
         String metricsConfigurationName, ClusterMetricsConfigurationInner metricsConfigurationParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         return createOrUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
-            metricsConfigurationParameters).block();
+            metricsConfigurationParameters, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -720,6 +812,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
      * @param metricsConfigurationParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -729,9 +825,9 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterMetricsConfigurationInner createOrUpdate(String resourceGroupName, String clusterName,
         String metricsConfigurationName, ClusterMetricsConfigurationInner metricsConfigurationParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         return createOrUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
-            metricsConfigurationParameters, context).block();
+            metricsConfigurationParameters, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -742,6 +838,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -750,7 +850,7 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String clusterName,
-        String metricsConfigurationName) {
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -771,8 +871,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
                 new IllegalArgumentException("Parameter metricsConfigurationName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, clusterName, metricsConfigurationName, accept, context))
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, clusterName, metricsConfigurationName, ifMatch,
+                ifNoneMatch, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -784,6 +886,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -793,7 +899,7 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String clusterName,
-        String metricsConfigurationName, Context context) {
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -816,7 +922,35 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, clusterName, metricsConfigurationName, accept, context);
+            resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the metrics configuration of the cluster.
+     * 
+     * Delete the metrics configuration of the provided cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String clusterName, String metricsConfigurationName, String ifMatch,
+        String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -835,8 +969,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String clusterName, String metricsConfigurationName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, clusterName, metricsConfigurationName);
+            = deleteWithResponseAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -850,6 +986,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -858,10 +998,11 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
-        String resourceGroupName, String clusterName, String metricsConfigurationName, Context context) {
+        String resourceGroupName, String clusterName, String metricsConfigurationName, String ifMatch,
+        String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, clusterName, metricsConfigurationName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, clusterName,
+            metricsConfigurationName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -882,7 +1023,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String clusterName, String metricsConfigurationName) {
-        return this.beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch)
+            .getSyncPoller();
     }
 
     /**
@@ -893,6 +1037,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -900,9 +1048,36 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String clusterName, String metricsConfigurationName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String clusterName, String metricsConfigurationName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return this
+            .beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete the metrics configuration of the cluster.
+     * 
+     * Delete the metrics configuration of the provided cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String clusterName,
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -921,7 +1096,9 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String clusterName,
         String metricsConfigurationName) {
-        return beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -933,6 +1110,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -941,8 +1122,9 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String clusterName,
-        String metricsConfigurationName, Context context) {
-        return beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName, context).last()
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch, context)
+            .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -962,7 +1144,9 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String clusterName,
         String metricsConfigurationName) {
-        return deleteAsync(resourceGroupName, clusterName, metricsConfigurationName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -973,6 +1157,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -981,8 +1169,9 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String clusterName,
-        String metricsConfigurationName, Context context) {
-        return deleteAsync(resourceGroupName, clusterName, metricsConfigurationName, context).block();
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch, context)
+            .block();
     }
 
     /**
@@ -994,6 +1183,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param metricsConfigurationUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1003,7 +1196,7 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String clusterName,
-        String metricsConfigurationName,
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch,
         ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1030,8 +1223,8 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, clusterName, metricsConfigurationName,
-                metricsConfigurationUpdateParameters, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, clusterName, metricsConfigurationName, ifMatch,
+                ifNoneMatch, metricsConfigurationUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1044,6 +1237,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param metricsConfigurationUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1054,7 +1251,7 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String clusterName,
-        String metricsConfigurationName,
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch,
         ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1081,8 +1278,8 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, clusterName, metricsConfigurationName, metricsConfigurationUpdateParameters, accept,
-            context);
+            resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch,
+            metricsConfigurationUpdateParameters, accept, context);
     }
 
     /**
@@ -1094,6 +1291,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param metricsConfigurationUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1103,10 +1304,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner> beginUpdateAsync(
-        String resourceGroupName, String clusterName, String metricsConfigurationName,
-        ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters) {
+        String resourceGroupName, String clusterName, String metricsConfigurationName, String ifMatch,
+        String ifNoneMatch, ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, clusterName,
-            metricsConfigurationName, metricsConfigurationUpdateParameters);
+            metricsConfigurationName, ifMatch, ifNoneMatch, metricsConfigurationUpdateParameters);
         return this.client.<ClusterMetricsConfigurationInner, ClusterMetricsConfigurationInner>getLroResult(mono,
             this.client.getHttpPipeline(), ClusterMetricsConfigurationInner.class,
             ClusterMetricsConfigurationInner.class, this.client.getContext());
@@ -1130,9 +1331,11 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner>
         beginUpdateAsync(String resourceGroupName, String clusterName, String metricsConfigurationName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters = null;
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, clusterName,
-            metricsConfigurationName, metricsConfigurationUpdateParameters);
+            metricsConfigurationName, ifMatch, ifNoneMatch, metricsConfigurationUpdateParameters);
         return this.client.<ClusterMetricsConfigurationInner, ClusterMetricsConfigurationInner>getLroResult(mono,
             this.client.getHttpPipeline(), ClusterMetricsConfigurationInner.class,
             ClusterMetricsConfigurationInner.class, this.client.getContext());
@@ -1147,6 +1350,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param metricsConfigurationUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1157,11 +1364,12 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner> beginUpdateAsync(
-        String resourceGroupName, String clusterName, String metricsConfigurationName,
-        ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters, Context context) {
+        String resourceGroupName, String clusterName, String metricsConfigurationName, String ifMatch,
+        String ifNoneMatch, ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, clusterName,
-            metricsConfigurationName, metricsConfigurationUpdateParameters, context);
+            metricsConfigurationName, ifMatch, ifNoneMatch, metricsConfigurationUpdateParameters, context);
         return this.client.<ClusterMetricsConfigurationInner, ClusterMetricsConfigurationInner>getLroResult(mono,
             this.client.getHttpPipeline(), ClusterMetricsConfigurationInner.class,
             ClusterMetricsConfigurationInner.class, context);
@@ -1185,9 +1393,11 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner>
         beginUpdate(String resourceGroupName, String clusterName, String metricsConfigurationName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters = null;
         return this
-            .beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
+            .beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch,
                 metricsConfigurationUpdateParameters)
             .getSyncPoller();
     }
@@ -1201,6 +1411,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param metricsConfigurationUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1211,10 +1425,11 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner> beginUpdate(
-        String resourceGroupName, String clusterName, String metricsConfigurationName,
-        ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters, Context context) {
+        String resourceGroupName, String clusterName, String metricsConfigurationName, String ifMatch,
+        String ifNoneMatch, ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters,
+        Context context) {
         return this
-            .beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
+            .beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch,
                 metricsConfigurationUpdateParameters, context)
             .getSyncPoller();
     }
@@ -1228,6 +1443,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param metricsConfigurationUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1237,9 +1456,9 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterMetricsConfigurationInner> updateAsync(String resourceGroupName, String clusterName,
-        String metricsConfigurationName,
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch,
         ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters) {
-        return beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
+        return beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch,
             metricsConfigurationUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1261,8 +1480,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterMetricsConfigurationInner> updateAsync(String resourceGroupName, String clusterName,
         String metricsConfigurationName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters = null;
-        return beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
+        return beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch,
             metricsConfigurationUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1275,6 +1496,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param metricsConfigurationUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1285,9 +1510,9 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterMetricsConfigurationInner> updateAsync(String resourceGroupName, String clusterName,
-        String metricsConfigurationName,
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch,
         ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName,
+        return beginUpdateAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch,
             metricsConfigurationUpdateParameters, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1308,8 +1533,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterMetricsConfigurationInner update(String resourceGroupName, String clusterName,
         String metricsConfigurationName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters = null;
-        return updateAsync(resourceGroupName, clusterName, metricsConfigurationName,
+        return updateAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch,
             metricsConfigurationUpdateParameters).block();
     }
 
@@ -1322,6 +1549,10 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param metricsConfigurationUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1331,9 +1562,9 @@ public final class MetricsConfigurationsClientImpl implements MetricsConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterMetricsConfigurationInner update(String resourceGroupName, String clusterName,
-        String metricsConfigurationName,
+        String metricsConfigurationName, String ifMatch, String ifNoneMatch,
         ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters, Context context) {
-        return updateAsync(resourceGroupName, clusterName, metricsConfigurationName,
+        return updateAsync(resourceGroupName, clusterName, metricsConfigurationName, ifMatch, ifNoneMatch,
             metricsConfigurationUpdateParameters, context).block();
     }
 

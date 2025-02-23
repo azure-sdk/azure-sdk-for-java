@@ -104,6 +104,7 @@ public final class RacksClientImpl implements RacksClient {
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("rackName") String rackName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") RackInner rackParameters, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -114,6 +115,7 @@ public final class RacksClientImpl implements RacksClient {
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("rackName") String rackName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -123,6 +125,7 @@ public final class RacksClientImpl implements RacksClient {
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("rackName") String rackName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") RackPatchParameters rackUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -539,6 +542,10 @@ public final class RacksClientImpl implements RacksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
      * @param rackParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -547,7 +554,7 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName, String rackName,
-        RackInner rackParameters) {
+        RackInner rackParameters, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -571,7 +578,8 @@ public final class RacksClientImpl implements RacksClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, rackName, rackParameters, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, rackName, ifMatch, ifNoneMatch, rackParameters,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -584,6 +592,10 @@ public final class RacksClientImpl implements RacksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
      * @param rackParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -593,7 +605,7 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName, String rackName,
-        RackInner rackParameters, Context context) {
+        RackInner rackParameters, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -617,7 +629,36 @@ public final class RacksClientImpl implements RacksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, rackName, rackParameters, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, rackName, ifMatch, ifNoneMatch, rackParameters, accept,
+            context);
+    }
+
+    /**
+     * Create or update the rack.
+     * 
+     * Create a new rack or update properties of the existing one.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param rackName The name of the rack.
+     * @param rackParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of rack represents the hardware of the rack and is dependent upon the
+     * cluster for lifecycle.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<RackInner>, RackInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String rackName, RackInner rackParameters, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch);
+        return this.client.<RackInner, RackInner>getLroResult(mono, this.client.getHttpPipeline(), RackInner.class,
+            RackInner.class, this.client.getContext());
     }
 
     /**
@@ -638,8 +679,10 @@ public final class RacksClientImpl implements RacksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<RackInner>, RackInner> beginCreateOrUpdateAsync(String resourceGroupName,
         String rackName, RackInner rackParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, rackName, rackParameters);
+            = createOrUpdateWithResponseAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch);
         return this.client.<RackInner, RackInner>getLroResult(mono, this.client.getHttpPipeline(), RackInner.class,
             RackInner.class, this.client.getContext());
     }
@@ -653,6 +696,10 @@ public final class RacksClientImpl implements RacksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
      * @param rackParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -662,10 +709,10 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<RackInner>, RackInner> beginCreateOrUpdateAsync(String resourceGroupName,
-        String rackName, RackInner rackParameters, Context context) {
+        String rackName, RackInner rackParameters, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, rackName, rackParameters, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, rackName,
+            rackParameters, ifMatch, ifNoneMatch, context);
         return this.client.<RackInner, RackInner>getLroResult(mono, this.client.getHttpPipeline(), RackInner.class,
             RackInner.class, context);
     }
@@ -688,7 +735,10 @@ public final class RacksClientImpl implements RacksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<RackInner>, RackInner> beginCreateOrUpdate(String resourceGroupName, String rackName,
         RackInner rackParameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch)
+            .getSyncPoller();
     }
 
     /**
@@ -700,6 +750,10 @@ public final class RacksClientImpl implements RacksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
      * @param rackParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -709,8 +763,35 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<RackInner>, RackInner> beginCreateOrUpdate(String resourceGroupName, String rackName,
-        RackInner rackParameters, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters, context).getSyncPoller();
+        RackInner rackParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create or update the rack.
+     * 
+     * Create a new rack or update properties of the existing one.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param rackName The name of the rack.
+     * @param rackParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return rack represents the hardware of the rack and is dependent upon the cluster for lifecycle on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<RackInner> createOrUpdateAsync(String resourceGroupName, String rackName, RackInner rackParameters,
+        String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -730,7 +811,9 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RackInner> createOrUpdateAsync(String resourceGroupName, String rackName, RackInner rackParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -743,6 +826,10 @@ public final class RacksClientImpl implements RacksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
      * @param rackParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -752,8 +839,9 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RackInner> createOrUpdateAsync(String resourceGroupName, String rackName, RackInner rackParameters,
-        Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters, context).last()
+        String ifMatch, String ifNoneMatch, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch, context)
+            .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -773,7 +861,9 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public RackInner createOrUpdate(String resourceGroupName, String rackName, RackInner rackParameters) {
-        return createOrUpdateAsync(resourceGroupName, rackName, rackParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -785,6 +875,10 @@ public final class RacksClientImpl implements RacksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
      * @param rackParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -792,9 +886,9 @@ public final class RacksClientImpl implements RacksClient {
      * @return rack represents the hardware of the rack and is dependent upon the cluster for lifecycle.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RackInner createOrUpdate(String resourceGroupName, String rackName, RackInner rackParameters,
-        Context context) {
-        return createOrUpdateAsync(resourceGroupName, rackName, rackParameters, context).block();
+    public RackInner createOrUpdate(String resourceGroupName, String rackName, RackInner rackParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, rackName, rackParameters, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -805,6 +899,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -812,7 +910,8 @@ public final class RacksClientImpl implements RacksClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String rackName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String rackName,
+        String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -831,7 +930,7 @@ public final class RacksClientImpl implements RacksClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, rackName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, rackName, ifMatch, ifNoneMatch, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -843,6 +942,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -852,7 +955,7 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String rackName,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -871,7 +974,34 @@ public final class RacksClientImpl implements RacksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, rackName, accept, context);
+            resourceGroupName, rackName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the rack.
+     * 
+     * Delete the provided rack.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginDeleteAsync(String resourceGroupName, String rackName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -890,7 +1020,10 @@ public final class RacksClientImpl implements RacksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String rackName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, rackName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -904,6 +1037,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -911,10 +1048,11 @@ public final class RacksClientImpl implements RacksClient {
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String rackName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String rackName, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, rackName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -935,7 +1073,9 @@ public final class RacksClientImpl implements RacksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String rackName) {
-        return this.beginDeleteAsync(resourceGroupName, rackName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -946,6 +1086,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -954,8 +1098,32 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String rackName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, rackName, context).getSyncPoller();
+        beginDelete(String resourceGroupName, String rackName, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, context).getSyncPoller();
+    }
+
+    /**
+     * Delete the rack.
+     * 
+     * Delete the provided rack.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String rackName, String ifMatch,
+        String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -973,7 +1141,10 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String rackName) {
-        return beginDeleteAsync(resourceGroupName, rackName).last().flatMap(this.client::getLroFinalResultOrError);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -984,6 +1155,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -991,8 +1166,9 @@ public final class RacksClientImpl implements RacksClient {
      * @return the current status of an async operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String rackName, Context context) {
-        return beginDeleteAsync(resourceGroupName, rackName, context).last()
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String rackName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1011,7 +1187,9 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String rackName) {
-        return deleteAsync(resourceGroupName, rackName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1022,6 +1200,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1029,8 +1211,9 @@ public final class RacksClientImpl implements RacksClient {
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String rackName, Context context) {
-        return deleteAsync(resourceGroupName, rackName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String rackName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1041,6 +1224,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param rackUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1050,7 +1237,7 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String rackName,
-        RackPatchParameters rackUpdateParameters) {
+        String ifMatch, String ifNoneMatch, RackPatchParameters rackUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1072,7 +1259,8 @@ public final class RacksClientImpl implements RacksClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, rackName, rackUpdateParameters, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, rackName, ifMatch, ifNoneMatch,
+                rackUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1084,6 +1272,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param rackUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1094,7 +1286,7 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String rackName,
-        RackPatchParameters rackUpdateParameters, Context context) {
+        String ifMatch, String ifNoneMatch, RackPatchParameters rackUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1116,7 +1308,7 @@ public final class RacksClientImpl implements RacksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, rackName, rackUpdateParameters, accept, context);
+            resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters, accept, context);
     }
 
     /**
@@ -1127,6 +1319,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param rackUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1136,9 +1332,9 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<RackInner>, RackInner> beginUpdateAsync(String resourceGroupName, String rackName,
-        RackPatchParameters rackUpdateParameters) {
+        String ifMatch, String ifNoneMatch, RackPatchParameters rackUpdateParameters) {
         Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, rackName, rackUpdateParameters);
+            = updateWithResponseAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters);
         return this.client.<RackInner, RackInner>getLroResult(mono, this.client.getHttpPipeline(), RackInner.class,
             RackInner.class, this.client.getContext());
     }
@@ -1159,9 +1355,11 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<RackInner>, RackInner> beginUpdateAsync(String resourceGroupName, String rackName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final RackPatchParameters rackUpdateParameters = null;
         Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, rackName, rackUpdateParameters);
+            = updateWithResponseAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters);
         return this.client.<RackInner, RackInner>getLroResult(mono, this.client.getHttpPipeline(), RackInner.class,
             RackInner.class, this.client.getContext());
     }
@@ -1174,6 +1372,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param rackUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1184,10 +1386,10 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<RackInner>, RackInner> beginUpdateAsync(String resourceGroupName, String rackName,
-        RackPatchParameters rackUpdateParameters, Context context) {
+        String ifMatch, String ifNoneMatch, RackPatchParameters rackUpdateParameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, rackName, rackUpdateParameters, context);
+            = updateWithResponseAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters, context);
         return this.client.<RackInner, RackInner>getLroResult(mono, this.client.getHttpPipeline(), RackInner.class,
             RackInner.class, context);
     }
@@ -1208,8 +1410,11 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<RackInner>, RackInner> beginUpdate(String resourceGroupName, String rackName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final RackPatchParameters rackUpdateParameters = null;
-        return this.beginUpdateAsync(resourceGroupName, rackName, rackUpdateParameters).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters)
+            .getSyncPoller();
     }
 
     /**
@@ -1220,6 +1425,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param rackUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1230,8 +1439,9 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<RackInner>, RackInner> beginUpdate(String resourceGroupName, String rackName,
-        RackPatchParameters rackUpdateParameters, Context context) {
-        return this.beginUpdateAsync(resourceGroupName, rackName, rackUpdateParameters, context).getSyncPoller();
+        String ifMatch, String ifNoneMatch, RackPatchParameters rackUpdateParameters, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1242,6 +1452,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param rackUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1250,9 +1464,9 @@ public final class RacksClientImpl implements RacksClient {
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RackInner> updateAsync(String resourceGroupName, String rackName,
+    private Mono<RackInner> updateAsync(String resourceGroupName, String rackName, String ifMatch, String ifNoneMatch,
         RackPatchParameters rackUpdateParameters) {
-        return beginUpdateAsync(resourceGroupName, rackName, rackUpdateParameters).last()
+        return beginUpdateAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1272,8 +1486,10 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RackInner> updateAsync(String resourceGroupName, String rackName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final RackPatchParameters rackUpdateParameters = null;
-        return beginUpdateAsync(resourceGroupName, rackName, rackUpdateParameters).last()
+        return beginUpdateAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1285,6 +1501,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param rackUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1294,9 +1514,9 @@ public final class RacksClientImpl implements RacksClient {
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RackInner> updateAsync(String resourceGroupName, String rackName,
+    private Mono<RackInner> updateAsync(String resourceGroupName, String rackName, String ifMatch, String ifNoneMatch,
         RackPatchParameters rackUpdateParameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, rackName, rackUpdateParameters, context).last()
+        return beginUpdateAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1315,8 +1535,10 @@ public final class RacksClientImpl implements RacksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public RackInner update(String resourceGroupName, String rackName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final RackPatchParameters rackUpdateParameters = null;
-        return updateAsync(resourceGroupName, rackName, rackUpdateParameters).block();
+        return updateAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters).block();
     }
 
     /**
@@ -1327,6 +1549,10 @@ public final class RacksClientImpl implements RacksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rackName The name of the rack.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param rackUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1335,9 +1561,9 @@ public final class RacksClientImpl implements RacksClient {
      * @return rack represents the hardware of the rack and is dependent upon the cluster for lifecycle.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RackInner update(String resourceGroupName, String rackName, RackPatchParameters rackUpdateParameters,
-        Context context) {
-        return updateAsync(resourceGroupName, rackName, rackUpdateParameters, context).block();
+    public RackInner update(String resourceGroupName, String rackName, String ifMatch, String ifNoneMatch,
+        RackPatchParameters rackUpdateParameters, Context context) {
+        return updateAsync(resourceGroupName, rackName, ifMatch, ifNoneMatch, rackUpdateParameters, context).block();
     }
 
     /**

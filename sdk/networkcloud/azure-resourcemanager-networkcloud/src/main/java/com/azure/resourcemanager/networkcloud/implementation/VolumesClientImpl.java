@@ -105,6 +105,7 @@ public final class VolumesClientImpl implements VolumesClient {
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("volumeName") String volumeName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") VolumeInner volumeParameters, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -115,6 +116,7 @@ public final class VolumesClientImpl implements VolumesClient {
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("volumeName") String volumeName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -124,6 +126,7 @@ public final class VolumesClientImpl implements VolumesClient {
         Mono<Response<VolumeInner>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("volumeName") String volumeName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") VolumePatchParameters volumeUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -542,6 +545,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
      * @param volumeParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -550,7 +557,7 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String volumeName, VolumeInner volumeParameters) {
+        String volumeName, VolumeInner volumeParameters, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -575,7 +582,8 @@ public final class VolumesClientImpl implements VolumesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, volumeName, volumeParameters, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, volumeName, ifMatch, ifNoneMatch, volumeParameters,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -587,6 +595,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
      * @param volumeParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -596,7 +608,7 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String volumeName, VolumeInner volumeParameters, Context context) {
+        String volumeName, VolumeInner volumeParameters, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -621,7 +633,35 @@ public final class VolumesClientImpl implements VolumesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, volumeName, volumeParameters, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, volumeName, ifMatch, ifNoneMatch, volumeParameters,
+            accept, context);
+    }
+
+    /**
+     * Create or update the volume.
+     * 
+     * Create a new volume or update the properties of the existing one.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param volumeName The name of the volume.
+     * @param volumeParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of volume represents storage made available for use by resources
+     * running on the cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VolumeInner>, VolumeInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String volumeName, VolumeInner volumeParameters, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch);
+        return this.client.<VolumeInner, VolumeInner>getLroResult(mono, this.client.getHttpPipeline(),
+            VolumeInner.class, VolumeInner.class, this.client.getContext());
     }
 
     /**
@@ -641,8 +681,10 @@ public final class VolumesClientImpl implements VolumesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VolumeInner>, VolumeInner> beginCreateOrUpdateAsync(String resourceGroupName,
         String volumeName, VolumeInner volumeParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, volumeName, volumeParameters);
+            = createOrUpdateWithResponseAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch);
         return this.client.<VolumeInner, VolumeInner>getLroResult(mono, this.client.getHttpPipeline(),
             VolumeInner.class, VolumeInner.class, this.client.getContext());
     }
@@ -655,6 +697,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
      * @param volumeParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -664,10 +710,10 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VolumeInner>, VolumeInner> beginCreateOrUpdateAsync(String resourceGroupName,
-        String volumeName, VolumeInner volumeParameters, Context context) {
+        String volumeName, VolumeInner volumeParameters, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, volumeName, volumeParameters, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, volumeName,
+            volumeParameters, ifMatch, ifNoneMatch, context);
         return this.client.<VolumeInner, VolumeInner>getLroResult(mono, this.client.getHttpPipeline(),
             VolumeInner.class, VolumeInner.class, context);
     }
@@ -689,7 +735,10 @@ public final class VolumesClientImpl implements VolumesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VolumeInner>, VolumeInner> beginCreateOrUpdate(String resourceGroupName,
         String volumeName, VolumeInner volumeParameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch)
+            .getSyncPoller();
     }
 
     /**
@@ -700,6 +749,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
      * @param volumeParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -709,8 +762,35 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VolumeInner>, VolumeInner> beginCreateOrUpdate(String resourceGroupName,
-        String volumeName, VolumeInner volumeParameters, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, context).getSyncPoller();
+        String volumeName, VolumeInner volumeParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create or update the volume.
+     * 
+     * Create a new volume or update the properties of the existing one.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param volumeName The name of the volume.
+     * @param volumeParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return volume represents storage made available for use by resources running on the cluster on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<VolumeInner> createOrUpdateAsync(String resourceGroupName, String volumeName,
+        VolumeInner volumeParameters, String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -730,7 +810,9 @@ public final class VolumesClientImpl implements VolumesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VolumeInner> createOrUpdateAsync(String resourceGroupName, String volumeName,
         VolumeInner volumeParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -742,6 +824,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
      * @param volumeParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -751,8 +837,9 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VolumeInner> createOrUpdateAsync(String resourceGroupName, String volumeName,
-        VolumeInner volumeParameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, context).last()
+        VolumeInner volumeParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch, context)
+            .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -771,7 +858,9 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VolumeInner createOrUpdate(String resourceGroupName, String volumeName, VolumeInner volumeParameters) {
-        return createOrUpdateAsync(resourceGroupName, volumeName, volumeParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -782,6 +871,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
      * @param volumeParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -790,8 +883,9 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VolumeInner createOrUpdate(String resourceGroupName, String volumeName, VolumeInner volumeParameters,
-        Context context) {
-        return createOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, context).block();
+        String ifMatch, String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, volumeName, volumeParameters, ifMatch, ifNoneMatch, context)
+            .block();
     }
 
     /**
@@ -801,6 +895,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -808,7 +906,8 @@ public final class VolumesClientImpl implements VolumesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String volumeName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String volumeName,
+        String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -827,7 +926,7 @@ public final class VolumesClientImpl implements VolumesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, volumeName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, volumeName, ifMatch, ifNoneMatch, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -838,6 +937,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -847,7 +950,7 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String volumeName,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -866,7 +969,33 @@ public final class VolumesClientImpl implements VolumesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, volumeName, accept, context);
+            resourceGroupName, volumeName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the volume.
+     * 
+     * Delete the provided volume.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginDeleteAsync(String resourceGroupName, String volumeName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -884,7 +1013,10 @@ public final class VolumesClientImpl implements VolumesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String volumeName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, volumeName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -897,6 +1029,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -904,10 +1040,11 @@ public final class VolumesClientImpl implements VolumesClient {
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String volumeName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String volumeName, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, volumeName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -927,7 +1064,9 @@ public final class VolumesClientImpl implements VolumesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String volumeName) {
-        return this.beginDeleteAsync(resourceGroupName, volumeName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -937,6 +1076,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -945,8 +1088,31 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String volumeName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, volumeName, context).getSyncPoller();
+        beginDelete(String resourceGroupName, String volumeName, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch, context).getSyncPoller();
+    }
+
+    /**
+     * Delete the volume.
+     * 
+     * Delete the provided volume.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String volumeName, String ifMatch,
+        String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -963,7 +1129,10 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String volumeName) {
-        return beginDeleteAsync(resourceGroupName, volumeName).last().flatMap(this.client::getLroFinalResultOrError);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -973,6 +1142,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -980,8 +1153,9 @@ public final class VolumesClientImpl implements VolumesClient {
      * @return the current status of an async operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String volumeName, Context context) {
-        return beginDeleteAsync(resourceGroupName, volumeName, context).last()
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String volumeName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -999,7 +1173,9 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String volumeName) {
-        return deleteAsync(resourceGroupName, volumeName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1009,6 +1185,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1016,8 +1196,9 @@ public final class VolumesClientImpl implements VolumesClient {
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String volumeName, Context context) {
-        return deleteAsync(resourceGroupName, volumeName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String volumeName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1027,6 +1208,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param volumeUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1036,7 +1221,7 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VolumeInner>> updateWithResponseAsync(String resourceGroupName, String volumeName,
-        VolumePatchParameters volumeUpdateParameters) {
+        String ifMatch, String ifNoneMatch, VolumePatchParameters volumeUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1056,8 +1241,10 @@ public final class VolumesClientImpl implements VolumesClient {
             volumeUpdateParameters.validate();
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, volumeName, volumeUpdateParameters, accept, context))
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, volumeName, ifMatch, ifNoneMatch,
+                volumeUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1068,6 +1255,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param volumeUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1078,7 +1269,7 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VolumeInner>> updateWithResponseAsync(String resourceGroupName, String volumeName,
-        VolumePatchParameters volumeUpdateParameters, Context context) {
+        String ifMatch, String ifNoneMatch, VolumePatchParameters volumeUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1100,7 +1291,7 @@ public final class VolumesClientImpl implements VolumesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, volumeName, volumeUpdateParameters, accept, context);
+            resourceGroupName, volumeName, ifMatch, ifNoneMatch, volumeUpdateParameters, accept, context);
     }
 
     /**
@@ -1118,8 +1309,10 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VolumeInner> updateAsync(String resourceGroupName, String volumeName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final VolumePatchParameters volumeUpdateParameters = null;
-        return updateWithResponseAsync(resourceGroupName, volumeName, volumeUpdateParameters)
+        return updateWithResponseAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch, volumeUpdateParameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -1130,6 +1323,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param volumeName The name of the volume.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param volumeUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1139,9 +1336,10 @@ public final class VolumesClientImpl implements VolumesClient {
      * {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<VolumeInner> updateWithResponse(String resourceGroupName, String volumeName,
-        VolumePatchParameters volumeUpdateParameters, Context context) {
-        return updateWithResponseAsync(resourceGroupName, volumeName, volumeUpdateParameters, context).block();
+    public Response<VolumeInner> updateWithResponse(String resourceGroupName, String volumeName, String ifMatch,
+        String ifNoneMatch, VolumePatchParameters volumeUpdateParameters, Context context) {
+        return updateWithResponseAsync(resourceGroupName, volumeName, ifMatch, ifNoneMatch, volumeUpdateParameters,
+            context).block();
     }
 
     /**
@@ -1158,8 +1356,11 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VolumeInner update(String resourceGroupName, String volumeName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final VolumePatchParameters volumeUpdateParameters = null;
-        return updateWithResponse(resourceGroupName, volumeName, volumeUpdateParameters, Context.NONE).getValue();
+        return updateWithResponse(resourceGroupName, volumeName, ifMatch, ifNoneMatch, volumeUpdateParameters,
+            Context.NONE).getValue();
     }
 
     /**

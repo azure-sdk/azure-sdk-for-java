@@ -107,7 +107,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterManagerName") String clusterManagerName,
+            @PathParam("clusterManagerName") String clusterManagerName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") ClusterManagerInner clusterManagerParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -118,8 +119,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterManagerName") String clusterManagerName, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("clusterManagerName") String clusterManagerName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}")
@@ -128,7 +129,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         Mono<Response<ClusterManagerInner>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterManagerName") String clusterManagerName,
+            @PathParam("clusterManagerName") String clusterManagerName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") ClusterManagerPatchParameters clusterManagerUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -553,6 +555,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
      * @param clusterManagerParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -561,7 +567,7 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String clusterManagerName, ClusterManagerInner clusterManagerParameters) {
+        String clusterManagerName, ClusterManagerInner clusterManagerParameters, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -587,8 +593,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, clusterManagerName, clusterManagerParameters,
-                accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch,
+                clusterManagerParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -600,6 +606,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
      * @param clusterManagerParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -609,7 +619,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String clusterManagerName, ClusterManagerInner clusterManagerParameters, Context context) {
+        String clusterManagerName, ClusterManagerInner clusterManagerParameters, String ifMatch, String ifNoneMatch,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -635,8 +646,36 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, clusterManagerName, clusterManagerParameters, accept,
-            context);
+            this.client.getSubscriptionId(), resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch,
+            clusterManagerParameters, accept, context);
+    }
+
+    /**
+     * Create or update the cluster manager.
+     * 
+     * Create a new cluster manager or update properties of the cluster manager if it exists.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterManagerName The name of the cluster manager.
+     * @param clusterManagerParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of clusterManager represents a control-plane to manage one or more
+     * on-premises clusters.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ClusterManagerInner>, ClusterManagerInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String clusterManagerName, ClusterManagerInner clusterManagerParameters,
+        String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, clusterManagerName,
+            clusterManagerParameters, ifMatch, ifNoneMatch);
+        return this.client.<ClusterManagerInner, ClusterManagerInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ClusterManagerInner.class, ClusterManagerInner.class, this.client.getContext());
     }
 
     /**
@@ -656,8 +695,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterManagerInner>, ClusterManagerInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String clusterManagerName, ClusterManagerInner clusterManagerParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, clusterManagerName, clusterManagerParameters);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, clusterManagerName,
+            clusterManagerParameters, ifMatch, ifNoneMatch);
         return this.client.<ClusterManagerInner, ClusterManagerInner>getLroResult(mono, this.client.getHttpPipeline(),
             ClusterManagerInner.class, ClusterManagerInner.class, this.client.getContext());
     }
@@ -670,6 +711,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
      * @param clusterManagerParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -680,10 +725,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterManagerInner>, ClusterManagerInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String clusterManagerName, ClusterManagerInner clusterManagerParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, clusterManagerName,
+            clusterManagerParameters, ifMatch, ifNoneMatch, context);
         return this.client.<ClusterManagerInner, ClusterManagerInner>getLroResult(mono, this.client.getHttpPipeline(),
             ClusterManagerInner.class, ClusterManagerInner.class, context);
     }
@@ -705,7 +750,11 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterManagerInner>, ClusterManagerInner> beginCreateOrUpdate(
         String resourceGroupName, String clusterManagerName, ClusterManagerInner clusterManagerParameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters)
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, ifMatch,
+                ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -717,6 +766,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
      * @param clusterManagerParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -727,8 +780,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterManagerInner>, ClusterManagerInner> beginCreateOrUpdate(
         String resourceGroupName, String clusterManagerName, ClusterManagerInner clusterManagerParameters,
-        Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, context)
+        String ifMatch, String ifNoneMatch, Context context) {
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, ifMatch,
+                ifNoneMatch, context)
             .getSyncPoller();
     }
 
@@ -740,6 +795,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
      * @param clusterManagerParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -748,9 +807,9 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterManagerInner> createOrUpdateAsync(String resourceGroupName, String clusterManagerName,
-        ClusterManagerInner clusterManagerParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        ClusterManagerInner clusterManagerParameters, String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, ifMatch,
+            ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -761,6 +820,33 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
      * @param clusterManagerParameters The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return clusterManager represents a control-plane to manage one or more on-premises clusters on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ClusterManagerInner> createOrUpdateAsync(String resourceGroupName, String clusterManagerName,
+        ClusterManagerInner clusterManagerParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, ifMatch,
+            ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the cluster manager.
+     * 
+     * Create a new cluster manager or update properties of the cluster manager if it exists.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterManagerName The name of the cluster manager.
+     * @param clusterManagerParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -770,9 +856,9 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterManagerInner> createOrUpdateAsync(String resourceGroupName, String clusterManagerName,
-        ClusterManagerInner clusterManagerParameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        ClusterManagerInner clusterManagerParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, ifMatch,
+            ifNoneMatch, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -791,7 +877,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterManagerInner createOrUpdate(String resourceGroupName, String clusterManagerName,
         ClusterManagerInner clusterManagerParameters) {
-        return createOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, ifMatch,
+            ifNoneMatch).block();
     }
 
     /**
@@ -802,6 +891,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
      * @param clusterManagerParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -810,8 +903,9 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterManagerInner createOrUpdate(String resourceGroupName, String clusterManagerName,
-        ClusterManagerInner clusterManagerParameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, context).block();
+        ClusterManagerInner clusterManagerParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, clusterManagerName, clusterManagerParameters, ifMatch,
+            ifNoneMatch, context).block();
     }
 
     /**
@@ -821,6 +915,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -829,7 +927,7 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String clusterManagerName) {
+        String clusterManagerName, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -849,7 +947,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, clusterManagerName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -860,6 +959,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -869,7 +972,7 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String clusterManagerName, Context context) {
+        String clusterManagerName, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -889,7 +992,33 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, clusterManagerName, accept, context);
+            resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the cluster manager.
+     * 
+     * Delete the provided cluster manager.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginDeleteAsync(String resourceGroupName, String clusterManagerName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -907,7 +1036,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String clusterManagerName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, clusterManagerName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -920,6 +1052,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -927,10 +1063,11 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String clusterManagerName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String clusterManagerName, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, clusterManagerName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -950,7 +1087,9 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String clusterManagerName) {
-        return this.beginDeleteAsync(resourceGroupName, clusterManagerName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -960,6 +1099,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -967,9 +1110,33 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String clusterManagerName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, clusterManagerName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String clusterManagerName, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete the cluster manager.
+     * 
+     * Delete the provided cluster manager.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String clusterManagerName,
+        String ifMatch, String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -986,7 +1153,9 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String clusterManagerName) {
-        return beginDeleteAsync(resourceGroupName, clusterManagerName).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -997,6 +1166,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1005,8 +1178,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String clusterManagerName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, clusterManagerName, context).last()
+        String ifMatch, String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1024,7 +1197,9 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String clusterManagerName) {
-        return deleteAsync(resourceGroupName, clusterManagerName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1034,6 +1209,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1041,8 +1220,9 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String clusterManagerName, Context context) {
-        return deleteAsync(resourceGroupName, clusterManagerName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String clusterManagerName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1053,6 +1233,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param clusterManagerUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1062,7 +1246,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ClusterManagerInner>> updateWithResponseAsync(String resourceGroupName,
-        String clusterManagerName, ClusterManagerPatchParameters clusterManagerUpdateParameters) {
+        String clusterManagerName, String ifMatch, String ifNoneMatch,
+        ClusterManagerPatchParameters clusterManagerUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1085,8 +1270,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, clusterManagerName, clusterManagerUpdateParameters,
-                accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch,
+                clusterManagerUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1098,6 +1283,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param clusterManagerUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1108,7 +1297,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ClusterManagerInner>> updateWithResponseAsync(String resourceGroupName,
-        String clusterManagerName, ClusterManagerPatchParameters clusterManagerUpdateParameters, Context context) {
+        String clusterManagerName, String ifMatch, String ifNoneMatch,
+        ClusterManagerPatchParameters clusterManagerUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1131,7 +1321,8 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, clusterManagerName, clusterManagerUpdateParameters, accept, context);
+            resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch, clusterManagerUpdateParameters, accept,
+            context);
     }
 
     /**
@@ -1150,9 +1341,11 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterManagerInner> updateAsync(String resourceGroupName, String clusterManagerName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final ClusterManagerPatchParameters clusterManagerUpdateParameters = null;
-        return updateWithResponseAsync(resourceGroupName, clusterManagerName, clusterManagerUpdateParameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return updateWithResponseAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch,
+            clusterManagerUpdateParameters).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1163,6 +1356,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterManagerName The name of the cluster manager.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param clusterManagerUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1173,9 +1370,10 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ClusterManagerInner> updateWithResponse(String resourceGroupName, String clusterManagerName,
-        ClusterManagerPatchParameters clusterManagerUpdateParameters, Context context) {
-        return updateWithResponseAsync(resourceGroupName, clusterManagerName, clusterManagerUpdateParameters, context)
-            .block();
+        String ifMatch, String ifNoneMatch, ClusterManagerPatchParameters clusterManagerUpdateParameters,
+        Context context) {
+        return updateWithResponseAsync(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch,
+            clusterManagerUpdateParameters, context).block();
     }
 
     /**
@@ -1193,9 +1391,11 @@ public final class ClusterManagersClientImpl implements ClusterManagersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterManagerInner update(String resourceGroupName, String clusterManagerName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final ClusterManagerPatchParameters clusterManagerUpdateParameters = null;
-        return updateWithResponse(resourceGroupName, clusterManagerName, clusterManagerUpdateParameters, Context.NONE)
-            .getValue();
+        return updateWithResponse(resourceGroupName, clusterManagerName, ifMatch, ifNoneMatch,
+            clusterManagerUpdateParameters, Context.NONE).getValue();
     }
 
     /**

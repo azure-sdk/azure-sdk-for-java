@@ -106,6 +106,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l2NetworkName") String l2NetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") L2NetworkInner l2NetworkParameters, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -116,6 +117,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l2NetworkName") String l2NetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -125,6 +127,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         Mono<Response<L2NetworkInner>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l2NetworkName") String l2NetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") L2NetworkPatchParameters l2NetworkUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -553,6 +556,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -561,7 +568,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String l2NetworkName, L2NetworkInner l2NetworkParameters) {
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -586,8 +593,8 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, l2NetworkParameters, accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch,
+                l2NetworkParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -599,6 +606,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -608,7 +619,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -633,7 +644,35 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, l2NetworkParameters, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch,
+            l2NetworkParameters, accept, context);
+    }
+
+    /**
+     * Create or update the layer 2 (L2) network.
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l2NetworkName The name of the L2 network.
+     * @param l2NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of l2Network represents a network that utilizes a single isolation
+     * domain set up for layer-2 resources.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName,
+            l2NetworkParameters, ifMatch, ifNoneMatch);
+        return this.client.<L2NetworkInner, L2NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            L2NetworkInner.class, L2NetworkInner.class, this.client.getContext());
     }
 
     /**
@@ -653,8 +692,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
         String l2NetworkName, L2NetworkInner l2NetworkParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkParameters);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName,
+            l2NetworkParameters, ifMatch, ifNoneMatch);
         return this.client.<L2NetworkInner, L2NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
             L2NetworkInner.class, L2NetworkInner.class, this.client.getContext());
     }
@@ -667,6 +708,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -676,10 +721,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
-        String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName,
+            l2NetworkParameters, ifMatch, ifNoneMatch, context);
         return this.client.<L2NetworkInner, L2NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
             L2NetworkInner.class, L2NetworkInner.class, context);
     }
@@ -701,28 +746,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(String resourceGroupName,
         String l2NetworkName, L2NetworkInner l2NetworkParameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters).getSyncPoller();
-    }
-
-    /**
-     * Create or update the layer 2 (L2) network.
-     * 
-     * Create a new layer 2 (L2) network or update the properties of the existing network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param l2NetworkName The name of the L2 network.
-     * @param l2NetworkParameters The request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of l2Network represents a network that utilizes a single isolation
-     * domain set up for layer-2 resources.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(String resourceGroupName,
-        String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context)
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, ifMatch, ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -734,6 +761,38 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of l2Network represents a network that utilizes a single isolation
+     * domain set up for layer-2 resources.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, ifMatch, ifNoneMatch,
+                context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create or update the layer 2 (L2) network.
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l2NetworkName The name of the L2 network.
+     * @param l2NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -742,8 +801,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<L2NetworkInner> createOrUpdateAsync(String resourceGroupName, String l2NetworkName,
-        L2NetworkInner l2NetworkParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters).last()
+        L2NetworkInner l2NetworkParameters, String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, ifMatch, ifNoneMatch)
+            .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -755,6 +815,34 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<L2NetworkInner> createOrUpdateAsync(String resourceGroupName, String l2NetworkName,
+        L2NetworkInner l2NetworkParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, ifMatch, ifNoneMatch)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the layer 2 (L2) network.
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l2NetworkName The name of the L2 network.
+     * @param l2NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -764,9 +852,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<L2NetworkInner> createOrUpdateAsync(String resourceGroupName, String l2NetworkName,
-        L2NetworkInner l2NetworkParameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        L2NetworkInner l2NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, ifMatch, ifNoneMatch,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -785,7 +873,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public L2NetworkInner createOrUpdate(String resourceGroupName, String l2NetworkName,
         L2NetworkInner l2NetworkParameters) {
-        return createOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -796,6 +886,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -804,8 +898,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public L2NetworkInner createOrUpdate(String resourceGroupName, String l2NetworkName,
-        L2NetworkInner l2NetworkParameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context).block();
+        L2NetworkInner l2NetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, ifMatch, ifNoneMatch, context)
+            .block();
     }
 
     /**
@@ -815,6 +910,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -822,7 +921,8 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String l2NetworkName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String l2NetworkName,
+        String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -839,9 +939,8 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
             return Mono.error(new IllegalArgumentException("Parameter l2NetworkName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, accept, context))
+        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -852,6 +951,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -861,7 +964,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String l2NetworkName,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -880,7 +983,33 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, l2NetworkName, accept, context);
+            resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the layer 2 (L2) network.
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginDeleteAsync(String resourceGroupName, String l2NetworkName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -898,7 +1027,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String l2NetworkName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, l2NetworkName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -911,6 +1043,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -918,10 +1054,11 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String l2NetworkName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String l2NetworkName, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, l2NetworkName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -941,7 +1078,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String l2NetworkName) {
-        return this.beginDeleteAsync(resourceGroupName, l2NetworkName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -951,6 +1090,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -958,9 +1101,32 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String l2NetworkName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, l2NetworkName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String l2NetworkName, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch, context).getSyncPoller();
+    }
+
+    /**
+     * Delete the layer 2 (L2) network.
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String l2NetworkName, String ifMatch,
+        String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -977,7 +1143,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String l2NetworkName) {
-        return beginDeleteAsync(resourceGroupName, l2NetworkName).last().flatMap(this.client::getLroFinalResultOrError);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -987,6 +1156,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -994,9 +1167,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return the current status of an async operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String l2NetworkName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, l2NetworkName, context).last()
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String l2NetworkName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1014,7 +1187,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String l2NetworkName) {
-        return deleteAsync(resourceGroupName, l2NetworkName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1024,6 +1199,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1031,8 +1210,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String l2NetworkName, Context context) {
-        return deleteAsync(resourceGroupName, l2NetworkName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String l2NetworkName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1042,6 +1222,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param l2NetworkUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1051,7 +1235,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<L2NetworkInner>> updateWithResponseAsync(String resourceGroupName, String l2NetworkName,
-        L2NetworkPatchParameters l2NetworkUpdateParameters) {
+        String ifMatch, String ifNoneMatch, L2NetworkPatchParameters l2NetworkUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1073,8 +1257,8 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, l2NetworkUpdateParameters, accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch,
+                l2NetworkUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1085,6 +1269,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param l2NetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1095,7 +1283,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<L2NetworkInner>> updateWithResponseAsync(String resourceGroupName, String l2NetworkName,
-        L2NetworkPatchParameters l2NetworkUpdateParameters, Context context) {
+        String ifMatch, String ifNoneMatch, L2NetworkPatchParameters l2NetworkUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1117,7 +1305,7 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, l2NetworkName, l2NetworkUpdateParameters, accept, context);
+            resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch, l2NetworkUpdateParameters, accept, context);
     }
 
     /**
@@ -1135,9 +1323,11 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<L2NetworkInner> updateAsync(String resourceGroupName, String l2NetworkName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final L2NetworkPatchParameters l2NetworkUpdateParameters = null;
-        return updateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkUpdateParameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return updateWithResponseAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch,
+            l2NetworkUpdateParameters).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1147,6 +1337,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param l2NetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1156,9 +1350,10 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<L2NetworkInner> updateWithResponse(String resourceGroupName, String l2NetworkName,
-        L2NetworkPatchParameters l2NetworkUpdateParameters, Context context) {
-        return updateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkUpdateParameters, context).block();
+    public Response<L2NetworkInner> updateWithResponse(String resourceGroupName, String l2NetworkName, String ifMatch,
+        String ifNoneMatch, L2NetworkPatchParameters l2NetworkUpdateParameters, Context context) {
+        return updateWithResponseAsync(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch,
+            l2NetworkUpdateParameters, context).block();
     }
 
     /**
@@ -1175,8 +1370,11 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public L2NetworkInner update(String resourceGroupName, String l2NetworkName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final L2NetworkPatchParameters l2NetworkUpdateParameters = null;
-        return updateWithResponse(resourceGroupName, l2NetworkName, l2NetworkUpdateParameters, Context.NONE).getValue();
+        return updateWithResponse(resourceGroupName, l2NetworkName, ifMatch, ifNoneMatch, l2NetworkUpdateParameters,
+            Context.NONE).getValue();
     }
 
     /**

@@ -109,7 +109,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("storageApplianceName") String storageApplianceName,
+            @PathParam("storageApplianceName") String storageApplianceName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") StorageApplianceInner storageApplianceParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -120,8 +121,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("storageApplianceName") String storageApplianceName, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("storageApplianceName") String storageApplianceName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}")
@@ -130,7 +131,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("storageApplianceName") String storageApplianceName,
+            @PathParam("storageApplianceName") String storageApplianceName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") StorageAppliancePatchParameters storageApplianceUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -579,6 +581,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
      * @param storageApplianceParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -587,7 +593,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String storageApplianceName, StorageApplianceInner storageApplianceParameters) {
+        String storageApplianceName, StorageApplianceInner storageApplianceParameters, String ifMatch,
+        String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -613,8 +620,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, storageApplianceName, storageApplianceParameters,
-                accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+                storageApplianceParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -627,6 +634,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
      * @param storageApplianceParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -636,7 +647,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String storageApplianceName, StorageApplianceInner storageApplianceParameters, Context context) {
+        String storageApplianceName, StorageApplianceInner storageApplianceParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -662,8 +674,38 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, storageApplianceName, storageApplianceParameters,
-            accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+            storageApplianceParameters, accept, context);
+    }
+
+    /**
+     * Create or update the storage appliance.
+     * 
+     * Create a new storage appliance or update the properties of the existing one.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageApplianceName The name of the storage appliance.
+     * @param storageApplianceParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of storageAppliance represents on-premises Network Cloud storage
+     * appliance.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<StorageApplianceInner>, StorageApplianceInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String storageApplianceName, StorageApplianceInner storageApplianceParameters,
+        String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, storageApplianceName,
+            storageApplianceParameters, ifMatch, ifNoneMatch);
+        return this.client.<StorageApplianceInner, StorageApplianceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), StorageApplianceInner.class, StorageApplianceInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -684,8 +726,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageApplianceInner>, StorageApplianceInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String storageApplianceName, StorageApplianceInner storageApplianceParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, storageApplianceName, storageApplianceParameters);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, storageApplianceName,
+            storageApplianceParameters, ifMatch, ifNoneMatch);
         return this.client.<StorageApplianceInner, StorageApplianceInner>getLroResult(mono,
             this.client.getHttpPipeline(), StorageApplianceInner.class, StorageApplianceInner.class,
             this.client.getContext());
@@ -700,6 +744,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
      * @param storageApplianceParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -710,10 +758,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageApplianceInner>, StorageApplianceInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String storageApplianceName, StorageApplianceInner storageApplianceParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, storageApplianceName,
-            storageApplianceParameters, context);
+            storageApplianceParameters, ifMatch, ifNoneMatch, context);
         return this.client.<StorageApplianceInner, StorageApplianceInner>getLroResult(mono,
             this.client.getHttpPipeline(), StorageApplianceInner.class, StorageApplianceInner.class, context);
     }
@@ -736,7 +784,11 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<StorageApplianceInner>, StorageApplianceInner> beginCreateOrUpdate(
         String resourceGroupName, String storageApplianceName, StorageApplianceInner storageApplianceParameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters)
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, ifMatch,
+                ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -749,6 +801,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
      * @param storageApplianceParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -759,9 +815,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<StorageApplianceInner>, StorageApplianceInner> beginCreateOrUpdate(
         String resourceGroupName, String storageApplianceName, StorageApplianceInner storageApplianceParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         return this
-            .beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, context)
+            .beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, ifMatch,
+                ifNoneMatch, context)
             .getSyncPoller();
     }
 
@@ -774,6 +831,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
      * @param storageApplianceParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -782,9 +843,9 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StorageApplianceInner> createOrUpdateAsync(String resourceGroupName, String storageApplianceName,
-        StorageApplianceInner storageApplianceParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        StorageApplianceInner storageApplianceParameters, String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, ifMatch,
+            ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -796,6 +857,34 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
      * @param storageApplianceParameters The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return storageAppliance represents on-premises Network Cloud storage appliance on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<StorageApplianceInner> createOrUpdateAsync(String resourceGroupName, String storageApplianceName,
+        StorageApplianceInner storageApplianceParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, ifMatch,
+            ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the storage appliance.
+     * 
+     * Create a new storage appliance or update the properties of the existing one.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageApplianceName The name of the storage appliance.
+     * @param storageApplianceParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -805,10 +894,9 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StorageApplianceInner> createOrUpdateAsync(String resourceGroupName, String storageApplianceName,
-        StorageApplianceInner storageApplianceParameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        StorageApplianceInner storageApplianceParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, ifMatch,
+            ifNoneMatch, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -828,7 +916,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public StorageApplianceInner createOrUpdate(String resourceGroupName, String storageApplianceName,
         StorageApplianceInner storageApplianceParameters) {
-        return createOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, ifMatch,
+            ifNoneMatch).block();
     }
 
     /**
@@ -840,6 +931,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
      * @param storageApplianceParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -848,9 +943,9 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public StorageApplianceInner createOrUpdate(String resourceGroupName, String storageApplianceName,
-        StorageApplianceInner storageApplianceParameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, context)
-            .block();
+        StorageApplianceInner storageApplianceParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceParameters, ifMatch,
+            ifNoneMatch, context).block();
     }
 
     /**
@@ -861,6 +956,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -869,7 +968,7 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String storageApplianceName) {
+        String storageApplianceName, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -889,7 +988,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, storageApplianceName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -901,6 +1001,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -910,7 +1014,7 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String storageApplianceName, Context context) {
+        String storageApplianceName, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -930,7 +1034,34 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, storageApplianceName, accept, context);
+            resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the storage appliance.
+     * 
+     * Delete the provided storage appliance.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginDeleteAsync(String resourceGroupName, String storageApplianceName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -949,7 +1080,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String storageApplianceName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, storageApplianceName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -963,6 +1097,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -970,11 +1108,11 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String storageApplianceName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String storageApplianceName, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, storageApplianceName, context);
+            = deleteWithResponseAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -995,7 +1133,9 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String storageApplianceName) {
-        return this.beginDeleteAsync(resourceGroupName, storageApplianceName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -1006,6 +1146,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1013,9 +1157,34 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String storageApplianceName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, storageApplianceName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String storageApplianceName, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete the storage appliance.
+     * 
+     * Delete the provided storage appliance.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String storageApplianceName,
+        String ifMatch, String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1033,7 +1202,9 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String storageApplianceName) {
-        return beginDeleteAsync(resourceGroupName, storageApplianceName).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1045,6 +1216,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1053,8 +1228,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String storageApplianceName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, storageApplianceName, context).last()
+        String ifMatch, String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1073,7 +1248,9 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String storageApplianceName) {
-        return deleteAsync(resourceGroupName, storageApplianceName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1084,6 +1261,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1091,8 +1272,9 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String storageApplianceName, Context context) {
-        return deleteAsync(resourceGroupName, storageApplianceName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String storageApplianceName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1103,6 +1285,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param storageApplianceUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1112,7 +1298,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String storageApplianceName, StorageAppliancePatchParameters storageApplianceUpdateParameters) {
+        String storageApplianceName, String ifMatch, String ifNoneMatch,
+        StorageAppliancePatchParameters storageApplianceUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1135,7 +1322,7 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, storageApplianceName,
+                this.client.getSubscriptionId(), resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
                 storageApplianceUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1148,6 +1335,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param storageApplianceUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1158,8 +1349,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String storageApplianceName, StorageAppliancePatchParameters storageApplianceUpdateParameters,
-        Context context) {
+        String storageApplianceName, String ifMatch, String ifNoneMatch,
+        StorageAppliancePatchParameters storageApplianceUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1182,7 +1373,8 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, storageApplianceName, storageApplianceUpdateParameters, accept, context);
+            resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch, storageApplianceUpdateParameters, accept,
+            context);
     }
 
     /**
@@ -1193,6 +1385,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param storageApplianceUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1202,10 +1398,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageApplianceInner>, StorageApplianceInner> beginUpdateAsync(
-        String resourceGroupName, String storageApplianceName,
+        String resourceGroupName, String storageApplianceName, String ifMatch, String ifNoneMatch,
         StorageAppliancePatchParameters storageApplianceUpdateParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, storageApplianceName,
+            ifMatch, ifNoneMatch, storageApplianceUpdateParameters);
         return this.client.<StorageApplianceInner, StorageApplianceInner>getLroResult(mono,
             this.client.getHttpPipeline(), StorageApplianceInner.class, StorageApplianceInner.class,
             this.client.getContext());
@@ -1228,9 +1424,11 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageApplianceInner>, StorageApplianceInner>
         beginUpdateAsync(String resourceGroupName, String storageApplianceName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final StorageAppliancePatchParameters storageApplianceUpdateParameters = null;
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, storageApplianceName,
+            ifMatch, ifNoneMatch, storageApplianceUpdateParameters);
         return this.client.<StorageApplianceInner, StorageApplianceInner>getLroResult(mono,
             this.client.getHttpPipeline(), StorageApplianceInner.class, StorageApplianceInner.class,
             this.client.getContext());
@@ -1244,6 +1442,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param storageApplianceUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1254,11 +1456,11 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageApplianceInner>, StorageApplianceInner> beginUpdateAsync(
-        String resourceGroupName, String storageApplianceName,
+        String resourceGroupName, String storageApplianceName, String ifMatch, String ifNoneMatch,
         StorageAppliancePatchParameters storageApplianceUpdateParameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, storageApplianceName,
-            storageApplianceUpdateParameters, context);
+            ifMatch, ifNoneMatch, storageApplianceUpdateParameters, context);
         return this.client.<StorageApplianceInner, StorageApplianceInner>getLroResult(mono,
             this.client.getHttpPipeline(), StorageApplianceInner.class, StorageApplianceInner.class, context);
     }
@@ -1280,8 +1482,12 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<StorageApplianceInner>, StorageApplianceInner> beginUpdate(String resourceGroupName,
         String storageApplianceName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final StorageAppliancePatchParameters storageApplianceUpdateParameters = null;
-        return this.beginUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters)
+        return this
+            .beginUpdateAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+                storageApplianceUpdateParameters)
             .getSyncPoller();
     }
 
@@ -1293,6 +1499,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param storageApplianceUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1303,9 +1513,11 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<StorageApplianceInner>, StorageApplianceInner> beginUpdate(String resourceGroupName,
-        String storageApplianceName, StorageAppliancePatchParameters storageApplianceUpdateParameters,
-        Context context) {
-        return this.beginUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters, context)
+        String storageApplianceName, String ifMatch, String ifNoneMatch,
+        StorageAppliancePatchParameters storageApplianceUpdateParameters, Context context) {
+        return this
+            .beginUpdateAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+                storageApplianceUpdateParameters, context)
             .getSyncPoller();
     }
 
@@ -1317,6 +1529,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param storageApplianceUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1326,9 +1542,9 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StorageApplianceInner> updateAsync(String resourceGroupName, String storageApplianceName,
-        StorageAppliancePatchParameters storageApplianceUpdateParameters) {
-        return beginUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String ifMatch, String ifNoneMatch, StorageAppliancePatchParameters storageApplianceUpdateParameters) {
+        return beginUpdateAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+            storageApplianceUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1347,9 +1563,11 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StorageApplianceInner> updateAsync(String resourceGroupName, String storageApplianceName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final StorageAppliancePatchParameters storageApplianceUpdateParameters = null;
-        return beginUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdateAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+            storageApplianceUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1360,6 +1578,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param storageApplianceUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1370,10 +1592,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StorageApplianceInner> updateAsync(String resourceGroupName, String storageApplianceName,
-        StorageAppliancePatchParameters storageApplianceUpdateParameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String ifMatch, String ifNoneMatch, StorageAppliancePatchParameters storageApplianceUpdateParameters,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+            storageApplianceUpdateParameters, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1391,8 +1613,11 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public StorageApplianceInner update(String resourceGroupName, String storageApplianceName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final StorageAppliancePatchParameters storageApplianceUpdateParameters = null;
-        return updateAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters).block();
+        return updateAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+            storageApplianceUpdateParameters).block();
     }
 
     /**
@@ -1403,6 +1628,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageApplianceName The name of the storage appliance.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param storageApplianceUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1411,9 +1640,10 @@ public final class StorageAppliancesClientImpl implements StorageAppliancesClien
      * @return storageAppliance represents on-premises Network Cloud storage appliance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public StorageApplianceInner update(String resourceGroupName, String storageApplianceName,
-        StorageAppliancePatchParameters storageApplianceUpdateParameters, Context context) {
-        return updateAsync(resourceGroupName, storageApplianceName, storageApplianceUpdateParameters, context).block();
+    public StorageApplianceInner update(String resourceGroupName, String storageApplianceName, String ifMatch,
+        String ifNoneMatch, StorageAppliancePatchParameters storageApplianceUpdateParameters, Context context) {
+        return updateAsync(resourceGroupName, storageApplianceName, ifMatch, ifNoneMatch,
+            storageApplianceUpdateParameters, context).block();
     }
 
     /**

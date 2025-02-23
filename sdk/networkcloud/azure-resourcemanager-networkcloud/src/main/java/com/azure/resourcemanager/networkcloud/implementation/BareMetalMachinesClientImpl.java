@@ -114,7 +114,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("bareMetalMachineName") String bareMetalMachineName,
+            @PathParam("bareMetalMachineName") String bareMetalMachineName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") BareMetalMachineInner bareMetalMachineParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -125,8 +126,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("bareMetalMachineName") String bareMetalMachineName, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("bareMetalMachineName") String bareMetalMachineName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}")
@@ -135,7 +136,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("bareMetalMachineName") String bareMetalMachineName,
+            @PathParam("bareMetalMachineName") String bareMetalMachineName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") BareMetalMachinePatchParameters bareMetalMachineUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -671,6 +673,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
      * @param bareMetalMachineParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -679,7 +685,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters) {
+        String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters, String ifMatch,
+        String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -705,8 +712,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, bareMetalMachineName, bareMetalMachineParameters,
-                accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+                bareMetalMachineParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -719,6 +726,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
      * @param bareMetalMachineParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -728,7 +739,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters, Context context) {
+        String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -754,8 +766,37 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, bareMetalMachineName, bareMetalMachineParameters,
-            accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+            bareMetalMachineParameters, accept, context);
+    }
+
+    /**
+     * Create or update the bare metal machine.
+     * 
+     * Create a new bare metal machine or update the properties of the existing one.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param bareMetalMachineName The name of the bare metal machine.
+     * @param bareMetalMachineParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of bareMetalMachine represents the physical machine in the rack.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters,
+        String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, bareMetalMachineName,
+            bareMetalMachineParameters, ifMatch, ifNoneMatch);
+        return this.client.<BareMetalMachineInner, BareMetalMachineInner>getLroResult(mono,
+            this.client.getHttpPipeline(), BareMetalMachineInner.class, BareMetalMachineInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -775,8 +816,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, bareMetalMachineName,
+            bareMetalMachineParameters, ifMatch, ifNoneMatch);
         return this.client.<BareMetalMachineInner, BareMetalMachineInner>getLroResult(mono,
             this.client.getHttpPipeline(), BareMetalMachineInner.class, BareMetalMachineInner.class,
             this.client.getContext());
@@ -791,6 +834,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
      * @param bareMetalMachineParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -800,10 +847,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, bareMetalMachineName,
-            bareMetalMachineParameters, context);
+            bareMetalMachineParameters, ifMatch, ifNoneMatch, context);
         return this.client.<BareMetalMachineInner, BareMetalMachineInner>getLroResult(mono,
             this.client.getHttpPipeline(), BareMetalMachineInner.class, BareMetalMachineInner.class, context);
     }
@@ -825,7 +872,11 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginCreateOrUpdate(
         String resourceGroupName, String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters)
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, ifMatch,
+                ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -838,6 +889,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
      * @param bareMetalMachineParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -847,9 +902,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginCreateOrUpdate(
         String resourceGroupName, String bareMetalMachineName, BareMetalMachineInner bareMetalMachineParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         return this
-            .beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, context)
+            .beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, ifMatch,
+                ifNoneMatch, context)
             .getSyncPoller();
     }
 
@@ -862,6 +918,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
      * @param bareMetalMachineParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -869,9 +929,9 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BareMetalMachineInner> createOrUpdateAsync(String resourceGroupName, String bareMetalMachineName,
-        BareMetalMachineInner bareMetalMachineParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        BareMetalMachineInner bareMetalMachineParameters, String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, ifMatch,
+            ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -883,6 +943,33 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
      * @param bareMetalMachineParameters The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return bareMetalMachine represents the physical machine in the rack on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BareMetalMachineInner> createOrUpdateAsync(String resourceGroupName, String bareMetalMachineName,
+        BareMetalMachineInner bareMetalMachineParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, ifMatch,
+            ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the bare metal machine.
+     * 
+     * Create a new bare metal machine or update the properties of the existing one.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param bareMetalMachineName The name of the bare metal machine.
+     * @param bareMetalMachineParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -891,10 +978,9 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BareMetalMachineInner> createOrUpdateAsync(String resourceGroupName, String bareMetalMachineName,
-        BareMetalMachineInner bareMetalMachineParameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        BareMetalMachineInner bareMetalMachineParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, ifMatch,
+            ifNoneMatch, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -914,7 +1000,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BareMetalMachineInner createOrUpdate(String resourceGroupName, String bareMetalMachineName,
         BareMetalMachineInner bareMetalMachineParameters) {
-        return createOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, ifMatch,
+            ifNoneMatch).block();
     }
 
     /**
@@ -926,6 +1015,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
      * @param bareMetalMachineParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -934,9 +1027,9 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BareMetalMachineInner createOrUpdate(String resourceGroupName, String bareMetalMachineName,
-        BareMetalMachineInner bareMetalMachineParameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, context)
-            .block();
+        BareMetalMachineInner bareMetalMachineParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineParameters, ifMatch,
+            ifNoneMatch, context).block();
     }
 
     /**
@@ -947,6 +1040,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -955,7 +1052,7 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String bareMetalMachineName) {
+        String bareMetalMachineName, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -975,7 +1072,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, bareMetalMachineName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -987,6 +1085,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -996,7 +1098,7 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String bareMetalMachineName, Context context) {
+        String bareMetalMachineName, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1016,7 +1118,34 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, bareMetalMachineName, accept, context);
+            resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the bare metal machine.
+     * 
+     * Delete the provided bare metal machine.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginDeleteAsync(String resourceGroupName, String bareMetalMachineName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -1035,7 +1164,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String bareMetalMachineName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, bareMetalMachineName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -1049,6 +1181,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1056,11 +1192,11 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String bareMetalMachineName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String bareMetalMachineName, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, bareMetalMachineName, context);
+            = deleteWithResponseAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -1081,7 +1217,9 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String bareMetalMachineName) {
-        return this.beginDeleteAsync(resourceGroupName, bareMetalMachineName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -1092,6 +1230,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1099,9 +1241,34 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String bareMetalMachineName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, bareMetalMachineName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String bareMetalMachineName, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete the bare metal machine.
+     * 
+     * Delete the provided bare metal machine.
+     * All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String bareMetalMachineName,
+        String ifMatch, String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1119,7 +1286,9 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String bareMetalMachineName) {
-        return beginDeleteAsync(resourceGroupName, bareMetalMachineName).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1131,6 +1300,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1139,8 +1312,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String bareMetalMachineName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, bareMetalMachineName, context).last()
+        String ifMatch, String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1159,7 +1332,9 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String bareMetalMachineName) {
-        return deleteAsync(resourceGroupName, bareMetalMachineName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1170,6 +1345,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1177,8 +1356,9 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String bareMetalMachineName, Context context) {
-        return deleteAsync(resourceGroupName, bareMetalMachineName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String bareMetalMachineName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1189,6 +1369,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param bareMetalMachineUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1198,7 +1382,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String bareMetalMachineName, BareMetalMachinePatchParameters bareMetalMachineUpdateParameters) {
+        String bareMetalMachineName, String ifMatch, String ifNoneMatch,
+        BareMetalMachinePatchParameters bareMetalMachineUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1221,7 +1406,7 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, bareMetalMachineName,
+                this.client.getSubscriptionId(), resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
                 bareMetalMachineUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1234,6 +1419,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param bareMetalMachineUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1244,8 +1433,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String bareMetalMachineName, BareMetalMachinePatchParameters bareMetalMachineUpdateParameters,
-        Context context) {
+        String bareMetalMachineName, String ifMatch, String ifNoneMatch,
+        BareMetalMachinePatchParameters bareMetalMachineUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1268,7 +1457,8 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters, accept, context);
+            resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch, bareMetalMachineUpdateParameters, accept,
+            context);
     }
 
     /**
@@ -1279,6 +1469,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param bareMetalMachineUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1287,10 +1481,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginUpdateAsync(
-        String resourceGroupName, String bareMetalMachineName,
+        String resourceGroupName, String bareMetalMachineName, String ifMatch, String ifNoneMatch,
         BareMetalMachinePatchParameters bareMetalMachineUpdateParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, bareMetalMachineName,
+            ifMatch, ifNoneMatch, bareMetalMachineUpdateParameters);
         return this.client.<BareMetalMachineInner, BareMetalMachineInner>getLroResult(mono,
             this.client.getHttpPipeline(), BareMetalMachineInner.class, BareMetalMachineInner.class,
             this.client.getContext());
@@ -1312,9 +1506,11 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BareMetalMachineInner>, BareMetalMachineInner>
         beginUpdateAsync(String resourceGroupName, String bareMetalMachineName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final BareMetalMachinePatchParameters bareMetalMachineUpdateParameters = null;
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, bareMetalMachineName,
+            ifMatch, ifNoneMatch, bareMetalMachineUpdateParameters);
         return this.client.<BareMetalMachineInner, BareMetalMachineInner>getLroResult(mono,
             this.client.getHttpPipeline(), BareMetalMachineInner.class, BareMetalMachineInner.class,
             this.client.getContext());
@@ -1328,6 +1524,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param bareMetalMachineUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1337,11 +1537,11 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginUpdateAsync(
-        String resourceGroupName, String bareMetalMachineName,
+        String resourceGroupName, String bareMetalMachineName, String ifMatch, String ifNoneMatch,
         BareMetalMachinePatchParameters bareMetalMachineUpdateParameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, bareMetalMachineName,
-            bareMetalMachineUpdateParameters, context);
+            ifMatch, ifNoneMatch, bareMetalMachineUpdateParameters, context);
         return this.client.<BareMetalMachineInner, BareMetalMachineInner>getLroResult(mono,
             this.client.getHttpPipeline(), BareMetalMachineInner.class, BareMetalMachineInner.class, context);
     }
@@ -1362,8 +1562,12 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginUpdate(String resourceGroupName,
         String bareMetalMachineName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final BareMetalMachinePatchParameters bareMetalMachineUpdateParameters = null;
-        return this.beginUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters)
+        return this
+            .beginUpdateAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+                bareMetalMachineUpdateParameters)
             .getSyncPoller();
     }
 
@@ -1375,6 +1579,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param bareMetalMachineUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1384,9 +1592,11 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BareMetalMachineInner>, BareMetalMachineInner> beginUpdate(String resourceGroupName,
-        String bareMetalMachineName, BareMetalMachinePatchParameters bareMetalMachineUpdateParameters,
-        Context context) {
-        return this.beginUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters, context)
+        String bareMetalMachineName, String ifMatch, String ifNoneMatch,
+        BareMetalMachinePatchParameters bareMetalMachineUpdateParameters, Context context) {
+        return this
+            .beginUpdateAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+                bareMetalMachineUpdateParameters, context)
             .getSyncPoller();
     }
 
@@ -1398,6 +1608,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param bareMetalMachineUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1406,9 +1620,9 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BareMetalMachineInner> updateAsync(String resourceGroupName, String bareMetalMachineName,
-        BareMetalMachinePatchParameters bareMetalMachineUpdateParameters) {
-        return beginUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String ifMatch, String ifNoneMatch, BareMetalMachinePatchParameters bareMetalMachineUpdateParameters) {
+        return beginUpdateAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+            bareMetalMachineUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1426,9 +1640,11 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BareMetalMachineInner> updateAsync(String resourceGroupName, String bareMetalMachineName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final BareMetalMachinePatchParameters bareMetalMachineUpdateParameters = null;
-        return beginUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdateAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+            bareMetalMachineUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1439,6 +1655,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param bareMetalMachineUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1448,10 +1668,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BareMetalMachineInner> updateAsync(String resourceGroupName, String bareMetalMachineName,
-        BareMetalMachinePatchParameters bareMetalMachineUpdateParameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String ifMatch, String ifNoneMatch, BareMetalMachinePatchParameters bareMetalMachineUpdateParameters,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+            bareMetalMachineUpdateParameters, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1469,8 +1689,11 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BareMetalMachineInner update(String resourceGroupName, String bareMetalMachineName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final BareMetalMachinePatchParameters bareMetalMachineUpdateParameters = null;
-        return updateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters).block();
+        return updateAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+            bareMetalMachineUpdateParameters).block();
     }
 
     /**
@@ -1481,6 +1704,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param bareMetalMachineName The name of the bare metal machine.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param bareMetalMachineUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1489,9 +1716,10 @@ public final class BareMetalMachinesClientImpl implements BareMetalMachinesClien
      * @return bareMetalMachine represents the physical machine in the rack.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BareMetalMachineInner update(String resourceGroupName, String bareMetalMachineName,
-        BareMetalMachinePatchParameters bareMetalMachineUpdateParameters, Context context) {
-        return updateAsync(resourceGroupName, bareMetalMachineName, bareMetalMachineUpdateParameters, context).block();
+    public BareMetalMachineInner update(String resourceGroupName, String bareMetalMachineName, String ifMatch,
+        String ifNoneMatch, BareMetalMachinePatchParameters bareMetalMachineUpdateParameters, Context context) {
+        return updateAsync(resourceGroupName, bareMetalMachineName, ifMatch, ifNoneMatch,
+            bareMetalMachineUpdateParameters, context).block();
     }
 
     /**
