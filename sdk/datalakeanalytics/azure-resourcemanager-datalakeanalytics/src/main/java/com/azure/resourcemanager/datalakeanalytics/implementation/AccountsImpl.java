@@ -18,6 +18,7 @@ import com.azure.resourcemanager.datalakeanalytics.models.CheckNameAvailabilityP
 import com.azure.resourcemanager.datalakeanalytics.models.DataLakeAnalyticsAccount;
 import com.azure.resourcemanager.datalakeanalytics.models.DataLakeAnalyticsAccountBasic;
 import com.azure.resourcemanager.datalakeanalytics.models.NameAvailabilityInformation;
+import com.azure.resourcemanager.datalakeanalytics.models.TransferAnalyticsUnitsParameters;
 
 public final class AccountsImpl implements Accounts {
     private static final ClientLogger LOGGER = new ClientLogger(AccountsImpl.class);
@@ -110,6 +111,28 @@ public final class AccountsImpl implements Accounts {
         } else {
             return null;
         }
+    }
+
+    public Response<Void> transferAnalyticsUnitsWithResponse(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters, Context context) {
+        return this.serviceClient()
+            .transferAnalyticsUnitsWithResponse(resourceGroupName, accountName, parameters, context);
+    }
+
+    public void transferAnalyticsUnits(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters) {
+        this.serviceClient().transferAnalyticsUnits(resourceGroupName, accountName, parameters);
+    }
+
+    public Response<Void> transferEcoAnalyticsUnitsWithResponse(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters, Context context) {
+        return this.serviceClient()
+            .transferEcoAnalyticsUnitsWithResponse(resourceGroupName, accountName, parameters, context);
+    }
+
+    public void transferEcoAnalyticsUnits(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters) {
+        this.serviceClient().transferEcoAnalyticsUnits(resourceGroupName, accountName, parameters);
     }
 
     public DataLakeAnalyticsAccount getById(String id) {

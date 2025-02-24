@@ -10,8 +10,8 @@ package com.azure.resourcemanager.datalakeanalytics.generated;
 public final class AccountsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Get.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Get.json
      */
     /**
      * Sample code: Gets details of the specified Data Lake Analytics account.

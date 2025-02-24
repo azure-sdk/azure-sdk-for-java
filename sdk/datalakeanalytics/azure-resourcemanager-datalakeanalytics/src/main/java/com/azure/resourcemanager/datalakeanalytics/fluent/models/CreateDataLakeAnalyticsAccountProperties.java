@@ -16,6 +16,7 @@ import com.azure.resourcemanager.datalakeanalytics.models.CreateComputePolicyWit
 import com.azure.resourcemanager.datalakeanalytics.models.CreateFirewallRuleWithAccountParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallAllowAzureIpsState;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallState;
+import com.azure.resourcemanager.datalakeanalytics.models.MixedTokensMode;
 import com.azure.resourcemanager.datalakeanalytics.models.TierType;
 import java.io.IOException;
 import java.util.List;
@@ -61,6 +62,12 @@ public final class CreateDataLakeAnalyticsAccountProperties
      * is disabled, this is not enforced.
      */
     private FirewallAllowAzureIpsState firewallAllowAzureIps;
+
+    /*
+     * The current state of allowing or disallowing to use both Guarantee Analytics Unit and Eco Analytics Unit together
+     * during Job execution.
+     */
+    private MixedTokensMode mixedTokensMode;
 
     /*
      * The commitment tier for the next month.
@@ -247,6 +254,28 @@ public final class CreateDataLakeAnalyticsAccountProperties
     }
 
     /**
+     * Get the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @return the mixedTokensMode value.
+     */
+    public MixedTokensMode mixedTokensMode() {
+        return this.mixedTokensMode;
+    }
+
+    /**
+     * Set the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @param mixedTokensMode the mixedTokensMode value to set.
+     * @return the CreateDataLakeAnalyticsAccountProperties object itself.
+     */
+    public CreateDataLakeAnalyticsAccountProperties withMixedTokensMode(MixedTokensMode mixedTokensMode) {
+        this.mixedTokensMode = mixedTokensMode;
+        return this;
+    }
+
+    /**
      * Get the newTier property: The commitment tier for the next month.
      * 
      * @return the newTier value.
@@ -417,6 +446,8 @@ public final class CreateDataLakeAnalyticsAccountProperties
         jsonWriter.writeStringField("firewallState", this.firewallState == null ? null : this.firewallState.toString());
         jsonWriter.writeStringField("firewallAllowAzureIps",
             this.firewallAllowAzureIps == null ? null : this.firewallAllowAzureIps.toString());
+        jsonWriter.writeStringField("mixedTokensMode",
+            this.mixedTokensMode == null ? null : this.mixedTokensMode.toString());
         jsonWriter.writeStringField("newTier", this.newTier == null ? null : this.newTier.toString());
         jsonWriter.writeNumberField("maxJobCount", this.maxJobCount);
         jsonWriter.writeNumberField("maxDegreeOfParallelism", this.maxDegreeOfParallelism);
@@ -468,6 +499,9 @@ public final class CreateDataLakeAnalyticsAccountProperties
                 } else if ("firewallAllowAzureIps".equals(fieldName)) {
                     deserializedCreateDataLakeAnalyticsAccountProperties.firewallAllowAzureIps
                         = FirewallAllowAzureIpsState.fromString(reader.getString());
+                } else if ("mixedTokensMode".equals(fieldName)) {
+                    deserializedCreateDataLakeAnalyticsAccountProperties.mixedTokensMode
+                        = MixedTokensMode.fromString(reader.getString());
                 } else if ("newTier".equals(fieldName)) {
                     deserializedCreateDataLakeAnalyticsAccountProperties.newTier
                         = TierType.fromString(reader.getString());

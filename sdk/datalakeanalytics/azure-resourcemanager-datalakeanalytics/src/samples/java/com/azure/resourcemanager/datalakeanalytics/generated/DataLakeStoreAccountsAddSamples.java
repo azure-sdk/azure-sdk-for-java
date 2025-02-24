@@ -12,8 +12,8 @@ import com.azure.resourcemanager.datalakeanalytics.models.AddDataLakeStoreParame
 public final class DataLakeStoreAccountsAddSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * DataLakeStoreAccounts_Add.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /DataLakeStoreAccounts_Add.json
      */
     /**
      * Sample code: Adds a Data Lake Store account.

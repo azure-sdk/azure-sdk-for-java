@@ -40,6 +40,7 @@ import com.azure.resourcemanager.datalakeanalytics.fluent.models.NameAvailabilit
 import com.azure.resourcemanager.datalakeanalytics.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.CreateDataLakeAnalyticsAccountParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.DataLakeAnalyticsAccountListResult;
+import com.azure.resourcemanager.datalakeanalytics.models.TransferAnalyticsUnitsParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.UpdateDataLakeAnalyticsAccountParameters;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -145,6 +146,28 @@ public final class AccountsClientImpl implements AccountsClient {
             @PathParam("subscriptionId") String subscriptionId, @PathParam("location") String location,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") CheckNameAvailabilityParameters parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/transferAnalyticsUnits")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> transferAnalyticsUnits(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("accountName") String accountName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") TransferAnalyticsUnitsParameters parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/transferEcoAnalyticsUnits")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> transferEcoAnalyticsUnits(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("accountName") String accountName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") TransferAnalyticsUnitsParameters parameters,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -1573,6 +1596,276 @@ public final class AccountsClientImpl implements AccountsClient {
     public NameAvailabilityInformationInner checkNameAvailability(String location,
         CheckNameAvailabilityParameters parameters) {
         return checkNameAvailabilityWithResponse(location, parameters, Context.NONE).getValue();
+    }
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> transferAnalyticsUnitsWithResponseAsync(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (accountName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.transferAnalyticsUnits(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, accountName, this.client.getApiVersion(), parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> transferAnalyticsUnitsWithResponseAsync(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (accountName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.transferAnalyticsUnits(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, accountName, this.client.getApiVersion(), parameters, accept, context);
+    }
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> transferAnalyticsUnitsAsync(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters) {
+        return transferAnalyticsUnitsWithResponseAsync(resourceGroupName, accountName, parameters)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> transferAnalyticsUnitsWithResponse(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters, Context context) {
+        return transferAnalyticsUnitsWithResponseAsync(resourceGroupName, accountName, parameters, context).block();
+    }
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void transferAnalyticsUnits(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters) {
+        transferAnalyticsUnitsWithResponse(resourceGroupName, accountName, parameters, Context.NONE);
+    }
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> transferEcoAnalyticsUnitsWithResponseAsync(String resourceGroupName,
+        String accountName, TransferAnalyticsUnitsParameters parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (accountName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.transferEcoAnalyticsUnits(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, accountName, this.client.getApiVersion(), parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> transferEcoAnalyticsUnitsWithResponseAsync(String resourceGroupName,
+        String accountName, TransferAnalyticsUnitsParameters parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (accountName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.transferEcoAnalyticsUnits(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, accountName, this.client.getApiVersion(), parameters, accept, context);
+    }
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> transferEcoAnalyticsUnitsAsync(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters) {
+        return transferEcoAnalyticsUnitsWithResponseAsync(resourceGroupName, accountName, parameters)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> transferEcoAnalyticsUnitsWithResponse(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters, Context context) {
+        return transferEcoAnalyticsUnitsWithResponseAsync(resourceGroupName, accountName, parameters, context).block();
+    }
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void transferEcoAnalyticsUnits(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters) {
+        transferEcoAnalyticsUnitsWithResponse(resourceGroupName, accountName, parameters, Context.NONE);
     }
 
     /**

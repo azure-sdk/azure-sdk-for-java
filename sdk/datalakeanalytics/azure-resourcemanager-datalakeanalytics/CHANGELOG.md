@@ -1,14 +1,50 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-02-24)
+
+- Azure Resource Manager DataLakeAnalytics client library for Java. This package contains Microsoft Azure SDK for DataLakeAnalytics Management SDK. Creates an Azure Data Lake Analytics account management client. Package tag package-preview-2019-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.TransferAnalyticsUnitsParameters` was added
 
-### Bugs Fixed
+* `models.AnalyticsUnitsParameters` was added
 
-### Other Changes
+* `models.MixedTokensMode` was added
+
+#### `models.Accounts` was modified
+
+* `transferAnalyticsUnitsWithResponse(java.lang.String,java.lang.String,models.TransferAnalyticsUnitsParameters,com.azure.core.util.Context)` was added
+* `transferAnalyticsUnits(java.lang.String,java.lang.String,models.TransferAnalyticsUnitsParameters)` was added
+* `transferEcoAnalyticsUnits(java.lang.String,java.lang.String,models.TransferAnalyticsUnitsParameters)` was added
+* `transferEcoAnalyticsUnitsWithResponse(java.lang.String,java.lang.String,models.TransferAnalyticsUnitsParameters,com.azure.core.util.Context)` was added
+
+#### `models.DataLakeAnalyticsAccount$Definition` was modified
+
+* `withMixedTokensMode(models.MixedTokensMode)` was added
+
+#### `models.DataLakeAnalyticsAccount$Update` was modified
+
+* `withMixedTokensMode(models.MixedTokensMode)` was added
+
+#### `models.UpdateDataLakeAnalyticsAccountParameters` was modified
+
+* `mixedTokensMode()` was added
+* `withMixedTokensMode(models.MixedTokensMode)` was added
+
+#### `models.CreateDataLakeAnalyticsAccountParameters` was modified
+
+* `withMixedTokensMode(models.MixedTokensMode)` was added
+* `mixedTokensMode()` was added
+
+#### `models.DataLakeAnalyticsAccount` was modified
+
+* `transferEcoAnalyticsUnits(models.TransferAnalyticsUnitsParameters)` was added
+* `transferEcoAnalyticsUnitsWithResponse(models.TransferAnalyticsUnitsParameters,com.azure.core.util.Context)` was added
+* `defaultDataLakeStoreAccountType()` was added
+* `mixedTokensMode()` was added
+* `transferAnalyticsUnits(models.TransferAnalyticsUnitsParameters)` was added
+* `transferAnalyticsUnitsWithResponse(models.TransferAnalyticsUnitsParameters,com.azure.core.util.Context)` was added
 
 ## 1.0.0 (2025-01-03)
 

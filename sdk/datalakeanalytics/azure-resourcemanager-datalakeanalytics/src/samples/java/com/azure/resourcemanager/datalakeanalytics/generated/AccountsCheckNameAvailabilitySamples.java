@@ -12,8 +12,8 @@ import com.azure.resourcemanager.datalakeanalytics.models.CheckNameAvailabilityP
 public final class AccountsCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_CheckNameAvailability.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_CheckNameAvailability.json
      */
     /**
      * Sample code: Checks whether the specified account name is available or taken.

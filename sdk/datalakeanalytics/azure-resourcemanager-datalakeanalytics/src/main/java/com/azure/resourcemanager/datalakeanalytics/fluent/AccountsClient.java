@@ -16,6 +16,7 @@ import com.azure.resourcemanager.datalakeanalytics.fluent.models.DataLakeAnalyti
 import com.azure.resourcemanager.datalakeanalytics.fluent.models.NameAvailabilityInformationInner;
 import com.azure.resourcemanager.datalakeanalytics.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.CreateDataLakeAnalyticsAccountParameters;
+import com.azure.resourcemanager.datalakeanalytics.models.TransferAnalyticsUnitsParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.UpdateDataLakeAnalyticsAccountParameters;
 
 /**
@@ -343,4 +344,64 @@ public interface AccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     NameAvailabilityInformationInner checkNameAvailability(String location, CheckNameAvailabilityParameters parameters);
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> transferAnalyticsUnitsWithResponse(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters, Context context);
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void transferAnalyticsUnits(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters);
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> transferEcoAnalyticsUnitsWithResponse(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters, Context context);
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param accountName The name of the Data Lake Analytics account.
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void transferEcoAnalyticsUnits(String resourceGroupName, String accountName,
+        TransferAnalyticsUnitsParameters parameters);
 }

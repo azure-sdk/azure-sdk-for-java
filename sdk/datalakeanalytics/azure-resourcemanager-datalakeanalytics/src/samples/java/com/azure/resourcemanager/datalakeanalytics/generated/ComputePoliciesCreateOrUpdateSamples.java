@@ -13,8 +13,8 @@ import java.util.UUID;
 public final class ComputePoliciesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * ComputePolicies_CreateOrUpdate.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /ComputePolicies_CreateOrUpdate.json
      */
     /**
      * Sample code: Creates or updates the specified compute policy.

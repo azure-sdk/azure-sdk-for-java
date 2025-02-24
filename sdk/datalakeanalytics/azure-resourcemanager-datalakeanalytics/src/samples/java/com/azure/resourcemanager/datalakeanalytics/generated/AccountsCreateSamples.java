@@ -11,6 +11,7 @@ import com.azure.resourcemanager.datalakeanalytics.models.CreateComputePolicyWit
 import com.azure.resourcemanager.datalakeanalytics.models.CreateFirewallRuleWithAccountParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallAllowAzureIpsState;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallState;
+import com.azure.resourcemanager.datalakeanalytics.models.MixedTokensMode;
 import com.azure.resourcemanager.datalakeanalytics.models.TierType;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,8 +24,8 @@ import java.util.UUID;
 public final class AccountsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Create.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Create.json
      */
     /**
      * Sample code: Creates the specified Data Lake Analytics account. This supplies the user with computation services
@@ -56,6 +57,7 @@ public final class AccountsCreateSamples {
                 .withEndIpAddress("2.2.2.2")))
             .withFirewallState(FirewallState.ENABLED)
             .withFirewallAllowAzureIps(FirewallAllowAzureIpsState.ENABLED)
+            .withMixedTokensMode(MixedTokensMode.ENABLED)
             .withNewTier(TierType.CONSUMPTION)
             .withMaxJobCount(3)
             .withMaxDegreeOfParallelism(30)

@@ -261,6 +261,31 @@ public final class CreateDataLakeAnalyticsAccountParameters
     }
 
     /**
+     * Get the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @return the mixedTokensMode value.
+     */
+    public MixedTokensMode mixedTokensMode() {
+        return this.innerProperties() == null ? null : this.innerProperties().mixedTokensMode();
+    }
+
+    /**
+     * Set the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @param mixedTokensMode the mixedTokensMode value to set.
+     * @return the CreateDataLakeAnalyticsAccountParameters object itself.
+     */
+    public CreateDataLakeAnalyticsAccountParameters withMixedTokensMode(MixedTokensMode mixedTokensMode) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CreateDataLakeAnalyticsAccountProperties();
+        }
+        this.innerProperties().withMixedTokensMode(mixedTokensMode);
+        return this;
+    }
+
+    /**
      * Get the newTier property: The commitment tier for the next month.
      * 
      * @return the newTier value.

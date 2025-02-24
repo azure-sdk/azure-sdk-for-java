@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.datalakeanalytics.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.datalakeanalytics.fluent.models.DataLakeAnalyticsAccountInner;
@@ -50,6 +51,14 @@ public interface DataLakeAnalyticsAccount {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the defaultDataLakeStoreAccountType property: The type of the default Data Lake Store account associated
+     * with this account.
+     * 
+     * @return the defaultDataLakeStoreAccountType value.
+     */
+    String defaultDataLakeStoreAccountType();
 
     /**
      * Gets the defaultDataLakeStoreAccount property: The default Data Lake Store account associated with this account.
@@ -121,6 +130,14 @@ public interface DataLakeAnalyticsAccount {
      * @return the firewallAllowAzureIps value.
      */
     FirewallAllowAzureIpsState firewallAllowAzureIps();
+
+    /**
+     * Gets the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @return the mixedTokensMode value.
+     */
+    MixedTokensMode mixedTokensMode();
 
     /**
      * Gets the newTier property: The commitment tier for the next month.
@@ -373,9 +390,9 @@ public interface DataLakeAnalyticsAccount {
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithStorageAccounts,
             DefinitionStages.WithComputePolicies, DefinitionStages.WithFirewallRules,
             DefinitionStages.WithFirewallState, DefinitionStages.WithFirewallAllowAzureIps,
-            DefinitionStages.WithNewTier, DefinitionStages.WithMaxJobCount, DefinitionStages.WithMaxDegreeOfParallelism,
-            DefinitionStages.WithMaxDegreeOfParallelismPerJob, DefinitionStages.WithMinPriorityPerJob,
-            DefinitionStages.WithQueryStoreRetention {
+            DefinitionStages.WithMixedTokensMode, DefinitionStages.WithNewTier, DefinitionStages.WithMaxJobCount,
+            DefinitionStages.WithMaxDegreeOfParallelism, DefinitionStages.WithMaxDegreeOfParallelismPerJob,
+            DefinitionStages.WithMinPriorityPerJob, DefinitionStages.WithQueryStoreRetention {
             /**
              * Executes the create request.
              * 
@@ -474,6 +491,21 @@ public interface DataLakeAnalyticsAccount {
         }
 
         /**
+         * The stage of the DataLakeAnalyticsAccount definition allowing to specify mixedTokensMode.
+         */
+        interface WithMixedTokensMode {
+            /**
+             * Specifies the mixedTokensMode property: The current state of allowing or disallowing to use both
+             * Guarantee Analytics Unit and Eco Analytics Unit together during Job execution..
+             * 
+             * @param mixedTokensMode The current state of allowing or disallowing to use both Guarantee Analytics Unit
+             * and Eco Analytics Unit together during Job execution.
+             * @return the next definition stage.
+             */
+            WithCreate withMixedTokensMode(MixedTokensMode mixedTokensMode);
+        }
+
+        /**
          * The stage of the DataLakeAnalyticsAccount definition allowing to specify newTier.
          */
         interface WithNewTier {
@@ -565,12 +597,12 @@ public interface DataLakeAnalyticsAccount {
     /**
      * The template for DataLakeAnalyticsAccount update.
      */
-    interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithDataLakeStoreAccounts, UpdateStages.WithStorageAccounts,
-        UpdateStages.WithComputePolicies, UpdateStages.WithFirewallRules, UpdateStages.WithFirewallState,
-        UpdateStages.WithFirewallAllowAzureIps, UpdateStages.WithNewTier, UpdateStages.WithMaxJobCount,
-        UpdateStages.WithMaxDegreeOfParallelism, UpdateStages.WithMaxDegreeOfParallelismPerJob,
-        UpdateStages.WithMinPriorityPerJob, UpdateStages.WithQueryStoreRetention {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithDataLakeStoreAccounts,
+        UpdateStages.WithStorageAccounts, UpdateStages.WithComputePolicies, UpdateStages.WithFirewallRules,
+        UpdateStages.WithFirewallState, UpdateStages.WithFirewallAllowAzureIps, UpdateStages.WithMixedTokensMode,
+        UpdateStages.WithNewTier, UpdateStages.WithMaxJobCount, UpdateStages.WithMaxDegreeOfParallelism,
+        UpdateStages.WithMaxDegreeOfParallelismPerJob, UpdateStages.WithMinPriorityPerJob,
+        UpdateStages.WithQueryStoreRetention {
         /**
          * Executes the update request.
          * 
@@ -691,6 +723,21 @@ public interface DataLakeAnalyticsAccount {
         }
 
         /**
+         * The stage of the DataLakeAnalyticsAccount update allowing to specify mixedTokensMode.
+         */
+        interface WithMixedTokensMode {
+            /**
+             * Specifies the mixedTokensMode property: The current state of allowing or disallowing to use both
+             * Guarantee Analytics Unit and Eco Analytics Unit together during Job execution..
+             * 
+             * @param mixedTokensMode The current state of allowing or disallowing to use both Guarantee Analytics Unit
+             * and Eco Analytics Unit together during Job execution.
+             * @return the next definition stage.
+             */
+            Update withMixedTokensMode(MixedTokensMode mixedTokensMode);
+        }
+
+        /**
          * The stage of the DataLakeAnalyticsAccount update allowing to specify newTier.
          */
         interface WithNewTier {
@@ -786,4 +833,48 @@ public interface DataLakeAnalyticsAccount {
      * @return the refreshed resource.
      */
     DataLakeAnalyticsAccount refresh(Context context);
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> transferAnalyticsUnitsWithResponse(TransferAnalyticsUnitsParameters parameters, Context context);
+
+    /**
+     * Transfer Guarantee Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param parameters Parameters supplied to transfer Guarantee Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void transferAnalyticsUnits(TransferAnalyticsUnitsParameters parameters);
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> transferEcoAnalyticsUnitsWithResponse(TransferAnalyticsUnitsParameters parameters, Context context);
+
+    /**
+     * Transfer Eco-Analytics Units between allowed Data Lake Analytics accounts.
+     * 
+     * @param parameters Parameters supplied to transfer Eco-Analytics Units between allowed accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void transferEcoAnalyticsUnits(TransferAnalyticsUnitsParameters parameters);
 }

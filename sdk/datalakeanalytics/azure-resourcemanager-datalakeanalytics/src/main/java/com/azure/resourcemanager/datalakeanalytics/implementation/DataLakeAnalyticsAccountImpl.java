@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.datalakeanalytics.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.datalakeanalytics.fluent.models.ComputePolicyInner;
@@ -26,8 +27,10 @@ import com.azure.resourcemanager.datalakeanalytics.models.FirewallAllowAzureIpsS
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallRule;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallState;
 import com.azure.resourcemanager.datalakeanalytics.models.HiveMetastore;
+import com.azure.resourcemanager.datalakeanalytics.models.MixedTokensMode;
 import com.azure.resourcemanager.datalakeanalytics.models.StorageAccountInformation;
 import com.azure.resourcemanager.datalakeanalytics.models.TierType;
+import com.azure.resourcemanager.datalakeanalytics.models.TransferAnalyticsUnitsParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.UpdateComputePolicyWithAccountParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.UpdateDataLakeAnalyticsAccountParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.UpdateDataLakeStoreWithAccountParameters;
@@ -70,6 +73,10 @@ public final class DataLakeAnalyticsAccountImpl
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public String defaultDataLakeStoreAccountType() {
+        return this.innerModel().defaultDataLakeStoreAccountType();
     }
 
     public String defaultDataLakeStoreAccount() {
@@ -155,6 +162,10 @@ public final class DataLakeAnalyticsAccountImpl
 
     public FirewallAllowAzureIpsState firewallAllowAzureIps() {
         return this.innerModel().firewallAllowAzureIps();
+    }
+
+    public MixedTokensMode mixedTokensMode() {
+        return this.innerModel().mixedTokensMode();
     }
 
     public TierType newTier() {
@@ -331,6 +342,26 @@ public final class DataLakeAnalyticsAccountImpl
         return this;
     }
 
+    public Response<Void> transferAnalyticsUnitsWithResponse(TransferAnalyticsUnitsParameters parameters,
+        Context context) {
+        return serviceManager.accounts()
+            .transferAnalyticsUnitsWithResponse(resourceGroupName, accountName, parameters, context);
+    }
+
+    public void transferAnalyticsUnits(TransferAnalyticsUnitsParameters parameters) {
+        serviceManager.accounts().transferAnalyticsUnits(resourceGroupName, accountName, parameters);
+    }
+
+    public Response<Void> transferEcoAnalyticsUnitsWithResponse(TransferAnalyticsUnitsParameters parameters,
+        Context context) {
+        return serviceManager.accounts()
+            .transferEcoAnalyticsUnitsWithResponse(resourceGroupName, accountName, parameters, context);
+    }
+
+    public void transferEcoAnalyticsUnits(TransferAnalyticsUnitsParameters parameters) {
+        serviceManager.accounts().transferEcoAnalyticsUnits(resourceGroupName, accountName, parameters);
+    }
+
     public DataLakeAnalyticsAccountImpl withRegion(Region location) {
         this.createParameters.withLocation(location.toString());
         return this;
@@ -395,6 +426,16 @@ public final class DataLakeAnalyticsAccountImpl
             return this;
         } else {
             this.updateParameters.withFirewallAllowAzureIps(firewallAllowAzureIps);
+            return this;
+        }
+    }
+
+    public DataLakeAnalyticsAccountImpl withMixedTokensMode(MixedTokensMode mixedTokensMode) {
+        if (isInCreateMode()) {
+            this.createParameters.withMixedTokensMode(mixedTokensMode);
+            return this;
+        } else {
+            this.updateParameters.withMixedTokensMode(mixedTokensMode);
             return this;
         }
     }

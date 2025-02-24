@@ -15,6 +15,7 @@ import com.azure.resourcemanager.datalakeanalytics.models.DebugDataAccessLevel;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallAllowAzureIpsState;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallState;
 import com.azure.resourcemanager.datalakeanalytics.models.HiveMetastore;
+import com.azure.resourcemanager.datalakeanalytics.models.MixedTokensMode;
 import com.azure.resourcemanager.datalakeanalytics.models.TierType;
 import com.azure.resourcemanager.datalakeanalytics.models.VirtualNetworkRule;
 import java.io.IOException;
@@ -28,6 +29,11 @@ import java.util.UUID;
  */
 @Fluent
 public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsAccountPropertiesBasic {
+    /*
+     * The type of the default Data Lake Store account associated with this account.
+     */
+    private String defaultDataLakeStoreAccountType;
+
     /*
      * The default Data Lake Store account associated with this account.
      */
@@ -78,6 +84,12 @@ public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsA
      * is disabled, this is not enforced.
      */
     private FirewallAllowAzureIpsState firewallAllowAzureIps;
+
+    /*
+     * The current state of allowing or disallowing to use both Guarantee Analytics Unit and Eco Analytics Unit together
+     * during Job execution.
+     */
+    private MixedTokensMode mixedTokensMode;
 
     /*
      * The commitment tier for the next month.
@@ -180,6 +192,16 @@ public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsA
      * Creates an instance of DataLakeAnalyticsAccountProperties class.
      */
     public DataLakeAnalyticsAccountProperties() {
+    }
+
+    /**
+     * Get the defaultDataLakeStoreAccountType property: The type of the default Data Lake Store account associated with
+     * this account.
+     * 
+     * @return the defaultDataLakeStoreAccountType value.
+     */
+    public String defaultDataLakeStoreAccountType() {
+        return this.defaultDataLakeStoreAccountType;
     }
 
     /**
@@ -306,6 +328,28 @@ public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsA
     public DataLakeAnalyticsAccountProperties
         withFirewallAllowAzureIps(FirewallAllowAzureIpsState firewallAllowAzureIps) {
         this.firewallAllowAzureIps = firewallAllowAzureIps;
+        return this;
+    }
+
+    /**
+     * Get the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @return the mixedTokensMode value.
+     */
+    public MixedTokensMode mixedTokensMode() {
+        return this.mixedTokensMode;
+    }
+
+    /**
+     * Set the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @param mixedTokensMode the mixedTokensMode value to set.
+     * @return the DataLakeAnalyticsAccountProperties object itself.
+     */
+    public DataLakeAnalyticsAccountProperties withMixedTokensMode(MixedTokensMode mixedTokensMode) {
+        this.mixedTokensMode = mixedTokensMode;
         return this;
     }
 
@@ -586,6 +630,8 @@ public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsA
         jsonWriter.writeStringField("firewallState", this.firewallState == null ? null : this.firewallState.toString());
         jsonWriter.writeStringField("firewallAllowAzureIps",
             this.firewallAllowAzureIps == null ? null : this.firewallAllowAzureIps.toString());
+        jsonWriter.writeStringField("mixedTokensMode",
+            this.mixedTokensMode == null ? null : this.mixedTokensMode.toString());
         jsonWriter.writeStringField("newTier", this.newTier == null ? null : this.newTier.toString());
         jsonWriter.writeNumberField("maxJobCount", this.maxJobCount);
         jsonWriter.writeNumberField("maxDegreeOfParallelism", this.maxDegreeOfParallelism);
@@ -627,6 +673,8 @@ public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsA
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("endpoint".equals(fieldName)) {
                     deserializedDataLakeAnalyticsAccountProperties.endpoint = reader.getString();
+                } else if ("defaultDataLakeStoreAccountType".equals(fieldName)) {
+                    deserializedDataLakeAnalyticsAccountProperties.defaultDataLakeStoreAccountType = reader.getString();
                 } else if ("defaultDataLakeStoreAccount".equals(fieldName)) {
                     deserializedDataLakeAnalyticsAccountProperties.defaultDataLakeStoreAccount = reader.getString();
                 } else if ("dataLakeStoreAccounts".equals(fieldName)) {
@@ -663,6 +711,9 @@ public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsA
                 } else if ("firewallAllowAzureIps".equals(fieldName)) {
                     deserializedDataLakeAnalyticsAccountProperties.firewallAllowAzureIps
                         = FirewallAllowAzureIpsState.fromString(reader.getString());
+                } else if ("mixedTokensMode".equals(fieldName)) {
+                    deserializedDataLakeAnalyticsAccountProperties.mixedTokensMode
+                        = MixedTokensMode.fromString(reader.getString());
                 } else if ("newTier".equals(fieldName)) {
                     deserializedDataLakeAnalyticsAccountProperties.newTier = TierType.fromString(reader.getString());
                 } else if ("currentTier".equals(fieldName)) {

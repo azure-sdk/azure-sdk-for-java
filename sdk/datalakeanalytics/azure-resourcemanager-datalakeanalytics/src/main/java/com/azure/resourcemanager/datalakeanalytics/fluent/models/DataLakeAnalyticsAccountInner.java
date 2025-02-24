@@ -15,6 +15,7 @@ import com.azure.resourcemanager.datalakeanalytics.models.DebugDataAccessLevel;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallAllowAzureIpsState;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallState;
 import com.azure.resourcemanager.datalakeanalytics.models.HiveMetastore;
+import com.azure.resourcemanager.datalakeanalytics.models.MixedTokensMode;
 import com.azure.resourcemanager.datalakeanalytics.models.TierType;
 import com.azure.resourcemanager.datalakeanalytics.models.VirtualNetworkRule;
 import java.io.IOException;
@@ -111,6 +112,16 @@ public final class DataLakeAnalyticsAccountInner extends Resource {
     public DataLakeAnalyticsAccountInner withTags(Map<String, String> tags) {
         super.withTags(tags);
         return this;
+    }
+
+    /**
+     * Get the defaultDataLakeStoreAccountType property: The type of the default Data Lake Store account associated with
+     * this account.
+     * 
+     * @return the defaultDataLakeStoreAccountType value.
+     */
+    public String defaultDataLakeStoreAccountType() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultDataLakeStoreAccountType();
     }
 
     /**
@@ -245,6 +256,31 @@ public final class DataLakeAnalyticsAccountInner extends Resource {
             this.innerProperties = new DataLakeAnalyticsAccountProperties();
         }
         this.innerProperties().withFirewallAllowAzureIps(firewallAllowAzureIps);
+        return this;
+    }
+
+    /**
+     * Get the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @return the mixedTokensMode value.
+     */
+    public MixedTokensMode mixedTokensMode() {
+        return this.innerProperties() == null ? null : this.innerProperties().mixedTokensMode();
+    }
+
+    /**
+     * Set the mixedTokensMode property: The current state of allowing or disallowing to use both Guarantee Analytics
+     * Unit and Eco Analytics Unit together during Job execution.
+     * 
+     * @param mixedTokensMode the mixedTokensMode value to set.
+     * @return the DataLakeAnalyticsAccountInner object itself.
+     */
+    public DataLakeAnalyticsAccountInner withMixedTokensMode(MixedTokensMode mixedTokensMode) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataLakeAnalyticsAccountProperties();
+        }
+        this.innerProperties().withMixedTokensMode(mixedTokensMode);
         return this;
     }
 

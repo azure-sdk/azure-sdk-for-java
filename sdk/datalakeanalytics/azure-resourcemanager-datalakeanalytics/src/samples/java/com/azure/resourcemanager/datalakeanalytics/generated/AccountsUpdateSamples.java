@@ -8,6 +8,7 @@ import com.azure.resourcemanager.datalakeanalytics.models.AadObjectType;
 import com.azure.resourcemanager.datalakeanalytics.models.DataLakeAnalyticsAccount;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallAllowAzureIpsState;
 import com.azure.resourcemanager.datalakeanalytics.models.FirewallState;
+import com.azure.resourcemanager.datalakeanalytics.models.MixedTokensMode;
 import com.azure.resourcemanager.datalakeanalytics.models.TierType;
 import com.azure.resourcemanager.datalakeanalytics.models.UpdateComputePolicyWithAccountParameters;
 import com.azure.resourcemanager.datalakeanalytics.models.UpdateFirewallRuleWithAccountParameters;
@@ -22,8 +23,8 @@ import java.util.UUID;
 public final class AccountsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Update.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Update.json
      */
     /**
      * Sample code: Updates the Data Lake Analytics account object specified by the accountName with the contents of the
@@ -51,6 +52,7 @@ public final class AccountsUpdateSamples {
                     .withEndIpAddress("2.2.2.2")))
             .withFirewallState(FirewallState.ENABLED)
             .withFirewallAllowAzureIps(FirewallAllowAzureIpsState.ENABLED)
+            .withMixedTokensMode(MixedTokensMode.ENABLED)
             .withNewTier(TierType.CONSUMPTION)
             .withMaxJobCount(1)
             .withMaxDegreeOfParallelism(1)
