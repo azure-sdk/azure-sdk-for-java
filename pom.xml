@@ -146,6 +146,7 @@
     <module>sdk/mongocluster</module>
     <module>sdk/monitor</module>
     <module>sdk/mysql</module>
+    <module>sdk/mysqldiscovery</module>
     <module>sdk/mysqlflexibleserver</module>
     <module>sdk/neonpostgres</module>
     <module>sdk/netapp</module>
