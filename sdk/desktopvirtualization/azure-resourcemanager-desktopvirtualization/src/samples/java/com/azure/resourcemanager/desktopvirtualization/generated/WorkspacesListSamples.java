@@ -10,15 +10,15 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class WorkspacesListSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Workspace_ListBySubscription.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/Workspaces_ListBySubscription.json
      */
     /**
-     * Sample code: Workspace_ListBySubscription.
+     * Sample code: Workspaces_ListBySubscription.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void workspaceListBySubscription(
+    public static void workspacesListBySubscription(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.workspaces().list(com.azure.core.util.Context.NONE);
     }

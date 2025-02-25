@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 /**
- * Day of the week.
+ * Day of the week. Modeled as string.
  */
 public enum DayOfWeek {
     /**

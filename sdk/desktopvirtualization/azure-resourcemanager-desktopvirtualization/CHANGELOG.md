@@ -1,14 +1,929 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-02-25)
 
-### Features Added
+- Azure Resource Manager DesktopVirtualization client library for Java. This package contains Microsoft Azure SDK for DesktopVirtualization Management SDK. This Typespec represents the Desktop Virtualization API interfaces. Package tag package-preview-2024-08. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ResourceIdentityType` was removed
 
-### Other Changes
+#### `models.ResourceModelWithAllowedPropertySetPlan` was removed
+
+#### `models.ResourceProviderOperationList` was removed
+
+#### `models.ResourceModelWithAllowedPropertySet` was removed
+
+#### `models.AppAttachPackageProperties` was removed
+
+#### `models.Identity` was removed
+
+#### `models.ScalingScheduleDaysOfWeekItem` was removed
+
+#### `models.ResourceModelWithAllowedPropertySetIdentity` was removed
+
+#### `models.ResourceModelWithAllowedPropertySetSku` was removed
+
+#### `models.ScalingPlanPersonalSchedule$DefinitionStages` was modified
+
+* Required stage 2, 3, 4, 5, 6 was added
+
+#### `models.ScalingPlanPooledSchedule$DefinitionStages` was modified
+
+* Required stage 2, 3, 4, 5, 6, 7, 8 was added
+
+#### `models.ScalingPlanPooledSchedule$Definition` was modified
+
+* `withRampUpCapacityThresholdPct(java.lang.Integer)` was removed
+* `withRampDownCapacityThresholdPct(java.lang.Integer)` was removed
+
+#### `models.ScalingPlanPooledSchedule$Update` was modified
+
+* `withRampDownNotificationMessage(java.lang.String)` was removed
+* `withRampDownLoadBalancingAlgorithm(models.SessionHostLoadBalancingAlgorithm)` was removed
+* `withRampDownWaitTimeMinutes(java.lang.Integer)` was removed
+* `withRampDownMinimumHostsPct(java.lang.Integer)` was removed
+* `withRampDownStartTime(models.Time)` was removed
+* `withDaysOfWeek(java.util.List)` was removed
+* `withOffPeakStartTime(models.Time)` was removed
+* `withPeakLoadBalancingAlgorithm(models.SessionHostLoadBalancingAlgorithm)` was removed
+* `withRampUpStartTime(models.Time)` was removed
+* `withRampDownForceLogoffUsers(java.lang.Boolean)` was removed
+* `withOffPeakLoadBalancingAlgorithm(models.SessionHostLoadBalancingAlgorithm)` was removed
+* `withRampUpMinimumHostsPct(java.lang.Integer)` was removed
+* `withRampDownStopHostsWhen(models.StopHostsWhen)` was removed
+* `withPeakStartTime(models.Time)` was removed
+* `withRampUpLoadBalancingAlgorithm(models.SessionHostLoadBalancingAlgorithm)` was removed
+* `withRampUpCapacityThresholdPct(java.lang.Integer)` was removed
+* `withRampDownCapacityThresholdPct(java.lang.Integer)` was removed
+
+#### `models.HostPool$Update` was modified
+
+* `withSsoSecretType(models.SsoSecretType)` was removed
+* `withCustomRdpProperty(java.lang.String)` was removed
+* `withPreferredAppGroupType(models.PreferredAppGroupType)` was removed
+* `withSsoClientSecretKeyVaultPath(java.lang.String)` was removed
+* `withRegistrationInfo(models.RegistrationInfoPatch)` was removed
+* `withMaxSessionLimit(java.lang.Integer)` was removed
+* `withDescription(java.lang.String)` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `withVmTemplate(java.lang.String)` was removed
+* `withRing(java.lang.Integer)` was removed
+* `withSsoadfsAuthority(java.lang.String)` was removed
+* `withValidationEnvironment(java.lang.Boolean)` was removed
+* `withPersonalDesktopAssignmentType(models.PersonalDesktopAssignmentType)` was removed
+* `withPublicNetworkAccess(models.HostpoolPublicNetworkAccess)` was removed
+* `withLoadBalancerType(models.LoadBalancerType)` was removed
+* `withStartVMOnConnect(java.lang.Boolean)` was removed
+* `withAgentUpdate(models.AgentUpdatePatchProperties)` was removed
+* `withSsoClientId(java.lang.String)` was removed
+
+#### `models.ScalingPlan$Update` was modified
+
+* `withFriendlyName(java.lang.String)` was removed
+* `withDescription(java.lang.String)` was removed
+* `withHostPoolReferences(java.util.List)` was removed
+* `withSchedules(java.util.List)` was removed
+* `withTimeZone(java.lang.String)` was removed
+* `withExclusionTag(java.lang.String)` was removed
+
+#### `models.StartMenuItem` was modified
+
+* `commandLineArguments()` was removed
+* `iconPath()` was removed
+* `filePath()` was removed
+* `appAlias()` was removed
+* `iconIndex()` was removed
+
+#### `models.WorkspacePatch` was modified
+
+* `withDescription(java.lang.String)` was removed
+* `description()` was removed
+* `withApplicationGroupReferences(java.util.List)` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `publicNetworkAccess()` was removed
+* `applicationGroupReferences()` was removed
+* `friendlyName()` was removed
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was removed
+
+#### `models.MsixPackage$Update` was modified
+
+* `withIsRegularRegistration(java.lang.Boolean)` was removed
+* `withIsActive(java.lang.Boolean)` was removed
+* `withDisplayName(java.lang.String)` was removed
+
+#### `models.Workspace` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.DesktopPatch` was modified
+
+* `friendlyName()` was removed
+* `tags()` was removed
+* `withTags(java.util.Map)` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `description()` was removed
+* `withDescription(java.lang.String)` was removed
+
+#### `models.Application$Update` was modified
+
+* `withCommandLineSetting(models.CommandLineSetting)` was removed
+* `withDescription(java.lang.String)` was removed
+* `withApplicationType(models.RemoteApplicationType)` was removed
+* `withCommandLineArguments(java.lang.String)` was removed
+* `withShowInPortal(java.lang.Boolean)` was removed
+* `withMsixPackageFamilyName(java.lang.String)` was removed
+* `withIconPath(java.lang.String)` was removed
+* `withFilePath(java.lang.String)` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `withTags(java.util.Map)` was removed
+* `withMsixPackageApplicationId(java.lang.String)` was removed
+* `withIconIndex(java.lang.Integer)` was removed
+
+#### `models.ApplicationGroup` was modified
+
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+
+#### `models.HostPool` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.HostPoolPatch` was modified
+
+* `withValidationEnvironment(java.lang.Boolean)` was removed
+* `ssoadfsAuthority()` was removed
+* `withLoadBalancerType(models.LoadBalancerType)` was removed
+* `withStartVMOnConnect(java.lang.Boolean)` was removed
+* `startVMOnConnect()` was removed
+* `vmTemplate()` was removed
+* `withPersonalDesktopAssignmentType(models.PersonalDesktopAssignmentType)` was removed
+* `agentUpdate()` was removed
+* `maxSessionLimit()` was removed
+* `withRing(java.lang.Integer)` was removed
+* `personalDesktopAssignmentType()` was removed
+* `withDescription(java.lang.String)` was removed
+* `ssoSecretType()` was removed
+* `validationEnvironment()` was removed
+* `withMaxSessionLimit(java.lang.Integer)` was removed
+* `withSsoClientSecretKeyVaultPath(java.lang.String)` was removed
+* `preferredAppGroupType()` was removed
+* `withPublicNetworkAccess(models.HostpoolPublicNetworkAccess)` was removed
+* `withRegistrationInfo(models.RegistrationInfoPatch)` was removed
+* `ssoClientSecretKeyVaultPath()` was removed
+* `withSsoSecretType(models.SsoSecretType)` was removed
+* `withSsoClientId(java.lang.String)` was removed
+* `loadBalancerType()` was removed
+* `publicNetworkAccess()` was removed
+* `withAgentUpdate(models.AgentUpdatePatchProperties)` was removed
+* `registrationInfo()` was removed
+* `ssoClientId()` was removed
+* `withCustomRdpProperty(java.lang.String)` was removed
+* `friendlyName()` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `withPreferredAppGroupType(models.PreferredAppGroupType)` was removed
+* `withVmTemplate(java.lang.String)` was removed
+* `description()` was removed
+* `customRdpProperty()` was removed
+* `ring()` was removed
+* `withSsoadfsAuthority(java.lang.String)` was removed
+
+#### `models.AppAttachPackage$Definition` was modified
+
+* `withProperties(models.AppAttachPackageProperties)` was removed
+
+#### `models.PrivateEndpointConnections` was modified
+
+* `updateByWorkspace(java.lang.String,java.lang.String,java.lang.String,models.PrivateEndpointConnection)` was removed
+* `updateByHostPoolWithResponse(java.lang.String,java.lang.String,java.lang.String,models.PrivateEndpointConnection,com.azure.core.util.Context)` was removed
+* `updateByWorkspaceWithResponse(java.lang.String,java.lang.String,java.lang.String,models.PrivateEndpointConnection,com.azure.core.util.Context)` was removed
+* `updateByHostPool(java.lang.String,java.lang.String,java.lang.String,models.PrivateEndpointConnection)` was removed
+
+#### `models.ScalingPlanPersonalSchedule$Update` was modified
+
+* `withRampUpStartVMOnConnect(models.SetStartVMOnConnect)` was removed
+* `withDaysOfWeek(java.util.List)` was removed
+* `withOffPeakStartTime(models.Time)` was removed
+* `withRampDownMinutesToWaitOnLogoff(java.lang.Integer)` was removed
+* `withRampUpActionOnLogoff(models.SessionHandlingOperation)` was removed
+* `withOffPeakMinutesToWaitOnLogoff(java.lang.Integer)` was removed
+* `withPeakMinutesToWaitOnLogoff(java.lang.Integer)` was removed
+* `withRampDownStartTime(models.Time)` was removed
+* `withRampDownMinutesToWaitOnDisconnect(java.lang.Integer)` was removed
+* `withRampUpMinutesToWaitOnLogoff(java.lang.Integer)` was removed
+* `withOffPeakActionOnLogoff(models.SessionHandlingOperation)` was removed
+* `withPeakActionOnDisconnect(models.SessionHandlingOperation)` was removed
+* `withOffPeakActionOnDisconnect(models.SessionHandlingOperation)` was removed
+* `withRampUpActionOnDisconnect(models.SessionHandlingOperation)` was removed
+* `withRampUpMinutesToWaitOnDisconnect(java.lang.Integer)` was removed
+* `withPeakStartVMOnConnect(models.SetStartVMOnConnect)` was removed
+* `withRampDownStartVMOnConnect(models.SetStartVMOnConnect)` was removed
+* `withPeakActionOnLogoff(models.SessionHandlingOperation)` was removed
+* `withPeakMinutesToWaitOnDisconnect(java.lang.Integer)` was removed
+* `withOffPeakStartVMOnConnect(models.SetStartVMOnConnect)` was removed
+* `withRampUpStartTime(models.Time)` was removed
+* `withRampDownActionOnDisconnect(models.SessionHandlingOperation)` was removed
+* `withRampUpAutoStartHosts(models.StartupBehavior)` was removed
+* `withRampDownActionOnLogoff(models.SessionHandlingOperation)` was removed
+* `withPeakStartTime(models.Time)` was removed
+* `withOffPeakMinutesToWaitOnDisconnect(java.lang.Integer)` was removed
+
+#### `models.PrivateLinkResource` was modified
+
+* `groupId()` was removed
+* `requiredZoneNames()` was removed
+* `requiredMembers()` was removed
+
+#### `models.PrivateEndpointConnection` was modified
+
+* `privateLinkServiceConnectionState()` was removed
+* `withPrivateLinkServiceConnectionState(models.PrivateLinkServiceConnectionState)` was removed
+* `provisioningState()` was removed
+* `groupIds()` was removed
+* `withPrivateEndpoint(models.PrivateEndpoint)` was removed
+* `privateEndpoint()` was removed
+
+#### `models.AppAttachPackages` was modified
+
+* `deleteByResourceGroup(java.lang.String,java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByResourceGroupWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ScalingPlanPooledSchedulePatch` was modified
+
+* `withRampDownStopHostsWhen(models.StopHostsWhen)` was removed
+* `rampDownStopHostsWhen()` was removed
+* `rampDownMinimumHostsPct()` was removed
+* `withRampUpCapacityThresholdPct(java.lang.Integer)` was removed
+* `withOffPeakStartTime(models.Time)` was removed
+* `withRampUpMinimumHostsPct(java.lang.Integer)` was removed
+* `peakLoadBalancingAlgorithm()` was removed
+* `withRampDownStartTime(models.Time)` was removed
+* `withRampUpStartTime(models.Time)` was removed
+* `rampUpMinimumHostsPct()` was removed
+* `rampUpCapacityThresholdPct()` was removed
+* `withRampUpLoadBalancingAlgorithm(models.SessionHostLoadBalancingAlgorithm)` was removed
+* `rampDownLoadBalancingAlgorithm()` was removed
+* `offPeakLoadBalancingAlgorithm()` was removed
+* `rampDownNotificationMessage()` was removed
+* `daysOfWeek()` was removed
+* `rampDownStartTime()` was removed
+* `withOffPeakLoadBalancingAlgorithm(models.SessionHostLoadBalancingAlgorithm)` was removed
+* `offPeakStartTime()` was removed
+* `withRampDownCapacityThresholdPct(java.lang.Integer)` was removed
+* `withRampDownMinimumHostsPct(java.lang.Integer)` was removed
+* `rampUpLoadBalancingAlgorithm()` was removed
+* `withRampDownNotificationMessage(java.lang.String)` was removed
+* `withPeakStartTime(models.Time)` was removed
+* `withDaysOfWeek(java.util.List)` was removed
+* `withRampDownLoadBalancingAlgorithm(models.SessionHostLoadBalancingAlgorithm)` was removed
+* `rampUpStartTime()` was removed
+* `withRampDownForceLogoffUsers(java.lang.Boolean)` was removed
+* `rampDownForceLogoffUsers()` was removed
+* `withPeakLoadBalancingAlgorithm(models.SessionHostLoadBalancingAlgorithm)` was removed
+* `rampDownWaitTimeMinutes()` was removed
+* `withRampDownWaitTimeMinutes(java.lang.Integer)` was removed
+* `rampDownCapacityThresholdPct()` was removed
+* `peakStartTime()` was removed
+
+#### `models.SessionHostPatch` was modified
+
+* `withFriendlyName(java.lang.String)` was removed
+* `withAllowNewSession(java.lang.Boolean)` was removed
+* `withAssignedUser(java.lang.String)` was removed
+* `allowNewSession()` was removed
+* `friendlyName()` was removed
+* `assignedUser()` was removed
+
+#### `models.MsixPackagePatch` was modified
+
+* `isActive()` was removed
+* `withDisplayName(java.lang.String)` was removed
+* `displayName()` was removed
+* `withIsRegularRegistration(java.lang.Boolean)` was removed
+* `isRegularRegistration()` was removed
+* `withIsActive(java.lang.Boolean)` was removed
+
+#### `models.ApplicationGroup$Definition` was modified
+
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+
+#### `models.ApplicationGroupPatch` was modified
+
+* `withShowInFeed(java.lang.Boolean)` was removed
+* `showInFeed()` was removed
+* `description()` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `withDescription(java.lang.String)` was removed
+* `friendlyName()` was removed
+
+#### `models.HostPool$Definition` was modified
+
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+
+#### `models.ScalingPlanPooledSchedule` was modified
+
+* `java.lang.Integer rampUpCapacityThresholdPct()` -> `int rampUpCapacityThresholdPct()`
+* `java.lang.Integer rampDownCapacityThresholdPct()` -> `int rampDownCapacityThresholdPct()`
+
+#### `models.ScalingPlanPatch` was modified
+
+* `description()` was removed
+* `withDescription(java.lang.String)` was removed
+* `hostPoolReferences()` was removed
+* `friendlyName()` was removed
+* `exclusionTag()` was removed
+* `withHostPoolReferences(java.util.List)` was removed
+* `withTimeZone(java.lang.String)` was removed
+* `timeZone()` was removed
+* `withSchedules(java.util.List)` was removed
+* `withExclusionTag(java.lang.String)` was removed
+* `schedules()` was removed
+* `withFriendlyName(java.lang.String)` was removed
+
+#### `models.Workspace$Update` was modified
+
+* `withDescription(java.lang.String)` was removed
+* `withApplicationGroupReferences(java.util.List)` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was removed
+
+#### `models.AppAttachPackage` was modified
+
+* `properties()` was removed
+
+#### `models.ExpandMsixImage` was modified
+
+* `certificateName()` was removed
+* `displayName()` was removed
+* `packageRelativePath()` was removed
+* `packageFullName()` was removed
+* `lastUpdated()` was removed
+* `version()` was removed
+* `packageDependencies()` was removed
+* `isRegularRegistration()` was removed
+* `certificateExpiry()` was removed
+* `packageName()` was removed
+* `isActive()` was removed
+* `packageApplications()` was removed
+* `packageFamilyName()` was removed
+* `imagePath()` was removed
+* `packageAlias()` was removed
+
+#### `models.SessionHosts` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.Integer,com.azure.core.util.Context)` was removed
+
+#### `models.ScalingPlanPersonalSchedulePatch` was modified
+
+* `rampUpActionOnLogoff()` was removed
+* `withOffPeakStartVMOnConnect(models.SetStartVMOnConnect)` was removed
+* `rampDownMinutesToWaitOnLogoff()` was removed
+* `withRampDownMinutesToWaitOnLogoff(java.lang.Integer)` was removed
+* `withRampDownStartTime(models.Time)` was removed
+* `offPeakActionOnLogoff()` was removed
+* `withRampUpMinutesToWaitOnLogoff(java.lang.Integer)` was removed
+* `withRampUpStartVMOnConnect(models.SetStartVMOnConnect)` was removed
+* `withOffPeakMinutesToWaitOnDisconnect(java.lang.Integer)` was removed
+* `withOffPeakMinutesToWaitOnLogoff(java.lang.Integer)` was removed
+* `withOffPeakActionOnLogoff(models.SessionHandlingOperation)` was removed
+* `withRampDownStartVMOnConnect(models.SetStartVMOnConnect)` was removed
+* `withPeakMinutesToWaitOnLogoff(java.lang.Integer)` was removed
+* `offPeakStartTime()` was removed
+* `peakActionOnDisconnect()` was removed
+* `offPeakMinutesToWaitOnDisconnect()` was removed
+* `rampDownStartVMOnConnect()` was removed
+* `withPeakMinutesToWaitOnDisconnect(java.lang.Integer)` was removed
+* `rampDownMinutesToWaitOnDisconnect()` was removed
+* `rampUpMinutesToWaitOnDisconnect()` was removed
+* `withRampUpMinutesToWaitOnDisconnect(java.lang.Integer)` was removed
+* `withRampUpActionOnLogoff(models.SessionHandlingOperation)` was removed
+* `peakActionOnLogoff()` was removed
+* `rampUpMinutesToWaitOnLogoff()` was removed
+* `withDaysOfWeek(java.util.List)` was removed
+* `offPeakMinutesToWaitOnLogoff()` was removed
+* `rampDownStartTime()` was removed
+* `rampDownActionOnDisconnect()` was removed
+* `offPeakStartVMOnConnect()` was removed
+* `peakMinutesToWaitOnLogoff()` was removed
+* `withPeakStartVMOnConnect(models.SetStartVMOnConnect)` was removed
+* `withRampDownActionOnLogoff(models.SessionHandlingOperation)` was removed
+* `peakStartVMOnConnect()` was removed
+* `withRampUpActionOnDisconnect(models.SessionHandlingOperation)` was removed
+* `withOffPeakActionOnDisconnect(models.SessionHandlingOperation)` was removed
+* `rampUpAutoStartHosts()` was removed
+* `withPeakActionOnDisconnect(models.SessionHandlingOperation)` was removed
+* `withRampDownMinutesToWaitOnDisconnect(java.lang.Integer)` was removed
+* `rampUpActionOnDisconnect()` was removed
+* `withOffPeakStartTime(models.Time)` was removed
+* `offPeakActionOnDisconnect()` was removed
+* `rampDownActionOnLogoff()` was removed
+* `daysOfWeek()` was removed
+* `withRampDownActionOnDisconnect(models.SessionHandlingOperation)` was removed
+* `peakMinutesToWaitOnDisconnect()` was removed
+* `withRampUpStartTime(models.Time)` was removed
+* `withPeakActionOnLogoff(models.SessionHandlingOperation)` was removed
+* `peakStartTime()` was removed
+* `rampUpStartVMOnConnect()` was removed
+* `withRampUpAutoStartHosts(models.StartupBehavior)` was removed
+* `withPeakStartTime(models.Time)` was removed
+* `rampUpStartTime()` was removed
+
+#### `models.ScalingPlan` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.ScalingPlan$Definition` was modified
+
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+
+#### `models.Workspace$Definition` was modified
+
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+
+#### `models.ApplicationPatch` was modified
+
+* `withTags(java.util.Map)` was removed
+* `withApplicationType(models.RemoteApplicationType)` was removed
+* `withIconIndex(java.lang.Integer)` was removed
+* `friendlyName()` was removed
+* `showInPortal()` was removed
+* `iconIndex()` was removed
+* `applicationType()` was removed
+* `iconPath()` was removed
+* `withDescription(java.lang.String)` was removed
+* `tags()` was removed
+* `withShowInPortal(java.lang.Boolean)` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `withMsixPackageApplicationId(java.lang.String)` was removed
+* `withCommandLineSetting(models.CommandLineSetting)` was removed
+* `commandLineSetting()` was removed
+* `filePath()` was removed
+* `description()` was removed
+* `msixPackageApplicationId()` was removed
+* `withCommandLineArguments(java.lang.String)` was removed
+* `withMsixPackageFamilyName(java.lang.String)` was removed
+* `withFilePath(java.lang.String)` was removed
+* `msixPackageFamilyName()` was removed
+* `withIconPath(java.lang.String)` was removed
+* `commandLineArguments()` was removed
+
+#### `models.ApplicationGroup$Update` was modified
+
+* `withFriendlyName(java.lang.String)` was removed
+* `withDescription(java.lang.String)` was removed
+* `withShowInFeed(java.lang.Boolean)` was removed
+
+### Features Added
+
+* `models.SessionHostManagementList` was added
+
+* `models.VirtualMachineDiskType` was added
+
+* `models.MarketplaceInfoPatchProperties` was added
+
+* `models.ActiveDirectoryInfoProperties` was added
+
+* `models.DiskInfoProperties` was added
+
+* `models.SessionHostConfigurations` was added
+
+* `models.UserAssignedIdentity` was added
+
+* `models.AzureActiveDirectoryInfoProperties` was added
+
+* `models.MsixPackagePatchProperties` was added
+
+* `models.SessionHostConfigurationList` was added
+
+* `models.SessionHostManagementsUpdateStatus` was added
+
+* `models.SessionHostManagementUpdateStatus` was added
+
+* `models.PublicUdp` was added
+
+* `models.DomainInfoPatchProperties` was added
+
+* `models.ImageInfoPatchProperties` was added
+
+* `models.SessionHostManagementOperationProgress` was added
+
+* `models.KeyVaultCredentialsProperties` was added
+
+* `models.ManagedServiceIdentity` was added
+
+* `models.KeyVaultCredentialsPatchProperties` was added
+
+* `models.SessionHostConfiguration` was added
+
+* `models.SessionHostManagementUpdateOperationStatus` was added
+
+* `models.ScalingPlanPooledSchedulePatchProperties` was added
+
+* `models.DesktopPatchProperties` was added
+
+* `models.SecurityInfoPatchProperties` was added
+
+* `models.HostPoolPatchProperties` was added
+
+* `models.BootDiagnosticsInfoProperties` was added
+
+* `models.ActiveSessionHostConfiguration` was added
+
+* `models.ApplicationGroupPatchProperties` was added
+
+* `models.ControlSessionHostUpdates` was added
+
+* `models.DomainInfoProperties` was added
+
+* `models.ActiveSessionHostConfigurationList` was added
+
+* `models.CustomInfoPatchProperties` was added
+
+* `models.ExpandMsixImageProperties` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.ActiveSessionHostConfigurations` was added
+
+* `models.SessionHostConfigurationPatch` was added
+
+* `models.SessionHostManagementPatch` was added
+
+* `models.BootDiagnosticsInfoPatchProperties` was added
+
+* `models.DirectUdp` was added
+
+* `models.WorkspacePatchProperties` was added
+
+* `models.ScalingPlanPatchProperties` was added
+
+* `models.NetworkInfoPatchProperties` was added
+
+* `models.SessionHostManagement` was added
+
+* `models.MarketplaceInfoProperties` was added
+
+* `models.SecurityInfoProperties` was added
+
+* `models.PrivateLinkResourceProperties` was added
+
+* `models.HostPoolUpdateAction` was added
+
+* `models.ManagedPrivateUdp` was added
+
+* `models.UpdateSessionHostsRequestBody` was added
+
+* `models.InitiateSessionHostUpdates` was added
+
+* `models.ProvisioningStateShc` was added
+
+* `models.HostPoolUpdateControlParameter` was added
+
+* `models.ImageInfoProperties` was added
+
+* `models.DiskInfoPatchProperties` was added
+
+* `models.HostPoolUpdateConfigurationProperties` was added
+
+* `models.SessionHostPatchProperties` was added
+
+* `models.NetworkInfoProperties` was added
+
+* `models.ResourceProviderOperationListResult` was added
+
+* `models.SessionHostConfigurationPatchProperties` was added
+
+* `models.VirtualMachineSecurityType` was added
+
+* `models.ManagementType` was added
+
+* `models.SessionHostManagementPatchProperties` was added
+
+* `models.SessionHostManagementUpdateStatusProperties` was added
+
+* `models.RelayUdp` was added
+
+* `models.ActiveDirectoryInfoPatchProperties` was added
+
+* `models.DomainJoinType` was added
+
+* `models.ScalingPlanPersonalSchedulePatchProperties` was added
+
+* `models.HostPoolUpdateConfigurationPatchProperties` was added
+
+* `models.ApplicationPatchProperties` was added
+
+* `models.CustomInfoProperties` was added
+
+* `models.SessionHostManagements` was added
+
+* `models.Type` was added
+
+* `models.StartMenuItemProperties` was added
+
+#### `models.ExpandMsixImageList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ScalingPlanPooledSchedule$Definition` was modified
+
+* `withNamePropertiesName(java.lang.String)` was added
+* `withRampUpCapacityThresholdPct(int)` was added
+* `withRampDownCapacityThresholdPct(int)` was added
+
+#### `models.HostPoolList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.SessionHostList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.StartMenuItemList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ScalingPlanPooledSchedule$Update` was modified
+
+* `withProperties(models.ScalingPlanPooledSchedulePatchProperties)` was added
+
+#### `models.HostPool$Update` was modified
+
+* `withProperties(models.HostPoolPatchProperties)` was added
+
+#### `models.ScalingPlan$Update` was modified
+
+* `withProperties(models.ScalingPlanPatchProperties)` was added
+
+#### `models.AppAttachPackagePatch` was modified
+
+* `tags()` was added
+* `withTags(java.util.Map)` was added
+
+#### `models.StartMenuItem` was modified
+
+* `properties()` was added
+
+#### `models.AppAttachPackagePatchProperties` was modified
+
+* `packageLookbackUrl()` was added
+* `withCustomData(java.lang.String)` was added
+* `withPackageLookbackUrl(java.lang.String)` was added
+* `customData()` was added
+
+#### `models.WorkspacePatch` was modified
+
+* `properties()` was added
+* `withProperties(models.WorkspacePatchProperties)` was added
+
+#### `models.MsixPackage$Update` was modified
+
+* `withProperties(models.MsixPackagePatchProperties)` was added
+
+#### `models.DesktopPatch` was modified
+
+* `properties()` was added
+* `withProperties(models.DesktopPatchProperties)` was added
+
+#### `models.Application$Update` was modified
+
+* `withProperties(models.ApplicationPatchProperties)` was added
+
+#### `models.ScalingPlanPersonalScheduleList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.MsixPackageList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.HostPool` was modified
+
+* `managedPrivateUdp()` was added
+* `managementType()` was added
+* `publicUdp()` was added
+* `directUdp()` was added
+* `relayUdp()` was added
+
+#### `models.HostPoolPatch` was modified
+
+* `withProperties(models.HostPoolPatchProperties)` was added
+* `properties()` was added
+
+#### `models.AppAttachPackage$Definition` was modified
+
+* `withFailHealthCheckOnStagingFailure(models.FailHealthCheckOnStagingFailure)` was added
+* `withHostPoolReferences(java.util.List)` was added
+* `withCustomData(java.lang.String)` was added
+* `withImage(models.AppAttachPackageInfoProperties)` was added
+* `withPackageOwnerName(java.lang.String)` was added
+* `withKeyVaultUrl(java.lang.String)` was added
+* `withPackageLookbackUrl(java.lang.String)` was added
+
+#### `models.PrivateEndpointConnections` was modified
+
+* `updateByWorkspace(java.lang.String,java.lang.String,java.lang.String,fluent.models.PrivateEndpointConnectionWithSystemDataInner)` was added
+* `updateByWorkspaceWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.PrivateEndpointConnectionWithSystemDataInner,com.azure.core.util.Context)` was added
+* `updateByHostPoolWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.PrivateEndpointConnectionWithSystemDataInner,com.azure.core.util.Context)` was added
+* `updateByHostPool(java.lang.String,java.lang.String,java.lang.String,fluent.models.PrivateEndpointConnectionWithSystemDataInner)` was added
+
+#### `models.ScalingPlanPersonalSchedule$Update` was modified
+
+* `withProperties(models.ScalingPlanPersonalSchedulePatchProperties)` was added
+
+#### `models.PrivateLinkResource` was modified
+
+* `properties()` was added
+
+#### `models.WorkspaceList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.HostPoolProperties` was modified
+
+* `publicUdp()` was added
+* `relayUdp()` was added
+* `directUdp()` was added
+* `managedPrivateUdp()` was added
+* `managementType()` was added
+
+#### `DesktopVirtualizationManager` was modified
+
+* `initiateSessionHostUpdates()` was added
+* `activeSessionHostConfigurations()` was added
+* `sessionHostConfigurations()` was added
+* `controlSessionHostUpdates()` was added
+* `sessionHostManagements()` was added
+* `sessionHostManagementsUpdateStatus()` was added
+
+#### `models.ApplicationList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.PrivateEndpointConnection` was modified
+
+* `withProperties(fluent.models.PrivateEndpointConnectionProperties)` was added
+* `properties()` was added
+
+#### `models.ApplicationGroupList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.AppAttachPackages` was modified
+
+* `deleteByIdWithResponse(java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+* `delete(java.lang.String,java.lang.String)` was added
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+
+#### `models.AppAttachPackage$Update` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.ScalingPlanPooledSchedulePatch` was modified
+
+* `properties()` was added
+* `withProperties(models.ScalingPlanPooledSchedulePatchProperties)` was added
+
+#### `models.SessionHostPatch` was modified
+
+* `properties()` was added
+* `withProperties(models.SessionHostPatchProperties)` was added
+
+#### `models.MsixPackagePatch` was modified
+
+* `withProperties(models.MsixPackagePatchProperties)` was added
+* `properties()` was added
+
+#### `models.ApplicationGroup$Definition` was modified
+
+* `withSku(models.Sku)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withPlan(models.Plan)` was added
+
+#### `models.ScalingPlanPooledScheduleList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.AppAttachPackageList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ApplicationGroupPatch` was modified
+
+* `properties()` was added
+* `withProperties(models.ApplicationGroupPatchProperties)` was added
+
+#### `models.HostPool$Definition` was modified
+
+* `withRelayUdp(models.RelayUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withPublicUdp(models.PublicUdp)` was added
+* `withManagementType(models.ManagementType)` was added
+* `withPlan(models.Plan)` was added
+* `withDirectUdp(models.DirectUdp)` was added
+* `withSku(models.Sku)` was added
+
+#### `models.ScalingPlanPooledSchedule` was modified
+
+* `namePropertiesName()` was added
+
+#### `models.ScalingPlanPatch` was modified
+
+* `withProperties(models.ScalingPlanPatchProperties)` was added
+* `properties()` was added
+
+#### `models.Workspace$Update` was modified
+
+* `withProperties(models.WorkspacePatchProperties)` was added
+
+#### `models.SessionHost` was modified
+
+* `sessionHostConfiguration()` was added
+* `lastSessionHostUpdateTime()` was added
+
+#### `models.AppAttachPackage` was modified
+
+* `packageOwnerName()` was added
+* `provisioningState()` was added
+* `customData()` was added
+* `keyVaultUrl()` was added
+* `packageLookbackUrl()` was added
+* `hostPoolReferences()` was added
+* `image()` was added
+* `failHealthCheckOnStagingFailure()` was added
+
+#### `models.PrivateLinkResourceListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ExpandMsixImage` was modified
+
+* `properties()` was added
+
+#### `models.SessionHosts` was modified
+
+* `retryProvisioningWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `list(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.Integer,java.lang.String,com.azure.core.util.Context)` was added
+* `retryProvisioning(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.PrivateEndpointConnectionListResultWithSystemData` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ScalingPlanList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ScalingPlanPersonalSchedulePatch` was modified
+
+* `properties()` was added
+* `withProperties(models.ScalingPlanPersonalSchedulePatchProperties)` was added
+
+#### `models.UserSessionList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ScalingPlan$Definition` was modified
+
+* `withSku(models.Sku)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withPlan(models.Plan)` was added
+
+#### `models.Workspace$Definition` was modified
+
+* `withPlan(models.Plan)` was added
+* `withSku(models.Sku)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.DesktopList` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ApplicationPatch` was modified
+
+* `withProperties(models.ApplicationPatchProperties)` was added
+* `properties()` was added
+
+#### `models.ApplicationGroup$Update` was modified
+
+* `withProperties(models.ApplicationGroupPatchProperties)` was added
 
 ## 1.2.0 (2024-09-25)
 

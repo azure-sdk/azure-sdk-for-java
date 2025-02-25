@@ -33,46 +33,18 @@ public interface StartMenuItem {
     String type();
 
     /**
+     * Gets the properties property: Detailed properties for StartMenuItem.
+     * 
+     * @return the properties value.
+     */
+    StartMenuItemProperties properties();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the appAlias property: Alias of StartMenuItem.
-     * 
-     * @return the appAlias value.
-     */
-    String appAlias();
-
-    /**
-     * Gets the filePath property: Path to the file of StartMenuItem.
-     * 
-     * @return the filePath value.
-     */
-    String filePath();
-
-    /**
-     * Gets the commandLineArguments property: Command line arguments for StartMenuItem.
-     * 
-     * @return the commandLineArguments value.
-     */
-    String commandLineArguments();
-
-    /**
-     * Gets the iconPath property: Path to the icon.
-     * 
-     * @return the iconPath value.
-     */
-    String iconPath();
-
-    /**
-     * Gets the iconIndex property: Index of the icon.
-     * 
-     * @return the iconIndex value.
-     */
-    Integer iconIndex();
 
     /**
      * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.StartMenuItemInner object.

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroup;
+import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupPatchProperties;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,24 +15,24 @@ import java.util.Map;
 public final class ApplicationGroupsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ApplicationGroup_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/ApplicationGroups_Update.json
      */
     /**
-     * Sample code: ApplicationGroups_Update.
+     * Sample code: ApplicationGroup_Update.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        applicationGroupsUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        applicationGroupUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         ApplicationGroup resource = manager.applicationGroups()
             .getByResourceGroupWithResponse("resourceGroup1", "applicationGroup1", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withDescription("des1")
-            .withFriendlyName("friendly")
-            .withShowInFeed(true)
+            .withProperties(new ApplicationGroupPatchProperties().withDescription("des1")
+                .withFriendlyName("friendly")
+                .withShowInFeed(true))
             .apply();
     }
 
