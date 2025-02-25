@@ -1,14 +1,19 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-02-25)
+
+- Azure Resource Manager HealthcareApis client library for Java. This package contains Microsoft Azure SDK for HealthcareApis Management SDK. Azure Healthcare APIs Client. Package tag package-preview-2025-03-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.StorageMonitorQueue` was added
 
-### Bugs Fixed
+* `models.StorageMonitorConfiguration` was added
 
-### Other Changes
+#### `models.StorageConfiguration` was modified
+
+* `withStorageMonitorConfiguration(models.StorageMonitorConfiguration)` was added
+* `storageMonitorConfiguration()` was added
 
 ## 1.2.0 (2024-12-19)
 

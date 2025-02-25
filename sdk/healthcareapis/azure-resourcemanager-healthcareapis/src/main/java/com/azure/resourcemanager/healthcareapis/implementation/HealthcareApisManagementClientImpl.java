@@ -334,7 +334,7 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-03-31";
+        this.apiVersion = "2025-03-01-preview";
         this.services = new ServicesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
