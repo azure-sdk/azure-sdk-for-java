@@ -2,11 +2,95 @@
 
 ## 1.2.0-beta.1 (2025-02-11)
 
-### Features Added
-- Added Interactive Message.
-- Added Reaction Message.
-- Added Sticker Message.
+### Breaking Changes
 
+#### `NotificationMessagesAsyncClient` was modified
+
+* `downloadMedia(java.lang.String)` was removed
+* `downloadMediaWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was removed
+
+#### `NotificationMessagesClient` was modified
+
+* `downloadMedia(java.lang.String)` was removed
+* `downloadMediaWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was removed
+
+#### `implementation.NotificationMessagesClientImpl` was modified
+
+* `downloadMediaWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was removed
+* `downloadMediaWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was removed
+
+#### `implementation.NotificationMessagesClientImpl$NotificationMessagesClientService` was modified
+
+* `downloadMediaSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `downloadMedia(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.channels.WhatsAppListActionBindings` was added
+
+* `models.ActionGroupItem` was added
+
+* `models.ImageMessageContent` was added
+
+* `models.ButtonSetContent` was added
+
+* `models.MessageContent` was added
+
+* `models.StickerNotificationContent` was added
+
+* `models.channels.WhatsAppUrlActionBindings` was added
+
+* `models.ActionGroup` was added
+
+* `models.InteractiveMessage` was added
+
+* `models.VideoMessageContent` was added
+
+* `models.InteractiveNotificationContent` was added
+
+* `models.ReactionNotificationContent` was added
+
+* `models.DocumentMessageContent` was added
+
+* `models.ButtonContent` was added
+
+* `models.ActionGroupContent` was added
+
+* `models.LinkContent` was added
+
+* `models.MessageContentKind` was added
+
+* `models.ActionBindings` was added
+
+* `models.MessageActionBindingKind` was added
+
+* `models.channels.WhatsAppButtonActionBindings` was added
+
+* `models.TextMessageContent` was added
+
+#### `NotificationMessagesAsyncClient` was modified
+
+* `downloadMedia()` was added
+* `downloadMediaWithResponse(com.azure.core.http.rest.RequestOptions)` was added
+
+#### `NotificationMessagesClient` was modified
+
+* `downloadMediaWithResponse(com.azure.core.http.rest.RequestOptions)` was added
+* `downloadMedia()` was added
+
+#### `implementation.NotificationMessagesClientImpl` was modified
+
+* `downloadMediaWithResponse(com.azure.core.http.rest.RequestOptions)` was added
+* `downloadMediaWithResponseAsync(com.azure.core.http.rest.RequestOptions)` was added
+
+#### `models.channels.WhatsAppMessageTemplateItem` was modified
+
+* `getName()` was added
+
+#### `implementation.NotificationMessagesClientImpl$NotificationMessagesClientService` was modified
+
+* `downloadMedia(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `downloadMediaSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
 
 ## 1.1.1 (2024-12-04)
 

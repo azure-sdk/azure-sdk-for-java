@@ -92,30 +92,6 @@ public final class NotificationMessagesClient {
     }
 
     /**
-     * Download the Media payload from a User to Business message.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * BinaryData
-     * }
-     * </pre>
-     *
-     * @param mediaId The stream ID.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> downloadMediaWithResponse(String mediaId, RequestOptions requestOptions) {
-        return this.serviceClient.downloadMediaWithResponse(mediaId, requestOptions);
-    }
-
-    /**
      * Sends a notification message from Business to User.
      *
      * @param notificationContent Details of the message to send.
@@ -138,9 +114,30 @@ public final class NotificationMessagesClient {
 
     /**
      * Download the Media payload from a User to Business message.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * BinaryData
+     * }
+     * </pre>
      *
-     * @param mediaId The stream ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> downloadMediaWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.downloadMediaWithResponse(requestOptions);
+    }
+
+    /**
+     * Download the Media payload from a User to Business message.
+     *
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
@@ -150,9 +147,9 @@ public final class NotificationMessagesClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BinaryData downloadMedia(String mediaId) {
+    public BinaryData downloadMedia() {
         // Generated convenience method for downloadMediaWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return downloadMediaWithResponse(mediaId, requestOptions).getValue();
+        return downloadMediaWithResponse(requestOptions).getValue();
     }
 }
