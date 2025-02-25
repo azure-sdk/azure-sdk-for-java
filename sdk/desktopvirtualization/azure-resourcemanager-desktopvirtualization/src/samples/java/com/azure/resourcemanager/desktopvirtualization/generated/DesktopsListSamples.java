@@ -10,16 +10,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class DesktopsListSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Desktop_List.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/Desktops_List.json
      */
     /**
-     * Sample code: Desktop_List.
+     * Sample code: Desktops_List.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        desktopList(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        desktopsList(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.desktops().list("resourceGroup1", "applicationGroup1", 10, true, 0, com.azure.core.util.Context.NONE);
     }
 }

@@ -10,16 +10,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class ApplicationGroupsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ApplicationGroup_Delete.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/ApplicationGroups_Delete.json
      */
     /**
-     * Sample code: ApplicationGroup_Delete.
+     * Sample code: ApplicationGroups_Delete.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        applicationGroupDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        applicationGroupsDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.applicationGroups()
             .deleteByResourceGroupWithResponse("resourceGroup1", "applicationGroup1", com.azure.core.util.Context.NONE);
     }

@@ -85,14 +85,16 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
 
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpandMsixImageInner>> expandSinglePageAsync(String resourceGroupName,
@@ -128,15 +130,17 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
 
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpandMsixImageInner>> expandSinglePageAsync(String resourceGroupName,
@@ -172,14 +176,16 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
 
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList as paginated response with {@link PagedFlux}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ExpandMsixImageInner> expandAsync(String resourceGroupName, String hostPoolName,
@@ -190,15 +196,17 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
 
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList as paginated response with {@link PagedFlux}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ExpandMsixImageInner> expandAsync(String resourceGroupName, String hostPoolName,
@@ -209,14 +217,16 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
 
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList as paginated response with {@link PagedIterable}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ExpandMsixImageInner> expand(String resourceGroupName, String hostPoolName,
@@ -226,15 +236,17 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
 
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList as paginated response with {@link PagedIterable}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ExpandMsixImageInner> expand(String resourceGroupName, String hostPoolName,
@@ -249,7 +261,8 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpandMsixImageInner>> expandNextSinglePageAsync(String nextLink) {
@@ -275,7 +288,8 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpandMsixImageInner>> expandNextSinglePageAsync(String nextLink, Context context) {

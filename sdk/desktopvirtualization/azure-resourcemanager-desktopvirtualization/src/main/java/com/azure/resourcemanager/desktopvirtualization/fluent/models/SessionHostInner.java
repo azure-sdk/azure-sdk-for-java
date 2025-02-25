@@ -354,20 +354,6 @@ public final class SessionHostInner extends ProxyResource {
     }
 
     /**
-     * Set the updateState property: Update state of a SessionHost.
-     * 
-     * @param updateState the updateState value to set.
-     * @return the SessionHostInner object itself.
-     */
-    public SessionHostInner withUpdateState(UpdateState updateState) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SessionHostProperties();
-        }
-        this.innerProperties().withUpdateState(updateState);
-        return this;
-    }
-
-    /**
      * Get the lastUpdateTime property: The timestamp of the last update.
      * 
      * @return the lastUpdateTime value.
@@ -397,6 +383,25 @@ public final class SessionHostInner extends ProxyResource {
         }
         this.innerProperties().withUpdateErrorMessage(updateErrorMessage);
         return this;
+    }
+
+    /**
+     * Get the lastSessionHostUpdateTime property: The last time update was completed.
+     * 
+     * @return the lastSessionHostUpdateTime value.
+     */
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastSessionHostUpdateTime();
+    }
+
+    /**
+     * Get the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time. Example: 2024-04-26T04:56:45Z.
+     * 
+     * @return the sessionHostConfiguration value.
+     */
+    public String sessionHostConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().sessionHostConfiguration();
     }
 
     /**

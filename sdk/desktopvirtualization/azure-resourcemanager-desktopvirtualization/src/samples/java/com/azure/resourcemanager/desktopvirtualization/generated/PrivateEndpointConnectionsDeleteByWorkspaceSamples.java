@@ -10,15 +10,15 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class PrivateEndpointConnectionsDeleteByWorkspaceSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * PrivateEndpointConnection_DeleteByWorkspace.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/PrivateEndpointConnections_DeleteByWorkspace.json
      */
     /**
-     * Sample code: PrivateEndpointConnection_DeleteByWorkspace.
+     * Sample code: PrivateEndpointConnections_DeleteByWorkspace.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void privateEndpointConnectionDeleteByWorkspace(
+    public static void privateEndpointConnectionsDeleteByWorkspace(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.privateEndpointConnections()
             .deleteByWorkspaceWithResponse("resourceGroup1", "workspace1",

@@ -13,6 +13,36 @@ import com.azure.core.util.Context;
  */
 public interface SessionHosts {
     /**
+     * List sessionHosts.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of SessionHost definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName);
+
+    /**
+     * List sessionHosts.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of SessionHost definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, String vmPath, Context context);
+
+    /**
      * Get a session host.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -39,6 +69,36 @@ public interface SessionHosts {
      * @return a session host.
      */
     SessionHost get(String resourceGroupName, String hostPoolName, String sessionHostname);
+
+    /**
+     * Update a session host.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @param force Force flag to update assign, unassign or reassign personal desktop.
+     * @param sessionHost The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SessionHost definition along with {@link Response}.
+     */
+    Response<SessionHost> updateWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
+        Boolean force, SessionHostPatch sessionHost, Context context);
+
+    /**
+     * Update a session host.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SessionHost definition.
+     */
+    SessionHost update(String resourceGroupName, String hostPoolName, String sessionHostname);
 
     /**
      * Remove a SessionHost.
@@ -69,24 +129,22 @@ public interface SessionHosts {
     void delete(String resourceGroupName, String hostPoolName, String sessionHostname);
 
     /**
-     * Update a session host.
+     * A synchronous resource action that returns no content.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
-     * @param force Force flag to update assign, unassign or reassign personal desktop.
-     * @param sessionHost Object containing SessionHost definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SessionHost definition along with {@link Response}.
+     * @return the {@link Response}.
      */
-    Response<SessionHost> updateWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
-        Boolean force, SessionHostPatch sessionHost, Context context);
+    Response<Void> retryProvisioningWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
+        Context context);
 
     /**
-     * Update a session host.
+     * A synchronous resource action that returns no content.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
@@ -94,36 +152,6 @@ public interface SessionHosts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SessionHost definition.
      */
-    SessionHost update(String resourceGroupName, String hostPoolName, String sessionHostname);
-
-    /**
-     * List sessionHosts.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sessionHostList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName);
-
-    /**
-     * List sessionHosts.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sessionHostList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context);
+    void retryProvisioning(String resourceGroupName, String hostPoolName, String sessionHostname);
 }

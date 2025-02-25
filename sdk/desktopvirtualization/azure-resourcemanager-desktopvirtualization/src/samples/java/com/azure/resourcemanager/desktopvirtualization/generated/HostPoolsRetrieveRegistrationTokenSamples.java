@@ -10,15 +10,15 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class HostPoolsRetrieveRegistrationTokenSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * HostPools_RetrieveRegistrationToken_Post.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/HostPools_RetrieveRegistrationToken.json
      */
     /**
-     * Sample code: HostPools_RetrieveRegistrationToken_Post.
+     * Sample code: HostPools_RetrieveRegistrationToken.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void hostPoolsRetrieveRegistrationTokenPost(
+    public static void hostPoolsRetrieveRegistrationToken(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.hostPools()
             .retrieveRegistrationTokenWithResponse("resourceGroup1", "hostPool1", com.azure.core.util.Context.NONE);
