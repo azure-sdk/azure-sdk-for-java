@@ -13,8 +13,7 @@ import java.io.IOException;
 
 /**
  * Schema of the Data property of an EventGridEvent for a
- * Microsoft.ResourceNotifications.HealthResources.AvailabilityStatusChanged
- * event.
+ * Microsoft.ResourceNotifications.HealthResources.AvailabilityStatusChanged event.
  */
 @Immutable
 public final class ResourceNotificationsHealthResourcesAvailabilityStatusChangedEventData
