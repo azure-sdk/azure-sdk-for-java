@@ -12,8 +12,8 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Schema of the Data property of an EventGridEvent for a
- * Microsoft.ResourceNotifications.Resources.CreatedOrUpdated event.
+ * Schema of the Data property of an EventGridEvent for a Microsoft.ResourceNotifications.Resources.CreatedOrUpdated
+ * event.
  */
 @Immutable
 public final class ResourceNotificationsResourceManagementCreatedOrUpdatedEventData
