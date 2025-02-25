@@ -95,30 +95,6 @@ public final class NotificationMessagesAsyncClient {
     }
 
     /**
-     * Download the Media payload from a User to Business message.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * BinaryData
-     * }
-     * </pre>
-     *
-     * @param mediaId The stream ID.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> downloadMediaWithResponse(String mediaId, RequestOptions requestOptions) {
-        return this.serviceClient.downloadMediaWithResponseAsync(mediaId, requestOptions);
-    }
-
-    /**
      * Sends a notification message from Business to User.
      *
      * @param notificationContent Details of the message to send.
@@ -141,9 +117,30 @@ public final class NotificationMessagesAsyncClient {
 
     /**
      * Download the Media payload from a User to Business message.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * BinaryData
+     * }
+     * </pre>
      *
-     * @param mediaId The stream ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> downloadMediaWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.downloadMediaWithResponseAsync(requestOptions);
+    }
+
+    /**
+     * Download the Media payload from a User to Business message.
+     *
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
@@ -153,9 +150,9 @@ public final class NotificationMessagesAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BinaryData> downloadMedia(String mediaId) {
+    public Mono<BinaryData> downloadMedia() {
         // Generated convenience method for downloadMediaWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return downloadMediaWithResponse(mediaId, requestOptions).flatMap(FluxUtil::toMono);
+        return downloadMediaWithResponse(requestOptions).flatMap(FluxUtil::toMono);
     }
 }

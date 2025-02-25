@@ -15,7 +15,7 @@ public final class DownloadMediaTests extends NotificationMessagesClientTestBase
     @Disabled
     public void testDownloadMediaTests() {
         // method invocation
-        BinaryData response = notificationMessagesClient.downloadMedia("d19e68ec-bdd6-4a50-8dfb-cbb1642df6ab");
+        BinaryData response = notificationMessagesClient.downloadMedia();
 
         // response assertion
         Assertions.assertNotNull(response);
