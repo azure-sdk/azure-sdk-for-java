@@ -8,208 +8,17 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
-import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.batch.fluent.models.BatchAccountInner;
 import com.azure.resourcemanager.batch.fluent.models.BatchAccountKeysInner;
 import com.azure.resourcemanager.batch.fluent.models.DetectorResponseInner;
 import com.azure.resourcemanager.batch.fluent.models.OutboundEnvironmentEndpointInner;
-import com.azure.resourcemanager.batch.models.BatchAccountCreateParameters;
 import com.azure.resourcemanager.batch.models.BatchAccountRegenerateKeyParameters;
-import com.azure.resourcemanager.batch.models.BatchAccountUpdateParameters;
 
 /**
  * An instance of this class provides access to all the operations defined in BatchAccountsClient.
  */
 public interface BatchAccountsClient {
-    /**
-     * Creates a new Batch account with the specified parameters. Existing accounts cannot be updated with this API and
-     * should instead be updated with the Update Batch Account API.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName A name for the Batch account which must be unique within the region. Batch account names must
-     * be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as
-     * part of the DNS name that is used to access the Batch service in the region in which the account is created. For
-     * example: http://accountname.region.batch.azure.com/.
-     * @param parameters Additional parameters for account creation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of contains information about an Azure Batch account.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BatchAccountInner>, BatchAccountInner> beginCreate(String resourceGroupName,
-        String accountName, BatchAccountCreateParameters parameters);
-
-    /**
-     * Creates a new Batch account with the specified parameters. Existing accounts cannot be updated with this API and
-     * should instead be updated with the Update Batch Account API.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName A name for the Batch account which must be unique within the region. Batch account names must
-     * be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as
-     * part of the DNS name that is used to access the Batch service in the region in which the account is created. For
-     * example: http://accountname.region.batch.azure.com/.
-     * @param parameters Additional parameters for account creation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of contains information about an Azure Batch account.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BatchAccountInner>, BatchAccountInner> beginCreate(String resourceGroupName,
-        String accountName, BatchAccountCreateParameters parameters, Context context);
-
-    /**
-     * Creates a new Batch account with the specified parameters. Existing accounts cannot be updated with this API and
-     * should instead be updated with the Update Batch Account API.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName A name for the Batch account which must be unique within the region. Batch account names must
-     * be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as
-     * part of the DNS name that is used to access the Batch service in the region in which the account is created. For
-     * example: http://accountname.region.batch.azure.com/.
-     * @param parameters Additional parameters for account creation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about an Azure Batch account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchAccountInner create(String resourceGroupName, String accountName, BatchAccountCreateParameters parameters);
-
-    /**
-     * Creates a new Batch account with the specified parameters. Existing accounts cannot be updated with this API and
-     * should instead be updated with the Update Batch Account API.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName A name for the Batch account which must be unique within the region. Batch account names must
-     * be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as
-     * part of the DNS name that is used to access the Batch service in the region in which the account is created. For
-     * example: http://accountname.region.batch.azure.com/.
-     * @param parameters Additional parameters for account creation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about an Azure Batch account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchAccountInner create(String resourceGroupName, String accountName, BatchAccountCreateParameters parameters,
-        Context context);
-
-    /**
-     * Updates the properties of an existing Batch account.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param parameters Additional parameters for account update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about an Azure Batch account along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BatchAccountInner> updateWithResponse(String resourceGroupName, String accountName,
-        BatchAccountUpdateParameters parameters, Context context);
-
-    /**
-     * Updates the properties of an existing Batch account.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param parameters Additional parameters for account update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about an Azure Batch account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchAccountInner update(String resourceGroupName, String accountName, BatchAccountUpdateParameters parameters);
-
-    /**
-     * Deletes the specified Batch account.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String accountName);
-
-    /**
-     * Deletes the specified Batch account.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String accountName, Context context);
-
-    /**
-     * Deletes the specified Batch account.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String accountName);
-
-    /**
-     * Deletes the specified Batch account.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String accountName, Context context);
-
-    /**
-     * Gets information about the specified Batch account.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Batch account along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BatchAccountInner> getByResourceGroupWithResponse(String resourceGroupName, String accountName,
-        Context context);
-
-    /**
-     * Gets information about the specified Batch account.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Batch account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchAccountInner getByResourceGroup(String resourceGroupName, String accountName);
-
     /**
      * Gets information about the Batch accounts associated with the subscription.
      * 
@@ -430,7 +239,7 @@ public interface BatchAccountsClient {
      * administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your
      * network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to
      * mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-virtual-network.
+     * https://learn.microsoft.com/azure/batch/batch-virtual-network.
      * 
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
@@ -448,7 +257,7 @@ public interface BatchAccountsClient {
      * administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your
      * network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to
      * mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-virtual-network.
+     * https://learn.microsoft.com/azure/batch/batch-virtual-network.
      * 
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.

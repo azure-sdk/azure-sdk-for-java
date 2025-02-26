@@ -19,9 +19,6 @@
 
 ## BatchAccount
 
-- [Create](#batchaccount_create)
-- [Delete](#batchaccount_delete)
-- [GetByResourceGroup](#batchaccount_getbyresourcegroup)
 - [GetDetector](#batchaccount_getdetector)
 - [GetKeys](#batchaccount_getkeys)
 - [List](#batchaccount_list)
@@ -30,7 +27,6 @@
 - [ListOutboundNetworkDependenciesEndpoints](#batchaccount_listoutboundnetworkdependenciesendpoints)
 - [RegenerateKey](#batchaccount_regeneratekey)
 - [SynchronizeAutoStorageKeys](#batchaccount_synchronizeautostoragekeys)
-- [Update](#batchaccount_update)
 
 ## Certificate
 
@@ -323,206 +319,6 @@ public final class ApplicationPackageListSamples {
 }
 ```
 
-### BatchAccount_Create
-
-```java
-import com.azure.resourcemanager.batch.models.AutoStorageBaseProperties;
-import com.azure.resourcemanager.batch.models.BatchAccountIdentity;
-import com.azure.resourcemanager.batch.models.KeyVaultReference;
-import com.azure.resourcemanager.batch.models.PoolAllocationMode;
-import com.azure.resourcemanager.batch.models.PublicNetworkAccessType;
-import com.azure.resourcemanager.batch.models.ResourceIdentityType;
-import com.azure.resourcemanager.batch.models.UserAssignedIdentities;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for BatchAccount Create.
- */
-public final class BatchAccountCreateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/BatchAccountCreate_BYOS.json
-     */
-    /**
-     * Sample code: BatchAccountCreate_BYOS.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void batchAccountCreateBYOS(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts()
-            .define("sampleacct")
-            .withRegion("japaneast")
-            .withExistingResourceGroup("default-azurebatch-japaneast")
-            .withAutoStorage(new AutoStorageBaseProperties().withStorageAccountId(
-                "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.Storage/storageAccounts/samplestorage"))
-            .withPoolAllocationMode(PoolAllocationMode.USER_SUBSCRIPTION)
-            .withKeyVaultReference(new KeyVaultReference().withId(
-                "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.KeyVault/vaults/sample")
-                .withUrl("http://sample.vault.azure.net/"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/
-     * BatchAccountCreate_UserAssignedIdentity.json
-     */
-    /**
-     * Sample code: BatchAccountCreate_UserAssignedIdentity.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void batchAccountCreateUserAssignedIdentity(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts()
-            .define("sampleacct")
-            .withRegion("japaneast")
-            .withExistingResourceGroup("default-azurebatch-japaneast")
-            .withIdentity(new BatchAccountIdentity().withType(ResourceIdentityType.USER_ASSIGNED)
-                .withUserAssignedIdentities(mapOf(
-                    "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1",
-                    new UserAssignedIdentities())))
-            .withAutoStorage(new AutoStorageBaseProperties().withStorageAccountId(
-                "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.Storage/storageAccounts/samplestorage"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/PrivateBatchAccountCreate.json
-     */
-    /**
-     * Sample code: PrivateBatchAccountCreate.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void privateBatchAccountCreate(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts()
-            .define("sampleacct")
-            .withRegion("japaneast")
-            .withExistingResourceGroup("default-azurebatch-japaneast")
-            .withAutoStorage(new AutoStorageBaseProperties().withStorageAccountId(
-                "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.Storage/storageAccounts/samplestorage"))
-            .withKeyVaultReference(new KeyVaultReference().withId(
-                "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.KeyVault/vaults/sample")
-                .withUrl("http://sample.vault.azure.net/"))
-            .withPublicNetworkAccess(PublicNetworkAccessType.DISABLED)
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/
-     * BatchAccountCreate_SystemAssignedIdentity.json
-     */
-    /**
-     * Sample code: BatchAccountCreate_SystemAssignedIdentity.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void batchAccountCreateSystemAssignedIdentity(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts()
-            .define("sampleacct")
-            .withRegion("japaneast")
-            .withExistingResourceGroup("default-azurebatch-japaneast")
-            .withIdentity(new BatchAccountIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
-            .withAutoStorage(new AutoStorageBaseProperties().withStorageAccountId(
-                "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.Storage/storageAccounts/samplestorage"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/BatchAccountCreate_Default.json
-     */
-    /**
-     * Sample code: BatchAccountCreate_Default.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void batchAccountCreateDefault(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts()
-            .define("sampleacct")
-            .withRegion("japaneast")
-            .withExistingResourceGroup("default-azurebatch-japaneast")
-            .withAutoStorage(new AutoStorageBaseProperties().withStorageAccountId(
-                "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.Storage/storageAccounts/samplestorage"))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### BatchAccount_Delete
-
-```java
-/**
- * Samples for BatchAccount Delete.
- */
-public final class BatchAccountDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/BatchAccountDelete.json
-     */
-    /**
-     * Sample code: BatchAccountDelete.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void batchAccountDelete(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts().delete("default-azurebatch-japaneast", "sampleacct", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BatchAccount_GetByResourceGroup
-
-```java
-/**
- * Samples for BatchAccount GetByResourceGroup.
- */
-public final class BatchAccountGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/PrivateBatchAccountGet.json
-     */
-    /**
-     * Sample code: PrivateBatchAccountGet.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void privateBatchAccountGet(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts()
-            .getByResourceGroupWithResponse("default-azurebatch-japaneast", "sampleacct",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/BatchAccountGet.json
-     */
-    /**
-     * Sample code: BatchAccountGet.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void batchAccountGet(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts()
-            .getByResourceGroupWithResponse("default-azurebatch-japaneast", "sampleacct",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### BatchAccount_GetDetector
 
 ```java
@@ -710,38 +506,6 @@ public final class BatchAccountSynchronizeAutoStorageKeysSamples {
         manager.batchAccounts()
             .synchronizeAutoStorageKeysWithResponse("default-azurebatch-japaneast", "sampleacct",
                 com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BatchAccount_Update
-
-```java
-import com.azure.resourcemanager.batch.models.AutoStorageBaseProperties;
-import com.azure.resourcemanager.batch.models.BatchAccount;
-
-/**
- * Samples for BatchAccount Update.
- */
-public final class BatchAccountUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-07-01/examples/BatchAccountUpdate.json
-     */
-    /**
-     * Sample code: BatchAccountUpdate.
-     * 
-     * @param manager Entry point to BatchManager.
-     */
-    public static void batchAccountUpdate(com.azure.resourcemanager.batch.BatchManager manager) {
-        BatchAccount resource = manager.batchAccounts()
-            .getByResourceGroupWithResponse("default-azurebatch-japaneast", "sampleacct",
-                com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withAutoStorage(new AutoStorageBaseProperties().withStorageAccountId(
-                "/subscriptions/subid/resourceGroups/default-azurebatch-japaneast/providers/Microsoft.Storage/storageAccounts/samplestorage"))
-            .apply();
     }
 }
 ```
@@ -1154,8 +918,8 @@ public final class OperationsListSamples {
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.batch.models.AutomaticOSUpgradePolicy;
 import com.azure.resourcemanager.batch.models.AutoScaleSettings;
+import com.azure.resourcemanager.batch.models.AutomaticOSUpgradePolicy;
 import com.azure.resourcemanager.batch.models.BatchPoolIdentity;
 import com.azure.resourcemanager.batch.models.CachingType;
 import com.azure.resourcemanager.batch.models.DataDisk;
@@ -1190,8 +954,8 @@ import com.azure.resourcemanager.batch.models.UefiSettings;
 import com.azure.resourcemanager.batch.models.UpgradeMode;
 import com.azure.resourcemanager.batch.models.UpgradePolicy;
 import com.azure.resourcemanager.batch.models.UserAssignedIdentities;
-import com.azure.resourcemanager.batch.models.VirtualMachineConfiguration;
 import com.azure.resourcemanager.batch.models.VMExtension;
+import com.azure.resourcemanager.batch.models.VirtualMachineConfiguration;
 import com.azure.resourcemanager.batch.models.WindowsConfiguration;
 import java.io.IOException;
 import java.time.Duration;
