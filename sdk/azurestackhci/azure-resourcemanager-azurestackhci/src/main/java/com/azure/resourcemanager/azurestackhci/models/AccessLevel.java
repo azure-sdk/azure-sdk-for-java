@@ -12,6 +12,11 @@ import java.util.Collection;
  */
 public final class AccessLevel extends ExpandableStringEnum<AccessLevel> {
     /**
+     * Static value None for AccessLevel.
+     */
+    public static final AccessLevel NONE = fromString("None");
+
+    /**
      * Static value Diagnostics for AccessLevel.
      */
     public static final AccessLevel DIAGNOSTICS = fromString("Diagnostics");

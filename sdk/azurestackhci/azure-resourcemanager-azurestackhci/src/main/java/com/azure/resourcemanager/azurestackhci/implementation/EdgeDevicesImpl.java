@@ -22,10 +22,10 @@ public final class EdgeDevicesImpl implements EdgeDevices {
 
     private final EdgeDevicesClient innerClient;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
     public EdgeDevicesImpl(EdgeDevicesClient innerClient,
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -110,7 +110,7 @@ public final class EdgeDevicesImpl implements EdgeDevices {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 }

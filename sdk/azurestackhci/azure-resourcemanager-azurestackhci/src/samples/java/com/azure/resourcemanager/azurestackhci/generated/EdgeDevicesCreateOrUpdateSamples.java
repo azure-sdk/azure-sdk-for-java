@@ -16,15 +16,15 @@ import java.util.Arrays;
 public final class EdgeDevicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * CreateHciEdgeDevice.json
      */
     /**
      * Sample code: Create HCI Edge Device.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void createHCIEdgeDevice(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void createHCIEdgeDevice(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.edgeDevices()
             .createOrUpdate(
                 "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/ArcInstance-rg/providers/Microsoft.HybridCompute/machines/Node-1",

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
+import com.azure.resourcemanager.azurestackhci.models.AccessLevel;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportRequest;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportRequestProperties;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportType;
@@ -15,20 +16,21 @@ import java.time.OffsetDateTime;
 public final class ClustersConfigureRemoteSupportSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * ConfigureRemoteSupport.json
      */
     /**
      * Sample code: Configure Remote Support.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void configureRemoteSupport(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void configureRemoteSupport(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.clusters()
             .configureRemoteSupport("test-rg", "mycluster",
-                new RemoteSupportRequest().withProperties(new RemoteSupportRequestProperties()
-                    .withExpirationTimestamp(OffsetDateTime.parse("2020-01-01T17:18:19.1234567Z"))
-                    .withRemoteSupportType(RemoteSupportType.ENABLE)),
+                new RemoteSupportRequest()
+                    .withProperties(new RemoteSupportRequestProperties().withAccessLevel(AccessLevel.DIAGNOSTICS)
+                        .withExpirationTimestamp(OffsetDateTime.parse("2020-01-01T17:18:19.1234567Z"))
+                        .withRemoteSupportType(RemoteSupportType.ENABLE)),
                 com.azure.core.util.Context.NONE);
     }
 }

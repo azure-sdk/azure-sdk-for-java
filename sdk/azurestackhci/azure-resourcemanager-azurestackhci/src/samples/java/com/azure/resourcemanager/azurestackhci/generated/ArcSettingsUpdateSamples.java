@@ -15,18 +15,18 @@ import java.io.IOException;
 public final class ArcSettingsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * PatchArcSetting.json
      */
     /**
      * Sample code: Patch ArcSetting.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void patchArcSetting(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager)
+    public static void patchArcSetting(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager)
         throws IOException {
         ArcSetting resource = manager.arcSettings()
-            .getWithResponse("test-rg", "myCluster", "default", com.azure.core.util.Context.NONE)
+            .getWithResponse("test-rg", "mycluster", "default", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withConnectivityProperties(SerializerFactory.createDefaultManagementSerializerAdapter()

@@ -31,14 +31,14 @@ public final class HciReportedProperties extends ReportedProperties {
     private SbeDeploymentPackageInfo sbeDeploymentPackageInfo;
 
     /*
-     * edge device state.
-     */
-    private DeviceState deviceState;
-
-    /*
      * Extensions details for edge device.
      */
     private ExtensionProfile extensionProfile;
+
+    /*
+     * edge device state.
+     */
+    private DeviceState deviceState;
 
     /**
      * Creates an instance of HciReportedProperties class.
@@ -74,16 +74,6 @@ public final class HciReportedProperties extends ReportedProperties {
     }
 
     /**
-     * Get the deviceState property: edge device state.
-     * 
-     * @return the deviceState value.
-     */
-    @Override
-    public DeviceState deviceState() {
-        return this.deviceState;
-    }
-
-    /**
      * Get the extensionProfile property: Extensions details for edge device.
      * 
      * @return the extensionProfile value.
@@ -94,13 +84,22 @@ public final class HciReportedProperties extends ReportedProperties {
     }
 
     /**
+     * Get the deviceState property: edge device state.
+     * 
+     * @return the deviceState value.
+     */
+    @Override
+    public DeviceState deviceState() {
+        return this.deviceState;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (networkProfile() != null) {
             networkProfile().validate();
         }
@@ -109,6 +108,9 @@ public final class HciReportedProperties extends ReportedProperties {
         }
         if (sbeDeploymentPackageInfo() != null) {
             sbeDeploymentPackageInfo().validate();
+        }
+        if (extensionProfile() != null) {
+            extensionProfile().validate();
         }
     }
 
