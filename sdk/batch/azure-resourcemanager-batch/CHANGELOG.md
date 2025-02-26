@@ -1,14 +1,57 @@
 # Release History
 
-## 2.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-02-26)
 
-### Features Added
+- Azure Resource Manager Batch client library for Java. This package contains Microsoft Azure SDK for Batch Management SDK. Batch Client. Package tag package-2024-07. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.BatchAccount$UpdateStages` was removed
 
-### Other Changes
+#### `models.BatchAccountUpdateParameters` was removed
+
+#### `models.BatchAccount$Definition` was removed
+
+#### `models.BatchAccount$Update` was removed
+
+#### `models.BatchAccountCreateParameters` was removed
+
+#### `models.BatchAccount$DefinitionStages` was removed
+
+#### `models.CheckNameAvailabilityParameters` was modified
+
+* `withType(java.lang.String)` was removed
+
+#### `models.BatchAccount` was modified
+
+* `regionName()` was removed
+* `synchronizeAutoStorageKeys()` was removed
+* `getKeysWithResponse(com.azure.core.util.Context)` was removed
+* `resourceGroupName()` was removed
+* `getKeys()` was removed
+* `synchronizeAutoStorageKeysWithResponse(com.azure.core.util.Context)` was removed
+* `refresh(com.azure.core.util.Context)` was removed
+* `update()` was removed
+* `regenerateKey(models.BatchAccountRegenerateKeyParameters)` was removed
+* `region()` was removed
+* `refresh()` was removed
+* `regenerateKeyWithResponse(models.BatchAccountRegenerateKeyParameters,com.azure.core.util.Context)` was removed
+
+#### `models.BatchAccounts` was modified
+
+* `getByResourceGroupWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+* `getByResourceGroup(java.lang.String,java.lang.String)` was removed
+* `deleteByResourceGroup(java.lang.String,java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `define(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `delete(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.IpRule` was modified
+
+* `withAction(java.lang.String)` was removed
 
 ## 2.0.0 (2024-09-26)
 

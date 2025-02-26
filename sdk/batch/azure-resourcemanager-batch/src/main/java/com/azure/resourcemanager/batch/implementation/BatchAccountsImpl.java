@@ -34,35 +34,6 @@ public final class BatchAccountsImpl implements BatchAccounts {
         this.serviceManager = serviceManager;
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String accountName) {
-        this.serviceClient().delete(resourceGroupName, accountName);
-    }
-
-    public void delete(String resourceGroupName, String accountName, Context context) {
-        this.serviceClient().delete(resourceGroupName, accountName, context);
-    }
-
-    public Response<BatchAccount> getByResourceGroupWithResponse(String resourceGroupName, String accountName,
-        Context context) {
-        Response<BatchAccountInner> inner
-            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, accountName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new BatchAccountImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public BatchAccount getByResourceGroup(String resourceGroupName, String accountName) {
-        BatchAccountInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, accountName);
-        if (inner != null) {
-            return new BatchAccountImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public PagedIterable<BatchAccount> list() {
         PagedIterable<BatchAccountInner> inner = this.serviceClient().list();
         return ResourceManagerUtils.mapPage(inner, inner1 -> new BatchAccountImpl(inner1, this.manager()));
@@ -184,71 +155,11 @@ public final class BatchAccountsImpl implements BatchAccounts {
             inner1 -> new OutboundEnvironmentEndpointImpl(inner1, this.manager()));
     }
 
-    public BatchAccount getById(String id) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String accountName = ResourceManagerUtils.getValueFromIdByName(id, "batchAccounts");
-        if (accountName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'batchAccounts'.", id)));
-        }
-        return this.getByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE).getValue();
-    }
-
-    public Response<BatchAccount> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String accountName = ResourceManagerUtils.getValueFromIdByName(id, "batchAccounts");
-        if (accountName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'batchAccounts'.", id)));
-        }
-        return this.getByResourceGroupWithResponse(resourceGroupName, accountName, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String accountName = ResourceManagerUtils.getValueFromIdByName(id, "batchAccounts");
-        if (accountName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'batchAccounts'.", id)));
-        }
-        this.delete(resourceGroupName, accountName, Context.NONE);
-    }
-
-    public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String accountName = ResourceManagerUtils.getValueFromIdByName(id, "batchAccounts");
-        if (accountName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'batchAccounts'.", id)));
-        }
-        this.delete(resourceGroupName, accountName, context);
-    }
-
     private BatchAccountsClient serviceClient() {
         return this.innerClient;
     }
 
     private com.azure.resourcemanager.batch.BatchManager manager() {
         return this.serviceManager;
-    }
-
-    public BatchAccountImpl define(String name) {
-        return new BatchAccountImpl(name, this.manager());
     }
 }

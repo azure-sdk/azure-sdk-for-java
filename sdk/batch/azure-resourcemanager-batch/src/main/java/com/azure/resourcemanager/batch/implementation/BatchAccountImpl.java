@@ -4,20 +4,12 @@
 
 package com.azure.resourcemanager.batch.implementation;
 
-import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.batch.fluent.models.BatchAccountInner;
 import com.azure.resourcemanager.batch.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.batch.models.AuthenticationMode;
-import com.azure.resourcemanager.batch.models.AutoStorageBaseProperties;
 import com.azure.resourcemanager.batch.models.AutoStorageProperties;
 import com.azure.resourcemanager.batch.models.BatchAccount;
-import com.azure.resourcemanager.batch.models.BatchAccountCreateParameters;
 import com.azure.resourcemanager.batch.models.BatchAccountIdentity;
-import com.azure.resourcemanager.batch.models.BatchAccountKeys;
-import com.azure.resourcemanager.batch.models.BatchAccountRegenerateKeyParameters;
-import com.azure.resourcemanager.batch.models.BatchAccountUpdateParameters;
 import com.azure.resourcemanager.batch.models.EncryptionProperties;
 import com.azure.resourcemanager.batch.models.KeyVaultReference;
 import com.azure.resourcemanager.batch.models.NetworkProfile;
@@ -31,10 +23,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public final class BatchAccountImpl implements BatchAccount, BatchAccount.Definition, BatchAccount.Update {
+public final class BatchAccountImpl implements BatchAccount {
     private BatchAccountInner innerObject;
 
     private final com.azure.resourcemanager.batch.BatchManager serviceManager;
+
+    BatchAccountImpl(BatchAccountInner innerObject, com.azure.resourcemanager.batch.BatchManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+    }
 
     public String id() {
         return this.innerModel().id();
@@ -150,222 +147,11 @@ public final class BatchAccountImpl implements BatchAccount, BatchAccount.Defini
         }
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
-    }
-
-    public String resourceGroupName() {
-        return resourceGroupName;
-    }
-
     public BatchAccountInner innerModel() {
         return this.innerObject;
     }
 
     private com.azure.resourcemanager.batch.BatchManager manager() {
         return this.serviceManager;
-    }
-
-    private String resourceGroupName;
-
-    private String accountName;
-
-    private BatchAccountCreateParameters createParameters;
-
-    private BatchAccountUpdateParameters updateParameters;
-
-    public BatchAccountImpl withExistingResourceGroup(String resourceGroupName) {
-        this.resourceGroupName = resourceGroupName;
-        return this;
-    }
-
-    public BatchAccount create() {
-        this.innerObject = serviceManager.serviceClient()
-            .getBatchAccounts()
-            .create(resourceGroupName, accountName, createParameters, Context.NONE);
-        return this;
-    }
-
-    public BatchAccount create(Context context) {
-        this.innerObject = serviceManager.serviceClient()
-            .getBatchAccounts()
-            .create(resourceGroupName, accountName, createParameters, context);
-        return this;
-    }
-
-    BatchAccountImpl(String name, com.azure.resourcemanager.batch.BatchManager serviceManager) {
-        this.innerObject = new BatchAccountInner();
-        this.serviceManager = serviceManager;
-        this.accountName = name;
-        this.createParameters = new BatchAccountCreateParameters();
-    }
-
-    public BatchAccountImpl update() {
-        this.updateParameters = new BatchAccountUpdateParameters();
-        return this;
-    }
-
-    public BatchAccount apply() {
-        this.innerObject = serviceManager.serviceClient()
-            .getBatchAccounts()
-            .updateWithResponse(resourceGroupName, accountName, updateParameters, Context.NONE)
-            .getValue();
-        return this;
-    }
-
-    public BatchAccount apply(Context context) {
-        this.innerObject = serviceManager.serviceClient()
-            .getBatchAccounts()
-            .updateWithResponse(resourceGroupName, accountName, updateParameters, context)
-            .getValue();
-        return this;
-    }
-
-    BatchAccountImpl(BatchAccountInner innerObject, com.azure.resourcemanager.batch.BatchManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.accountName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "batchAccounts");
-    }
-
-    public BatchAccount refresh() {
-        this.innerObject = serviceManager.serviceClient()
-            .getBatchAccounts()
-            .getByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE)
-            .getValue();
-        return this;
-    }
-
-    public BatchAccount refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient()
-            .getBatchAccounts()
-            .getByResourceGroupWithResponse(resourceGroupName, accountName, context)
-            .getValue();
-        return this;
-    }
-
-    public Response<Void> synchronizeAutoStorageKeysWithResponse(Context context) {
-        return serviceManager.batchAccounts()
-            .synchronizeAutoStorageKeysWithResponse(resourceGroupName, accountName, context);
-    }
-
-    public void synchronizeAutoStorageKeys() {
-        serviceManager.batchAccounts().synchronizeAutoStorageKeys(resourceGroupName, accountName);
-    }
-
-    public Response<BatchAccountKeys> regenerateKeyWithResponse(BatchAccountRegenerateKeyParameters parameters,
-        Context context) {
-        return serviceManager.batchAccounts()
-            .regenerateKeyWithResponse(resourceGroupName, accountName, parameters, context);
-    }
-
-    public BatchAccountKeys regenerateKey(BatchAccountRegenerateKeyParameters parameters) {
-        return serviceManager.batchAccounts().regenerateKey(resourceGroupName, accountName, parameters);
-    }
-
-    public Response<BatchAccountKeys> getKeysWithResponse(Context context) {
-        return serviceManager.batchAccounts().getKeysWithResponse(resourceGroupName, accountName, context);
-    }
-
-    public BatchAccountKeys getKeys() {
-        return serviceManager.batchAccounts().getKeys(resourceGroupName, accountName);
-    }
-
-    public BatchAccountImpl withRegion(Region location) {
-        this.createParameters.withLocation(location.toString());
-        return this;
-    }
-
-    public BatchAccountImpl withRegion(String location) {
-        this.createParameters.withLocation(location);
-        return this;
-    }
-
-    public BatchAccountImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.createParameters.withTags(tags);
-            return this;
-        } else {
-            this.updateParameters.withTags(tags);
-            return this;
-        }
-    }
-
-    public BatchAccountImpl withIdentity(BatchAccountIdentity identity) {
-        if (isInCreateMode()) {
-            this.createParameters.withIdentity(identity);
-            return this;
-        } else {
-            this.updateParameters.withIdentity(identity);
-            return this;
-        }
-    }
-
-    public BatchAccountImpl withAutoStorage(AutoStorageBaseProperties autoStorage) {
-        if (isInCreateMode()) {
-            this.createParameters.withAutoStorage(autoStorage);
-            return this;
-        } else {
-            this.updateParameters.withAutoStorage(autoStorage);
-            return this;
-        }
-    }
-
-    public BatchAccountImpl withPoolAllocationMode(PoolAllocationMode poolAllocationMode) {
-        this.createParameters.withPoolAllocationMode(poolAllocationMode);
-        return this;
-    }
-
-    public BatchAccountImpl withKeyVaultReference(KeyVaultReference keyVaultReference) {
-        this.createParameters.withKeyVaultReference(keyVaultReference);
-        return this;
-    }
-
-    public BatchAccountImpl withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
-        if (isInCreateMode()) {
-            this.createParameters.withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        } else {
-            this.updateParameters.withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        }
-    }
-
-    public BatchAccountImpl withNetworkProfile(NetworkProfile networkProfile) {
-        if (isInCreateMode()) {
-            this.createParameters.withNetworkProfile(networkProfile);
-            return this;
-        } else {
-            this.updateParameters.withNetworkProfile(networkProfile);
-            return this;
-        }
-    }
-
-    public BatchAccountImpl withEncryption(EncryptionProperties encryption) {
-        if (isInCreateMode()) {
-            this.createParameters.withEncryption(encryption);
-            return this;
-        } else {
-            this.updateParameters.withEncryption(encryption);
-            return this;
-        }
-    }
-
-    public BatchAccountImpl withAllowedAuthenticationModes(List<AuthenticationMode> allowedAuthenticationModes) {
-        if (isInCreateMode()) {
-            this.createParameters.withAllowedAuthenticationModes(allowedAuthenticationModes);
-            return this;
-        } else {
-            this.updateParameters.withAllowedAuthenticationModes(allowedAuthenticationModes);
-            return this;
-        }
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
     }
 }
