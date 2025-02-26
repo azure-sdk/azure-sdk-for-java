@@ -13,8 +13,8 @@ import com.azure.resourcemanager.mixedreality.models.Serial;
 public final class RemoteRenderingAccountsRegenerateKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/remote-rendering/
-     * RegenerateKey.json
+     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/remote-
+     * rendering/RegenerateKey.json
      */
     /**
      * Sample code: Regenerate remote rendering account keys.
