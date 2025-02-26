@@ -1,6 +1,8 @@
 # Release History
 
-## 1.0.0-beta.3 (Unreleased)
+## 1.0.0-beta.1 (2025-02-26)
+
+- Azure Resource Manager BillingBenefits client library for Java. This package contains Microsoft Azure SDK for BillingBenefits Management SDK. Azure Benefits RP let users create and manage benefits like savings plan. Package tag package-preview-2024-11-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 

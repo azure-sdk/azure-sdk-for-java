@@ -10,8 +10,8 @@ import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.BillingPlanInformation;
 import com.azure.resourcemanager.billingbenefits.models.ExtendedStatusInfo;
 import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanOrderModel;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -40,7 +40,7 @@ public final class SavingsPlanOrderModelImpl implements SavingsPlanOrderModel {
         return this.innerModel().type();
     }
 
-    public Sku sku() {
+    public ResourceSku sku() {
         return this.innerModel().sku();
     }
 

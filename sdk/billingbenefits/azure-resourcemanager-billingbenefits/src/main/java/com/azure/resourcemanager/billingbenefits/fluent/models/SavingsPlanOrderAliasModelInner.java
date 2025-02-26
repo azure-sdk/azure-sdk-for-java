@@ -16,7 +16,7 @@ import com.azure.resourcemanager.billingbenefits.models.AppliedScopeType;
 import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.Commitment;
 import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import java.io.IOException;
 
@@ -28,7 +28,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     /*
      * Savings plan SKU
      */
-    private Sku sku;
+    private ResourceSku sku;
 
     /*
      * Resource provider kind
@@ -71,7 +71,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
      * 
      * @return the sku value.
      */
-    public Sku sku() {
+    public ResourceSku sku() {
         return this.sku;
     }
 
@@ -81,7 +81,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
      * @param sku the sku value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
-    public SavingsPlanOrderAliasModelInner withSku(Sku sku) {
+    public SavingsPlanOrderAliasModelInner withSku(ResourceSku sku) {
         this.sku = sku;
         return this;
     }
@@ -418,7 +418,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedSavingsPlanOrderAliasModelInner.type = reader.getString();
                 } else if ("sku".equals(fieldName)) {
-                    deserializedSavingsPlanOrderAliasModelInner.sku = Sku.fromJson(reader);
+                    deserializedSavingsPlanOrderAliasModelInner.sku = ResourceSku.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
                     deserializedSavingsPlanOrderAliasModelInner.kind = reader.getString();
                 } else if ("properties".equals(fieldName)) {

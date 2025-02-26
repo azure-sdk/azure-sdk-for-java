@@ -23,7 +23,7 @@ public final class ReservationOrderAliasRequest extends ProxyResource {
     /*
      * Reservation order SKU
      */
-    private Sku sku;
+    private ResourceSku sku;
 
     /*
      * The Azure Region where the reservation benefits are applied to.
@@ -66,7 +66,7 @@ public final class ReservationOrderAliasRequest extends ProxyResource {
      * 
      * @return the sku value.
      */
-    public Sku sku() {
+    public ResourceSku sku() {
         return this.sku;
     }
 
@@ -76,7 +76,7 @@ public final class ReservationOrderAliasRequest extends ProxyResource {
      * @param sku the sku value to set.
      * @return the ReservationOrderAliasRequest object itself.
      */
-    public ReservationOrderAliasRequest withSku(Sku sku) {
+    public ReservationOrderAliasRequest withSku(ResourceSku sku) {
         this.sku = sku;
         return this;
     }
@@ -466,7 +466,7 @@ public final class ReservationOrderAliasRequest extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedReservationOrderAliasRequest.type = reader.getString();
                 } else if ("sku".equals(fieldName)) {
-                    deserializedReservationOrderAliasRequest.sku = Sku.fromJson(reader);
+                    deserializedReservationOrderAliasRequest.sku = ResourceSku.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedReservationOrderAliasRequest.location = reader.getString();
                 } else if ("properties".equals(fieldName)) {

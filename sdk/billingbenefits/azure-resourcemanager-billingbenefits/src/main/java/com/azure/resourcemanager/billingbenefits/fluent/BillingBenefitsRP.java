@@ -12,6 +12,13 @@ import java.time.Duration;
  */
 public interface BillingBenefitsRP {
     /**
+     * Gets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @return the subscriptionId value.
+     */
+    String getSubscriptionId();
+
+    /**
      * Gets server parameter.
      * 
      * @return the endpoint value.
@@ -80,4 +87,18 @@ public interface BillingBenefitsRP {
      * @return the ReservationOrderAliasClient object.
      */
     ReservationOrderAliasClient getReservationOrderAlias();
+
+    /**
+     * Gets the DiscountsClient object to access its operations.
+     * 
+     * @return the DiscountsClient object.
+     */
+    DiscountsClient getDiscounts();
+
+    /**
+     * Gets the DiscountOperationsClient object to access its operations.
+     * 
+     * @return the DiscountOperationsClient object.
+     */
+    DiscountOperationsClient getDiscountOperations();
 }

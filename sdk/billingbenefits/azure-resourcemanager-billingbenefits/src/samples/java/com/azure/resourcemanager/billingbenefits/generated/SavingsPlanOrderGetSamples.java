@@ -10,7 +10,7 @@ package com.azure.resourcemanager.billingbenefits.generated;
 public final class SavingsPlanOrderGetSamples {
     /*
      * x-ms-original-file:
-     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/stable/2022-11-01/examples/
+     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/preview/2024-11-01-preview/examples/
      * SavingsPlanOrderGet.json
      */
     /**
@@ -25,7 +25,7 @@ public final class SavingsPlanOrderGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/stable/2022-11-01/examples/
+     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/preview/2024-11-01-preview/examples/
      * SavingsPlanOrderExpandedGet.json
      */
     /**

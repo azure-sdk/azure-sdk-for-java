@@ -9,8 +9,8 @@ import com.azure.resourcemanager.billingbenefits.models.AppliedScopeProperties;
 import com.azure.resourcemanager.billingbenefits.models.AppliedScopeType;
 import com.azure.resourcemanager.billingbenefits.models.Commitment;
 import com.azure.resourcemanager.billingbenefits.models.CommitmentGrain;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanPurchaseValidateRequest;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import java.util.Arrays;
 
@@ -20,7 +20,7 @@ import java.util.Arrays;
 public final class ResourceProviderValidatePurchaseSamples {
     /*
      * x-ms-original-file:
-     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/stable/2022-11-01/examples/
+     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/preview/2024-11-01-preview/examples/
      * SavingsPlanValidatePurchase.json
      */
     /**
@@ -32,7 +32,7 @@ public final class ResourceProviderValidatePurchaseSamples {
         savingsPlanValidatePurchase(com.azure.resourcemanager.billingbenefits.BillingBenefitsManager manager) {
         manager.resourceProviders()
             .validatePurchaseWithResponse(new SavingsPlanPurchaseValidateRequest().withBenefits(Arrays.asList(
-                new SavingsPlanOrderAliasModelInner().withSku(new Sku().withName("Compute_Savings_Plan"))
+                new SavingsPlanOrderAliasModelInner().withSku(new ResourceSku().withName("Compute_Savings_Plan"))
                     .withDisplayName("ComputeSavingsPlan_2021-07-01")
                     .withBillingScopeId("/subscriptions/10000000-0000-0000-0000-000000000000")
                     .withTerm(Term.P1Y)
@@ -42,7 +42,7 @@ public final class ResourceProviderValidatePurchaseSamples {
                     .withCommitment(new Commitment().withCurrencyCode("fakeTokenPlaceholder")
                         .withAmount(15.23D)
                         .withGrain(CommitmentGrain.HOURLY)),
-                new SavingsPlanOrderAliasModelInner().withSku(new Sku().withName("Compute_Savings_Plan"))
+                new SavingsPlanOrderAliasModelInner().withSku(new ResourceSku().withName("Compute_Savings_Plan"))
                     .withDisplayName("ComputeSavingsPlan_2021-07-01")
                     .withBillingScopeId("/subscriptions/10000000-0000-0000-0000-000000000000")
                     .withTerm(Term.P1Y)

@@ -11,7 +11,7 @@ import com.azure.resourcemanager.billingbenefits.models.InstanceFlexibility;
 import com.azure.resourcemanager.billingbenefits.models.ReservationOrderAliasRequest;
 import com.azure.resourcemanager.billingbenefits.models.ReservationOrderAliasRequestPropertiesReservedResourceProperties;
 import com.azure.resourcemanager.billingbenefits.models.ReservedResourceType;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 
 /**
@@ -20,7 +20,7 @@ import com.azure.resourcemanager.billingbenefits.models.Term;
 public final class ReservationOrderAliasCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/stable/2022-11-01/examples/
+     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/preview/2024-11-01-preview/examples/
      * ReservationOrderAliasCreate.json
      */
     /**
@@ -32,7 +32,7 @@ public final class ReservationOrderAliasCreateSamples {
         reservationOrderAliasCreate(com.azure.resourcemanager.billingbenefits.BillingBenefitsManager manager) {
         manager.reservationOrderAlias()
             .create("reservationOrderAlias123", new ReservationOrderAliasRequest()
-                .withSku(new Sku().withName("Standard_M64s_v2"))
+                .withSku(new ResourceSku().withName("Standard_M64s_v2"))
                 .withLocation("eastus")
                 .withDisplayName("ReservationOrder_2022-06-02")
                 .withBillingScopeId("/subscriptions/10000000-0000-0000-0000-000000000000")

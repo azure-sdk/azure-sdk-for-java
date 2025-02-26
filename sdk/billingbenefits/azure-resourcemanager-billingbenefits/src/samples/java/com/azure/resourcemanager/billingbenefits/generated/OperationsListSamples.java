@@ -10,8 +10,8 @@ package com.azure.resourcemanager.billingbenefits.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/stable/2022-11-01/examples/OperationsGet
-     * .json
+     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/preview/2024-11-01-preview/examples/
+     * OperationsGet.json
      */
     /**
      * Sample code: OperationsGet.

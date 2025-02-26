@@ -17,6 +17,16 @@ public final class CommitmentGrain extends ExpandableStringEnum<CommitmentGrain>
     public static final CommitmentGrain HOURLY = fromString("Hourly");
 
     /**
+     * Static value FullTerm for CommitmentGrain.
+     */
+    public static final CommitmentGrain FULL_TERM = fromString("FullTerm");
+
+    /**
+     * Static value Unknown for CommitmentGrain.
+     */
+    public static final CommitmentGrain UNKNOWN = fromString("Unknown");
+
+    /**
      * Creates a new instance of CommitmentGrain value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
