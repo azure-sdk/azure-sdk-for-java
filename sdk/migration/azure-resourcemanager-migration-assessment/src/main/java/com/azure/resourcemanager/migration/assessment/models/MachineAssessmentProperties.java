@@ -65,6 +65,12 @@ public final class MachineAssessmentProperties extends AzureResourceProperties {
     private AzureHybridUseBenefit azureHybridUseBenefit;
 
     /*
+     * Gets or sets the user configurable setting to display the linux azure hybrid use
+     * benefit.
+     */
+    private AzureHybridUseBenefit linuxAzureHybridUseBenefit;
+
+    /*
      * Gets or sets the azure storage type. Premium, Standard etc.
      */
     private List<AzureDiskType> azureDiskTypes;
@@ -370,6 +376,31 @@ public final class MachineAssessmentProperties extends AzureResourceProperties {
      */
     public MachineAssessmentProperties withAzureHybridUseBenefit(AzureHybridUseBenefit azureHybridUseBenefit) {
         this.azureHybridUseBenefit = azureHybridUseBenefit;
+        return this;
+    }
+
+    /**
+     * Get the linuxAzureHybridUseBenefit property: Gets or sets the user configurable setting to display the linux
+     * azure hybrid use
+     * benefit.
+     * 
+     * @return the linuxAzureHybridUseBenefit value.
+     */
+    public AzureHybridUseBenefit linuxAzureHybridUseBenefit() {
+        return this.linuxAzureHybridUseBenefit;
+    }
+
+    /**
+     * Set the linuxAzureHybridUseBenefit property: Gets or sets the user configurable setting to display the linux
+     * azure hybrid use
+     * benefit.
+     * 
+     * @param linuxAzureHybridUseBenefit the linuxAzureHybridUseBenefit value to set.
+     * @return the MachineAssessmentProperties object itself.
+     */
+    public MachineAssessmentProperties
+        withLinuxAzureHybridUseBenefit(AzureHybridUseBenefit linuxAzureHybridUseBenefit) {
+        this.linuxAzureHybridUseBenefit = linuxAzureHybridUseBenefit;
         return this;
     }
 
@@ -860,6 +891,8 @@ public final class MachineAssessmentProperties extends AzureResourceProperties {
             this.reservedInstance == null ? null : this.reservedInstance.toString());
         jsonWriter.writeStringField("azureHybridUseBenefit",
             this.azureHybridUseBenefit == null ? null : this.azureHybridUseBenefit.toString());
+        jsonWriter.writeStringField("linuxAzureHybridUseBenefit",
+            this.linuxAzureHybridUseBenefit == null ? null : this.linuxAzureHybridUseBenefit.toString());
         jsonWriter.writeArrayField("azureDiskTypes", this.azureDiskTypes,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("azureVmFamilies", this.azureVmFamilies,
@@ -924,6 +957,9 @@ public final class MachineAssessmentProperties extends AzureResourceProperties {
                         = AzureReservedInstance.fromString(reader.getString());
                 } else if ("azureHybridUseBenefit".equals(fieldName)) {
                     deserializedMachineAssessmentProperties.azureHybridUseBenefit
+                        = AzureHybridUseBenefit.fromString(reader.getString());
+                } else if ("linuxAzureHybridUseBenefit".equals(fieldName)) {
+                    deserializedMachineAssessmentProperties.linuxAzureHybridUseBenefit
                         = AzureHybridUseBenefit.fromString(reader.getString());
                 } else if ("azureDiskTypes".equals(fieldName)) {
                     List<AzureDiskType> azureDiskTypes

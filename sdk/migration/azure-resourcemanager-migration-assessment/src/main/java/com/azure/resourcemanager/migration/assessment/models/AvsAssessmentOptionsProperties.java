@@ -23,6 +23,11 @@ public final class AvsAssessmentOptionsProperties implements JsonSerializable<Av
     private List<AvsSkuOptions> avsNodes;
 
     /*
+     * AVS External Storage Types Supported.
+     */
+    private List<AvsExternalStorageOptions> avsExternalStorageTypes;
+
+    /*
      * FTT and Raid level values.
      */
     private List<FttAndRaidLevel> failuresToTolerateAndRaidLevelValues;
@@ -70,6 +75,27 @@ public final class AvsAssessmentOptionsProperties implements JsonSerializable<Av
      */
     public AvsAssessmentOptionsProperties withAvsNodes(List<AvsSkuOptions> avsNodes) {
         this.avsNodes = avsNodes;
+        return this;
+    }
+
+    /**
+     * Get the avsExternalStorageTypes property: AVS External Storage Types Supported.
+     * 
+     * @return the avsExternalStorageTypes value.
+     */
+    public List<AvsExternalStorageOptions> avsExternalStorageTypes() {
+        return this.avsExternalStorageTypes;
+    }
+
+    /**
+     * Set the avsExternalStorageTypes property: AVS External Storage Types Supported.
+     * 
+     * @param avsExternalStorageTypes the avsExternalStorageTypes value to set.
+     * @return the AvsAssessmentOptionsProperties object itself.
+     */
+    public AvsAssessmentOptionsProperties
+        withAvsExternalStorageTypes(List<AvsExternalStorageOptions> avsExternalStorageTypes) {
+        this.avsExternalStorageTypes = avsExternalStorageTypes;
         return this;
     }
 
@@ -187,6 +213,9 @@ public final class AvsAssessmentOptionsProperties implements JsonSerializable<Av
         if (avsNodes() != null) {
             avsNodes().forEach(e -> e.validate());
         }
+        if (avsExternalStorageTypes() != null) {
+            avsExternalStorageTypes().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -196,6 +225,8 @@ public final class AvsAssessmentOptionsProperties implements JsonSerializable<Av
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("avsNodes", this.avsNodes, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("avsExternalStorageTypes", this.avsExternalStorageTypes,
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeArrayField("failuresToTolerateAndRaidLevelValues", this.failuresToTolerateAndRaidLevelValues,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("reservedInstanceAvsNodes", this.reservedInstanceAvsNodes,
@@ -228,6 +259,10 @@ public final class AvsAssessmentOptionsProperties implements JsonSerializable<Av
                 if ("avsNodes".equals(fieldName)) {
                     List<AvsSkuOptions> avsNodes = reader.readArray(reader1 -> AvsSkuOptions.fromJson(reader1));
                     deserializedAvsAssessmentOptionsProperties.avsNodes = avsNodes;
+                } else if ("avsExternalStorageTypes".equals(fieldName)) {
+                    List<AvsExternalStorageOptions> avsExternalStorageTypes
+                        = reader.readArray(reader1 -> AvsExternalStorageOptions.fromJson(reader1));
+                    deserializedAvsAssessmentOptionsProperties.avsExternalStorageTypes = avsExternalStorageTypes;
                 } else if ("failuresToTolerateAndRaidLevelValues".equals(fieldName)) {
                     List<FttAndRaidLevel> failuresToTolerateAndRaidLevelValues
                         = reader.readArray(reader1 -> FttAndRaidLevel.fromString(reader1.getString()));

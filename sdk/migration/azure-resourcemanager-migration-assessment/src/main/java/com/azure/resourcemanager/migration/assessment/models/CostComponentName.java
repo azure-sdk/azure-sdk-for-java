@@ -33,6 +33,33 @@ public final class CostComponentName extends ExpandableStringEnum<CostComponentN
     public static final CostComponentName MONTHLY_PREMIUM_V2STORAGE_COST = fromString("MonthlyPremiumV2StorageCost");
 
     /**
+     * Static value MonthlyLinuxAzureHybridCostSavings for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_LINUX_AZURE_HYBRID_COST_SAVINGS
+        = fromString("MonthlyLinuxAzureHybridCostSavings");
+
+    /**
+     * Static value MonthlyAvsNodeCost for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_AVS_NODE_COST = fromString("MonthlyAvsNodeCost");
+
+    /**
+     * Static value MonthlyAvsExternalStorageCost for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_AVS_EXTERNAL_STORAGE_COST
+        = fromString("MonthlyAvsExternalStorageCost");
+
+    /**
+     * Static value MonthlyAvsNetworkCost for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_AVS_NETWORK_COST = fromString("MonthlyAvsNetworkCost");
+
+    /**
+     * Static value MonthlyVcfByolCostDifference for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_VCF_BYOL_COST_DIFFERENCE = fromString("MonthlyVcfByolCostDifference");
+
+    /**
      * Creates a new instance of CostComponentName value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

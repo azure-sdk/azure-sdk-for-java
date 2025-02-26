@@ -28,6 +28,18 @@ public final class AzureAvsSuitabilityExplanation extends ExpandableStringEnum<A
         = fromString("UnsupportedLocationForSelectedNode");
 
     /**
+     * Static value InternalErrorInRecommendation for AzureAvsSuitabilityExplanation.
+     */
+    public static final AzureAvsSuitabilityExplanation INTERNAL_ERROR_IN_RECOMMENDATION
+        = fromString("InternalErrorInRecommendation");
+
+    /**
+     * Static value UnsupportedLocationForSelectedExternalStorageTypes for AzureAvsSuitabilityExplanation.
+     */
+    public static final AzureAvsSuitabilityExplanation UNSUPPORTED_LOCATION_FOR_SELECTED_EXTERNAL_STORAGE_TYPES
+        = fromString("UnsupportedLocationForSelectedExternalStorageTypes");
+
+    /**
      * Creates a new instance of AzureAvsSuitabilityExplanation value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

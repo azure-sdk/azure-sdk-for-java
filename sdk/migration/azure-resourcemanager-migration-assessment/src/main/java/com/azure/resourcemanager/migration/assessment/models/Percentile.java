@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for Percentile.
+ * Percentile for Performance Data.
  */
 public final class Percentile extends ExpandableStringEnum<Percentile> {
     /**

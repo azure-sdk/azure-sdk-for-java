@@ -12,6 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,6 +33,11 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
     private FttAndRaidLevel failuresToTolerateAndRaidLevel;
 
     /*
+     * List of Failures to tolerate and RAID levels in a common property.
+     */
+    private List<FttAndRaidLevel> failuresToTolerateAndRaidLevelList;
+
+    /*
      * VCPU over subscription.
      */
     private Float vcpuOversubscription;
@@ -40,6 +46,31 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
      * AVS node type.
      */
     private AzureAvsNodeType nodeType;
+
+    /*
+     * AVS node types.
+     */
+    private List<AzureAvsNodeType> nodeTypes;
+
+    /*
+     * List of AVS external storage types.
+     */
+    private List<ExternalStorageType> externalStorageTypes;
+
+    /*
+     * AVS Assessment Scenario.
+     */
+    private AvsAssessmentScenario avsAssessmentScenario;
+
+    /*
+     * Is VCF license applied
+     */
+    private Boolean isVcfByolEnabled;
+
+    /*
+     * collection of cost components.
+     */
+    private List<CostComponent> costComponents;
 
     /*
      * Reserved instance.
@@ -95,6 +126,26 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
      * Predicted total Storage used in GB.
      */
     private Float totalStorageInGB;
+
+    /*
+     * Estimated AVS SKU for Assessment.
+     */
+    private List<AvsEstimatedNode> avsEstimatedNodes;
+
+    /*
+     * Estimated External Storage for Assessment.
+     */
+    private List<AvsEstimatedExternalStorage> avsEstimatedExternalStorages;
+
+    /*
+     * Estimated External Storage for Assessment.
+     */
+    private List<AvsEstimatedNetwork> avsEstimatedNetworks;
+
+    /*
+     * Percentage of CPU capacity reserved for processing additional workloads.
+     */
+    private Float cpuHeadroom;
 
     /*
      * Number of machines part of the assessment.
@@ -263,6 +314,29 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
     }
 
     /**
+     * Get the failuresToTolerateAndRaidLevelList property: List of Failures to tolerate and RAID levels in a common
+     * property.
+     * 
+     * @return the failuresToTolerateAndRaidLevelList value.
+     */
+    public List<FttAndRaidLevel> failuresToTolerateAndRaidLevelList() {
+        return this.failuresToTolerateAndRaidLevelList;
+    }
+
+    /**
+     * Set the failuresToTolerateAndRaidLevelList property: List of Failures to tolerate and RAID levels in a common
+     * property.
+     * 
+     * @param failuresToTolerateAndRaidLevelList the failuresToTolerateAndRaidLevelList value to set.
+     * @return the AvsAssessmentProperties object itself.
+     */
+    public AvsAssessmentProperties
+        withFailuresToTolerateAndRaidLevelList(List<FttAndRaidLevel> failuresToTolerateAndRaidLevelList) {
+        this.failuresToTolerateAndRaidLevelList = failuresToTolerateAndRaidLevelList;
+        return this;
+    }
+
+    /**
      * Get the vcpuOversubscription property: VCPU over subscription.
      * 
      * @return the vcpuOversubscription value.
@@ -300,6 +374,95 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
     public AvsAssessmentProperties withNodeType(AzureAvsNodeType nodeType) {
         this.nodeType = nodeType;
         return this;
+    }
+
+    /**
+     * Get the nodeTypes property: AVS node types.
+     * 
+     * @return the nodeTypes value.
+     */
+    public List<AzureAvsNodeType> nodeTypes() {
+        return this.nodeTypes;
+    }
+
+    /**
+     * Set the nodeTypes property: AVS node types.
+     * 
+     * @param nodeTypes the nodeTypes value to set.
+     * @return the AvsAssessmentProperties object itself.
+     */
+    public AvsAssessmentProperties withNodeTypes(List<AzureAvsNodeType> nodeTypes) {
+        this.nodeTypes = nodeTypes;
+        return this;
+    }
+
+    /**
+     * Get the externalStorageTypes property: List of AVS external storage types.
+     * 
+     * @return the externalStorageTypes value.
+     */
+    public List<ExternalStorageType> externalStorageTypes() {
+        return this.externalStorageTypes;
+    }
+
+    /**
+     * Set the externalStorageTypes property: List of AVS external storage types.
+     * 
+     * @param externalStorageTypes the externalStorageTypes value to set.
+     * @return the AvsAssessmentProperties object itself.
+     */
+    public AvsAssessmentProperties withExternalStorageTypes(List<ExternalStorageType> externalStorageTypes) {
+        this.externalStorageTypes = externalStorageTypes;
+        return this;
+    }
+
+    /**
+     * Get the avsAssessmentScenario property: AVS Assessment Scenario.
+     * 
+     * @return the avsAssessmentScenario value.
+     */
+    public AvsAssessmentScenario avsAssessmentScenario() {
+        return this.avsAssessmentScenario;
+    }
+
+    /**
+     * Set the avsAssessmentScenario property: AVS Assessment Scenario.
+     * 
+     * @param avsAssessmentScenario the avsAssessmentScenario value to set.
+     * @return the AvsAssessmentProperties object itself.
+     */
+    public AvsAssessmentProperties withAvsAssessmentScenario(AvsAssessmentScenario avsAssessmentScenario) {
+        this.avsAssessmentScenario = avsAssessmentScenario;
+        return this;
+    }
+
+    /**
+     * Get the isVcfByolEnabled property: Is VCF license applied.
+     * 
+     * @return the isVcfByolEnabled value.
+     */
+    public Boolean isVcfByolEnabled() {
+        return this.isVcfByolEnabled;
+    }
+
+    /**
+     * Set the isVcfByolEnabled property: Is VCF license applied.
+     * 
+     * @param isVcfByolEnabled the isVcfByolEnabled value to set.
+     * @return the AvsAssessmentProperties object itself.
+     */
+    public AvsAssessmentProperties withIsVcfByolEnabled(Boolean isVcfByolEnabled) {
+        this.isVcfByolEnabled = isVcfByolEnabled;
+        return this;
+    }
+
+    /**
+     * Get the costComponents property: collection of cost components.
+     * 
+     * @return the costComponents value.
+     */
+    public List<CostComponent> costComponents() {
+        return this.costComponents;
     }
 
     /**
@@ -410,6 +573,53 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
      */
     public Float totalStorageInGB() {
         return this.totalStorageInGB;
+    }
+
+    /**
+     * Get the avsEstimatedNodes property: Estimated AVS SKU for Assessment.
+     * 
+     * @return the avsEstimatedNodes value.
+     */
+    public List<AvsEstimatedNode> avsEstimatedNodes() {
+        return this.avsEstimatedNodes;
+    }
+
+    /**
+     * Get the avsEstimatedExternalStorages property: Estimated External Storage for Assessment.
+     * 
+     * @return the avsEstimatedExternalStorages value.
+     */
+    public List<AvsEstimatedExternalStorage> avsEstimatedExternalStorages() {
+        return this.avsEstimatedExternalStorages;
+    }
+
+    /**
+     * Get the avsEstimatedNetworks property: Estimated External Storage for Assessment.
+     * 
+     * @return the avsEstimatedNetworks value.
+     */
+    public List<AvsEstimatedNetwork> avsEstimatedNetworks() {
+        return this.avsEstimatedNetworks;
+    }
+
+    /**
+     * Get the cpuHeadroom property: Percentage of CPU capacity reserved for processing additional workloads.
+     * 
+     * @return the cpuHeadroom value.
+     */
+    public Float cpuHeadroom() {
+        return this.cpuHeadroom;
+    }
+
+    /**
+     * Set the cpuHeadroom property: Percentage of CPU capacity reserved for processing additional workloads.
+     * 
+     * @param cpuHeadroom the cpuHeadroom value to set.
+     * @return the AvsAssessmentProperties object itself.
+     */
+    public AvsAssessmentProperties withCpuHeadroom(Float cpuHeadroom) {
+        this.cpuHeadroom = cpuHeadroom;
+        return this;
     }
 
     /**
@@ -803,6 +1013,18 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
      */
     @Override
     public void validate() {
+        if (costComponents() != null) {
+            costComponents().forEach(e -> e.validate());
+        }
+        if (avsEstimatedNodes() != null) {
+            avsEstimatedNodes().forEach(e -> e.validate());
+        }
+        if (avsEstimatedExternalStorages() != null) {
+            avsEstimatedExternalStorages().forEach(e -> e.validate());
+        }
+        if (avsEstimatedNetworks() != null) {
+            avsEstimatedNetworks().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -815,10 +1037,20 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
             provisioningState() == null ? null : provisioningState().toString());
         jsonWriter.writeStringField("failuresToTolerateAndRaidLevel",
             this.failuresToTolerateAndRaidLevel == null ? null : this.failuresToTolerateAndRaidLevel.toString());
+        jsonWriter.writeArrayField("failuresToTolerateAndRaidLevelList", this.failuresToTolerateAndRaidLevelList,
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeNumberField("vcpuOversubscription", this.vcpuOversubscription);
         jsonWriter.writeStringField("nodeType", this.nodeType == null ? null : this.nodeType.toString());
+        jsonWriter.writeArrayField("nodeTypes", this.nodeTypes,
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeArrayField("externalStorageTypes", this.externalStorageTypes,
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeStringField("avsAssessmentScenario",
+            this.avsAssessmentScenario == null ? null : this.avsAssessmentScenario.toString());
+        jsonWriter.writeBooleanField("isVcfByolEnabled", this.isVcfByolEnabled);
         jsonWriter.writeStringField("reservedInstance",
             this.reservedInstance == null ? null : this.reservedInstance.toString());
+        jsonWriter.writeNumberField("cpuHeadroom", this.cpuHeadroom);
         jsonWriter.writeNumberField("memOvercommit", this.memOvercommit);
         jsonWriter.writeNumberField("dedupeCompression", this.dedupeCompression);
         jsonWriter.writeBooleanField("isStretchClusterEnabled", this.isStretchClusterEnabled);
@@ -865,10 +1097,31 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
                 } else if ("failuresToTolerateAndRaidLevel".equals(fieldName)) {
                     deserializedAvsAssessmentProperties.failuresToTolerateAndRaidLevel
                         = FttAndRaidLevel.fromString(reader.getString());
+                } else if ("failuresToTolerateAndRaidLevelList".equals(fieldName)) {
+                    List<FttAndRaidLevel> failuresToTolerateAndRaidLevelList
+                        = reader.readArray(reader1 -> FttAndRaidLevel.fromString(reader1.getString()));
+                    deserializedAvsAssessmentProperties.failuresToTolerateAndRaidLevelList
+                        = failuresToTolerateAndRaidLevelList;
                 } else if ("vcpuOversubscription".equals(fieldName)) {
                     deserializedAvsAssessmentProperties.vcpuOversubscription = reader.getNullable(JsonReader::getFloat);
                 } else if ("nodeType".equals(fieldName)) {
                     deserializedAvsAssessmentProperties.nodeType = AzureAvsNodeType.fromString(reader.getString());
+                } else if ("nodeTypes".equals(fieldName)) {
+                    List<AzureAvsNodeType> nodeTypes
+                        = reader.readArray(reader1 -> AzureAvsNodeType.fromString(reader1.getString()));
+                    deserializedAvsAssessmentProperties.nodeTypes = nodeTypes;
+                } else if ("externalStorageTypes".equals(fieldName)) {
+                    List<ExternalStorageType> externalStorageTypes
+                        = reader.readArray(reader1 -> ExternalStorageType.fromString(reader1.getString()));
+                    deserializedAvsAssessmentProperties.externalStorageTypes = externalStorageTypes;
+                } else if ("avsAssessmentScenario".equals(fieldName)) {
+                    deserializedAvsAssessmentProperties.avsAssessmentScenario
+                        = AvsAssessmentScenario.fromString(reader.getString());
+                } else if ("isVcfByolEnabled".equals(fieldName)) {
+                    deserializedAvsAssessmentProperties.isVcfByolEnabled = reader.getNullable(JsonReader::getBoolean);
+                } else if ("costComponents".equals(fieldName)) {
+                    List<CostComponent> costComponents = reader.readArray(reader1 -> CostComponent.fromJson(reader1));
+                    deserializedAvsAssessmentProperties.costComponents = costComponents;
                 } else if ("reservedInstance".equals(fieldName)) {
                     deserializedAvsAssessmentProperties.reservedInstance
                         = AzureReservedInstance.fromString(reader.getString());
@@ -893,6 +1146,20 @@ public final class AvsAssessmentProperties extends AzureResourceProperties {
                     deserializedAvsAssessmentProperties.totalRamInGB = reader.getNullable(JsonReader::getFloat);
                 } else if ("totalStorageInGB".equals(fieldName)) {
                     deserializedAvsAssessmentProperties.totalStorageInGB = reader.getNullable(JsonReader::getFloat);
+                } else if ("avsEstimatedNodes".equals(fieldName)) {
+                    List<AvsEstimatedNode> avsEstimatedNodes
+                        = reader.readArray(reader1 -> AvsEstimatedNode.fromJson(reader1));
+                    deserializedAvsAssessmentProperties.avsEstimatedNodes = avsEstimatedNodes;
+                } else if ("avsEstimatedExternalStorages".equals(fieldName)) {
+                    List<AvsEstimatedExternalStorage> avsEstimatedExternalStorages
+                        = reader.readArray(reader1 -> AvsEstimatedExternalStorage.fromJson(reader1));
+                    deserializedAvsAssessmentProperties.avsEstimatedExternalStorages = avsEstimatedExternalStorages;
+                } else if ("avsEstimatedNetworks".equals(fieldName)) {
+                    List<AvsEstimatedNetwork> avsEstimatedNetworks
+                        = reader.readArray(reader1 -> AvsEstimatedNetwork.fromJson(reader1));
+                    deserializedAvsAssessmentProperties.avsEstimatedNetworks = avsEstimatedNetworks;
+                } else if ("cpuHeadroom".equals(fieldName)) {
+                    deserializedAvsAssessmentProperties.cpuHeadroom = reader.getNullable(JsonReader::getFloat);
                 } else if ("numberOfMachines".equals(fieldName)) {
                     deserializedAvsAssessmentProperties.numberOfMachines = reader.getNullable(JsonReader::getInt);
                 } else if ("suitabilitySummary".equals(fieldName)) {

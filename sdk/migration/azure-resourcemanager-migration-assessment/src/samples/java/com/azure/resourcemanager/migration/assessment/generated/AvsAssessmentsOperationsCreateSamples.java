@@ -6,16 +6,19 @@ package com.azure.resourcemanager.migration.assessment.generated;
 
 import com.azure.resourcemanager.migration.assessment.models.AssessmentSizingCriterion;
 import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentProperties;
+import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentScenario;
 import com.azure.resourcemanager.migration.assessment.models.AzureAvsNodeType;
 import com.azure.resourcemanager.migration.assessment.models.AzureCurrency;
 import com.azure.resourcemanager.migration.assessment.models.AzureLocation;
 import com.azure.resourcemanager.migration.assessment.models.AzureOfferCode;
 import com.azure.resourcemanager.migration.assessment.models.AzureReservedInstance;
+import com.azure.resourcemanager.migration.assessment.models.ExternalStorageType;
 import com.azure.resourcemanager.migration.assessment.models.FttAndRaidLevel;
 import com.azure.resourcemanager.migration.assessment.models.Percentile;
 import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import com.azure.resourcemanager.migration.assessment.models.TimeRange;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 /**
  * Samples for AvsAssessmentsOperations Create.
@@ -23,7 +26,7 @@ import java.time.OffsetDateTime;
 public final class AvsAssessmentsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-01-01-preview/examples/
      * AvsAssessmentsOperations_Create_MaximumSet_Gen.json
      */
     /**
@@ -37,10 +40,19 @@ public final class AvsAssessmentsOperationsCreateSamples {
             .define("asm2")
             .withExistingGroup("ayagrawrg", "app18700project", "kuchatur-test")
             .withProperties(new AvsAssessmentProperties().withProvisioningState(ProvisioningState.SUCCEEDED)
-                .withFailuresToTolerateAndRaidLevel(FttAndRaidLevel.FTT1RAID1)
+                .withFailuresToTolerateAndRaidLevel(FttAndRaidLevel.UNKNOWN)
+                .withFailuresToTolerateAndRaidLevelList(
+                    Arrays.asList(FttAndRaidLevel.FTT1RAID1, FttAndRaidLevel.FTT1RAID5, FttAndRaidLevel.FTT3RAID1))
                 .withVcpuOversubscription(4.0F)
-                .withNodeType(AzureAvsNodeType.AV36)
+                .withNodeType(AzureAvsNodeType.UNKNOWN)
+                .withNodeTypes(Arrays.asList(AzureAvsNodeType.AV36, AzureAvsNodeType.AV52, AzureAvsNodeType.AV36P,
+                    AzureAvsNodeType.AV64))
+                .withExternalStorageTypes(Arrays.asList(ExternalStorageType.ANF_STANDARD,
+                    ExternalStorageType.ANF_PREMIUM, ExternalStorageType.ANF_ULTRA))
+                .withAvsAssessmentScenario(AvsAssessmentScenario.NEW_AVS_SDDC)
+                .withIsVcfByolEnabled(true)
                 .withReservedInstance(AzureReservedInstance.RI3YEAR)
+                .withCpuHeadroom(12.0F)
                 .withMemOvercommit(1.0F)
                 .withDedupeCompression(1.5F)
                 .withIsStretchClusterEnabled(true)

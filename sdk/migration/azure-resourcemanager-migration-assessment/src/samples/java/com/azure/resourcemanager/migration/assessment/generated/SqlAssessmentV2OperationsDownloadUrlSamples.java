@@ -14,7 +14,7 @@ import java.io.IOException;
 public final class SqlAssessmentV2OperationsDownloadUrlSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-01-01-preview/examples/
      * SqlAssessmentV2Operations_DownloadUrl_MaximumSet_Gen.json
      */
     /**

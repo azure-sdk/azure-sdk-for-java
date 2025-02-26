@@ -27,7 +27,7 @@ import java.util.Arrays;
 public final class AssessmentsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-01-01-preview/examples/
      * AssessmentsOperations_Create_MaximumSet_Gen.json
      */
     /**
@@ -46,7 +46,9 @@ public final class AssessmentsOperationsCreateSamples {
                 .withAzureStorageRedundancy(AzureStorageRedundancy.UNKNOWN)
                 .withReservedInstance(AzureReservedInstance.NONE)
                 .withAzureHybridUseBenefit(AzureHybridUseBenefit.UNKNOWN)
-                .withAzureDiskTypes(Arrays.asList(AzureDiskType.PREMIUM, AzureDiskType.STANDARD_SSD))
+                .withLinuxAzureHybridUseBenefit(AzureHybridUseBenefit.UNKNOWN)
+                .withAzureDiskTypes(
+                    Arrays.asList(AzureDiskType.PREMIUM, AzureDiskType.PREMIUM_V2, AzureDiskType.STANDARD_SSD))
                 .withAzureVmFamilies(
                     Arrays.asList(AzureVmFamily.D_SERIES, AzureVmFamily.LSV2_SERIES, AzureVmFamily.M_SERIES,
                         AzureVmFamily.MDSV2_SERIES, AzureVmFamily.MSV2_SERIES, AzureVmFamily.MV2_SERIES))

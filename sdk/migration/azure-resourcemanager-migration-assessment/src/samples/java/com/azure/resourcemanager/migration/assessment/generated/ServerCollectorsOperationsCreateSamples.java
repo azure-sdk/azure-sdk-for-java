@@ -15,7 +15,7 @@ import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 public final class ServerCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-01-01-preview/examples/
      * ServerCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**

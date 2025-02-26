@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The AssessedDisk model.
+ * Assessed disk properties class.
  */
 @Fluent
 public final class AssessedDisk implements JsonSerializable<AssessedDisk> {

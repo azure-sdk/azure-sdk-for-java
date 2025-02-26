@@ -16,7 +16,7 @@ import java.util.Map;
 public final class AssessmentProjectsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-01-01-preview/examples/
      * AssessmentProjectsOperations_Create_MaximumSet_Gen.json
      */
     /**

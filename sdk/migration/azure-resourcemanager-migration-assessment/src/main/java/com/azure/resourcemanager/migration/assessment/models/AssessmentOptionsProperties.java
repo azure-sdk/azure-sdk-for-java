@@ -63,6 +63,11 @@ public final class AssessmentOptionsProperties implements JsonSerializable<Asses
      */
     private List<String> savingsPlanSupportedLocations;
 
+    /*
+     * List of Azure locations that support Premium SSD V2 disks for assessments.
+     */
+    private List<AzureLocation> premiumV2DiskSupportedLocations;
+
     /**
      * Creates an instance of AssessmentOptionsProperties class.
      */
@@ -153,6 +158,16 @@ public final class AssessmentOptionsProperties implements JsonSerializable<Asses
     }
 
     /**
+     * Get the premiumV2DiskSupportedLocations property: List of Azure locations that support Premium SSD V2 disks for
+     * assessments.
+     * 
+     * @return the premiumV2DiskSupportedLocations value.
+     */
+    public List<AzureLocation> premiumV2DiskSupportedLocations() {
+        return this.premiumV2DiskSupportedLocations;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -222,6 +237,11 @@ public final class AssessmentOptionsProperties implements JsonSerializable<Asses
                     List<String> savingsPlanSupportedLocations = reader.readArray(reader1 -> reader1.getString());
                     deserializedAssessmentOptionsProperties.savingsPlanSupportedLocations
                         = savingsPlanSupportedLocations;
+                } else if ("premiumV2DiskSupportedLocations".equals(fieldName)) {
+                    List<AzureLocation> premiumV2DiskSupportedLocations
+                        = reader.readArray(reader1 -> AzureLocation.fromString(reader1.getString()));
+                    deserializedAssessmentOptionsProperties.premiumV2DiskSupportedLocations
+                        = premiumV2DiskSupportedLocations;
                 } else {
                     reader.skipChildren();
                 }

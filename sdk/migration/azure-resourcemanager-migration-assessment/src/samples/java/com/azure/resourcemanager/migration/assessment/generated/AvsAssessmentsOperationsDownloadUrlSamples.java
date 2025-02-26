@@ -14,7 +14,7 @@ import java.io.IOException;
 public final class AvsAssessmentsOperationsDownloadUrlSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-01-01-preview/examples/
      * AvsAssessmentsOperations_DownloadUrl_MaximumSet_Gen.json
      */
     /**

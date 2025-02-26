@@ -51,6 +51,21 @@ public final class AvsAssessedDisk implements JsonSerializable<AvsAssessedDisk> 
      */
     private Float numberOfWriteOperationsPerSecond;
 
+    /*
+     * Associated storage Type recommended for Disk.
+     */
+    private ExternalStorageType assessedExternalStorageType;
+
+    /*
+     * Estimated Disk Size in GB.
+     */
+    private Float estimatedDiskSizeInGB;
+
+    /*
+     * Gets the suitability detail.
+     */
+    private AzureDiskSuitabilityDetail suitabilityDetail;
+
     /**
      * Creates an instance of AvsAssessedDisk class.
      */
@@ -121,6 +136,33 @@ public final class AvsAssessedDisk implements JsonSerializable<AvsAssessedDisk> 
     }
 
     /**
+     * Get the assessedExternalStorageType property: Associated storage Type recommended for Disk.
+     * 
+     * @return the assessedExternalStorageType value.
+     */
+    public ExternalStorageType assessedExternalStorageType() {
+        return this.assessedExternalStorageType;
+    }
+
+    /**
+     * Get the estimatedDiskSizeInGB property: Estimated Disk Size in GB.
+     * 
+     * @return the estimatedDiskSizeInGB value.
+     */
+    public Float estimatedDiskSizeInGB() {
+        return this.estimatedDiskSizeInGB;
+    }
+
+    /**
+     * Get the suitabilityDetail property: Gets the suitability detail.
+     * 
+     * @return the suitabilityDetail value.
+     */
+    public AzureDiskSuitabilityDetail suitabilityDetail() {
+        return this.suitabilityDetail;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -168,6 +210,14 @@ public final class AvsAssessedDisk implements JsonSerializable<AvsAssessedDisk> 
                 } else if ("numberOfWriteOperationsPerSecond".equals(fieldName)) {
                     deserializedAvsAssessedDisk.numberOfWriteOperationsPerSecond
                         = reader.getNullable(JsonReader::getFloat);
+                } else if ("assessedExternalStorageType".equals(fieldName)) {
+                    deserializedAvsAssessedDisk.assessedExternalStorageType
+                        = ExternalStorageType.fromString(reader.getString());
+                } else if ("estimatedDiskSizeInGB".equals(fieldName)) {
+                    deserializedAvsAssessedDisk.estimatedDiskSizeInGB = reader.getNullable(JsonReader::getFloat);
+                } else if ("suitabilityDetail".equals(fieldName)) {
+                    deserializedAvsAssessedDisk.suitabilityDetail
+                        = AzureDiskSuitabilityDetail.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
