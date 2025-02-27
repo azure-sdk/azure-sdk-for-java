@@ -17,7 +17,7 @@ public final class InstancePatchModelTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         InstancePatchModel model = BinaryData.fromString(
-            "{\"tags\":{\"mgxsab\":\"wnzlljfmppeeb\",\"jczdzevndh\":\"yqduujit\",\"feusnhut\":\"rwpdappdsbdkvwrw\"},\"identity\":{\"principalId\":\"tmrldhugjzzdatq\",\"tenantId\":\"oc\",\"type\":\"SystemAssigned,UserAssigned\",\"userAssignedIdentities\":{\"urokft\":{\"principalId\":\"lgphu\",\"clientId\":\"cndvkaozwyiftyhx\"},\"lwckbasyypnddhs\":{\"principalId\":\"olniwpwcukjf\",\"clientId\":\"iawxklry\"},\"wyqkgfgibm\":{\"principalId\":\"bacphejko\",\"clientId\":\"nqgoulzndli\"},\"ouf\":{\"principalId\":\"gakeqsr\",\"clientId\":\"bzqqedqytbciq\"}}}}")
+            "{\"tags\":{\"mgxsab\":\"wnzlljfmppeeb\",\"jczdzevndh\":\"yqduujit\",\"feusnhut\":\"rwpdappdsbdkvwrw\"},\"identity\":{\"principalId\":\"tmrldhugjzzdatq\",\"tenantId\":\"oc\",\"type\":\"SystemAssigned,UserAssigned\",\"userAssignedIdentities\":{\"urokft\":{\"clientId\":\"lgphu\",\"principalId\":\"cndvkaozwyiftyhx\"},\"lwckbasyypnddhs\":{\"clientId\":\"olniwpwcukjf\",\"principalId\":\"iawxklry\"},\"wyqkgfgibm\":{\"clientId\":\"bacphejko\",\"principalId\":\"nqgoulzndli\"},\"ouf\":{\"clientId\":\"gakeqsr\",\"principalId\":\"bzqqedqytbciq\"}}}}")
             .toObject(InstancePatchModel.class);
         Assertions.assertEquals("wnzlljfmppeeb", model.tags().get("mgxsab"));
         Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED, model.identity().type());
