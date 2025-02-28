@@ -1,14 +1,199 @@
 # Release History
 
-## 1.2.0-beta.2 (Unreleased)
+## 1.2.0-beta.2 (2025-02-28)
 
-### Features Added
+- Azure Resource Manager Container Service Fleet client library for Java. This package contains Microsoft Azure SDK for Container Service Fleet Management SDK. Azure Kubernetes Fleet Manager api client. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.FleetMemberListResult` was removed
 
-### Other Changes
+#### `models.UpdateRunListResult` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.FleetUpdateStrategyListResult` was removed
+
+#### `models.FleetListResult` was removed
+
+#### `models.UserAssignedIdentity` was modified
+
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+* `java.util.UUID clientId()` -> `java.lang.String clientId()`
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+* `java.util.UUID tenantId()` -> `java.lang.String tenantId()`
+
+### Features Added
+
+* `models.UpgradeChannel` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `models.AutoUpgradeProfile$Update` was added
+
+* `models.AutoUpgradeProfile$Definition` was added
+
+* `models.AutoUpgradeProfileProvisioningState` was added
+
+* `models.AutoUpgradeNodeImageSelectionType` was added
+
+* `implementation.models.FleetMemberListResult` was added
+
+* `models.AutoUpgradeProfile$UpdateStages` was added
+
+* `models.AutoUpgradeProfiles` was added
+
+* `models.AutoUpgradeProfile` was added
+
+* `implementation.models.UpdateRunListResult` was added
+
+* `models.AutoUpgradeNodeImageSelection` was added
+
+* `implementation.models.FleetListResult` was added
+
+* `models.AutoUpgradeProfile$DefinitionStages` was added
+
+* `implementation.models.AutoUpgradeProfileListResult` was added
+
+* `implementation.models.FleetUpdateStrategyListResult` was added
+
+#### `models.ApiServerAccessProfile` was modified
+
+* `withEnableVnetIntegration(java.lang.Boolean)` was added
+* `withSubnetId(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `enableVnetIntegration()` was added
+* `subnetId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WaitStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `ContainerServiceFleetManager` was modified
+
+* `autoUpgradeProfiles()` was added
+
+#### `models.AgentProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateStageStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateGroupStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FleetHubProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateRunStrategy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NodeImageSelection` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `customNodeImageVersions()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withCustomNodeImageVersions(java.util.List)` was added
+
+#### `models.NodeImageSelectionStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetMemberUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetPatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateGroup` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedClusterUpgradeSpec` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateStage` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SkipProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MemberUpdateStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FleetCredentialResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedClusterUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SkipTarget` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NodeImageVersion` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateRunStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.2.0-beta.1 (2024-10-17)
 
