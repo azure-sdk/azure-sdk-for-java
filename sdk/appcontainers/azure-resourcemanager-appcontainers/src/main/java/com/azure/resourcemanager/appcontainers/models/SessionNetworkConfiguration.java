@@ -21,6 +21,11 @@ public final class SessionNetworkConfiguration implements JsonSerializable<Sessi
      */
     private SessionNetworkStatus status;
 
+    /*
+     * The subnet to which the Session Pool will be connected.
+     */
+    private SessionPoolSubnetReference subnet;
+
     /**
      * Creates an instance of SessionNetworkConfiguration class.
      */
@@ -48,11 +53,34 @@ public final class SessionNetworkConfiguration implements JsonSerializable<Sessi
     }
 
     /**
+     * Get the subnet property: The subnet to which the Session Pool will be connected.
+     * 
+     * @return the subnet value.
+     */
+    public SessionPoolSubnetReference subnet() {
+        return this.subnet;
+    }
+
+    /**
+     * Set the subnet property: The subnet to which the Session Pool will be connected.
+     * 
+     * @param subnet the subnet value to set.
+     * @return the SessionNetworkConfiguration object itself.
+     */
+    public SessionNetworkConfiguration withSubnet(SessionPoolSubnetReference subnet) {
+        this.subnet = subnet;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (subnet() != null) {
+            subnet().validate();
+        }
     }
 
     /**
@@ -62,6 +90,7 @@ public final class SessionNetworkConfiguration implements JsonSerializable<Sessi
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
+        jsonWriter.writeJsonField("subnet", this.subnet);
         return jsonWriter.writeEndObject();
     }
 
@@ -83,6 +112,8 @@ public final class SessionNetworkConfiguration implements JsonSerializable<Sessi
                 if ("status".equals(fieldName)) {
                     deserializedSessionNetworkConfiguration.status
                         = SessionNetworkStatus.fromString(reader.getString());
+                } else if ("subnet".equals(fieldName)) {
+                    deserializedSessionNetworkConfiguration.subnet = SessionPoolSubnetReference.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
