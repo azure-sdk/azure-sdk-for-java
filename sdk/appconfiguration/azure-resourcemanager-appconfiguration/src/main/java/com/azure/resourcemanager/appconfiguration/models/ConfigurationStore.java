@@ -157,6 +157,20 @@ public interface ConfigurationStore {
     CreateMode createMode();
 
     /**
+     * Gets the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @return the telemetry value.
+     */
+    TelemetryProperties telemetry();
+
+    /**
+     * Gets the managedOnBehalfOfConfiguration property: Managed On Behalf Of Configuration.
+     * 
+     * @return the managedOnBehalfOfConfiguration value.
+     */
+    ManagedOnBehalfOfConfiguration managedOnBehalfOfConfiguration();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -256,7 +270,7 @@ public interface ConfigurationStore {
             extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithEncryption,
             DefinitionStages.WithPublicNetworkAccess, DefinitionStages.WithDisableLocalAuth,
             DefinitionStages.WithSoftDeleteRetentionInDays, DefinitionStages.WithEnablePurgeProtection,
-            DefinitionStages.WithDataPlaneProxy, DefinitionStages.WithCreateMode {
+            DefinitionStages.WithDataPlaneProxy, DefinitionStages.WithCreateMode, DefinitionStages.WithTelemetry {
             /**
              * Executes the create request.
              * 
@@ -398,6 +412,20 @@ public interface ConfigurationStore {
              */
             WithCreate withCreateMode(CreateMode createMode);
         }
+
+        /**
+         * The stage of the ConfigurationStore definition allowing to specify telemetry.
+         */
+        interface WithTelemetry {
+            /**
+             * Specifies the telemetry property: Property specifying the configuration of telemetry for this
+             * configuration store.
+             * 
+             * @param telemetry Property specifying the configuration of telemetry for this configuration store.
+             * @return the next definition stage.
+             */
+            WithCreate withTelemetry(TelemetryProperties telemetry);
+        }
     }
 
     /**
@@ -412,7 +440,7 @@ public interface ConfigurationStore {
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithSku,
         UpdateStages.WithEncryption, UpdateStages.WithDisableLocalAuth, UpdateStages.WithPublicNetworkAccess,
-        UpdateStages.WithEnablePurgeProtection, UpdateStages.WithDataPlaneProxy {
+        UpdateStages.WithEnablePurgeProtection, UpdateStages.WithDataPlaneProxy, UpdateStages.WithTelemetry {
         /**
          * Executes the update request.
          * 
@@ -542,6 +570,21 @@ public interface ConfigurationStore {
              * @return the next definition stage.
              */
             Update withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy);
+        }
+
+        /**
+         * The stage of the ConfigurationStore update allowing to specify telemetry.
+         */
+        interface WithTelemetry {
+            /**
+             * Specifies the telemetry property: Property specifying the configuration of telemetry to update for this
+             * configuration store.
+             * 
+             * @param telemetry Property specifying the configuration of telemetry to update for this configuration
+             * store.
+             * @return the next definition stage.
+             */
+            Update withTelemetry(TelemetryProperties telemetry);
         }
     }
 
