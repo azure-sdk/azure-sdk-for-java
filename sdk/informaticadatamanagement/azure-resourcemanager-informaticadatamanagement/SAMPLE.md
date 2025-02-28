@@ -12,8 +12,6 @@
 - [GetAllServerlessRuntimes](#organizations_getallserverlessruntimes)
 - [GetByResourceGroup](#organizations_getbyresourcegroup)
 - [GetServerlessMetadata](#organizations_getserverlessmetadata)
-- [List](#organizations_list)
-- [ListByResourceGroup](#organizations_listbyresourcegroup)
 - [Update](#organizations_update)
 
 ## ServerlessRuntimes
@@ -22,7 +20,6 @@
 - [CreateOrUpdate](#serverlessruntimes_createorupdate)
 - [Delete](#serverlessruntimes_delete)
 - [Get](#serverlessruntimes_get)
-- [ListByInformaticaOrganizationResource](#serverlessruntimes_listbyinformaticaorganizationresource)
 - [ServerlessResourceById](#serverlessruntimes_serverlessresourcebyid)
 - [StartFailedServerlessRuntime](#serverlessruntimes_startfailedserverlessruntime)
 - [Update](#serverlessruntimes_update)
@@ -34,9 +31,7 @@
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Operations_List_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Operations_List_MaximumSet_Gen.json
      */
     /**
      * Sample code: Operations_List.
@@ -49,9 +44,7 @@ public final class OperationsListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Operations_List_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Operations_List_MinimumSet_Gen.json
      */
     /**
      * Sample code: Operations_List_Min.
@@ -83,9 +76,7 @@ import java.util.Map;
  */
 public final class OrganizationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: Organizations_CreateOrUpdate.
@@ -132,9 +123,7 @@ public final class OrganizationsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_CreateOrUpdate_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
      * Sample code: Organizations_CreateOrUpdate_Min.
@@ -172,9 +161,7 @@ public final class OrganizationsCreateOrUpdateSamples {
  */
 public final class OrganizationsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Organizations_Delete.
@@ -187,9 +174,7 @@ public final class OrganizationsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_Delete_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: Organizations_Delete_Min.
@@ -211,9 +196,7 @@ public final class OrganizationsDeleteSamples {
  */
 public final class OrganizationsGetAllServerlessRuntimesSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_GetAllServerlessRuntimes_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_GetAllServerlessRuntimes_MinimumSet_Gen.json
      */
     /**
      * Sample code: Organizations_GetAllServerlessRuntimes_Min.
@@ -227,9 +210,7 @@ public final class OrganizationsGetAllServerlessRuntimesSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_GetAllServerlessRuntimes_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_GetAllServerlessRuntimes_MaximumSet_Gen.json
      */
     /**
      * Sample code: Organizations_GetAllServerlessRuntimes.
@@ -252,9 +233,7 @@ public final class OrganizationsGetAllServerlessRuntimesSamples {
  */
 public final class OrganizationsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_Get_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: Organizations_Get_Min.
@@ -267,9 +246,7 @@ public final class OrganizationsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Organizations_Get.
@@ -291,9 +268,7 @@ public final class OrganizationsGetByResourceGroupSamples {
  */
 public final class OrganizationsGetServerlessMetadataSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_GetServerlessMetadata_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_GetServerlessMetadata_MinimumSet_Gen.json
      */
     /**
      * Sample code: Organizations_GetServerlessMetadata_Min.
@@ -306,9 +281,7 @@ public final class OrganizationsGetServerlessMetadataSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_GetServerlessMetadata_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_GetServerlessMetadata_MaximumSet_Gen.json
      */
     /**
      * Sample code: Organizations_GetServerlessMetadata.
@@ -319,84 +292,6 @@ public final class OrganizationsGetServerlessMetadataSamples {
         com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
         manager.organizations()
             .getServerlessMetadataWithResponse("rgopenapi", "3_UC", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Organizations_List
-
-```java
-/**
- * Samples for Organizations List.
- */
-public final class OrganizationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_ListBySubscription_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Organizations_ListBySubscription.
-     * 
-     * @param manager Entry point to InformaticaDataManagementManager.
-     */
-    public static void organizationsListBySubscription(
-        com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
-        manager.organizations().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_ListBySubscription_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Organizations_ListBySubscription_Min.
-     * 
-     * @param manager Entry point to InformaticaDataManagementManager.
-     */
-    public static void organizationsListBySubscriptionMin(
-        com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
-        manager.organizations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Organizations_ListByResourceGroup
-
-```java
-/**
- * Samples for Organizations ListByResourceGroup.
- */
-public final class OrganizationsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_ListByResourceGroup_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Organizations_ListByResourceGroup_Min.
-     * 
-     * @param manager Entry point to InformaticaDataManagementManager.
-     */
-    public static void organizationsListByResourceGroupMin(
-        com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
-        manager.organizations().listByResourceGroup("rgopenapi", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_ListByResourceGroup_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Organizations_ListByResourceGroup.
-     * 
-     * @param manager Entry point to InformaticaDataManagementManager.
-     */
-    public static void organizationsListByResourceGroup(
-        com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
-        manager.organizations().listByResourceGroup("rgopenapi", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -418,9 +313,7 @@ import java.util.Map;
  */
 public final class OrganizationsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_Update_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Organizations_Update.
@@ -462,9 +355,7 @@ public final class OrganizationsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * Organizations_Update_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/Organizations_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: Organizations_Update_Min.
@@ -501,9 +392,7 @@ public final class OrganizationsUpdateSamples {
  */
 public final class ServerlessRuntimesCheckDependenciesSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_CheckDependencies_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_CheckDependencies_MinimumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_CheckDependencies_Min.
@@ -517,9 +406,7 @@ public final class ServerlessRuntimesCheckDependenciesSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_CheckDependencies_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_CheckDependencies_MaximumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_CheckDependencies.
@@ -555,9 +442,7 @@ import java.util.Arrays;
  */
 public final class ServerlessRuntimesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_CreateOrUpdate.
@@ -611,9 +496,7 @@ public final class ServerlessRuntimesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_CreateOrUpdate_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_CreateOrUpdate_Min.
@@ -635,9 +518,7 @@ public final class ServerlessRuntimesCreateOrUpdateSamples {
  */
 public final class ServerlessRuntimesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_Delete.
@@ -660,9 +541,7 @@ public final class ServerlessRuntimesDeleteSamples {
  */
 public final class ServerlessRuntimesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_Get.
@@ -675,9 +554,7 @@ public final class ServerlessRuntimesGetSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_Get_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_Get_Min.
@@ -691,31 +568,6 @@ public final class ServerlessRuntimesGetSamples {
 }
 ```
 
-### ServerlessRuntimes_ListByInformaticaOrganizationResource
-
-```java
-/**
- * Samples for ServerlessRuntimes ListByInformaticaOrganizationResource.
- */
-public final class ServerlessRuntimesListByInformaticaOrganizationResourceS {
-    /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_ListByInformaticaOrganizationResource_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: ServerlessRuntimes_ListByInformaticaOrganizationResource.
-     * 
-     * @param manager Entry point to InformaticaDataManagementManager.
-     */
-    public static void serverlessRuntimesListByInformaticaOrganizationResource(
-        com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
-        manager.serverlessRuntimes()
-            .listByInformaticaOrganizationResource("rgopenapi", "orgName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### ServerlessRuntimes_ServerlessResourceById
 
 ```java
@@ -724,9 +576,7 @@ public final class ServerlessRuntimesListByInformaticaOrganizationResourceS {
  */
 public final class ServerlessRuntimesServerlessResourceByIdSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_ServerlessResourceById_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_ServerlessResourceById_MaximumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_ServerlessResourceById.
@@ -750,9 +600,7 @@ public final class ServerlessRuntimesServerlessResourceByIdSamples {
  */
 public final class ServerlessRuntimesStartFailedServerlessRuntimeSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_StartFailedServerlessRuntime_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_StartFailedServerlessRuntime_MaximumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_StartFailedServerlessRuntime.
@@ -789,9 +637,7 @@ import java.util.Arrays;
  */
 public final class ServerlessRuntimesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_Update_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_Update_Min.
@@ -807,9 +653,7 @@ public final class ServerlessRuntimesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
-     * ServerlessRuntimes_Update_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-05-08/ServerlessRuntimes_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: ServerlessRuntimes_Update.
