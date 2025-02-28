@@ -24,10 +24,12 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.devhub.fluent.ResourceProvidersClient;
-import com.azure.resourcemanager.devhub.fluent.models.ArtifactGenerationProperties;
+import com.azure.resourcemanager.devhub.fluent.models.AdooAuthInfoResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthInfoResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthListResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthResponseInner;
+import com.azure.resourcemanager.devhub.models.AdooAuthCallRequest;
+import com.azure.resourcemanager.devhub.models.ArtifactGenerationProperties;
 import com.azure.resourcemanager.devhub.models.GitHubOAuthCallRequest;
 import java.util.Map;
 import reactor.core.publisher.Mono;
@@ -99,12 +101,21 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
             @PathParam("location") String location,
             @BodyParam("application/json") ArtifactGenerationProperties parameters,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.DevHub/locations/{location}/adooauth/default/getADOOAuthInfo")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<AdooAuthInfoResponseInner>> getAdooAuthInfo(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("location") String location, @BodyParam("application/json") AdooAuthCallRequest parameters,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets GitHubOAuth info used to authenticate users with the Developer Hub GitHub App.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -139,7 +150,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Gets GitHubOAuth info used to authenticate users with the Developer Hub GitHub App.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -174,7 +185,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Gets GitHubOAuth info used to authenticate users with the Developer Hub GitHub App.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -190,7 +201,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Gets GitHubOAuth info used to authenticate users with the Developer Hub GitHub App.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -208,7 +219,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Gets GitHubOAuth info used to authenticate users with the Developer Hub GitHub App.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -223,7 +234,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param code The code response from authenticating the GitHub App.
      * @param state The state response from authenticating the GitHub App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -262,7 +273,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param code The code response from authenticating the GitHub App.
      * @param state The state response from authenticating the GitHub App.
      * @param context The context to associate with this operation.
@@ -301,7 +312,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param code The code response from authenticating the GitHub App.
      * @param state The state response from authenticating the GitHub App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -318,7 +329,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param code The code response from authenticating the GitHub App.
      * @param state The state response from authenticating the GitHub App.
      * @param context The context to associate with this operation.
@@ -336,7 +347,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param code The code response from authenticating the GitHub App.
      * @param state The state response from authenticating the GitHub App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -352,7 +363,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -382,7 +393,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -413,7 +424,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -427,7 +438,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -442,7 +453,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -456,7 +467,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Generate preview dockerfile and manifests.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -493,7 +504,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Generate preview dockerfile and manifests.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -530,7 +541,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Generate preview dockerfile and manifests.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -548,7 +559,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Generate preview dockerfile and manifests.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -566,7 +577,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Generate preview dockerfile and manifests.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -577,5 +588,122 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Map<String, String> generatePreviewArtifacts(String location, ArtifactGenerationProperties parameters) {
         return generatePreviewArtifactsWithResponse(location, parameters, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets ADOOAuth info used to authenticate users with ADO.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters The fields required in ADO OAuth call request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aDOOAuth info used to authenticate users with ADO along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<AdooAuthInfoResponseInner>> getAdooAuthInfoWithResponseAsync(String location,
+        AdooAuthCallRequest parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (parameters != null) {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getAdooAuthInfo(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), location, parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets ADOOAuth info used to authenticate users with ADO.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters The fields required in ADO OAuth call request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aDOOAuth info used to authenticate users with ADO along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<AdooAuthInfoResponseInner>> getAdooAuthInfoWithResponseAsync(String location,
+        AdooAuthCallRequest parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (parameters != null) {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.getAdooAuthInfo(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), location, parameters, accept, context);
+    }
+
+    /**
+     * Gets ADOOAuth info used to authenticate users with ADO.
+     * 
+     * @param location The name of the Azure region.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aDOOAuth info used to authenticate users with ADO on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AdooAuthInfoResponseInner> getAdooAuthInfoAsync(String location) {
+        final AdooAuthCallRequest parameters = null;
+        return getAdooAuthInfoWithResponseAsync(location, parameters).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets ADOOAuth info used to authenticate users with ADO.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters The fields required in ADO OAuth call request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aDOOAuth info used to authenticate users with ADO along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<AdooAuthInfoResponseInner> getAdooAuthInfoWithResponse(String location,
+        AdooAuthCallRequest parameters, Context context) {
+        return getAdooAuthInfoWithResponseAsync(location, parameters, context).block();
+    }
+
+    /**
+     * Gets ADOOAuth info used to authenticate users with ADO.
+     * 
+     * @param location The name of the Azure region.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aDOOAuth info used to authenticate users with ADO.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AdooAuthInfoResponseInner getAdooAuthInfo(String location) {
+        final AdooAuthCallRequest parameters = null;
+        return getAdooAuthInfoWithResponse(location, parameters, Context.NONE).getValue();
     }
 }

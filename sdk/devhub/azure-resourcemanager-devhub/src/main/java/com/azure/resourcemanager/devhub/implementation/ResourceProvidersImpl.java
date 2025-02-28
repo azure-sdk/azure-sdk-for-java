@@ -9,10 +9,13 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devhub.fluent.ResourceProvidersClient;
-import com.azure.resourcemanager.devhub.fluent.models.ArtifactGenerationProperties;
+import com.azure.resourcemanager.devhub.fluent.models.AdooAuthInfoResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthInfoResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthListResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthResponseInner;
+import com.azure.resourcemanager.devhub.models.AdooAuthCallRequest;
+import com.azure.resourcemanager.devhub.models.AdooAuthInfoResponse;
+import com.azure.resourcemanager.devhub.models.ArtifactGenerationProperties;
 import com.azure.resourcemanager.devhub.models.GitHubOAuthCallRequest;
 import com.azure.resourcemanager.devhub.models.GitHubOAuthInfoResponse;
 import com.azure.resourcemanager.devhub.models.GitHubOAuthListResponse;
@@ -107,6 +110,27 @@ public final class ResourceProvidersImpl implements ResourceProviders {
             return Collections.unmodifiableMap(inner);
         } else {
             return Collections.emptyMap();
+        }
+    }
+
+    public Response<AdooAuthInfoResponse> getAdooAuthInfoWithResponse(String location, AdooAuthCallRequest parameters,
+        Context context) {
+        Response<AdooAuthInfoResponseInner> inner
+            = this.serviceClient().getAdooAuthInfoWithResponse(location, parameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new AdooAuthInfoResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AdooAuthInfoResponse getAdooAuthInfo(String location) {
+        AdooAuthInfoResponseInner inner = this.serviceClient().getAdooAuthInfo(location);
+        if (inner != null) {
+            return new AdooAuthInfoResponseImpl(inner, this.manager());
+        } else {
+            return null;
         }
     }
 

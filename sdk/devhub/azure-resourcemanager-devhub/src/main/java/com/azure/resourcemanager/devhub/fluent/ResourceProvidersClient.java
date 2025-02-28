@@ -8,10 +8,12 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.devhub.fluent.models.ArtifactGenerationProperties;
+import com.azure.resourcemanager.devhub.fluent.models.AdooAuthInfoResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthInfoResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthListResponseInner;
 import com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthResponseInner;
+import com.azure.resourcemanager.devhub.models.AdooAuthCallRequest;
+import com.azure.resourcemanager.devhub.models.ArtifactGenerationProperties;
 import com.azure.resourcemanager.devhub.models.GitHubOAuthCallRequest;
 import java.util.Map;
 
@@ -22,7 +24,7 @@ public interface ResourceProvidersClient {
     /**
      * Gets GitHubOAuth info used to authenticate users with the Developer Hub GitHub App.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -38,7 +40,7 @@ public interface ResourceProvidersClient {
     /**
      * Gets GitHubOAuth info used to authenticate users with the Developer Hub GitHub App.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -50,7 +52,7 @@ public interface ResourceProvidersClient {
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param code The code response from authenticating the GitHub App.
      * @param state The state response from authenticating the GitHub App.
      * @param context The context to associate with this operation.
@@ -66,7 +68,7 @@ public interface ResourceProvidersClient {
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param code The code response from authenticating the GitHub App.
      * @param state The state response from authenticating the GitHub App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -80,7 +82,7 @@ public interface ResourceProvidersClient {
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -93,7 +95,7 @@ public interface ResourceProvidersClient {
     /**
      * Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -105,7 +107,7 @@ public interface ResourceProvidersClient {
     /**
      * Generate preview dockerfile and manifests.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -121,7 +123,7 @@ public interface ResourceProvidersClient {
     /**
      * Generate preview dockerfile and manifests.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param parameters The parameters parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -131,4 +133,31 @@ public interface ResourceProvidersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Map<String, String> generatePreviewArtifacts(String location, ArtifactGenerationProperties parameters);
+
+    /**
+     * Gets ADOOAuth info used to authenticate users with ADO.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters The fields required in ADO OAuth call request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aDOOAuth info used to authenticate users with ADO along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<AdooAuthInfoResponseInner> getAdooAuthInfoWithResponse(String location, AdooAuthCallRequest parameters,
+        Context context);
+
+    /**
+     * Gets ADOOAuth info used to authenticate users with ADO.
+     * 
+     * @param location The name of the Azure region.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aDOOAuth info used to authenticate users with ADO.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AdooAuthInfoResponseInner getAdooAuthInfo(String location);
 }
