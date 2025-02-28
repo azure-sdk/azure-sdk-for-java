@@ -220,8 +220,7 @@ public final class SnapshotInner extends ProxyResource {
     }
 
     /**
-     * Get the tags property: The tags of the snapshot. NOTE: These are data plane tags, not Azure Resource Manager
-     * (ARM) tags.
+     * Get the tags property: The tags of the snapshot. NOTE: These are data plane tags, not ARM tags.
      * 
      * @return the tags value.
      */
@@ -230,8 +229,7 @@ public final class SnapshotInner extends ProxyResource {
     }
 
     /**
-     * Set the tags property: The tags of the snapshot. NOTE: These are data plane tags, not Azure Resource Manager
-     * (ARM) tags.
+     * Set the tags property: The tags of the snapshot. NOTE: These are data plane tags, not ARM tags.
      * 
      * @param tags the tags value to set.
      * @return the SnapshotInner object itself.

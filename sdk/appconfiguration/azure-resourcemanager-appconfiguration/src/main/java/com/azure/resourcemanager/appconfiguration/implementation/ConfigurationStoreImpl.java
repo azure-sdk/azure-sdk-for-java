@@ -16,12 +16,14 @@ import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdat
 import com.azure.resourcemanager.appconfiguration.models.CreateMode;
 import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
+import com.azure.resourcemanager.appconfiguration.models.ManagedOnBehalfOfConfiguration;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -117,6 +119,14 @@ public final class ConfigurationStoreImpl
 
     public CreateMode createMode() {
         return this.innerModel().createMode();
+    }
+
+    public TelemetryProperties telemetry() {
+        return this.innerModel().telemetry();
+    }
+
+    public ManagedOnBehalfOfConfiguration managedOnBehalfOfConfiguration() {
+        return this.innerModel().managedOnBehalfOfConfiguration();
     }
 
     public Region region() {
@@ -331,6 +341,16 @@ public final class ConfigurationStoreImpl
     public ConfigurationStoreImpl withCreateMode(CreateMode createMode) {
         this.innerModel().withCreateMode(createMode);
         return this;
+    }
+
+    public ConfigurationStoreImpl withTelemetry(TelemetryProperties telemetry) {
+        if (isInCreateMode()) {
+            this.innerModel().withTelemetry(telemetry);
+            return this;
+        } else {
+            this.updateConfigStoreUpdateParameters.withTelemetry(telemetry);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {
