@@ -27,6 +27,12 @@ public final class JobExecutionTemplate implements JsonSerializable<JobExecution
      */
     private List<JobExecutionContainer> initContainers;
 
+    /*
+     * Execution name suffix for the job, i.e. '{jobName}-{executionName}'. If not provided, a unique name will be
+     * generated.
+     */
+    private String executionName;
+
     /**
      * Creates an instance of JobExecutionTemplate class.
      */
@@ -74,6 +80,28 @@ public final class JobExecutionTemplate implements JsonSerializable<JobExecution
     }
 
     /**
+     * Get the executionName property: Execution name suffix for the job, i.e. '{jobName}-{executionName}'. If not
+     * provided, a unique name will be generated.
+     * 
+     * @return the executionName value.
+     */
+    public String executionName() {
+        return this.executionName;
+    }
+
+    /**
+     * Set the executionName property: Execution name suffix for the job, i.e. '{jobName}-{executionName}'. If not
+     * provided, a unique name will be generated.
+     * 
+     * @param executionName the executionName value to set.
+     * @return the JobExecutionTemplate object itself.
+     */
+    public JobExecutionTemplate withExecutionName(String executionName) {
+        this.executionName = executionName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -96,6 +124,7 @@ public final class JobExecutionTemplate implements JsonSerializable<JobExecution
         jsonWriter.writeArrayField("containers", this.containers, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeArrayField("initContainers", this.initContainers,
             (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("executionName", this.executionName);
         return jsonWriter.writeEndObject();
     }
 
@@ -122,6 +151,8 @@ public final class JobExecutionTemplate implements JsonSerializable<JobExecution
                     List<JobExecutionContainer> initContainers
                         = reader.readArray(reader1 -> JobExecutionContainer.fromJson(reader1));
                     deserializedJobExecutionTemplate.initContainers = initContainers;
+                } else if ("executionName".equals(fieldName)) {
+                    deserializedJobExecutionTemplate.executionName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
