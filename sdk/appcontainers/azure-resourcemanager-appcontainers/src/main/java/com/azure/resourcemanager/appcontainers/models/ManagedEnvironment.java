@@ -118,6 +118,13 @@ public interface ManagedEnvironment {
     String defaultDomain();
 
     /**
+     * Gets the privateLinkDefaultDomain property: Private Link Default Domain Name for the environment.
+     * 
+     * @return the privateLinkDefaultDomain value.
+     */
+    String privateLinkDefaultDomain();
+
+    /**
      * Gets the staticIp property: Static IP of the Environment.
      * 
      * @return the staticIp value.
@@ -125,9 +132,8 @@ public interface ManagedEnvironment {
     String staticIp();
 
     /**
-     * Gets the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-     * app logs to a destination. Currently only "log-analytics" is
-     * supported.
+     * Gets the appLogsConfiguration property: Cluster configuration which enables the log daemon to export app logs to
+     * configured destination.
      * 
      * @return the appLogsConfiguration value.
      */
@@ -153,6 +159,13 @@ public interface ManagedEnvironment {
      * @return the zoneRedundant value.
      */
     Boolean zoneRedundant();
+
+    /**
+     * Gets the availabilityZones property: The list of availability zones to use for managed environment.
+     * 
+     * @return the availabilityZones value.
+     */
+    List<String> availabilityZones();
 
     /**
      * Gets the customDomainConfiguration property: Custom domain configuration for the environment.
@@ -310,11 +323,12 @@ public interface ManagedEnvironment {
          * The stage of the ManagedEnvironment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithKind,
-            DefinitionStages.WithIdentity, DefinitionStages.WithDaprAIInstrumentationKey,
-            DefinitionStages.WithDaprAIConnectionString, DefinitionStages.WithVnetConfiguration,
-            DefinitionStages.WithAppLogsConfiguration, DefinitionStages.WithAppInsightsConfiguration,
-            DefinitionStages.WithOpenTelemetryConfiguration, DefinitionStages.WithZoneRedundant,
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithKind, DefinitionStages.WithIdentity,
+            DefinitionStages.WithDaprAIInstrumentationKey, DefinitionStages.WithDaprAIConnectionString,
+            DefinitionStages.WithVnetConfiguration, DefinitionStages.WithAppLogsConfiguration,
+            DefinitionStages.WithAppInsightsConfiguration, DefinitionStages.WithOpenTelemetryConfiguration,
+            DefinitionStages.WithZoneRedundant, DefinitionStages.WithAvailabilityZones,
             DefinitionStages.WithCustomDomainConfiguration, DefinitionStages.WithWorkloadProfiles,
             DefinitionStages.WithKedaConfiguration, DefinitionStages.WithDaprConfiguration,
             DefinitionStages.WithInfrastructureResourceGroup, DefinitionStages.WithPeerAuthentication,
@@ -425,12 +439,10 @@ public interface ManagedEnvironment {
         interface WithAppLogsConfiguration {
             /**
              * Specifies the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-             * app logs to a destination. Currently only "log-analytics" is
-             * supported.
+             * app logs to configured destination.
              * 
-             * @param appLogsConfiguration Cluster configuration which enables the log daemon to export
-             * app logs to a destination. Currently only "log-analytics" is
-             * supported.
+             * @param appLogsConfiguration Cluster configuration which enables the log daemon to export app logs to
+             * configured destination.
              * @return the next definition stage.
              */
             WithCreate withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
@@ -473,6 +485,19 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withZoneRedundant(Boolean zoneRedundant);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment definition allowing to specify availabilityZones.
+         */
+        interface WithAvailabilityZones {
+            /**
+             * Specifies the availabilityZones property: The list of availability zones to use for managed environment.
+             * 
+             * @param availabilityZones The list of availability zones to use for managed environment.
+             * @return the next definition stage.
+             */
+            WithCreate withAvailabilityZones(List<String> availabilityZones);
         }
 
         /**
@@ -601,9 +626,10 @@ public interface ManagedEnvironment {
         UpdateStages.WithDaprAIInstrumentationKey, UpdateStages.WithDaprAIConnectionString,
         UpdateStages.WithVnetConfiguration, UpdateStages.WithAppLogsConfiguration,
         UpdateStages.WithAppInsightsConfiguration, UpdateStages.WithOpenTelemetryConfiguration,
-        UpdateStages.WithCustomDomainConfiguration, UpdateStages.WithWorkloadProfiles,
-        UpdateStages.WithKedaConfiguration, UpdateStages.WithDaprConfiguration, UpdateStages.WithPeerAuthentication,
-        UpdateStages.WithPeerTrafficConfiguration, UpdateStages.WithPublicNetworkAccess {
+        UpdateStages.WithAvailabilityZones, UpdateStages.WithCustomDomainConfiguration,
+        UpdateStages.WithWorkloadProfiles, UpdateStages.WithKedaConfiguration, UpdateStages.WithDaprConfiguration,
+        UpdateStages.WithPeerAuthentication, UpdateStages.WithPeerTrafficConfiguration,
+        UpdateStages.WithPublicNetworkAccess {
         /**
          * Executes the update request.
          * 
@@ -714,12 +740,10 @@ public interface ManagedEnvironment {
         interface WithAppLogsConfiguration {
             /**
              * Specifies the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-             * app logs to a destination. Currently only "log-analytics" is
-             * supported.
+             * app logs to configured destination.
              * 
-             * @param appLogsConfiguration Cluster configuration which enables the log daemon to export
-             * app logs to a destination. Currently only "log-analytics" is
-             * supported.
+             * @param appLogsConfiguration Cluster configuration which enables the log daemon to export app logs to
+             * configured destination.
              * @return the next definition stage.
              */
             Update withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
@@ -749,6 +773,19 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment update allowing to specify availabilityZones.
+         */
+        interface WithAvailabilityZones {
+            /**
+             * Specifies the availabilityZones property: The list of availability zones to use for managed environment.
+             * 
+             * @param availabilityZones The list of availability zones to use for managed environment.
+             * @return the next definition stage.
+             */
+            Update withAvailabilityZones(List<String> availabilityZones);
         }
 
         /**

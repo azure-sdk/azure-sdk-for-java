@@ -14,6 +14,7 @@ import com.azure.resourcemanager.appcontainers.models.SessionIngress;
 import com.azure.resourcemanager.appcontainers.models.SessionNetworkConfiguration;
 import com.azure.resourcemanager.appcontainers.models.SessionNetworkStatus;
 import com.azure.resourcemanager.appcontainers.models.SessionPool;
+import com.azure.resourcemanager.appcontainers.models.SessionPoolSubnetReference;
 import java.util.Arrays;
 
 /**
@@ -22,7 +23,7 @@ import java.util.Arrays;
 public final class ContainerAppsSessionPoolsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/SessionPools_Patch.json
+     * specification/app/resource-manager/Microsoft.App/preview/2025-02-02-preview/examples/SessionPools_Patch.json
      */
     /**
      * Sample code: Update Session Pool.
@@ -45,8 +46,10 @@ public final class ContainerAppsSessionPoolsUpdateSamples {
                     .withArgs(Arrays.asList("-c", "while true; do echo hello; sleep 10;done"))
                     .withResources(new SessionContainerResources().withCpu(0.25D).withMemory("0.5Gi"))))
                 .withIngress(new SessionIngress().withTargetPort(80)))
-            .withSessionNetworkConfiguration(
-                new SessionNetworkConfiguration().withStatus(SessionNetworkStatus.EGRESS_ENABLED))
+            .withSessionNetworkConfiguration(new SessionNetworkConfiguration()
+                .withStatus(SessionNetworkStatus.EGRESS_ENABLED)
+                .withSubnet(new SessionPoolSubnetReference().withSubnetId(
+                    "/subscriptions/7a497526-bb8d-4816-9795-db1418a1f977/resourcegroups/test/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/sessions-subnet")))
             .apply();
     }
 }
