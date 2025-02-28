@@ -23,7 +23,9 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.devhub.fluent.AdooAuthsClient;
 import com.azure.resourcemanager.devhub.fluent.DeveloperHubServiceClient;
+import com.azure.resourcemanager.devhub.fluent.IacProfilesClient;
 import com.azure.resourcemanager.devhub.fluent.OperationsClient;
 import com.azure.resourcemanager.devhub.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.devhub.fluent.WorkflowsClient;
@@ -42,12 +44,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = DeveloperHubServiceClientBuilder.class)
 public final class DeveloperHubServiceClientImpl implements DeveloperHubServiceClient {
     /**
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -168,13 +170,41 @@ public final class DeveloperHubServiceClientImpl implements DeveloperHubServiceC
     }
 
     /**
+     * The AdooAuthsClient object to access its operations.
+     */
+    private final AdooAuthsClient adooAuths;
+
+    /**
+     * Gets the AdooAuthsClient object to access its operations.
+     * 
+     * @return the AdooAuthsClient object.
+     */
+    public AdooAuthsClient getAdooAuths() {
+        return this.adooAuths;
+    }
+
+    /**
+     * The IacProfilesClient object to access its operations.
+     */
+    private final IacProfilesClient iacProfiles;
+
+    /**
+     * Gets the IacProfilesClient object to access its operations.
+     * 
+     * @return the IacProfilesClient object.
+     */
+    public IacProfilesClient getIacProfiles() {
+        return this.iacProfiles;
+    }
+
+    /**
      * Initializes an instance of DeveloperHubServiceClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     DeveloperHubServiceClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -184,10 +214,12 @@ public final class DeveloperHubServiceClientImpl implements DeveloperHubServiceC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-10-11-preview";
+        this.apiVersion = "2024-08-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.workflows = new WorkflowsClientImpl(this);
+        this.adooAuths = new AdooAuthsClientImpl(this);
+        this.iacProfiles = new IacProfilesClientImpl(this);
     }
 
     /**

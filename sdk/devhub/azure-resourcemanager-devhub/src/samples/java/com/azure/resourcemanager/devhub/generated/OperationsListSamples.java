@@ -10,7 +10,7 @@ package com.azure.resourcemanager.devhub.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/Operation_List.
+     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2024-08-01-preview/examples/Operation_List.
      * json
      */
     /**

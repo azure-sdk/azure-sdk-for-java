@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.devhub.generated;
 
-import com.azure.resourcemanager.devhub.fluent.models.ArtifactGenerationProperties;
+import com.azure.resourcemanager.devhub.models.ArtifactGenerationProperties;
 import com.azure.resourcemanager.devhub.models.DockerfileGenerationMode;
 import com.azure.resourcemanager.devhub.models.GenerationLanguage;
 import com.azure.resourcemanager.devhub.models.GenerationManifestType;
@@ -16,7 +16,7 @@ import com.azure.resourcemanager.devhub.models.ManifestGenerationMode;
 public final class ResourceProviderGeneratePreviewArtifactsSamples {
     /*
      * x-ms-original-file:
-     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/
+     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2024-08-01-preview/examples/
      * GeneratePreviewArtifacts.json
      */
     /**

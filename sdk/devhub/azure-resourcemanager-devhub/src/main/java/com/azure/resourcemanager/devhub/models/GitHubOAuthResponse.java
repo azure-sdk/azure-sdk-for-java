@@ -33,18 +33,18 @@ public interface GitHubOAuthResponse {
     String type();
 
     /**
+     * Gets the properties property: Properties of a workflow.
+     * 
+     * @return the properties value.
+     */
+    GitHubOAuthProperties properties();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the username property: user making request.
-     * 
-     * @return the username value.
-     */
-    String username();
 
     /**
      * Gets the inner com.azure.resourcemanager.devhub.fluent.models.GitHubOAuthResponseInner object.

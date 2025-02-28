@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface DeveloperHubServiceClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -66,4 +66,18 @@ public interface DeveloperHubServiceClient {
      * @return the WorkflowsClient object.
      */
     WorkflowsClient getWorkflows();
+
+    /**
+     * Gets the AdooAuthsClient object to access its operations.
+     * 
+     * @return the AdooAuthsClient object.
+     */
+    AdooAuthsClient getAdooAuths();
+
+    /**
+     * Gets the IacProfilesClient object to access its operations.
+     * 
+     * @return the IacProfilesClient object.
+     */
+    IacProfilesClient getIacProfiles();
 }

@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.devhub.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
@@ -16,7 +16,7 @@ import java.time.OffsetDateTime;
 /**
  * The WorkflowRun model.
  */
-@Fluent
+@Immutable
 public final class WorkflowRun implements JsonSerializable<WorkflowRun> {
     /*
      * Describes if the workflow run succeeded.
@@ -81,17 +81,6 @@ public final class WorkflowRun implements JsonSerializable<WorkflowRun> {
     }
 
     /**
-     * Set the workflowRunStatus property: Describes the status of the workflow run.
-     * 
-     * @param workflowRunStatus the workflowRunStatus value to set.
-     * @return the WorkflowRun object itself.
-     */
-    public WorkflowRun withWorkflowRunStatus(WorkflowRunStatus workflowRunStatus) {
-        this.workflowRunStatus = workflowRunStatus;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -105,8 +94,6 @@ public final class WorkflowRun implements JsonSerializable<WorkflowRun> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("workflowRunStatus",
-            this.workflowRunStatus == null ? null : this.workflowRunStatus.toString());
         return jsonWriter.writeEndObject();
     }
 

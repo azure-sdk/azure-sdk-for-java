@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.devhub.models.GitHubOAuthProperties;
 import java.io.IOException;
 
 /**
@@ -20,7 +21,7 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
     /*
      * Properties of a workflow.
      */
-    private GitHubOAuthProperties innerProperties;
+    private GitHubOAuthProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -49,12 +50,23 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Properties of a workflow.
+     * Get the properties property: Properties of a workflow.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private GitHubOAuthProperties innerProperties() {
-        return this.innerProperties;
+    public GitHubOAuthProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of a workflow.
+     * 
+     * @param properties the properties value to set.
+     * @return the GitHubOAuthResponseInner object itself.
+     */
+    public GitHubOAuthResponseInner withProperties(GitHubOAuthProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -97,36 +109,13 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
     }
 
     /**
-     * Get the username property: user making request.
-     * 
-     * @return the username value.
-     */
-    public String username() {
-        return this.innerProperties() == null ? null : this.innerProperties().username();
-    }
-
-    /**
-     * Set the username property: user making request.
-     * 
-     * @param username the username value to set.
-     * @return the GitHubOAuthResponseInner object itself.
-     */
-    public GitHubOAuthResponseInner withUsername(String username) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new GitHubOAuthProperties();
-        }
-        this.innerProperties().withUsername(username);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -136,7 +125,7 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -163,7 +152,7 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedGitHubOAuthResponseInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedGitHubOAuthResponseInner.innerProperties = GitHubOAuthProperties.fromJson(reader);
+                    deserializedGitHubOAuthResponseInner.properties = GitHubOAuthProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedGitHubOAuthResponseInner.systemData = SystemData.fromJson(reader);
                 } else {
