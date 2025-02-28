@@ -38,6 +38,7 @@ import com.azure.resourcemanager.elastic.fluent.ExternalUsersClient;
 import com.azure.resourcemanager.elastic.fluent.ListAssociatedTrafficFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.MonitorOperationsClient;
 import com.azure.resourcemanager.elastic.fluent.MonitoredResourcesClient;
+import com.azure.resourcemanager.elastic.fluent.MonitoredSubscriptionsClient;
 import com.azure.resourcemanager.elastic.fluent.MonitorsClient;
 import com.azure.resourcemanager.elastic.fluent.OpenAIsClient;
 import com.azure.resourcemanager.elastic.fluent.OperationsClient;
@@ -186,6 +187,20 @@ public final class ElasticManagementClientImpl implements ElasticManagementClien
      */
     public ElasticVersionsClient getElasticVersions() {
         return this.elasticVersions;
+    }
+
+    /**
+     * The MonitoredSubscriptionsClient object to access its operations.
+     */
+    private final MonitoredSubscriptionsClient monitoredSubscriptions;
+
+    /**
+     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * 
+     * @return the MonitoredSubscriptionsClient object.
+     */
+    public MonitoredSubscriptionsClient getMonitoredSubscriptions() {
+        return this.monitoredSubscriptions;
     }
 
     /**
@@ -499,10 +514,11 @@ public final class ElasticManagementClientImpl implements ElasticManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-03-01";
+        this.apiVersion = "2025-01-15-preview";
         this.operations = new OperationsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.elasticVersions = new ElasticVersionsClientImpl(this);
+        this.monitoredSubscriptions = new MonitoredSubscriptionsClientImpl(this);
         this.monitoredResources = new MonitoredResourcesClientImpl(this);
         this.deploymentInfoes = new DeploymentInfoesClientImpl(this);
         this.externalUsers = new ExternalUsersClientImpl(this);

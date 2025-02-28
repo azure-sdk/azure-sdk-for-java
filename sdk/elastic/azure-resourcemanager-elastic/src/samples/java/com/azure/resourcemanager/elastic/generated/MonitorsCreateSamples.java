@@ -10,7 +10,7 @@ package com.azure.resourcemanager.elastic.generated;
 public final class MonitorsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitors_Create.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Monitors_Create.json
      */
     /**
      * Sample code: Monitors_Create.

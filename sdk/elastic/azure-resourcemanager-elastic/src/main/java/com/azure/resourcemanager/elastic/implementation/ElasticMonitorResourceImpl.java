@@ -47,6 +47,10 @@ public final class ElasticMonitorResourceImpl
         }
     }
 
+    public String kind() {
+        return this.innerModel().kind();
+    }
+
     public ResourceSku sku() {
         return this.innerModel().sku();
     }
@@ -122,16 +126,13 @@ public final class ElasticMonitorResourceImpl
     public ElasticMonitorResource apply() {
         this.innerObject = serviceManager.serviceClient()
             .getMonitors()
-            .updateWithResponse(resourceGroupName, monitorName, updateBody, Context.NONE)
-            .getValue();
+            .update(resourceGroupName, monitorName, updateBody, Context.NONE);
         return this;
     }
 
     public ElasticMonitorResource apply(Context context) {
-        this.innerObject = serviceManager.serviceClient()
-            .getMonitors()
-            .updateWithResponse(resourceGroupName, monitorName, updateBody, context)
-            .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getMonitors().update(resourceGroupName, monitorName, updateBody, context);
         return this;
     }
 
@@ -177,6 +178,11 @@ public final class ElasticMonitorResourceImpl
             this.updateBody.withTags(tags);
             return this;
         }
+    }
+
+    public ElasticMonitorResourceImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
+        return this;
     }
 
     public ElasticMonitorResourceImpl withSku(ResourceSku sku) {

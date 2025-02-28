@@ -109,9 +109,9 @@ public final class MonitorsClientImpl implements MonitorsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ElasticMonitorResourceInner>> update(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
             @BodyParam("application/json") ElasticMonitorResourceUpdateParameters body,
@@ -772,8 +772,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @return monitor resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ElasticMonitorResourceInner>> updateWithResponseAsync(String resourceGroupName,
-        String monitorName, ElasticMonitorResourceUpdateParameters body) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String monitorName,
+        ElasticMonitorResourceUpdateParameters body) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -812,8 +812,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @return monitor resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ElasticMonitorResourceInner>> updateWithResponseAsync(String resourceGroupName,
-        String monitorName, ElasticMonitorResourceUpdateParameters body, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String monitorName,
+        ElasticMonitorResourceUpdateParameters body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -843,16 +843,39 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
+     * @param body Elastic resource model update parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return monitor resource on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of monitor resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ElasticMonitorResourceInner> updateAsync(String resourceGroupName, String monitorName) {
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner>
+        beginUpdateAsync(String resourceGroupName, String monitorName, ElasticMonitorResourceUpdateParameters body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, monitorName, body);
+        return this.client.<ElasticMonitorResourceInner, ElasticMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ElasticMonitorResourceInner.class, ElasticMonitorResourceInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner>
+        beginUpdateAsync(String resourceGroupName, String monitorName) {
         final ElasticMonitorResourceUpdateParameters body = null;
-        return updateWithResponseAsync(resourceGroupName, monitorName, body)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, monitorName, body);
+        return this.client.<ElasticMonitorResourceInner, ElasticMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ElasticMonitorResourceInner.class, ElasticMonitorResourceInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -865,12 +888,105 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return monitor resource along with {@link Response}.
+     * @return the {@link PollerFlux} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner> beginUpdateAsync(
+        String resourceGroupName, String monitorName, ElasticMonitorResourceUpdateParameters body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, monitorName, body, context);
+        return this.client.<ElasticMonitorResourceInner, ElasticMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ElasticMonitorResourceInner.class, ElasticMonitorResourceInner.class,
+            context);
+    }
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner>
+        beginUpdate(String resourceGroupName, String monitorName) {
+        final ElasticMonitorResourceUpdateParameters body = null;
+        return this.beginUpdateAsync(resourceGroupName, monitorName, body).getSyncPoller();
+    }
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Elastic resource model update parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner> beginUpdate(
+        String resourceGroupName, String monitorName, ElasticMonitorResourceUpdateParameters body, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, monitorName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Elastic resource model update parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ElasticMonitorResourceInner> updateWithResponse(String resourceGroupName, String monitorName,
+    private Mono<ElasticMonitorResourceInner> updateAsync(String resourceGroupName, String monitorName,
+        ElasticMonitorResourceUpdateParameters body) {
+        return beginUpdateAsync(resourceGroupName, monitorName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ElasticMonitorResourceInner> updateAsync(String resourceGroupName, String monitorName) {
+        final ElasticMonitorResourceUpdateParameters body = null;
+        return beginUpdateAsync(resourceGroupName, monitorName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Elastic resource model update parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ElasticMonitorResourceInner> updateAsync(String resourceGroupName, String monitorName,
         ElasticMonitorResourceUpdateParameters body, Context context) {
-        return updateWithResponseAsync(resourceGroupName, monitorName, body, context).block();
+        return beginUpdateAsync(resourceGroupName, monitorName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -886,7 +1002,25 @@ public final class MonitorsClientImpl implements MonitorsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ElasticMonitorResourceInner update(String resourceGroupName, String monitorName) {
         final ElasticMonitorResourceUpdateParameters body = null;
-        return updateWithResponse(resourceGroupName, monitorName, body, Context.NONE).getValue();
+        return updateAsync(resourceGroupName, monitorName, body).block();
+    }
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Elastic resource model update parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ElasticMonitorResourceInner update(String resourceGroupName, String monitorName,
+        ElasticMonitorResourceUpdateParameters body, Context context) {
+        return updateAsync(resourceGroupName, monitorName, body, context).block();
     }
 
     /**

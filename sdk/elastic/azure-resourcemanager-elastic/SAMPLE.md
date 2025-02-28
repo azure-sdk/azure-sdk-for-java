@@ -57,6 +57,14 @@
 
 - [List](#monitoredresources_list)
 
+## MonitoredSubscriptions
+
+- [CreateorUpdate](#monitoredsubscriptions_createorupdate)
+- [Delete](#monitoredsubscriptions_delete)
+- [Get](#monitoredsubscriptions_get)
+- [List](#monitoredsubscriptions_list)
+- [Update](#monitoredsubscriptions_update)
+
 ## Monitors
 
 - [Create](#monitors_create)
@@ -82,6 +90,7 @@
 
 - [GetApiKey](#organizations_getapikey)
 - [GetElasticToAzureSubscriptionMapping](#organizations_getelastictoazuresubscriptionmapping)
+- [Resubscribe](#organizations_resubscribe)
 
 ## TagRules
 
@@ -117,8 +126,8 @@
  */
 public final class AllTrafficFiltersListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/AllTrafficFilters_list.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * AllTrafficFilters_list.json
      */
     /**
      * Sample code: AllTrafficFilters_list.
@@ -139,9 +148,8 @@ public final class AllTrafficFiltersListSamples {
  */
 public final class AssociateTrafficFilterAssociateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/AssociateTrafficFilter_Update
-     * .json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * AssociateTrafficFilter_Update.json
      */
     /**
      * Sample code: AssociateTrafficFilter_Associate.
@@ -165,7 +173,7 @@ public final class AssociateTrafficFilterAssociateSamples {
 public final class BillingInfoGetSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/BillingInfo_Get.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/BillingInfo_Get.json
      */
     /**
      * Sample code: BillingInfo_Get.
@@ -186,7 +194,7 @@ public final class BillingInfoGetSamples {
  */
 public final class ConnectedPartnerResourcesListSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
      * ConnectedPartnerResources_List.json
      */
     /**
@@ -208,8 +216,8 @@ public final class ConnectedPartnerResourcesListSamples {
  */
 public final class CreateAndAssociateIpFilterCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/IPTrafficFilter_Create.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * IPTrafficFilter_Create.json
      */
     /**
      * Sample code: createAndAssociateIPFilter_Create.
@@ -232,7 +240,7 @@ public final class CreateAndAssociateIpFilterCreateSamples {
  */
 public final class CreateAndAssociatePLFilterCreateSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
      * PrivateLinkTrafficFilters_Create.json
      */
     /**
@@ -257,7 +265,8 @@ public final class CreateAndAssociatePLFilterCreateSamples {
 public final class DeploymentInfoListSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/DeploymentInfo_List.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/DeploymentInfo_List.
+     * json
      */
     /**
      * Sample code: DeploymentInfo_List.
@@ -278,7 +287,7 @@ public final class DeploymentInfoListSamples {
  */
 public final class DetachAndDeleteTrafficFilterDeleteSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
      * DetachAndDeleteTrafficFilter_Delete.json
      */
     /**
@@ -302,9 +311,8 @@ public final class DetachAndDeleteTrafficFilterDeleteSamples {
  */
 public final class DetachTrafficFilterUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/DetachTrafficFilters_Update.
-     * json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * DetachTrafficFilters_Update.json
      */
     /**
      * Sample code: DetachTrafficFilter_Update.
@@ -328,7 +336,8 @@ public final class DetachTrafficFilterUpdateSamples {
 public final class ElasticVersionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/ElasticVersions_List.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/ElasticVersions_List
+     * .json
      */
     /**
      * Sample code: ElasticVersions_List.
@@ -351,7 +360,8 @@ public final class ElasticVersionsListSamples {
 public final class ExternalUserCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/ExternalUserInfo.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/ExternalUserInfo.
+     * json
      */
     /**
      * Sample code: ExternalUser_CreateOrUpdate.
@@ -373,7 +383,7 @@ public final class ExternalUserCreateOrUpdateSamples {
  */
 public final class ListAssociatedTrafficFiltersListSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
      * AssociatedFiltersForDeployment_list.json
      */
     /**
@@ -398,7 +408,7 @@ public final class ListAssociatedTrafficFiltersListSamples {
 public final class MonitorOperationUpgradeSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitor_Upgrade.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Monitor_Upgrade.json
      */
     /**
      * Sample code: Monitor_Upgrade.
@@ -419,8 +429,8 @@ public final class MonitorOperationUpgradeSamples {
  */
 public final class MonitoredResourcesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/MonitoredResources_List.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * MonitoredResources_List.json
      */
     /**
      * Sample code: MonitoredResources_List.
@@ -429,6 +439,123 @@ public final class MonitoredResourcesListSamples {
      */
     public static void monitoredResourcesList(com.azure.resourcemanager.elastic.ElasticManager manager) {
         manager.monitoredResources().list("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_CreateorUpdate
+
+```java
+/**
+ * Samples for MonitoredSubscriptions CreateorUpdate.
+ */
+public final class MonitoredSubscriptionsCreateorUpdateSamples {
+    /*
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * MonitoredSubscriptions_CreateorUpdate.json
+     */
+    /**
+     * Sample code: Monitors_AddMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to ElasticManager.
+     */
+    public static void monitorsAddMonitoredSubscriptions(com.azure.resourcemanager.elastic.ElasticManager manager) {
+        manager.monitoredSubscriptions().define("default").withExistingMonitor("myResourceGroup", "myMonitor").create();
+    }
+}
+```
+
+### MonitoredSubscriptions_Delete
+
+```java
+/**
+ * Samples for MonitoredSubscriptions Delete.
+ */
+public final class MonitoredSubscriptionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * MonitoredSubscriptions_Delete.json
+     */
+    /**
+     * Sample code: Monitors_DeleteMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to ElasticManager.
+     */
+    public static void monitorsDeleteMonitoredSubscriptions(com.azure.resourcemanager.elastic.ElasticManager manager) {
+        manager.monitoredSubscriptions()
+            .delete("myResourceGroup", "myMonitor", "default", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_Get
+
+```java
+/**
+ * Samples for MonitoredSubscriptions Get.
+ */
+public final class MonitoredSubscriptionsGetSamples {
+    /*
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * MonitoredSubscriptions_Get.json
+     */
+    /**
+     * Sample code: Monitors_GetMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to ElasticManager.
+     */
+    public static void monitorsGetMonitoredSubscriptions(com.azure.resourcemanager.elastic.ElasticManager manager) {
+        manager.monitoredSubscriptions()
+            .getWithResponse("myResourceGroup", "myMonitor", "default", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_List
+
+```java
+/**
+ * Samples for MonitoredSubscriptions List.
+ */
+public final class MonitoredSubscriptionsListSamples {
+    /*
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * MonitoredSubscriptions_List.json
+     */
+    /**
+     * Sample code: Monitors_GetMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to ElasticManager.
+     */
+    public static void monitorsGetMonitoredSubscriptions(com.azure.resourcemanager.elastic.ElasticManager manager) {
+        manager.monitoredSubscriptions().list("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_Update
+
+```java
+import com.azure.resourcemanager.elastic.models.MonitoredSubscriptionProperties;
+
+/**
+ * Samples for MonitoredSubscriptions Update.
+ */
+public final class MonitoredSubscriptionsUpdateSamples {
+    /*
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * MonitoredSubscriptions_Update.json
+     */
+    /**
+     * Sample code: Monitors_UpdateMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to ElasticManager.
+     */
+    public static void monitorsUpdateMonitoredSubscriptions(com.azure.resourcemanager.elastic.ElasticManager manager) {
+        MonitoredSubscriptionProperties resource = manager.monitoredSubscriptions()
+            .getWithResponse("myResourceGroup", "myMonitor", "default", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().apply();
     }
 }
 ```
@@ -442,7 +569,7 @@ public final class MonitoredResourcesListSamples {
 public final class MonitorsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitors_Create.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Monitors_Create.json
      */
     /**
      * Sample code: Monitors_Create.
@@ -468,7 +595,7 @@ public final class MonitorsCreateSamples {
 public final class MonitorsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitors_Delete.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Monitors_Delete.json
      */
     /**
      * Sample code: Monitors_Delete.
@@ -490,7 +617,7 @@ public final class MonitorsDeleteSamples {
 public final class MonitorsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitors_Get.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Monitors_Get.json
      */
     /**
      * Sample code: Monitors_Get.
@@ -513,7 +640,7 @@ public final class MonitorsGetByResourceGroupSamples {
 public final class MonitorsListSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitors_List.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Monitors_List.json
      */
     /**
      * Sample code: Monitors_List.
@@ -534,9 +661,8 @@ public final class MonitorsListSamples {
  */
 public final class MonitorsListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitors_ListByResourceGroup.
-     * json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * Monitors_ListByResourceGroup.json
      */
     /**
      * Sample code: Monitors_ListByResourceGroup.
@@ -560,7 +686,7 @@ import com.azure.resourcemanager.elastic.models.ElasticMonitorResource;
 public final class MonitorsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitors_Update.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Monitors_Update.json
      */
     /**
      * Sample code: Monitors_Update.
@@ -584,8 +710,8 @@ public final class MonitorsUpdateSamples {
  */
 public final class OpenAICreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/OpenAI_CreateOrUpdate.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * OpenAI_CreateOrUpdate.json
      */
     /**
      * Sample code: OpenAI_CreateOrUpdate.
@@ -607,7 +733,7 @@ public final class OpenAICreateOrUpdateSamples {
 public final class OpenAIDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/OpenAI_Delete.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/OpenAI_Delete.json
      */
     /**
      * Sample code: OpenAI_Delete.
@@ -630,7 +756,7 @@ public final class OpenAIDeleteSamples {
 public final class OpenAIGetSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/OpenAI_Get.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/OpenAI_Get.json
      */
     /**
      * Sample code: OpenAI_Get.
@@ -652,7 +778,8 @@ public final class OpenAIGetSamples {
 public final class OpenAIGetStatusSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/OpenAI_GetStatus.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/OpenAI_GetStatus.
+     * json
      */
     /**
      * Sample code: OpenAI_GetStatus.
@@ -675,7 +802,7 @@ public final class OpenAIGetStatusSamples {
 public final class OpenAIListSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/OpenAI_List.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/OpenAI_List.json
      */
     /**
      * Sample code: OpenAI_List.
@@ -697,7 +824,7 @@ public final class OpenAIListSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Operations_List.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
@@ -719,8 +846,8 @@ public final class OperationsListSamples {
  */
 public final class OrganizationsGetApiKeySamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Organizations_GetApiKey.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * Organizations_GetApiKey.json
      */
     /**
      * Sample code: Organizations_GetApiKey.
@@ -741,7 +868,7 @@ public final class OrganizationsGetApiKeySamples {
  */
 public final class OrganizationsGetElasticToAzureSubscriptionMappingSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
      * Organizations_GetElasticToAzureSubscriptionMapping.json
      */
     /**
@@ -756,6 +883,29 @@ public final class OrganizationsGetElasticToAzureSubscriptionMappingSamples {
 }
 ```
 
+### Organizations_Resubscribe
+
+```java
+
+/**
+ * Samples for Organizations Resubscribe.
+ */
+public final class OrganizationsResubscribeSamples {
+    /*
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * Organizations_Resubscribe.json
+     */
+    /**
+     * Sample code: Organizations_Resubscribe.
+     * 
+     * @param manager Entry point to ElasticManager.
+     */
+    public static void organizationsResubscribe(com.azure.resourcemanager.elastic.ElasticManager manager) {
+        manager.organizations().resubscribe("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### TagRules_CreateOrUpdate
 
 ```java
@@ -764,8 +914,8 @@ public final class OrganizationsGetElasticToAzureSubscriptionMappingSamples {
  */
 public final class TagRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/TagRules_CreateOrUpdate.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * TagRules_CreateOrUpdate.json
      */
     /**
      * Sample code: TagRules_CreateOrUpdate.
@@ -787,7 +937,7 @@ public final class TagRulesCreateOrUpdateSamples {
 public final class TagRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/TagRules_Delete.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/TagRules_Delete.json
      */
     /**
      * Sample code: TagRules_Delete.
@@ -809,7 +959,7 @@ public final class TagRulesDeleteSamples {
 public final class TagRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/TagRules_Get.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/TagRules_Get.json
      */
     /**
      * Sample code: TagRules_Get.
@@ -831,7 +981,7 @@ public final class TagRulesGetSamples {
 public final class TagRulesListSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/TagRules_List.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/TagRules_List.json
      */
     /**
      * Sample code: TagRules_List.
@@ -852,8 +1002,8 @@ public final class TagRulesListSamples {
  */
 public final class TrafficFiltersDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/TrafficFilters_Delete.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * TrafficFilters_Delete.json
      */
     /**
      * Sample code: TrafficFilters_Delete.
@@ -876,9 +1026,8 @@ public final class TrafficFiltersDeleteSamples {
  */
 public final class UpgradableVersionsDetailsSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/UpgradableVersions_Details.
-     * json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * UpgradableVersions_Details.json
      */
     /**
      * Sample code: UpgradableVersions_Details.
@@ -902,7 +1051,8 @@ public final class UpgradableVersionsDetailsSamples {
 public final class VMCollectionUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/VMCollection_Update.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/VMCollection_Update.
+     * json
      */
     /**
      * Sample code: VMCollection_Update.
@@ -925,7 +1075,7 @@ public final class VMCollectionUpdateSamples {
 public final class VMHostListSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/VMHost_List.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/VMHost_List.json
      */
     /**
      * Sample code: VMHost_List.
@@ -947,7 +1097,8 @@ public final class VMHostListSamples {
 public final class VMIngestionDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/VMIngestion_Details.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/VMIngestion_Details.
+     * json
      */
     /**
      * Sample code: VMIngestion_Details.

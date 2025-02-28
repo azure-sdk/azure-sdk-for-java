@@ -20,12 +20,19 @@ import com.azure.core.annotation.UnexpectedResponseExceptionType;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.elastic.fluent.OrganizationsClient;
+import com.azure.resourcemanager.elastic.fluent.models.ElasticMonitorResourceInner;
 import com.azure.resourcemanager.elastic.fluent.models.ElasticOrganizationToAzureSubscriptionMappingResponseInner;
 import com.azure.resourcemanager.elastic.fluent.models.UserApiKeyResponseInner;
+import com.azure.resourcemanager.elastic.models.ResubscribeProperties;
 import com.azure.resourcemanager.elastic.models.UserEmailId;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -75,6 +82,16 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
         Mono<Response<ElasticOrganizationToAzureSubscriptionMappingResponseInner>> getElasticToAzureSubscriptionMapping(
             @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/resubscribe")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> resubscribe(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
+            @BodyParam("application/json") ResubscribeProperties body, @HeaderParam("Accept") String accept,
+            Context context);
     }
 
     /**
@@ -279,5 +296,269 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ElasticOrganizationToAzureSubscriptionMappingResponseInner getElasticToAzureSubscriptionMapping() {
         return getElasticToAzureSubscriptionMappingWithResponse(Context.NONE).getValue();
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> resubscribeWithResponseAsync(String resourceGroupName, String monitorName,
+        ResubscribeProperties body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.resubscribe(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, monitorName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> resubscribeWithResponseAsync(String resourceGroupName, String monitorName,
+        ResubscribeProperties body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.resubscribe(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, monitorName, body, accept, context);
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner>
+        beginResubscribeAsync(String resourceGroupName, String monitorName, ResubscribeProperties body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = resubscribeWithResponseAsync(resourceGroupName, monitorName, body);
+        return this.client.<ElasticMonitorResourceInner, ElasticMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ElasticMonitorResourceInner.class, ElasticMonitorResourceInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner>
+        beginResubscribeAsync(String resourceGroupName, String monitorName) {
+        final ResubscribeProperties body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = resubscribeWithResponseAsync(resourceGroupName, monitorName, body);
+        return this.client.<ElasticMonitorResourceInner, ElasticMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ElasticMonitorResourceInner.class, ElasticMonitorResourceInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner> beginResubscribeAsync(
+        String resourceGroupName, String monitorName, ResubscribeProperties body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = resubscribeWithResponseAsync(resourceGroupName, monitorName, body, context);
+        return this.client.<ElasticMonitorResourceInner, ElasticMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ElasticMonitorResourceInner.class, ElasticMonitorResourceInner.class,
+            context);
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner>
+        beginResubscribe(String resourceGroupName, String monitorName) {
+        final ResubscribeProperties body = null;
+        return this.beginResubscribeAsync(resourceGroupName, monitorName, body).getSyncPoller();
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner>
+        beginResubscribe(String resourceGroupName, String monitorName, ResubscribeProperties body, Context context) {
+        return this.beginResubscribeAsync(resourceGroupName, monitorName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ElasticMonitorResourceInner> resubscribeAsync(String resourceGroupName, String monitorName,
+        ResubscribeProperties body) {
+        return beginResubscribeAsync(resourceGroupName, monitorName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ElasticMonitorResourceInner> resubscribeAsync(String resourceGroupName, String monitorName) {
+        final ResubscribeProperties body = null;
+        return beginResubscribeAsync(resourceGroupName, monitorName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ElasticMonitorResourceInner> resubscribeAsync(String resourceGroupName, String monitorName,
+        ResubscribeProperties body, Context context) {
+        return beginResubscribeAsync(resourceGroupName, monitorName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ElasticMonitorResourceInner resubscribe(String resourceGroupName, String monitorName) {
+        final ResubscribeProperties body = null;
+        return resubscribeAsync(resourceGroupName, monitorName, body).block();
+    }
+
+    /**
+     * Resubscribe the Elasticsearch Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ElasticMonitorResourceInner resubscribe(String resourceGroupName, String monitorName,
+        ResubscribeProperties body, Context context) {
+        return resubscribeAsync(resourceGroupName, monitorName, body, context).block();
     }
 }

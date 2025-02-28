@@ -12,7 +12,7 @@ import com.azure.resourcemanager.elastic.models.ElasticMonitorResource;
 public final class MonitorsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Monitors_Update.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/Monitors_Update.json
      */
     /**
      * Sample code: Monitors_Update.
