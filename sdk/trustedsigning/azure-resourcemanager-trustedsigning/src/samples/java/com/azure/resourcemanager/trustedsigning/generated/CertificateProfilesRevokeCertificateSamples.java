@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
  */
 public final class CertificateProfilesRevokeCertificateSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/CertificateProfiles_RevokeCertificate.json
+     * x-ms-original-file: 2025-03-30/CertificateProfiles_RevokeCertificate.json
      */
     /**
      * Sample code: Revoke a certificate under a certificate profile.
