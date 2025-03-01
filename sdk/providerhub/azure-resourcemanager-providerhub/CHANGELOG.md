@@ -1,14 +1,23 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-02-26)
 
-### Features Added
+- Azure Resource Manager ProviderHub client library for Java. This package contains Microsoft Azure SDK for ProviderHub Management SDK. Microsoft ProviderHub. Package tag package-2020-11-20. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ExtendedLocationOptions` was modified
 
-### Other Changes
+* `withSupportedPolicy(java.lang.String)` was removed
+* `java.lang.String supportedPolicy()` -> `models.ResourceTypeExtendedLocationPolicy supportedPolicy()`
+
+### Features Added
+
+* `models.ResourceTypeExtendedLocationPolicy` was added
+
+#### `models.ExtendedLocationOptions` was modified
+
+* `withSupportedPolicy(models.ResourceTypeExtendedLocationPolicy)` was added
 
 ## 1.1.0 (2024-12-06)
 

@@ -24,7 +24,7 @@ public final class ExtendedLocationOptions implements JsonSerializable<ExtendedL
     /*
      * The supportedPolicy property.
      */
-    private String supportedPolicy;
+    private ResourceTypeExtendedLocationPolicy supportedPolicy;
 
     /**
      * Creates an instance of ExtendedLocationOptions class.
@@ -57,7 +57,7 @@ public final class ExtendedLocationOptions implements JsonSerializable<ExtendedL
      * 
      * @return the supportedPolicy value.
      */
-    public String supportedPolicy() {
+    public ResourceTypeExtendedLocationPolicy supportedPolicy() {
         return this.supportedPolicy;
     }
 
@@ -67,7 +67,7 @@ public final class ExtendedLocationOptions implements JsonSerializable<ExtendedL
      * @param supportedPolicy the supportedPolicy value to set.
      * @return the ExtendedLocationOptions object itself.
      */
-    public ExtendedLocationOptions withSupportedPolicy(String supportedPolicy) {
+    public ExtendedLocationOptions withSupportedPolicy(ResourceTypeExtendedLocationPolicy supportedPolicy) {
         this.supportedPolicy = supportedPolicy;
         return this;
     }
@@ -87,7 +87,8 @@ public final class ExtendedLocationOptions implements JsonSerializable<ExtendedL
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("type", this.type);
-        jsonWriter.writeStringField("supportedPolicy", this.supportedPolicy);
+        jsonWriter.writeStringField("supportedPolicy",
+            this.supportedPolicy == null ? null : this.supportedPolicy.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -109,7 +110,8 @@ public final class ExtendedLocationOptions implements JsonSerializable<ExtendedL
                 if ("type".equals(fieldName)) {
                     deserializedExtendedLocationOptions.type = reader.getString();
                 } else if ("supportedPolicy".equals(fieldName)) {
-                    deserializedExtendedLocationOptions.supportedPolicy = reader.getString();
+                    deserializedExtendedLocationOptions.supportedPolicy
+                        = ResourceTypeExtendedLocationPolicy.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
