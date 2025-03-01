@@ -6,7 +6,6 @@ package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,7 +15,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Properties for Log Collection Request.
+ * The LogCollectionRequestProperties model.
  */
 @Fluent
 public final class LogCollectionRequestProperties implements JsonSerializable<LogCollectionRequestProperties> {
@@ -82,19 +81,7 @@ public final class LogCollectionRequestProperties implements JsonSerializable<Lo
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (fromDate() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property fromDate in model LogCollectionRequestProperties"));
-        }
-        if (toDate() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property toDate in model LogCollectionRequestProperties"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LogCollectionRequestProperties.class);
 
     /**
      * {@inheritDoc}
@@ -115,7 +102,6 @@ public final class LogCollectionRequestProperties implements JsonSerializable<Lo
      * @param jsonReader The JsonReader being read.
      * @return An instance of LogCollectionRequestProperties if the JsonReader was pointing to an instance of it, or
      * null if it was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the LogCollectionRequestProperties.
      */
     public static LogCollectionRequestProperties fromJson(JsonReader jsonReader) throws IOException {

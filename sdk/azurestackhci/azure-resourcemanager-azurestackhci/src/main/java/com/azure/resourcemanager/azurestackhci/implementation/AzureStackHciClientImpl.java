@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -35,8 +35,8 @@ import com.azure.resourcemanager.azurestackhci.fluent.PublishersClient;
 import com.azure.resourcemanager.azurestackhci.fluent.SecuritySettingsClient;
 import com.azure.resourcemanager.azurestackhci.fluent.SkusClient;
 import com.azure.resourcemanager.azurestackhci.fluent.UpdateRunsClient;
-import com.azure.resourcemanager.azurestackhci.fluent.UpdatesClient;
 import com.azure.resourcemanager.azurestackhci.fluent.UpdateSummariesOperationsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.UpdatesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -52,12 +52,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = AzureStackHciClientBuilder.class)
 public final class AzureStackHciClientImpl implements AzureStackHciClient {
     /**
-     * The ID of the target subscription. The value must be an UUID.
+     * The ID of the target subscription.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription. The value must be an UUID.
+     * Gets The ID of the target subscription.
      * 
      * @return the subscriptionId value.
      */
@@ -324,7 +324,7 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
     AzureStackHciClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -334,7 +334,7 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-04-01";
+        this.apiVersion = "2024-02-15-preview";
         this.arcSettings = new ArcSettingsClientImpl(this);
         this.clusters = new ClustersClientImpl(this);
         this.deploymentSettings = new DeploymentSettingsClientImpl(this);

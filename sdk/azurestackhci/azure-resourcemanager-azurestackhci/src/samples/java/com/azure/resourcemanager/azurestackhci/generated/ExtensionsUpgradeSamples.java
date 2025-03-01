@@ -12,17 +12,17 @@ import com.azure.resourcemanager.azurestackhci.models.ExtensionUpgradeParameters
 public final class ExtensionsUpgradeSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * Extensions_Upgrade.json
      */
     /**
      * Sample code: Upgrade Machine Extensions.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void upgradeMachineExtensions(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void upgradeMachineExtensions(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.extensions()
-            .upgrade("test-rg", "myCluster", "default", "MicrosoftMonitoringAgent",
+            .upgrade("test-rg", "mycluster", "default", "MicrosoftMonitoringAgent",
                 new ExtensionUpgradeParameters().withTargetVersion("1.0.18062.0"), com.azure.core.util.Context.NONE);
     }
 }

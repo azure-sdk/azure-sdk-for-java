@@ -15,7 +15,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Properties for Remote Support Request.
+ * The RemoteSupportRequestProperties model.
  */
 @Fluent
 public final class RemoteSupportRequestProperties implements JsonSerializable<RemoteSupportRequestProperties> {
@@ -47,6 +47,17 @@ public final class RemoteSupportRequestProperties implements JsonSerializable<Re
      */
     public AccessLevel accessLevel() {
         return this.accessLevel;
+    }
+
+    /**
+     * Set the accessLevel property: Remote Support Access Level.
+     * 
+     * @param accessLevel the accessLevel value to set.
+     * @return the RemoteSupportRequestProperties object itself.
+     */
+    public RemoteSupportRequestProperties withAccessLevel(AccessLevel accessLevel) {
+        this.accessLevel = accessLevel;
+        return this;
     }
 
     /**
@@ -103,6 +114,7 @@ public final class RemoteSupportRequestProperties implements JsonSerializable<Re
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("accessLevel", this.accessLevel == null ? null : this.accessLevel.toString());
         jsonWriter.writeStringField("expirationTimeStamp",
             this.expirationTimestamp == null
                 ? null

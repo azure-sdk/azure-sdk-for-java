@@ -10,15 +10,15 @@ package com.azure.resourcemanager.azurestackhci.generated;
 public final class PublishersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * GetPublisher.json
      */
     /**
      * Sample code: Get Publisher.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void getPublisher(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        manager.publishers().getWithResponse("test-rg", "myCluster", "publisher1", com.azure.core.util.Context.NONE);
+    public static void getPublisher(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
+        manager.publishers().getWithResponse("test-rg", "mycluster", "publisher1", com.azure.core.util.Context.NONE);
     }
 }

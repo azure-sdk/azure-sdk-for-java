@@ -17,15 +17,15 @@ import java.util.Arrays;
 public final class UpdatesPutSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * PutUpdates.json
      */
     /**
      * Sample code: Put a specific update.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void putASpecificUpdate(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void putASpecificUpdate(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         HciUpdate resource = manager.updates()
             .getWithResponse("testrg", "testcluster", "Microsoft4.2203.2.32", com.azure.core.util.Context.NONE)
             .getValue();

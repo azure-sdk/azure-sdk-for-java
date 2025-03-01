@@ -12,17 +12,17 @@ import com.azure.resourcemanager.azurestackhci.models.ManagedServiceIdentityType
 public final class ClustersCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * CreateCluster.json
      */
     /**
      * Sample code: Create cluster.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void createCluster(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void createCluster(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.clusters()
-            .define("myCluster")
+            .define("mycluster")
             .withRegion("East US")
             .withExistingResourceGroup("test-rg")
             .withTypeIdentityType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)

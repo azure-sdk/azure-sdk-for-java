@@ -10,15 +10,15 @@ package com.azure.resourcemanager.azurestackhci.generated;
 public final class SecuritySettingsListByClustersSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * ListSecuritySettingsByCluster.json
      */
     /**
      * Sample code: List Security Settings.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void listSecuritySettings(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        manager.securitySettings().listByClusters("test-rg", "myCluster", com.azure.core.util.Context.NONE);
+    public static void listSecuritySettings(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
+        manager.securitySettings().listByClusters("test-rg", "mycluster", com.azure.core.util.Context.NONE);
     }
 }

@@ -12,10 +12,10 @@ import com.azure.resourcemanager.azurestackhci.models.EdgeDevice;
 public final class EdgeDeviceImpl implements EdgeDevice {
     private EdgeDeviceInner innerObject;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
     EdgeDeviceImpl(EdgeDeviceInner innerObject,
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -44,7 +44,7 @@ public final class EdgeDeviceImpl implements EdgeDevice {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 }

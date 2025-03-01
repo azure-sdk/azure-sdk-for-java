@@ -63,13 +63,6 @@ public interface DeploymentSetting {
     DeploymentMode deploymentMode();
 
     /**
-     * Gets the operationType property: The intended operation for a cluster.
-     * 
-     * @return the operationType value.
-     */
-    OperationType operationType();
-
-    /**
      * Gets the deploymentConfiguration property: Scale units will contains list of deployment data.
      * 
      * @return the deploymentConfiguration value.
@@ -133,7 +126,7 @@ public interface DeploymentSetting {
          * resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithArcNodeResourceIds, DefinitionStages.WithDeploymentMode,
-            DefinitionStages.WithOperationType, DefinitionStages.WithDeploymentConfiguration {
+            DefinitionStages.WithDeploymentConfiguration {
             /**
              * Executes the create request.
              * 
@@ -177,19 +170,6 @@ public interface DeploymentSetting {
         }
 
         /**
-         * The stage of the DeploymentSetting definition allowing to specify operationType.
-         */
-        interface WithOperationType {
-            /**
-             * Specifies the operationType property: The intended operation for a cluster..
-             * 
-             * @param operationType The intended operation for a cluster.
-             * @return the next definition stage.
-             */
-            WithCreate withOperationType(OperationType operationType);
-        }
-
-        /**
          * The stage of the DeploymentSetting definition allowing to specify deploymentConfiguration.
          */
         interface WithDeploymentConfiguration {
@@ -214,7 +194,7 @@ public interface DeploymentSetting {
      * The template for DeploymentSetting update.
      */
     interface Update extends UpdateStages.WithArcNodeResourceIds, UpdateStages.WithDeploymentMode,
-        UpdateStages.WithOperationType, UpdateStages.WithDeploymentConfiguration {
+        UpdateStages.WithDeploymentConfiguration {
         /**
          * Executes the update request.
          * 
@@ -259,19 +239,6 @@ public interface DeploymentSetting {
              * @return the next definition stage.
              */
             Update withDeploymentMode(DeploymentMode deploymentMode);
-        }
-
-        /**
-         * The stage of the DeploymentSetting update allowing to specify operationType.
-         */
-        interface WithOperationType {
-            /**
-             * Specifies the operationType property: The intended operation for a cluster..
-             * 
-             * @param operationType The intended operation for a cluster.
-             * @return the next definition stage.
-             */
-            Update withOperationType(OperationType operationType);
         }
 
         /**

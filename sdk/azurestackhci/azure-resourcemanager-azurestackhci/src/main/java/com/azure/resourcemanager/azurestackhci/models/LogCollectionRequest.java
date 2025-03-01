@@ -12,12 +12,12 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Log Collection Request.
+ * The LogCollectionRequest model.
  */
 @Fluent
 public final class LogCollectionRequest implements JsonSerializable<LogCollectionRequest> {
     /*
-     * Properties for Log Collection Request
+     * The properties property.
      */
     private LogCollectionRequestProperties properties;
 
@@ -28,7 +28,7 @@ public final class LogCollectionRequest implements JsonSerializable<LogCollectio
     }
 
     /**
-     * Get the properties property: Properties for Log Collection Request.
+     * Get the properties property: The properties property.
      * 
      * @return the properties value.
      */
@@ -37,7 +37,7 @@ public final class LogCollectionRequest implements JsonSerializable<LogCollectio
     }
 
     /**
-     * Set the properties property: Properties for Log Collection Request.
+     * Set the properties property: The properties property.
      * 
      * @param properties the properties value to set.
      * @return the LogCollectionRequest object itself.

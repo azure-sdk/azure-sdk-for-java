@@ -43,26 +43,6 @@ public final class LogCollectionSession implements JsonSerializable<LogCollectio
      */
     private LogCollectionStatus logCollectionStatus;
 
-    /*
-     * LogCollection job type
-     */
-    private LogCollectionJobType logCollectionJobType;
-
-    /*
-     * CorrelationId of the log collection
-     */
-    private String correlationId;
-
-    /*
-     * End Time of the logs when it was collected
-     */
-    private OffsetDateTime endTimeCollected;
-
-    /*
-     * Log Collection Error details of the cluster.
-     */
-    private LogCollectionError logCollectionError;
-
     /**
      * Creates an instance of LogCollectionSession class.
      */
@@ -115,50 +95,11 @@ public final class LogCollectionSession implements JsonSerializable<LogCollectio
     }
 
     /**
-     * Get the logCollectionJobType property: LogCollection job type.
-     * 
-     * @return the logCollectionJobType value.
-     */
-    public LogCollectionJobType logCollectionJobType() {
-        return this.logCollectionJobType;
-    }
-
-    /**
-     * Get the correlationId property: CorrelationId of the log collection.
-     * 
-     * @return the correlationId value.
-     */
-    public String correlationId() {
-        return this.correlationId;
-    }
-
-    /**
-     * Get the endTimeCollected property: End Time of the logs when it was collected.
-     * 
-     * @return the endTimeCollected value.
-     */
-    public OffsetDateTime endTimeCollected() {
-        return this.endTimeCollected;
-    }
-
-    /**
-     * Get the logCollectionError property: Log Collection Error details of the cluster.
-     * 
-     * @return the logCollectionError value.
-     */
-    public LogCollectionError logCollectionError() {
-        return this.logCollectionError;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (logCollectionError() != null) {
-            logCollectionError().validate();
-        }
     }
 
     /**
@@ -199,16 +140,6 @@ public final class LogCollectionSession implements JsonSerializable<LogCollectio
                 } else if ("logCollectionStatus".equals(fieldName)) {
                     deserializedLogCollectionSession.logCollectionStatus
                         = LogCollectionStatus.fromString(reader.getString());
-                } else if ("logCollectionJobType".equals(fieldName)) {
-                    deserializedLogCollectionSession.logCollectionJobType
-                        = LogCollectionJobType.fromString(reader.getString());
-                } else if ("correlationId".equals(fieldName)) {
-                    deserializedLogCollectionSession.correlationId = reader.getString();
-                } else if ("endTimeCollected".equals(fieldName)) {
-                    deserializedLogCollectionSession.endTimeCollected = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
-                } else if ("logCollectionError".equals(fieldName)) {
-                    deserializedLogCollectionSession.logCollectionError = LogCollectionError.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

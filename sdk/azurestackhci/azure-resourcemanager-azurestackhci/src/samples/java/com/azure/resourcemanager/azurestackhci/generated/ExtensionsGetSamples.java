@@ -10,17 +10,17 @@ package com.azure.resourcemanager.azurestackhci.generated;
 public final class ExtensionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * GetExtension.json
      */
     /**
      * Sample code: Get ArcSettings Extension.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void getArcSettingsExtension(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void getArcSettingsExtension(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.extensions()
-            .getWithResponse("test-rg", "myCluster", "default", "MicrosoftMonitoringAgent",
+            .getWithResponse("test-rg", "mycluster", "default", "MicrosoftMonitoringAgent",
                 com.azure.core.util.Context.NONE);
     }
 }

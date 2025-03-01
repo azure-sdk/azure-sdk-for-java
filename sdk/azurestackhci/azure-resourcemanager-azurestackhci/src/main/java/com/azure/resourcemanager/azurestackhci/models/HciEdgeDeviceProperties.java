@@ -66,9 +66,11 @@ public final class HciEdgeDeviceProperties extends EdgeDeviceProperties {
      */
     @Override
     public void validate() {
-        super.validate();
         if (reportedProperties() != null) {
             reportedProperties().validate();
+        }
+        if (deviceConfiguration() != null) {
+            deviceConfiguration().validate();
         }
     }
 
