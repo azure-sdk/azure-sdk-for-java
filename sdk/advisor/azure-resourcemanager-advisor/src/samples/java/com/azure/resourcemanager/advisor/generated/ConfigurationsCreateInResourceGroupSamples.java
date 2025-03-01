@@ -9,6 +9,7 @@ import com.azure.resourcemanager.advisor.models.ConfigurationName;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
 import com.azure.resourcemanager.advisor.models.DigestConfigState;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import java.util.Arrays;
 
 /**
@@ -17,7 +18,8 @@ import java.util.Arrays;
 public final class ConfigurationsCreateInResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/CreateConfiguration.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/preview/2023-09-01-preview/examples/CreateConfiguration.
+     * json
      */
     /**
      * Sample code: PutConfigurations.
@@ -30,9 +32,10 @@ public final class ConfigurationsCreateInResourceGroupSamples {
             .withExistingResourceGroup("resourceGroup")
             .withExclude(true)
             .withLowCpuThreshold(CpuThreshold.FIVE)
+            .withDuration(DurationModel.SEVEN)
             .withDigests(Arrays.asList(new DigestConfig().withName("digestConfigName")
                 .withActionGroupResourceId(
-                    "/subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/microsoft.insights/actionGroups/actionGroupName")
+                    "/subscriptions/58c3f667-7a62-4bfd-a658-846493e9a493/resourceGroups/resourceGroup/providers/microsoft.insights/actionGroups/actionGroupName")
                 .withFrequency(30)
                 .withCategories(Arrays.asList(Category.HIGH_AVAILABILITY, Category.SECURITY, Category.PERFORMANCE,
                     Category.COST, Category.OPERATIONAL_EXCELLENCE))

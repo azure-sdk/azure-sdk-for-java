@@ -24,11 +24,18 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.advisor.fluent.AdvisorManagementClient;
+import com.azure.resourcemanager.advisor.fluent.AdvisorScoresClient;
+import com.azure.resourcemanager.advisor.fluent.AssessmentTypesClient;
+import com.azure.resourcemanager.advisor.fluent.AssessmentsClient;
 import com.azure.resourcemanager.advisor.fluent.ConfigurationsClient;
 import com.azure.resourcemanager.advisor.fluent.OperationsClient;
 import com.azure.resourcemanager.advisor.fluent.RecommendationMetadatasClient;
 import com.azure.resourcemanager.advisor.fluent.RecommendationsClient;
+import com.azure.resourcemanager.advisor.fluent.ResiliencyReviewsClient;
+import com.azure.resourcemanager.advisor.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.advisor.fluent.SuppressionsClient;
+import com.azure.resourcemanager.advisor.fluent.TriageRecommendationsClient;
+import com.azure.resourcemanager.advisor.fluent.WorkloadsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -198,6 +205,104 @@ public final class AdvisorManagementClientImpl implements AdvisorManagementClien
     }
 
     /**
+     * The ResourceProvidersClient object to access its operations.
+     */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     * 
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
+    /**
+     * The AdvisorScoresClient object to access its operations.
+     */
+    private final AdvisorScoresClient advisorScores;
+
+    /**
+     * Gets the AdvisorScoresClient object to access its operations.
+     * 
+     * @return the AdvisorScoresClient object.
+     */
+    public AdvisorScoresClient getAdvisorScores() {
+        return this.advisorScores;
+    }
+
+    /**
+     * The AssessmentsClient object to access its operations.
+     */
+    private final AssessmentsClient assessments;
+
+    /**
+     * Gets the AssessmentsClient object to access its operations.
+     * 
+     * @return the AssessmentsClient object.
+     */
+    public AssessmentsClient getAssessments() {
+        return this.assessments;
+    }
+
+    /**
+     * The AssessmentTypesClient object to access its operations.
+     */
+    private final AssessmentTypesClient assessmentTypes;
+
+    /**
+     * Gets the AssessmentTypesClient object to access its operations.
+     * 
+     * @return the AssessmentTypesClient object.
+     */
+    public AssessmentTypesClient getAssessmentTypes() {
+        return this.assessmentTypes;
+    }
+
+    /**
+     * The WorkloadsClient object to access its operations.
+     */
+    private final WorkloadsClient workloads;
+
+    /**
+     * Gets the WorkloadsClient object to access its operations.
+     * 
+     * @return the WorkloadsClient object.
+     */
+    public WorkloadsClient getWorkloads() {
+        return this.workloads;
+    }
+
+    /**
+     * The ResiliencyReviewsClient object to access its operations.
+     */
+    private final ResiliencyReviewsClient resiliencyReviews;
+
+    /**
+     * Gets the ResiliencyReviewsClient object to access its operations.
+     * 
+     * @return the ResiliencyReviewsClient object.
+     */
+    public ResiliencyReviewsClient getResiliencyReviews() {
+        return this.resiliencyReviews;
+    }
+
+    /**
+     * The TriageRecommendationsClient object to access its operations.
+     */
+    private final TriageRecommendationsClient triageRecommendations;
+
+    /**
+     * Gets the TriageRecommendationsClient object to access its operations.
+     * 
+     * @return the TriageRecommendationsClient object.
+     */
+    public TriageRecommendationsClient getTriageRecommendations() {
+        return this.triageRecommendations;
+    }
+
+    /**
      * Initializes an instance of AdvisorManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -214,12 +319,19 @@ public final class AdvisorManagementClientImpl implements AdvisorManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2020-01-01";
+        this.apiVersion = "2023-09-01-preview";
         this.recommendationMetadatas = new RecommendationMetadatasClientImpl(this);
         this.configurations = new ConfigurationsClientImpl(this);
         this.recommendations = new RecommendationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.suppressions = new SuppressionsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.advisorScores = new AdvisorScoresClientImpl(this);
+        this.assessments = new AssessmentsClientImpl(this);
+        this.assessmentTypes = new AssessmentTypesClientImpl(this);
+        this.workloads = new WorkloadsClientImpl(this);
+        this.resiliencyReviews = new ResiliencyReviewsClientImpl(this);
+        this.triageRecommendations = new TriageRecommendationsClientImpl(this);
     }
 
     /**

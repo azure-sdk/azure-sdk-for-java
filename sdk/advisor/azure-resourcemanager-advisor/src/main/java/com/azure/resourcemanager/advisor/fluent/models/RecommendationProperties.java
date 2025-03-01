@@ -12,8 +12,12 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
+import com.azure.resourcemanager.advisor.models.RecommendationPropertiesResourceWorkload;
+import com.azure.resourcemanager.advisor.models.RecommendationPropertiesReview;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -61,6 +65,11 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
      * The recommendation-type GUID.
      */
     private String recommendationTypeId;
+
+    /*
+     * The potential risk of not implementing the recommendation.
+     */
+    private Risk risk;
 
     /*
      * A summary of the recommendation.
@@ -116,6 +125,36 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
      * The recommendation metadata properties exposed to customer to provide additional information.
      */
     private Map<String, Object> exposedMetadataProperties;
+
+    /*
+     * If the Recommendation has Tracking enabled.
+     */
+    private Boolean tracked;
+
+    /*
+     * The properties of a tracked recommendation.
+     */
+    private TrackedRecommendationProperties trackedProperties;
+
+    /*
+     * The Review that this Recommendation belongs to.
+     */
+    private RecommendationPropertiesReview review;
+
+    /*
+     * The Workload that this Resource belongs to.
+     */
+    private RecommendationPropertiesResourceWorkload resourceWorkload;
+
+    /*
+     * The Source System that this Recommendation originated from.
+     */
+    private String sourceSystem;
+
+    /*
+     * Additional notes for the Recommendation
+     */
+    private String notes;
 
     /**
      * Creates an instance of RecommendationProperties class.
@@ -260,6 +299,26 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
      */
     public RecommendationProperties withRecommendationTypeId(String recommendationTypeId) {
         this.recommendationTypeId = recommendationTypeId;
+        return this;
+    }
+
+    /**
+     * Get the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @return the risk value.
+     */
+    public Risk risk() {
+        return this.risk;
+    }
+
+    /**
+     * Set the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @param risk the risk value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withRisk(Risk risk) {
+        this.risk = risk;
         return this;
     }
 
@@ -486,6 +545,126 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
     }
 
     /**
+     * Get the tracked property: If the Recommendation has Tracking enabled.
+     * 
+     * @return the tracked value.
+     */
+    public Boolean tracked() {
+        return this.tracked;
+    }
+
+    /**
+     * Set the tracked property: If the Recommendation has Tracking enabled.
+     * 
+     * @param tracked the tracked value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withTracked(Boolean tracked) {
+        this.tracked = tracked;
+        return this;
+    }
+
+    /**
+     * Get the trackedProperties property: The properties of a tracked recommendation.
+     * 
+     * @return the trackedProperties value.
+     */
+    public TrackedRecommendationProperties trackedProperties() {
+        return this.trackedProperties;
+    }
+
+    /**
+     * Set the trackedProperties property: The properties of a tracked recommendation.
+     * 
+     * @param trackedProperties the trackedProperties value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withTrackedProperties(TrackedRecommendationProperties trackedProperties) {
+        this.trackedProperties = trackedProperties;
+        return this;
+    }
+
+    /**
+     * Get the review property: The Review that this Recommendation belongs to.
+     * 
+     * @return the review value.
+     */
+    public RecommendationPropertiesReview review() {
+        return this.review;
+    }
+
+    /**
+     * Set the review property: The Review that this Recommendation belongs to.
+     * 
+     * @param review the review value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withReview(RecommendationPropertiesReview review) {
+        this.review = review;
+        return this;
+    }
+
+    /**
+     * Get the resourceWorkload property: The Workload that this Resource belongs to.
+     * 
+     * @return the resourceWorkload value.
+     */
+    public RecommendationPropertiesResourceWorkload resourceWorkload() {
+        return this.resourceWorkload;
+    }
+
+    /**
+     * Set the resourceWorkload property: The Workload that this Resource belongs to.
+     * 
+     * @param resourceWorkload the resourceWorkload value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withResourceWorkload(RecommendationPropertiesResourceWorkload resourceWorkload) {
+        this.resourceWorkload = resourceWorkload;
+        return this;
+    }
+
+    /**
+     * Get the sourceSystem property: The Source System that this Recommendation originated from.
+     * 
+     * @return the sourceSystem value.
+     */
+    public String sourceSystem() {
+        return this.sourceSystem;
+    }
+
+    /**
+     * Set the sourceSystem property: The Source System that this Recommendation originated from.
+     * 
+     * @param sourceSystem the sourceSystem value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withSourceSystem(String sourceSystem) {
+        this.sourceSystem = sourceSystem;
+        return this;
+    }
+
+    /**
+     * Get the notes property: Additional notes for the Recommendation.
+     * 
+     * @return the notes value.
+     */
+    public String notes() {
+        return this.notes;
+    }
+
+    /**
+     * Set the notes property: Additional notes for the Recommendation.
+     * 
+     * @param notes the notes value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withNotes(String notes) {
+        this.notes = notes;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -496,6 +675,15 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
         }
         if (resourceMetadata() != null) {
             resourceMetadata().validate();
+        }
+        if (trackedProperties() != null) {
+            trackedProperties().validate();
+        }
+        if (review() != null) {
+            review().validate();
+        }
+        if (resourceWorkload() != null) {
+            resourceWorkload().validate();
         }
     }
 
@@ -513,6 +701,7 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
             this.lastUpdated == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastUpdated));
         jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("recommendationTypeId", this.recommendationTypeId);
+        jsonWriter.writeStringField("risk", this.risk == null ? null : this.risk.toString());
         jsonWriter.writeJsonField("shortDescription", this.shortDescription);
         jsonWriter.writeArrayField("suppressionIds", this.suppressionIds,
             (writer, element) -> writer.writeString(Objects.toString(element, null)));
@@ -528,6 +717,12 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
         jsonWriter.writeMapField("remediation", this.remediation, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeMapField("exposedMetadataProperties", this.exposedMetadataProperties,
             (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeBooleanField("tracked", this.tracked);
+        jsonWriter.writeJsonField("trackedProperties", this.trackedProperties);
+        jsonWriter.writeJsonField("review", this.review);
+        jsonWriter.writeJsonField("resourceWorkload", this.resourceWorkload);
+        jsonWriter.writeStringField("sourceSystem", this.sourceSystem);
+        jsonWriter.writeStringField("notes", this.notes);
         return jsonWriter.writeEndObject();
     }
 
@@ -562,6 +757,8 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
                     deserializedRecommendationProperties.metadata = metadata;
                 } else if ("recommendationTypeId".equals(fieldName)) {
                     deserializedRecommendationProperties.recommendationTypeId = reader.getString();
+                } else if ("risk".equals(fieldName)) {
+                    deserializedRecommendationProperties.risk = Risk.fromString(reader.getString());
                 } else if ("shortDescription".equals(fieldName)) {
                     deserializedRecommendationProperties.shortDescription = ShortDescription.fromJson(reader);
                 } else if ("suppressionIds".equals(fieldName)) {
@@ -591,6 +788,20 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
                 } else if ("exposedMetadataProperties".equals(fieldName)) {
                     Map<String, Object> exposedMetadataProperties = reader.readMap(reader1 -> reader1.readUntyped());
                     deserializedRecommendationProperties.exposedMetadataProperties = exposedMetadataProperties;
+                } else if ("tracked".equals(fieldName)) {
+                    deserializedRecommendationProperties.tracked = reader.getNullable(JsonReader::getBoolean);
+                } else if ("trackedProperties".equals(fieldName)) {
+                    deserializedRecommendationProperties.trackedProperties
+                        = TrackedRecommendationProperties.fromJson(reader);
+                } else if ("review".equals(fieldName)) {
+                    deserializedRecommendationProperties.review = RecommendationPropertiesReview.fromJson(reader);
+                } else if ("resourceWorkload".equals(fieldName)) {
+                    deserializedRecommendationProperties.resourceWorkload
+                        = RecommendationPropertiesResourceWorkload.fromJson(reader);
+                } else if ("sourceSystem".equals(fieldName)) {
+                    deserializedRecommendationProperties.sourceSystem = reader.getString();
+                } else if ("notes".equals(fieldName)) {
+                    deserializedRecommendationProperties.notes = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

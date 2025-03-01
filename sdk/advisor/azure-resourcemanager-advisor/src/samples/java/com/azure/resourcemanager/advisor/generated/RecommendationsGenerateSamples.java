@@ -9,8 +9,8 @@ package com.azure.resourcemanager.advisor.generated;
  */
 public final class RecommendationsGenerateSamples {
     /*
-     * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/GenerateRecommendations.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/preview/2023-09-01-preview/examples/
+     * GenerateRecommendations.json
      */
     /**
      * Sample code: GenerateRecommendations.
