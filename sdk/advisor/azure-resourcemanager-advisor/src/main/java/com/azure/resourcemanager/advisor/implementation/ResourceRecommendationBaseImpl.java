@@ -4,11 +4,14 @@
 
 package com.azure.resourcemanager.advisor.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import com.azure.resourcemanager.advisor.models.Category;
+import com.azure.resourcemanager.advisor.models.Control;
 import com.azure.resourcemanager.advisor.models.Impact;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
 import com.azure.resourcemanager.advisor.models.ResourceRecommendationBase;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -39,8 +42,16 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public Category category() {
         return this.innerModel().category();
+    }
+
+    public Control control() {
+        return this.innerModel().control();
     }
 
     public Impact impact() {
@@ -70,6 +81,10 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
 
     public String recommendationTypeId() {
         return this.innerModel().recommendationTypeId();
+    }
+
+    public Risk risk() {
+        return this.innerModel().risk();
     }
 
     public ShortDescription shortDescription() {
