@@ -46,7 +46,22 @@ public enum CapacityReservationLevel {
     /**
      * Enum value 5000.
      */
-    FIVE_ZERO_ZERO_ZERO(5000);
+    FIVE_ZERO_ZERO_ZERO(5000),
+
+    /**
+     * Enum value 10000.
+     */
+    ONE_ZERO_ZERO_ZERO_ZERO(10000),
+
+    /**
+     * Enum value 25000.
+     */
+    TWO_FIVE_ZERO_ZERO_ZERO(25000),
+
+    /**
+     * Enum value 50000.
+     */
+    FIVE_ZERO_ZERO_ZERO_ZERO(50000);
 
     /**
      * The actual serialized value for a CapacityReservationLevel instance.

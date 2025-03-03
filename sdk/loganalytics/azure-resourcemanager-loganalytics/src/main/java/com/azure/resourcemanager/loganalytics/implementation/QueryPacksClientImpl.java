@@ -166,11 +166,10 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<LogAnalyticsQueryPackInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -196,10 +195,11 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -286,11 +286,10 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                apiVersion, this.client.getSubscriptionId(), accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<LogAnalyticsQueryPackInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -322,11 +321,10 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, apiVersion,
+            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
                 this.client.getSubscriptionId(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -428,11 +426,11 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         } else {
             logAnalyticsQueryPackPayload.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateWithoutName(this.client.getEndpoint(), resourceGroupName,
-                apiVersion, this.client.getSubscriptionId(), logAnalyticsQueryPackPayload, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), logAnalyticsQueryPackPayload, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -471,11 +469,11 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         } else {
             logAnalyticsQueryPackPayload.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdateWithoutName(this.client.getEndpoint(), resourceGroupName, apiVersion,
-            this.client.getSubscriptionId(), logAnalyticsQueryPackPayload, accept, context);
+        return service.createOrUpdateWithoutName(this.client.getEndpoint(), resourceGroupName,
+            this.client.getApiVersion(), this.client.getSubscriptionId(), logAnalyticsQueryPackPayload, accept,
+            context);
     }
 
     /**
@@ -563,11 +561,10 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         if (queryPackName == null) {
             return Mono.error(new IllegalArgumentException("Parameter queryPackName is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName, apiVersion,
-                this.client.getSubscriptionId(), queryPackName, accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), queryPackName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -600,11 +597,10 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         if (queryPackName == null) {
             return Mono.error(new IllegalArgumentException("Parameter queryPackName is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, apiVersion, this.client.getSubscriptionId(),
-            queryPackName, accept, context);
+        return service.delete(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
+            this.client.getSubscriptionId(), queryPackName, accept, context);
     }
 
     /**
@@ -681,11 +677,10 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         if (queryPackName == null) {
             return Mono.error(new IllegalArgumentException("Parameter queryPackName is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, apiVersion,
-                this.client.getSubscriptionId(), queryPackName, accept, context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), queryPackName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -719,10 +714,9 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         if (queryPackName == null) {
             return Mono.error(new IllegalArgumentException("Parameter queryPackName is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, apiVersion,
+        return service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), queryPackName, accept, context);
     }
 
@@ -812,11 +806,11 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         } else {
             logAnalyticsQueryPackPayload.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, apiVersion,
-                this.client.getSubscriptionId(), queryPackName, logAnalyticsQueryPackPayload, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), queryPackName,
+                logAnalyticsQueryPackPayload, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -859,10 +853,9 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         } else {
             logAnalyticsQueryPackPayload.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, apiVersion,
+        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), queryPackName, logAnalyticsQueryPackPayload, accept, context);
     }
 
@@ -962,11 +955,11 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         } else {
             queryPackTags.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.updateTags(this.client.getEndpoint(), resourceGroupName, apiVersion,
-                this.client.getSubscriptionId(), queryPackName, queryPackTags, accept, context))
+            .withContext(
+                context -> service.updateTags(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), queryPackName, queryPackTags, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1006,10 +999,9 @@ public final class QueryPacksClientImpl implements QueryPacksClient {
         } else {
             queryPackTags.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateTags(this.client.getEndpoint(), resourceGroupName, apiVersion,
+        return service.updateTags(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
             this.client.getSubscriptionId(), queryPackName, queryPackTags, accept, context);
     }
 
