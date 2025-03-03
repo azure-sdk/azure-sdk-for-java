@@ -7,8 +7,8 @@ package com.azure.resourcemanager.iotoperations.generated;
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
+import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.iotoperations.IoTOperationsManager;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
@@ -24,14 +24,14 @@ public final class InstancesListByResourceGroupMockTests {
     @Test
     public void testListByResourceGroup() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"description\":\"pqvujzraehtwdwrf\",\"provisioningState\":\"Canceled\",\"version\":\"byrcdlbhshfwp\",\"schemaRegistryRef\":{\"resourceId\":\"acstwityk\"}},\"extendedLocation\":{\"name\":\"evxccedcp\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"odn\",\"tenantId\":\"xltjcvnhltiu\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"vfgbvfvpdboda\":{\"principalId\":\"vvwxqi\",\"clientId\":\"qunyowxwlmdjr\"},\"bdeibqipqk\":{\"principalId\":\"zsjqlh\",\"clientId\":\"r\"}}},\"location\":\"vxndz\",\"tags\":{\"b\":\"refajpjorwkqnyh\",\"jivfxzsjabib\":\"j\",\"jxbkzbzkdvn\":\"ystawfsdjpvkvp\"},\"id\":\"jabudurgkakmo\",\"name\":\"zhjjklffhmouwq\",\"type\":\"gzrf\"}]}";
+            = "{\"value\":[{\"properties\":{\"description\":\"pqvujzraehtwdwrf\",\"provisioningState\":\"Canceled\",\"version\":\"byrcdlbhshfwp\",\"schemaRegistryRef\":{\"resourceId\":\"acstwityk\"}},\"extendedLocation\":{\"name\":\"evxccedcp\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"odn\",\"tenantId\":\"xltjcvnhltiu\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"vfgbvfvpdboda\":{\"clientId\":\"vvwxqi\",\"principalId\":\"qunyowxwlmdjr\"},\"bdeibqipqk\":{\"clientId\":\"zsjqlh\",\"principalId\":\"r\"}}},\"location\":\"vxndz\",\"tags\":{\"b\":\"refajpjorwkqnyh\",\"jivfxzsjabib\":\"j\",\"jxbkzbzkdvn\":\"ystawfsdjpvkvp\"},\"id\":\"jabudurgkakmo\",\"name\":\"zhjjklffhmouwq\",\"type\":\"gzrf\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
         IoTOperationsManager manager = IoTOperationsManager.configure()
             .withHttpClient(httpClient)
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
-                new AzureProfile("", "", AzureEnvironment.AZURE));
+                new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         PagedIterable<InstanceResource> response
             = manager.instances().listByResourceGroup("xgfpelolppv", com.azure.core.util.Context.NONE);
