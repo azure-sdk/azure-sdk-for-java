@@ -51,11 +51,16 @@ public interface RecommendationMetadatas {
     /**
      * Gets the list of metadata entities.
      * 
+     * @param filter The filter to apply to the recommendation metadata.&lt;br&gt;Filter can be applied to properties
+     * ['[Category](#category)', '[Control](#control)', 'RetirementDate'] with operators ['eq', 'and', 'le',
+     * 'ge'].&lt;br&gt;Example:&lt;br&gt;- $filter=recommendationCategory eq 'HighAvailability' and
+     * recommendationControl eq 'ServiceUpgradeAndRetirement' and retirementDate ge '2024-01-01' and retirementDate le
+     * '2028-01-01'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of metadata entities as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MetadataEntity> list(Context context);
+    PagedIterable<MetadataEntity> list(String filter, Context context);
 }

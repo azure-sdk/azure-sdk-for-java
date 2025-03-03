@@ -75,7 +75,8 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataEntityListResult>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -186,20 +187,25 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
     /**
      * Gets the list of metadata entities.
      * 
+     * @param filter The filter to apply to the recommendation metadata.&lt;br&gt;Filter can be applied to properties
+     * ['[Category](#category)', '[Control](#control)', 'RetirementDate'] with operators ['eq', 'and', 'le',
+     * 'ge'].&lt;br&gt;Example:&lt;br&gt;- $filter=recommendationCategory eq 'HighAvailability' and
+     * recommendationControl eq 'ServiceUpgradeAndRetirement' and retirementDate ge '2024-01-01' and retirementDate le
+     * '2028-01-01'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of metadata entities along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MetadataEntityInner>> listSinglePageAsync() {
+    private Mono<PagedResponse<MetadataEntityInner>> listSinglePageAsync(String filter) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
+        return FluxUtil.withContext(
+            context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), filter, accept, context))
             .<PagedResponse<MetadataEntityInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -208,6 +214,11 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
     /**
      * Gets the list of metadata entities.
      * 
+     * @param filter The filter to apply to the recommendation metadata.&lt;br&gt;Filter can be applied to properties
+     * ['[Category](#category)', '[Control](#control)', 'RetirementDate'] with operators ['eq', 'and', 'le',
+     * 'ge'].&lt;br&gt;Example:&lt;br&gt;- $filter=recommendationCategory eq 'HighAvailability' and
+     * recommendationControl eq 'ServiceUpgradeAndRetirement' and retirementDate ge '2024-01-01' and retirementDate le
+     * '2028-01-01'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -215,16 +226,34 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @return the list of metadata entities along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MetadataEntityInner>> listSinglePageAsync(Context context) {
+    private Mono<PagedResponse<MetadataEntityInner>> listSinglePageAsync(String filter, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets the list of metadata entities.
+     * 
+     * @param filter The filter to apply to the recommendation metadata.&lt;br&gt;Filter can be applied to properties
+     * ['[Category](#category)', '[Control](#control)', 'RetirementDate'] with operators ['eq', 'and', 'le',
+     * 'ge'].&lt;br&gt;Example:&lt;br&gt;- $filter=recommendationCategory eq 'HighAvailability' and
+     * recommendationControl eq 'ServiceUpgradeAndRetirement' and retirementDate ge '2024-01-01' and retirementDate le
+     * '2028-01-01'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of metadata entities as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<MetadataEntityInner> listAsync(String filter) {
+        return new PagedFlux<>(() -> listSinglePageAsync(filter), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -236,12 +265,18 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MetadataEntityInner> listAsync() {
-        return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listNextSinglePageAsync(nextLink));
+        final String filter = null;
+        return new PagedFlux<>(() -> listSinglePageAsync(filter), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets the list of metadata entities.
      * 
+     * @param filter The filter to apply to the recommendation metadata.&lt;br&gt;Filter can be applied to properties
+     * ['[Category](#category)', '[Control](#control)', 'RetirementDate'] with operators ['eq', 'and', 'le',
+     * 'ge'].&lt;br&gt;Example:&lt;br&gt;- $filter=recommendationCategory eq 'HighAvailability' and
+     * recommendationControl eq 'ServiceUpgradeAndRetirement' and retirementDate ge '2024-01-01' and retirementDate le
+     * '2028-01-01'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -249,8 +284,8 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @return the list of metadata entities as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<MetadataEntityInner> listAsync(Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(context),
+    private PagedFlux<MetadataEntityInner> listAsync(String filter, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(filter, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -263,12 +298,18 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MetadataEntityInner> list() {
-        return new PagedIterable<>(listAsync());
+        final String filter = null;
+        return new PagedIterable<>(listAsync(filter));
     }
 
     /**
      * Gets the list of metadata entities.
      * 
+     * @param filter The filter to apply to the recommendation metadata.&lt;br&gt;Filter can be applied to properties
+     * ['[Category](#category)', '[Control](#control)', 'RetirementDate'] with operators ['eq', 'and', 'le',
+     * 'ge'].&lt;br&gt;Example:&lt;br&gt;- $filter=recommendationCategory eq 'HighAvailability' and
+     * recommendationControl eq 'ServiceUpgradeAndRetirement' and retirementDate ge '2024-01-01' and retirementDate le
+     * '2028-01-01'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -276,8 +317,8 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @return the list of metadata entities as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<MetadataEntityInner> list(Context context) {
-        return new PagedIterable<>(listAsync(context));
+    public PagedIterable<MetadataEntityInner> list(String filter, Context context) {
+        return new PagedIterable<>(listAsync(filter, context));
     }
 
     /**
