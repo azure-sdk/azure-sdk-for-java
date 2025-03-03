@@ -6,8 +6,8 @@ package com.azure.resourcemanager.servicenetworking.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
-import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
+import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.servicenetworking.TrafficControllerManager;
 import com.azure.resourcemanager.servicenetworking.models.Frontend;
@@ -24,25 +24,25 @@ public final class FrontendsInterfacesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"fqdn\":\"iwdjswztsdbpgn\",\"provisioningState\":\"Succeeded\"},\"location\":\"hpzxbzpfzab\",\"tags\":{\"lwzbhvgyugu\":\"uhxwtctyqiklbbov\"},\"id\":\"svmkfssxquk\",\"name\":\"fpl\",\"type\":\"mg\"}";
+            = "{\"properties\":{\"fqdn\":\"qnwvlrya\",\"provisioningState\":\"Succeeded\"},\"location\":\"eun\",\"tags\":{\"koklya\":\"hgyxzkonoc\",\"ewrmjmwvvjektc\":\"uconuqszfkbey\",\"frzpwvlqdqgb\":\"senhwlrs\",\"fcivfsnkym\":\"qylihkaetckt\"},\"id\":\"ctq\",\"name\":\"jf\",\"type\":\"ebrjcxe\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
         TrafficControllerManager manager = TrafficControllerManager.configure()
             .withHttpClient(httpClient)
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
-                new AzureProfile("", "", AzureEnvironment.AZURE));
+                new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         Frontend response = manager.frontendsInterfaces()
-            .define("axdbabph")
-            .withRegion("mnyyazt")
-            .withExistingTrafficController("xywnytnrsynlqidy", "yxczfclh")
-            .withTags(mapOf("uedck", "wwrq", "bxu", "ywbiexzfeyueax"))
+            .define("sjttgzfbish")
+            .withRegion("buxwgip")
+            .withExistingTrafficController("dpydn", "yhxdeoejzicwi")
+            .withTags(mapOf("nkixzbinj", "nowkgshw", "tmryw", "pu"))
             .withProperties(new FrontendProperties())
             .create();
 
-        Assertions.assertEquals("hpzxbzpfzab", response.location());
-        Assertions.assertEquals("uhxwtctyqiklbbov", response.tags().get("lwzbhvgyugu"));
+        Assertions.assertEquals("eun", response.location());
+        Assertions.assertEquals("hgyxzkonoc", response.tags().get("koklya"));
     }
 
     // Use "Map.of" if available

@@ -6,8 +6,8 @@ package com.azure.resourcemanager.servicenetworking.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
-import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
+import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.servicenetworking.TrafficControllerManager;
 import com.azure.resourcemanager.servicenetworking.models.Frontend;
@@ -21,20 +21,20 @@ public final class FrontendsInterfacesGetWithResponseMockTests {
     @Test
     public void testGetWithResponse() throws Exception {
         String responseStr
-            = "{\"properties\":{\"fqdn\":\"nljky\",\"provisioningState\":\"Failed\"},\"location\":\"uujqgidokgjljyo\",\"tags\":{\"hbijhtxfvgxb\":\"cltbgsncghkjesz\",\"eh\":\"smx\",\"qkkrb\":\"pvecxgodeb\"},\"id\":\"pukgriwflzlfb\",\"name\":\"zpuzycisp\",\"type\":\"qzahmgkbrp\"}";
+            = "{\"properties\":{\"fqdn\":\"sauuimj\",\"provisioningState\":\"Succeeded\"},\"location\":\"eduugi\",\"tags\":{\"clhocohsl\":\"rrfbyaosvexcson\",\"eggzfb\":\"ev\",\"ithlvmezyvshxm\":\"hfmvfaxkffe\"},\"id\":\"sbbzo\",\"name\":\"gigr\",\"type\":\"wburvjxxjnspydpt\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
         TrafficControllerManager manager = TrafficControllerManager.configure()
             .withHttpClient(httpClient)
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
-                new AzureProfile("", "", AzureEnvironment.AZURE));
+                new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         Frontend response = manager.frontendsInterfaces()
-            .getWithResponse("ebrjcxe", "fuwutttxf", "jrbirphxepcyv", com.azure.core.util.Context.NONE)
+            .getWithResponse("rkcciwwzjuqk", "rsa", "iwkuofos", com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals("uujqgidokgjljyo", response.location());
-        Assertions.assertEquals("cltbgsncghkjesz", response.tags().get("hbijhtxfvgxb"));
+        Assertions.assertEquals("eduugi", response.location());
+        Assertions.assertEquals("rrfbyaosvexcson", response.tags().get("clhocohsl"));
     }
 }

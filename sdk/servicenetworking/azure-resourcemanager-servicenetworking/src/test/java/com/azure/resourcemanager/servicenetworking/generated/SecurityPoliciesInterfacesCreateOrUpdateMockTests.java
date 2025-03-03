@@ -6,8 +6,8 @@ package com.azure.resourcemanager.servicenetworking.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
-import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
+import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.servicenetworking.TrafficControllerManager;
 import com.azure.resourcemanager.servicenetworking.models.SecurityPolicy;
@@ -25,27 +25,26 @@ public final class SecurityPoliciesInterfacesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"e\"},\"provisioningState\":\"Succeeded\"},\"location\":\"k\",\"tags\":{\"uhashsfwx\":\"liourqhak\"},\"id\":\"sowzxcugi\",\"name\":\"jooxdjebw\",\"type\":\"ucww\"}";
+            = "{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"zkd\"},\"provisioningState\":\"Succeeded\"},\"location\":\"vlopwiyighx\",\"tags\":{\"baumnyqupedeoj\":\"wzbaiue\",\"ckhsmtxpsieb\":\"a\"},\"id\":\"fhvpesaps\",\"name\":\"rdqmhjjdhtldwkyz\",\"type\":\"uutkncw\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
         TrafficControllerManager manager = TrafficControllerManager.configure()
             .withHttpClient(httpClient)
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
-                new AzureProfile("", "", AzureEnvironment.AZURE));
+                new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         SecurityPolicy response = manager.securityPoliciesInterfaces()
-            .define("qj")
-            .withRegion("pycanuzbpz")
-            .withExistingTrafficController("udxytlmoyrx", "wfudwpzntxhdzhl")
-            .withTags(mapOf("ehhseyvjusrts", "kuwbcrnwb", "mx", "hspkdeemao", "ljuahaquhcdh", "gkvtmelmqkrhah",
-                "xqpvfadmw", "duala"))
-            .withProperties(new SecurityPolicyProperties().withWafPolicy(new WafPolicy().withId("rlhrxs")))
+            .define("ux")
+            .withRegion("ytxhp")
+            .withExistingTrafficController("xibxujwbhqwalm", "zyoxaepdkzjan")
+            .withTags(mapOf("hxw", "zpfzabglc", "bbovplwzbhvgyugu", "ctyqik"))
+            .withProperties(new SecurityPolicyProperties().withWafPolicy(new WafPolicy().withId("avxbniwdjswztsdb")))
             .create();
 
-        Assertions.assertEquals("k", response.location());
-        Assertions.assertEquals("liourqhak", response.tags().get("uhashsfwx"));
-        Assertions.assertEquals("e", response.properties().wafPolicy().id());
+        Assertions.assertEquals("vlopwiyighx", response.location());
+        Assertions.assertEquals("wzbaiue", response.tags().get("baumnyqupedeoj"));
+        Assertions.assertEquals("zkd", response.properties().wafPolicy().id());
     }
 
     // Use "Map.of" if available

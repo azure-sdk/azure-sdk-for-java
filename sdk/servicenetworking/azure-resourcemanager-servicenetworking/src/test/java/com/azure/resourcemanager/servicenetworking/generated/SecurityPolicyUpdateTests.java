@@ -16,19 +16,20 @@ public final class SecurityPolicyUpdateTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         SecurityPolicyUpdate model = BinaryData
-            .fromString("{\"tags\":{\"rkujy\":\"yjgzjaoyfhrtxiln\"},\"properties\":{\"wafPolicy\":{\"id\":\"eju\"}}}")
+            .fromString(
+                "{\"tags\":{\"msmjqulngsntn\":\"qjhqjbas\"},\"properties\":{\"wafPolicy\":{\"id\":\"kzgcwrwcl\"}}}")
             .toObject(SecurityPolicyUpdate.class);
-        Assertions.assertEquals("yjgzjaoyfhrtxiln", model.tags().get("rkujy"));
-        Assertions.assertEquals("eju", model.properties().wafPolicy().id());
+        Assertions.assertEquals("qjhqjbas", model.tags().get("msmjqulngsntn"));
+        Assertions.assertEquals("kzgcwrwcl", model.properties().wafPolicy().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        SecurityPolicyUpdate model = new SecurityPolicyUpdate().withTags(mapOf("rkujy", "yjgzjaoyfhrtxiln"))
-            .withProperties(new SecurityPolicyUpdateProperties().withWafPolicy(new WafPolicy().withId("eju")));
+        SecurityPolicyUpdate model = new SecurityPolicyUpdate().withTags(mapOf("msmjqulngsntn", "qjhqjbas"))
+            .withProperties(new SecurityPolicyUpdateProperties().withWafPolicy(new WafPolicy().withId("kzgcwrwcl")));
         model = BinaryData.fromObject(model).toObject(SecurityPolicyUpdate.class);
-        Assertions.assertEquals("yjgzjaoyfhrtxiln", model.tags().get("rkujy"));
-        Assertions.assertEquals("eju", model.properties().wafPolicy().id());
+        Assertions.assertEquals("qjhqjbas", model.tags().get("msmjqulngsntn"));
+        Assertions.assertEquals("kzgcwrwcl", model.properties().wafPolicy().id());
     }
 
     // Use "Map.of" if available

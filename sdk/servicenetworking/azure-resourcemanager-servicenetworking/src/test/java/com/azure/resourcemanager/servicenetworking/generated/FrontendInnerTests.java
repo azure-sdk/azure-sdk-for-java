@@ -15,20 +15,20 @@ public final class FrontendInnerTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         FrontendInner model = BinaryData.fromString(
-            "{\"properties\":{\"fqdn\":\"dvpjhulsuuvmk\",\"provisioningState\":\"Provisioning\"},\"location\":\"rwfndiod\",\"tags\":{\"ryo\":\"lwejdpv\",\"hbcryffdfdosyge\":\"psoacctazakljl\",\"rzevdphlxaol\":\"paojakhmsbzjh\"},\"id\":\"hqtrgqjbpf\",\"name\":\"fsinzgvfcjrwzoxx\",\"type\":\"tfell\"}")
+            "{\"properties\":{\"fqdn\":\"zwuxzd\",\"provisioningState\":\"Succeeded\"},\"location\":\"rlhm\",\"tags\":{\"u\":\"pmrqobm\"},\"id\":\"knryrtihfxtij\",\"name\":\"pzvgnwzsymglzufc\",\"type\":\"zk\"}")
             .toObject(FrontendInner.class);
-        Assertions.assertEquals("rwfndiod", model.location());
-        Assertions.assertEquals("lwejdpv", model.tags().get("ryo"));
+        Assertions.assertEquals("rlhm", model.location());
+        Assertions.assertEquals("pmrqobm", model.tags().get("u"));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        FrontendInner model = new FrontendInner().withLocation("rwfndiod")
-            .withTags(mapOf("ryo", "lwejdpv", "hbcryffdfdosyge", "psoacctazakljl", "rzevdphlxaol", "paojakhmsbzjh"))
+        FrontendInner model = new FrontendInner().withLocation("rlhm")
+            .withTags(mapOf("u", "pmrqobm"))
             .withProperties(new FrontendProperties());
         model = BinaryData.fromObject(model).toObject(FrontendInner.class);
-        Assertions.assertEquals("rwfndiod", model.location());
-        Assertions.assertEquals("lwejdpv", model.tags().get("ryo"));
+        Assertions.assertEquals("rlhm", model.location());
+        Assertions.assertEquals("pmrqobm", model.tags().get("u"));
     }
 
     // Use "Map.of" if available

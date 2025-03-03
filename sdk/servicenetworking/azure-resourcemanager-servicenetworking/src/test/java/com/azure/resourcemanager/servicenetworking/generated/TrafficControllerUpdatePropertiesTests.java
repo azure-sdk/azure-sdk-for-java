@@ -13,18 +13,18 @@ import org.junit.jupiter.api.Assertions;
 public final class TrafficControllerUpdatePropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        TrafficControllerUpdateProperties model = BinaryData
-            .fromString("{\"securityPolicyConfigurations\":{\"wafSecurityPolicy\":{\"id\":\"xuigdtopbobj\"}}}")
-            .toObject(TrafficControllerUpdateProperties.class);
-        Assertions.assertEquals("xuigdtopbobj", model.securityPolicyConfigurations().wafSecurityPolicy().id());
+        TrafficControllerUpdateProperties model
+            = BinaryData.fromString("{\"securityPolicyConfigurations\":{\"wafSecurityPolicy\":{\"id\":\"rhhbcs\"}}}")
+                .toObject(TrafficControllerUpdateProperties.class);
+        Assertions.assertEquals("rhhbcs", model.securityPolicyConfigurations().wafSecurityPolicy().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        TrafficControllerUpdateProperties model = new TrafficControllerUpdateProperties()
-            .withSecurityPolicyConfigurations(new SecurityPolicyConfigurations()
-                .withWafSecurityPolicy(new WafSecurityPolicy().withId("xuigdtopbobj")));
+        TrafficControllerUpdateProperties model
+            = new TrafficControllerUpdateProperties().withSecurityPolicyConfigurations(
+                new SecurityPolicyConfigurations().withWafSecurityPolicy(new WafSecurityPolicy().withId("rhhbcs")));
         model = BinaryData.fromObject(model).toObject(TrafficControllerUpdateProperties.class);
-        Assertions.assertEquals("xuigdtopbobj", model.securityPolicyConfigurations().wafSecurityPolicy().id());
+        Assertions.assertEquals("rhhbcs", model.securityPolicyConfigurations().wafSecurityPolicy().id());
     }
 }

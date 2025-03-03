@@ -7,8 +7,8 @@ package com.azure.resourcemanager.servicenetworking.generated;
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
+import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.servicenetworking.TrafficControllerManager;
 import com.azure.resourcemanager.servicenetworking.models.SecurityPolicy;
@@ -22,20 +22,20 @@ public final class SecurityPoliciesInterfacesListByTrafficControllerMockTests {
     @Test
     public void testListByTrafficController() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"clfp\"},\"provisioningState\":\"Deleting\"},\"location\":\"xus\",\"tags\":{\"psbjta\":\"abgy\",\"kqujidsuyono\":\"qugxywpmueefjzwf\"},\"id\":\"glaocq\",\"name\":\"tcc\",\"type\":\"g\"}]}";
+            = "{\"value\":[{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"qagnbuyn\"},\"provisioningState\":\"Succeeded\"},\"location\":\"gmebfsiarbutrcv\",\"tags\":{\"hrbnlankxmyskpbh\":\"zzmhjrunmpxttd\",\"yn\":\"nbtkcxywnytnr\",\"zfcl\":\"qidybyx\",\"fkts\":\"aaxdbabphlwrq\"},\"id\":\"hsucoc\",\"name\":\"nyyazttbtwwrqpue\",\"type\":\"ckzywbiexzfeyue\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
         TrafficControllerManager manager = TrafficControllerManager.configure()
             .withHttpClient(httpClient)
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
-                new AzureProfile("", "", AzureEnvironment.AZURE));
+                new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         PagedIterable<SecurityPolicy> response = manager.securityPoliciesInterfaces()
-            .listByTrafficController("nxdhbt", "kphywpnvjto", com.azure.core.util.Context.NONE);
+            .listByTrafficController("y", "hibnuqqkpika", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("xus", response.iterator().next().location());
-        Assertions.assertEquals("abgy", response.iterator().next().tags().get("psbjta"));
-        Assertions.assertEquals("clfp", response.iterator().next().properties().wafPolicy().id());
+        Assertions.assertEquals("gmebfsiarbutrcv", response.iterator().next().location());
+        Assertions.assertEquals("zzmhjrunmpxttd", response.iterator().next().tags().get("hrbnlankxmyskpbh"));
+        Assertions.assertEquals("qagnbuyn", response.iterator().next().properties().wafPolicy().id());
     }
 }

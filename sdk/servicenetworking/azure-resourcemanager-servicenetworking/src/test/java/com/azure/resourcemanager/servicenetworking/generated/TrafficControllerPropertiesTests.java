@@ -14,16 +14,16 @@ public final class TrafficControllerPropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         TrafficControllerProperties model = BinaryData.fromString(
-            "{\"configurationEndpoints\":[\"mmajtjaodx\",\"bnbdxkqpxokajion\",\"imexgstxgcpodgma\"],\"frontends\":[{\"id\":\"mvdjwzrlovmc\"}],\"associations\":[{\"id\":\"ijcoejctb\"},{\"id\":\"aqsqsycbkbfk\"}],\"securityPolicies\":[{\"id\":\"dkexxppofm\"},{\"id\":\"axcfjpgddtocjjx\"}],\"securityPolicyConfigurations\":{\"wafSecurityPolicy\":{\"id\":\"mouexhdzx\"}},\"provisioningState\":\"Succeeded\"}")
+            "{\"configurationEndpoints\":[\"tbzsgfyccs\",\"ewmdw\",\"jeiachboosfl\",\"ro\"],\"frontends\":[{\"id\":\"pteehzzv\"},{\"id\":\"pyqr\"}],\"associations\":[{\"id\":\"inpvswjdkirsoodq\"}],\"securityPolicies\":[{\"id\":\"rmnohj\"},{\"id\":\"ckwhds\"},{\"id\":\"ifiyipjxsqwpgrj\"},{\"id\":\"znorcj\"}],\"securityPolicyConfigurations\":{\"wafSecurityPolicy\":{\"id\":\"nb\"}},\"provisioningState\":\"Deleting\"}")
             .toObject(TrafficControllerProperties.class);
-        Assertions.assertEquals("mouexhdzx", model.securityPolicyConfigurations().wafSecurityPolicy().id());
+        Assertions.assertEquals("nb", model.securityPolicyConfigurations().wafSecurityPolicy().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         TrafficControllerProperties model = new TrafficControllerProperties().withSecurityPolicyConfigurations(
-            new SecurityPolicyConfigurations().withWafSecurityPolicy(new WafSecurityPolicy().withId("mouexhdzx")));
+            new SecurityPolicyConfigurations().withWafSecurityPolicy(new WafSecurityPolicy().withId("nb")));
         model = BinaryData.fromObject(model).toObject(TrafficControllerProperties.class);
-        Assertions.assertEquals("mouexhdzx", model.securityPolicyConfigurations().wafSecurityPolicy().id());
+        Assertions.assertEquals("nb", model.securityPolicyConfigurations().wafSecurityPolicy().id());
     }
 }

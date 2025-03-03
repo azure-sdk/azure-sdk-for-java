@@ -17,24 +17,23 @@ public final class TrafficControllerInnerTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         TrafficControllerInner model = BinaryData.fromString(
-            "{\"properties\":{\"configurationEndpoints\":[\"jcmmxdcufufsrp\",\"mzidnsezcxtb\"],\"frontends\":[{\"id\":\"fycc\"},{\"id\":\"newmdwzjeiachbo\"}],\"associations\":[{\"id\":\"lnrosfqp\"},{\"id\":\"eeh\"},{\"id\":\"zvypyqrimzinp\"},{\"id\":\"swjdkirso\"}],\"securityPolicies\":[{\"id\":\"xhcr\"},{\"id\":\"nohjt\"}],\"securityPolicyConfigurations\":{\"wafSecurityPolicy\":{\"id\":\"h\"}},\"provisioningState\":\"Succeeded\"},\"location\":\"fiyipjxsqwpgrj\",\"tags\":{\"qabnmoc\":\"orcjxvsnby\",\"toqcjmklja\":\"cyshurzafbljjgp\",\"yulpkudjkr\":\"bqidtqaj\",\"e\":\"khbzhfepgzg\"},\"id\":\"zloc\",\"name\":\"scpai\",\"type\":\"rhhbcs\"}")
+            "{\"properties\":{\"configurationEndpoints\":[\"ol\",\"p\"],\"frontends\":[{\"id\":\"algbquxigjyjg\"}],\"associations\":[{\"id\":\"o\"},{\"id\":\"fhrtxilnerkujysv\"},{\"id\":\"eju\"},{\"id\":\"fqawrlyxw\"}],\"securityPolicies\":[{\"id\":\"prbnwbxgjvtbv\"}],\"securityPolicyConfigurations\":{\"wafSecurityPolicy\":{\"id\":\"szdnr\"}},\"provisioningState\":\"Canceled\"},\"location\":\"uhmuouqfprwzwbn\",\"tags\":{\"zga\":\"tnwu\",\"fizuckyf\":\"x\",\"idf\":\"hr\",\"ymwisdkft\":\"zwdzuh\"},\"id\":\"wxmnteiwao\",\"name\":\"vkmijcmmxdcuf\",\"type\":\"fsrpymzidnse\"}")
             .toObject(TrafficControllerInner.class);
-        Assertions.assertEquals("fiyipjxsqwpgrj", model.location());
-        Assertions.assertEquals("orcjxvsnby", model.tags().get("qabnmoc"));
-        Assertions.assertEquals("h", model.properties().securityPolicyConfigurations().wafSecurityPolicy().id());
+        Assertions.assertEquals("uhmuouqfprwzwbn", model.location());
+        Assertions.assertEquals("tnwu", model.tags().get("zga"));
+        Assertions.assertEquals("szdnr", model.properties().securityPolicyConfigurations().wafSecurityPolicy().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        TrafficControllerInner model = new TrafficControllerInner().withLocation("fiyipjxsqwpgrj")
-            .withTags(mapOf("qabnmoc", "orcjxvsnby", "toqcjmklja", "cyshurzafbljjgp", "yulpkudjkr", "bqidtqaj", "e",
-                "khbzhfepgzg"))
+        TrafficControllerInner model = new TrafficControllerInner().withLocation("uhmuouqfprwzwbn")
+            .withTags(mapOf("zga", "tnwu", "fizuckyf", "x", "idf", "hr", "ymwisdkft", "zwdzuh"))
             .withProperties(new TrafficControllerProperties().withSecurityPolicyConfigurations(
-                new SecurityPolicyConfigurations().withWafSecurityPolicy(new WafSecurityPolicy().withId("h"))));
+                new SecurityPolicyConfigurations().withWafSecurityPolicy(new WafSecurityPolicy().withId("szdnr"))));
         model = BinaryData.fromObject(model).toObject(TrafficControllerInner.class);
-        Assertions.assertEquals("fiyipjxsqwpgrj", model.location());
-        Assertions.assertEquals("orcjxvsnby", model.tags().get("qabnmoc"));
-        Assertions.assertEquals("h", model.properties().securityPolicyConfigurations().wafSecurityPolicy().id());
+        Assertions.assertEquals("uhmuouqfprwzwbn", model.location());
+        Assertions.assertEquals("tnwu", model.tags().get("zga"));
+        Assertions.assertEquals("szdnr", model.properties().securityPolicyConfigurations().wafSecurityPolicy().id());
     }
 
     // Use "Map.of" if available

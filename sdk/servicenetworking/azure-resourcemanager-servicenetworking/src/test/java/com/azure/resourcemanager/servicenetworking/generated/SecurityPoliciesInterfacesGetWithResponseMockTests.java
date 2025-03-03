@@ -6,8 +6,8 @@ package com.azure.resourcemanager.servicenetworking.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
-import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
+import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.servicenetworking.TrafficControllerManager;
 import com.azure.resourcemanager.servicenetworking.models.SecurityPolicy;
@@ -21,21 +21,21 @@ public final class SecurityPoliciesInterfacesGetWithResponseMockTests {
     @Test
     public void testGetWithResponse() throws Exception {
         String responseStr
-            = "{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"eojnabc\"},\"provisioningState\":\"Canceled\"},\"location\":\"txp\",\"tags\":{\"rdqmhjjdhtldwkyz\":\"btfhvpesaps\",\"cwsvlxotog\":\"uutkncw\",\"o\":\"wrupqsxvnmicykvc\"},\"id\":\"eil\",\"name\":\"vnotyfjfcnj\",\"type\":\"k\"}";
+            = "{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"j\"},\"provisioningState\":\"Accepted\"},\"location\":\"ok\",\"tags\":{\"gsncghkjeszz\":\"jyoxgvclt\",\"mxnehmp\":\"bijhtxfvgxbf\",\"godebfqkkrbmpu\":\"ec\"},\"id\":\"gr\",\"name\":\"wflzlfbxzpuzy\",\"type\":\"ispnqzahmgkbrp\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
         TrafficControllerManager manager = TrafficControllerManager.configure()
             .withHttpClient(httpClient)
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
-                new AzureProfile("", "", AzureEnvironment.AZURE));
+                new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         SecurityPolicy response = manager.securityPoliciesInterfaces()
-            .getWithResponse("xnkjzkdesl", "vlopwiyighx", "kdwzbaiuebbaumny", com.azure.core.util.Context.NONE)
+            .getWithResponse("fuwutttxf", "jrbirphxepcyv", "hfnljkyq", com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals("txp", response.location());
-        Assertions.assertEquals("btfhvpesaps", response.tags().get("rdqmhjjdhtldwkyz"));
-        Assertions.assertEquals("eojnabc", response.properties().wafPolicy().id());
+        Assertions.assertEquals("ok", response.location());
+        Assertions.assertEquals("jyoxgvclt", response.tags().get("gsncghkjeszz"));
+        Assertions.assertEquals("j", response.properties().wafPolicy().id());
     }
 }

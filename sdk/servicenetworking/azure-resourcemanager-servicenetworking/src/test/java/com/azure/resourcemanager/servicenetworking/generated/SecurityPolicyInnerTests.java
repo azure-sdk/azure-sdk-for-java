@@ -16,22 +16,22 @@ public final class SecurityPolicyInnerTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         SecurityPolicyInner model = BinaryData.fromString(
-            "{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"odmgl\"},\"provisioningState\":\"Canceled\"},\"location\":\"b\",\"tags\":{\"wgcu\":\"mutduqktaps\"},\"id\":\"rtumkdosvq\",\"name\":\"hbmdgbbjfdd\",\"type\":\"mbmbexppbh\"}")
+            "{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"qtrgqjbpfzfsinzg\"},\"provisioningState\":\"Provisioning\"},\"location\":\"rwzoxxjtfelluwf\",\"tags\":{\"vhpfxxypininmay\":\"onpeqfpjkjlxofp\",\"oginuvamiheognar\":\"uybbkpodep\"},\"id\":\"zxtheotusivyevcc\",\"name\":\"qi\",\"type\":\"nhungbw\"}")
             .toObject(SecurityPolicyInner.class);
-        Assertions.assertEquals("b", model.location());
-        Assertions.assertEquals("mutduqktaps", model.tags().get("wgcu"));
-        Assertions.assertEquals("odmgl", model.properties().wafPolicy().id());
+        Assertions.assertEquals("rwzoxxjtfelluwf", model.location());
+        Assertions.assertEquals("onpeqfpjkjlxofp", model.tags().get("vhpfxxypininmay"));
+        Assertions.assertEquals("qtrgqjbpfzfsinzg", model.properties().wafPolicy().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        SecurityPolicyInner model = new SecurityPolicyInner().withLocation("b")
-            .withTags(mapOf("wgcu", "mutduqktaps"))
-            .withProperties(new SecurityPolicyProperties().withWafPolicy(new WafPolicy().withId("odmgl")));
+        SecurityPolicyInner model = new SecurityPolicyInner().withLocation("rwzoxxjtfelluwf")
+            .withTags(mapOf("vhpfxxypininmay", "onpeqfpjkjlxofp", "oginuvamiheognar", "uybbkpodep"))
+            .withProperties(new SecurityPolicyProperties().withWafPolicy(new WafPolicy().withId("qtrgqjbpfzfsinzg")));
         model = BinaryData.fromObject(model).toObject(SecurityPolicyInner.class);
-        Assertions.assertEquals("b", model.location());
-        Assertions.assertEquals("mutduqktaps", model.tags().get("wgcu"));
-        Assertions.assertEquals("odmgl", model.properties().wafPolicy().id());
+        Assertions.assertEquals("rwzoxxjtfelluwf", model.location());
+        Assertions.assertEquals("onpeqfpjkjlxofp", model.tags().get("vhpfxxypininmay"));
+        Assertions.assertEquals("qtrgqjbpfzfsinzg", model.properties().wafPolicy().id());
     }
 
     // Use "Map.of" if available

@@ -17,22 +17,21 @@ public final class TrafficControllerUpdateTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         TrafficControllerUpdate model = BinaryData.fromString(
-            "{\"tags\":{\"t\":\"ddglm\"},\"properties\":{\"securityPolicyConfigurations\":{\"wafSecurityPolicy\":{\"id\":\"wpyeicxmqciwqvh\"}}}}")
+            "{\"tags\":{\"jkrlkhbzhfepg\":\"pku\"},\"properties\":{\"securityPolicyConfigurations\":{\"wafSecurityPolicy\":{\"id\":\"xzlocxscp\"}}}}")
             .toObject(TrafficControllerUpdate.class);
-        Assertions.assertEquals("ddglm", model.tags().get("t"));
-        Assertions.assertEquals("wpyeicxmqciwqvh",
+        Assertions.assertEquals("pku", model.tags().get("jkrlkhbzhfepg"));
+        Assertions.assertEquals("xzlocxscp",
             model.properties().securityPolicyConfigurations().wafSecurityPolicy().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        TrafficControllerUpdate model = new TrafficControllerUpdate().withTags(mapOf("t", "ddglm"))
-            .withProperties(new TrafficControllerUpdateProperties()
-                .withSecurityPolicyConfigurations(new SecurityPolicyConfigurations()
-                    .withWafSecurityPolicy(new WafSecurityPolicy().withId("wpyeicxmqciwqvh"))));
+        TrafficControllerUpdate model = new TrafficControllerUpdate().withTags(mapOf("jkrlkhbzhfepg", "pku"))
+            .withProperties(new TrafficControllerUpdateProperties().withSecurityPolicyConfigurations(
+                new SecurityPolicyConfigurations().withWafSecurityPolicy(new WafSecurityPolicy().withId("xzlocxscp"))));
         model = BinaryData.fromObject(model).toObject(TrafficControllerUpdate.class);
-        Assertions.assertEquals("ddglm", model.tags().get("t"));
-        Assertions.assertEquals("wpyeicxmqciwqvh",
+        Assertions.assertEquals("pku", model.tags().get("jkrlkhbzhfepg"));
+        Assertions.assertEquals("xzlocxscp",
             model.properties().securityPolicyConfigurations().wafSecurityPolicy().id());
     }
 

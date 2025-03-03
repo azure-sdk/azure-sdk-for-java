@@ -12,11 +12,11 @@ public final class SecurityPolicyListResultTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         SecurityPolicyListResult model = BinaryData.fromString(
-            "{\"value\":[{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"wbxgjvt\"},\"provisioningState\":\"Provisioning\"},\"location\":\"sszdnru\",\"tags\":{\"uitnwuiz\":\"uhmuouqfprwzwbn\",\"x\":\"a\",\"hr\":\"fizuckyf\"},\"id\":\"idf\",\"name\":\"zwdzuh\",\"type\":\"ymwisdkft\"}],\"nextLink\":\"xmnteiwaop\"}")
+            "{\"value\":[{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"cjdkwtnhxbnjbi\"},\"provisioningState\":\"Canceled\"},\"location\":\"gls\",\"tags\":{\"ebvmgxsabkyqd\":\"nqpjwnzlljfmpp\",\"zevndhkrwpdappds\":\"ujitcjcz\",\"snhu\":\"dkvwrwjfe\"},\"id\":\"je\",\"name\":\"tmrldhugjzzdatq\",\"type\":\"hocdgeab\"},{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"ti\"},\"provisioningState\":\"Succeeded\"},\"location\":\"kao\",\"tags\":{\"tyhxhurokft\":\"i\",\"iawxklry\":\"xolniwpwcukjfk\",\"cbacphejkotynqg\":\"lwckbasyypnddhs\"},\"id\":\"ulzndlikwyqk\",\"name\":\"fgibmadgakeq\",\"type\":\"rxybz\"},{\"properties\":{\"policyType\":\"waf\",\"wafPolicy\":{\"id\":\"ytb\"},\"provisioningState\":\"Updating\"},\"location\":\"ouf\",\"tags\":{\"pbkwtmu\":\"nkzsmodmglou\",\"pspwgcuertu\":\"duqkt\"},\"id\":\"kdosvqw\",\"name\":\"bmdg\",\"type\":\"bjf\"}],\"nextLink\":\"gmbmbexppbh\"}")
             .toObject(SecurityPolicyListResult.class);
-        Assertions.assertEquals("sszdnru", model.value().get(0).location());
-        Assertions.assertEquals("uhmuouqfprwzwbn", model.value().get(0).tags().get("uitnwuiz"));
-        Assertions.assertEquals("wbxgjvt", model.value().get(0).properties().wafPolicy().id());
-        Assertions.assertEquals("xmnteiwaop", model.nextLink());
+        Assertions.assertEquals("gls", model.value().get(0).location());
+        Assertions.assertEquals("nqpjwnzlljfmpp", model.value().get(0).tags().get("ebvmgxsabkyqd"));
+        Assertions.assertEquals("cjdkwtnhxbnjbi", model.value().get(0).properties().wafPolicy().id());
+        Assertions.assertEquals("gmbmbexppbh", model.nextLink());
     }
 }
