@@ -1,14 +1,118 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-03)
 
-### Features Added
+- Azure Resource Manager DataFactory client library for Java. This package contains Microsoft Azure SDK for DataFactory Management SDK. The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services. Package tag package-2018-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.Factories` was modified
 
-### Other Changes
+* `list(com.azure.core.util.Context)` was removed
+* `list()` was removed
+
+### Features Added
+
+* `models.GreenplumAuthenticationType` was added
+
+* `models.TeradataSink` was added
+
+* `models.OracleAuthenticationType` was added
+
+* `models.TeradataImportCommand` was added
+
+#### `models.GreenplumLinkedService` was modified
+
+* `withSslMode(java.lang.Object)` was added
+* `withPassword(models.SecretBase)` was added
+* `commandTimeout()` was added
+* `database()` was added
+* `password()` was added
+* `host()` was added
+* `withAuthenticationType(models.GreenplumAuthenticationType)` was added
+* `withCommandTimeout(java.lang.Object)` was added
+* `authenticationType()` was added
+* `port()` was added
+* `withConnectionTimeout(java.lang.Object)` was added
+* `username()` was added
+* `withDatabase(java.lang.Object)` was added
+* `withUsername(java.lang.Object)` was added
+* `withPort(java.lang.Object)` was added
+* `withHost(java.lang.Object)` was added
+* `connectionTimeout()` was added
+* `sslMode()` was added
+
+#### `models.TeradataLinkedService` was modified
+
+* `httpsPortNumber()` was added
+* `sslMode()` was added
+* `withCharacterSet(java.lang.Object)` was added
+* `withHttpsPortNumber(java.lang.Object)` was added
+* `withPortNumber(java.lang.Object)` was added
+* `withSslMode(java.lang.Object)` was added
+* `portNumber()` was added
+* `withMaxRespSize(java.lang.Object)` was added
+* `maxRespSize()` was added
+* `characterSet()` was added
+* `withUseDataEncryption(java.lang.Object)` was added
+* `useDataEncryption()` was added
+
+#### `models.TypeConversionSettings` was modified
+
+* `withDateFormat(java.lang.Object)` was added
+* `dateFormat()` was added
+* `timeFormat()` was added
+* `withTimeFormat(java.lang.Object)` was added
+
+#### `models.AzurePostgreSqlLinkedService` was modified
+
+* `withServicePrincipalEmbeddedCert(models.SecretBase)` was added
+* `servicePrincipalKey()` was added
+* `withServicePrincipalEmbeddedCertPassword(models.SecretBase)` was added
+* `withServicePrincipalKey(models.SecretBase)` was added
+* `servicePrincipalEmbeddedCert()` was added
+* `withCredential(models.CredentialReference)` was added
+* `servicePrincipalId()` was added
+* `servicePrincipalEmbeddedCertPassword()` was added
+* `azureCloudType()` was added
+* `withTenant(java.lang.Object)` was added
+* `withServicePrincipalCredentialType(java.lang.Object)` was added
+* `credential()` was added
+* `tenant()` was added
+* `withAzureCloudType(java.lang.Object)` was added
+* `withServicePrincipalId(java.lang.Object)` was added
+* `servicePrincipalCredentialType()` was added
+
+#### `models.OracleLinkedService` was modified
+
+* `withSupportV1DataTypes(java.lang.Object)` was added
+* `enableBulkLoad()` was added
+* `withCryptoChecksumClient(java.lang.Object)` was added
+* `withServer(java.lang.Object)` was added
+* `encryptionClient()` was added
+* `cryptoChecksumClient()` was added
+* `withInitialLobFetchSize(java.lang.Object)` was added
+* `fetchSize()` was added
+* `withAuthenticationType(models.OracleAuthenticationType)` was added
+* `withEncryptionClient(java.lang.Object)` was added
+* `initializationString()` was added
+* `supportV1DataTypes()` was added
+* `initialLobFetchSize()` was added
+* `statementCacheSize()` was added
+* `fetchTswtzAsTimestamp()` was added
+* `withInitializationString(java.lang.Object)` was added
+* `withEnableBulkLoad(java.lang.Object)` was added
+* `withEncryptionTypesClient(java.lang.Object)` was added
+* `username()` was added
+* `encryptionTypesClient()` was added
+* `authenticationType()` was added
+* `withFetchTswtzAsTimestamp(java.lang.Object)` was added
+* `server()` was added
+* `withCryptoChecksumTypesClient(java.lang.Object)` was added
+* `withStatementCacheSize(java.lang.Object)` was added
+* `cryptoChecksumTypesClient()` was added
+* `withFetchSize(java.lang.Object)` was added
+* `withUsername(java.lang.Object)` was added
 
 ## 1.0.0 (2024-12-16)
 
