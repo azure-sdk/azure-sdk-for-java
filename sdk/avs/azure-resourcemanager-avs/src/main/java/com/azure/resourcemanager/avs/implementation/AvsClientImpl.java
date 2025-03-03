@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -31,14 +31,19 @@ import com.azure.resourcemanager.avs.fluent.ClustersClient;
 import com.azure.resourcemanager.avs.fluent.DatastoresClient;
 import com.azure.resourcemanager.avs.fluent.GlobalReachConnectionsClient;
 import com.azure.resourcemanager.avs.fluent.HcxEnterpriseSitesClient;
+import com.azure.resourcemanager.avs.fluent.HostsClient;
 import com.azure.resourcemanager.avs.fluent.IscsiPathsClient;
 import com.azure.resourcemanager.avs.fluent.LocationsClient;
+import com.azure.resourcemanager.avs.fluent.MaintenancesClient;
 import com.azure.resourcemanager.avs.fluent.OperationsClient;
 import com.azure.resourcemanager.avs.fluent.PlacementPoliciesClient;
 import com.azure.resourcemanager.avs.fluent.PrivateCloudsClient;
+import com.azure.resourcemanager.avs.fluent.ProvisionedNetworksClient;
+import com.azure.resourcemanager.avs.fluent.PureStoragePoliciesClient;
 import com.azure.resourcemanager.avs.fluent.ScriptCmdletsClient;
 import com.azure.resourcemanager.avs.fluent.ScriptExecutionsClient;
 import com.azure.resourcemanager.avs.fluent.ScriptPackagesClient;
+import com.azure.resourcemanager.avs.fluent.SkusClient;
 import com.azure.resourcemanager.avs.fluent.VirtualMachinesClient;
 import com.azure.resourcemanager.avs.fluent.WorkloadNetworksClient;
 import java.io.IOException;
@@ -182,6 +187,20 @@ public final class AvsClientImpl implements AvsClient {
     }
 
     /**
+     * The SkusClient object to access its operations.
+     */
+    private final SkusClient skus;
+
+    /**
+     * Gets the SkusClient object to access its operations.
+     * 
+     * @return the SkusClient object.
+     */
+    public SkusClient getSkus() {
+        return this.skus;
+    }
+
+    /**
      * The AddonsClient object to access its operations.
      */
     private final AddonsClient addons;
@@ -252,6 +271,20 @@ public final class AvsClientImpl implements AvsClient {
     }
 
     /**
+     * The HostsClient object to access its operations.
+     */
+    private final HostsClient hosts;
+
+    /**
+     * Gets the HostsClient object to access its operations.
+     * 
+     * @return the HostsClient object.
+     */
+    public HostsClient getHosts() {
+        return this.hosts;
+    }
+
+    /**
      * The PlacementPoliciesClient object to access its operations.
      */
     private final PlacementPoliciesClient placementPolicies;
@@ -319,6 +352,48 @@ public final class AvsClientImpl implements AvsClient {
      */
     public IscsiPathsClient getIscsiPaths() {
         return this.iscsiPaths;
+    }
+
+    /**
+     * The MaintenancesClient object to access its operations.
+     */
+    private final MaintenancesClient maintenances;
+
+    /**
+     * Gets the MaintenancesClient object to access its operations.
+     * 
+     * @return the MaintenancesClient object.
+     */
+    public MaintenancesClient getMaintenances() {
+        return this.maintenances;
+    }
+
+    /**
+     * The ProvisionedNetworksClient object to access its operations.
+     */
+    private final ProvisionedNetworksClient provisionedNetworks;
+
+    /**
+     * Gets the ProvisionedNetworksClient object to access its operations.
+     * 
+     * @return the ProvisionedNetworksClient object.
+     */
+    public ProvisionedNetworksClient getProvisionedNetworks() {
+        return this.provisionedNetworks;
+    }
+
+    /**
+     * The PureStoragePoliciesClient object to access its operations.
+     */
+    private final PureStoragePoliciesClient pureStoragePolicies;
+
+    /**
+     * Gets the PureStoragePoliciesClient object to access its operations.
+     * 
+     * @return the PureStoragePoliciesClient object.
+     */
+    public PureStoragePoliciesClient getPureStoragePolicies() {
+        return this.pureStoragePolicies;
     }
 
     /**
@@ -394,20 +469,25 @@ public final class AvsClientImpl implements AvsClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-01";
+        this.apiVersion = "2024-09-01";
         this.operations = new OperationsClientImpl(this);
         this.locations = new LocationsClientImpl(this);
         this.privateClouds = new PrivateCloudsClientImpl(this);
+        this.skus = new SkusClientImpl(this);
         this.addons = new AddonsClientImpl(this);
         this.authorizations = new AuthorizationsClientImpl(this);
         this.cloudLinks = new CloudLinksClientImpl(this);
         this.clusters = new ClustersClientImpl(this);
         this.datastores = new DatastoresClientImpl(this);
+        this.hosts = new HostsClientImpl(this);
         this.placementPolicies = new PlacementPoliciesClientImpl(this);
         this.virtualMachines = new VirtualMachinesClientImpl(this);
         this.globalReachConnections = new GlobalReachConnectionsClientImpl(this);
         this.hcxEnterpriseSites = new HcxEnterpriseSitesClientImpl(this);
         this.iscsiPaths = new IscsiPathsClientImpl(this);
+        this.maintenances = new MaintenancesClientImpl(this);
+        this.provisionedNetworks = new ProvisionedNetworksClientImpl(this);
+        this.pureStoragePolicies = new PureStoragePoliciesClientImpl(this);
         this.scriptExecutions = new ScriptExecutionsClientImpl(this);
         this.scriptPackages = new ScriptPackagesClientImpl(this);
         this.scriptCmdlets = new ScriptCmdletsClientImpl(this);
