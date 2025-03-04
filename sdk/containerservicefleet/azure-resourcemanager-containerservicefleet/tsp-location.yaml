@@ -1,0 +1,4 @@
+directory: specification/containerservice/Fleet.Management
+commit: 25191ba8f9b9ced07012bac72fe117a26a2e85d5
+repo: Azure/azure-rest-api-specs
+additionalDirectories: 
