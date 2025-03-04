@@ -11,6 +11,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * The properties of the Instance resource.
@@ -36,6 +37,11 @@ public final class InstanceProperties implements JsonSerializable<InstanceProper
      * The reference to the Schema Registry for this AIO Instance.
      */
     private SchemaRegistryRef schemaRegistryRef;
+
+    /*
+     * The features of the AIO Instance.
+     */
+    private List<InstanceFeature> features;
 
     /**
      * Creates an instance of InstanceProperties class.
@@ -102,6 +108,26 @@ public final class InstanceProperties implements JsonSerializable<InstanceProper
     }
 
     /**
+     * Get the features property: The features of the AIO Instance.
+     * 
+     * @return the features value.
+     */
+    public List<InstanceFeature> features() {
+        return this.features;
+    }
+
+    /**
+     * Set the features property: The features of the AIO Instance.
+     * 
+     * @param features the features value to set.
+     * @return the InstanceProperties object itself.
+     */
+    public InstanceProperties withFeatures(List<InstanceFeature> features) {
+        this.features = features;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -113,6 +139,9 @@ public final class InstanceProperties implements JsonSerializable<InstanceProper
                     "Missing required property schemaRegistryRef in model InstanceProperties"));
         } else {
             schemaRegistryRef().validate();
+        }
+        if (features() != null) {
+            features().forEach(e -> e.validate());
         }
     }
 
@@ -126,6 +155,7 @@ public final class InstanceProperties implements JsonSerializable<InstanceProper
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("schemaRegistryRef", this.schemaRegistryRef);
         jsonWriter.writeStringField("description", this.description);
+        jsonWriter.writeArrayField("features", this.features, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -153,6 +183,9 @@ public final class InstanceProperties implements JsonSerializable<InstanceProper
                     deserializedInstanceProperties.provisioningState = ProvisioningState.fromString(reader.getString());
                 } else if ("version".equals(fieldName)) {
                     deserializedInstanceProperties.version = reader.getString();
+                } else if ("features".equals(fieldName)) {
+                    List<InstanceFeature> features = reader.readArray(reader1 -> InstanceFeature.fromJson(reader1));
+                    deserializedInstanceProperties.features = features;
                 } else {
                     reader.skipChildren();
                 }

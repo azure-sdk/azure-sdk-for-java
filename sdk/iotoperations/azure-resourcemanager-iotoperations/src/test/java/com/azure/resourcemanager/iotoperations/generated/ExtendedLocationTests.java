@@ -12,18 +12,18 @@ import org.junit.jupiter.api.Assertions;
 public final class ExtendedLocationTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        ExtendedLocation model = BinaryData.fromString("{\"name\":\"podepoo\",\"type\":\"CustomLocation\"}")
+        ExtendedLocation model = BinaryData.fromString("{\"name\":\"xypininmayhuybbk\",\"type\":\"CustomLocation\"}")
             .toObject(ExtendedLocation.class);
-        Assertions.assertEquals("podepoo", model.name());
+        Assertions.assertEquals("xypininmayhuybbk", model.name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, model.type());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         ExtendedLocation model
-            = new ExtendedLocation().withName("podepoo").withType(ExtendedLocationType.CUSTOM_LOCATION);
+            = new ExtendedLocation().withName("xypininmayhuybbk").withType(ExtendedLocationType.CUSTOM_LOCATION);
         model = BinaryData.fromObject(model).toObject(ExtendedLocation.class);
-        Assertions.assertEquals("podepoo", model.name());
+        Assertions.assertEquals("xypininmayhuybbk", model.name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, model.type());
     }
 }
