@@ -3258,54 +3258,6 @@ public final class BatchAsyncClient {
      * administrator information about applications and versions that are not yet
      * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
      * API.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>timeOut</td><td>Integer</td><td>No</td><td>The maximum time that the server can spend processing the
-     * request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used
-     * instead.".</td></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>The maximum number of items to return in the response. A
-     * maximum of 1000
-     * applications can be returned.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     id: String (Required)
-     *     displayName: String (Required)
-     *     versions (Required): [
-     *         String (Required)
-     *     ]
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the result of listing the applications available in an Account as paginated response with
-     * {@link PagedFlux}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listApplicationsInternal(RequestOptions requestOptions) {
-        return this.serviceClient.listApplicationsInternalAsync(requestOptions);
-    }
-
-    /**
-     * Lists all of the applications available in the specified Account.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
      * <p>
      * <strong>Query Parameters</strong>
      * </p>
@@ -3360,55 +3312,6 @@ public final class BatchAsyncClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<BinaryData> listApplications(RequestOptions requestOptions) {
         return this.listApplicationsInternal(requestOptions);
-    }
-
-    /**
-     * Gets information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about Applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>timeOut</td><td>Integer</td><td>No</td><td>The maximum time that the server can spend processing the
-     * request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used
-     * instead.".</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     id: String (Required)
-     *     displayName: String (Required)
-     *     versions (Required): [
-     *         String (Required)
-     *     ]
-     * }
-     * }
-     * </pre>
-     *
-     * @param applicationId The ID of the Application.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getApplicationInternalWithResponse(String applicationId, RequestOptions requestOptions) {
-        return this.serviceClient.getApplicationInternalWithResponseAsync(applicationId, requestOptions);
     }
 
     /**
@@ -3526,7 +3429,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listPoolUsageMetricsInternal(RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listPoolUsageMetricsInternal(RequestOptions requestOptions) {
         return this.serviceClient.listPoolUsageMetricsInternalAsync(requestOptions);
     }
 
@@ -4557,7 +4460,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listPoolsInternal(RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listPoolsInternal(RequestOptions requestOptions) {
         return this.serviceClient.listPoolsInternalAsync(requestOptions);
     }
 
@@ -5641,7 +5544,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getPoolInternalWithResponse(String poolId, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> getPoolInternalWithResponse(String poolId, RequestOptions requestOptions) {
         return this.serviceClient.getPoolInternalWithResponseAsync(poolId, requestOptions);
     }
 
@@ -7654,7 +7557,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listSupportedImagesInternal(RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listSupportedImagesInternal(RequestOptions requestOptions) {
         return this.serviceClient.listSupportedImagesInternalAsync(requestOptions);
     }
 
@@ -7790,7 +7693,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listPoolNodeCountsInternal(RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listPoolNodeCountsInternal(RequestOptions requestOptions) {
         return this.serviceClient.listPoolNodeCountsInternalAsync(requestOptions);
     }
 
@@ -8493,7 +8396,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> getJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
         return this.serviceClient.getJobInternalWithResponseAsync(jobId, requestOptions);
     }
 
@@ -12169,7 +12072,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listJobsInternal(RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listJobsInternal(RequestOptions requestOptions) {
         return this.serviceClient.listJobsInternalAsync(requestOptions);
     }
 
@@ -13094,7 +12997,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listJobsFromScheduleInternal(String jobScheduleId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listJobsFromScheduleInternal(String jobScheduleId, RequestOptions requestOptions) {
         return this.serviceClient.listJobsFromScheduleInternalAsync(jobScheduleId, requestOptions);
     }
 
@@ -13657,7 +13560,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listJobPreparationAndReleaseTaskStatusInternal(String jobId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listJobPreparationAndReleaseTaskStatusInternal(String jobId,
+        RequestOptions requestOptions) {
         return this.serviceClient.listJobPreparationAndReleaseTaskStatusInternalAsync(jobId, requestOptions);
     }
 
@@ -13830,7 +13734,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getJobTaskCountsInternalWithResponse(String jobId, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> getJobTaskCountsInternalWithResponse(String jobId,
+        RequestOptions requestOptions) {
         return this.serviceClient.getJobTaskCountsInternalWithResponseAsync(jobId, requestOptions);
     }
 
@@ -14667,7 +14572,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> getJobScheduleInternalWithResponse(String jobScheduleId,
+        RequestOptions requestOptions) {
         return this.serviceClient.getJobScheduleInternalWithResponseAsync(jobScheduleId, requestOptions);
     }
 
@@ -18658,7 +18564,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listJobSchedulesInternal(RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listJobSchedulesInternal(RequestOptions requestOptions) {
         return this.serviceClient.listJobSchedulesInternalAsync(requestOptions);
     }
 
@@ -19698,7 +19604,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listTasksInternal(String jobId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listTasksInternal(String jobId, RequestOptions requestOptions) {
         return this.serviceClient.listTasksInternalAsync(jobId, requestOptions);
     }
 
@@ -20776,7 +20682,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> getTaskInternalWithResponse(String jobId, String taskId,
+        RequestOptions requestOptions) {
         return this.serviceClient.getTaskInternalWithResponseAsync(jobId, taskId, requestOptions);
     }
 
@@ -22273,7 +22180,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listTaskFilesInternal(String jobId, String taskId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listTaskFilesInternal(String jobId, String taskId, RequestOptions requestOptions) {
         return this.serviceClient.listTaskFilesInternalAsync(jobId, taskId, requestOptions);
     }
 
@@ -22824,7 +22731,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getNodeInternalWithResponse(String poolId, String nodeId,
+    public Mono<Response<BinaryData>> getNodeInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
         return this.serviceClient.getNodeInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
@@ -23137,7 +23044,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getNodeRemoteLoginSettingsInternalWithResponse(String poolId, String nodeId,
+    public Mono<Response<BinaryData>> getNodeRemoteLoginSettingsInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
         return this.serviceClient.getNodeRemoteLoginSettingsInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
@@ -23522,7 +23429,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listNodesInternal(String poolId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listNodesInternal(String poolId, RequestOptions requestOptions) {
         return this.serviceClient.listNodesInternalAsync(poolId, requestOptions);
     }
 
@@ -23799,8 +23706,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> getNodeExtensionInternalWithResponse(String poolId, String nodeId, String extensionName,
-        RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> getNodeExtensionInternalWithResponse(String poolId, String nodeId,
+        String extensionName, RequestOptions requestOptions) {
         return this.serviceClient.getNodeExtensionInternalWithResponseAsync(poolId, nodeId, extensionName,
             requestOptions);
     }
@@ -23965,7 +23872,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listNodeExtensionsInternal(String poolId, String nodeId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listNodeExtensionsInternal(String poolId, String nodeId,
+        RequestOptions requestOptions) {
         return this.serviceClient.listNodeExtensionsInternalAsync(poolId, nodeId, requestOptions);
     }
 
@@ -24454,7 +24362,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listNodeFilesInternal(String poolId, String nodeId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listNodeFilesInternal(String poolId, String nodeId, RequestOptions requestOptions) {
         return this.serviceClient.listNodeFilesInternalAsync(poolId, nodeId, requestOptions);
     }
 
@@ -24537,108 +24445,6 @@ public final class BatchAsyncClient {
     }
 
     /**
-     * Lists all of the applications available in the specified Account.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     *
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of listing the applications available in an Account as paginated response with
-     * {@link PagedFlux}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchApplication> listApplicationsInternal() {
-        // Generated convenience method for listApplicationsInternal
-        RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listApplicationsInternal(requestOptions);
-        return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
-            Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
-                ? pagedFluxResponse.byPage().take(1)
-                : pagedFluxResponse.byPage(continuationTokenParam).take(1);
-            return flux.map(pagedResponse -> new PagedResponseBase<Void, BatchApplication>(pagedResponse.getRequest(),
-                pagedResponse.getStatusCode(), pagedResponse.getHeaders(),
-                pagedResponse.getValue()
-                    .stream()
-                    .map(protocolMethodData -> protocolMethodData.toObject(BatchApplication.class))
-                    .collect(Collectors.toList()),
-                pagedResponse.getContinuationToken(), null));
-        });
-    }
-
-    /**
-     * Gets information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about Applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     *
-     * @param applicationId The ID of the Application.
-     * @param timeOutInSeconds The maximum time that the server can spend processing the request, in seconds. The
-     * default is 30 seconds. If the value is larger than 30, the default will be used instead.".
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference on successful completion of {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchApplication> getApplicationInternal(String applicationId, Integer timeOutInSeconds) {
-        // Generated convenience method for getApplicationInternalWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        if (timeOutInSeconds != null) {
-            requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
-        }
-        return getApplicationInternalWithResponse(applicationId, requestOptions).flatMap(FluxUtil::toMono)
-            .map(protocolMethodData -> protocolMethodData.toObject(BatchApplication.class));
-    }
-
-    /**
-     * Gets information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about Applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     *
-     * @param applicationId The ID of the Application.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference on successful completion of {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchApplication> getApplicationInternal(String applicationId) {
-        // Generated convenience method for getApplicationInternalWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return getApplicationInternalWithResponse(applicationId, requestOptions).flatMap(FluxUtil::toMono)
-            .map(protocolMethodData -> protocolMethodData.toObject(BatchApplication.class));
-    }
-
-    /**
      * Lists the usage metrics, aggregated by Pool across individual time intervals,
      * for the specified Account.
      *
@@ -24658,7 +24464,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchPoolUsageMetrics> listPoolUsageMetricsInternal() {
+    public PagedFlux<BatchPoolUsageMetrics> listPoolUsageMetricsInternal() {
         // Generated convenience method for listPoolUsageMetricsInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listPoolUsageMetricsInternal(requestOptions);
@@ -24689,7 +24495,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchPool> listPoolsInternal() {
+    public PagedFlux<BatchPool> listPoolsInternal() {
         // Generated convenience method for listPoolsInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listPoolsInternal(requestOptions);
@@ -24878,8 +24684,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchPool> getPoolInternal(String poolId, Integer timeOutInSeconds, List<String> select, List<String> expand,
-        RequestConditions requestConditions) {
+    public Mono<BatchPool> getPoolInternal(String poolId, Integer timeOutInSeconds, List<String> select,
+        List<String> expand, RequestConditions requestConditions) {
         // Generated convenience method for getPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -24935,7 +24741,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchPool> getPoolInternal(String poolId) {
+    public Mono<BatchPool> getPoolInternal(String poolId) {
         // Generated convenience method for getPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getPoolInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono)
@@ -25079,7 +24885,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchSupportedImage> listSupportedImagesInternal() {
+    public PagedFlux<BatchSupportedImage> listSupportedImagesInternal() {
         // Generated convenience method for listSupportedImagesInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listSupportedImagesInternal(requestOptions);
@@ -25112,7 +24918,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchPoolNodeCounts> listPoolNodeCountsInternal() {
+    public PagedFlux<BatchPoolNodeCounts> listPoolNodeCountsInternal() {
         // Generated convenience method for listPoolNodeCountsInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listPoolNodeCountsInternal(requestOptions);
@@ -25179,8 +24985,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchJob> getJobInternal(String jobId, Integer timeOutInSeconds, List<String> select, List<String> expand,
-        RequestConditions requestConditions) {
+    public Mono<BatchJob> getJobInternal(String jobId, Integer timeOutInSeconds, List<String> select,
+        List<String> expand, RequestConditions requestConditions) {
         // Generated convenience method for getJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -25236,7 +25042,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchJob> getJobInternal(String jobId) {
+    public Mono<BatchJob> getJobInternal(String jobId) {
         // Generated convenience method for getJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
@@ -25410,7 +25216,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchJob> listJobsInternal() {
+    public PagedFlux<BatchJob> listJobsInternal() {
         // Generated convenience method for listJobsInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listJobsInternal(requestOptions);
@@ -25442,7 +25248,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchJob> listJobsFromScheduleInternal(String jobScheduleId) {
+    public PagedFlux<BatchJob> listJobsFromScheduleInternal(String jobScheduleId) {
         // Generated convenience method for listJobsFromScheduleInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listJobsFromScheduleInternal(jobScheduleId, requestOptions);
@@ -25483,7 +25289,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatusInternal(String jobId) {
+    public PagedFlux<BatchJobPreparationAndReleaseTaskStatus>
+        listJobPreparationAndReleaseTaskStatusInternal(String jobId) {
         // Generated convenience method for listJobPreparationAndReleaseTaskStatusInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listJobPreparationAndReleaseTaskStatusInternal(jobId, requestOptions);
@@ -25526,7 +25333,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchTaskCountsResult> getJobTaskCountsInternal(String jobId, Integer timeOutInSeconds) {
+    public Mono<BatchTaskCountsResult> getJobTaskCountsInternal(String jobId, Integer timeOutInSeconds) {
         // Generated convenience method for getJobTaskCountsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -25558,7 +25365,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchTaskCountsResult> getJobTaskCountsInternal(String jobId) {
+    public Mono<BatchTaskCountsResult> getJobTaskCountsInternal(String jobId) {
         // Generated convenience method for getJobTaskCountsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getJobTaskCountsInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
@@ -25673,8 +25480,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchJobSchedule> getJobScheduleInternal(String jobScheduleId, Integer timeOutInSeconds, List<String> select,
-        List<String> expand, RequestConditions requestConditions) {
+    public Mono<BatchJobSchedule> getJobScheduleInternal(String jobScheduleId, Integer timeOutInSeconds,
+        List<String> select, List<String> expand, RequestConditions requestConditions) {
         // Generated convenience method for getJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -25730,7 +25537,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchJobSchedule> getJobScheduleInternal(String jobScheduleId) {
+    public Mono<BatchJobSchedule> getJobScheduleInternal(String jobScheduleId) {
         // Generated convenience method for getJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono)
@@ -25984,7 +25791,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchJobSchedule> listJobSchedulesInternal() {
+    public PagedFlux<BatchJobSchedule> listJobSchedulesInternal() {
         // Generated convenience method for listJobSchedulesInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listJobSchedulesInternal(requestOptions);
@@ -26020,7 +25827,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchTask> listTasksInternal(String jobId) {
+    public PagedFlux<BatchTask> listTasksInternal(String jobId) {
         // Generated convenience method for listTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listTasksInternal(jobId, requestOptions);
@@ -26144,7 +25951,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchTask> getTaskInternal(String jobId, String taskId, Integer timeOutInSeconds, List<String> select,
+    public Mono<BatchTask> getTaskInternal(String jobId, String taskId, Integer timeOutInSeconds, List<String> select,
         List<String> expand, RequestConditions requestConditions) {
         // Generated convenience method for getTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -26209,7 +26016,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchTask> getTaskInternal(String jobId, String taskId) {
+    public Mono<BatchTask> getTaskInternal(String jobId, String taskId) {
         // Generated convenience method for getTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono)
@@ -26308,7 +26115,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchSubtask> listSubTasksInternal(String jobId, String taskId, Integer timeOutInSeconds,
+    public PagedFlux<BatchSubtask> listSubTasksInternal(String jobId, String taskId, Integer timeOutInSeconds,
         List<String> select) {
         // Generated convenience method for listSubTasksInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -26355,7 +26162,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchSubtask> listSubTasksInternal(String jobId, String taskId) {
+    public PagedFlux<BatchSubtask> listSubTasksInternal(String jobId, String taskId) {
         // Generated convenience method for listSubTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listSubTasksInternal(jobId, taskId, requestOptions);
@@ -26741,7 +26548,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId) {
+    public PagedFlux<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId) {
         // Generated convenience method for listTaskFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listTaskFilesInternal(jobId, taskId, requestOptions);
@@ -26832,7 +26639,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchNode> getNodeInternal(String poolId, String nodeId, Integer timeOutInSeconds, List<String> select) {
+    public Mono<BatchNode> getNodeInternal(String poolId, String nodeId, Integer timeOutInSeconds,
+        List<String> select) {
         // Generated convenience method for getNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -26864,7 +26672,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchNode> getNodeInternal(String poolId, String nodeId) {
+    public Mono<BatchNode> getNodeInternal(String poolId, String nodeId) {
         // Generated convenience method for getNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
@@ -26947,7 +26755,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchNodeRemoteLoginSettings> getNodeRemoteLoginSettingsInternal(String poolId, String nodeId,
+    public Mono<BatchNodeRemoteLoginSettings> getNodeRemoteLoginSettingsInternal(String poolId, String nodeId,
         Integer timeOutInSeconds) {
         // Generated convenience method for getNodeRemoteLoginSettingsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -26979,7 +26787,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchNodeRemoteLoginSettings> getNodeRemoteLoginSettingsInternal(String poolId, String nodeId) {
+    public Mono<BatchNodeRemoteLoginSettings> getNodeRemoteLoginSettingsInternal(String poolId, String nodeId) {
         // Generated convenience method for getNodeRemoteLoginSettingsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getNodeRemoteLoginSettingsInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
@@ -27000,7 +26808,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchNode> listNodesInternal(String poolId) {
+    public PagedFlux<BatchNode> listNodesInternal(String poolId) {
         // Generated convenience method for listNodesInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listNodesInternal(poolId, requestOptions);
@@ -27037,7 +26845,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchNodeVMExtension> getNodeExtensionInternal(String poolId, String nodeId, String extensionName,
+    public Mono<BatchNodeVMExtension> getNodeExtensionInternal(String poolId, String nodeId, String extensionName,
         Integer timeOutInSeconds, List<String> select) {
         // Generated convenience method for getNodeExtensionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -27072,7 +26880,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<BatchNodeVMExtension> getNodeExtensionInternal(String poolId, String nodeId, String extensionName) {
+    public Mono<BatchNodeVMExtension> getNodeExtensionInternal(String poolId, String nodeId, String extensionName) {
         // Generated convenience method for getNodeExtensionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getNodeExtensionInternalWithResponse(poolId, nodeId, extensionName, requestOptions)
@@ -27095,7 +26903,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId) {
+    public PagedFlux<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId) {
         // Generated convenience method for listNodeExtensionsInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listNodeExtensionsInternal(poolId, nodeId, requestOptions);
@@ -27322,7 +27130,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId) {
+    public PagedFlux<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId) {
         // Generated convenience method for listNodeFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         PagedFlux<BinaryData> pagedFluxResponse = listNodeFilesInternal(poolId, nodeId, requestOptions);
@@ -27855,7 +27663,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BinaryData> listSubTasksInternal(String jobId, String taskId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listSubTasksInternal(String jobId, String taskId, RequestOptions requestOptions) {
         return this.serviceClient.listSubTasksInternalAsync(jobId, taskId, requestOptions);
     }
 
@@ -27949,49 +27757,6 @@ public final class BatchAsyncClient {
     }
 
     /**
-     * Lists all of the applications available in the specified Account.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     *
-     * @param timeOutInSeconds The maximum time that the server can spend processing the request, in seconds. The
-     * default is 30 seconds. If the value is larger than 30, the default will be used instead.".
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of listing the applications available in an Account as paginated response with
-     * {@link PagedFlux}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchApplication> listApplicationsInternal(Integer timeOutInSeconds) {
-        // Generated convenience method for listApplicationsInternal
-        RequestOptions requestOptions = new RequestOptions();
-        if (timeOutInSeconds != null) {
-            requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
-        }
-        PagedFlux<BinaryData> pagedFluxResponse = listApplicationsInternal(requestOptions);
-        return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
-            Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
-                ? pagedFluxResponse.byPage().take(1)
-                : pagedFluxResponse.byPage(continuationTokenParam).take(1);
-            return flux.map(pagedResponse -> new PagedResponseBase<Void, BatchApplication>(pagedResponse.getRequest(),
-                pagedResponse.getStatusCode(), pagedResponse.getHeaders(),
-                pagedResponse.getValue()
-                    .stream()
-                    .map(protocolMethodData -> protocolMethodData.toObject(BatchApplication.class))
-                    .collect(Collectors.toList()),
-                pagedResponse.getContinuationToken(), null));
-        });
-    }
-
-    /**
      * Lists the usage metrics, aggregated by Pool across individual time intervals,
      * for the specified Account.
      *
@@ -28022,8 +27787,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchPoolUsageMetrics> listPoolUsageMetricsInternal(Integer timeOutInSeconds, OffsetDateTime startTime,
-        OffsetDateTime endtime, String filter) {
+    public PagedFlux<BatchPoolUsageMetrics> listPoolUsageMetricsInternal(Integer timeOutInSeconds,
+        OffsetDateTime startTime, OffsetDateTime endtime, String filter) {
         // Generated convenience method for listPoolUsageMetricsInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28073,7 +27838,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchPool> listPoolsInternal(Integer timeOutInSeconds, String filter, List<String> select,
+    public PagedFlux<BatchPool> listPoolsInternal(Integer timeOutInSeconds, String filter, List<String> select,
         List<String> expand) {
         // Generated convenience method for listPoolsInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -28129,7 +27894,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchSupportedImage> listSupportedImagesInternal(Integer timeOutInSeconds, String filter) {
+    public PagedFlux<BatchSupportedImage> listSupportedImagesInternal(Integer timeOutInSeconds, String filter) {
         // Generated convenience method for listSupportedImagesInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28173,7 +27938,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchPoolNodeCounts> listPoolNodeCountsInternal(Integer timeOutInSeconds, String filter) {
+    public PagedFlux<BatchPoolNodeCounts> listPoolNodeCountsInternal(Integer timeOutInSeconds, String filter) {
         // Generated convenience method for listPoolNodeCountsInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28217,7 +27982,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchJob> listJobsInternal(Integer timeOutInSeconds, String filter, List<String> select,
+    public PagedFlux<BatchJob> listJobsInternal(Integer timeOutInSeconds, String filter, List<String> select,
         List<String> expand) {
         // Generated convenience method for listJobsInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -28276,8 +28041,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchJob> listJobsFromScheduleInternal(String jobScheduleId, Integer timeOutInSeconds, String filter,
-        List<String> select, List<String> expand) {
+    public PagedFlux<BatchJob> listJobsFromScheduleInternal(String jobScheduleId, Integer timeOutInSeconds,
+        String filter, List<String> select, List<String> expand) {
         // Generated convenience method for listJobsFromScheduleInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28343,8 +28108,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatusInternal(String jobId,
-        Integer timeOutInSeconds, String filter, List<String> select) {
+    public PagedFlux<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatusInternal(
+        String jobId, Integer timeOutInSeconds, String filter, List<String> select) {
         // Generated convenience method for listJobPreparationAndReleaseTaskStatusInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28395,8 +28160,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchJobSchedule> listJobSchedulesInternal(Integer timeOutInSeconds, String filter, List<String> select,
-        List<String> expand) {
+    public PagedFlux<BatchJobSchedule> listJobSchedulesInternal(Integer timeOutInSeconds, String filter,
+        List<String> select, List<String> expand) {
         // Generated convenience method for listJobSchedulesInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28458,8 +28223,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchTask> listTasksInternal(String jobId, Integer timeOutInSeconds, String filter, List<String> select,
-        List<String> expand) {
+    public PagedFlux<BatchTask> listTasksInternal(String jobId, Integer timeOutInSeconds, String filter,
+        List<String> select, List<String> expand) {
         // Generated convenience method for listTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28519,8 +28284,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId, Integer timeOutInSeconds, String filter,
-        Boolean recursive) {
+    public PagedFlux<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId, Integer timeOutInSeconds,
+        String filter, Boolean recursive) {
         // Generated convenience method for listTaskFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28566,7 +28331,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchNode> listNodesInternal(String poolId, Integer timeOutInSeconds, String filter,
+    public PagedFlux<BatchNode> listNodesInternal(String poolId, Integer timeOutInSeconds, String filter,
         List<String> select) {
         // Generated convenience method for listNodesInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -28616,8 +28381,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId, Integer timeOutInSeconds,
-        List<String> select) {
+    public PagedFlux<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId,
+        Integer timeOutInSeconds, List<String> select) {
         // Generated convenience method for listNodeExtensionsInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -28667,7 +28432,7 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId, Integer timeOutInSeconds,
+    public PagedFlux<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId, Integer timeOutInSeconds,
         String filter, Boolean recursive) {
         // Generated convenience method for listNodeFilesInternal
         RequestOptions requestOptions = new RequestOptions();

@@ -3106,54 +3106,6 @@ public final class BatchClient {
      * administrator information about applications and versions that are not yet
      * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
      * API.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>timeOut</td><td>Integer</td><td>No</td><td>The maximum time that the server can spend processing the
-     * request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used
-     * instead.".</td></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>The maximum number of items to return in the response. A
-     * maximum of 1000
-     * applications can be returned.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     id: String (Required)
-     *     displayName: String (Required)
-     *     versions (Required): [
-     *         String (Required)
-     *     ]
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the result of listing the applications available in an Account as paginated response with
-     * {@link PagedIterable}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listApplicationsInternal(RequestOptions requestOptions) {
-        return this.serviceClient.listApplicationsInternal(requestOptions);
-    }
-
-    /**
-     * Lists all of the applications available in the specified Account.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
      * <p>
      * <strong>Query Parameters</strong>
      * </p>
@@ -3208,54 +3160,6 @@ public final class BatchClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BinaryData> listApplications(RequestOptions requestOptions) {
         return this.listApplicationsInternal(requestOptions);
-    }
-
-    /**
-     * Gets information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about Applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>timeOut</td><td>Integer</td><td>No</td><td>The maximum time that the server can spend processing the
-     * request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used
-     * instead.".</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     id: String (Required)
-     *     displayName: String (Required)
-     *     versions (Required): [
-     *         String (Required)
-     *     ]
-     * }
-     * }
-     * </pre>
-     *
-     * @param applicationId The ID of the Application.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getApplicationInternalWithResponse(String applicationId, RequestOptions requestOptions) {
-        return this.serviceClient.getApplicationInternalWithResponse(applicationId, requestOptions);
     }
 
     /**
@@ -3373,7 +3277,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listPoolUsageMetricsInternal(RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listPoolUsageMetricsInternal(RequestOptions requestOptions) {
         return this.serviceClient.listPoolUsageMetricsInternal(requestOptions);
     }
 
@@ -4405,7 +4309,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listPoolsInternal(RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listPoolsInternal(RequestOptions requestOptions) {
         return this.serviceClient.listPoolsInternal(requestOptions);
     }
 
@@ -5488,7 +5392,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getPoolInternalWithResponse(String poolId, RequestOptions requestOptions) {
+    public Response<BinaryData> getPoolInternalWithResponse(String poolId, RequestOptions requestOptions) {
         return this.serviceClient.getPoolInternalWithResponse(poolId, requestOptions);
     }
 
@@ -7495,7 +7399,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listSupportedImagesInternal(RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listSupportedImagesInternal(RequestOptions requestOptions) {
         return this.serviceClient.listSupportedImagesInternal(requestOptions);
     }
 
@@ -7633,7 +7537,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listPoolNodeCountsInternal(RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listPoolNodeCountsInternal(RequestOptions requestOptions) {
         return this.serviceClient.listPoolNodeCountsInternal(requestOptions);
     }
 
@@ -8337,7 +8241,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+    public Response<BinaryData> getJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
         return this.serviceClient.getJobInternalWithResponse(jobId, requestOptions);
     }
 
@@ -12011,7 +11915,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listJobsInternal(RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listJobsInternal(RequestOptions requestOptions) {
         return this.serviceClient.listJobsInternal(requestOptions);
     }
 
@@ -12936,7 +12840,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listJobsFromScheduleInternal(String jobScheduleId, RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listJobsFromScheduleInternal(String jobScheduleId, RequestOptions requestOptions) {
         return this.serviceClient.listJobsFromScheduleInternal(jobScheduleId, requestOptions);
     }
 
@@ -13499,7 +13403,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listJobPreparationAndReleaseTaskStatusInternal(String jobId,
+    public PagedIterable<BinaryData> listJobPreparationAndReleaseTaskStatusInternal(String jobId,
         RequestOptions requestOptions) {
         return this.serviceClient.listJobPreparationAndReleaseTaskStatusInternal(jobId, requestOptions);
     }
@@ -13672,7 +13576,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getJobTaskCountsInternalWithResponse(String jobId, RequestOptions requestOptions) {
+    public Response<BinaryData> getJobTaskCountsInternalWithResponse(String jobId, RequestOptions requestOptions) {
         return this.serviceClient.getJobTaskCountsInternalWithResponse(jobId, requestOptions);
     }
 
@@ -14507,7 +14411,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+    public Response<BinaryData> getJobScheduleInternalWithResponse(String jobScheduleId,
+        RequestOptions requestOptions) {
         return this.serviceClient.getJobScheduleInternalWithResponse(jobScheduleId, requestOptions);
     }
 
@@ -18495,7 +18400,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listJobSchedulesInternal(RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listJobSchedulesInternal(RequestOptions requestOptions) {
         return this.serviceClient.listJobSchedulesInternal(requestOptions);
     }
 
@@ -19535,7 +19440,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listTasksInternal(String jobId, RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listTasksInternal(String jobId, RequestOptions requestOptions) {
         return this.serviceClient.listTasksInternal(jobId, requestOptions);
     }
 
@@ -20611,7 +20516,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+    public Response<BinaryData> getTaskInternalWithResponse(String jobId, String taskId,
+        RequestOptions requestOptions) {
         return this.serviceClient.getTaskInternalWithResponse(jobId, taskId, requestOptions);
     }
 
@@ -22104,7 +22010,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listTaskFilesInternal(String jobId, String taskId, RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listTaskFilesInternal(String jobId, String taskId, RequestOptions requestOptions) {
         return this.serviceClient.listTaskFilesInternal(jobId, taskId, requestOptions);
     }
 
@@ -22654,7 +22560,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+    public Response<BinaryData> getNodeInternalWithResponse(String poolId, String nodeId,
+        RequestOptions requestOptions) {
         return this.serviceClient.getNodeInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
@@ -22964,7 +22871,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getNodeRemoteLoginSettingsInternalWithResponse(String poolId, String nodeId,
+    public Response<BinaryData> getNodeRemoteLoginSettingsInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
         return this.serviceClient.getNodeRemoteLoginSettingsInternalWithResponse(poolId, nodeId, requestOptions);
     }
@@ -23346,7 +23253,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listNodesInternal(String poolId, RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listNodesInternal(String poolId, RequestOptions requestOptions) {
         return this.serviceClient.listNodesInternal(poolId, requestOptions);
     }
 
@@ -23622,7 +23529,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getNodeExtensionInternalWithResponse(String poolId, String nodeId, String extensionName,
+    public Response<BinaryData> getNodeExtensionInternalWithResponse(String poolId, String nodeId, String extensionName,
         RequestOptions requestOptions) {
         return this.serviceClient.getNodeExtensionInternalWithResponse(poolId, nodeId, extensionName, requestOptions);
     }
@@ -23787,7 +23694,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listNodeExtensionsInternal(String poolId, String nodeId, RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listNodeExtensionsInternal(String poolId, String nodeId,
+        RequestOptions requestOptions) {
         return this.serviceClient.listNodeExtensionsInternal(poolId, nodeId, requestOptions);
     }
 
@@ -24274,7 +24182,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listNodeFilesInternal(String poolId, String nodeId, RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listNodeFilesInternal(String poolId, String nodeId,
+        RequestOptions requestOptions) {
         return this.serviceClient.listNodeFilesInternal(poolId, nodeId, requestOptions);
     }
 
@@ -24357,97 +24266,6 @@ public final class BatchClient {
     }
 
     /**
-     * Lists all of the applications available in the specified Account.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     *
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of listing the applications available in an Account as paginated response with
-     * {@link PagedIterable}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchApplication> listApplicationsInternal() {
-        // Generated convenience method for listApplicationsInternal
-        RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listApplicationsInternal(requestOptions)
-            .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchApplication.class));
-    }
-
-    /**
-     * Gets information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about Applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     *
-     * @param applicationId The ID of the Application.
-     * @param timeOutInSeconds The maximum time that the server can spend processing the request, in seconds. The
-     * default is 30 seconds. If the value is larger than 30, the default will be used instead.".
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchApplication getApplicationInternal(String applicationId, Integer timeOutInSeconds) {
-        // Generated convenience method for getApplicationInternalWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        if (timeOutInSeconds != null) {
-            requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
-        }
-        return getApplicationInternalWithResponse(applicationId, requestOptions).getValue()
-            .toObject(BatchApplication.class);
-    }
-
-    /**
-     * Gets information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about Applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     *
-     * @param applicationId The ID of the Application.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Application.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchApplication getApplicationInternal(String applicationId) {
-        // Generated convenience method for getApplicationInternalWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return getApplicationInternalWithResponse(applicationId, requestOptions).getValue()
-            .toObject(BatchApplication.class);
-    }
-
-    /**
      * Lists the usage metrics, aggregated by Pool across individual time intervals,
      * for the specified Account.
      *
@@ -24468,7 +24286,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchPoolUsageMetrics> listPoolUsageMetricsInternal() {
+    public PagedIterable<BatchPoolUsageMetrics> listPoolUsageMetricsInternal() {
         // Generated convenience method for listPoolUsageMetricsInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listPoolUsageMetricsInternal(requestOptions)
@@ -24487,7 +24305,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchPool> listPoolsInternal() {
+    public PagedIterable<BatchPool> listPoolsInternal() {
         // Generated convenience method for listPoolsInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listPoolsInternal(requestOptions)
@@ -24663,7 +24481,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchPool getPoolInternal(String poolId, Integer timeOutInSeconds, List<String> select, List<String> expand,
+    public BatchPool getPoolInternal(String poolId, Integer timeOutInSeconds, List<String> select, List<String> expand,
         RequestConditions requestConditions) {
         // Generated convenience method for getPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -24719,7 +24537,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchPool getPoolInternal(String poolId) {
+    public BatchPool getPoolInternal(String poolId) {
         // Generated convenience method for getPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getPoolInternalWithResponse(poolId, requestOptions).getValue().toObject(BatchPool.class);
@@ -24859,7 +24677,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchSupportedImage> listSupportedImagesInternal() {
+    public PagedIterable<BatchSupportedImage> listSupportedImagesInternal() {
         // Generated convenience method for listSupportedImagesInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listSupportedImagesInternal(requestOptions)
@@ -24881,7 +24699,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchPoolNodeCounts> listPoolNodeCountsInternal() {
+    public PagedIterable<BatchPoolNodeCounts> listPoolNodeCountsInternal() {
         // Generated convenience method for listPoolNodeCountsInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listPoolNodeCountsInternal(requestOptions)
@@ -24935,7 +24753,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchJob getJobInternal(String jobId, Integer timeOutInSeconds, List<String> select, List<String> expand,
+    public BatchJob getJobInternal(String jobId, Integer timeOutInSeconds, List<String> select, List<String> expand,
         RequestConditions requestConditions) {
         // Generated convenience method for getJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -24991,7 +24809,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchJob getJobInternal(String jobId) {
+    public BatchJob getJobInternal(String jobId) {
         // Generated convenience method for getJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getJobInternalWithResponse(jobId, requestOptions).getValue().toObject(BatchJob.class);
@@ -25157,7 +24975,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchJob> listJobsInternal() {
+    public PagedIterable<BatchJob> listJobsInternal() {
         // Generated convenience method for listJobsInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listJobsInternal(requestOptions)
@@ -25178,7 +24996,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchJob> listJobsFromScheduleInternal(String jobScheduleId) {
+    public PagedIterable<BatchJob> listJobsFromScheduleInternal(String jobScheduleId) {
         // Generated convenience method for listJobsFromScheduleInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listJobsFromScheduleInternal(jobScheduleId, requestOptions)
@@ -25208,7 +25026,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchJobPreparationAndReleaseTaskStatus>
+    public PagedIterable<BatchJobPreparationAndReleaseTaskStatus>
         listJobPreparationAndReleaseTaskStatusInternal(String jobId) {
         // Generated convenience method for listJobPreparationAndReleaseTaskStatusInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -25240,7 +25058,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchTaskCountsResult getJobTaskCountsInternal(String jobId, Integer timeOutInSeconds) {
+    public BatchTaskCountsResult getJobTaskCountsInternal(String jobId, Integer timeOutInSeconds) {
         // Generated convenience method for getJobTaskCountsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -25272,7 +25090,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchTaskCountsResult getJobTaskCountsInternal(String jobId) {
+    public BatchTaskCountsResult getJobTaskCountsInternal(String jobId) {
         // Generated convenience method for getJobTaskCountsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getJobTaskCountsInternalWithResponse(jobId, requestOptions).getValue()
@@ -25386,7 +25204,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchJobSchedule getJobScheduleInternal(String jobScheduleId, Integer timeOutInSeconds, List<String> select,
+    public BatchJobSchedule getJobScheduleInternal(String jobScheduleId, Integer timeOutInSeconds, List<String> select,
         List<String> expand, RequestConditions requestConditions) {
         // Generated convenience method for getJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -25443,7 +25261,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchJobSchedule getJobScheduleInternal(String jobScheduleId) {
+    public BatchJobSchedule getJobScheduleInternal(String jobScheduleId) {
         // Generated convenience method for getJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue()
@@ -25690,7 +25508,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchJobSchedule> listJobSchedulesInternal() {
+    public PagedIterable<BatchJobSchedule> listJobSchedulesInternal() {
         // Generated convenience method for listJobSchedulesInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listJobSchedulesInternal(requestOptions)
@@ -25715,7 +25533,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchTask> listTasksInternal(String jobId) {
+    public PagedIterable<BatchTask> listTasksInternal(String jobId) {
         // Generated convenience method for listTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listTasksInternal(jobId, requestOptions)
@@ -25826,7 +25644,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchTask getTaskInternal(String jobId, String taskId, Integer timeOutInSeconds, List<String> select,
+    public BatchTask getTaskInternal(String jobId, String taskId, Integer timeOutInSeconds, List<String> select,
         List<String> expand, RequestConditions requestConditions) {
         // Generated convenience method for getTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -25890,7 +25708,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchTask getTaskInternal(String jobId, String taskId) {
+    public BatchTask getTaskInternal(String jobId, String taskId) {
         // Generated convenience method for getTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getTaskInternalWithResponse(jobId, taskId, requestOptions).getValue().toObject(BatchTask.class);
@@ -25984,7 +25802,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchSubtask> listSubTasksInternal(String jobId, String taskId, Integer timeOutInSeconds,
+    public PagedIterable<BatchSubtask> listSubTasksInternal(String jobId, String taskId, Integer timeOutInSeconds,
         List<String> select) {
         // Generated convenience method for listSubTasksInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -26020,7 +25838,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchSubtask> listSubTasksInternal(String jobId, String taskId) {
+    public PagedIterable<BatchSubtask> listSubTasksInternal(String jobId, String taskId) {
         // Generated convenience method for listSubTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listSubTasksInternal(jobId, taskId, requestOptions)
@@ -26385,7 +26203,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId) {
+    public PagedIterable<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId) {
         // Generated convenience method for listTaskFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listTaskFilesInternal(jobId, taskId, requestOptions)
@@ -26463,7 +26281,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchNode getNodeInternal(String poolId, String nodeId, Integer timeOutInSeconds, List<String> select) {
+    public BatchNode getNodeInternal(String poolId, String nodeId, Integer timeOutInSeconds, List<String> select) {
         // Generated convenience method for getNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -26494,7 +26312,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchNode getNodeInternal(String poolId, String nodeId) {
+    public BatchNode getNodeInternal(String poolId, String nodeId) {
         // Generated convenience method for getNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue().toObject(BatchNode.class);
@@ -26574,7 +26392,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchNodeRemoteLoginSettings getNodeRemoteLoginSettingsInternal(String poolId, String nodeId,
+    public BatchNodeRemoteLoginSettings getNodeRemoteLoginSettingsInternal(String poolId, String nodeId,
         Integer timeOutInSeconds) {
         // Generated convenience method for getNodeRemoteLoginSettingsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -26606,7 +26424,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchNodeRemoteLoginSettings getNodeRemoteLoginSettingsInternal(String poolId, String nodeId) {
+    public BatchNodeRemoteLoginSettings getNodeRemoteLoginSettingsInternal(String poolId, String nodeId) {
         // Generated convenience method for getNodeRemoteLoginSettingsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getNodeRemoteLoginSettingsInternalWithResponse(poolId, nodeId, requestOptions).getValue()
@@ -26627,7 +26445,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchNode> listNodesInternal(String poolId) {
+    public PagedIterable<BatchNode> listNodesInternal(String poolId) {
         // Generated convenience method for listNodesInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listNodesInternal(poolId, requestOptions)
@@ -26653,7 +26471,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchNodeVMExtension getNodeExtensionInternal(String poolId, String nodeId, String extensionName,
+    public BatchNodeVMExtension getNodeExtensionInternal(String poolId, String nodeId, String extensionName,
         Integer timeOutInSeconds, List<String> select) {
         // Generated convenience method for getNodeExtensionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -26687,7 +26505,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BatchNodeVMExtension getNodeExtensionInternal(String poolId, String nodeId, String extensionName) {
+    public BatchNodeVMExtension getNodeExtensionInternal(String poolId, String nodeId, String extensionName) {
         // Generated convenience method for getNodeExtensionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getNodeExtensionInternalWithResponse(poolId, nodeId, extensionName, requestOptions).getValue()
@@ -26710,7 +26528,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId) {
+    public PagedIterable<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId) {
         // Generated convenience method for listNodeExtensionsInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listNodeExtensionsInternal(poolId, nodeId, requestOptions)
@@ -26919,7 +26737,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId) {
+    public PagedIterable<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId) {
         // Generated convenience method for listNodeFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.listNodeFilesInternal(poolId, nodeId, requestOptions)
@@ -27438,7 +27256,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BinaryData> listSubTasksInternal(String jobId, String taskId, RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listSubTasksInternal(String jobId, String taskId, RequestOptions requestOptions) {
         return this.serviceClient.listSubTasksInternal(jobId, taskId, requestOptions);
     }
 
@@ -27532,38 +27350,6 @@ public final class BatchClient {
     }
 
     /**
-     * Lists all of the applications available in the specified Account.
-     *
-     * This operation returns only Applications and versions that are available for
-     * use on Compute Nodes; that is, that can be used in an Package reference. For
-     * administrator information about applications and versions that are not yet
-     * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
-     * API.
-     *
-     * @param timeOutInSeconds The maximum time that the server can spend processing the request, in seconds. The
-     * default is 30 seconds. If the value is larger than 30, the default will be used instead.".
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of listing the applications available in an Account as paginated response with
-     * {@link PagedIterable}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchApplication> listApplicationsInternal(Integer timeOutInSeconds) {
-        // Generated convenience method for listApplicationsInternal
-        RequestOptions requestOptions = new RequestOptions();
-        if (timeOutInSeconds != null) {
-            requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
-        }
-        return serviceClient.listApplicationsInternal(requestOptions)
-            .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchApplication.class));
-    }
-
-    /**
      * Lists the usage metrics, aggregated by Pool across individual time intervals,
      * for the specified Account.
      *
@@ -27595,7 +27381,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchPoolUsageMetrics> listPoolUsageMetricsInternal(Integer timeOutInSeconds,
+    public PagedIterable<BatchPoolUsageMetrics> listPoolUsageMetricsInternal(Integer timeOutInSeconds,
         OffsetDateTime startTime, OffsetDateTime endtime, String filter) {
         // Generated convenience method for listPoolUsageMetricsInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -27634,7 +27420,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchPool> listPoolsInternal(Integer timeOutInSeconds, String filter, List<String> select,
+    public PagedIterable<BatchPool> listPoolsInternal(Integer timeOutInSeconds, String filter, List<String> select,
         List<String> expand) {
         // Generated convenience method for listPoolsInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -27680,7 +27466,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchSupportedImage> listSupportedImagesInternal(Integer timeOutInSeconds, String filter) {
+    public PagedIterable<BatchSupportedImage> listSupportedImagesInternal(Integer timeOutInSeconds, String filter) {
         // Generated convenience method for listSupportedImagesInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -27713,7 +27499,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchPoolNodeCounts> listPoolNodeCountsInternal(Integer timeOutInSeconds, String filter) {
+    public PagedIterable<BatchPoolNodeCounts> listPoolNodeCountsInternal(Integer timeOutInSeconds, String filter) {
         // Generated convenience method for listPoolNodeCountsInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -27745,7 +27531,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchJob> listJobsInternal(Integer timeOutInSeconds, String filter, List<String> select,
+    public PagedIterable<BatchJob> listJobsInternal(Integer timeOutInSeconds, String filter, List<String> select,
         List<String> expand) {
         // Generated convenience method for listJobsInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -27793,8 +27579,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchJob> listJobsFromScheduleInternal(String jobScheduleId, Integer timeOutInSeconds, String filter,
-        List<String> select, List<String> expand) {
+    public PagedIterable<BatchJob> listJobsFromScheduleInternal(String jobScheduleId, Integer timeOutInSeconds,
+        String filter, List<String> select, List<String> expand) {
         // Generated convenience method for listJobsFromScheduleInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -27849,8 +27635,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatusInternal(String jobId,
-        Integer timeOutInSeconds, String filter, List<String> select) {
+    public PagedIterable<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatusInternal(
+        String jobId, Integer timeOutInSeconds, String filter, List<String> select) {
         // Generated convenience method for listJobPreparationAndReleaseTaskStatusInternal
         RequestOptions requestOptions = new RequestOptions();
         if (timeOutInSeconds != null) {
@@ -27889,7 +27675,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchJobSchedule> listJobSchedulesInternal(Integer timeOutInSeconds, String filter,
+    public PagedIterable<BatchJobSchedule> listJobSchedulesInternal(Integer timeOutInSeconds, String filter,
         List<String> select, List<String> expand) {
         // Generated convenience method for listJobSchedulesInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -27941,7 +27727,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchTask> listTasksInternal(String jobId, Integer timeOutInSeconds, String filter,
+    public PagedIterable<BatchTask> listTasksInternal(String jobId, Integer timeOutInSeconds, String filter,
         List<String> select, List<String> expand) {
         // Generated convenience method for listTasksInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -27991,7 +27777,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId, Integer timeOutInSeconds,
+    public PagedIterable<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId, Integer timeOutInSeconds,
         String filter, Boolean recursive) {
         // Generated convenience method for listTaskFilesInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -28027,7 +27813,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchNode> listNodesInternal(String poolId, Integer timeOutInSeconds, String filter,
+    public PagedIterable<BatchNode> listNodesInternal(String poolId, Integer timeOutInSeconds, String filter,
         List<String> select) {
         // Generated convenience method for listNodesInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -28067,7 +27853,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId,
+    public PagedIterable<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId,
         Integer timeOutInSeconds, List<String> select) {
         // Generated convenience method for listNodeExtensionsInternal
         RequestOptions requestOptions = new RequestOptions();
@@ -28106,7 +27892,7 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId, Integer timeOutInSeconds,
+    public PagedIterable<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId, Integer timeOutInSeconds,
         String filter, Boolean recursive) {
         // Generated convenience method for listNodeFilesInternal
         RequestOptions requestOptions = new RequestOptions();
