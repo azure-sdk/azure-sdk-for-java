@@ -21,7 +21,7 @@ import java.util.List;
 @Fluent
 public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleInner {
     /*
-     * The alert rule kind
+     * The kind of the alert rule
      */
     private AlertRuleKind kind = AlertRuleKind.MICROSOFT_SECURITY_INCIDENT_CREATION;
 
@@ -57,7 +57,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
     }
 
     /**
-     * Get the kind property: The alert rule kind.
+     * Get the kind property: The kind of the alert rule.
      * 
      * @return the kind value.
      */

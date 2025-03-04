@@ -22,6 +22,11 @@ public final class ActionType extends ExpandableStringEnum<ActionType> {
     public static final ActionType RUN_PLAYBOOK = fromString("RunPlaybook");
 
     /**
+     * Static value AddIncidentTask for ActionType.
+     */
+    public static final ActionType ADD_INCIDENT_TASK = fromString("AddIncidentTask");
+
+    /**
      * Creates a new instance of ActionType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

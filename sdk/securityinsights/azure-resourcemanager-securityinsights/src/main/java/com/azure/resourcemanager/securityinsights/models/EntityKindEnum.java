@@ -117,6 +117,11 @@ public final class EntityKindEnum extends ExpandableStringEnum<EntityKindEnum> {
     public static final EntityKindEnum SUBMISSION_MAIL = fromString("SubmissionMail");
 
     /**
+     * Static value Nic for EntityKindEnum.
+     */
+    public static final EntityKindEnum NIC = fromString("Nic");
+
+    /**
      * Creates a new instance of EntityKindEnum value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
