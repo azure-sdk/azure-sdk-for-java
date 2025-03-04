@@ -184,7 +184,7 @@ public final class TrustedSigningManagementClientImpl implements TrustedSigningM
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
         this.subscriptionId = subscriptionId;
-        this.apiVersion = "2024-02-05-preview";
+        this.apiVersion = "2025-03-30";
         this.operations = new OperationsClientImpl(this);
         this.codeSigningAccounts = new CodeSigningAccountsClientImpl(this);
         this.certificateProfiles = new CertificateProfilesClientImpl(this);
