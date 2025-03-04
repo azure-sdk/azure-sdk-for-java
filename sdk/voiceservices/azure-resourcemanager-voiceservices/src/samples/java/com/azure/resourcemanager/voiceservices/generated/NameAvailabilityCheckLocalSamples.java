@@ -12,7 +12,7 @@ import com.azure.resourcemanager.voiceservices.models.CheckNameAvailabilityReque
 public final class NameAvailabilityCheckLocalSamples {
     /*
      * x-ms-original-file:
-     * specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/
+     * specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-09-01/examples/
      * NameAvailability_CheckLocal.json
      */
     /**
