@@ -165,7 +165,7 @@ public final class BatchClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listApplicationsInternal(@HostParam("endpoint") String endpoint,
+        Mono<Response<BinaryData>> listApplications(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -175,7 +175,7 @@ public final class BatchClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> listApplicationsInternalSync(@HostParam("endpoint") String endpoint,
+        Response<BinaryData> listApplicationsSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -185,7 +185,7 @@ public final class BatchClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getApplicationInternal(@HostParam("endpoint") String endpoint,
+        Mono<Response<BinaryData>> getApplication(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("applicationId") String applicationId,
             @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -195,7 +195,7 @@ public final class BatchClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> getApplicationInternalSync(@HostParam("endpoint") String endpoint,
+        Response<BinaryData> getApplicationSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("applicationId") String applicationId,
             @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -1730,9 +1730,9 @@ public final class BatchClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listApplicationsInternalNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
-            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
+        Mono<Response<BinaryData>> listApplicationsNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("endpoint") String endpoint, @HeaderParam("Accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -1740,9 +1740,9 @@ public final class BatchClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> listApplicationsInternalNextSync(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
-            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
+        Response<BinaryData> listApplicationsNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("endpoint") String endpoint, @HeaderParam("Accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -2068,11 +2068,11 @@ public final class BatchClientImpl {
      * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BinaryData>> listApplicationsInternalSinglePageAsync(RequestOptions requestOptions) {
+    private Mono<PagedResponse<BinaryData>> listApplicationsSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listApplicationsInternal(this.getEndpoint(),
-                this.getServiceVersion().getVersion(), accept, requestOptions, context))
+            .withContext(context -> service.listApplications(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "odata.nextLink"), null));
     }
@@ -2120,7 +2120,7 @@ public final class BatchClientImpl {
      * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listApplicationsInternalAsync(RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listApplicationsAsync(RequestOptions requestOptions) {
         RequestOptions requestOptionsForNextPage = new RequestOptions();
         requestOptionsForNextPage.setContext(
             requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
@@ -2133,7 +2133,7 @@ public final class BatchClientImpl {
                     requestLocal.setUrl(urlBuilder.toString());
                 });
             }
-            return listApplicationsInternalSinglePageAsync(requestOptionsLocal);
+            return listApplicationsSinglePageAsync(requestOptionsLocal);
         }, (nextLink, pageSize) -> {
             RequestOptions requestOptionsLocal = new RequestOptions();
             requestOptionsLocal.setContext(requestOptionsForNextPage.getContext());
@@ -2144,7 +2144,7 @@ public final class BatchClientImpl {
                     requestLocal.setUrl(urlBuilder.toString());
                 });
             }
-            return listApplicationsInternalNextSinglePageAsync(nextLink, requestOptionsLocal);
+            return listApplicationsNextSinglePageAsync(nextLink, requestOptionsLocal);
         });
     }
 
@@ -2190,9 +2190,9 @@ public final class BatchClientImpl {
      * @return the result of listing the applications available in an Account along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private PagedResponse<BinaryData> listApplicationsInternalSinglePage(RequestOptions requestOptions) {
+    private PagedResponse<BinaryData> listApplicationsSinglePage(RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res = service.listApplicationsInternalSync(this.getEndpoint(),
+        Response<BinaryData> res = service.listApplicationsSync(this.getEndpoint(),
             this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "odata.nextLink"), null);
@@ -2241,7 +2241,7 @@ public final class BatchClientImpl {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listApplicationsInternal(RequestOptions requestOptions) {
+    public PagedIterable<BinaryData> listApplications(RequestOptions requestOptions) {
         RequestOptions requestOptionsForNextPage = new RequestOptions();
         requestOptionsForNextPage.setContext(
             requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
@@ -2254,7 +2254,7 @@ public final class BatchClientImpl {
                     requestLocal.setUrl(urlBuilder.toString());
                 });
             }
-            return listApplicationsInternalSinglePage(requestOptionsLocal);
+            return listApplicationsSinglePage(requestOptionsLocal);
         }, (nextLink, pageSize) -> {
             RequestOptions requestOptionsLocal = new RequestOptions();
             requestOptionsLocal.setContext(requestOptionsForNextPage.getContext());
@@ -2265,7 +2265,7 @@ public final class BatchClientImpl {
                     requestLocal.setUrl(urlBuilder.toString());
                 });
             }
-            return listApplicationsInternalNextSinglePage(nextLink, requestOptionsLocal);
+            return listApplicationsNextSinglePage(nextLink, requestOptionsLocal);
         });
     }
 
@@ -2313,10 +2313,10 @@ public final class BatchClientImpl {
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getApplicationInternalWithResponseAsync(String applicationId,
+    public Mono<Response<BinaryData>> getApplicationWithResponseAsync(String applicationId,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getApplicationInternal(this.getEndpoint(),
+        return FluxUtil.withContext(context -> service.getApplication(this.getEndpoint(),
             this.getServiceVersion().getVersion(), applicationId, accept, requestOptions, context));
     }
 
@@ -2363,11 +2363,10 @@ public final class BatchClientImpl {
      * use on Compute Nodes; that is, that can be used in an Package reference along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getApplicationInternalWithResponse(String applicationId,
-        RequestOptions requestOptions) {
+    public Response<BinaryData> getApplicationWithResponse(String applicationId, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getApplicationInternalSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
-            applicationId, accept, requestOptions, Context.NONE);
+        return service.getApplicationSync(this.getEndpoint(), this.getServiceVersion().getVersion(), applicationId,
+            accept, requestOptions, Context.NONE);
     }
 
     /**
@@ -29464,12 +29463,12 @@ public final class BatchClientImpl {
      * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BinaryData>> listApplicationsInternalNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<BinaryData>> listApplicationsNextSinglePageAsync(String nextLink,
         RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listApplicationsInternalNext(nextLink, this.getEndpoint(), accept,
-                requestOptions, context))
+            .withContext(
+                context -> service.listApplicationsNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "odata.nextLink"), null));
     }
@@ -29501,11 +29500,10 @@ public final class BatchClientImpl {
      * @return the result of listing the applications available in an Account along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private PagedResponse<BinaryData> listApplicationsInternalNextSinglePage(String nextLink,
-        RequestOptions requestOptions) {
+    private PagedResponse<BinaryData> listApplicationsNextSinglePage(String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res = service.listApplicationsInternalNextSync(nextLink, this.getEndpoint(), accept,
-            requestOptions, Context.NONE);
+        Response<BinaryData> res
+            = service.listApplicationsNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "odata.nextLink"), null);
     }
