@@ -12,8 +12,8 @@ import com.azure.resourcemanager.hybridcompute.fluent.models.SettingsInner;
 public final class SettingsOperationPatchSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/settings
-     * /SettingsPatch.json
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/stable/2025-01-13/examples/settings/
+     * SettingsPatch.json
      */
     /**
      * Sample code: NetworkConfigurationsPatch.
