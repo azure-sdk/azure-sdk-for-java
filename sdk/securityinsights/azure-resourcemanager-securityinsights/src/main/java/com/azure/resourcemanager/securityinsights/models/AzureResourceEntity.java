@@ -10,6 +10,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.fluent.models.AzureResourceEntityProperties;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import java.io.IOException;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ import java.util.Map;
  * Represents an azure resource entity.
  */
 @Immutable
-public final class AzureResourceEntity extends Entity {
+public final class AzureResourceEntity extends EntityInner {
     /*
      * The kind of the entity.
      */

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -103,16 +104,30 @@ public final class OfficeDataConnectorDataTypes implements JsonSerializable<Offi
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (exchange() != null) {
+        if (exchange() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property exchange in model OfficeDataConnectorDataTypes"));
+        } else {
             exchange().validate();
         }
-        if (sharePoint() != null) {
+        if (sharePoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sharePoint in model OfficeDataConnectorDataTypes"));
+        } else {
             sharePoint().validate();
         }
-        if (teams() != null) {
+        if (teams() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property teams in model OfficeDataConnectorDataTypes"));
+        } else {
             teams().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(OfficeDataConnectorDataTypes.class);
 
     /**
      * {@inheritDoc}
@@ -132,6 +147,7 @@ public final class OfficeDataConnectorDataTypes implements JsonSerializable<Offi
      * @param jsonReader The JsonReader being read.
      * @return An instance of OfficeDataConnectorDataTypes if the JsonReader was pointing to an instance of it, or null
      * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the OfficeDataConnectorDataTypes.
      */
     public static OfficeDataConnectorDataTypes fromJson(JsonReader jsonReader) throws IOException {

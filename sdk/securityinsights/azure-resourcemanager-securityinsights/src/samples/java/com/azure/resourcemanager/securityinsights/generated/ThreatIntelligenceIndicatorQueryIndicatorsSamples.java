@@ -15,7 +15,7 @@ import java.util.Arrays;
 public final class ThreatIntelligenceIndicatorQueryIndicatorsSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2022-11-01/examples/
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2025-01-01-preview/examples/
      * threatintelligence/QueryThreatIntelligence.json
      */
     /**
@@ -29,8 +29,8 @@ public final class ThreatIntelligenceIndicatorQueryIndicatorsSamples {
             .queryIndicators("myRg", "myWorkspace", new ThreatIntelligenceFilteringCriteria().withPageSize(100)
                 .withMinConfidence(25)
                 .withMaxConfidence(80)
-                .withMinValidUntil("2020-04-05T17:44:00.114052Z")
-                .withMaxValidUntil("2020-04-25T17:44:00.114052Z")
+                .withMinValidUntil("2021-04-05T17:44:00.114052Z")
+                .withMaxValidUntil("2021-04-25T17:44:00.114052Z")
                 .withSortBy(Arrays.asList(new ThreatIntelligenceSortingCriteria().withItemKey("fakeTokenPlaceholder")
                     .withSortOrder(ThreatIntelligenceSortingOrder.DESCENDING)))
                 .withSources(Arrays.asList("Azure Sentinel")), com.azure.core.util.Context.NONE);

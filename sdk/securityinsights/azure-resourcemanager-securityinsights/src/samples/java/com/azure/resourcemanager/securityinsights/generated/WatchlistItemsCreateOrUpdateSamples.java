@@ -14,15 +14,15 @@ import java.io.IOException;
 public final class WatchlistItemsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2022-11-01/examples/watchlists/
-     * CreateWatchlistItem.json
+     * specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2025-01-01-preview/examples/
+     * watchlists/CreateWatchlistItem.json
      */
     /**
-     * Sample code: Create or update a watchlist item.
+     * Sample code: Creates or updates a watchlist item.
      * 
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void createOrUpdateAWatchlistItem(
+    public static void createsOrUpdatesAWatchlistItem(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) throws IOException {
         manager.watchlistItems()
             .define("82ba292c-dc97-4dfc-969d-d4dd9e666842")

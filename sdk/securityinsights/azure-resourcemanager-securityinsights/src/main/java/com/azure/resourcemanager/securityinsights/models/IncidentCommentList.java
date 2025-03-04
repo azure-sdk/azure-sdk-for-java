@@ -15,19 +15,19 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * List of incident comments.
+ * The IncidentCommentList model.
  */
 @Fluent
 public final class IncidentCommentList implements JsonSerializable<IncidentCommentList> {
     /*
-     * URL to fetch the next set of comments.
-     */
-    private String nextLink;
-
-    /*
-     * Array of comments.
+     * The value property.
      */
     private List<IncidentCommentInner> value;
+
+    /*
+     * The nextLink property.
+     */
+    private String nextLink;
 
     /**
      * Creates an instance of IncidentCommentList class.
@@ -36,16 +36,7 @@ public final class IncidentCommentList implements JsonSerializable<IncidentComme
     }
 
     /**
-     * Get the nextLink property: URL to fetch the next set of comments.
-     * 
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
-    }
-
-    /**
-     * Get the value property: Array of comments.
+     * Get the value property: The value property.
      * 
      * @return the value value.
      */
@@ -54,7 +45,7 @@ public final class IncidentCommentList implements JsonSerializable<IncidentComme
     }
 
     /**
-     * Set the value property: Array of comments.
+     * Set the value property: The value property.
      * 
      * @param value the value value to set.
      * @return the IncidentCommentList object itself.
@@ -62,6 +53,15 @@ public final class IncidentCommentList implements JsonSerializable<IncidentComme
     public IncidentCommentList withValue(List<IncidentCommentInner> value) {
         this.value = value;
         return this;
+    }
+
+    /**
+     * Get the nextLink property: The nextLink property.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**

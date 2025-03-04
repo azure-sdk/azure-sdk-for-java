@@ -123,29 +123,6 @@ public final class AatpDataConnector extends DataConnectorInner {
     }
 
     /**
-     * Get the tenantId property: The tenant id to connect to, and get the data from.
-     * 
-     * @return the tenantId value.
-     */
-    public String tenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
-    }
-
-    /**
-     * Set the tenantId property: The tenant id to connect to, and get the data from.
-     * 
-     * @param tenantId the tenantId value to set.
-     * @return the AatpDataConnector object itself.
-     */
-    public AatpDataConnector withTenantId(String tenantId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AatpDataConnectorProperties();
-        }
-        this.innerProperties().withTenantId(tenantId);
-        return this;
-    }
-
-    /**
      * Get the dataTypes property: The available data types for the connector.
      * 
      * @return the dataTypes value.
@@ -165,6 +142,29 @@ public final class AatpDataConnector extends DataConnectorInner {
             this.innerProperties = new AatpDataConnectorProperties();
         }
         this.innerProperties().withDataTypes(dataTypes);
+        return this;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the AatpDataConnector object itself.
+     */
+    public AatpDataConnector withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AatpDataConnectorProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
         return this;
     }
 
