@@ -26,9 +26,9 @@ public final class AddonVrProperties extends AddonProperties {
     private int vrsCount;
 
     /*
-     * The state of the addon provisioning
+     * VR replicationNetwork network.
      */
-    private AddonProvisioningState provisioningState;
+    private String replicationNetwork;
 
     /**
      * Creates an instance of AddonVrProperties class.
@@ -67,13 +67,23 @@ public final class AddonVrProperties extends AddonProperties {
     }
 
     /**
-     * Get the provisioningState property: The state of the addon provisioning.
+     * Get the replicationNetwork property: VR replicationNetwork network.
      * 
-     * @return the provisioningState value.
+     * @return the replicationNetwork value.
      */
-    @Override
-    public AddonProvisioningState provisioningState() {
-        return this.provisioningState;
+    public String replicationNetwork() {
+        return this.replicationNetwork;
+    }
+
+    /**
+     * Set the replicationNetwork property: VR replicationNetwork network.
+     * 
+     * @param replicationNetwork the replicationNetwork value to set.
+     * @return the AddonVrProperties object itself.
+     */
+    public AddonVrProperties withReplicationNetwork(String replicationNetwork) {
+        this.replicationNetwork = replicationNetwork;
+        return this;
     }
 
     /**
@@ -93,6 +103,7 @@ public final class AddonVrProperties extends AddonProperties {
         jsonWriter.writeStartObject();
         jsonWriter.writeIntField("vrsCount", this.vrsCount);
         jsonWriter.writeStringField("addonType", this.addonType == null ? null : this.addonType.toString());
+        jsonWriter.writeStringField("replicationNetwork", this.replicationNetwork);
         return jsonWriter.writeEndObject();
     }
 
@@ -113,12 +124,14 @@ public final class AddonVrProperties extends AddonProperties {
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedAddonVrProperties.provisioningState
-                        = AddonProvisioningState.fromString(reader.getString());
+                    deserializedAddonVrProperties
+                        .withProvisioningState(AddonProvisioningState.fromString(reader.getString()));
                 } else if ("vrsCount".equals(fieldName)) {
                     deserializedAddonVrProperties.vrsCount = reader.getInt();
                 } else if ("addonType".equals(fieldName)) {
                     deserializedAddonVrProperties.addonType = AddonType.fromString(reader.getString());
+                } else if ("replicationNetwork".equals(fieldName)) {
+                    deserializedAddonVrProperties.replicationNetwork = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

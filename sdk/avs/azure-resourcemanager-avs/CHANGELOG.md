@@ -1,14 +1,234 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-04)
 
-### Features Added
+- Azure Resource Manager Avs client library for Java. This package contains Microsoft Azure SDK for Avs Management SDK. Azure VMware Solution API. Package tag package-2024-09-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.WorkloadNetworkDhcpRelay` was modified
 
-### Other Changes
+* `segments()` was removed
+* `provisioningState()` was removed
+
+#### `models.AddonArcProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.VmPlacementPolicyProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.AddonVrProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.VmHostPlacementPolicyProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.AddonHcxProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.AddonSrmProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworkDhcpServer` was modified
+
+* `provisioningState()` was removed
+* `segments()` was removed
+
+### Features Added
+
+* `models.ProvisionedNetworkListResult` was added
+
+* `models.HostKind` was added
+
+* `models.ImpactedMaintenanceResource` was added
+
+* `models.AvailableWindowForMaintenanceWhileScheduleOperation` was added
+
+* `models.MaintenanceStateName` was added
+
+* `models.ProvisionedNetwork` was added
+
+* `models.MaintenanceSchedule` was added
+
+* `models.ResourceSkuRestrictionInfo` was added
+
+* `models.PureStoragePolicies` was added
+
+* `models.MaintenanceReadinessStatus` was added
+
+* `models.BlockedDatesConstraintCategory` was added
+
+* `models.SpecializedHostProperties` was added
+
+* `models.ResourceSkuLocationInfo` was added
+
+* `models.MaintenanceState` was added
+
+* `models.SchedulingWindow` was added
+
+* `models.DeadlineRescheduleConstraint` was added
+
+* `models.PureStoragePolicy$UpdateStages` was added
+
+* `models.HostProvisioningState` was added
+
+* `models.GeneralHostProperties` was added
+
+* `models.MaintenanceType` was added
+
+* `models.HostMaintenance` was added
+
+* `models.Skus` was added
+
+* `models.RescheduleOperationConstraint` was added
+
+* `models.MaintenanceProvisioningState` was added
+
+* `models.HostModel` was added
+
+* `models.RescheduleConstraint` was added
+
+* `models.BlockedDatesConstraintTimeRange` was added
+
+* `models.RescheduleOperationConstraintKind` was added
+
+* `models.HostProperties` was added
+
+* `models.ProvisionedNetworks` was added
+
+* `models.MaintenanceReadinessRefreshOperationStatus` was added
+
+* `models.ResourceSku` was added
+
+* `models.ResourceSkuRestrictionsReasonCode` was added
+
+* `models.Maintenances` was added
+
+* `models.HostListResult` was added
+
+* `models.ResourceSkuZoneDetails` was added
+
+* `models.ScheduleOperationConstraintKind` was added
+
+* `models.BlockedRescheduleConstraintTimeRange` was added
+
+* `models.ResourceSkuRestrictionsType` was added
+
+* `models.ScheduleOperation` was added
+
+* `models.RescheduleOperation` was added
+
+* `models.PureStoragePolicy$DefinitionStages` was added
+
+* `models.ResourceSkuResourceType` was added
+
+* `models.ResourceSkuRestrictions` was added
+
+* `models.PureStoragePolicy` was added
+
+* `models.PureStoragePolicy$Definition` was added
+
+* `models.Maintenance` was added
+
+* `models.ProvisionedNetworkProvisioningState` was added
+
+* `models.MaintenanceCheckType` was added
+
+* `models.PureStorageVolume` was added
+
+* `models.MaintenanceReschedule` was added
+
+* `models.ResourceSkuCapabilities` was added
+
+* `models.Hosts` was added
+
+* `models.Reschedule` was added
+
+* `models.PureStoragePolicy$Update` was added
+
+* `models.MaintenanceManagementOperationKind` was added
+
+* `models.BlockedWhileScheduleOperation` was added
+
+* `models.MaintenanceManagementOperation` was added
+
+* `models.ScheduleOperationConstraint` was added
+
+* `models.BlockedRescheduleConstraint` was added
+
+* `models.FreezeDaysRescheduleConstraint` was added
+
+* `models.AvailableWindowForMaintenanceWhileRescheduleOperation` was added
+
+* `models.BlockedWhileRescheduleOperation` was added
+
+* `models.RescheduleConstraintKind` was added
+
+* `models.PagedResourceSku` was added
+
+* `models.MaintenanceReadinessRefreshOperation` was added
+
+* `models.MaintenanceStatusFilter` was added
+
+* `models.MaintenanceReadiness` was added
+
+* `models.PureStoragePolicyProvisioningState` was added
+
+* `models.MaintenanceFailedCheck` was added
+
+* `models.MaintenanceListResult` was added
+
+* `models.ImpactedMaintenanceResourceError` was added
+
+* `models.PureStoragePolicyListResult` was added
+
+* `models.ProvisionedNetworkTypes` was added
+
+#### `models.Datastore` was modified
+
+* `pureStorageVolume()` was added
+
+#### `models.Datastore$Definition` was modified
+
+* `withPureStorageVolume(models.PureStorageVolume)` was added
+
+#### `models.AddonVrProperties` was modified
+
+* `replicationNetwork()` was added
+* `withReplicationNetwork(java.lang.String)` was added
+
+#### `AvsManager` was modified
+
+* `hosts()` was added
+* `maintenances()` was added
+* `provisionedNetworks()` was added
+* `pureStoragePolicies()` was added
+* `skus()` was added
+
+#### `models.PrivateCloud$Definition` was modified
+
+* `withZones(java.util.List)` was added
+
+#### `models.AddonHcxProperties` was modified
+
+* `withManagementNetwork(java.lang.String)` was added
+* `uplinkNetwork()` was added
+* `managementNetwork()` was added
+* `withUplinkNetwork(java.lang.String)` was added
+
+#### `models.Datastore$Update` was modified
+
+* `withPureStorageVolume(models.PureStorageVolume)` was added
+
+#### `models.PrivateCloud` was modified
+
+* `zones()` was added
 
 ## 1.2.0 (2024-09-11)
 
