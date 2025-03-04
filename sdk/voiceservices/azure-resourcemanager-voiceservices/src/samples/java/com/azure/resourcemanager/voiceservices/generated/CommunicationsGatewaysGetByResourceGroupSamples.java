@@ -10,7 +10,7 @@ package com.azure.resourcemanager.voiceservices.generated;
 public final class CommunicationsGatewaysGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/
+     * specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-09-01/examples/
      * CommunicationsGateways_Get.json
      */
     /**

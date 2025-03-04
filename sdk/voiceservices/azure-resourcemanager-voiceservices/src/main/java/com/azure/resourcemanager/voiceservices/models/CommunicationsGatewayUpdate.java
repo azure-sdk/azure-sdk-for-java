@@ -18,6 +18,16 @@ import java.util.Map;
 @Fluent
 public final class CommunicationsGatewayUpdate implements JsonSerializable<CommunicationsGatewayUpdate> {
     /*
+     * The managed service identities assigned to this resource.
+     */
+    private ManagedServiceIdentity identity;
+
+    /*
+     * The SKU (Stock Keeping Unit) assigned to this resource.
+     */
+    private Sku sku;
+
+    /*
      * Resource tags.
      */
     private Map<String, String> tags;
@@ -26,6 +36,46 @@ public final class CommunicationsGatewayUpdate implements JsonSerializable<Commu
      * Creates an instance of CommunicationsGatewayUpdate class.
      */
     public CommunicationsGatewayUpdate() {
+    }
+
+    /**
+     * Get the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed service identities assigned to this resource.
+     * 
+     * @param identity the identity value to set.
+     * @return the CommunicationsGatewayUpdate object itself.
+     */
+    public CommunicationsGatewayUpdate withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @return the sku value.
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @param sku the sku value to set.
+     * @return the CommunicationsGatewayUpdate object itself.
+     */
+    public CommunicationsGatewayUpdate withSku(Sku sku) {
+        this.sku = sku;
+        return this;
     }
 
     /**
@@ -54,6 +104,12 @@ public final class CommunicationsGatewayUpdate implements JsonSerializable<Commu
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (identity() != null) {
+            identity().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
+        }
     }
 
     /**
@@ -62,6 +118,8 @@ public final class CommunicationsGatewayUpdate implements JsonSerializable<Commu
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeJsonField("sku", this.sku);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
@@ -81,7 +139,11 @@ public final class CommunicationsGatewayUpdate implements JsonSerializable<Commu
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("tags".equals(fieldName)) {
+                if ("identity".equals(fieldName)) {
+                    deserializedCommunicationsGatewayUpdate.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("sku".equals(fieldName)) {
+                    deserializedCommunicationsGatewayUpdate.sku = Sku.fromJson(reader);
+                } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedCommunicationsGatewayUpdate.tags = tags;
                 } else {
