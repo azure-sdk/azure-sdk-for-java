@@ -5,26 +5,34 @@
 package com.azure.resourcemanager.iotoperations.generated;
 
 import com.azure.core.util.BinaryData;
+import com.azure.resourcemanager.iotoperations.models.InstanceFeature;
 import com.azure.resourcemanager.iotoperations.models.InstanceProperties;
+import com.azure.resourcemanager.iotoperations.models.OperationalMode;
 import com.azure.resourcemanager.iotoperations.models.SchemaRegistryRef;
+import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 
 public final class InstancePropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         InstanceProperties model = BinaryData.fromString(
-            "{\"description\":\"zoxxjtf\",\"provisioningState\":\"Accepted\",\"version\":\"wfzitonpeqfpjk\",\"schemaRegistryRef\":{\"resourceId\":\"lxofpdvhpfxxypin\"}}")
+            "{\"description\":\"jbp\",\"provisioningState\":\"Accepted\",\"version\":\"inzgvfcj\",\"schemaRegistryRef\":{\"resourceId\":\"wzo\"},\"features\":[{\"name\":\"tfell\",\"value\":\"Enabled\"}]}")
             .toObject(InstanceProperties.class);
-        Assertions.assertEquals("zoxxjtf", model.description());
-        Assertions.assertEquals("lxofpdvhpfxxypin", model.schemaRegistryRef().resourceId());
+        Assertions.assertEquals("jbp", model.description());
+        Assertions.assertEquals("wzo", model.schemaRegistryRef().resourceId());
+        Assertions.assertEquals("tfell", model.features().get(0).name());
+        Assertions.assertEquals(OperationalMode.ENABLED, model.features().get(0).value());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        InstanceProperties model = new InstanceProperties().withDescription("zoxxjtf")
-            .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("lxofpdvhpfxxypin"));
+        InstanceProperties model = new InstanceProperties().withDescription("jbp")
+            .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("wzo"))
+            .withFeatures(Arrays.asList(new InstanceFeature().withName("tfell").withValue(OperationalMode.ENABLED)));
         model = BinaryData.fromObject(model).toObject(InstanceProperties.class);
-        Assertions.assertEquals("zoxxjtf", model.description());
-        Assertions.assertEquals("lxofpdvhpfxxypin", model.schemaRegistryRef().resourceId());
+        Assertions.assertEquals("jbp", model.description());
+        Assertions.assertEquals("wzo", model.schemaRegistryRef().resourceId());
+        Assertions.assertEquals("tfell", model.features().get(0).name());
+        Assertions.assertEquals(OperationalMode.ENABLED, model.features().get(0).value());
     }
 }

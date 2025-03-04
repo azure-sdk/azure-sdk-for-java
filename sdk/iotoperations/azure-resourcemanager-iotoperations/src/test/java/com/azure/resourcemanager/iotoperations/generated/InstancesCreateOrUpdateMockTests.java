@@ -6,20 +6,23 @@ package com.azure.resourcemanager.iotoperations.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
-import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
+import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.iotoperations.IoTOperationsManager;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.InstanceFeature;
 import com.azure.resourcemanager.iotoperations.models.InstanceProperties;
 import com.azure.resourcemanager.iotoperations.models.InstanceResource;
 import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.iotoperations.models.OperationalMode;
 import com.azure.resourcemanager.iotoperations.models.SchemaRegistryRef;
 import com.azure.resourcemanager.iotoperations.models.UserAssignedIdentity;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -30,34 +33,37 @@ public final class InstancesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"description\":\"xedk\",\"provisioningState\":\"Succeeded\",\"version\":\"bqpc\",\"schemaRegistryRef\":{\"resourceId\":\"fkbw\"}},\"extendedLocation\":{\"name\":\"csnjvcdwxlpqekft\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"jsyingwfqatm\",\"tenantId\":\"htmdvy\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"rvqqaatj\":{\"principalId\":\"gszywk\",\"clientId\":\"rryuzhlhkjo\"},\"jioolvrwxk\":{\"principalId\":\"rv\",\"clientId\":\"upmfiibfg\"},\"hvkzuh\":{\"principalId\":\"kkgll\",\"clientId\":\"jygvjayvbl\"}}},\"location\":\"vvyhg\",\"tags\":{\"uvwzfbnh\":\"byrqufeg\",\"bmhrixkwmyijejv\":\"mctlpdngitv\",\"ixexcc\":\"grhbpn\"},\"id\":\"dreaxh\",\"name\":\"exdrrvqahqkg\",\"type\":\"tpwijnh\"}";
+            = "{\"properties\":{\"description\":\"vfycxzb\",\"provisioningState\":\"Succeeded\",\"version\":\"wvrvmtg\",\"schemaRegistryRef\":{\"resourceId\":\"qp\"},\"features\":[{\"name\":\"s\",\"value\":\"Enabled\"},{\"name\":\"nzm\",\"value\":\"Enabled\"}]},\"extendedLocation\":{\"name\":\"fipns\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"waekrrjreafxtsgu\",\"tenantId\":\"jglikkxwslolb\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"noigbrnjwmwk\":{\"clientId\":\"lmv\",\"principalId\":\"lfktgplcrpwjxe\"}}},\"location\":\"bsazejjoqka\",\"tags\":{\"gzxnfaazpxdtnk\":\"sxtta\",\"wuenvr\":\"mkqjj\",\"kixqtnqtt\":\"pyouaibrebqaays\"},\"id\":\"zlwfffiakp\",\"name\":\"pqqmted\",\"type\":\"tmmjihyeozph\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
         IoTOperationsManager manager = IoTOperationsManager.configure()
             .withHttpClient(httpClient)
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
-                new AzureProfile("", "", AzureEnvironment.AZURE));
+                new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         InstanceResource response = manager.instances()
-            .define("qxujxukndxd")
-            .withRegion("fhwygzlvdnkfxus")
-            .withExistingResourceGroup("ughftqsx")
+            .define("qvpsvuoymg")
+            .withRegion("vvyhg")
+            .withExistingResourceGroup("apfcqdpsq")
             .withExtendedLocation(
-                new ExtendedLocation().withName("phoszqz").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withTags(mapOf("pfcqdp", "wzrmuh", "elvezrypq", "qxqvpsvuoymgc"))
-            .withProperties(new InstanceProperties().withDescription("jguufzdm")
-                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("whbotzingamv")))
-            .withIdentity(
-                new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
-                    .withUserAssignedIdentities(mapOf("ccyajg", new UserAssignedIdentity())))
+                new ExtendedLocation().withName("pbqpcrfkbwccsn").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withTags(mapOf("uvwzfbnh", "byrqufeg", "bmhrixkwmyijejv", "mctlpdngitv", "ixexcc", "grhbpn"))
+            .withProperties(new InstanceProperties().withDescription("lvez")
+                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("kyhkobopg"))
+                .withFeatures(Arrays.asList(new InstanceFeature().withName("k").withValue(OperationalMode.DISABLED))))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
+                .withUserAssignedIdentities(mapOf("hlhkjoqrvqqaatj", new UserAssignedIdentity(), "jioolvrwxk",
+                    new UserAssignedIdentity(), "hvkzuh", new UserAssignedIdentity())))
             .create();
 
-        Assertions.assertEquals("vvyhg", response.location());
-        Assertions.assertEquals("byrqufeg", response.tags().get("uvwzfbnh"));
-        Assertions.assertEquals("xedk", response.properties().description());
-        Assertions.assertEquals("fkbw", response.properties().schemaRegistryRef().resourceId());
-        Assertions.assertEquals("csnjvcdwxlpqekft", response.extendedLocation().name());
+        Assertions.assertEquals("bsazejjoqka", response.location());
+        Assertions.assertEquals("sxtta", response.tags().get("gzxnfaazpxdtnk"));
+        Assertions.assertEquals("vfycxzb", response.properties().description());
+        Assertions.assertEquals("qp", response.properties().schemaRegistryRef().resourceId());
+        Assertions.assertEquals("s", response.properties().features().get(0).name());
+        Assertions.assertEquals(OperationalMode.ENABLED, response.properties().features().get(0).value());
+        Assertions.assertEquals("fipns", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
         Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED, response.identity().type());
     }
