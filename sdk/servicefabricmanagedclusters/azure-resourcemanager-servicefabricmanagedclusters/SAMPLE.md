@@ -28,14 +28,6 @@
 - [StartRollback](#applications_startrollback)
 - [Update](#applications_update)
 
-## ManagedApplyMaintenanceWindow
-
-- [Post](#managedapplymaintenancewindow_post)
-
-## ManagedAzResiliencyStatuses
-
-- [Get](#managedazresiliencystatuses_get)
-
 ## ManagedClusterVersion
 
 - [Get](#managedclusterversion_get)
@@ -50,30 +42,29 @@
 - [GetByResourceGroup](#managedclusters_getbyresourcegroup)
 - [List](#managedclusters_list)
 - [ListByResourceGroup](#managedclusters_listbyresourcegroup)
+- [ManagedAzResiliencyStatusGet](#managedclusters_managedazresiliencystatusget)
+- [ManagedMaintenanceWindowStatusGet](#managedclusters_managedmaintenancewindowstatusget)
+- [Post](#managedclusters_post)
 - [Update](#managedclusters_update)
 
-## ManagedMaintenanceWindowStatuses
+## ManagedVMSizes
 
-- [Get](#managedmaintenancewindowstatuses_get)
-
-## ManagedUnsupportedVMSizes
-
-- [Get](#managedunsupportedvmsizes_get)
-- [List](#managedunsupportedvmsizes_list)
-
-## NodeTypeSkus
-
-- [List](#nodetypeskus_list)
+- [Get](#managedvmsizes_get)
+- [List](#managedvmsizes_list)
 
 ## NodeTypes
 
 - [CreateOrUpdate](#nodetypes_createorupdate)
+- [Deallocate](#nodetypes_deallocate)
 - [Delete](#nodetypes_delete)
 - [DeleteNode](#nodetypes_deletenode)
 - [Get](#nodetypes_get)
+- [List](#nodetypes_list)
 - [ListByManagedClusters](#nodetypes_listbymanagedclusters)
+- [Redeploy](#nodetypes_redeploy)
 - [Reimage](#nodetypes_reimage)
 - [Restart](#nodetypes_restart)
+- [Start](#nodetypes_start)
 - [Update](#nodetypes_update)
 
 ## OperationResults
@@ -103,17 +94,15 @@
  */
 public final class ApplicationTypeVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeVersionPutOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeVersionPutOperation_example.json
      */
     /**
      * Sample code: Put an application type version.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAnApplicationTypeVersion(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applicationTypeVersions()
             .define("1.0")
             .withExistingApplicationType("resRg", "myCluster", "myAppType")
@@ -132,17 +121,15 @@ public final class ApplicationTypeVersionsCreateOrUpdateSamples {
  */
 public final class ApplicationTypeVersionsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeVersionDeleteOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeVersionDeleteOperation_example.json
      */
     /**
      * Sample code: Delete an application type version.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void deleteAnApplicationTypeVersion(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applicationTypeVersions()
             .delete("resRg", "myCluster", "myAppType", "1.0", com.azure.core.util.Context.NONE);
     }
@@ -157,17 +144,15 @@ public final class ApplicationTypeVersionsDeleteSamples {
  */
 public final class ApplicationTypeVersionsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeVersionGetOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeVersionGetOperation_example.json
      */
     /**
      * Sample code: Get an application type version.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAnApplicationTypeVersion(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applicationTypeVersions()
             .getWithResponse("resRg", "myCluster", "myAppType", "1.0", com.azure.core.util.Context.NONE);
     }
@@ -182,17 +167,15 @@ public final class ApplicationTypeVersionsGetSamples {
  */
 public final class ApplicationTypeVersionsListByApplicationTypesSa {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeVersionListOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeVersionListOperation_example.json
      */
     /**
      * Sample code: Get a list of application type version resources.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAListOfApplicationTypeVersionResources(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applicationTypeVersions()
             .listByApplicationTypes("resRg", "myCluster", "myAppType", com.azure.core.util.Context.NONE);
     }
@@ -211,17 +194,15 @@ import java.util.Map;
  */
 public final class ApplicationTypeVersionsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeVersionPatchOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeVersionPatchOperation_example.json
      */
     /**
      * Sample code: Patch an application type version.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void patchAnApplicationTypeVersion(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         ApplicationTypeVersionResource resource = manager.applicationTypeVersions()
             .getWithResponse("resRg", "myCluster", "myAppType", "1.0", com.azure.core.util.Context.NONE)
             .getValue();
@@ -250,20 +231,18 @@ public final class ApplicationTypeVersionsUpdateSamples {
  */
 public final class ApplicationTypesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeNamePutOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeNamePutOperation_example.json
      */
     /**
      * Sample code: Put an application type.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAnApplicationType(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applicationTypes()
             .define("myAppType")
-            .withExistingManagedcluster("resRg", "myCluster")
+            .withExistingManagedCluster("resRg", "myCluster")
             .withRegion("eastus")
             .create();
     }
@@ -278,17 +257,15 @@ public final class ApplicationTypesCreateOrUpdateSamples {
  */
 public final class ApplicationTypesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeNameDeleteOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeNameDeleteOperation_example.json
      */
     /**
      * Sample code: Delete an application type.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void deleteAnApplicationType(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applicationTypes().delete("resRg", "myCluster", "myAppType", com.azure.core.util.Context.NONE);
     }
 }
@@ -302,17 +279,15 @@ public final class ApplicationTypesDeleteSamples {
  */
 public final class ApplicationTypesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeNameGetOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeNameGetOperation_example.json
      */
     /**
      * Sample code: Get an application type.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAnApplicationType(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applicationTypes().getWithResponse("resRg", "myCluster", "myAppType", com.azure.core.util.Context.NONE);
     }
 }
@@ -326,17 +301,15 @@ public final class ApplicationTypesGetSamples {
  */
 public final class ApplicationTypesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeNameListOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeNameListOperation_example.json
      */
     /**
      * Sample code: Get a list of application type name resources.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAListOfApplicationTypeNameResources(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applicationTypes().list("resRg", "myCluster", com.azure.core.util.Context.NONE);
     }
 }
@@ -354,17 +327,15 @@ import java.util.Map;
  */
 public final class ApplicationTypesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationTypeNamePatchOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationTypeNamePatchOperation_example.json
      */
     /**
      * Sample code: Patch an application type.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void patchAnApplicationType(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         ApplicationTypeResource resource = manager.applicationTypes()
             .getWithResponse("resRg", "myCluster", "myAppType", com.azure.core.util.Context.NONE)
             .getValue();
@@ -402,20 +373,18 @@ import java.util.Map;
  */
 public final class ApplicationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationPutOperation_example_max.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationPutOperation_example_max.json
      */
     /**
      * Sample code: Put an application with maximum parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAnApplicationWithMaximumParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applications()
             .define("myApp")
-            .withExistingManagedcluster("resRg", "myCluster")
+            .withExistingManagedCluster("resRg", "myCluster")
             .withRegion("eastus")
             .withTags(mapOf("a", "b"))
             .withVersion(
@@ -447,20 +416,18 @@ public final class ApplicationsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationPutOperation_example_min.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationPutOperation_example_min.json
      */
     /**
      * Sample code: Put an application with minimum parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAnApplicationWithMinimumParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applications()
             .define("myApp")
-            .withExistingManagedcluster("resRg", "myCluster")
+            .withExistingManagedCluster("resRg", "myCluster")
             .withRegion("eastus")
             .withVersion(
                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/resRg/providers/Microsoft.ServiceFabric/managedclusters/myCluster/applicationTypes/myAppType/versions/1.0")
@@ -489,17 +456,15 @@ public final class ApplicationsCreateOrUpdateSamples {
  */
 public final class ApplicationsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationDeleteOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationDeleteOperation_example.json
      */
     /**
      * Sample code: Delete an application.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void deleteAnApplication(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applications().delete("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
     }
 }
@@ -513,17 +478,15 @@ public final class ApplicationsDeleteSamples {
  */
 public final class ApplicationsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationGetOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationGetOperation_example.json
      */
     /**
      * Sample code: Get an application.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAnApplication(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applications().getWithResponse("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
     }
 }
@@ -537,17 +500,15 @@ public final class ApplicationsGetSamples {
  */
 public final class ApplicationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationListOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationListOperation_example.json
      */
     /**
      * Sample code: Get a list of application resources.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAListOfApplicationResources(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applications().list("resRg", "myCluster", com.azure.core.util.Context.NONE);
     }
 }
@@ -561,17 +522,15 @@ public final class ApplicationsListSamples {
  */
 public final class ApplicationsReadUpgradeSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationActionGetUpgrade_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationActionGetUpgrade_example.json
      */
     /**
      * Sample code: Get an application upgrade.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAnApplicationUpgrade(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applications().readUpgrade("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
     }
 }
@@ -587,17 +546,15 @@ import com.azure.resourcemanager.servicefabricmanagedclusters.models.RuntimeResu
  */
 public final class ApplicationsResumeUpgradeSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationActionResumeUpgrade_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationActionResumeUpgrade_example.json
      */
     /**
      * Sample code: Resume upgrade.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void resumeUpgrade(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applications()
             .resumeUpgrade("resRg", "myCluster", "myApp",
                 new RuntimeResumeApplicationUpgradeParameters().withUpgradeDomainName("UD1"),
@@ -614,17 +571,15 @@ public final class ApplicationsResumeUpgradeSamples {
  */
 public final class ApplicationsStartRollbackSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationActionStartRollback_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationActionStartRollback_example.json
      */
     /**
      * Sample code: Start an application upgrade rollback.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void startAnApplicationUpgradeRollback(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.applications().startRollback("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
     }
 }
@@ -642,17 +597,15 @@ import java.util.Map;
  */
 public final class ApplicationsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ApplicationPatchOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ApplicationPatchOperation_example.json
      */
     /**
      * Sample code: Patch an application.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void patchAnApplication(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         ApplicationResource resource = manager.applications()
             .getWithResponse("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE)
             .getValue();
@@ -673,56 +626,6 @@ public final class ApplicationsUpdateSamples {
 }
 ```
 
-### ManagedApplyMaintenanceWindow_Post
-
-```java
-/**
- * Samples for ManagedApplyMaintenanceWindow Post.
- */
-public final class ManagedApplyMaintenanceWindowPostSamples {
-    /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedApplyMaintenanceWindowPost_example.json
-     */
-    /**
-     * Sample code: Maintenance Window Status.
-     * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
-     */
-    public static void maintenanceWindowStatus(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
-        manager.managedApplyMaintenanceWindows()
-            .postWithResponse("resourceGroup1", "mycluster1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ManagedAzResiliencyStatuses_Get
-
-```java
-/**
- * Samples for ManagedAzResiliencyStatuses Get.
- */
-public final class ManagedAzResiliencyStatusesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * managedAzResiliencyStatusGet_example.json
-     */
-    /**
-     * Sample code: Az Resiliency status of Base Resources.
-     * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
-     */
-    public static void azResiliencyStatusOfBaseResources(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
-        manager.managedAzResiliencyStatuses()
-            .getWithResponse("resourceGroup1", "mycluster1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### ManagedClusterVersion_Get
 
 ```java
@@ -731,17 +634,15 @@ public final class ManagedAzResiliencyStatusesGetSamples {
  */
 public final class ManagedClusterVersionGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterVersionGet_example.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterVersionGet_example.json
      */
     /**
      * Sample code: Get cluster version.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getClusterVersion(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusterVersions().getWithResponse("eastus", "7.2.477.9590", com.azure.core.util.Context.NONE);
     }
 }
@@ -757,17 +658,15 @@ import com.azure.resourcemanager.servicefabricmanagedclusters.models.ManagedClus
  */
 public final class ManagedClusterVersionGetByEnvironmentSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterVersionGetByEnvironment_example.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterVersionGetByEnvironment_example.json
      */
     /**
      * Sample code: Get cluster version by environment.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getClusterVersionByEnvironment(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusterVersions()
             .getByEnvironmentWithResponse("eastus", ManagedClusterVersionEnvironment.WINDOWS, "7.2.477.9590",
                 com.azure.core.util.Context.NONE);
@@ -783,17 +682,15 @@ public final class ManagedClusterVersionGetByEnvironmentSamples {
  */
 public final class ManagedClusterVersionListSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterVersionList_example.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterVersionList_example.json
      */
     /**
      * Sample code: List cluster versions.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void listClusterVersions(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusterVersions().listWithResponse("eastus", com.azure.core.util.Context.NONE);
     }
 }
@@ -809,17 +706,15 @@ import com.azure.resourcemanager.servicefabricmanagedclusters.models.ManagedClus
  */
 public final class ManagedClusterVersionListByEnvironmentSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterVersionListByEnvironment.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterVersionListByEnvironment.json
      */
     /**
      * Sample code: List cluster versions by environment.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void listClusterVersionsByEnvironment(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusterVersions()
             .listByEnvironmentWithResponse("eastus", ManagedClusterVersionEnvironment.WINDOWS,
                 com.azure.core.util.Context.NONE);
@@ -832,6 +727,7 @@ public final class ManagedClusterVersionListByEnvironmentSamples {
 ```java
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.Access;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.ApplicationTypeVersionsCleanupPolicy;
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.AutoGeneratedDomainNameLabelScope;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.ClusterHealthPolicy;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.ClusterMonitoringPolicy;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.ClusterUpgradeCadence;
@@ -864,27 +760,25 @@ import java.util.Map;
  */
 public final class ManagedClustersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterPutOperation_example_max.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterPutOperation_example_max.json
      */
     /**
      * Sample code: Put a cluster with maximum parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAClusterWithMaximumParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusters()
-            .define("myCluster")
+            .define("mycluster")
             .withRegion("eastus")
             .withExistingResourceGroup("resRg")
             .withSku(new Sku().withName(SkuName.BASIC))
             .withTags(mapOf())
-            .withDnsName("myCluster")
+            .withDnsName("mycluster")
             .withClientConnectionPort(19000)
             .withHttpGatewayConnectionPort(19080)
-            .withAdminUsername("vmadmin")
+            .withAdminUserName("vmadmin")
             .withAdminPassword("{vm-password}")
             .withLoadBalancingRules(Arrays.asList(
                 new LoadBalancingRule().withFrontendPort(80)
@@ -947,7 +841,7 @@ public final class ManagedClustersCreateOrUpdateSamples {
                 .withLocations(Arrays.asList("eastus2", "usnorth"))))
             .withZonalUpdateMode(ZonalUpdateMode.FAST)
             .withUseCustomVnet(true)
-            .withPublicIpPrefixId(
+            .withPublicIPPrefixId(
                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/resRg/providers/Microsoft.Network/publicIPPrefixes/myPublicIPPrefix")
             .withPublicIPv6PrefixId(
                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/resRg/providers/Microsoft.Network/publicIPPrefixes/myPublicIPv6Prefix")
@@ -966,28 +860,28 @@ public final class ManagedClustersCreateOrUpdateSamples {
                     .withUpgradeDomainTimeout("03:00:00")))
             .withHttpGatewayTokenAuthConnectionPort(19081)
             .withEnableHttpGatewayExclusiveAuthMode(true)
+            .withAutoGeneratedDomainNameLabelScope(AutoGeneratedDomainNameLabelScope.SUBSCRIPTION_REUSE)
+            .withAllocatedOutboundPorts(0)
             .create();
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterPutOperation_example_min.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterPutOperation_example_min.json
      */
     /**
      * Sample code: Put a cluster with minimum parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAClusterWithMinimumParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusters()
             .define("myCluster")
             .withRegion("eastus")
             .withExistingResourceGroup("resRg")
             .withSku(new Sku().withName(SkuName.BASIC))
             .withDnsName("myCluster")
-            .withAdminUsername("vmadmin")
+            .withAdminUserName("vmadmin")
             .withAdminPassword("{vm-password}")
             .withFabricSettings(Arrays.asList(new SettingsSectionDescription().withName("ManagedIdentityTokenService")
                 .withParameters(
@@ -1019,17 +913,15 @@ public final class ManagedClustersCreateOrUpdateSamples {
  */
 public final class ManagedClustersDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterDeleteOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterDeleteOperation_example.json
      */
     /**
      * Sample code: Delete a cluster.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void deleteACluster(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusters().delete("resRg", "myCluster", com.azure.core.util.Context.NONE);
     }
 }
@@ -1043,17 +935,15 @@ public final class ManagedClustersDeleteSamples {
  */
 public final class ManagedClustersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterGetOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterGetOperation_example.json
      */
     /**
      * Sample code: Get a cluster.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getACluster(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusters()
             .getByResourceGroupWithResponse("resRg", "myCluster", com.azure.core.util.Context.NONE);
     }
@@ -1068,17 +958,15 @@ public final class ManagedClustersGetByResourceGroupSamples {
  */
 public final class ManagedClustersListSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterListBySubscriptionOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterListBySubscriptionOperation_example.json
      */
     /**
      * Sample code: List managed clusters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void listManagedClusters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusters().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -1092,18 +980,85 @@ public final class ManagedClustersListSamples {
  */
 public final class ManagedClustersListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterListByResourceGroupOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterListByResourceGroupOperation_example.json
      */
     /**
      * Sample code: List cluster by resource group.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void listClusterByResourceGroup(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.managedClusters().listByResourceGroup("resRg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagedClusters_ManagedAzResiliencyStatusGet
+
+```java
+/**
+ * Samples for ManagedClusters ManagedAzResiliencyStatusGet.
+ */
+public final class ManagedClustersManagedAzResiliencyStatusGetSamp {
+    /*
+     * x-ms-original-file: 2024-11-01-preview/managedAzResiliencyStatusGet_example.json
+     */
+    /**
+     * Sample code: Az Resiliency status of Base Resources.
+     * 
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
+     */
+    public static void azResiliencyStatusOfBaseResources(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.managedClusters()
+            .managedAzResiliencyStatusGetWithResponse("resourceGroup1", "mycluster1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagedClusters_ManagedMaintenanceWindowStatusGet
+
+```java
+/**
+ * Samples for ManagedClusters ManagedMaintenanceWindowStatusGet.
+ */
+public final class ManagedClustersManagedMaintenanceWindowStatusGe {
+    /*
+     * x-ms-original-file: 2024-11-01-preview/ManagedMaintenanceWindowStatusGet_example.json
+     */
+    /**
+     * Sample code: Maintenance Window Status.
+     * 
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
+     */
+    public static void maintenanceWindowStatus(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.managedClusters()
+            .managedMaintenanceWindowStatusGetWithResponse("resourceGroup1", "mycluster1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagedClusters_Post
+
+```java
+/**
+ * Samples for ManagedClusters Post.
+ */
+public final class ManagedClustersPostSamples {
+    /*
+     * x-ms-original-file: 2024-11-01-preview/ManagedApplyMaintenanceWindowPost_example.json
+     */
+    /**
+     * Sample code: Maintenance Window Status.
+     * 
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
+     */
+    public static void maintenanceWindowStatus(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.managedClusters().postWithResponse("resourceGroup1", "mycluster1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1120,17 +1075,15 @@ import java.util.Map;
  */
 public final class ManagedClustersUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedClusterPatchOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ManagedClusterPatchOperation_example.json
      */
     /**
      * Sample code: Patch a managed cluster.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void patchAManagedCluster(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         ManagedCluster resource = manager.managedClusters()
             .getByResourceGroupWithResponse("resRg", "myCluster", com.azure.core.util.Context.NONE)
             .getValue();
@@ -1151,100 +1104,46 @@ public final class ManagedClustersUpdateSamples {
 }
 ```
 
-### ManagedMaintenanceWindowStatuses_Get
+### ManagedVMSizes_Get
 
 ```java
 /**
- * Samples for ManagedMaintenanceWindowStatuses Get.
+ * Samples for ManagedVMSizes Get.
  */
-public final class ManagedMaintenanceWindowStatusesGetSamples {
+public final class ManagedVMSizesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ManagedMaintenanceWindowStatusGet_example.json
-     */
-    /**
-     * Sample code: Maintenance Window Status.
-     * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
-     */
-    public static void maintenanceWindowStatus(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
-        manager.managedMaintenanceWindowStatuses()
-            .getWithResponse("resourceGroup1", "mycluster1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ManagedUnsupportedVMSizes_Get
-
-```java
-/**
- * Samples for ManagedUnsupportedVMSizes Get.
- */
-public final class ManagedUnsupportedVMSizesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * managedUnsupportedVMSizesGet_example.json
+     * x-ms-original-file: 2024-11-01-preview/managedUnsupportedVMSizesGet_example.json
      */
     /**
      * Sample code: Get unsupported vm sizes.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getUnsupportedVmSizes(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
-        manager.managedUnsupportedVMSizes()
-            .getWithResponse("eastus", "Standard_B1ls1", com.azure.core.util.Context.NONE);
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.managedVMSizes().getWithResponse("eastus", "Standard_B1ls1", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ManagedUnsupportedVMSizes_List
+### ManagedVMSizes_List
 
 ```java
 /**
- * Samples for ManagedUnsupportedVMSizes List.
+ * Samples for ManagedVMSizes List.
  */
-public final class ManagedUnsupportedVMSizesListSamples {
+public final class ManagedVMSizesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * managedUnsupportedVMSizesList_example.json
+     * x-ms-original-file: 2024-11-01-preview/managedUnsupportedVMSizesList_example.json
      */
     /**
      * Sample code: List unsupported vm sizes.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void listUnsupportedVmSizes(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
-        manager.managedUnsupportedVMSizes().list("eastus", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NodeTypeSkus_List
-
-```java
-/**
- * Samples for NodeTypeSkus List.
- */
-public final class NodeTypeSkusListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypeSkusListOperation_example.json
-     */
-    /**
-     * Sample code: List a node type SKUs.
-     * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
-     */
-    public static void listANodeTypeSKUs(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
-        manager.nodeTypeSkus().list("resRg", "myCluster", "BE", com.azure.core.util.Context.NONE);
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.managedVMSizes().list("eastus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1253,27 +1152,26 @@ public final class NodeTypeSkusListSamples {
 
 ```java
 import com.azure.core.management.SubResource;
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.AdditionalNetworkInterfaceConfiguration;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.DiskType;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.EvictionPolicyType;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.FrontendConfiguration;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.IpConfiguration;
-import com.azure.resourcemanager.servicefabricmanagedclusters.models.IpConfigurationPublicIpAddressConfiguration;
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.IpConfigurationPublicIPAddressConfiguration;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.IpTag;
-import com.azure.resourcemanager.servicefabricmanagedclusters.models.PrivateIpAddressVersion;
-import com.azure.resourcemanager.servicefabricmanagedclusters.models.PublicIpAddressVersion;
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.PrivateIPAddressVersion;
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.PublicIPAddressVersion;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.SecurityType;
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.VMSSExtension;
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.VMSSExtensionPropertiesSettings;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.VaultCertificate;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.VaultSecretGroup;
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.VmApplication;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.VmImagePlan;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.VmManagedIdentity;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.VmSetupAction;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.VmssDataDisk;
-import com.azure.resourcemanager.servicefabricmanagedclusters.models.VmssExtension;
 import com.azure.resourcemanager.servicefabricmanagedclusters.models.VmssExtensionSetupOrder;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -1283,18 +1181,15 @@ import java.util.Map;
  */
 public final class NodeTypesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePutOperationStateless_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePutOperationStateless_example.json
      */
     /**
      * Sample code: Put an stateless node type with temporary disk for service fabric.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAnStatelessNodeTypeWithTemporaryDiskForServiceFabric(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager)
-        throws IOException {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .define("BE")
             .withExistingManagedCluster("resRg", "myCluster")
@@ -1305,13 +1200,12 @@ public final class NodeTypesCreateOrUpdateSamples {
             .withVmImageOffer("WindowsServer")
             .withVmImageSku("2016-Datacenter-Server-Core")
             .withVmImageVersion("latest")
-            .withVmExtensions(Arrays.asList(new VmssExtension().withName("Microsoft.Azure.Geneva.GenevaMonitoring")
+            .withVmExtensions(Arrays.asList(new VMSSExtension().withName("Microsoft.Azure.Geneva.GenevaMonitoring")
                 .withPublisher("Microsoft.Azure.Geneva")
                 .withType("GenevaMonitoring")
                 .withTypeHandlerVersion("2.0")
                 .withAutoUpgradeMinorVersion(true)
-                .withSettings(SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize("{}", Object.class, SerializerEncoding.JSON))))
+                .withSettings(new VMSSExtensionPropertiesSettings())))
             .withIsStateless(true)
             .withMultiplePlacementGroups(true)
             .withEnableEncryptionAtHost(true)
@@ -1320,18 +1214,15 @@ public final class NodeTypesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePutOperation_example_max.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePutOperation_example_max.json
      */
     /**
      * Sample code: Put a node type with maximum parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putANodeTypeWithMaximumParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager)
-        throws IOException {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .define("BE-testResourceGroup-testRegion-test")
             .withExistingManagedCluster("resRg", "myCluster")
@@ -1353,13 +1244,12 @@ public final class NodeTypesCreateOrUpdateSamples {
                     .withCertificateUrl(
                         "https://myVault.vault.azure.net:443/secrets/myCert/ef1a31d39e1f46bca33def54b6cda54c")
                     .withCertificateStore("My")))))
-            .withVmExtensions(Arrays.asList(new VmssExtension().withName("Microsoft.Azure.Geneva.GenevaMonitoring")
+            .withVmExtensions(Arrays.asList(new VMSSExtension().withName("Microsoft.Azure.Geneva.GenevaMonitoring")
                 .withPublisher("Microsoft.Azure.Geneva")
                 .withType("GenevaMonitoring")
                 .withTypeHandlerVersion("2.0")
                 .withAutoUpgradeMinorVersion(true)
-                .withSettings(SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize("{}", Object.class, SerializerEncoding.JSON))
+                .withSettings(new VMSSExtensionPropertiesSettings())
                 .withForceUpdateTag("v.1.0")
                 .withEnableAutomaticUpgrade(true)
                 .withSetupOrder(Arrays.asList(VmssExtensionSetupOrder.BEFORE_SFRUNTIME))))
@@ -1396,7 +1286,7 @@ public final class NodeTypesCreateOrUpdateSamples {
             .withVmSetupActions(Arrays.asList(VmSetupAction.ENABLE_CONTAINERS, VmSetupAction.ENABLE_HYPERV))
             .withSecurityType(SecurityType.TRUSTED_LAUNCH)
             .withSecureBootEnabled(true)
-            .withEnableNodePublicIp(true)
+            .withEnableNodePublicIP(true)
             .withEnableNodePublicIPv6(true)
             .withNatGatewayId(
                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resRg/providers/Microsoft.Network/natGateways/myNatGateway")
@@ -1418,28 +1308,33 @@ public final class NodeTypesCreateOrUpdateSamples {
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resRg/providers/Microsoft.Network/loadBalancers/test-LB/inboundNatPools/LoadBalancerNATPool")))
                     .withSubnet(new SubResource().withId(
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resRg/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1"))
-                    .withPrivateIpAddressVersion(PrivateIpAddressVersion.IPV4)
-                    .withPublicIpAddressConfiguration(new IpConfigurationPublicIpAddressConfiguration()
+                    .withPrivateIPAddressVersion(PrivateIPAddressVersion.IPV4)
+                    .withPublicIPAddressConfiguration(new IpConfigurationPublicIPAddressConfiguration()
                         .withName("publicip-1")
                         .withIpTags(Arrays.asList(new IpTag().withIpTagType("RoutingPreference").withTag("Internet")))
-                        .withPublicIpAddressVersion(PublicIpAddressVersion.IPV4))))))
+                        .withPublicIPAddressVersion(PublicIPAddressVersion.IPV4))))))
             .withComputerNamePrefix("BE")
+            .withVmApplications(Arrays.asList(new VmApplication()
+                .withConfigurationReference("https://mystorageaccount.blob.core.windows.net/containername/blobname")
+                .withEnableAutomaticUpgrade(true)
+                .withOrder(1)
+                .withPackageReferenceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resRg/providers/Microsoft.Compute/galleries/myGallery/applications/myApplication/versions/1.0.0")
+                .withVmGalleryTags("{\"Tag1\":\"Value1\",\"Tag2\":\"Value2\"}")
+                .withTreatFailureAsDeploymentFailure(false)))
             .create();
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePutOperationAutoScale_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePutOperationAutoScale_example.json
      */
     /**
      * Sample code: Put a node type with auto-scale parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putANodeTypeWithAutoScaleParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager)
-        throws IOException {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .define("BE")
             .withExistingManagedCluster("resRg", "myCluster")
@@ -1460,13 +1355,12 @@ public final class NodeTypesCreateOrUpdateSamples {
                     .withCertificateUrl(
                         "https://myVault.vault.azure.net:443/secrets/myCert/ef1a31d39e1f46bca33def54b6cda54c")
                     .withCertificateStore("My")))))
-            .withVmExtensions(Arrays.asList(new VmssExtension().withName("Microsoft.Azure.Geneva.GenevaMonitoring")
+            .withVmExtensions(Arrays.asList(new VMSSExtension().withName("Microsoft.Azure.Geneva.GenevaMonitoring")
                 .withPublisher("Microsoft.Azure.Geneva")
                 .withType("GenevaMonitoring")
                 .withTypeHandlerVersion("2.0")
                 .withAutoUpgradeMinorVersion(true)
-                .withSettings(SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize("{}", Object.class, SerializerEncoding.JSON))))
+                .withSettings(new VMSSExtensionPropertiesSettings())))
             .withVmManagedIdentity(new VmManagedIdentity().withUserAssignedIdentities(Arrays.asList(
                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resRg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myIdentity",
                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resRg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myIdentity2")))
@@ -1476,17 +1370,15 @@ public final class NodeTypesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePutOperation_example_min.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePutOperation_example_min.json
      */
     /**
      * Sample code: Put a node type with minimum parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putANodeTypeWithMinimumParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .define("BE")
             .withExistingManagedCluster("resRg", "myCluster")
@@ -1502,17 +1394,15 @@ public final class NodeTypesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePutOperationDedicatedHost_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePutOperationDedicatedHost_example.json
      */
     /**
      * Sample code: Put node type with dedicated hosts.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putNodeTypeWithDedicatedHosts(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .define("BE")
             .withExistingManagedCluster("resRg", "myCluster")
@@ -1534,17 +1424,15 @@ public final class NodeTypesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePutOperationVmImagePlan_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePutOperationVmImagePlan_example.json
      */
     /**
      * Sample code: Put node type with vm image plan.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putNodeTypeWithVmImagePlan(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .define("BE")
             .withExistingManagedCluster("resRg", "myCluster")
@@ -1563,17 +1451,15 @@ public final class NodeTypesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePutOperationCustomSharedGalleriesImage_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePutOperationCustomSharedGalleriesImage_example.json
      */
     /**
      * Sample code: Put node type with shared galleries custom vm image.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putNodeTypeWithSharedGalleriesCustomVmImage(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .define("BE")
             .withExistingManagedCluster("resRg", "myCluster")
@@ -1587,17 +1473,15 @@ public final class NodeTypesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePutOperationCustomImage_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePutOperationCustomImage_example.json
      */
     /**
      * Sample code: Put node type with custom vm image.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putNodeTypeWithCustomVmImage(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .define("BE")
             .withExistingManagedCluster("resRg", "myCluster")
@@ -1624,6 +1508,34 @@ public final class NodeTypesCreateOrUpdateSamples {
 }
 ```
 
+### NodeTypes_Deallocate
+
+```java
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.NodeTypeActionParameters;
+import java.util.Arrays;
+
+/**
+ * Samples for NodeTypes Deallocate.
+ */
+public final class NodeTypesDeallocateSamples {
+    /*
+     * x-ms-original-file: 2024-11-01-preview/DeallocateNodes_example.json
+     */
+    /**
+     * Sample code: Deallocate nodes.
+     * 
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
+     */
+    public static void deallocateNodes(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.nodeTypes()
+            .deallocate("resRg", "myCluster", "BE",
+                new NodeTypeActionParameters().withNodes(Arrays.asList("BE_0", "BE_1")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### NodeTypes_Delete
 
 ```java
@@ -1632,17 +1544,15 @@ public final class NodeTypesCreateOrUpdateSamples {
  */
 public final class NodeTypesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypeDeleteOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypeDeleteOperation_example.json
      */
     /**
      * Sample code: Delete a node type.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void deleteANodeType(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes().delete("resRg", "myCluster", "BE", com.azure.core.util.Context.NONE);
     }
 }
@@ -1659,17 +1569,15 @@ import java.util.Arrays;
  */
 public final class NodeTypesDeleteNodeSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * DeleteNodes_example.json
+     * x-ms-original-file: 2024-11-01-preview/DeleteNodes_example.json
      */
     /**
      * Sample code: Delete nodes.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void deleteNodes(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .deleteNode("resRg", "myCluster", "BE",
                 new NodeTypeActionParameters().withNodes(Arrays.asList("BE_0", "BE_3")),
@@ -1686,18 +1594,38 @@ public final class NodeTypesDeleteNodeSamples {
  */
 public final class NodeTypesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypeGetOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypeGetOperation_example.json
      */
     /**
      * Sample code: Get a node type.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getANodeType(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes().getWithResponse("resRg", "myCluster", "FE", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NodeTypes_List
+
+```java
+/**
+ * Samples for NodeTypes List.
+ */
+public final class NodeTypesListSamples {
+    /*
+     * x-ms-original-file: 2024-11-01-preview/NodeTypeSkusListOperation_example.json
+     */
+    /**
+     * Sample code: List a node type SKUs.
+     * 
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
+     */
+    public static void listANodeTypeSKUs(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.nodeTypes().list("resRg", "myCluster", "BE", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1710,18 +1638,61 @@ public final class NodeTypesGetSamples {
  */
 public final class NodeTypesListByManagedClustersSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypeListOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypeListOperation_example.json
      */
     /**
      * Sample code: List node type of the specified managed cluster.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void listNodeTypeOfTheSpecifiedManagedCluster(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes().listByManagedClusters("resRg", "myCluster", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NodeTypes_Redeploy
+
+```java
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.NodeTypeActionParameters;
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.UpdateType;
+import java.util.Arrays;
+
+/**
+ * Samples for NodeTypes Redeploy.
+ */
+public final class NodeTypesRedeploySamples {
+    /*
+     * x-ms-original-file: 2024-11-01-preview/RedeployNodes_UD_example.json
+     */
+    /**
+     * Sample code: Redeploy all nodes by upgrade domain.
+     * 
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
+     */
+    public static void redeployAllNodesByUpgradeDomain(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.nodeTypes()
+            .redeploy("resRg", "myCluster", "BE",
+                new NodeTypeActionParameters().withUpdateType(UpdateType.BY_UPGRADE_DOMAIN),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: 2024-11-01-preview/RedeployNodes_example.json
+     */
+    /**
+     * Sample code: Redeploy nodes.
+     * 
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
+     */
+    public static void redeployNodes(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.nodeTypes()
+            .redeploy("resRg", "myCluster", "BE",
+                new NodeTypeActionParameters().withNodes(Arrays.asList("BE_0", "BE_1")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1738,17 +1709,15 @@ import java.util.Arrays;
  */
 public final class NodeTypesReimageSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ReimageNodes_example.json
+     * x-ms-original-file: 2024-11-01-preview/ReimageNodes_example.json
      */
     /**
      * Sample code: Reimage nodes.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void reimageNodes(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .reimage("resRg", "myCluster", "BE",
                 new NodeTypeActionParameters().withNodes(Arrays.asList("BE_0", "BE_3")),
@@ -1756,17 +1725,15 @@ public final class NodeTypesReimageSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ReimageNodes_UD_example.json
+     * x-ms-original-file: 2024-11-01-preview/ReimageNodes_UD_example.json
      */
     /**
-     * Sample code: Reimage all nodes By upgrade domain.
+     * Sample code: Reimage all nodes by upgrade domain.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void reimageAllNodesByUpgradeDomain(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .reimage("resRg", "myCluster", "BE",
                 new NodeTypeActionParameters().withUpdateType(UpdateType.BY_UPGRADE_DOMAIN),
@@ -1786,20 +1753,45 @@ import java.util.Arrays;
  */
 public final class NodeTypesRestartSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * RestartNodes_example.json
+     * x-ms-original-file: 2024-11-01-preview/RestartNodes_example.json
      */
     /**
      * Sample code: Restart nodes.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void restartNodes(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.nodeTypes()
             .restart("resRg", "myCluster", "BE",
                 new NodeTypeActionParameters().withNodes(Arrays.asList("BE_0", "BE_3")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NodeTypes_Start
+
+```java
+import com.azure.resourcemanager.servicefabricmanagedclusters.models.NodeTypeActionParameters;
+import java.util.Arrays;
+
+/**
+ * Samples for NodeTypes Start.
+ */
+public final class NodeTypesStartSamples {
+    /*
+     * x-ms-original-file: 2024-11-01-preview/StartNodes_example.json
+     */
+    /**
+     * Sample code: Start nodes.
+     * 
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
+     */
+    public static void
+        startNodes(com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
+        manager.nodeTypes()
+            .start("resRg", "myCluster", "BE", new NodeTypeActionParameters().withNodes(Arrays.asList("BE_0", "BE_1")),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -1818,17 +1810,15 @@ import java.util.Map;
  */
 public final class NodeTypesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePatchOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePatchOperation_example.json
      */
     /**
      * Sample code: Patch a node type.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void patchANodeType(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         NodeType resource = manager.nodeTypes()
             .getWithResponse("resRg", "myCluster", "BE", com.azure.core.util.Context.NONE)
             .getValue();
@@ -1836,17 +1826,15 @@ public final class NodeTypesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * NodeTypePatchOperationAutoScale_example.json
+     * x-ms-original-file: 2024-11-01-preview/NodeTypePatchOperationAutoScale_example.json
      */
     /**
      * Sample code: Patch a node type while auto-scaling.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void patchANodeTypeWhileAutoScaling(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         NodeType resource = manager.nodeTypes()
             .getWithResponse("resRg", "myCluster", "BE", com.azure.core.util.Context.NONE)
             .getValue();
@@ -1878,19 +1866,17 @@ public final class NodeTypesUpdateSamples {
  */
 public final class OperationResultsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * Long_running_operation_result.json
+     * x-ms-original-file: 2024-11-01-preview/OperationResultsGet_example.json
      */
     /**
-     * Sample code: Get operation result.
+     * Sample code: Get long running operation result.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
-    public static void getOperationResult(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+    public static void getLongRunningOperationResult(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.operationResults()
-            .getWithResponse("eastus", "00000000-0000-0000-0000-000000001234", com.azure.core.util.Context.NONE);
+            .get("eastus", "00000000-0000-0000-0000-000000001234", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1903,33 +1889,29 @@ public final class OperationResultsGetSamples {
  */
 public final class OperationStatusGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * Long_running_operation_status_succeeded.json
+     * x-ms-original-file: 2024-11-01-preview/OperationStatusSucceeded_example.json
      */
     /**
-     * Sample code: Get succeeded operation result.
+     * Sample code: OK. The request has succeeded.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
-    public static void getSucceededOperationResult(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+    public static void okTheRequestHasSucceeded(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.operationStatus()
             .getWithResponse("eastus", "00000000-0000-0000-0000-000000001234", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * Long_running_operation_status_failed.json
+     * x-ms-original-file: 2024-11-01-preview/OperationStatusFailed_example.json
      */
     /**
-     * Sample code: Get failed operation status.
+     * Sample code: Error response describing why the operation failed.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
-    public static void getFailedOperationStatus(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+    public static void errorResponseDescribingWhyTheOperationFailed(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.operationStatus()
             .getWithResponse("eastus", "00000000-0000-0000-0000-000000001234", com.azure.core.util.Context.NONE);
     }
@@ -1944,17 +1926,15 @@ public final class OperationStatusGetSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * Operations_example.json
+     * x-ms-original-file: 2024-11-01-preview/OperationsList_example.json
      */
     /**
-     * Sample code: List available operations.
+     * Sample code: List the operations for the provider.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
-    public static void listAvailableOperations(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+    public static void listTheOperationsForTheProvider(
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -1984,17 +1964,15 @@ import java.util.Map;
  */
 public final class ServicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ServicePutOperation_example_min.json
+     * x-ms-original-file: 2024-11-01-preview/ServicePutOperation_example_min.json
      */
     /**
      * Sample code: Put a service with minimum parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAServiceWithMinimumParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.services()
             .define("myService")
             .withExistingApplication("resRg", "myCluster", "myApp")
@@ -2006,17 +1984,15 @@ public final class ServicesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ServicePutOperation_example_max.json
+     * x-ms-original-file: 2024-11-01-preview/ServicePutOperation_example_max.json
      */
     /**
      * Sample code: Put a service with maximum parameters.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void putAServiceWithMaximumParameters(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.services()
             .define("myService")
             .withExistingApplication("resRg", "myCluster", "myApp")
@@ -2072,17 +2048,15 @@ public final class ServicesCreateOrUpdateSamples {
  */
 public final class ServicesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ServiceDeleteOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ServiceDeleteOperation_example.json
      */
     /**
      * Sample code: Delete a service.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void deleteAService(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.services().delete("resRg", "myCluster", "myApp", "myService", com.azure.core.util.Context.NONE);
     }
 }
@@ -2096,17 +2070,15 @@ public final class ServicesDeleteSamples {
  */
 public final class ServicesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ServiceGetOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ServiceGetOperation_example.json
      */
     /**
      * Sample code: Get a service.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAService(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.services()
             .getWithResponse("resRg", "myCluster", "myApp", "myService", com.azure.core.util.Context.NONE);
     }
@@ -2121,17 +2093,15 @@ public final class ServicesGetSamples {
  */
 public final class ServicesListByApplicationsSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ServiceListOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ServiceListOperation_example.json
      */
     /**
      * Sample code: Get a list of service resources.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void getAListOfServiceResources(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         manager.services().listByApplications("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
     }
 }
@@ -2149,17 +2119,15 @@ import java.util.Map;
  */
 public final class ServicesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/servicefabricmanagedclusters/resource-manager/Microsoft.ServiceFabric/stable/2024-04-01/examples/
-     * ServicePatchOperation_example.json
+     * x-ms-original-file: 2024-11-01-preview/ServicePatchOperation_example.json
      */
     /**
      * Sample code: Patch a service.
      * 
-     * @param manager Entry point to ServiceFabricManagedClustersManager.
+     * @param manager Entry point to ServicefabricmanagedclustersManager.
      */
     public static void patchAService(
-        com.azure.resourcemanager.servicefabricmanagedclusters.ServiceFabricManagedClustersManager manager) {
+        com.azure.resourcemanager.servicefabricmanagedclusters.ServicefabricmanagedclustersManager manager) {
         ServiceResource resource = manager.services()
             .getWithResponse("resRg", "myCluster", "myApp", "myService", com.azure.core.util.Context.NONE)
             .getValue();
