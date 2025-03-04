@@ -11,14 +11,14 @@ import org.junit.jupiter.api.Assertions;
 public final class MetricsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        Metrics model = BinaryData.fromString("{\"prometheusPort\":184362773}").toObject(Metrics.class);
-        Assertions.assertEquals(184362773, model.prometheusPort());
+        Metrics model = BinaryData.fromString("{\"prometheusPort\":865429737}").toObject(Metrics.class);
+        Assertions.assertEquals(865429737, model.prometheusPort());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        Metrics model = new Metrics().withPrometheusPort(184362773);
+        Metrics model = new Metrics().withPrometheusPort(865429737);
         model = BinaryData.fromObject(model).toObject(Metrics.class);
-        Assertions.assertEquals(184362773, model.prometheusPort());
+        Assertions.assertEquals(865429737, model.prometheusPort());
     }
 }

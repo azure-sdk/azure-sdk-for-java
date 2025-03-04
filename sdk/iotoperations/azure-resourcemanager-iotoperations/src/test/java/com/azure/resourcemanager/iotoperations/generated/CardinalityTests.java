@@ -14,26 +14,26 @@ public final class CardinalityTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         Cardinality model = BinaryData.fromString(
-            "{\"backendChain\":{\"partitions\":1219986824,\"redundancyFactor\":2024300309,\"workers\":1928966847},\"frontend\":{\"replicas\":1989312604,\"workers\":999666517}}")
+            "{\"backendChain\":{\"partitions\":331087178,\"redundancyFactor\":144447336,\"workers\":1232172587},\"frontend\":{\"replicas\":963090330,\"workers\":1185115759}}")
             .toObject(Cardinality.class);
-        Assertions.assertEquals(1219986824, model.backendChain().partitions());
-        Assertions.assertEquals(2024300309, model.backendChain().redundancyFactor());
-        Assertions.assertEquals(1928966847, model.backendChain().workers());
-        Assertions.assertEquals(1989312604, model.frontend().replicas());
-        Assertions.assertEquals(999666517, model.frontend().workers());
+        Assertions.assertEquals(331087178, model.backendChain().partitions());
+        Assertions.assertEquals(144447336, model.backendChain().redundancyFactor());
+        Assertions.assertEquals(1232172587, model.backendChain().workers());
+        Assertions.assertEquals(963090330, model.frontend().replicas());
+        Assertions.assertEquals(1185115759, model.frontend().workers());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         Cardinality model = new Cardinality()
             .withBackendChain(
-                new BackendChain().withPartitions(1219986824).withRedundancyFactor(2024300309).withWorkers(1928966847))
-            .withFrontend(new Frontend().withReplicas(1989312604).withWorkers(999666517));
+                new BackendChain().withPartitions(331087178).withRedundancyFactor(144447336).withWorkers(1232172587))
+            .withFrontend(new Frontend().withReplicas(963090330).withWorkers(1185115759));
         model = BinaryData.fromObject(model).toObject(Cardinality.class);
-        Assertions.assertEquals(1219986824, model.backendChain().partitions());
-        Assertions.assertEquals(2024300309, model.backendChain().redundancyFactor());
-        Assertions.assertEquals(1928966847, model.backendChain().workers());
-        Assertions.assertEquals(1989312604, model.frontend().replicas());
-        Assertions.assertEquals(999666517, model.frontend().workers());
+        Assertions.assertEquals(331087178, model.backendChain().partitions());
+        Assertions.assertEquals(144447336, model.backendChain().redundancyFactor());
+        Assertions.assertEquals(1232172587, model.backendChain().workers());
+        Assertions.assertEquals(963090330, model.frontend().replicas());
+        Assertions.assertEquals(1185115759, model.frontend().workers());
     }
 }

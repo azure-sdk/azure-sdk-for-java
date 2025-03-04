@@ -13,22 +13,21 @@ import org.junit.jupiter.api.Assertions;
 public final class VolumeClaimResourceRequirementsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        VolumeClaimResourceRequirements model = BinaryData
-            .fromString(
-                "{\"limits\":{\"zy\":\"m\",\"burvjxxjnspy\":\"shxmzsbbzoggigrx\"},\"requests\":{\"ou\":\"koen\"}}")
+        VolumeClaimResourceRequirements model = BinaryData.fromString(
+            "{\"limits\":{\"gm\":\"rkgqhcjrefo\",\"yyvxyqjpkcattpn\":\"qsl\",\"v\":\"jcrcczsqpjhvmda\",\"q\":\"ysou\"},\"requests\":{\"pfhyhl\":\"noae\"}}")
             .toObject(VolumeClaimResourceRequirements.class);
-        Assertions.assertEquals("m", model.limits().get("zy"));
-        Assertions.assertEquals("koen", model.requests().get("ou"));
+        Assertions.assertEquals("rkgqhcjrefo", model.limits().get("gm"));
+        Assertions.assertEquals("noae", model.requests().get("pfhyhl"));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        VolumeClaimResourceRequirements model
-            = new VolumeClaimResourceRequirements().withLimits(mapOf("zy", "m", "burvjxxjnspy", "shxmzsbbzoggigrx"))
-                .withRequests(mapOf("ou", "koen"));
+        VolumeClaimResourceRequirements model = new VolumeClaimResourceRequirements()
+            .withLimits(mapOf("gm", "rkgqhcjrefo", "yyvxyqjpkcattpn", "qsl", "v", "jcrcczsqpjhvmda", "q", "ysou"))
+            .withRequests(mapOf("pfhyhl", "noae"));
         model = BinaryData.fromObject(model).toObject(VolumeClaimResourceRequirements.class);
-        Assertions.assertEquals("m", model.limits().get("zy"));
-        Assertions.assertEquals("koen", model.requests().get("ou"));
+        Assertions.assertEquals("rkgqhcjrefo", model.limits().get("gm"));
+        Assertions.assertEquals("noae", model.requests().get("pfhyhl"));
     }
 
     // Use "Map.of" if available

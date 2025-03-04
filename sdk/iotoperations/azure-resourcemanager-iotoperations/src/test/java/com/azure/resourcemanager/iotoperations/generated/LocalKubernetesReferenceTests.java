@@ -11,22 +11,22 @@ import org.junit.jupiter.api.Assertions;
 public final class LocalKubernetesReferenceTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        LocalKubernetesReference model = BinaryData
-            .fromString("{\"apiGroup\":\"skghsauuimj\",\"kind\":\"vxieduugidyj\",\"name\":\"rfbyaosvexcso\"}")
-            .toObject(LocalKubernetesReference.class);
-        Assertions.assertEquals("skghsauuimj", model.apiGroup());
-        Assertions.assertEquals("vxieduugidyj", model.kind());
-        Assertions.assertEquals("rfbyaosvexcso", model.name());
+        LocalKubernetesReference model
+            = BinaryData.fromString("{\"apiGroup\":\"kcglhslaz\",\"kind\":\"dyggdtjixhbku\",\"name\":\"fqweykhmene\"}")
+                .toObject(LocalKubernetesReference.class);
+        Assertions.assertEquals("kcglhslaz", model.apiGroup());
+        Assertions.assertEquals("dyggdtjixhbku", model.kind());
+        Assertions.assertEquals("fqweykhmene", model.name());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        LocalKubernetesReference model = new LocalKubernetesReference().withApiGroup("skghsauuimj")
-            .withKind("vxieduugidyj")
-            .withName("rfbyaosvexcso");
+        LocalKubernetesReference model = new LocalKubernetesReference().withApiGroup("kcglhslaz")
+            .withKind("dyggdtjixhbku")
+            .withName("fqweykhmene");
         model = BinaryData.fromObject(model).toObject(LocalKubernetesReference.class);
-        Assertions.assertEquals("skghsauuimj", model.apiGroup());
-        Assertions.assertEquals("vxieduugidyj", model.kind());
-        Assertions.assertEquals("rfbyaosvexcso", model.name());
+        Assertions.assertEquals("kcglhslaz", model.apiGroup());
+        Assertions.assertEquals("dyggdtjixhbku", model.kind());
+        Assertions.assertEquals("fqweykhmene", model.name());
     }
 }

@@ -14,27 +14,27 @@ public final class DataflowSourceOperationSettingsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         DataflowSourceOperationSettings model = BinaryData.fromString(
-            "{\"endpointRef\":\"wiyzvqtmnubexkp\",\"assetRef\":\"smond\",\"serializationFormat\":\"Json\",\"schemaRef\":\"xvy\",\"dataSources\":[\"mg\",\"opkwhojv\",\"ajqgxy\"]}")
+            "{\"endpointRef\":\"kwobdagxtibq\",\"assetRef\":\"bxwakbog\",\"serializationFormat\":\"Json\",\"schemaRef\":\"lkzgxhuriplbp\",\"dataSources\":[\"xunkbebxmubyynt\",\"lrb\",\"tkoievseotgq\",\"l\"]}")
             .toObject(DataflowSourceOperationSettings.class);
-        Assertions.assertEquals("wiyzvqtmnubexkp", model.endpointRef());
-        Assertions.assertEquals("smond", model.assetRef());
+        Assertions.assertEquals("kwobdagxtibq", model.endpointRef());
+        Assertions.assertEquals("bxwakbog", model.assetRef());
         Assertions.assertEquals(SourceSerializationFormat.JSON, model.serializationFormat());
-        Assertions.assertEquals("xvy", model.schemaRef());
-        Assertions.assertEquals("mg", model.dataSources().get(0));
+        Assertions.assertEquals("lkzgxhuriplbp", model.schemaRef());
+        Assertions.assertEquals("xunkbebxmubyynt", model.dataSources().get(0));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        DataflowSourceOperationSettings model = new DataflowSourceOperationSettings().withEndpointRef("wiyzvqtmnubexkp")
-            .withAssetRef("smond")
+        DataflowSourceOperationSettings model = new DataflowSourceOperationSettings().withEndpointRef("kwobdagxtibq")
+            .withAssetRef("bxwakbog")
             .withSerializationFormat(SourceSerializationFormat.JSON)
-            .withSchemaRef("xvy")
-            .withDataSources(Arrays.asList("mg", "opkwhojv", "ajqgxy"));
+            .withSchemaRef("lkzgxhuriplbp")
+            .withDataSources(Arrays.asList("xunkbebxmubyynt", "lrb", "tkoievseotgq", "l"));
         model = BinaryData.fromObject(model).toObject(DataflowSourceOperationSettings.class);
-        Assertions.assertEquals("wiyzvqtmnubexkp", model.endpointRef());
-        Assertions.assertEquals("smond", model.assetRef());
+        Assertions.assertEquals("kwobdagxtibq", model.endpointRef());
+        Assertions.assertEquals("bxwakbog", model.assetRef());
         Assertions.assertEquals(SourceSerializationFormat.JSON, model.serializationFormat());
-        Assertions.assertEquals("xvy", model.schemaRef());
-        Assertions.assertEquals("mg", model.dataSources().get(0));
+        Assertions.assertEquals("lkzgxhuriplbp", model.schemaRef());
+        Assertions.assertEquals("xunkbebxmubyynt", model.dataSources().get(0));
     }
 }

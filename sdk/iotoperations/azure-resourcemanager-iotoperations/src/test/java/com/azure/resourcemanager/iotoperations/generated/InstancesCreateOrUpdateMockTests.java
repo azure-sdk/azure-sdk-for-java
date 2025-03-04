@@ -6,8 +6,8 @@ package com.azure.resourcemanager.iotoperations.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
-import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
+import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.iotoperations.IoTOperationsManager;
 import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
@@ -16,6 +16,7 @@ import com.azure.resourcemanager.iotoperations.models.InstanceProperties;
 import com.azure.resourcemanager.iotoperations.models.InstanceResource;
 import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.iotoperations.models.OperationalMode;
 import com.azure.resourcemanager.iotoperations.models.SchemaRegistryRef;
 import com.azure.resourcemanager.iotoperations.models.UserAssignedIdentity;
 import java.nio.charset.StandardCharsets;
@@ -30,36 +31,38 @@ public final class InstancesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"description\":\"xedk\",\"provisioningState\":\"Succeeded\",\"version\":\"bqpc\",\"schemaRegistryRef\":{\"resourceId\":\"fkbw\"}},\"extendedLocation\":{\"name\":\"csnjvcdwxlpqekft\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"jsyingwfqatm\",\"tenantId\":\"htmdvy\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"rvqqaatj\":{\"principalId\":\"gszywk\",\"clientId\":\"rryuzhlhkjo\"},\"jioolvrwxk\":{\"principalId\":\"rv\",\"clientId\":\"upmfiibfg\"},\"hvkzuh\":{\"principalId\":\"kkgll\",\"clientId\":\"jygvjayvbl\"}}},\"location\":\"vvyhg\",\"tags\":{\"uvwzfbnh\":\"byrqufeg\",\"bmhrixkwmyijejv\":\"mctlpdngitv\",\"ixexcc\":\"grhbpn\"},\"id\":\"dreaxh\",\"name\":\"exdrrvqahqkg\",\"type\":\"tpwijnh\"}";
+            = "{\"properties\":{\"description\":\"spughftqsxhq\",\"provisioningState\":\"Succeeded\",\"version\":\"ukndxdigrjgu\",\"schemaRegistryRef\":{\"resourceId\":\"fzdm\"},\"features\":{\"fi\":\"Enabled\",\"hbotzingamvppho\":\"Disabled\",\"qzudphq\":\"Enabled\",\"vdkfwynwcvtbvk\":\"Enabled\"}},\"extendedLocation\":{\"name\":\"yhmtnvyqiat\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"cnpwzcjaesgvvscc\",\"tenantId\":\"jguq\",\"type\":\"None\",\"userAssignedIdentities\":{\"svuo\":{\"clientId\":\"zlvdnkfxusemdw\",\"principalId\":\"muhapfcqdpsqxqv\"}}},\"location\":\"gc\",\"tags\":{\"erqwkyhkobopg\":\"vezrypqlmfeo\"},\"id\":\"edkowepbqpcrfk\",\"name\":\"wccsnjvcdwxlpqek\",\"type\":\"tn\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
         IoTOperationsManager manager = IoTOperationsManager.configure()
             .withHttpClient(httpClient)
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
-                new AzureProfile("", "", AzureEnvironment.AZURE));
+                new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         InstanceResource response = manager.instances()
-            .define("qxujxukndxd")
-            .withRegion("fhwygzlvdnkfxus")
-            .withExistingResourceGroup("ughftqsx")
+            .define("jivfxzsjabib")
+            .withRegion("rlazszrnw")
+            .withExistingResourceGroup("ij")
             .withExtendedLocation(
-                new ExtendedLocation().withName("phoszqz").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withTags(mapOf("pfcqdp", "wzrmuh", "elvezrypq", "qxqvpsvuoymgc"))
-            .withProperties(new InstanceProperties().withDescription("jguufzdm")
-                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("whbotzingamv")))
-            .withIdentity(
-                new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
-                    .withUserAssignedIdentities(mapOf("ccyajg", new UserAssignedIdentity())))
+                new ExtendedLocation().withName("eeyebi").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withTags(mapOf("lwbtlhf", "ndfpwpj", "dhszfjv", "sj", "qmqhldvriii", "bgofeljag"))
+            .withProperties(new InstanceProperties().withDescription("tawfsdjpvkvp")
+                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("gkakmokzhjjklff"))
+                .withFeatures(mapOf("wqlgzrf", OperationalMode.DISABLED)))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
+                .withUserAssignedIdentities(mapOf("pdrhne", new UserAssignedIdentity(), "kpzi",
+                    new UserAssignedIdentity(), "nokixrjqcirgz", new UserAssignedIdentity())))
             .create();
 
-        Assertions.assertEquals("vvyhg", response.location());
-        Assertions.assertEquals("byrqufeg", response.tags().get("uvwzfbnh"));
-        Assertions.assertEquals("xedk", response.properties().description());
-        Assertions.assertEquals("fkbw", response.properties().schemaRegistryRef().resourceId());
-        Assertions.assertEquals("csnjvcdwxlpqekft", response.extendedLocation().name());
+        Assertions.assertEquals("gc", response.location());
+        Assertions.assertEquals("vezrypqlmfeo", response.tags().get("erqwkyhkobopg"));
+        Assertions.assertEquals("spughftqsxhq", response.properties().description());
+        Assertions.assertEquals("fzdm", response.properties().schemaRegistryRef().resourceId());
+        Assertions.assertEquals(OperationalMode.ENABLED, response.properties().features().get("fi"));
+        Assertions.assertEquals("yhmtnvyqiat", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
-        Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED, response.identity().type());
+        Assertions.assertEquals(ManagedServiceIdentityType.NONE, response.identity().type());
     }
 
     // Use "Map.of" if available

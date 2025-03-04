@@ -14,21 +14,21 @@ public final class BrokerResourceRuleTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         BrokerResourceRule model = BinaryData.fromString(
-            "{\"method\":\"Connect\",\"clientIds\":[\"qbhsfxobl\",\"tkblmpewww\"],\"topics\":[\"rvrnsvshqjohxc\",\"sbfov\"]}")
+            "{\"method\":\"Subscribe\",\"clientIds\":[\"zcjrvxdjzlmwlx\",\"vu\",\"fhzovawjvzunluth\"],\"topics\":[\"rnxipei\",\"pjzu\",\"e\"]}")
             .toObject(BrokerResourceRule.class);
-        Assertions.assertEquals(BrokerResourceDefinitionMethods.CONNECT, model.method());
-        Assertions.assertEquals("qbhsfxobl", model.clientIds().get(0));
-        Assertions.assertEquals("rvrnsvshqjohxc", model.topics().get(0));
+        Assertions.assertEquals(BrokerResourceDefinitionMethods.SUBSCRIBE, model.method());
+        Assertions.assertEquals("zcjrvxdjzlmwlx", model.clientIds().get(0));
+        Assertions.assertEquals("rnxipei", model.topics().get(0));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        BrokerResourceRule model = new BrokerResourceRule().withMethod(BrokerResourceDefinitionMethods.CONNECT)
-            .withClientIds(Arrays.asList("qbhsfxobl", "tkblmpewww"))
-            .withTopics(Arrays.asList("rvrnsvshqjohxc", "sbfov"));
+        BrokerResourceRule model = new BrokerResourceRule().withMethod(BrokerResourceDefinitionMethods.SUBSCRIBE)
+            .withClientIds(Arrays.asList("zcjrvxdjzlmwlx", "vu", "fhzovawjvzunluth"))
+            .withTopics(Arrays.asList("rnxipei", "pjzu", "e"));
         model = BinaryData.fromObject(model).toObject(BrokerResourceRule.class);
-        Assertions.assertEquals(BrokerResourceDefinitionMethods.CONNECT, model.method());
-        Assertions.assertEquals("qbhsfxobl", model.clientIds().get(0));
-        Assertions.assertEquals("rvrnsvshqjohxc", model.topics().get(0));
+        Assertions.assertEquals(BrokerResourceDefinitionMethods.SUBSCRIBE, model.method());
+        Assertions.assertEquals("zcjrvxdjzlmwlx", model.clientIds().get(0));
+        Assertions.assertEquals("rnxipei", model.topics().get(0));
     }
 }

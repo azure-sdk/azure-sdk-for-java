@@ -14,26 +14,26 @@ public final class TracesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         Traces model = BinaryData.fromString(
-            "{\"mode\":\"Disabled\",\"cacheSizeMegabytes\":15253955,\"selfTracing\":{\"mode\":\"Disabled\",\"intervalSeconds\":57336706},\"spanChannelCapacity\":514021855}")
+            "{\"mode\":\"Enabled\",\"cacheSizeMegabytes\":372100049,\"selfTracing\":{\"mode\":\"Disabled\",\"intervalSeconds\":1844276281},\"spanChannelCapacity\":920119244}")
             .toObject(Traces.class);
-        Assertions.assertEquals(OperationalMode.DISABLED, model.mode());
-        Assertions.assertEquals(15253955, model.cacheSizeMegabytes());
+        Assertions.assertEquals(OperationalMode.ENABLED, model.mode());
+        Assertions.assertEquals(372100049, model.cacheSizeMegabytes());
         Assertions.assertEquals(OperationalMode.DISABLED, model.selfTracing().mode());
-        Assertions.assertEquals(57336706, model.selfTracing().intervalSeconds());
-        Assertions.assertEquals(514021855, model.spanChannelCapacity());
+        Assertions.assertEquals(1844276281, model.selfTracing().intervalSeconds());
+        Assertions.assertEquals(920119244, model.spanChannelCapacity());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        Traces model = new Traces().withMode(OperationalMode.DISABLED)
-            .withCacheSizeMegabytes(15253955)
-            .withSelfTracing(new SelfTracing().withMode(OperationalMode.DISABLED).withIntervalSeconds(57336706))
-            .withSpanChannelCapacity(514021855);
+        Traces model = new Traces().withMode(OperationalMode.ENABLED)
+            .withCacheSizeMegabytes(372100049)
+            .withSelfTracing(new SelfTracing().withMode(OperationalMode.DISABLED).withIntervalSeconds(1844276281))
+            .withSpanChannelCapacity(920119244);
         model = BinaryData.fromObject(model).toObject(Traces.class);
-        Assertions.assertEquals(OperationalMode.DISABLED, model.mode());
-        Assertions.assertEquals(15253955, model.cacheSizeMegabytes());
+        Assertions.assertEquals(OperationalMode.ENABLED, model.mode());
+        Assertions.assertEquals(372100049, model.cacheSizeMegabytes());
         Assertions.assertEquals(OperationalMode.DISABLED, model.selfTracing().mode());
-        Assertions.assertEquals(57336706, model.selfTracing().intervalSeconds());
-        Assertions.assertEquals(514021855, model.spanChannelCapacity());
+        Assertions.assertEquals(1844276281, model.selfTracing().intervalSeconds());
+        Assertions.assertEquals(920119244, model.spanChannelCapacity());
     }
 }

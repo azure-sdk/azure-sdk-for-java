@@ -15,22 +15,22 @@ public final class DataflowProfilePropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         DataflowProfileProperties model = BinaryData.fromString(
-            "{\"diagnostics\":{\"logs\":{\"level\":\"ao\"},\"metrics\":{\"prometheusPort\":722282959}},\"instanceCount\":11756294,\"provisioningState\":\"Failed\"}")
+            "{\"diagnostics\":{\"logs\":{\"level\":\"pt\"},\"metrics\":{\"prometheusPort\":183045537}},\"instanceCount\":622690283,\"provisioningState\":\"Deleting\"}")
             .toObject(DataflowProfileProperties.class);
-        Assertions.assertEquals("ao", model.diagnostics().logs().level());
-        Assertions.assertEquals(722282959, model.diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(11756294, model.instanceCount());
+        Assertions.assertEquals("pt", model.diagnostics().logs().level());
+        Assertions.assertEquals(183045537, model.diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(622690283, model.instanceCount());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         DataflowProfileProperties model = new DataflowProfileProperties()
-            .withDiagnostics(new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("ao"))
-                .withMetrics(new Metrics().withPrometheusPort(722282959)))
-            .withInstanceCount(11756294);
+            .withDiagnostics(new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("pt"))
+                .withMetrics(new Metrics().withPrometheusPort(183045537)))
+            .withInstanceCount(622690283);
         model = BinaryData.fromObject(model).toObject(DataflowProfileProperties.class);
-        Assertions.assertEquals("ao", model.diagnostics().logs().level());
-        Assertions.assertEquals(722282959, model.diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(11756294, model.instanceCount());
+        Assertions.assertEquals("pt", model.diagnostics().logs().level());
+        Assertions.assertEquals(183045537, model.diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(622690283, model.instanceCount());
     }
 }

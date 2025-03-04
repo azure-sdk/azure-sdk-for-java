@@ -14,28 +14,28 @@ public final class DataflowBuiltInTransformationMapTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         DataflowBuiltInTransformationMap model = BinaryData.fromString(
-            "{\"type\":\"BuiltInFunction\",\"description\":\"tmhrkwofyyvoqacp\",\"inputs\":[\"xpbtgiwbwo\",\"nwashrtd\"],\"expression\":\"cnqxwbpokulpi\",\"output\":\"jwaa\"}")
+            "{\"type\":\"NewProperties\",\"description\":\"euel\",\"inputs\":[\"hsd\",\"htozfikdow\"],\"expression\":\"uuvxz\",\"output\":\"clvit\"}")
             .toObject(DataflowBuiltInTransformationMap.class);
-        Assertions.assertEquals(DataflowMappingType.BUILT_IN_FUNCTION, model.type());
-        Assertions.assertEquals("tmhrkwofyyvoqacp", model.description());
-        Assertions.assertEquals("xpbtgiwbwo", model.inputs().get(0));
-        Assertions.assertEquals("cnqxwbpokulpi", model.expression());
-        Assertions.assertEquals("jwaa", model.output());
+        Assertions.assertEquals(DataflowMappingType.NEW_PROPERTIES, model.type());
+        Assertions.assertEquals("euel", model.description());
+        Assertions.assertEquals("hsd", model.inputs().get(0));
+        Assertions.assertEquals("uuvxz", model.expression());
+        Assertions.assertEquals("clvit", model.output());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         DataflowBuiltInTransformationMap model
-            = new DataflowBuiltInTransformationMap().withType(DataflowMappingType.BUILT_IN_FUNCTION)
-                .withDescription("tmhrkwofyyvoqacp")
-                .withInputs(Arrays.asList("xpbtgiwbwo", "nwashrtd"))
-                .withExpression("cnqxwbpokulpi")
-                .withOutput("jwaa");
+            = new DataflowBuiltInTransformationMap().withType(DataflowMappingType.NEW_PROPERTIES)
+                .withDescription("euel")
+                .withInputs(Arrays.asList("hsd", "htozfikdow"))
+                .withExpression("uuvxz")
+                .withOutput("clvit");
         model = BinaryData.fromObject(model).toObject(DataflowBuiltInTransformationMap.class);
-        Assertions.assertEquals(DataflowMappingType.BUILT_IN_FUNCTION, model.type());
-        Assertions.assertEquals("tmhrkwofyyvoqacp", model.description());
-        Assertions.assertEquals("xpbtgiwbwo", model.inputs().get(0));
-        Assertions.assertEquals("cnqxwbpokulpi", model.expression());
-        Assertions.assertEquals("jwaa", model.output());
+        Assertions.assertEquals(DataflowMappingType.NEW_PROPERTIES, model.type());
+        Assertions.assertEquals("euel", model.description());
+        Assertions.assertEquals("hsd", model.inputs().get(0));
+        Assertions.assertEquals("uuvxz", model.expression());
+        Assertions.assertEquals("clvit", model.output());
     }
 }

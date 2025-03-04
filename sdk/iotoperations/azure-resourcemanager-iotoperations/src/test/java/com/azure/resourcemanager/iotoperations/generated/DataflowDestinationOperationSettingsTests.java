@@ -12,19 +12,19 @@ public final class DataflowDestinationOperationSettingsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         DataflowDestinationOperationSettings model
-            = BinaryData.fromString("{\"endpointRef\":\"ipqiiobyuqerpq\",\"dataDestination\":\"pqwcciuqgbdbutau\"}")
+            = BinaryData.fromString("{\"endpointRef\":\"hqzonosggbhcoh\",\"dataDestination\":\"wdsjnkalju\"}")
                 .toObject(DataflowDestinationOperationSettings.class);
-        Assertions.assertEquals("ipqiiobyuqerpq", model.endpointRef());
-        Assertions.assertEquals("pqwcciuqgbdbutau", model.dataDestination());
+        Assertions.assertEquals("hqzonosggbhcoh", model.endpointRef());
+        Assertions.assertEquals("wdsjnkalju", model.dataDestination());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         DataflowDestinationOperationSettings model
-            = new DataflowDestinationOperationSettings().withEndpointRef("ipqiiobyuqerpq")
-                .withDataDestination("pqwcciuqgbdbutau");
+            = new DataflowDestinationOperationSettings().withEndpointRef("hqzonosggbhcoh")
+                .withDataDestination("wdsjnkalju");
         model = BinaryData.fromObject(model).toObject(DataflowDestinationOperationSettings.class);
-        Assertions.assertEquals("ipqiiobyuqerpq", model.endpointRef());
-        Assertions.assertEquals("pqwcciuqgbdbutau", model.dataDestination());
+        Assertions.assertEquals("hqzonosggbhcoh", model.endpointRef());
+        Assertions.assertEquals("wdsjnkalju", model.dataDestination());
     }
 }

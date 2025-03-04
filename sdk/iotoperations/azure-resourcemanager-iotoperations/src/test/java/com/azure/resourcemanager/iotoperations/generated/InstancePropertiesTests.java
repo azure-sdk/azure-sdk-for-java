@@ -6,25 +6,44 @@ package com.azure.resourcemanager.iotoperations.generated;
 
 import com.azure.core.util.BinaryData;
 import com.azure.resourcemanager.iotoperations.models.InstanceProperties;
+import com.azure.resourcemanager.iotoperations.models.OperationalMode;
 import com.azure.resourcemanager.iotoperations.models.SchemaRegistryRef;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 
 public final class InstancePropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         InstanceProperties model = BinaryData.fromString(
-            "{\"description\":\"zoxxjtf\",\"provisioningState\":\"Accepted\",\"version\":\"wfzitonpeqfpjk\",\"schemaRegistryRef\":{\"resourceId\":\"lxofpdvhpfxxypin\"}}")
+            "{\"description\":\"soacctazakl\",\"provisioningState\":\"Failed\",\"version\":\"bcryffdfd\",\"schemaRegistryRef\":{\"resourceId\":\"sy\"},\"features\":{\"aojakhmsbzjhcrz\":\"Disabled\",\"dphlxaolt\":\"Disabled\",\"trg\":\"Disabled\"}}")
             .toObject(InstanceProperties.class);
-        Assertions.assertEquals("zoxxjtf", model.description());
-        Assertions.assertEquals("lxofpdvhpfxxypin", model.schemaRegistryRef().resourceId());
+        Assertions.assertEquals("soacctazakl", model.description());
+        Assertions.assertEquals("sy", model.schemaRegistryRef().resourceId());
+        Assertions.assertEquals(OperationalMode.DISABLED, model.features().get("aojakhmsbzjhcrz"));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        InstanceProperties model = new InstanceProperties().withDescription("zoxxjtf")
-            .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("lxofpdvhpfxxypin"));
+        InstanceProperties model = new InstanceProperties().withDescription("soacctazakl")
+            .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("sy"))
+            .withFeatures(mapOf("aojakhmsbzjhcrz", OperationalMode.DISABLED, "dphlxaolt", OperationalMode.DISABLED,
+                "trg", OperationalMode.DISABLED));
         model = BinaryData.fromObject(model).toObject(InstanceProperties.class);
-        Assertions.assertEquals("zoxxjtf", model.description());
-        Assertions.assertEquals("lxofpdvhpfxxypin", model.schemaRegistryRef().resourceId());
+        Assertions.assertEquals("soacctazakl", model.description());
+        Assertions.assertEquals("sy", model.schemaRegistryRef().resourceId());
+        Assertions.assertEquals(OperationalMode.DISABLED, model.features().get("aojakhmsbzjhcrz"));
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }

@@ -11,26 +11,25 @@ import org.junit.jupiter.api.Assertions;
 public final class KubernetesReferenceTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        KubernetesReference model = BinaryData
-            .fromString(
-                "{\"apiGroup\":\"clhocohsl\",\"kind\":\"ev\",\"name\":\"eggzfb\",\"namespace\":\"fmvfaxkffeiit\"}")
+        KubernetesReference model = BinaryData.fromString(
+            "{\"apiGroup\":\"yexfwh\",\"kind\":\"bcibvyvdcsitynn\",\"name\":\"amdecte\",\"namespace\":\"iqscjeypv\"}")
             .toObject(KubernetesReference.class);
-        Assertions.assertEquals("clhocohsl", model.apiGroup());
-        Assertions.assertEquals("ev", model.kind());
-        Assertions.assertEquals("eggzfb", model.name());
-        Assertions.assertEquals("fmvfaxkffeiit", model.namespace());
+        Assertions.assertEquals("yexfwh", model.apiGroup());
+        Assertions.assertEquals("bcibvyvdcsitynn", model.kind());
+        Assertions.assertEquals("amdecte", model.name());
+        Assertions.assertEquals("iqscjeypv", model.namespace());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        KubernetesReference model = new KubernetesReference().withApiGroup("clhocohsl")
-            .withKind("ev")
-            .withName("eggzfb")
-            .withNamespace("fmvfaxkffeiit");
+        KubernetesReference model = new KubernetesReference().withApiGroup("yexfwh")
+            .withKind("bcibvyvdcsitynn")
+            .withName("amdecte")
+            .withNamespace("iqscjeypv");
         model = BinaryData.fromObject(model).toObject(KubernetesReference.class);
-        Assertions.assertEquals("clhocohsl", model.apiGroup());
-        Assertions.assertEquals("ev", model.kind());
-        Assertions.assertEquals("eggzfb", model.name());
-        Assertions.assertEquals("fmvfaxkffeiit", model.namespace());
+        Assertions.assertEquals("yexfwh", model.apiGroup());
+        Assertions.assertEquals("bcibvyvdcsitynn", model.kind());
+        Assertions.assertEquals("amdecte", model.name());
+        Assertions.assertEquals("iqscjeypv", model.namespace());
     }
 }
