@@ -4,13 +4,15 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
+import com.azure.resourcemanager.elasticsan.models.DeleteType;
+
 /**
  * Samples for VolumeGroups Delete.
  */
 public final class VolumeGroupsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
      * VolumeGroups_Delete_MinimumSet_Gen.json
      */
     /**
@@ -20,12 +22,13 @@ public final class VolumeGroupsDeleteSamples {
      */
     public static void volumeGroupsDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager.volumeGroups()
-            .delete("resourcegroupname", "elasticsanname", "volumegroupname", com.azure.core.util.Context.NONE);
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", DeleteType.PERMANENT,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
      * VolumeGroups_Delete_MaximumSet_Gen.json
      */
     /**
@@ -35,6 +38,7 @@ public final class VolumeGroupsDeleteSamples {
      */
     public static void volumeGroupsDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager.volumeGroups()
-            .delete("resourcegroupname", "elasticsanname", "volumegroupname", com.azure.core.util.Context.NONE);
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", DeleteType.PERMANENT,
+                com.azure.core.util.Context.NONE);
     }
 }
