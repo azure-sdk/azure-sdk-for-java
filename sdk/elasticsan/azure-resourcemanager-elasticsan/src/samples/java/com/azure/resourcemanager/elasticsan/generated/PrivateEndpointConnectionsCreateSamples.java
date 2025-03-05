@@ -14,8 +14,7 @@ import java.util.Arrays;
  */
 public final class PrivateEndpointConnectionsCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_Create_MaximumSet_Gen.json
      */
     /**
@@ -38,8 +37,7 @@ public final class PrivateEndpointConnectionsCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_Create_MinimumSet_Gen.json
      */
     /**

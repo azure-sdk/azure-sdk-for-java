@@ -9,8 +9,7 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class ElasticSansGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Get_MinimumSet_Gen.json
      */
     /**
@@ -24,8 +23,7 @@ public final class ElasticSansGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Get_MaximumSet_Gen.json
      */
     /**

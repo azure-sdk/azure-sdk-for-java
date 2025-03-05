@@ -11,8 +11,7 @@ import com.azure.resourcemanager.elasticsan.models.Volume;
  */
 public final class VolumesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Update_MinimumSet_Gen.json
      */
     /**
@@ -29,8 +28,7 @@ public final class VolumesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Update_MaximumSet_Gen.json
      */
     /**
