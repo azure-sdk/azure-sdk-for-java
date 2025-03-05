@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -33,9 +34,12 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.elasticsan.fluent.VolumeGroupsClient;
+import com.azure.resourcemanager.elasticsan.fluent.models.PreValidationResponseInner;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeGroupInner;
+import com.azure.resourcemanager.elasticsan.models.DiskSnapshotList;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroupList;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroupUpdate;
+import com.azure.resourcemanager.elasticsan.models.VolumeNameList;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -123,6 +127,28 @@ public final class VolumeGroupsClientImpl implements VolumeGroupsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("elasticSanName") String elasticSanName, @PathParam("volumeGroupName") String volumeGroupName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/preBackup")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> preBackup(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("elasticSanName") String elasticSanName, @PathParam("volumeGroupName") String volumeGroupName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") VolumeNameList parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/preRestore")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> preRestore(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("elasticSanName") String elasticSanName, @PathParam("volumeGroupName") String volumeGroupName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") DiskSnapshotList parameters,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -1129,6 +1155,519 @@ public final class VolumeGroupsClientImpl implements VolumeGroupsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VolumeGroupInner get(String resourceGroupName, String elasticSanName, String volumeGroupName) {
         return getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, Context.NONE).getValue();
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> preBackupWithResponseAsync(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, VolumeNameList parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (elasticSanName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.preBackup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, elasticSanName, volumeGroupName, this.client.getApiVersion(), parameters, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> preBackupWithResponseAsync(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, VolumeNameList parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (elasticSanName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.preBackup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            elasticSanName, volumeGroupName, this.client.getApiVersion(), parameters, accept, context);
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreBackupAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, VolumeNameList parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preBackupWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters);
+        return this.client.<PreValidationResponseInner, PreValidationResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), PreValidationResponseInner.class, PreValidationResponseInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreBackupAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, VolumeNameList parameters,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preBackupWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters, context);
+        return this.client.<PreValidationResponseInner, PreValidationResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), PreValidationResponseInner.class, PreValidationResponseInner.class, context);
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreBackup(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, VolumeNameList parameters) {
+        return this.beginPreBackupAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters).getSyncPoller();
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreBackup(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, VolumeNameList parameters,
+        Context context) {
+        return this.beginPreBackupAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PreValidationResponseInner> preBackupAsync(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, VolumeNameList parameters) {
+        return beginPreBackupAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PreValidationResponseInner> preBackupAsync(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, VolumeNameList parameters, Context context) {
+        return beginPreBackupAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PreValidationResponseInner preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        VolumeNameList parameters) {
+        return preBackupAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters).block();
+    }
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PreValidationResponseInner preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        VolumeNameList parameters, Context context) {
+        return preBackupAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters, context).block();
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> preRestoreWithResponseAsync(String resourceGroupName,
+        String elasticSanName, String volumeGroupName, DiskSnapshotList parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (elasticSanName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.preRestore(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, elasticSanName, volumeGroupName, this.client.getApiVersion(), parameters, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> preRestoreWithResponseAsync(String resourceGroupName,
+        String elasticSanName, String volumeGroupName, DiskSnapshotList parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (elasticSanName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.preRestore(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            elasticSanName, volumeGroupName, this.client.getApiVersion(), parameters, accept, context);
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreRestoreAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, DiskSnapshotList parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preRestoreWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters);
+        return this.client.<PreValidationResponseInner, PreValidationResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), PreValidationResponseInner.class, PreValidationResponseInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreRestoreAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, DiskSnapshotList parameters,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preRestoreWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters, context);
+        return this.client.<PreValidationResponseInner, PreValidationResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), PreValidationResponseInner.class, PreValidationResponseInner.class, context);
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreRestore(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, DiskSnapshotList parameters) {
+        return this.beginPreRestoreAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters)
+            .getSyncPoller();
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreRestore(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, DiskSnapshotList parameters,
+        Context context) {
+        return this.beginPreRestoreAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PreValidationResponseInner> preRestoreAsync(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, DiskSnapshotList parameters) {
+        return beginPreRestoreAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PreValidationResponseInner> preRestoreAsync(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, DiskSnapshotList parameters, Context context) {
+        return beginPreRestoreAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PreValidationResponseInner preRestore(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, DiskSnapshotList parameters) {
+        return preRestoreAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters).block();
+    }
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PreValidationResponseInner preRestore(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, DiskSnapshotList parameters, Context context) {
+        return preRestoreAsync(resourceGroupName, elasticSanName, volumeGroupName, parameters, context).block();
     }
 
     /**

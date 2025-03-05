@@ -91,6 +91,68 @@ public interface VolumeGroups {
     VolumeGroup get(String resourceGroupName, String elasticSanName, String volumeGroupName);
 
     /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    PreValidationResponse preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        VolumeNameList parameters);
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    PreValidationResponse preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        VolumeNameList parameters, Context context);
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    PreValidationResponse preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        DiskSnapshotList parameters);
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    PreValidationResponse preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        DiskSnapshotList parameters, Context context);
+
+    /**
      * Get an VolumeGroups.
      * 
      * @param id the resource ID.
