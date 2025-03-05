@@ -13,6 +13,7 @@ import com.azure.resourcemanager.hybridcompute.models.AgentUpgrade;
 import com.azure.resourcemanager.hybridcompute.models.CloudMetadata;
 import com.azure.resourcemanager.hybridcompute.models.FirmwareProfile;
 import com.azure.resourcemanager.hybridcompute.models.HardwareProfile;
+import com.azure.resourcemanager.hybridcompute.models.IdentityKeyStore;
 import com.azure.resourcemanager.hybridcompute.models.LicenseProfileMachineInstanceView;
 import com.azure.resourcemanager.hybridcompute.models.LocationData;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensionInstanceView;
@@ -123,6 +124,14 @@ public final class MachinePropertiesImpl implements MachineProperties {
 
     public String clientPublicKey() {
         return this.innerModel().clientPublicKey();
+    }
+
+    public IdentityKeyStore identityKeyStore() {
+        return this.innerModel().identityKeyStore();
+    }
+
+    public String tpmEkCertificate() {
+        return this.innerModel().tpmEkCertificate();
     }
 
     public String osName() {
