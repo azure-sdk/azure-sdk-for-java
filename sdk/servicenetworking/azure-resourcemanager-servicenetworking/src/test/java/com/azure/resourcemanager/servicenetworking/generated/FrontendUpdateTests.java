@@ -14,18 +14,17 @@ public final class FrontendUpdateTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         FrontendUpdate model = BinaryData
-            .fromString(
-                "{\"tags\":{\"ypininm\":\"jkjlxofpdvhpfx\",\"po\":\"yhuybbkpod\",\"ognarxzxtheotus\":\"ginuvamih\"}}")
+            .fromString("{\"tags\":{\"qhabifpikxwcz\":\"th\",\"ivyqniwbybrkxvd\":\"yscnpqxu\",\"fwvuk\":\"mjgr\"}}")
             .toObject(FrontendUpdate.class);
-        Assertions.assertEquals("jkjlxofpdvhpfx", model.tags().get("ypininm"));
+        Assertions.assertEquals("th", model.tags().get("qhabifpikxwcz"));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         FrontendUpdate model = new FrontendUpdate()
-            .withTags(mapOf("ypininm", "jkjlxofpdvhpfx", "po", "yhuybbkpod", "ognarxzxtheotus", "ginuvamih"));
+            .withTags(mapOf("qhabifpikxwcz", "th", "ivyqniwbybrkxvd", "yscnpqxu", "fwvuk", "mjgr"));
         model = BinaryData.fromObject(model).toObject(FrontendUpdate.class);
-        Assertions.assertEquals("jkjlxofpdvhpfx", model.tags().get("ypininm"));
+        Assertions.assertEquals("th", model.tags().get("qhabifpikxwcz"));
     }
 
     // Use "Map.of" if available

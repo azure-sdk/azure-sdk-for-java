@@ -12,16 +12,17 @@ import org.junit.jupiter.api.Assertions;
 public final class SecurityPolicyConfigurationsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        SecurityPolicyConfigurations model = BinaryData.fromString("{\"wafSecurityPolicy\":{\"id\":\"ndei\"}}")
-            .toObject(SecurityPolicyConfigurations.class);
-        Assertions.assertEquals("ndei", model.wafSecurityPolicy().id());
+        SecurityPolicyConfigurations model
+            = BinaryData.fromString("{\"wafSecurityPolicy\":{\"id\":\"afbljjgpbtoqcjmk\"}}")
+                .toObject(SecurityPolicyConfigurations.class);
+        Assertions.assertEquals("afbljjgpbtoqcjmk", model.wafSecurityPolicy().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        SecurityPolicyConfigurations model
-            = new SecurityPolicyConfigurations().withWafSecurityPolicy(new WafSecurityPolicy().withId("ndei"));
+        SecurityPolicyConfigurations model = new SecurityPolicyConfigurations()
+            .withWafSecurityPolicy(new WafSecurityPolicy().withId("afbljjgpbtoqcjmk"));
         model = BinaryData.fromObject(model).toObject(SecurityPolicyConfigurations.class);
-        Assertions.assertEquals("ndei", model.wafSecurityPolicy().id());
+        Assertions.assertEquals("afbljjgpbtoqcjmk", model.wafSecurityPolicy().id());
     }
 }

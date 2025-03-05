@@ -12,16 +12,16 @@ import org.junit.jupiter.api.Assertions;
 public final class SecurityPolicyUpdatePropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        SecurityPolicyUpdateProperties model = BinaryData.fromString("{\"wafPolicy\":{\"id\":\"qawrlyxwj\"}}")
+        SecurityPolicyUpdateProperties model = BinaryData.fromString("{\"wafPolicy\":{\"id\":\"wrljdouskc\"}}")
             .toObject(SecurityPolicyUpdateProperties.class);
-        Assertions.assertEquals("qawrlyxwj", model.wafPolicy().id());
+        Assertions.assertEquals("wrljdouskc", model.wafPolicy().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         SecurityPolicyUpdateProperties model
-            = new SecurityPolicyUpdateProperties().withWafPolicy(new WafPolicy().withId("qawrlyxwj"));
+            = new SecurityPolicyUpdateProperties().withWafPolicy(new WafPolicy().withId("wrljdouskc"));
         model = BinaryData.fromObject(model).toObject(SecurityPolicyUpdateProperties.class);
-        Assertions.assertEquals("qawrlyxwj", model.wafPolicy().id());
+        Assertions.assertEquals("wrljdouskc", model.wafPolicy().id());
     }
 }
