@@ -10,15 +10,15 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class PrivateEndpointConnectionsDeleteByHostPoolSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * PrivateEndpointConnection_DeleteByHostPool.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/PrivateEndpointConnections_DeleteByHostPool.json
      */
     /**
-     * Sample code: PrivateEndpointConnection_DeleteByHostPool.
+     * Sample code: PrivateEndpointConnections_DeleteByHostPool.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void privateEndpointConnectionDeleteByHostPool(
+    public static void privateEndpointConnectionsDeleteByHostPool(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.privateEndpointConnections()
             .deleteByHostPoolWithResponse("resourceGroup1", "hostPool1",

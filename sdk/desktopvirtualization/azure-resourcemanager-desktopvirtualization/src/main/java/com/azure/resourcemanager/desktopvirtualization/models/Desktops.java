@@ -13,6 +13,35 @@ import com.azure.core.util.Context;
  */
 public interface Desktops {
     /**
+     * List desktops.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Desktop definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName);
+
+    /**
+     * List desktops.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Desktop definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context);
+
+    /**
      * Get a desktop.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -46,7 +75,7 @@ public interface Desktops {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param applicationGroupName The name of the application group.
      * @param desktopName The name of the desktop within the specified desktop group.
-     * @param desktop Object containing Desktop definitions.
+     * @param desktop The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -68,33 +97,4 @@ public interface Desktops {
      * @return schema for Desktop properties.
      */
     Desktop update(String resourceGroupName, String applicationGroupName, String desktopName);
-
-    /**
-     * List desktops.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName);
-
-    /**
-     * List desktops.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context);
 }

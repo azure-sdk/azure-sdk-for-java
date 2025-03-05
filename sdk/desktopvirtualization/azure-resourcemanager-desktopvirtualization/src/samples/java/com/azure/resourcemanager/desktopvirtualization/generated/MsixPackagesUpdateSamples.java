@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackage;
+import com.azure.resourcemanager.desktopvirtualization.models.MsixPackagePatchProperties;
 
 /**
  * Samples for MsixPackages Update.
@@ -12,19 +13,23 @@ import com.azure.resourcemanager.desktopvirtualization.models.MsixPackage;
 public final class MsixPackagesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * MsixPackage_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/MsixPackages_Update.json
      */
     /**
-     * Sample code: MSIXPackage_Update.
+     * Sample code: MsixPackage_Update.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        mSIXPackageUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        msixPackageUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         MsixPackage resource = manager.msixPackages()
             .getWithResponse("resourceGroup1", "hostpool1", "msixpackagefullname", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withIsActive(true).withIsRegularRegistration(false).withDisplayName("displayname").apply();
+        resource.update()
+            .withProperties(new MsixPackagePatchProperties().withIsActive(true)
+                .withIsRegularRegistration(false)
+                .withDisplayName("displayname"))
+            .apply();
     }
 }

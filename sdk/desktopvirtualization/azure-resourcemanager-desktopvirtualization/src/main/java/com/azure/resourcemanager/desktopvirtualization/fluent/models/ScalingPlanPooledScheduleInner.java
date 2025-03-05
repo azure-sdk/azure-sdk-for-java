@@ -103,6 +103,29 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
     }
 
     /**
+     * Get the name property: Name of the ScalingPlanPooledSchedule.
+     * 
+     * @return the name value.
+     */
+    public String namePropertiesName() {
+        return this.innerProperties() == null ? null : this.innerProperties().name();
+    }
+
+    /**
+     * Set the name property: Name of the ScalingPlanPooledSchedule.
+     * 
+     * @param name the name value to set.
+     * @return the ScalingPlanPooledScheduleInner object itself.
+     */
+    public ScalingPlanPooledScheduleInner withNamePropertiesName(String name) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+        }
+        this.innerProperties().withName(name);
+        return this;
+    }
+
+    /**
      * Get the daysOfWeek property: Set of days of the week on which this schedule is active.
      * 
      * @return the daysOfWeek value.
@@ -200,8 +223,8 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
      * 
      * @return the rampUpCapacityThresholdPct value.
      */
-    public Integer rampUpCapacityThresholdPct() {
-        return this.innerProperties() == null ? null : this.innerProperties().rampUpCapacityThresholdPct();
+    public int rampUpCapacityThresholdPct() {
+        return this.innerProperties() == null ? 0 : this.innerProperties().rampUpCapacityThresholdPct();
     }
 
     /**
@@ -210,7 +233,7 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
      * @param rampUpCapacityThresholdPct the rampUpCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledScheduleInner object itself.
      */
-    public ScalingPlanPooledScheduleInner withRampUpCapacityThresholdPct(Integer rampUpCapacityThresholdPct) {
+    public ScalingPlanPooledScheduleInner withRampUpCapacityThresholdPct(int rampUpCapacityThresholdPct) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }
@@ -340,8 +363,8 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
      * 
      * @return the rampDownCapacityThresholdPct value.
      */
-    public Integer rampDownCapacityThresholdPct() {
-        return this.innerProperties() == null ? null : this.innerProperties().rampDownCapacityThresholdPct();
+    public int rampDownCapacityThresholdPct() {
+        return this.innerProperties() == null ? 0 : this.innerProperties().rampDownCapacityThresholdPct();
     }
 
     /**
@@ -350,7 +373,7 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
      * @param rampDownCapacityThresholdPct the rampDownCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledScheduleInner object itself.
      */
-    public ScalingPlanPooledScheduleInner withRampDownCapacityThresholdPct(Integer rampDownCapacityThresholdPct) {
+    public ScalingPlanPooledScheduleInner withRampDownCapacityThresholdPct(int rampDownCapacityThresholdPct) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }
