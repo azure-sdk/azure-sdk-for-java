@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/developer/ci.yml
+      - sdk/developer/azure-developer-trusedsigning/
+    exclude:
+      - sdk/developer/pom.xml
+      - sdk/developer/azure-developer-trusedsigning/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/developer/ci.yml
+      - sdk/developer/azure-developer-trusedsigning/
+    exclude:
+      - sdk/developer/pom.xml
+      - sdk/developer/azure-developer-trusedsigning/pom.xml
+
+parameters:
+  - name: release_azuredevelopertrusedsigning
+    displayName: azure-developer-trusedsigning
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: developer
+    Artifacts:
+      - name: azure-developer-trusedsigning
+        groupId: com.azure
+        safeName: azuredevelopertrusedsigning
+        releaseInBatch: ${{ parameters.release_azuredevelopertrusedsigning }}
