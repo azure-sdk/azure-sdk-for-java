@@ -31,6 +31,28 @@ public final class HostPoolsImpl implements HostPools {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<HostPool> list() {
+        PagedIterable<HostPoolInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HostPoolImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<HostPool> list(Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<HostPoolInner> inner = this.serviceClient().list(pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HostPoolImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<HostPool> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<HostPoolInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HostPoolImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<HostPool> listByResourceGroup(String resourceGroupName, Integer pageSize, Boolean isDescending,
+        Integer initialSkip, Context context) {
+        PagedIterable<HostPoolInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HostPoolImpl(inner1, this.manager()));
+    }
+
     public Response<HostPool> getByResourceGroupWithResponse(String resourceGroupName, String hostPoolName,
         Context context) {
         Response<HostPoolInner> inner
@@ -61,26 +83,25 @@ public final class HostPoolsImpl implements HostPools {
         this.serviceClient().delete(resourceGroupName, hostPoolName);
     }
 
-    public PagedIterable<HostPool> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<HostPoolInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new HostPoolImpl(inner1, this.manager()));
+    public Response<RegistrationTokenList> listRegistrationTokensWithResponse(String resourceGroupName,
+        String hostPoolName, Context context) {
+        Response<RegistrationTokenListInner> inner
+            = this.serviceClient().listRegistrationTokensWithResponse(resourceGroupName, hostPoolName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new RegistrationTokenListImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<HostPool> listByResourceGroup(String resourceGroupName, Integer pageSize, Boolean isDescending,
-        Integer initialSkip, Context context) {
-        PagedIterable<HostPoolInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new HostPoolImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<HostPool> list() {
-        PagedIterable<HostPoolInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new HostPoolImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<HostPool> list(Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<HostPoolInner> inner = this.serviceClient().list(pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new HostPoolImpl(inner1, this.manager()));
+    public RegistrationTokenList listRegistrationTokens(String resourceGroupName, String hostPoolName) {
+        RegistrationTokenListInner inner = this.serviceClient().listRegistrationTokens(resourceGroupName, hostPoolName);
+        if (inner != null) {
+            return new RegistrationTokenListImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<RegistrationInfo> retrieveRegistrationTokenWithResponse(String resourceGroupName,
@@ -99,27 +120,6 @@ public final class HostPoolsImpl implements HostPools {
         RegistrationInfoInner inner = this.serviceClient().retrieveRegistrationToken(resourceGroupName, hostPoolName);
         if (inner != null) {
             return new RegistrationInfoImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<RegistrationTokenList> listRegistrationTokensWithResponse(String resourceGroupName,
-        String hostPoolName, Context context) {
-        Response<RegistrationTokenListInner> inner
-            = this.serviceClient().listRegistrationTokensWithResponse(resourceGroupName, hostPoolName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new RegistrationTokenListImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public RegistrationTokenList listRegistrationTokens(String resourceGroupName, String hostPoolName) {
-        RegistrationTokenListInner inner = this.serviceClient().listRegistrationTokens(resourceGroupName, hostPoolName);
-        if (inner != null) {
-            return new RegistrationTokenListImpl(inner, this.manager());
         } else {
             return null;
         }

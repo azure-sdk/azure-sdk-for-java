@@ -10,16 +10,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * OperationDescription_List.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/Operations_List.json
      */
     /**
-     * Sample code: OperationDescription_List.
+     * Sample code: List Provider Operations.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        operationDescriptionList(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        listProviderOperations(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

@@ -19,6 +19,69 @@ import reactor.core.publisher.Mono;
  */
 public interface SessionHostsClient {
     /**
+     * List sessionHosts.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of SessionHost definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, String vmPath);
+
+    /**
+     * List sessionHosts.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of SessionHost definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName);
+
+    /**
+     * List sessionHosts.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of SessionHost definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SessionHostInner> list(String resourceGroupName, String hostPoolName);
+
+    /**
+     * List sessionHosts.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of SessionHost definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SessionHostInner> list(String resourceGroupName, String hostPoolName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, String vmPath, Context context);
+
+    /**
      * Get a session host.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -76,6 +139,69 @@ public interface SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     SessionHostInner get(String resourceGroupName, String hostPoolName, String sessionHostname);
+
+    /**
+     * Update a session host.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @param force Force flag to update assign, unassign or reassign personal desktop.
+     * @param sessionHost The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SessionHost definition along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Response<SessionHostInner>> updateWithResponseAsync(String resourceGroupName, String hostPoolName,
+        String sessionHostname, Boolean force, SessionHostPatch sessionHost);
+
+    /**
+     * Update a session host.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SessionHost definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<SessionHostInner> updateAsync(String resourceGroupName, String hostPoolName, String sessionHostname);
+
+    /**
+     * Update a session host.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @param force Force flag to update assign, unassign or reassign personal desktop.
+     * @param sessionHost The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SessionHost definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SessionHostInner> updateWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
+        Boolean force, SessionHostPatch sessionHost, Context context);
+
+    /**
+     * Update a session host.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SessionHost definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SessionHostInner update(String resourceGroupName, String hostPoolName, String sessionHostname);
 
     /**
      * Remove a SessionHost.
@@ -138,24 +264,7 @@ public interface SessionHostsClient {
     void delete(String resourceGroupName, String hostPoolName, String sessionHostname);
 
     /**
-     * Update a session host.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @param force Force flag to update assign, unassign or reassign personal desktop.
-     * @param sessionHost Object containing SessionHost definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SessionHost definition along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<SessionHostInner>> updateWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String sessionHostname, Boolean force, SessionHostPatch sessionHost);
-
-    /**
-     * Update a session host.
+     * A synchronous resource action that returns no content.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
@@ -163,31 +272,44 @@ public interface SessionHostsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SessionHost definition on successful completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<SessionHostInner> updateAsync(String resourceGroupName, String hostPoolName, String sessionHostname);
+    Mono<Response<Void>> retryProvisioningWithResponseAsync(String resourceGroupName, String hostPoolName,
+        String sessionHostname);
 
     /**
-     * Update a session host.
+     * A synchronous resource action that returns no content.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
-     * @param force Force flag to update assign, unassign or reassign personal desktop.
-     * @param sessionHost Object containing SessionHost definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Void> retryProvisioningAsync(String resourceGroupName, String hostPoolName, String sessionHostname);
+
+    /**
+     * A synchronous resource action that returns no content.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SessionHost definition along with {@link Response}.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<SessionHostInner> updateWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
-        Boolean force, SessionHostPatch sessionHost, Context context);
+    Response<Void> retryProvisioningWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
+        Context context);
 
     /**
-     * Update a session host.
+     * A synchronous resource action that returns no content.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
@@ -195,69 +317,7 @@ public interface SessionHostsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SessionHost definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    SessionHostInner update(String resourceGroupName, String hostPoolName, String sessionHostname);
-
-    /**
-     * List sessionHosts.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sessionHostList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip);
-
-    /**
-     * List sessionHosts.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sessionHostList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName);
-
-    /**
-     * List sessionHosts.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sessionHostList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SessionHostInner> list(String resourceGroupName, String hostPoolName);
-
-    /**
-     * List sessionHosts.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sessionHostList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SessionHostInner> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context);
+    void retryProvisioning(String resourceGroupName, String hostPoolName, String sessionHostname);
 }
