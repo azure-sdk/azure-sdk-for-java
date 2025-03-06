@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.advisor.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -36,11 +37,25 @@ public interface ResourceRecommendationBase {
     String type();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the category property: The category of the recommendation.
      * 
      * @return the category value.
      */
     Category category();
+
+    /**
+     * Gets the control property: The sub-category of the recommendation.
+     * 
+     * @return the control value.
+     */
+    Control control();
 
     /**
      * Gets the impact property: The business impact of the recommendation.
@@ -83,6 +98,13 @@ public interface ResourceRecommendationBase {
      * @return the recommendationTypeId value.
      */
     String recommendationTypeId();
+
+    /**
+     * Gets the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @return the risk value.
+     */
+    Risk risk();
 
     /**
      * Gets the shortDescription property: A summary of the recommendation.

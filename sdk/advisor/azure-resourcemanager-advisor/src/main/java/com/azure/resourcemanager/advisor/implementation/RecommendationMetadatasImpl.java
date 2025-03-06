@@ -51,8 +51,8 @@ public final class RecommendationMetadatasImpl implements RecommendationMetadata
         return ResourceManagerUtils.mapPage(inner, inner1 -> new MetadataEntityImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<MetadataEntity> list(Context context) {
-        PagedIterable<MetadataEntityInner> inner = this.serviceClient().list(context);
+    public PagedIterable<MetadataEntity> list(String filter, Context context) {
+        PagedIterable<MetadataEntityInner> inner = this.serviceClient().list(filter, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new MetadataEntityImpl(inner1, this.manager()));
     }
 
