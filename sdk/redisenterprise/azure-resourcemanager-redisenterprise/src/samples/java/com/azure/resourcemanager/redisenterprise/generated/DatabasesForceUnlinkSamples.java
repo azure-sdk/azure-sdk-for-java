@@ -12,8 +12,7 @@ import java.util.Arrays;
  */
 public final class DatabasesForceUnlinkSamples {
     /*
-     * x-ms-original-file:
-     * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-09-01-preview/examples/
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2025-04-01/examples/
      * RedisEnterpriseDatabasesForceUnlink.json
      */
     /**
@@ -25,7 +24,7 @@ public final class DatabasesForceUnlinkSamples {
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
         manager.databases()
             .forceUnlink("rg1", "cache1", "default", new ForceUnlinkParameters().withIds(Arrays.asList(
-                "/subscriptions/e7b5a9d2-6b6a-4d2f-9143-20d9a10f5b8f2/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default")),
+                "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default")),
                 com.azure.core.util.Context.NONE);
     }
 }

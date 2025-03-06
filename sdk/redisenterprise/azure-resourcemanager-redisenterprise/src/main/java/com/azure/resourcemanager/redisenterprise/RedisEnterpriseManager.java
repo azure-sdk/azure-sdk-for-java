@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,12 +20,11 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.fluent.RedisEnterpriseManagementClient;
-import com.azure.resourcemanager.redisenterprise.implementation.AccessPolicyAssignmentsImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.DatabasesImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.OperationsImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.OperationsStatusImpl;
@@ -32,7 +32,6 @@ import com.azure.resourcemanager.redisenterprise.implementation.PrivateEndpointC
 import com.azure.resourcemanager.redisenterprise.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.RedisEnterpriseManagementClientBuilder;
 import com.azure.resourcemanager.redisenterprise.implementation.RedisEnterprisesImpl;
-import com.azure.resourcemanager.redisenterprise.models.AccessPolicyAssignments;
 import com.azure.resourcemanager.redisenterprise.models.Databases;
 import com.azure.resourcemanager.redisenterprise.models.Operations;
 import com.azure.resourcemanager.redisenterprise.models.OperationsStatus;
@@ -43,6 +42,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -58,8 +58,6 @@ public final class RedisEnterpriseManager {
     private RedisEnterprises redisEnterprises;
 
     private Databases databases;
-
-    private AccessPolicyAssignments accessPolicyAssignments;
 
     private PrivateEndpointConnections privateEndpointConnections;
 
@@ -117,6 +115,9 @@ public final class RedisEnterpriseManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-redisenterprise.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -224,12 +225,14 @@ public final class RedisEnterpriseManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.redisenterprise")
                 .append("/")
-                .append("2.1.0-beta.2");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -262,7 +265,7 @@ public final class RedisEnterpriseManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -321,19 +324,6 @@ public final class RedisEnterpriseManager {
             this.databases = new DatabasesImpl(clientObject.getDatabases(), this);
         }
         return databases;
-    }
-
-    /**
-     * Gets the resource collection API of AccessPolicyAssignments. It manages AccessPolicyAssignment.
-     * 
-     * @return Resource collection API of AccessPolicyAssignments.
-     */
-    public AccessPolicyAssignments accessPolicyAssignments() {
-        if (this.accessPolicyAssignments == null) {
-            this.accessPolicyAssignments
-                = new AccessPolicyAssignmentsImpl(clientObject.getAccessPolicyAssignments(), this);
-        }
-        return accessPolicyAssignments;
     }
 
     /**

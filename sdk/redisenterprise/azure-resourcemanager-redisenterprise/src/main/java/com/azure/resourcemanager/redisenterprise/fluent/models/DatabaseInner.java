@@ -6,14 +6,11 @@ package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.redisenterprise.models.AccessKeysAuthentication;
 import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
 import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
-import com.azure.resourcemanager.redisenterprise.models.DeferUpgradeSetting;
 import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
 import com.azure.resourcemanager.redisenterprise.models.Module;
 import com.azure.resourcemanager.redisenterprise.models.Persistence;
@@ -24,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Describes a database on the Redis Enterprise cluster.
+ * Describes a database on the RedisEnterprise cluster.
  */
 @Fluent
 public final class DatabaseInner extends ProxyResource {
@@ -32,11 +29,6 @@ public final class DatabaseInner extends ProxyResource {
      * Other properties of the database.
      */
     private DatabaseProperties innerProperties;
-
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     */
-    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -66,15 +58,6 @@ public final class DatabaseInner extends ProxyResource {
      */
     private DatabaseProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -176,8 +159,7 @@ public final class DatabaseInner extends ProxyResource {
     }
 
     /**
-     * Get the clusteringPolicy property: Clustering policy - default is OSSCluster. This property must be chosen at
-     * create time, and cannot be changed without deleting the database.
+     * Get the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
      * 
      * @return the clusteringPolicy value.
      */
@@ -186,8 +168,7 @@ public final class DatabaseInner extends ProxyResource {
     }
 
     /**
-     * Set the clusteringPolicy property: Clustering policy - default is OSSCluster. This property must be chosen at
-     * create time, and cannot be changed without deleting the database.
+     * Set the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
      * 
      * @param clusteringPolicy the clusteringPolicy value to set.
      * @return the DatabaseInner object itself.
@@ -295,65 +276,6 @@ public final class DatabaseInner extends ProxyResource {
     }
 
     /**
-     * Get the redisVersion property: Version of Redis the database is running on, e.g. '6.0'.
-     * 
-     * @return the redisVersion value.
-     */
-    public String redisVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().redisVersion();
-    }
-
-    /**
-     * Get the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @return the deferUpgrade value.
-     */
-    public DeferUpgradeSetting deferUpgrade() {
-        return this.innerProperties() == null ? null : this.innerProperties().deferUpgrade();
-    }
-
-    /**
-     * Set the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @param deferUpgrade the deferUpgrade value to set.
-     * @return the DatabaseInner object itself.
-     */
-    public DatabaseInner withDeferUpgrade(DeferUpgradeSetting deferUpgrade) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withDeferUpgrade(deferUpgrade);
-        return this;
-    }
-
-    /**
-     * Get the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny access with the
-     * current access keys. Can be updated even after database is created.
-     * 
-     * @return the accessKeysAuthentication value.
-     */
-    public AccessKeysAuthentication accessKeysAuthentication() {
-        return this.innerProperties() == null ? null : this.innerProperties().accessKeysAuthentication();
-    }
-
-    /**
-     * Set the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny access with the
-     * current access keys. Can be updated even after database is created.
-     * 
-     * @param accessKeysAuthentication the accessKeysAuthentication value to set.
-     * @return the DatabaseInner object itself.
-     */
-    public DatabaseInner withAccessKeysAuthentication(AccessKeysAuthentication accessKeysAuthentication) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withAccessKeysAuthentication(accessKeysAuthentication);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -398,8 +320,6 @@ public final class DatabaseInner extends ProxyResource {
                     deserializedDatabaseInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedDatabaseInner.innerProperties = DatabaseProperties.fromJson(reader);
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedDatabaseInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
