@@ -33,6 +33,11 @@ public final class MarketplaceSaaSResourceDetailsResponseInner
      */
     private MarketplaceSubscriptionStatus marketplaceSubscriptionStatus;
 
+    /*
+     * Name of the Marketplace SaaS Resource
+     */
+    private String marketplaceSaaSResourceName;
+
     /**
      * Creates an instance of MarketplaceSaaSResourceDetailsResponseInner class.
      */
@@ -101,6 +106,27 @@ public final class MarketplaceSaaSResourceDetailsResponseInner
     }
 
     /**
+     * Get the marketplaceSaaSResourceName property: Name of the Marketplace SaaS Resource.
+     * 
+     * @return the marketplaceSaaSResourceName value.
+     */
+    public String marketplaceSaaSResourceName() {
+        return this.marketplaceSaaSResourceName;
+    }
+
+    /**
+     * Set the marketplaceSaaSResourceName property: Name of the Marketplace SaaS Resource.
+     * 
+     * @param marketplaceSaaSResourceName the marketplaceSaaSResourceName value to set.
+     * @return the MarketplaceSaaSResourceDetailsResponseInner object itself.
+     */
+    public MarketplaceSaaSResourceDetailsResponseInner
+        withMarketplaceSaaSResourceName(String marketplaceSaaSResourceName) {
+        this.marketplaceSaaSResourceName = marketplaceSaaSResourceName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -118,6 +144,7 @@ public final class MarketplaceSaaSResourceDetailsResponseInner
         jsonWriter.writeStringField("planId", this.planId);
         jsonWriter.writeStringField("marketplaceSubscriptionStatus",
             this.marketplaceSubscriptionStatus == null ? null : this.marketplaceSubscriptionStatus.toString());
+        jsonWriter.writeStringField("marketplaceSaaSResourceName", this.marketplaceSaaSResourceName);
         return jsonWriter.writeEndObject();
     }
 
@@ -145,6 +172,9 @@ public final class MarketplaceSaaSResourceDetailsResponseInner
                 } else if ("marketplaceSubscriptionStatus".equals(fieldName)) {
                     deserializedMarketplaceSaaSResourceDetailsResponseInner.marketplaceSubscriptionStatus
                         = MarketplaceSubscriptionStatus.fromString(reader.getString());
+                } else if ("marketplaceSaaSResourceName".equals(fieldName)) {
+                    deserializedMarketplaceSaaSResourceDetailsResponseInner.marketplaceSaaSResourceName
+                        = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public final class SingleSignOnCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * SingleSignOn_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -33,7 +33,7 @@ public final class SingleSignOnCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * SingleSignOn_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**

@@ -5,6 +5,9 @@
 package com.azure.resourcemanager.dynatrace.generated;
 
 import com.azure.resourcemanager.dynatrace.models.MonitorResource;
+import com.azure.resourcemanager.dynatrace.models.MonitorUpdateProperties;
+import com.azure.resourcemanager.dynatrace.models.PlanData;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +16,7 @@ import java.util.Map;
  */
 public final class MonitorsUpdateSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_Update_MinimumSet_Gen.json
      */
     /**
@@ -29,7 +32,7 @@ public final class MonitorsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_Update_MaximumSet_Gen.json
      */
     /**
@@ -41,7 +44,13 @@ public final class MonitorsUpdateSamples {
         MonitorResource resource = manager.monitors()
             .getByResourceGroupWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("Environment", "Dev")).apply();
+        resource.update()
+            .withTags(mapOf("Environment", "Dev"))
+            .withProperties(new MonitorUpdateProperties().withPlanData(new PlanData().withUsageType("Committed")
+                .withBillingCycle("Monthly")
+                .withPlanDetails("dynatraceapitestplan")
+                .withEffectiveDate(OffsetDateTime.parse("2019-08-30T15:14:33+02:00"))))
+            .apply();
     }
 
     // Use "Map.of" if available
