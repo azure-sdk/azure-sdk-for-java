@@ -10,7 +10,7 @@ package com.azure.resourcemanager.advisor.generated;
 public final class RecommendationMetadataListSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListRecommendationMetadata.
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2025-01-01/examples/ListRecommendationMetadata.
      * json
      */
     /**
@@ -19,6 +19,6 @@ public final class RecommendationMetadataListSamples {
      * @param manager Entry point to AdvisorManager.
      */
     public static void getMetadata(com.azure.resourcemanager.advisor.AdvisorManager manager) {
-        manager.recommendationMetadatas().list(com.azure.core.util.Context.NONE);
+        manager.recommendationMetadatas().list(null, com.azure.core.util.Context.NONE);
     }
 }

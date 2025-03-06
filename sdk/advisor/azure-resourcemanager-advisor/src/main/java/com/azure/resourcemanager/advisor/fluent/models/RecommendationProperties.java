@@ -11,8 +11,10 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.advisor.models.Category;
+import com.azure.resourcemanager.advisor.models.Control;
 import com.azure.resourcemanager.advisor.models.Impact;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -31,6 +33,11 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
      * The category of the recommendation.
      */
     private Category category;
+
+    /*
+     * The sub-category of the recommendation.
+     */
+    private Control control;
 
     /*
      * The business impact of the recommendation.
@@ -61,6 +68,11 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
      * The recommendation-type GUID.
      */
     private String recommendationTypeId;
+
+    /*
+     * The potential risk of not implementing the recommendation.
+     */
+    private Risk risk;
 
     /*
      * A summary of the recommendation.
@@ -140,6 +152,26 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
      */
     public RecommendationProperties withCategory(Category category) {
         this.category = category;
+        return this;
+    }
+
+    /**
+     * Get the control property: The sub-category of the recommendation.
+     * 
+     * @return the control value.
+     */
+    public Control control() {
+        return this.control;
+    }
+
+    /**
+     * Set the control property: The sub-category of the recommendation.
+     * 
+     * @param control the control value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withControl(Control control) {
+        this.control = control;
         return this;
     }
 
@@ -260,6 +292,26 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
      */
     public RecommendationProperties withRecommendationTypeId(String recommendationTypeId) {
         this.recommendationTypeId = recommendationTypeId;
+        return this;
+    }
+
+    /**
+     * Get the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @return the risk value.
+     */
+    public Risk risk() {
+        return this.risk;
+    }
+
+    /**
+     * Set the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @param risk the risk value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withRisk(Risk risk) {
+        this.risk = risk;
         return this;
     }
 
@@ -506,6 +558,7 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("category", this.category == null ? null : this.category.toString());
+        jsonWriter.writeStringField("control", this.control == null ? null : this.control.toString());
         jsonWriter.writeStringField("impact", this.impact == null ? null : this.impact.toString());
         jsonWriter.writeStringField("impactedField", this.impactedField);
         jsonWriter.writeStringField("impactedValue", this.impactedValue);
@@ -513,6 +566,7 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
             this.lastUpdated == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastUpdated));
         jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("recommendationTypeId", this.recommendationTypeId);
+        jsonWriter.writeStringField("risk", this.risk == null ? null : this.risk.toString());
         jsonWriter.writeJsonField("shortDescription", this.shortDescription);
         jsonWriter.writeArrayField("suppressionIds", this.suppressionIds,
             (writer, element) -> writer.writeString(Objects.toString(element, null)));
@@ -548,6 +602,8 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
 
                 if ("category".equals(fieldName)) {
                     deserializedRecommendationProperties.category = Category.fromString(reader.getString());
+                } else if ("control".equals(fieldName)) {
+                    deserializedRecommendationProperties.control = Control.fromString(reader.getString());
                 } else if ("impact".equals(fieldName)) {
                     deserializedRecommendationProperties.impact = Impact.fromString(reader.getString());
                 } else if ("impactedField".equals(fieldName)) {
@@ -562,6 +618,8 @@ public final class RecommendationProperties implements JsonSerializable<Recommen
                     deserializedRecommendationProperties.metadata = metadata;
                 } else if ("recommendationTypeId".equals(fieldName)) {
                     deserializedRecommendationProperties.recommendationTypeId = reader.getString();
+                } else if ("risk".equals(fieldName)) {
+                    deserializedRecommendationProperties.risk = Risk.fromString(reader.getString());
                 } else if ("shortDescription".equals(fieldName)) {
                     deserializedRecommendationProperties.shortDescription = ShortDescription.fromJson(reader);
                 } else if ("suppressionIds".equals(fieldName)) {

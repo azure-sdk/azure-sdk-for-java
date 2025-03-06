@@ -10,7 +10,7 @@ package com.azure.resourcemanager.advisor.generated;
 public final class SuppressionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/CreateSuppression.json
+     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2025-01-01/examples/CreateSuppression.json
      */
     /**
      * Sample code: CreateSuppression.

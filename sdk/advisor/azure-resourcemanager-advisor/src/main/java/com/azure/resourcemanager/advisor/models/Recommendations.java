@@ -75,8 +75,10 @@ public interface Recommendations {
      * generateRecommendations.
      * 
      * @param filter The filter to apply to the recommendations.&lt;br&gt;Filter can be applied to properties
-     * ['ResourceId', 'ResourceGroup', 'RecommendationTypeGuid', '[Category](#category)'] with operators ['eq', 'and',
-     * 'or'].&lt;br&gt;Example:&lt;br&gt;- $filter=Category eq 'Cost' and ResourceGroup eq 'MyResourceGroup'.
+     * ['ResourceId', 'ResourceGroup', 'RecommendationTypeGuid', '[Category](#category)', '[Control](#control)',
+     * 'RetirementDate'] with operators ['eq', 'and', 'or', 'lt', 'gt', 'le', 'ge'].&lt;br&gt;Example:&lt;br&gt;-
+     * $filter=Category eq 'Cost' and ResourceGroup eq 'MyResourceGroup'&lt;br&gt;-$filter=Control eq
+     * 'ServiceUpgradeAndRetirement' and RetirementDate le '2024-01-01' and RetirementDate ge '2028-01-01'.
      * @param top The number of recommendations per page if a paged version of this API is being used.
      * @param skipToken The page-continuation token to use with a paged version of this API.
      * @param context The context to associate with this operation.
