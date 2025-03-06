@@ -185,6 +185,54 @@ public interface HostPoolProperties {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    ManagedPrivateUdp managedPrivateUdp();
+
+    /**
+     * Gets the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    DirectUdp directUdp();
+
+    /**
+     * Gets the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    PublicUdp publicUdp();
+
+    /**
+     * Gets the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    RelayUdp relayUdp();
+
+    /**
+     * Gets the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @return the managementType value.
+     */
+    ManagementType managementType();
+
+    /**
      * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolPropertiesInner object.
      * 
      * @return the inner object.

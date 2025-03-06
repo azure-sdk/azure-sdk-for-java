@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.DesktopPatch;
+import com.azure.resourcemanager.desktopvirtualization.models.DesktopPatchProperties;
 
 /**
  * Samples for Desktops Update.
@@ -12,19 +13,20 @@ import com.azure.resourcemanager.desktopvirtualization.models.DesktopPatch;
 public final class DesktopsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Desktop_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/Desktops_Update.json
      */
     /**
-     * Sample code: Desktop_Update.
+     * Sample code: Desktops_Update.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        desktopUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        desktopsUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.desktops()
             .updateWithResponse("resourceGroup1", "applicationGroup1", "SessionDesktop",
-                new DesktopPatch().withDescription("des1").withFriendlyName("friendly"),
+                new DesktopPatch()
+                    .withProperties(new DesktopPatchProperties().withDescription("des1").withFriendlyName("friendly")),
                 com.azure.core.util.Context.NONE);
     }
 }

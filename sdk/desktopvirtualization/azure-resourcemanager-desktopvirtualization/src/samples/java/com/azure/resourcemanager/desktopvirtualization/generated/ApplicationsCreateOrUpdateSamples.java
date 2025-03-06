@@ -12,16 +12,16 @@ import com.azure.resourcemanager.desktopvirtualization.models.CommandLineSetting
 public final class ApplicationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Application_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/Applications_CreateOrUpdate.json
      */
     /**
-     * Sample code: Application_Create.
+     * Sample code: Applications_CreateOrUpdate.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void
-        applicationCreate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+    public static void applicationsCreateOrUpdate(
+        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.applications()
             .define("application1")
             .withExistingApplicationGroup("resourceGroup1", "applicationGroup1")

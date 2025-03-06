@@ -28,6 +28,18 @@ public final class SessionHostsImpl implements SessionHosts {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName) {
+        PagedIterable<SessionHostInner> inner = this.serviceClient().list(resourceGroupName, hostPoolName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SessionHostImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, String vmPath, Context context) {
+        PagedIterable<SessionHostInner> inner = this.serviceClient()
+            .list(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, vmPath, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SessionHostImpl(inner1, this.manager()));
+    }
+
     public Response<SessionHost> getWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
         Context context) {
         Response<SessionHostInner> inner
@@ -47,16 +59,6 @@ public final class SessionHostsImpl implements SessionHosts {
         } else {
             return null;
         }
-    }
-
-    public Response<Void> deleteWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
-        Boolean force, Context context) {
-        return this.serviceClient()
-            .deleteWithResponse(resourceGroupName, hostPoolName, sessionHostname, force, context);
-    }
-
-    public void delete(String resourceGroupName, String hostPoolName, String sessionHostname) {
-        this.serviceClient().delete(resourceGroupName, hostPoolName, sessionHostname);
     }
 
     public Response<SessionHost> updateWithResponse(String resourceGroupName, String hostPoolName,
@@ -80,16 +82,24 @@ public final class SessionHostsImpl implements SessionHosts {
         }
     }
 
-    public PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName) {
-        PagedIterable<SessionHostInner> inner = this.serviceClient().list(resourceGroupName, hostPoolName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SessionHostImpl(inner1, this.manager()));
+    public Response<Void> deleteWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
+        Boolean force, Context context) {
+        return this.serviceClient()
+            .deleteWithResponse(resourceGroupName, hostPoolName, sessionHostname, force, context);
     }
 
-    public PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<SessionHostInner> inner
-            = this.serviceClient().list(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SessionHostImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String hostPoolName, String sessionHostname) {
+        this.serviceClient().delete(resourceGroupName, hostPoolName, sessionHostname);
+    }
+
+    public Response<Void> retryProvisioningWithResponse(String resourceGroupName, String hostPoolName,
+        String sessionHostname, Context context) {
+        return this.serviceClient()
+            .retryProvisioningWithResponse(resourceGroupName, hostPoolName, sessionHostname, context);
+    }
+
+    public void retryProvisioning(String resourceGroupName, String hostPoolName, String sessionHostname) {
+        this.serviceClient().retryProvisioning(resourceGroupName, hostPoolName, sessionHostname);
     }
 
     private SessionHostsClient serviceClient() {

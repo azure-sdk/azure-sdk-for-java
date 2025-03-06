@@ -10,8 +10,8 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkResourceProperties;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * A private link resource.
@@ -21,7 +21,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     /*
      * Resource properties.
      */
-    private PrivateLinkResourceProperties innerProperties;
+    private PrivateLinkResourceProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -50,12 +50,23 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Resource properties.
+     * Get the properties property: Resource properties.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private PrivateLinkResourceProperties innerProperties() {
-        return this.innerProperties;
+    public PrivateLinkResourceProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Resource properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the PrivateLinkResourceInner object itself.
+     */
+    public PrivateLinkResourceInner withProperties(PrivateLinkResourceProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -98,54 +109,13 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the groupId property: The private link resource group id.
-     * 
-     * @return the groupId value.
-     */
-    public String groupId() {
-        return this.innerProperties() == null ? null : this.innerProperties().groupId();
-    }
-
-    /**
-     * Get the requiredMembers property: The private link resource required member names.
-     * 
-     * @return the requiredMembers value.
-     */
-    public List<String> requiredMembers() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredMembers();
-    }
-
-    /**
-     * Get the requiredZoneNames property: The private link resource Private link DNS zone name.
-     * 
-     * @return the requiredZoneNames value.
-     */
-    public List<String> requiredZoneNames() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredZoneNames();
-    }
-
-    /**
-     * Set the requiredZoneNames property: The private link resource Private link DNS zone name.
-     * 
-     * @param requiredZoneNames the requiredZoneNames value to set.
-     * @return the PrivateLinkResourceInner object itself.
-     */
-    public PrivateLinkResourceInner withRequiredZoneNames(List<String> requiredZoneNames) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PrivateLinkResourceProperties();
-        }
-        this.innerProperties().withRequiredZoneNames(requiredZoneNames);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -155,7 +125,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -182,8 +152,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedPrivateLinkResourceInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedPrivateLinkResourceInner.innerProperties
-                        = PrivateLinkResourceProperties.fromJson(reader);
+                    deserializedPrivateLinkResourceInner.properties = PrivateLinkResourceProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedPrivateLinkResourceInner.systemData = SystemData.fromJson(reader);
                 } else {

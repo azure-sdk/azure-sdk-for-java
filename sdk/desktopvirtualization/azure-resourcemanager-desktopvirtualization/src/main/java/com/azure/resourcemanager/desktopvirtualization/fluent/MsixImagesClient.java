@@ -18,14 +18,16 @@ import com.azure.resourcemanager.desktopvirtualization.models.MsixImageUri;
 public interface MsixImagesClient {
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList as paginated response with {@link PagedFlux}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ExpandMsixImageInner> expandAsync(String resourceGroupName, String hostPoolName,
@@ -33,14 +35,16 @@ public interface MsixImagesClient {
 
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList as paginated response with {@link PagedIterable}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ExpandMsixImageInner> expand(String resourceGroupName, String hostPoolName,
@@ -48,15 +52,17 @@ public interface MsixImagesClient {
 
     /**
      * Expands and Lists MSIX packages in an Image, given the Image Path.
+     * This action uses incorrect Msix casing intentionally to match the previous APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param msixImageUri Object containing URI to MSIX Image.
+     * @param msixImageUri The msixImageUri parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expandMsixImageList as paginated response with {@link PagedIterable}.
+     * @return list of MSIX package properties retrieved from MSIX Image expansion as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ExpandMsixImageInner> expand(String resourceGroupName, String hostPoolName, MsixImageUri msixImageUri,

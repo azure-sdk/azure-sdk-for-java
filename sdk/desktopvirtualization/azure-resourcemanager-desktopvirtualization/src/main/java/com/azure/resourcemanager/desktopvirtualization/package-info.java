@@ -4,6 +4,6 @@
 
 /**
  * Package containing the classes for DesktopVirtualizationApiClient.
- * null.
+ * This Typespec represents the Desktop Virtualization API interfaces.
  */
 package com.azure.resourcemanager.desktopvirtualization;

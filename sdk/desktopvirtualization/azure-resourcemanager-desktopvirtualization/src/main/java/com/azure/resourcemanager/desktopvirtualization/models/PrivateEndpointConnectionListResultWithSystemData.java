@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,18 +15,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * List of private endpoint connection associated with the specified storage account.
+ * List of private endpoint connection associated with the specified HostPool.
  */
 @Fluent
 public final class PrivateEndpointConnectionListResultWithSystemData
     implements JsonSerializable<PrivateEndpointConnectionListResultWithSystemData> {
     /*
-     * Array of private endpoint connections
+     * The PrivateEndpointConnectionWithSystemData items on this page
      */
     private List<PrivateEndpointConnectionWithSystemDataInner> value;
 
     /*
-     * Link to the next page of results.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -36,7 +37,7 @@ public final class PrivateEndpointConnectionListResultWithSystemData
     }
 
     /**
-     * Get the value property: Array of private endpoint connections.
+     * Get the value property: The PrivateEndpointConnectionWithSystemData items on this page.
      * 
      * @return the value value.
      */
@@ -45,7 +46,7 @@ public final class PrivateEndpointConnectionListResultWithSystemData
     }
 
     /**
-     * Set the value property: Array of private endpoint connections.
+     * Set the value property: The PrivateEndpointConnectionWithSystemData items on this page.
      * 
      * @param value the value value to set.
      * @return the PrivateEndpointConnectionListResultWithSystemData object itself.
@@ -57,7 +58,7 @@ public final class PrivateEndpointConnectionListResultWithSystemData
     }
 
     /**
-     * Get the nextLink property: Link to the next page of results.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -66,15 +67,33 @@ public final class PrivateEndpointConnectionListResultWithSystemData
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the PrivateEndpointConnectionListResultWithSystemData object itself.
+     */
+    public PrivateEndpointConnectionListResultWithSystemData withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model PrivateEndpointConnectionListResultWithSystemData"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER
+        = new ClientLogger(PrivateEndpointConnectionListResultWithSystemData.class);
 
     /**
      * {@inheritDoc}
@@ -83,6 +102,7 @@ public final class PrivateEndpointConnectionListResultWithSystemData
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -92,6 +112,7 @@ public final class PrivateEndpointConnectionListResultWithSystemData
      * @param jsonReader The JsonReader being read.
      * @return An instance of PrivateEndpointConnectionListResultWithSystemData if the JsonReader was pointing to an
      * instance of it, or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the PrivateEndpointConnectionListResultWithSystemData.
      */
     public static PrivateEndpointConnectionListResultWithSystemData fromJson(JsonReader jsonReader) throws IOException {

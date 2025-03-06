@@ -10,16 +10,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class MsixPackagesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * MsixPackage_Delete.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/MsixPackages_Delete.json
      */
     /**
-     * Sample code: MSIXPackage_Delete.
+     * Sample code: MsixPackages_Delete.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        mSIXPackageDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        msixPackagesDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.msixPackages()
             .deleteWithResponse("resourceGroup1", "hostpool1", "packagefullname", com.azure.core.util.Context.NONE);
     }

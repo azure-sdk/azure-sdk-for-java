@@ -9,9 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopPatchProperties;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * Desktop properties that can be patched.
@@ -19,14 +17,9 @@ import java.util.Map;
 @Fluent
 public final class DesktopPatch implements JsonSerializable<DesktopPatch> {
     /*
-     * tags to be updated
-     */
-    private Map<String, String> tags;
-
-    /*
      * Detailed properties for Desktop
      */
-    private DesktopPatchProperties innerProperties;
+    private DesktopPatchProperties properties;
 
     /**
      * Creates an instance of DesktopPatch class.
@@ -35,77 +28,22 @@ public final class DesktopPatch implements JsonSerializable<DesktopPatch> {
     }
 
     /**
-     * Get the tags property: tags to be updated.
+     * Get the properties property: Detailed properties for Desktop.
      * 
-     * @return the tags value.
+     * @return the properties value.
      */
-    public Map<String, String> tags() {
-        return this.tags;
+    public DesktopPatchProperties properties() {
+        return this.properties;
     }
 
     /**
-     * Set the tags property: tags to be updated.
+     * Set the properties property: Detailed properties for Desktop.
      * 
-     * @param tags the tags value to set.
+     * @param properties the properties value to set.
      * @return the DesktopPatch object itself.
      */
-    public DesktopPatch withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the innerProperties property: Detailed properties for Desktop.
-     * 
-     * @return the innerProperties value.
-     */
-    private DesktopPatchProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the description property: Description of Desktop.
-     * 
-     * @return the description value.
-     */
-    public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
-    }
-
-    /**
-     * Set the description property: Description of Desktop.
-     * 
-     * @param description the description value to set.
-     * @return the DesktopPatch object itself.
-     */
-    public DesktopPatch withDescription(String description) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DesktopPatchProperties();
-        }
-        this.innerProperties().withDescription(description);
-        return this;
-    }
-
-    /**
-     * Get the friendlyName property: Friendly name of Desktop.
-     * 
-     * @return the friendlyName value.
-     */
-    public String friendlyName() {
-        return this.innerProperties() == null ? null : this.innerProperties().friendlyName();
-    }
-
-    /**
-     * Set the friendlyName property: Friendly name of Desktop.
-     * 
-     * @param friendlyName the friendlyName value to set.
-     * @return the DesktopPatch object itself.
-     */
-    public DesktopPatch withFriendlyName(String friendlyName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DesktopPatchProperties();
-        }
-        this.innerProperties().withFriendlyName(friendlyName);
+    public DesktopPatch withProperties(DesktopPatchProperties properties) {
+        this.properties = properties;
         return this;
     }
 
@@ -115,8 +53,8 @@ public final class DesktopPatch implements JsonSerializable<DesktopPatch> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -126,8 +64,7 @@ public final class DesktopPatch implements JsonSerializable<DesktopPatch> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -146,11 +83,8 @@ public final class DesktopPatch implements JsonSerializable<DesktopPatch> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedDesktopPatch.tags = tags;
-                } else if ("properties".equals(fieldName)) {
-                    deserializedDesktopPatch.innerProperties = DesktopPatchProperties.fromJson(reader);
+                if ("properties".equals(fieldName)) {
+                    deserializedDesktopPatch.properties = DesktopPatchProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
