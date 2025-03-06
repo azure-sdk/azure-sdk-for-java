@@ -9,10 +9,8 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.redisenterprise.models.AccessKeysAuthentication;
 import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
 import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
-import com.azure.resourcemanager.redisenterprise.models.DeferUpgradeSetting;
 import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
 import com.azure.resourcemanager.redisenterprise.models.Module;
 import com.azure.resourcemanager.redisenterprise.models.Persistence;
@@ -23,9 +21,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Redis Enterprise database properties
+ * RedisEnterprise database properties
  * 
- * Properties of Redis Enterprise databases, as opposed to general resource properties like location, tags.
+ * Properties of RedisEnterprise databases, as opposed to general resource properties like location, tags.
  */
 @Fluent
 public final class DatabaseProperties implements JsonSerializable<DatabaseProperties> {
@@ -51,8 +49,7 @@ public final class DatabaseProperties implements JsonSerializable<DatabaseProper
     private ResourceState resourceState;
 
     /*
-     * Clustering policy - default is OSSCluster. This property must be chosen at create time, and cannot be changed
-     * without deleting the database.
+     * Clustering policy - default is OSSCluster. Specified at create time.
      */
     private ClusteringPolicy clusteringPolicy;
 
@@ -75,23 +72,6 @@ public final class DatabaseProperties implements JsonSerializable<DatabaseProper
      * Optional set of properties to configure geo replication for this database.
      */
     private DatabasePropertiesGeoReplication geoReplication;
-
-    /*
-     * Version of Redis the database is running on, e.g. '6.0'
-     */
-    private String redisVersion;
-
-    /*
-     * Option to defer upgrade when newest version is released - default is NotDeferred. Learn more:
-     * https://aka.ms/redisversionupgrade
-     */
-    private DeferUpgradeSetting deferUpgrade;
-
-    /*
-     * This property can be Enabled/Disabled to allow or deny access with the current access keys. Can be updated even
-     * after database is created.
-     */
-    private AccessKeysAuthentication accessKeysAuthentication;
 
     /**
      * Creates an instance of DatabaseProperties class.
@@ -162,8 +142,7 @@ public final class DatabaseProperties implements JsonSerializable<DatabaseProper
     }
 
     /**
-     * Get the clusteringPolicy property: Clustering policy - default is OSSCluster. This property must be chosen at
-     * create time, and cannot be changed without deleting the database.
+     * Get the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
      * 
      * @return the clusteringPolicy value.
      */
@@ -172,8 +151,7 @@ public final class DatabaseProperties implements JsonSerializable<DatabaseProper
     }
 
     /**
-     * Set the clusteringPolicy property: Clustering policy - default is OSSCluster. This property must be chosen at
-     * create time, and cannot be changed without deleting the database.
+     * Set the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
      * 
      * @param clusteringPolicy the clusteringPolicy value to set.
      * @return the DatabaseProperties object itself.
@@ -266,59 +244,6 @@ public final class DatabaseProperties implements JsonSerializable<DatabaseProper
     }
 
     /**
-     * Get the redisVersion property: Version of Redis the database is running on, e.g. '6.0'.
-     * 
-     * @return the redisVersion value.
-     */
-    public String redisVersion() {
-        return this.redisVersion;
-    }
-
-    /**
-     * Get the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @return the deferUpgrade value.
-     */
-    public DeferUpgradeSetting deferUpgrade() {
-        return this.deferUpgrade;
-    }
-
-    /**
-     * Set the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @param deferUpgrade the deferUpgrade value to set.
-     * @return the DatabaseProperties object itself.
-     */
-    public DatabaseProperties withDeferUpgrade(DeferUpgradeSetting deferUpgrade) {
-        this.deferUpgrade = deferUpgrade;
-        return this;
-    }
-
-    /**
-     * Get the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny access with the
-     * current access keys. Can be updated even after database is created.
-     * 
-     * @return the accessKeysAuthentication value.
-     */
-    public AccessKeysAuthentication accessKeysAuthentication() {
-        return this.accessKeysAuthentication;
-    }
-
-    /**
-     * Set the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny access with the
-     * current access keys. Can be updated even after database is created.
-     * 
-     * @param accessKeysAuthentication the accessKeysAuthentication value to set.
-     * @return the DatabaseProperties object itself.
-     */
-    public DatabaseProperties withAccessKeysAuthentication(AccessKeysAuthentication accessKeysAuthentication) {
-        this.accessKeysAuthentication = accessKeysAuthentication;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -351,9 +276,6 @@ public final class DatabaseProperties implements JsonSerializable<DatabaseProper
         jsonWriter.writeJsonField("persistence", this.persistence);
         jsonWriter.writeArrayField("modules", this.modules, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("geoReplication", this.geoReplication);
-        jsonWriter.writeStringField("deferUpgrade", this.deferUpgrade == null ? null : this.deferUpgrade.toString());
-        jsonWriter.writeStringField("accessKeysAuthentication",
-            this.accessKeysAuthentication == null ? null : this.accessKeysAuthentication.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -391,13 +313,6 @@ public final class DatabaseProperties implements JsonSerializable<DatabaseProper
                     deserializedDatabaseProperties.modules = modules;
                 } else if ("geoReplication".equals(fieldName)) {
                     deserializedDatabaseProperties.geoReplication = DatabasePropertiesGeoReplication.fromJson(reader);
-                } else if ("redisVersion".equals(fieldName)) {
-                    deserializedDatabaseProperties.redisVersion = reader.getString();
-                } else if ("deferUpgrade".equals(fieldName)) {
-                    deserializedDatabaseProperties.deferUpgrade = DeferUpgradeSetting.fromString(reader.getString());
-                } else if ("accessKeysAuthentication".equals(fieldName)) {
-                    deserializedDatabaseProperties.accessKeysAuthentication
-                        = AccessKeysAuthentication.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

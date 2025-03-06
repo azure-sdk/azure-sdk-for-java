@@ -11,10 +11,8 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
-import com.azure.resourcemanager.redisenterprise.models.HighAvailability;
 import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
-import com.azure.resourcemanager.redisenterprise.models.RedundancyMode;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
@@ -23,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Describes the Redis Enterprise cluster.
+ * Describes the RedisEnterprise cluster.
  */
 @Fluent
 public final class ClusterInner extends Resource {
@@ -186,34 +184,7 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the highAvailability property: Enabled by default. If highAvailability is disabled, the data set is not
-     * replicated. This affects the availability SLA, and increases the risk of data loss.
-     * 
-     * @return the highAvailability value.
-     */
-    public HighAvailability highAvailability() {
-        return this.innerProperties() == null ? null : this.innerProperties().highAvailability();
-    }
-
-    /**
-     * Set the highAvailability property: Enabled by default. If highAvailability is disabled, the data set is not
-     * replicated. This affects the availability SLA, and increases the risk of data loss.
-     * 
-     * @param highAvailability the highAvailability value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withHighAvailability(HighAvailability highAvailability) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withHighAvailability(highAvailability);
-        return this;
-    }
-
-    /**
-     * Get the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'. Newer
-     * versions can be added in the future. Note that TLS 1.0 and TLS 1.1 are now completely obsolete -- you cannot use
-     * them. They are mentioned only for the sake of consistency with old API versions.
+     * Get the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
      * 
      * @return the minimumTlsVersion value.
      */
@@ -222,9 +193,7 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Set the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'. Newer
-     * versions can be added in the future. Note that TLS 1.0 and TLS 1.1 are now completely obsolete -- you cannot use
-     * them. They are mentioned only for the sake of consistency with old API versions.
+     * Set the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
      * 
      * @param minimumTlsVersion the minimumTlsVersion value to set.
      * @return the ClusterInner object itself.
@@ -279,16 +248,6 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the redundancyMode property: Explains the current redundancy strategy of the cluster, which affects the
-     * expected SLA.
-     * 
-     * @return the redundancyMode value.
-     */
-    public RedundancyMode redundancyMode() {
-        return this.innerProperties() == null ? null : this.innerProperties().redundancyMode();
-    }
-
-    /**
      * Get the resourceState property: Current resource status of the cluster.
      * 
      * @return the resourceState value.
@@ -308,7 +267,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the privateEndpointConnections property: List of private endpoint connections associated with the specified
-     * Redis Enterprise cluster.
+     * RedisEnterprise cluster.
      * 
      * @return the privateEndpointConnections value.
      */

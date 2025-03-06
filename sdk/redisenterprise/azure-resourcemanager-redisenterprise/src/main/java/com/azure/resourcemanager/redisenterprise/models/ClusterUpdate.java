@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A partial update to the Redis Enterprise cluster.
+ * A partial update to the RedisEnterprise cluster.
  */
 @Fluent
 public final class ClusterUpdate implements JsonSerializable<ClusterUpdate> {
@@ -116,34 +116,7 @@ public final class ClusterUpdate implements JsonSerializable<ClusterUpdate> {
     }
 
     /**
-     * Get the highAvailability property: Enabled by default. If highAvailability is disabled, the data set is not
-     * replicated. This affects the availability SLA, and increases the risk of data loss.
-     * 
-     * @return the highAvailability value.
-     */
-    public HighAvailability highAvailability() {
-        return this.innerProperties() == null ? null : this.innerProperties().highAvailability();
-    }
-
-    /**
-     * Set the highAvailability property: Enabled by default. If highAvailability is disabled, the data set is not
-     * replicated. This affects the availability SLA, and increases the risk of data loss.
-     * 
-     * @param highAvailability the highAvailability value to set.
-     * @return the ClusterUpdate object itself.
-     */
-    public ClusterUpdate withHighAvailability(HighAvailability highAvailability) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withHighAvailability(highAvailability);
-        return this;
-    }
-
-    /**
-     * Get the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'. Newer
-     * versions can be added in the future. Note that TLS 1.0 and TLS 1.1 are now completely obsolete -- you cannot use
-     * them. They are mentioned only for the sake of consistency with old API versions.
+     * Get the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
      * 
      * @return the minimumTlsVersion value.
      */
@@ -152,9 +125,7 @@ public final class ClusterUpdate implements JsonSerializable<ClusterUpdate> {
     }
 
     /**
-     * Set the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'. Newer
-     * versions can be added in the future. Note that TLS 1.0 and TLS 1.1 are now completely obsolete -- you cannot use
-     * them. They are mentioned only for the sake of consistency with old API versions.
+     * Set the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
      * 
      * @param minimumTlsVersion the minimumTlsVersion value to set.
      * @return the ClusterUpdate object itself.
@@ -209,16 +180,6 @@ public final class ClusterUpdate implements JsonSerializable<ClusterUpdate> {
     }
 
     /**
-     * Get the redundancyMode property: Explains the current redundancy strategy of the cluster, which affects the
-     * expected SLA.
-     * 
-     * @return the redundancyMode value.
-     */
-    public RedundancyMode redundancyMode() {
-        return this.innerProperties() == null ? null : this.innerProperties().redundancyMode();
-    }
-
-    /**
      * Get the resourceState property: Current resource status of the cluster.
      * 
      * @return the resourceState value.
@@ -238,7 +199,7 @@ public final class ClusterUpdate implements JsonSerializable<ClusterUpdate> {
 
     /**
      * Get the privateEndpointConnections property: List of private endpoint connections associated with the specified
-     * Redis Enterprise cluster.
+     * RedisEnterprise cluster.
      * 
      * @return the privateEndpointConnections value.
      */
