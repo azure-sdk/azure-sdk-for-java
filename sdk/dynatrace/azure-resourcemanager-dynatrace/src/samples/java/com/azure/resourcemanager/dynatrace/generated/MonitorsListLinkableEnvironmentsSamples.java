@@ -11,7 +11,7 @@ import com.azure.resourcemanager.dynatrace.models.LinkableEnvironmentRequest;
  */
 public final class MonitorsListLinkableEnvironmentsSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListLinkableEnvironments_MinimumSet_Gen.json
      */
     /**
@@ -30,7 +30,7 @@ public final class MonitorsListLinkableEnvironmentsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListLinkableEnvironments_MaximumSet_Gen.json
      */
     /**

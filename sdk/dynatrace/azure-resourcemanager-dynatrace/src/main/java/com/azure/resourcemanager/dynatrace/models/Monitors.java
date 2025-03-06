@@ -30,6 +30,7 @@ public interface Monitors {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
+     * @param request The details of the log status request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -38,7 +39,7 @@ public interface Monitors {
      * {@link PagedIterable}.
      */
     PagedIterable<MonitoredResource> listMonitoredResources(String resourceGroupName, String monitorName,
-        Context context);
+        LogStatusRequest request, Context context);
 
     /**
      * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
@@ -65,6 +66,33 @@ public interface Monitors {
      * @return response of payload to be passed while installing VM agent.
      */
     VMExtensionPayload getVMHostPayload(String resourceGroupName, String monitorName);
+
+    /**
+     * Create/Update the list of all resources that have Dynatrace agent installed through the Azure Dynatrace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request List of resources and action.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateAgentStatusWithResponse(String resourceGroupName, String monitorName,
+        AgentStatusRequest request, Context context);
+
+    /**
+     * Create/Update the list of all resources that have Dynatrace agent installed through the Azure Dynatrace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request List of resources and action.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateAgentStatus(String resourceGroupName, String monitorName, AgentStatusRequest request);
 
     /**
      * Get a MonitorResource.
@@ -159,30 +187,51 @@ public interface Monitors {
     PagedIterable<MonitorResource> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Get Marketplace SaaS resource details of a tenant under a specific subscription.
+     * Get the total number of connected resources for the given marketplace subscription Id.
+     * 
+     * @param request Marketplace Subscription Id.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the total number of connected resources for the given marketplace subscription Id along with
+     * {@link Response}.
+     */
+    Response<ConnectedResourcesCountResponse>
+        getAllConnectedResourcesCountWithResponse(MarketplaceSubscriptionIdRequest request, Context context);
+
+    /**
+     * Get the total number of connected resources for the given marketplace subscription Id.
+     * 
+     * @param request Marketplace Subscription Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the total number of connected resources for the given marketplace subscription Id.
+     */
+    ConnectedResourcesCountResponse getAllConnectedResourcesCount(MarketplaceSubscriptionIdRequest request);
+
+    /**
+     * Get Marketplace SaaS resource details.
      * 
      * @param request Tenant Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace SaaS resource details of a tenant under a specific subscription along with {@link Response}.
+     * @return marketplace SaaS resource details along with {@link Response}.
      */
     Response<MarketplaceSaaSResourceDetailsResponse>
         getMarketplaceSaaSResourceDetailsWithResponse(MarketplaceSaaSResourceDetailsRequest request, Context context);
 
     /**
-     * Get Marketplace SaaS resource details of a tenant under a specific subscription.
+     * Get Marketplace SaaS resource details.
      * 
      * @param request Tenant Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace SaaS resource details of a tenant under a specific subscription.
+     * @return marketplace SaaS resource details.
      */
     MarketplaceSaaSResourceDetailsResponse
         getMarketplaceSaaSResourceDetails(MarketplaceSaaSResourceDetailsRequest request);
@@ -216,7 +265,8 @@ public interface Monitors {
      * Get metric status.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Name of the Monitor resource.
+     * @param monitorName Name of the Monitors resource.
+     * @param request The details of the metric status request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -224,13 +274,13 @@ public interface Monitors {
      * @return metric status along with {@link Response}.
      */
     Response<MetricsStatusResponse> getMetricStatusWithResponse(String resourceGroupName, String monitorName,
-        Context context);
+        MetricStatusRequest request, Context context);
 
     /**
      * Get metric status.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Name of the Monitor resource.
+     * @param monitorName Name of the Monitors resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -266,6 +316,31 @@ public interface Monitors {
     PagedIterable<AppServiceInfo> listAppServices(String resourceGroupName, String monitorName, Context context);
 
     /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void upgradePlan(String resourceGroupName, String monitorName, UpgradePlanRequest request);
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void upgradePlan(String resourceGroupName, String monitorName, UpgradePlanRequest request, Context context);
+
+    /**
      * Gets the SSO configuration details from the partner.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -274,8 +349,6 @@ public interface Monitors {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the SSO configuration details from the partner along with {@link Response}.
      */
@@ -289,8 +362,6 @@ public interface Monitors {
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the SSO configuration details from the partner.
      */

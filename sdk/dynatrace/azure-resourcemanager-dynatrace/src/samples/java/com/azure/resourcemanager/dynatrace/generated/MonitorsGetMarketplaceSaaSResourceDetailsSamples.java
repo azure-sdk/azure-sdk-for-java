@@ -11,7 +11,7 @@ import com.azure.resourcemanager.dynatrace.models.MarketplaceSaaSResourceDetails
  */
 public final class MonitorsGetMarketplaceSaaSResourceDetailsSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetMarketplaceSaaSResourceDetails_MinimumSet_Gen.json
      */
     /**
@@ -28,7 +28,7 @@ public final class MonitorsGetMarketplaceSaaSResourceDetailsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetMarketplaceSaaSResourceDetails_MaximumSet_Gen.json
      */
     /**
