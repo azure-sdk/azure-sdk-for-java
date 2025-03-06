@@ -21,11 +21,6 @@ public final class HciOsProfile implements JsonSerializable<HciOsProfile> {
      */
     private String bootType;
 
-    /*
-     * Version of assembly present on device
-     */
-    private String assemblyVersion;
-
     /**
      * Creates an instance of HciOsProfile class.
      */
@@ -39,15 +34,6 @@ public final class HciOsProfile implements JsonSerializable<HciOsProfile> {
      */
     public String bootType() {
         return this.bootType;
-    }
-
-    /**
-     * Get the assemblyVersion property: Version of assembly present on device.
-     * 
-     * @return the assemblyVersion value.
-     */
-    public String assemblyVersion() {
-        return this.assemblyVersion;
     }
 
     /**
@@ -84,8 +70,6 @@ public final class HciOsProfile implements JsonSerializable<HciOsProfile> {
 
                 if ("bootType".equals(fieldName)) {
                     deserializedHciOsProfile.bootType = reader.getString();
-                } else if ("assemblyVersion".equals(fieldName)) {
-                    deserializedHciOsProfile.assemblyVersion = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

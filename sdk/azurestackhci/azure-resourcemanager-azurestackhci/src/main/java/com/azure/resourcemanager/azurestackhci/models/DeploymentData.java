@@ -60,7 +60,7 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
     /*
      * HostNetwork config to deploy AzureStackHCI Cluster.
      */
-    private DeploymentSettingHostNetwork hostNetwork;
+    private HostNetwork hostNetwork;
 
     /*
      * SDN Integration config to deploy AzureStackHCI Cluster.
@@ -259,7 +259,7 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
      * 
      * @return the hostNetwork value.
      */
-    public DeploymentSettingHostNetwork hostNetwork() {
+    public HostNetwork hostNetwork() {
         return this.hostNetwork;
     }
 
@@ -269,7 +269,7 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
      * @param hostNetwork the hostNetwork value to set.
      * @return the DeploymentData object itself.
      */
-    public DeploymentData withHostNetwork(DeploymentSettingHostNetwork hostNetwork) {
+    public DeploymentData withHostNetwork(HostNetwork hostNetwork) {
         this.hostNetwork = hostNetwork;
         return this;
     }
@@ -475,7 +475,7 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
                     List<PhysicalNodes> physicalNodes = reader.readArray(reader1 -> PhysicalNodes.fromJson(reader1));
                     deserializedDeploymentData.physicalNodes = physicalNodes;
                 } else if ("hostNetwork".equals(fieldName)) {
-                    deserializedDeploymentData.hostNetwork = DeploymentSettingHostNetwork.fromJson(reader);
+                    deserializedDeploymentData.hostNetwork = HostNetwork.fromJson(reader);
                 } else if ("sdnIntegration".equals(fieldName)) {
                     deserializedDeploymentData.sdnIntegration = SdnIntegration.fromJson(reader);
                 } else if ("adouPath".equals(fieldName)) {

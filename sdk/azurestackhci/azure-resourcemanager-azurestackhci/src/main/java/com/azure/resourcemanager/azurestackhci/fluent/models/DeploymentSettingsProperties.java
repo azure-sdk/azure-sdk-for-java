@@ -13,7 +13,6 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.DeploymentConfiguration;
 import com.azure.resourcemanager.azurestackhci.models.DeploymentMode;
 import com.azure.resourcemanager.azurestackhci.models.EceReportedProperties;
-import com.azure.resourcemanager.azurestackhci.models.OperationType;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import java.io.IOException;
 import java.util.List;
@@ -37,11 +36,6 @@ public final class DeploymentSettingsProperties implements JsonSerializable<Depl
      * The deployment mode for cluster deployment.
      */
     private DeploymentMode deploymentMode;
-
-    /*
-     * The intended operation for a cluster.
-     */
-    private OperationType operationType;
 
     /*
      * Scale units will contains list of deployment data
@@ -105,26 +99,6 @@ public final class DeploymentSettingsProperties implements JsonSerializable<Depl
      */
     public DeploymentSettingsProperties withDeploymentMode(DeploymentMode deploymentMode) {
         this.deploymentMode = deploymentMode;
-        return this;
-    }
-
-    /**
-     * Get the operationType property: The intended operation for a cluster.
-     * 
-     * @return the operationType value.
-     */
-    public OperationType operationType() {
-        return this.operationType;
-    }
-
-    /**
-     * Set the operationType property: The intended operation for a cluster.
-     * 
-     * @param operationType the operationType value to set.
-     * @return the DeploymentSettingsProperties object itself.
-     */
-    public DeploymentSettingsProperties withOperationType(OperationType operationType) {
-        this.operationType = operationType;
         return this;
     }
 
@@ -198,7 +172,6 @@ public final class DeploymentSettingsProperties implements JsonSerializable<Depl
         jsonWriter.writeStringField("deploymentMode",
             this.deploymentMode == null ? null : this.deploymentMode.toString());
         jsonWriter.writeJsonField("deploymentConfiguration", this.deploymentConfiguration);
-        jsonWriter.writeStringField("operationType", this.operationType == null ? null : this.operationType.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -230,9 +203,6 @@ public final class DeploymentSettingsProperties implements JsonSerializable<Depl
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedDeploymentSettingsProperties.provisioningState
                         = ProvisioningState.fromString(reader.getString());
-                } else if ("operationType".equals(fieldName)) {
-                    deserializedDeploymentSettingsProperties.operationType
-                        = OperationType.fromString(reader.getString());
                 } else if ("reportedProperties".equals(fieldName)) {
                     deserializedDeploymentSettingsProperties.reportedProperties
                         = EceReportedProperties.fromJson(reader);

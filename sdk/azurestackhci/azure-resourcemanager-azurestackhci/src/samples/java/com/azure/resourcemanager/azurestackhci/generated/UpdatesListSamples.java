@@ -10,15 +10,15 @@ package com.azure.resourcemanager.azurestackhci.generated;
 public final class UpdatesListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * ListUpdates.json
      */
     /**
      * Sample code: List available updates.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void listAvailableUpdates(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void listAvailableUpdates(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.updates().list("testrg", "testcluster", com.azure.core.util.Context.NONE);
     }
 }
