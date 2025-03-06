@@ -14,17 +14,17 @@ import java.util.Arrays;
 public final class ClustersUploadCertificateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2024-02-15-preview/examples/
      * UploadCertificate.json
      */
     /**
      * Sample code: Upload certificate.
      * 
-     * @param manager Entry point to AzureStackHciManager.
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void uploadCertificate(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void uploadCertificate(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.clusters()
-            .uploadCertificate("test-rg", "myCluster",
+            .uploadCertificate("test-rg", "mycluster",
                 new UploadCertificateRequest().withProperties(
                     new RawCertificateData().withCertificates(Arrays.asList("base64cert", "base64cert"))),
                 com.azure.core.util.Context.NONE);

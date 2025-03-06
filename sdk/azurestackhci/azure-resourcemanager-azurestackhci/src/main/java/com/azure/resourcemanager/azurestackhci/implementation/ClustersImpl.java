@@ -25,10 +25,10 @@ public final class ClustersImpl implements Clusters {
 
     private final ClustersClient innerClient;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
     public ClustersImpl(ClustersClient innerClient,
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -237,7 +237,7 @@ public final class ClustersImpl implements Clusters {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 

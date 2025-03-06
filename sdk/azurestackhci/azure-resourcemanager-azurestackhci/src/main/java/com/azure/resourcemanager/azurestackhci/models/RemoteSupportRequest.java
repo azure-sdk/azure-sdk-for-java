@@ -12,12 +12,12 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Remote Support Request.
+ * The RemoteSupportRequest model.
  */
 @Fluent
 public final class RemoteSupportRequest implements JsonSerializable<RemoteSupportRequest> {
     /*
-     * Properties for Remote Support Request
+     * The properties property.
      */
     private RemoteSupportRequestProperties properties;
 
@@ -28,7 +28,7 @@ public final class RemoteSupportRequest implements JsonSerializable<RemoteSuppor
     }
 
     /**
-     * Get the properties property: Properties for Remote Support Request.
+     * Get the properties property: The properties property.
      * 
      * @return the properties value.
      */
@@ -37,7 +37,7 @@ public final class RemoteSupportRequest implements JsonSerializable<RemoteSuppor
     }
 
     /**
-     * Set the properties property: Properties for Remote Support Request.
+     * Set the properties property: The properties property.
      * 
      * @param properties the properties value to set.
      * @return the RemoteSupportRequest object itself.

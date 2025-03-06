@@ -13,7 +13,6 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.DeploymentConfiguration;
 import com.azure.resourcemanager.azurestackhci.models.DeploymentMode;
 import com.azure.resourcemanager.azurestackhci.models.EceReportedProperties;
-import com.azure.resourcemanager.azurestackhci.models.OperationType;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import java.io.IOException;
 import java.util.List;
@@ -34,9 +33,9 @@ public final class DeploymentSettingInner extends ProxyResource {
     private SystemData systemData;
 
     /*
-     * Fully qualified resource Id for the resource.
+     * The type of the resource.
      */
-    private String id;
+    private String type;
 
     /*
      * The name of the resource.
@@ -44,9 +43,9 @@ public final class DeploymentSettingInner extends ProxyResource {
     private String name;
 
     /*
-     * The type of the resource.
+     * Fully qualified resource Id for the resource.
      */
-    private String type;
+    private String id;
 
     /**
      * Creates an instance of DeploymentSettingInner class.
@@ -73,13 +72,13 @@ public final class DeploymentSettingInner extends ProxyResource {
     }
 
     /**
-     * Get the id property: Fully qualified resource Id for the resource.
+     * Get the type property: The type of the resource.
      * 
-     * @return the id value.
+     * @return the type value.
      */
     @Override
-    public String id() {
-        return this.id;
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -93,13 +92,13 @@ public final class DeploymentSettingInner extends ProxyResource {
     }
 
     /**
-     * Get the type property: The type of the resource.
+     * Get the id property: Fully qualified resource Id for the resource.
      * 
-     * @return the type value.
+     * @return the id value.
      */
     @Override
-    public String type() {
-        return this.type;
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -154,29 +153,6 @@ public final class DeploymentSettingInner extends ProxyResource {
             this.innerProperties = new DeploymentSettingsProperties();
         }
         this.innerProperties().withDeploymentMode(deploymentMode);
-        return this;
-    }
-
-    /**
-     * Get the operationType property: The intended operation for a cluster.
-     * 
-     * @return the operationType value.
-     */
-    public OperationType operationType() {
-        return this.innerProperties() == null ? null : this.innerProperties().operationType();
-    }
-
-    /**
-     * Set the operationType property: The intended operation for a cluster.
-     * 
-     * @param operationType the operationType value to set.
-     * @return the DeploymentSettingInner object itself.
-     */
-    public DeploymentSettingInner withOperationType(OperationType operationType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DeploymentSettingsProperties();
-        }
-        this.innerProperties().withOperationType(operationType);
         return this;
     }
 
