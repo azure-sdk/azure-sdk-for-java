@@ -10,15 +10,15 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class ScalingPlansListByHostPoolSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ScalingPlan_ListByHostPool.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/ScalingPlans_ListByHostPool.json
      */
     /**
-     * Sample code: ScalingPlan_ListByHostPool.
+     * Sample code: ScalingPlans_ListByHostPool.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void scalingPlanListByHostPool(
+    public static void scalingPlansListByHostPool(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.scalingPlans()
             .listByHostPool("resourceGroup1", "hostPool1", 10, true, 0, com.azure.core.util.Context.NONE);

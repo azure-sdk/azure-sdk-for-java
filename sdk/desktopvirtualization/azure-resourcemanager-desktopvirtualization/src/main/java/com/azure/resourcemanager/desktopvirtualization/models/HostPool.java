@@ -53,6 +53,32 @@ public interface HostPool {
     Map<String, String> tags();
 
     /**
+     * Gets the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the etag property: If etag is provided in the response body, it may also be provided as a header per the
+     * normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource.
+     * HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26),
+     * and If-Range (section 14.27) header fields.
+     * 
+     * @return the etag value.
+     */
+    String etag();
+
+    /**
+     * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
+     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * validate and persist this value.
+     * 
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the managedBy property: The fully qualified resource ID of the resource that manages this resource.
      * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
      * will not delete the resource if it is removed from the template since it is managed by another resource.
@@ -62,44 +88,18 @@ public interface HostPool {
     String managedBy();
 
     /**
-     * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
-     * the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
-     * validate and persist this value.
-     * 
-     * @return the kind value.
-     */
-    String kind();
-
-    /**
-     * Gets the etag property: The etag field is *not* required. If it is provided in the response body, it must also be
-     * provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from
-     * the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24),
-     * If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
-     * 
-     * @return the etag value.
-     */
-    String etag();
-
-    /**
-     * Gets the identity property: The identity property.
-     * 
-     * @return the identity value.
-     */
-    ResourceModelWithAllowedPropertySetIdentity identity();
-
-    /**
-     * Gets the sku property: The sku property.
-     * 
-     * @return the sku value.
-     */
-    ResourceModelWithAllowedPropertySetSku sku();
-
-    /**
-     * Gets the plan property: The plan property.
+     * Gets the plan property: Details of the resource plan.
      * 
      * @return the plan value.
      */
-    ResourceModelWithAllowedPropertySetPlan plan();
+    Plan plan();
+
+    /**
+     * Gets the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @return the sku value.
+     */
+    Sku sku();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -282,6 +282,54 @@ public interface HostPool {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    ManagedPrivateUdp managedPrivateUdp();
+
+    /**
+     * Gets the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    DirectUdp directUdp();
+
+    /**
+     * Gets the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    PublicUdp publicUdp();
+
+    /**
+     * Gets the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    RelayUdp relayUdp();
+
+    /**
+     * Gets the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @return the managementType value.
+     */
+    ManagementType managementType();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -406,16 +454,17 @@ public interface HostPool {
          * The stage of the HostPool definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithManagedBy,
-            DefinitionStages.WithKind, DefinitionStages.WithIdentity, DefinitionStages.WithSku,
-            DefinitionStages.WithPlan, DefinitionStages.WithFriendlyName, DefinitionStages.WithDescription,
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithKind, DefinitionStages.WithManagedBy, DefinitionStages.WithPlan,
+            DefinitionStages.WithSku, DefinitionStages.WithFriendlyName, DefinitionStages.WithDescription,
             DefinitionStages.WithPersonalDesktopAssignmentType, DefinitionStages.WithCustomRdpProperty,
             DefinitionStages.WithMaxSessionLimit, DefinitionStages.WithRing, DefinitionStages.WithValidationEnvironment,
             DefinitionStages.WithRegistrationInfo, DefinitionStages.WithVmTemplate,
             DefinitionStages.WithSsoadfsAuthority, DefinitionStages.WithSsoClientId,
             DefinitionStages.WithSsoClientSecretKeyVaultPath, DefinitionStages.WithSsoSecretType,
             DefinitionStages.WithStartVMOnConnect, DefinitionStages.WithPublicNetworkAccess,
-            DefinitionStages.WithAgentUpdate {
+            DefinitionStages.WithAgentUpdate, DefinitionStages.WithManagedPrivateUdp, DefinitionStages.WithDirectUdp,
+            DefinitionStages.WithPublicUdp, DefinitionStages.WithRelayUdp, DefinitionStages.WithManagementType {
             /**
              * Executes the create request.
              * 
@@ -446,6 +495,36 @@ public interface HostPool {
         }
 
         /**
+         * The stage of the HostPool definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed service identities assigned to this resource..
+             * 
+             * @param identity The managed service identities assigned to this resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Metadata used by portal/tooling/etc to render different UX experiences for
+             * resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the
+             * resource provider must validate and persist this value..
+             * 
+             * @param kind Metadata used by portal/tooling/etc to render different UX experiences for resources of the
+             * same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+             * validate and persist this value.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
+        }
+
+        /**
          * The stage of the HostPool definition allowing to specify managedBy.
          */
         interface WithManagedBy {
@@ -464,33 +543,16 @@ public interface HostPool {
         }
 
         /**
-         * The stage of the HostPool definition allowing to specify kind.
+         * The stage of the HostPool definition allowing to specify plan.
          */
-        interface WithKind {
+        interface WithPlan {
             /**
-             * Specifies the kind property: Metadata used by portal/tooling/etc to render different UX experiences for
-             * resources of the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the
-             * resource provider must validate and persist this value..
+             * Specifies the plan property: Details of the resource plan..
              * 
-             * @param kind Metadata used by portal/tooling/etc to render different UX experiences for resources of the
-             * same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
-             * validate and persist this value.
+             * @param plan Details of the resource plan.
              * @return the next definition stage.
              */
-            WithCreate withKind(String kind);
-        }
-
-        /**
-         * The stage of the HostPool definition allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: The identity property..
-             * 
-             * @param identity The identity property.
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(ResourceModelWithAllowedPropertySetIdentity identity);
+            WithCreate withPlan(Plan plan);
         }
 
         /**
@@ -498,25 +560,12 @@ public interface HostPool {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: The SKU (Stock Keeping Unit) assigned to this resource..
              * 
-             * @param sku The sku property.
+             * @param sku The SKU (Stock Keeping Unit) assigned to this resource.
              * @return the next definition stage.
              */
-            WithCreate withSku(ResourceModelWithAllowedPropertySetSku sku);
-        }
-
-        /**
-         * The stage of the HostPool definition allowing to specify plan.
-         */
-        interface WithPlan {
-            /**
-             * Specifies the plan property: The plan property..
-             * 
-             * @param plan The plan property.
-             * @return the next definition stage.
-             */
-            WithCreate withPlan(ResourceModelWithAllowedPropertySetPlan plan);
+            WithCreate withSku(Sku sku);
         }
 
         /**
@@ -733,6 +782,97 @@ public interface HostPool {
              */
             WithCreate withAgentUpdate(AgentUpdateProperties agentUpdate);
         }
+
+        /**
+         * The stage of the HostPool definition allowing to specify managedPrivateUdp.
+         */
+        interface WithManagedPrivateUdp {
+            /**
+             * Specifies the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param managedPrivateUdp Default: AVD-wide settings are used to determine connection availability,
+             * Enabled: UDP will attempt this connection type when making connections. This means that this connection
+             * is possible, but is not guaranteed, as there are other factors that may prevent this connection type,
+             * Disabled: UDP will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify directUdp.
+         */
+        interface WithDirectUdp {
+            /**
+             * Specifies the directUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param directUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            WithCreate withDirectUdp(DirectUdp directUdp);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify publicUdp.
+         */
+        interface WithPublicUdp {
+            /**
+             * Specifies the publicUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param publicUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicUdp(PublicUdp publicUdp);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify relayUdp.
+         */
+        interface WithRelayUdp {
+            /**
+             * Specifies the relayUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param relayUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            WithCreate withRelayUdp(RelayUdp relayUdp);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify managementType.
+         */
+        interface WithManagementType {
+            /**
+             * Specifies the managementType property: The type of management for this hostpool, Automated or Standard.
+             * The default value is Automated..
+             * 
+             * @param managementType The type of management for this hostpool, Automated or Standard. The default value
+             * is Automated.
+             * @return the next definition stage.
+             */
+            WithCreate withManagementType(ManagementType managementType);
+        }
     }
 
     /**
@@ -745,13 +885,7 @@ public interface HostPool {
     /**
      * The template for HostPool update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithFriendlyName, UpdateStages.WithDescription,
-        UpdateStages.WithCustomRdpProperty, UpdateStages.WithMaxSessionLimit,
-        UpdateStages.WithPersonalDesktopAssignmentType, UpdateStages.WithLoadBalancerType, UpdateStages.WithRing,
-        UpdateStages.WithValidationEnvironment, UpdateStages.WithRegistrationInfo, UpdateStages.WithVmTemplate,
-        UpdateStages.WithSsoadfsAuthority, UpdateStages.WithSsoClientId, UpdateStages.WithSsoClientSecretKeyVaultPath,
-        UpdateStages.WithSsoSecretType, UpdateStages.WithPreferredAppGroupType, UpdateStages.WithStartVMOnConnect,
-        UpdateStages.WithPublicNetworkAccess, UpdateStages.WithAgentUpdate {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -786,245 +920,16 @@ public interface HostPool {
         }
 
         /**
-         * The stage of the HostPool update allowing to specify friendlyName.
+         * The stage of the HostPool update allowing to specify properties.
          */
-        interface WithFriendlyName {
+        interface WithProperties {
             /**
-             * Specifies the friendlyName property: Friendly name of HostPool..
+             * Specifies the properties property: HostPool properties that can be patched..
              * 
-             * @param friendlyName Friendly name of HostPool.
+             * @param properties HostPool properties that can be patched.
              * @return the next definition stage.
              */
-            Update withFriendlyName(String friendlyName);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify description.
-         */
-        interface WithDescription {
-            /**
-             * Specifies the description property: Description of HostPool..
-             * 
-             * @param description Description of HostPool.
-             * @return the next definition stage.
-             */
-            Update withDescription(String description);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify customRdpProperty.
-         */
-        interface WithCustomRdpProperty {
-            /**
-             * Specifies the customRdpProperty property: Custom rdp property of HostPool..
-             * 
-             * @param customRdpProperty Custom rdp property of HostPool.
-             * @return the next definition stage.
-             */
-            Update withCustomRdpProperty(String customRdpProperty);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify maxSessionLimit.
-         */
-        interface WithMaxSessionLimit {
-            /**
-             * Specifies the maxSessionLimit property: The max session limit of HostPool..
-             * 
-             * @param maxSessionLimit The max session limit of HostPool.
-             * @return the next definition stage.
-             */
-            Update withMaxSessionLimit(Integer maxSessionLimit);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify personalDesktopAssignmentType.
-         */
-        interface WithPersonalDesktopAssignmentType {
-            /**
-             * Specifies the personalDesktopAssignmentType property: PersonalDesktopAssignment type for HostPool..
-             * 
-             * @param personalDesktopAssignmentType PersonalDesktopAssignment type for HostPool.
-             * @return the next definition stage.
-             */
-            Update withPersonalDesktopAssignmentType(PersonalDesktopAssignmentType personalDesktopAssignmentType);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify loadBalancerType.
-         */
-        interface WithLoadBalancerType {
-            /**
-             * Specifies the loadBalancerType property: The type of the load balancer..
-             * 
-             * @param loadBalancerType The type of the load balancer.
-             * @return the next definition stage.
-             */
-            Update withLoadBalancerType(LoadBalancerType loadBalancerType);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify ring.
-         */
-        interface WithRing {
-            /**
-             * Specifies the ring property: The ring number of HostPool..
-             * 
-             * @param ring The ring number of HostPool.
-             * @return the next definition stage.
-             */
-            Update withRing(Integer ring);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify validationEnvironment.
-         */
-        interface WithValidationEnvironment {
-            /**
-             * Specifies the validationEnvironment property: Is validation environment..
-             * 
-             * @param validationEnvironment Is validation environment.
-             * @return the next definition stage.
-             */
-            Update withValidationEnvironment(Boolean validationEnvironment);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify registrationInfo.
-         */
-        interface WithRegistrationInfo {
-            /**
-             * Specifies the registrationInfo property: The registration info of HostPool..
-             * 
-             * @param registrationInfo The registration info of HostPool.
-             * @return the next definition stage.
-             */
-            Update withRegistrationInfo(RegistrationInfoPatch registrationInfo);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify vmTemplate.
-         */
-        interface WithVmTemplate {
-            /**
-             * Specifies the vmTemplate property: VM template for sessionhosts configuration within hostpool..
-             * 
-             * @param vmTemplate VM template for sessionhosts configuration within hostpool.
-             * @return the next definition stage.
-             */
-            Update withVmTemplate(String vmTemplate);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify ssoadfsAuthority.
-         */
-        interface WithSsoadfsAuthority {
-            /**
-             * Specifies the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates..
-             * 
-             * @param ssoadfsAuthority URL to customer ADFS server for signing WVD SSO certificates.
-             * @return the next definition stage.
-             */
-            Update withSsoadfsAuthority(String ssoadfsAuthority);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify ssoClientId.
-         */
-        interface WithSsoClientId {
-            /**
-             * Specifies the ssoClientId property: ClientId for the registered Relying Party used to issue WVD SSO
-             * certificates..
-             * 
-             * @param ssoClientId ClientId for the registered Relying Party used to issue WVD SSO certificates.
-             * @return the next definition stage.
-             */
-            Update withSsoClientId(String ssoClientId);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify ssoClientSecretKeyVaultPath.
-         */
-        interface WithSsoClientSecretKeyVaultPath {
-            /**
-             * Specifies the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for
-             * communication to ADFS..
-             * 
-             * @param ssoClientSecretKeyVaultPath Path to Azure KeyVault storing the secret used for communication to
-             * ADFS.
-             * @return the next definition stage.
-             */
-            Update withSsoClientSecretKeyVaultPath(String ssoClientSecretKeyVaultPath);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify ssoSecretType.
-         */
-        interface WithSsoSecretType {
-            /**
-             * Specifies the ssoSecretType property: The type of single sign on Secret Type..
-             * 
-             * @param ssoSecretType The type of single sign on Secret Type.
-             * @return the next definition stage.
-             */
-            Update withSsoSecretType(SsoSecretType ssoSecretType);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify preferredAppGroupType.
-         */
-        interface WithPreferredAppGroupType {
-            /**
-             * Specifies the preferredAppGroupType property: The type of preferred application group type, default to
-             * Desktop Application Group.
-             * 
-             * @param preferredAppGroupType The type of preferred application group type, default to Desktop Application
-             * Group.
-             * @return the next definition stage.
-             */
-            Update withPreferredAppGroupType(PreferredAppGroupType preferredAppGroupType);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify startVMOnConnect.
-         */
-        interface WithStartVMOnConnect {
-            /**
-             * Specifies the startVMOnConnect property: The flag to turn on/off StartVMOnConnect feature..
-             * 
-             * @param startVMOnConnect The flag to turn on/off StartVMOnConnect feature.
-             * @return the next definition stage.
-             */
-            Update withStartVMOnConnect(Boolean startVMOnConnect);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify publicNetworkAccess.
-         */
-        interface WithPublicNetworkAccess {
-            /**
-             * Specifies the publicNetworkAccess property: Enabled to allow this resource to be access from the public
-             * network.
-             * 
-             * @param publicNetworkAccess Enabled to allow this resource to be access from the public network.
-             * @return the next definition stage.
-             */
-            Update withPublicNetworkAccess(HostpoolPublicNetworkAccess publicNetworkAccess);
-        }
-
-        /**
-         * The stage of the HostPool update allowing to specify agentUpdate.
-         */
-        interface WithAgentUpdate {
-            /**
-             * Specifies the agentUpdate property: The session host configuration for updating agent, monitoring agent,
-             * and stack component..
-             * 
-             * @param agentUpdate The session host configuration for updating agent, monitoring agent, and stack
-             * component.
-             * @return the next definition stage.
-             */
-            Update withAgentUpdate(AgentUpdatePatchProperties agentUpdate);
+            Update withProperties(HostPoolPatchProperties properties);
         }
     }
 
@@ -1042,6 +947,26 @@ public interface HostPool {
      * @return the refreshed resource.
      */
     HostPool refresh(Context context);
+
+    /**
+     * Operation to list the RegistrationTokens associated with the HostPool.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of RegistrationToken definitions along with {@link Response}.
+     */
+    Response<RegistrationTokenList> listRegistrationTokensWithResponse(Context context);
+
+    /**
+     * Operation to list the RegistrationTokens associated with the HostPool.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of RegistrationToken definitions.
+     */
+    RegistrationTokenList listRegistrationTokens();
 
     /**
      * Registration token of the host pool.
@@ -1062,24 +987,4 @@ public interface HostPool {
      * @return represents a RegistrationInfo definition.
      */
     RegistrationInfo retrieveRegistrationToken();
-
-    /**
-     * Operation to list the RegistrationTokens associated with the HostPool.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return registrationTokenList along with {@link Response}.
-     */
-    Response<RegistrationTokenList> listRegistrationTokensWithResponse(Context context);
-
-    /**
-     * Operation to list the RegistrationTokens associated with the HostPool.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return registrationTokenList.
-     */
-    RegistrationTokenList listRegistrationTokens();
 }
