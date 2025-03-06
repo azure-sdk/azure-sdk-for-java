@@ -1,0 +1,4 @@
+directory: specification/recoveryservicesdatareplication/DataReplication.Management
+commit: 0a163db5d20f20ad377414dd7c99344d59d30e5a
+repo: Azure/azure-rest-api-specs
+additionalDirectories: 
