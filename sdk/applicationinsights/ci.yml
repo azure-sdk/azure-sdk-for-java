@@ -37,3 +37,6 @@ extends:
       - name: azure-resourcemanager-applicationinsights
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanagerapplicationinsights
+      - name: azure-applicationinsights-livemetrics
+        groupId: com.azure
+        safeName: azureapplicationinsightslivemetrics
