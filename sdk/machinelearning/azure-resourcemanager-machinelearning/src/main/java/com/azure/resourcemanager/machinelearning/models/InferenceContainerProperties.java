@@ -27,6 +27,11 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
     private Route readinessRoute;
 
     /*
+     * The route to check the startup of the application in the container.
+     */
+    private Route startupRoute;
+
+    /*
      * The port to send the scoring requests to, within the inference server container.
      */
     private Route scoringRoute;
@@ -78,6 +83,26 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
     }
 
     /**
+     * Get the startupRoute property: The route to check the startup of the application in the container.
+     * 
+     * @return the startupRoute value.
+     */
+    public Route startupRoute() {
+        return this.startupRoute;
+    }
+
+    /**
+     * Set the startupRoute property: The route to check the startup of the application in the container.
+     * 
+     * @param startupRoute the startupRoute value to set.
+     * @return the InferenceContainerProperties object itself.
+     */
+    public InferenceContainerProperties withStartupRoute(Route startupRoute) {
+        this.startupRoute = startupRoute;
+        return this;
+    }
+
+    /**
      * Get the scoringRoute property: The port to send the scoring requests to, within the inference server container.
      * 
      * @return the scoringRoute value.
@@ -109,6 +134,9 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
         if (readinessRoute() != null) {
             readinessRoute().validate();
         }
+        if (startupRoute() != null) {
+            startupRoute().validate();
+        }
         if (scoringRoute() != null) {
             scoringRoute().validate();
         }
@@ -122,6 +150,7 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("livenessRoute", this.livenessRoute);
         jsonWriter.writeJsonField("readinessRoute", this.readinessRoute);
+        jsonWriter.writeJsonField("startupRoute", this.startupRoute);
         jsonWriter.writeJsonField("scoringRoute", this.scoringRoute);
         return jsonWriter.writeEndObject();
     }
@@ -145,6 +174,8 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
                     deserializedInferenceContainerProperties.livenessRoute = Route.fromJson(reader);
                 } else if ("readinessRoute".equals(fieldName)) {
                     deserializedInferenceContainerProperties.readinessRoute = Route.fromJson(reader);
+                } else if ("startupRoute".equals(fieldName)) {
+                    deserializedInferenceContainerProperties.startupRoute = Route.fromJson(reader);
                 } else if ("scoringRoute".equals(fieldName)) {
                     deserializedInferenceContainerProperties.scoringRoute = Route.fromJson(reader);
                 } else {
