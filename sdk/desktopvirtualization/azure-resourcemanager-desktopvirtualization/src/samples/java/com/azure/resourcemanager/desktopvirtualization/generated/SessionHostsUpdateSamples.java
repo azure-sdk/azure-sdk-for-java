@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostPatch;
+import com.azure.resourcemanager.desktopvirtualization.models.SessionHostPatchProperties;
 
 /**
  * Samples for SessionHosts Update.
@@ -12,8 +13,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.SessionHostPatch;
 public final class SessionHostsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * SessionHost_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/SessionHosts_Update.json
      */
     /**
      * Sample code: SessionHost_Update.
@@ -24,9 +25,9 @@ public final class SessionHostsUpdateSamples {
         sessionHostUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.sessionHosts()
             .updateWithResponse("resourceGroup1", "hostPool1", "sessionHost1.microsoft.com", true,
-                new SessionHostPatch().withAllowNewSession(true)
+                new SessionHostPatch().withProperties(new SessionHostPatchProperties().withAllowNewSession(true)
                     .withAssignedUser("user1@microsoft.com")
-                    .withFriendlyName("friendly"),
+                    .withFriendlyName("friendly")),
                 com.azure.core.util.Context.NONE);
     }
 }

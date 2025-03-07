@@ -10,16 +10,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class ApplicationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Application_Delete.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/Applications_Delete.json
      */
     /**
-     * Sample code: Application_Delete.
+     * Sample code: Applications_Delete.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        applicationDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        applicationsDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.applications()
             .deleteWithResponse("resourceGroup1", "applicationGroup1", "application1",
                 com.azure.core.util.Context.NONE);

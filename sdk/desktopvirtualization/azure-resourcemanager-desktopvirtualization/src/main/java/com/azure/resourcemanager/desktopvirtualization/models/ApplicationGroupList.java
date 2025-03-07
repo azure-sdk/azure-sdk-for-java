@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,19 +15,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * ApplicationGroupList
- * 
  * List of ApplicationGroup definitions.
  */
 @Fluent
 public final class ApplicationGroupList implements JsonSerializable<ApplicationGroupList> {
     /*
-     * List of ApplicationGroup definitions.
+     * The ApplicationGroup items on this page
      */
     private List<ApplicationGroupInner> value;
 
     /*
-     * Link to the next page of results.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -37,7 +36,7 @@ public final class ApplicationGroupList implements JsonSerializable<ApplicationG
     }
 
     /**
-     * Get the value property: List of ApplicationGroup definitions.
+     * Get the value property: The ApplicationGroup items on this page.
      * 
      * @return the value value.
      */
@@ -46,7 +45,7 @@ public final class ApplicationGroupList implements JsonSerializable<ApplicationG
     }
 
     /**
-     * Set the value property: List of ApplicationGroup definitions.
+     * Set the value property: The ApplicationGroup items on this page.
      * 
      * @param value the value value to set.
      * @return the ApplicationGroupList object itself.
@@ -57,7 +56,7 @@ public final class ApplicationGroupList implements JsonSerializable<ApplicationG
     }
 
     /**
-     * Get the nextLink property: Link to the next page of results.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -66,15 +65,31 @@ public final class ApplicationGroupList implements JsonSerializable<ApplicationG
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the ApplicationGroupList object itself.
+     */
+    public ApplicationGroupList withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model ApplicationGroupList"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ApplicationGroupList.class);
 
     /**
      * {@inheritDoc}
@@ -83,6 +98,7 @@ public final class ApplicationGroupList implements JsonSerializable<ApplicationG
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -92,6 +108,7 @@ public final class ApplicationGroupList implements JsonSerializable<ApplicationG
      * @param jsonReader The JsonReader being read.
      * @return An instance of ApplicationGroupList if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ApplicationGroupList.
      */
     public static ApplicationGroupList fromJson(JsonReader jsonReader) throws IOException {

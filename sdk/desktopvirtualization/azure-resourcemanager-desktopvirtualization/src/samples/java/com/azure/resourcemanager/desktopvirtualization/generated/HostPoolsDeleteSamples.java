@@ -10,16 +10,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class HostPoolsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * HostPool_Delete.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/HostPools_Delete.json
      */
     /**
-     * Sample code: HostPool_Delete.
+     * Sample code: HostPools_Delete.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        hostPoolDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        hostPoolsDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.hostPools().deleteWithResponse("resourceGroup1", "hostPool1", true, com.azure.core.util.Context.NONE);
     }
 }
