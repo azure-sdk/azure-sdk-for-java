@@ -5,38 +5,38 @@
 package com.azure.resourcemanager.elasticsan.generated;
 
 /**
- * Samples for VolumeGroups Get.
+ * Samples for ResourceProvider RestoreVolume.
  */
-public final class VolumeGroupsGetSamples {
+public final class ResourceProviderRestoreVolumeSamples {
     /*
      * x-ms-original-file:
      * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Get_MinimumSet_Gen.json
+     * RestoreVolume_MaximumSet_Gen.json
      */
     /**
-     * Sample code: VolumeGroups_Get_MinimumSet_Gen.
+     * Sample code: RestoreVolume_MaximumSet_Gen.
      * 
      * @param manager Entry point to ElasticSanManager.
      */
-    public static void volumeGroupsGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups()
-            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname",
+    public static void restoreVolumeMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.resourceProviders()
+            .restoreVolume("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
                 com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
      * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Get_MaximumSet_Gen.json
+     * RestoreVolume_MinimumSet_Gen.json
      */
     /**
-     * Sample code: VolumeGroups_Get_MaximumSet_Gen.
+     * Sample code: RestoreVolume_MinimumSet_Gen.
      * 
      * @param manager Entry point to ElasticSanManager.
      */
-    public static void volumeGroupsGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups()
-            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname",
+    public static void restoreVolumeMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.resourceProviders()
+            .restoreVolume("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
                 com.azure.core.util.Context.NONE);
     }
 }
