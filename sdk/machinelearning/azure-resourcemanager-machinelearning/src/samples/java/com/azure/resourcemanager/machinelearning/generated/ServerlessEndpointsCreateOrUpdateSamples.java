@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.generated;
 
 import com.azure.resourcemanager.machinelearning.models.ContentSafety;
+import com.azure.resourcemanager.machinelearning.models.ContentSafetyLevel;
 import com.azure.resourcemanager.machinelearning.models.ContentSafetyStatus;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentityType;
@@ -23,8 +24,8 @@ import java.util.Map;
 public final class ServerlessEndpointsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/ServerlessEndpoint/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/ServerlessEndpoint/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Serverless Endpoint.
@@ -37,14 +38,14 @@ public final class ServerlessEndpointsCreateOrUpdateSamples {
             .define("string")
             .withRegion("string")
             .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(
-                new ServerlessEndpointProperties().withModelSettings(new ModelSettings().withModelId("string"))
-                    .withAuthMode(ServerlessInferenceEndpointAuthMode.KEY)
-                    .withContentSafety(new ContentSafety().withContentSafetyStatus(ContentSafetyStatus.ENABLED)))
+            .withProperties(new ServerlessEndpointProperties().withAuthMode(ServerlessInferenceEndpointAuthMode.KEY)
+                .withContentSafety(new ContentSafety().withContentSafetyLevel(ContentSafetyLevel.BLOCKING)
+                    .withContentSafetyStatus(ContentSafetyStatus.ENABLED))
+                .withModelSettings(new ModelSettings().withModelId("string")))
             .withTags(mapOf())
-            .withKind("string")
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
                 .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
+            .withKind("string")
             .withSku(new Sku().withName("string")
                 .withTier(SkuTier.STANDARD)
                 .withSize("string")

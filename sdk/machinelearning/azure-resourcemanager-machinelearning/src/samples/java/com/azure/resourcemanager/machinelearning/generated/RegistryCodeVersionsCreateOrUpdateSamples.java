@@ -15,8 +15,8 @@ import java.util.Map;
 public final class RegistryCodeVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/CodeVersion/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registry/CodeVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Code Version.
@@ -28,8 +28,8 @@ public final class RegistryCodeVersionsCreateOrUpdateSamples {
         manager.registryCodeVersions()
             .createOrUpdate("test-rg", "my-aml-registry", "string", "string",
                 new CodeVersionInner().withProperties(new CodeVersionProperties().withDescription("string")
-                    .withTags(mapOf("string", "string"))
                     .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
                     .withIsAnonymous(false)
                     .withCodeUri("fakeTokenPlaceholder")),
                 com.azure.core.util.Context.NONE);

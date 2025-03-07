@@ -16,8 +16,8 @@ import java.util.Map;
 public final class RegistryDataContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/DataContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registry/DataContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Data Container.
@@ -29,8 +29,8 @@ public final class RegistryDataContainersCreateOrUpdateSamples {
         manager.registryDataContainers()
             .createOrUpdate("test-rg", "registryName", "string",
                 new DataContainerInner().withProperties(new DataContainerProperties().withDescription("string")
-                    .withTags(mapOf("string", "string"))
                     .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
                     .withIsArchived(false)
                     .withDataType(DataType.URI_FOLDER)),
                 com.azure.core.util.Context.NONE);
