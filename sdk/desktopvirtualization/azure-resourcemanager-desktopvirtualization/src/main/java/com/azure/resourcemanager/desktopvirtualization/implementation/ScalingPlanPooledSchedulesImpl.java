@@ -27,6 +27,19 @@ public final class ScalingPlanPooledSchedulesImpl implements ScalingPlanPooledSc
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<ScalingPlanPooledSchedule> list(String resourceGroupName, String scalingPlanName) {
+        PagedIterable<ScalingPlanPooledScheduleInner> inner
+            = this.serviceClient().list(resourceGroupName, scalingPlanName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ScalingPlanPooledScheduleImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ScalingPlanPooledSchedule> list(String resourceGroupName, String scalingPlanName,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<ScalingPlanPooledScheduleInner> inner = this.serviceClient()
+            .list(resourceGroupName, scalingPlanName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ScalingPlanPooledScheduleImpl(inner1, this.manager()));
+    }
+
     public Response<ScalingPlanPooledSchedule> getWithResponse(String resourceGroupName, String scalingPlanName,
         String scalingPlanScheduleName, Context context) {
         Response<ScalingPlanPooledScheduleInner> inner = this.serviceClient()
@@ -58,19 +71,6 @@ public final class ScalingPlanPooledSchedulesImpl implements ScalingPlanPooledSc
 
     public void delete(String resourceGroupName, String scalingPlanName, String scalingPlanScheduleName) {
         this.serviceClient().delete(resourceGroupName, scalingPlanName, scalingPlanScheduleName);
-    }
-
-    public PagedIterable<ScalingPlanPooledSchedule> list(String resourceGroupName, String scalingPlanName) {
-        PagedIterable<ScalingPlanPooledScheduleInner> inner
-            = this.serviceClient().list(resourceGroupName, scalingPlanName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ScalingPlanPooledScheduleImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ScalingPlanPooledSchedule> list(String resourceGroupName, String scalingPlanName,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<ScalingPlanPooledScheduleInner> inner = this.serviceClient()
-            .list(resourceGroupName, scalingPlanName, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ScalingPlanPooledScheduleImpl(inner1, this.manager()));
     }
 
     public ScalingPlanPooledSchedule getById(String id) {

@@ -10,16 +10,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class MsixPackagesListSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * MsixPackage_List.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/MSIXPackages_List.json
      */
     /**
-     * Sample code: MSIXPackage_List.
+     * Sample code: MSIXPackages_List.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        mSIXPackageList(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        mSIXPackagesList(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.msixPackages().list("resourceGroup1", "hostpool1", 10, true, 0, com.azure.core.util.Context.NONE);
     }
 }

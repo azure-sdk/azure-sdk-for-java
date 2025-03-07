@@ -15,16 +15,16 @@ import java.util.Arrays;
 public final class MsixPackagesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * MsixPackage_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/MSIXPackages_CreateOrUpdate.json
      */
     /**
-     * Sample code: MSIXPackage_Create.
+     * Sample code: MSIXPackages_Create.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        mSIXPackageCreate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        mSIXPackagesCreate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.msixPackages()
             .define("msixpackagefullname")
             .withExistingHostPool("resourceGroup1", "hostpool1")

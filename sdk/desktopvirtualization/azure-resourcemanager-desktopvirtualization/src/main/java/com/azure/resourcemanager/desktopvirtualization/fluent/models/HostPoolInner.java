@@ -5,22 +5,27 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdateProperties;
-import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
+import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagementType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.io.IOException;
 import java.util.List;
@@ -30,24 +35,53 @@ import java.util.Map;
  * Represents a HostPool definition.
  */
 @Fluent
-public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
+public final class HostPoolInner extends Resource {
     /*
      * Detailed properties for HostPool
      */
     private HostPoolPropertiesInner innerProperties = new HostPoolPropertiesInner();
 
     /*
+     * The managed service identities assigned to this resource.
+     */
+    private ManagedServiceIdentity identity;
+
+    /*
+     * If etag is provided in the response body, it may also be provided as a header per the normal etag convention.
+     * Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity
+     * tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section
+     * 14.27) header fields.
+     */
+    private String etag;
+
+    /*
+     * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g.
+     * ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist
+     * this value.
+     */
+    private String kind;
+
+    /*
+     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed
+     * by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is
+     * removed from the template since it is managed by another resource.
+     */
+    private String managedBy;
+
+    /*
+     * Details of the resource plan.
+     */
+    private Plan plan;
+
+    /*
+     * The SKU (Stock Keeping Unit) assigned to this resource.
+     */
+    private Sku sku;
+
+    /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
-
-    /*
-     * The etag field is *not* required. If it is provided in the response body, it must also be provided as a header
-     * per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested
-     * resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section
-     * 14.26), and If-Range (section 14.27) header fields.
-     */
-    private String etag;
 
     /*
      * The type of the resource.
@@ -80,26 +114,132 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
     }
 
     /**
+     * Get the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed service identities assigned to this resource.
+     * 
+     * @param identity the identity value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the etag property: If etag is provided in the response body, it may also be provided as a header per the
+     * normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource.
+     * HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26),
+     * and If-Range (section 14.27) header fields.
+     * 
+     * @return the etag value.
+     */
+    public String etag() {
+        return this.etag;
+    }
+
+    /**
+     * Get the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
+     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * validate and persist this value.
+     * 
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
+     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * validate and persist this value.
+     * 
+     * @param kind the kind value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withKind(String kind) {
+        this.kind = kind;
+        return this;
+    }
+
+    /**
+     * Get the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
+     * 
+     * @return the managedBy value.
+     */
+    public String managedBy() {
+        return this.managedBy;
+    }
+
+    /**
+     * Set the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
+     * 
+     * @param managedBy the managedBy value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withManagedBy(String managedBy) {
+        this.managedBy = managedBy;
+        return this;
+    }
+
+    /**
+     * Get the plan property: Details of the resource plan.
+     * 
+     * @return the plan value.
+     */
+    public Plan plan() {
+        return this.plan;
+    }
+
+    /**
+     * Set the plan property: Details of the resource plan.
+     * 
+     * @param plan the plan value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withPlan(Plan plan) {
+        this.plan = plan;
+        return this;
+    }
+
+    /**
+     * Get the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @return the sku value.
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @param sku the sku value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withSku(Sku sku) {
+        this.sku = sku;
+        return this;
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
-    @Override
     public SystemData systemData() {
         return this.systemData;
-    }
-
-    /**
-     * Get the etag property: The etag field is *not* required. If it is provided in the response body, it must also be
-     * provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from
-     * the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24),
-     * If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
-     * 
-     * @return the etag value.
-     */
-    @Override
-    public String etag() {
-        return this.etag;
     }
 
     /**
@@ -130,51 +270,6 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
     @Override
     public String id() {
         return this.id;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public HostPoolInner withManagedBy(String managedBy) {
-        super.withManagedBy(managedBy);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public HostPoolInner withKind(String kind) {
-        super.withKind(kind);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public HostPoolInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
-        super.withIdentity(identity);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public HostPoolInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
-        super.withSku(sku);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public HostPoolInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
-        super.withPlan(plan);
-        return this;
     }
 
     /**
@@ -688,11 +783,151 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
     }
 
     /**
+     * Get the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedPrivateUdp();
+    }
+
+    /**
+     * Set the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @param managedPrivateUdp the managedPrivateUdp value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withManagedPrivateUdp(managedPrivateUdp);
+        return this;
+    }
+
+    /**
+     * Get the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    public DirectUdp directUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().directUdp();
+    }
+
+    /**
+     * Set the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param directUdp the directUdp value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withDirectUdp(DirectUdp directUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withDirectUdp(directUdp);
+        return this;
+    }
+
+    /**
+     * Get the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    public PublicUdp publicUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicUdp();
+    }
+
+    /**
+     * Set the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param publicUdp the publicUdp value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withPublicUdp(PublicUdp publicUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withPublicUdp(publicUdp);
+        return this;
+    }
+
+    /**
+     * Get the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    public RelayUdp relayUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().relayUdp();
+    }
+
+    /**
+     * Set the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @param relayUdp the relayUdp value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withRelayUdp(RelayUdp relayUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withRelayUdp(relayUdp);
+        return this;
+    }
+
+    /**
+     * Get the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @return the managementType value.
+     */
+    public ManagementType managementType() {
+        return this.innerProperties() == null ? null : this.innerProperties().managementType();
+    }
+
+    /**
+     * Set the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @param managementType the managementType value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withManagementType(ManagementType managementType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withManagementType(managementType);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
         if (innerProperties() == null) {
             throw LOGGER.atError()
@@ -703,11 +938,11 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
         if (identity() != null) {
             identity().validate();
         }
-        if (sku() != null) {
-            sku().validate();
-        }
         if (plan() != null) {
             plan().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
         }
     }
 
@@ -721,12 +956,12 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("managedBy", managedBy());
-        jsonWriter.writeStringField("kind", kind());
-        jsonWriter.writeJsonField("identity", identity());
-        jsonWriter.writeJsonField("sku", sku());
-        jsonWriter.writeJsonField("plan", plan());
         jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeStringField("kind", this.kind);
+        jsonWriter.writeStringField("managedBy", this.managedBy);
+        jsonWriter.writeJsonField("plan", this.plan);
+        jsonWriter.writeJsonField("sku", this.sku);
         return jsonWriter.writeEndObject();
     }
 
@@ -757,23 +992,22 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedHostPoolInner.withTags(tags);
-                } else if ("managedBy".equals(fieldName)) {
-                    deserializedHostPoolInner.withManagedBy(reader.getString());
-                } else if ("kind".equals(fieldName)) {
-                    deserializedHostPoolInner.withKind(reader.getString());
-                } else if ("etag".equals(fieldName)) {
-                    deserializedHostPoolInner.etag = reader.getString();
-                } else if ("identity".equals(fieldName)) {
-                    deserializedHostPoolInner
-                        .withIdentity(ResourceModelWithAllowedPropertySetIdentity.fromJson(reader));
-                } else if ("sku".equals(fieldName)) {
-                    deserializedHostPoolInner.withSku(ResourceModelWithAllowedPropertySetSku.fromJson(reader));
-                } else if ("plan".equals(fieldName)) {
-                    deserializedHostPoolInner.withPlan(ResourceModelWithAllowedPropertySetPlan.fromJson(reader));
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedHostPoolInner.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedHostPoolInner.innerProperties = HostPoolPropertiesInner.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedHostPoolInner.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("etag".equals(fieldName)) {
+                    deserializedHostPoolInner.etag = reader.getString();
+                } else if ("kind".equals(fieldName)) {
+                    deserializedHostPoolInner.kind = reader.getString();
+                } else if ("managedBy".equals(fieldName)) {
+                    deserializedHostPoolInner.managedBy = reader.getString();
+                } else if ("plan".equals(fieldName)) {
+                    deserializedHostPoolInner.plan = Plan.fromJson(reader);
+                } else if ("sku".equals(fieldName)) {
+                    deserializedHostPoolInner.sku = Sku.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedHostPoolInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
