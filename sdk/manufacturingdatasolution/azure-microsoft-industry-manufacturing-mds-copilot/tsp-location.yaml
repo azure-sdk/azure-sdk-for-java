@@ -1,0 +1,4 @@
+directory: specification/manufacturingdatasolution/ManufacturingDataSolution.Copilot
+commit: c1c587905ac5f8e57f80b7d9fb1f90a660736fd0
+repo: Azure/azure-rest-api-specs
+additionalDirectories: 
