@@ -59,12 +59,6 @@ public final class Configuration implements JsonSerializable<Configuration> {
      */
     private Service service;
 
-    /*
-     * Optional settings for Managed Identities that are assigned to the Container App. If a Managed Identity is not
-     * specified here, default settings will be used.
-     */
-    private List<IdentitySettings> identitySettings;
-
     /**
      * Creates an instance of Configuration class.
      */
@@ -242,28 +236,6 @@ public final class Configuration implements JsonSerializable<Configuration> {
     }
 
     /**
-     * Get the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
-     * App. If a Managed Identity is not specified here, default settings will be used.
-     * 
-     * @return the identitySettings value.
-     */
-    public List<IdentitySettings> identitySettings() {
-        return this.identitySettings;
-    }
-
-    /**
-     * Set the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
-     * App. If a Managed Identity is not specified here, default settings will be used.
-     * 
-     * @param identitySettings the identitySettings value to set.
-     * @return the Configuration object itself.
-     */
-    public Configuration withIdentitySettings(List<IdentitySettings> identitySettings) {
-        this.identitySettings = identitySettings;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -287,9 +259,6 @@ public final class Configuration implements JsonSerializable<Configuration> {
         if (service() != null) {
             service().validate();
         }
-        if (identitySettings() != null) {
-            identitySettings().forEach(e -> e.validate());
-        }
     }
 
     /**
@@ -307,8 +276,6 @@ public final class Configuration implements JsonSerializable<Configuration> {
         jsonWriter.writeJsonField("runtime", this.runtime);
         jsonWriter.writeNumberField("maxInactiveRevisions", this.maxInactiveRevisions);
         jsonWriter.writeJsonField("service", this.service);
-        jsonWriter.writeArrayField("identitySettings", this.identitySettings,
-            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -346,10 +313,6 @@ public final class Configuration implements JsonSerializable<Configuration> {
                     deserializedConfiguration.maxInactiveRevisions = reader.getNullable(JsonReader::getInt);
                 } else if ("service".equals(fieldName)) {
                     deserializedConfiguration.service = Service.fromJson(reader);
-                } else if ("identitySettings".equals(fieldName)) {
-                    List<IdentitySettings> identitySettings
-                        = reader.readArray(reader1 -> IdentitySettings.fromJson(reader1));
-                    deserializedConfiguration.identitySettings = identitySettings;
                 } else {
                     reader.skipChildren();
                 }
