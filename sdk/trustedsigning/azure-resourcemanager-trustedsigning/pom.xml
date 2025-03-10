@@ -50,11 +50,6 @@
   <dependencies>
     <dependency>
       <groupId>com.azure</groupId>
-      <artifactId>azure-json</artifactId>
-      <version>1.5.0</version> <!-- {x-version-update;com.azure:azure-json;dependency} -->
-    </dependency>
-    <dependency>
-      <groupId>com.azure</groupId>
       <artifactId>azure-core</artifactId>
       <version>1.55.2</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->
     </dependency>
@@ -74,6 +69,11 @@
       <artifactId>azure-identity</artifactId>
       <version>1.15.3</version> <!-- {x-version-update;com.azure:azure-identity;dependency} -->
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-json</artifactId>
+      <version>1.5.0</version> <!-- {x-version-update;com.azure:azure-json;dependency} -->
     </dependency>
   </dependencies>
 </project>
