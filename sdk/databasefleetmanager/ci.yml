@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/databasefleetmanager/ci.yml
+      - sdk/databasefleetmanager/azure-resourcemanager-databasefleetmanager/
+    exclude:
+      - sdk/databasefleetmanager/pom.xml
+      - sdk/databasefleetmanager/azure-resourcemanager-databasefleetmanager/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/databasefleetmanager/ci.yml
+      - sdk/databasefleetmanager/azure-resourcemanager-databasefleetmanager/
+    exclude:
+      - sdk/databasefleetmanager/pom.xml
+      - sdk/databasefleetmanager/azure-resourcemanager-databasefleetmanager/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerdatabasefleetmanager
+    displayName: azure-resourcemanager-databasefleetmanager
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: databasefleetmanager
+    Artifacts:
+      - name: azure-resourcemanager-databasefleetmanager
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerdatabasefleetmanager
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerdatabasefleetmanager }}
