@@ -126,7 +126,6 @@ public final class ItemPathBasedRestoreCriteria extends ItemLevelRestoreCriteria
      */
     @Override
     public void validate() {
-        super.validate();
         if (itemPath() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
