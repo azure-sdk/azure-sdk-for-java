@@ -2,13 +2,76 @@
 
 ## 1.1.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.LateralityDiscrepancyInference` was modified
 
-### Other Changes
+* `getExtension()` was removed
+
+#### `models.LimitedOrderDiscrepancyInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.GenericProcedureRecommendation` was modified
+
+* `getExtension()` was removed
+
+#### `models.CompleteOrderDiscrepancyInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FhirR4ResearchStudy` was modified
+
+* `getModifierExtension()` was removed
+* `getExtension()` was removed
+* `getContained()` was removed
+* `getText()` was removed
+
+#### `models.FollowupCommunicationInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.ImagingProcedureRecommendation` was modified
+
+* `getExtension()` was removed
+
+#### `models.SexMismatchInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FhirR4Observation` was modified
+
+* `getModifierExtension()` was removed
+* `getContained()` was removed
+* `getText()` was removed
+* `getExtension()` was removed
+
+#### `models.AgeMismatchInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.CriticalResultInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FhirR4Condition` was modified
+
+* `getModifierExtension()` was removed
+* `getText()` was removed
+* `getContained()` was removed
+* `getExtension()` was removed
+
+#### `models.RadiologyProcedureInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FindingInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FollowupRecommendationInference` was modified
+
+* `getExtension()` was removed
 
 ## 1.0.0 (2024-10-09)
 
