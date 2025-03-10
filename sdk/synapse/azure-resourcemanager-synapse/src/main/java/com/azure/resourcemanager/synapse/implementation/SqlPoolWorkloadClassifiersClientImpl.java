@@ -167,11 +167,12 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
             return Mono.error(
                 new IllegalArgumentException("Parameter workloadClassifierName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, workloadGroupName,
-                workloadClassifierName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -221,10 +222,11 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
             return Mono.error(
                 new IllegalArgumentException("Parameter workloadClassifierName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName, accept, context);
+        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName, accept, context);
     }
 
     /**
@@ -346,9 +348,10 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, workloadGroupName,
                 workloadClassifierName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -407,11 +410,12 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, workloadGroupName,
-            workloadClassifierName, parameters, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName, parameters,
+            accept, context);
     }
 
     /**
@@ -662,10 +666,11 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
             return Mono.error(
                 new IllegalArgumentException("Parameter workloadClassifierName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, workloadGroupName,
-                workloadClassifierName, context))
+            .withContext(
+                context -> service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                    resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -714,9 +719,10 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
             return Mono.error(
                 new IllegalArgumentException("Parameter workloadClassifierName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName, context);
+        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName, context);
     }
 
     /**
@@ -944,11 +950,11 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
             return Mono
                 .error(new IllegalArgumentException("Parameter workloadGroupName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, workloadGroupName,
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, accept, context))
             .<PagedResponse<WorkloadClassifierInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -995,11 +1001,12 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
             return Mono
                 .error(new IllegalArgumentException("Parameter workloadGroupName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, accept, context)
+            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, sqlPoolName, workloadGroupName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

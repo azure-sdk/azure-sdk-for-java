@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.synapse.models.LinkedIntegrationRuntimeType;
+import com.azure.resourcemanager.synapse.models.SelfContainedInteractiveAuthoringState;
 import java.io.IOException;
 
 /**
@@ -22,6 +23,12 @@ public final class SelfHostedIntegrationRuntimeTypeProperties
      * Linked integration runtime type from data factory
      */
     private LinkedIntegrationRuntimeType linkedInfo;
+
+    /*
+     * An alternative option to ensure interactive authoring function when your self-hosted integration runtime is
+     * unable to establish a connection with Azure Relay.
+     */
+    private SelfContainedInteractiveAuthoringState selfContainedInteractiveAuthoringEnabled;
 
     /**
      * Creates an instance of SelfHostedIntegrationRuntimeTypeProperties class.
@@ -50,6 +57,29 @@ public final class SelfHostedIntegrationRuntimeTypeProperties
     }
 
     /**
+     * Get the selfContainedInteractiveAuthoringEnabled property: An alternative option to ensure interactive authoring
+     * function when your self-hosted integration runtime is unable to establish a connection with Azure Relay.
+     * 
+     * @return the selfContainedInteractiveAuthoringEnabled value.
+     */
+    public SelfContainedInteractiveAuthoringState selfContainedInteractiveAuthoringEnabled() {
+        return this.selfContainedInteractiveAuthoringEnabled;
+    }
+
+    /**
+     * Set the selfContainedInteractiveAuthoringEnabled property: An alternative option to ensure interactive authoring
+     * function when your self-hosted integration runtime is unable to establish a connection with Azure Relay.
+     * 
+     * @param selfContainedInteractiveAuthoringEnabled the selfContainedInteractiveAuthoringEnabled value to set.
+     * @return the SelfHostedIntegrationRuntimeTypeProperties object itself.
+     */
+    public SelfHostedIntegrationRuntimeTypeProperties withSelfContainedInteractiveAuthoringEnabled(
+        SelfContainedInteractiveAuthoringState selfContainedInteractiveAuthoringEnabled) {
+        this.selfContainedInteractiveAuthoringEnabled = selfContainedInteractiveAuthoringEnabled;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -67,6 +97,10 @@ public final class SelfHostedIntegrationRuntimeTypeProperties
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("linkedInfo", this.linkedInfo);
+        jsonWriter.writeBooleanField("selfContainedInteractiveAuthoringEnabled",
+            this.selfContainedInteractiveAuthoringEnabled == null
+                ? null
+                : this.selfContainedInteractiveAuthoringEnabled.toBoolean());
         return jsonWriter.writeEndObject();
     }
 
@@ -89,6 +123,9 @@ public final class SelfHostedIntegrationRuntimeTypeProperties
                 if ("linkedInfo".equals(fieldName)) {
                     deserializedSelfHostedIntegrationRuntimeTypeProperties.linkedInfo
                         = LinkedIntegrationRuntimeType.fromJson(reader);
+                } else if ("selfContainedInteractiveAuthoringEnabled".equals(fieldName)) {
+                    deserializedSelfHostedIntegrationRuntimeTypeProperties.selfContainedInteractiveAuthoringEnabled
+                        = SelfContainedInteractiveAuthoringState.fromBoolean(reader.getBoolean());
                 } else {
                     reader.skipChildren();
                 }
