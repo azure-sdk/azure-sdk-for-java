@@ -6,6 +6,7 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.DayOfWeek;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPooledSchedule;
+import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPooledSchedulePatchProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostLoadBalancingAlgorithm;
 import com.azure.resourcemanager.desktopvirtualization.models.Time;
 import java.util.Arrays;
@@ -16,8 +17,8 @@ import java.util.Arrays;
 public final class ScalingPlanPooledSchedulesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ScalingPlanPooledSchedule_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/ScalingPlanPooledSchedules_Update.json
      */
     /**
      * Sample code: ScalingPlanPooledSchedules_Update.
@@ -31,14 +32,15 @@ public final class ScalingPlanPooledSchedulesUpdateSamples {
                 com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withDaysOfWeek(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
-                DayOfWeek.FRIDAY))
-            .withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
-            .withRampUpCapacityThresholdPct(80)
-            .withPeakStartTime(new Time().withHour(8).withMinute(0))
-            .withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
-            .withRampDownMinimumHostsPct(20)
-            .withRampDownWaitTimeMinutes(30)
+            .withProperties(new ScalingPlanPooledSchedulePatchProperties()
+                .withDaysOfWeek(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
+                    DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
+                .withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
+                .withRampUpCapacityThresholdPct(80)
+                .withPeakStartTime(new Time().withHour(8).withMinute(0))
+                .withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
+                .withRampDownMinimumHostsPct(20)
+                .withRampDownWaitTimeMinutes(30))
             .apply();
     }
 }

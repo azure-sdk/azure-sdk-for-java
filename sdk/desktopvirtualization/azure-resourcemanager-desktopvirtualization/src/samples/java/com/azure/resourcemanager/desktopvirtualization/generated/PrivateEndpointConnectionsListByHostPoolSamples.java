@@ -10,15 +10,15 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class PrivateEndpointConnectionsListByHostPoolSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * PrivateEndpointConnection_ListByHostPool.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/PrivateEndpointConnections_ListByHostPool.json
      */
     /**
-     * Sample code: PrivateEndpointConnection_ListByHostPool.
+     * Sample code: PrivateEndpointConnections_ListByHostPool.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void privateEndpointConnectionListByHostPool(
+    public static void privateEndpointConnectionsListByHostPool(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.privateEndpointConnections()
             .listByHostPool("resourceGroup1", "hostPool1", null, null, null, com.azure.core.util.Context.NONE);

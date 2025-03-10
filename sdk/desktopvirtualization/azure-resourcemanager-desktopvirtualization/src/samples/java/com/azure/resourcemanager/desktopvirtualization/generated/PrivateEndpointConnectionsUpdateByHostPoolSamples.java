@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.PrivateEndpointConnectionWithSystemDataInner;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointServiceConnectionStatus;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkServiceConnectionState;
 
@@ -14,20 +14,20 @@ import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkService
 public final class PrivateEndpointConnectionsUpdateByHostPoolSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * PrivateEndpointConnection_UpdateByHostPool.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/PrivateEndpointConnections_UpdateByHostPool.json
      */
     /**
-     * Sample code: PrivateEndpointConnection_UpdateByHostPool.
+     * Sample code: PrivateEndpointConnections_UpdateByHostPool.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void privateEndpointConnectionUpdateByHostPool(
+    public static void privateEndpointConnectionsUpdateByHostPool(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.privateEndpointConnections()
             .updateByHostPoolWithResponse("resourceGroup1", "hostPool1",
                 "hostPool1.377103f1-5179-4bdf-8556-4cdd3207cc5b",
-                new PrivateEndpointConnection().withPrivateLinkServiceConnectionState(
+                new PrivateEndpointConnectionWithSystemDataInner().withPrivateLinkServiceConnectionState(
                     new PrivateLinkServiceConnectionState().withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)
                         .withDescription("Approved by admin@consoto.com")
                         .withActionsRequired("None")),

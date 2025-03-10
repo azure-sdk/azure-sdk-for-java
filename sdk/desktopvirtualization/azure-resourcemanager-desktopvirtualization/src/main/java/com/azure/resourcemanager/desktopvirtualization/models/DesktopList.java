@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,19 +15,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * DesktopList
- * 
  * List of Desktop definitions.
  */
 @Fluent
 public final class DesktopList implements JsonSerializable<DesktopList> {
     /*
-     * List of Desktop definitions.
+     * The Desktop items on this page
      */
     private List<DesktopInner> value;
 
     /*
-     * Link to the next page of results.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -37,7 +36,7 @@ public final class DesktopList implements JsonSerializable<DesktopList> {
     }
 
     /**
-     * Get the value property: List of Desktop definitions.
+     * Get the value property: The Desktop items on this page.
      * 
      * @return the value value.
      */
@@ -46,7 +45,7 @@ public final class DesktopList implements JsonSerializable<DesktopList> {
     }
 
     /**
-     * Set the value property: List of Desktop definitions.
+     * Set the value property: The Desktop items on this page.
      * 
      * @param value the value value to set.
      * @return the DesktopList object itself.
@@ -57,7 +56,7 @@ public final class DesktopList implements JsonSerializable<DesktopList> {
     }
 
     /**
-     * Get the nextLink property: Link to the next page of results.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -66,15 +65,31 @@ public final class DesktopList implements JsonSerializable<DesktopList> {
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the DesktopList object itself.
+     */
+    public DesktopList withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model DesktopList"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DesktopList.class);
 
     /**
      * {@inheritDoc}
@@ -83,6 +98,7 @@ public final class DesktopList implements JsonSerializable<DesktopList> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -92,6 +108,7 @@ public final class DesktopList implements JsonSerializable<DesktopList> {
      * @param jsonReader The JsonReader being read.
      * @return An instance of DesktopList if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the DesktopList.
      */
     public static DesktopList fromJson(JsonReader jsonReader) throws IOException {

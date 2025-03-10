@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class ScalingPlanPersonalSchedulesListSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ScalingPlanPersonalSchedule_List.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/ScalingPlanPersonalSchedules_List.json
      */
     /**
      * Sample code: ScalingPlanPersonalSchedules_List.

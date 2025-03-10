@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.Workspace;
+import com.azure.resourcemanager.desktopvirtualization.models.WorkspacePatchProperties;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +15,8 @@ import java.util.Map;
 public final class WorkspacesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Workspace_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/Workspaces_Update.json
      */
     /**
      * Sample code: Workspace_Update.
@@ -29,8 +30,7 @@ public final class WorkspacesUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withDescription("des1")
-            .withFriendlyName("friendly")
+            .withProperties(new WorkspacePatchProperties().withDescription("des1").withFriendlyName("friendly"))
             .apply();
     }
 

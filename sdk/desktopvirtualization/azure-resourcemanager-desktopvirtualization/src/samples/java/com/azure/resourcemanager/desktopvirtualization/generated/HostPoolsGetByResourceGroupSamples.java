@@ -10,16 +10,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class HostPoolsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * HostPool_Get.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/HostPools_Get.json
      */
     /**
-     * Sample code: HostPool_Get.
+     * Sample code: HostPools_Get.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        hostPoolGet(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        hostPoolsGet(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.hostPools()
             .getByResourceGroupWithResponse("resourceGroup1", "hostPool1", com.azure.core.util.Context.NONE);
     }

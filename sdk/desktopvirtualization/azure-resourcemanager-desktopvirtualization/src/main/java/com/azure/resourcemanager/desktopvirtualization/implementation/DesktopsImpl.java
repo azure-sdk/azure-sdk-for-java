@@ -28,6 +28,18 @@ public final class DesktopsImpl implements Desktops {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName) {
+        PagedIterable<DesktopInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<DesktopInner> inner = this.serviceClient()
+            .list(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
+    }
+
     public Response<Desktop> getWithResponse(String resourceGroupName, String applicationGroupName, String desktopName,
         Context context) {
         Response<DesktopInner> inner
@@ -68,18 +80,6 @@ public final class DesktopsImpl implements Desktops {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName) {
-        PagedIterable<DesktopInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<DesktopInner> inner = this.serviceClient()
-            .list(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
     }
 
     private DesktopsClient serviceClient() {
