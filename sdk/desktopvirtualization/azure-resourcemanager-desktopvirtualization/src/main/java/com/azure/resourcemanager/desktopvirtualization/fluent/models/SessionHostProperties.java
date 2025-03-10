@@ -104,6 +104,17 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
     private String updateErrorMessage;
 
     /*
+     * The last time update was completed.
+     */
+    private OffsetDateTime lastSessionHostUpdateTime;
+
+    /*
+     * SessionHostConfiguration version reference at the time the update is initiated, in the format of date time.
+     * Example: 2024-04-26T04:56:45Z
+     */
+    private String sessionHostConfiguration;
+
+    /*
      * List of SessionHostHealthCheckReports
      */
     private List<SessionHostHealthCheckReport> sessionHostHealthCheckResults;
@@ -340,17 +351,6 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
     }
 
     /**
-     * Set the updateState property: Update state of a SessionHost.
-     * 
-     * @param updateState the updateState value to set.
-     * @return the SessionHostProperties object itself.
-     */
-    public SessionHostProperties withUpdateState(UpdateState updateState) {
-        this.updateState = updateState;
-        return this;
-    }
-
-    /**
      * Get the lastUpdateTime property: The timestamp of the last update.
      * 
      * @return the lastUpdateTime value.
@@ -377,6 +377,25 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
     public SessionHostProperties withUpdateErrorMessage(String updateErrorMessage) {
         this.updateErrorMessage = updateErrorMessage;
         return this;
+    }
+
+    /**
+     * Get the lastSessionHostUpdateTime property: The last time update was completed.
+     * 
+     * @return the lastSessionHostUpdateTime value.
+     */
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.lastSessionHostUpdateTime;
+    }
+
+    /**
+     * Get the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time. Example: 2024-04-26T04:56:45Z.
+     * 
+     * @return the sessionHostConfiguration value.
+     */
+    public String sessionHostConfiguration() {
+        return this.sessionHostConfiguration;
     }
 
     /**
@@ -415,7 +434,6 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         jsonWriter.writeStringField("osVersion", this.osVersion);
         jsonWriter.writeStringField("sxSStackVersion", this.sxSStackVersion);
-        jsonWriter.writeStringField("updateState", this.updateState == null ? null : this.updateState.toString());
         jsonWriter.writeStringField("updateErrorMessage", this.updateErrorMessage);
         return jsonWriter.writeEndObject();
     }
@@ -470,6 +488,11 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("updateErrorMessage".equals(fieldName)) {
                     deserializedSessionHostProperties.updateErrorMessage = reader.getString();
+                } else if ("lastSessionHostUpdateTime".equals(fieldName)) {
+                    deserializedSessionHostProperties.lastSessionHostUpdateTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("sessionHostConfiguration".equals(fieldName)) {
+                    deserializedSessionHostProperties.sessionHostConfiguration = reader.getString();
                 } else if ("sessionHostHealthCheckResults".equals(fieldName)) {
                     List<SessionHostHealthCheckReport> sessionHostHealthCheckResults
                         = reader.readArray(reader1 -> SessionHostHealthCheckReport.fromJson(reader1));

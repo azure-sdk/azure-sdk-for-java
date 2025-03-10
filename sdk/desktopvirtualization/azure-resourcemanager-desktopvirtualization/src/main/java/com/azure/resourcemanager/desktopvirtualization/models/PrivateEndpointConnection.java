@@ -12,17 +12,16 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.PrivateEndpointConnectionProperties;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * The private endpoint connection resource.
  */
 @Fluent
-public class PrivateEndpointConnection extends ProxyResource {
+public final class PrivateEndpointConnection extends ProxyResource {
     /*
      * Resource properties.
      */
-    private PrivateEndpointConnectionProperties innerProperties;
+    private PrivateEndpointConnectionProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -51,22 +50,22 @@ public class PrivateEndpointConnection extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Resource properties.
+     * Get the properties property: Resource properties.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private PrivateEndpointConnectionProperties innerProperties() {
-        return this.innerProperties;
+    public PrivateEndpointConnectionProperties properties() {
+        return this.properties;
     }
 
     /**
-     * Set the innerProperties property: Resource properties.
+     * Set the properties property: Resource properties.
      * 
-     * @param innerProperties the innerProperties value to set.
+     * @param properties the properties value to set.
      * @return the PrivateEndpointConnection object itself.
      */
-    PrivateEndpointConnection withInnerProperties(PrivateEndpointConnectionProperties innerProperties) {
-        this.innerProperties = innerProperties;
+    public PrivateEndpointConnection withProperties(PrivateEndpointConnectionProperties properties) {
+        this.properties = properties;
         return this;
     }
 
@@ -77,17 +76,6 @@ public class PrivateEndpointConnection extends ProxyResource {
      */
     public SystemData systemData() {
         return this.systemData;
-    }
-
-    /**
-     * Set the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     * 
-     * @param systemData the systemData value to set.
-     * @return the PrivateEndpointConnection object itself.
-     */
-    PrivateEndpointConnection withSystemData(SystemData systemData) {
-        this.systemData = systemData;
-        return this;
     }
 
     /**
@@ -121,80 +109,13 @@ public class PrivateEndpointConnection extends ProxyResource {
     }
 
     /**
-     * Get the groupIds property: The group ids for the private endpoint resource.
-     * 
-     * @return the groupIds value.
-     */
-    public List<String> groupIds() {
-        return this.innerProperties() == null ? null : this.innerProperties().groupIds();
-    }
-
-    /**
-     * Get the privateEndpoint property: The private endpoint resource.
-     * 
-     * @return the privateEndpoint value.
-     */
-    public PrivateEndpoint privateEndpoint() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpoint();
-    }
-
-    /**
-     * Set the privateEndpoint property: The private endpoint resource.
-     * 
-     * @param privateEndpoint the privateEndpoint value to set.
-     * @return the PrivateEndpointConnection object itself.
-     */
-    public PrivateEndpointConnection withPrivateEndpoint(PrivateEndpoint privateEndpoint) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PrivateEndpointConnectionProperties();
-        }
-        this.innerProperties().withPrivateEndpoint(privateEndpoint);
-        return this;
-    }
-
-    /**
-     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
-     * 
-     * @return the privateLinkServiceConnectionState value.
-     */
-    public PrivateLinkServiceConnectionState privateLinkServiceConnectionState() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateLinkServiceConnectionState();
-    }
-
-    /**
-     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
-     * 
-     * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
-     * @return the PrivateEndpointConnection object itself.
-     */
-    public PrivateEndpointConnection
-        withPrivateLinkServiceConnectionState(PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PrivateEndpointConnectionProperties();
-        }
-        this.innerProperties().withPrivateLinkServiceConnectionState(privateLinkServiceConnectionState);
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state of the private endpoint connection resource.
-     * 
-     * @return the provisioningState value.
-     */
-    public PrivateEndpointConnectionProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -204,7 +125,7 @@ public class PrivateEndpointConnection extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -231,7 +152,7 @@ public class PrivateEndpointConnection extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedPrivateEndpointConnection.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedPrivateEndpointConnection.innerProperties
+                    deserializedPrivateEndpointConnection.properties
                         = PrivateEndpointConnectionProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedPrivateEndpointConnection.systemData = SystemData.fromJson(reader);

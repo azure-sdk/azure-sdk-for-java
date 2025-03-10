@@ -13,8 +13,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.ImportPackageInfoR
 public final class AppAttachPackageInfoImportMethodSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * AppAttachPackageInfo_Import_Post.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/AppAttachPackageInfo_Import.json
      */
     /**
      * Sample code: AppAttachPackageInfo_Import.
@@ -24,7 +24,9 @@ public final class AppAttachPackageInfoImportMethodSamples {
     public static void appAttachPackageInfoImport(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.appAttachPackageInfoes()
-            .importMethod("resourceGroup1", "hostpool1", new ImportPackageInfoRequest().withPath("imagepath")
-                .withPackageArchitecture(AppAttachPackageArchitectures.X64), com.azure.core.util.Context.NONE);
+            .importMethod("resourceGroup1", "hostpool1",
+                new ImportPackageInfoRequest().withPath("https://url.com/imagePath")
+                    .withPackageArchitecture(AppAttachPackageArchitectures.X64),
+                com.azure.core.util.Context.NONE);
     }
 }

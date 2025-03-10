@@ -12,18 +12,18 @@ import com.azure.resourcemanager.desktopvirtualization.models.MsixImageUri;
 public final class MsixImagesExpandSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * MsixImage_Expand_Post.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/MsixImages_Expand.json
      */
     /**
-     * Sample code: MsixImage_Expand.
+     * Sample code: MsixImages_Expand.
      * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void
-        msixImageExpand(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        msixImagesExpand(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.msixImages()
-            .expand("resourceGroup1", "hostpool1", new MsixImageUri().withUri("imagepath"),
+            .expand("resourceGroup1", "hostpool1", new MsixImageUri().withUri("https://url.com/imagePath"),
                 com.azure.core.util.Context.NONE);
     }
 }

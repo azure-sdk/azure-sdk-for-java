@@ -17,8 +17,8 @@ import java.util.Arrays;
 public final class ScalingPlanPersonalSchedulesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ScalingPlanPersonalSchedule_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/ScalingPlanPersonalSchedules_Create.json
      */
     /**
      * Sample code: ScalingPlanPersonalSchedules_Create.
@@ -33,25 +33,25 @@ public final class ScalingPlanPersonalSchedulesCreateSamples {
             .withDaysOfWeek(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
                 DayOfWeek.FRIDAY))
             .withRampUpStartTime(new Time().withHour(6).withMinute(0))
+            .withPeakStartTime(new Time().withHour(8).withMinute(0))
+            .withRampDownStartTime(new Time().withHour(18).withMinute(0))
+            .withOffPeakStartTime(new Time().withHour(20).withMinute(0))
             .withRampUpAutoStartHosts(StartupBehavior.ALL)
             .withRampUpStartVMOnConnect(SetStartVMOnConnect.ENABLE)
             .withRampUpActionOnDisconnect(SessionHandlingOperation.NONE)
             .withRampUpMinutesToWaitOnDisconnect(10)
             .withRampUpActionOnLogoff(SessionHandlingOperation.NONE)
             .withRampUpMinutesToWaitOnLogoff(10)
-            .withPeakStartTime(new Time().withHour(8).withMinute(0))
             .withPeakStartVMOnConnect(SetStartVMOnConnect.ENABLE)
             .withPeakActionOnDisconnect(SessionHandlingOperation.NONE)
             .withPeakMinutesToWaitOnDisconnect(10)
             .withPeakActionOnLogoff(SessionHandlingOperation.DEALLOCATE)
             .withPeakMinutesToWaitOnLogoff(10)
-            .withRampDownStartTime(new Time().withHour(18).withMinute(0))
             .withRampDownStartVMOnConnect(SetStartVMOnConnect.ENABLE)
             .withRampDownActionOnDisconnect(SessionHandlingOperation.NONE)
             .withRampDownMinutesToWaitOnDisconnect(10)
             .withRampDownActionOnLogoff(SessionHandlingOperation.DEALLOCATE)
             .withRampDownMinutesToWaitOnLogoff(10)
-            .withOffPeakStartTime(new Time().withHour(20).withMinute(0))
             .withOffPeakStartVMOnConnect(SetStartVMOnConnect.ENABLE)
             .withOffPeakActionOnDisconnect(SessionHandlingOperation.NONE)
             .withOffPeakMinutesToWaitOnDisconnect(10)

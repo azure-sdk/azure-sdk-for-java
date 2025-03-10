@@ -89,7 +89,7 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
+     * @param importPackageInfoRequest The importPackageInfoRequest parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -135,7 +135,7 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
+     * @param importPackageInfoRequest The importPackageInfoRequest parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -181,7 +181,7 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
+     * @param importPackageInfoRequest The importPackageInfoRequest parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -200,7 +200,7 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
+     * @param importPackageInfoRequest The importPackageInfoRequest parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -220,7 +220,7 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
+     * @param importPackageInfoRequest The importPackageInfoRequest parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -238,7 +238,7 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
+     * @param importPackageInfoRequest The importPackageInfoRequest parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -260,7 +260,8 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AppAttachPackageInner>> importMethodNextSinglePageAsync(String nextLink) {
@@ -287,7 +288,8 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of App Attach Package definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AppAttachPackageInner>> importMethodNextSinglePageAsync(String nextLink,
