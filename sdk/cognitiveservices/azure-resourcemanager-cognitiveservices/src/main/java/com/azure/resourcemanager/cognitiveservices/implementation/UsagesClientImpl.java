@@ -67,8 +67,7 @@ public final class UsagesClientImpl implements UsagesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UsageListResultInner>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
-            @PathParam("location") String location, @QueryParam("$filter") String filter,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("location") String location, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -82,8 +81,6 @@ public final class UsagesClientImpl implements UsagesClient {
      * Get usages for the requested subscription.
      * 
      * @param location Resource location.
-     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is
-     * name.value (name of the metric, can have an or of multiple names).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -91,7 +88,7 @@ public final class UsagesClientImpl implements UsagesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<Usage>> listSinglePageAsync(String location, String filter) {
+    private Mono<PagedResponse<Usage>> listSinglePageAsync(String location) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -106,7 +103,7 @@ public final class UsagesClientImpl implements UsagesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), location, filter, accept, context))
+                this.client.getApiVersion(), location, accept, context))
             .<PagedResponse<Usage>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -116,8 +113,6 @@ public final class UsagesClientImpl implements UsagesClient {
      * Get usages for the requested subscription.
      * 
      * @param location Resource location.
-     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is
-     * name.value (name of the metric, can have an or of multiple names).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -126,7 +121,7 @@ public final class UsagesClientImpl implements UsagesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<Usage>> listSinglePageAsync(String location, String filter, Context context) {
+    private Mono<PagedResponse<Usage>> listSinglePageAsync(String location, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -142,26 +137,9 @@ public final class UsagesClientImpl implements UsagesClient {
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), location,
-                filter, accept, context)
+                accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get usages for the requested subscription.
-     * 
-     * @param location Resource location.
-     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is
-     * name.value (name of the metric, can have an or of multiple names).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return usages for the requested subscription as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<Usage> listAsync(String location, String filter) {
-        return new PagedFlux<>(() -> listSinglePageAsync(location, filter),
-            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -175,17 +153,13 @@ public final class UsagesClientImpl implements UsagesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<Usage> listAsync(String location) {
-        final String filter = null;
-        return new PagedFlux<>(() -> listSinglePageAsync(location, filter),
-            nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(location), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get usages for the requested subscription.
      * 
      * @param location Resource location.
-     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is
-     * name.value (name of the metric, can have an or of multiple names).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -193,8 +167,8 @@ public final class UsagesClientImpl implements UsagesClient {
      * @return usages for the requested subscription as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<Usage> listAsync(String location, String filter, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(location, filter, context),
+    private PagedFlux<Usage> listAsync(String location, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(location, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -209,16 +183,13 @@ public final class UsagesClientImpl implements UsagesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<Usage> list(String location) {
-        final String filter = null;
-        return new PagedIterable<>(listAsync(location, filter));
+        return new PagedIterable<>(listAsync(location));
     }
 
     /**
      * Get usages for the requested subscription.
      * 
      * @param location Resource location.
-     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is
-     * name.value (name of the metric, can have an or of multiple names).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -226,8 +197,8 @@ public final class UsagesClientImpl implements UsagesClient {
      * @return usages for the requested subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<Usage> list(String location, String filter, Context context) {
-        return new PagedIterable<>(listAsync(location, filter, context));
+    public PagedIterable<Usage> list(String location, Context context) {
+        return new PagedIterable<>(listAsync(location, context));
     }
 
     /**

@@ -28,8 +28,8 @@ public final class UsagesImpl implements Usages {
         return this.serviceClient().list(location);
     }
 
-    public PagedIterable<Usage> list(String location, String filter, Context context) {
-        return this.serviceClient().list(location, filter, context);
+    public PagedIterable<Usage> list(String location, Context context) {
+        return this.serviceClient().list(location, context);
     }
 
     private UsagesClient serviceClient() {

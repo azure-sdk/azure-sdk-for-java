@@ -30,8 +30,6 @@ public interface UsagesClient {
      * Get usages for the requested subscription.
      * 
      * @param location Resource location.
-     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is
-     * name.value (name of the metric, can have an or of multiple names).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -39,5 +37,5 @@ public interface UsagesClient {
      * @return usages for the requested subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<Usage> list(String location, String filter, Context context);
+    PagedIterable<Usage> list(String location, Context context);
 }
