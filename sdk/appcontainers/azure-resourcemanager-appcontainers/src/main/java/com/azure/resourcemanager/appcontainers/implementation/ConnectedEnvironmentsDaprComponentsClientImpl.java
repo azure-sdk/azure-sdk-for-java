@@ -90,7 +90,7 @@ public final class ConnectedEnvironmentsDaprComponentsClientImpl implements Conn
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/daprComponents/{componentName}")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<DaprComponentInner>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
