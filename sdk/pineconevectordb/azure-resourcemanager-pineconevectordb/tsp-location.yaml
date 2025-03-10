@@ -1,4 +1,4 @@
 directory: specification/liftrpinecone/Pinecone.VectorDb.Management
-commit: 3a17b429e962d7a1a01c3c8fcdded8c8a2364196
+commit: 03c105f96d40a33dd7196727818297057ec643ae
 repo: Azure/azure-rest-api-specs
 additionalDirectories: 
