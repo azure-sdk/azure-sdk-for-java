@@ -145,10 +145,11 @@ public final class DataMaskingRulesClientImpl implements DataMaskingRulesClient 
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String dataMaskingPolicyName = "Default";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName,
                 dataMaskingRuleName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -200,12 +201,13 @@ public final class DataMaskingRulesClientImpl implements DataMaskingRulesClient 
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String dataMaskingPolicyName = "Default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName,
-            dataMaskingRuleName, parameters, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName, dataMaskingRuleName, parameters,
+            accept, context);
     }
 
     /**
@@ -307,12 +309,13 @@ public final class DataMaskingRulesClientImpl implements DataMaskingRulesClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter dataMaskingRuleName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String dataMaskingPolicyName = "Default";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName,
-                dataMaskingRuleName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName, dataMaskingRuleName, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -355,11 +358,12 @@ public final class DataMaskingRulesClientImpl implements DataMaskingRulesClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter dataMaskingRuleName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String dataMaskingPolicyName = "Default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName, dataMaskingRuleName, accept, context);
+        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, sqlPoolName, dataMaskingPolicyName, dataMaskingRuleName, accept, context);
     }
 
     /**
@@ -453,12 +457,13 @@ public final class DataMaskingRulesClientImpl implements DataMaskingRulesClient 
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String dataMaskingPolicyName = "Default";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listBySqlPool(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName,
-                accept, context))
+            .withContext(
+                context -> service.listBySqlPool(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                    resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName, accept, context))
             .<PagedResponse<DataMaskingRuleInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -498,12 +503,13 @@ public final class DataMaskingRulesClientImpl implements DataMaskingRulesClient 
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String dataMaskingPolicyName = "Default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listBySqlPool(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, sqlPoolName, dataMaskingPolicyName, accept, context)
+            .listBySqlPool(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, sqlPoolName, dataMaskingPolicyName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
     }

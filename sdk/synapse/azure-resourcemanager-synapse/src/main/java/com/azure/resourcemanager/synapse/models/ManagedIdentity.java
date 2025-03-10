@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -31,6 +32,11 @@ public final class ManagedIdentity implements JsonSerializable<ManagedIdentity> 
      * The type of managed identity for the workspace
      */
     private ResourceIdentityType type;
+
+    /*
+     * The user assigned managed identities.
+     */
+    private Map<String, UserAssignedManagedIdentity> userAssignedIdentities;
 
     /**
      * Creates an instance of ManagedIdentity class.
@@ -77,11 +83,38 @@ public final class ManagedIdentity implements JsonSerializable<ManagedIdentity> 
     }
 
     /**
+     * Get the userAssignedIdentities property: The user assigned managed identities.
+     * 
+     * @return the userAssignedIdentities value.
+     */
+    public Map<String, UserAssignedManagedIdentity> userAssignedIdentities() {
+        return this.userAssignedIdentities;
+    }
+
+    /**
+     * Set the userAssignedIdentities property: The user assigned managed identities.
+     * 
+     * @param userAssignedIdentities the userAssignedIdentities value to set.
+     * @return the ManagedIdentity object itself.
+     */
+    public ManagedIdentity withUserAssignedIdentities(Map<String, UserAssignedManagedIdentity> userAssignedIdentities) {
+        this.userAssignedIdentities = userAssignedIdentities;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (userAssignedIdentities() != null) {
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
+        }
     }
 
     /**
@@ -91,6 +124,8 @@ public final class ManagedIdentity implements JsonSerializable<ManagedIdentity> 
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
+        jsonWriter.writeMapField("userAssignedIdentities", this.userAssignedIdentities,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -116,6 +151,10 @@ public final class ManagedIdentity implements JsonSerializable<ManagedIdentity> 
                         = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
                 } else if ("type".equals(fieldName)) {
                     deserializedManagedIdentity.type = ResourceIdentityType.fromString(reader.getString());
+                } else if ("userAssignedIdentities".equals(fieldName)) {
+                    Map<String, UserAssignedManagedIdentity> userAssignedIdentities
+                        = reader.readMap(reader1 -> UserAssignedManagedIdentity.fromJson(reader1));
+                    deserializedManagedIdentity.userAssignedIdentities = userAssignedIdentities;
                 } else {
                     reader.skipChildren();
                 }

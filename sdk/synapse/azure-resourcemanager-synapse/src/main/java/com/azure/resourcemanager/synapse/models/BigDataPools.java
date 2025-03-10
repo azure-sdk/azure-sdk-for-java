@@ -55,9 +55,9 @@ public interface BigDataPools {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return big Data pool.
      */
-    Object delete(String resourceGroupName, String workspaceName, String bigDataPoolName);
+    BigDataPoolResourceInfo delete(String resourceGroupName, String workspaceName, String bigDataPoolName);
 
     /**
      * Delete a Big Data pool.
@@ -71,9 +71,10 @@ public interface BigDataPools {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return big Data pool.
      */
-    Object delete(String resourceGroupName, String workspaceName, String bigDataPoolName, Context context);
+    BigDataPoolResourceInfo delete(String resourceGroupName, String workspaceName, String bigDataPoolName,
+        Context context);
 
     /**
      * List the Big Data pools in a workspace.
@@ -141,9 +142,9 @@ public interface BigDataPools {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return big Data pool.
      */
-    Object deleteById(String id);
+    BigDataPoolResourceInfo deleteById(String id);
 
     /**
      * Delete a Big Data pool.
@@ -155,9 +156,9 @@ public interface BigDataPools {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return big Data pool.
      */
-    Object deleteByIdWithResponse(String id, Context context);
+    BigDataPoolResourceInfo deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new BigDataPoolResourceInfo resource.

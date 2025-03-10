@@ -139,6 +139,13 @@ public interface SqlPool {
     StorageAccountType storageAccountType();
 
     /**
+     * Gets the sourceDatabaseDeletionDate property: Specifies the time that the sql pool was deleted.
+     * 
+     * @return the sourceDatabaseDeletionDate value.
+     */
+    OffsetDateTime sourceDatabaseDeletionDate();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -225,8 +232,8 @@ public interface SqlPool {
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithSku,
             DefinitionStages.WithMaxSizeBytes, DefinitionStages.WithCollation, DefinitionStages.WithSourceDatabaseId,
             DefinitionStages.WithRecoverableDatabaseId, DefinitionStages.WithProvisioningState,
-            DefinitionStages.WithStatus, DefinitionStages.WithRestorePointInTime, DefinitionStages.WithCreateMode,
-            DefinitionStages.WithCreationDate, DefinitionStages.WithStorageAccountType {
+            DefinitionStages.WithRestorePointInTime, DefinitionStages.WithCreateMode,
+            DefinitionStages.WithStorageAccountType, DefinitionStages.WithSourceDatabaseDeletionDate {
             /**
              * Executes the create request.
              * 
@@ -335,19 +342,6 @@ public interface SqlPool {
         }
 
         /**
-         * The stage of the SqlPool definition allowing to specify status.
-         */
-        interface WithStatus {
-            /**
-             * Specifies the status property: Resource status.
-             * 
-             * @param status Resource status.
-             * @return the next definition stage.
-             */
-            WithCreate withStatus(String status);
-        }
-
-        /**
          * The stage of the SqlPool definition allowing to specify restorePointInTime.
          */
         interface WithRestorePointInTime {
@@ -398,19 +392,6 @@ public interface SqlPool {
         }
 
         /**
-         * The stage of the SqlPool definition allowing to specify creationDate.
-         */
-        interface WithCreationDate {
-            /**
-             * Specifies the creationDate property: Date the SQL pool was created.
-             * 
-             * @param creationDate Date the SQL pool was created.
-             * @return the next definition stage.
-             */
-            WithCreate withCreationDate(OffsetDateTime creationDate);
-        }
-
-        /**
          * The stage of the SqlPool definition allowing to specify storageAccountType.
          */
         interface WithStorageAccountType {
@@ -422,6 +403,19 @@ public interface SqlPool {
              * @return the next definition stage.
              */
             WithCreate withStorageAccountType(StorageAccountType storageAccountType);
+        }
+
+        /**
+         * The stage of the SqlPool definition allowing to specify sourceDatabaseDeletionDate.
+         */
+        interface WithSourceDatabaseDeletionDate {
+            /**
+             * Specifies the sourceDatabaseDeletionDate property: Specifies the time that the sql pool was deleted.
+             * 
+             * @param sourceDatabaseDeletionDate Specifies the time that the sql pool was deleted.
+             * @return the next definition stage.
+             */
+            WithCreate withSourceDatabaseDeletionDate(OffsetDateTime sourceDatabaseDeletionDate);
         }
     }
 
@@ -436,9 +430,8 @@ public interface SqlPool {
      * The template for SqlPool update.
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithSku, UpdateStages.WithMaxSizeBytes,
-        UpdateStages.WithCollation, UpdateStages.WithSourceDatabaseId, UpdateStages.WithRecoverableDatabaseId,
-        UpdateStages.WithProvisioningState, UpdateStages.WithStatus, UpdateStages.WithRestorePointInTime,
-        UpdateStages.WithCreateMode, UpdateStages.WithCreationDate, UpdateStages.WithStorageAccountType {
+        UpdateStages.WithSourceDatabaseId, UpdateStages.WithRecoverableDatabaseId, UpdateStages.WithProvisioningState,
+        UpdateStages.WithCreateMode, UpdateStages.WithStorageAccountType {
         /**
          * Executes the update request.
          * 
@@ -499,19 +492,6 @@ public interface SqlPool {
         }
 
         /**
-         * The stage of the SqlPool update allowing to specify collation.
-         */
-        interface WithCollation {
-            /**
-             * Specifies the collation property: Collation mode.
-             * 
-             * @param collation Collation mode.
-             * @return the next definition stage.
-             */
-            Update withCollation(String collation);
-        }
-
-        /**
          * The stage of the SqlPool update allowing to specify sourceDatabaseId.
          */
         interface WithSourceDatabaseId {
@@ -548,32 +528,6 @@ public interface SqlPool {
              * @return the next definition stage.
              */
             Update withProvisioningState(String provisioningState);
-        }
-
-        /**
-         * The stage of the SqlPool update allowing to specify status.
-         */
-        interface WithStatus {
-            /**
-             * Specifies the status property: Resource status.
-             * 
-             * @param status Resource status.
-             * @return the next definition stage.
-             */
-            Update withStatus(String status);
-        }
-
-        /**
-         * The stage of the SqlPool update allowing to specify restorePointInTime.
-         */
-        interface WithRestorePointInTime {
-            /**
-             * Specifies the restorePointInTime property: Snapshot time to restore.
-             * 
-             * @param restorePointInTime Snapshot time to restore.
-             * @return the next definition stage.
-             */
-            Update withRestorePointInTime(OffsetDateTime restorePointInTime);
         }
 
         /**
@@ -614,19 +568,6 @@ public interface SqlPool {
         }
 
         /**
-         * The stage of the SqlPool update allowing to specify creationDate.
-         */
-        interface WithCreationDate {
-            /**
-             * Specifies the creationDate property: Date the SQL pool was created.
-             * 
-             * @param creationDate Date the SQL pool was created.
-             * @return the next definition stage.
-             */
-            Update withCreationDate(OffsetDateTime creationDate);
-        }
-
-        /**
          * The stage of the SqlPool update allowing to specify storageAccountType.
          */
         interface WithStorageAccountType {
@@ -663,9 +604,9 @@ public interface SqlPool {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return sQL pool.
      */
-    Object pause();
+    SqlPool pause();
 
     /**
      * Pause SQL pool
@@ -676,9 +617,9 @@ public interface SqlPool {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return sQL pool.
      */
-    Object pause(Context context);
+    SqlPool pause(Context context);
 
     /**
      * Resume SQL pool
@@ -687,9 +628,9 @@ public interface SqlPool {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return sQL pool.
      */
-    Object resume();
+    SqlPool resume();
 
     /**
      * Resume SQL pool
@@ -700,7 +641,7 @@ public interface SqlPool {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return sQL pool.
      */
-    Object resume(Context context);
+    SqlPool resume(Context context);
 }

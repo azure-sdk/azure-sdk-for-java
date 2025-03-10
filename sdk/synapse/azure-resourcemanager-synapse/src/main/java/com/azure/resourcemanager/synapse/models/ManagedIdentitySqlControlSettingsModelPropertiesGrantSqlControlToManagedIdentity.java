@@ -20,12 +20,12 @@ public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlContr
     /*
      * Desired state
      */
-    private ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState desiredState;
+    private DesiredState desiredState;
 
     /*
      * Actual state
      */
-    private ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityActualState actualState;
+    private ActualState actualState;
 
     /**
      * Creates an instance of ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity class.
@@ -38,7 +38,7 @@ public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlContr
      * 
      * @return the desiredState value.
      */
-    public ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState desiredState() {
+    public DesiredState desiredState() {
         return this.desiredState;
     }
 
@@ -48,8 +48,8 @@ public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlContr
      * @param desiredState the desiredState value to set.
      * @return the ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity object itself.
      */
-    public ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity withDesiredState(
-        ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState desiredState) {
+    public ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity
+        withDesiredState(DesiredState desiredState) {
         this.desiredState = desiredState;
         return this;
     }
@@ -59,7 +59,7 @@ public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlContr
      * 
      * @return the actualState value.
      */
-    public ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityActualState actualState() {
+    public ActualState actualState() {
         return this.actualState;
     }
 
@@ -102,12 +102,10 @@ public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlContr
 
                 if ("desiredState".equals(fieldName)) {
                     deserializedManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity.desiredState
-                        = ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState
-                            .fromString(reader.getString());
+                        = DesiredState.fromString(reader.getString());
                 } else if ("actualState".equals(fieldName)) {
                     deserializedManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity.actualState
-                        = ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityActualState
-                            .fromString(reader.getString());
+                        = ActualState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

@@ -84,7 +84,7 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/firewallRules/{ruleName}")
-        @ExpectedResponses({ 200, 201 })
+        @ExpectedResponses({ 200, 201, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
@@ -158,9 +158,10 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, accept, context))
             .<PagedResponse<IpFirewallRuleInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -196,11 +197,12 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByWorkspace(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, accept, context)
+            .listByWorkspace(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -310,9 +312,10 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         } else {
             ipFirewallRuleInfo.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, ruleName, ipFirewallRuleInfo, accept,
                 context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -358,11 +361,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         } else {
             ipFirewallRuleInfo.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, workspaceName, ruleName, ipFirewallRuleInfo, accept,
-            context);
+        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, workspaceName, ruleName, ipFirewallRuleInfo, accept, context);
     }
 
     /**
@@ -536,7 +539,7 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
+     * @return iP firewall rule along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
@@ -559,9 +562,10 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         if (ruleName == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, ruleName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -576,7 +580,7 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
+     * @return iP firewall rule along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
@@ -599,10 +603,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         if (ruleName == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, ruleName, accept, context);
+        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, ruleName, accept, context);
     }
 
     /**
@@ -614,13 +619,14 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of any object.
+     * @return the {@link PollerFlux} for polling of iP firewall rule.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Object>, Object> beginDeleteAsync(String resourceGroupName, String workspaceName,
-        String ruleName) {
+    private PollerFlux<PollResult<IpFirewallRuleInfoInner>, IpFirewallRuleInfoInner>
+        beginDeleteAsync(String resourceGroupName, String workspaceName, String ruleName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, workspaceName, ruleName);
-        return this.client.<Object, Object>getLroResult(mono, this.client.getHttpPipeline(), Object.class, Object.class,
+        return this.client.<IpFirewallRuleInfoInner, IpFirewallRuleInfoInner>getLroResult(mono,
+            this.client.getHttpPipeline(), IpFirewallRuleInfoInner.class, IpFirewallRuleInfoInner.class,
             this.client.getContext());
     }
 
@@ -634,16 +640,16 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of any object.
+     * @return the {@link PollerFlux} for polling of iP firewall rule.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Object>, Object> beginDeleteAsync(String resourceGroupName, String workspaceName,
-        String ruleName, Context context) {
+    private PollerFlux<PollResult<IpFirewallRuleInfoInner>, IpFirewallRuleInfoInner>
+        beginDeleteAsync(String resourceGroupName, String workspaceName, String ruleName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
             = deleteWithResponseAsync(resourceGroupName, workspaceName, ruleName, context);
-        return this.client.<Object, Object>getLroResult(mono, this.client.getHttpPipeline(), Object.class, Object.class,
-            context);
+        return this.client.<IpFirewallRuleInfoInner, IpFirewallRuleInfoInner>getLroResult(mono,
+            this.client.getHttpPipeline(), IpFirewallRuleInfoInner.class, IpFirewallRuleInfoInner.class, context);
     }
 
     /**
@@ -655,11 +661,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of any object.
+     * @return the {@link SyncPoller} for polling of iP firewall rule.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Object>, Object> beginDelete(String resourceGroupName, String workspaceName,
-        String ruleName) {
+    public SyncPoller<PollResult<IpFirewallRuleInfoInner>, IpFirewallRuleInfoInner>
+        beginDelete(String resourceGroupName, String workspaceName, String ruleName) {
         return this.beginDeleteAsync(resourceGroupName, workspaceName, ruleName).getSyncPoller();
     }
 
@@ -673,11 +679,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of any object.
+     * @return the {@link SyncPoller} for polling of iP firewall rule.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Object>, Object> beginDelete(String resourceGroupName, String workspaceName,
-        String ruleName, Context context) {
+    public SyncPoller<PollResult<IpFirewallRuleInfoInner>, IpFirewallRuleInfoInner>
+        beginDelete(String resourceGroupName, String workspaceName, String ruleName, Context context) {
         return this.beginDeleteAsync(resourceGroupName, workspaceName, ruleName, context).getSyncPoller();
     }
 
@@ -690,10 +696,10 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
+     * @return iP firewall rule on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Object> deleteAsync(String resourceGroupName, String workspaceName, String ruleName) {
+    private Mono<IpFirewallRuleInfoInner> deleteAsync(String resourceGroupName, String workspaceName, String ruleName) {
         return beginDeleteAsync(resourceGroupName, workspaceName, ruleName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -708,10 +714,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
+     * @return iP firewall rule on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Object> deleteAsync(String resourceGroupName, String workspaceName, String ruleName, Context context) {
+    private Mono<IpFirewallRuleInfoInner> deleteAsync(String resourceGroupName, String workspaceName, String ruleName,
+        Context context) {
         return beginDeleteAsync(resourceGroupName, workspaceName, ruleName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -725,10 +732,10 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return iP firewall rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object delete(String resourceGroupName, String workspaceName, String ruleName) {
+    public IpFirewallRuleInfoInner delete(String resourceGroupName, String workspaceName, String ruleName) {
         return deleteAsync(resourceGroupName, workspaceName, ruleName).block();
     }
 
@@ -742,10 +749,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return iP firewall rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object delete(String resourceGroupName, String workspaceName, String ruleName, Context context) {
+    public IpFirewallRuleInfoInner delete(String resourceGroupName, String workspaceName, String ruleName,
+        Context context) {
         return deleteAsync(resourceGroupName, workspaceName, ruleName, context).block();
     }
 
@@ -781,10 +789,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         if (ruleName == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, ruleName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, ruleName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -821,10 +830,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         if (ruleName == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, ruleName, accept, context);
+        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, ruleName, accept, context);
     }
 
     /**
@@ -913,9 +923,10 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         } else {
             request.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.replaceAll(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.replaceAll(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -956,10 +967,11 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
         } else {
             request.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.replaceAll(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, workspaceName, request, accept, context);
+        return service.replaceAll(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, workspaceName, request, accept, context);
     }
 
     /**
