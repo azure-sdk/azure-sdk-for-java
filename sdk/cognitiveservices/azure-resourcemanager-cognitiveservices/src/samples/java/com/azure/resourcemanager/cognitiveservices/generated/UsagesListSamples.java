@@ -19,6 +19,6 @@ public final class UsagesListSamples {
      * @param manager Entry point to CognitiveServicesManager.
      */
     public static void getUsages(com.azure.resourcemanager.cognitiveservices.CognitiveServicesManager manager) {
-        manager.usages().list("WestUS", null, com.azure.core.util.Context.NONE);
+        manager.usages().list("WestUS", com.azure.core.util.Context.NONE);
     }
 }
