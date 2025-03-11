@@ -132,11 +132,11 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
         if (nodeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter nodeName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, integrationRuntimeName, nodeName,
-                accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, integrationRuntimeName, nodeName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -180,10 +180,11 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
         if (nodeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter nodeName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, integrationRuntimeName, nodeName, accept, context);
+        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, integrationRuntimeName, nodeName, accept, context);
     }
 
     /**
@@ -298,9 +299,10 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
         } else {
             updateIntegrationRuntimeNodeRequest.validate();
         }
+        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.update(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, integrationRuntimeName, nodeName,
                 updateIntegrationRuntimeNodeRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -355,11 +357,11 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
         } else {
             updateIntegrationRuntimeNodeRequest.validate();
         }
+        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, integrationRuntimeName, nodeName, updateIntegrationRuntimeNodeRequest,
-            accept, context);
+        return service.update(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, integrationRuntimeName, nodeName, updateIntegrationRuntimeNodeRequest, accept, context);
     }
 
     /**
@@ -471,11 +473,12 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
         if (nodeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter nodeName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, integrationRuntimeName, nodeName,
-                accept, context))
+            .withContext(
+                context -> service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                    resourceGroupName, workspaceName, integrationRuntimeName, nodeName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -519,10 +522,11 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
         if (nodeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter nodeName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, integrationRuntimeName, nodeName, accept, context);
+        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, integrationRuntimeName, nodeName, accept, context);
     }
 
     /**

@@ -15,6 +15,7 @@ import com.azure.resourcemanager.synapse.models.DynamicExecutorAllocation;
 import com.azure.resourcemanager.synapse.models.LibraryRequirements;
 import com.azure.resourcemanager.synapse.models.NodeSize;
 import com.azure.resourcemanager.synapse.models.NodeSizeFamily;
+import com.azure.resourcemanager.synapse.models.SparkConfigProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -166,20 +167,6 @@ public final class BigDataPoolResourceInfoInner extends Resource {
     }
 
     /**
-     * Set the creationDate property: The time when the Big Data pool was created.
-     * 
-     * @param creationDate the creationDate value to set.
-     * @return the BigDataPoolResourceInfoInner object itself.
-     */
-    public BigDataPoolResourceInfoInner withCreationDate(OffsetDateTime creationDate) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new BigDataPoolResourceProperties();
-        }
-        this.innerProperties().withCreationDate(creationDate);
-        return this;
-    }
-
-    /**
      * Get the autoPause property: Auto-pausing properties.
      * 
      * @return the autoPause value.
@@ -222,6 +209,29 @@ public final class BigDataPoolResourceInfoInner extends Resource {
             this.innerProperties = new BigDataPoolResourceProperties();
         }
         this.innerProperties().withIsComputeIsolationEnabled(isComputeIsolationEnabled);
+        return this;
+    }
+
+    /**
+     * Get the isAutotuneEnabled property: Whether autotune is required or not.
+     * 
+     * @return the isAutotuneEnabled value.
+     */
+    public Boolean isAutotuneEnabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().isAutotuneEnabled();
+    }
+
+    /**
+     * Set the isAutotuneEnabled property: Whether autotune is required or not.
+     * 
+     * @param isAutotuneEnabled the isAutotuneEnabled value to set.
+     * @return the BigDataPoolResourceInfoInner object itself.
+     */
+    public BigDataPoolResourceInfoInner withIsAutotuneEnabled(Boolean isAutotuneEnabled) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BigDataPoolResourceProperties();
+        }
+        this.innerProperties().withIsAutotuneEnabled(isAutotuneEnabled);
         return this;
     }
 
@@ -392,7 +402,7 @@ public final class BigDataPoolResourceInfoInner extends Resource {
      * 
      * @return the sparkConfigProperties value.
      */
-    public LibraryRequirements sparkConfigProperties() {
+    public SparkConfigProperties sparkConfigProperties() {
         return this.innerProperties() == null ? null : this.innerProperties().sparkConfigProperties();
     }
 
@@ -402,7 +412,7 @@ public final class BigDataPoolResourceInfoInner extends Resource {
      * @param sparkConfigProperties the sparkConfigProperties value to set.
      * @return the BigDataPoolResourceInfoInner object itself.
      */
-    public BigDataPoolResourceInfoInner withSparkConfigProperties(LibraryRequirements sparkConfigProperties) {
+    public BigDataPoolResourceInfoInner withSparkConfigProperties(SparkConfigProperties sparkConfigProperties) {
         if (this.innerProperties() == null) {
             this.innerProperties = new BigDataPoolResourceProperties();
         }

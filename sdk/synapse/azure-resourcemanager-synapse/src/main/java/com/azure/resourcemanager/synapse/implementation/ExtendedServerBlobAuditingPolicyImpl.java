@@ -76,6 +76,10 @@ public final class ExtendedServerBlobAuditingPolicyImpl implements ExtendedServe
         return this.innerModel().queueDelayMs();
     }
 
+    public Boolean isDevopsAuditEnabled() {
+        return this.innerModel().isDevopsAuditEnabled();
+    }
+
     public String resourceGroupName() {
         return resourceGroupName;
     }
@@ -212,6 +216,11 @@ public final class ExtendedServerBlobAuditingPolicyImpl implements ExtendedServe
 
     public ExtendedServerBlobAuditingPolicyImpl withQueueDelayMs(Integer queueDelayMs) {
         this.innerModel().withQueueDelayMs(queueDelayMs);
+        return this;
+    }
+
+    public ExtendedServerBlobAuditingPolicyImpl withIsDevopsAuditEnabled(Boolean isDevopsAuditEnabled) {
+        this.innerModel().withIsDevopsAuditEnabled(isDevopsAuditEnabled);
         return this;
     }
 }
