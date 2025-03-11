@@ -50,6 +50,13 @@ public interface Cluster {
     Map<String, String> tags();
 
     /**
+     * Gets the kind property: Distinguishes the kind of cluster. Read-only.
+     * 
+     * @return the kind value.
+     */
+    Kind kind();
+
+    /**
      * Gets the sku property: The SKU to create, which affects price, performance, and features.
      * 
      * @return the sku value.
