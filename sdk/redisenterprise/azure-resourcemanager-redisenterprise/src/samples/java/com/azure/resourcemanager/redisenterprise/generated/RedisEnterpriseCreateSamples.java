@@ -24,8 +24,8 @@ import java.util.Map;
 public final class RedisEnterpriseCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-09-01-preview/examples/
-     * RedisEnterpriseCreate.json
+     * specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2025-04-01/examples/RedisEnterpriseCreate.
+     * json
      */
     /**
      * Sample code: RedisEnterpriseCreate.

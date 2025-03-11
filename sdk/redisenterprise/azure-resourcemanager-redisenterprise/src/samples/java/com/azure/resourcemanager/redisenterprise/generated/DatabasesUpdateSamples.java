@@ -16,8 +16,7 @@ import com.azure.resourcemanager.redisenterprise.models.RdbFrequency;
  */
 public final class DatabasesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-09-01-preview/examples/
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2025-04-01/examples/
      * RedisEnterpriseDatabasesUpdate.json
      */
     /**
