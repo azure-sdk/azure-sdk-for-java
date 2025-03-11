@@ -15,7 +15,7 @@ public interface WorkflowTriggerHistories {
     /**
      * Gets a list of workflow trigger histories.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,7 +28,7 @@ public interface WorkflowTriggerHistories {
     /**
      * Gets a list of workflow trigger histories.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @param top The number of items to be included in the result.
@@ -46,7 +46,7 @@ public interface WorkflowTriggerHistories {
     /**
      * Gets a workflow trigger history.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @param historyName The workflow trigger history name. Corresponds to the run name for triggers that resulted in a
@@ -63,7 +63,7 @@ public interface WorkflowTriggerHistories {
     /**
      * Gets a workflow trigger history.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @param historyName The workflow trigger history name. Corresponds to the run name for triggers that resulted in a
@@ -78,24 +78,7 @@ public interface WorkflowTriggerHistories {
     /**
      * Resubmits a workflow run based on the trigger history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param triggerName The workflow trigger name.
-     * @param historyName The workflow trigger history name. Corresponds to the run name for triggers that resulted in a
-     * run.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> resubmitWithResponse(String resourceGroupName, String workflowName, String triggerName,
-        String historyName, Context context);
-
-    /**
-     * Resubmits a workflow run based on the trigger history.
-     * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @param historyName The workflow trigger history name. Corresponds to the run name for triggers that resulted in a
@@ -105,4 +88,20 @@ public interface WorkflowTriggerHistories {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void resubmit(String resourceGroupName, String workflowName, String triggerName, String historyName);
+
+    /**
+     * Resubmits a workflow run based on the trigger history.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param historyName The workflow trigger history name. Corresponds to the run name for triggers that resulted in a
+     * run.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resubmit(String resourceGroupName, String workflowName, String triggerName, String historyName,
+        Context context);
 }

@@ -17,10 +17,10 @@ public interface WorkflowRunOperationsClient {
     /**
      * Gets an operation for a run.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param operationId The workflow operation id.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param operationId The name of the WorkflowRun.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -34,10 +34,10 @@ public interface WorkflowRunOperationsClient {
     /**
      * Gets an operation for a run.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param operationId The workflow operation id.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param operationId The name of the WorkflowRun.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

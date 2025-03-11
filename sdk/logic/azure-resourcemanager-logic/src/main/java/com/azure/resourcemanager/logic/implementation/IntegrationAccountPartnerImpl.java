@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountPartnerInner;
 import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
@@ -48,6 +49,10 @@ public final class IntegrationAccountPartnerImpl
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public PartnerType partnerType() {
         return this.innerModel().partnerType();
     }
@@ -60,8 +65,13 @@ public final class IntegrationAccountPartnerImpl
         return this.innerModel().changedTime();
     }
 
-    public Object metadata() {
-        return this.innerModel().metadata();
+    public Map<String, Object> metadata() {
+        Map<String, Object> inner = this.innerModel().metadata();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public PartnerContent content() {
@@ -173,16 +183,15 @@ public final class IntegrationAccountPartnerImpl
         return this;
     }
 
-    public Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context) {
+    public Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context) {
         return serviceManager.integrationAccountPartners()
-            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, partnerName,
-                listContentCallbackUrl, context);
+            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, partnerName, body, context);
     }
 
-    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl) {
+    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body) {
         return serviceManager.integrationAccountPartners()
-            .listContentCallbackUrl(resourceGroupName, integrationAccountName, partnerName, listContentCallbackUrl);
+            .listContentCallbackUrl(resourceGroupName, integrationAccountName, partnerName, body);
     }
 
     public IntegrationAccountPartnerImpl withRegion(Region location) {
@@ -210,7 +219,7 @@ public final class IntegrationAccountPartnerImpl
         return this;
     }
 
-    public IntegrationAccountPartnerImpl withMetadata(Object metadata) {
+    public IntegrationAccountPartnerImpl withMetadata(Map<String, Object> metadata) {
         this.innerModel().withMetadata(metadata);
         return this;
     }

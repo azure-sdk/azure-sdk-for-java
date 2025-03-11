@@ -15,6 +15,7 @@ import com.azure.resourcemanager.logic.models.PartnerContent;
 import com.azure.resourcemanager.logic.models.PartnerType;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The integration account partner properties.
@@ -40,7 +41,7 @@ public final class IntegrationAccountPartnerProperties
     /*
      * The metadata.
      */
-    private Object metadata;
+    private Map<String, Object> metadata;
 
     /*
      * The partner content.
@@ -96,7 +97,7 @@ public final class IntegrationAccountPartnerProperties
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.metadata;
     }
 
@@ -106,7 +107,7 @@ public final class IntegrationAccountPartnerProperties
      * @param metadata the metadata value to set.
      * @return the IntegrationAccountPartnerProperties object itself.
      */
-    public IntegrationAccountPartnerProperties withMetadata(Object metadata) {
+    public IntegrationAccountPartnerProperties withMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
         return this;
     }
@@ -161,7 +162,7 @@ public final class IntegrationAccountPartnerProperties
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("partnerType", this.partnerType == null ? null : this.partnerType.toString());
         jsonWriter.writeJsonField("content", this.content);
-        jsonWriter.writeUntypedField("metadata", this.metadata);
+        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -194,7 +195,8 @@ public final class IntegrationAccountPartnerProperties
                     deserializedIntegrationAccountPartnerProperties.changedTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedIntegrationAccountPartnerProperties.metadata = reader.readUntyped();
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedIntegrationAccountPartnerProperties.metadata = metadata;
                 } else {
                     reader.skipChildren();
                 }

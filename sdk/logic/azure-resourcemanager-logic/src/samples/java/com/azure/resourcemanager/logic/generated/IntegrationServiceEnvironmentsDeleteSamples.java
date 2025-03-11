@@ -19,7 +19,6 @@ public final class IntegrationServiceEnvironmentsDeleteSamples {
      */
     public static void deleteAnIntegrationAccount(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationServiceEnvironments()
-            .deleteByResourceGroupWithResponse("testResourceGroup", "testIntegrationServiceEnvironment",
-                com.azure.core.util.Context.NONE);
+            .deleteWithResponse("testIntegrationServiceEnvironment", com.azure.core.util.Context.NONE);
     }
 }

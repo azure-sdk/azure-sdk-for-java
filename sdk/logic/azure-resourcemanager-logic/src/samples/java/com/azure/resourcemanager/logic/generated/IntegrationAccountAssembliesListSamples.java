@@ -20,6 +20,6 @@ public final class IntegrationAccountAssembliesListSamples {
      */
     public static void listIntegrationAccountAssemblies(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccountAssemblies()
-            .list("testResourceGroup", "testIntegrationAccount", com.azure.core.util.Context.NONE);
+            .listWithResponse("testResourceGroup", "testIntegrationAccount", com.azure.core.util.Context.NONE);
     }
 }

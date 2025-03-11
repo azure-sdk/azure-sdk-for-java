@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The B2B partner content.
+ * The B2b partner content.
  */
 @Fluent
 public final class B2BPartnerContent implements JsonSerializable<B2BPartnerContent> {

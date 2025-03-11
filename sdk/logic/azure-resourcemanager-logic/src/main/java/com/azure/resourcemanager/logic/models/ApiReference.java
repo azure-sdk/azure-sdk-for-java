@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * The Api reference.
@@ -33,7 +34,7 @@ public final class ApiReference extends ResourceReference {
     /*
      * The swagger of the api.
      */
-    private Object swagger;
+    private Map<String, Object> swagger;
 
     /*
      * The brand color of the api.
@@ -131,7 +132,7 @@ public final class ApiReference extends ResourceReference {
      * 
      * @return the swagger value.
      */
-    public Object swagger() {
+    public Map<String, Object> swagger() {
         return this.swagger;
     }
 
@@ -141,7 +142,7 @@ public final class ApiReference extends ResourceReference {
      * @param swagger the swagger value to set.
      * @return the ApiReference object itself.
      */
-    public ApiReference withSwagger(Object swagger) {
+    public ApiReference withSwagger(Map<String, Object> swagger) {
         this.swagger = swagger;
         return this;
     }
@@ -257,7 +258,7 @@ public final class ApiReference extends ResourceReference {
         jsonWriter.writeStringField("displayName", this.displayName);
         jsonWriter.writeStringField("description", this.description);
         jsonWriter.writeStringField("iconUri", this.iconUri);
-        jsonWriter.writeUntypedField("swagger", this.swagger);
+        jsonWriter.writeMapField("swagger", this.swagger, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("brandColor", this.brandColor);
         jsonWriter.writeStringField("category", this.category == null ? null : this.category.toString());
         jsonWriter.writeJsonField("integrationServiceEnvironment", this.integrationServiceEnvironment);
@@ -292,7 +293,8 @@ public final class ApiReference extends ResourceReference {
                 } else if ("iconUri".equals(fieldName)) {
                     deserializedApiReference.iconUri = reader.getString();
                 } else if ("swagger".equals(fieldName)) {
-                    deserializedApiReference.swagger = reader.readUntyped();
+                    Map<String, Object> swagger = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedApiReference.swagger = swagger;
                 } else if ("brandColor".equals(fieldName)) {
                     deserializedApiReference.brandColor = reader.getString();
                 } else if ("category".equals(fieldName)) {

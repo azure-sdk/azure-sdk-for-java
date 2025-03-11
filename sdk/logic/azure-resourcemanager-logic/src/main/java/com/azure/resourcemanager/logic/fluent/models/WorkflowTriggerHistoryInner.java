@@ -5,7 +5,8 @@
 package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.SubResource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -15,26 +16,37 @@ import com.azure.resourcemanager.logic.models.ResourceReference;
 import com.azure.resourcemanager.logic.models.WorkflowStatus;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The workflow trigger history.
  */
 @Fluent
-public final class WorkflowTriggerHistoryInner extends SubResource {
+public final class WorkflowTriggerHistoryInner extends ProxyResource {
     /*
      * Gets the workflow trigger history properties.
      */
     private WorkflowTriggerHistoryProperties innerProperties;
 
     /*
-     * Gets the workflow trigger history name.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
      */
     private String name;
 
     /*
-     * Gets the workflow trigger history type.
+     * Fully qualified resource Id for the resource.
      */
-    private String type;
+    private String id;
 
     /**
      * Creates an instance of WorkflowTriggerHistoryInner class.
@@ -52,30 +64,42 @@ public final class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the name property: Gets the workflow trigger history name.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the name value.
+     * @return the systemData value.
      */
-    public String name() {
-        return this.name;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
-     * Get the type property: Gets the workflow trigger history type.
+     * Get the type property: The type of the resource.
      * 
      * @return the type value.
      */
+    @Override
     public String type() {
         return this.type;
     }
 
     /**
-     * {@inheritDoc}
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
      */
     @Override
-    public WorkflowTriggerHistoryInner withId(String id) {
-        super.withId(id);
-        return this;
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -128,7 +152,7 @@ public final class WorkflowTriggerHistoryInner extends SubResource {
      * 
      * @return the error value.
      */
-    public Object error() {
+    public Map<String, Object> error() {
         return this.innerProperties() == null ? null : this.innerProperties().error();
     }
 
@@ -217,7 +241,6 @@ public final class WorkflowTriggerHistoryInner extends SubResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("id", id());
         jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
@@ -228,6 +251,7 @@ public final class WorkflowTriggerHistoryInner extends SubResource {
      * @param jsonReader The JsonReader being read.
      * @return An instance of WorkflowTriggerHistoryInner if the JsonReader was pointing to an instance of it, or null
      * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the WorkflowTriggerHistoryInner.
      */
     public static WorkflowTriggerHistoryInner fromJson(JsonReader jsonReader) throws IOException {
@@ -238,14 +262,16 @@ public final class WorkflowTriggerHistoryInner extends SubResource {
                 reader.nextToken();
 
                 if ("id".equals(fieldName)) {
-                    deserializedWorkflowTriggerHistoryInner.withId(reader.getString());
-                } else if ("properties".equals(fieldName)) {
-                    deserializedWorkflowTriggerHistoryInner.innerProperties
-                        = WorkflowTriggerHistoryProperties.fromJson(reader);
+                    deserializedWorkflowTriggerHistoryInner.id = reader.getString();
                 } else if ("name".equals(fieldName)) {
                     deserializedWorkflowTriggerHistoryInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedWorkflowTriggerHistoryInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedWorkflowTriggerHistoryInner.innerProperties
+                        = WorkflowTriggerHistoryProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedWorkflowTriggerHistoryInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

@@ -8,8 +8,7 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentSubnetNetworkHealthInner;
-import java.util.Map;
+import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentNetworkHealthInner;
 
 /**
  * An instance of this class provides access to all the operations defined in
@@ -19,7 +18,6 @@ public interface IntegrationServiceEnvironmentNetworkHealthsClient {
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,13 +26,12 @@ public interface IntegrationServiceEnvironmentNetworkHealthsClient {
      * @return the integration service environment network health along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner>> getWithResponse(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context);
+    Response<IntegrationServiceEnvironmentNetworkHealthInner> getWithResponse(String integrationServiceEnvironmentName,
+        Context context);
 
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -42,6 +39,5 @@ public interface IntegrationServiceEnvironmentNetworkHealthsClient {
      * @return the integration service environment network health.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner> get(String resourceGroup,
-        String integrationServiceEnvironmentName);
+    IntegrationServiceEnvironmentNetworkHealthInner get(String integrationServiceEnvironmentName);
 }

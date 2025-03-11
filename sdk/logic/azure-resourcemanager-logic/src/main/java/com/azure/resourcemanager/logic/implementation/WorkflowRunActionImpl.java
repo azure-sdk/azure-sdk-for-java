@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionInner;
 import com.azure.resourcemanager.logic.models.ContentLink;
 import com.azure.resourcemanager.logic.models.RetryHistory;
@@ -13,6 +14,7 @@ import com.azure.resourcemanager.logic.models.WorkflowStatus;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public final class WorkflowRunActionImpl implements WorkflowRunAction {
     private WorkflowRunActionInner innerObject;
@@ -37,6 +39,10 @@ public final class WorkflowRunActionImpl implements WorkflowRunAction {
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public OffsetDateTime startTime() {
         return this.innerModel().startTime();
     }
@@ -53,8 +59,13 @@ public final class WorkflowRunActionImpl implements WorkflowRunAction {
         return this.innerModel().code();
     }
 
-    public Object error() {
-        return this.innerModel().error();
+    public Map<String, Object> error() {
+        Map<String, Object> inner = this.innerModel().error();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public String trackingId() {
@@ -73,8 +84,13 @@ public final class WorkflowRunActionImpl implements WorkflowRunAction {
         return this.innerModel().outputsLink();
     }
 
-    public Object trackedProperties() {
-        return this.innerModel().trackedProperties();
+    public Map<String, Object> trackedProperties() {
+        Map<String, Object> inner = this.innerModel().trackedProperties();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public List<RetryHistory> retryHistory() {

@@ -4,10 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
-import com.azure.resourcemanager.logic.models.KeyType;
-import java.time.OffsetDateTime;
-
 /**
  * Samples for IntegrationAccounts ListCallbackUrl.
  */
@@ -23,9 +19,7 @@ public final class IntegrationAccountsListCallbackUrlSamples {
      */
     public static void listIntegrationAccountCallbackURL(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccounts()
-            .listCallbackUrlWithResponse("testResourceGroup", "testIntegrationAccount",
-                new GetCallbackUrlParameters().withNotAfter(OffsetDateTime.parse("2017-03-05T08:00:00Z"))
-                    .withKeyType(KeyType.PRIMARY),
+            .listCallbackUrlWithResponse("testResourceGroup", "testIntegrationAccount", null,
                 com.azure.core.util.Context.NONE);
     }
 }

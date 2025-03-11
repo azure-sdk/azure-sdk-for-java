@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountMapInner;
 import com.azure.resourcemanager.logic.models.ContentLink;
@@ -49,6 +50,10 @@ public final class IntegrationAccountMapImpl
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public MapType mapType() {
         return this.innerModel().mapType();
     }
@@ -77,8 +82,13 @@ public final class IntegrationAccountMapImpl
         return this.innerModel().contentLink();
     }
 
-    public Object metadata() {
-        return this.innerModel().metadata();
+    public Map<String, Object> metadata() {
+        Map<String, Object> inner = this.innerModel().metadata();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public Region region() {
@@ -184,16 +194,15 @@ public final class IntegrationAccountMapImpl
         return this;
     }
 
-    public Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context) {
+    public Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context) {
         return serviceManager.integrationAccountMaps()
-            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, mapName,
-                listContentCallbackUrl, context);
+            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, mapName, body, context);
     }
 
-    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl) {
+    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body) {
         return serviceManager.integrationAccountMaps()
-            .listContentCallbackUrl(resourceGroupName, integrationAccountName, mapName, listContentCallbackUrl);
+            .listContentCallbackUrl(resourceGroupName, integrationAccountName, mapName, body);
     }
 
     public IntegrationAccountMapImpl withRegion(Region location) {
@@ -232,7 +241,7 @@ public final class IntegrationAccountMapImpl
         return this;
     }
 
-    public IntegrationAccountMapImpl withMetadata(Object metadata) {
+    public IntegrationAccountMapImpl withMetadata(Map<String, Object> metadata) {
         this.innerModel().withMetadata(metadata);
         return this;
     }

@@ -62,19 +62,19 @@ public final class WorkflowRunOperationsClientImpl implements WorkflowRunOperati
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowRunInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
             @PathParam("runName") String runName, @PathParam("operationId") String operationId,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets an operation for a run.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param operationId The workflow operation id.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param operationId The name of the WorkflowRun.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -105,19 +105,18 @@ public final class WorkflowRunOperationsClientImpl implements WorkflowRunOperati
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, runName, operationId, this.client.getApiVersion(), accept, context))
+        return FluxUtil.withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, runName, operationId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an operation for a run.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param operationId The workflow operation id.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param operationId The name of the WorkflowRun.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -150,17 +149,17 @@ public final class WorkflowRunOperationsClientImpl implements WorkflowRunOperati
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workflowName,
-            runName, operationId, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, runName, operationId, accept, context);
     }
 
     /**
      * Gets an operation for a run.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param operationId The workflow operation id.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param operationId The name of the WorkflowRun.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -176,10 +175,10 @@ public final class WorkflowRunOperationsClientImpl implements WorkflowRunOperati
     /**
      * Gets an operation for a run.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param operationId The workflow operation id.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param operationId The name of the WorkflowRun.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -195,10 +194,10 @@ public final class WorkflowRunOperationsClientImpl implements WorkflowRunOperati
     /**
      * Gets an operation for a run.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param operationId The workflow operation id.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param operationId The name of the WorkflowRun.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

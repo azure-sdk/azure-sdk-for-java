@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionRepetitionDefinitionInner;
 import com.azure.resourcemanager.logic.models.ContentLink;
 import com.azure.resourcemanager.logic.models.RepetitionIndex;
@@ -52,6 +53,10 @@ public final class WorkflowRunActionRepetitionDefinitionImpl implements Workflow
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public List<RepetitionIndex> repetitionIndexes() {
         List<RepetitionIndex> inner = this.innerModel().repetitionIndexes();
         if (inner != null) {
@@ -65,24 +70,39 @@ public final class WorkflowRunActionRepetitionDefinitionImpl implements Workflow
         return this.innerModel().trackingId();
     }
 
-    public Object inputs() {
-        return this.innerModel().inputs();
+    public Map<String, Object> inputs() {
+        Map<String, Object> inner = this.innerModel().inputs();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public ContentLink inputsLink() {
         return this.innerModel().inputsLink();
     }
 
-    public Object outputs() {
-        return this.innerModel().outputs();
+    public Map<String, Object> outputs() {
+        Map<String, Object> inner = this.innerModel().outputs();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public ContentLink outputsLink() {
         return this.innerModel().outputsLink();
     }
 
-    public Object trackedProperties() {
-        return this.innerModel().trackedProperties();
+    public Map<String, Object> trackedProperties() {
+        Map<String, Object> inner = this.innerModel().trackedProperties();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public List<RetryHistory> retryHistory() {

@@ -84,7 +84,7 @@ public final class WorkflowProperties implements JsonSerializable<WorkflowProper
     /*
      * The definition.
      */
-    private Object definition;
+    private Map<String, Object> definition;
 
     /*
      * The parameters.
@@ -256,7 +256,7 @@ public final class WorkflowProperties implements JsonSerializable<WorkflowProper
      * 
      * @return the definition value.
      */
-    public Object definition() {
+    public Map<String, Object> definition() {
         return this.definition;
     }
 
@@ -266,7 +266,7 @@ public final class WorkflowProperties implements JsonSerializable<WorkflowProper
      * @param definition the definition value to set.
      * @return the WorkflowProperties object itself.
      */
-    public WorkflowProperties withDefinition(Object definition) {
+    public WorkflowProperties withDefinition(Map<String, Object> definition) {
         this.definition = definition;
         return this;
     }
@@ -332,7 +332,7 @@ public final class WorkflowProperties implements JsonSerializable<WorkflowProper
         jsonWriter.writeJsonField("accessControl", this.accessControl);
         jsonWriter.writeJsonField("integrationAccount", this.integrationAccount);
         jsonWriter.writeJsonField("integrationServiceEnvironment", this.integrationServiceEnvironment);
-        jsonWriter.writeUntypedField("definition", this.definition);
+        jsonWriter.writeMapField("definition", this.definition, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeMapField("parameters", this.parameters, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
@@ -378,7 +378,8 @@ public final class WorkflowProperties implements JsonSerializable<WorkflowProper
                 } else if ("integrationServiceEnvironment".equals(fieldName)) {
                     deserializedWorkflowProperties.integrationServiceEnvironment = ResourceReference.fromJson(reader);
                 } else if ("definition".equals(fieldName)) {
-                    deserializedWorkflowProperties.definition = reader.readUntyped();
+                    Map<String, Object> definition = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowProperties.definition = definition;
                 } else if ("parameters".equals(fieldName)) {
                     Map<String, WorkflowParameter> parameters
                         = reader.readMap(reader1 -> WorkflowParameter.fromJson(reader1));

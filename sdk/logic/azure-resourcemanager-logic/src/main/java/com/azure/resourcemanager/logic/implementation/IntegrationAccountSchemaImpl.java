@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountSchemaInner;
 import com.azure.resourcemanager.logic.models.ContentLink;
@@ -48,6 +49,10 @@ public final class IntegrationAccountSchemaImpl
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public SchemaType schemaType() {
         return this.innerModel().schemaType();
     }
@@ -72,8 +77,13 @@ public final class IntegrationAccountSchemaImpl
         return this.innerModel().changedTime();
     }
 
-    public Object metadata() {
-        return this.innerModel().metadata();
+    public Map<String, Object> metadata() {
+        Map<String, Object> inner = this.innerModel().metadata();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public String content() {
@@ -193,16 +203,15 @@ public final class IntegrationAccountSchemaImpl
         return this;
     }
 
-    public Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context) {
+    public Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context) {
         return serviceManager.integrationAccountSchemas()
-            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, schemaName,
-                listContentCallbackUrl, context);
+            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, schemaName, body, context);
     }
 
-    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl) {
+    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body) {
         return serviceManager.integrationAccountSchemas()
-            .listContentCallbackUrl(resourceGroupName, integrationAccountName, schemaName, listContentCallbackUrl);
+            .listContentCallbackUrl(resourceGroupName, integrationAccountName, schemaName, body);
     }
 
     public IntegrationAccountSchemaImpl withRegion(Region location) {
@@ -240,7 +249,7 @@ public final class IntegrationAccountSchemaImpl
         return this;
     }
 
-    public IntegrationAccountSchemaImpl withMetadata(Object metadata) {
+    public IntegrationAccountSchemaImpl withMetadata(Map<String, Object> metadata) {
         this.innerModel().withMetadata(metadata);
         return this;
     }

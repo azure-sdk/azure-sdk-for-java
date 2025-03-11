@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.logic.models;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
@@ -15,32 +14,33 @@ public interface IntegrationAccountAssemblies {
     /**
      * List the assemblies for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param integrationAccountName The integration account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of assembly definitions as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<AssemblyDefinition> list(String resourceGroupName, String integrationAccountName);
-
-    /**
-     * List the assemblies for an integration account.
-     * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of assembly definitions as paginated response with {@link PagedIterable}.
+     * @return a collection of assembly definitions along with {@link Response}.
      */
-    PagedIterable<AssemblyDefinition> list(String resourceGroupName, String integrationAccountName, Context context);
+    Response<AssemblyCollection> listWithResponse(String resourceGroupName, String integrationAccountName,
+        Context context);
+
+    /**
+     * List the assemblies for an integration account.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param integrationAccountName The integration account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of assembly definitions.
+     */
+    AssemblyCollection list(String resourceGroupName, String integrationAccountName);
 
     /**
      * Get an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @param context The context to associate with this operation.
@@ -55,7 +55,7 @@ public interface IntegrationAccountAssemblies {
     /**
      * Get an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -68,7 +68,7 @@ public interface IntegrationAccountAssemblies {
     /**
      * Delete an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @param context The context to associate with this operation.
@@ -83,7 +83,7 @@ public interface IntegrationAccountAssemblies {
     /**
      * Delete an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -95,7 +95,7 @@ public interface IntegrationAccountAssemblies {
     /**
      * Get the content callback url for an integration account assembly.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @param context The context to associate with this operation.
@@ -110,7 +110,7 @@ public interface IntegrationAccountAssemblies {
     /**
      * Get the content callback url for an integration account assembly.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

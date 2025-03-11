@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -26,6 +27,11 @@ public final class IntegrationAccountMapInner extends Resource {
      * The integration account map properties.
      */
     private IntegrationAccountMapProperties innerProperties = new IntegrationAccountMapProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -55,6 +61,15 @@ public final class IntegrationAccountMapInner extends Resource {
      */
     private IntegrationAccountMapProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -230,7 +245,7 @@ public final class IntegrationAccountMapInner extends Resource {
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.innerProperties() == null ? null : this.innerProperties().metadata();
     }
 
@@ -240,7 +255,7 @@ public final class IntegrationAccountMapInner extends Resource {
      * @param metadata the metadata value to set.
      * @return the IntegrationAccountMapInner object itself.
      */
-    public IntegrationAccountMapInner withMetadata(Object metadata) {
+    public IntegrationAccountMapInner withMetadata(Map<String, Object> metadata) {
         if (this.innerProperties() == null) {
             this.innerProperties = new IntegrationAccountMapProperties();
         }
@@ -307,6 +322,8 @@ public final class IntegrationAccountMapInner extends Resource {
                 } else if ("properties".equals(fieldName)) {
                     deserializedIntegrationAccountMapInner.innerProperties
                         = IntegrationAccountMapProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationAccountMapInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

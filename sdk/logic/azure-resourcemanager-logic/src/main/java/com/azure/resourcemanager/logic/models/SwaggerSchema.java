@@ -46,7 +46,7 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
     /*
      * The additional properties.
      */
-    private Object additionalProperties;
+    private Map<String, Object> additionalProperties;
 
     /*
      * The object required properties.
@@ -91,7 +91,7 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
     /*
      * The example value.
      */
-    private Object example;
+    private Map<String, Object> example;
 
     /*
      * Indicates the notification url extension. If this is set, the property's value should be a callback url for a
@@ -230,7 +230,7 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
      * 
      * @return the additionalProperties value.
      */
-    public Object additionalProperties() {
+    public Map<String, Object> additionalProperties() {
         return this.additionalProperties;
     }
 
@@ -240,7 +240,7 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
      * @param additionalProperties the additionalProperties value to set.
      * @return the SwaggerSchema object itself.
      */
-    public SwaggerSchema withAdditionalProperties(Object additionalProperties) {
+    public SwaggerSchema withAdditionalProperties(Map<String, Object> additionalProperties) {
         this.additionalProperties = additionalProperties;
         return this;
     }
@@ -410,7 +410,7 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
      * 
      * @return the example value.
      */
-    public Object example() {
+    public Map<String, Object> example() {
         return this.example;
     }
 
@@ -420,7 +420,7 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
      * @param example the example value to set.
      * @return the SwaggerSchema object itself.
      */
-    public SwaggerSchema withExample(Object example) {
+    public SwaggerSchema withExample(Map<String, Object> example) {
         this.example = example;
         return this;
     }
@@ -577,7 +577,8 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
         jsonWriter.writeStringField("title", this.title);
         jsonWriter.writeJsonField("items", this.items);
         jsonWriter.writeMapField("properties", this.properties, (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeUntypedField("additionalProperties", this.additionalProperties);
+        jsonWriter.writeMapField("additionalProperties", this.additionalProperties,
+            (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeArrayField("required", this.required, (writer, element) -> writer.writeString(element));
         jsonWriter.writeNumberField("maxProperties", this.maxProperties);
         jsonWriter.writeNumberField("minProperties", this.minProperties);
@@ -586,7 +587,7 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
         jsonWriter.writeBooleanField("readOnly", this.readOnly);
         jsonWriter.writeJsonField("xml", this.xml);
         jsonWriter.writeJsonField("externalDocs", this.externalDocs);
-        jsonWriter.writeUntypedField("example", this.example);
+        jsonWriter.writeMapField("example", this.example, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeBooleanField("notificationUrlExtension", this.notificationUrlExtension);
         jsonWriter.writeJsonField("dynamicSchemaOld", this.dynamicSchemaOld);
         jsonWriter.writeJsonField("dynamicSchemaNew", this.dynamicSchemaNew);
@@ -622,7 +623,8 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
                     Map<String, SwaggerSchema> properties = reader.readMap(reader1 -> SwaggerSchema.fromJson(reader1));
                     deserializedSwaggerSchema.properties = properties;
                 } else if ("additionalProperties".equals(fieldName)) {
-                    deserializedSwaggerSchema.additionalProperties = reader.readUntyped();
+                    Map<String, Object> additionalProperties = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedSwaggerSchema.additionalProperties = additionalProperties;
                 } else if ("required".equals(fieldName)) {
                     List<String> required = reader.readArray(reader1 -> reader1.getString());
                     deserializedSwaggerSchema.required = required;
@@ -642,7 +644,8 @@ public final class SwaggerSchema implements JsonSerializable<SwaggerSchema> {
                 } else if ("externalDocs".equals(fieldName)) {
                     deserializedSwaggerSchema.externalDocs = SwaggerExternalDocumentation.fromJson(reader);
                 } else if ("example".equals(fieldName)) {
-                    deserializedSwaggerSchema.example = reader.readUntyped();
+                    Map<String, Object> example = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedSwaggerSchema.example = example;
                 } else if ("notificationUrlExtension".equals(fieldName)) {
                     deserializedSwaggerSchema.notificationUrlExtension = reader.getNullable(JsonReader::getBoolean);
                 } else if ("dynamicSchemaOld".equals(fieldName)) {

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionRepetitionDefinitionInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -49,6 +50,13 @@ public interface WorkflowRunActionRepetitionDefinition {
     Map<String, String> tags();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the repetitionIndexes property: The repetition indexes.
      * 
      * @return the repetitionIndexes value.
@@ -67,7 +75,7 @@ public interface WorkflowRunActionRepetitionDefinition {
      * 
      * @return the inputs value.
      */
-    Object inputs();
+    Map<String, Object> inputs();
 
     /**
      * Gets the inputsLink property: Gets the link to inputs.
@@ -81,7 +89,7 @@ public interface WorkflowRunActionRepetitionDefinition {
      * 
      * @return the outputs value.
      */
-    Object outputs();
+    Map<String, Object> outputs();
 
     /**
      * Gets the outputsLink property: Gets the link to outputs.
@@ -95,7 +103,7 @@ public interface WorkflowRunActionRepetitionDefinition {
      * 
      * @return the trackedProperties value.
      */
-    Object trackedProperties();
+    Map<String, Object> trackedProperties();
 
     /**
      * Gets the retryHistory property: Gets the retry histories.

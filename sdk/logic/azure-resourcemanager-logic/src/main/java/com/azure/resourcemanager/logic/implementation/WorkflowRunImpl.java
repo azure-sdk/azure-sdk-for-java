@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunInner;
 import com.azure.resourcemanager.logic.models.Correlation;
 import com.azure.resourcemanager.logic.models.ResourceReference;
@@ -37,6 +38,10 @@ public final class WorkflowRunImpl implements WorkflowRun {
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public OffsetDateTime waitEndTime() {
         return this.innerModel().waitEndTime();
     }
@@ -57,8 +62,13 @@ public final class WorkflowRunImpl implements WorkflowRun {
         return this.innerModel().code();
     }
 
-    public Object error() {
-        return this.innerModel().error();
+    public Map<String, Object> error() {
+        Map<String, Object> inner = this.innerModel().error();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public String correlationId() {

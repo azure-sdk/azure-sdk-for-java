@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * A request.
@@ -19,7 +20,7 @@ public final class Request implements JsonSerializable<Request> {
     /*
      * A list of all the headers attached to the request.
      */
-    private Object headers;
+    private Map<String, Object> headers;
 
     /*
      * The destination for the request.
@@ -42,7 +43,7 @@ public final class Request implements JsonSerializable<Request> {
      * 
      * @return the headers value.
      */
-    public Object headers() {
+    public Map<String, Object> headers() {
         return this.headers;
     }
 
@@ -52,7 +53,7 @@ public final class Request implements JsonSerializable<Request> {
      * @param headers the headers value to set.
      * @return the Request object itself.
      */
-    public Request withHeaders(Object headers) {
+    public Request withHeaders(Map<String, Object> headers) {
         this.headers = headers;
         return this;
     }
@@ -111,7 +112,7 @@ public final class Request implements JsonSerializable<Request> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeUntypedField("headers", this.headers);
+        jsonWriter.writeMapField("headers", this.headers, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("method", this.method);
         return jsonWriter.writeEndObject();
@@ -133,7 +134,8 @@ public final class Request implements JsonSerializable<Request> {
                 reader.nextToken();
 
                 if ("headers".equals(fieldName)) {
-                    deserializedRequest.headers = reader.readUntyped();
+                    Map<String, Object> headers = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedRequest.headers = headers;
                 } else if ("uri".equals(fieldName)) {
                     deserializedRequest.uri = reader.getString();
                 } else if ("method".equals(fieldName)) {

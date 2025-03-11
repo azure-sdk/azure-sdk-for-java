@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerHistoryInner;
 import com.azure.resourcemanager.logic.models.ContentLink;
 import com.azure.resourcemanager.logic.models.Correlation;
@@ -11,6 +12,8 @@ import com.azure.resourcemanager.logic.models.ResourceReference;
 import com.azure.resourcemanager.logic.models.WorkflowStatus;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerHistory;
 import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.Map;
 
 public final class WorkflowTriggerHistoryImpl implements WorkflowTriggerHistory {
     private WorkflowTriggerHistoryInner innerObject;
@@ -35,6 +38,10 @@ public final class WorkflowTriggerHistoryImpl implements WorkflowTriggerHistory 
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public OffsetDateTime startTime() {
         return this.innerModel().startTime();
     }
@@ -55,8 +62,13 @@ public final class WorkflowTriggerHistoryImpl implements WorkflowTriggerHistory 
         return this.innerModel().code();
     }
 
-    public Object error() {
-        return this.innerModel().error();
+    public Map<String, Object> error() {
+        Map<String, Object> inner = this.innerModel().error();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public String trackingId() {

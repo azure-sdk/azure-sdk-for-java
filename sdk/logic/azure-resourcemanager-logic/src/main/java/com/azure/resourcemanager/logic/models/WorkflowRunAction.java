@@ -4,9 +4,11 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionInner;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * An immutable client-side representation of WorkflowRunAction.
@@ -20,18 +22,25 @@ public interface WorkflowRunAction {
     String id();
 
     /**
-     * Gets the name property: Gets the workflow run action name.
+     * Gets the name property: The name of the resource.
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the type property: Gets the workflow run action type.
+     * Gets the type property: The type of the resource.
      * 
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the startTime property: Gets the start time.
@@ -66,7 +75,7 @@ public interface WorkflowRunAction {
      * 
      * @return the error value.
      */
-    Object error();
+    Map<String, Object> error();
 
     /**
      * Gets the trackingId property: Gets the tracking id.
@@ -101,7 +110,7 @@ public interface WorkflowRunAction {
      * 
      * @return the trackedProperties value.
      */
-    Object trackedProperties();
+    Map<String, Object> trackedProperties();
 
     /**
      * Gets the retryHistory property: Gets the retry histories.

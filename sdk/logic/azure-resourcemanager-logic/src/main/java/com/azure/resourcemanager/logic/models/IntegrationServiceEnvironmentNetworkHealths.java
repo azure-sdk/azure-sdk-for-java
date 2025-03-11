@@ -6,7 +6,6 @@ package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import java.util.Map;
 
 /**
  * Resource collection API of IntegrationServiceEnvironmentNetworkHealths.
@@ -15,7 +14,6 @@ public interface IntegrationServiceEnvironmentNetworkHealths {
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -23,19 +21,17 @@ public interface IntegrationServiceEnvironmentNetworkHealths {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the integration service environment network health along with {@link Response}.
      */
-    Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealth>> getWithResponse(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context);
+    Response<IntegrationServiceEnvironmentNetworkHealth> getWithResponse(String integrationServiceEnvironmentName,
+        Context context);
 
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the integration service environment network health.
      */
-    Map<String, IntegrationServiceEnvironmentSubnetNetworkHealth> get(String resourceGroup,
-        String integrationServiceEnvironmentName);
+    IntegrationServiceEnvironmentNetworkHealth get(String integrationServiceEnvironmentName);
 }

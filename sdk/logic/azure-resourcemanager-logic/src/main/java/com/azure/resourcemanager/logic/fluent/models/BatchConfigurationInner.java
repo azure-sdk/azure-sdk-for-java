@@ -6,12 +6,14 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.models.BatchConfigurationProperties;
+import com.azure.resourcemanager.logic.models.BatchReleaseCriteria;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Map;
 
 /**
@@ -22,7 +24,12 @@ public final class BatchConfigurationInner extends Resource {
     /*
      * The batch configuration properties.
      */
-    private BatchConfigurationProperties properties;
+    private BatchConfigurationProperties innerProperties = new BatchConfigurationProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -46,23 +53,21 @@ public final class BatchConfigurationInner extends Resource {
     }
 
     /**
-     * Get the properties property: The batch configuration properties.
+     * Get the innerProperties property: The batch configuration properties.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public BatchConfigurationProperties properties() {
-        return this.properties;
+    private BatchConfigurationProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: The batch configuration properties.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @param properties the properties value to set.
-     * @return the BatchConfigurationInner object itself.
+     * @return the systemData value.
      */
-    public BatchConfigurationInner withProperties(BatchConfigurationProperties properties) {
-        this.properties = properties;
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -114,17 +119,132 @@ public final class BatchConfigurationInner extends Resource {
     }
 
     /**
+     * Get the batchGroupName property: The name of the batch group.
+     * 
+     * @return the batchGroupName value.
+     */
+    public String batchGroupName() {
+        return this.innerProperties() == null ? null : this.innerProperties().batchGroupName();
+    }
+
+    /**
+     * Set the batchGroupName property: The name of the batch group.
+     * 
+     * @param batchGroupName the batchGroupName value to set.
+     * @return the BatchConfigurationInner object itself.
+     */
+    public BatchConfigurationInner withBatchGroupName(String batchGroupName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BatchConfigurationProperties();
+        }
+        this.innerProperties().withBatchGroupName(batchGroupName);
+        return this;
+    }
+
+    /**
+     * Get the releaseCriteria property: The batch release criteria.
+     * 
+     * @return the releaseCriteria value.
+     */
+    public BatchReleaseCriteria releaseCriteria() {
+        return this.innerProperties() == null ? null : this.innerProperties().releaseCriteria();
+    }
+
+    /**
+     * Set the releaseCriteria property: The batch release criteria.
+     * 
+     * @param releaseCriteria the releaseCriteria value to set.
+     * @return the BatchConfigurationInner object itself.
+     */
+    public BatchConfigurationInner withReleaseCriteria(BatchReleaseCriteria releaseCriteria) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BatchConfigurationProperties();
+        }
+        this.innerProperties().withReleaseCriteria(releaseCriteria);
+        return this;
+    }
+
+    /**
+     * Get the createdTime property: The artifact creation time.
+     * 
+     * @return the createdTime value.
+     */
+    public OffsetDateTime createdTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdTime();
+    }
+
+    /**
+     * Set the createdTime property: The artifact creation time.
+     * 
+     * @param createdTime the createdTime value to set.
+     * @return the BatchConfigurationInner object itself.
+     */
+    public BatchConfigurationInner withCreatedTime(OffsetDateTime createdTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BatchConfigurationProperties();
+        }
+        this.innerProperties().withCreatedTime(createdTime);
+        return this;
+    }
+
+    /**
+     * Get the changedTime property: The artifact changed time.
+     * 
+     * @return the changedTime value.
+     */
+    public OffsetDateTime changedTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().changedTime();
+    }
+
+    /**
+     * Set the changedTime property: The artifact changed time.
+     * 
+     * @param changedTime the changedTime value to set.
+     * @return the BatchConfigurationInner object itself.
+     */
+    public BatchConfigurationInner withChangedTime(OffsetDateTime changedTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BatchConfigurationProperties();
+        }
+        this.innerProperties().withChangedTime(changedTime);
+        return this;
+    }
+
+    /**
+     * Get the metadata property: Anything.
+     * 
+     * @return the metadata value.
+     */
+    public Object metadata() {
+        return this.innerProperties() == null ? null : this.innerProperties().metadata();
+    }
+
+    /**
+     * Set the metadata property: Anything.
+     * 
+     * @param metadata the metadata value to set.
+     * @return the BatchConfigurationInner object itself.
+     */
+    public BatchConfigurationInner withMetadata(Object metadata) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BatchConfigurationProperties();
+        }
+        this.innerProperties().withMetadata(metadata);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() == null) {
+        if (innerProperties() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property properties in model BatchConfigurationInner"));
+                    "Missing required property innerProperties in model BatchConfigurationInner"));
         } else {
-            properties().validate();
+            innerProperties().validate();
         }
     }
 
@@ -138,7 +258,7 @@ public final class BatchConfigurationInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -170,7 +290,9 @@ public final class BatchConfigurationInner extends Resource {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedBatchConfigurationInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedBatchConfigurationInner.properties = BatchConfigurationProperties.fromJson(reader);
+                    deserializedBatchConfigurationInner.innerProperties = BatchConfigurationProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedBatchConfigurationInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

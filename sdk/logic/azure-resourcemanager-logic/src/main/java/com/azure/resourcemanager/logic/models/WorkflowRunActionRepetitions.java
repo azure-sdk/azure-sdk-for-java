@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.logic.models;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
@@ -13,44 +12,13 @@ import com.azure.core.util.Context;
  */
 public interface WorkflowRunActionRepetitions {
     /**
-     * Get all of a workflow run action repetitions.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all of a workflow run action repetitions as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<WorkflowRunActionRepetitionDefinition> list(String resourceGroupName, String workflowName,
-        String runName, String actionName);
-
-    /**
-     * Get all of a workflow run action repetitions.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all of a workflow run action repetitions as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<WorkflowRunActionRepetitionDefinition> list(String resourceGroupName, String workflowName,
-        String runName, String actionName, Context context);
-
-    /**
      * Get a workflow run action repetition.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param repetitionName The workflow repetition.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param repetitionName The name of the WorkflowRunActionRepetitionDefinition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -63,11 +31,11 @@ public interface WorkflowRunActionRepetitions {
     /**
      * Get a workflow run action repetition.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param repetitionName The workflow repetition.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param repetitionName The name of the WorkflowRunActionRepetitionDefinition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -79,33 +47,33 @@ public interface WorkflowRunActionRepetitions {
     /**
      * Lists a workflow run expression trace.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param repetitionName The workflow repetition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ExpressionRoot> listExpressionTraces(String resourceGroupName, String workflowName, String runName,
-        String actionName, String repetitionName);
-
-    /**
-     * Lists a workflow run expression trace.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param repetitionName The workflow repetition.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param repetitionName The name of the WorkflowRunActionRepetitionDefinition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces as paginated response with {@link PagedIterable}.
+     * @return the expression traces along with {@link Response}.
      */
-    PagedIterable<ExpressionRoot> listExpressionTraces(String resourceGroupName, String workflowName, String runName,
-        String actionName, String repetitionName, Context context);
+    Response<ExpressionTraces> listExpressionTracesWithResponse(String resourceGroupName, String workflowName,
+        String runName, String actionName, String repetitionName, Context context);
+
+    /**
+     * Lists a workflow run expression trace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param repetitionName The name of the WorkflowRunActionRepetitionDefinition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the expression traces.
+     */
+    ExpressionTraces listExpressionTraces(String resourceGroupName, String workflowName, String runName,
+        String actionName, String repetitionName);
 }

@@ -19,6 +19,6 @@ public final class WorkflowRunsListSamples {
      */
     public static void listWorkflowRuns(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflowRuns()
-            .list("test-resource-group", "test-workflow", null, null, com.azure.core.util.Context.NONE);
+            .list("test-resource-group", "test-workflow", null, null, null, com.azure.core.util.Context.NONE);
     }
 }

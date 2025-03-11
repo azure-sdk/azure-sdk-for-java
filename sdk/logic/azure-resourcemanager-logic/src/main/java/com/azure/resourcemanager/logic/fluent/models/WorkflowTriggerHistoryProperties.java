@@ -16,6 +16,7 @@ import com.azure.resourcemanager.logic.models.ResourceReference;
 import com.azure.resourcemanager.logic.models.WorkflowStatus;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The workflow trigger history properties.
@@ -50,7 +51,7 @@ public final class WorkflowTriggerHistoryProperties implements JsonSerializable<
     /*
      * Gets the error.
      */
-    private Object error;
+    private Map<String, Object> error;
 
     /*
      * Gets the tracking id.
@@ -138,7 +139,7 @@ public final class WorkflowTriggerHistoryProperties implements JsonSerializable<
      * 
      * @return the error value.
      */
-    public Object error() {
+    public Map<String, Object> error() {
         return this.error;
     }
 
@@ -267,7 +268,8 @@ public final class WorkflowTriggerHistoryProperties implements JsonSerializable<
                 } else if ("code".equals(fieldName)) {
                     deserializedWorkflowTriggerHistoryProperties.code = reader.getString();
                 } else if ("error".equals(fieldName)) {
-                    deserializedWorkflowTriggerHistoryProperties.error = reader.readUntyped();
+                    Map<String, Object> error = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowTriggerHistoryProperties.error = error;
                 } else if ("trackingId".equals(fieldName)) {
                     deserializedWorkflowTriggerHistoryProperties.trackingId = reader.getString();
                 } else if ("correlation".equals(fieldName)) {

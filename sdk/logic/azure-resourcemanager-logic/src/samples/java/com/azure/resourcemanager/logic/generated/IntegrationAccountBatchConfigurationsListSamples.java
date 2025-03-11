@@ -19,6 +19,6 @@ public final class IntegrationAccountBatchConfigurationsListSamples {
      */
     public static void listBatchConfigurations(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccountBatchConfigurations()
-            .list("testResourceGroup", "testIntegrationAccount", com.azure.core.util.Context.NONE);
+            .listWithResponse("testResourceGroup", "testIntegrationAccount", com.azure.core.util.Context.NONE);
     }
 }

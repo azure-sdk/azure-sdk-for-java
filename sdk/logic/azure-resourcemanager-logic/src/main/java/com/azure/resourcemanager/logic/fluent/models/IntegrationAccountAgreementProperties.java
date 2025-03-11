@@ -16,6 +16,7 @@ import com.azure.resourcemanager.logic.models.AgreementType;
 import com.azure.resourcemanager.logic.models.BusinessIdentity;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The integration account agreement properties.
@@ -36,7 +37,7 @@ public final class IntegrationAccountAgreementProperties
     /*
      * The metadata.
      */
-    private Object metadata;
+    private Map<String, Object> metadata;
 
     /*
      * The agreement type.
@@ -97,7 +98,7 @@ public final class IntegrationAccountAgreementProperties
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.metadata;
     }
 
@@ -107,7 +108,7 @@ public final class IntegrationAccountAgreementProperties
      * @param metadata the metadata value to set.
      * @return the IntegrationAccountAgreementProperties object itself.
      */
-    public IntegrationAccountAgreementProperties withMetadata(Object metadata) {
+    public IntegrationAccountAgreementProperties withMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
         return this;
     }
@@ -290,7 +291,7 @@ public final class IntegrationAccountAgreementProperties
         jsonWriter.writeJsonField("hostIdentity", this.hostIdentity);
         jsonWriter.writeJsonField("guestIdentity", this.guestIdentity);
         jsonWriter.writeJsonField("content", this.content);
-        jsonWriter.writeUntypedField("metadata", this.metadata);
+        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -331,7 +332,8 @@ public final class IntegrationAccountAgreementProperties
                     deserializedIntegrationAccountAgreementProperties.changedTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedIntegrationAccountAgreementProperties.metadata = reader.readUntyped();
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedIntegrationAccountAgreementProperties.metadata = metadata;
                 } else {
                     reader.skipChildren();
                 }

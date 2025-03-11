@@ -19,18 +19,14 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
-import com.azure.core.http.rest.PagedFlux;
-import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.PagedResponse;
-import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountBatchConfigurationsClient;
+import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationCollectionInner;
 import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationInner;
-import com.azure.resourcemanager.logic.models.BatchConfigurationCollection;
 import reactor.core.publisher.Mono;
 
 /**
@@ -71,61 +67,60 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/batchConfigurations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BatchConfigurationCollection>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<BatchConfigurationCollectionInner>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("integrationAccountName") String integrationAccountName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("integrationAccountName") String integrationAccountName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/batchConfigurations/{batchConfigurationName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BatchConfigurationInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("batchConfigurationName") String batchConfigurationName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("batchConfigurationName") String batchConfigurationName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/batchConfigurations/{batchConfigurationName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BatchConfigurationInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
             @PathParam("batchConfigurationName") String batchConfigurationName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") BatchConfigurationInner batchConfiguration,
-            @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") BatchConfigurationInner resource, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/batchConfigurations/{batchConfigurationName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("batchConfigurationName") String batchConfigurationName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("batchConfigurationName") String batchConfigurationName, @HeaderParam("Accept") String accept,
+            Context context);
     }
 
     /**
      * List the batch configurations for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of batch configurations along with {@link PagedResponse} on successful completion of
+     * @return a collection of batch configurations along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BatchConfigurationInner>> listSinglePageAsync(String resourceGroupName,
+    private Mono<Response<BatchConfigurationCollectionInner>> listWithResponseAsync(String resourceGroupName,
         String integrationAccountName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -145,27 +140,25 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<BatchConfigurationInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List the batch configurations for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of batch configurations along with {@link PagedResponse} on successful completion of
+     * @return a collection of batch configurations along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BatchConfigurationInner>> listSinglePageAsync(String resourceGroupName,
+    private Mono<Response<BatchConfigurationCollectionInner>> listWithResponseAsync(String resourceGroupName,
         String integrationAccountName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -185,81 +178,62 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, integrationAccountName,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), null, null));
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, accept, context);
     }
 
     /**
      * List the batch configurations for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of batch configurations as paginated response with {@link PagedFlux}.
+     * @return a collection of batch configurations on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BatchConfigurationInner> listAsync(String resourceGroupName, String integrationAccountName) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, integrationAccountName));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BatchConfigurationCollectionInner> listAsync(String resourceGroupName, String integrationAccountName) {
+        return listWithResponseAsync(resourceGroupName, integrationAccountName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * List the batch configurations for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of batch configurations as paginated response with {@link PagedFlux}.
+     * @return a collection of batch configurations along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BatchConfigurationInner> listAsync(String resourceGroupName, String integrationAccountName,
-        Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, integrationAccountName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BatchConfigurationCollectionInner> listWithResponse(String resourceGroupName,
+        String integrationAccountName, Context context) {
+        return listWithResponseAsync(resourceGroupName, integrationAccountName, context).block();
     }
 
     /**
      * List the batch configurations for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of batch configurations as paginated response with {@link PagedIterable}.
+     * @return a collection of batch configurations.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchConfigurationInner> list(String resourceGroupName, String integrationAccountName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, integrationAccountName));
-    }
-
-    /**
-     * List the batch configurations for an integration account.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param integrationAccountName The integration account name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of batch configurations as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchConfigurationInner> list(String resourceGroupName, String integrationAccountName,
-        Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, integrationAccountName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BatchConfigurationCollectionInner list(String resourceGroupName, String integrationAccountName) {
+        return listWithResponse(resourceGroupName, integrationAccountName, Context.NONE).getValue();
     }
 
     /**
      * Get a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -293,16 +267,16 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    integrationAccountName, batchConfigurationName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, batchConfigurationName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @param context The context to associate with this operation.
@@ -337,14 +311,14 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, batchConfigurationName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, batchConfigurationName, accept, context);
     }
 
     /**
      * Get a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -362,7 +336,7 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
     /**
      * Get a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @param context The context to associate with this operation.
@@ -380,7 +354,7 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
     /**
      * Get a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -398,10 +372,10 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
     /**
      * Create or update a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param batchConfiguration The batch configuration.
+     * @param resource The batch configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -410,7 +384,7 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BatchConfigurationInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String integrationAccountName, String batchConfigurationName, BatchConfigurationInner batchConfiguration) {
+        String integrationAccountName, String batchConfigurationName, BatchConfigurationInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -431,27 +405,26 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
             return Mono.error(
                 new IllegalArgumentException("Parameter batchConfigurationName is required and cannot be null."));
         }
-        if (batchConfiguration == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter batchConfiguration is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            batchConfiguration.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, batchConfigurationName, this.client.getApiVersion(),
-                batchConfiguration, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, batchConfigurationName,
+                resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param batchConfiguration The batch configuration.
+     * @param resource The batch configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -461,7 +434,7 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BatchConfigurationInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String integrationAccountName, String batchConfigurationName, BatchConfigurationInner batchConfiguration,
+        String integrationAccountName, String batchConfigurationName, BatchConfigurationInner resource,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -483,26 +456,25 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
             return Mono.error(
                 new IllegalArgumentException("Parameter batchConfigurationName is required and cannot be null."));
         }
-        if (batchConfiguration == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter batchConfiguration is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            batchConfiguration.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, batchConfigurationName, this.client.getApiVersion(), batchConfiguration, accept,
-            context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, batchConfigurationName,
+            resource, accept, context);
     }
 
     /**
      * Create or update a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param batchConfiguration The batch configuration.
+     * @param resource The batch configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -510,18 +482,18 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BatchConfigurationInner> createOrUpdateAsync(String resourceGroupName, String integrationAccountName,
-        String batchConfigurationName, BatchConfigurationInner batchConfiguration) {
+        String batchConfigurationName, BatchConfigurationInner resource) {
         return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, batchConfigurationName,
-            batchConfiguration).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+            resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Create or update a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param batchConfiguration The batch configuration.
+     * @param resource The batch configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -530,19 +502,19 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BatchConfigurationInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String batchConfigurationName, BatchConfigurationInner batchConfiguration,
+        String integrationAccountName, String batchConfigurationName, BatchConfigurationInner resource,
         Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, batchConfigurationName,
-            batchConfiguration, context).block();
+            resource, context).block();
     }
 
     /**
      * Create or update a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param batchConfiguration The batch configuration.
+     * @param resource The batch configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -550,15 +522,15 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BatchConfigurationInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String batchConfigurationName, BatchConfigurationInner batchConfiguration) {
-        return createOrUpdateWithResponse(resourceGroupName, integrationAccountName, batchConfigurationName,
-            batchConfiguration, Context.NONE).getValue();
+        String batchConfigurationName, BatchConfigurationInner resource) {
+        return createOrUpdateWithResponse(resourceGroupName, integrationAccountName, batchConfigurationName, resource,
+            Context.NONE).getValue();
     }
 
     /**
      * Delete a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -591,16 +563,16 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    integrationAccountName, batchConfigurationName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, batchConfigurationName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @param context The context to associate with this operation.
@@ -634,14 +606,14 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, batchConfigurationName, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, batchConfigurationName, accept, context);
     }
 
     /**
      * Delete a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -659,7 +631,7 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
     /**
      * Delete a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @param context The context to associate with this operation.
@@ -678,7 +650,7 @@ public final class IntegrationAccountBatchConfigurationsClientImpl
     /**
      * Delete a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

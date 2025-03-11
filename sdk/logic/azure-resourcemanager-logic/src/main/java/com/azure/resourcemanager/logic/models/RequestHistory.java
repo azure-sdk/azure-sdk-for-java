@@ -4,7 +4,9 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.RequestHistoryInner;
+import java.time.OffsetDateTime;
 import java.util.Map;
 
 /**
@@ -47,11 +49,39 @@ public interface RequestHistory {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The request history properties.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the properties value.
+     * @return the systemData value.
      */
-    RequestHistoryProperties properties();
+    SystemData systemData();
+
+    /**
+     * Gets the startTime property: The time the request started.
+     * 
+     * @return the startTime value.
+     */
+    OffsetDateTime startTime();
+
+    /**
+     * Gets the endTime property: The time the request ended.
+     * 
+     * @return the endTime value.
+     */
+    OffsetDateTime endTime();
+
+    /**
+     * Gets the request property: The request.
+     * 
+     * @return the request value.
+     */
+    Request request();
+
+    /**
+     * Gets the response property: The response.
+     * 
+     * @return the response value.
+     */
+    Response response();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.RequestHistoryInner object.

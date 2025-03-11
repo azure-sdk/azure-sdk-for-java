@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * The content link.
@@ -39,7 +40,7 @@ public final class ContentLink implements JsonSerializable<ContentLink> {
     /*
      * The metadata.
      */
-    private Object metadata;
+    private Map<String, Object> metadata;
 
     /**
      * Creates an instance of ContentLink class.
@@ -99,7 +100,7 @@ public final class ContentLink implements JsonSerializable<ContentLink> {
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.metadata;
     }
 
@@ -148,7 +149,8 @@ public final class ContentLink implements JsonSerializable<ContentLink> {
                 } else if ("contentHash".equals(fieldName)) {
                     deserializedContentLink.contentHash = ContentHash.fromJson(reader);
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedContentLink.metadata = reader.readUntyped();
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedContentLink.metadata = metadata;
                 } else {
                     reader.skipChildren();
                 }

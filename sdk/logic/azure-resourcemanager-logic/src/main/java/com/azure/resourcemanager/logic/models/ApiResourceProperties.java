@@ -19,14 +19,9 @@ import java.util.Map;
 @Fluent
 public class ApiResourceProperties implements JsonSerializable<ApiResourceProperties> {
     /*
-     * The name
-     */
-    private String name;
-
-    /*
      * The connection parameters.
      */
-    private Map<String, Object> connectionParameters;
+    private Map<String, Map<String, Object>> connectionParameters;
 
     /*
      * The metadata.
@@ -90,31 +85,11 @@ public class ApiResourceProperties implements JsonSerializable<ApiResourceProper
     }
 
     /**
-     * Get the name property: The name.
-     * 
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Set the name property: The name.
-     * 
-     * @param name the name value to set.
-     * @return the ApiResourceProperties object itself.
-     */
-    ApiResourceProperties withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
      * Get the connectionParameters property: The connection parameters.
      * 
      * @return the connectionParameters value.
      */
-    public Map<String, Object> connectionParameters() {
+    public Map<String, Map<String, Object>> connectionParameters() {
         return this.connectionParameters;
     }
 
@@ -124,7 +99,7 @@ public class ApiResourceProperties implements JsonSerializable<ApiResourceProper
      * @param connectionParameters the connectionParameters value to set.
      * @return the ApiResourceProperties object itself.
      */
-    ApiResourceProperties withConnectionParameters(Map<String, Object> connectionParameters) {
+    ApiResourceProperties withConnectionParameters(Map<String, Map<String, Object>> connectionParameters) {
         this.connectionParameters = connectionParameters;
         return this;
     }
@@ -400,10 +375,9 @@ public class ApiResourceProperties implements JsonSerializable<ApiResourceProper
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("name".equals(fieldName)) {
-                    deserializedApiResourceProperties.name = reader.getString();
-                } else if ("connectionParameters".equals(fieldName)) {
-                    Map<String, Object> connectionParameters = reader.readMap(reader1 -> reader1.readUntyped());
+                if ("connectionParameters".equals(fieldName)) {
+                    Map<String, Map<String, Object>> connectionParameters
+                        = reader.readMap(reader1 -> reader1.readMap(reader2 -> reader2.readUntyped()));
                     deserializedApiResourceProperties.connectionParameters = connectionParameters;
                 } else if ("metadata".equals(fieldName)) {
                     deserializedApiResourceProperties.metadata = ApiResourceMetadata.fromJson(reader);

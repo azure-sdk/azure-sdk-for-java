@@ -70,10 +70,9 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountSessionListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("integrationAccountName") String integrationAccountName,
-            @QueryParam("api-version") String apiVersion, @QueryParam("$top") Integer top,
+            @PathParam("integrationAccountName") String integrationAccountName, @QueryParam("$top") Integer top,
             @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -81,34 +80,32 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountSessionInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("sessionName") String sessionName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("sessionName") String sessionName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/sessions/{sessionName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountSessionInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("sessionName") String sessionName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") IntegrationAccountSessionInner session, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("sessionName") String sessionName,
+            @BodyParam("application/json") IntegrationAccountSessionInner resource,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/sessions/{sessionName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("sessionName") String sessionName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("sessionName") String sessionName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -122,7 +119,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: ChangedTime.
@@ -152,9 +149,8 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
                 new IllegalArgumentException("Parameter integrationAccountName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, this.client.getApiVersion(), top, filter, accept, context))
+        return FluxUtil.withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, top, filter, accept, context))
             .<PagedResponse<IntegrationAccountSessionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -163,7 +159,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: ChangedTime.
@@ -196,8 +192,8 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, integrationAccountName,
-                this.client.getApiVersion(), top, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, integrationAccountName, top, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -205,7 +201,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: ChangedTime.
@@ -224,7 +220,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -243,7 +239,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: ChangedTime.
@@ -264,7 +260,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -281,7 +277,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: ChangedTime.
@@ -300,7 +296,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -331,16 +327,15 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
             return Mono.error(new IllegalArgumentException("Parameter sessionName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, sessionName, this.client.getApiVersion(), accept, context))
+        return FluxUtil.withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, sessionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @param context The context to associate with this operation.
@@ -373,14 +368,14 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, sessionName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, sessionName, accept, context);
     }
 
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -398,7 +393,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @param context The context to associate with this operation.
@@ -416,7 +411,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -433,10 +428,10 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Creates or updates an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
-     * @param session The integration account session.
+     * @param resource The integration account session.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -444,7 +439,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IntegrationAccountSessionInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String integrationAccountName, String sessionName, IntegrationAccountSessionInner session) {
+        String integrationAccountName, String sessionName, IntegrationAccountSessionInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -464,26 +459,26 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
         if (sessionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sessionName is required and cannot be null."));
         }
-        if (session == null) {
-            return Mono.error(new IllegalArgumentException("Parameter session is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            session.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, sessionName, this.client.getApiVersion(), session, accept,
-                context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, sessionName, resource,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
-     * @param session The integration account session.
+     * @param resource The integration account session.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -492,7 +487,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IntegrationAccountSessionInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String integrationAccountName, String sessionName, IntegrationAccountSessionInner session, Context context) {
+        String integrationAccountName, String sessionName, IntegrationAccountSessionInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -512,24 +507,25 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
         if (sessionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sessionName is required and cannot be null."));
         }
-        if (session == null) {
-            return Mono.error(new IllegalArgumentException("Parameter session is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            session.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, sessionName, this.client.getApiVersion(), session, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, sessionName, resource, accept,
+            context);
     }
 
     /**
      * Creates or updates an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
-     * @param session The integration account session.
+     * @param resource The integration account session.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -537,18 +533,18 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IntegrationAccountSessionInner> createOrUpdateAsync(String resourceGroupName,
-        String integrationAccountName, String sessionName, IntegrationAccountSessionInner session) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, sessionName, session)
+        String integrationAccountName, String sessionName, IntegrationAccountSessionInner resource) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, sessionName, resource)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
-     * @param session The integration account session.
+     * @param resource The integration account session.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -557,18 +553,18 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IntegrationAccountSessionInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String sessionName, IntegrationAccountSessionInner session, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, sessionName, session, context)
-            .block();
+        String integrationAccountName, String sessionName, IntegrationAccountSessionInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, sessionName, resource,
+            context).block();
     }
 
     /**
      * Creates or updates an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
-     * @param session The integration account session.
+     * @param resource The integration account session.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -576,15 +572,15 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public IntegrationAccountSessionInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String sessionName, IntegrationAccountSessionInner session) {
-        return createOrUpdateWithResponse(resourceGroupName, integrationAccountName, sessionName, session, Context.NONE)
-            .getValue();
+        String sessionName, IntegrationAccountSessionInner resource) {
+        return createOrUpdateWithResponse(resourceGroupName, integrationAccountName, sessionName, resource,
+            Context.NONE).getValue();
     }
 
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -615,16 +611,15 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
             return Mono.error(new IllegalArgumentException("Parameter sessionName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, sessionName, this.client.getApiVersion(), accept, context))
+        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, sessionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @param context The context to associate with this operation.
@@ -657,14 +652,14 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, sessionName, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, sessionName, accept, context);
     }
 
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -681,7 +676,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @param context The context to associate with this operation.
@@ -699,7 +694,7 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -718,8 +713,8 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of integration account sessions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a IntegrationAccountSession list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IntegrationAccountSessionInner>> listNextSinglePageAsync(String nextLink) {
@@ -745,8 +740,8 @@ public final class IntegrationAccountSessionsClientImpl implements IntegrationAc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of integration account sessions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a IntegrationAccountSession list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IntegrationAccountSessionInner>> listNextSinglePageAsync(String nextLink,

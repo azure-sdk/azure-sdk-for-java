@@ -6,12 +6,17 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentProperties;
+import com.azure.resourcemanager.logic.models.FlowEndpointsConfiguration;
+import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmenEncryptionConfiguration;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentSku;
 import com.azure.resourcemanager.logic.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.logic.models.NetworkConfiguration;
+import com.azure.resourcemanager.logic.models.WorkflowProvisioningState;
+import com.azure.resourcemanager.logic.models.WorkflowState;
 import java.io.IOException;
 import java.util.Map;
 
@@ -23,7 +28,7 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
     /*
      * The integration service environment properties.
      */
-    private IntegrationServiceEnvironmentProperties properties;
+    private IntegrationServiceEnvironmentProperties innerProperties;
 
     /*
      * The sku.
@@ -34,6 +39,11 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
      * Managed service identity properties.
      */
     private ManagedServiceIdentity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -57,23 +67,12 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
     }
 
     /**
-     * Get the properties property: The integration service environment properties.
+     * Get the innerProperties property: The integration service environment properties.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public IntegrationServiceEnvironmentProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The integration service environment properties.
-     * 
-     * @param properties the properties value to set.
-     * @return the IntegrationServiceEnvironmentInner object itself.
-     */
-    public IntegrationServiceEnvironmentInner withProperties(IntegrationServiceEnvironmentProperties properties) {
-        this.properties = properties;
-        return this;
+    private IntegrationServiceEnvironmentProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -114,6 +113,15 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
     public IntegrationServiceEnvironmentInner withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -165,13 +173,140 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
     }
 
     /**
+     * Get the provisioningState property: Gets the provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public WorkflowProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the state property: The integration service environment state.
+     * 
+     * @return the state value.
+     */
+    public WorkflowState state() {
+        return this.innerProperties() == null ? null : this.innerProperties().state();
+    }
+
+    /**
+     * Set the state property: The integration service environment state.
+     * 
+     * @param state the state value to set.
+     * @return the IntegrationServiceEnvironmentInner object itself.
+     */
+    public IntegrationServiceEnvironmentInner withState(WorkflowState state) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new IntegrationServiceEnvironmentProperties();
+        }
+        this.innerProperties().withState(state);
+        return this;
+    }
+
+    /**
+     * Get the integrationServiceEnvironmentId property: Gets the tracking id.
+     * 
+     * @return the integrationServiceEnvironmentId value.
+     */
+    public String integrationServiceEnvironmentId() {
+        return this.innerProperties() == null ? null : this.innerProperties().integrationServiceEnvironmentId();
+    }
+
+    /**
+     * Set the integrationServiceEnvironmentId property: Gets the tracking id.
+     * 
+     * @param integrationServiceEnvironmentId the integrationServiceEnvironmentId value to set.
+     * @return the IntegrationServiceEnvironmentInner object itself.
+     */
+    public IntegrationServiceEnvironmentInner
+        withIntegrationServiceEnvironmentId(String integrationServiceEnvironmentId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new IntegrationServiceEnvironmentProperties();
+        }
+        this.innerProperties().withIntegrationServiceEnvironmentId(integrationServiceEnvironmentId);
+        return this;
+    }
+
+    /**
+     * Get the endpointsConfiguration property: The endpoints configuration.
+     * 
+     * @return the endpointsConfiguration value.
+     */
+    public FlowEndpointsConfiguration endpointsConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().endpointsConfiguration();
+    }
+
+    /**
+     * Set the endpointsConfiguration property: The endpoints configuration.
+     * 
+     * @param endpointsConfiguration the endpointsConfiguration value to set.
+     * @return the IntegrationServiceEnvironmentInner object itself.
+     */
+    public IntegrationServiceEnvironmentInner
+        withEndpointsConfiguration(FlowEndpointsConfiguration endpointsConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new IntegrationServiceEnvironmentProperties();
+        }
+        this.innerProperties().withEndpointsConfiguration(endpointsConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the networkConfiguration property: The network configuration.
+     * 
+     * @return the networkConfiguration value.
+     */
+    public NetworkConfiguration networkConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkConfiguration();
+    }
+
+    /**
+     * Set the networkConfiguration property: The network configuration.
+     * 
+     * @param networkConfiguration the networkConfiguration value to set.
+     * @return the IntegrationServiceEnvironmentInner object itself.
+     */
+    public IntegrationServiceEnvironmentInner withNetworkConfiguration(NetworkConfiguration networkConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new IntegrationServiceEnvironmentProperties();
+        }
+        this.innerProperties().withNetworkConfiguration(networkConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the encryptionConfiguration property: The encryption configuration.
+     * 
+     * @return the encryptionConfiguration value.
+     */
+    public IntegrationServiceEnvironmenEncryptionConfiguration encryptionConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().encryptionConfiguration();
+    }
+
+    /**
+     * Set the encryptionConfiguration property: The encryption configuration.
+     * 
+     * @param encryptionConfiguration the encryptionConfiguration value to set.
+     * @return the IntegrationServiceEnvironmentInner object itself.
+     */
+    public IntegrationServiceEnvironmentInner
+        withEncryptionConfiguration(IntegrationServiceEnvironmenEncryptionConfiguration encryptionConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new IntegrationServiceEnvironmentProperties();
+        }
+        this.innerProperties().withEncryptionConfiguration(encryptionConfiguration);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
         if (sku() != null) {
             sku().validate();
@@ -189,7 +324,7 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         jsonWriter.writeJsonField("sku", this.sku);
         jsonWriter.writeJsonField("identity", this.identity);
         return jsonWriter.writeEndObject();
@@ -224,13 +359,15 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedIntegrationServiceEnvironmentInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedIntegrationServiceEnvironmentInner.properties
+                    deserializedIntegrationServiceEnvironmentInner.innerProperties
                         = IntegrationServiceEnvironmentProperties.fromJson(reader);
                 } else if ("sku".equals(fieldName)) {
                     deserializedIntegrationServiceEnvironmentInner.sku
                         = IntegrationServiceEnvironmentSku.fromJson(reader);
                 } else if ("identity".equals(fieldName)) {
                     deserializedIntegrationServiceEnvironmentInner.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationServiceEnvironmentInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

@@ -4,9 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.IntegrationAccountSku;
-import com.azure.resourcemanager.logic.models.IntegrationAccountSkuName;
-
 /**
  * Samples for IntegrationAccounts CreateOrUpdate.
  */
@@ -23,9 +20,8 @@ public final class IntegrationAccountsCreateOrUpdateSamples {
     public static void createOrUpdateAnIntegrationAccount(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccounts()
             .define("testIntegrationAccount")
-            .withRegion("westus")
+            .withRegion((String) null)
             .withExistingResourceGroup("testResourceGroup")
-            .withSku(new IntegrationAccountSku().withName(IntegrationAccountSkuName.STANDARD))
             .create();
     }
 }

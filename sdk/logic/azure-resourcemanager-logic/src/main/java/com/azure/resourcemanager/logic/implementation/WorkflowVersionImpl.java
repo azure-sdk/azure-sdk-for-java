@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowVersionInner;
 import com.azure.resourcemanager.logic.models.FlowAccessControlConfiguration;
 import com.azure.resourcemanager.logic.models.FlowEndpointsConfiguration;
@@ -52,6 +53,10 @@ public final class WorkflowVersionImpl implements WorkflowVersion {
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public WorkflowProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -92,8 +97,13 @@ public final class WorkflowVersionImpl implements WorkflowVersion {
         return this.innerModel().integrationAccount();
     }
 
-    public Object definition() {
-        return this.innerModel().definition();
+    public Map<String, Object> definition() {
+        Map<String, Object> inner = this.innerModel().definition();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public Map<String, WorkflowParameter> parameters() {

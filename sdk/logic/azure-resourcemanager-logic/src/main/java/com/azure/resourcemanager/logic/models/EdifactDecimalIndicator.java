@@ -4,58 +4,53 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.util.ExpandableStringEnum;
+import java.util.Collection;
+
 /**
  * The edifact decimal indicator.
  */
-public enum EdifactDecimalIndicator {
+public final class EdifactDecimalIndicator extends ExpandableStringEnum<EdifactDecimalIndicator> {
     /**
-     * Enum value NotSpecified.
+     * Static value NotSpecified for EdifactDecimalIndicator.
      */
-    NOT_SPECIFIED("NotSpecified"),
+    public static final EdifactDecimalIndicator NOT_SPECIFIED = fromString("NotSpecified");
 
     /**
-     * Enum value Comma.
+     * Static value Comma for EdifactDecimalIndicator.
      */
-    COMMA("Comma"),
+    public static final EdifactDecimalIndicator COMMA = fromString("Comma");
 
     /**
-     * Enum value Decimal.
+     * Static value Decimal for EdifactDecimalIndicator.
      */
-    DECIMAL("Decimal");
+    public static final EdifactDecimalIndicator DECIMAL = fromString("Decimal");
 
     /**
-     * The actual serialized value for a EdifactDecimalIndicator instance.
-     */
-    private final String value;
-
-    EdifactDecimalIndicator(String value) {
-        this.value = value;
-    }
-
-    /**
-     * Parses a serialized value to a EdifactDecimalIndicator instance.
+     * Creates a new instance of EdifactDecimalIndicator value.
      * 
-     * @param value the serialized value to parse.
-     * @return the parsed EdifactDecimalIndicator object, or null if unable to parse.
+     * @deprecated Use the {@link #fromString(String)} factory method.
      */
-    public static EdifactDecimalIndicator fromString(String value) {
-        if (value == null) {
-            return null;
-        }
-        EdifactDecimalIndicator[] items = EdifactDecimalIndicator.values();
-        for (EdifactDecimalIndicator item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
+    @Deprecated
+    public EdifactDecimalIndicator() {
     }
 
     /**
-     * {@inheritDoc}
+     * Creates or finds a EdifactDecimalIndicator from its string representation.
+     * 
+     * @param name a name to look for.
+     * @return the corresponding EdifactDecimalIndicator.
      */
-    @Override
-    public String toString() {
-        return this.value;
+    public static EdifactDecimalIndicator fromString(String name) {
+        return fromString(name, EdifactDecimalIndicator.class);
+    }
+
+    /**
+     * Gets known EdifactDecimalIndicator values.
+     * 
+     * @return known EdifactDecimalIndicator values.
+     */
+    public static Collection<EdifactDecimalIndicator> values() {
+        return values(EdifactDecimalIndicator.class);
     }
 }

@@ -16,6 +16,7 @@ import com.azure.resourcemanager.logic.models.IntegrationAccountMapPropertiesPar
 import com.azure.resourcemanager.logic.models.MapType;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The integration account map.
@@ -60,7 +61,7 @@ public final class IntegrationAccountMapProperties implements JsonSerializable<I
     /*
      * The metadata.
      */
-    private Object metadata;
+    private Map<String, Object> metadata;
 
     /**
      * Creates an instance of IntegrationAccountMapProperties class.
@@ -181,7 +182,7 @@ public final class IntegrationAccountMapProperties implements JsonSerializable<I
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.metadata;
     }
 
@@ -191,7 +192,7 @@ public final class IntegrationAccountMapProperties implements JsonSerializable<I
      * @param metadata the metadata value to set.
      * @return the IntegrationAccountMapProperties object itself.
      */
-    public IntegrationAccountMapProperties withMetadata(Object metadata) {
+    public IntegrationAccountMapProperties withMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
         return this;
     }
@@ -227,7 +228,7 @@ public final class IntegrationAccountMapProperties implements JsonSerializable<I
         jsonWriter.writeJsonField("parametersSchema", this.parametersSchema);
         jsonWriter.writeStringField("content", this.content);
         jsonWriter.writeStringField("contentType", this.contentType);
-        jsonWriter.writeUntypedField("metadata", this.metadata);
+        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -266,7 +267,8 @@ public final class IntegrationAccountMapProperties implements JsonSerializable<I
                 } else if ("contentLink".equals(fieldName)) {
                     deserializedIntegrationAccountMapProperties.contentLink = ContentLink.fromJson(reader);
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedIntegrationAccountMapProperties.metadata = reader.readUntyped();
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedIntegrationAccountMapProperties.metadata = metadata;
                 } else {
                     reader.skipChildren();
                 }

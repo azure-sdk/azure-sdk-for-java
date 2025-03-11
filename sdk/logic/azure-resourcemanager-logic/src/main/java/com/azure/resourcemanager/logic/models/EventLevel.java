@@ -4,73 +4,68 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.util.ExpandableStringEnum;
+import java.util.Collection;
+
 /**
  * The event level.
  */
-public enum EventLevel {
+public final class EventLevel extends ExpandableStringEnum<EventLevel> {
     /**
-     * Enum value LogAlways.
+     * Static value LogAlways for EventLevel.
      */
-    LOG_ALWAYS("LogAlways"),
+    public static final EventLevel LOG_ALWAYS = fromString("LogAlways");
 
     /**
-     * Enum value Critical.
+     * Static value Critical for EventLevel.
      */
-    CRITICAL("Critical"),
+    public static final EventLevel CRITICAL = fromString("Critical");
 
     /**
-     * Enum value Error.
+     * Static value Error for EventLevel.
      */
-    ERROR("Error"),
+    public static final EventLevel ERROR = fromString("Error");
 
     /**
-     * Enum value Warning.
+     * Static value Warning for EventLevel.
      */
-    WARNING("Warning"),
+    public static final EventLevel WARNING = fromString("Warning");
 
     /**
-     * Enum value Informational.
+     * Static value Informational for EventLevel.
      */
-    INFORMATIONAL("Informational"),
+    public static final EventLevel INFORMATIONAL = fromString("Informational");
 
     /**
-     * Enum value Verbose.
+     * Static value Verbose for EventLevel.
      */
-    VERBOSE("Verbose");
+    public static final EventLevel VERBOSE = fromString("Verbose");
 
     /**
-     * The actual serialized value for a EventLevel instance.
-     */
-    private final String value;
-
-    EventLevel(String value) {
-        this.value = value;
-    }
-
-    /**
-     * Parses a serialized value to a EventLevel instance.
+     * Creates a new instance of EventLevel value.
      * 
-     * @param value the serialized value to parse.
-     * @return the parsed EventLevel object, or null if unable to parse.
+     * @deprecated Use the {@link #fromString(String)} factory method.
      */
-    public static EventLevel fromString(String value) {
-        if (value == null) {
-            return null;
-        }
-        EventLevel[] items = EventLevel.values();
-        for (EventLevel item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
+    @Deprecated
+    public EventLevel() {
     }
 
     /**
-     * {@inheritDoc}
+     * Creates or finds a EventLevel from its string representation.
+     * 
+     * @param name a name to look for.
+     * @return the corresponding EventLevel.
      */
-    @Override
-    public String toString() {
-        return this.value;
+    public static EventLevel fromString(String name) {
+        return fromString(name, EventLevel.class);
+    }
+
+    /**
+     * Gets known EventLevel values.
+     * 
+     * @return known EventLevel values.
+     */
+    public static Collection<EventLevel> values() {
+        return values(EventLevel.class);
     }
 }

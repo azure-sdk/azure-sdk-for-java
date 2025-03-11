@@ -20,6 +20,6 @@ public final class IntegrationServiceEnvironmentManagedApisListSamples {
     public static void
         getsTheIntegrationServiceEnvironmentManagedApis(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationServiceEnvironmentManagedApis()
-            .list("testResourceGroup", "testIntegrationServiceEnvironment", com.azure.core.util.Context.NONE);
+            .list("testIntegrationServiceEnvironment", com.azure.core.util.Context.NONE);
     }
 }

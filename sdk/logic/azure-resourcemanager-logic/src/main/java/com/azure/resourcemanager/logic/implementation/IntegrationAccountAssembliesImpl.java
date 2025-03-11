@@ -4,14 +4,15 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountAssembliesClient;
+import com.azure.resourcemanager.logic.fluent.models.AssemblyCollectionInner;
 import com.azure.resourcemanager.logic.fluent.models.AssemblyDefinitionInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerCallbackUrlInner;
+import com.azure.resourcemanager.logic.models.AssemblyCollection;
 import com.azure.resourcemanager.logic.models.AssemblyDefinition;
 import com.azure.resourcemanager.logic.models.IntegrationAccountAssemblies;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerCallbackUrl;
@@ -29,17 +30,25 @@ public final class IntegrationAccountAssembliesImpl implements IntegrationAccoun
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<AssemblyDefinition> list(String resourceGroupName, String integrationAccountName) {
-        PagedIterable<AssemblyDefinitionInner> inner
-            = this.serviceClient().list(resourceGroupName, integrationAccountName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new AssemblyDefinitionImpl(inner1, this.manager()));
+    public Response<AssemblyCollection> listWithResponse(String resourceGroupName, String integrationAccountName,
+        Context context) {
+        Response<AssemblyCollectionInner> inner
+            = this.serviceClient().listWithResponse(resourceGroupName, integrationAccountName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new AssemblyCollectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<AssemblyDefinition> list(String resourceGroupName, String integrationAccountName,
-        Context context) {
-        PagedIterable<AssemblyDefinitionInner> inner
-            = this.serviceClient().list(resourceGroupName, integrationAccountName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new AssemblyDefinitionImpl(inner1, this.manager()));
+    public AssemblyCollection list(String resourceGroupName, String integrationAccountName) {
+        AssemblyCollectionInner inner = this.serviceClient().list(resourceGroupName, integrationAccountName);
+        if (inner != null) {
+            return new AssemblyCollectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<AssemblyDefinition> getWithResponse(String resourceGroupName, String integrationAccountName,

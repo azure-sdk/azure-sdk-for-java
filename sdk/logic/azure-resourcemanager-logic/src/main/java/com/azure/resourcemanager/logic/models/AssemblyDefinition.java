@@ -6,8 +6,10 @@ package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.AssemblyDefinitionInner;
+import java.time.OffsetDateTime;
 import java.util.Map;
 
 /**
@@ -50,11 +52,81 @@ public interface AssemblyDefinition {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The assembly properties.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the properties value.
+     * @return the systemData value.
      */
-    AssemblyProperties properties();
+    SystemData systemData();
+
+    /**
+     * Gets the assemblyName property: The assembly name.
+     * 
+     * @return the assemblyName value.
+     */
+    String assemblyName();
+
+    /**
+     * Gets the assemblyVersion property: The assembly version.
+     * 
+     * @return the assemblyVersion value.
+     */
+    String assemblyVersion();
+
+    /**
+     * Gets the assemblyCulture property: The assembly culture.
+     * 
+     * @return the assemblyCulture value.
+     */
+    String assemblyCulture();
+
+    /**
+     * Gets the assemblyPublicKeyToken property: The assembly public key token.
+     * 
+     * @return the assemblyPublicKeyToken value.
+     */
+    String assemblyPublicKeyToken();
+
+    /**
+     * Gets the content property: Anything.
+     * 
+     * @return the content value.
+     */
+    Object content();
+
+    /**
+     * Gets the contentType property: The content type.
+     * 
+     * @return the contentType value.
+     */
+    String contentType();
+
+    /**
+     * Gets the contentLink property: The content link.
+     * 
+     * @return the contentLink value.
+     */
+    ContentLink contentLink();
+
+    /**
+     * Gets the createdTime property: The artifact creation time.
+     * 
+     * @return the createdTime value.
+     */
+    OffsetDateTime createdTime();
+
+    /**
+     * Gets the changedTime property: The artifact changed time.
+     * 
+     * @return the changedTime value.
+     */
+    OffsetDateTime changedTime();
+
+    /**
+     * Gets the metadata property: Anything.
+     * 
+     * @return the metadata value.
+     */
+    Object metadata();
 
     /**
      * Gets the region of the resource.
@@ -88,7 +160,7 @@ public interface AssemblyDefinition {
      * The entirety of the AssemblyDefinition definition.
      */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithProperties, DefinitionStages.WithCreate {
+        DefinitionStages.WithParentResource, DefinitionStages.WithAssemblyName, DefinitionStages.WithCreate {
     }
 
     /**
@@ -129,31 +201,34 @@ public interface AssemblyDefinition {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
-            WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
+            WithAssemblyName withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
 
         /**
-         * The stage of the AssemblyDefinition definition allowing to specify properties.
+         * The stage of the AssemblyDefinition definition allowing to specify assemblyName.
          */
-        interface WithProperties {
+        interface WithAssemblyName {
             /**
-             * Specifies the properties property: The assembly properties..
+             * Specifies the assemblyName property: The assembly name..
              * 
-             * @param properties The assembly properties.
+             * @param assemblyName The assembly name.
              * @return the next definition stage.
              */
-            WithCreate withProperties(AssemblyProperties properties);
+            WithCreate withAssemblyName(String assemblyName);
         }
 
         /**
          * The stage of the AssemblyDefinition definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithAssemblyVersion,
+            DefinitionStages.WithAssemblyCulture, DefinitionStages.WithAssemblyPublicKeyToken,
+            DefinitionStages.WithContent, DefinitionStages.WithContentType, DefinitionStages.WithContentLink,
+            DefinitionStages.WithCreatedTime, DefinitionStages.WithChangedTime, DefinitionStages.WithMetadata {
             /**
              * Executes the create request.
              * 
@@ -182,6 +257,123 @@ public interface AssemblyDefinition {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify assemblyVersion.
+         */
+        interface WithAssemblyVersion {
+            /**
+             * Specifies the assemblyVersion property: The assembly version..
+             * 
+             * @param assemblyVersion The assembly version.
+             * @return the next definition stage.
+             */
+            WithCreate withAssemblyVersion(String assemblyVersion);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify assemblyCulture.
+         */
+        interface WithAssemblyCulture {
+            /**
+             * Specifies the assemblyCulture property: The assembly culture..
+             * 
+             * @param assemblyCulture The assembly culture.
+             * @return the next definition stage.
+             */
+            WithCreate withAssemblyCulture(String assemblyCulture);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify assemblyPublicKeyToken.
+         */
+        interface WithAssemblyPublicKeyToken {
+            /**
+             * Specifies the assemblyPublicKeyToken property: The assembly public key token..
+             * 
+             * @param assemblyPublicKeyToken The assembly public key token.
+             * @return the next definition stage.
+             */
+            WithCreate withAssemblyPublicKeyToken(String assemblyPublicKeyToken);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify content.
+         */
+        interface WithContent {
+            /**
+             * Specifies the content property: Anything.
+             * 
+             * @param content Anything.
+             * @return the next definition stage.
+             */
+            WithCreate withContent(Object content);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify contentType.
+         */
+        interface WithContentType {
+            /**
+             * Specifies the contentType property: The content type..
+             * 
+             * @param contentType The content type.
+             * @return the next definition stage.
+             */
+            WithCreate withContentType(String contentType);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify contentLink.
+         */
+        interface WithContentLink {
+            /**
+             * Specifies the contentLink property: The content link..
+             * 
+             * @param contentLink The content link.
+             * @return the next definition stage.
+             */
+            WithCreate withContentLink(ContentLink contentLink);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify createdTime.
+         */
+        interface WithCreatedTime {
+            /**
+             * Specifies the createdTime property: The artifact creation time..
+             * 
+             * @param createdTime The artifact creation time.
+             * @return the next definition stage.
+             */
+            WithCreate withCreatedTime(OffsetDateTime createdTime);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify changedTime.
+         */
+        interface WithChangedTime {
+            /**
+             * Specifies the changedTime property: The artifact changed time..
+             * 
+             * @param changedTime The artifact changed time.
+             * @return the next definition stage.
+             */
+            WithCreate withChangedTime(OffsetDateTime changedTime);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition definition allowing to specify metadata.
+         */
+        interface WithMetadata {
+            /**
+             * Specifies the metadata property: Anything.
+             * 
+             * @param metadata Anything.
+             * @return the next definition stage.
+             */
+            WithCreate withMetadata(Object metadata);
+        }
     }
 
     /**
@@ -194,7 +386,10 @@ public interface AssemblyDefinition {
     /**
      * The template for AssemblyDefinition update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithAssemblyName, UpdateStages.WithAssemblyVersion,
+        UpdateStages.WithAssemblyCulture, UpdateStages.WithAssemblyPublicKeyToken, UpdateStages.WithContent,
+        UpdateStages.WithContentType, UpdateStages.WithContentLink, UpdateStages.WithCreatedTime,
+        UpdateStages.WithChangedTime, UpdateStages.WithMetadata {
         /**
          * Executes the update request.
          * 
@@ -229,16 +424,133 @@ public interface AssemblyDefinition {
         }
 
         /**
-         * The stage of the AssemblyDefinition update allowing to specify properties.
+         * The stage of the AssemblyDefinition update allowing to specify assemblyName.
          */
-        interface WithProperties {
+        interface WithAssemblyName {
             /**
-             * Specifies the properties property: The assembly properties..
+             * Specifies the assemblyName property: The assembly name..
              * 
-             * @param properties The assembly properties.
+             * @param assemblyName The assembly name.
              * @return the next definition stage.
              */
-            Update withProperties(AssemblyProperties properties);
+            Update withAssemblyName(String assemblyName);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify assemblyVersion.
+         */
+        interface WithAssemblyVersion {
+            /**
+             * Specifies the assemblyVersion property: The assembly version..
+             * 
+             * @param assemblyVersion The assembly version.
+             * @return the next definition stage.
+             */
+            Update withAssemblyVersion(String assemblyVersion);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify assemblyCulture.
+         */
+        interface WithAssemblyCulture {
+            /**
+             * Specifies the assemblyCulture property: The assembly culture..
+             * 
+             * @param assemblyCulture The assembly culture.
+             * @return the next definition stage.
+             */
+            Update withAssemblyCulture(String assemblyCulture);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify assemblyPublicKeyToken.
+         */
+        interface WithAssemblyPublicKeyToken {
+            /**
+             * Specifies the assemblyPublicKeyToken property: The assembly public key token..
+             * 
+             * @param assemblyPublicKeyToken The assembly public key token.
+             * @return the next definition stage.
+             */
+            Update withAssemblyPublicKeyToken(String assemblyPublicKeyToken);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify content.
+         */
+        interface WithContent {
+            /**
+             * Specifies the content property: Anything.
+             * 
+             * @param content Anything.
+             * @return the next definition stage.
+             */
+            Update withContent(Object content);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify contentType.
+         */
+        interface WithContentType {
+            /**
+             * Specifies the contentType property: The content type..
+             * 
+             * @param contentType The content type.
+             * @return the next definition stage.
+             */
+            Update withContentType(String contentType);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify contentLink.
+         */
+        interface WithContentLink {
+            /**
+             * Specifies the contentLink property: The content link..
+             * 
+             * @param contentLink The content link.
+             * @return the next definition stage.
+             */
+            Update withContentLink(ContentLink contentLink);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify createdTime.
+         */
+        interface WithCreatedTime {
+            /**
+             * Specifies the createdTime property: The artifact creation time..
+             * 
+             * @param createdTime The artifact creation time.
+             * @return the next definition stage.
+             */
+            Update withCreatedTime(OffsetDateTime createdTime);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify changedTime.
+         */
+        interface WithChangedTime {
+            /**
+             * Specifies the changedTime property: The artifact changed time..
+             * 
+             * @param changedTime The artifact changed time.
+             * @return the next definition stage.
+             */
+            Update withChangedTime(OffsetDateTime changedTime);
+        }
+
+        /**
+         * The stage of the AssemblyDefinition update allowing to specify metadata.
+         */
+        interface WithMetadata {
+            /**
+             * Specifies the metadata property: Anything.
+             * 
+             * @param metadata Anything.
+             * @return the next definition stage.
+             */
+            Update withMetadata(Object metadata);
         }
     }
 

@@ -8,10 +8,14 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Type of managed service identity. The type 'SystemAssigned' includes an implicitly created identity. The type 'None'
- * will remove any identities from the resource.
+ * Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed).
  */
 public final class ManagedServiceIdentityType extends ExpandableStringEnum<ManagedServiceIdentityType> {
+    /**
+     * Static value None for ManagedServiceIdentityType.
+     */
+    public static final ManagedServiceIdentityType NONE = fromString("None");
+
     /**
      * Static value SystemAssigned for ManagedServiceIdentityType.
      */
@@ -23,9 +27,10 @@ public final class ManagedServiceIdentityType extends ExpandableStringEnum<Manag
     public static final ManagedServiceIdentityType USER_ASSIGNED = fromString("UserAssigned");
 
     /**
-     * Static value None for ManagedServiceIdentityType.
+     * Static value SystemAssigned,UserAssigned for ManagedServiceIdentityType.
      */
-    public static final ManagedServiceIdentityType NONE = fromString("None");
+    public static final ManagedServiceIdentityType SYSTEM_ASSIGNED_USER_ASSIGNED
+        = fromString("SystemAssigned,UserAssigned");
 
     /**
      * Creates a new instance of ManagedServiceIdentityType value.

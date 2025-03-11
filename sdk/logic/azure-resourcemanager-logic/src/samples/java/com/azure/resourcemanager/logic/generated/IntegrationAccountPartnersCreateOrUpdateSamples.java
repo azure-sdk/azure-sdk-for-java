@@ -4,16 +4,8 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.logic.models.B2BPartnerContent;
-import com.azure.resourcemanager.logic.models.BusinessIdentity;
 import com.azure.resourcemanager.logic.models.PartnerContent;
 import com.azure.resourcemanager.logic.models.PartnerType;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Samples for IntegrationAccountPartners CreateOrUpdate.
@@ -28,29 +20,13 @@ public final class IntegrationAccountPartnersCreateOrUpdateSamples {
      * 
      * @param manager Entry point to LogicManager.
      */
-    public static void createOrUpdateAPartner(com.azure.resourcemanager.logic.LogicManager manager) throws IOException {
+    public static void createOrUpdateAPartner(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccountPartners()
             .define("testPartner")
-            .withRegion("westus")
+            .withRegion((String) null)
             .withExistingIntegrationAccount("testResourceGroup", "testIntegrationAccount")
-            .withPartnerType(PartnerType.B2B)
-            .withContent(new PartnerContent().withB2B(new B2BPartnerContent()
-                .withBusinessIdentities(Arrays.asList(new BusinessIdentity().withQualifier("AA").withValue("ZZ")))))
-            .withTags(mapOf())
-            .withMetadata(SerializerFactory.createDefaultManagementSerializerAdapter()
-                .deserialize("{}", Object.class, SerializerEncoding.JSON))
+            .withPartnerType((PartnerType) null)
+            .withContent((PartnerContent) null)
             .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }

@@ -20,7 +20,6 @@ public final class IntegrationServiceEnvironmentNetworkHealthGetSamples {
     public static void
         getsTheIntegrationServiceEnvironmentNetworkHealth(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationServiceEnvironmentNetworkHealths()
-            .getWithResponse("testResourceGroup", "testIntegrationServiceEnvironment",
-                com.azure.core.util.Context.NONE);
+            .getWithResponse("testIntegrationServiceEnvironment", com.azure.core.util.Context.NONE);
     }
 }

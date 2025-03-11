@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountSchemaInner;
 import java.time.OffsetDateTime;
@@ -49,6 +50,13 @@ public interface IntegrationAccountSchema {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the schemaType property: The schema type.
@@ -97,7 +105,7 @@ public interface IntegrationAccountSchema {
      * 
      * @return the metadata value.
      */
-    Object metadata();
+    Map<String, Object> metadata();
 
     /**
      * Gets the content property: The content.
@@ -193,7 +201,7 @@ public interface IntegrationAccountSchema {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
@@ -298,7 +306,7 @@ public interface IntegrationAccountSchema {
              * @param metadata The metadata.
              * @return the next definition stage.
              */
-            WithCreate withMetadata(Object metadata);
+            WithCreate withMetadata(Map<String, Object> metadata);
         }
 
         /**
@@ -436,7 +444,7 @@ public interface IntegrationAccountSchema {
              * @param metadata The metadata.
              * @return the next definition stage.
              */
-            Update withMetadata(Object metadata);
+            Update withMetadata(Map<String, Object> metadata);
         }
 
         /**
@@ -484,24 +492,24 @@ public interface IntegrationAccountSchema {
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url along with {@link Response}.
      */
-    Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context);
+    Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context);
 
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url.
      */
-    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl);
+    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body);
 }

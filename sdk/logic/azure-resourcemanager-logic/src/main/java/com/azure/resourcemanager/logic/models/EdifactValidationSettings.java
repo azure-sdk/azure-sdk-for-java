@@ -316,8 +316,8 @@ public final class EdifactValidationSettings implements JsonSerializable<Edifact
         jsonWriter.writeBooleanField("checkDuplicateGroupControlNumber", this.checkDuplicateGroupControlNumber);
         jsonWriter.writeBooleanField("checkDuplicateTransactionSetControlNumber",
             this.checkDuplicateTransactionSetControlNumber);
-        jsonWriter.writeBooleanField("validateEDITypes", this.validateEdiTypes);
-        jsonWriter.writeBooleanField("validateXSDTypes", this.validateXsdTypes);
+        jsonWriter.writeBooleanField("validateEdiTypes", this.validateEdiTypes);
+        jsonWriter.writeBooleanField("validateXsdTypes", this.validateXsdTypes);
         jsonWriter.writeBooleanField("allowLeadingAndTrailingSpacesAndZeroes",
             this.allowLeadingAndTrailingSpacesAndZeroes);
         jsonWriter.writeBooleanField("trimLeadingAndTrailingSpacesAndZeroes",
@@ -354,9 +354,9 @@ public final class EdifactValidationSettings implements JsonSerializable<Edifact
                 } else if ("checkDuplicateTransactionSetControlNumber".equals(fieldName)) {
                     deserializedEdifactValidationSettings.checkDuplicateTransactionSetControlNumber
                         = reader.getBoolean();
-                } else if ("validateEDITypes".equals(fieldName)) {
+                } else if ("validateEdiTypes".equals(fieldName)) {
                     deserializedEdifactValidationSettings.validateEdiTypes = reader.getBoolean();
-                } else if ("validateXSDTypes".equals(fieldName)) {
+                } else if ("validateXsdTypes".equals(fieldName)) {
                     deserializedEdifactValidationSettings.validateXsdTypes = reader.getBoolean();
                 } else if ("allowLeadingAndTrailingSpacesAndZeroes".equals(fieldName)) {
                     deserializedEdifactValidationSettings.allowLeadingAndTrailingSpacesAndZeroes = reader.getBoolean();

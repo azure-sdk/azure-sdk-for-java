@@ -11,7 +11,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.CallbackUrlInner;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountInner;
-import com.azure.resourcemanager.logic.fluent.models.KeyVaultKeyInner;
+import com.azure.resourcemanager.logic.fluent.models.KeyVaultKeyCollectionInner;
 import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
 import com.azure.resourcemanager.logic.models.ListKeyVaultKeysDefinition;
 import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
@@ -47,7 +47,7 @@ public interface IntegrationAccountsClient {
     /**
      * Gets a list of integration accounts by resource group.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -59,7 +59,7 @@ public interface IntegrationAccountsClient {
     /**
      * Gets a list of integration accounts by resource group.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -73,7 +73,7 @@ public interface IntegrationAccountsClient {
     /**
      * Gets an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -88,7 +88,7 @@ public interface IntegrationAccountsClient {
     /**
      * Gets an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -101,9 +101,9 @@ public interface IntegrationAccountsClient {
     /**
      * Creates or updates an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param integrationAccount The integration account.
+     * @param resource The integration account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -112,14 +112,14 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IntegrationAccountInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, IntegrationAccountInner integrationAccount, Context context);
+        String integrationAccountName, IntegrationAccountInner resource, Context context);
 
     /**
      * Creates or updates an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param integrationAccount The integration account.
+     * @param resource The integration account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -127,14 +127,14 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IntegrationAccountInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        IntegrationAccountInner integrationAccount);
+        IntegrationAccountInner resource);
 
     /**
      * Updates an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param integrationAccount The integration account.
+     * @param properties The integration account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -143,14 +143,14 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IntegrationAccountInner> updateWithResponse(String resourceGroupName, String integrationAccountName,
-        IntegrationAccountInner integrationAccount, Context context);
+        IntegrationAccountInner properties, Context context);
 
     /**
      * Updates an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param integrationAccount The integration account.
+     * @param properties The integration account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -158,12 +158,12 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IntegrationAccountInner update(String resourceGroupName, String integrationAccountName,
-        IntegrationAccountInner integrationAccount);
+        IntegrationAccountInner properties);
 
     /**
      * Deletes an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -177,7 +177,7 @@ public interface IntegrationAccountsClient {
     /**
      * Deletes an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -189,9 +189,9 @@ public interface IntegrationAccountsClient {
     /**
      * Gets the integration account callback URL.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param parameters The callback URL parameters.
+     * @param body The callback URL parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -200,14 +200,14 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CallbackUrlInner> listCallbackUrlWithResponse(String resourceGroupName, String integrationAccountName,
-        GetCallbackUrlParameters parameters, Context context);
+        GetCallbackUrlParameters body, Context context);
 
     /**
      * Gets the integration account callback URL.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param parameters The callback URL parameters.
+     * @param body The callback URL parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -215,45 +215,45 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     CallbackUrlInner listCallbackUrl(String resourceGroupName, String integrationAccountName,
-        GetCallbackUrlParameters parameters);
+        GetCallbackUrlParameters body);
 
     /**
      * Gets the integration account's Key Vault keys.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param listKeyVaultKeys The key vault parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the integration account's Key Vault keys as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<KeyVaultKeyInner> listKeyVaultKeys(String resourceGroupName, String integrationAccountName,
-        ListKeyVaultKeysDefinition listKeyVaultKeys);
-
-    /**
-     * Gets the integration account's Key Vault keys.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param integrationAccountName The integration account name.
-     * @param listKeyVaultKeys The key vault parameters.
+     * @param body The key vault parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the integration account's Key Vault keys as paginated response with {@link PagedIterable}.
+     * @return the integration account's Key Vault keys along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<KeyVaultKeyInner> listKeyVaultKeys(String resourceGroupName, String integrationAccountName,
-        ListKeyVaultKeysDefinition listKeyVaultKeys, Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<KeyVaultKeyCollectionInner> listKeyVaultKeysWithResponse(String resourceGroupName,
+        String integrationAccountName, ListKeyVaultKeysDefinition body, Context context);
+
+    /**
+     * Gets the integration account's Key Vault keys.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param integrationAccountName The integration account name.
+     * @param body The key vault parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the integration account's Key Vault keys.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    KeyVaultKeyCollectionInner listKeyVaultKeys(String resourceGroupName, String integrationAccountName,
+        ListKeyVaultKeysDefinition body);
 
     /**
      * Logs the integration account's tracking events.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param logTrackingEvents The callback URL parameters.
+     * @param body The callback URL parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -262,28 +262,27 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> logTrackingEventsWithResponse(String resourceGroupName, String integrationAccountName,
-        TrackingEventsDefinition logTrackingEvents, Context context);
+        TrackingEventsDefinition body, Context context);
 
     /**
      * Logs the integration account's tracking events.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param logTrackingEvents The callback URL parameters.
+     * @param body The callback URL parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void logTrackingEvents(String resourceGroupName, String integrationAccountName,
-        TrackingEventsDefinition logTrackingEvents);
+    void logTrackingEvents(String resourceGroupName, String integrationAccountName, TrackingEventsDefinition body);
 
     /**
      * Regenerates the integration account access key.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param regenerateAccessKey The access key type.
+     * @param body The access key type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -292,14 +291,14 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IntegrationAccountInner> regenerateAccessKeyWithResponse(String resourceGroupName,
-        String integrationAccountName, RegenerateActionParameter regenerateAccessKey, Context context);
+        String integrationAccountName, RegenerateActionParameter body, Context context);
 
     /**
      * Regenerates the integration account access key.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
-     * @param regenerateAccessKey The access key type.
+     * @param body The access key type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -307,5 +306,5 @@ public interface IntegrationAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IntegrationAccountInner regenerateAccessKey(String resourceGroupName, String integrationAccountName,
-        RegenerateActionParameter regenerateAccessKey);
+        RegenerateActionParameter body);
 }

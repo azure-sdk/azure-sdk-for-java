@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.resourcemanager.logic.fluent.models.OperationInner;
+import com.azure.resourcemanager.logic.models.ActionType;
 import com.azure.resourcemanager.logic.models.Operation;
 import com.azure.resourcemanager.logic.models.OperationDisplay;
+import com.azure.resourcemanager.logic.models.Origin;
 
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
@@ -18,20 +20,24 @@ public final class OperationImpl implements Operation {
         this.serviceManager = serviceManager;
     }
 
-    public String origin() {
-        return this.innerModel().origin();
-    }
-
     public String name() {
         return this.innerModel().name();
+    }
+
+    public Boolean isDataAction() {
+        return this.innerModel().isDataAction();
     }
 
     public OperationDisplay display() {
         return this.innerModel().display();
     }
 
-    public Object properties() {
-        return this.innerModel().properties();
+    public Origin origin() {
+        return this.innerModel().origin();
+    }
+
+    public ActionType actionType() {
+        return this.innerModel().actionType();
     }
 
     public OperationInner innerModel() {

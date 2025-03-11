@@ -17,9 +17,9 @@ public final class PartnerType extends ExpandableStringEnum<PartnerType> {
     public static final PartnerType NOT_SPECIFIED = fromString("NotSpecified");
 
     /**
-     * Static value B2B for PartnerType.
+     * Static value B2b for PartnerType.
      */
-    public static final PartnerType B2B = fromString("B2B");
+    public static final PartnerType B2B = fromString("B2b");
 
     /**
      * Creates a new instance of PartnerType value.

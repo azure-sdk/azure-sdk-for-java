@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -31,6 +32,11 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
      * The integration service environment managed api properties.
      */
     private IntegrationServiceEnvironmentManagedApiProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -60,6 +66,15 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
      */
     private IntegrationServiceEnvironmentManagedApiProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -135,20 +150,11 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
     }
 
     /**
-     * Get the name property: The name.
-     * 
-     * @return the name value.
-     */
-    public String namePropertiesName() {
-        return this.innerProperties() == null ? null : this.innerProperties().name();
-    }
-
-    /**
      * Get the connectionParameters property: The connection parameters.
      * 
      * @return the connectionParameters value.
      */
-    public Map<String, Object> connectionParameters() {
+    public Map<String, Map<String, Object>> connectionParameters() {
         return this.innerProperties() == null ? null : this.innerProperties().connectionParameters();
     }
 
@@ -320,6 +326,8 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
                 } else if ("properties".equals(fieldName)) {
                     deserializedIntegrationServiceEnvironmentManagedApiInner.innerProperties
                         = IntegrationServiceEnvironmentManagedApiProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationServiceEnvironmentManagedApiInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

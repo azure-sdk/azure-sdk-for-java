@@ -4,9 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.KeyType;
-import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
-
 /**
  * Samples for IntegrationAccounts RegenerateAccessKey.
  */
@@ -22,7 +19,7 @@ public final class IntegrationAccountsRegenerateAccessKeySamples {
      */
     public static void regenerateAccessKey(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccounts()
-            .regenerateAccessKeyWithResponse("testResourceGroup", "testIntegrationAccount",
-                new RegenerateActionParameter().withKeyType(KeyType.PRIMARY), com.azure.core.util.Context.NONE);
+            .regenerateAccessKeyWithResponse("testResourceGroup", "testIntegrationAccount", null,
+                com.azure.core.util.Context.NONE);
     }
 }

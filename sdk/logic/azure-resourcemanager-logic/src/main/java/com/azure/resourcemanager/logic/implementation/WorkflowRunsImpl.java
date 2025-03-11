@@ -27,18 +27,6 @@ public final class WorkflowRunsImpl implements WorkflowRuns {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<WorkflowRun> list(String resourceGroupName, String workflowName) {
-        PagedIterable<WorkflowRunInner> inner = this.serviceClient().list(resourceGroupName, workflowName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkflowRunImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<WorkflowRun> list(String resourceGroupName, String workflowName, Integer top, String filter,
-        Context context) {
-        PagedIterable<WorkflowRunInner> inner
-            = this.serviceClient().list(resourceGroupName, workflowName, top, filter, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkflowRunImpl(inner1, this.manager()));
-    }
-
     public Response<WorkflowRun> getWithResponse(String resourceGroupName, String workflowName, String runName,
         Context context) {
         Response<WorkflowRunInner> inner
@@ -67,6 +55,18 @@ public final class WorkflowRunsImpl implements WorkflowRuns {
 
     public void cancel(String resourceGroupName, String workflowName, String runName) {
         this.serviceClient().cancel(resourceGroupName, workflowName, runName);
+    }
+
+    public PagedIterable<WorkflowRun> list(String resourceGroupName, String workflowName, String runName) {
+        PagedIterable<WorkflowRunInner> inner = this.serviceClient().list(resourceGroupName, workflowName, runName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkflowRunImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<WorkflowRun> list(String resourceGroupName, String workflowName, String runName, Integer top,
+        String filter, Context context) {
+        PagedIterable<WorkflowRunInner> inner
+            = this.serviceClient().list(resourceGroupName, workflowName, runName, top, filter, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkflowRunImpl(inner1, this.manager()));
     }
 
     private WorkflowRunsClient serviceClient() {

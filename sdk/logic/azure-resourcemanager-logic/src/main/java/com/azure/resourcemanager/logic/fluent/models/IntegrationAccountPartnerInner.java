@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -25,6 +26,11 @@ public final class IntegrationAccountPartnerInner extends Resource {
      * The integration account partner properties.
      */
     private IntegrationAccountPartnerProperties innerProperties = new IntegrationAccountPartnerProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -54,6 +60,15 @@ public final class IntegrationAccountPartnerInner extends Resource {
      */
     private IntegrationAccountPartnerProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -150,7 +165,7 @@ public final class IntegrationAccountPartnerInner extends Resource {
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.innerProperties() == null ? null : this.innerProperties().metadata();
     }
 
@@ -160,7 +175,7 @@ public final class IntegrationAccountPartnerInner extends Resource {
      * @param metadata the metadata value to set.
      * @return the IntegrationAccountPartnerInner object itself.
      */
-    public IntegrationAccountPartnerInner withMetadata(Object metadata) {
+    public IntegrationAccountPartnerInner withMetadata(Map<String, Object> metadata) {
         if (this.innerProperties() == null) {
             this.innerProperties = new IntegrationAccountPartnerProperties();
         }
@@ -251,6 +266,8 @@ public final class IntegrationAccountPartnerInner extends Resource {
                 } else if ("properties".equals(fieldName)) {
                     deserializedIntegrationAccountPartnerInner.innerProperties
                         = IntegrationAccountPartnerProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationAccountPartnerInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

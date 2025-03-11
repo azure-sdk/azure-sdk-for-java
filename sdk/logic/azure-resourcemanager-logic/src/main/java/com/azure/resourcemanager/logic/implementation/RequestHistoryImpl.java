@@ -4,9 +4,12 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.RequestHistoryInner;
+import com.azure.resourcemanager.logic.models.Request;
 import com.azure.resourcemanager.logic.models.RequestHistory;
-import com.azure.resourcemanager.logic.models.RequestHistoryProperties;
+import com.azure.resourcemanager.logic.models.Response;
+import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.Map;
 
@@ -45,8 +48,24 @@ public final class RequestHistoryImpl implements RequestHistory {
         }
     }
 
-    public RequestHistoryProperties properties() {
-        return this.innerModel().properties();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public OffsetDateTime startTime() {
+        return this.innerModel().startTime();
+    }
+
+    public OffsetDateTime endTime() {
+        return this.innerModel().endTime();
+    }
+
+    public Request request() {
+        return this.innerModel().request();
+    }
+
+    public Response response() {
+        return this.innerModel().response();
     }
 
     public RequestHistoryInner innerModel() {

@@ -22,8 +22,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentNetworkHealthsClient;
-import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentSubnetNetworkHealthInner;
-import java.util.Map;
+import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentNetworkHealthInner;
 import reactor.core.publisher.Mono;
 
 /**
@@ -61,20 +60,18 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
     @ServiceInterface(name = "LogicManagementClien")
     public interface IntegrationServiceEnvironmentNetworkHealthsService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/health/network")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/network")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner>>> get(
-            @HostParam("$host") String endpoint, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroup") String resourceGroup,
+        Mono<Response<IntegrationServiceEnvironmentNetworkHealthInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("integrationServiceEnvironmentName") String integrationServiceEnvironmentName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -83,8 +80,8 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner>>>
-        getWithResponseAsync(String resourceGroup, String integrationServiceEnvironmentName) {
+    private Mono<Response<IntegrationServiceEnvironmentNetworkHealthInner>>
+        getWithResponseAsync(String integrationServiceEnvironmentName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -93,24 +90,20 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (resourceGroup == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
-        }
         if (integrationServiceEnvironmentName == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter integrationServiceEnvironmentName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroup, integrationServiceEnvironmentName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), integrationServiceEnvironmentName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -120,8 +113,8 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner>>>
-        getWithResponseAsync(String resourceGroup, String integrationServiceEnvironmentName, Context context) {
+    private Mono<Response<IntegrationServiceEnvironmentNetworkHealthInner>>
+        getWithResponseAsync(String integrationServiceEnvironmentName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -130,23 +123,19 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (resourceGroup == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
-        }
         if (integrationServiceEnvironmentName == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter integrationServiceEnvironmentName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroup,
-            integrationServiceEnvironmentName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            integrationServiceEnvironmentName, accept, context);
     }
 
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -154,16 +143,13 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
      * @return the integration service environment network health on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner>> getAsync(String resourceGroup,
-        String integrationServiceEnvironmentName) {
-        return getWithResponseAsync(resourceGroup, integrationServiceEnvironmentName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<IntegrationServiceEnvironmentNetworkHealthInner> getAsync(String integrationServiceEnvironmentName) {
+        return getWithResponseAsync(integrationServiceEnvironmentName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -172,15 +158,14 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
      * @return the integration service environment network health along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner>>
-        getWithResponse(String resourceGroup, String integrationServiceEnvironmentName, Context context) {
-        return getWithResponseAsync(resourceGroup, integrationServiceEnvironmentName, context).block();
+    public Response<IntegrationServiceEnvironmentNetworkHealthInner>
+        getWithResponse(String integrationServiceEnvironmentName, Context context) {
+        return getWithResponseAsync(integrationServiceEnvironmentName, context).block();
     }
 
     /**
      * Gets the integration service environment network health.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -188,8 +173,7 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
      * @return the integration service environment network health.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner> get(String resourceGroup,
-        String integrationServiceEnvironmentName) {
-        return getWithResponse(resourceGroup, integrationServiceEnvironmentName, Context.NONE).getValue();
+    public IntegrationServiceEnvironmentNetworkHealthInner get(String integrationServiceEnvironmentName) {
+        return getWithResponse(integrationServiceEnvironmentName, Context.NONE).getValue();
     }
 }

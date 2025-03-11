@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentManagedApiInner;
 import java.util.List;
@@ -50,6 +51,13 @@ public interface IntegrationServiceEnvironmentManagedApi {
     Map<String, String> tags();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the deploymentParameters property: The integration service environment managed api deployment parameters.
      * 
      * @return the deploymentParameters value.
@@ -57,18 +65,11 @@ public interface IntegrationServiceEnvironmentManagedApi {
     IntegrationServiceEnvironmentManagedApiDeploymentParameters deploymentParameters();
 
     /**
-     * Gets the namePropertiesName property: The name.
-     * 
-     * @return the namePropertiesName value.
-     */
-    String namePropertiesName();
-
-    /**
      * Gets the connectionParameters property: The connection parameters.
      * 
      * @return the connectionParameters value.
      */
-    Map<String, Object> connectionParameters();
+    Map<String, Map<String, Object>> connectionParameters();
 
     /**
      * Gets the metadata property: The metadata.
@@ -162,13 +163,6 @@ public interface IntegrationServiceEnvironmentManagedApi {
     String regionName();
 
     /**
-     * Gets the name of the resource group.
-     * 
-     * @return the name of the resource group.
-     */
-    String resourceGroupName();
-
-    /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentManagedApiInner object.
      * 
      * @return the inner object.
@@ -218,14 +212,12 @@ public interface IntegrationServiceEnvironmentManagedApi {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroup, integrationServiceEnvironmentName.
+             * Specifies integrationServiceEnvironmentName.
              * 
-             * @param resourceGroup The resource group name.
              * @param integrationServiceEnvironmentName The integration service environment name.
              * @return the next definition stage.
              */
-            WithCreate withExistingIntegrationServiceEnvironment(String resourceGroup,
-                String integrationServiceEnvironmentName);
+            WithCreate withExistingIntegrationServiceEnvironment(String integrationServiceEnvironmentName);
         }
 
         /**

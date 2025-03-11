@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -23,6 +24,11 @@ public final class IntegrationAccountSessionInner extends Resource {
      * The integration account session properties.
      */
     private IntegrationAccountSessionProperties innerProperties = new IntegrationAccountSessionProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -52,6 +58,15 @@ public final class IntegrationAccountSessionInner extends Resource {
      */
     private IntegrationAccountSessionProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -125,7 +140,7 @@ public final class IntegrationAccountSessionInner extends Resource {
      * 
      * @return the content value.
      */
-    public Object content() {
+    public Map<String, Object> content() {
         return this.innerProperties() == null ? null : this.innerProperties().content();
     }
 
@@ -135,7 +150,7 @@ public final class IntegrationAccountSessionInner extends Resource {
      * @param content the content value to set.
      * @return the IntegrationAccountSessionInner object itself.
      */
-    public IntegrationAccountSessionInner withContent(Object content) {
+    public IntegrationAccountSessionInner withContent(Map<String, Object> content) {
         if (this.innerProperties() == null) {
             this.innerProperties = new IntegrationAccountSessionProperties();
         }
@@ -203,6 +218,8 @@ public final class IntegrationAccountSessionInner extends Resource {
                 } else if ("properties".equals(fieldName)) {
                     deserializedIntegrationAccountSessionInner.innerProperties
                         = IntegrationAccountSessionProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationAccountSessionInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

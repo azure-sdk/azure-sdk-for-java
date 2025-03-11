@@ -4,9 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.SetTriggerStateActionDefinition;
-import com.azure.resourcemanager.logic.models.WorkflowTriggerReference;
-
 /**
  * Samples for WorkflowTriggers SetState.
  */
@@ -22,9 +19,7 @@ public final class WorkflowTriggersSetStateSamples {
      */
     public static void setTriggerState(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflowTriggers()
-            .setStateWithResponse("testResourceGroup", "testWorkflow", "testTrigger",
-                new SetTriggerStateActionDefinition().withSource(new WorkflowTriggerReference().withId(
-                    "subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/sourceResGroup/providers/Microsoft.Logic/workflows/sourceWorkflow/triggers/sourceTrigger")),
+            .setStateWithResponse("testResourceGroup", "testWorkflow", "testTrigger", null,
                 com.azure.core.util.Context.NONE);
     }
 }

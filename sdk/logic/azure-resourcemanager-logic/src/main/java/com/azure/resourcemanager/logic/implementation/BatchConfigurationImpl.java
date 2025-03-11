@@ -5,10 +5,12 @@
 package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationInner;
 import com.azure.resourcemanager.logic.models.BatchConfiguration;
-import com.azure.resourcemanager.logic.models.BatchConfigurationProperties;
+import com.azure.resourcemanager.logic.models.BatchReleaseCriteria;
+import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.Map;
 
@@ -43,8 +45,28 @@ public final class BatchConfigurationImpl
         }
     }
 
-    public BatchConfigurationProperties properties() {
-        return this.innerModel().properties();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String batchGroupName() {
+        return this.innerModel().batchGroupName();
+    }
+
+    public BatchReleaseCriteria releaseCriteria() {
+        return this.innerModel().releaseCriteria();
+    }
+
+    public OffsetDateTime createdTime() {
+        return this.innerModel().createdTime();
+    }
+
+    public OffsetDateTime changedTime() {
+        return this.innerModel().changedTime();
+    }
+
+    public Object metadata() {
+        return this.innerModel().metadata();
     }
 
     public Region region() {
@@ -163,13 +185,33 @@ public final class BatchConfigurationImpl
         return this;
     }
 
-    public BatchConfigurationImpl withProperties(BatchConfigurationProperties properties) {
-        this.innerModel().withProperties(properties);
+    public BatchConfigurationImpl withBatchGroupName(String batchGroupName) {
+        this.innerModel().withBatchGroupName(batchGroupName);
+        return this;
+    }
+
+    public BatchConfigurationImpl withReleaseCriteria(BatchReleaseCriteria releaseCriteria) {
+        this.innerModel().withReleaseCriteria(releaseCriteria);
         return this;
     }
 
     public BatchConfigurationImpl withTags(Map<String, String> tags) {
         this.innerModel().withTags(tags);
+        return this;
+    }
+
+    public BatchConfigurationImpl withCreatedTime(OffsetDateTime createdTime) {
+        this.innerModel().withCreatedTime(createdTime);
+        return this;
+    }
+
+    public BatchConfigurationImpl withChangedTime(OffsetDateTime changedTime) {
+        this.innerModel().withChangedTime(changedTime);
+        return this;
+    }
+
+    public BatchConfigurationImpl withMetadata(Object metadata) {
+        this.innerModel().withMetadata(metadata);
         return this;
     }
 }

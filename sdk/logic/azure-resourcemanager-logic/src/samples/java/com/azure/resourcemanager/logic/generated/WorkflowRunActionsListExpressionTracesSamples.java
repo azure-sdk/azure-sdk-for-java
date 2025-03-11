@@ -19,7 +19,7 @@ public final class WorkflowRunActionsListExpressionTracesSamples {
      */
     public static void listExpressionTraces(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflowRunActions()
-            .listExpressionTraces("testResourceGroup", "testFlow", "08586776228332053161046300351", "testAction",
-                com.azure.core.util.Context.NONE);
+            .listExpressionTracesWithResponse("testResourceGroup", "testFlow", "08586776228332053161046300351",
+                "testAction", com.azure.core.util.Context.NONE);
     }
 }
