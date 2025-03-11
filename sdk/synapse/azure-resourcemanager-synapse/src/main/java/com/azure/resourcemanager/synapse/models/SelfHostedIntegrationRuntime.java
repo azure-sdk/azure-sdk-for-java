@@ -51,7 +51,7 @@ public final class SelfHostedIntegrationRuntime extends IntegrationRuntime {
      * 
      * @return the innerTypeProperties value.
      */
-    private SelfHostedIntegrationRuntimeTypeProperties innerTypeProperties() {
+    SelfHostedIntegrationRuntimeTypeProperties innerTypeProperties() {
         return this.innerTypeProperties;
     }
 
@@ -84,6 +84,35 @@ public final class SelfHostedIntegrationRuntime extends IntegrationRuntime {
             this.innerTypeProperties = new SelfHostedIntegrationRuntimeTypeProperties();
         }
         this.innerTypeProperties().withLinkedInfo(linkedInfo);
+        return this;
+    }
+
+    /**
+     * Get the selfContainedInteractiveAuthoringEnabled property: An alternative option to ensure interactive authoring
+     * function when your self-hosted integration runtime is unable to establish a connection with Azure Relay.
+     * 
+     * @return the selfContainedInteractiveAuthoringEnabled value.
+     */
+    public SelfContainedInteractiveAuthoringState selfContainedInteractiveAuthoringEnabled() {
+        return this.innerTypeProperties() == null
+            ? null
+            : this.innerTypeProperties().selfContainedInteractiveAuthoringEnabled();
+    }
+
+    /**
+     * Set the selfContainedInteractiveAuthoringEnabled property: An alternative option to ensure interactive authoring
+     * function when your self-hosted integration runtime is unable to establish a connection with Azure Relay.
+     * 
+     * @param selfContainedInteractiveAuthoringEnabled the selfContainedInteractiveAuthoringEnabled value to set.
+     * @return the SelfHostedIntegrationRuntime object itself.
+     */
+    public SelfHostedIntegrationRuntime withSelfContainedInteractiveAuthoringEnabled(
+        SelfContainedInteractiveAuthoringState selfContainedInteractiveAuthoringEnabled) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new SelfHostedIntegrationRuntimeTypeProperties();
+        }
+        this.innerTypeProperties()
+            .withSelfContainedInteractiveAuthoringEnabled(selfContainedInteractiveAuthoringEnabled);
         return this;
     }
 

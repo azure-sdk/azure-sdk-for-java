@@ -138,12 +138,12 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, blobAuditingPolicyName,
-                accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, sqlPoolName, blobAuditingPolicyName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -181,11 +181,12 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, workspaceName, sqlPoolName, blobAuditingPolicyName, accept, context);
+        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, sqlPoolName, blobAuditingPolicyName, accept, context);
     }
 
     /**
@@ -281,10 +282,11 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, blobAuditingPolicyName,
                 parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -331,12 +333,12 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, blobAuditingPolicyName,
-            parameters, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, workspaceName, sqlPoolName, blobAuditingPolicyName, parameters, accept, context);
     }
 
     /**
@@ -430,9 +432,10 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listBySqlPool(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listBySqlPool(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, accept, context))
             .<PagedResponse<ExtendedSqlPoolBlobAuditingPolicyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -473,11 +476,12 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listBySqlPool(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, sqlPoolName, accept, context)
+            .listBySqlPool(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, sqlPoolName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

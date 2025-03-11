@@ -8,6 +8,7 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.synapse.fluent.models.SqlPoolInner;
 
 /**
  * An instance of this class provides access to all the operations defined in SqlPoolOperationResultsClient.
@@ -29,7 +30,7 @@ public interface SqlPoolOperationResultsClient {
      * @return the status of a SQL pool operation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Object> getLocationHeaderResultWithResponse(String resourceGroupName, String workspaceName,
+    Response<SqlPoolInner> getLocationHeaderResultWithResponse(String resourceGroupName, String workspaceName,
         String sqlPoolName, String operationId, Context context);
 
     /**
@@ -47,6 +48,6 @@ public interface SqlPoolOperationResultsClient {
      * @return the status of a SQL pool operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Object getLocationHeaderResult(String resourceGroupName, String workspaceName, String sqlPoolName,
+    SqlPoolInner getLocationHeaderResult(String resourceGroupName, String workspaceName, String sqlPoolName,
         String operationId);
 }

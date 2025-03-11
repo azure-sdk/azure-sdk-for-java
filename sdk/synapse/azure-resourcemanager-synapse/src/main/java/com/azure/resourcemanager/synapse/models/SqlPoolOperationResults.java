@@ -26,7 +26,7 @@ public interface SqlPoolOperationResults {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the status of a SQL pool operation along with {@link Response}.
      */
-    Response<Object> getLocationHeaderResultWithResponse(String resourceGroupName, String workspaceName,
+    Response<SqlPool> getLocationHeaderResultWithResponse(String resourceGroupName, String workspaceName,
         String sqlPoolName, String operationId, Context context);
 
     /**
@@ -43,6 +43,6 @@ public interface SqlPoolOperationResults {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the status of a SQL pool operation.
      */
-    Object getLocationHeaderResult(String resourceGroupName, String workspaceName, String sqlPoolName,
+    SqlPool getLocationHeaderResult(String resourceGroupName, String workspaceName, String sqlPoolName,
         String operationId);
 }

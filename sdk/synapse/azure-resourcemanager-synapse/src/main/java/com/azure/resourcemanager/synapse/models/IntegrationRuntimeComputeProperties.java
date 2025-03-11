@@ -51,6 +51,16 @@ public final class IntegrationRuntimeComputeProperties
     private IntegrationRuntimeVNetProperties vNetProperties;
 
     /*
+     * CopyComputeScale properties for managed integration runtime.
+     */
+    private CopyComputeScaleProperties copyComputeScaleProperties;
+
+    /*
+     * PipelineExternalComputeScale properties for managed integration runtime.
+     */
+    private PipelineExternalComputeScaleProperties pipelineExternalComputeScaleProperties;
+
+    /*
      * The compute resource properties for managed integration runtime.
      */
     private Map<String, Object> additionalProperties;
@@ -187,6 +197,50 @@ public final class IntegrationRuntimeComputeProperties
     }
 
     /**
+     * Get the copyComputeScaleProperties property: CopyComputeScale properties for managed integration runtime.
+     * 
+     * @return the copyComputeScaleProperties value.
+     */
+    public CopyComputeScaleProperties copyComputeScaleProperties() {
+        return this.copyComputeScaleProperties;
+    }
+
+    /**
+     * Set the copyComputeScaleProperties property: CopyComputeScale properties for managed integration runtime.
+     * 
+     * @param copyComputeScaleProperties the copyComputeScaleProperties value to set.
+     * @return the IntegrationRuntimeComputeProperties object itself.
+     */
+    public IntegrationRuntimeComputeProperties
+        withCopyComputeScaleProperties(CopyComputeScaleProperties copyComputeScaleProperties) {
+        this.copyComputeScaleProperties = copyComputeScaleProperties;
+        return this;
+    }
+
+    /**
+     * Get the pipelineExternalComputeScaleProperties property: PipelineExternalComputeScale properties for managed
+     * integration runtime.
+     * 
+     * @return the pipelineExternalComputeScaleProperties value.
+     */
+    public PipelineExternalComputeScaleProperties pipelineExternalComputeScaleProperties() {
+        return this.pipelineExternalComputeScaleProperties;
+    }
+
+    /**
+     * Set the pipelineExternalComputeScaleProperties property: PipelineExternalComputeScale properties for managed
+     * integration runtime.
+     * 
+     * @param pipelineExternalComputeScaleProperties the pipelineExternalComputeScaleProperties value to set.
+     * @return the IntegrationRuntimeComputeProperties object itself.
+     */
+    public IntegrationRuntimeComputeProperties withPipelineExternalComputeScaleProperties(
+        PipelineExternalComputeScaleProperties pipelineExternalComputeScaleProperties) {
+        this.pipelineExternalComputeScaleProperties = pipelineExternalComputeScaleProperties;
+        return this;
+    }
+
+    /**
      * Get the additionalProperties property: The compute resource properties for managed integration runtime.
      * 
      * @return the additionalProperties value.
@@ -218,6 +272,12 @@ public final class IntegrationRuntimeComputeProperties
         if (vNetProperties() != null) {
             vNetProperties().validate();
         }
+        if (copyComputeScaleProperties() != null) {
+            copyComputeScaleProperties().validate();
+        }
+        if (pipelineExternalComputeScaleProperties() != null) {
+            pipelineExternalComputeScaleProperties().validate();
+        }
     }
 
     /**
@@ -232,6 +292,9 @@ public final class IntegrationRuntimeComputeProperties
         jsonWriter.writeNumberField("maxParallelExecutionsPerNode", this.maxParallelExecutionsPerNode);
         jsonWriter.writeJsonField("dataFlowProperties", this.dataFlowProperties);
         jsonWriter.writeJsonField("vNetProperties", this.vNetProperties);
+        jsonWriter.writeJsonField("copyComputeScaleProperties", this.copyComputeScaleProperties);
+        jsonWriter.writeJsonField("pipelineExternalComputeScaleProperties",
+            this.pipelineExternalComputeScaleProperties);
         if (additionalProperties != null) {
             for (Map.Entry<String, Object> additionalProperty : additionalProperties.entrySet()) {
                 jsonWriter.writeUntypedField(additionalProperty.getKey(), additionalProperty.getValue());
@@ -273,6 +336,12 @@ public final class IntegrationRuntimeComputeProperties
                 } else if ("vNetProperties".equals(fieldName)) {
                     deserializedIntegrationRuntimeComputeProperties.vNetProperties
                         = IntegrationRuntimeVNetProperties.fromJson(reader);
+                } else if ("copyComputeScaleProperties".equals(fieldName)) {
+                    deserializedIntegrationRuntimeComputeProperties.copyComputeScaleProperties
+                        = CopyComputeScaleProperties.fromJson(reader);
+                } else if ("pipelineExternalComputeScaleProperties".equals(fieldName)) {
+                    deserializedIntegrationRuntimeComputeProperties.pipelineExternalComputeScaleProperties
+                        = PipelineExternalComputeScaleProperties.fromJson(reader);
                 } else {
                     if (additionalProperties == null) {
                         additionalProperties = new LinkedHashMap<>();

@@ -9,6 +9,7 @@ import com.azure.core.management.Resource;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.synapse.models.CspWorkspaceAdminProperties;
 import com.azure.resourcemanager.synapse.models.DataLakeStorageAccountDetails;
 import com.azure.resourcemanager.synapse.models.EncryptionDetails;
 import com.azure.resourcemanager.synapse.models.ManagedIdentity;
@@ -275,20 +276,6 @@ public final class WorkspaceInner extends Resource {
     }
 
     /**
-     * Set the connectivityEndpoints property: Connectivity endpoints.
-     * 
-     * @param connectivityEndpoints the connectivityEndpoints value to set.
-     * @return the WorkspaceInner object itself.
-     */
-    public WorkspaceInner withConnectivityEndpoints(Map<String, String> connectivityEndpoints) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WorkspaceProperties();
-        }
-        this.innerProperties().withConnectivityEndpoints(connectivityEndpoints);
-        return this;
-    }
-
-    /**
      * Get the managedVirtualNetwork property: Setting this to 'default' will ensure that all compute for this workspace
      * is in a virtual network managed on behalf of the user.
      * 
@@ -374,7 +361,7 @@ public final class WorkspaceInner extends Resource {
      * 
      * @return the extraProperties value.
      */
-    public Map<String, Object> extraProperties() {
+    public Object extraProperties() {
         return this.innerProperties() == null ? null : this.innerProperties().extraProperties();
     }
 
@@ -478,6 +465,86 @@ public final class WorkspaceInner extends Resource {
             this.innerProperties = new WorkspaceProperties();
         }
         this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
+    }
+
+    /**
+     * Get the cspWorkspaceAdminProperties property: Initial workspace AAD admin properties for a CSP subscription.
+     * 
+     * @return the cspWorkspaceAdminProperties value.
+     */
+    public CspWorkspaceAdminProperties cspWorkspaceAdminProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().cspWorkspaceAdminProperties();
+    }
+
+    /**
+     * Set the cspWorkspaceAdminProperties property: Initial workspace AAD admin properties for a CSP subscription.
+     * 
+     * @param cspWorkspaceAdminProperties the cspWorkspaceAdminProperties value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withCspWorkspaceAdminProperties(CspWorkspaceAdminProperties cspWorkspaceAdminProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspaceProperties();
+        }
+        this.innerProperties().withCspWorkspaceAdminProperties(cspWorkspaceAdminProperties);
+        return this;
+    }
+
+    /**
+     * Get the settings property: Workspace settings.
+     * 
+     * @return the settings value.
+     */
+    public Map<String, Object> settings() {
+        return this.innerProperties() == null ? null : this.innerProperties().settings();
+    }
+
+    /**
+     * Get the azureADOnlyAuthentication property: Enable or Disable AzureADOnlyAuthentication on All Workspace
+     * subresource.
+     * 
+     * @return the azureADOnlyAuthentication value.
+     */
+    public Boolean azureADOnlyAuthentication() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureADOnlyAuthentication();
+    }
+
+    /**
+     * Set the azureADOnlyAuthentication property: Enable or Disable AzureADOnlyAuthentication on All Workspace
+     * subresource.
+     * 
+     * @param azureADOnlyAuthentication the azureADOnlyAuthentication value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withAzureADOnlyAuthentication(Boolean azureADOnlyAuthentication) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspaceProperties();
+        }
+        this.innerProperties().withAzureADOnlyAuthentication(azureADOnlyAuthentication);
+        return this;
+    }
+
+    /**
+     * Get the trustedServiceBypassEnabled property: Is trustedServiceBypassEnabled for the workspace.
+     * 
+     * @return the trustedServiceBypassEnabled value.
+     */
+    public Boolean trustedServiceBypassEnabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().trustedServiceBypassEnabled();
+    }
+
+    /**
+     * Set the trustedServiceBypassEnabled property: Is trustedServiceBypassEnabled for the workspace.
+     * 
+     * @param trustedServiceBypassEnabled the trustedServiceBypassEnabled value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withTrustedServiceBypassEnabled(Boolean trustedServiceBypassEnabled) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspaceProperties();
+        }
+        this.innerProperties().withTrustedServiceBypassEnabled(trustedServiceBypassEnabled);
         return this;
     }
 

@@ -126,9 +126,10 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByTableName(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByTableName(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName,
                 filter, accept, context))
             .<PagedResponse<SqlPoolColumnInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
@@ -181,11 +182,12 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
+        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByTableName(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, filter, accept, context)
+            .listByTableName(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, sqlPoolName, schemaName, tableName, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

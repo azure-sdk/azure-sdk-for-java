@@ -1,14 +1,543 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-11)
 
-### Features Added
+- Azure Resource Manager Synapse client library for Java. This package contains Microsoft Azure SDK for Synapse Management SDK. Azure Synapse Analytics Management Client. Package tag package-composite-v2. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState` was removed
 
-### Other Changes
+#### `models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityActualState` was removed
+
+#### `models.ServerBlobAuditingPolicy$Update` was modified
+
+* `withStorageAccountSubscriptionId(java.util.UUID)` was removed
+* `withRetentionDays(java.lang.Integer)` was removed
+* `withAuditActionsAndGroups(java.util.List)` was removed
+
+#### `models.SqlPoolPatchInfo` was modified
+
+* `withStatus(java.lang.String)` was removed
+* `withCreationDate(java.time.OffsetDateTime)` was removed
+
+#### `models.SqlPoolOperationResults` was modified
+
+* `java.lang.Object getLocationHeaderResult(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` -> `models.SqlPool getLocationHeaderResult(java.lang.String,java.lang.String,java.lang.String,java.lang.String)`
+
+#### `models.SqlPoolSecurityAlertPolicy$Update` was modified
+
+* `withDisabledAlerts(java.util.List)` was removed
+* `withEmailAddresses(java.util.List)` was removed
+
+#### `models.ServerVulnerabilityAssessment$Update` was modified
+
+* `withStorageContainerPath(java.lang.String)` was removed
+
+#### `models.IpFirewallRules` was modified
+
+* `java.lang.Object deleteById(java.lang.String)` -> `models.IpFirewallRuleInfo deleteById(java.lang.String)`
+* `java.lang.Object deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` -> `models.IpFirewallRuleInfo deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)`
+* `java.lang.Object delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` -> `models.IpFirewallRuleInfo delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)`
+* `java.lang.Object delete(java.lang.String,java.lang.String,java.lang.String)` -> `models.IpFirewallRuleInfo delete(java.lang.String,java.lang.String,java.lang.String)`
+
+#### `models.BigDataPools` was modified
+
+* `java.lang.Object delete(java.lang.String,java.lang.String,java.lang.String)` -> `models.BigDataPoolResourceInfo delete(java.lang.String,java.lang.String,java.lang.String)`
+* `java.lang.Object deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` -> `models.BigDataPoolResourceInfo deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)`
+* `java.lang.Object deleteById(java.lang.String)` -> `models.BigDataPoolResourceInfo deleteById(java.lang.String)`
+* `java.lang.Object delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` -> `models.BigDataPoolResourceInfo delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)`
+
+#### `models.SqlPool$Definition` was modified
+
+* `withStatus(java.lang.String)` was removed
+* `withCreationDate(java.time.OffsetDateTime)` was removed
+
+#### `models.ExtendedServerBlobAuditingPolicy$Update` was modified
+
+* `withStorageAccountSubscriptionId(java.util.UUID)` was removed
+* `withRetentionDays(java.lang.Integer)` was removed
+
+#### `models.ServerSecurityAlertPolicy$Update` was modified
+
+* `withStorageEndpoint(java.lang.String)` was removed
+* `withEmailAddresses(java.util.List)` was removed
+* `withDisabledAlerts(java.util.List)` was removed
+* `withEmailAccountAdmins(java.lang.Boolean)` was removed
+* `withRetentionDays(java.lang.Integer)` was removed
+
+#### `models.SqlPoolBlobAuditingPolicy$Update` was modified
+
+* `withStorageAccountSubscriptionId(java.util.UUID)` was removed
+* `withRetentionDays(java.lang.Integer)` was removed
+
+#### `models.Workspaces` was modified
+
+* `java.lang.Object delete(java.lang.String,java.lang.String,com.azure.core.util.Context)` -> `models.Workspace delete(java.lang.String,java.lang.String,com.azure.core.util.Context)`
+* `java.lang.Object deleteById(java.lang.String)` -> `models.Workspace deleteById(java.lang.String)`
+* `java.lang.Object deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` -> `models.Workspace deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)`
+* `java.lang.Object deleteByResourceGroup(java.lang.String,java.lang.String)` -> `models.Workspace deleteByResourceGroup(java.lang.String,java.lang.String)`
+
+#### `models.BigDataPoolResourceInfo` was modified
+
+* `models.LibraryRequirements sparkConfigProperties()` -> `models.SparkConfigProperties sparkConfigProperties()`
+
+#### `models.BigDataPoolResourceInfo$Definition` was modified
+
+* `withSparkConfigProperties(models.LibraryRequirements)` was removed
+* `withCreationDate(java.time.OffsetDateTime)` was removed
+
+#### `models.Workspace` was modified
+
+* `java.util.Map extraProperties()` -> `java.lang.Object extraProperties()`
+
+#### `models.SqlPool` was modified
+
+* `java.lang.Object pause()` -> `models.SqlPool pause()`
+* `java.lang.Object resume()` -> `models.SqlPool resume()`
+* `java.lang.Object resume(com.azure.core.util.Context)` -> `models.SqlPool resume(com.azure.core.util.Context)`
+* `java.lang.Object pause(com.azure.core.util.Context)` -> `models.SqlPool pause(com.azure.core.util.Context)`
+
+#### `models.Key$Update` was modified
+
+* `withKeyVaultUrl(java.lang.String)` was removed
+
+#### `models.SqlPool$Update` was modified
+
+* `withCreationDate(java.time.OffsetDateTime)` was removed
+* `withRestorePointInTime(java.time.OffsetDateTime)` was removed
+* `withStatus(java.lang.String)` was removed
+* `withCollation(java.lang.String)` was removed
+
+#### `models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity` was modified
+
+* `models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState desiredState()` -> `models.DesiredState desiredState()`
+* `withDesiredState(models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState)` was removed
+* `models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityActualState actualState()` -> `models.ActualState actualState()`
+
+#### `models.PrivateLinkResources` was modified
+
+* `list(java.lang.String,java.lang.String)` was removed
+* `list(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `get(java.lang.String,java.lang.String,java.lang.String)` was removed
+
+#### `SynapseManager` was modified
+
+* `privateLinkResources()` was removed
+
+#### `models.SqlPools` was modified
+
+* `java.lang.Object deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` -> `models.SqlPool deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)`
+* `java.lang.Object pause(java.lang.String,java.lang.String,java.lang.String)` -> `models.SqlPool pause(java.lang.String,java.lang.String,java.lang.String)`
+* `java.lang.Object resume(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` -> `models.SqlPool resume(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)`
+* `java.lang.Object deleteById(java.lang.String)` -> `models.SqlPool deleteById(java.lang.String)`
+* `java.lang.Object resume(java.lang.String,java.lang.String,java.lang.String)` -> `models.SqlPool resume(java.lang.String,java.lang.String,java.lang.String)`
+* `java.lang.Object delete(java.lang.String,java.lang.String,java.lang.String)` -> `models.SqlPool delete(java.lang.String,java.lang.String,java.lang.String)`
+* `java.lang.Object pause(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` -> `models.SqlPool pause(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)`
+* `java.lang.Object delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` -> `models.SqlPool delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)`
+
+#### `models.Workspace$Definition` was modified
+
+* `withConnectivityEndpoints(java.util.Map)` was removed
+
+### Features Added
+
+* `models.DefaultPrincipalsModificationKind` was added
+
+* `models.DataConnectionCheckNameRequest` was added
+
+* `models.AttachedDatabaseConfiguration` was added
+
+* `models.UserAssignedManagedIdentity` was added
+
+* `models.KustoPoolDatabasePrincipalAssignments` was added
+
+* `models.ClusterPrincipalAssignmentCheckNameRequest` was added
+
+* `models.WorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettings` was added
+
+* `models.KustoPool$UpdateStages` was added
+
+* `models.ResourceProvisioningState` was added
+
+* `models.SkuName` was added
+
+* `models.AzureCapacity` was added
+
+* `models.AzureADOnlyAuthenticationListResult` was added
+
+* `models.KustoPool$DefinitionStages` was added
+
+* `models.DatabasePrincipalAssignmentCheckNameRequest` was added
+
+* `models.AzureADOnlyAuthentications` was added
+
+* `models.DataConnectionValidationResult` was added
+
+* `models.KustoPool$Update` was added
+
+* `models.AzureScaleType` was added
+
+* `models.DatabaseStatistics` was added
+
+* `models.EventHubDataFormat` was added
+
+* `models.KustoPoolPrincipalAssignments` was added
+
+* `models.ConfigurationType` was added
+
+* `models.WorkspaceStatus` was added
+
+* `models.DataConnection` was added
+
+* `models.Compression` was added
+
+* `models.AttachedDatabaseConfiguration$Update` was added
+
+* `models.SkuDescription` was added
+
+* `models.PipelineExternalComputeScaleProperties` was added
+
+* `models.DatabasePrincipalAssignment$Update` was added
+
+* `models.CopyComputeScaleProperties` was added
+
+* `models.Gets` was added
+
+* `models.Database` was added
+
+* `models.IntegrationRuntimeStopOperationStatus` was added
+
+* `models.LanguageExtension` was added
+
+* `models.ClusterPrincipalAssignment$Update` was added
+
+* `models.IntegrationRuntimeOperationStatus` was added
+
+* `models.PrincipalType` was added
+
+* `models.Kind` was added
+
+* `models.KustoPoolListResult` was added
+
+* `models.DatabasePrincipalAssignment` was added
+
+* `models.Operation` was added
+
+* `models.SkuSize` was added
+
+* `models.KustoPoolPrivateLinkResources` was added
+
+* `models.KustoPoolUpdate` was added
+
+* `models.IotHubDataConnection` was added
+
+* `models.KustoPools` was added
+
+* `models.EventGridDataConnection` was added
+
+* `models.AzureSku` was added
+
+* `models.CspWorkspaceAdminProperties` was added
+
+* `models.DatabasePrincipalAssignment$UpdateStages` was added
+
+* `models.ClusterPrincipalAssignment$UpdateStages` was added
+
+* `models.AttachedDatabaseConfigurationListResult` was added
+
+* `models.OperationDisplay` was added
+
+* `models.SelfContainedInteractiveAuthoringState` was added
+
+* `models.ClusterPrincipalAssignmentListResult` was added
+
+* `models.DatabaseCheckNameRequest` was added
+
+* `models.AttachedDatabaseConfiguration$DefinitionStages` was added
+
+* `models.KustoPoolCheckNameRequest` was added
+
+* `models.KustoPool$Definition` was added
+
+* `models.LanguageExtensionsList` was added
+
+* `models.StateValue` was added
+
+* `models.DatabasePrincipalAssignment$DefinitionStages` was added
+
+* `models.DataConnectionKind` was added
+
+* `models.DatabasePrincipalAssignment$Definition` was added
+
+* `models.SparkConfigProperties` was added
+
+* `models.ClusterPrincipalAssignment$DefinitionStages` was added
+
+* `models.DedicatedSQLminimalTlsSettingsListResult` was added
+
+* `models.ActualState` was added
+
+* `models.AttachedDatabaseConfiguration$UpdateStages` was added
+
+* `models.DedicatedSqlMinimalTlsSettingsName` was added
+
+* `models.FollowerDatabaseListResult` was added
+
+* `models.SparkConfigurations` was added
+
+* `models.EventHubDataConnection` was added
+
+* `models.AzureADOnlyAuthenticationName` was added
+
+* `models.SkuLocationInfoItem` was added
+
+* `models.DataConnectionValidationListResult` was added
+
+* `models.OptimizedAutoscale` was added
+
+* `models.KustoPoolChildResources` was added
+
+* `models.FollowerDatabaseDefinition` was added
+
+* `models.Reason` was added
+
+* `models.ClusterPrincipalAssignment$Definition` was added
+
+* `models.State` was added
+
+* `models.DataConnectionListResult` was added
+
+* `models.DataConnectionValidation` was added
+
+* `models.CheckNameResult` was added
+
+* `models.SparkConfigurationsOperations` was added
+
+* `models.DatabasePrincipalAssignmentListResult` was added
+
+* `models.KustoPoolDataConnections` was added
+
+* `models.OperationListResult` was added
+
+* `models.EventGridDataFormat` was added
+
+* `models.IntegrationRuntimeEnableinteractivequery` was added
+
+* `models.IotHubDataFormat` was added
+
+* `models.DedicatedSQLminimalTlsSettings` was added
+
+* `models.AzureADOnlyAuthentication$DefinitionStages` was added
+
+* `models.AttachedDatabaseConfiguration$Definition` was added
+
+* `models.ClusterPrincipalAssignment` was added
+
+* `models.KustoPoolAttachedDatabaseConfigurations` was added
+
+* `models.SparkConfigurationResource` was added
+
+* `models.SkuDescriptionList` was added
+
+* `models.KustoPoolPrivateLinkResourcesOperations` was added
+
+* `models.TableLevelSharingProperties` was added
+
+* `models.LanguageExtensionName` was added
+
+* `models.ClusterPrincipalRole` was added
+
+* `models.SparkConfigurationListResponse` was added
+
+* `models.AzureADOnlyAuthentication$Definition` was added
+
+* `models.BlobStorageEventType` was added
+
+* `models.AzureADOnlyAuthentication` was added
+
+* `models.Type` was added
+
+* `models.PrincipalsModificationKind` was added
+
+* `models.ReadOnlyFollowingDatabase` was added
+
+* `models.KustoPoolDatabases` was added
+
+* `models.DatabaseListResult` was added
+
+* `models.KustoOperations` was added
+
+* `models.KekIdentityProperties` was added
+
+* `models.ReadWriteDatabase` was added
+
+* `models.AzureResourceSku` was added
+
+* `models.PrivateLinkResourcesOperations` was added
+
+* `models.DatabasePrincipalRole` was added
+
+* `models.DesiredState` was added
+
+* `models.KustoPool` was added
+
+* `models.ListResourceSkusResult` was added
+
+#### `models.ServerBlobAuditingPolicy$Update` was modified
+
+* `withIsDevopsAuditEnabled(java.lang.Boolean)` was added
+
+#### `models.ServerBlobAuditingPolicy` was modified
+
+* `isDevopsAuditEnabled()` was added
+
+#### `models.SqlPoolPatchInfo` was modified
+
+* `sourceDatabaseDeletionDate()` was added
+* `withSourceDatabaseDeletionDate(java.time.OffsetDateTime)` was added
+
+#### `models.SelfHostedIntegrationRuntime` was modified
+
+* `selfContainedInteractiveAuthoringEnabled()` was added
+* `withSelfContainedInteractiveAuthoringEnabled(models.SelfContainedInteractiveAuthoringState)` was added
+
+#### `models.IntegrationRuntimeDataFlowProperties` was modified
+
+* `cleanup()` was added
+* `withCleanup(java.lang.Boolean)` was added
+
+#### `models.SelfHostedIntegrationRuntimeStatus` was modified
+
+* `osType()` was added
+* `serviceRegion()` was added
+* `selfContainedInteractiveAuthoringEnabled()` was added
+* `targetFramework()` was added
+* `newerVersions()` was added
+* `withNewerVersions(java.util.List)` was added
+* `withServiceRegion(java.lang.String)` was added
+
+#### `models.ManagedIntegrationRuntime` was modified
+
+* `typeManagedVirtualNetworkType()` was added
+* `referenceName()` was added
+* `id()` was added
+* `withTypeManagedVirtualNetworkType(java.lang.String)` was added
+* `withId(java.lang.String)` was added
+* `withReferenceName(java.lang.String)` was added
+
+#### `models.PrivateEndpointConnectionsPrivateLinkHubs` was modified
+
+* `get(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.SqlPool$Definition` was modified
+
+* `withSourceDatabaseDeletionDate(java.time.OffsetDateTime)` was added
+
+#### `models.ExtendedServerBlobAuditingPolicy$Update` was modified
+
+* `withIsDevopsAuditEnabled(java.lang.Boolean)` was added
+
+#### `models.DataLakeStorageAccountDetails` was modified
+
+* `resourceId()` was added
+* `withResourceId(java.lang.String)` was added
+* `createManagedPrivateEndpoint()` was added
+* `withCreateManagedPrivateEndpoint(java.lang.Boolean)` was added
+
+#### `models.BigDataPoolResourceInfo` was modified
+
+* `isAutotuneEnabled()` was added
+
+#### `models.BigDataPoolResourceInfo$Definition` was modified
+
+* `withSparkConfigProperties(models.SparkConfigProperties)` was added
+* `withIsAutotuneEnabled(java.lang.Boolean)` was added
+
+#### `models.Workspace` was modified
+
+* `azureADOnlyAuthentication()` was added
+* `cspWorkspaceAdminProperties()` was added
+* `trustedServiceBypassEnabled()` was added
+* `settings()` was added
+
+#### `models.SqlPool` was modified
+
+* `sourceDatabaseDeletionDate()` was added
+
+#### `models.ManagedIdentity` was modified
+
+* `withUserAssignedIdentities(java.util.Map)` was added
+* `userAssignedIdentities()` was added
+
+#### `models.IntegrationRuntimeComputeProperties` was modified
+
+* `withPipelineExternalComputeScaleProperties(models.PipelineExternalComputeScaleProperties)` was added
+* `copyComputeScaleProperties()` was added
+* `pipelineExternalComputeScaleProperties()` was added
+* `withCopyComputeScaleProperties(models.CopyComputeScaleProperties)` was added
+
+#### `models.CustomerManagedKeyDetails` was modified
+
+* `kekIdentity()` was added
+* `withKekIdentity(models.KekIdentityProperties)` was added
+
+#### `models.ExtendedServerBlobAuditingPolicy` was modified
+
+* `isDevopsAuditEnabled()` was added
+
+#### `models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity` was modified
+
+* `withDesiredState(models.DesiredState)` was added
+
+#### `models.ServerBlobAuditingPolicy$Definition` was modified
+
+* `withIsDevopsAuditEnabled(java.lang.Boolean)` was added
+
+#### `models.DynamicExecutorAllocation` was modified
+
+* `maxExecutors()` was added
+* `minExecutors()` was added
+* `withMinExecutors(java.lang.Integer)` was added
+* `withMaxExecutors(java.lang.Integer)` was added
+
+#### `models.PrivateLinkResources` was modified
+
+* `value()` was added
+* `validate()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withValue(java.util.List)` was added
+
+#### `SynapseManager` was modified
+
+* `gets()` was added
+* `kustoPoolDatabasePrincipalAssignments()` was added
+* `kustoPoolDataConnections()` was added
+* `kustoPoolPrivateLinkResourcesOperations()` was added
+* `kustoOperations()` was added
+* `sparkConfigurationsOperations()` was added
+* `kustoPoolDatabases()` was added
+* `kustoPoolPrincipalAssignments()` was added
+* `sparkConfigurations()` was added
+* `kustoPoolAttachedDatabaseConfigurations()` was added
+* `kustoPoolChildResources()` was added
+* `kustoPools()` was added
+* `azureADOnlyAuthentications()` was added
+* `privateLinkResourcesOperations()` was added
+* `workspaceManagedSqlServerDedicatedSqlMinimalTlsSettings()` was added
+
+#### `models.Workspace$Definition` was modified
+
+* `withAzureADOnlyAuthentication(java.lang.Boolean)` was added
+* `withTrustedServiceBypassEnabled(java.lang.Boolean)` was added
+* `withCspWorkspaceAdminProperties(models.CspWorkspaceAdminProperties)` was added
+
+#### `models.ExtendedServerBlobAuditingPolicy$Definition` was modified
+
+* `withIsDevopsAuditEnabled(java.lang.Boolean)` was added
 
 ## 1.0.0 (2024-12-23)
 
