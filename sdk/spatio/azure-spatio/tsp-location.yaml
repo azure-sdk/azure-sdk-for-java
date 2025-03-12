@@ -1,0 +1,4 @@
+directory: specification/spatioopenapi3
+commit: 6725371ddae0373e9b1537d7ca3e1b428de35028
+repo: Azure/azure-rest-api-specs
+additionalDirectories: 
