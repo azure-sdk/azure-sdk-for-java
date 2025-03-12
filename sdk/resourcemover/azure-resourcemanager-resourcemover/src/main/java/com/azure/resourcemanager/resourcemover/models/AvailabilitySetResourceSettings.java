@@ -36,6 +36,11 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
      */
     private Integer updateDomain;
 
+    /*
+     * Gets or sets the target virtual machine scale set Id.
+     */
+    private String targetVirtualMachineScaleSetFlexId;
+
     /**
      * Creates an instance of AvailabilitySetResourceSettings class.
      */
@@ -114,6 +119,27 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
     }
 
     /**
+     * Get the targetVirtualMachineScaleSetFlexId property: Gets or sets the target virtual machine scale set Id.
+     * 
+     * @return the targetVirtualMachineScaleSetFlexId value.
+     */
+    public String targetVirtualMachineScaleSetFlexId() {
+        return this.targetVirtualMachineScaleSetFlexId;
+    }
+
+    /**
+     * Set the targetVirtualMachineScaleSetFlexId property: Gets or sets the target virtual machine scale set Id.
+     * 
+     * @param targetVirtualMachineScaleSetFlexId the targetVirtualMachineScaleSetFlexId value to set.
+     * @return the AvailabilitySetResourceSettings object itself.
+     */
+    public AvailabilitySetResourceSettings
+        withTargetVirtualMachineScaleSetFlexId(String targetVirtualMachineScaleSetFlexId) {
+        this.targetVirtualMachineScaleSetFlexId = targetVirtualMachineScaleSetFlexId;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -152,6 +178,7 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         jsonWriter.writeNumberField("faultDomain", this.faultDomain);
         jsonWriter.writeNumberField("updateDomain", this.updateDomain);
+        jsonWriter.writeStringField("targetVirtualMachineScaleSetFlexId", this.targetVirtualMachineScaleSetFlexId);
         return jsonWriter.writeEndObject();
     }
 
@@ -184,6 +211,8 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
                     deserializedAvailabilitySetResourceSettings.faultDomain = reader.getNullable(JsonReader::getInt);
                 } else if ("updateDomain".equals(fieldName)) {
                     deserializedAvailabilitySetResourceSettings.updateDomain = reader.getNullable(JsonReader::getInt);
+                } else if ("targetVirtualMachineScaleSetFlexId".equals(fieldName)) {
+                    deserializedAvailabilitySetResourceSettings.targetVirtualMachineScaleSetFlexId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
