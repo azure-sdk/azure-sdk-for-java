@@ -1,14 +1,54 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-12)
+
+- Azure Resource Manager Dashboard client library for Java. This package contains Microsoft Azure SDK for Dashboard Management SDK. The Microsoft.Dashboard Rest API spec. Package tag package-2024-10-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.IntegrationFabricListResponse` was added
 
-### Bugs Fixed
+* `models.IntegrationFabricProperties` was added
 
-### Other Changes
+* `models.IntegrationFabricPropertiesUpdateParameters` was added
+
+* `models.IntegrationFabric$DefinitionStages` was added
+
+* `models.Security` was added
+
+* `models.IntegrationFabric$Update` was added
+
+* `models.Users` was added
+
+* `models.IntegrationFabric$Definition` was added
+
+* `models.IntegrationFabricUpdateParameters` was added
+
+* `models.IntegrationFabrics` was added
+
+* `models.IntegrationFabric` was added
+
+* `models.Snapshots` was added
+
+* `models.IntegrationFabric$UpdateStages` was added
+
+#### `DashboardManager` was modified
+
+* `integrationFabrics()` was added
+
+#### `models.GrafanaAvailablePlugin` was modified
+
+* `type()` was added
+* `author()` was added
+
+#### `models.GrafanaConfigurations` was modified
+
+* `withSecurity(models.Security)` was added
+* `users()` was added
+* `withUsers(models.Users)` was added
+* `withSnapshots(models.Snapshots)` was added
+* `snapshots()` was added
+* `security()` was added
 
 ## 1.1.0 (2024-12-13)
 

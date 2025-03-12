@@ -80,4 +80,11 @@ public interface DashboardManagementClient {
      * @return the ManagedPrivateEndpointsClient object.
      */
     ManagedPrivateEndpointsClient getManagedPrivateEndpoints();
+
+    /**
+     * Gets the IntegrationFabricsClient object to access its operations.
+     * 
+     * @return the IntegrationFabricsClient object.
+     */
+    IntegrationFabricsClient getIntegrationFabrics();
 }

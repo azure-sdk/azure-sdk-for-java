@@ -15,8 +15,11 @@ import com.azure.resourcemanager.dashboard.models.ManagedGrafana;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafanaPropertiesUpdateParameters;
 import com.azure.resourcemanager.dashboard.models.MarketplaceAutoRenew;
 import com.azure.resourcemanager.dashboard.models.ResourceSku;
+import com.azure.resourcemanager.dashboard.models.Security;
 import com.azure.resourcemanager.dashboard.models.Smtp;
+import com.azure.resourcemanager.dashboard.models.Snapshots;
 import com.azure.resourcemanager.dashboard.models.StartTlsPolicy;
+import com.azure.resourcemanager.dashboard.models.Users;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +30,7 @@ import java.util.Map;
 public final class GrafanaUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Grafana_Update.json
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/Grafana_Update.json
      */
     /**
      * Sample code: Grafana_Update.
@@ -48,14 +51,18 @@ public final class GrafanaUpdateSamples {
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace"))))
                 .withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId")
                     .withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED))
-                .withGrafanaConfigurations(new GrafanaConfigurations().withSmtp(new Smtp().withEnabled(true)
-                    .withHost("smtp.sendemail.com:587")
-                    .withUser("username")
-                    .withPassword("fakeTokenPlaceholder")
-                    .withFromAddress("test@sendemail.com")
-                    .withFromName("emailsender")
-                    .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
-                    .withSkipVerify(true)))
+                .withGrafanaConfigurations(new GrafanaConfigurations()
+                    .withSmtp(new Smtp().withEnabled(true)
+                        .withHost("smtp.sendemail.com:587")
+                        .withUser("username")
+                        .withPassword("fakeTokenPlaceholder")
+                        .withFromAddress("test@sendemail.com")
+                        .withFromName("emailsender")
+                        .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
+                        .withSkipVerify(true))
+                    .withSnapshots(new Snapshots().withExternalEnabled(true))
+                    .withUsers(new Users().withViewersCanEdit(true))
+                    .withSecurity(new Security().withCsrfAlwaysCheck(false)))
                 .withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin()))
                 .withGrafanaMajorVersion("9"))
             .apply();
