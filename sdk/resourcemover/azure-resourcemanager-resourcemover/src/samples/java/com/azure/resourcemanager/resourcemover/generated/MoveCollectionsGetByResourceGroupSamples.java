@@ -10,8 +10,8 @@ package com.azure.resourcemanager.resourcemover.generated;
 public final class MoveCollectionsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Get.
-     * json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/preview/2025-01-01-privatepreview/examples/
+     * MoveCollections_Get.json
      */
     /**
      * Sample code: MoveCollections_Get.

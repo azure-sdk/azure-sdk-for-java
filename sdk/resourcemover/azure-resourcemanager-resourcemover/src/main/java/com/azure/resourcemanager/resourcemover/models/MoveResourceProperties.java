@@ -73,6 +73,11 @@ public final class MoveResourceProperties implements JsonSerializable<MoveResour
      */
     private MoveResourcePropertiesErrors errors;
 
+    /*
+     * Gets or sets the child move resources properties.
+     */
+    private List<ChildMoveResourceProperties> childMoveResourcesProperties;
+
     /**
      * Creates an instance of MoveResourceProperties class.
      */
@@ -224,6 +229,27 @@ public final class MoveResourceProperties implements JsonSerializable<MoveResour
     }
 
     /**
+     * Get the childMoveResourcesProperties property: Gets or sets the child move resources properties.
+     * 
+     * @return the childMoveResourcesProperties value.
+     */
+    public List<ChildMoveResourceProperties> childMoveResourcesProperties() {
+        return this.childMoveResourcesProperties;
+    }
+
+    /**
+     * Set the childMoveResourcesProperties property: Gets or sets the child move resources properties.
+     * 
+     * @param childMoveResourcesProperties the childMoveResourcesProperties value to set.
+     * @return the MoveResourceProperties object itself.
+     */
+    public MoveResourceProperties
+        withChildMoveResourcesProperties(List<ChildMoveResourceProperties> childMoveResourcesProperties) {
+        this.childMoveResourcesProperties = childMoveResourcesProperties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -252,6 +278,9 @@ public final class MoveResourceProperties implements JsonSerializable<MoveResour
         if (errors() != null) {
             errors().validate();
         }
+        if (childMoveResourcesProperties() != null) {
+            childMoveResourcesProperties().forEach(e -> e.validate());
+        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(MoveResourceProperties.class);
@@ -266,6 +295,8 @@ public final class MoveResourceProperties implements JsonSerializable<MoveResour
         jsonWriter.writeStringField("existingTargetId", this.existingTargetId);
         jsonWriter.writeJsonField("resourceSettings", this.resourceSettings);
         jsonWriter.writeArrayField("dependsOnOverrides", this.dependsOnOverrides,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("childMoveResourcesProperties", this.childMoveResourcesProperties,
             (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
@@ -313,6 +344,10 @@ public final class MoveResourceProperties implements JsonSerializable<MoveResour
                     deserializedMoveResourceProperties.isResolveRequired = reader.getNullable(JsonReader::getBoolean);
                 } else if ("errors".equals(fieldName)) {
                     deserializedMoveResourceProperties.errors = MoveResourcePropertiesErrors.fromJson(reader);
+                } else if ("childMoveResourcesProperties".equals(fieldName)) {
+                    List<ChildMoveResourceProperties> childMoveResourcesProperties
+                        = reader.readArray(reader1 -> ChildMoveResourceProperties.fromJson(reader1));
+                    deserializedMoveResourceProperties.childMoveResourcesProperties = childMoveResourcesProperties;
                 } else {
                     reader.skipChildren();
                 }

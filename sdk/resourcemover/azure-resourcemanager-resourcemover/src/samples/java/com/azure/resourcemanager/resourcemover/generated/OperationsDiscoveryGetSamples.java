@@ -10,8 +10,8 @@ package com.azure.resourcemanager.resourcemover.generated;
 public final class OperationsDiscoveryGetSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/OperationsDiscovery_Get
-     * .json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/preview/2025-01-01-privatepreview/examples/
+     * OperationsDiscovery_Get.json
      */
     /**
      * Sample code: OperationsDiscovery_Get.

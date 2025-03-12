@@ -47,6 +47,11 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
      */
     private String targetAvailabilitySetId;
 
+    /*
+     * Gets or sets the target fault domain.
+     */
+    private String targetFaultDomain;
+
     /**
      * Creates an instance of VirtualMachineResourceSettings class.
      */
@@ -167,6 +172,26 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
     }
 
     /**
+     * Get the targetFaultDomain property: Gets or sets the target fault domain.
+     * 
+     * @return the targetFaultDomain value.
+     */
+    public String targetFaultDomain() {
+        return this.targetFaultDomain;
+    }
+
+    /**
+     * Set the targetFaultDomain property: Gets or sets the target fault domain.
+     * 
+     * @param targetFaultDomain the targetFaultDomain value to set.
+     * @return the VirtualMachineResourceSettings object itself.
+     */
+    public VirtualMachineResourceSettings withTargetFaultDomain(String targetFaultDomain) {
+        this.targetFaultDomain = targetFaultDomain;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -209,6 +234,7 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
             this.targetAvailabilityZone == null ? null : this.targetAvailabilityZone.toString());
         jsonWriter.writeStringField("targetVmSize", this.targetVmSize);
         jsonWriter.writeStringField("targetAvailabilitySetId", this.targetAvailabilitySetId);
+        jsonWriter.writeStringField("targetFaultDomain", this.targetFaultDomain);
         return jsonWriter.writeEndObject();
     }
 
@@ -247,6 +273,8 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
                     deserializedVirtualMachineResourceSettings.targetVmSize = reader.getString();
                 } else if ("targetAvailabilitySetId".equals(fieldName)) {
                     deserializedVirtualMachineResourceSettings.targetAvailabilitySetId = reader.getString();
+                } else if ("targetFaultDomain".equals(fieldName)) {
+                    deserializedVirtualMachineResourceSettings.targetFaultDomain = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

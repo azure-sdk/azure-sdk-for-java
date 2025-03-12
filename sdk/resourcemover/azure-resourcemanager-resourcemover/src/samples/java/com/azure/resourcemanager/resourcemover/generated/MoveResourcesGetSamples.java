@@ -10,7 +10,8 @@ package com.azure.resourcemanager.resourcemover.generated;
 public final class MoveResourcesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveResources_Get.json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/preview/2025-01-01-privatepreview/examples/
+     * MoveResources_Get.json
      */
     /**
      * Sample code: MoveResources_Get.
