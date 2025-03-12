@@ -22,6 +22,21 @@ public final class GrafanaConfigurations implements JsonSerializable<GrafanaConf
      */
     private Smtp smtp;
 
+    /*
+     * Grafana Snapshots settings
+     */
+    private Snapshots snapshots;
+
+    /*
+     * Grafana users settings
+     */
+    private Users users;
+
+    /*
+     * Grafana security settings
+     */
+    private Security security;
+
     /**
      * Creates an instance of GrafanaConfigurations class.
      */
@@ -51,6 +66,66 @@ public final class GrafanaConfigurations implements JsonSerializable<GrafanaConf
     }
 
     /**
+     * Get the snapshots property: Grafana Snapshots settings.
+     * 
+     * @return the snapshots value.
+     */
+    public Snapshots snapshots() {
+        return this.snapshots;
+    }
+
+    /**
+     * Set the snapshots property: Grafana Snapshots settings.
+     * 
+     * @param snapshots the snapshots value to set.
+     * @return the GrafanaConfigurations object itself.
+     */
+    public GrafanaConfigurations withSnapshots(Snapshots snapshots) {
+        this.snapshots = snapshots;
+        return this;
+    }
+
+    /**
+     * Get the users property: Grafana users settings.
+     * 
+     * @return the users value.
+     */
+    public Users users() {
+        return this.users;
+    }
+
+    /**
+     * Set the users property: Grafana users settings.
+     * 
+     * @param users the users value to set.
+     * @return the GrafanaConfigurations object itself.
+     */
+    public GrafanaConfigurations withUsers(Users users) {
+        this.users = users;
+        return this;
+    }
+
+    /**
+     * Get the security property: Grafana security settings.
+     * 
+     * @return the security value.
+     */
+    public Security security() {
+        return this.security;
+    }
+
+    /**
+     * Set the security property: Grafana security settings.
+     * 
+     * @param security the security value to set.
+     * @return the GrafanaConfigurations object itself.
+     */
+    public GrafanaConfigurations withSecurity(Security security) {
+        this.security = security;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -58,6 +133,15 @@ public final class GrafanaConfigurations implements JsonSerializable<GrafanaConf
     public void validate() {
         if (smtp() != null) {
             smtp().validate();
+        }
+        if (snapshots() != null) {
+            snapshots().validate();
+        }
+        if (users() != null) {
+            users().validate();
+        }
+        if (security() != null) {
+            security().validate();
         }
     }
 
@@ -68,6 +152,9 @@ public final class GrafanaConfigurations implements JsonSerializable<GrafanaConf
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("smtp", this.smtp);
+        jsonWriter.writeJsonField("snapshots", this.snapshots);
+        jsonWriter.writeJsonField("users", this.users);
+        jsonWriter.writeJsonField("security", this.security);
         return jsonWriter.writeEndObject();
     }
 
@@ -88,6 +175,12 @@ public final class GrafanaConfigurations implements JsonSerializable<GrafanaConf
 
                 if ("smtp".equals(fieldName)) {
                     deserializedGrafanaConfigurations.smtp = Smtp.fromJson(reader);
+                } else if ("snapshots".equals(fieldName)) {
+                    deserializedGrafanaConfigurations.snapshots = Snapshots.fromJson(reader);
+                } else if ("users".equals(fieldName)) {
+                    deserializedGrafanaConfigurations.users = Users.fromJson(reader);
+                } else if ("security".equals(fieldName)) {
+                    deserializedGrafanaConfigurations.security = Security.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
