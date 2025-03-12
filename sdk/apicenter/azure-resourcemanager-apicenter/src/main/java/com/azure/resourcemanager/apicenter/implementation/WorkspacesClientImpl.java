@@ -14,6 +14,7 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -27,13 +28,20 @@ import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.apicenter.fluent.WorkspacesClient;
+import com.azure.resourcemanager.apicenter.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.apicenter.models.ImportApiSourceRequest;
 import com.azure.resourcemanager.apicenter.models.WorkspaceListResult;
 import com.azure.resourcemanager.apicenter.models.WorkspacesCreateOrUpdateResponse;
 import com.azure.resourcemanager.apicenter.models.WorkspacesGetResponse;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -113,6 +121,17 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/importApiSource")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> importApiSource(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
+            @PathParam("workspaceName") String workspaceName,
+            @BodyParam("application/json") ImportApiSourceRequest body, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -818,6 +837,259 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void head(String resourceGroupName, String serviceName, String workspaceName) {
         headWithResponse(resourceGroupName, serviceName, workspaceName, Context.NONE);
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> importApiSourceWithResponseAsync(String resourceGroupName,
+        String serviceName, String workspaceName, ImportApiSourceRequest body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.importApiSource(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> importApiSourceWithResponseAsync(String resourceGroupName,
+        String serviceName, String workspaceName, ImportApiSourceRequest body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.importApiSource(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, body, accept, context);
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginImportApiSourceAsync(
+        String resourceGroupName, String serviceName, String workspaceName, ImportApiSourceRequest body) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = importApiSourceWithResponseAsync(resourceGroupName, serviceName, workspaceName, body);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginImportApiSourceAsync(
+        String resourceGroupName, String serviceName, String workspaceName, ImportApiSourceRequest body,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = importApiSourceWithResponseAsync(resourceGroupName, serviceName, workspaceName, body, context);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginImportApiSource(
+        String resourceGroupName, String serviceName, String workspaceName, ImportApiSourceRequest body) {
+        return this.beginImportApiSourceAsync(resourceGroupName, serviceName, workspaceName, body).getSyncPoller();
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginImportApiSource(
+        String resourceGroupName, String serviceName, String workspaceName, ImportApiSourceRequest body,
+        Context context) {
+        return this.beginImportApiSourceAsync(resourceGroupName, serviceName, workspaceName, body, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> importApiSourceAsync(String resourceGroupName, String serviceName,
+        String workspaceName, ImportApiSourceRequest body) {
+        return beginImportApiSourceAsync(resourceGroupName, serviceName, workspaceName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> importApiSourceAsync(String resourceGroupName, String serviceName,
+        String workspaceName, ImportApiSourceRequest body, Context context) {
+        return beginImportApiSourceAsync(resourceGroupName, serviceName, workspaceName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationStatusResultInner importApiSource(String resourceGroupName, String serviceName,
+        String workspaceName, ImportApiSourceRequest body) {
+        return importApiSourceAsync(resourceGroupName, serviceName, workspaceName, body).block();
+    }
+
+    /**
+     * Imports from the API source (one-time import).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationStatusResultInner importApiSource(String resourceGroupName, String serviceName,
+        String workspaceName, ImportApiSourceRequest body, Context context) {
+        return importApiSourceAsync(resourceGroupName, serviceName, workspaceName, body, context).block();
     }
 
     /**

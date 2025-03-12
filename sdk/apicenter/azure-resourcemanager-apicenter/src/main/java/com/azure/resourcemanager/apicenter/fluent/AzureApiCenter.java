@@ -54,6 +54,13 @@ public interface AzureApiCenter {
     OperationsClient getOperations();
 
     /**
+     * Gets the DeletedServicesClient object to access its operations.
+     * 
+     * @return the DeletedServicesClient object.
+     */
+    DeletedServicesClient getDeletedServices();
+
+    /**
      * Gets the ServicesClient object to access its operations.
      * 
      * @return the ServicesClient object.
@@ -73,6 +80,13 @@ public interface AzureApiCenter {
      * @return the WorkspacesClient object.
      */
     WorkspacesClient getWorkspaces();
+
+    /**
+     * Gets the ApiSourcesClient object to access its operations.
+     * 
+     * @return the ApiSourcesClient object.
+     */
+    ApiSourcesClient getApiSources();
 
     /**
      * Gets the ApisClient object to access its operations.

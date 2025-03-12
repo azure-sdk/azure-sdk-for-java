@@ -7,6 +7,8 @@ package com.azure.resourcemanager.apicenter.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.apicenter.models.ImportApiSourceRequest;
+import com.azure.resourcemanager.apicenter.models.OperationStatusResult;
 import com.azure.resourcemanager.apicenter.models.Workspace;
 import com.azure.resourcemanager.apicenter.models.WorkspaceProperties;
 
@@ -123,6 +125,15 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             .getWithResponse(resourceGroupName, serviceName, workspaceName, context)
             .getValue();
         return this;
+    }
+
+    public OperationStatusResult importApiSource(ImportApiSourceRequest body) {
+        return serviceManager.workspaces().importApiSource(resourceGroupName, serviceName, workspaceName, body);
+    }
+
+    public OperationStatusResult importApiSource(ImportApiSourceRequest body, Context context) {
+        return serviceManager.workspaces()
+            .importApiSource(resourceGroupName, serviceName, workspaceName, body, context);
     }
 
     public WorkspaceImpl withProperties(WorkspaceProperties properties) {

@@ -10,7 +10,10 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apicenter.fluent.WorkspacesClient;
+import com.azure.resourcemanager.apicenter.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.apicenter.models.ImportApiSourceRequest;
+import com.azure.resourcemanager.apicenter.models.OperationStatusResult;
 import com.azure.resourcemanager.apicenter.models.Workspace;
 import com.azure.resourcemanager.apicenter.models.Workspaces;
 import com.azure.resourcemanager.apicenter.models.WorkspacesGetResponse;
@@ -76,6 +79,28 @@ public final class WorkspacesImpl implements Workspaces {
 
     public void head(String resourceGroupName, String serviceName, String workspaceName) {
         this.serviceClient().head(resourceGroupName, serviceName, workspaceName);
+    }
+
+    public OperationStatusResult importApiSource(String resourceGroupName, String serviceName, String workspaceName,
+        ImportApiSourceRequest body) {
+        OperationStatusResultInner inner
+            = this.serviceClient().importApiSource(resourceGroupName, serviceName, workspaceName, body);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatusResult importApiSource(String resourceGroupName, String serviceName, String workspaceName,
+        ImportApiSourceRequest body, Context context) {
+        OperationStatusResultInner inner
+            = this.serviceClient().importApiSource(resourceGroupName, serviceName, workspaceName, body, context);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Workspace getById(String id) {

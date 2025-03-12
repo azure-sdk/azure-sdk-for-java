@@ -1,14 +1,95 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-12)
+
+- Azure Resource Manager ApiCenter client library for Java. This package contains Microsoft Azure SDK for ApiCenter Management SDK. Azure API Center Resource Provider. Package tag package-2024-12-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.ApiSource` was added
 
-### Bugs Fixed
+* `models.ApiSourceLinkState` was added
 
-### Other Changes
+* `models.ApiSourcesGetResponse` was added
+
+* `models.ServiceUpdateProperties` was added
+
+* `models.DeletedServiceListResult` was added
+
+* `models.ApiSourcesGetHeaders` was added
+
+* `models.ApiSourceType` was added
+
+* `models.OperationStatusResult` was added
+
+* `models.ApiSourceProperties` was added
+
+* `models.ImportSpecificationOptions` was added
+
+* `models.ApiSourceListResult` was added
+
+* `models.AmazonApiGatewaySource` was added
+
+* `models.ApiSourcesCreateOrUpdateResponse` was added
+
+* `models.ApiSource$Definition` was added
+
+* `models.AzureApiManagementSourceImportApis` was added
+
+* `models.DeletedServiceProperties` was added
+
+* `models.ApiSourcesCreateOrUpdateHeaders` was added
+
+* `models.DeletedServicesGetByResourceGroupHeaders` was added
+
+* `models.ImportApiSourceRequest` was added
+
+* `models.DeletedServices` was added
+
+* `models.DeletedService` was added
+
+* `models.DeletedServicesGetByResourceGroupResponse` was added
+
+* `models.AzureApiManagementSource` was added
+
+* `models.LinkState` was added
+
+* `models.ApiSource$DefinitionStages` was added
+
+* `models.ApiSource$UpdateStages` was added
+
+* `models.ApiSources` was added
+
+* `models.ApiSource$Update` was added
+
+#### `models.Workspaces` was modified
+
+* `importApiSource(java.lang.String,java.lang.String,java.lang.String,models.ImportApiSourceRequest)` was added
+* `importApiSource(java.lang.String,java.lang.String,java.lang.String,models.ImportApiSourceRequest,com.azure.core.util.Context)` was added
+
+#### `models.ServiceUpdate` was modified
+
+* `properties()` was added
+* `withProperties(models.ServiceUpdateProperties)` was added
+
+#### `models.Service$Update` was modified
+
+* `withProperties(models.ServiceUpdateProperties)` was added
+
+#### `models.ServiceProperties` was modified
+
+* `withRestore(java.lang.Boolean)` was added
+* `restore()` was added
+
+#### `ApiCenterManager` was modified
+
+* `apiSources()` was added
+* `deletedServices()` was added
+
+#### `models.Workspace` was modified
+
+* `importApiSource(models.ImportApiSourceRequest)` was added
+* `importApiSource(models.ImportApiSourceRequest,com.azure.core.util.Context)` was added
 
 ## 1.1.0 (2024-12-13)
 
