@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/spatio/ci.yml
+      - sdk/spatio/azure-spatio/
+    exclude:
+      - sdk/spatio/pom.xml
+      - sdk/spatio/azure-spatio/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/spatio/ci.yml
+      - sdk/spatio/azure-spatio/
+    exclude:
+      - sdk/spatio/pom.xml
+      - sdk/spatio/azure-spatio/pom.xml
+
+parameters:
+  - name: release_azurespatio
+    displayName: azure-spatio
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: spatio
+    Artifacts:
+      - name: azure-spatio
+        groupId: com.azure
+        safeName: azurespatio
+        releaseInBatch: ${{ parameters.release_azurespatio }}
