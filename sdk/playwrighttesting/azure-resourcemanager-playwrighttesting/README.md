@@ -70,6 +70,14 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+```java
+account = playwrightTestingManager.accounts()
+    .define(accountName)
+    .withRegion(REGION)
+    .withExistingResourceGroup(resourceGroupName)
+    .withProperties(new AccountProperties().withRegionalAffinity(EnablementStatus.ENABLED))
+    .create();
+```
 [Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/playwrighttesting/azure-resourcemanager-playwrighttesting/SAMPLE.md)
 
 
