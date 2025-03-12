@@ -15,7 +15,7 @@ public interface IntegrationAccountCertificates {
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -27,7 +27,7 @@ public interface IntegrationAccountCertificates {
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -42,7 +42,7 @@ public interface IntegrationAccountCertificates {
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @param context The context to associate with this operation.
@@ -57,7 +57,7 @@ public interface IntegrationAccountCertificates {
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -70,7 +70,7 @@ public interface IntegrationAccountCertificates {
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @param context The context to associate with this operation.
@@ -85,7 +85,7 @@ public interface IntegrationAccountCertificates {
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

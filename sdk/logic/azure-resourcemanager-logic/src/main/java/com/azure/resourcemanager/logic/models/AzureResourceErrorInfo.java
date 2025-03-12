@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The azure resource error info.
+ * The error info.
  */
 @Fluent
 public final class AzureResourceErrorInfo extends ErrorInfo {

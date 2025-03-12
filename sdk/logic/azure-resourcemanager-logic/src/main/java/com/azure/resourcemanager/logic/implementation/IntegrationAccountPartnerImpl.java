@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountPartnerInner;
 import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
 import com.azure.resourcemanager.logic.models.IntegrationAccountPartner;
-import com.azure.resourcemanager.logic.models.PartnerContent;
-import com.azure.resourcemanager.logic.models.PartnerType;
+import com.azure.resourcemanager.logic.models.IntegrationAccountPartnerProperties;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerCallbackUrl;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.Map;
 
 public final class IntegrationAccountPartnerImpl
     implements IntegrationAccountPartner, IntegrationAccountPartner.Definition, IntegrationAccountPartner.Update {
@@ -35,45 +31,12 @@ public final class IntegrationAccountPartnerImpl
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
+    public IntegrationAccountPartnerProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public PartnerType partnerType() {
-        return this.innerModel().partnerType();
-    }
-
-    public OffsetDateTime createdTime() {
-        return this.innerModel().createdTime();
-    }
-
-    public OffsetDateTime changedTime() {
-        return this.innerModel().changedTime();
-    }
-
-    public Object metadata() {
-        return this.innerModel().metadata();
-    }
-
-    public PartnerContent content() {
-        return this.innerModel().content();
-    }
-
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {
@@ -173,45 +136,19 @@ public final class IntegrationAccountPartnerImpl
         return this;
     }
 
-    public Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context) {
+    public Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context) {
         return serviceManager.integrationAccountPartners()
-            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, partnerName,
-                listContentCallbackUrl, context);
+            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, partnerName, body, context);
     }
 
-    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl) {
+    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body) {
         return serviceManager.integrationAccountPartners()
-            .listContentCallbackUrl(resourceGroupName, integrationAccountName, partnerName, listContentCallbackUrl);
+            .listContentCallbackUrl(resourceGroupName, integrationAccountName, partnerName, body);
     }
 
-    public IntegrationAccountPartnerImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public IntegrationAccountPartnerImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public IntegrationAccountPartnerImpl withPartnerType(PartnerType partnerType) {
-        this.innerModel().withPartnerType(partnerType);
-        return this;
-    }
-
-    public IntegrationAccountPartnerImpl withContent(PartnerContent content) {
-        this.innerModel().withContent(content);
-        return this;
-    }
-
-    public IntegrationAccountPartnerImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
-        return this;
-    }
-
-    public IntegrationAccountPartnerImpl withMetadata(Object metadata) {
-        this.innerModel().withMetadata(metadata);
+    public IntegrationAccountPartnerImpl withProperties(IntegrationAccountPartnerProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 }

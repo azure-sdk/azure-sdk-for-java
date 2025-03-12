@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountAgreementInner;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of IntegrationAccountAgreement.
@@ -37,95 +35,18 @@ public interface IntegrationAccountAgreement {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the properties property: The integration account agreement properties.
      * 
-     * @return the location value.
+     * @return the properties value.
      */
-    String location();
+    IntegrationAccountAgreementProperties properties();
 
     /**
-     * Gets the tags property: Resource tags.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the tags value.
+     * @return the systemData value.
      */
-    Map<String, String> tags();
-
-    /**
-     * Gets the createdTime property: The created time.
-     * 
-     * @return the createdTime value.
-     */
-    OffsetDateTime createdTime();
-
-    /**
-     * Gets the changedTime property: The changed time.
-     * 
-     * @return the changedTime value.
-     */
-    OffsetDateTime changedTime();
-
-    /**
-     * Gets the metadata property: The metadata.
-     * 
-     * @return the metadata value.
-     */
-    Object metadata();
-
-    /**
-     * Gets the agreementType property: The agreement type.
-     * 
-     * @return the agreementType value.
-     */
-    AgreementType agreementType();
-
-    /**
-     * Gets the hostPartner property: The integration account partner that is set as host partner for this agreement.
-     * 
-     * @return the hostPartner value.
-     */
-    String hostPartner();
-
-    /**
-     * Gets the guestPartner property: The integration account partner that is set as guest partner for this agreement.
-     * 
-     * @return the guestPartner value.
-     */
-    String guestPartner();
-
-    /**
-     * Gets the hostIdentity property: The business identity of the host partner.
-     * 
-     * @return the hostIdentity value.
-     */
-    BusinessIdentity hostIdentity();
-
-    /**
-     * Gets the guestIdentity property: The business identity of the guest partner.
-     * 
-     * @return the guestIdentity value.
-     */
-    BusinessIdentity guestIdentity();
-
-    /**
-     * Gets the content property: The agreement content.
-     * 
-     * @return the content value.
-     */
-    AgreementContent content();
-
-    /**
-     * Gets the region of the resource.
-     * 
-     * @return the region of the resource.
-     */
-    Region region();
-
-    /**
-     * Gets the name of the resource region.
-     * 
-     * @return the name of the resource region.
-     */
-    String regionName();
+    SystemData systemData();
 
     /**
      * Gets the name of the resource group.
@@ -144,10 +65,8 @@ public interface IntegrationAccountAgreement {
     /**
      * The entirety of the IntegrationAccountAgreement definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithAgreementType, DefinitionStages.WithHostPartner,
-        DefinitionStages.WithGuestPartner, DefinitionStages.WithHostIdentity, DefinitionStages.WithGuestIdentity,
-        DefinitionStages.WithContent, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
+        DefinitionStages.WithProperties, DefinitionStages.WithCreate {
     }
 
     /**
@@ -157,28 +76,7 @@ public interface IntegrationAccountAgreement {
         /**
          * The first stage of the IntegrationAccountAgreement definition.
          */
-        interface Blank extends WithLocation {
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify location.
-         */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(String location);
+        interface Blank extends WithParentResource {
         }
 
         /**
@@ -188,98 +86,31 @@ public interface IntegrationAccountAgreement {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
-            WithAgreementType withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
+            WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
 
         /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify agreementType.
+         * The stage of the IntegrationAccountAgreement definition allowing to specify properties.
          */
-        interface WithAgreementType {
+        interface WithProperties {
             /**
-             * Specifies the agreementType property: The agreement type..
+             * Specifies the properties property: The integration account agreement properties..
              * 
-             * @param agreementType The agreement type.
+             * @param properties The integration account agreement properties.
              * @return the next definition stage.
              */
-            WithHostPartner withAgreementType(AgreementType agreementType);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify hostPartner.
-         */
-        interface WithHostPartner {
-            /**
-             * Specifies the hostPartner property: The integration account partner that is set as host partner for this
-             * agreement..
-             * 
-             * @param hostPartner The integration account partner that is set as host partner for this agreement.
-             * @return the next definition stage.
-             */
-            WithGuestPartner withHostPartner(String hostPartner);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify guestPartner.
-         */
-        interface WithGuestPartner {
-            /**
-             * Specifies the guestPartner property: The integration account partner that is set as guest partner for
-             * this agreement..
-             * 
-             * @param guestPartner The integration account partner that is set as guest partner for this agreement.
-             * @return the next definition stage.
-             */
-            WithHostIdentity withGuestPartner(String guestPartner);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify hostIdentity.
-         */
-        interface WithHostIdentity {
-            /**
-             * Specifies the hostIdentity property: The business identity of the host partner..
-             * 
-             * @param hostIdentity The business identity of the host partner.
-             * @return the next definition stage.
-             */
-            WithGuestIdentity withHostIdentity(BusinessIdentity hostIdentity);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify guestIdentity.
-         */
-        interface WithGuestIdentity {
-            /**
-             * Specifies the guestIdentity property: The business identity of the guest partner..
-             * 
-             * @param guestIdentity The business identity of the guest partner.
-             * @return the next definition stage.
-             */
-            WithContent withGuestIdentity(BusinessIdentity guestIdentity);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify content.
-         */
-        interface WithContent {
-            /**
-             * Specifies the content property: The agreement content..
-             * 
-             * @param content The agreement content.
-             * @return the next definition stage.
-             */
-            WithCreate withContent(AgreementContent content);
+            WithCreate withProperties(IntegrationAccountAgreementProperties properties);
         }
 
         /**
          * The stage of the IntegrationAccountAgreement definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithMetadata {
+        interface WithCreate {
             /**
              * Executes the create request.
              * 
@@ -295,32 +126,6 @@ public interface IntegrationAccountAgreement {
              */
             IntegrationAccountAgreement create(Context context);
         }
-
-        /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement definition allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            WithCreate withMetadata(Object metadata);
-        }
     }
 
     /**
@@ -333,9 +138,7 @@ public interface IntegrationAccountAgreement {
     /**
      * The template for IntegrationAccountAgreement update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithMetadata, UpdateStages.WithAgreementType,
-        UpdateStages.WithHostPartner, UpdateStages.WithGuestPartner, UpdateStages.WithHostIdentity,
-        UpdateStages.WithGuestIdentity, UpdateStages.WithContent {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -357,109 +160,16 @@ public interface IntegrationAccountAgreement {
      */
     interface UpdateStages {
         /**
-         * The stage of the IntegrationAccountAgreement update allowing to specify tags.
+         * The stage of the IntegrationAccountAgreement update allowing to specify properties.
          */
-        interface WithTags {
+        interface WithProperties {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the properties property: The integration account agreement properties..
              * 
-             * @param tags Resource tags.
+             * @param properties The integration account agreement properties.
              * @return the next definition stage.
              */
-            Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement update allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            Update withMetadata(Object metadata);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement update allowing to specify agreementType.
-         */
-        interface WithAgreementType {
-            /**
-             * Specifies the agreementType property: The agreement type..
-             * 
-             * @param agreementType The agreement type.
-             * @return the next definition stage.
-             */
-            Update withAgreementType(AgreementType agreementType);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement update allowing to specify hostPartner.
-         */
-        interface WithHostPartner {
-            /**
-             * Specifies the hostPartner property: The integration account partner that is set as host partner for this
-             * agreement..
-             * 
-             * @param hostPartner The integration account partner that is set as host partner for this agreement.
-             * @return the next definition stage.
-             */
-            Update withHostPartner(String hostPartner);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement update allowing to specify guestPartner.
-         */
-        interface WithGuestPartner {
-            /**
-             * Specifies the guestPartner property: The integration account partner that is set as guest partner for
-             * this agreement..
-             * 
-             * @param guestPartner The integration account partner that is set as guest partner for this agreement.
-             * @return the next definition stage.
-             */
-            Update withGuestPartner(String guestPartner);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement update allowing to specify hostIdentity.
-         */
-        interface WithHostIdentity {
-            /**
-             * Specifies the hostIdentity property: The business identity of the host partner..
-             * 
-             * @param hostIdentity The business identity of the host partner.
-             * @return the next definition stage.
-             */
-            Update withHostIdentity(BusinessIdentity hostIdentity);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement update allowing to specify guestIdentity.
-         */
-        interface WithGuestIdentity {
-            /**
-             * Specifies the guestIdentity property: The business identity of the guest partner..
-             * 
-             * @param guestIdentity The business identity of the guest partner.
-             * @return the next definition stage.
-             */
-            Update withGuestIdentity(BusinessIdentity guestIdentity);
-        }
-
-        /**
-         * The stage of the IntegrationAccountAgreement update allowing to specify content.
-         */
-        interface WithContent {
-            /**
-             * Specifies the content property: The agreement content..
-             * 
-             * @param content The agreement content.
-             * @return the next definition stage.
-             */
-            Update withContent(AgreementContent content);
+            Update withProperties(IntegrationAccountAgreementProperties properties);
         }
     }
 
@@ -481,24 +191,24 @@ public interface IntegrationAccountAgreement {
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url along with {@link Response}.
      */
-    Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context);
+    Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context);
 
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url.
      */
-    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl);
+    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body);
 }

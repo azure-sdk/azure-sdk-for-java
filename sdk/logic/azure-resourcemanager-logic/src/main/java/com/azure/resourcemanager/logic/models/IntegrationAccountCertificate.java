@@ -4,11 +4,9 @@
 
 package com.azure.resourcemanager.logic.models;
 
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountCertificateInner;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of IntegrationAccountCertificate.
@@ -36,67 +34,18 @@ public interface IntegrationAccountCertificate {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the properties property: The integration account certificate properties.
      * 
-     * @return the location value.
+     * @return the properties value.
      */
-    String location();
+    IntegrationAccountCertificateProperties properties();
 
     /**
-     * Gets the tags property: Resource tags.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the tags value.
+     * @return the systemData value.
      */
-    Map<String, String> tags();
-
-    /**
-     * Gets the createdTime property: The created time.
-     * 
-     * @return the createdTime value.
-     */
-    OffsetDateTime createdTime();
-
-    /**
-     * Gets the changedTime property: The changed time.
-     * 
-     * @return the changedTime value.
-     */
-    OffsetDateTime changedTime();
-
-    /**
-     * Gets the metadata property: The metadata.
-     * 
-     * @return the metadata value.
-     */
-    Object metadata();
-
-    /**
-     * Gets the key property: The key details in the key vault.
-     * 
-     * @return the key value.
-     */
-    KeyVaultKeyReference key();
-
-    /**
-     * Gets the publicCertificate property: The public certificate.
-     * 
-     * @return the publicCertificate value.
-     */
-    String publicCertificate();
-
-    /**
-     * Gets the region of the resource.
-     * 
-     * @return the region of the resource.
-     */
-    Region region();
-
-    /**
-     * Gets the name of the resource region.
-     * 
-     * @return the name of the resource region.
-     */
-    String regionName();
+    SystemData systemData();
 
     /**
      * Gets the name of the resource group.
@@ -115,8 +64,8 @@ public interface IntegrationAccountCertificate {
     /**
      * The entirety of the IntegrationAccountCertificate definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
+        DefinitionStages.WithProperties, DefinitionStages.WithCreate {
     }
 
     /**
@@ -126,28 +75,7 @@ public interface IntegrationAccountCertificate {
         /**
          * The first stage of the IntegrationAccountCertificate definition.
          */
-        interface Blank extends WithLocation {
-        }
-
-        /**
-         * The stage of the IntegrationAccountCertificate definition allowing to specify location.
-         */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(String location);
+        interface Blank extends WithParentResource {
         }
 
         /**
@@ -157,19 +85,31 @@ public interface IntegrationAccountCertificate {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
-            WithCreate withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
+            WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
+        }
+
+        /**
+         * The stage of the IntegrationAccountCertificate definition allowing to specify properties.
+         */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The integration account certificate properties..
+             * 
+             * @param properties The integration account certificate properties.
+             * @return the next definition stage.
+             */
+            WithCreate withProperties(IntegrationAccountCertificateProperties properties);
         }
 
         /**
          * The stage of the IntegrationAccountCertificate definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithMetadata, DefinitionStages.WithKey,
-            DefinitionStages.WithPublicCertificate {
+        interface WithCreate {
             /**
              * Executes the create request.
              * 
@@ -185,58 +125,6 @@ public interface IntegrationAccountCertificate {
              */
             IntegrationAccountCertificate create(Context context);
         }
-
-        /**
-         * The stage of the IntegrationAccountCertificate definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountCertificate definition allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            WithCreate withMetadata(Object metadata);
-        }
-
-        /**
-         * The stage of the IntegrationAccountCertificate definition allowing to specify key.
-         */
-        interface WithKey {
-            /**
-             * Specifies the key property: The key details in the key vault..
-             * 
-             * @param key The key details in the key vault.
-             * @return the next definition stage.
-             */
-            WithCreate withKey(KeyVaultKeyReference key);
-        }
-
-        /**
-         * The stage of the IntegrationAccountCertificate definition allowing to specify publicCertificate.
-         */
-        interface WithPublicCertificate {
-            /**
-             * Specifies the publicCertificate property: The public certificate..
-             * 
-             * @param publicCertificate The public certificate.
-             * @return the next definition stage.
-             */
-            WithCreate withPublicCertificate(String publicCertificate);
-        }
     }
 
     /**
@@ -249,8 +137,7 @@ public interface IntegrationAccountCertificate {
     /**
      * The template for IntegrationAccountCertificate update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithMetadata, UpdateStages.WithKey,
-        UpdateStages.WithPublicCertificate {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -272,55 +159,16 @@ public interface IntegrationAccountCertificate {
      */
     interface UpdateStages {
         /**
-         * The stage of the IntegrationAccountCertificate update allowing to specify tags.
+         * The stage of the IntegrationAccountCertificate update allowing to specify properties.
          */
-        interface WithTags {
+        interface WithProperties {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the properties property: The integration account certificate properties..
              * 
-             * @param tags Resource tags.
+             * @param properties The integration account certificate properties.
              * @return the next definition stage.
              */
-            Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountCertificate update allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            Update withMetadata(Object metadata);
-        }
-
-        /**
-         * The stage of the IntegrationAccountCertificate update allowing to specify key.
-         */
-        interface WithKey {
-            /**
-             * Specifies the key property: The key details in the key vault..
-             * 
-             * @param key The key details in the key vault.
-             * @return the next definition stage.
-             */
-            Update withKey(KeyVaultKeyReference key);
-        }
-
-        /**
-         * The stage of the IntegrationAccountCertificate update allowing to specify publicCertificate.
-         */
-        interface WithPublicCertificate {
-            /**
-             * Specifies the publicCertificate property: The public certificate..
-             * 
-             * @param publicCertificate The public certificate.
-             * @return the next definition stage.
-             */
-            Update withPublicCertificate(String publicCertificate);
+            Update withProperties(IntegrationAccountCertificateProperties properties);
         }
     }
 

@@ -10,6 +10,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The expression root.
@@ -60,7 +61,7 @@ public final class ExpressionRoot extends Expression {
      * {@inheritDoc}
      */
     @Override
-    public ExpressionRoot withValue(Object value) {
+    public ExpressionRoot withValue(Map<String, Object> value) {
         super.withValue(value);
         return this;
     }
@@ -105,7 +106,7 @@ public final class ExpressionRoot extends Expression {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("text", text());
-        jsonWriter.writeUntypedField("value", value());
+        jsonWriter.writeMapField("value", value(), (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeArrayField("subexpressions", subexpressions(), (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("error", error());
         jsonWriter.writeStringField("path", this.path);
@@ -130,7 +131,8 @@ public final class ExpressionRoot extends Expression {
                 if ("text".equals(fieldName)) {
                     deserializedExpressionRoot.withText(reader.getString());
                 } else if ("value".equals(fieldName)) {
-                    deserializedExpressionRoot.withValue(reader.readUntyped());
+                    Map<String, Object> value = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedExpressionRoot.withValue(value);
                 } else if ("subexpressions".equals(fieldName)) {
                     List<Expression> subexpressions = reader.readArray(reader1 -> Expression.fromJson(reader1));
                     deserializedExpressionRoot.withSubexpressions(subexpressions);

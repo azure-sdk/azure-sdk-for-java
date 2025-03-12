@@ -22,67 +22,69 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.logic.fluent.LogicManagementClient;
+import com.azure.resourcemanager.logic.implementation.ApiOperationsImpl;
+import com.azure.resourcemanager.logic.implementation.AssemblyDefinitionsImpl;
+import com.azure.resourcemanager.logic.implementation.BatchConfigurationsImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationAccountAgreementsImpl;
-import com.azure.resourcemanager.logic.implementation.IntegrationAccountAssembliesImpl;
-import com.azure.resourcemanager.logic.implementation.IntegrationAccountBatchConfigurationsImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationAccountCertificatesImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationAccountMapsImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationAccountPartnersImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationAccountSchemasImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationAccountSessionsImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationAccountsImpl;
-import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironmentManagedApiOperationsImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironmentManagedApisImpl;
-import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironmentNetworkHealthsImpl;
-import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironmentSkusImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironmentsImpl;
 import com.azure.resourcemanager.logic.implementation.LogicManagementClientBuilder;
 import com.azure.resourcemanager.logic.implementation.OperationsImpl;
-import com.azure.resourcemanager.logic.implementation.WorkflowRunActionRepetitionsImpl;
-import com.azure.resourcemanager.logic.implementation.WorkflowRunActionRepetitionsRequestHistoriesImpl;
-import com.azure.resourcemanager.logic.implementation.WorkflowRunActionRequestHistoriesImpl;
-import com.azure.resourcemanager.logic.implementation.WorkflowRunActionScopeRepetitionsImpl;
+import com.azure.resourcemanager.logic.implementation.RequestHistoriesImpl;
+import com.azure.resourcemanager.logic.implementation.TemplatesImpl;
+import com.azure.resourcemanager.logic.implementation.WorkflowRunActionRepetitionDefinitionsImpl;
+import com.azure.resourcemanager.logic.implementation.WorkflowRunActionRequestHistoriesOperationsImpl;
+import com.azure.resourcemanager.logic.implementation.WorkflowRunActionScopeRepetitionsOperationsImpl;
 import com.azure.resourcemanager.logic.implementation.WorkflowRunActionsImpl;
-import com.azure.resourcemanager.logic.implementation.WorkflowRunOperationsImpl;
+import com.azure.resourcemanager.logic.implementation.WorkflowRunOperationsOperationsImpl;
 import com.azure.resourcemanager.logic.implementation.WorkflowRunsImpl;
+import com.azure.resourcemanager.logic.implementation.WorkflowRunsOperationsImpl;
 import com.azure.resourcemanager.logic.implementation.WorkflowTriggerHistoriesImpl;
 import com.azure.resourcemanager.logic.implementation.WorkflowTriggersImpl;
-import com.azure.resourcemanager.logic.implementation.WorkflowVersionTriggersImpl;
 import com.azure.resourcemanager.logic.implementation.WorkflowVersionsImpl;
 import com.azure.resourcemanager.logic.implementation.WorkflowsImpl;
+import com.azure.resourcemanager.logic.implementation.WorkflowsOperationsImpl;
+import com.azure.resourcemanager.logic.models.ApiOperations;
+import com.azure.resourcemanager.logic.models.AssemblyDefinitions;
+import com.azure.resourcemanager.logic.models.BatchConfigurations;
 import com.azure.resourcemanager.logic.models.IntegrationAccountAgreements;
-import com.azure.resourcemanager.logic.models.IntegrationAccountAssemblies;
-import com.azure.resourcemanager.logic.models.IntegrationAccountBatchConfigurations;
 import com.azure.resourcemanager.logic.models.IntegrationAccountCertificates;
 import com.azure.resourcemanager.logic.models.IntegrationAccountMaps;
 import com.azure.resourcemanager.logic.models.IntegrationAccountPartners;
 import com.azure.resourcemanager.logic.models.IntegrationAccountSchemas;
 import com.azure.resourcemanager.logic.models.IntegrationAccountSessions;
 import com.azure.resourcemanager.logic.models.IntegrationAccounts;
-import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentManagedApiOperations;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentManagedApis;
-import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentNetworkHealths;
-import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentSkus;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironments;
 import com.azure.resourcemanager.logic.models.Operations;
-import com.azure.resourcemanager.logic.models.WorkflowRunActionRepetitions;
-import com.azure.resourcemanager.logic.models.WorkflowRunActionRepetitionsRequestHistories;
-import com.azure.resourcemanager.logic.models.WorkflowRunActionRequestHistories;
-import com.azure.resourcemanager.logic.models.WorkflowRunActionScopeRepetitions;
+import com.azure.resourcemanager.logic.models.RequestHistories;
+import com.azure.resourcemanager.logic.models.Templates;
+import com.azure.resourcemanager.logic.models.WorkflowRunActionRepetitionDefinitions;
+import com.azure.resourcemanager.logic.models.WorkflowRunActionRequestHistoriesOperations;
+import com.azure.resourcemanager.logic.models.WorkflowRunActionScopeRepetitionsOperations;
 import com.azure.resourcemanager.logic.models.WorkflowRunActions;
-import com.azure.resourcemanager.logic.models.WorkflowRunOperations;
+import com.azure.resourcemanager.logic.models.WorkflowRunOperationsOperations;
 import com.azure.resourcemanager.logic.models.WorkflowRuns;
+import com.azure.resourcemanager.logic.models.WorkflowRunsOperations;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerHistories;
 import com.azure.resourcemanager.logic.models.WorkflowTriggers;
-import com.azure.resourcemanager.logic.models.WorkflowVersionTriggers;
 import com.azure.resourcemanager.logic.models.WorkflowVersions;
 import com.azure.resourcemanager.logic.models.Workflows;
+import com.azure.resourcemanager.logic.models.WorkflowsOperations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -91,59 +93,59 @@ import java.util.stream.Collectors;
  * REST API for Azure Logic Apps.
  */
 public final class LogicManager {
-    private Workflows workflows;
-
-    private WorkflowVersions workflowVersions;
-
-    private WorkflowTriggers workflowTriggers;
-
-    private WorkflowVersionTriggers workflowVersionTriggers;
-
-    private WorkflowTriggerHistories workflowTriggerHistories;
-
-    private WorkflowRuns workflowRuns;
-
-    private WorkflowRunActions workflowRunActions;
-
-    private WorkflowRunActionRepetitions workflowRunActionRepetitions;
-
-    private WorkflowRunActionRepetitionsRequestHistories workflowRunActionRepetitionsRequestHistories;
-
-    private WorkflowRunActionRequestHistories workflowRunActionRequestHistories;
-
-    private WorkflowRunActionScopeRepetitions workflowRunActionScopeRepetitions;
-
-    private WorkflowRunOperations workflowRunOperations;
+    private Operations operations;
 
     private IntegrationAccounts integrationAccounts;
 
-    private IntegrationAccountAssemblies integrationAccountAssemblies;
+    private IntegrationServiceEnvironments integrationServiceEnvironments;
 
-    private IntegrationAccountBatchConfigurations integrationAccountBatchConfigurations;
+    private IntegrationServiceEnvironmentManagedApis integrationServiceEnvironmentManagedApis;
 
-    private IntegrationAccountSchemas integrationAccountSchemas;
+    private ApiOperations apiOperations;
+
+    private Templates templates;
+
+    private Workflows workflows;
+
+    private IntegrationAccountAgreements integrationAccountAgreements;
+
+    private AssemblyDefinitions assemblyDefinitions;
+
+    private BatchConfigurations batchConfigurations;
+
+    private IntegrationAccountCertificates integrationAccountCertificates;
 
     private IntegrationAccountMaps integrationAccountMaps;
 
     private IntegrationAccountPartners integrationAccountPartners;
 
-    private IntegrationAccountAgreements integrationAccountAgreements;
-
-    private IntegrationAccountCertificates integrationAccountCertificates;
+    private IntegrationAccountSchemas integrationAccountSchemas;
 
     private IntegrationAccountSessions integrationAccountSessions;
 
-    private IntegrationServiceEnvironments integrationServiceEnvironments;
+    private WorkflowsOperations workflowsOperations;
 
-    private IntegrationServiceEnvironmentSkus integrationServiceEnvironmentSkus;
+    private WorkflowRuns workflowRuns;
 
-    private IntegrationServiceEnvironmentNetworkHealths integrationServiceEnvironmentNetworkHealths;
+    private WorkflowRunActions workflowRunActions;
 
-    private IntegrationServiceEnvironmentManagedApis integrationServiceEnvironmentManagedApis;
+    private WorkflowRunActionRepetitionDefinitions workflowRunActionRepetitionDefinitions;
 
-    private IntegrationServiceEnvironmentManagedApiOperations integrationServiceEnvironmentManagedApiOperations;
+    private RequestHistories requestHistories;
 
-    private Operations operations;
+    private WorkflowRunActionRequestHistoriesOperations workflowRunActionRequestHistoriesOperations;
+
+    private WorkflowRunActionScopeRepetitionsOperations workflowRunActionScopeRepetitionsOperations;
+
+    private WorkflowRunOperationsOperations workflowRunOperationsOperations;
+
+    private WorkflowRunsOperations workflowRunsOperations;
+
+    private WorkflowTriggers workflowTriggers;
+
+    private WorkflowTriggerHistories workflowTriggerHistories;
+
+    private WorkflowVersions workflowVersions;
 
     private final LogicManagementClient clientObject;
 
@@ -197,6 +199,9 @@ public final class LogicManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-logic.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -304,12 +309,14 @@ public final class LogicManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.logic")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -356,153 +363,15 @@ public final class LogicManager {
     }
 
     /**
-     * Gets the resource collection API of Workflows. It manages Workflow.
+     * Gets the resource collection API of Operations.
      * 
-     * @return Resource collection API of Workflows.
+     * @return Resource collection API of Operations.
      */
-    public Workflows workflows() {
-        if (this.workflows == null) {
-            this.workflows = new WorkflowsImpl(clientObject.getWorkflows(), this);
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
-        return workflows;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowVersions.
-     * 
-     * @return Resource collection API of WorkflowVersions.
-     */
-    public WorkflowVersions workflowVersions() {
-        if (this.workflowVersions == null) {
-            this.workflowVersions = new WorkflowVersionsImpl(clientObject.getWorkflowVersions(), this);
-        }
-        return workflowVersions;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowTriggers.
-     * 
-     * @return Resource collection API of WorkflowTriggers.
-     */
-    public WorkflowTriggers workflowTriggers() {
-        if (this.workflowTriggers == null) {
-            this.workflowTriggers = new WorkflowTriggersImpl(clientObject.getWorkflowTriggers(), this);
-        }
-        return workflowTriggers;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowVersionTriggers.
-     * 
-     * @return Resource collection API of WorkflowVersionTriggers.
-     */
-    public WorkflowVersionTriggers workflowVersionTriggers() {
-        if (this.workflowVersionTriggers == null) {
-            this.workflowVersionTriggers
-                = new WorkflowVersionTriggersImpl(clientObject.getWorkflowVersionTriggers(), this);
-        }
-        return workflowVersionTriggers;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowTriggerHistories.
-     * 
-     * @return Resource collection API of WorkflowTriggerHistories.
-     */
-    public WorkflowTriggerHistories workflowTriggerHistories() {
-        if (this.workflowTriggerHistories == null) {
-            this.workflowTriggerHistories
-                = new WorkflowTriggerHistoriesImpl(clientObject.getWorkflowTriggerHistories(), this);
-        }
-        return workflowTriggerHistories;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowRuns.
-     * 
-     * @return Resource collection API of WorkflowRuns.
-     */
-    public WorkflowRuns workflowRuns() {
-        if (this.workflowRuns == null) {
-            this.workflowRuns = new WorkflowRunsImpl(clientObject.getWorkflowRuns(), this);
-        }
-        return workflowRuns;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowRunActions.
-     * 
-     * @return Resource collection API of WorkflowRunActions.
-     */
-    public WorkflowRunActions workflowRunActions() {
-        if (this.workflowRunActions == null) {
-            this.workflowRunActions = new WorkflowRunActionsImpl(clientObject.getWorkflowRunActions(), this);
-        }
-        return workflowRunActions;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowRunActionRepetitions.
-     * 
-     * @return Resource collection API of WorkflowRunActionRepetitions.
-     */
-    public WorkflowRunActionRepetitions workflowRunActionRepetitions() {
-        if (this.workflowRunActionRepetitions == null) {
-            this.workflowRunActionRepetitions
-                = new WorkflowRunActionRepetitionsImpl(clientObject.getWorkflowRunActionRepetitions(), this);
-        }
-        return workflowRunActionRepetitions;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowRunActionRepetitionsRequestHistories.
-     * 
-     * @return Resource collection API of WorkflowRunActionRepetitionsRequestHistories.
-     */
-    public WorkflowRunActionRepetitionsRequestHistories workflowRunActionRepetitionsRequestHistories() {
-        if (this.workflowRunActionRepetitionsRequestHistories == null) {
-            this.workflowRunActionRepetitionsRequestHistories = new WorkflowRunActionRepetitionsRequestHistoriesImpl(
-                clientObject.getWorkflowRunActionRepetitionsRequestHistories(), this);
-        }
-        return workflowRunActionRepetitionsRequestHistories;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowRunActionRequestHistories.
-     * 
-     * @return Resource collection API of WorkflowRunActionRequestHistories.
-     */
-    public WorkflowRunActionRequestHistories workflowRunActionRequestHistories() {
-        if (this.workflowRunActionRequestHistories == null) {
-            this.workflowRunActionRequestHistories
-                = new WorkflowRunActionRequestHistoriesImpl(clientObject.getWorkflowRunActionRequestHistories(), this);
-        }
-        return workflowRunActionRequestHistories;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowRunActionScopeRepetitions.
-     * 
-     * @return Resource collection API of WorkflowRunActionScopeRepetitions.
-     */
-    public WorkflowRunActionScopeRepetitions workflowRunActionScopeRepetitions() {
-        if (this.workflowRunActionScopeRepetitions == null) {
-            this.workflowRunActionScopeRepetitions
-                = new WorkflowRunActionScopeRepetitionsImpl(clientObject.getWorkflowRunActionScopeRepetitions(), this);
-        }
-        return workflowRunActionScopeRepetitions;
-    }
-
-    /**
-     * Gets the resource collection API of WorkflowRunOperations.
-     * 
-     * @return Resource collection API of WorkflowRunOperations.
-     */
-    public WorkflowRunOperations workflowRunOperations() {
-        if (this.workflowRunOperations == null) {
-            this.workflowRunOperations = new WorkflowRunOperationsImpl(clientObject.getWorkflowRunOperations(), this);
-        }
-        return workflowRunOperations;
+        return operations;
     }
 
     /**
@@ -518,42 +387,116 @@ public final class LogicManager {
     }
 
     /**
-     * Gets the resource collection API of IntegrationAccountAssemblies. It manages AssemblyDefinition.
+     * Gets the resource collection API of IntegrationServiceEnvironments. It manages IntegrationServiceEnvironment.
      * 
-     * @return Resource collection API of IntegrationAccountAssemblies.
+     * @return Resource collection API of IntegrationServiceEnvironments.
      */
-    public IntegrationAccountAssemblies integrationAccountAssemblies() {
-        if (this.integrationAccountAssemblies == null) {
-            this.integrationAccountAssemblies
-                = new IntegrationAccountAssembliesImpl(clientObject.getIntegrationAccountAssemblies(), this);
+    public IntegrationServiceEnvironments integrationServiceEnvironments() {
+        if (this.integrationServiceEnvironments == null) {
+            this.integrationServiceEnvironments
+                = new IntegrationServiceEnvironmentsImpl(clientObject.getIntegrationServiceEnvironments(), this);
         }
-        return integrationAccountAssemblies;
+        return integrationServiceEnvironments;
     }
 
     /**
-     * Gets the resource collection API of IntegrationAccountBatchConfigurations. It manages BatchConfiguration.
+     * Gets the resource collection API of IntegrationServiceEnvironmentManagedApis. It manages
+     * IntegrationServiceEnvironmentManagedApi.
      * 
-     * @return Resource collection API of IntegrationAccountBatchConfigurations.
+     * @return Resource collection API of IntegrationServiceEnvironmentManagedApis.
      */
-    public IntegrationAccountBatchConfigurations integrationAccountBatchConfigurations() {
-        if (this.integrationAccountBatchConfigurations == null) {
-            this.integrationAccountBatchConfigurations = new IntegrationAccountBatchConfigurationsImpl(
-                clientObject.getIntegrationAccountBatchConfigurations(), this);
+    public IntegrationServiceEnvironmentManagedApis integrationServiceEnvironmentManagedApis() {
+        if (this.integrationServiceEnvironmentManagedApis == null) {
+            this.integrationServiceEnvironmentManagedApis = new IntegrationServiceEnvironmentManagedApisImpl(
+                clientObject.getIntegrationServiceEnvironmentManagedApis(), this);
         }
-        return integrationAccountBatchConfigurations;
+        return integrationServiceEnvironmentManagedApis;
     }
 
     /**
-     * Gets the resource collection API of IntegrationAccountSchemas. It manages IntegrationAccountSchema.
+     * Gets the resource collection API of ApiOperations.
      * 
-     * @return Resource collection API of IntegrationAccountSchemas.
+     * @return Resource collection API of ApiOperations.
      */
-    public IntegrationAccountSchemas integrationAccountSchemas() {
-        if (this.integrationAccountSchemas == null) {
-            this.integrationAccountSchemas
-                = new IntegrationAccountSchemasImpl(clientObject.getIntegrationAccountSchemas(), this);
+    public ApiOperations apiOperations() {
+        if (this.apiOperations == null) {
+            this.apiOperations = new ApiOperationsImpl(clientObject.getApiOperations(), this);
         }
-        return integrationAccountSchemas;
+        return apiOperations;
+    }
+
+    /**
+     * Gets the resource collection API of Templates. It manages Template.
+     * 
+     * @return Resource collection API of Templates.
+     */
+    public Templates templates() {
+        if (this.templates == null) {
+            this.templates = new TemplatesImpl(clientObject.getTemplates(), this);
+        }
+        return templates;
+    }
+
+    /**
+     * Gets the resource collection API of Workflows. It manages Workflow.
+     * 
+     * @return Resource collection API of Workflows.
+     */
+    public Workflows workflows() {
+        if (this.workflows == null) {
+            this.workflows = new WorkflowsImpl(clientObject.getWorkflows(), this);
+        }
+        return workflows;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationAccountAgreements. It manages IntegrationAccountAgreement.
+     * 
+     * @return Resource collection API of IntegrationAccountAgreements.
+     */
+    public IntegrationAccountAgreements integrationAccountAgreements() {
+        if (this.integrationAccountAgreements == null) {
+            this.integrationAccountAgreements
+                = new IntegrationAccountAgreementsImpl(clientObject.getIntegrationAccountAgreements(), this);
+        }
+        return integrationAccountAgreements;
+    }
+
+    /**
+     * Gets the resource collection API of AssemblyDefinitions. It manages AssemblyDefinition.
+     * 
+     * @return Resource collection API of AssemblyDefinitions.
+     */
+    public AssemblyDefinitions assemblyDefinitions() {
+        if (this.assemblyDefinitions == null) {
+            this.assemblyDefinitions = new AssemblyDefinitionsImpl(clientObject.getAssemblyDefinitions(), this);
+        }
+        return assemblyDefinitions;
+    }
+
+    /**
+     * Gets the resource collection API of BatchConfigurations. It manages BatchConfiguration.
+     * 
+     * @return Resource collection API of BatchConfigurations.
+     */
+    public BatchConfigurations batchConfigurations() {
+        if (this.batchConfigurations == null) {
+            this.batchConfigurations = new BatchConfigurationsImpl(clientObject.getBatchConfigurations(), this);
+        }
+        return batchConfigurations;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationAccountCertificates. It manages IntegrationAccountCertificate.
+     * 
+     * @return Resource collection API of IntegrationAccountCertificates.
+     */
+    public IntegrationAccountCertificates integrationAccountCertificates() {
+        if (this.integrationAccountCertificates == null) {
+            this.integrationAccountCertificates
+                = new IntegrationAccountCertificatesImpl(clientObject.getIntegrationAccountCertificates(), this);
+        }
+        return integrationAccountCertificates;
     }
 
     /**
@@ -583,29 +526,16 @@ public final class LogicManager {
     }
 
     /**
-     * Gets the resource collection API of IntegrationAccountAgreements. It manages IntegrationAccountAgreement.
+     * Gets the resource collection API of IntegrationAccountSchemas. It manages IntegrationAccountSchema.
      * 
-     * @return Resource collection API of IntegrationAccountAgreements.
+     * @return Resource collection API of IntegrationAccountSchemas.
      */
-    public IntegrationAccountAgreements integrationAccountAgreements() {
-        if (this.integrationAccountAgreements == null) {
-            this.integrationAccountAgreements
-                = new IntegrationAccountAgreementsImpl(clientObject.getIntegrationAccountAgreements(), this);
+    public IntegrationAccountSchemas integrationAccountSchemas() {
+        if (this.integrationAccountSchemas == null) {
+            this.integrationAccountSchemas
+                = new IntegrationAccountSchemasImpl(clientObject.getIntegrationAccountSchemas(), this);
         }
-        return integrationAccountAgreements;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationAccountCertificates. It manages IntegrationAccountCertificate.
-     * 
-     * @return Resource collection API of IntegrationAccountCertificates.
-     */
-    public IntegrationAccountCertificates integrationAccountCertificates() {
-        if (this.integrationAccountCertificates == null) {
-            this.integrationAccountCertificates
-                = new IntegrationAccountCertificatesImpl(clientObject.getIntegrationAccountCertificates(), this);
-        }
-        return integrationAccountCertificates;
+        return integrationAccountSchemas;
     }
 
     /**
@@ -622,82 +552,153 @@ public final class LogicManager {
     }
 
     /**
-     * Gets the resource collection API of IntegrationServiceEnvironments. It manages IntegrationServiceEnvironment.
+     * Gets the resource collection API of WorkflowsOperations.
      * 
-     * @return Resource collection API of IntegrationServiceEnvironments.
+     * @return Resource collection API of WorkflowsOperations.
      */
-    public IntegrationServiceEnvironments integrationServiceEnvironments() {
-        if (this.integrationServiceEnvironments == null) {
-            this.integrationServiceEnvironments
-                = new IntegrationServiceEnvironmentsImpl(clientObject.getIntegrationServiceEnvironments(), this);
+    public WorkflowsOperations workflowsOperations() {
+        if (this.workflowsOperations == null) {
+            this.workflowsOperations = new WorkflowsOperationsImpl(clientObject.getWorkflowsOperations(), this);
         }
-        return integrationServiceEnvironments;
+        return workflowsOperations;
     }
 
     /**
-     * Gets the resource collection API of IntegrationServiceEnvironmentSkus.
+     * Gets the resource collection API of WorkflowRuns.
      * 
-     * @return Resource collection API of IntegrationServiceEnvironmentSkus.
+     * @return Resource collection API of WorkflowRuns.
      */
-    public IntegrationServiceEnvironmentSkus integrationServiceEnvironmentSkus() {
-        if (this.integrationServiceEnvironmentSkus == null) {
-            this.integrationServiceEnvironmentSkus
-                = new IntegrationServiceEnvironmentSkusImpl(clientObject.getIntegrationServiceEnvironmentSkus(), this);
+    public WorkflowRuns workflowRuns() {
+        if (this.workflowRuns == null) {
+            this.workflowRuns = new WorkflowRunsImpl(clientObject.getWorkflowRuns(), this);
         }
-        return integrationServiceEnvironmentSkus;
+        return workflowRuns;
     }
 
     /**
-     * Gets the resource collection API of IntegrationServiceEnvironmentNetworkHealths.
+     * Gets the resource collection API of WorkflowRunActions.
      * 
-     * @return Resource collection API of IntegrationServiceEnvironmentNetworkHealths.
+     * @return Resource collection API of WorkflowRunActions.
      */
-    public IntegrationServiceEnvironmentNetworkHealths integrationServiceEnvironmentNetworkHealths() {
-        if (this.integrationServiceEnvironmentNetworkHealths == null) {
-            this.integrationServiceEnvironmentNetworkHealths = new IntegrationServiceEnvironmentNetworkHealthsImpl(
-                clientObject.getIntegrationServiceEnvironmentNetworkHealths(), this);
+    public WorkflowRunActions workflowRunActions() {
+        if (this.workflowRunActions == null) {
+            this.workflowRunActions = new WorkflowRunActionsImpl(clientObject.getWorkflowRunActions(), this);
         }
-        return integrationServiceEnvironmentNetworkHealths;
+        return workflowRunActions;
     }
 
     /**
-     * Gets the resource collection API of IntegrationServiceEnvironmentManagedApis. It manages
-     * IntegrationServiceEnvironmentManagedApi.
+     * Gets the resource collection API of WorkflowRunActionRepetitionDefinitions.
      * 
-     * @return Resource collection API of IntegrationServiceEnvironmentManagedApis.
+     * @return Resource collection API of WorkflowRunActionRepetitionDefinitions.
      */
-    public IntegrationServiceEnvironmentManagedApis integrationServiceEnvironmentManagedApis() {
-        if (this.integrationServiceEnvironmentManagedApis == null) {
-            this.integrationServiceEnvironmentManagedApis = new IntegrationServiceEnvironmentManagedApisImpl(
-                clientObject.getIntegrationServiceEnvironmentManagedApis(), this);
+    public WorkflowRunActionRepetitionDefinitions workflowRunActionRepetitionDefinitions() {
+        if (this.workflowRunActionRepetitionDefinitions == null) {
+            this.workflowRunActionRepetitionDefinitions = new WorkflowRunActionRepetitionDefinitionsImpl(
+                clientObject.getWorkflowRunActionRepetitionDefinitions(), this);
         }
-        return integrationServiceEnvironmentManagedApis;
+        return workflowRunActionRepetitionDefinitions;
     }
 
     /**
-     * Gets the resource collection API of IntegrationServiceEnvironmentManagedApiOperations.
+     * Gets the resource collection API of RequestHistories.
      * 
-     * @return Resource collection API of IntegrationServiceEnvironmentManagedApiOperations.
+     * @return Resource collection API of RequestHistories.
      */
-    public IntegrationServiceEnvironmentManagedApiOperations integrationServiceEnvironmentManagedApiOperations() {
-        if (this.integrationServiceEnvironmentManagedApiOperations == null) {
-            this.integrationServiceEnvironmentManagedApiOperations
-                = new IntegrationServiceEnvironmentManagedApiOperationsImpl(
-                    clientObject.getIntegrationServiceEnvironmentManagedApiOperations(), this);
+    public RequestHistories requestHistories() {
+        if (this.requestHistories == null) {
+            this.requestHistories = new RequestHistoriesImpl(clientObject.getRequestHistories(), this);
         }
-        return integrationServiceEnvironmentManagedApiOperations;
+        return requestHistories;
     }
 
     /**
-     * Gets the resource collection API of Operations.
+     * Gets the resource collection API of WorkflowRunActionRequestHistoriesOperations.
      * 
-     * @return Resource collection API of Operations.
+     * @return Resource collection API of WorkflowRunActionRequestHistoriesOperations.
      */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+    public WorkflowRunActionRequestHistoriesOperations workflowRunActionRequestHistoriesOperations() {
+        if (this.workflowRunActionRequestHistoriesOperations == null) {
+            this.workflowRunActionRequestHistoriesOperations = new WorkflowRunActionRequestHistoriesOperationsImpl(
+                clientObject.getWorkflowRunActionRequestHistoriesOperations(), this);
         }
-        return operations;
+        return workflowRunActionRequestHistoriesOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WorkflowRunActionScopeRepetitionsOperations.
+     * 
+     * @return Resource collection API of WorkflowRunActionScopeRepetitionsOperations.
+     */
+    public WorkflowRunActionScopeRepetitionsOperations workflowRunActionScopeRepetitionsOperations() {
+        if (this.workflowRunActionScopeRepetitionsOperations == null) {
+            this.workflowRunActionScopeRepetitionsOperations = new WorkflowRunActionScopeRepetitionsOperationsImpl(
+                clientObject.getWorkflowRunActionScopeRepetitionsOperations(), this);
+        }
+        return workflowRunActionScopeRepetitionsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WorkflowRunOperationsOperations.
+     * 
+     * @return Resource collection API of WorkflowRunOperationsOperations.
+     */
+    public WorkflowRunOperationsOperations workflowRunOperationsOperations() {
+        if (this.workflowRunOperationsOperations == null) {
+            this.workflowRunOperationsOperations
+                = new WorkflowRunOperationsOperationsImpl(clientObject.getWorkflowRunOperationsOperations(), this);
+        }
+        return workflowRunOperationsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WorkflowRunsOperations.
+     * 
+     * @return Resource collection API of WorkflowRunsOperations.
+     */
+    public WorkflowRunsOperations workflowRunsOperations() {
+        if (this.workflowRunsOperations == null) {
+            this.workflowRunsOperations
+                = new WorkflowRunsOperationsImpl(clientObject.getWorkflowRunsOperations(), this);
+        }
+        return workflowRunsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WorkflowTriggers.
+     * 
+     * @return Resource collection API of WorkflowTriggers.
+     */
+    public WorkflowTriggers workflowTriggers() {
+        if (this.workflowTriggers == null) {
+            this.workflowTriggers = new WorkflowTriggersImpl(clientObject.getWorkflowTriggers(), this);
+        }
+        return workflowTriggers;
+    }
+
+    /**
+     * Gets the resource collection API of WorkflowTriggerHistories.
+     * 
+     * @return Resource collection API of WorkflowTriggerHistories.
+     */
+    public WorkflowTriggerHistories workflowTriggerHistories() {
+        if (this.workflowTriggerHistories == null) {
+            this.workflowTriggerHistories
+                = new WorkflowTriggerHistoriesImpl(clientObject.getWorkflowTriggerHistories(), this);
+        }
+        return workflowTriggerHistories;
+    }
+
+    /**
+     * Gets the resource collection API of WorkflowVersions.
+     * 
+     * @return Resource collection API of WorkflowVersions.
+     */
+    public WorkflowVersions workflowVersions() {
+        if (this.workflowVersions == null) {
+            this.workflowVersions = new WorkflowVersionsImpl(clientObject.getWorkflowVersions(), this);
+        }
+        return workflowVersions;
     }
 
     /**

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The operation result definition.
@@ -27,7 +28,7 @@ public class OperationResult extends OperationResultProperties {
     /*
      * Gets the inputs.
      */
-    private Object inputs;
+    private Map<String, Object> inputs;
 
     /*
      * Gets the link to inputs.
@@ -37,7 +38,7 @@ public class OperationResult extends OperationResultProperties {
     /*
      * Gets the outputs.
      */
-    private Object outputs;
+    private Map<String, Object> outputs;
 
     /*
      * Gets the link to outputs.
@@ -47,7 +48,7 @@ public class OperationResult extends OperationResultProperties {
     /*
      * Gets the tracked properties.
      */
-    private Object trackedProperties;
+    private Map<String, Object> trackedProperties;
 
     /*
      * Gets the retry histories.
@@ -55,9 +56,24 @@ public class OperationResult extends OperationResultProperties {
     private List<RetryHistory> retryHistory;
 
     /*
-     * The iterationCount property.
+     * Gets flow run execution mode.
+     */
+    private FlowRunExecutionMode executionMode;
+
+    /*
+     * Indicates whether operation can be resubmitted.
+     */
+    private Boolean canResubmit;
+
+    /*
+     * Gets the iteration count.
      */
     private Integer iterationCount;
+
+    /*
+     * The status of the workflow scope repetition.
+     */
+    private WorkflowStatus status;
 
     /**
      * Creates an instance of OperationResult class.
@@ -90,7 +106,7 @@ public class OperationResult extends OperationResultProperties {
      * 
      * @return the inputs value.
      */
-    public Object inputs() {
+    public Map<String, Object> inputs() {
         return this.inputs;
     }
 
@@ -100,7 +116,7 @@ public class OperationResult extends OperationResultProperties {
      * @param inputs the inputs value to set.
      * @return the OperationResult object itself.
      */
-    OperationResult withInputs(Object inputs) {
+    OperationResult withInputs(Map<String, Object> inputs) {
         this.inputs = inputs;
         return this;
     }
@@ -130,7 +146,7 @@ public class OperationResult extends OperationResultProperties {
      * 
      * @return the outputs value.
      */
-    public Object outputs() {
+    public Map<String, Object> outputs() {
         return this.outputs;
     }
 
@@ -140,7 +156,7 @@ public class OperationResult extends OperationResultProperties {
      * @param outputs the outputs value to set.
      * @return the OperationResult object itself.
      */
-    OperationResult withOutputs(Object outputs) {
+    OperationResult withOutputs(Map<String, Object> outputs) {
         this.outputs = outputs;
         return this;
     }
@@ -170,7 +186,7 @@ public class OperationResult extends OperationResultProperties {
      * 
      * @return the trackedProperties value.
      */
-    public Object trackedProperties() {
+    public Map<String, Object> trackedProperties() {
         return this.trackedProperties;
     }
 
@@ -180,7 +196,7 @@ public class OperationResult extends OperationResultProperties {
      * @param trackedProperties the trackedProperties value to set.
      * @return the OperationResult object itself.
      */
-    OperationResult withTrackedProperties(Object trackedProperties) {
+    OperationResult withTrackedProperties(Map<String, Object> trackedProperties) {
         this.trackedProperties = trackedProperties;
         return this;
     }
@@ -206,7 +222,47 @@ public class OperationResult extends OperationResultProperties {
     }
 
     /**
-     * Get the iterationCount property: The iterationCount property.
+     * Get the executionMode property: Gets flow run execution mode.
+     * 
+     * @return the executionMode value.
+     */
+    public FlowRunExecutionMode executionMode() {
+        return this.executionMode;
+    }
+
+    /**
+     * Set the executionMode property: Gets flow run execution mode.
+     * 
+     * @param executionMode the executionMode value to set.
+     * @return the OperationResult object itself.
+     */
+    public OperationResult withExecutionMode(FlowRunExecutionMode executionMode) {
+        this.executionMode = executionMode;
+        return this;
+    }
+
+    /**
+     * Get the canResubmit property: Indicates whether operation can be resubmitted.
+     * 
+     * @return the canResubmit value.
+     */
+    public Boolean canResubmit() {
+        return this.canResubmit;
+    }
+
+    /**
+     * Set the canResubmit property: Indicates whether operation can be resubmitted.
+     * 
+     * @param canResubmit the canResubmit value to set.
+     * @return the OperationResult object itself.
+     */
+    public OperationResult withCanResubmit(Boolean canResubmit) {
+        this.canResubmit = canResubmit;
+        return this;
+    }
+
+    /**
+     * Get the iterationCount property: Gets the iteration count.
      * 
      * @return the iterationCount value.
      */
@@ -215,7 +271,7 @@ public class OperationResult extends OperationResultProperties {
     }
 
     /**
-     * Set the iterationCount property: The iterationCount property.
+     * Set the iterationCount property: Gets the iteration count.
      * 
      * @param iterationCount the iterationCount value to set.
      * @return the OperationResult object itself.
@@ -223,6 +279,16 @@ public class OperationResult extends OperationResultProperties {
     public OperationResult withIterationCount(Integer iterationCount) {
         this.iterationCount = iterationCount;
         return this;
+    }
+
+    /**
+     * Get the status property: The status of the workflow scope repetition.
+     * 
+     * @return the status value.
+     */
+    @Override
+    public WorkflowStatus status() {
+        return this.status;
     }
 
     /**
@@ -256,15 +322,6 @@ public class OperationResult extends OperationResultProperties {
      * {@inheritDoc}
      */
     @Override
-    public OperationResult withStatus(WorkflowStatus status) {
-        super.withStatus(status);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public OperationResult withCode(String code) {
         super.withCode(code);
         return this;
@@ -274,7 +331,7 @@ public class OperationResult extends OperationResultProperties {
      * {@inheritDoc}
      */
     @Override
-    public OperationResult withError(Object error) {
+    public OperationResult withError(Map<String, Object> error) {
         super.withError(error);
         return this;
     }
@@ -311,10 +368,11 @@ public class OperationResult extends OperationResultProperties {
         jsonWriter.writeStringField("endTime",
             endTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(endTime()));
         jsonWriter.writeJsonField("correlation", correlation());
-        jsonWriter.writeStringField("status", status() == null ? null : status().toString());
         jsonWriter.writeStringField("code", code());
-        jsonWriter.writeUntypedField("error", error());
+        jsonWriter.writeMapField("error", error(), (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeArrayField("retryHistory", this.retryHistory, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("executionMode", this.executionMode == null ? null : this.executionMode.toString());
+        jsonWriter.writeBooleanField("canResubmit", this.canResubmit);
         jsonWriter.writeNumberField("iterationCount", this.iterationCount);
         return jsonWriter.writeEndObject();
     }
@@ -343,26 +401,34 @@ public class OperationResult extends OperationResultProperties {
                 } else if ("correlation".equals(fieldName)) {
                     deserializedOperationResult.withCorrelation(RunActionCorrelation.fromJson(reader));
                 } else if ("status".equals(fieldName)) {
-                    deserializedOperationResult.withStatus(WorkflowStatus.fromString(reader.getString()));
+                    deserializedOperationResult.status = WorkflowStatus.fromString(reader.getString());
                 } else if ("code".equals(fieldName)) {
                     deserializedOperationResult.withCode(reader.getString());
                 } else if ("error".equals(fieldName)) {
-                    deserializedOperationResult.withError(reader.readUntyped());
+                    Map<String, Object> error = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResult.withError(error);
                 } else if ("trackingId".equals(fieldName)) {
                     deserializedOperationResult.trackingId = reader.getString();
                 } else if ("inputs".equals(fieldName)) {
-                    deserializedOperationResult.inputs = reader.readUntyped();
+                    Map<String, Object> inputs = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResult.inputs = inputs;
                 } else if ("inputsLink".equals(fieldName)) {
                     deserializedOperationResult.inputsLink = ContentLink.fromJson(reader);
                 } else if ("outputs".equals(fieldName)) {
-                    deserializedOperationResult.outputs = reader.readUntyped();
+                    Map<String, Object> outputs = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResult.outputs = outputs;
                 } else if ("outputsLink".equals(fieldName)) {
                     deserializedOperationResult.outputsLink = ContentLink.fromJson(reader);
                 } else if ("trackedProperties".equals(fieldName)) {
-                    deserializedOperationResult.trackedProperties = reader.readUntyped();
+                    Map<String, Object> trackedProperties = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResult.trackedProperties = trackedProperties;
                 } else if ("retryHistory".equals(fieldName)) {
                     List<RetryHistory> retryHistory = reader.readArray(reader1 -> RetryHistory.fromJson(reader1));
                     deserializedOperationResult.retryHistory = retryHistory;
+                } else if ("executionMode".equals(fieldName)) {
+                    deserializedOperationResult.executionMode = FlowRunExecutionMode.fromString(reader.getString());
+                } else if ("canResubmit".equals(fieldName)) {
+                    deserializedOperationResult.canResubmit = reader.getNullable(JsonReader::getBoolean);
                 } else if ("iterationCount".equals(fieldName)) {
                     deserializedOperationResult.iterationCount = reader.getNullable(JsonReader::getInt);
                 } else {

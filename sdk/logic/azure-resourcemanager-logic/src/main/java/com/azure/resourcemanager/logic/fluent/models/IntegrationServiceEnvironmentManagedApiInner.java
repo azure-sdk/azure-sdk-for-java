@@ -6,20 +6,12 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.models.ApiResourceBackendService;
-import com.azure.resourcemanager.logic.models.ApiResourceDefinitions;
-import com.azure.resourcemanager.logic.models.ApiResourceGeneralInformation;
-import com.azure.resourcemanager.logic.models.ApiResourceMetadata;
-import com.azure.resourcemanager.logic.models.ApiResourcePolicies;
-import com.azure.resourcemanager.logic.models.ApiTier;
-import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentManagedApiDeploymentParameters;
-import com.azure.resourcemanager.logic.models.ResourceReference;
-import com.azure.resourcemanager.logic.models.WorkflowProvisioningState;
+import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentManagedApiProperties;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,7 +22,12 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
     /*
      * The integration service environment managed api properties.
      */
-    private IntegrationServiceEnvironmentManagedApiProperties innerProperties;
+    private IntegrationServiceEnvironmentManagedApiProperties properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -54,12 +51,33 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
     }
 
     /**
-     * Get the innerProperties property: The integration service environment managed api properties.
+     * Get the properties property: The integration service environment managed api properties.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private IntegrationServiceEnvironmentManagedApiProperties innerProperties() {
-        return this.innerProperties;
+    public IntegrationServiceEnvironmentManagedApiProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The integration service environment managed api properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the IntegrationServiceEnvironmentManagedApiInner object itself.
+     */
+    public IntegrationServiceEnvironmentManagedApiInner
+        withProperties(IntegrationServiceEnvironmentManagedApiProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -111,169 +129,13 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
     }
 
     /**
-     * Get the deploymentParameters property: The integration service environment managed api deployment parameters.
-     * 
-     * @return the deploymentParameters value.
-     */
-    public IntegrationServiceEnvironmentManagedApiDeploymentParameters deploymentParameters() {
-        return this.innerProperties() == null ? null : this.innerProperties().deploymentParameters();
-    }
-
-    /**
-     * Set the deploymentParameters property: The integration service environment managed api deployment parameters.
-     * 
-     * @param deploymentParameters the deploymentParameters value to set.
-     * @return the IntegrationServiceEnvironmentManagedApiInner object itself.
-     */
-    public IntegrationServiceEnvironmentManagedApiInner
-        withDeploymentParameters(IntegrationServiceEnvironmentManagedApiDeploymentParameters deploymentParameters) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationServiceEnvironmentManagedApiProperties();
-        }
-        this.innerProperties().withDeploymentParameters(deploymentParameters);
-        return this;
-    }
-
-    /**
-     * Get the name property: The name.
-     * 
-     * @return the name value.
-     */
-    public String namePropertiesName() {
-        return this.innerProperties() == null ? null : this.innerProperties().name();
-    }
-
-    /**
-     * Get the connectionParameters property: The connection parameters.
-     * 
-     * @return the connectionParameters value.
-     */
-    public Map<String, Object> connectionParameters() {
-        return this.innerProperties() == null ? null : this.innerProperties().connectionParameters();
-    }
-
-    /**
-     * Get the metadata property: The metadata.
-     * 
-     * @return the metadata value.
-     */
-    public ApiResourceMetadata metadata() {
-        return this.innerProperties() == null ? null : this.innerProperties().metadata();
-    }
-
-    /**
-     * Get the runtimeUrls property: The runtime urls.
-     * 
-     * @return the runtimeUrls value.
-     */
-    public List<String> runtimeUrls() {
-        return this.innerProperties() == null ? null : this.innerProperties().runtimeUrls();
-    }
-
-    /**
-     * Get the generalInformation property: The api general information.
-     * 
-     * @return the generalInformation value.
-     */
-    public ApiResourceGeneralInformation generalInformation() {
-        return this.innerProperties() == null ? null : this.innerProperties().generalInformation();
-    }
-
-    /**
-     * Get the capabilities property: The capabilities.
-     * 
-     * @return the capabilities value.
-     */
-    public List<String> capabilities() {
-        return this.innerProperties() == null ? null : this.innerProperties().capabilities();
-    }
-
-    /**
-     * Get the backendService property: The backend service.
-     * 
-     * @return the backendService value.
-     */
-    public ApiResourceBackendService backendService() {
-        return this.innerProperties() == null ? null : this.innerProperties().backendService();
-    }
-
-    /**
-     * Get the policies property: The policies for the API.
-     * 
-     * @return the policies value.
-     */
-    public ApiResourcePolicies policies() {
-        return this.innerProperties() == null ? null : this.innerProperties().policies();
-    }
-
-    /**
-     * Get the apiDefinitionUrl property: The API definition.
-     * 
-     * @return the apiDefinitionUrl value.
-     */
-    public String apiDefinitionUrl() {
-        return this.innerProperties() == null ? null : this.innerProperties().apiDefinitionUrl();
-    }
-
-    /**
-     * Get the apiDefinitions property: The api definitions.
-     * 
-     * @return the apiDefinitions value.
-     */
-    public ApiResourceDefinitions apiDefinitions() {
-        return this.innerProperties() == null ? null : this.innerProperties().apiDefinitions();
-    }
-
-    /**
-     * Get the integrationServiceEnvironment property: The integration service environment reference.
-     * 
-     * @return the integrationServiceEnvironment value.
-     */
-    public ResourceReference integrationServiceEnvironment() {
-        return this.innerProperties() == null ? null : this.innerProperties().integrationServiceEnvironment();
-    }
-
-    /**
-     * Set the integrationServiceEnvironment property: The integration service environment reference.
-     * 
-     * @param integrationServiceEnvironment the integrationServiceEnvironment value to set.
-     * @return the IntegrationServiceEnvironmentManagedApiInner object itself.
-     */
-    public IntegrationServiceEnvironmentManagedApiInner
-        withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationServiceEnvironmentManagedApiProperties();
-        }
-        this.innerProperties().withIntegrationServiceEnvironment(integrationServiceEnvironment);
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    public WorkflowProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the category property: The category.
-     * 
-     * @return the category value.
-     */
-    public ApiTier category() {
-        return this.innerProperties() == null ? null : this.innerProperties().category();
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -285,7 +147,7 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -318,8 +180,10 @@ public final class IntegrationServiceEnvironmentManagedApiInner extends Resource
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedIntegrationServiceEnvironmentManagedApiInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedIntegrationServiceEnvironmentManagedApiInner.innerProperties
+                    deserializedIntegrationServiceEnvironmentManagedApiInner.properties
                         = IntegrationServiceEnvironmentManagedApiProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationServiceEnvironmentManagedApiInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

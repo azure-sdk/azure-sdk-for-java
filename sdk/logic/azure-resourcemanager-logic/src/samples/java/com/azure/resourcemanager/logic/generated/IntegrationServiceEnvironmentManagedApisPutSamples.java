@@ -21,8 +21,8 @@ public final class IntegrationServiceEnvironmentManagedApisPutSamples {
         getsTheIntegrationServiceEnvironmentManagedApis(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationServiceEnvironmentManagedApis()
             .define("servicebus")
-            .withRegion("brazilsouth")
-            .withExistingIntegrationServiceEnvironment("testResourceGroup", "testIntegrationServiceEnvironment")
+            .withRegion((String) null)
+            .withExistingIntegrationServiceEnvironment("testIntegrationServiceEnvironment")
             .create();
     }
 }

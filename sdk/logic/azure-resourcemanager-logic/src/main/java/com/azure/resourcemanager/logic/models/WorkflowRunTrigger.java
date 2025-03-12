@@ -12,6 +12,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The workflow run trigger.
@@ -26,7 +27,7 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
     /*
      * Gets the inputs.
      */
-    private Object inputs;
+    private Map<String, Object> inputs;
 
     /*
      * Gets the link to inputs.
@@ -36,7 +37,7 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
     /*
      * Gets the outputs.
      */
-    private Object outputs;
+    private Map<String, Object> outputs;
 
     /*
      * Gets the link to outputs.
@@ -81,12 +82,12 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
     /*
      * Gets the error.
      */
-    private Object error;
+    private Map<String, Object> error;
 
     /*
      * Gets the tracked properties.
      */
-    private Object trackedProperties;
+    private Map<String, Object> trackedProperties;
 
     /**
      * Creates an instance of WorkflowRunTrigger class.
@@ -108,7 +109,7 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
      * 
      * @return the inputs value.
      */
-    public Object inputs() {
+    public Map<String, Object> inputs() {
         return this.inputs;
     }
 
@@ -126,7 +127,7 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
      * 
      * @return the outputs value.
      */
-    public Object outputs() {
+    public Map<String, Object> outputs() {
         return this.outputs;
     }
 
@@ -218,7 +219,7 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
      * 
      * @return the error value.
      */
-    public Object error() {
+    public Map<String, Object> error() {
         return this.error;
     }
 
@@ -227,7 +228,7 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
      * 
      * @return the trackedProperties value.
      */
-    public Object trackedProperties() {
+    public Map<String, Object> trackedProperties() {
         return this.trackedProperties;
     }
 
@@ -276,11 +277,13 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
                 if ("name".equals(fieldName)) {
                     deserializedWorkflowRunTrigger.name = reader.getString();
                 } else if ("inputs".equals(fieldName)) {
-                    deserializedWorkflowRunTrigger.inputs = reader.readUntyped();
+                    Map<String, Object> inputs = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunTrigger.inputs = inputs;
                 } else if ("inputsLink".equals(fieldName)) {
                     deserializedWorkflowRunTrigger.inputsLink = ContentLink.fromJson(reader);
                 } else if ("outputs".equals(fieldName)) {
-                    deserializedWorkflowRunTrigger.outputs = reader.readUntyped();
+                    Map<String, Object> outputs = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunTrigger.outputs = outputs;
                 } else if ("outputsLink".equals(fieldName)) {
                     deserializedWorkflowRunTrigger.outputsLink = ContentLink.fromJson(reader);
                 } else if ("scheduledTime".equals(fieldName)) {
@@ -301,9 +304,11 @@ public final class WorkflowRunTrigger implements JsonSerializable<WorkflowRunTri
                 } else if ("status".equals(fieldName)) {
                     deserializedWorkflowRunTrigger.status = WorkflowStatus.fromString(reader.getString());
                 } else if ("error".equals(fieldName)) {
-                    deserializedWorkflowRunTrigger.error = reader.readUntyped();
+                    Map<String, Object> error = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunTrigger.error = error;
                 } else if ("trackedProperties".equals(fieldName)) {
-                    deserializedWorkflowRunTrigger.trackedProperties = reader.readUntyped();
+                    Map<String, Object> trackedProperties = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunTrigger.trackedProperties = trackedProperties;
                 } else {
                     reader.skipChildren();
                 }

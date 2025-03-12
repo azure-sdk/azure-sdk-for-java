@@ -4,18 +4,10 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowVersionInner;
-import com.azure.resourcemanager.logic.models.FlowAccessControlConfiguration;
-import com.azure.resourcemanager.logic.models.FlowEndpointsConfiguration;
-import com.azure.resourcemanager.logic.models.ResourceReference;
-import com.azure.resourcemanager.logic.models.Sku;
-import com.azure.resourcemanager.logic.models.WorkflowParameter;
-import com.azure.resourcemanager.logic.models.WorkflowProvisioningState;
-import com.azure.resourcemanager.logic.models.WorkflowState;
 import com.azure.resourcemanager.logic.models.WorkflowVersion;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.Map;
+import com.azure.resourcemanager.logic.models.WorkflowVersionProperties;
 
 public final class WorkflowVersionImpl implements WorkflowVersion {
     private WorkflowVersionInner innerObject;
@@ -39,70 +31,12 @@ public final class WorkflowVersionImpl implements WorkflowVersion {
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
+    public WorkflowVersionProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public WorkflowProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public OffsetDateTime createdTime() {
-        return this.innerModel().createdTime();
-    }
-
-    public OffsetDateTime changedTime() {
-        return this.innerModel().changedTime();
-    }
-
-    public WorkflowState state() {
-        return this.innerModel().state();
-    }
-
-    public String version() {
-        return this.innerModel().version();
-    }
-
-    public String accessEndpoint() {
-        return this.innerModel().accessEndpoint();
-    }
-
-    public FlowEndpointsConfiguration endpointsConfiguration() {
-        return this.innerModel().endpointsConfiguration();
-    }
-
-    public FlowAccessControlConfiguration accessControl() {
-        return this.innerModel().accessControl();
-    }
-
-    public Sku sku() {
-        return this.innerModel().sku();
-    }
-
-    public ResourceReference integrationAccount() {
-        return this.innerModel().integrationAccount();
-    }
-
-    public Object definition() {
-        return this.innerModel().definition();
-    }
-
-    public Map<String, WorkflowParameter> parameters() {
-        Map<String, WorkflowParameter> inner = this.innerModel().parameters();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public WorkflowVersionInner innerModel() {

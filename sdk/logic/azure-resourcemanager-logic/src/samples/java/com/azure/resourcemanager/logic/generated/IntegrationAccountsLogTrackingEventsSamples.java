@@ -4,17 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.logic.models.EventLevel;
-import com.azure.resourcemanager.logic.models.TrackingEvent;
-import com.azure.resourcemanager.logic.models.TrackingEventErrorInfo;
-import com.azure.resourcemanager.logic.models.TrackingEventsDefinition;
-import com.azure.resourcemanager.logic.models.TrackingRecordType;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-
 /**
  * Samples for IntegrationAccounts LogTrackingEvents.
  */
@@ -28,19 +17,9 @@ public final class IntegrationAccountsLogTrackingEventsSamples {
      * 
      * @param manager Entry point to LogicManager.
      */
-    public static void logATrackedEvent(com.azure.resourcemanager.logic.LogicManager manager) throws IOException {
+    public static void logATrackedEvent(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccounts()
-            .logTrackingEventsWithResponse("testResourceGroup", "testIntegrationAccount", new TrackingEventsDefinition()
-                .withSourceType("Microsoft.Logic/workflows")
-                .withEvents(Arrays.asList(new TrackingEvent().withEventLevel(EventLevel.INFORMATIONAL)
-                    .withEventTime(OffsetDateTime.parse("2016-08-05T01:54:49.505567Z"))
-                    .withRecordType(TrackingRecordType.AS2MESSAGE)
-                    .withRecord(SerializerFactory.createDefaultManagementSerializerAdapter()
-                        .deserialize(
-                            "{\"agreementProperties\":{\"agreementName\":\"testAgreement\",\"as2From\":\"testas2from\",\"as2To\":\"testas2to\",\"receiverPartnerName\":\"testPartner2\",\"senderPartnerName\":\"testPartner1\"},\"messageProperties\":{\"IsMessageEncrypted\":false,\"IsMessageSigned\":false,\"correlationMessageId\":\"Unique message identifier\",\"direction\":\"Receive\",\"dispositionType\":\"received-success\",\"fileName\":\"test\",\"isMdnExpected\":true,\"isMessageCompressed\":false,\"isMessageFailed\":false,\"isNrrEnabled\":true,\"mdnType\":\"Async\",\"messageId\":\"12345\"}}",
-                            Object.class, SerializerEncoding.JSON))
-                    .withError(new TrackingEventErrorInfo().withMessage("Some error occurred")
-                        .withCode("fakeTokenPlaceholder")))),
+            .logTrackingEventsWithResponse("testResourceGroup", "testIntegrationAccount", null,
                 com.azure.core.util.Context.NONE);
     }
 }

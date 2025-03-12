@@ -5,37 +5,43 @@
 package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.SubResource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.models.ResourceReference;
-import com.azure.resourcemanager.logic.models.WorkflowState;
-import com.azure.resourcemanager.logic.models.WorkflowStatus;
-import com.azure.resourcemanager.logic.models.WorkflowTriggerProvisioningState;
-import com.azure.resourcemanager.logic.models.WorkflowTriggerRecurrence;
+import com.azure.resourcemanager.logic.models.WorkflowTriggerProperties;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * The workflow trigger.
  */
 @Fluent
-public final class WorkflowTriggerInner extends SubResource {
+public final class WorkflowTriggerInner extends ProxyResource {
     /*
      * The workflow trigger properties.
      */
-    private WorkflowTriggerProperties innerProperties;
+    private WorkflowTriggerProperties properties;
 
     /*
-     * Gets the workflow trigger name.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
      */
     private String name;
 
     /*
-     * Gets the workflow trigger type.
+     * Fully qualified resource Id for the resource.
      */
-    private String type;
+    private String id;
 
     /**
      * Creates an instance of WorkflowTriggerInner class.
@@ -44,120 +50,62 @@ public final class WorkflowTriggerInner extends SubResource {
     }
 
     /**
-     * Get the innerProperties property: The workflow trigger properties.
+     * Get the properties property: The workflow trigger properties.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private WorkflowTriggerProperties innerProperties() {
-        return this.innerProperties;
+    public WorkflowTriggerProperties properties() {
+        return this.properties;
     }
 
     /**
-     * Get the name property: Gets the workflow trigger name.
+     * Set the properties property: The workflow trigger properties.
      * 
-     * @return the name value.
+     * @param properties the properties value to set.
+     * @return the WorkflowTriggerInner object itself.
      */
-    public String name() {
-        return this.name;
+    public WorkflowTriggerInner withProperties(WorkflowTriggerProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
-     * Get the type property: Gets the workflow trigger type.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
      * 
      * @return the type value.
      */
+    @Override
     public String type() {
         return this.type;
     }
 
     /**
-     * {@inheritDoc}
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
      */
     @Override
-    public WorkflowTriggerInner withId(String id) {
-        super.withId(id);
-        return this;
+    public String name() {
+        return this.name;
     }
 
     /**
-     * Get the provisioningState property: Gets the provisioning state.
+     * Get the id property: Fully qualified resource Id for the resource.
      * 
-     * @return the provisioningState value.
+     * @return the id value.
      */
-    public WorkflowTriggerProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the createdTime property: Gets the created time.
-     * 
-     * @return the createdTime value.
-     */
-    public OffsetDateTime createdTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdTime();
-    }
-
-    /**
-     * Get the changedTime property: Gets the changed time.
-     * 
-     * @return the changedTime value.
-     */
-    public OffsetDateTime changedTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().changedTime();
-    }
-
-    /**
-     * Get the state property: Gets the state.
-     * 
-     * @return the state value.
-     */
-    public WorkflowState state() {
-        return this.innerProperties() == null ? null : this.innerProperties().state();
-    }
-
-    /**
-     * Get the status property: Gets the status.
-     * 
-     * @return the status value.
-     */
-    public WorkflowStatus status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
-    }
-
-    /**
-     * Get the lastExecutionTime property: Gets the last execution time.
-     * 
-     * @return the lastExecutionTime value.
-     */
-    public OffsetDateTime lastExecutionTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastExecutionTime();
-    }
-
-    /**
-     * Get the nextExecutionTime property: Gets the next execution time.
-     * 
-     * @return the nextExecutionTime value.
-     */
-    public OffsetDateTime nextExecutionTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().nextExecutionTime();
-    }
-
-    /**
-     * Get the recurrence property: Gets the workflow trigger recurrence.
-     * 
-     * @return the recurrence value.
-     */
-    public WorkflowTriggerRecurrence recurrence() {
-        return this.innerProperties() == null ? null : this.innerProperties().recurrence();
-    }
-
-    /**
-     * Get the workflow property: Gets the reference to workflow.
-     * 
-     * @return the workflow value.
-     */
-    public ResourceReference workflow() {
-        return this.innerProperties() == null ? null : this.innerProperties().workflow();
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -166,8 +114,8 @@ public final class WorkflowTriggerInner extends SubResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -177,8 +125,7 @@ public final class WorkflowTriggerInner extends SubResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("id", id());
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -188,6 +135,7 @@ public final class WorkflowTriggerInner extends SubResource {
      * @param jsonReader The JsonReader being read.
      * @return An instance of WorkflowTriggerInner if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the WorkflowTriggerInner.
      */
     public static WorkflowTriggerInner fromJson(JsonReader jsonReader) throws IOException {
@@ -198,13 +146,15 @@ public final class WorkflowTriggerInner extends SubResource {
                 reader.nextToken();
 
                 if ("id".equals(fieldName)) {
-                    deserializedWorkflowTriggerInner.withId(reader.getString());
-                } else if ("properties".equals(fieldName)) {
-                    deserializedWorkflowTriggerInner.innerProperties = WorkflowTriggerProperties.fromJson(reader);
+                    deserializedWorkflowTriggerInner.id = reader.getString();
                 } else if ("name".equals(fieldName)) {
                     deserializedWorkflowTriggerInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedWorkflowTriggerInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedWorkflowTriggerInner.properties = WorkflowTriggerProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedWorkflowTriggerInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

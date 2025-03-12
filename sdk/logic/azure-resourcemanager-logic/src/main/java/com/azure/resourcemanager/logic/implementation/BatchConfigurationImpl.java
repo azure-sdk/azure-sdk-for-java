@@ -4,13 +4,11 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationInner;
 import com.azure.resourcemanager.logic.models.BatchConfiguration;
 import com.azure.resourcemanager.logic.models.BatchConfigurationProperties;
-import java.util.Collections;
-import java.util.Map;
 
 public final class BatchConfigurationImpl
     implements BatchConfiguration, BatchConfiguration.Definition, BatchConfiguration.Update {
@@ -30,29 +28,12 @@ public final class BatchConfigurationImpl
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
     public BatchConfigurationProperties properties() {
         return this.innerModel().properties();
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {
@@ -82,7 +63,7 @@ public final class BatchConfigurationImpl
 
     public BatchConfiguration create() {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountBatchConfigurations()
+            .getBatchConfigurations()
             .createOrUpdateWithResponse(resourceGroupName, integrationAccountName, batchConfigurationName,
                 this.innerModel(), Context.NONE)
             .getValue();
@@ -91,7 +72,7 @@ public final class BatchConfigurationImpl
 
     public BatchConfiguration create(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountBatchConfigurations()
+            .getBatchConfigurations()
             .createOrUpdateWithResponse(resourceGroupName, integrationAccountName, batchConfigurationName,
                 this.innerModel(), context)
             .getValue();
@@ -110,7 +91,7 @@ public final class BatchConfigurationImpl
 
     public BatchConfiguration apply() {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountBatchConfigurations()
+            .getBatchConfigurations()
             .createOrUpdateWithResponse(resourceGroupName, integrationAccountName, batchConfigurationName,
                 this.innerModel(), Context.NONE)
             .getValue();
@@ -119,7 +100,7 @@ public final class BatchConfigurationImpl
 
     public BatchConfiguration apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountBatchConfigurations()
+            .getBatchConfigurations()
             .createOrUpdateWithResponse(resourceGroupName, integrationAccountName, batchConfigurationName,
                 this.innerModel(), context)
             .getValue();
@@ -139,7 +120,7 @@ public final class BatchConfigurationImpl
 
     public BatchConfiguration refresh() {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountBatchConfigurations()
+            .getBatchConfigurations()
             .getWithResponse(resourceGroupName, integrationAccountName, batchConfigurationName, Context.NONE)
             .getValue();
         return this;
@@ -147,29 +128,14 @@ public final class BatchConfigurationImpl
 
     public BatchConfiguration refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountBatchConfigurations()
+            .getBatchConfigurations()
             .getWithResponse(resourceGroupName, integrationAccountName, batchConfigurationName, context)
             .getValue();
         return this;
     }
 
-    public BatchConfigurationImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public BatchConfigurationImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
     public BatchConfigurationImpl withProperties(BatchConfigurationProperties properties) {
         this.innerModel().withProperties(properties);
-        return this;
-    }
-
-    public BatchConfigurationImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
         return this;
     }
 }

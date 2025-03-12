@@ -4,9 +4,8 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionInner;
-import java.time.OffsetDateTime;
-import java.util.List;
 
 /**
  * An immutable client-side representation of WorkflowRunAction.
@@ -20,95 +19,32 @@ public interface WorkflowRunAction {
     String id();
 
     /**
-     * Gets the name property: Gets the workflow run action name.
+     * Gets the name property: The name of the resource.
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the type property: Gets the workflow run action type.
+     * Gets the type property: The type of the resource.
      * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the startTime property: Gets the start time.
+     * Gets the properties property: The workflow run action properties.
      * 
-     * @return the startTime value.
+     * @return the properties value.
      */
-    OffsetDateTime startTime();
+    WorkflowRunActionProperties properties();
 
     /**
-     * Gets the endTime property: Gets the end time.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the endTime value.
+     * @return the systemData value.
      */
-    OffsetDateTime endTime();
-
-    /**
-     * Gets the status property: Gets the status.
-     * 
-     * @return the status value.
-     */
-    WorkflowStatus status();
-
-    /**
-     * Gets the code property: Gets the code.
-     * 
-     * @return the code value.
-     */
-    String code();
-
-    /**
-     * Gets the error property: Gets the error.
-     * 
-     * @return the error value.
-     */
-    Object error();
-
-    /**
-     * Gets the trackingId property: Gets the tracking id.
-     * 
-     * @return the trackingId value.
-     */
-    String trackingId();
-
-    /**
-     * Gets the correlation property: The correlation properties.
-     * 
-     * @return the correlation value.
-     */
-    RunActionCorrelation correlation();
-
-    /**
-     * Gets the inputsLink property: Gets the link to inputs.
-     * 
-     * @return the inputsLink value.
-     */
-    ContentLink inputsLink();
-
-    /**
-     * Gets the outputsLink property: Gets the link to outputs.
-     * 
-     * @return the outputsLink value.
-     */
-    ContentLink outputsLink();
-
-    /**
-     * Gets the trackedProperties property: Gets the tracked properties.
-     * 
-     * @return the trackedProperties value.
-     */
-    Object trackedProperties();
-
-    /**
-     * Gets the retryHistory property: Gets the retry histories.
-     * 
-     * @return the retryHistory value.
-     */
-    List<RetryHistory> retryHistory();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionInner object.

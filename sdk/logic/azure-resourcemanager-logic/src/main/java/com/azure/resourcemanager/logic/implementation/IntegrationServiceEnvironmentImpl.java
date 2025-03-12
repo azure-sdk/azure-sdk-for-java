@@ -6,12 +6,12 @@ package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentInner;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironment;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentProperties;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentSku;
-import com.azure.resourcemanager.logic.models.ManagedServiceIdentity;
 import java.util.Collections;
 import java.util.Map;
 
@@ -54,8 +54,8 @@ public final class IntegrationServiceEnvironmentImpl implements IntegrationServi
         return this.innerModel().sku();
     }
 
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public Region region() {
@@ -66,10 +66,6 @@ public final class IntegrationServiceEnvironmentImpl implements IntegrationServi
         return this.location();
     }
 
-    public String resourceGroupName() {
-        return resourceGroup;
-    }
-
     public IntegrationServiceEnvironmentInner innerModel() {
         return this.innerObject;
     }
@@ -78,26 +74,19 @@ public final class IntegrationServiceEnvironmentImpl implements IntegrationServi
         return this.serviceManager;
     }
 
-    private String resourceGroup;
-
     private String integrationServiceEnvironmentName;
-
-    public IntegrationServiceEnvironmentImpl withExistingResourceGroup(String resourceGroup) {
-        this.resourceGroup = resourceGroup;
-        return this;
-    }
 
     public IntegrationServiceEnvironment create() {
         this.innerObject = serviceManager.serviceClient()
             .getIntegrationServiceEnvironments()
-            .createOrUpdate(resourceGroup, integrationServiceEnvironmentName, this.innerModel(), Context.NONE);
+            .createOrUpdate(integrationServiceEnvironmentName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public IntegrationServiceEnvironment create(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getIntegrationServiceEnvironments()
-            .createOrUpdate(resourceGroup, integrationServiceEnvironmentName, this.innerModel(), context);
+            .createOrUpdate(integrationServiceEnvironmentName, this.innerModel(), context);
         return this;
     }
 
@@ -114,14 +103,14 @@ public final class IntegrationServiceEnvironmentImpl implements IntegrationServi
     public IntegrationServiceEnvironment apply() {
         this.innerObject = serviceManager.serviceClient()
             .getIntegrationServiceEnvironments()
-            .update(resourceGroup, integrationServiceEnvironmentName, this.innerModel(), Context.NONE);
+            .update(integrationServiceEnvironmentName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public IntegrationServiceEnvironment apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getIntegrationServiceEnvironments()
-            .update(resourceGroup, integrationServiceEnvironmentName, this.innerModel(), context);
+            .update(integrationServiceEnvironmentName, this.innerModel(), context);
         return this;
     }
 
@@ -129,7 +118,6 @@ public final class IntegrationServiceEnvironmentImpl implements IntegrationServi
         com.azure.resourcemanager.logic.LogicManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroup = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
         this.integrationServiceEnvironmentName
             = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "integrationServiceEnvironments");
     }
@@ -137,7 +125,7 @@ public final class IntegrationServiceEnvironmentImpl implements IntegrationServi
     public IntegrationServiceEnvironment refresh() {
         this.innerObject = serviceManager.serviceClient()
             .getIntegrationServiceEnvironments()
-            .getByResourceGroupWithResponse(resourceGroup, integrationServiceEnvironmentName, Context.NONE)
+            .getWithResponse(integrationServiceEnvironmentName, Context.NONE)
             .getValue();
         return this;
     }
@@ -145,18 +133,18 @@ public final class IntegrationServiceEnvironmentImpl implements IntegrationServi
     public IntegrationServiceEnvironment refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getIntegrationServiceEnvironments()
-            .getByResourceGroupWithResponse(resourceGroup, integrationServiceEnvironmentName, context)
+            .getWithResponse(integrationServiceEnvironmentName, context)
             .getValue();
         return this;
     }
 
     public Response<Void> restartWithResponse(Context context) {
         return serviceManager.integrationServiceEnvironments()
-            .restartWithResponse(resourceGroup, integrationServiceEnvironmentName, context);
+            .restartWithResponse(integrationServiceEnvironmentName, context);
     }
 
     public void restart() {
-        serviceManager.integrationServiceEnvironments().restart(resourceGroup, integrationServiceEnvironmentName);
+        serviceManager.integrationServiceEnvironments().restart(integrationServiceEnvironmentName);
     }
 
     public IntegrationServiceEnvironmentImpl withRegion(Region location) {
@@ -181,11 +169,6 @@ public final class IntegrationServiceEnvironmentImpl implements IntegrationServi
 
     public IntegrationServiceEnvironmentImpl withSku(IntegrationServiceEnvironmentSku sku) {
         this.innerModel().withSku(sku);
-        return this;
-    }
-
-    public IntegrationServiceEnvironmentImpl withIdentity(ManagedServiceIdentity identity) {
-        this.innerModel().withIdentity(identity);
         return this;
     }
 }

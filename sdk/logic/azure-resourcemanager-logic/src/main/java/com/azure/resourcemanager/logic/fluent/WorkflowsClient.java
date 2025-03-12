@@ -13,10 +13,12 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerCallbackUrlInner;
+import com.azure.resourcemanager.logic.models.AzureResourceManagerFoundationsArmTagsProperty;
 import com.azure.resourcemanager.logic.models.GenerateUpgradedDefinitionParameters;
 import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
 import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
 import com.azure.resourcemanager.logic.models.WorkflowReference;
+import java.util.Map;
 
 /**
  * An instance of this class provides access to all the operations defined in WorkflowsClient.
@@ -50,7 +52,7 @@ public interface WorkflowsClient {
     /**
      * Gets a list of workflows by resource group.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -62,7 +64,7 @@ public interface WorkflowsClient {
     /**
      * Gets a list of workflows by resource group.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
      * ReferencedResourceId.
@@ -79,7 +81,7 @@ public interface WorkflowsClient {
     /**
      * Gets a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -94,7 +96,7 @@ public interface WorkflowsClient {
     /**
      * Gets a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -107,9 +109,9 @@ public interface WorkflowsClient {
     /**
      * Creates or updates a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param workflow The workflow.
+     * @param resource The workflow.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -118,27 +120,28 @@ public interface WorkflowsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkflowInner> createOrUpdateWithResponse(String resourceGroupName, String workflowName,
-        WorkflowInner workflow, Context context);
+        WorkflowInner resource, Context context);
 
     /**
      * Creates or updates a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param workflow The workflow.
+     * @param resource The workflow.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the workflow type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkflowInner createOrUpdate(String resourceGroupName, String workflowName, WorkflowInner workflow);
+    WorkflowInner createOrUpdate(String resourceGroupName, String workflowName, WorkflowInner resource);
 
     /**
      * Updates a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -146,25 +149,28 @@ public interface WorkflowsClient {
      * @return the workflow type along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkflowInner> updateWithResponse(String resourceGroupName, String workflowName, Context context);
+    Response<WorkflowInner> updateWithResponse(String resourceGroupName, String workflowName,
+        AzureResourceManagerFoundationsArmTagsProperty properties, Context context);
 
     /**
      * Updates a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the workflow type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkflowInner update(String resourceGroupName, String workflowName);
+    WorkflowInner update(String resourceGroupName, String workflowName,
+        AzureResourceManagerFoundationsArmTagsProperty properties);
 
     /**
      * Deletes a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -178,7 +184,7 @@ public interface WorkflowsClient {
     /**
      * Deletes a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -190,7 +196,7 @@ public interface WorkflowsClient {
     /**
      * Disables a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -204,7 +210,7 @@ public interface WorkflowsClient {
     /**
      * Disables a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -216,7 +222,7 @@ public interface WorkflowsClient {
     /**
      * Enables a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -230,7 +236,7 @@ public interface WorkflowsClient {
     /**
      * Enables a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -242,40 +248,40 @@ public interface WorkflowsClient {
     /**
      * Generates the upgraded definition for a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param parameters Parameters for generating an upgraded definition.
+     * @param body Parameters for generating an upgraded definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response}.
+     * @return dictionary of &lt;any&gt; along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Object> generateUpgradedDefinitionWithResponse(String resourceGroupName, String workflowName,
-        GenerateUpgradedDefinitionParameters parameters, Context context);
+    Response<Map<String, Object>> generateUpgradedDefinitionWithResponse(String resourceGroupName, String workflowName,
+        GenerateUpgradedDefinitionParameters body, Context context);
 
     /**
      * Generates the upgraded definition for a workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param parameters Parameters for generating an upgraded definition.
+     * @param body Parameters for generating an upgraded definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return dictionary of &lt;any&gt;.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Object generateUpgradedDefinition(String resourceGroupName, String workflowName,
-        GenerateUpgradedDefinitionParameters parameters);
+    Map<String, Object> generateUpgradedDefinition(String resourceGroupName, String workflowName,
+        GenerateUpgradedDefinitionParameters body);
 
     /**
      * Get the workflow callback Url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param listCallbackUrl Which callback url to list.
+     * @param body Which callback url to list.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -284,14 +290,14 @@ public interface WorkflowsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkflowTriggerCallbackUrlInner> listCallbackUrlWithResponse(String resourceGroupName, String workflowName,
-        GetCallbackUrlParameters listCallbackUrl, Context context);
+        GetCallbackUrlParameters body, Context context);
 
     /**
      * Get the workflow callback Url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param listCallbackUrl Which callback url to list.
+     * @param body Which callback url to list.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -299,12 +305,12 @@ public interface WorkflowsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName,
-        GetCallbackUrlParameters listCallbackUrl);
+        GetCallbackUrlParameters body);
 
     /**
      * Gets an OpenAPI definition for the workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -313,12 +319,13 @@ public interface WorkflowsClient {
      * @return an OpenAPI definition for the workflow along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Object> listSwaggerWithResponse(String resourceGroupName, String workflowName, Context context);
+    Response<Map<String, Object>> listSwaggerWithResponse(String resourceGroupName, String workflowName,
+        Context context);
 
     /**
      * Gets an OpenAPI definition for the workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -326,28 +333,28 @@ public interface WorkflowsClient {
      * @return an OpenAPI definition for the workflow.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Object listSwagger(String resourceGroupName, String workflowName);
+    Map<String, Object> listSwagger(String resourceGroupName, String workflowName);
 
     /**
      * Moves an existing workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param move The workflow to move.
+     * @param body The workflow to move.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginMove(String resourceGroupName, String workflowName, WorkflowReference move);
+    SyncPoller<PollResult<Void>, Void> beginMove(String resourceGroupName, String workflowName, WorkflowReference body);
 
     /**
      * Moves an existing workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param move The workflow to move.
+     * @param body The workflow to move.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -355,42 +362,42 @@ public interface WorkflowsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginMove(String resourceGroupName, String workflowName, WorkflowReference move,
+    SyncPoller<PollResult<Void>, Void> beginMove(String resourceGroupName, String workflowName, WorkflowReference body,
         Context context);
 
     /**
      * Moves an existing workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param move The workflow to move.
+     * @param body The workflow to move.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void move(String resourceGroupName, String workflowName, WorkflowReference move);
+    void move(String resourceGroupName, String workflowName, WorkflowReference body);
 
     /**
      * Moves an existing workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param move The workflow to move.
+     * @param body The workflow to move.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void move(String resourceGroupName, String workflowName, WorkflowReference move, Context context);
+    void move(String resourceGroupName, String workflowName, WorkflowReference body, Context context);
 
     /**
      * Regenerates the callback URL access key for request triggers.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param keyType The access key type.
+     * @param body The access key type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -399,27 +406,27 @@ public interface WorkflowsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> regenerateAccessKeyWithResponse(String resourceGroupName, String workflowName,
-        RegenerateActionParameter keyType, Context context);
+        RegenerateActionParameter body, Context context);
 
     /**
      * Regenerates the callback URL access key for request triggers.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param keyType The access key type.
+     * @param body The access key type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void regenerateAccessKey(String resourceGroupName, String workflowName, RegenerateActionParameter keyType);
+    void regenerateAccessKey(String resourceGroupName, String workflowName, RegenerateActionParameter body);
 
     /**
      * Validates the workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param validate The workflow.
+     * @param body The workflow.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -428,49 +435,18 @@ public interface WorkflowsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> validateByResourceGroupWithResponse(String resourceGroupName, String workflowName,
-        WorkflowInner validate, Context context);
+        WorkflowInner body, Context context);
 
     /**
      * Validates the workflow.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
-     * @param validate The workflow.
+     * @param body The workflow.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void validateByResourceGroup(String resourceGroupName, String workflowName, WorkflowInner validate);
-
-    /**
-     * Validates the workflow definition.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param location The workflow location.
-     * @param workflowName The workflow name.
-     * @param validate The workflow.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> validateByLocationWithResponse(String resourceGroupName, String location, String workflowName,
-        WorkflowInner validate, Context context);
-
-    /**
-     * Validates the workflow definition.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param location The workflow location.
-     * @param workflowName The workflow name.
-     * @param validate The workflow.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void validateByLocation(String resourceGroupName, String location, String workflowName, WorkflowInner validate);
+    void validateByResourceGroup(String resourceGroupName, String workflowName, WorkflowInner body);
 }

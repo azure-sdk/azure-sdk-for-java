@@ -73,10 +73,9 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountPartnerListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("integrationAccountName") String integrationAccountName,
-            @QueryParam("api-version") String apiVersion, @QueryParam("$top") Integer top,
+            @PathParam("integrationAccountName") String integrationAccountName, @QueryParam("$top") Integer top,
             @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -84,45 +83,42 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountPartnerInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("partnerName") String partnerName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("partnerName") String partnerName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/partners/{partnerName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountPartnerInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("partnerName") String partnerName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") IntegrationAccountPartnerInner partner, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("partnerName") String partnerName,
+            @BodyParam("application/json") IntegrationAccountPartnerInner resource,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/partners/{partnerName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("partnerName") String partnerName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("partnerName") String partnerName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/partners/{partnerName}/listContentCallbackUrl")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowTriggerCallbackUrlInner>> listContentCallbackUrl(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("partnerName") String partnerName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") GetCallbackUrlParameters listContentCallbackUrl,
+            @PathParam("partnerName") String partnerName, @BodyParam("application/json") GetCallbackUrlParameters body,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -137,7 +133,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: PartnerType.
@@ -167,9 +163,8 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
                 new IllegalArgumentException("Parameter integrationAccountName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, this.client.getApiVersion(), top, filter, accept, context))
+        return FluxUtil.withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, top, filter, accept, context))
             .<PagedResponse<IntegrationAccountPartnerInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -178,7 +173,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: PartnerType.
@@ -211,8 +206,8 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, integrationAccountName,
-                this.client.getApiVersion(), top, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, integrationAccountName, top, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -220,7 +215,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: PartnerType.
@@ -239,7 +234,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -258,7 +253,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: PartnerType.
@@ -279,7 +274,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -296,7 +291,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: PartnerType.
@@ -315,7 +310,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -346,16 +341,15 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
             return Mono.error(new IllegalArgumentException("Parameter partnerName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, partnerName, this.client.getApiVersion(), accept, context))
+        return FluxUtil.withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, partnerName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @param context The context to associate with this operation.
@@ -388,14 +382,14 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, partnerName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, partnerName, accept, context);
     }
 
     /**
      * Gets an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -413,7 +407,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @param context The context to associate with this operation.
@@ -431,7 +425,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Gets an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -448,10 +442,10 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Creates or updates an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param partner The integration account partner.
+     * @param resource The integration account partner.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -459,7 +453,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IntegrationAccountPartnerInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner partner) {
+        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -479,26 +473,26 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         if (partnerName == null) {
             return Mono.error(new IllegalArgumentException("Parameter partnerName is required and cannot be null."));
         }
-        if (partner == null) {
-            return Mono.error(new IllegalArgumentException("Parameter partner is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            partner.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, partnerName, this.client.getApiVersion(), partner, accept,
-                context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, partnerName, resource,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param partner The integration account partner.
+     * @param resource The integration account partner.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -507,7 +501,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IntegrationAccountPartnerInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner partner, Context context) {
+        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -527,24 +521,25 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         if (partnerName == null) {
             return Mono.error(new IllegalArgumentException("Parameter partnerName is required and cannot be null."));
         }
-        if (partner == null) {
-            return Mono.error(new IllegalArgumentException("Parameter partner is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            partner.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, partnerName, this.client.getApiVersion(), partner, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, partnerName, resource, accept,
+            context);
     }
 
     /**
      * Creates or updates an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param partner The integration account partner.
+     * @param resource The integration account partner.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -552,18 +547,18 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IntegrationAccountPartnerInner> createOrUpdateAsync(String resourceGroupName,
-        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner partner) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, partnerName, partner)
+        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner resource) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, partnerName, resource)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param partner The integration account partner.
+     * @param resource The integration account partner.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -572,18 +567,18 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IntegrationAccountPartnerInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner partner, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, partnerName, partner, context)
-            .block();
+        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, partnerName, resource,
+            context).block();
     }
 
     /**
      * Creates or updates an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param partner The integration account partner.
+     * @param resource The integration account partner.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -591,15 +586,15 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public IntegrationAccountPartnerInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String partnerName, IntegrationAccountPartnerInner partner) {
-        return createOrUpdateWithResponse(resourceGroupName, integrationAccountName, partnerName, partner, Context.NONE)
-            .getValue();
+        String partnerName, IntegrationAccountPartnerInner resource) {
+        return createOrUpdateWithResponse(resourceGroupName, integrationAccountName, partnerName, resource,
+            Context.NONE).getValue();
     }
 
     /**
      * Deletes an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -630,16 +625,15 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
             return Mono.error(new IllegalArgumentException("Parameter partnerName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, partnerName, this.client.getApiVersion(), accept, context))
+        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, partnerName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @param context The context to associate with this operation.
@@ -672,14 +666,14 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, partnerName, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, partnerName, accept, context);
     }
 
     /**
      * Deletes an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -696,7 +690,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Deletes an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @param context The context to associate with this operation.
@@ -714,7 +708,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Deletes an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -729,10 +723,10 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -740,8 +734,7 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkflowTriggerCallbackUrlInner>> listContentCallbackUrlWithResponseAsync(
-        String resourceGroupName, String integrationAccountName, String partnerName,
-        GetCallbackUrlParameters listContentCallbackUrl) {
+        String resourceGroupName, String integrationAccountName, String partnerName, GetCallbackUrlParameters body) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -761,27 +754,26 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         if (partnerName == null) {
             return Mono.error(new IllegalArgumentException("Parameter partnerName is required and cannot be null."));
         }
-        if (listContentCallbackUrl == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter listContentCallbackUrl is required and cannot be null."));
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
-            listContentCallbackUrl.validate();
+            body.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listContentCallbackUrl(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, partnerName,
-                this.client.getApiVersion(), listContentCallbackUrl, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, integrationAccountName,
+                partnerName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -790,8 +782,8 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkflowTriggerCallbackUrlInner>> listContentCallbackUrlWithResponseAsync(
-        String resourceGroupName, String integrationAccountName, String partnerName,
-        GetCallbackUrlParameters listContentCallbackUrl, Context context) {
+        String resourceGroupName, String integrationAccountName, String partnerName, GetCallbackUrlParameters body,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -811,26 +803,25 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
         if (partnerName == null) {
             return Mono.error(new IllegalArgumentException("Parameter partnerName is required and cannot be null."));
         }
-        if (listContentCallbackUrl == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter listContentCallbackUrl is required and cannot be null."));
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
-            listContentCallbackUrl.validate();
+            body.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listContentCallbackUrl(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, integrationAccountName, partnerName, this.client.getApiVersion(), listContentCallbackUrl,
-            accept, context);
+        return service.listContentCallbackUrl(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, partnerName, body, accept,
+            context);
     }
 
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -838,18 +829,18 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlAsync(String resourceGroupName,
-        String integrationAccountName, String partnerName, GetCallbackUrlParameters listContentCallbackUrl) {
-        return listContentCallbackUrlWithResponseAsync(resourceGroupName, integrationAccountName, partnerName,
-            listContentCallbackUrl).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        String integrationAccountName, String partnerName, GetCallbackUrlParameters body) {
+        return listContentCallbackUrlWithResponseAsync(resourceGroupName, integrationAccountName, partnerName, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -858,19 +849,18 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlWithResponse(String resourceGroupName,
-        String integrationAccountName, String partnerName, GetCallbackUrlParameters listContentCallbackUrl,
-        Context context) {
-        return listContentCallbackUrlWithResponseAsync(resourceGroupName, integrationAccountName, partnerName,
-            listContentCallbackUrl, context).block();
+        String integrationAccountName, String partnerName, GetCallbackUrlParameters body, Context context) {
+        return listContentCallbackUrlWithResponseAsync(resourceGroupName, integrationAccountName, partnerName, body,
+            context).block();
     }
 
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -878,9 +868,9 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WorkflowTriggerCallbackUrlInner listContentCallbackUrl(String resourceGroupName,
-        String integrationAccountName, String partnerName, GetCallbackUrlParameters listContentCallbackUrl) {
-        return listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, partnerName,
-            listContentCallbackUrl, Context.NONE).getValue();
+        String integrationAccountName, String partnerName, GetCallbackUrlParameters body) {
+        return listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, partnerName, body,
+            Context.NONE).getValue();
     }
 
     /**
@@ -890,8 +880,8 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of integration account partners along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a IntegrationAccountPartner list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IntegrationAccountPartnerInner>> listNextSinglePageAsync(String nextLink) {
@@ -917,8 +907,8 @@ public final class IntegrationAccountPartnersClientImpl implements IntegrationAc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of integration account partners along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a IntegrationAccountPartner list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IntegrationAccountPartnerInner>> listNextSinglePageAsync(String nextLink,

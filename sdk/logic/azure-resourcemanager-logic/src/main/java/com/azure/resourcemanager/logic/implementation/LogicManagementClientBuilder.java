@@ -20,12 +20,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { LogicManagementClientImpl.class })
 public final class LogicManagementClientBuilder {
     /*
-     * The subscription id.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private String subscriptionId;
 
     /**
-     * Sets The subscription id.
+     * Sets The ID of the target subscription. The value must be an UUID.
      * 
      * @param subscriptionId the subscriptionId value.
      * @return the LogicManagementClientBuilder.

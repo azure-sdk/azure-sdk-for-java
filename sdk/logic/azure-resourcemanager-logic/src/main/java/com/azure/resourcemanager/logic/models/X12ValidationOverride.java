@@ -231,8 +231,8 @@ public final class X12ValidationOverride implements JsonSerializable<X12Validati
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("messageId", this.messageId);
-        jsonWriter.writeBooleanField("validateEDITypes", this.validateEdiTypes);
-        jsonWriter.writeBooleanField("validateXSDTypes", this.validateXsdTypes);
+        jsonWriter.writeBooleanField("validateEdiTypes", this.validateEdiTypes);
+        jsonWriter.writeBooleanField("validateXsdTypes", this.validateXsdTypes);
         jsonWriter.writeBooleanField("allowLeadingAndTrailingSpacesAndZeroes",
             this.allowLeadingAndTrailingSpacesAndZeroes);
         jsonWriter.writeBooleanField("validateCharacterSet", this.validateCharacterSet);
@@ -261,9 +261,9 @@ public final class X12ValidationOverride implements JsonSerializable<X12Validati
 
                 if ("messageId".equals(fieldName)) {
                     deserializedX12ValidationOverride.messageId = reader.getString();
-                } else if ("validateEDITypes".equals(fieldName)) {
+                } else if ("validateEdiTypes".equals(fieldName)) {
                     deserializedX12ValidationOverride.validateEdiTypes = reader.getBoolean();
-                } else if ("validateXSDTypes".equals(fieldName)) {
+                } else if ("validateXsdTypes".equals(fieldName)) {
                     deserializedX12ValidationOverride.validateXsdTypes = reader.getBoolean();
                 } else if ("allowLeadingAndTrailingSpacesAndZeroes".equals(fieldName)) {
                     deserializedX12ValidationOverride.allowLeadingAndTrailingSpacesAndZeroes = reader.getBoolean();

@@ -6,23 +6,17 @@ package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowInner;
-import com.azure.resourcemanager.logic.models.FlowAccessControlConfiguration;
-import com.azure.resourcemanager.logic.models.FlowEndpointsConfiguration;
+import com.azure.resourcemanager.logic.models.AzureResourceManagerFoundationsArmTagsProperty;
 import com.azure.resourcemanager.logic.models.GenerateUpgradedDefinitionParameters;
 import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
-import com.azure.resourcemanager.logic.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
-import com.azure.resourcemanager.logic.models.ResourceReference;
-import com.azure.resourcemanager.logic.models.Sku;
 import com.azure.resourcemanager.logic.models.Workflow;
-import com.azure.resourcemanager.logic.models.WorkflowParameter;
-import com.azure.resourcemanager.logic.models.WorkflowProvisioningState;
+import com.azure.resourcemanager.logic.models.WorkflowProperties;
 import com.azure.resourcemanager.logic.models.WorkflowReference;
-import com.azure.resourcemanager.logic.models.WorkflowState;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerCallbackUrl;
-import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.Map;
 
@@ -56,65 +50,12 @@ public final class WorkflowImpl implements Workflow, Workflow.Definition, Workfl
         }
     }
 
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
+    public WorkflowProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public WorkflowProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public OffsetDateTime createdTime() {
-        return this.innerModel().createdTime();
-    }
-
-    public OffsetDateTime changedTime() {
-        return this.innerModel().changedTime();
-    }
-
-    public WorkflowState state() {
-        return this.innerModel().state();
-    }
-
-    public String version() {
-        return this.innerModel().version();
-    }
-
-    public String accessEndpoint() {
-        return this.innerModel().accessEndpoint();
-    }
-
-    public FlowEndpointsConfiguration endpointsConfiguration() {
-        return this.innerModel().endpointsConfiguration();
-    }
-
-    public FlowAccessControlConfiguration accessControl() {
-        return this.innerModel().accessControl();
-    }
-
-    public Sku sku() {
-        return this.innerModel().sku();
-    }
-
-    public ResourceReference integrationAccount() {
-        return this.innerModel().integrationAccount();
-    }
-
-    public ResourceReference integrationServiceEnvironment() {
-        return this.innerModel().integrationServiceEnvironment();
-    }
-
-    public Object definition() {
-        return this.innerModel().definition();
-    }
-
-    public Map<String, WorkflowParameter> parameters() {
-        Map<String, WorkflowParameter> inner = this.innerModel().parameters();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public Region region() {
@@ -140,6 +81,8 @@ public final class WorkflowImpl implements Workflow, Workflow.Definition, Workfl
     private String resourceGroupName;
 
     private String workflowName;
+
+    private AzureResourceManagerFoundationsArmTagsProperty updateProperties;
 
     public WorkflowImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -169,13 +112,14 @@ public final class WorkflowImpl implements Workflow, Workflow.Definition, Workfl
     }
 
     public WorkflowImpl update() {
+        this.updateProperties = new AzureResourceManagerFoundationsArmTagsProperty();
         return this;
     }
 
     public Workflow apply() {
         this.innerObject = serviceManager.serviceClient()
             .getWorkflows()
-            .createOrUpdateWithResponse(resourceGroupName, workflowName, this.innerModel(), Context.NONE)
+            .updateWithResponse(resourceGroupName, workflowName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
@@ -183,7 +127,7 @@ public final class WorkflowImpl implements Workflow, Workflow.Definition, Workfl
     public Workflow apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getWorkflows()
-            .createOrUpdateWithResponse(resourceGroupName, workflowName, this.innerModel(), context)
+            .updateWithResponse(resourceGroupName, workflowName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -227,58 +171,57 @@ public final class WorkflowImpl implements Workflow, Workflow.Definition, Workfl
         serviceManager.workflows().enable(resourceGroupName, workflowName);
     }
 
-    public Response<Object> generateUpgradedDefinitionWithResponse(GenerateUpgradedDefinitionParameters parameters,
-        Context context) {
+    public Response<Map<String, Object>>
+        generateUpgradedDefinitionWithResponse(GenerateUpgradedDefinitionParameters body, Context context) {
         return serviceManager.workflows()
-            .generateUpgradedDefinitionWithResponse(resourceGroupName, workflowName, parameters, context);
+            .generateUpgradedDefinitionWithResponse(resourceGroupName, workflowName, body, context);
     }
 
-    public Object generateUpgradedDefinition(GenerateUpgradedDefinitionParameters parameters) {
-        return serviceManager.workflows().generateUpgradedDefinition(resourceGroupName, workflowName, parameters);
+    public Map<String, Object> generateUpgradedDefinition(GenerateUpgradedDefinitionParameters body) {
+        return serviceManager.workflows().generateUpgradedDefinition(resourceGroupName, workflowName, body);
     }
 
-    public Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(GetCallbackUrlParameters listCallbackUrl,
+    public Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(GetCallbackUrlParameters body,
         Context context) {
-        return serviceManager.workflows()
-            .listCallbackUrlWithResponse(resourceGroupName, workflowName, listCallbackUrl, context);
+        return serviceManager.workflows().listCallbackUrlWithResponse(resourceGroupName, workflowName, body, context);
     }
 
-    public WorkflowTriggerCallbackUrl listCallbackUrl(GetCallbackUrlParameters listCallbackUrl) {
-        return serviceManager.workflows().listCallbackUrl(resourceGroupName, workflowName, listCallbackUrl);
+    public WorkflowTriggerCallbackUrl listCallbackUrl(GetCallbackUrlParameters body) {
+        return serviceManager.workflows().listCallbackUrl(resourceGroupName, workflowName, body);
     }
 
-    public Response<Object> listSwaggerWithResponse(Context context) {
+    public Response<Map<String, Object>> listSwaggerWithResponse(Context context) {
         return serviceManager.workflows().listSwaggerWithResponse(resourceGroupName, workflowName, context);
     }
 
-    public Object listSwagger() {
+    public Map<String, Object> listSwagger() {
         return serviceManager.workflows().listSwagger(resourceGroupName, workflowName);
     }
 
-    public void move(WorkflowReference move) {
-        serviceManager.workflows().move(resourceGroupName, workflowName, move);
+    public void move(WorkflowReference body) {
+        serviceManager.workflows().move(resourceGroupName, workflowName, body);
     }
 
-    public void move(WorkflowReference move, Context context) {
-        serviceManager.workflows().move(resourceGroupName, workflowName, move, context);
+    public void move(WorkflowReference body, Context context) {
+        serviceManager.workflows().move(resourceGroupName, workflowName, body, context);
     }
 
-    public Response<Void> regenerateAccessKeyWithResponse(RegenerateActionParameter keyType, Context context) {
+    public Response<Void> regenerateAccessKeyWithResponse(RegenerateActionParameter body, Context context) {
         return serviceManager.workflows()
-            .regenerateAccessKeyWithResponse(resourceGroupName, workflowName, keyType, context);
+            .regenerateAccessKeyWithResponse(resourceGroupName, workflowName, body, context);
     }
 
-    public void regenerateAccessKey(RegenerateActionParameter keyType) {
-        serviceManager.workflows().regenerateAccessKey(resourceGroupName, workflowName, keyType);
+    public void regenerateAccessKey(RegenerateActionParameter body) {
+        serviceManager.workflows().regenerateAccessKey(resourceGroupName, workflowName, body);
     }
 
-    public Response<Void> validateByResourceGroupWithResponse(WorkflowInner validate, Context context) {
+    public Response<Void> validateByResourceGroupWithResponse(WorkflowInner body, Context context) {
         return serviceManager.workflows()
-            .validateByResourceGroupWithResponse(resourceGroupName, workflowName, validate, context);
+            .validateByResourceGroupWithResponse(resourceGroupName, workflowName, body, context);
     }
 
-    public void validateByResourceGroup(WorkflowInner validate) {
-        serviceManager.workflows().validateByResourceGroup(resourceGroupName, workflowName, validate);
+    public void validateByResourceGroup(WorkflowInner body) {
+        serviceManager.workflows().validateByResourceGroup(resourceGroupName, workflowName, body);
     }
 
     public WorkflowImpl withRegion(Region location) {
@@ -292,47 +235,21 @@ public final class WorkflowImpl implements Workflow, Workflow.Definition, Workfl
     }
 
     public WorkflowImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateProperties.withTags(tags);
+            return this;
+        }
+    }
+
+    public WorkflowImpl withProperties(WorkflowProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 
-    public WorkflowImpl withIdentity(ManagedServiceIdentity identity) {
-        this.innerModel().withIdentity(identity);
-        return this;
-    }
-
-    public WorkflowImpl withState(WorkflowState state) {
-        this.innerModel().withState(state);
-        return this;
-    }
-
-    public WorkflowImpl withEndpointsConfiguration(FlowEndpointsConfiguration endpointsConfiguration) {
-        this.innerModel().withEndpointsConfiguration(endpointsConfiguration);
-        return this;
-    }
-
-    public WorkflowImpl withAccessControl(FlowAccessControlConfiguration accessControl) {
-        this.innerModel().withAccessControl(accessControl);
-        return this;
-    }
-
-    public WorkflowImpl withIntegrationAccount(ResourceReference integrationAccount) {
-        this.innerModel().withIntegrationAccount(integrationAccount);
-        return this;
-    }
-
-    public WorkflowImpl withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment) {
-        this.innerModel().withIntegrationServiceEnvironment(integrationServiceEnvironment);
-        return this;
-    }
-
-    public WorkflowImpl withDefinition(Object definition) {
-        this.innerModel().withDefinition(definition);
-        return this;
-    }
-
-    public WorkflowImpl withParameters(Map<String, WorkflowParameter> parameters) {
-        this.innerModel().withParameters(parameters);
-        return this;
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

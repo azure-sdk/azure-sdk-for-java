@@ -88,7 +88,7 @@ public final class WsdlService implements JsonSerializable<WsdlService> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("qualifiedName", this.qualifiedName);
-        jsonWriter.writeArrayField("EndpointQualifiedNames", this.endpointQualifiedNames,
+        jsonWriter.writeArrayField("endpointQualifiedNames", this.endpointQualifiedNames,
             (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
@@ -110,7 +110,7 @@ public final class WsdlService implements JsonSerializable<WsdlService> {
 
                 if ("qualifiedName".equals(fieldName)) {
                     deserializedWsdlService.qualifiedName = reader.getString();
-                } else if ("EndpointQualifiedNames".equals(fieldName)) {
+                } else if ("endpointQualifiedNames".equals(fieldName)) {
                     List<String> endpointQualifiedNames = reader.readArray(reader1 -> reader1.getString());
                     deserializedWsdlService.endpointQualifiedNames = endpointQualifiedNames;
                 } else {

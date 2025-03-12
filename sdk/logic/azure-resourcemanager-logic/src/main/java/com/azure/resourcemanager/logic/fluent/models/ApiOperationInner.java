@@ -5,23 +5,28 @@
 package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.logic.models.ApiOperationPropertiesDefinition;
 import java.io.IOException;
-import java.util.Map;
 
 /**
- * The api operation.
+ * The integration service environment managed api's api operations.
  */
 @Fluent
-public final class ApiOperationInner extends Resource {
+public final class ApiOperationInner extends ProxyResource {
     /*
-     * The api operations properties
+     * The resource-specific properties for this resource.
      */
     private ApiOperationPropertiesDefinition properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -45,7 +50,7 @@ public final class ApiOperationInner extends Resource {
     }
 
     /**
-     * Get the properties property: The api operations properties.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -54,7 +59,7 @@ public final class ApiOperationInner extends Resource {
     }
 
     /**
-     * Set the properties property: The api operations properties.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the ApiOperationInner object itself.
@@ -62,6 +67,15 @@ public final class ApiOperationInner extends Resource {
     public ApiOperationInner withProperties(ApiOperationPropertiesDefinition properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -95,24 +109,6 @@ public final class ApiOperationInner extends Resource {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ApiOperationInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ApiOperationInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -129,8 +125,6 @@ public final class ApiOperationInner extends Resource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("location", location());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
@@ -157,13 +151,10 @@ public final class ApiOperationInner extends Resource {
                     deserializedApiOperationInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedApiOperationInner.type = reader.getString();
-                } else if ("location".equals(fieldName)) {
-                    deserializedApiOperationInner.withLocation(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedApiOperationInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     deserializedApiOperationInner.properties = ApiOperationPropertiesDefinition.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedApiOperationInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * The swagger custom dynamic tree parameter.
@@ -25,7 +26,7 @@ public final class SwaggerCustomDynamicTreeParameter implements JsonSerializable
     /*
      * The parameter value.
      */
-    private Object value;
+    private Map<String, Object> value;
 
     /*
      * The parameter reference.
@@ -70,7 +71,7 @@ public final class SwaggerCustomDynamicTreeParameter implements JsonSerializable
      * 
      * @return the value value.
      */
-    public Object value() {
+    public Map<String, Object> value() {
         return this.value;
     }
 
@@ -80,7 +81,7 @@ public final class SwaggerCustomDynamicTreeParameter implements JsonSerializable
      * @param value the value value to set.
      * @return the SwaggerCustomDynamicTreeParameter object itself.
      */
-    public SwaggerCustomDynamicTreeParameter withValue(Object value) {
+    public SwaggerCustomDynamicTreeParameter withValue(Map<String, Object> value) {
         this.value = value;
         return this;
     }
@@ -140,7 +141,7 @@ public final class SwaggerCustomDynamicTreeParameter implements JsonSerializable
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("selectedItemValuePath", this.selectedItemValuePath);
-        jsonWriter.writeUntypedField("value", this.value);
+        jsonWriter.writeMapField("value", this.value, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("parameterReference", this.parameterReference);
         jsonWriter.writeBooleanField("required", this.required);
         return jsonWriter.writeEndObject();
@@ -165,7 +166,8 @@ public final class SwaggerCustomDynamicTreeParameter implements JsonSerializable
                 if ("selectedItemValuePath".equals(fieldName)) {
                     deserializedSwaggerCustomDynamicTreeParameter.selectedItemValuePath = reader.getString();
                 } else if ("value".equals(fieldName)) {
-                    deserializedSwaggerCustomDynamicTreeParameter.value = reader.readUntyped();
+                    Map<String, Object> value = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedSwaggerCustomDynamicTreeParameter.value = value;
                 } else if ("parameterReference".equals(fieldName)) {
                     deserializedSwaggerCustomDynamicTreeParameter.parameterReference = reader.getString();
                 } else if ("required".equals(fieldName)) {

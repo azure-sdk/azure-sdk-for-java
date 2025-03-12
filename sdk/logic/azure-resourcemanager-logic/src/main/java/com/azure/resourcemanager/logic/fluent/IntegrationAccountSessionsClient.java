@@ -18,7 +18,7 @@ public interface IntegrationAccountSessionsClient {
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -31,7 +31,7 @@ public interface IntegrationAccountSessionsClient {
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: ChangedTime.
@@ -48,7 +48,7 @@ public interface IntegrationAccountSessionsClient {
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @param context The context to associate with this operation.
@@ -64,7 +64,7 @@ public interface IntegrationAccountSessionsClient {
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -78,10 +78,10 @@ public interface IntegrationAccountSessionsClient {
     /**
      * Creates or updates an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
-     * @param session The integration account session.
+     * @param resource The integration account session.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -90,15 +90,15 @@ public interface IntegrationAccountSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IntegrationAccountSessionInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String sessionName, IntegrationAccountSessionInner session, Context context);
+        String integrationAccountName, String sessionName, IntegrationAccountSessionInner resource, Context context);
 
     /**
      * Creates or updates an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
-     * @param session The integration account session.
+     * @param resource The integration account session.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -106,12 +106,12 @@ public interface IntegrationAccountSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IntegrationAccountSessionInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String sessionName, IntegrationAccountSessionInner session);
+        String sessionName, IntegrationAccountSessionInner resource);
 
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @param context The context to associate with this operation.
@@ -127,7 +127,7 @@ public interface IntegrationAccountSessionsClient {
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

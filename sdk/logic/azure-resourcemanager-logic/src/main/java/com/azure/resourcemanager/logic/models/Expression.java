@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The expression.
@@ -23,9 +24,9 @@ public class Expression implements JsonSerializable<Expression> {
     private String text;
 
     /*
-     * Anything
+     * The expression value
      */
-    private Object value;
+    private Map<String, Object> value;
 
     /*
      * The sub expressions.
@@ -64,21 +65,21 @@ public class Expression implements JsonSerializable<Expression> {
     }
 
     /**
-     * Get the value property: Anything.
+     * Get the value property: The expression value.
      * 
      * @return the value value.
      */
-    public Object value() {
+    public Map<String, Object> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: Anything.
+     * Set the value property: The expression value.
      * 
      * @param value the value value to set.
      * @return the Expression object itself.
      */
-    public Expression withValue(Object value) {
+    public Expression withValue(Map<String, Object> value) {
         this.value = value;
         return this;
     }
@@ -144,7 +145,7 @@ public class Expression implements JsonSerializable<Expression> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("text", this.text);
-        jsonWriter.writeUntypedField("value", this.value);
+        jsonWriter.writeMapField("value", this.value, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeArrayField("subexpressions", this.subexpressions,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("error", this.error);
@@ -169,7 +170,8 @@ public class Expression implements JsonSerializable<Expression> {
                 if ("text".equals(fieldName)) {
                     deserializedExpression.text = reader.getString();
                 } else if ("value".equals(fieldName)) {
-                    deserializedExpression.value = reader.readUntyped();
+                    Map<String, Object> value = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedExpression.value = value;
                 } else if ("subexpressions".equals(fieldName)) {
                     List<Expression> subexpressions = reader.readArray(reader1 -> Expression.fromJson(reader1));
                     deserializedExpression.subexpressions = subexpressions;

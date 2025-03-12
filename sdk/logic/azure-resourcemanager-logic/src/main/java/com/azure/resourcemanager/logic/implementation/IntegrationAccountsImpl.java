@@ -12,12 +12,12 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountsClient;
 import com.azure.resourcemanager.logic.fluent.models.CallbackUrlInner;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountInner;
-import com.azure.resourcemanager.logic.fluent.models.KeyVaultKeyInner;
+import com.azure.resourcemanager.logic.fluent.models.KeyVaultKeyCollectionInner;
 import com.azure.resourcemanager.logic.models.CallbackUrl;
 import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
 import com.azure.resourcemanager.logic.models.IntegrationAccount;
 import com.azure.resourcemanager.logic.models.IntegrationAccounts;
-import com.azure.resourcemanager.logic.models.KeyVaultKey;
+import com.azure.resourcemanager.logic.models.KeyVaultKeyCollection;
 import com.azure.resourcemanager.logic.models.ListKeyVaultKeysDefinition;
 import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
 import com.azure.resourcemanager.logic.models.TrackingEventsDefinition;
@@ -89,9 +89,9 @@ public final class IntegrationAccountsImpl implements IntegrationAccounts {
     }
 
     public Response<CallbackUrl> listCallbackUrlWithResponse(String resourceGroupName, String integrationAccountName,
-        GetCallbackUrlParameters parameters, Context context) {
+        GetCallbackUrlParameters body, Context context) {
         Response<CallbackUrlInner> inner = this.serviceClient()
-            .listCallbackUrlWithResponse(resourceGroupName, integrationAccountName, parameters, context);
+            .listCallbackUrlWithResponse(resourceGroupName, integrationAccountName, body, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CallbackUrlImpl(inner.getValue(), this.manager()));
@@ -101,9 +101,8 @@ public final class IntegrationAccountsImpl implements IntegrationAccounts {
     }
 
     public CallbackUrl listCallbackUrl(String resourceGroupName, String integrationAccountName,
-        GetCallbackUrlParameters parameters) {
-        CallbackUrlInner inner
-            = this.serviceClient().listCallbackUrl(resourceGroupName, integrationAccountName, parameters);
+        GetCallbackUrlParameters body) {
+        CallbackUrlInner inner = this.serviceClient().listCallbackUrl(resourceGroupName, integrationAccountName, body);
         if (inner != null) {
             return new CallbackUrlImpl(inner, this.manager());
         } else {
@@ -111,35 +110,44 @@ public final class IntegrationAccountsImpl implements IntegrationAccounts {
         }
     }
 
-    public PagedIterable<KeyVaultKey> listKeyVaultKeys(String resourceGroupName, String integrationAccountName,
-        ListKeyVaultKeysDefinition listKeyVaultKeys) {
-        PagedIterable<KeyVaultKeyInner> inner
-            = this.serviceClient().listKeyVaultKeys(resourceGroupName, integrationAccountName, listKeyVaultKeys);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new KeyVaultKeyImpl(inner1, this.manager()));
+    public Response<KeyVaultKeyCollection> listKeyVaultKeysWithResponse(String resourceGroupName,
+        String integrationAccountName, ListKeyVaultKeysDefinition body, Context context) {
+        Response<KeyVaultKeyCollectionInner> inner = this.serviceClient()
+            .listKeyVaultKeysWithResponse(resourceGroupName, integrationAccountName, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new KeyVaultKeyCollectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<KeyVaultKey> listKeyVaultKeys(String resourceGroupName, String integrationAccountName,
-        ListKeyVaultKeysDefinition listKeyVaultKeys, Context context) {
-        PagedIterable<KeyVaultKeyInner> inner = this.serviceClient()
-            .listKeyVaultKeys(resourceGroupName, integrationAccountName, listKeyVaultKeys, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new KeyVaultKeyImpl(inner1, this.manager()));
+    public KeyVaultKeyCollection listKeyVaultKeys(String resourceGroupName, String integrationAccountName,
+        ListKeyVaultKeysDefinition body) {
+        KeyVaultKeyCollectionInner inner
+            = this.serviceClient().listKeyVaultKeys(resourceGroupName, integrationAccountName, body);
+        if (inner != null) {
+            return new KeyVaultKeyCollectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> logTrackingEventsWithResponse(String resourceGroupName, String integrationAccountName,
-        TrackingEventsDefinition logTrackingEvents, Context context) {
+        TrackingEventsDefinition body, Context context) {
         return this.serviceClient()
-            .logTrackingEventsWithResponse(resourceGroupName, integrationAccountName, logTrackingEvents, context);
+            .logTrackingEventsWithResponse(resourceGroupName, integrationAccountName, body, context);
     }
 
     public void logTrackingEvents(String resourceGroupName, String integrationAccountName,
-        TrackingEventsDefinition logTrackingEvents) {
-        this.serviceClient().logTrackingEvents(resourceGroupName, integrationAccountName, logTrackingEvents);
+        TrackingEventsDefinition body) {
+        this.serviceClient().logTrackingEvents(resourceGroupName, integrationAccountName, body);
     }
 
     public Response<IntegrationAccount> regenerateAccessKeyWithResponse(String resourceGroupName,
-        String integrationAccountName, RegenerateActionParameter regenerateAccessKey, Context context) {
+        String integrationAccountName, RegenerateActionParameter body, Context context) {
         Response<IntegrationAccountInner> inner = this.serviceClient()
-            .regenerateAccessKeyWithResponse(resourceGroupName, integrationAccountName, regenerateAccessKey, context);
+            .regenerateAccessKeyWithResponse(resourceGroupName, integrationAccountName, body, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new IntegrationAccountImpl(inner.getValue(), this.manager()));
@@ -149,9 +157,9 @@ public final class IntegrationAccountsImpl implements IntegrationAccounts {
     }
 
     public IntegrationAccount regenerateAccessKey(String resourceGroupName, String integrationAccountName,
-        RegenerateActionParameter regenerateAccessKey) {
+        RegenerateActionParameter body) {
         IntegrationAccountInner inner
-            = this.serviceClient().regenerateAccessKey(resourceGroupName, integrationAccountName, regenerateAccessKey);
+            = this.serviceClient().regenerateAccessKey(resourceGroupName, integrationAccountName, body);
         if (inner != null) {
             return new IntegrationAccountImpl(inner, this.manager());
         } else {

@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * The artifact properties definition.
@@ -30,9 +31,9 @@ public class ArtifactProperties implements JsonSerializable<ArtifactProperties> 
     private OffsetDateTime changedTime;
 
     /*
-     * Anything
+     * The metadata
      */
-    private Object metadata;
+    private Map<String, Object> metadata;
 
     /**
      * Creates an instance of ArtifactProperties class.
@@ -81,21 +82,21 @@ public class ArtifactProperties implements JsonSerializable<ArtifactProperties> 
     }
 
     /**
-     * Get the metadata property: Anything.
+     * Get the metadata property: The metadata.
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.metadata;
     }
 
     /**
-     * Set the metadata property: Anything.
+     * Set the metadata property: The metadata.
      * 
      * @param metadata the metadata value to set.
      * @return the ArtifactProperties object itself.
      */
-    public ArtifactProperties withMetadata(Object metadata) {
+    public ArtifactProperties withMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
         return this;
     }
@@ -118,7 +119,7 @@ public class ArtifactProperties implements JsonSerializable<ArtifactProperties> 
             this.createdTime == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.createdTime));
         jsonWriter.writeStringField("changedTime",
             this.changedTime == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.changedTime));
-        jsonWriter.writeUntypedField("metadata", this.metadata);
+        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -144,7 +145,8 @@ public class ArtifactProperties implements JsonSerializable<ArtifactProperties> 
                     deserializedArtifactProperties.changedTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedArtifactProperties.metadata = reader.readUntyped();
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedArtifactProperties.metadata = metadata;
                 } else {
                     reader.skipChildren();
                 }

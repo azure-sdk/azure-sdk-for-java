@@ -10,7 +10,10 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.logic.fluent.WorkflowVersionsClient;
+import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerCallbackUrlInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowVersionInner;
+import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
+import com.azure.resourcemanager.logic.models.WorkflowTriggerCallbackUrl;
 import com.azure.resourcemanager.logic.models.WorkflowVersion;
 import com.azure.resourcemanager.logic.models.WorkflowVersions;
 
@@ -55,6 +58,30 @@ public final class WorkflowVersionsImpl implements WorkflowVersions {
         WorkflowVersionInner inner = this.serviceClient().get(resourceGroupName, workflowName, versionId);
         if (inner != null) {
             return new WorkflowVersionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(String resourceGroupName,
+        String workflowName, String versionId, String triggerName, GetCallbackUrlParameters parameters,
+        Context context) {
+        Response<WorkflowTriggerCallbackUrlInner> inner = this.serviceClient()
+            .listCallbackUrlWithResponse(resourceGroupName, workflowName, versionId, triggerName, parameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new WorkflowTriggerCallbackUrlImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public WorkflowTriggerCallbackUrl listCallbackUrl(String resourceGroupName, String workflowName, String versionId,
+        String triggerName) {
+        WorkflowTriggerCallbackUrlInner inner
+            = this.serviceClient().listCallbackUrl(resourceGroupName, workflowName, versionId, triggerName);
+        if (inner != null) {
+            return new WorkflowTriggerCallbackUrlImpl(inner, this.manager());
         } else {
             return null;
         }

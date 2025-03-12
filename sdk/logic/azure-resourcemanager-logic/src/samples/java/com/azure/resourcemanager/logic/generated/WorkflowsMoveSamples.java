@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.WorkflowReference;
-
 /**
  * Samples for Workflows Move.
  */
@@ -20,9 +18,6 @@ public final class WorkflowsMoveSamples {
      * @param manager Entry point to LogicManager.
      */
     public static void moveAWorkflow(com.azure.resourcemanager.logic.LogicManager manager) {
-        manager.workflows()
-            .move("testResourceGroup", "testWorkflow", new WorkflowReference().withId(
-                "subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/newResourceGroup/providers/Microsoft.Logic/workflows/newWorkflowName"),
-                com.azure.core.util.Context.NONE);
+        manager.workflows().move("testResourceGroup", "testWorkflow", null, com.azure.core.util.Context.NONE);
     }
 }

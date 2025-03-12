@@ -6,9 +6,9 @@ package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowInner;
-import java.time.OffsetDateTime;
 import java.util.Map;
 
 /**
@@ -51,102 +51,18 @@ public interface Workflow {
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: Managed service identity properties.
+     * Gets the properties property: The workflow properties.
      * 
-     * @return the identity value.
+     * @return the properties value.
      */
-    ManagedServiceIdentity identity();
+    WorkflowProperties properties();
 
     /**
-     * Gets the provisioningState property: Gets the provisioning state.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the provisioningState value.
+     * @return the systemData value.
      */
-    WorkflowProvisioningState provisioningState();
-
-    /**
-     * Gets the createdTime property: Gets the created time.
-     * 
-     * @return the createdTime value.
-     */
-    OffsetDateTime createdTime();
-
-    /**
-     * Gets the changedTime property: Gets the changed time.
-     * 
-     * @return the changedTime value.
-     */
-    OffsetDateTime changedTime();
-
-    /**
-     * Gets the state property: The state.
-     * 
-     * @return the state value.
-     */
-    WorkflowState state();
-
-    /**
-     * Gets the version property: Gets the version.
-     * 
-     * @return the version value.
-     */
-    String version();
-
-    /**
-     * Gets the accessEndpoint property: Gets the access endpoint.
-     * 
-     * @return the accessEndpoint value.
-     */
-    String accessEndpoint();
-
-    /**
-     * Gets the endpointsConfiguration property: The endpoints configuration.
-     * 
-     * @return the endpointsConfiguration value.
-     */
-    FlowEndpointsConfiguration endpointsConfiguration();
-
-    /**
-     * Gets the accessControl property: The access control configuration.
-     * 
-     * @return the accessControl value.
-     */
-    FlowAccessControlConfiguration accessControl();
-
-    /**
-     * Gets the sku property: The sku.
-     * 
-     * @return the sku value.
-     */
-    Sku sku();
-
-    /**
-     * Gets the integrationAccount property: The integration account.
-     * 
-     * @return the integrationAccount value.
-     */
-    ResourceReference integrationAccount();
-
-    /**
-     * Gets the integrationServiceEnvironment property: The integration service environment.
-     * 
-     * @return the integrationServiceEnvironment value.
-     */
-    ResourceReference integrationServiceEnvironment();
-
-    /**
-     * Gets the definition property: The definition.
-     * 
-     * @return the definition value.
-     */
-    Object definition();
-
-    /**
-     * Gets the parameters property: The parameters.
-     * 
-     * @return the parameters value.
-     */
-    Map<String, WorkflowParameter> parameters();
+    SystemData systemData();
 
     /**
      * Gets the region of the resource.
@@ -221,7 +137,7 @@ public interface Workflow {
             /**
              * Specifies resourceGroupName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
@@ -231,10 +147,7 @@ public interface Workflow {
          * The stage of the Workflow definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
-            DefinitionStages.WithState, DefinitionStages.WithEndpointsConfiguration, DefinitionStages.WithAccessControl,
-            DefinitionStages.WithIntegrationAccount, DefinitionStages.WithIntegrationServiceEnvironment,
-            DefinitionStages.WithDefinition, DefinitionStages.WithParameters {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              * 
@@ -265,107 +178,16 @@ public interface Workflow {
         }
 
         /**
-         * The stage of the Workflow definition allowing to specify identity.
+         * The stage of the Workflow definition allowing to specify properties.
          */
-        interface WithIdentity {
+        interface WithProperties {
             /**
-             * Specifies the identity property: Managed service identity properties..
+             * Specifies the properties property: The workflow properties..
              * 
-             * @param identity Managed service identity properties.
+             * @param properties The workflow properties.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(ManagedServiceIdentity identity);
-        }
-
-        /**
-         * The stage of the Workflow definition allowing to specify state.
-         */
-        interface WithState {
-            /**
-             * Specifies the state property: The state..
-             * 
-             * @param state The state.
-             * @return the next definition stage.
-             */
-            WithCreate withState(WorkflowState state);
-        }
-
-        /**
-         * The stage of the Workflow definition allowing to specify endpointsConfiguration.
-         */
-        interface WithEndpointsConfiguration {
-            /**
-             * Specifies the endpointsConfiguration property: The endpoints configuration..
-             * 
-             * @param endpointsConfiguration The endpoints configuration.
-             * @return the next definition stage.
-             */
-            WithCreate withEndpointsConfiguration(FlowEndpointsConfiguration endpointsConfiguration);
-        }
-
-        /**
-         * The stage of the Workflow definition allowing to specify accessControl.
-         */
-        interface WithAccessControl {
-            /**
-             * Specifies the accessControl property: The access control configuration..
-             * 
-             * @param accessControl The access control configuration.
-             * @return the next definition stage.
-             */
-            WithCreate withAccessControl(FlowAccessControlConfiguration accessControl);
-        }
-
-        /**
-         * The stage of the Workflow definition allowing to specify integrationAccount.
-         */
-        interface WithIntegrationAccount {
-            /**
-             * Specifies the integrationAccount property: The integration account..
-             * 
-             * @param integrationAccount The integration account.
-             * @return the next definition stage.
-             */
-            WithCreate withIntegrationAccount(ResourceReference integrationAccount);
-        }
-
-        /**
-         * The stage of the Workflow definition allowing to specify integrationServiceEnvironment.
-         */
-        interface WithIntegrationServiceEnvironment {
-            /**
-             * Specifies the integrationServiceEnvironment property: The integration service environment..
-             * 
-             * @param integrationServiceEnvironment The integration service environment.
-             * @return the next definition stage.
-             */
-            WithCreate withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
-        }
-
-        /**
-         * The stage of the Workflow definition allowing to specify definition.
-         */
-        interface WithDefinition {
-            /**
-             * Specifies the definition property: The definition..
-             * 
-             * @param definition The definition.
-             * @return the next definition stage.
-             */
-            WithCreate withDefinition(Object definition);
-        }
-
-        /**
-         * The stage of the Workflow definition allowing to specify parameters.
-         */
-        interface WithParameters {
-            /**
-             * Specifies the parameters property: The parameters..
-             * 
-             * @param parameters The parameters.
-             * @return the next definition stage.
-             */
-            WithCreate withParameters(Map<String, WorkflowParameter> parameters);
+            WithCreate withProperties(WorkflowProperties properties);
         }
     }
 
@@ -379,9 +201,7 @@ public interface Workflow {
     /**
      * The template for Workflow update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithState,
-        UpdateStages.WithEndpointsConfiguration, UpdateStages.WithAccessControl, UpdateStages.WithIntegrationAccount,
-        UpdateStages.WithIntegrationServiceEnvironment, UpdateStages.WithDefinition, UpdateStages.WithParameters {
+    interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
          * 
@@ -413,110 +233,6 @@ public interface Workflow {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the Workflow update allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: Managed service identity properties..
-             * 
-             * @param identity Managed service identity properties.
-             * @return the next definition stage.
-             */
-            Update withIdentity(ManagedServiceIdentity identity);
-        }
-
-        /**
-         * The stage of the Workflow update allowing to specify state.
-         */
-        interface WithState {
-            /**
-             * Specifies the state property: The state..
-             * 
-             * @param state The state.
-             * @return the next definition stage.
-             */
-            Update withState(WorkflowState state);
-        }
-
-        /**
-         * The stage of the Workflow update allowing to specify endpointsConfiguration.
-         */
-        interface WithEndpointsConfiguration {
-            /**
-             * Specifies the endpointsConfiguration property: The endpoints configuration..
-             * 
-             * @param endpointsConfiguration The endpoints configuration.
-             * @return the next definition stage.
-             */
-            Update withEndpointsConfiguration(FlowEndpointsConfiguration endpointsConfiguration);
-        }
-
-        /**
-         * The stage of the Workflow update allowing to specify accessControl.
-         */
-        interface WithAccessControl {
-            /**
-             * Specifies the accessControl property: The access control configuration..
-             * 
-             * @param accessControl The access control configuration.
-             * @return the next definition stage.
-             */
-            Update withAccessControl(FlowAccessControlConfiguration accessControl);
-        }
-
-        /**
-         * The stage of the Workflow update allowing to specify integrationAccount.
-         */
-        interface WithIntegrationAccount {
-            /**
-             * Specifies the integrationAccount property: The integration account..
-             * 
-             * @param integrationAccount The integration account.
-             * @return the next definition stage.
-             */
-            Update withIntegrationAccount(ResourceReference integrationAccount);
-        }
-
-        /**
-         * The stage of the Workflow update allowing to specify integrationServiceEnvironment.
-         */
-        interface WithIntegrationServiceEnvironment {
-            /**
-             * Specifies the integrationServiceEnvironment property: The integration service environment..
-             * 
-             * @param integrationServiceEnvironment The integration service environment.
-             * @return the next definition stage.
-             */
-            Update withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
-        }
-
-        /**
-         * The stage of the Workflow update allowing to specify definition.
-         */
-        interface WithDefinition {
-            /**
-             * Specifies the definition property: The definition..
-             * 
-             * @param definition The definition.
-             * @return the next definition stage.
-             */
-            Update withDefinition(Object definition);
-        }
-
-        /**
-         * The stage of the Workflow update allowing to specify parameters.
-         */
-        interface WithParameters {
-            /**
-             * Specifies the parameters property: The parameters..
-             * 
-             * @param parameters The parameters.
-             * @return the next definition stage.
-             */
-            Update withParameters(Map<String, WorkflowParameter> parameters);
         }
     }
 
@@ -576,50 +292,49 @@ public interface Workflow {
     /**
      * Generates the upgraded definition for a workflow.
      * 
-     * @param parameters Parameters for generating an upgraded definition.
+     * @param body Parameters for generating an upgraded definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response}.
+     * @return dictionary of &lt;any&gt; along with {@link Response}.
      */
-    Response<Object> generateUpgradedDefinitionWithResponse(GenerateUpgradedDefinitionParameters parameters,
+    Response<Map<String, Object>> generateUpgradedDefinitionWithResponse(GenerateUpgradedDefinitionParameters body,
         Context context);
 
     /**
      * Generates the upgraded definition for a workflow.
      * 
-     * @param parameters Parameters for generating an upgraded definition.
+     * @param body Parameters for generating an upgraded definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return dictionary of &lt;any&gt;.
      */
-    Object generateUpgradedDefinition(GenerateUpgradedDefinitionParameters parameters);
+    Map<String, Object> generateUpgradedDefinition(GenerateUpgradedDefinitionParameters body);
 
     /**
      * Get the workflow callback Url.
      * 
-     * @param listCallbackUrl Which callback url to list.
+     * @param body Which callback url to list.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the workflow callback Url along with {@link Response}.
      */
-    Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(GetCallbackUrlParameters listCallbackUrl,
-        Context context);
+    Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(GetCallbackUrlParameters body, Context context);
 
     /**
      * Get the workflow callback Url.
      * 
-     * @param listCallbackUrl Which callback url to list.
+     * @param body Which callback url to list.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the workflow callback Url.
      */
-    WorkflowTriggerCallbackUrl listCallbackUrl(GetCallbackUrlParameters listCallbackUrl);
+    WorkflowTriggerCallbackUrl listCallbackUrl(GetCallbackUrlParameters body);
 
     /**
      * Gets an OpenAPI definition for the workflow.
@@ -630,7 +345,7 @@ public interface Workflow {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an OpenAPI definition for the workflow along with {@link Response}.
      */
-    Response<Object> listSwaggerWithResponse(Context context);
+    Response<Map<String, Object>> listSwaggerWithResponse(Context context);
 
     /**
      * Gets an OpenAPI definition for the workflow.
@@ -639,70 +354,70 @@ public interface Workflow {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an OpenAPI definition for the workflow.
      */
-    Object listSwagger();
+    Map<String, Object> listSwagger();
 
     /**
      * Moves an existing workflow.
      * 
-     * @param move The workflow to move.
+     * @param body The workflow to move.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void move(WorkflowReference move);
+    void move(WorkflowReference body);
 
     /**
      * Moves an existing workflow.
      * 
-     * @param move The workflow to move.
+     * @param body The workflow to move.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void move(WorkflowReference move, Context context);
+    void move(WorkflowReference body, Context context);
 
     /**
      * Regenerates the callback URL access key for request triggers.
      * 
-     * @param keyType The access key type.
+     * @param body The access key type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> regenerateAccessKeyWithResponse(RegenerateActionParameter keyType, Context context);
+    Response<Void> regenerateAccessKeyWithResponse(RegenerateActionParameter body, Context context);
 
     /**
      * Regenerates the callback URL access key for request triggers.
      * 
-     * @param keyType The access key type.
+     * @param body The access key type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void regenerateAccessKey(RegenerateActionParameter keyType);
+    void regenerateAccessKey(RegenerateActionParameter body);
 
     /**
      * Validates the workflow.
      * 
-     * @param validate The workflow.
+     * @param body The workflow.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> validateByResourceGroupWithResponse(WorkflowInner validate, Context context);
+    Response<Void> validateByResourceGroupWithResponse(WorkflowInner body, Context context);
 
     /**
      * Validates the workflow.
      * 
-     * @param validate The workflow.
+     * @param body The workflow.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void validateByResourceGroup(WorkflowInner validate);
+    void validateByResourceGroup(WorkflowInner body);
 }

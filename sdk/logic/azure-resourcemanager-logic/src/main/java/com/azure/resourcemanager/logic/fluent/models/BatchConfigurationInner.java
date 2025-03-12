@@ -5,24 +5,29 @@
 package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.logic.models.BatchConfigurationProperties;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * The batch configuration resource definition.
  */
 @Fluent
-public final class BatchConfigurationInner extends Resource {
+public final class BatchConfigurationInner extends ProxyResource {
     /*
      * The batch configuration properties.
      */
     private BatchConfigurationProperties properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -66,6 +71,15 @@ public final class BatchConfigurationInner extends Resource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the type property: The type of the resource.
      * 
      * @return the type value.
@@ -96,24 +110,6 @@ public final class BatchConfigurationInner extends Resource {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BatchConfigurationInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BatchConfigurationInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -136,8 +132,6 @@ public final class BatchConfigurationInner extends Resource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("location", location());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
@@ -164,13 +158,10 @@ public final class BatchConfigurationInner extends Resource {
                     deserializedBatchConfigurationInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedBatchConfigurationInner.type = reader.getString();
-                } else if ("location".equals(fieldName)) {
-                    deserializedBatchConfigurationInner.withLocation(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedBatchConfigurationInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     deserializedBatchConfigurationInner.properties = BatchConfigurationProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedBatchConfigurationInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

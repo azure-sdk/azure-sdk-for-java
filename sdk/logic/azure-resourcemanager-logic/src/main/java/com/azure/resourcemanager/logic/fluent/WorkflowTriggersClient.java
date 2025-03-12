@@ -8,7 +8,9 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.logic.fluent.models.JsonSchemaInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerCallbackUrlInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerInner;
@@ -21,7 +23,7 @@ public interface WorkflowTriggersClient {
     /**
      * Gets a list of workflow triggers.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -34,7 +36,7 @@ public interface WorkflowTriggersClient {
     /**
      * Gets a list of workflow triggers.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation.
@@ -51,7 +53,7 @@ public interface WorkflowTriggersClient {
     /**
      * Gets a workflow trigger.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @param context The context to associate with this operation.
@@ -67,7 +69,7 @@ public interface WorkflowTriggersClient {
     /**
      * Gets a workflow trigger.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -79,66 +81,9 @@ public interface WorkflowTriggersClient {
     WorkflowTriggerInner get(String resourceGroupName, String workflowName, String triggerName);
 
     /**
-     * Resets a workflow trigger.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param triggerName The workflow trigger name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> resetWithResponse(String resourceGroupName, String workflowName, String triggerName,
-        Context context);
-
-    /**
-     * Resets a workflow trigger.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param triggerName The workflow trigger name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void reset(String resourceGroupName, String workflowName, String triggerName);
-
-    /**
-     * Runs a workflow trigger.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param triggerName The workflow trigger name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> runWithResponse(String resourceGroupName, String workflowName, String triggerName, Context context);
-
-    /**
-     * Runs a workflow trigger.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param triggerName The workflow trigger name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void run(String resourceGroupName, String workflowName, String triggerName);
-
-    /**
      * Get the trigger schema as JSON.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @param context The context to associate with this operation.
@@ -154,7 +99,7 @@ public interface WorkflowTriggersClient {
     /**
      * Get the trigger schema as JSON.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -166,41 +111,9 @@ public interface WorkflowTriggersClient {
     JsonSchemaInner getSchemaJson(String resourceGroupName, String workflowName, String triggerName);
 
     /**
-     * Sets the state of a workflow trigger.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param triggerName The workflow trigger name.
-     * @param setState The workflow trigger state.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> setStateWithResponse(String resourceGroupName, String workflowName, String triggerName,
-        SetTriggerStateActionDefinition setState, Context context);
-
-    /**
-     * Sets the state of a workflow trigger.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param triggerName The workflow trigger name.
-     * @param setState The workflow trigger state.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void setState(String resourceGroupName, String workflowName, String triggerName,
-        SetTriggerStateActionDefinition setState);
-
-    /**
      * Get the callback URL for a workflow trigger.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @param context The context to associate with this operation.
@@ -216,7 +129,7 @@ public interface WorkflowTriggersClient {
     /**
      * Get the callback URL for a workflow trigger.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param triggerName The workflow trigger name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -226,4 +139,122 @@ public interface WorkflowTriggersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName, String triggerName);
+
+    /**
+     * Resets a workflow trigger.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> resetWithResponse(String resourceGroupName, String workflowName, String triggerName,
+        Context context);
+
+    /**
+     * Resets a workflow trigger.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void reset(String resourceGroupName, String workflowName, String triggerName);
+
+    /**
+     * Runs a workflow trigger.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginRun(String resourceGroupName, String workflowName, String triggerName);
+
+    /**
+     * Runs a workflow trigger.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginRun(String resourceGroupName, String workflowName, String triggerName,
+        Context context);
+
+    /**
+     * Runs a workflow trigger.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void run(String resourceGroupName, String workflowName, String triggerName);
+
+    /**
+     * Runs a workflow trigger.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void run(String resourceGroupName, String workflowName, String triggerName, Context context);
+
+    /**
+     * Sets the state of a workflow trigger.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param body The workflow trigger state.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> setStateWithResponse(String resourceGroupName, String workflowName, String triggerName,
+        SetTriggerStateActionDefinition body, Context context);
+
+    /**
+     * Sets the state of a workflow trigger.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param body The workflow trigger state.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void setState(String resourceGroupName, String workflowName, String triggerName,
+        SetTriggerStateActionDefinition body);
 }

@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerInner;
-import java.time.OffsetDateTime;
 
 /**
  * An immutable client-side representation of WorkflowTrigger.
@@ -19,81 +19,32 @@ public interface WorkflowTrigger {
     String id();
 
     /**
-     * Gets the name property: Gets the workflow trigger name.
+     * Gets the name property: The name of the resource.
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the type property: Gets the workflow trigger type.
+     * Gets the type property: The type of the resource.
      * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the provisioningState property: Gets the provisioning state.
+     * Gets the properties property: The workflow trigger properties.
      * 
-     * @return the provisioningState value.
+     * @return the properties value.
      */
-    WorkflowTriggerProvisioningState provisioningState();
+    WorkflowTriggerProperties properties();
 
     /**
-     * Gets the createdTime property: Gets the created time.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the createdTime value.
+     * @return the systemData value.
      */
-    OffsetDateTime createdTime();
-
-    /**
-     * Gets the changedTime property: Gets the changed time.
-     * 
-     * @return the changedTime value.
-     */
-    OffsetDateTime changedTime();
-
-    /**
-     * Gets the state property: Gets the state.
-     * 
-     * @return the state value.
-     */
-    WorkflowState state();
-
-    /**
-     * Gets the status property: Gets the status.
-     * 
-     * @return the status value.
-     */
-    WorkflowStatus status();
-
-    /**
-     * Gets the lastExecutionTime property: Gets the last execution time.
-     * 
-     * @return the lastExecutionTime value.
-     */
-    OffsetDateTime lastExecutionTime();
-
-    /**
-     * Gets the nextExecutionTime property: Gets the next execution time.
-     * 
-     * @return the nextExecutionTime value.
-     */
-    OffsetDateTime nextExecutionTime();
-
-    /**
-     * Gets the recurrence property: Gets the workflow trigger recurrence.
-     * 
-     * @return the recurrence value.
-     */
-    WorkflowTriggerRecurrence recurrence();
-
-    /**
-     * Gets the workflow property: Gets the reference to workflow.
-     * 
-     * @return the workflow value.
-     */
-    ResourceReference workflow();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerInner object.

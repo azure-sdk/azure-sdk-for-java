@@ -20,6 +20,11 @@ import java.time.format.DateTimeFormatter;
 @Fluent
 public final class RequestHistoryProperties implements JsonSerializable<RequestHistoryProperties> {
     /*
+     * The provisioning state.
+     */
+    private WorkflowProvisioningState provisioningState;
+
+    /*
      * The time the request started.
      */
     private OffsetDateTime startTime;
@@ -43,6 +48,15 @@ public final class RequestHistoryProperties implements JsonSerializable<RequestH
      * Creates an instance of RequestHistoryProperties class.
      */
     public RequestHistoryProperties() {
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public WorkflowProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -169,7 +183,10 @@ public final class RequestHistoryProperties implements JsonSerializable<RequestH
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("startTime".equals(fieldName)) {
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedRequestHistoryProperties.provisioningState
+                        = WorkflowProvisioningState.fromString(reader.getString());
+                } else if ("startTime".equals(fieldName)) {
                     deserializedRequestHistoryProperties.startTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("endTime".equals(fieldName)) {

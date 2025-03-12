@@ -45,7 +45,7 @@ public final class SwaggerXml implements JsonSerializable<SwaggerXml> {
     /*
      * The vendor extensions.
      */
-    private Map<String, Object> extensions;
+    private Map<String, Map<String, Object>> extensions;
 
     /**
      * Creates an instance of SwaggerXml class.
@@ -158,7 +158,7 @@ public final class SwaggerXml implements JsonSerializable<SwaggerXml> {
      * 
      * @return the extensions value.
      */
-    public Map<String, Object> extensions() {
+    public Map<String, Map<String, Object>> extensions() {
         return this.extensions;
     }
 
@@ -168,7 +168,7 @@ public final class SwaggerXml implements JsonSerializable<SwaggerXml> {
      * @param extensions the extensions value to set.
      * @return the SwaggerXml object itself.
      */
-    public SwaggerXml withExtensions(Map<String, Object> extensions) {
+    public SwaggerXml withExtensions(Map<String, Map<String, Object>> extensions) {
         this.extensions = extensions;
         return this;
     }
@@ -192,7 +192,8 @@ public final class SwaggerXml implements JsonSerializable<SwaggerXml> {
         jsonWriter.writeStringField("prefix", this.prefix);
         jsonWriter.writeBooleanField("attribute", this.attribute);
         jsonWriter.writeBooleanField("wrapped", this.wrapped);
-        jsonWriter.writeMapField("extensions", this.extensions, (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeMapField("extensions", this.extensions,
+            (writer, element) -> writer.writeMap(element, (writer1, element1) -> writer1.writeUntyped(element1)));
         return jsonWriter.writeEndObject();
     }
 
@@ -222,7 +223,8 @@ public final class SwaggerXml implements JsonSerializable<SwaggerXml> {
                 } else if ("wrapped".equals(fieldName)) {
                     deserializedSwaggerXml.wrapped = reader.getNullable(JsonReader::getBoolean);
                 } else if ("extensions".equals(fieldName)) {
-                    Map<String, Object> extensions = reader.readMap(reader1 -> reader1.readUntyped());
+                    Map<String, Map<String, Object>> extensions
+                        = reader.readMap(reader1 -> reader1.readMap(reader2 -> reader2.readUntyped()));
                     deserializedSwaggerXml.extensions = extensions;
                 } else {
                     reader.skipChildren();

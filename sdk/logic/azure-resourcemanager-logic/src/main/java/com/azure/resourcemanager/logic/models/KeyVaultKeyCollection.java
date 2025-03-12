@@ -4,124 +4,31 @@
 
 package com.azure.resourcemanager.logic.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.fluent.models.KeyVaultKeyInner;
-import java.io.IOException;
+import com.azure.resourcemanager.logic.fluent.models.KeyVaultKeyCollectionInner;
 import java.util.List;
 
 /**
- * Collection of key vault keys.
+ * An immutable client-side representation of KeyVaultKeyCollection.
  */
-@Fluent
-public final class KeyVaultKeyCollection implements JsonSerializable<KeyVaultKeyCollection> {
-    /*
-     * The key vault keys.
-     */
-    private List<KeyVaultKeyInner> value;
-
-    /*
-     * The skip token.
-     */
-    private String skipToken;
-
+public interface KeyVaultKeyCollection {
     /**
-     * Creates an instance of KeyVaultKeyCollection class.
-     */
-    public KeyVaultKeyCollection() {
-    }
-
-    /**
-     * Get the value property: The key vault keys.
+     * Gets the value property: The key vault keys.
      * 
      * @return the value value.
      */
-    public List<KeyVaultKeyInner> value() {
-        return this.value;
-    }
+    List<KeyVaultKey> value();
 
     /**
-     * Set the value property: The key vault keys.
-     * 
-     * @param value the value value to set.
-     * @return the KeyVaultKeyCollection object itself.
-     */
-    public KeyVaultKeyCollection withValue(List<KeyVaultKeyInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the skipToken property: The skip token.
+     * Gets the skipToken property: The skip token.
      * 
      * @return the skipToken value.
      */
-    public String skipToken() {
-        return this.skipToken;
-    }
+    String skipToken();
 
     /**
-     * Set the skipToken property: The skip token.
+     * Gets the inner com.azure.resourcemanager.logic.fluent.models.KeyVaultKeyCollectionInner object.
      * 
-     * @param skipToken the skipToken value to set.
-     * @return the KeyVaultKeyCollection object itself.
+     * @return the inner object.
      */
-    public KeyVaultKeyCollection withSkipToken(String skipToken) {
-        this.skipToken = skipToken;
-        return this;
-    }
-
-    /**
-     * Validates the instance.
-     * 
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeStringField("skipToken", this.skipToken);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of KeyVaultKeyCollection from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of KeyVaultKeyCollection if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the KeyVaultKeyCollection.
-     */
-    public static KeyVaultKeyCollection fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            KeyVaultKeyCollection deserializedKeyVaultKeyCollection = new KeyVaultKeyCollection();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("value".equals(fieldName)) {
-                    List<KeyVaultKeyInner> value = reader.readArray(reader1 -> KeyVaultKeyInner.fromJson(reader1));
-                    deserializedKeyVaultKeyCollection.value = value;
-                } else if ("skipToken".equals(fieldName)) {
-                    deserializedKeyVaultKeyCollection.skipToken = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedKeyVaultKeyCollection;
-        });
-    }
+    KeyVaultKeyCollectionInner innerModel();
 }

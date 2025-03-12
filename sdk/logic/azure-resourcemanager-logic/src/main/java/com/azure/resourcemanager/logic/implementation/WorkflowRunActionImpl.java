@@ -4,15 +4,10 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionInner;
-import com.azure.resourcemanager.logic.models.ContentLink;
-import com.azure.resourcemanager.logic.models.RetryHistory;
-import com.azure.resourcemanager.logic.models.RunActionCorrelation;
 import com.azure.resourcemanager.logic.models.WorkflowRunAction;
-import com.azure.resourcemanager.logic.models.WorkflowStatus;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.List;
+import com.azure.resourcemanager.logic.models.WorkflowRunActionProperties;
 
 public final class WorkflowRunActionImpl implements WorkflowRunAction {
     private WorkflowRunActionInner innerObject;
@@ -37,53 +32,12 @@ public final class WorkflowRunActionImpl implements WorkflowRunAction {
         return this.innerModel().type();
     }
 
-    public OffsetDateTime startTime() {
-        return this.innerModel().startTime();
+    public WorkflowRunActionProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public OffsetDateTime endTime() {
-        return this.innerModel().endTime();
-    }
-
-    public WorkflowStatus status() {
-        return this.innerModel().status();
-    }
-
-    public String code() {
-        return this.innerModel().code();
-    }
-
-    public Object error() {
-        return this.innerModel().error();
-    }
-
-    public String trackingId() {
-        return this.innerModel().trackingId();
-    }
-
-    public RunActionCorrelation correlation() {
-        return this.innerModel().correlation();
-    }
-
-    public ContentLink inputsLink() {
-        return this.innerModel().inputsLink();
-    }
-
-    public ContentLink outputsLink() {
-        return this.innerModel().outputsLink();
-    }
-
-    public Object trackedProperties() {
-        return this.innerModel().trackedProperties();
-    }
-
-    public List<RetryHistory> retryHistory() {
-        List<RetryHistory> inner = this.innerModel().retryHistory();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public WorkflowRunActionInner innerModel() {

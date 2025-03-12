@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
@@ -25,18 +24,6 @@ public final class WorkflowRunsImpl implements WorkflowRuns {
         com.azure.resourcemanager.logic.LogicManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public PagedIterable<WorkflowRun> list(String resourceGroupName, String workflowName) {
-        PagedIterable<WorkflowRunInner> inner = this.serviceClient().list(resourceGroupName, workflowName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkflowRunImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<WorkflowRun> list(String resourceGroupName, String workflowName, Integer top, String filter,
-        Context context) {
-        PagedIterable<WorkflowRunInner> inner
-            = this.serviceClient().list(resourceGroupName, workflowName, top, filter, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkflowRunImpl(inner1, this.manager()));
     }
 
     public Response<WorkflowRun> getWithResponse(String resourceGroupName, String workflowName, String runName,

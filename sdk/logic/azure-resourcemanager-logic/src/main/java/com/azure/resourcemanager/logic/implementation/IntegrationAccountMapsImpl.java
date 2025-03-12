@@ -74,11 +74,9 @@ public final class IntegrationAccountMapsImpl implements IntegrationAccountMaps 
     }
 
     public Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(String resourceGroupName,
-        String integrationAccountName, String mapName, GetCallbackUrlParameters listContentCallbackUrl,
-        Context context) {
+        String integrationAccountName, String mapName, GetCallbackUrlParameters body, Context context) {
         Response<WorkflowTriggerCallbackUrlInner> inner = this.serviceClient()
-            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, mapName,
-                listContentCallbackUrl, context);
+            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, mapName, body, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new WorkflowTriggerCallbackUrlImpl(inner.getValue(), this.manager()));
@@ -88,9 +86,9 @@ public final class IntegrationAccountMapsImpl implements IntegrationAccountMaps 
     }
 
     public WorkflowTriggerCallbackUrl listContentCallbackUrl(String resourceGroupName, String integrationAccountName,
-        String mapName, GetCallbackUrlParameters listContentCallbackUrl) {
-        WorkflowTriggerCallbackUrlInner inner = this.serviceClient()
-            .listContentCallbackUrl(resourceGroupName, integrationAccountName, mapName, listContentCallbackUrl);
+        String mapName, GetCallbackUrlParameters body) {
+        WorkflowTriggerCallbackUrlInner inner
+            = this.serviceClient().listContentCallbackUrl(resourceGroupName, integrationAccountName, mapName, body);
         if (inner != null) {
             return new WorkflowTriggerCallbackUrlImpl(inner, this.manager());
         } else {

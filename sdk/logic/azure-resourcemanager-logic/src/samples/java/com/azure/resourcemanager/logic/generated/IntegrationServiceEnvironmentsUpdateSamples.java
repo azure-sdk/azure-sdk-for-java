@@ -5,10 +5,6 @@
 package com.azure.resourcemanager.logic.generated;
 
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironment;
-import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentSku;
-import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentSkuName;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Samples for IntegrationServiceEnvironments Update.
@@ -25,25 +21,8 @@ public final class IntegrationServiceEnvironmentsUpdateSamples {
      */
     public static void patchAnIntegrationServiceEnvironment(com.azure.resourcemanager.logic.LogicManager manager) {
         IntegrationServiceEnvironment resource = manager.integrationServiceEnvironments()
-            .getByResourceGroupWithResponse("testResourceGroup", "testIntegrationServiceEnvironment",
-                com.azure.core.util.Context.NONE)
+            .getWithResponse("testIntegrationServiceEnvironment", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update()
-            .withTags(mapOf("tag1", "value1"))
-            .withSku(new IntegrationServiceEnvironmentSku().withName(IntegrationServiceEnvironmentSkuName.DEVELOPER)
-                .withCapacity(0))
-            .apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        resource.update().apply();
     }
 }

@@ -15,7 +15,7 @@ public interface IntegrationAccountSessions {
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -27,7 +27,7 @@ public interface IntegrationAccountSessions {
     /**
      * Gets a list of integration account sessions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: ChangedTime.
@@ -43,7 +43,7 @@ public interface IntegrationAccountSessions {
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @param context The context to associate with this operation.
@@ -58,7 +58,7 @@ public interface IntegrationAccountSessions {
     /**
      * Gets an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -71,7 +71,7 @@ public interface IntegrationAccountSessions {
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @param context The context to associate with this operation.
@@ -86,7 +86,7 @@ public interface IntegrationAccountSessions {
     /**
      * Deletes an integration account session.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param sessionName The integration account session name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

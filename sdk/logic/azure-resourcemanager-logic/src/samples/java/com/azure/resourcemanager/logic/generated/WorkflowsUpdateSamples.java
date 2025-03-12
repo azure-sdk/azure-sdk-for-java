@@ -4,6 +4,8 @@
 
 package com.azure.resourcemanager.logic.generated;
 
+import com.azure.resourcemanager.logic.models.Workflow;
+
 /**
  * Samples for Workflows Update.
  */
@@ -18,7 +20,9 @@ public final class WorkflowsUpdateSamples {
      * @param manager Entry point to LogicManager.
      */
     public static void patchAWorkflow(com.azure.resourcemanager.logic.LogicManager manager) {
-        manager.workflows()
-            .updateWithResponse("test-resource-group", "test-workflow", com.azure.core.util.Context.NONE);
+        Workflow resource = manager.workflows()
+            .getByResourceGroupWithResponse("test-resource-group", "test-workflow", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().apply();
     }
 }

@@ -30,7 +30,7 @@ public final class SwaggerCustomDynamicSchema implements JsonSerializable<Swagge
     /*
      * The operation parameters.
      */
-    private Map<String, Object> parameters;
+    private Map<String, Map<String, Object>> parameters;
 
     /**
      * Creates an instance of SwaggerCustomDynamicSchema class.
@@ -83,7 +83,7 @@ public final class SwaggerCustomDynamicSchema implements JsonSerializable<Swagge
      * 
      * @return the parameters value.
      */
-    public Map<String, Object> parameters() {
+    public Map<String, Map<String, Object>> parameters() {
         return this.parameters;
     }
 
@@ -93,7 +93,7 @@ public final class SwaggerCustomDynamicSchema implements JsonSerializable<Swagge
      * @param parameters the parameters value to set.
      * @return the SwaggerCustomDynamicSchema object itself.
      */
-    public SwaggerCustomDynamicSchema withParameters(Map<String, Object> parameters) {
+    public SwaggerCustomDynamicSchema withParameters(Map<String, Map<String, Object>> parameters) {
         this.parameters = parameters;
         return this;
     }
@@ -114,7 +114,8 @@ public final class SwaggerCustomDynamicSchema implements JsonSerializable<Swagge
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("operationId", this.operationId);
         jsonWriter.writeStringField("valuePath", this.valuePath);
-        jsonWriter.writeMapField("parameters", this.parameters, (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeMapField("parameters", this.parameters,
+            (writer, element) -> writer.writeMap(element, (writer1, element1) -> writer1.writeUntyped(element1)));
         return jsonWriter.writeEndObject();
     }
 
@@ -138,7 +139,8 @@ public final class SwaggerCustomDynamicSchema implements JsonSerializable<Swagge
                 } else if ("valuePath".equals(fieldName)) {
                     deserializedSwaggerCustomDynamicSchema.valuePath = reader.getString();
                 } else if ("parameters".equals(fieldName)) {
-                    Map<String, Object> parameters = reader.readMap(reader1 -> reader1.readUntyped());
+                    Map<String, Map<String, Object>> parameters
+                        = reader.readMap(reader1 -> reader1.readMap(reader2 -> reader2.readUntyped()));
                     deserializedSwaggerCustomDynamicSchema.parameters = parameters;
                 } else {
                     reader.skipChildren();

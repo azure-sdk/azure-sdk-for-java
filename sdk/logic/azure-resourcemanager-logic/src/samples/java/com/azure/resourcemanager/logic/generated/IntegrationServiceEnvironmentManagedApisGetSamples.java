@@ -20,7 +20,6 @@ public final class IntegrationServiceEnvironmentManagedApisGetSamples {
     public static void
         getsTheIntegrationServiceEnvironmentManagedApis(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationServiceEnvironmentManagedApis()
-            .getWithResponse("testResourceGroup", "testIntegrationServiceEnvironment", "servicebus",
-                com.azure.core.util.Context.NONE);
+            .getWithResponse("testIntegrationServiceEnvironment", "servicebus", com.azure.core.util.Context.NONE);
     }
 }

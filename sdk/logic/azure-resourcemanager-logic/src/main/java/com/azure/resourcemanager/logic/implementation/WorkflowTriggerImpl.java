@@ -4,14 +4,10 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerInner;
-import com.azure.resourcemanager.logic.models.ResourceReference;
-import com.azure.resourcemanager.logic.models.WorkflowState;
-import com.azure.resourcemanager.logic.models.WorkflowStatus;
 import com.azure.resourcemanager.logic.models.WorkflowTrigger;
-import com.azure.resourcemanager.logic.models.WorkflowTriggerProvisioningState;
-import com.azure.resourcemanager.logic.models.WorkflowTriggerRecurrence;
-import java.time.OffsetDateTime;
+import com.azure.resourcemanager.logic.models.WorkflowTriggerProperties;
 
 public final class WorkflowTriggerImpl implements WorkflowTrigger {
     private WorkflowTriggerInner innerObject;
@@ -35,40 +31,12 @@ public final class WorkflowTriggerImpl implements WorkflowTrigger {
         return this.innerModel().type();
     }
 
-    public WorkflowTriggerProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
+    public WorkflowTriggerProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public OffsetDateTime createdTime() {
-        return this.innerModel().createdTime();
-    }
-
-    public OffsetDateTime changedTime() {
-        return this.innerModel().changedTime();
-    }
-
-    public WorkflowState state() {
-        return this.innerModel().state();
-    }
-
-    public WorkflowStatus status() {
-        return this.innerModel().status();
-    }
-
-    public OffsetDateTime lastExecutionTime() {
-        return this.innerModel().lastExecutionTime();
-    }
-
-    public OffsetDateTime nextExecutionTime() {
-        return this.innerModel().nextExecutionTime();
-    }
-
-    public WorkflowTriggerRecurrence recurrence() {
-        return this.innerModel().recurrence();
-    }
-
-    public ResourceReference workflow() {
-        return this.innerModel().workflow();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public WorkflowTriggerInner innerModel() {

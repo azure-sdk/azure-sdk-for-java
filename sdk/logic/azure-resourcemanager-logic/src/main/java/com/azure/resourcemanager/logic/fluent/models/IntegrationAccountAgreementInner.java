@@ -5,27 +5,29 @@
 package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.models.AgreementContent;
-import com.azure.resourcemanager.logic.models.AgreementType;
-import com.azure.resourcemanager.logic.models.BusinessIdentity;
+import com.azure.resourcemanager.logic.models.IntegrationAccountAgreementProperties;
 import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * The integration account agreement.
  */
 @Fluent
-public final class IntegrationAccountAgreementInner extends Resource {
+public final class IntegrationAccountAgreementInner extends ProxyResource {
     /*
      * The integration account agreement properties.
      */
-    private IntegrationAccountAgreementProperties innerProperties = new IntegrationAccountAgreementProperties();
+    private IntegrationAccountAgreementProperties properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -49,12 +51,32 @@ public final class IntegrationAccountAgreementInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: The integration account agreement properties.
+     * Get the properties property: The integration account agreement properties.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private IntegrationAccountAgreementProperties innerProperties() {
-        return this.innerProperties;
+    public IntegrationAccountAgreementProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The integration account agreement properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the IntegrationAccountAgreementInner object itself.
+     */
+    public IntegrationAccountAgreementInner withProperties(IntegrationAccountAgreementProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -88,214 +110,17 @@ public final class IntegrationAccountAgreementInner extends Resource {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IntegrationAccountAgreementInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IntegrationAccountAgreementInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
-    /**
-     * Get the createdTime property: The created time.
-     * 
-     * @return the createdTime value.
-     */
-    public OffsetDateTime createdTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdTime();
-    }
-
-    /**
-     * Get the changedTime property: The changed time.
-     * 
-     * @return the changedTime value.
-     */
-    public OffsetDateTime changedTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().changedTime();
-    }
-
-    /**
-     * Get the metadata property: The metadata.
-     * 
-     * @return the metadata value.
-     */
-    public Object metadata() {
-        return this.innerProperties() == null ? null : this.innerProperties().metadata();
-    }
-
-    /**
-     * Set the metadata property: The metadata.
-     * 
-     * @param metadata the metadata value to set.
-     * @return the IntegrationAccountAgreementInner object itself.
-     */
-    public IntegrationAccountAgreementInner withMetadata(Object metadata) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountAgreementProperties();
-        }
-        this.innerProperties().withMetadata(metadata);
-        return this;
-    }
-
-    /**
-     * Get the agreementType property: The agreement type.
-     * 
-     * @return the agreementType value.
-     */
-    public AgreementType agreementType() {
-        return this.innerProperties() == null ? null : this.innerProperties().agreementType();
-    }
-
-    /**
-     * Set the agreementType property: The agreement type.
-     * 
-     * @param agreementType the agreementType value to set.
-     * @return the IntegrationAccountAgreementInner object itself.
-     */
-    public IntegrationAccountAgreementInner withAgreementType(AgreementType agreementType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountAgreementProperties();
-        }
-        this.innerProperties().withAgreementType(agreementType);
-        return this;
-    }
-
-    /**
-     * Get the hostPartner property: The integration account partner that is set as host partner for this agreement.
-     * 
-     * @return the hostPartner value.
-     */
-    public String hostPartner() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostPartner();
-    }
-
-    /**
-     * Set the hostPartner property: The integration account partner that is set as host partner for this agreement.
-     * 
-     * @param hostPartner the hostPartner value to set.
-     * @return the IntegrationAccountAgreementInner object itself.
-     */
-    public IntegrationAccountAgreementInner withHostPartner(String hostPartner) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountAgreementProperties();
-        }
-        this.innerProperties().withHostPartner(hostPartner);
-        return this;
-    }
-
-    /**
-     * Get the guestPartner property: The integration account partner that is set as guest partner for this agreement.
-     * 
-     * @return the guestPartner value.
-     */
-    public String guestPartner() {
-        return this.innerProperties() == null ? null : this.innerProperties().guestPartner();
-    }
-
-    /**
-     * Set the guestPartner property: The integration account partner that is set as guest partner for this agreement.
-     * 
-     * @param guestPartner the guestPartner value to set.
-     * @return the IntegrationAccountAgreementInner object itself.
-     */
-    public IntegrationAccountAgreementInner withGuestPartner(String guestPartner) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountAgreementProperties();
-        }
-        this.innerProperties().withGuestPartner(guestPartner);
-        return this;
-    }
-
-    /**
-     * Get the hostIdentity property: The business identity of the host partner.
-     * 
-     * @return the hostIdentity value.
-     */
-    public BusinessIdentity hostIdentity() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostIdentity();
-    }
-
-    /**
-     * Set the hostIdentity property: The business identity of the host partner.
-     * 
-     * @param hostIdentity the hostIdentity value to set.
-     * @return the IntegrationAccountAgreementInner object itself.
-     */
-    public IntegrationAccountAgreementInner withHostIdentity(BusinessIdentity hostIdentity) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountAgreementProperties();
-        }
-        this.innerProperties().withHostIdentity(hostIdentity);
-        return this;
-    }
-
-    /**
-     * Get the guestIdentity property: The business identity of the guest partner.
-     * 
-     * @return the guestIdentity value.
-     */
-    public BusinessIdentity guestIdentity() {
-        return this.innerProperties() == null ? null : this.innerProperties().guestIdentity();
-    }
-
-    /**
-     * Set the guestIdentity property: The business identity of the guest partner.
-     * 
-     * @param guestIdentity the guestIdentity value to set.
-     * @return the IntegrationAccountAgreementInner object itself.
-     */
-    public IntegrationAccountAgreementInner withGuestIdentity(BusinessIdentity guestIdentity) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountAgreementProperties();
-        }
-        this.innerProperties().withGuestIdentity(guestIdentity);
-        return this;
-    }
-
-    /**
-     * Get the content property: The agreement content.
-     * 
-     * @return the content value.
-     */
-    public AgreementContent content() {
-        return this.innerProperties() == null ? null : this.innerProperties().content();
-    }
-
-    /**
-     * Set the content property: The agreement content.
-     * 
-     * @param content the content value to set.
-     * @return the IntegrationAccountAgreementInner object itself.
-     */
-    public IntegrationAccountAgreementInner withContent(AgreementContent content) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountAgreementProperties();
-        }
-        this.innerProperties().withContent(content);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
+        if (properties() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property innerProperties in model IntegrationAccountAgreementInner"));
+                    "Missing required property properties in model IntegrationAccountAgreementInner"));
         } else {
-            innerProperties().validate();
+            properties().validate();
         }
     }
 
@@ -307,9 +132,7 @@ public final class IntegrationAccountAgreementInner extends Resource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("location", location());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -336,14 +159,11 @@ public final class IntegrationAccountAgreementInner extends Resource {
                     deserializedIntegrationAccountAgreementInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedIntegrationAccountAgreementInner.type = reader.getString();
-                } else if ("location".equals(fieldName)) {
-                    deserializedIntegrationAccountAgreementInner.withLocation(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedIntegrationAccountAgreementInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedIntegrationAccountAgreementInner.innerProperties
+                    deserializedIntegrationAccountAgreementInner.properties
                         = IntegrationAccountAgreementProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationAccountAgreementInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

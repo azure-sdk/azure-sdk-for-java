@@ -63,17 +63,6 @@ public final class IntegrationServiceEnvironmentProperties
     }
 
     /**
-     * Set the provisioningState property: The provisioning state.
-     * 
-     * @param provisioningState the provisioningState value to set.
-     * @return the IntegrationServiceEnvironmentProperties object itself.
-     */
-    public IntegrationServiceEnvironmentProperties withProvisioningState(WorkflowProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
-    }
-
-    /**
      * Get the state property: The integration service environment state.
      * 
      * @return the state value.
@@ -199,8 +188,6 @@ public final class IntegrationServiceEnvironmentProperties
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("provisioningState",
-            this.provisioningState == null ? null : this.provisioningState.toString());
         jsonWriter.writeStringField("state", this.state == null ? null : this.state.toString());
         jsonWriter.writeStringField("integrationServiceEnvironmentId", this.integrationServiceEnvironmentId);
         jsonWriter.writeJsonField("endpointsConfiguration", this.endpointsConfiguration);

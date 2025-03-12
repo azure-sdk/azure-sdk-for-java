@@ -4,9 +4,8 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowVersionInner;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of WorkflowVersion.
@@ -34,102 +33,18 @@ public interface WorkflowVersion {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the properties property: The workflow version properties.
      * 
-     * @return the location value.
+     * @return the properties value.
      */
-    String location();
+    WorkflowVersionProperties properties();
 
     /**
-     * Gets the tags property: Resource tags.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the tags value.
+     * @return the systemData value.
      */
-    Map<String, String> tags();
-
-    /**
-     * Gets the provisioningState property: The provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    WorkflowProvisioningState provisioningState();
-
-    /**
-     * Gets the createdTime property: Gets the created time.
-     * 
-     * @return the createdTime value.
-     */
-    OffsetDateTime createdTime();
-
-    /**
-     * Gets the changedTime property: Gets the changed time.
-     * 
-     * @return the changedTime value.
-     */
-    OffsetDateTime changedTime();
-
-    /**
-     * Gets the state property: The state.
-     * 
-     * @return the state value.
-     */
-    WorkflowState state();
-
-    /**
-     * Gets the version property: Gets the version.
-     * 
-     * @return the version value.
-     */
-    String version();
-
-    /**
-     * Gets the accessEndpoint property: Gets the access endpoint.
-     * 
-     * @return the accessEndpoint value.
-     */
-    String accessEndpoint();
-
-    /**
-     * Gets the endpointsConfiguration property: The endpoints configuration.
-     * 
-     * @return the endpointsConfiguration value.
-     */
-    FlowEndpointsConfiguration endpointsConfiguration();
-
-    /**
-     * Gets the accessControl property: The access control configuration.
-     * 
-     * @return the accessControl value.
-     */
-    FlowAccessControlConfiguration accessControl();
-
-    /**
-     * Gets the sku property: The sku.
-     * 
-     * @return the sku value.
-     */
-    Sku sku();
-
-    /**
-     * Gets the integrationAccount property: The integration account.
-     * 
-     * @return the integrationAccount value.
-     */
-    ResourceReference integrationAccount();
-
-    /**
-     * Gets the definition property: The definition.
-     * 
-     * @return the definition value.
-     */
-    Object definition();
-
-    /**
-     * Gets the parameters property: The parameters.
-     * 
-     * @return the parameters value.
-     */
-    Map<String, WorkflowParameter> parameters();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.WorkflowVersionInner object.

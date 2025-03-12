@@ -5,24 +5,29 @@
 package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.logic.models.IntegrationAccountSessionProperties;
 import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * The integration account session.
  */
 @Fluent
-public final class IntegrationAccountSessionInner extends Resource {
+public final class IntegrationAccountSessionInner extends ProxyResource {
     /*
      * The integration account session properties.
      */
-    private IntegrationAccountSessionProperties innerProperties = new IntegrationAccountSessionProperties();
+    private IntegrationAccountSessionProperties properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -46,12 +51,32 @@ public final class IntegrationAccountSessionInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: The integration account session properties.
+     * Get the properties property: The integration account session properties.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private IntegrationAccountSessionProperties innerProperties() {
-        return this.innerProperties;
+    public IntegrationAccountSessionProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The integration account session properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the IntegrationAccountSessionInner object itself.
+     */
+    public IntegrationAccountSessionInner withProperties(IntegrationAccountSessionProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -85,76 +110,17 @@ public final class IntegrationAccountSessionInner extends Resource {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IntegrationAccountSessionInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IntegrationAccountSessionInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
-    /**
-     * Get the createdTime property: The created time.
-     * 
-     * @return the createdTime value.
-     */
-    public OffsetDateTime createdTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdTime();
-    }
-
-    /**
-     * Get the changedTime property: The changed time.
-     * 
-     * @return the changedTime value.
-     */
-    public OffsetDateTime changedTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().changedTime();
-    }
-
-    /**
-     * Get the content property: The session content.
-     * 
-     * @return the content value.
-     */
-    public Object content() {
-        return this.innerProperties() == null ? null : this.innerProperties().content();
-    }
-
-    /**
-     * Set the content property: The session content.
-     * 
-     * @param content the content value to set.
-     * @return the IntegrationAccountSessionInner object itself.
-     */
-    public IntegrationAccountSessionInner withContent(Object content) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountSessionProperties();
-        }
-        this.innerProperties().withContent(content);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
+        if (properties() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property innerProperties in model IntegrationAccountSessionInner"));
+                    "Missing required property properties in model IntegrationAccountSessionInner"));
         } else {
-            innerProperties().validate();
+            properties().validate();
         }
     }
 
@@ -166,9 +132,7 @@ public final class IntegrationAccountSessionInner extends Resource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("location", location());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -195,14 +159,11 @@ public final class IntegrationAccountSessionInner extends Resource {
                     deserializedIntegrationAccountSessionInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedIntegrationAccountSessionInner.type = reader.getString();
-                } else if ("location".equals(fieldName)) {
-                    deserializedIntegrationAccountSessionInner.withLocation(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedIntegrationAccountSessionInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedIntegrationAccountSessionInner.innerProperties
+                    deserializedIntegrationAccountSessionInner.properties
                         = IntegrationAccountSessionProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationAccountSessionInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

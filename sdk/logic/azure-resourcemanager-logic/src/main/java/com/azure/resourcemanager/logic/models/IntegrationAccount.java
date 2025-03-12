@@ -4,9 +4,9 @@
 
 package com.azure.resourcemanager.logic.models;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountInner;
 import java.util.Map;
@@ -51,6 +51,13 @@ public interface IntegrationAccount {
     Map<String, String> tags();
 
     /**
+     * Gets the properties property: The integration account properties.
+     * 
+     * @return the properties value.
+     */
+    IntegrationAccountProperties properties();
+
+    /**
      * Gets the sku property: The sku.
      * 
      * @return the sku value.
@@ -58,18 +65,11 @@ public interface IntegrationAccount {
     IntegrationAccountSku sku();
 
     /**
-     * Gets the integrationServiceEnvironment property: The integration service environment.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the integrationServiceEnvironment value.
+     * @return the systemData value.
      */
-    ResourceReference integrationServiceEnvironment();
-
-    /**
-     * Gets the state property: The workflow state.
-     * 
-     * @return the state value.
-     */
-    WorkflowState state();
+    SystemData systemData();
 
     /**
      * Gets the region of the resource.
@@ -144,7 +144,7 @@ public interface IntegrationAccount {
             /**
              * Specifies resourceGroupName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
@@ -154,8 +154,8 @@ public interface IntegrationAccount {
          * The stage of the IntegrationAccount definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithSku,
-            DefinitionStages.WithIntegrationServiceEnvironment, DefinitionStages.WithState {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithProperties, DefinitionStages.WithSku {
             /**
              * Executes the create request.
              * 
@@ -186,6 +186,19 @@ public interface IntegrationAccount {
         }
 
         /**
+         * The stage of the IntegrationAccount definition allowing to specify properties.
+         */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The integration account properties..
+             * 
+             * @param properties The integration account properties.
+             * @return the next definition stage.
+             */
+            WithCreate withProperties(IntegrationAccountProperties properties);
+        }
+
+        /**
          * The stage of the IntegrationAccount definition allowing to specify sku.
          */
         interface WithSku {
@@ -196,32 +209,6 @@ public interface IntegrationAccount {
              * @return the next definition stage.
              */
             WithCreate withSku(IntegrationAccountSku sku);
-        }
-
-        /**
-         * The stage of the IntegrationAccount definition allowing to specify integrationServiceEnvironment.
-         */
-        interface WithIntegrationServiceEnvironment {
-            /**
-             * Specifies the integrationServiceEnvironment property: The integration service environment..
-             * 
-             * @param integrationServiceEnvironment The integration service environment.
-             * @return the next definition stage.
-             */
-            WithCreate withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
-        }
-
-        /**
-         * The stage of the IntegrationAccount definition allowing to specify state.
-         */
-        interface WithState {
-            /**
-             * Specifies the state property: The workflow state..
-             * 
-             * @param state The workflow state.
-             * @return the next definition stage.
-             */
-            WithCreate withState(WorkflowState state);
         }
     }
 
@@ -235,8 +222,7 @@ public interface IntegrationAccount {
     /**
      * The template for IntegrationAccount update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithSku,
-        UpdateStages.WithIntegrationServiceEnvironment, UpdateStages.WithState {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties, UpdateStages.WithSku {
         /**
          * Executes the update request.
          * 
@@ -271,6 +257,19 @@ public interface IntegrationAccount {
         }
 
         /**
+         * The stage of the IntegrationAccount update allowing to specify properties.
+         */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The integration account properties..
+             * 
+             * @param properties The integration account properties.
+             * @return the next definition stage.
+             */
+            Update withProperties(IntegrationAccountProperties properties);
+        }
+
+        /**
          * The stage of the IntegrationAccount update allowing to specify sku.
          */
         interface WithSku {
@@ -281,32 +280,6 @@ public interface IntegrationAccount {
              * @return the next definition stage.
              */
             Update withSku(IntegrationAccountSku sku);
-        }
-
-        /**
-         * The stage of the IntegrationAccount update allowing to specify integrationServiceEnvironment.
-         */
-        interface WithIntegrationServiceEnvironment {
-            /**
-             * Specifies the integrationServiceEnvironment property: The integration service environment..
-             * 
-             * @param integrationServiceEnvironment The integration service environment.
-             * @return the next definition stage.
-             */
-            Update withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
-        }
-
-        /**
-         * The stage of the IntegrationAccount update allowing to specify state.
-         */
-        interface WithState {
-            /**
-             * Specifies the state property: The workflow state..
-             * 
-             * @param state The workflow state.
-             * @return the next definition stage.
-             */
-            Update withState(WorkflowState state);
         }
     }
 
@@ -328,92 +301,91 @@ public interface IntegrationAccount {
     /**
      * Gets the integration account callback URL.
      * 
-     * @param parameters The callback URL parameters.
+     * @param body The callback URL parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the integration account callback URL along with {@link Response}.
      */
-    Response<CallbackUrl> listCallbackUrlWithResponse(GetCallbackUrlParameters parameters, Context context);
+    Response<CallbackUrl> listCallbackUrlWithResponse(GetCallbackUrlParameters body, Context context);
 
     /**
      * Gets the integration account callback URL.
      * 
-     * @param parameters The callback URL parameters.
+     * @param body The callback URL parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the integration account callback URL.
      */
-    CallbackUrl listCallbackUrl(GetCallbackUrlParameters parameters);
+    CallbackUrl listCallbackUrl(GetCallbackUrlParameters body);
 
     /**
      * Gets the integration account's Key Vault keys.
      * 
-     * @param listKeyVaultKeys The key vault parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the integration account's Key Vault keys as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<KeyVaultKey> listKeyVaultKeys(ListKeyVaultKeysDefinition listKeyVaultKeys);
-
-    /**
-     * Gets the integration account's Key Vault keys.
-     * 
-     * @param listKeyVaultKeys The key vault parameters.
+     * @param body The key vault parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the integration account's Key Vault keys as paginated response with {@link PagedIterable}.
+     * @return the integration account's Key Vault keys along with {@link Response}.
      */
-    PagedIterable<KeyVaultKey> listKeyVaultKeys(ListKeyVaultKeysDefinition listKeyVaultKeys, Context context);
+    Response<KeyVaultKeyCollection> listKeyVaultKeysWithResponse(ListKeyVaultKeysDefinition body, Context context);
+
+    /**
+     * Gets the integration account's Key Vault keys.
+     * 
+     * @param body The key vault parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the integration account's Key Vault keys.
+     */
+    KeyVaultKeyCollection listKeyVaultKeys(ListKeyVaultKeysDefinition body);
 
     /**
      * Logs the integration account's tracking events.
      * 
-     * @param logTrackingEvents The callback URL parameters.
+     * @param body The callback URL parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> logTrackingEventsWithResponse(TrackingEventsDefinition logTrackingEvents, Context context);
+    Response<Void> logTrackingEventsWithResponse(TrackingEventsDefinition body, Context context);
 
     /**
      * Logs the integration account's tracking events.
      * 
-     * @param logTrackingEvents The callback URL parameters.
+     * @param body The callback URL parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void logTrackingEvents(TrackingEventsDefinition logTrackingEvents);
+    void logTrackingEvents(TrackingEventsDefinition body);
 
     /**
      * Regenerates the integration account access key.
      * 
-     * @param regenerateAccessKey The access key type.
+     * @param body The access key type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the integration account along with {@link Response}.
      */
-    Response<IntegrationAccount> regenerateAccessKeyWithResponse(RegenerateActionParameter regenerateAccessKey,
-        Context context);
+    Response<IntegrationAccount> regenerateAccessKeyWithResponse(RegenerateActionParameter body, Context context);
 
     /**
      * Regenerates the integration account access key.
      * 
-     * @param regenerateAccessKey The access key type.
+     * @param body The access key type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the integration account.
      */
-    IntegrationAccount regenerateAccessKey(RegenerateActionParameter regenerateAccessKey);
+    IntegrationAccount regenerateAccessKey(RegenerateActionParameter body);
 }

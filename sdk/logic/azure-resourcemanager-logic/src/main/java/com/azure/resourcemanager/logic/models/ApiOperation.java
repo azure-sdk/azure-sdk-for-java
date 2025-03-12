@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.ApiOperationInner;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of ApiOperation.
@@ -33,25 +33,18 @@ public interface ApiOperation {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
-     * 
-     * @return the location value.
-     */
-    String location();
-
-    /**
-     * Gets the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
-     * Gets the properties property: The api operations properties.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
     ApiOperationPropertiesDefinition properties();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.ApiOperationInner object.

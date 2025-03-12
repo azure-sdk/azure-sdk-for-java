@@ -18,6 +18,11 @@ import java.util.Map;
 @Fluent
 public final class ApiOperationPropertiesDefinition implements JsonSerializable<ApiOperationPropertiesDefinition> {
     /*
+     * The provisioning state.
+     */
+    private WorkflowProvisioningState provisioningState;
+
+    /*
      * The summary of the api operation.
      */
     private String summary;
@@ -81,6 +86,15 @@ public final class ApiOperationPropertiesDefinition implements JsonSerializable<
      * Creates an instance of ApiOperationPropertiesDefinition class.
      */
     public ApiOperationPropertiesDefinition() {
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public WorkflowProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -385,7 +399,10 @@ public final class ApiOperationPropertiesDefinition implements JsonSerializable<
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("summary".equals(fieldName)) {
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedApiOperationPropertiesDefinition.provisioningState
+                        = WorkflowProvisioningState.fromString(reader.getString());
+                } else if ("summary".equals(fieldName)) {
                     deserializedApiOperationPropertiesDefinition.summary = reader.getString();
                 } else if ("description".equals(fieldName)) {
                     deserializedApiOperationPropertiesDefinition.description = reader.getString();

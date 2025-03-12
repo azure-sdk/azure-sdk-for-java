@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountSchemaInner;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of IntegrationAccountSchema.
@@ -37,102 +35,18 @@ public interface IntegrationAccountSchema {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the properties property: The integration account schema properties.
      * 
-     * @return the location value.
+     * @return the properties value.
      */
-    String location();
+    IntegrationAccountSchemaProperties properties();
 
     /**
-     * Gets the tags property: Resource tags.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the tags value.
+     * @return the systemData value.
      */
-    Map<String, String> tags();
-
-    /**
-     * Gets the schemaType property: The schema type.
-     * 
-     * @return the schemaType value.
-     */
-    SchemaType schemaType();
-
-    /**
-     * Gets the targetNamespace property: The target namespace of the schema.
-     * 
-     * @return the targetNamespace value.
-     */
-    String targetNamespace();
-
-    /**
-     * Gets the documentName property: The document name.
-     * 
-     * @return the documentName value.
-     */
-    String documentName();
-
-    /**
-     * Gets the fileName property: The file name.
-     * 
-     * @return the fileName value.
-     */
-    String fileName();
-
-    /**
-     * Gets the createdTime property: The created time.
-     * 
-     * @return the createdTime value.
-     */
-    OffsetDateTime createdTime();
-
-    /**
-     * Gets the changedTime property: The changed time.
-     * 
-     * @return the changedTime value.
-     */
-    OffsetDateTime changedTime();
-
-    /**
-     * Gets the metadata property: The metadata.
-     * 
-     * @return the metadata value.
-     */
-    Object metadata();
-
-    /**
-     * Gets the content property: The content.
-     * 
-     * @return the content value.
-     */
-    String content();
-
-    /**
-     * Gets the contentType property: The content type.
-     * 
-     * @return the contentType value.
-     */
-    String contentType();
-
-    /**
-     * Gets the contentLink property: The content link.
-     * 
-     * @return the contentLink value.
-     */
-    ContentLink contentLink();
-
-    /**
-     * Gets the region of the resource.
-     * 
-     * @return the region of the resource.
-     */
-    Region region();
-
-    /**
-     * Gets the name of the resource region.
-     * 
-     * @return the name of the resource region.
-     */
-    String regionName();
+    SystemData systemData();
 
     /**
      * Gets the name of the resource group.
@@ -151,8 +65,8 @@ public interface IntegrationAccountSchema {
     /**
      * The entirety of the IntegrationAccountSchema definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithSchemaType, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
+        DefinitionStages.WithProperties, DefinitionStages.WithCreate {
     }
 
     /**
@@ -162,28 +76,7 @@ public interface IntegrationAccountSchema {
         /**
          * The first stage of the IntegrationAccountSchema definition.
          */
-        interface Blank extends WithLocation {
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify location.
-         */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(String location);
+        interface Blank extends WithParentResource {
         }
 
         /**
@@ -193,33 +86,31 @@ public interface IntegrationAccountSchema {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
-            WithSchemaType withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
+            WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
 
         /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify schemaType.
+         * The stage of the IntegrationAccountSchema definition allowing to specify properties.
          */
-        interface WithSchemaType {
+        interface WithProperties {
             /**
-             * Specifies the schemaType property: The schema type..
+             * Specifies the properties property: The integration account schema properties..
              * 
-             * @param schemaType The schema type.
+             * @param properties The integration account schema properties.
              * @return the next definition stage.
              */
-            WithCreate withSchemaType(SchemaType schemaType);
+            WithCreate withProperties(IntegrationAccountSchemaProperties properties);
         }
 
         /**
          * The stage of the IntegrationAccountSchema definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithTargetNamespace,
-            DefinitionStages.WithDocumentName, DefinitionStages.WithFileName, DefinitionStages.WithMetadata,
-            DefinitionStages.WithContent, DefinitionStages.WithContentType {
+        interface WithCreate {
             /**
              * Executes the create request.
              * 
@@ -235,97 +126,6 @@ public interface IntegrationAccountSchema {
              */
             IntegrationAccountSchema create(Context context);
         }
-
-        /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify targetNamespace.
-         */
-        interface WithTargetNamespace {
-            /**
-             * Specifies the targetNamespace property: The target namespace of the schema..
-             * 
-             * @param targetNamespace The target namespace of the schema.
-             * @return the next definition stage.
-             */
-            WithCreate withTargetNamespace(String targetNamespace);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify documentName.
-         */
-        interface WithDocumentName {
-            /**
-             * Specifies the documentName property: The document name..
-             * 
-             * @param documentName The document name.
-             * @return the next definition stage.
-             */
-            WithCreate withDocumentName(String documentName);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify fileName.
-         */
-        interface WithFileName {
-            /**
-             * Specifies the fileName property: The file name..
-             * 
-             * @param fileName The file name.
-             * @return the next definition stage.
-             */
-            WithCreate withFileName(String fileName);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            WithCreate withMetadata(Object metadata);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify content.
-         */
-        interface WithContent {
-            /**
-             * Specifies the content property: The content..
-             * 
-             * @param content The content.
-             * @return the next definition stage.
-             */
-            WithCreate withContent(String content);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema definition allowing to specify contentType.
-         */
-        interface WithContentType {
-            /**
-             * Specifies the contentType property: The content type..
-             * 
-             * @param contentType The content type.
-             * @return the next definition stage.
-             */
-            WithCreate withContentType(String contentType);
-        }
     }
 
     /**
@@ -338,9 +138,7 @@ public interface IntegrationAccountSchema {
     /**
      * The template for IntegrationAccountSchema update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithSchemaType, UpdateStages.WithTargetNamespace,
-        UpdateStages.WithDocumentName, UpdateStages.WithFileName, UpdateStages.WithMetadata, UpdateStages.WithContent,
-        UpdateStages.WithContentType {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -362,107 +160,16 @@ public interface IntegrationAccountSchema {
      */
     interface UpdateStages {
         /**
-         * The stage of the IntegrationAccountSchema update allowing to specify tags.
+         * The stage of the IntegrationAccountSchema update allowing to specify properties.
          */
-        interface WithTags {
+        interface WithProperties {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the properties property: The integration account schema properties..
              * 
-             * @param tags Resource tags.
+             * @param properties The integration account schema properties.
              * @return the next definition stage.
              */
-            Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema update allowing to specify schemaType.
-         */
-        interface WithSchemaType {
-            /**
-             * Specifies the schemaType property: The schema type..
-             * 
-             * @param schemaType The schema type.
-             * @return the next definition stage.
-             */
-            Update withSchemaType(SchemaType schemaType);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema update allowing to specify targetNamespace.
-         */
-        interface WithTargetNamespace {
-            /**
-             * Specifies the targetNamespace property: The target namespace of the schema..
-             * 
-             * @param targetNamespace The target namespace of the schema.
-             * @return the next definition stage.
-             */
-            Update withTargetNamespace(String targetNamespace);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema update allowing to specify documentName.
-         */
-        interface WithDocumentName {
-            /**
-             * Specifies the documentName property: The document name..
-             * 
-             * @param documentName The document name.
-             * @return the next definition stage.
-             */
-            Update withDocumentName(String documentName);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema update allowing to specify fileName.
-         */
-        interface WithFileName {
-            /**
-             * Specifies the fileName property: The file name..
-             * 
-             * @param fileName The file name.
-             * @return the next definition stage.
-             */
-            Update withFileName(String fileName);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema update allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            Update withMetadata(Object metadata);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema update allowing to specify content.
-         */
-        interface WithContent {
-            /**
-             * Specifies the content property: The content..
-             * 
-             * @param content The content.
-             * @return the next definition stage.
-             */
-            Update withContent(String content);
-        }
-
-        /**
-         * The stage of the IntegrationAccountSchema update allowing to specify contentType.
-         */
-        interface WithContentType {
-            /**
-             * Specifies the contentType property: The content type..
-             * 
-             * @param contentType The content type.
-             * @return the next definition stage.
-             */
-            Update withContentType(String contentType);
+            Update withProperties(IntegrationAccountSchemaProperties properties);
         }
     }
 
@@ -484,24 +191,24 @@ public interface IntegrationAccountSchema {
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url along with {@link Response}.
      */
-    Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context);
+    Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context);
 
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url.
      */
-    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl);
+    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body);
 }

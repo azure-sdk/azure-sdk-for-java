@@ -70,10 +70,9 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountCertificateListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("integrationAccountName") String integrationAccountName,
-            @QueryParam("api-version") String apiVersion, @QueryParam("$top") Integer top,
+            @PathParam("integrationAccountName") String integrationAccountName, @QueryParam("$top") Integer top,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -81,34 +80,34 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountCertificateInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("certificateName") String certificateName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("certificateName") String certificateName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/certificates/{certificateName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationAccountCertificateInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("certificateName") String certificateName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") IntegrationAccountCertificateInner certificate,
+            @PathParam("certificateName") String certificateName,
+            @BodyParam("application/json") IntegrationAccountCertificateInner resource,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/certificates/{certificateName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("integrationAccountName") String integrationAccountName,
-            @PathParam("certificateName") String certificateName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("certificateName") String certificateName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -122,7 +121,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -152,8 +151,8 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, this.client.getApiVersion(), top, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, top, accept, context))
             .<PagedResponse<IntegrationAccountCertificateInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -162,7 +161,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -194,8 +193,8 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, integrationAccountName,
-                this.client.getApiVersion(), top, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, integrationAccountName, top, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -203,7 +202,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -221,7 +220,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -239,7 +238,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -258,7 +257,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -275,7 +274,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -293,7 +292,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -326,16 +325,16 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    integrationAccountName, certificateName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, certificateName, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @param context The context to associate with this operation.
@@ -369,14 +368,14 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, certificateName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, certificateName, accept, context);
     }
 
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -394,7 +393,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @param context The context to associate with this operation.
@@ -412,7 +411,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -429,10 +428,10 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Creates or updates an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
-     * @param certificate The integration account certificate.
+     * @param resource The integration account certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -440,7 +439,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IntegrationAccountCertificateInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner certificate) {
+        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -461,15 +460,15 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
             return Mono
                 .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
         }
-        if (certificate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter certificate is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            certificate.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, integrationAccountName, certificateName, this.client.getApiVersion(), certificate,
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, certificateName, resource,
                 accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -477,10 +476,10 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Creates or updates an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
-     * @param certificate The integration account certificate.
+     * @param resource The integration account certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -489,7 +488,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IntegrationAccountCertificateInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner certificate,
+        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner resource,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -511,24 +510,25 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
             return Mono
                 .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
         }
-        if (certificate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter certificate is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            certificate.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, certificateName, this.client.getApiVersion(), certificate, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, certificateName, resource,
+            accept, context);
     }
 
     /**
      * Creates or updates an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
-     * @param certificate The integration account certificate.
+     * @param resource The integration account certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -536,18 +536,18 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IntegrationAccountCertificateInner> createOrUpdateAsync(String resourceGroupName,
-        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner certificate) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, certificateName, certificate)
+        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner resource) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, certificateName, resource)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
-     * @param certificate The integration account certificate.
+     * @param resource The integration account certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -556,19 +556,19 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IntegrationAccountCertificateInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner certificate,
+        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner resource,
         Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, certificateName, certificate,
+        return createOrUpdateWithResponseAsync(resourceGroupName, integrationAccountName, certificateName, resource,
             context).block();
     }
 
     /**
      * Creates or updates an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
-     * @param certificate The integration account certificate.
+     * @param resource The integration account certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -576,15 +576,15 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public IntegrationAccountCertificateInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String certificateName, IntegrationAccountCertificateInner certificate) {
-        return createOrUpdateWithResponse(resourceGroupName, integrationAccountName, certificateName, certificate,
+        String certificateName, IntegrationAccountCertificateInner resource) {
+        return createOrUpdateWithResponse(resourceGroupName, integrationAccountName, certificateName, resource,
             Context.NONE).getValue();
     }
 
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -617,16 +617,16 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    integrationAccountName, certificateName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, integrationAccountName, certificateName, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @param context The context to associate with this operation.
@@ -660,14 +660,14 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            integrationAccountName, certificateName, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, integrationAccountName, certificateName, accept, context);
     }
 
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -684,7 +684,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @param context The context to associate with this operation.
@@ -702,7 +702,7 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -721,8 +721,8 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of integration account certificates along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a IntegrationAccountCertificate list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IntegrationAccountCertificateInner>> listNextSinglePageAsync(String nextLink) {
@@ -748,8 +748,8 @@ public final class IntegrationAccountCertificatesClientImpl implements Integrati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of integration account certificates along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a IntegrationAccountCertificate list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IntegrationAccountCertificateInner>> listNextSinglePageAsync(String nextLink,

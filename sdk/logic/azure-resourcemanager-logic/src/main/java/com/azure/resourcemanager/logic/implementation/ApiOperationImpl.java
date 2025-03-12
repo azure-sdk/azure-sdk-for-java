@@ -4,11 +4,10 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.ApiOperationInner;
 import com.azure.resourcemanager.logic.models.ApiOperation;
 import com.azure.resourcemanager.logic.models.ApiOperationPropertiesDefinition;
-import java.util.Collections;
-import java.util.Map;
 
 public final class ApiOperationImpl implements ApiOperation {
     private ApiOperationInner innerObject;
@@ -32,21 +31,12 @@ public final class ApiOperationImpl implements ApiOperation {
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
     public ApiOperationPropertiesDefinition properties() {
         return this.innerModel().properties();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public ApiOperationInner innerModel() {

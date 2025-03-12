@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * The workflow output parameter.
@@ -18,7 +19,7 @@ public final class WorkflowOutputParameter extends WorkflowParameter {
     /*
      * Gets the error.
      */
-    private Object error;
+    private Map<String, Object> error;
 
     /**
      * Creates an instance of WorkflowOutputParameter class.
@@ -31,7 +32,7 @@ public final class WorkflowOutputParameter extends WorkflowParameter {
      * 
      * @return the error value.
      */
-    public Object error() {
+    public Map<String, Object> error() {
         return this.error;
     }
 
@@ -48,7 +49,7 @@ public final class WorkflowOutputParameter extends WorkflowParameter {
      * {@inheritDoc}
      */
     @Override
-    public WorkflowOutputParameter withValue(Object value) {
+    public WorkflowOutputParameter withValue(Map<String, Object> value) {
         super.withValue(value);
         return this;
     }
@@ -57,7 +58,7 @@ public final class WorkflowOutputParameter extends WorkflowParameter {
      * {@inheritDoc}
      */
     @Override
-    public WorkflowOutputParameter withMetadata(Object metadata) {
+    public WorkflowOutputParameter withMetadata(Map<String, Object> metadata) {
         super.withMetadata(metadata);
         return this;
     }
@@ -87,8 +88,8 @@ public final class WorkflowOutputParameter extends WorkflowParameter {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("type", type() == null ? null : type().toString());
-        jsonWriter.writeUntypedField("value", value());
-        jsonWriter.writeUntypedField("metadata", metadata());
+        jsonWriter.writeMapField("value", value(), (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeMapField("metadata", metadata(), (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("description", description());
         return jsonWriter.writeEndObject();
     }
@@ -111,13 +112,16 @@ public final class WorkflowOutputParameter extends WorkflowParameter {
                 if ("type".equals(fieldName)) {
                     deserializedWorkflowOutputParameter.withType(ParameterType.fromString(reader.getString()));
                 } else if ("value".equals(fieldName)) {
-                    deserializedWorkflowOutputParameter.withValue(reader.readUntyped());
+                    Map<String, Object> value = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowOutputParameter.withValue(value);
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedWorkflowOutputParameter.withMetadata(reader.readUntyped());
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowOutputParameter.withMetadata(metadata);
                 } else if ("description".equals(fieldName)) {
                     deserializedWorkflowOutputParameter.withDescription(reader.getString());
                 } else if ("error".equals(fieldName)) {
-                    deserializedWorkflowOutputParameter.error = reader.readUntyped();
+                    Map<String, Object> error = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowOutputParameter.error = error;
                 } else {
                     reader.skipChildren();
                 }

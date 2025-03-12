@@ -15,7 +15,7 @@ public interface WorkflowVersions {
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -27,7 +27,7 @@ public interface WorkflowVersions {
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -41,7 +41,7 @@ public interface WorkflowVersions {
     /**
      * Gets a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param context The context to associate with this operation.
@@ -56,7 +56,7 @@ public interface WorkflowVersions {
     /**
      * Gets a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -65,4 +65,36 @@ public interface WorkflowVersions {
      * @return a workflow version.
      */
     WorkflowVersion get(String resourceGroupName, String workflowName, String versionId);
+
+    /**
+     * Get the callback url for a trigger of a workflow version.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param versionId The workflow versionId.
+     * @param triggerName The workflow trigger name.
+     * @param parameters The callback URL parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the callback url for a trigger of a workflow version along with {@link Response}.
+     */
+    Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(String resourceGroupName, String workflowName,
+        String versionId, String triggerName, GetCallbackUrlParameters parameters, Context context);
+
+    /**
+     * Get the callback url for a trigger of a workflow version.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param versionId The workflow versionId.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the callback url for a trigger of a workflow version.
+     */
+    WorkflowTriggerCallbackUrl listCallbackUrl(String resourceGroupName, String workflowName, String versionId,
+        String triggerName);
 }

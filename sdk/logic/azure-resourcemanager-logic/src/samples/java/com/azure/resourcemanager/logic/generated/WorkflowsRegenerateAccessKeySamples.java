@@ -4,9 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.KeyType;
-import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
-
 /**
  * Samples for Workflows RegenerateAccessKey.
  */
@@ -24,7 +21,7 @@ public final class WorkflowsRegenerateAccessKeySamples {
     public static void
         regenerateTheCallbackURLAccessKeyForRequestTriggers(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflows()
-            .regenerateAccessKeyWithResponse("testResourceGroup", "testWorkflowName",
-                new RegenerateActionParameter().withKeyType(KeyType.PRIMARY), com.azure.core.util.Context.NONE);
+            .regenerateAccessKeyWithResponse("testResourceGroup", "testWorkflowName", null,
+                com.azure.core.util.Context.NONE);
     }
 }
