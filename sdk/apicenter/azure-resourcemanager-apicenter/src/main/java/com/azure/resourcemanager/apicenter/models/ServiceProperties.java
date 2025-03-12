@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.apicenter.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,12 +14,18 @@ import java.io.IOException;
 /**
  * The properties of the service.
  */
-@Immutable
+@Fluent
 public final class ServiceProperties implements JsonSerializable<ServiceProperties> {
     /*
      * Provisioning state of the service.
      */
     private ProvisioningState provisioningState;
+
+    /*
+     * Flag used to restore soft-deleted API Center service. If specified and set to 'true' all other properties will be
+     * ignored.
+     */
+    private Boolean restore;
 
     /**
      * Creates an instance of ServiceProperties class.
@@ -37,6 +43,28 @@ public final class ServiceProperties implements JsonSerializable<ServiceProperti
     }
 
     /**
+     * Get the restore property: Flag used to restore soft-deleted API Center service. If specified and set to 'true'
+     * all other properties will be ignored.
+     * 
+     * @return the restore value.
+     */
+    public Boolean restore() {
+        return this.restore;
+    }
+
+    /**
+     * Set the restore property: Flag used to restore soft-deleted API Center service. If specified and set to 'true'
+     * all other properties will be ignored.
+     * 
+     * @param restore the restore value to set.
+     * @return the ServiceProperties object itself.
+     */
+    public ServiceProperties withRestore(Boolean restore) {
+        this.restore = restore;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -50,6 +78,7 @@ public final class ServiceProperties implements JsonSerializable<ServiceProperti
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeBooleanField("restore", this.restore);
         return jsonWriter.writeEndObject();
     }
 
@@ -70,6 +99,8 @@ public final class ServiceProperties implements JsonSerializable<ServiceProperti
 
                 if ("provisioningState".equals(fieldName)) {
                     deserializedServiceProperties.provisioningState = ProvisioningState.fromString(reader.getString());
+                } else if ("restore".equals(fieldName)) {
+                    deserializedServiceProperties.restore = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }
