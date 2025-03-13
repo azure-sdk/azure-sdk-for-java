@@ -1,14 +1,153 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-13)
+
+- Azure Resource Manager DataFactory client library for Java. This package contains Microsoft Azure SDK for DataFactory Management SDK. The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services. Package tag package-2018-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.GreenplumAuthenticationType` was added
 
-### Bugs Fixed
+* `models.AzurePostgreSqlSinkUpsertSettings` was added
 
-### Other Changes
+* `models.ValueType` was added
+
+* `models.TeradataSink` was added
+
+* `models.OracleAuthenticationType` was added
+
+* `models.TeradataImportCommand` was added
+
+* `models.AzurePostgreSqlWriteMethodEnum` was added
+
+#### `models.GreenplumLinkedService` was modified
+
+* `commandTimeout()` was added
+* `withAuthenticationType(models.GreenplumAuthenticationType)` was added
+* `withConnectionTimeout(java.lang.Object)` was added
+* `database()` was added
+* `host()` was added
+* `port()` was added
+* `withDatabase(java.lang.Object)` was added
+* `authenticationType()` was added
+* `withCommandTimeout(java.lang.Object)` was added
+* `withSslMode(java.lang.Object)` was added
+* `username()` was added
+* `withHost(java.lang.Object)` was added
+* `withUsername(java.lang.Object)` was added
+* `sslMode()` was added
+* `connectionTimeout()` was added
+* `withPort(java.lang.Object)` was added
+
+#### `models.DynamicsCrmSink` was modified
+
+* `bypassPowerAutomateFlows()` was added
+* `bypassBusinessLogicExecution()` was added
+* `withBypassPowerAutomateFlows(java.lang.Object)` was added
+* `withBypassBusinessLogicExecution(java.lang.Object)` was added
+
+#### `models.AzurePostgreSqlSink` was modified
+
+* `withUpsertSettings(models.AzurePostgreSqlSinkUpsertSettings)` was added
+* `upsertSettings()` was added
+* `writeMethod()` was added
+* `withWriteMethod(models.AzurePostgreSqlWriteMethodEnum)` was added
+
+#### `models.ServiceNowV2ObjectDataset` was modified
+
+* `valueType()` was added
+* `withValueType(models.ValueType)` was added
+
+#### `models.PrestoLinkedService` was modified
+
+* `withEnableServerCertificateValidation(java.lang.Object)` was added
+* `enableServerCertificateValidation()` was added
+
+#### `models.TeradataLinkedService` was modified
+
+* `sslMode()` was added
+* `characterSet()` was added
+* `useDataEncryption()` was added
+* `httpsPortNumber()` was added
+* `withPortNumber(java.lang.Object)` was added
+* `withSslMode(java.lang.Object)` was added
+* `maxRespSize()` was added
+* `portNumber()` was added
+* `withMaxRespSize(java.lang.Object)` was added
+* `withUseDataEncryption(java.lang.Object)` was added
+* `withCharacterSet(java.lang.Object)` was added
+* `withHttpsPortNumber(java.lang.Object)` was added
+
+#### `models.DynamicsSink` was modified
+
+* `bypassPowerAutomateFlows()` was added
+* `bypassBusinessLogicExecution()` was added
+* `withBypassPowerAutomateFlows(java.lang.Object)` was added
+* `withBypassBusinessLogicExecution(java.lang.Object)` was added
+
+#### `models.TypeConversionSettings` was modified
+
+* `withTimeFormat(java.lang.Object)` was added
+* `timeFormat()` was added
+* `dateFormat()` was added
+* `withDateFormat(java.lang.Object)` was added
+
+#### `models.AzurePostgreSqlLinkedService` was modified
+
+* `withServicePrincipalEmbeddedCertPassword(models.SecretBase)` was added
+* `withServicePrincipalKey(models.SecretBase)` was added
+* `azureCloudType()` was added
+* `withCredential(models.CredentialReference)` was added
+* `withTenant(java.lang.Object)` was added
+* `servicePrincipalEmbeddedCertPassword()` was added
+* `withServicePrincipalCredentialType(java.lang.Object)` was added
+* `withAzureCloudType(java.lang.Object)` was added
+* `servicePrincipalCredentialType()` was added
+* `servicePrincipalEmbeddedCert()` was added
+* `withServicePrincipalId(java.lang.Object)` was added
+* `credential()` was added
+* `tenant()` was added
+* `withServicePrincipalEmbeddedCert(models.SecretBase)` was added
+* `servicePrincipalKey()` was added
+* `servicePrincipalId()` was added
+
+#### `models.OracleLinkedService` was modified
+
+* `encryptionTypesClient()` was added
+* `withFetchSize(java.lang.Object)` was added
+* `withEncryptionClient(java.lang.Object)` was added
+* `initializationString()` was added
+* `initialLobFetchSize()` was added
+* `withUsername(java.lang.Object)` was added
+* `encryptionClient()` was added
+* `withSupportV1DataTypes(java.lang.Object)` was added
+* `withCryptoChecksumTypesClient(java.lang.Object)` was added
+* `withStatementCacheSize(java.lang.Object)` was added
+* `withInitializationString(java.lang.Object)` was added
+* `server()` was added
+* `withFetchTswtzAsTimestamp(java.lang.Object)` was added
+* `enableBulkLoad()` was added
+* `authenticationType()` was added
+* `withEncryptionTypesClient(java.lang.Object)` was added
+* `supportV1DataTypes()` was added
+* `withEnableBulkLoad(java.lang.Object)` was added
+* `statementCacheSize()` was added
+* `withCryptoChecksumClient(java.lang.Object)` was added
+* `fetchTswtzAsTimestamp()` was added
+* `cryptoChecksumTypesClient()` was added
+* `withInitialLobFetchSize(java.lang.Object)` was added
+* `withServer(java.lang.Object)` was added
+* `withAuthenticationType(models.OracleAuthenticationType)` was added
+* `username()` was added
+* `cryptoChecksumClient()` was added
+* `fetchSize()` was added
+
+#### `models.CommonDataServiceForAppsSink` was modified
+
+* `bypassPowerAutomateFlows()` was added
+* `withBypassPowerAutomateFlows(java.lang.Object)` was added
+* `bypassBusinessLogicExecution()` was added
+* `withBypassBusinessLogicExecution(java.lang.Object)` was added
 
 ## 1.0.0 (2024-12-16)
 
