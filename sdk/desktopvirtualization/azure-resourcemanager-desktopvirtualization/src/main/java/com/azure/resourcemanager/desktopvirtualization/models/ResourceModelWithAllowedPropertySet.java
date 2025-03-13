@@ -42,19 +42,19 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
     private String etag;
 
     /*
-     * The identity property.
+     * Managed service identity (system assigned and/or user assigned identities)
      */
-    private ResourceModelWithAllowedPropertySetIdentity identity;
+    private ManagedServiceIdentity identity;
 
     /*
-     * The sku property.
+     * The resource model definition representing SKU
      */
-    private ResourceModelWithAllowedPropertySetSku sku;
+    private Sku sku;
 
     /*
-     * The plan property.
+     * Plan for the resource.
      */
-    private ResourceModelWithAllowedPropertySetPlan plan;
+    private Plan plan;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -157,61 +157,61 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
     }
 
     /**
-     * Get the identity property: The identity property.
+     * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @return the identity value.
      */
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
+    public ManagedServiceIdentity identity() {
         return this.identity;
     }
 
     /**
-     * Set the identity property: The identity property.
+     * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @param identity the identity value to set.
      * @return the ResourceModelWithAllowedPropertySet object itself.
      */
-    public ResourceModelWithAllowedPropertySet withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public ResourceModelWithAllowedPropertySet withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
         return this;
     }
 
     /**
-     * Get the sku property: The sku property.
+     * Get the sku property: The resource model definition representing SKU.
      * 
      * @return the sku value.
      */
-    public ResourceModelWithAllowedPropertySetSku sku() {
+    public Sku sku() {
         return this.sku;
     }
 
     /**
-     * Set the sku property: The sku property.
+     * Set the sku property: The resource model definition representing SKU.
      * 
      * @param sku the sku value to set.
      * @return the ResourceModelWithAllowedPropertySet object itself.
      */
-    public ResourceModelWithAllowedPropertySet withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public ResourceModelWithAllowedPropertySet withSku(Sku sku) {
         this.sku = sku;
         return this;
     }
 
     /**
-     * Get the plan property: The plan property.
+     * Get the plan property: Plan for the resource.
      * 
      * @return the plan value.
      */
-    public ResourceModelWithAllowedPropertySetPlan plan() {
+    public Plan plan() {
         return this.plan;
     }
 
     /**
-     * Set the plan property: The plan property.
+     * Set the plan property: Plan for the resource.
      * 
      * @param plan the plan value to set.
      * @return the ResourceModelWithAllowedPropertySet object itself.
      */
-    public ResourceModelWithAllowedPropertySet withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public ResourceModelWithAllowedPropertySet withPlan(Plan plan) {
         this.plan = plan;
         return this;
     }
@@ -352,14 +352,11 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
                 } else if ("etag".equals(fieldName)) {
                     deserializedResourceModelWithAllowedPropertySet.etag = reader.getString();
                 } else if ("identity".equals(fieldName)) {
-                    deserializedResourceModelWithAllowedPropertySet.identity
-                        = ResourceModelWithAllowedPropertySetIdentity.fromJson(reader);
+                    deserializedResourceModelWithAllowedPropertySet.identity = ManagedServiceIdentity.fromJson(reader);
                 } else if ("sku".equals(fieldName)) {
-                    deserializedResourceModelWithAllowedPropertySet.sku
-                        = ResourceModelWithAllowedPropertySetSku.fromJson(reader);
+                    deserializedResourceModelWithAllowedPropertySet.sku = Sku.fromJson(reader);
                 } else if ("plan".equals(fieldName)) {
-                    deserializedResourceModelWithAllowedPropertySet.plan
-                        = ResourceModelWithAllowedPropertySetPlan.fromJson(reader);
+                    deserializedResourceModelWithAllowedPropertySet.plan = Plan.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedResourceModelWithAllowedPropertySet.systemData = SystemData.fromJson(reader);
                 } else {

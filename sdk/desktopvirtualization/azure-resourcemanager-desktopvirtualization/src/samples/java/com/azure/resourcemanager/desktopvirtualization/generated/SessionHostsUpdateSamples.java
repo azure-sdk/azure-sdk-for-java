@@ -12,8 +12,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.SessionHostPatch;
 public final class SessionHostsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * SessionHost_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/SessionHost_Update.json
      */
     /**
      * Sample code: SessionHost_Update.

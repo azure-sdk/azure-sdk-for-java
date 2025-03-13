@@ -13,8 +13,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.ImportPackageInfoR
 public final class AppAttachPackageInfoImportMethodSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * AppAttachPackageInfo_Import_Post.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/AppAttachPackageInfo_Import_Post.json
      */
     /**
      * Sample code: AppAttachPackageInfo_Import.

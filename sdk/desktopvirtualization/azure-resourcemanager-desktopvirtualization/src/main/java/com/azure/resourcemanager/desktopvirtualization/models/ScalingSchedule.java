@@ -25,7 +25,17 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
     /*
      * Set of days of the week on which this schedule is active.
      */
-    private List<ScalingScheduleDaysOfWeekItem> daysOfWeek;
+    private List<DayOfWeek> daysOfWeek;
+
+    /*
+     * The desired scaling method to be used to scale the hosts in the assigned host pool.
+     */
+    private ScalingMethod scalingMethod;
+
+    /*
+     * The properties that control how Scaling will manage the size of the hostpool by creating and deleting hosts.
+     */
+    private CreateDeleteProperties createDelete;
 
     /*
      * Starting time for ramp up period.
@@ -138,7 +148,7 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
      * 
      * @return the daysOfWeek value.
      */
-    public List<ScalingScheduleDaysOfWeekItem> daysOfWeek() {
+    public List<DayOfWeek> daysOfWeek() {
         return this.daysOfWeek;
     }
 
@@ -148,8 +158,52 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
      * @param daysOfWeek the daysOfWeek value to set.
      * @return the ScalingSchedule object itself.
      */
-    public ScalingSchedule withDaysOfWeek(List<ScalingScheduleDaysOfWeekItem> daysOfWeek) {
+    public ScalingSchedule withDaysOfWeek(List<DayOfWeek> daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
+        return this;
+    }
+
+    /**
+     * Get the scalingMethod property: The desired scaling method to be used to scale the hosts in the assigned host
+     * pool.
+     * 
+     * @return the scalingMethod value.
+     */
+    public ScalingMethod scalingMethod() {
+        return this.scalingMethod;
+    }
+
+    /**
+     * Set the scalingMethod property: The desired scaling method to be used to scale the hosts in the assigned host
+     * pool.
+     * 
+     * @param scalingMethod the scalingMethod value to set.
+     * @return the ScalingSchedule object itself.
+     */
+    public ScalingSchedule withScalingMethod(ScalingMethod scalingMethod) {
+        this.scalingMethod = scalingMethod;
+        return this;
+    }
+
+    /**
+     * Get the createDelete property: The properties that control how Scaling will manage the size of the hostpool by
+     * creating and deleting hosts.
+     * 
+     * @return the createDelete value.
+     */
+    public CreateDeleteProperties createDelete() {
+        return this.createDelete;
+    }
+
+    /**
+     * Set the createDelete property: The properties that control how Scaling will manage the size of the hostpool by
+     * creating and deleting hosts.
+     * 
+     * @param createDelete the createDelete value to set.
+     * @return the ScalingSchedule object itself.
+     */
+    public ScalingSchedule withCreateDelete(CreateDeleteProperties createDelete) {
+        this.createDelete = createDelete;
         return this;
     }
 
@@ -483,6 +537,9 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (createDelete() != null) {
+            createDelete().validate();
+        }
         if (rampUpStartTime() != null) {
             rampUpStartTime().validate();
         }
@@ -506,6 +563,8 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
         jsonWriter.writeStringField("name", this.name);
         jsonWriter.writeArrayField("daysOfWeek", this.daysOfWeek,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeStringField("scalingMethod", this.scalingMethod == null ? null : this.scalingMethod.toString());
+        jsonWriter.writeJsonField("createDelete", this.createDelete);
         jsonWriter.writeJsonField("rampUpStartTime", this.rampUpStartTime);
         jsonWriter.writeStringField("rampUpLoadBalancingAlgorithm",
             this.rampUpLoadBalancingAlgorithm == null ? null : this.rampUpLoadBalancingAlgorithm.toString());
@@ -548,9 +607,12 @@ public final class ScalingSchedule implements JsonSerializable<ScalingSchedule> 
                 if ("name".equals(fieldName)) {
                     deserializedScalingSchedule.name = reader.getString();
                 } else if ("daysOfWeek".equals(fieldName)) {
-                    List<ScalingScheduleDaysOfWeekItem> daysOfWeek
-                        = reader.readArray(reader1 -> ScalingScheduleDaysOfWeekItem.fromString(reader1.getString()));
+                    List<DayOfWeek> daysOfWeek = reader.readArray(reader1 -> DayOfWeek.fromString(reader1.getString()));
                     deserializedScalingSchedule.daysOfWeek = daysOfWeek;
+                } else if ("scalingMethod".equals(fieldName)) {
+                    deserializedScalingSchedule.scalingMethod = ScalingMethod.fromString(reader.getString());
+                } else if ("createDelete".equals(fieldName)) {
+                    deserializedScalingSchedule.createDelete = CreateDeleteProperties.fromJson(reader);
                 } else if ("rampUpStartTime".equals(fieldName)) {
                     deserializedScalingSchedule.rampUpStartTime = Time.fromJson(reader);
                 } else if ("rampUpLoadBalancingAlgorithm".equals(fieldName)) {

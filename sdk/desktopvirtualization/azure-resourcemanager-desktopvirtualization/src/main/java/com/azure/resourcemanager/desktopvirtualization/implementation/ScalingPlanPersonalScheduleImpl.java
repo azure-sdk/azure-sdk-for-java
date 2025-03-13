@@ -266,6 +266,36 @@ public final class ScalingPlanPersonalScheduleImpl
         }
     }
 
+    public ScalingPlanPersonalScheduleImpl withPeakStartTime(Time peakStartTime) {
+        if (isInCreateMode()) {
+            this.innerModel().withPeakStartTime(peakStartTime);
+            return this;
+        } else {
+            this.updateScalingPlanSchedule.withPeakStartTime(peakStartTime);
+            return this;
+        }
+    }
+
+    public ScalingPlanPersonalScheduleImpl withRampDownStartTime(Time rampDownStartTime) {
+        if (isInCreateMode()) {
+            this.innerModel().withRampDownStartTime(rampDownStartTime);
+            return this;
+        } else {
+            this.updateScalingPlanSchedule.withRampDownStartTime(rampDownStartTime);
+            return this;
+        }
+    }
+
+    public ScalingPlanPersonalScheduleImpl withOffPeakStartTime(Time offPeakStartTime) {
+        if (isInCreateMode()) {
+            this.innerModel().withOffPeakStartTime(offPeakStartTime);
+            return this;
+        } else {
+            this.updateScalingPlanSchedule.withOffPeakStartTime(offPeakStartTime);
+            return this;
+        }
+    }
+
     public ScalingPlanPersonalScheduleImpl withRampUpAutoStartHosts(StartupBehavior rampUpAutoStartHosts) {
         if (isInCreateMode()) {
             this.innerModel().withRampUpAutoStartHosts(rampUpAutoStartHosts);
@@ -328,16 +358,6 @@ public final class ScalingPlanPersonalScheduleImpl
         }
     }
 
-    public ScalingPlanPersonalScheduleImpl withPeakStartTime(Time peakStartTime) {
-        if (isInCreateMode()) {
-            this.innerModel().withPeakStartTime(peakStartTime);
-            return this;
-        } else {
-            this.updateScalingPlanSchedule.withPeakStartTime(peakStartTime);
-            return this;
-        }
-    }
-
     public ScalingPlanPersonalScheduleImpl withPeakStartVMOnConnect(SetStartVMOnConnect peakStartVMOnConnect) {
         if (isInCreateMode()) {
             this.innerModel().withPeakStartVMOnConnect(peakStartVMOnConnect);
@@ -384,16 +404,6 @@ public final class ScalingPlanPersonalScheduleImpl
             return this;
         } else {
             this.updateScalingPlanSchedule.withPeakMinutesToWaitOnLogoff(peakMinutesToWaitOnLogoff);
-            return this;
-        }
-    }
-
-    public ScalingPlanPersonalScheduleImpl withRampDownStartTime(Time rampDownStartTime) {
-        if (isInCreateMode()) {
-            this.innerModel().withRampDownStartTime(rampDownStartTime);
-            return this;
-        } else {
-            this.updateScalingPlanSchedule.withRampDownStartTime(rampDownStartTime);
             return this;
         }
     }
@@ -446,16 +456,6 @@ public final class ScalingPlanPersonalScheduleImpl
             return this;
         } else {
             this.updateScalingPlanSchedule.withRampDownMinutesToWaitOnLogoff(rampDownMinutesToWaitOnLogoff);
-            return this;
-        }
-    }
-
-    public ScalingPlanPersonalScheduleImpl withOffPeakStartTime(Time offPeakStartTime) {
-        if (isInCreateMode()) {
-            this.innerModel().withOffPeakStartTime(offPeakStartTime);
-            return this;
-        } else {
-            this.updateScalingPlanSchedule.withOffPeakStartTime(offPeakStartTime);
             return this;
         }
     }
