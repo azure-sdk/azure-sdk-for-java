@@ -17,6 +17,7 @@ import com.azure.resourcemanager.hybridcompute.models.CloudMetadata;
 import com.azure.resourcemanager.hybridcompute.models.FirmwareProfile;
 import com.azure.resourcemanager.hybridcompute.models.HardwareProfile;
 import com.azure.resourcemanager.hybridcompute.models.Identity;
+import com.azure.resourcemanager.hybridcompute.models.IdentityKeyStore;
 import com.azure.resourcemanager.hybridcompute.models.LicenseProfileMachineInstanceView;
 import com.azure.resourcemanager.hybridcompute.models.LocationData;
 import com.azure.resourcemanager.hybridcompute.models.Machine;
@@ -176,6 +177,14 @@ public final class MachineImpl implements Machine {
 
     public String clientPublicKey() {
         return this.innerModel().clientPublicKey();
+    }
+
+    public IdentityKeyStore identityKeyStore() {
+        return this.innerModel().identityKeyStore();
+    }
+
+    public String tpmEkCertificate() {
+        return this.innerModel().tpmEkCertificate();
     }
 
     public String osName() {

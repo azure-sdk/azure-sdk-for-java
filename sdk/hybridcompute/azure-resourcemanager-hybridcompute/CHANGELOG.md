@@ -1,14 +1,150 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-03-13)
 
-### Features Added
+- Azure Resource Manager HybridCompute client library for Java. This package contains Microsoft Azure SDK for HybridCompute Management SDK. The Hybrid Compute Management Client. Package tag package-2025-01-13. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.Machines` was modified
 
-### Other Changes
+* `deleteByResourceGroupWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.MachineRunCommandsListResult` was added
+
+* `models.SetupExtensionRequest` was added
+
+* `models.ExtensionPublisherListResult` was added
+
+* `models.ExtensionTypes` was added
+
+* `models.Gateway$DefinitionStages` was added
+
+* `models.GatewaysListResult` was added
+
+* `models.MachineRunCommand$UpdateStages` was added
+
+* `models.ExtensionPublishers` was added
+
+* `models.IdentityKeyStore` was added
+
+* `models.Settings` was added
+
+* `models.ExtensionValueV2` was added
+
+* `models.MachineRunCommand` was added
+
+* `models.StorageProfile` was added
+
+* `models.Gateway$Definition` was added
+
+* `models.SettingsOperations` was added
+
+* `models.MachineRunCommandUpdate` was added
+
+* `models.MachineRunCommand$Update` was added
+
+* `models.GatewayUpdate` was added
+
+* `models.ExtensionMetadataV2s` was added
+
+* `models.ExtensionTypeListResult` was added
+
+* `models.MachineRunCommand$Definition` was added
+
+* `models.Gateway$Update` was added
+
+* `models.Processor` was added
+
+* `models.ExtensionsStatusLevelTypes` was added
+
+* `models.Gateway` was added
+
+* `models.Disk` was added
+
+* `models.ExtensionPublisher` was added
+
+* `models.ExtensionsResourceStatus` was added
+
+* `models.GatewayType` was added
+
+* `models.MachineRunCommandInstanceView` was added
+
+* `models.HardwareProfile` was added
+
+* `models.RunCommandManagedIdentity` was added
+
+* `models.MachineRunCommands` was added
+
+* `models.FirmwareProfile` was added
+
+* `models.ExtensionType` was added
+
+* `models.Gateways` was added
+
+* `models.Gateway$UpdateStages` was added
+
+* `models.MachineRunCommandScriptSource` was added
+
+* `models.RunCommandInputParameter` was added
+
+* `models.ExtensionValueListResultV2` was added
+
+* `models.MachineRunCommand$DefinitionStages` was added
+
+* `models.ExecutionState` was added
+
+#### `models.ResourceProviders` was modified
+
+* `setupExtensions(java.lang.String,java.lang.String,fluent.models.SetupExtensionRequestInner,com.azure.core.util.Context)` was added
+* `setupExtensions(java.lang.String,java.lang.String,fluent.models.SetupExtensionRequestInner)` was added
+
+#### `models.MachineProperties` was modified
+
+* `tpmEkCertificate()` was added
+* `hardwareProfile()` was added
+* `firmwareProfile()` was added
+* `identityKeyStore()` was added
+* `storageProfile()` was added
+
+#### `models.Machines` was modified
+
+* `delete(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.NetworkInterface` was modified
+
+* `withId(java.lang.String)` was added
+* `macAddress()` was added
+* `withMacAddress(java.lang.String)` was added
+* `id()` was added
+* `withName(java.lang.String)` was added
+* `name()` was added
+
+#### `models.MachineUpdate` was modified
+
+* `withTpmEkCertificate(java.lang.String)` was added
+* `withIdentityKeyStore(java.lang.String)` was added
+* `tpmEkCertificate()` was added
+* `identityKeyStore()` was added
+
+#### `models.Machine` was modified
+
+* `identityKeyStore()` was added
+* `tpmEkCertificate()` was added
+* `hardwareProfile()` was added
+* `firmwareProfile()` was added
+* `storageProfile()` was added
+
+#### `HybridComputeManager` was modified
+
+* `extensionPublishers()` was added
+* `machineRunCommands()` was added
+* `extensionTypes()` was added
+* `gateways()` was added
+* `settingsOperations()` was added
+* `extensionMetadataV2s()` was added
 
 ## 1.1.0-beta.1 (2024-11-14)
 
