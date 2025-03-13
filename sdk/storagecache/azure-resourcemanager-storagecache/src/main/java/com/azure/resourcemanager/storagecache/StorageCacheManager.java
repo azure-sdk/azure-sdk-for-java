@@ -22,11 +22,13 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storagecache.fluent.StorageCacheManagementClient;
 import com.azure.resourcemanager.storagecache.implementation.AmlFilesystemsImpl;
 import com.azure.resourcemanager.storagecache.implementation.AscOperationsImpl;
 import com.azure.resourcemanager.storagecache.implementation.AscUsagesImpl;
+import com.azure.resourcemanager.storagecache.implementation.AutoExportJobsImpl;
 import com.azure.resourcemanager.storagecache.implementation.CachesImpl;
 import com.azure.resourcemanager.storagecache.implementation.ImportJobsImpl;
 import com.azure.resourcemanager.storagecache.implementation.OperationsImpl;
@@ -39,6 +41,7 @@ import com.azure.resourcemanager.storagecache.implementation.UsageModelsImpl;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystems;
 import com.azure.resourcemanager.storagecache.models.AscOperations;
 import com.azure.resourcemanager.storagecache.models.AscUsages;
+import com.azure.resourcemanager.storagecache.models.AutoExportJobs;
 import com.azure.resourcemanager.storagecache.models.Caches;
 import com.azure.resourcemanager.storagecache.models.ImportJobs;
 import com.azure.resourcemanager.storagecache.models.Operations;
@@ -51,6 +54,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -61,6 +65,8 @@ import java.util.stream.Collectors;
  */
 public final class StorageCacheManager {
     private AmlFilesystems amlFilesystems;
+
+    private AutoExportJobs autoExportJobs;
 
     private ImportJobs importJobs;
 
@@ -134,6 +140,9 @@ public final class StorageCacheManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-storagecache.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -241,12 +250,14 @@ public final class StorageCacheManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.storagecache")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -302,6 +313,18 @@ public final class StorageCacheManager {
             this.amlFilesystems = new AmlFilesystemsImpl(clientObject.getAmlFilesystems(), this);
         }
         return amlFilesystems;
+    }
+
+    /**
+     * Gets the resource collection API of AutoExportJobs. It manages AutoExportJob.
+     * 
+     * @return Resource collection API of AutoExportJobs.
+     */
+    public AutoExportJobs autoExportJobs() {
+        if (this.autoExportJobs == null) {
+            this.autoExportJobs = new AutoExportJobsImpl(clientObject.getAutoExportJobs(), this);
+        }
+        return autoExportJobs;
     }
 
     /**
