@@ -1,14 +1,124 @@
 # Release History
 
-## 1.2.0-beta.2 (Unreleased)
+## 1.2.0-beta.2 (2025-03-13)
 
-### Features Added
+- Azure Resource Manager Container Service Fleet client library for Java. This package contains Microsoft Azure SDK for Container Service Fleet Management SDK. Azure Kubernetes Fleet Manager api client. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.FleetMemberListResult` was removed
 
-### Other Changes
+#### `models.UpdateRunListResult` was removed
+
+#### `models.AutoUpgradeProfileListResult` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.FleetUpdateStrategyListResult` was removed
+
+#### `models.FleetListResult` was removed
+
+#### `models.UserAssignedIdentity` was modified
+
+* `java.util.UUID clientId()` -> `java.lang.String clientId()`
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+* `java.util.UUID tenantId()` -> `java.lang.String tenantId()`
+
+### Features Added
+
+* `models.GateConfiguration` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `models.FleetStatus` was added
+
+* `models.UpdateRunGateStatus` was added
+
+* `models.FleetMemberStatus` was added
+
+* `models.Gates` was added
+
+* `implementation.models.FleetMemberListResult` was added
+
+* `implementation.models.GateListResult` was added
+
+* `models.GateType` was added
+
+* `implementation.models.UpdateRunListResult` was added
+
+* `implementation.models.FleetListResult` was added
+
+* `models.GateProvisioningState` was added
+
+* `models.GateTargetType` was added
+
+* `models.GateTarget` was added
+
+* `implementation.models.AutoUpgradeProfileListResult` was added
+
+* `models.Gate` was added
+
+* `models.GateState` was added
+
+* `implementation.models.FleetUpdateStrategyListResult` was added
+
+#### `ContainerServiceFleetManager` was modified
+
+* `gates()` was added
+
+#### `models.FleetMember` was modified
+
+* `status()` was added
+* `labels()` was added
+
+#### `models.UpdateStageStatus` was modified
+
+* `beforeGates()` was added
+* `afterGates()` was added
+
+#### `models.Fleet` was modified
+
+* `status()` was added
+
+#### `models.UpdateGroupStatus` was modified
+
+* `beforeGates()` was added
+* `afterGates()` was added
+
+#### `models.FleetMember$Definition` was modified
+
+* `withLabels(java.util.Map)` was added
+
+#### `models.FleetMemberUpdate` was modified
+
+* `withLabels(java.util.Map)` was added
+* `labels()` was added
+
+#### `models.UpdateGroup` was modified
+
+* `afterGates()` was added
+* `beforeGates()` was added
+* `withAfterGates(java.util.List)` was added
+* `withBeforeGates(java.util.List)` was added
+
+#### `models.UpdateStage` was modified
+
+* `withAfterGates(java.util.List)` was added
+* `withBeforeGates(java.util.List)` was added
+* `beforeGates()` was added
+* `afterGates()` was added
+
+#### `models.UpdateRun` was modified
+
+* `autoUpgradeProfileId()` was added
+
+#### `models.FleetMember$Update` was modified
+
+* `withLabels(java.util.Map)` was added
 
 ## 1.2.0-beta.1 (2024-10-17)
 
