@@ -12,7 +12,7 @@ import com.azure.resourcemanager.devhub.models.GitHubOAuthCallRequest;
 public final class ResourceProviderGitHubOAuthSamples {
     /*
      * x-ms-original-file:
-     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/GitHubOAuth.json
+     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2025-03-01-preview/examples/GitHubOAuth.json
      */
     /**
      * Sample code: GitHub OAuth.

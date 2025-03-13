@@ -14,7 +14,7 @@ import java.util.Map;
 public final class WorkflowUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/
+     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2025-03-01-preview/examples/
      * Workflow_UpdateTags.json
      */
     /**

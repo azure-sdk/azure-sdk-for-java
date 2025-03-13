@@ -10,7 +10,7 @@ package com.azure.resourcemanager.devhub.generated;
 public final class WorkflowDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/Workflow_Delete.
+     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2025-03-01-preview/examples/Workflow_Delete.
      * json
      */
     /**
