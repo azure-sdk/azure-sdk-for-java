@@ -10,7 +10,7 @@ package com.azure.resourcemanager.devhub.generated;
 public final class WorkflowGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/Workflow_Get.
+     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2025-03-01-preview/examples/Workflow_Get.
      * json
      */
     /**

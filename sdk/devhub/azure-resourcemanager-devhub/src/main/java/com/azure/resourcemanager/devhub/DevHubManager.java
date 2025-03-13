@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,22 +20,31 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devhub.fluent.DeveloperHubServiceClient;
+import com.azure.resourcemanager.devhub.implementation.AdooAuthsImpl;
 import com.azure.resourcemanager.devhub.implementation.DeveloperHubServiceClientBuilder;
+import com.azure.resourcemanager.devhub.implementation.IacProfilesImpl;
 import com.azure.resourcemanager.devhub.implementation.OperationsImpl;
 import com.azure.resourcemanager.devhub.implementation.ResourceProvidersImpl;
+import com.azure.resourcemanager.devhub.implementation.TemplatesImpl;
+import com.azure.resourcemanager.devhub.implementation.VersionedTemplatesImpl;
 import com.azure.resourcemanager.devhub.implementation.WorkflowsImpl;
+import com.azure.resourcemanager.devhub.models.AdooAuths;
+import com.azure.resourcemanager.devhub.models.IacProfiles;
 import com.azure.resourcemanager.devhub.models.Operations;
 import com.azure.resourcemanager.devhub.models.ResourceProviders;
+import com.azure.resourcemanager.devhub.models.Templates;
+import com.azure.resourcemanager.devhub.models.VersionedTemplates;
 import com.azure.resourcemanager.devhub.models.Workflows;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -43,11 +53,19 @@ import java.util.stream.Collectors;
  * The AKS Developer Hub Service Client.
  */
 public final class DevHubManager {
+    private IacProfiles iacProfiles;
+
     private Operations operations;
 
     private ResourceProviders resourceProviders;
 
     private Workflows workflows;
+
+    private AdooAuths adooAuths;
+
+    private Templates templates;
+
+    private VersionedTemplates versionedTemplates;
 
     private final DeveloperHubServiceClient clientObject;
 
@@ -101,6 +119,9 @@ public final class DevHubManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-devhub.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -208,12 +229,14 @@ public final class DevHubManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.devhub")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -246,7 +269,7 @@ public final class DevHubManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -257,6 +280,18 @@ public final class DevHubManager {
                 .build();
             return new DevHubManager(httpPipeline, profile, defaultPollInterval);
         }
+    }
+
+    /**
+     * Gets the resource collection API of IacProfiles. It manages IacProfile.
+     * 
+     * @return Resource collection API of IacProfiles.
+     */
+    public IacProfiles iacProfiles() {
+        if (this.iacProfiles == null) {
+            this.iacProfiles = new IacProfilesImpl(clientObject.getIacProfiles(), this);
+        }
+        return iacProfiles;
     }
 
     /**
@@ -293,6 +328,42 @@ public final class DevHubManager {
             this.workflows = new WorkflowsImpl(clientObject.getWorkflows(), this);
         }
         return workflows;
+    }
+
+    /**
+     * Gets the resource collection API of AdooAuths.
+     * 
+     * @return Resource collection API of AdooAuths.
+     */
+    public AdooAuths adooAuths() {
+        if (this.adooAuths == null) {
+            this.adooAuths = new AdooAuthsImpl(clientObject.getAdooAuths(), this);
+        }
+        return adooAuths;
+    }
+
+    /**
+     * Gets the resource collection API of Templates.
+     * 
+     * @return Resource collection API of Templates.
+     */
+    public Templates templates() {
+        if (this.templates == null) {
+            this.templates = new TemplatesImpl(clientObject.getTemplates(), this);
+        }
+        return templates;
+    }
+
+    /**
+     * Gets the resource collection API of VersionedTemplates.
+     * 
+     * @return Resource collection API of VersionedTemplates.
+     */
+    public VersionedTemplates versionedTemplates() {
+        if (this.versionedTemplates == null) {
+            this.versionedTemplates = new VersionedTemplatesImpl(clientObject.getVersionedTemplates(), this);
+        }
+        return versionedTemplates;
     }
 
     /**

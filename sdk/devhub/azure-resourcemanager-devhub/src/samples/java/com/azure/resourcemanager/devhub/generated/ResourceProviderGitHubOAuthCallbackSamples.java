@@ -10,7 +10,7 @@ package com.azure.resourcemanager.devhub.generated;
 public final class ResourceProviderGitHubOAuthCallbackSamples {
     /*
      * x-ms-original-file:
-     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/
+     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2025-03-01-preview/examples/
      * GitHubOAuthCallback.json
      */
     /**
