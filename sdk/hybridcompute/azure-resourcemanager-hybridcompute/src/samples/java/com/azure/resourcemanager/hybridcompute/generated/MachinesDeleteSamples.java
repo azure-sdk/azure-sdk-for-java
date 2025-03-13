@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridcompute.generated;
 public final class MachinesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/machine/
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/stable/2025-01-13/examples/machine/
      * Machines_Delete.json
      */
     /**
@@ -19,7 +19,6 @@ public final class MachinesDeleteSamples {
      * @param manager Entry point to HybridComputeManager.
      */
     public static void deleteAMachine(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
-        manager.machines()
-            .deleteByResourceGroupWithResponse("myResourceGroup", "myMachine", com.azure.core.util.Context.NONE);
+        manager.machines().delete("myResourceGroup", "myMachine", com.azure.core.util.Context.NONE);
     }
 }
