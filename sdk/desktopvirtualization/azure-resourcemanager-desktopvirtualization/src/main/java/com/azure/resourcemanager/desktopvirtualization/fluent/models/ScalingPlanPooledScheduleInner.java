@@ -11,7 +11,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.desktopvirtualization.models.CreateDeleteProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.DayOfWeek;
+import com.azure.resourcemanager.desktopvirtualization.models.ScalingMethod;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostLoadBalancingAlgorithm;
 import com.azure.resourcemanager.desktopvirtualization.models.StopHostsWhen;
 import com.azure.resourcemanager.desktopvirtualization.models.Time;
@@ -103,6 +105,15 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
     }
 
     /**
+     * Get the name property: Name of the ScalingPlanPooledSchedule.
+     * 
+     * @return the name value.
+     */
+    public String namePropertiesName() {
+        return this.innerProperties() == null ? null : this.innerProperties().name();
+    }
+
+    /**
      * Get the daysOfWeek property: Set of days of the week on which this schedule is active.
      * 
      * @return the daysOfWeek value.
@@ -122,6 +133,56 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }
         this.innerProperties().withDaysOfWeek(daysOfWeek);
+        return this;
+    }
+
+    /**
+     * Get the scalingMethod property: The desired scaling method to be used to scale the hosts in the assigned host
+     * pool.
+     * 
+     * @return the scalingMethod value.
+     */
+    public ScalingMethod scalingMethod() {
+        return this.innerProperties() == null ? null : this.innerProperties().scalingMethod();
+    }
+
+    /**
+     * Set the scalingMethod property: The desired scaling method to be used to scale the hosts in the assigned host
+     * pool.
+     * 
+     * @param scalingMethod the scalingMethod value to set.
+     * @return the ScalingPlanPooledScheduleInner object itself.
+     */
+    public ScalingPlanPooledScheduleInner withScalingMethod(ScalingMethod scalingMethod) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+        }
+        this.innerProperties().withScalingMethod(scalingMethod);
+        return this;
+    }
+
+    /**
+     * Get the createDelete property: The properties that control how Scaling will manage the size of the hostpool by
+     * creating and deleting hosts.
+     * 
+     * @return the createDelete value.
+     */
+    public CreateDeleteProperties createDelete() {
+        return this.innerProperties() == null ? null : this.innerProperties().createDelete();
+    }
+
+    /**
+     * Set the createDelete property: The properties that control how Scaling will manage the size of the hostpool by
+     * creating and deleting hosts.
+     * 
+     * @param createDelete the createDelete value to set.
+     * @return the ScalingPlanPooledScheduleInner object itself.
+     */
+    public ScalingPlanPooledScheduleInner withCreateDelete(CreateDeleteProperties createDelete) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScalingPlanPooledScheduleProperties();
+        }
+        this.innerProperties().withCreateDelete(createDelete);
         return this;
     }
 
@@ -200,8 +261,8 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
      * 
      * @return the rampUpCapacityThresholdPct value.
      */
-    public Integer rampUpCapacityThresholdPct() {
-        return this.innerProperties() == null ? null : this.innerProperties().rampUpCapacityThresholdPct();
+    public int rampUpCapacityThresholdPct() {
+        return this.innerProperties() == null ? 0 : this.innerProperties().rampUpCapacityThresholdPct();
     }
 
     /**
@@ -210,7 +271,7 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
      * @param rampUpCapacityThresholdPct the rampUpCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledScheduleInner object itself.
      */
-    public ScalingPlanPooledScheduleInner withRampUpCapacityThresholdPct(Integer rampUpCapacityThresholdPct) {
+    public ScalingPlanPooledScheduleInner withRampUpCapacityThresholdPct(int rampUpCapacityThresholdPct) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }
@@ -340,8 +401,8 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
      * 
      * @return the rampDownCapacityThresholdPct value.
      */
-    public Integer rampDownCapacityThresholdPct() {
-        return this.innerProperties() == null ? null : this.innerProperties().rampDownCapacityThresholdPct();
+    public int rampDownCapacityThresholdPct() {
+        return this.innerProperties() == null ? 0 : this.innerProperties().rampDownCapacityThresholdPct();
     }
 
     /**
@@ -350,7 +411,7 @@ public final class ScalingPlanPooledScheduleInner extends ProxyResource {
      * @param rampDownCapacityThresholdPct the rampDownCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledScheduleInner object itself.
      */
-    public ScalingPlanPooledScheduleInner withRampDownCapacityThresholdPct(Integer rampDownCapacityThresholdPct) {
+    public ScalingPlanPooledScheduleInner withRampDownCapacityThresholdPct(int rampDownCapacityThresholdPct) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }

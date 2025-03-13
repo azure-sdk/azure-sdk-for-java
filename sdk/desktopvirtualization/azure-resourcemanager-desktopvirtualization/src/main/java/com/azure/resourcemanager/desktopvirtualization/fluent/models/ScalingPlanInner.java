@@ -10,13 +10,13 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -151,7 +151,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
      * {@inheritDoc}
      */
     @Override
-    public ScalingPlanInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public ScalingPlanInner withIdentity(ManagedServiceIdentity identity) {
         super.withIdentity(identity);
         return this;
     }
@@ -160,7 +160,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
      * {@inheritDoc}
      */
     @Override
-    public ScalingPlanInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public ScalingPlanInner withSku(Sku sku) {
         super.withSku(sku);
         return this;
     }
@@ -169,7 +169,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
      * {@inheritDoc}
      */
     @Override
-    public ScalingPlanInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public ScalingPlanInner withPlan(Plan plan) {
         super.withPlan(plan);
         return this;
     }
@@ -317,7 +317,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
     }
 
     /**
-     * Get the schedules property: List of ScalingPlanPooledSchedule definitions.
+     * Get the schedules property: List of Pooled ScalingSchedule definitions.
      * 
      * @return the schedules value.
      */
@@ -326,7 +326,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
     }
 
     /**
-     * Set the schedules property: List of ScalingPlanPooledSchedule definitions.
+     * Set the schedules property: List of Pooled ScalingSchedule definitions.
      * 
      * @param schedules the schedules value to set.
      * @return the ScalingPlanInner object itself.
@@ -440,12 +440,11 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
                 } else if ("etag".equals(fieldName)) {
                     deserializedScalingPlanInner.etag = reader.getString();
                 } else if ("identity".equals(fieldName)) {
-                    deserializedScalingPlanInner
-                        .withIdentity(ResourceModelWithAllowedPropertySetIdentity.fromJson(reader));
+                    deserializedScalingPlanInner.withIdentity(ManagedServiceIdentity.fromJson(reader));
                 } else if ("sku".equals(fieldName)) {
-                    deserializedScalingPlanInner.withSku(ResourceModelWithAllowedPropertySetSku.fromJson(reader));
+                    deserializedScalingPlanInner.withSku(Sku.fromJson(reader));
                 } else if ("plan".equals(fieldName)) {
-                    deserializedScalingPlanInner.withPlan(ResourceModelWithAllowedPropertySetPlan.fromJson(reader));
+                    deserializedScalingPlanInner.withPlan(Plan.fromJson(reader));
                 } else if ("systemData".equals(fieldName)) {
                     deserializedScalingPlanInner.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
