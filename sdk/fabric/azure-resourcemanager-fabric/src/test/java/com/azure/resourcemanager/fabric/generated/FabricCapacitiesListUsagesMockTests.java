@@ -6,19 +6,23 @@ package com.azure.resourcemanager.fabric.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.models.AzureCloud;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.fabric.FabricManager;
+import com.azure.resourcemanager.fabric.models.Quota;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
-public final class FabricCapacitiesSuspendMockTests {
+public final class FabricCapacitiesListUsagesMockTests {
     @Test
-    public void testSuspend() throws Exception {
-        String responseStr = "{}";
+    public void testListUsages() throws Exception {
+        String responseStr
+            = "{\"value\":[{\"name\":{\"value\":\"e\",\"localizedValue\":\"alhbx\"},\"unit\":\"hejjz\",\"currentValue\":246259275856309822,\"limit\":2207707054810160445}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -27,7 +31,10 @@ public final class FabricCapacitiesSuspendMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
-        manager.fabricCapacities().suspend("c", "pmivkwlzu", com.azure.core.util.Context.NONE);
+        PagedIterable<Quota> response = manager.fabricCapacities().listUsages("zj", com.azure.core.util.Context.NONE);
 
+        Assertions.assertEquals("hejjz", response.iterator().next().unit());
+        Assertions.assertEquals(246259275856309822L, response.iterator().next().currentValue());
+        Assertions.assertEquals(2207707054810160445L, response.iterator().next().limit());
     }
 }
