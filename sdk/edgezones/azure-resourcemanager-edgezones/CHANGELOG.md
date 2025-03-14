@@ -1,14 +1,24 @@
 # Release History
 
-## 1.0.0-beta.3 (Unreleased)
+## 1.0.0-beta.3 (2025-03-14)
 
-### Features Added
+- Azure Resource Manager Edge Zones client library for Java. This package contains Microsoft Azure SDK for Edge Zones Management SDK. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ExtendedZoneListResult` was removed
 
-### Other Changes
+#### `models.OperationListResult` was removed
+
+#### `EdgeZonesManager` was modified
+
+* `fluent.MicrosoftEdgeZones serviceClient()` -> `fluent.EdgeZonesClient serviceClient()`
+
+### Features Added
+
+* `implementation.models.OperationListResult` was added
+
+* `implementation.models.ExtendedZoneListResult` was added
 
 ## 1.0.0-beta.2 (2024-12-04)
 
