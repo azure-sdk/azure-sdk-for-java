@@ -17,6 +17,140 @@
 
 ```java
 /**
+ * Samples for Organizations List.
+ */
+public final class OrganizationsListSamples {
+    /*
+     * x-ms-original-file: 2024-08-01-preview/Organizations_ListBySubscription_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Organizations_ListBySubscription.
+     * 
+     * @param manager Entry point to NeonPostgresManager.
+     */
+    public static void
+        organizationsListBySubscription(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
+        manager.organizations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Organizations_CreateOrUpdate
+
+```java
+/**
+ * Samples for Organizations GetByResourceGroup.
+ */
+public final class OrganizationsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2024-08-01-preview/Organizations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Organizations_Get.
+     * 
+     * @param manager Entry point to NeonPostgresManager.
+     */
+    public static void organizationsGet(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
+        manager.organizations().getByResourceGroupWithResponse("rgneon", "5", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Organizations_Delete
+
+```java
+/**
+ * Samples for Organizations ListByResourceGroup.
+ */
+public final class OrganizationsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2024-08-01-preview/Organizations_ListByResourceGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Organizations_ListByResourceGroup.
+     * 
+     * @param manager Entry point to NeonPostgresManager.
+     */
+    public static void
+        organizationsListByResourceGroup(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
+        manager.organizations().listByResourceGroup("rgneon", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Organizations_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.neonpostgres.models.CompanyDetails;
+import com.azure.resourcemanager.neonpostgres.models.OrganizationProperties;
+import com.azure.resourcemanager.neonpostgres.models.OrganizationResource;
+import com.azure.resourcemanager.neonpostgres.models.PartnerOrganizationProperties;
+import com.azure.resourcemanager.neonpostgres.models.SingleSignOnProperties;
+import com.azure.resourcemanager.neonpostgres.models.SingleSignOnStates;
+import com.azure.resourcemanager.neonpostgres.models.UserDetails;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Organizations Update.
+ */
+public final class OrganizationsUpdateSamples {
+    /*
+     * x-ms-original-file: 2024-08-01-preview/Organizations_Update_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Organizations_Update.
+     * 
+     * @param manager Entry point to NeonPostgresManager.
+     */
+    public static void organizationsUpdate(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
+        OrganizationResource resource = manager.organizations()
+            .getByResourceGroupWithResponse("rgneon", "eRY-J_:", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("key8990", "fakeTokenPlaceholder"))
+            .withProperties(new OrganizationProperties()
+                .withUserDetails(new UserDetails().withFirstName("buwwe")
+                    .withLastName("escynjpynkoox")
+                    .withEmailAddress("3i_%@w8-y.H-p.tvj.dG")
+                    .withUpn("fwedjamgwwrotcjaucuzdwycfjdqn")
+                    .withPhoneNumber("dlrqoowumy"))
+                .withCompanyDetails(new CompanyDetails().withCompanyName("uxn")
+                    .withCountry("lpajqzptqchuko")
+                    .withOfficeAddress("chpkrlpmfslmawgunjxdllzcrctykq")
+                    .withBusinessPhone("hbeb")
+                    .withDomain("krjldeakhwiepvs")
+                    .withNumberOfEmployees(23L))
+                .withPartnerOrganizationProperties(
+                    new PartnerOrganizationProperties().withOrganizationId("njyoqflcmfwzfsqe")
+                        .withOrganizationName("J:.._3P")
+                        .withSingleSignOnProperties(
+                            new SingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
+                                .withEnterpriseAppId("fpibacregjfncfdsojs")
+                                .withSingleSignOnUrl("tmojh")
+                                .withAadDomains(Arrays.asList("kndszgrwzbvvlssvkej")))))
+            .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Organizations_List
+
+```java
+/**
  * Samples for Operations List.
  */
 public final class OperationsListSamples {
@@ -34,7 +168,7 @@ public final class OperationsListSamples {
 }
 ```
 
-### Organizations_CreateOrUpdate
+### Organizations_ListByResourceGroup
 
 ```java
 import com.azure.resourcemanager.neonpostgres.models.CompanyDetails;
@@ -113,7 +247,7 @@ public final class OrganizationsCreateOrUpdateSamples {
 }
 ```
 
-### Organizations_Delete
+### Organizations_Update
 
 ```java
 /**
@@ -130,140 +264,6 @@ public final class OrganizationsDeleteSamples {
      */
     public static void organizationsDelete(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
         manager.organizations().delete("rgneon", "2_3", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Organizations_GetByResourceGroup
-
-```java
-/**
- * Samples for Organizations GetByResourceGroup.
- */
-public final class OrganizationsGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-08-01-preview/Organizations_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Organizations_Get.
-     * 
-     * @param manager Entry point to NeonPostgresManager.
-     */
-    public static void organizationsGet(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
-        manager.organizations().getByResourceGroupWithResponse("rgneon", "5", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Organizations_List
-
-```java
-/**
- * Samples for Organizations List.
- */
-public final class OrganizationsListSamples {
-    /*
-     * x-ms-original-file: 2024-08-01-preview/Organizations_ListBySubscription_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Organizations_ListBySubscription.
-     * 
-     * @param manager Entry point to NeonPostgresManager.
-     */
-    public static void
-        organizationsListBySubscription(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
-        manager.organizations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Organizations_ListByResourceGroup
-
-```java
-/**
- * Samples for Organizations ListByResourceGroup.
- */
-public final class OrganizationsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-08-01-preview/Organizations_ListByResourceGroup_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Organizations_ListByResourceGroup.
-     * 
-     * @param manager Entry point to NeonPostgresManager.
-     */
-    public static void
-        organizationsListByResourceGroup(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
-        manager.organizations().listByResourceGroup("rgneon", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Organizations_Update
-
-```java
-import com.azure.resourcemanager.neonpostgres.models.CompanyDetails;
-import com.azure.resourcemanager.neonpostgres.models.OrganizationProperties;
-import com.azure.resourcemanager.neonpostgres.models.OrganizationResource;
-import com.azure.resourcemanager.neonpostgres.models.PartnerOrganizationProperties;
-import com.azure.resourcemanager.neonpostgres.models.SingleSignOnProperties;
-import com.azure.resourcemanager.neonpostgres.models.SingleSignOnStates;
-import com.azure.resourcemanager.neonpostgres.models.UserDetails;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Organizations Update.
- */
-public final class OrganizationsUpdateSamples {
-    /*
-     * x-ms-original-file: 2024-08-01-preview/Organizations_Update_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Organizations_Update.
-     * 
-     * @param manager Entry point to NeonPostgresManager.
-     */
-    public static void organizationsUpdate(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
-        OrganizationResource resource = manager.organizations()
-            .getByResourceGroupWithResponse("rgneon", "eRY-J_:", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withTags(mapOf("key8990", "fakeTokenPlaceholder"))
-            .withProperties(new OrganizationProperties()
-                .withUserDetails(new UserDetails().withFirstName("buwwe")
-                    .withLastName("escynjpynkoox")
-                    .withEmailAddress("3i_%@w8-y.H-p.tvj.dG")
-                    .withUpn("fwedjamgwwrotcjaucuzdwycfjdqn")
-                    .withPhoneNumber("dlrqoowumy"))
-                .withCompanyDetails(new CompanyDetails().withCompanyName("uxn")
-                    .withCountry("lpajqzptqchuko")
-                    .withOfficeAddress("chpkrlpmfslmawgunjxdllzcrctykq")
-                    .withBusinessPhone("hbeb")
-                    .withDomain("krjldeakhwiepvs")
-                    .withNumberOfEmployees(23L))
-                .withPartnerOrganizationProperties(
-                    new PartnerOrganizationProperties().withOrganizationId("njyoqflcmfwzfsqe")
-                        .withOrganizationName("J:.._3P")
-                        .withSingleSignOnProperties(
-                            new SingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
-                                .withEnterpriseAppId("fpibacregjfncfdsojs")
-                                .withSingleSignOnUrl("tmojh")
-                                .withAadDomains(Arrays.asList("kndszgrwzbvvlssvkej")))))
-            .apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }
 ```
