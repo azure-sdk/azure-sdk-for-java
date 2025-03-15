@@ -72,7 +72,6 @@ public final class EndpointScheduleAction extends ScheduleActionBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (endpointInvocationDefinition() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(

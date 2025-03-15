@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class ComponentContainersListSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/ComponentContainer/list.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/ComponentContainer/list.json
      */
     /**
      * Sample code: List Workspace Component Container.
