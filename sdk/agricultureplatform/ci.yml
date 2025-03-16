@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/agricultureplatform/ci.yml
+      - sdk/agricultureplatform/azure-agricultureplatform/
+    exclude:
+      - sdk/agricultureplatform/pom.xml
+      - sdk/agricultureplatform/azure-agricultureplatform/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/agricultureplatform/ci.yml
+      - sdk/agricultureplatform/azure-agricultureplatform/
+    exclude:
+      - sdk/agricultureplatform/pom.xml
+      - sdk/agricultureplatform/azure-agricultureplatform/pom.xml
+
+parameters:
+  - name: release_azureagricultureplatform
+    displayName: azure-agricultureplatform
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: agricultureplatform
+    Artifacts:
+      - name: azure-agricultureplatform
+        groupId: com.azure
+        safeName: azureagricultureplatform
+        releaseInBatch: ${{ parameters.release_azureagricultureplatform }}
