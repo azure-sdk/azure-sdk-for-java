@@ -14,7 +14,7 @@ import java.util.Map;
 public final class EnvironmentContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/EnvironmentContainer/createOrUpdate.json
      */
     /**
@@ -28,9 +28,9 @@ public final class EnvironmentContainersCreateOrUpdateSamples {
             .define("testEnvironment")
             .withExistingWorkspace("testrg123", "testworkspace")
             .withProperties(new EnvironmentContainerProperties().withDescription("string")
-                .withTags(mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
                 .withProperties(
-                    mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string")))
+                    mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
+                .withTags(mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string")))
             .create();
     }
 
