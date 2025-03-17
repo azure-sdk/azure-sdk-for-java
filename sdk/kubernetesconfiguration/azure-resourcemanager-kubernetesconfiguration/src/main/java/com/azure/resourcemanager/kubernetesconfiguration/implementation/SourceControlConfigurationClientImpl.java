@@ -73,20 +73,6 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
     }
 
     /**
-     * Api Version.
-     */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     * 
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
-    }
-
-    /**
      * The HTTP pipeline to send requests through.
      */
     private final HttpPipeline httpPipeline;
@@ -229,7 +215,6 @@ public final class SourceControlConfigurationClientImpl implements SourceControl
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-05-01";
         this.extensions = new ExtensionsClientImpl(this);
         this.operationStatus = new OperationStatusClientImpl(this);
         this.fluxConfigurations = new FluxConfigurationsClientImpl(this);
