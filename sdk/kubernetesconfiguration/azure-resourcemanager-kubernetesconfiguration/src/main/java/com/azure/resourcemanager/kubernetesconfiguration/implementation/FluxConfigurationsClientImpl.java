@@ -183,11 +183,12 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter fluxConfigurationName is required and cannot be null."));
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName,
-                this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    clusterRp, clusterResourceName, clusterName, fluxConfigurationName, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -236,10 +237,11 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter fluxConfigurationName is required and cannot be null."));
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, clusterRp,
-            clusterResourceName, clusterName, fluxConfigurationName, this.client.getApiVersion(), accept, context);
+            clusterResourceName, clusterName, fluxConfigurationName, apiVersion, accept, context);
     }
 
     /**
@@ -362,11 +364,12 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
         } else {
             fluxConfiguration.validate();
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName,
-                this.client.getApiVersion(), fluxConfiguration, accept, context))
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, apiVersion,
+                fluxConfiguration, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -424,11 +427,12 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
         } else {
             fluxConfiguration.validate();
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            clusterRp, clusterResourceName, clusterName, fluxConfigurationName, this.client.getApiVersion(),
-            fluxConfiguration, accept, context);
+            clusterRp, clusterResourceName, clusterName, fluxConfigurationName, apiVersion, fluxConfiguration, accept,
+            context);
     }
 
     /**
@@ -690,11 +694,12 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
         } else {
             fluxConfigurationPatch.validate();
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName,
-                this.client.getApiVersion(), fluxConfigurationPatch, accept, context))
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, apiVersion,
+                fluxConfigurationPatch, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -752,11 +757,12 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
         } else {
             fluxConfigurationPatch.validate();
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, clusterRp,
-            clusterResourceName, clusterName, fluxConfigurationName, this.client.getApiVersion(),
-            fluxConfigurationPatch, accept, context);
+            clusterResourceName, clusterName, fluxConfigurationName, apiVersion, fluxConfigurationPatch, accept,
+            context);
     }
 
     /**
@@ -1012,11 +1018,12 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter fluxConfigurationName is required and cannot be null."));
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName,
-                this.client.getApiVersion(), forceDelete, accept, context))
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, apiVersion,
+                forceDelete, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1068,11 +1075,11 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter fluxConfigurationName is required and cannot be null."));
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, clusterRp,
-            clusterResourceName, clusterName, fluxConfigurationName, this.client.getApiVersion(), forceDelete, accept,
-            context);
+            clusterResourceName, clusterName, fluxConfigurationName, apiVersion, forceDelete, accept, context);
     }
 
     /**
@@ -1370,11 +1377,11 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    clusterRp, clusterResourceName, clusterName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, apiVersion, accept, context))
             .<PagedResponse<FluxConfigurationInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1421,11 +1428,12 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
+        final String apiVersion = "2024-04-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, clusterRp,
-                clusterResourceName, clusterName, this.client.getApiVersion(), accept, context)
+                clusterResourceName, clusterName, apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

@@ -262,8 +262,8 @@ public final class ExtensionsUpdateSamples {
 public final class FluxConfigOperationStatusGetSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/GetFluxConfigurationAsyncOperationStatus.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/GetFluxConfigurationAsyncOperationStatus.json
      */
     /**
      * Sample code: FluxConfigurationAsyncOperationStatus Get.
@@ -301,8 +301,8 @@ import java.util.Map;
 public final class FluxConfigurationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/CreateFluxConfiguration.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/CreateFluxConfiguration.json
      */
     /**
      * Sample code: Create Flux Configuration.
@@ -355,8 +355,8 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/CreateFluxConfigurationWithBucket.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/CreateFluxConfigurationWithBucket.json
      */
     /**
      * Sample code: Create Flux Configuration with Bucket Source Kind.
@@ -414,8 +414,8 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
 public final class FluxConfigurationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/DeleteFluxConfiguration.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/DeleteFluxConfiguration.json
      */
     /**
      * Sample code: Delete Flux Configuration.
@@ -440,8 +440,8 @@ public final class FluxConfigurationsDeleteSamples {
 public final class FluxConfigurationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/GetFluxConfiguration.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/GetFluxConfiguration.json
      */
     /**
      * Sample code: Get Flux Configuration.
@@ -466,8 +466,8 @@ public final class FluxConfigurationsGetSamples {
 public final class FluxConfigurationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/ListFluxConfigurations.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/ListFluxConfigurations.json
      */
     /**
      * Sample code: List Flux Configuration.
@@ -497,8 +497,8 @@ import java.util.Map;
 public final class FluxConfigurationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/PatchFluxConfiguration.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/PatchFluxConfiguration.json
      */
     /**
      * Sample code: Patch Flux Configuration.
