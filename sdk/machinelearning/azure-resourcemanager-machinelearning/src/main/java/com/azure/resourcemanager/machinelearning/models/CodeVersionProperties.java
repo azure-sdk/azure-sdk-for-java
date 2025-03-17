@@ -65,8 +65,8 @@ public final class CodeVersionProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public CodeVersionProperties withIsArchived(Boolean isArchived) {
-        super.withIsArchived(isArchived);
+    public CodeVersionProperties withIsAnonymous(Boolean isAnonymous) {
+        super.withIsAnonymous(isAnonymous);
         return this;
     }
 
@@ -74,8 +74,8 @@ public final class CodeVersionProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public CodeVersionProperties withIsAnonymous(Boolean isAnonymous) {
-        super.withIsAnonymous(isAnonymous);
+    public CodeVersionProperties withIsArchived(Boolean isArchived) {
+        super.withIsArchived(isArchived);
         return this;
     }
 
@@ -92,8 +92,8 @@ public final class CodeVersionProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public CodeVersionProperties withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public CodeVersionProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -101,8 +101,8 @@ public final class CodeVersionProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public CodeVersionProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public CodeVersionProperties withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -113,7 +113,6 @@ public final class CodeVersionProperties extends AssetBase {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -123,10 +122,10 @@ public final class CodeVersionProperties extends AssetBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeBooleanField("isArchived", isArchived());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isAnonymous", isAnonymous());
+        jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeStringField("codeUri", this.codeUri);
         return jsonWriter.writeEndObject();
     }
@@ -148,16 +147,16 @@ public final class CodeVersionProperties extends AssetBase {
 
                 if ("description".equals(fieldName)) {
                     deserializedCodeVersionProperties.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedCodeVersionProperties.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedCodeVersionProperties.withProperties(properties);
-                } else if ("isArchived".equals(fieldName)) {
-                    deserializedCodeVersionProperties.withIsArchived(reader.getNullable(JsonReader::getBoolean));
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedCodeVersionProperties.withTags(tags);
                 } else if ("isAnonymous".equals(fieldName)) {
                     deserializedCodeVersionProperties.withIsAnonymous(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isArchived".equals(fieldName)) {
+                    deserializedCodeVersionProperties.withIsArchived(reader.getNullable(JsonReader::getBoolean));
                 } else if ("codeUri".equals(fieldName)) {
                     deserializedCodeVersionProperties.codeUri = reader.getString();
                 } else if ("provisioningState".equals(fieldName)) {
