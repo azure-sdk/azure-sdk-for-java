@@ -131,7 +131,9 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("connectedEnvironmentName") String connectedEnvironmentName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") ConnectedEnvironmentInner environmentEnvelope,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/checkNameAvailability")
@@ -987,6 +989,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param connectedEnvironmentName Name of the connectedEnvironment.
+     * @param environmentEnvelope Configuration details of the connectedEnvironment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -995,7 +998,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ConnectedEnvironmentInner>> updateWithResponseAsync(String resourceGroupName,
-        String connectedEnvironmentName) {
+        String connectedEnvironmentName, ConnectedEnvironmentInner environmentEnvelope) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1012,10 +1015,17 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
             return Mono.error(
                 new IllegalArgumentException("Parameter connectedEnvironmentName is required and cannot be null."));
         }
+        if (environmentEnvelope == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter environmentEnvelope is required and cannot be null."));
+        } else {
+            environmentEnvelope.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, connectedEnvironmentName, this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    connectedEnvironmentName, this.client.getApiVersion(), environmentEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1026,6 +1036,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param connectedEnvironmentName Name of the connectedEnvironment.
+     * @param environmentEnvelope Configuration details of the connectedEnvironment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1035,7 +1046,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ConnectedEnvironmentInner>> updateWithResponseAsync(String resourceGroupName,
-        String connectedEnvironmentName, Context context) {
+        String connectedEnvironmentName, ConnectedEnvironmentInner environmentEnvelope, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1052,10 +1063,16 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
             return Mono.error(
                 new IllegalArgumentException("Parameter connectedEnvironmentName is required and cannot be null."));
         }
+        if (environmentEnvelope == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter environmentEnvelope is required and cannot be null."));
+        } else {
+            environmentEnvelope.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            connectedEnvironmentName, this.client.getApiVersion(), accept, context);
+            connectedEnvironmentName, this.client.getApiVersion(), environmentEnvelope, accept, context);
     }
 
     /**
@@ -1065,6 +1082,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param connectedEnvironmentName Name of the connectedEnvironment.
+     * @param environmentEnvelope Configuration details of the connectedEnvironment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1072,8 +1090,9 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConnectedEnvironmentInner> updateAsync(String resourceGroupName, String connectedEnvironmentName) {
-        return updateWithResponseAsync(resourceGroupName, connectedEnvironmentName)
+    private Mono<ConnectedEnvironmentInner> updateAsync(String resourceGroupName, String connectedEnvironmentName,
+        ConnectedEnvironmentInner environmentEnvelope) {
+        return updateWithResponseAsync(resourceGroupName, connectedEnvironmentName, environmentEnvelope)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -1084,6 +1103,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param connectedEnvironmentName Name of the connectedEnvironment.
+     * @param environmentEnvelope Configuration details of the connectedEnvironment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1093,8 +1113,9 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ConnectedEnvironmentInner> updateWithResponse(String resourceGroupName,
-        String connectedEnvironmentName, Context context) {
-        return updateWithResponseAsync(resourceGroupName, connectedEnvironmentName, context).block();
+        String connectedEnvironmentName, ConnectedEnvironmentInner environmentEnvelope, Context context) {
+        return updateWithResponseAsync(resourceGroupName, connectedEnvironmentName, environmentEnvelope, context)
+            .block();
     }
 
     /**
@@ -1104,14 +1125,17 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param connectedEnvironmentName Name of the connectedEnvironment.
+     * @param environmentEnvelope Configuration details of the connectedEnvironment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an environment for Kubernetes cluster specialized for web workloads by Azure App Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConnectedEnvironmentInner update(String resourceGroupName, String connectedEnvironmentName) {
-        return updateWithResponse(resourceGroupName, connectedEnvironmentName, Context.NONE).getValue();
+    public ConnectedEnvironmentInner update(String resourceGroupName, String connectedEnvironmentName,
+        ConnectedEnvironmentInner environmentEnvelope) {
+        return updateWithResponse(resourceGroupName, connectedEnvironmentName, environmentEnvelope, Context.NONE)
+            .getValue();
     }
 
     /**
