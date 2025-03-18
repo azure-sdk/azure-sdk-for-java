@@ -138,14 +138,16 @@ public final class ConnectedEnvironmentImpl
     public ConnectedEnvironment apply() {
         this.innerObject = serviceManager.serviceClient()
             .getConnectedEnvironments()
-            .createOrUpdate(resourceGroupName, connectedEnvironmentName, this.innerModel(), Context.NONE);
+            .updateWithResponse(resourceGroupName, connectedEnvironmentName, this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public ConnectedEnvironment apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getConnectedEnvironments()
-            .createOrUpdate(resourceGroupName, connectedEnvironmentName, this.innerModel(), context);
+            .updateWithResponse(resourceGroupName, connectedEnvironmentName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 

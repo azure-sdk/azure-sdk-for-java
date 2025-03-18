@@ -233,6 +233,7 @@ public interface ConnectedEnvironmentsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param connectedEnvironmentName Name of the connectedEnvironment.
+     * @param environmentEnvelope Configuration details of the connectedEnvironment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
@@ -243,7 +244,7 @@ public interface ConnectedEnvironmentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectedEnvironmentInner> updateWithResponse(String resourceGroupName, String connectedEnvironmentName,
-        Context context);
+        ConnectedEnvironmentInner environmentEnvelope, Context context);
 
     /**
      * Update connected Environment's properties.
@@ -252,6 +253,7 @@ public interface ConnectedEnvironmentsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param connectedEnvironmentName Name of the connectedEnvironment.
+     * @param environmentEnvelope Configuration details of the connectedEnvironment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      * is rejected by server.
@@ -259,7 +261,8 @@ public interface ConnectedEnvironmentsClient {
      * @return an environment for Kubernetes cluster specialized for web workloads by Azure App Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ConnectedEnvironmentInner update(String resourceGroupName, String connectedEnvironmentName);
+    ConnectedEnvironmentInner update(String resourceGroupName, String connectedEnvironmentName,
+        ConnectedEnvironmentInner environmentEnvelope);
 
     /**
      * Checks the resource connectedEnvironmentName availability.
