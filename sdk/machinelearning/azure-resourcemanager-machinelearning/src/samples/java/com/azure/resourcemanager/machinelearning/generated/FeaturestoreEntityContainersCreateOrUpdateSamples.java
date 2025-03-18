@@ -14,7 +14,7 @@ import java.util.Map;
 public final class FeaturestoreEntityContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/FeaturestoreEntityContainer/createOrUpdate.json
      */
     /**
@@ -28,8 +28,8 @@ public final class FeaturestoreEntityContainersCreateOrUpdateSamples {
             .define("string")
             .withExistingWorkspace("test-rg", "my-aml-workspace")
             .withProperties(new FeaturestoreEntityContainerProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
                 .withIsArchived(false))
             .create();
     }
