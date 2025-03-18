@@ -9,8 +9,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.ManagedNetworkProvisionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkProvisionStatusInner;
 import com.azure.resourcemanager.machinelearning.models.ManagedNetworkProvisionOptions;
-import com.azure.resourcemanager.machinelearning.models.ManagedNetworkProvisions;
 import com.azure.resourcemanager.machinelearning.models.ManagedNetworkProvisionStatus;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkProvisions;
 
 public final class ManagedNetworkProvisionsImpl implements ManagedNetworkProvisions {
     private static final ClientLogger LOGGER = new ClientLogger(ManagedNetworkProvisionsImpl.class);
