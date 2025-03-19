@@ -20,12 +20,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { SecurityInsightsImpl.class })
 public final class SecurityInsightsBuilder {
     /*
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private String subscriptionId;
 
     /**
-     * Sets The ID of the target subscription.
+     * Sets The ID of the target subscription. The value must be an UUID.
      * 
      * @param subscriptionId the subscriptionId value.
      * @return the SecurityInsightsBuilder.

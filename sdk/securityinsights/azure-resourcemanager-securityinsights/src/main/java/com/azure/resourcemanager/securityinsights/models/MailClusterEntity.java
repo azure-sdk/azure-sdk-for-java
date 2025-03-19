@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.MailClusterEntityProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -19,7 +20,7 @@ import java.util.Map;
  * Represents a mail cluster entity.
  */
 @Immutable
-public final class MailClusterEntity extends Entity {
+public final class MailClusterEntity extends EntityInner {
     /*
      * The kind of the entity.
      */

@@ -16,6 +16,7 @@ import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.azure.resourcemanager.securityinsights.models.TriggerOperator;
 import java.io.IOException;
@@ -101,9 +102,14 @@ public final class ScheduledAlertRuleTemplateProperties
     private List<AttackTactic> tactics;
 
     /*
-     * The techniques of the alert rule template
+     * The techniques of the alert rule
      */
     private List<String> techniques;
+
+    /*
+     * The sub-techniques of the alert rule
+     */
+    private List<String> subTechniques;
 
     /*
      * The version of this template - in format <a.b.c>, where all are numbers. For example <1.0.2>.
@@ -129,6 +135,11 @@ public final class ScheduledAlertRuleTemplateProperties
      * The alert details override settings
      */
     private AlertDetailsOverride alertDetailsOverride;
+
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
 
     /**
      * Creates an instance of ScheduledAlertRuleTemplateProperties class.
@@ -397,7 +408,7 @@ public final class ScheduledAlertRuleTemplateProperties
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule template.
+     * Get the techniques property: The techniques of the alert rule.
      * 
      * @return the techniques value.
      */
@@ -406,13 +417,33 @@ public final class ScheduledAlertRuleTemplateProperties
     }
 
     /**
-     * Set the techniques property: The techniques of the alert rule template.
+     * Set the techniques property: The techniques of the alert rule.
      * 
      * @param techniques the techniques value to set.
      * @return the ScheduledAlertRuleTemplateProperties object itself.
      */
     public ScheduledAlertRuleTemplateProperties withTechniques(List<String> techniques) {
         this.techniques = techniques;
+        return this;
+    }
+
+    /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the ScheduledAlertRuleTemplateProperties object itself.
+     */
+    public ScheduledAlertRuleTemplateProperties withSubTechniques(List<String> subTechniques) {
+        this.subTechniques = subTechniques;
         return this;
     }
 
@@ -519,6 +550,27 @@ public final class ScheduledAlertRuleTemplateProperties
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the ScheduledAlertRuleTemplateProperties object itself.
+     */
+    public ScheduledAlertRuleTemplateProperties
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -535,6 +587,9 @@ public final class ScheduledAlertRuleTemplateProperties
         }
         if (alertDetailsOverride() != null) {
             alertDetailsOverride().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 
@@ -560,12 +615,16 @@ public final class ScheduledAlertRuleTemplateProperties
         jsonWriter.writeArrayField("tactics", this.tactics,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("techniques", this.techniques, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("subTechniques", this.subTechniques,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("version", this.version);
         jsonWriter.writeJsonField("eventGroupingSettings", this.eventGroupingSettings);
         jsonWriter.writeMapField("customDetails", this.customDetails, (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("entityMappings", this.entityMappings,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("alertDetailsOverride", this.alertDetailsOverride);
+        jsonWriter.writeArrayField("sentinelEntitiesMappings", this.sentinelEntitiesMappings,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -629,6 +688,9 @@ public final class ScheduledAlertRuleTemplateProperties
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedScheduledAlertRuleTemplateProperties.techniques = techniques;
+                } else if ("subTechniques".equals(fieldName)) {
+                    List<String> subTechniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedScheduledAlertRuleTemplateProperties.subTechniques = subTechniques;
                 } else if ("version".equals(fieldName)) {
                     deserializedScheduledAlertRuleTemplateProperties.version = reader.getString();
                 } else if ("eventGroupingSettings".equals(fieldName)) {
@@ -643,6 +705,11 @@ public final class ScheduledAlertRuleTemplateProperties
                 } else if ("alertDetailsOverride".equals(fieldName)) {
                     deserializedScheduledAlertRuleTemplateProperties.alertDetailsOverride
                         = AlertDetailsOverride.fromJson(reader);
+                } else if ("sentinelEntitiesMappings".equals(fieldName)) {
+                    List<SentinelEntityMapping> sentinelEntitiesMappings
+                        = reader.readArray(reader1 -> SentinelEntityMapping.fromJson(reader1));
+                    deserializedScheduledAlertRuleTemplateProperties.sentinelEntitiesMappings
+                        = sentinelEntitiesMappings;
                 } else {
                     reader.skipChildren();
                 }

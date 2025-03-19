@@ -20,7 +20,7 @@ import java.util.List;
 @Fluent
 public final class WatchlistItemList implements JsonSerializable<WatchlistItemList> {
     /*
-     * URL to fetch the next set of watchlist items.
+     * URL to fetch the next set of watchlist item.
      */
     private String nextLink;
 
@@ -36,7 +36,7 @@ public final class WatchlistItemList implements JsonSerializable<WatchlistItemLi
     }
 
     /**
-     * Get the nextLink property: URL to fetch the next set of watchlist items.
+     * Get the nextLink property: URL to fetch the next set of watchlist item.
      * 
      * @return the nextLink value.
      */

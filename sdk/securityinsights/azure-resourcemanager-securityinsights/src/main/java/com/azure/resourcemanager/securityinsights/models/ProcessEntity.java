@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.ProcessEntityProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -18,7 +19,7 @@ import java.util.Map;
  * Represents a process entity.
  */
 @Fluent
-public final class ProcessEntity extends Entity {
+public final class ProcessEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
