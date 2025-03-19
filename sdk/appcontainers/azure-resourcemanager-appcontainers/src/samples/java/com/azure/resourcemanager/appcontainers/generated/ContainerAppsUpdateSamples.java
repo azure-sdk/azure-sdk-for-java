@@ -47,7 +47,7 @@ import java.util.Map;
 public final class ContainerAppsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/ContainerApps_Patch.json
+     * specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/ContainerApps_Patch.json
      */
     /**
      * Sample code: Patch Container App.
@@ -105,6 +105,7 @@ public final class ContainerAppsUpdateSamples {
                                 new LoggerSetting().withLogger("org.springframework.boot").withLevel(Level.DEBUG))))))
                         .withDotnet(new RuntimeDotnet().withAutoConfigureDataProtection(true)))
                     .withMaxInactiveRevisions(10)
+                    .withRevisionTransitionThreshold(100)
                     .withService(new Service().withType("redis")))
             .withTemplate(new Template()
                 .withInitContainers(Arrays.asList(new InitContainer().withImage("repo/testcontainerApp0:v4")

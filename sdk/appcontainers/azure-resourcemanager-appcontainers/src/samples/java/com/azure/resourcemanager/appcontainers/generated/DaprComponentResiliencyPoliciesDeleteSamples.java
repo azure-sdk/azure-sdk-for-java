@@ -9,7 +9,7 @@ package com.azure.resourcemanager.appcontainers.generated;
  */
 public final class DaprComponentResiliencyPoliciesDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/
      * DaprComponentResiliencyPolicies_Delete.json
      */
     /**

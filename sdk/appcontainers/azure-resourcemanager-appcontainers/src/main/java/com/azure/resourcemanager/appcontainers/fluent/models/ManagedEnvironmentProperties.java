@@ -60,14 +60,17 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
     private String defaultDomain;
 
     /*
+     * Private Link Default Domain Name for the environment
+     */
+    private String privateLinkDefaultDomain;
+
+    /*
      * Static IP of the Environment
      */
     private String staticIp;
 
     /*
-     * Cluster configuration which enables the log daemon to export
-     * app logs to a destination. Currently only "log-analytics" is
-     * supported
+     * Cluster configuration which enables the log daemon to export app logs to configured destination
      */
     private AppLogsConfiguration appLogsConfiguration;
 
@@ -85,6 +88,11 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
      * Whether or not this Managed Environment is zone-redundant.
      */
     private Boolean zoneRedundant;
+
+    /*
+     * The list of availability zones to use for managed environment
+     */
+    private List<String> availabilityZones;
 
     /*
      * Custom domain configuration for the environment
@@ -235,6 +243,15 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
     }
 
     /**
+     * Get the privateLinkDefaultDomain property: Private Link Default Domain Name for the environment.
+     * 
+     * @return the privateLinkDefaultDomain value.
+     */
+    public String privateLinkDefaultDomain() {
+        return this.privateLinkDefaultDomain;
+    }
+
+    /**
      * Get the staticIp property: Static IP of the Environment.
      * 
      * @return the staticIp value.
@@ -244,9 +261,8 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
     }
 
     /**
-     * Get the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-     * app logs to a destination. Currently only "log-analytics" is
-     * supported.
+     * Get the appLogsConfiguration property: Cluster configuration which enables the log daemon to export app logs to
+     * configured destination.
      * 
      * @return the appLogsConfiguration value.
      */
@@ -255,9 +271,8 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
     }
 
     /**
-     * Set the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-     * app logs to a destination. Currently only "log-analytics" is
-     * supported.
+     * Set the appLogsConfiguration property: Cluster configuration which enables the log daemon to export app logs to
+     * configured destination.
      * 
      * @param appLogsConfiguration the appLogsConfiguration value to set.
      * @return the ManagedEnvironmentProperties object itself.
@@ -326,6 +341,26 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
      */
     public ManagedEnvironmentProperties withZoneRedundant(Boolean zoneRedundant) {
         this.zoneRedundant = zoneRedundant;
+        return this;
+    }
+
+    /**
+     * Get the availabilityZones property: The list of availability zones to use for managed environment.
+     * 
+     * @return the availabilityZones value.
+     */
+    public List<String> availabilityZones() {
+        return this.availabilityZones;
+    }
+
+    /**
+     * Set the availabilityZones property: The list of availability zones to use for managed environment.
+     * 
+     * @param availabilityZones the availabilityZones value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties withAvailabilityZones(List<String> availabilityZones) {
+        this.availabilityZones = availabilityZones;
         return this;
     }
 
@@ -570,6 +605,8 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
         jsonWriter.writeJsonField("appInsightsConfiguration", this.appInsightsConfiguration);
         jsonWriter.writeJsonField("openTelemetryConfiguration", this.openTelemetryConfiguration);
         jsonWriter.writeBooleanField("zoneRedundant", this.zoneRedundant);
+        jsonWriter.writeArrayField("availabilityZones", this.availabilityZones,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("customDomainConfiguration", this.customDomainConfiguration);
         jsonWriter.writeArrayField("workloadProfiles", this.workloadProfiles,
             (writer, element) -> writer.writeJson(element));
@@ -611,6 +648,8 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
                     deserializedManagedEnvironmentProperties.deploymentErrors = reader.getString();
                 } else if ("defaultDomain".equals(fieldName)) {
                     deserializedManagedEnvironmentProperties.defaultDomain = reader.getString();
+                } else if ("privateLinkDefaultDomain".equals(fieldName)) {
+                    deserializedManagedEnvironmentProperties.privateLinkDefaultDomain = reader.getString();
                 } else if ("staticIp".equals(fieldName)) {
                     deserializedManagedEnvironmentProperties.staticIp = reader.getString();
                 } else if ("appLogsConfiguration".equals(fieldName)) {
@@ -624,6 +663,9 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
                         = OpenTelemetryConfiguration.fromJson(reader);
                 } else if ("zoneRedundant".equals(fieldName)) {
                     deserializedManagedEnvironmentProperties.zoneRedundant = reader.getNullable(JsonReader::getBoolean);
+                } else if ("availabilityZones".equals(fieldName)) {
+                    List<String> availabilityZones = reader.readArray(reader1 -> reader1.getString());
+                    deserializedManagedEnvironmentProperties.availabilityZones = availabilityZones;
                 } else if ("customDomainConfiguration".equals(fieldName)) {
                     deserializedManagedEnvironmentProperties.customDomainConfiguration
                         = CustomDomainConfiguration.fromJson(reader);
