@@ -134,6 +134,15 @@ public interface ConfigurationStore {
     Integer softDeleteRetentionInDays();
 
     /**
+     * Gets the defaultKeyValueRevisionRetentionPeriodInSeconds property: The duration in seconds to retain new key
+     * value revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores
+     * and Premium SKU stores.
+     * 
+     * @return the defaultKeyValueRevisionRetentionPeriodInSeconds value.
+     */
+    Long defaultKeyValueRevisionRetentionPeriodInSeconds();
+
+    /**
      * Gets the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
      * 
@@ -155,6 +164,13 @@ public interface ConfigurationStore {
      * @return the createMode value.
      */
     CreateMode createMode();
+
+    /**
+     * Gets the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @return the telemetry value.
+     */
+    TelemetryProperties telemetry();
 
     /**
      * Gets the region of the resource.
@@ -252,11 +268,12 @@ public interface ConfigurationStore {
          * The stage of the ConfigurationStore definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithEncryption,
-            DefinitionStages.WithPublicNetworkAccess, DefinitionStages.WithDisableLocalAuth,
-            DefinitionStages.WithSoftDeleteRetentionInDays, DefinitionStages.WithEnablePurgeProtection,
-            DefinitionStages.WithDataPlaneProxy, DefinitionStages.WithCreateMode {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithEncryption, DefinitionStages.WithPublicNetworkAccess,
+            DefinitionStages.WithDisableLocalAuth, DefinitionStages.WithSoftDeleteRetentionInDays,
+            DefinitionStages.WithDefaultKeyValueRevisionRetentionPeriodInSeconds,
+            DefinitionStages.WithEnablePurgeProtection, DefinitionStages.WithDataPlaneProxy,
+            DefinitionStages.WithCreateMode, DefinitionStages.WithTelemetry {
             /**
              * Executes the create request.
              * 
@@ -357,6 +374,25 @@ public interface ConfigurationStore {
         }
 
         /**
+         * The stage of the ConfigurationStore definition allowing to specify
+         * defaultKeyValueRevisionRetentionPeriodInSeconds.
+         */
+        interface WithDefaultKeyValueRevisionRetentionPeriodInSeconds {
+            /**
+             * Specifies the defaultKeyValueRevisionRetentionPeriodInSeconds property: The duration in seconds to retain
+             * new key value revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for
+             * Standard SKU stores and Premium SKU stores..
+             * 
+             * @param defaultKeyValueRevisionRetentionPeriodInSeconds The duration in seconds to retain new key value
+             * revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores
+             * and Premium SKU stores.
+             * @return the next definition stage.
+             */
+            WithCreate withDefaultKeyValueRevisionRetentionPeriodInSeconds(
+                Long defaultKeyValueRevisionRetentionPeriodInSeconds);
+        }
+
+        /**
          * The stage of the ConfigurationStore definition allowing to specify enablePurgeProtection.
          */
         interface WithEnablePurgeProtection {
@@ -398,6 +434,20 @@ public interface ConfigurationStore {
              */
             WithCreate withCreateMode(CreateMode createMode);
         }
+
+        /**
+         * The stage of the ConfigurationStore definition allowing to specify telemetry.
+         */
+        interface WithTelemetry {
+            /**
+             * Specifies the telemetry property: Property specifying the configuration of telemetry for this
+             * configuration store.
+             * 
+             * @param telemetry Property specifying the configuration of telemetry for this configuration store.
+             * @return the next definition stage.
+             */
+            WithCreate withTelemetry(TelemetryProperties telemetry);
+        }
     }
 
     /**
@@ -412,7 +462,8 @@ public interface ConfigurationStore {
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithSku,
         UpdateStages.WithEncryption, UpdateStages.WithDisableLocalAuth, UpdateStages.WithPublicNetworkAccess,
-        UpdateStages.WithEnablePurgeProtection, UpdateStages.WithDataPlaneProxy {
+        UpdateStages.WithEnablePurgeProtection, UpdateStages.WithDataPlaneProxy, UpdateStages.WithTelemetry,
+        UpdateStages.WithDefaultKeyValueRevisionRetentionPeriodInSeconds {
         /**
          * Executes the update request.
          * 
@@ -542,6 +593,40 @@ public interface ConfigurationStore {
              * @return the next definition stage.
              */
             Update withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy);
+        }
+
+        /**
+         * The stage of the ConfigurationStore update allowing to specify telemetry.
+         */
+        interface WithTelemetry {
+            /**
+             * Specifies the telemetry property: Property specifying the configuration of telemetry to update for this
+             * configuration store.
+             * 
+             * @param telemetry Property specifying the configuration of telemetry to update for this configuration
+             * store.
+             * @return the next definition stage.
+             */
+            Update withTelemetry(TelemetryProperties telemetry);
+        }
+
+        /**
+         * The stage of the ConfigurationStore update allowing to specify
+         * defaultKeyValueRevisionRetentionPeriodInSeconds.
+         */
+        interface WithDefaultKeyValueRevisionRetentionPeriodInSeconds {
+            /**
+             * Specifies the defaultKeyValueRevisionRetentionPeriodInSeconds property: The duration in seconds to retain
+             * new key value revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for
+             * Standard SKU stores and Premium SKU stores..
+             * 
+             * @param defaultKeyValueRevisionRetentionPeriodInSeconds The duration in seconds to retain new key value
+             * revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores
+             * and Premium SKU stores.
+             * @return the next definition stage.
+             */
+            Update withDefaultKeyValueRevisionRetentionPeriodInSeconds(
+                Long defaultKeyValueRevisionRetentionPeriodInSeconds);
         }
     }
 
