@@ -1,14 +1,24 @@
 # Release History
 
-## 1.2.0-beta.2 (Unreleased)
+## 1.2.0-beta.2 (2025-03-19)
 
-### Features Added
+- Azure Resource Manager Hybrid Connectivity client library for Java. This package contains Microsoft Azure SDK for Hybrid Connectivity Management SDK. REST API for public clouds. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.SolutionConfiguration$Update` was modified
 
-### Other Changes
+* `withProperties(models.SolutionConfigurationProperties)` was removed
+
+### Features Added
+
+* `models.SolutionConfigurationUpdate` was added
+
+* `models.SolutionConfigurationPropertiesUpdate` was added
+
+#### `models.SolutionConfiguration$Update` was modified
+
+* `withProperties(models.SolutionConfigurationPropertiesUpdate)` was added
 
 ## 1.2.0-beta.1 (2025-02-26)
 
