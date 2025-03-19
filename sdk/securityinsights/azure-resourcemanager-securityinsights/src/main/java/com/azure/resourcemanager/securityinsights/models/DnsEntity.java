@@ -10,6 +10,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.fluent.models.DnsEntityProperties;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ import java.util.Map;
  * Represents a dns entity.
  */
 @Immutable
-public final class DnsEntity extends Entity {
+public final class DnsEntity extends EntityInner {
     /*
      * The kind of the entity.
      */

@@ -20,7 +20,7 @@ import java.util.List;
 @Fluent
 public final class BookmarkList implements JsonSerializable<BookmarkList> {
     /*
-     * URL to fetch the next set of cases.
+     * URL to fetch the next set of bookmarks.
      */
     private String nextLink;
 
@@ -36,7 +36,7 @@ public final class BookmarkList implements JsonSerializable<BookmarkList> {
     }
 
     /**
-     * Get the nextLink property: URL to fetch the next set of cases.
+     * Get the nextLink property: URL to fetch the next set of bookmarks.
      * 
      * @return the nextLink value.
      */

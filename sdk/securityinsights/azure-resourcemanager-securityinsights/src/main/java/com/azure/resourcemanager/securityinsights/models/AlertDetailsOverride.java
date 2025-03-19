@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Settings for how to dynamically override alert static details.
@@ -35,6 +36,11 @@ public final class AlertDetailsOverride implements JsonSerializable<AlertDetails
      * the column name to take the alert severity from
      */
     private String alertSeverityColumnName;
+
+    /*
+     * List of additional dynamic properties to override
+     */
+    private List<AlertPropertyMapping> alertDynamicProperties;
 
     /**
      * Creates an instance of AlertDetailsOverride class.
@@ -123,11 +129,34 @@ public final class AlertDetailsOverride implements JsonSerializable<AlertDetails
     }
 
     /**
+     * Get the alertDynamicProperties property: List of additional dynamic properties to override.
+     * 
+     * @return the alertDynamicProperties value.
+     */
+    public List<AlertPropertyMapping> alertDynamicProperties() {
+        return this.alertDynamicProperties;
+    }
+
+    /**
+     * Set the alertDynamicProperties property: List of additional dynamic properties to override.
+     * 
+     * @param alertDynamicProperties the alertDynamicProperties value to set.
+     * @return the AlertDetailsOverride object itself.
+     */
+    public AlertDetailsOverride withAlertDynamicProperties(List<AlertPropertyMapping> alertDynamicProperties) {
+        this.alertDynamicProperties = alertDynamicProperties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (alertDynamicProperties() != null) {
+            alertDynamicProperties().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -140,6 +169,8 @@ public final class AlertDetailsOverride implements JsonSerializable<AlertDetails
         jsonWriter.writeStringField("alertDescriptionFormat", this.alertDescriptionFormat);
         jsonWriter.writeStringField("alertTacticsColumnName", this.alertTacticsColumnName);
         jsonWriter.writeStringField("alertSeverityColumnName", this.alertSeverityColumnName);
+        jsonWriter.writeArrayField("alertDynamicProperties", this.alertDynamicProperties,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -166,6 +197,10 @@ public final class AlertDetailsOverride implements JsonSerializable<AlertDetails
                     deserializedAlertDetailsOverride.alertTacticsColumnName = reader.getString();
                 } else if ("alertSeverityColumnName".equals(fieldName)) {
                     deserializedAlertDetailsOverride.alertSeverityColumnName = reader.getString();
+                } else if ("alertDynamicProperties".equals(fieldName)) {
+                    List<AlertPropertyMapping> alertDynamicProperties
+                        = reader.readArray(reader1 -> AlertPropertyMapping.fromJson(reader1));
+                    deserializedAlertDetailsOverride.alertDynamicProperties = alertDynamicProperties;
                 } else {
                     reader.skipChildren();
                 }
