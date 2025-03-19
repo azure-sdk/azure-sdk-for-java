@@ -18,39 +18,19 @@ import java.io.IOException;
 @Fluent
 public final class IncidentEntitiesResultsMetadata implements JsonSerializable<IncidentEntitiesResultsMetadata> {
     /*
-     * Total number of aggregations of the given kind in the incident related entities result.
-     */
-    private int count;
-
-    /*
      * The kind of the aggregated entity.
      */
     private EntityKindEnum entityKind;
+
+    /*
+     * Total number of aggregations of the given kind in the incident related entities result.
+     */
+    private int count;
 
     /**
      * Creates an instance of IncidentEntitiesResultsMetadata class.
      */
     public IncidentEntitiesResultsMetadata() {
-    }
-
-    /**
-     * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
-     * 
-     * @return the count value.
-     */
-    public int count() {
-        return this.count;
-    }
-
-    /**
-     * Set the count property: Total number of aggregations of the given kind in the incident related entities result.
-     * 
-     * @param count the count value to set.
-     * @return the IncidentEntitiesResultsMetadata object itself.
-     */
-    public IncidentEntitiesResultsMetadata withCount(int count) {
-        this.count = count;
-        return this;
     }
 
     /**
@@ -70,6 +50,26 @@ public final class IncidentEntitiesResultsMetadata implements JsonSerializable<I
      */
     public IncidentEntitiesResultsMetadata withEntityKind(EntityKindEnum entityKind) {
         this.entityKind = entityKind;
+        return this;
+    }
+
+    /**
+     * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
+     * 
+     * @return the count value.
+     */
+    public int count() {
+        return this.count;
+    }
+
+    /**
+     * Set the count property: Total number of aggregations of the given kind in the incident related entities result.
+     * 
+     * @param count the count value to set.
+     * @return the IncidentEntitiesResultsMetadata object itself.
+     */
+    public IncidentEntitiesResultsMetadata withCount(int count) {
+        this.count = count;
         return this;
     }
 
@@ -94,8 +94,8 @@ public final class IncidentEntitiesResultsMetadata implements JsonSerializable<I
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeIntField("count", this.count);
         jsonWriter.writeStringField("entityKind", this.entityKind == null ? null : this.entityKind.toString());
+        jsonWriter.writeIntField("count", this.count);
         return jsonWriter.writeEndObject();
     }
 
@@ -116,11 +116,11 @@ public final class IncidentEntitiesResultsMetadata implements JsonSerializable<I
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("count".equals(fieldName)) {
-                    deserializedIncidentEntitiesResultsMetadata.count = reader.getInt();
-                } else if ("entityKind".equals(fieldName)) {
+                if ("entityKind".equals(fieldName)) {
                     deserializedIncidentEntitiesResultsMetadata.entityKind
                         = EntityKindEnum.fromString(reader.getString());
+                } else if ("count".equals(fieldName)) {
+                    deserializedIncidentEntitiesResultsMetadata.count = reader.getInt();
                 } else {
                     reader.skipChildren();
                 }

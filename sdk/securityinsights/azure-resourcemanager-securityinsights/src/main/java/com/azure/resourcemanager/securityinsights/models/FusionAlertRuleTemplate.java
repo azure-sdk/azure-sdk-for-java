@@ -21,7 +21,7 @@ import java.util.List;
 @Fluent
 public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     /*
-     * The alert rule kind
+     * The kind of the alert rule
      */
     private AlertRuleKind kind = AlertRuleKind.FUSION;
 
@@ -57,7 +57,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the kind property: The alert rule kind.
+     * Get the kind property: The kind of the alert rule.
      * 
      * @return the kind value.
      */
@@ -296,7 +296,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule template.
+     * Get the techniques property: The techniques of the alert rule.
      * 
      * @return the techniques value.
      */
@@ -305,7 +305,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Set the techniques property: The techniques of the alert rule template.
+     * Set the techniques property: The techniques of the alert rule.
      * 
      * @param techniques the techniques value to set.
      * @return the FusionAlertRuleTemplate object itself.
@@ -315,6 +315,52 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
             this.innerProperties = new FusionAlertRuleTemplateProperties();
         }
         this.innerProperties().withTechniques(techniques);
+        return this;
+    }
+
+    /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.innerProperties() == null ? null : this.innerProperties().subTechniques();
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the FusionAlertRuleTemplate object itself.
+     */
+    public FusionAlertRuleTemplate withSubTechniques(List<String> subTechniques) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FusionAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSubTechniques(subTechniques);
+        return this;
+    }
+
+    /**
+     * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
+     * 
+     * @return the sourceSettings value.
+     */
+    public List<FusionTemplateSourceSetting> sourceSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().sourceSettings();
+    }
+
+    /**
+     * Set the sourceSettings property: All supported source signal configurations consumed in fusion detection.
+     * 
+     * @param sourceSettings the sourceSettings value to set.
+     * @return the FusionAlertRuleTemplate object itself.
+     */
+    public FusionAlertRuleTemplate withSourceSettings(List<FusionTemplateSourceSetting> sourceSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FusionAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSourceSettings(sourceSettings);
         return this;
     }
 
