@@ -1,14 +1,46 @@
 # Release History
 
-## 1.2.0-beta.2 (Unreleased)
+## 1.2.0-beta.2 (2025-03-19)
 
-### Features Added
+- Azure Resource Manager Container Service Fleet client library for Java. This package contains Microsoft Azure SDK for Container Service Fleet Management SDK. Azure Kubernetes Fleet Manager api client. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.FleetMemberListResult` was removed
 
-### Other Changes
+#### `models.UpdateRunListResult` was removed
+
+#### `models.AutoUpgradeProfileListResult` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.FleetUpdateStrategyListResult` was removed
+
+#### `models.FleetListResult` was removed
+
+#### `models.UserAssignedIdentity` was modified
+
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+* `java.util.UUID clientId()` -> `java.lang.String clientId()`
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `java.util.UUID tenantId()` -> `java.lang.String tenantId()`
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+
+### Features Added
+
+* `implementation.models.OperationListResult` was added
+
+* `implementation.models.FleetMemberListResult` was added
+
+* `implementation.models.UpdateRunListResult` was added
+
+* `implementation.models.FleetListResult` was added
+
+* `implementation.models.AutoUpgradeProfileListResult` was added
+
+* `implementation.models.FleetUpdateStrategyListResult` was added
 
 ## 1.2.0-beta.1 (2024-10-17)
 
