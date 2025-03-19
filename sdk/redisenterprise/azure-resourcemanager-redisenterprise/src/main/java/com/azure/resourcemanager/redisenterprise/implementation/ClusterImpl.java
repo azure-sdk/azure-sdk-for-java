@@ -12,6 +12,7 @@ import com.azure.resourcemanager.redisenterprise.models.Cluster;
 import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
 import com.azure.resourcemanager.redisenterprise.models.ClusterUpdate;
 import com.azure.resourcemanager.redisenterprise.models.HighAvailability;
+import com.azure.resourcemanager.redisenterprise.models.Kind;
 import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.redisenterprise.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
@@ -52,6 +53,10 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public Kind kind() {
+        return this.innerModel().kind();
     }
 
     public Sku sku() {
