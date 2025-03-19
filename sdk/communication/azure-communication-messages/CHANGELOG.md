@@ -2,13 +2,165 @@
 
 ## 1.2.0-beta.2 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.NotificationMessagesClientImpl` was modified
 
-### Other Changes
+* `MessagesServiceVersion getServiceVersion()` -> `NotificationMessagesServiceVersion getServiceVersion()`
+
+#### `implementation.MessageTemplateClientImpl` was modified
+
+* `MessagesServiceVersion getServiceVersion()` -> `MessageTemplateServiceVersion getServiceVersion()`
+
+#### `MessageTemplateClientBuilder` was modified
+
+* `serviceVersion(MessagesServiceVersion)` was removed
+
+#### `NotificationMessagesClientBuilder` was modified
+
+* `serviceVersion(MessagesServiceVersion)` was removed
+
+### Features Added
+
+* `models.ConversationMessageItem` was added
+
+* `ConversationAdministrationServiceVersion` was added
+
+* `ConversationAdministrationClientBuilder` was added
+
+* `models.BotContact` was added
+
+* `ConversationThreadAsyncClient` was added
+
+* `models.AddParticipantsOptions` was added
+
+* `ConversationAdministrationAsyncClient` was added
+
+* `implementation.ConversationThreadClientImpl$ConversationThreadClientService` was added
+
+* `models.SendConversationMessageResult` was added
+
+* `models.AudioConversationMessageContent` was added
+
+* `models.CommunicationConversation` was added
+
+* `ConversationThreadClientBuilder` was added
+
+* `models.ImageMessageContent` was added
+
+* `models.MessagePlatformKind` was added
+
+* `models.ButtonSetContent` was added
+
+* `models.ImageConversationMessageContent` was added
+
+* `NotificationMessagesServiceVersion` was added
+
+* `models.WhatsAppContact` was added
+
+* `models.StickerNotificationContent` was added
+
+* `models.InteractiveMessage` was added
+
+* `ConversationThreadServiceVersion` was added
+
+* `models.VideoMessageContent` was added
+
+* `models.InteractiveNotificationContent` was added
+
+* `models.ReactionNotificationContent` was added
+
+* `models.TextConversationMessageContent` was added
+
+* `ConversationAdministrationClient` was added
+
+* `models.DocumentMessageContent` was added
+
+* `MessageTemplateServiceVersion` was added
+
+* `implementation.ConversationThreadClientImpl` was added
+
+* `models.ButtonContent` was added
+
+* `models.ActionGroupContent` was added
+
+* `models.RemoveParticipantsOptions` was added
+
+* `models.MessageContentKind` was added
+
+* `models.GetConversationThreadAnalysisResult` was added
+
+* `models.ActionBindings` was added
+
+* `models.ExternalConversationParticipant` was added
+
+* `models.channels.WhatsAppListActionBindings` was added
+
+* `models.ActionGroupItem` was added
+
+* `models.ConversationMessageContent` was added
+
+* `models.CommunicationContact` was added
+
+* `models.Message` was added
+
+* `models.RemoveParticipantsResult` was added
+
+* `implementation.models.CreateConversationRequest` was added
+
+* `implementation.ConversationAdministrationClientImpl` was added
+
+* `models.InternalConversationParticipant` was added
+
+* `models.OutboundDeliveryStrategyKind` was added
+
+* `models.UpdateParticipantsResult` was added
+
+* `models.DocumentConversationMessageContent` was added
+
+* `models.AddParticipantsResult` was added
+
+* `models.Contact` was added
+
+* `models.MessageContent` was added
+
+* `models.channels.WhatsAppUrlActionBindings` was added
+
+* `models.ActionGroup` was added
+
+* `models.ConversationParticipant` was added
+
+* `implementation.ConversationAdministrationClientImpl$ConversationAdministrationClientService` was added
+
+* `models.LinkContent` was added
+
+* `models.ParticipantKind` was added
+
+* `models.TemplateConversationMessageContent` was added
+
+* `models.SendConversationMessageOptions` was added
+
+* `ConversationThreadClient` was added
+
+* `models.MessageActionBindingKind` was added
+
+* `models.VideoConversationMessageContent` was added
+
+* `models.channels.WhatsAppButtonActionBindings` was added
+
+* `models.TextMessageContent` was added
+
+#### `MessageTemplateClientBuilder` was modified
+
+* `serviceVersion(MessageTemplateServiceVersion)` was added
+
+#### `NotificationMessagesClientBuilder` was modified
+
+* `serviceVersion(NotificationMessagesServiceVersion)` was added
+
+#### `models.channels.WhatsAppMessageTemplateItem` was modified
+
+* `getName()` was added
 
 ## 1.1.2 (2025-03-03)
 
