@@ -98,6 +98,10 @@ public final class ManagedEnvironmentImpl
         return this.innerModel().defaultDomain();
     }
 
+    public String privateLinkDefaultDomain() {
+        return this.innerModel().privateLinkDefaultDomain();
+    }
+
     public String staticIp() {
         return this.innerModel().staticIp();
     }
@@ -116,6 +120,15 @@ public final class ManagedEnvironmentImpl
 
     public Boolean zoneRedundant() {
         return this.innerModel().zoneRedundant();
+    }
+
+    public List<String> availabilityZones() {
+        List<String> inner = this.innerModel().availabilityZones();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public CustomDomainConfiguration customDomainConfiguration() {
@@ -329,6 +342,11 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withZoneRedundant(Boolean zoneRedundant) {
         this.innerModel().withZoneRedundant(zoneRedundant);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withAvailabilityZones(List<String> availabilityZones) {
+        this.innerModel().withAvailabilityZones(availabilityZones);
         return this;
     }
 
