@@ -241,19 +241,7 @@ public final class MessageTemplateClientBuilder
      * Service version
      */
     @Generated
-    private MessagesServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the MessageTemplateClientBuilder.
-     */
-    @Generated
-    public MessageTemplateClientBuilder serviceVersion(MessagesServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private MessageTemplateServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -282,8 +270,8 @@ public final class MessageTemplateClientBuilder
     private MessageTemplateClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        MessagesServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : MessagesServiceVersion.getLatest();
+        MessageTemplateServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : MessageTemplateServiceVersion.getLatest();
         MessageTemplateClientImpl client = new MessageTemplateClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -380,4 +368,16 @@ public final class MessageTemplateClientBuilder
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(MessageTemplateClientBuilder.class);
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the MessageTemplateClientBuilder.
+     */
+    @Generated
+    public MessageTemplateClientBuilder serviceVersion(MessageTemplateServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
+    }
 }
