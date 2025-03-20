@@ -103,6 +103,13 @@ public interface UpdateRun {
     UpdateRunStatus status();
 
     /**
+     * Gets the autoUpgradeProfileId property: AutoUpgradeProfileId is the id of an auto upgrade profile resource.
+     * 
+     * @return the autoUpgradeProfileId value.
+     */
+    String autoUpgradeProfileId();
+
+    /**
      * Gets the name of the resource group.
      * 
      * @return the name of the resource group.

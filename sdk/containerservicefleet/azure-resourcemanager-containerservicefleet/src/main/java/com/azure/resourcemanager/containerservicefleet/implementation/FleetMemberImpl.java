@@ -9,6 +9,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.containerservicefleet.fluent.models.FleetMemberInner;
 import com.azure.resourcemanager.containerservicefleet.models.FleetMember;
 import com.azure.resourcemanager.containerservicefleet.models.FleetMemberProvisioningState;
+import com.azure.resourcemanager.containerservicefleet.models.FleetMemberStatus;
 import com.azure.resourcemanager.containerservicefleet.models.FleetMemberUpdate;
 
 public final class FleetMemberImpl implements FleetMember, FleetMember.Definition, FleetMember.Update {
@@ -46,6 +47,10 @@ public final class FleetMemberImpl implements FleetMember, FleetMember.Definitio
 
     public FleetMemberProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
+    }
+
+    public FleetMemberStatus status() {
+        return this.innerModel().status();
     }
 
     public String resourceGroupName() {

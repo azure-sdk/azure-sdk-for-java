@@ -63,6 +63,11 @@ public final class UpdateRunProperties implements JsonSerializable<UpdateRunProp
      */
     private UpdateRunStatus status;
 
+    /*
+     * AutoUpgradeProfileId is the id of an auto upgrade profile resource.
+     */
+    private String autoUpgradeProfileId;
+
     /**
      * Creates an instance of UpdateRunProperties class.
      */
@@ -182,6 +187,15 @@ public final class UpdateRunProperties implements JsonSerializable<UpdateRunProp
     }
 
     /**
+     * Get the autoUpgradeProfileId property: AutoUpgradeProfileId is the id of an auto upgrade profile resource.
+     * 
+     * @return the autoUpgradeProfileId value.
+     */
+    public String autoUpgradeProfileId() {
+        return this.autoUpgradeProfileId;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -243,6 +257,8 @@ public final class UpdateRunProperties implements JsonSerializable<UpdateRunProp
                     deserializedUpdateRunProperties.strategy = UpdateRunStrategy.fromJson(reader);
                 } else if ("status".equals(fieldName)) {
                     deserializedUpdateRunProperties.status = UpdateRunStatus.fromJson(reader);
+                } else if ("autoUpgradeProfileId".equals(fieldName)) {
+                    deserializedUpdateRunProperties.autoUpgradeProfileId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

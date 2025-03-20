@@ -59,6 +59,10 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
         return this.innerModel().status();
     }
 
+    public String autoUpgradeProfileId() {
+        return this.innerModel().autoUpgradeProfileId();
+    }
+
     public String resourceGroupName() {
         return resourceGroupName;
     }

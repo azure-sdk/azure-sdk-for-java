@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.containerservicefleet.models.FleetHubProfile;
 import com.azure.resourcemanager.containerservicefleet.models.FleetProvisioningState;
+import com.azure.resourcemanager.containerservicefleet.models.FleetStatus;
 import java.io.IOException;
 
 /**
@@ -27,6 +28,11 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
      * The FleetHubProfile configures the Fleet's hub.
      */
     private FleetHubProfile hubProfile;
+
+    /*
+     * Status information for the fleet.
+     */
+    private FleetStatus status;
 
     /**
      * Creates an instance of FleetProperties class.
@@ -64,6 +70,15 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     }
 
     /**
+     * Get the status property: Status information for the fleet.
+     * 
+     * @return the status value.
+     */
+    public FleetStatus status() {
+        return this.status;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -71,6 +86,9 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     public void validate() {
         if (hubProfile() != null) {
             hubProfile().validate();
+        }
+        if (status() != null) {
+            status().validate();
         }
     }
 
@@ -104,6 +122,8 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
                         = FleetProvisioningState.fromString(reader.getString());
                 } else if ("hubProfile".equals(fieldName)) {
                     deserializedFleetProperties.hubProfile = FleetHubProfile.fromJson(reader);
+                } else if ("status".equals(fieldName)) {
+                    deserializedFleetProperties.status = FleetStatus.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
