@@ -24,10 +24,19 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.datamigration.fluent.DataMigrationManagementClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsMongoToCosmosDbRUMongoesClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsSqlDbsClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsSqlMisClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsSqlVmsClient;
+import com.azure.resourcemanager.datamigration.fluent.FilesClient;
+import com.azure.resourcemanager.datamigration.fluent.MigrationServicesClient;
 import com.azure.resourcemanager.datamigration.fluent.OperationsClient;
 import com.azure.resourcemanager.datamigration.fluent.ProjectsClient;
 import com.azure.resourcemanager.datamigration.fluent.ResourceSkusClient;
+import com.azure.resourcemanager.datamigration.fluent.ServiceTasksClient;
 import com.azure.resourcemanager.datamigration.fluent.ServicesClient;
+import com.azure.resourcemanager.datamigration.fluent.SqlMigrationServicesClient;
 import com.azure.resourcemanager.datamigration.fluent.TasksClient;
 import com.azure.resourcemanager.datamigration.fluent.UsagesClient;
 import java.io.IOException;
@@ -45,12 +54,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = DataMigrationManagementClientBuilder.class)
 public final class DataMigrationManagementClientImpl implements DataMigrationManagementClient {
     /**
-     * Identifier of the subscription.
+     * Subscription ID that identifies an Azure subscription.
      */
     private final String subscriptionId;
 
     /**
-     * Gets Identifier of the subscription.
+     * Gets Subscription ID that identifies an Azure subscription.
      * 
      * @return the subscriptionId value.
      */
@@ -129,6 +138,118 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
     }
 
     /**
+     * The DatabaseMigrationsMongoToCosmosDbRUMongoesClient object to access its operations.
+     */
+    private final DatabaseMigrationsMongoToCosmosDbRUMongoesClient databaseMigrationsMongoToCosmosDbRUMongoes;
+
+    /**
+     * Gets the DatabaseMigrationsMongoToCosmosDbRUMongoesClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsMongoToCosmosDbRUMongoesClient object.
+     */
+    public DatabaseMigrationsMongoToCosmosDbRUMongoesClient getDatabaseMigrationsMongoToCosmosDbRUMongoes() {
+        return this.databaseMigrationsMongoToCosmosDbRUMongoes;
+    }
+
+    /**
+     * The DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient object to access its operations.
+     */
+    private final DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient databaseMigrationsMongoToCosmosDbvCoreMongoes;
+
+    /**
+     * Gets the DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient object.
+     */
+    public DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient getDatabaseMigrationsMongoToCosmosDbvCoreMongoes() {
+        return this.databaseMigrationsMongoToCosmosDbvCoreMongoes;
+    }
+
+    /**
+     * The DatabaseMigrationsSqlDbsClient object to access its operations.
+     */
+    private final DatabaseMigrationsSqlDbsClient databaseMigrationsSqlDbs;
+
+    /**
+     * Gets the DatabaseMigrationsSqlDbsClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsSqlDbsClient object.
+     */
+    public DatabaseMigrationsSqlDbsClient getDatabaseMigrationsSqlDbs() {
+        return this.databaseMigrationsSqlDbs;
+    }
+
+    /**
+     * The DatabaseMigrationsSqlMisClient object to access its operations.
+     */
+    private final DatabaseMigrationsSqlMisClient databaseMigrationsSqlMis;
+
+    /**
+     * Gets the DatabaseMigrationsSqlMisClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsSqlMisClient object.
+     */
+    public DatabaseMigrationsSqlMisClient getDatabaseMigrationsSqlMis() {
+        return this.databaseMigrationsSqlMis;
+    }
+
+    /**
+     * The DatabaseMigrationsSqlVmsClient object to access its operations.
+     */
+    private final DatabaseMigrationsSqlVmsClient databaseMigrationsSqlVms;
+
+    /**
+     * Gets the DatabaseMigrationsSqlVmsClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsSqlVmsClient object.
+     */
+    public DatabaseMigrationsSqlVmsClient getDatabaseMigrationsSqlVms() {
+        return this.databaseMigrationsSqlVms;
+    }
+
+    /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
+     * The MigrationServicesClient object to access its operations.
+     */
+    private final MigrationServicesClient migrationServices;
+
+    /**
+     * Gets the MigrationServicesClient object to access its operations.
+     * 
+     * @return the MigrationServicesClient object.
+     */
+    public MigrationServicesClient getMigrationServices() {
+        return this.migrationServices;
+    }
+
+    /**
+     * The SqlMigrationServicesClient object to access its operations.
+     */
+    private final SqlMigrationServicesClient sqlMigrationServices;
+
+    /**
+     * Gets the SqlMigrationServicesClient object to access its operations.
+     * 
+     * @return the SqlMigrationServicesClient object.
+     */
+    public SqlMigrationServicesClient getSqlMigrationServices() {
+        return this.sqlMigrationServices;
+    }
+
+    /**
      * The ResourceSkusClient object to access its operations.
      */
     private final ResourceSkusClient resourceSkus;
@@ -171,6 +292,20 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
     }
 
     /**
+     * The ServiceTasksClient object to access its operations.
+     */
+    private final ServiceTasksClient serviceTasks;
+
+    /**
+     * Gets the ServiceTasksClient object to access its operations.
+     * 
+     * @return the ServiceTasksClient object.
+     */
+    public ServiceTasksClient getServiceTasks() {
+        return this.serviceTasks;
+    }
+
+    /**
      * The ProjectsClient object to access its operations.
      */
     private final ProjectsClient projects;
@@ -199,17 +334,17 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
     }
 
     /**
-     * The OperationsClient object to access its operations.
+     * The FilesClient object to access its operations.
      */
-    private final OperationsClient operations;
+    private final FilesClient files;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the FilesClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the FilesClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public FilesClient getFiles() {
+        return this.files;
     }
 
     /**
@@ -219,7 +354,7 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId Identifier of the subscription.
+     * @param subscriptionId Subscription ID that identifies an Azure subscription.
      * @param endpoint server parameter.
      */
     DataMigrationManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -229,13 +364,24 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2018-04-19";
+        this.apiVersion = "2025-03-15-preview";
+        this.databaseMigrationsMongoToCosmosDbRUMongoes
+            = new DatabaseMigrationsMongoToCosmosDbRUMongoesClientImpl(this);
+        this.databaseMigrationsMongoToCosmosDbvCoreMongoes
+            = new DatabaseMigrationsMongoToCosmosDbvCoreMongoesClientImpl(this);
+        this.databaseMigrationsSqlDbs = new DatabaseMigrationsSqlDbsClientImpl(this);
+        this.databaseMigrationsSqlMis = new DatabaseMigrationsSqlMisClientImpl(this);
+        this.databaseMigrationsSqlVms = new DatabaseMigrationsSqlVmsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
+        this.migrationServices = new MigrationServicesClientImpl(this);
+        this.sqlMigrationServices = new SqlMigrationServicesClientImpl(this);
         this.resourceSkus = new ResourceSkusClientImpl(this);
         this.services = new ServicesClientImpl(this);
         this.tasks = new TasksClientImpl(this);
+        this.serviceTasks = new ServiceTasksClientImpl(this);
         this.projects = new ProjectsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
+        this.files = new FilesClientImpl(this);
     }
 
     /**
