@@ -14,6 +14,7 @@ import com.azure.resourcemanager.containerservicefleet.models.FleetCredentialRes
 import com.azure.resourcemanager.containerservicefleet.models.FleetHubProfile;
 import com.azure.resourcemanager.containerservicefleet.models.FleetPatch;
 import com.azure.resourcemanager.containerservicefleet.models.FleetProvisioningState;
+import com.azure.resourcemanager.containerservicefleet.models.FleetStatus;
 import com.azure.resourcemanager.containerservicefleet.models.ManagedServiceIdentity;
 import java.util.Collections;
 import java.util.Map;
@@ -66,6 +67,10 @@ public final class FleetImpl implements Fleet, Fleet.Definition, Fleet.Update {
 
     public FleetHubProfile hubProfile() {
         return this.innerModel().hubProfile();
+    }
+
+    public FleetStatus status() {
+        return this.innerModel().status();
     }
 
     public Region region() {

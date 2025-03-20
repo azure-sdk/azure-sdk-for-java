@@ -23,6 +23,7 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.containerservicefleet.fluent.AutoUpgradeProfileOperationsClient;
 import com.azure.resourcemanager.containerservicefleet.fluent.AutoUpgradeProfilesClient;
 import com.azure.resourcemanager.containerservicefleet.fluent.ContainerServiceFleetManagementClient;
 import com.azure.resourcemanager.containerservicefleet.fluent.FleetMembersClient;
@@ -45,12 +46,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = ContainerServiceFleetManagementClientBuilder.class)
 public final class ContainerServiceFleetManagementClientImpl implements ContainerServiceFleetManagementClient {
     /**
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -171,6 +172,20 @@ public final class ContainerServiceFleetManagementClientImpl implements Containe
     }
 
     /**
+     * The AutoUpgradeProfileOperationsClient object to access its operations.
+     */
+    private final AutoUpgradeProfileOperationsClient autoUpgradeProfileOperations;
+
+    /**
+     * Gets the AutoUpgradeProfileOperationsClient object to access its operations.
+     * 
+     * @return the AutoUpgradeProfileOperationsClient object.
+     */
+    public AutoUpgradeProfileOperationsClient getAutoUpgradeProfileOperations() {
+        return this.autoUpgradeProfileOperations;
+    }
+
+    /**
      * The FleetMembersClient object to access its operations.
      */
     private final FleetMembersClient fleetMembers;
@@ -219,7 +234,7 @@ public final class ContainerServiceFleetManagementClientImpl implements Containe
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     ContainerServiceFleetManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -229,10 +244,11 @@ public final class ContainerServiceFleetManagementClientImpl implements Containe
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-05-02-preview";
+        this.apiVersion = "2025-03-01";
         this.operations = new OperationsClientImpl(this);
         this.fleets = new FleetsClientImpl(this);
         this.autoUpgradeProfiles = new AutoUpgradeProfilesClientImpl(this);
+        this.autoUpgradeProfileOperations = new AutoUpgradeProfileOperationsClientImpl(this);
         this.fleetMembers = new FleetMembersClientImpl(this);
         this.updateRuns = new UpdateRunsClientImpl(this);
         this.fleetUpdateStrategies = new FleetUpdateStrategiesClientImpl(this);

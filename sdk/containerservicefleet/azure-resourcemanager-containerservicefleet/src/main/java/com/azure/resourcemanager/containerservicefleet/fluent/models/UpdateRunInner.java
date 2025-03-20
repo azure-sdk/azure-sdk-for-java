@@ -242,6 +242,15 @@ public final class UpdateRunInner extends ProxyResource {
     }
 
     /**
+     * Get the autoUpgradeProfileId property: AutoUpgradeProfileId is the id of an auto upgrade profile resource.
+     * 
+     * @return the autoUpgradeProfileId value.
+     */
+    public String autoUpgradeProfileId() {
+        return this.innerProperties() == null ? null : this.innerProperties().autoUpgradeProfileId();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
