@@ -69,7 +69,7 @@ public final class BatchJobNetworkConfiguration implements JsonSerializable<Batc
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("subnetId", this.subnetId);
-        jsonWriter.writeBooleanField("skipWithdrawFromVNet", this.skipWithdrawFromVNet);
+        jsonWriter.writeBooleanField("skipWithdrawFromVNet", this.skipWithdrawFromVnet);
         return jsonWriter.writeEndObject();
     }
 
@@ -86,20 +86,32 @@ public final class BatchJobNetworkConfiguration implements JsonSerializable<Batc
     public static BatchJobNetworkConfiguration fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
             String subnetId = null;
-            boolean skipWithdrawFromVNet = false;
+            boolean skipWithdrawFromVnet = false;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("subnetId".equals(fieldName)) {
                     subnetId = reader.getString();
                 } else if ("skipWithdrawFromVNet".equals(fieldName)) {
-                    skipWithdrawFromVNet = reader.getBoolean();
+                    skipWithdrawFromVnet = reader.getBoolean();
                 } else {
                     reader.skipChildren();
                 }
             }
-            return new BatchJobNetworkConfiguration(subnetId, skipWithdrawFromVNet);
+            return new BatchJobNetworkConfiguration(subnetId, skipWithdrawFromVnet);
         });
+    }
+
+    /**
+     * Creates an instance of BatchJobNetworkConfiguration class.
+     *
+     * @param subnetId the subnetId value to set.
+     * @param skipWithdrawFromVnet the skipWithdrawFromVnet value to set.
+     */
+    @Generated
+    public BatchJobNetworkConfiguration(String subnetId, boolean skipWithdrawFromVnet) {
+        this.subnetId = subnetId;
+        this.skipWithdrawFromVnet = skipWithdrawFromVnet;
     }
 
     /*
@@ -108,29 +120,17 @@ public final class BatchJobNetworkConfiguration implements JsonSerializable<Batc
      * ends. Defaults to false.
      */
     @Generated
-    private final boolean skipWithdrawFromVNet;
+    private final boolean skipWithdrawFromVnet;
 
     /**
-     * Creates an instance of BatchJobNetworkConfiguration class.
-     *
-     * @param subnetId the subnetId value to set.
-     * @param skipWithdrawFromVNet the skipWithdrawFromVNet value to set.
-     */
-    @Generated
-    public BatchJobNetworkConfiguration(String subnetId, boolean skipWithdrawFromVNet) {
-        this.subnetId = subnetId;
-        this.skipWithdrawFromVNet = skipWithdrawFromVNet;
-    }
-
-    /**
-     * Get the skipWithdrawFromVNet property: Whether to withdraw Compute Nodes from the virtual network to DNC when the
+     * Get the skipWithdrawFromVnet property: Whether to withdraw Compute Nodes from the virtual network to DNC when the
      * job is terminated or deleted. If true, nodes will remain joined to the virtual network to DNC. If false, nodes
      * will automatically withdraw when the job ends. Defaults to false.
      *
-     * @return the skipWithdrawFromVNet value.
+     * @return the skipWithdrawFromVnet value.
      */
     @Generated
-    public boolean isSkipWithdrawFromVNet() {
-        return this.skipWithdrawFromVNet;
+    public boolean isSkipWithdrawFromVnet() {
+        return this.skipWithdrawFromVnet;
     }
 }
