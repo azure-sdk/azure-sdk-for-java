@@ -243,66 +243,6 @@ public final class SecretClientImpl {
             @PathParam("secret-version") String secretVersion, @HeaderParam("Accept") String accept,
             RequestOptions requestOptions, Context context);
 
-        @Get("/secrets")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getSecrets(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
-            RequestOptions requestOptions, Context context);
-
-        @Get("/secrets")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> getSecretsSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
-            RequestOptions requestOptions, Context context);
-
-        @Get("/secrets/{secret-name}/versions")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getSecretVersions(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @PathParam("secret-name") String secretName,
-            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
-
-        @Get("/secrets/{secret-name}/versions")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> getSecretVersionsSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @PathParam("secret-name") String secretName,
-            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
-
-        @Get("/deletedsecrets")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getDeletedSecrets(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
-            RequestOptions requestOptions, Context context);
-
-        @Get("/deletedsecrets")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> getDeletedSecretsSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
-            RequestOptions requestOptions, Context context);
-
         @Get("/deletedsecrets/{secret-name}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -403,6 +343,66 @@ public final class SecretClientImpl {
         Response<BinaryData> restoreSecretSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
             @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData parameters,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/secrets")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getSecrets(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/secrets")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getSecretsSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/secrets/{secret-name}/versions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getSecretVersions(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @PathParam("secret-name") String secretName,
+            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/secrets/{secret-name}/versions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getSecretVersionsSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @PathParam("secret-name") String secretName,
+            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/deletedsecrets")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getDeletedSecrets(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/deletedsecrets")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getDeletedSecretsSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
             RequestOptions requestOptions, Context context);
 
         @Get("{nextLink}")
@@ -963,6 +963,426 @@ public final class SecretClientImpl {
         final String accept = "application/json";
         return service.getSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), secretName,
             secretVersion, accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Gets the specified deleted secret.
+     * 
+     * The Get Deleted Secret operation returns the specified deleted secret along with its attributes. This operation
+     * requires the secrets/get permission.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: String (Optional)
+     *     id: String (Optional)
+     *     contentType: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     kid: String (Optional)
+     *     managed: Boolean (Optional)
+     *     recoveryId: String (Optional)
+     *     scheduledPurgeDate: Long (Optional)
+     *     deletedDate: Long (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * @param secretName The name of the secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the specified deleted secret.
+     * 
+     * The Get Deleted Secret operation returns the specified deleted secret along with its attributes along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getDeletedSecretWithResponseAsync(String secretName,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getDeletedSecret(this.getVaultBaseUrl(),
+            this.getServiceVersion().getVersion(), secretName, accept, requestOptions, context));
+    }
+
+    /**
+     * Gets the specified deleted secret.
+     * 
+     * The Get Deleted Secret operation returns the specified deleted secret along with its attributes. This operation
+     * requires the secrets/get permission.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: String (Optional)
+     *     id: String (Optional)
+     *     contentType: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     kid: String (Optional)
+     *     managed: Boolean (Optional)
+     *     recoveryId: String (Optional)
+     *     scheduledPurgeDate: Long (Optional)
+     *     deletedDate: Long (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * @param secretName The name of the secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the specified deleted secret.
+     * 
+     * The Get Deleted Secret operation returns the specified deleted secret along with its attributes along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getDeletedSecretWithResponse(String secretName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getDeletedSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), secretName,
+            accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Permanently deletes the specified secret.
+     * 
+     * The purge deleted secret operation removes the secret permanently, without the possibility of recovery. This
+     * operation can only be enabled on a soft-delete enabled vault. This operation requires the secrets/purge
+     * permission.
+     * 
+     * @param secretName The name of the secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> purgeDeletedSecretWithResponseAsync(String secretName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.purgeDeletedSecret(this.getVaultBaseUrl(),
+            this.getServiceVersion().getVersion(), secretName, accept, requestOptions, context));
+    }
+
+    /**
+     * Permanently deletes the specified secret.
+     * 
+     * The purge deleted secret operation removes the secret permanently, without the possibility of recovery. This
+     * operation can only be enabled on a soft-delete enabled vault. This operation requires the secrets/purge
+     * permission.
+     * 
+     * @param secretName The name of the secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> purgeDeletedSecretWithResponse(String secretName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.purgeDeletedSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), secretName,
+            accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Recovers the deleted secret to the latest version.
+     * 
+     * Recovers the deleted secret in the specified vault. This operation can only be performed on a soft-delete enabled
+     * vault. This operation requires the secrets/recover permission.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: String (Optional)
+     *     id: String (Optional)
+     *     contentType: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     kid: String (Optional)
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * @param secretName The name of the deleted secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a secret consisting of a value, id and its attributes along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> recoverDeletedSecretWithResponseAsync(String secretName,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.recoverDeletedSecret(this.getVaultBaseUrl(),
+            this.getServiceVersion().getVersion(), secretName, accept, requestOptions, context));
+    }
+
+    /**
+     * Recovers the deleted secret to the latest version.
+     * 
+     * Recovers the deleted secret in the specified vault. This operation can only be performed on a soft-delete enabled
+     * vault. This operation requires the secrets/recover permission.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: String (Optional)
+     *     id: String (Optional)
+     *     contentType: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     kid: String (Optional)
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * @param secretName The name of the deleted secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a secret consisting of a value, id and its attributes along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> recoverDeletedSecretWithResponse(String secretName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.recoverDeletedSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(),
+            secretName, accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Backs up the specified secret.
+     * 
+     * Requests that a backup of the specified secret be downloaded to the client. All versions of the secret will be
+     * downloaded. This operation requires the secrets/backup permission.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: Base64Url (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * @param secretName The name of the secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the backup secret result, containing the backup blob along with {@link Response} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> backupSecretWithResponseAsync(String secretName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.backupSecret(this.getVaultBaseUrl(),
+            this.getServiceVersion().getVersion(), secretName, accept, requestOptions, context));
+    }
+
+    /**
+     * Backs up the specified secret.
+     * 
+     * Requests that a backup of the specified secret be downloaded to the client. All versions of the secret will be
+     * downloaded. This operation requires the secrets/backup permission.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: Base64Url (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * @param secretName The name of the secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the backup secret result, containing the backup blob along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> backupSecretWithResponse(String secretName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.backupSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), secretName,
+            accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Restores a backed up secret to a vault.
+     * 
+     * Restores a backed up secret, and all its versions, to a vault. This operation requires the secrets/restore
+     * permission.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: Base64Url (Required)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: String (Optional)
+     *     id: String (Optional)
+     *     contentType: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     kid: String (Optional)
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * @param parameters The parameters to restore the secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a secret consisting of a value, id and its attributes along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> restoreSecretWithResponseAsync(BinaryData parameters,
+        RequestOptions requestOptions) {
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.restoreSecret(this.getVaultBaseUrl(),
+            this.getServiceVersion().getVersion(), contentType, accept, parameters, requestOptions, context));
+    }
+
+    /**
+     * Restores a backed up secret to a vault.
+     * 
+     * Restores a backed up secret, and all its versions, to a vault. This operation requires the secrets/restore
+     * permission.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: Base64Url (Required)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     value: String (Optional)
+     *     id: String (Optional)
+     *     contentType: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     kid: String (Optional)
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * @param parameters The parameters to restore the secret.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a secret consisting of a value, id and its attributes along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> restoreSecretWithResponse(BinaryData parameters, RequestOptions requestOptions) {
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return service.restoreSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), contentType,
+            accept, parameters, requestOptions, Context.NONE);
     }
 
     /**
@@ -1623,426 +2043,6 @@ public final class SecretClientImpl {
             requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
         return new PagedIterable<>(() -> getDeletedSecretsSinglePage(requestOptions),
             nextLink -> getDeletedSecretsNextSinglePage(nextLink, requestOptionsForNextPage));
-    }
-
-    /**
-     * Gets the specified deleted secret.
-     * 
-     * The Get Deleted Secret operation returns the specified deleted secret along with its attributes. This operation
-     * requires the secrets/get permission.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: String (Optional)
-     *     id: String (Optional)
-     *     contentType: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     kid: String (Optional)
-     *     managed: Boolean (Optional)
-     *     recoveryId: String (Optional)
-     *     scheduledPurgeDate: Long (Optional)
-     *     deletedDate: Long (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * @param secretName The name of the secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the specified deleted secret.
-     * 
-     * The Get Deleted Secret operation returns the specified deleted secret along with its attributes along with
-     * {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getDeletedSecretWithResponseAsync(String secretName,
-        RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getDeletedSecret(this.getVaultBaseUrl(),
-            this.getServiceVersion().getVersion(), secretName, accept, requestOptions, context));
-    }
-
-    /**
-     * Gets the specified deleted secret.
-     * 
-     * The Get Deleted Secret operation returns the specified deleted secret along with its attributes. This operation
-     * requires the secrets/get permission.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: String (Optional)
-     *     id: String (Optional)
-     *     contentType: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     kid: String (Optional)
-     *     managed: Boolean (Optional)
-     *     recoveryId: String (Optional)
-     *     scheduledPurgeDate: Long (Optional)
-     *     deletedDate: Long (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * @param secretName The name of the secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the specified deleted secret.
-     * 
-     * The Get Deleted Secret operation returns the specified deleted secret along with its attributes along with
-     * {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getDeletedSecretWithResponse(String secretName, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return service.getDeletedSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), secretName,
-            accept, requestOptions, Context.NONE);
-    }
-
-    /**
-     * Permanently deletes the specified secret.
-     * 
-     * The purge deleted secret operation removes the secret permanently, without the possibility of recovery. This
-     * operation can only be enabled on a soft-delete enabled vault. This operation requires the secrets/purge
-     * permission.
-     * 
-     * @param secretName The name of the secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> purgeDeletedSecretWithResponseAsync(String secretName, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.purgeDeletedSecret(this.getVaultBaseUrl(),
-            this.getServiceVersion().getVersion(), secretName, accept, requestOptions, context));
-    }
-
-    /**
-     * Permanently deletes the specified secret.
-     * 
-     * The purge deleted secret operation removes the secret permanently, without the possibility of recovery. This
-     * operation can only be enabled on a soft-delete enabled vault. This operation requires the secrets/purge
-     * permission.
-     * 
-     * @param secretName The name of the secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> purgeDeletedSecretWithResponse(String secretName, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return service.purgeDeletedSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), secretName,
-            accept, requestOptions, Context.NONE);
-    }
-
-    /**
-     * Recovers the deleted secret to the latest version.
-     * 
-     * Recovers the deleted secret in the specified vault. This operation can only be performed on a soft-delete enabled
-     * vault. This operation requires the secrets/recover permission.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: String (Optional)
-     *     id: String (Optional)
-     *     contentType: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     kid: String (Optional)
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * @param secretName The name of the deleted secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a secret consisting of a value, id and its attributes along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> recoverDeletedSecretWithResponseAsync(String secretName,
-        RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.recoverDeletedSecret(this.getVaultBaseUrl(),
-            this.getServiceVersion().getVersion(), secretName, accept, requestOptions, context));
-    }
-
-    /**
-     * Recovers the deleted secret to the latest version.
-     * 
-     * Recovers the deleted secret in the specified vault. This operation can only be performed on a soft-delete enabled
-     * vault. This operation requires the secrets/recover permission.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: String (Optional)
-     *     id: String (Optional)
-     *     contentType: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     kid: String (Optional)
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * @param secretName The name of the deleted secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a secret consisting of a value, id and its attributes along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> recoverDeletedSecretWithResponse(String secretName, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return service.recoverDeletedSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(),
-            secretName, accept, requestOptions, Context.NONE);
-    }
-
-    /**
-     * Backs up the specified secret.
-     * 
-     * Requests that a backup of the specified secret be downloaded to the client. All versions of the secret will be
-     * downloaded. This operation requires the secrets/backup permission.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: Base64Url (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * @param secretName The name of the secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the backup secret result, containing the backup blob along with {@link Response} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> backupSecretWithResponseAsync(String secretName, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.backupSecret(this.getVaultBaseUrl(),
-            this.getServiceVersion().getVersion(), secretName, accept, requestOptions, context));
-    }
-
-    /**
-     * Backs up the specified secret.
-     * 
-     * Requests that a backup of the specified secret be downloaded to the client. All versions of the secret will be
-     * downloaded. This operation requires the secrets/backup permission.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: Base64Url (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * @param secretName The name of the secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the backup secret result, containing the backup blob along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> backupSecretWithResponse(String secretName, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return service.backupSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), secretName,
-            accept, requestOptions, Context.NONE);
-    }
-
-    /**
-     * Restores a backed up secret to a vault.
-     * 
-     * Restores a backed up secret, and all its versions, to a vault. This operation requires the secrets/restore
-     * permission.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: Base64Url (Required)
-     * }
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: String (Optional)
-     *     id: String (Optional)
-     *     contentType: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     kid: String (Optional)
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * @param parameters The parameters to restore the secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a secret consisting of a value, id and its attributes along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> restoreSecretWithResponseAsync(BinaryData parameters,
-        RequestOptions requestOptions) {
-        final String contentType = "application/json";
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.restoreSecret(this.getVaultBaseUrl(),
-            this.getServiceVersion().getVersion(), contentType, accept, parameters, requestOptions, context));
-    }
-
-    /**
-     * Restores a backed up secret to a vault.
-     * 
-     * Restores a backed up secret, and all its versions, to a vault. This operation requires the secrets/restore
-     * permission.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: Base64Url (Required)
-     * }
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     value: String (Optional)
-     *     id: String (Optional)
-     *     contentType: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     kid: String (Optional)
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * @param parameters The parameters to restore the secret.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a secret consisting of a value, id and its attributes along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> restoreSecretWithResponse(BinaryData parameters, RequestOptions requestOptions) {
-        final String contentType = "application/json";
-        final String accept = "application/json";
-        return service.restoreSecretSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), contentType,
-            accept, parameters, requestOptions, Context.NONE);
     }
 
     /**
