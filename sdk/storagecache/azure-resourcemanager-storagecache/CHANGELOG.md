@@ -1,14 +1,61 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-21)
+
+- Azure Resource Manager StorageCache client library for Java. This package contains Microsoft Azure SDK for StorageCache Management SDK. Azure Managed Lustre provides a fully managed Lustre® file system, integrated with Blob storage, for use on demand. These operations create and manage Azure Managed Lustre file systems. Package tag package-2025-07-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.AutoExportJob$Update` was added
 
-### Bugs Fixed
+* `models.AutoExportJobUpdate` was added
 
-### Other Changes
+* `models.AutoExportStatusType` was added
+
+* `models.AutoExportJob$UpdateStages` was added
+
+* `models.ImportJobAdminStatus` was added
+
+* `models.AutoExportJob$Definition` was added
+
+* `models.AutoExportJob` was added
+
+* `models.AutoExportJobAdminStatus` was added
+
+* `models.AutoExportJobProvisioningStateType` was added
+
+* `models.AutoExportJob$DefinitionStages` was added
+
+* `models.AutoExportJobs` was added
+
+* `models.AutoExportJobsListResult` was added
+
+#### `models.ImportJob$Update` was modified
+
+* `withAdminStatus(models.ImportJobAdminStatus)` was added
+
+#### `models.ImportJobUpdate` was modified
+
+* `adminStatus()` was added
+* `withAdminStatus(models.ImportJobAdminStatus)` was added
+
+#### `models.ImportJob` was modified
+
+* `preexistingFiles()` was added
+* `importedDirectories()` was added
+* `preexistingDirectories()` was added
+* `preexistingSymlinks()` was added
+* `adminStatus()` was added
+* `importedFiles()` was added
+* `importedSymlinks()` was added
+
+#### `models.ImportJob$Definition` was modified
+
+* `withAdminStatus(models.ImportJobAdminStatus)` was added
+
+#### `StorageCacheManager` was modified
+
+* `autoExportJobs()` was added
 
 ## 1.0.0 (2024-12-23)
 
