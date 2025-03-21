@@ -16,7 +16,7 @@ import java.io.IOException;
 @Fluent
 public final class BinaryHardeningSummaryResource extends SummaryResourceProperties {
     /*
-     * Describes the type of summary.
+     * The type of summary.
      */
     private SummaryType summaryType = SummaryType.BINARY_HARDENING;
 
@@ -26,29 +26,29 @@ public final class BinaryHardeningSummaryResource extends SummaryResourcePropert
     private Long totalFiles;
 
     /*
-     * NX summary percentage
+     * Total number of analyzed files that were found to have a nonexecutable stack
      */
-    private Integer nx;
+    private Long notExecutableStackCount;
 
     /*
-     * PIE summary percentage
+     * Total number of analyzed files that were compiled to be a position independent executable
      */
-    private Integer pie;
+    private Long positionIndependentExecutableCount;
 
     /*
-     * RELRO summary percentage
+     * Total number of analyzed files that have enabled relocation read-only protections
      */
-    private Integer relro;
+    private Long relocationReadOnlyCount;
 
     /*
-     * Canary summary percentage
+     * Total number of analyzed files that have stack canaries enabled
      */
-    private Integer canary;
+    private Long stackCanaryCount;
 
     /*
-     * Stripped summary percentage
+     * Total number of analyzed files that have debug symbols stripped
      */
-    private Integer stripped;
+    private Long strippedBinaryCount;
 
     /**
      * Creates an instance of BinaryHardeningSummaryResource class.
@@ -57,7 +57,7 @@ public final class BinaryHardeningSummaryResource extends SummaryResourcePropert
     }
 
     /**
-     * Get the summaryType property: Describes the type of summary.
+     * Get the summaryType property: The type of summary.
      * 
      * @return the summaryType value.
      */
@@ -87,102 +87,109 @@ public final class BinaryHardeningSummaryResource extends SummaryResourcePropert
     }
 
     /**
-     * Get the nx property: NX summary percentage.
+     * Get the notExecutableStackCount property: Total number of analyzed files that were found to have a nonexecutable
+     * stack.
      * 
-     * @return the nx value.
+     * @return the notExecutableStackCount value.
      */
-    public Integer nx() {
-        return this.nx;
+    public Long notExecutableStackCount() {
+        return this.notExecutableStackCount;
     }
 
     /**
-     * Set the nx property: NX summary percentage.
+     * Set the notExecutableStackCount property: Total number of analyzed files that were found to have a nonexecutable
+     * stack.
      * 
-     * @param nx the nx value to set.
+     * @param notExecutableStackCount the notExecutableStackCount value to set.
      * @return the BinaryHardeningSummaryResource object itself.
      */
-    public BinaryHardeningSummaryResource withNx(Integer nx) {
-        this.nx = nx;
+    public BinaryHardeningSummaryResource withNotExecutableStackCount(Long notExecutableStackCount) {
+        this.notExecutableStackCount = notExecutableStackCount;
         return this;
     }
 
     /**
-     * Get the pie property: PIE summary percentage.
+     * Get the positionIndependentExecutableCount property: Total number of analyzed files that were compiled to be a
+     * position independent executable.
      * 
-     * @return the pie value.
+     * @return the positionIndependentExecutableCount value.
      */
-    public Integer pie() {
-        return this.pie;
+    public Long positionIndependentExecutableCount() {
+        return this.positionIndependentExecutableCount;
     }
 
     /**
-     * Set the pie property: PIE summary percentage.
+     * Set the positionIndependentExecutableCount property: Total number of analyzed files that were compiled to be a
+     * position independent executable.
      * 
-     * @param pie the pie value to set.
+     * @param positionIndependentExecutableCount the positionIndependentExecutableCount value to set.
      * @return the BinaryHardeningSummaryResource object itself.
      */
-    public BinaryHardeningSummaryResource withPie(Integer pie) {
-        this.pie = pie;
+    public BinaryHardeningSummaryResource
+        withPositionIndependentExecutableCount(Long positionIndependentExecutableCount) {
+        this.positionIndependentExecutableCount = positionIndependentExecutableCount;
         return this;
     }
 
     /**
-     * Get the relro property: RELRO summary percentage.
+     * Get the relocationReadOnlyCount property: Total number of analyzed files that have enabled relocation read-only
+     * protections.
      * 
-     * @return the relro value.
+     * @return the relocationReadOnlyCount value.
      */
-    public Integer relro() {
-        return this.relro;
+    public Long relocationReadOnlyCount() {
+        return this.relocationReadOnlyCount;
     }
 
     /**
-     * Set the relro property: RELRO summary percentage.
+     * Set the relocationReadOnlyCount property: Total number of analyzed files that have enabled relocation read-only
+     * protections.
      * 
-     * @param relro the relro value to set.
+     * @param relocationReadOnlyCount the relocationReadOnlyCount value to set.
      * @return the BinaryHardeningSummaryResource object itself.
      */
-    public BinaryHardeningSummaryResource withRelro(Integer relro) {
-        this.relro = relro;
+    public BinaryHardeningSummaryResource withRelocationReadOnlyCount(Long relocationReadOnlyCount) {
+        this.relocationReadOnlyCount = relocationReadOnlyCount;
         return this;
     }
 
     /**
-     * Get the canary property: Canary summary percentage.
+     * Get the stackCanaryCount property: Total number of analyzed files that have stack canaries enabled.
      * 
-     * @return the canary value.
+     * @return the stackCanaryCount value.
      */
-    public Integer canary() {
-        return this.canary;
+    public Long stackCanaryCount() {
+        return this.stackCanaryCount;
     }
 
     /**
-     * Set the canary property: Canary summary percentage.
+     * Set the stackCanaryCount property: Total number of analyzed files that have stack canaries enabled.
      * 
-     * @param canary the canary value to set.
+     * @param stackCanaryCount the stackCanaryCount value to set.
      * @return the BinaryHardeningSummaryResource object itself.
      */
-    public BinaryHardeningSummaryResource withCanary(Integer canary) {
-        this.canary = canary;
+    public BinaryHardeningSummaryResource withStackCanaryCount(Long stackCanaryCount) {
+        this.stackCanaryCount = stackCanaryCount;
         return this;
     }
 
     /**
-     * Get the stripped property: Stripped summary percentage.
+     * Get the strippedBinaryCount property: Total number of analyzed files that have debug symbols stripped.
      * 
-     * @return the stripped value.
+     * @return the strippedBinaryCount value.
      */
-    public Integer stripped() {
-        return this.stripped;
+    public Long strippedBinaryCount() {
+        return this.strippedBinaryCount;
     }
 
     /**
-     * Set the stripped property: Stripped summary percentage.
+     * Set the strippedBinaryCount property: Total number of analyzed files that have debug symbols stripped.
      * 
-     * @param stripped the stripped value to set.
+     * @param strippedBinaryCount the strippedBinaryCount value to set.
      * @return the BinaryHardeningSummaryResource object itself.
      */
-    public BinaryHardeningSummaryResource withStripped(Integer stripped) {
-        this.stripped = stripped;
+    public BinaryHardeningSummaryResource withStrippedBinaryCount(Long strippedBinaryCount) {
+        this.strippedBinaryCount = strippedBinaryCount;
         return this;
     }
 
@@ -203,11 +210,11 @@ public final class BinaryHardeningSummaryResource extends SummaryResourcePropert
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("summaryType", this.summaryType == null ? null : this.summaryType.toString());
         jsonWriter.writeNumberField("totalFiles", this.totalFiles);
-        jsonWriter.writeNumberField("nx", this.nx);
-        jsonWriter.writeNumberField("pie", this.pie);
-        jsonWriter.writeNumberField("relro", this.relro);
-        jsonWriter.writeNumberField("canary", this.canary);
-        jsonWriter.writeNumberField("stripped", this.stripped);
+        jsonWriter.writeNumberField("notExecutableStackCount", this.notExecutableStackCount);
+        jsonWriter.writeNumberField("positionIndependentExecutableCount", this.positionIndependentExecutableCount);
+        jsonWriter.writeNumberField("relocationReadOnlyCount", this.relocationReadOnlyCount);
+        jsonWriter.writeNumberField("stackCanaryCount", this.stackCanaryCount);
+        jsonWriter.writeNumberField("strippedBinaryCount", this.strippedBinaryCount);
         return jsonWriter.writeEndObject();
     }
 
@@ -227,20 +234,28 @@ public final class BinaryHardeningSummaryResource extends SummaryResourcePropert
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("summaryType".equals(fieldName)) {
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedBinaryHardeningSummaryResource
+                        .withProvisioningState(ProvisioningState.fromString(reader.getString()));
+                } else if ("summaryType".equals(fieldName)) {
                     deserializedBinaryHardeningSummaryResource.summaryType = SummaryType.fromString(reader.getString());
                 } else if ("totalFiles".equals(fieldName)) {
                     deserializedBinaryHardeningSummaryResource.totalFiles = reader.getNullable(JsonReader::getLong);
-                } else if ("nx".equals(fieldName)) {
-                    deserializedBinaryHardeningSummaryResource.nx = reader.getNullable(JsonReader::getInt);
-                } else if ("pie".equals(fieldName)) {
-                    deserializedBinaryHardeningSummaryResource.pie = reader.getNullable(JsonReader::getInt);
-                } else if ("relro".equals(fieldName)) {
-                    deserializedBinaryHardeningSummaryResource.relro = reader.getNullable(JsonReader::getInt);
-                } else if ("canary".equals(fieldName)) {
-                    deserializedBinaryHardeningSummaryResource.canary = reader.getNullable(JsonReader::getInt);
-                } else if ("stripped".equals(fieldName)) {
-                    deserializedBinaryHardeningSummaryResource.stripped = reader.getNullable(JsonReader::getInt);
+                } else if ("notExecutableStackCount".equals(fieldName)) {
+                    deserializedBinaryHardeningSummaryResource.notExecutableStackCount
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("positionIndependentExecutableCount".equals(fieldName)) {
+                    deserializedBinaryHardeningSummaryResource.positionIndependentExecutableCount
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("relocationReadOnlyCount".equals(fieldName)) {
+                    deserializedBinaryHardeningSummaryResource.relocationReadOnlyCount
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("stackCanaryCount".equals(fieldName)) {
+                    deserializedBinaryHardeningSummaryResource.stackCanaryCount
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("strippedBinaryCount".equals(fieldName)) {
+                    deserializedBinaryHardeningSummaryResource.strippedBinaryCount
+                        = reader.getNullable(JsonReader::getLong);
                 } else {
                     reader.skipChildren();
                 }

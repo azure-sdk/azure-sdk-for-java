@@ -12,8 +12,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.SummariesClient;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.SummaryResourceInner;
 import com.azure.resourcemanager.iotfirmwaredefense.models.Summaries;
-import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryName;
 import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryResource;
+import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryType;
 
 public final class SummariesImpl implements Summaries {
     private static final ClientLogger LOGGER = new ClientLogger(SummariesImpl.class);
@@ -43,9 +43,9 @@ public final class SummariesImpl implements Summaries {
     }
 
     public Response<SummaryResource> getWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
-        SummaryName summaryName, Context context) {
+        SummaryType summaryType, Context context) {
         Response<SummaryResourceInner> inner
-            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, firmwareId, summaryName, context);
+            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, firmwareId, summaryType, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SummaryResourceImpl(inner.getValue(), this.manager()));
@@ -55,9 +55,9 @@ public final class SummariesImpl implements Summaries {
     }
 
     public SummaryResource get(String resourceGroupName, String workspaceName, String firmwareId,
-        SummaryName summaryName) {
+        SummaryType summaryType) {
         SummaryResourceInner inner
-            = this.serviceClient().get(resourceGroupName, workspaceName, firmwareId, summaryName);
+            = this.serviceClient().get(resourceGroupName, workspaceName, firmwareId, summaryType);
         if (inner != null) {
             return new SummaryResourceImpl(inner, this.manager());
         } else {

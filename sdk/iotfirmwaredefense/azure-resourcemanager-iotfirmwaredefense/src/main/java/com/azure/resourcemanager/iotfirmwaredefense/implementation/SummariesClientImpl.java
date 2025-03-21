@@ -27,8 +27,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.SummariesClient;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.SummaryResourceInner;
-import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryListResult;
-import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryName;
+import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryResourceListResult;
+import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryType;
 import reactor.core.publisher.Mono;
 
 /**
@@ -43,51 +43,50 @@ public final class SummariesClientImpl implements SummariesClient {
     /**
      * The service client containing this operation class.
      */
-    private final IoTFirmwareDefenseImpl client;
+    private final IotFirmwareDefenseImpl client;
 
     /**
      * Initializes an instance of SummariesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    SummariesClientImpl(IoTFirmwareDefenseImpl client) {
+    SummariesClientImpl(IotFirmwareDefenseImpl client) {
         this.service
             = RestProxy.create(SummariesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for IoTFirmwareDefenseSummaries to be used by the proxy service to
+     * The interface defining all the services for IotFirmwareDefenseSummaries to be used by the proxy service to
      * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "IoTFirmwareDefenseSu")
+    @ServiceInterface(name = "IotFirmwareDefenseSu")
     public interface SummariesService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SummaryListResult>> listByFirmware(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<SummaryResourceListResult>> listByFirmware(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
-            @PathParam("firmwareId") String firmwareId, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("firmwareId") String firmwareId, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries/{summaryName}")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries/{summaryType}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummaryResourceInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
-            @PathParam("firmwareId") String firmwareId, @PathParam("summaryName") SummaryName summaryName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("firmwareId") String firmwareId, @PathParam("summaryType") SummaryType summaryType,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SummaryListResult>> listByFirmwareNext(
+        Mono<Response<SummaryResourceListResult>> listByFirmwareNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -101,7 +100,8 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SummaryResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SummaryResourceInner>> listByFirmwareSinglePageAsync(String resourceGroupName,
@@ -126,8 +126,8 @@ public final class SummariesClientImpl implements SummariesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFirmware(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, firmwareId, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listByFirmware(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, firmwareId, accept, context))
             .<PagedResponse<SummaryResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -143,7 +143,8 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SummaryResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SummaryResourceInner>> listByFirmwareSinglePageAsync(String resourceGroupName,
@@ -169,8 +170,8 @@ public final class SummariesClientImpl implements SummariesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByFirmware(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                workspaceName, firmwareId, this.client.getApiVersion(), accept, context)
+            .listByFirmware(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, firmwareId, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -184,7 +185,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedFlux}.
+     * @return the response of a SummaryResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SummaryResourceInner> listByFirmwareAsync(String resourceGroupName, String workspaceName,
@@ -203,7 +204,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedFlux}.
+     * @return the response of a SummaryResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SummaryResourceInner> listByFirmwareAsync(String resourceGroupName, String workspaceName,
@@ -222,7 +223,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedIterable}.
+     * @return the response of a SummaryResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SummaryResourceInner> listByFirmware(String resourceGroupName, String workspaceName,
@@ -240,7 +241,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedIterable}.
+     * @return the response of a SummaryResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SummaryResourceInner> listByFirmware(String resourceGroupName, String workspaceName,
@@ -254,7 +255,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
      * @param firmwareId The id of the firmware.
-     * @param summaryName The Firmware analysis summary name describing the type of summary.
+     * @param summaryType The Firmware analysis summary name describing the type of summary.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -263,7 +264,7 @@ public final class SummariesClientImpl implements SummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SummaryResourceInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
-        String firmwareId, SummaryName summaryName) {
+        String firmwareId, SummaryType summaryType) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -282,14 +283,14 @@ public final class SummariesClientImpl implements SummariesClient {
         if (firmwareId == null) {
             return Mono.error(new IllegalArgumentException("Parameter firmwareId is required and cannot be null."));
         }
-        if (summaryName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter summaryName is required and cannot be null."));
+        if (summaryType == null) {
+            return Mono.error(new IllegalArgumentException("Parameter summaryType is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    workspaceName, firmwareId, summaryName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, firmwareId, summaryType, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -299,7 +300,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
      * @param firmwareId The id of the firmware.
-     * @param summaryName The Firmware analysis summary name describing the type of summary.
+     * @param summaryType The Firmware analysis summary name describing the type of summary.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -309,7 +310,7 @@ public final class SummariesClientImpl implements SummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SummaryResourceInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
-        String firmwareId, SummaryName summaryName, Context context) {
+        String firmwareId, SummaryType summaryType, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -328,13 +329,13 @@ public final class SummariesClientImpl implements SummariesClient {
         if (firmwareId == null) {
             return Mono.error(new IllegalArgumentException("Parameter firmwareId is required and cannot be null."));
         }
-        if (summaryName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter summaryName is required and cannot be null."));
+        if (summaryType == null) {
+            return Mono.error(new IllegalArgumentException("Parameter summaryType is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-            firmwareId, summaryName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workspaceName, firmwareId, summaryType, accept, context);
     }
 
     /**
@@ -343,7 +344,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
      * @param firmwareId The id of the firmware.
-     * @param summaryName The Firmware analysis summary name describing the type of summary.
+     * @param summaryType The Firmware analysis summary name describing the type of summary.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -351,8 +352,8 @@ public final class SummariesClientImpl implements SummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SummaryResourceInner> getAsync(String resourceGroupName, String workspaceName, String firmwareId,
-        SummaryName summaryName) {
-        return getWithResponseAsync(resourceGroupName, workspaceName, firmwareId, summaryName)
+        SummaryType summaryType) {
+        return getWithResponseAsync(resourceGroupName, workspaceName, firmwareId, summaryType)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -362,7 +363,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
      * @param firmwareId The id of the firmware.
-     * @param summaryName The Firmware analysis summary name describing the type of summary.
+     * @param summaryType The Firmware analysis summary name describing the type of summary.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -371,8 +372,8 @@ public final class SummariesClientImpl implements SummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SummaryResourceInner> getWithResponse(String resourceGroupName, String workspaceName,
-        String firmwareId, SummaryName summaryName, Context context) {
-        return getWithResponseAsync(resourceGroupName, workspaceName, firmwareId, summaryName, context).block();
+        String firmwareId, SummaryType summaryType, Context context) {
+        return getWithResponseAsync(resourceGroupName, workspaceName, firmwareId, summaryType, context).block();
     }
 
     /**
@@ -381,7 +382,7 @@ public final class SummariesClientImpl implements SummariesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
      * @param firmwareId The id of the firmware.
-     * @param summaryName The Firmware analysis summary name describing the type of summary.
+     * @param summaryType The Firmware analysis summary name describing the type of summary.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -389,8 +390,8 @@ public final class SummariesClientImpl implements SummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SummaryResourceInner get(String resourceGroupName, String workspaceName, String firmwareId,
-        SummaryName summaryName) {
-        return getWithResponse(resourceGroupName, workspaceName, firmwareId, summaryName, Context.NONE).getValue();
+        SummaryType summaryType) {
+        return getWithResponse(resourceGroupName, workspaceName, firmwareId, summaryType, Context.NONE).getValue();
     }
 
     /**
@@ -400,7 +401,8 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SummaryResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SummaryResourceInner>> listByFirmwareNextSinglePageAsync(String nextLink) {
@@ -427,7 +429,8 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SummaryResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SummaryResourceInner>> listByFirmwareNextSinglePageAsync(String nextLink,
