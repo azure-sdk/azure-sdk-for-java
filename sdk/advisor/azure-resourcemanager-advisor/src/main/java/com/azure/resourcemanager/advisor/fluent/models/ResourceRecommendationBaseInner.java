@@ -6,13 +6,18 @@ package com.azure.resourcemanager.advisor.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
+import com.azure.resourcemanager.advisor.models.RecommendationPropertiesResourceWorkload;
+import com.azure.resourcemanager.advisor.models.RecommendationPropertiesReview;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -28,6 +33,11 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
      * The properties of the recommendation.
      */
     private RecommendationProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -57,6 +67,15 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
      */
     private RecommendationProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -247,6 +266,29 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
             this.innerProperties = new RecommendationProperties();
         }
         this.innerProperties().withRecommendationTypeId(recommendationTypeId);
+        return this;
+    }
+
+    /**
+     * Get the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @return the risk value.
+     */
+    public Risk risk() {
+        return this.innerProperties() == null ? null : this.innerProperties().risk();
+    }
+
+    /**
+     * Set the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @param risk the risk value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner withRisk(Risk risk) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withRisk(risk);
         return this;
     }
 
@@ -507,6 +549,145 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
     }
 
     /**
+     * Get the tracked property: If the Recommendation has Tracking enabled.
+     * 
+     * @return the tracked value.
+     */
+    public Boolean tracked() {
+        return this.innerProperties() == null ? null : this.innerProperties().tracked();
+    }
+
+    /**
+     * Set the tracked property: If the Recommendation has Tracking enabled.
+     * 
+     * @param tracked the tracked value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner withTracked(Boolean tracked) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withTracked(tracked);
+        return this;
+    }
+
+    /**
+     * Get the trackedProperties property: The properties of a tracked recommendation.
+     * 
+     * @return the trackedProperties value.
+     */
+    public TrackedRecommendationProperties trackedProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().trackedProperties();
+    }
+
+    /**
+     * Set the trackedProperties property: The properties of a tracked recommendation.
+     * 
+     * @param trackedProperties the trackedProperties value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner withTrackedProperties(TrackedRecommendationProperties trackedProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withTrackedProperties(trackedProperties);
+        return this;
+    }
+
+    /**
+     * Get the review property: The Review that this Recommendation belongs to.
+     * 
+     * @return the review value.
+     */
+    public RecommendationPropertiesReview review() {
+        return this.innerProperties() == null ? null : this.innerProperties().review();
+    }
+
+    /**
+     * Set the review property: The Review that this Recommendation belongs to.
+     * 
+     * @param review the review value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner withReview(RecommendationPropertiesReview review) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withReview(review);
+        return this;
+    }
+
+    /**
+     * Get the resourceWorkload property: The Workload that this Resource belongs to.
+     * 
+     * @return the resourceWorkload value.
+     */
+    public RecommendationPropertiesResourceWorkload resourceWorkload() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceWorkload();
+    }
+
+    /**
+     * Set the resourceWorkload property: The Workload that this Resource belongs to.
+     * 
+     * @param resourceWorkload the resourceWorkload value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner
+        withResourceWorkload(RecommendationPropertiesResourceWorkload resourceWorkload) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withResourceWorkload(resourceWorkload);
+        return this;
+    }
+
+    /**
+     * Get the sourceSystem property: The Source System that this Recommendation originated from.
+     * 
+     * @return the sourceSystem value.
+     */
+    public String sourceSystem() {
+        return this.innerProperties() == null ? null : this.innerProperties().sourceSystem();
+    }
+
+    /**
+     * Set the sourceSystem property: The Source System that this Recommendation originated from.
+     * 
+     * @param sourceSystem the sourceSystem value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner withSourceSystem(String sourceSystem) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withSourceSystem(sourceSystem);
+        return this;
+    }
+
+    /**
+     * Get the notes property: Additional notes for the Recommendation.
+     * 
+     * @return the notes value.
+     */
+    public String notes() {
+        return this.innerProperties() == null ? null : this.innerProperties().notes();
+    }
+
+    /**
+     * Set the notes property: Additional notes for the Recommendation.
+     * 
+     * @param notes the notes value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner withNotes(String notes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withNotes(notes);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -553,6 +734,8 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
                 } else if ("properties".equals(fieldName)) {
                     deserializedResourceRecommendationBaseInner.innerProperties
                         = RecommendationProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedResourceRecommendationBaseInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

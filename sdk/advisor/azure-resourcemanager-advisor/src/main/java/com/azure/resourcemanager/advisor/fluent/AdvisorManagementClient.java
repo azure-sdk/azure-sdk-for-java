@@ -80,4 +80,39 @@ public interface AdvisorManagementClient {
      * @return the SuppressionsClient object.
      */
     SuppressionsClient getSuppressions();
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     * 
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
+     * Gets the AdvisorScoresClient object to access its operations.
+     * 
+     * @return the AdvisorScoresClient object.
+     */
+    AdvisorScoresClient getAdvisorScores();
+
+    /**
+     * Gets the ResiliencyReviewsClient object to access its operations.
+     * 
+     * @return the ResiliencyReviewsClient object.
+     */
+    ResiliencyReviewsClient getResiliencyReviews();
+
+    /**
+     * Gets the TriageRecommendationsClient object to access its operations.
+     * 
+     * @return the TriageRecommendationsClient object.
+     */
+    TriageRecommendationsClient getTriageRecommendations();
+
+    /**
+     * Gets the TriageResourcesClient object to access its operations.
+     * 
+     * @return the TriageResourcesClient object.
+     */
+    TriageResourcesClient getTriageResources();
 }
