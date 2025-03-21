@@ -76,7 +76,7 @@ public final class AccountProperties implements JsonSerializable<AccountProperti
     private List<UserOwnedStorage> userOwnedStorage;
 
     /*
-     * The user owned AML workspace properties.
+     * The user owned AML account properties.
      */
     private UserOwnedAmlWorkspace amlWorkspace;
 
@@ -333,7 +333,7 @@ public final class AccountProperties implements JsonSerializable<AccountProperti
     }
 
     /**
-     * Get the amlWorkspace property: The user owned AML workspace properties.
+     * Get the amlWorkspace property: The user owned AML account properties.
      * 
      * @return the amlWorkspace value.
      */
@@ -342,7 +342,7 @@ public final class AccountProperties implements JsonSerializable<AccountProperti
     }
 
     /**
-     * Set the amlWorkspace property: The user owned AML workspace properties.
+     * Set the amlWorkspace property: The user owned AML account properties.
      * 
      * @param amlWorkspace the amlWorkspace value to set.
      * @return the AccountProperties object itself.
