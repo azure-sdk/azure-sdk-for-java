@@ -68,7 +68,6 @@ public final class SasCredentialDto extends PendingUploadCredentialDto {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

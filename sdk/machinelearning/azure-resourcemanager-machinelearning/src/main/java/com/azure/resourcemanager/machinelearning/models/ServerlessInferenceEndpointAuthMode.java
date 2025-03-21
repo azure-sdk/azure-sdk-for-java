@@ -18,6 +18,16 @@ public final class ServerlessInferenceEndpointAuthMode
     public static final ServerlessInferenceEndpointAuthMode KEY = fromString("Key");
 
     /**
+     * Static value AAD for ServerlessInferenceEndpointAuthMode.
+     */
+    public static final ServerlessInferenceEndpointAuthMode AAD = fromString("AAD");
+
+    /**
+     * Static value KeyAndAAD for ServerlessInferenceEndpointAuthMode.
+     */
+    public static final ServerlessInferenceEndpointAuthMode KEY_AND_AAD = fromString("KeyAndAAD");
+
+    /**
      * Creates a new instance of ServerlessInferenceEndpointAuthMode value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
