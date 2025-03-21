@@ -14,6 +14,7 @@ import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBas
 import com.azure.resourcemanager.advisor.models.Recommendations;
 import com.azure.resourcemanager.advisor.models.RecommendationsGenerateResponse;
 import com.azure.resourcemanager.advisor.models.ResourceRecommendationBase;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationPropertiesPayload;
 import java.util.UUID;
 
 public final class RecommendationsImpl implements Recommendations {
@@ -73,6 +74,29 @@ public final class RecommendationsImpl implements Recommendations {
 
     public ResourceRecommendationBase get(String resourceUri, String recommendationId) {
         ResourceRecommendationBaseInner inner = this.serviceClient().get(resourceUri, recommendationId);
+        if (inner != null) {
+            return new ResourceRecommendationBaseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ResourceRecommendationBase> patchWithResponse(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties, Context context) {
+        Response<ResourceRecommendationBaseInner> inner
+            = this.serviceClient().patchWithResponse(resourceUri, recommendationId, trackedProperties, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ResourceRecommendationBaseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ResourceRecommendationBase patch(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties) {
+        ResourceRecommendationBaseInner inner
+            = this.serviceClient().patch(resourceUri, recommendationId, trackedProperties);
         if (inner != null) {
             return new ResourceRecommendationBaseImpl(inner, this.manager());
         } else {
