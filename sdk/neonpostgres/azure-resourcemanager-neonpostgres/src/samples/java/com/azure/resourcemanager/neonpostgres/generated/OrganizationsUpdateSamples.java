@@ -11,6 +11,13 @@ import com.azure.resourcemanager.neonpostgres.models.PartnerOrganizationProperti
 import com.azure.resourcemanager.neonpostgres.models.SingleSignOnProperties;
 import com.azure.resourcemanager.neonpostgres.models.SingleSignOnStates;
 import com.azure.resourcemanager.neonpostgres.models.UserDetails;
+import com.azure.resourcemanager.neonpostgres.models.models.Attributes;
+import com.azure.resourcemanager.neonpostgres.models.models.BranchProperties;
+import com.azure.resourcemanager.neonpostgres.models.models.EndpointProperties;
+import com.azure.resourcemanager.neonpostgres.models.models.EndpointType;
+import com.azure.resourcemanager.neonpostgres.models.models.NeonDatabaseProperties;
+import com.azure.resourcemanager.neonpostgres.models.models.NeonRoleProperties;
+import com.azure.resourcemanager.neonpostgres.models.models.ProjectProperties;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,39 +27,82 @@ import java.util.Map;
  */
 public final class OrganizationsUpdateSamples {
     /*
-     * x-ms-original-file: 2024-08-01-preview/Organizations_Update_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-03-01-preview/Organizations_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Organizations_Update.
+     * Sample code: Organizations_Update_MaximumSet.
      * 
      * @param manager Entry point to NeonPostgresManager.
      */
-    public static void organizationsUpdate(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
+    public static void
+        organizationsUpdateMaximumSet(com.azure.resourcemanager.neonpostgres.NeonPostgresManager manager) {
         OrganizationResource resource = manager.organizations()
-            .getByResourceGroupWithResponse("rgneon", "eRY-J_:", com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("rgneon", "testOrg123", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withTags(mapOf("key8990", "fakeTokenPlaceholder"))
-            .withProperties(new OrganizationProperties()
-                .withUserDetails(new UserDetails().withFirstName("buwwe")
-                    .withLastName("escynjpynkoox")
-                    .withEmailAddress("3i_%@w8-y.H-p.tvj.dG")
-                    .withUpn("fwedjamgwwrotcjaucuzdwycfjdqn")
-                    .withPhoneNumber("dlrqoowumy"))
-                .withCompanyDetails(new CompanyDetails().withCompanyName("uxn")
-                    .withCountry("lpajqzptqchuko")
-                    .withOfficeAddress("chpkrlpmfslmawgunjxdllzcrctykq")
-                    .withBusinessPhone("hbeb")
-                    .withDomain("krjldeakhwiepvs")
-                    .withNumberOfEmployees(23L))
-                .withPartnerOrganizationProperties(
-                    new PartnerOrganizationProperties().withOrganizationId("njyoqflcmfwzfsqe")
-                        .withOrganizationName("J:.._3P")
-                        .withSingleSignOnProperties(
-                            new SingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
-                                .withEnterpriseAppId("fpibacregjfncfdsojs")
-                                .withSingleSignOnUrl("tmojh")
-                                .withAadDomains(Arrays.asList("kndszgrwzbvvlssvkej")))))
+            .withTags(mapOf("key4550", "fakeTokenPlaceholder"))
+            .withProperties(
+                new OrganizationProperties()
+                    .withUserDetails(new UserDetails().withFirstName("zoqvvuxxyldsfswe")
+                        .withLastName("rzvayulpqh")
+                        .withEmailAddress("test@microsoft.com")
+                        .withUpn("nbh")
+                        .withPhoneNumber("lxxghuhwknsivwcrkug"))
+                    .withCompanyDetails(new CompanyDetails().withCompanyName("bdplqyy")
+                        .withCountry("wdtegxupoepgebaudbdi")
+                        .withOfficeAddress("aqxujkkctyhsefilbcvlo")
+                        .withBusinessPhone("nshcjawuxfzplbzeyjbd")
+                        .withDomain("jxnqzzdhtguhtuouqhx")
+                        .withNumberOfEmployees(15L))
+                    .withPartnerOrganizationProperties(new PartnerOrganizationProperties().withOrganizationId("hzwspmh")
+                        .withOrganizationName("test-entity")
+                        .withSingleSignOnProperties(new SingleSignOnProperties()
+                            .withSingleSignOnState(SingleSignOnStates.INITIAL)
+                            .withEnterpriseAppId("jstu")
+                            .withSingleSignOnUrl("rduuuystfxtrjaxjbrslrsqxajtou")
+                            .withAadDomains(Arrays.asList("xwcoekddrjlvwogssbfrv"))))
+                    .withProjectProperties(new ProjectProperties().withEntityName("test-entity")
+                        .withAttributes(Arrays.asList(new Attributes().withName("ioyjfywmt").withValue("sfbpcr")))
+                        .withRegionId("cpnssldzuftdqgjdaqzjayqujpb")
+                        .withStorage(3L)
+                        .withPgVersion(1)
+                        .withBranch(new BranchProperties().withEntityName("test-entity")
+                            .withAttributes(Arrays.asList(new Attributes().withName("ioyjfywmt").withValue("sfbpcr")))
+                            .withProjectId("vtdzaxdiwnzvq")
+                            .withParentId("test-id")
+                            .withRoleName("imfhfgfpamibgcgibgxor")
+                            .withDatabaseName("xargveemydmqrdtjcdhf")
+                            .withRoles(Arrays.asList(new NeonRoleProperties().withEntityName("test-entity")
+                                .withAttributes(
+                                    Arrays.asList(new Attributes().withName("ioyjfywmt").withValue("sfbpcr")))
+                                .withBranchId("iecxepxhnzhjzeiguki")
+                                .withPermissions(Arrays.asList("ddwmkyztotgspcbetfokelddpmq"))
+                                .withIsSuperUser(true)))
+                            .withDatabases(Arrays.asList(new NeonDatabaseProperties().withEntityName("test-entity")
+                                .withAttributes(
+                                    Arrays.asList(new Attributes().withName("ioyjfywmt").withValue("sfbpcr")))
+                                .withBranchId("zoaopvqitcgjdmsllgzdbrb")
+                                .withOwnerName("cutdyjupbqghhxfkmsslzvmjwa")))
+                            .withEndpoints(Arrays.asList(new EndpointProperties().withEntityName("test-entity")
+                                .withAttributes(
+                                    Arrays.asList(new Attributes().withName("ioyjfywmt").withValue("sfbpcr")))
+                                .withProjectId("fhfdyuiaaftqormerayks")
+                                .withBranchId("oejenjawxexhuotsxodbl")
+                                .withEndpointType(EndpointType.READ_ONLY))))
+                        .withRoles(Arrays.asList(new NeonRoleProperties().withEntityName("test-entity")
+                            .withAttributes(Arrays.asList(new Attributes().withName("ioyjfywmt").withValue("sfbpcr")))
+                            .withBranchId("iecxepxhnzhjzeiguki")
+                            .withPermissions(Arrays.asList("ddwmkyztotgspcbetfokelddpmq"))
+                            .withIsSuperUser(true)))
+                        .withDatabases(Arrays.asList(new NeonDatabaseProperties().withEntityName("test-entity")
+                            .withAttributes(Arrays.asList(new Attributes().withName("ioyjfywmt").withValue("sfbpcr")))
+                            .withBranchId("zoaopvqitcgjdmsllgzdbrb")
+                            .withOwnerName("cutdyjupbqghhxfkmsslzvmjwa")))
+                        .withEndpoints(Arrays.asList(new EndpointProperties().withEntityName("test-entity")
+                            .withAttributes(Arrays.asList(new Attributes().withName("ioyjfywmt").withValue("sfbpcr")))
+                            .withProjectId("fhfdyuiaaftqormerayks")
+                            .withBranchId("oejenjawxexhuotsxodbl")
+                            .withEndpointType(EndpointType.READ_ONLY)))))
             .apply();
     }
 
