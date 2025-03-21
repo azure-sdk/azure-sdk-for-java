@@ -286,46 +286,6 @@ public final class KeyClientImpl {
             @PathParam("key-version") String keyVersion, @HeaderParam("Accept") String accept,
             RequestOptions requestOptions, Context context);
 
-        @Get("/keys/{key-name}/versions")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getKeyVersions(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @PathParam("key-name") String keyName,
-            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
-
-        @Get("/keys/{key-name}/versions")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> getKeyVersionsSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @PathParam("key-name") String keyName,
-            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
-
-        @Get("/keys")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getKeys(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
-            RequestOptions requestOptions, Context context);
-
-        @Get("/keys")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> getKeysSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
-            RequestOptions requestOptions, Context context);
-
         @Post("/keys/{key-name}/backup")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -536,26 +496,6 @@ public final class KeyClientImpl {
             @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData parameters,
             RequestOptions requestOptions, Context context);
 
-        @Get("/deletedkeys")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getDeletedKeys(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
-            RequestOptions requestOptions, Context context);
-
-        @Get("/deletedkeys")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> getDeletedKeysSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
-            RequestOptions requestOptions, Context context);
-
         @Get("/deletedkeys/{key-name}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -682,6 +622,88 @@ public final class KeyClientImpl {
             @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData parameters,
             RequestOptions requestOptions, Context context);
 
+        @Get("/keys/{key-name}/{key-version}/attestation")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getKeyAttestation(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @PathParam("key-name") String keyName,
+            @PathParam("key-version") String keyVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/keys/{key-name}/{key-version}/attestation")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getKeyAttestationSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @PathParam("key-name") String keyName,
+            @PathParam("key-version") String keyVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/keys/{key-name}/versions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getKeyVersions(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @PathParam("key-name") String keyName,
+            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/keys/{key-name}/versions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getKeyVersionsSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @PathParam("key-name") String keyName,
+            @HeaderParam("Accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/keys")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getKeys(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/keys")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getKeysSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/deletedkeys")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getDeletedKeys(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/deletedkeys")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getDeletedKeysSync(@HostParam("vaultBaseUrl") String vaultBaseUrl,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
+            RequestOptions requestOptions, Context context);
+
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -769,6 +791,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -818,6 +846,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -879,6 +913,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -928,6 +968,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1001,6 +1047,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1070,6 +1122,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1140,6 +1198,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1188,6 +1252,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1263,6 +1333,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1311,6 +1387,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1385,6 +1467,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1459,6 +1547,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1516,6 +1610,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1564,6 +1664,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1623,6 +1729,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1671,6 +1783,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1744,6 +1862,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1819,6 +1943,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -1850,453 +1980,6 @@ public final class KeyClientImpl {
         final String accept = "application/json";
         return service.getKeySync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), keyName, keyVersion,
             accept, requestOptions, Context.NONE);
-    }
-
-    /**
-     * Retrieves a list of individual key versions with the same key name.
-     *
-     * The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list
-     * permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param keyName The name of the key.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the key list result along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BinaryData>> getKeyVersionsSinglePageAsync(String keyName,
-        RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.getKeyVersions(this.getVaultBaseUrl(),
-                this.getServiceVersion().getVersion(), keyName, accept, requestOptions, context))
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
-    }
-
-    /**
-     * Retrieves a list of individual key versions with the same key name.
-     *
-     * The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list
-     * permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param keyName The name of the key.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the key list result as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> getKeyVersionsAsync(String keyName, RequestOptions requestOptions) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
-        return new PagedFlux<>(() -> getKeyVersionsSinglePageAsync(keyName, requestOptions),
-            nextLink -> getKeyVersionsNextSinglePageAsync(nextLink, requestOptionsForNextPage));
-    }
-
-    /**
-     * Retrieves a list of individual key versions with the same key name.
-     *
-     * The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list
-     * permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param keyName The name of the key.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the key list result along with {@link PagedResponse}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private PagedResponse<BinaryData> getKeyVersionsSinglePage(String keyName, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        Response<BinaryData> res = service.getKeyVersionsSync(this.getVaultBaseUrl(),
-            this.getServiceVersion().getVersion(), keyName, accept, requestOptions, Context.NONE);
-        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
-    }
-
-    /**
-     * Retrieves a list of individual key versions with the same key name.
-     *
-     * The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list
-     * permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param keyName The name of the key.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the key list result as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> getKeyVersions(String keyName, RequestOptions requestOptions) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
-        return new PagedIterable<>(() -> getKeyVersionsSinglePage(keyName, requestOptions),
-            nextLink -> getKeyVersionsNextSinglePage(nextLink, requestOptionsForNextPage));
-    }
-
-    /**
-     * List keys in the specified vault.
-     *
-     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored
-     * key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and
-     * tags are provided in the response. Individual versions of a key are not listed in the response. This operation
-     * requires the keys/list permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the key list result along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BinaryData>> getKeysSinglePageAsync(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.getKeys(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(),
-                accept, requestOptions, context))
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
-    }
-
-    /**
-     * List keys in the specified vault.
-     *
-     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored
-     * key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and
-     * tags are provided in the response. Individual versions of a key are not listed in the response. This operation
-     * requires the keys/list permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the key list result as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> getKeysAsync(RequestOptions requestOptions) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
-        return new PagedFlux<>(() -> getKeysSinglePageAsync(requestOptions),
-            nextLink -> getKeysNextSinglePageAsync(nextLink, requestOptionsForNextPage));
-    }
-
-    /**
-     * List keys in the specified vault.
-     *
-     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored
-     * key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and
-     * tags are provided in the response. Individual versions of a key are not listed in the response. This operation
-     * requires the keys/list permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the key list result along with {@link PagedResponse}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private PagedResponse<BinaryData> getKeysSinglePage(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        Response<BinaryData> res = service.getKeysSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(),
-            accept, requestOptions, Context.NONE);
-        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
-    }
-
-    /**
-     * List keys in the specified vault.
-     *
-     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored
-     * key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and
-     * tags are provided in the response. Individual versions of a key are not listed in the response. This operation
-     * requires the keys/list permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the key list result as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> getKeys(RequestOptions requestOptions) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
-        return new PagedIterable<>(() -> getKeysSinglePage(requestOptions),
-            nextLink -> getKeysNextSinglePage(nextLink, requestOptionsForNextPage));
     }
 
     /**
@@ -2431,6 +2114,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -2520,6 +2209,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -2674,7 +2369,7 @@ public final class KeyClientImpl {
      * to asymmetric and symmetric keys stored in Azure Key Vault since it uses the private portion of the key. This
      * operation requires the keys/decrypt permission. Microsoft recommends not to use CBC algorithms for decryption
      * without first ensuring the integrity of the ciphertext using an HMAC, for example. See
-     * https://docs.microsoft.com/dotnet/standard/security/vulnerabilities-cbc-mode for more information.
+     * https://learn.microsoft.com/dotnet/standard/security/vulnerabilities-cbc-mode for more information.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>
@@ -2732,7 +2427,7 @@ public final class KeyClientImpl {
      * to asymmetric and symmetric keys stored in Azure Key Vault since it uses the private portion of the key. This
      * operation requires the keys/decrypt permission. Microsoft recommends not to use CBC algorithms for decryption
      * without first ensuring the integrity of the ciphertext using an HMAC, for example. See
-     * https://docs.microsoft.com/dotnet/standard/security/vulnerabilities-cbc-mode for more information.
+     * https://learn.microsoft.com/dotnet/standard/security/vulnerabilities-cbc-mode for more information.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>
@@ -2790,7 +2485,7 @@ public final class KeyClientImpl {
      * <pre>
      * {@code
      * {
-     *     alg: String(PS256/PS384/PS512/RS256/RS384/RS512/RSNULL/ES256/ES384/ES512/ES256K) (Required)
+     *     alg: String(PS256/PS384/PS512/RS256/RS384/RS512/HS256/HS384/HS512/RSNULL/ES256/ES384/ES512/ES256K) (Required)
      *     value: Base64Url (Required)
      * }
      * }
@@ -2840,7 +2535,7 @@ public final class KeyClientImpl {
      * <pre>
      * {@code
      * {
-     *     alg: String(PS256/PS384/PS512/RS256/RS384/RS512/RSNULL/ES256/ES384/ES512/ES256K) (Required)
+     *     alg: String(PS256/PS384/PS512/RS256/RS384/RS512/HS256/HS384/HS512/RSNULL/ES256/ES384/ES512/ES256K) (Required)
      *     value: Base64Url (Required)
      * }
      * }
@@ -2891,7 +2586,7 @@ public final class KeyClientImpl {
      * <pre>
      * {@code
      * {
-     *     alg: String(PS256/PS384/PS512/RS256/RS384/RS512/RSNULL/ES256/ES384/ES512/ES256K) (Required)
+     *     alg: String(PS256/PS384/PS512/RS256/RS384/RS512/HS256/HS384/HS512/RSNULL/ES256/ES384/ES512/ES256K) (Required)
      *     digest: Base64Url (Required)
      *     value: Base64Url (Required)
      * }
@@ -2940,7 +2635,7 @@ public final class KeyClientImpl {
      * <pre>
      * {@code
      * {
-     *     alg: String(PS256/PS384/PS512/RS256/RS384/RS512/RSNULL/ES256/ES384/ES512/ES256K) (Required)
+     *     alg: String(PS256/PS384/PS512/RS256/RS384/RS512/HS256/HS384/HS512/RSNULL/ES256/ES384/ES512/ES256K) (Required)
      *     digest: Base64Url (Required)
      *     value: Base64Url (Required)
      * }
@@ -3291,244 +2986,6 @@ public final class KeyClientImpl {
     }
 
     /**
-     * Lists the deleted keys in the specified vault.
-     *
-     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a
-     * deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable
-     * for vaults enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if
-     * invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     *     recoveryId: String (Optional)
-     *     scheduledPurgeDate: Long (Optional)
-     *     deletedDate: Long (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a list of keys that have been deleted in this vault along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BinaryData>> getDeletedKeysSinglePageAsync(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.getDeletedKeys(this.getVaultBaseUrl(),
-                this.getServiceVersion().getVersion(), accept, requestOptions, context))
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
-    }
-
-    /**
-     * Lists the deleted keys in the specified vault.
-     *
-     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a
-     * deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable
-     * for vaults enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if
-     * invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     *     recoveryId: String (Optional)
-     *     scheduledPurgeDate: Long (Optional)
-     *     deletedDate: Long (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a list of keys that have been deleted in this vault as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> getDeletedKeysAsync(RequestOptions requestOptions) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
-        return new PagedFlux<>(() -> getDeletedKeysSinglePageAsync(requestOptions),
-            nextLink -> getDeletedKeysNextSinglePageAsync(nextLink, requestOptionsForNextPage));
-    }
-
-    /**
-     * Lists the deleted keys in the specified vault.
-     *
-     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a
-     * deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable
-     * for vaults enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if
-     * invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     *     recoveryId: String (Optional)
-     *     scheduledPurgeDate: Long (Optional)
-     *     deletedDate: Long (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a list of keys that have been deleted in this vault along with {@link PagedResponse}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private PagedResponse<BinaryData> getDeletedKeysSinglePage(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        Response<BinaryData> res = service.getDeletedKeysSync(this.getVaultBaseUrl(),
-            this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
-        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
-    }
-
-    /**
-     * Lists the deleted keys in the specified vault.
-     *
-     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a
-     * deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable
-     * for vaults enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if
-     * invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
-     * specified the service will return up to 25 results.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kid: String (Optional)
-     *     attributes (Optional): {
-     *         enabled: Boolean (Optional)
-     *         nbf: Long (Optional)
-     *         exp: Long (Optional)
-     *         created: Long (Optional)
-     *         updated: Long (Optional)
-     *         recoverableDays: Integer (Optional)
-     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
-     *         exportable: Boolean (Optional)
-     *         hsmPlatform: String (Optional)
-     *     }
-     *     tags (Optional): {
-     *         String: String (Required)
-     *     }
-     *     managed: Boolean (Optional)
-     *     recoveryId: String (Optional)
-     *     scheduledPurgeDate: Long (Optional)
-     *     deletedDate: Long (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a list of keys that have been deleted in this vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> getDeletedKeys(RequestOptions requestOptions) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
-        return new PagedIterable<>(() -> getDeletedKeysSinglePage(requestOptions),
-            nextLink -> getDeletedKeysNextSinglePage(nextLink, requestOptionsForNextPage));
-    }
-
-    /**
      * Gets the public part of a deleted key.
      *
      * The Get Deleted Key operation is applicable for soft-delete enabled vaults. While the operation can be invoked on
@@ -3569,6 +3026,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -3645,6 +3108,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -3765,6 +3234,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -3838,6 +3313,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -4198,6 +3679,924 @@ public final class KeyClientImpl {
     }
 
     /**
+     * Gets the public part of a stored key along with its attestation blob.
+     *
+     * The get key attestation operation returns the key along with its attestation blob. This operation requires the
+     * keys/get permission.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     key (Optional): {
+     *         kid: String (Optional)
+     *         kty: String(EC/EC-HSM/RSA/RSA-HSM/oct/oct-HSM) (Optional)
+     *         key_ops (Optional): [
+     *             String (Optional)
+     *         ]
+     *         n: Base64Url (Optional)
+     *         e: Base64Url (Optional)
+     *         d: Base64Url (Optional)
+     *         dp: Base64Url (Optional)
+     *         dq: Base64Url (Optional)
+     *         qi: Base64Url (Optional)
+     *         p: Base64Url (Optional)
+     *         q: Base64Url (Optional)
+     *         k: Base64Url (Optional)
+     *         key_hsm: Base64Url (Optional)
+     *         crv: String(P-256/P-384/P-521/P-256K) (Optional)
+     *         x: Base64Url (Optional)
+     *         y: Base64Url (Optional)
+     *     }
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     *     release_policy (Optional): {
+     *         contentType: String (Optional)
+     *         immutable: Boolean (Optional)
+     *         data: Base64Url (Optional)
+     *     }
+     * }
+     * }
+     * </pre>
+     *
+     * @param keyName The name of the key to retrieve attestation for.
+     * @param keyVersion Adding the version parameter retrieves attestation blob for specific version of a key. This URI
+     * fragment is optional. If not specified, the latest version of the key attestation blob is returned.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the public part of a stored key along with its attestation blob.
+     *
+     * The get key attestation operation returns the key along with its attestation blob along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getKeyAttestationWithResponseAsync(String keyName, String keyVersion,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getKeyAttestation(this.getVaultBaseUrl(),
+            this.getServiceVersion().getVersion(), keyName, keyVersion, accept, requestOptions, context));
+    }
+
+    /**
+     * Gets the public part of a stored key along with its attestation blob.
+     *
+     * The get key attestation operation returns the key along with its attestation blob. This operation requires the
+     * keys/get permission.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     key (Optional): {
+     *         kid: String (Optional)
+     *         kty: String(EC/EC-HSM/RSA/RSA-HSM/oct/oct-HSM) (Optional)
+     *         key_ops (Optional): [
+     *             String (Optional)
+     *         ]
+     *         n: Base64Url (Optional)
+     *         e: Base64Url (Optional)
+     *         d: Base64Url (Optional)
+     *         dp: Base64Url (Optional)
+     *         dq: Base64Url (Optional)
+     *         qi: Base64Url (Optional)
+     *         p: Base64Url (Optional)
+     *         q: Base64Url (Optional)
+     *         k: Base64Url (Optional)
+     *         key_hsm: Base64Url (Optional)
+     *         crv: String(P-256/P-384/P-521/P-256K) (Optional)
+     *         x: Base64Url (Optional)
+     *         y: Base64Url (Optional)
+     *     }
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     *     release_policy (Optional): {
+     *         contentType: String (Optional)
+     *         immutable: Boolean (Optional)
+     *         data: Base64Url (Optional)
+     *     }
+     * }
+     * }
+     * </pre>
+     *
+     * @param keyName The name of the key to retrieve attestation for.
+     * @param keyVersion Adding the version parameter retrieves attestation blob for specific version of a key. This URI
+     * fragment is optional. If not specified, the latest version of the key attestation blob is returned.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the public part of a stored key along with its attestation blob.
+     *
+     * The get key attestation operation returns the key along with its attestation blob along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getKeyAttestationWithResponse(String keyName, String keyVersion,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getKeyAttestationSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(), keyName,
+            keyVersion, accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     *
+     * The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list
+     * permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param keyName The name of the key.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the key list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> getKeyVersionsSinglePageAsync(String keyName,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getKeyVersions(this.getVaultBaseUrl(),
+                this.getServiceVersion().getVersion(), keyName, accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     *
+     * The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list
+     * permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param keyName The name of the key.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the key list result as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> getKeyVersionsAsync(String keyName, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedFlux<>(() -> getKeyVersionsSinglePageAsync(keyName, requestOptions),
+            nextLink -> getKeyVersionsNextSinglePageAsync(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     *
+     * The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list
+     * permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param keyName The name of the key.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the key list result along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> getKeyVersionsSinglePage(String keyName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res = service.getKeyVersionsSync(this.getVaultBaseUrl(),
+            this.getServiceVersion().getVersion(), keyName, accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     *
+     * The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list
+     * permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param keyName The name of the key.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the key list result as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BinaryData> getKeyVersions(String keyName, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedIterable<>(() -> getKeyVersionsSinglePage(keyName, requestOptions),
+            nextLink -> getKeyVersionsNextSinglePage(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * List keys in the specified vault.
+     *
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored
+     * key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and
+     * tags are provided in the response. Individual versions of a key are not listed in the response. This operation
+     * requires the keys/list permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the key list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> getKeysSinglePageAsync(RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getKeys(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(),
+                accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * List keys in the specified vault.
+     *
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored
+     * key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and
+     * tags are provided in the response. Individual versions of a key are not listed in the response. This operation
+     * requires the keys/list permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the key list result as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> getKeysAsync(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedFlux<>(() -> getKeysSinglePageAsync(requestOptions),
+            nextLink -> getKeysNextSinglePageAsync(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * List keys in the specified vault.
+     *
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored
+     * key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and
+     * tags are provided in the response. Individual versions of a key are not listed in the response. This operation
+     * requires the keys/list permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the key list result along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> getKeysSinglePage(RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res = service.getKeysSync(this.getVaultBaseUrl(), this.getServiceVersion().getVersion(),
+            accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * List keys in the specified vault.
+     *
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored
+     * key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and
+     * tags are provided in the response. Individual versions of a key are not listed in the response. This operation
+     * requires the keys/list permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the key list result as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BinaryData> getKeys(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedIterable<>(() -> getKeysSinglePage(requestOptions),
+            nextLink -> getKeysNextSinglePage(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * Lists the deleted keys in the specified vault.
+     *
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a
+     * deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable
+     * for vaults enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if
+     * invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     *     recoveryId: String (Optional)
+     *     scheduledPurgeDate: Long (Optional)
+     *     deletedDate: Long (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a list of keys that have been deleted in this vault along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> getDeletedKeysSinglePageAsync(RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getDeletedKeys(this.getVaultBaseUrl(),
+                this.getServiceVersion().getVersion(), accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Lists the deleted keys in the specified vault.
+     *
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a
+     * deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable
+     * for vaults enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if
+     * invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     *     recoveryId: String (Optional)
+     *     scheduledPurgeDate: Long (Optional)
+     *     deletedDate: Long (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a list of keys that have been deleted in this vault as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> getDeletedKeysAsync(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedFlux<>(() -> getDeletedKeysSinglePageAsync(requestOptions),
+            nextLink -> getDeletedKeysNextSinglePageAsync(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * Lists the deleted keys in the specified vault.
+     *
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a
+     * deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable
+     * for vaults enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if
+     * invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     *     recoveryId: String (Optional)
+     *     scheduledPurgeDate: Long (Optional)
+     *     deletedDate: Long (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a list of keys that have been deleted in this vault along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> getDeletedKeysSinglePage(RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res = service.getDeletedKeysSync(this.getVaultBaseUrl(),
+            this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Lists the deleted keys in the specified vault.
+     *
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a
+     * deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable
+     * for vaults enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if
+     * invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>maxresults</td><td>Integer</td><td>No</td><td>Maximum number of results to return in a page. If not
+     * specified the service will return up to 25 results.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kid: String (Optional)
+     *     attributes (Optional): {
+     *         enabled: Boolean (Optional)
+     *         nbf: Long (Optional)
+     *         exp: Long (Optional)
+     *         created: Long (Optional)
+     *         updated: Long (Optional)
+     *         recoverableDays: Integer (Optional)
+     *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
+     *         exportable: Boolean (Optional)
+     *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
+     *     }
+     *     tags (Optional): {
+     *         String: String (Required)
+     *     }
+     *     managed: Boolean (Optional)
+     *     recoveryId: String (Optional)
+     *     scheduledPurgeDate: Long (Optional)
+     *     deletedDate: Long (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a list of keys that have been deleted in this vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BinaryData> getDeletedKeys(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedIterable<>(() -> getDeletedKeysSinglePage(requestOptions),
+            nextLink -> getDeletedKeysNextSinglePage(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
      * Retrieves a list of individual key versions with the same key name.
      *
      * Get the next page of items.
@@ -4217,6 +4616,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -4264,6 +4669,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -4310,6 +4721,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -4357,6 +4774,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -4403,6 +4826,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
@@ -4454,6 +4883,12 @@ public final class KeyClientImpl {
      *         recoveryLevel: String(Purgeable/Recoverable+Purgeable/Recoverable/Recoverable+ProtectedSubscription/CustomizedRecoverable+Purgeable/CustomizedRecoverable/CustomizedRecoverable+ProtectedSubscription) (Optional)
      *         exportable: Boolean (Optional)
      *         hsmPlatform: String (Optional)
+     *         attestation (Optional): {
+     *             certificatePemFile: Base64Url (Optional)
+     *             privateKeyAttestation: Base64Url (Optional)
+     *             publicKeyAttestation: Base64Url (Optional)
+     *             version: String (Optional)
+     *         }
      *     }
      *     tags (Optional): {
      *         String: String (Required)
