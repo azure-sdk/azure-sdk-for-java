@@ -19,7 +19,7 @@ public final class PairedKey implements JsonSerializable<PairedKey> {
     /*
      * ID of the paired key or certificate.
      */
-    private String id;
+    private String pairedKeyId;
 
     /*
      * The type indicating whether the paired object is a key or certificate.
@@ -33,22 +33,22 @@ public final class PairedKey implements JsonSerializable<PairedKey> {
     }
 
     /**
-     * Get the id property: ID of the paired key or certificate.
+     * Get the pairedKeyId property: ID of the paired key or certificate.
      * 
-     * @return the id value.
+     * @return the pairedKeyId value.
      */
-    public String id() {
-        return this.id;
+    public String pairedKeyId() {
+        return this.pairedKeyId;
     }
 
     /**
-     * Set the id property: ID of the paired key or certificate.
+     * Set the pairedKeyId property: ID of the paired key or certificate.
      * 
-     * @param id the id value to set.
+     * @param pairedKeyId the pairedKeyId value to set.
      * @return the PairedKey object itself.
      */
-    public PairedKey withId(String id) {
-        this.id = id;
+    public PairedKey withPairedKeyId(String pairedKeyId) {
+        this.pairedKeyId = pairedKeyId;
         return this;
     }
 
@@ -86,7 +86,7 @@ public final class PairedKey implements JsonSerializable<PairedKey> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("id", this.id);
+        jsonWriter.writeStringField("pairedKeyId", this.pairedKeyId);
         jsonWriter.writeStringField("type", this.type);
         return jsonWriter.writeEndObject();
     }
@@ -106,8 +106,8 @@ public final class PairedKey implements JsonSerializable<PairedKey> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("id".equals(fieldName)) {
-                    deserializedPairedKey.id = reader.getString();
+                if ("pairedKeyId".equals(fieldName)) {
+                    deserializedPairedKey.pairedKeyId = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedPairedKey.type = reader.getString();
                 } else {

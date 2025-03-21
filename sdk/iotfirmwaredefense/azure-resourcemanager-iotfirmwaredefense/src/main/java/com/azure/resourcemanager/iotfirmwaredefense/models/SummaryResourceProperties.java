@@ -17,9 +17,14 @@ import java.io.IOException;
 @Immutable
 public class SummaryResourceProperties implements JsonSerializable<SummaryResourceProperties> {
     /*
-     * Describes the type of summary.
+     * The type of summary.
      */
     private SummaryType summaryType = SummaryType.fromString("SummaryResourceProperties");
+
+    /*
+     * The status of the last operation.
+     */
+    private ProvisioningState provisioningState;
 
     /**
      * Creates an instance of SummaryResourceProperties class.
@@ -28,12 +33,32 @@ public class SummaryResourceProperties implements JsonSerializable<SummaryResour
     }
 
     /**
-     * Get the summaryType property: Describes the type of summary.
+     * Get the summaryType property: The type of summary.
      * 
      * @return the summaryType value.
      */
     public SummaryType summaryType() {
         return this.summaryType;
+    }
+
+    /**
+     * Get the provisioningState property: The status of the last operation.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Set the provisioningState property: The status of the last operation.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the SummaryResourceProperties object itself.
+     */
+    SummaryResourceProperties withProvisioningState(ProvisioningState provisioningState) {
+        this.provisioningState = provisioningState;
+        return this;
     }
 
     /**
@@ -78,16 +103,16 @@ public class SummaryResourceProperties implements JsonSerializable<SummaryResour
                     }
                 }
                 // Use the discriminator value to determine which subtype should be deserialized.
-                if ("Firmware".equals(discriminatorValue)) {
-                    return FirmwareSummary.fromJson(readerToUse.reset());
-                } else if ("CVE".equals(discriminatorValue)) {
-                    return CveSummary.fromJson(readerToUse.reset());
-                } else if ("BinaryHardening".equals(discriminatorValue)) {
+                if ("BinaryHardening".equals(discriminatorValue)) {
                     return BinaryHardeningSummaryResource.fromJson(readerToUse.reset());
                 } else if ("CryptoCertificate".equals(discriminatorValue)) {
                     return CryptoCertificateSummaryResource.fromJson(readerToUse.reset());
                 } else if ("CryptoKey".equals(discriminatorValue)) {
                     return CryptoKeySummaryResource.fromJson(readerToUse.reset());
+                } else if ("CommonVulnerabilitiesAndExposures".equals(discriminatorValue)) {
+                    return CveSummary.fromJson(readerToUse.reset());
+                } else if ("Firmware".equals(discriminatorValue)) {
+                    return FirmwareSummary.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }
@@ -104,6 +129,9 @@ public class SummaryResourceProperties implements JsonSerializable<SummaryResour
 
                 if ("summaryType".equals(fieldName)) {
                     deserializedSummaryResourceProperties.summaryType = SummaryType.fromString(reader.getString());
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedSummaryResourceProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

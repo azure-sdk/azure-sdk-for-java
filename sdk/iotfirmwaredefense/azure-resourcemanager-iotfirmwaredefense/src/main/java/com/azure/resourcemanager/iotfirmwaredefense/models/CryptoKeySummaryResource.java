@@ -16,34 +16,34 @@ import java.io.IOException;
 @Fluent
 public final class CryptoKeySummaryResource extends SummaryResourceProperties {
     /*
-     * Describes the type of summary.
+     * The type of summary.
      */
     private SummaryType summaryType = SummaryType.CRYPTO_KEY;
 
     /*
      * Total number of cryptographic keys found.
      */
-    private Long totalKeys;
+    private Long totalKeyCount;
 
     /*
      * Total number of (non-certificate) public keys found.
      */
-    private Long publicKeys;
+    private Long publicKeyCount;
 
     /*
      * Total number of private keys found.
      */
-    private Long privateKeys;
+    private Long privateKeyCount;
 
     /*
      * Total number of keys found that have a matching paired key or certificate.
      */
-    private Long pairedKeys;
+    private Long pairedKeyCount;
 
     /*
      * Total number of keys found that have an insecure key size for the algorithm.
      */
-    private Long shortKeySize;
+    private Long shortKeySizeCount;
 
     /**
      * Creates an instance of CryptoKeySummaryResource class.
@@ -52,7 +52,7 @@ public final class CryptoKeySummaryResource extends SummaryResourceProperties {
     }
 
     /**
-     * Get the summaryType property: Describes the type of summary.
+     * Get the summaryType property: The type of summary.
      * 
      * @return the summaryType value.
      */
@@ -62,102 +62,102 @@ public final class CryptoKeySummaryResource extends SummaryResourceProperties {
     }
 
     /**
-     * Get the totalKeys property: Total number of cryptographic keys found.
+     * Get the totalKeyCount property: Total number of cryptographic keys found.
      * 
-     * @return the totalKeys value.
+     * @return the totalKeyCount value.
      */
-    public Long totalKeys() {
-        return this.totalKeys;
+    public Long totalKeyCount() {
+        return this.totalKeyCount;
     }
 
     /**
-     * Set the totalKeys property: Total number of cryptographic keys found.
+     * Set the totalKeyCount property: Total number of cryptographic keys found.
      * 
-     * @param totalKeys the totalKeys value to set.
+     * @param totalKeyCount the totalKeyCount value to set.
      * @return the CryptoKeySummaryResource object itself.
      */
-    public CryptoKeySummaryResource withTotalKeys(Long totalKeys) {
-        this.totalKeys = totalKeys;
+    public CryptoKeySummaryResource withTotalKeyCount(Long totalKeyCount) {
+        this.totalKeyCount = totalKeyCount;
         return this;
     }
 
     /**
-     * Get the publicKeys property: Total number of (non-certificate) public keys found.
+     * Get the publicKeyCount property: Total number of (non-certificate) public keys found.
      * 
-     * @return the publicKeys value.
+     * @return the publicKeyCount value.
      */
-    public Long publicKeys() {
-        return this.publicKeys;
+    public Long publicKeyCount() {
+        return this.publicKeyCount;
     }
 
     /**
-     * Set the publicKeys property: Total number of (non-certificate) public keys found.
+     * Set the publicKeyCount property: Total number of (non-certificate) public keys found.
      * 
-     * @param publicKeys the publicKeys value to set.
+     * @param publicKeyCount the publicKeyCount value to set.
      * @return the CryptoKeySummaryResource object itself.
      */
-    public CryptoKeySummaryResource withPublicKeys(Long publicKeys) {
-        this.publicKeys = publicKeys;
+    public CryptoKeySummaryResource withPublicKeyCount(Long publicKeyCount) {
+        this.publicKeyCount = publicKeyCount;
         return this;
     }
 
     /**
-     * Get the privateKeys property: Total number of private keys found.
+     * Get the privateKeyCount property: Total number of private keys found.
      * 
-     * @return the privateKeys value.
+     * @return the privateKeyCount value.
      */
-    public Long privateKeys() {
-        return this.privateKeys;
+    public Long privateKeyCount() {
+        return this.privateKeyCount;
     }
 
     /**
-     * Set the privateKeys property: Total number of private keys found.
+     * Set the privateKeyCount property: Total number of private keys found.
      * 
-     * @param privateKeys the privateKeys value to set.
+     * @param privateKeyCount the privateKeyCount value to set.
      * @return the CryptoKeySummaryResource object itself.
      */
-    public CryptoKeySummaryResource withPrivateKeys(Long privateKeys) {
-        this.privateKeys = privateKeys;
+    public CryptoKeySummaryResource withPrivateKeyCount(Long privateKeyCount) {
+        this.privateKeyCount = privateKeyCount;
         return this;
     }
 
     /**
-     * Get the pairedKeys property: Total number of keys found that have a matching paired key or certificate.
+     * Get the pairedKeyCount property: Total number of keys found that have a matching paired key or certificate.
      * 
-     * @return the pairedKeys value.
+     * @return the pairedKeyCount value.
      */
-    public Long pairedKeys() {
-        return this.pairedKeys;
+    public Long pairedKeyCount() {
+        return this.pairedKeyCount;
     }
 
     /**
-     * Set the pairedKeys property: Total number of keys found that have a matching paired key or certificate.
+     * Set the pairedKeyCount property: Total number of keys found that have a matching paired key or certificate.
      * 
-     * @param pairedKeys the pairedKeys value to set.
+     * @param pairedKeyCount the pairedKeyCount value to set.
      * @return the CryptoKeySummaryResource object itself.
      */
-    public CryptoKeySummaryResource withPairedKeys(Long pairedKeys) {
-        this.pairedKeys = pairedKeys;
+    public CryptoKeySummaryResource withPairedKeyCount(Long pairedKeyCount) {
+        this.pairedKeyCount = pairedKeyCount;
         return this;
     }
 
     /**
-     * Get the shortKeySize property: Total number of keys found that have an insecure key size for the algorithm.
+     * Get the shortKeySizeCount property: Total number of keys found that have an insecure key size for the algorithm.
      * 
-     * @return the shortKeySize value.
+     * @return the shortKeySizeCount value.
      */
-    public Long shortKeySize() {
-        return this.shortKeySize;
+    public Long shortKeySizeCount() {
+        return this.shortKeySizeCount;
     }
 
     /**
-     * Set the shortKeySize property: Total number of keys found that have an insecure key size for the algorithm.
+     * Set the shortKeySizeCount property: Total number of keys found that have an insecure key size for the algorithm.
      * 
-     * @param shortKeySize the shortKeySize value to set.
+     * @param shortKeySizeCount the shortKeySizeCount value to set.
      * @return the CryptoKeySummaryResource object itself.
      */
-    public CryptoKeySummaryResource withShortKeySize(Long shortKeySize) {
-        this.shortKeySize = shortKeySize;
+    public CryptoKeySummaryResource withShortKeySizeCount(Long shortKeySizeCount) {
+        this.shortKeySizeCount = shortKeySizeCount;
         return this;
     }
 
@@ -177,11 +177,11 @@ public final class CryptoKeySummaryResource extends SummaryResourceProperties {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("summaryType", this.summaryType == null ? null : this.summaryType.toString());
-        jsonWriter.writeNumberField("totalKeys", this.totalKeys);
-        jsonWriter.writeNumberField("publicKeys", this.publicKeys);
-        jsonWriter.writeNumberField("privateKeys", this.privateKeys);
-        jsonWriter.writeNumberField("pairedKeys", this.pairedKeys);
-        jsonWriter.writeNumberField("shortKeySize", this.shortKeySize);
+        jsonWriter.writeNumberField("totalKeyCount", this.totalKeyCount);
+        jsonWriter.writeNumberField("publicKeyCount", this.publicKeyCount);
+        jsonWriter.writeNumberField("privateKeyCount", this.privateKeyCount);
+        jsonWriter.writeNumberField("pairedKeyCount", this.pairedKeyCount);
+        jsonWriter.writeNumberField("shortKeySizeCount", this.shortKeySizeCount);
         return jsonWriter.writeEndObject();
     }
 
@@ -200,18 +200,21 @@ public final class CryptoKeySummaryResource extends SummaryResourceProperties {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("summaryType".equals(fieldName)) {
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedCryptoKeySummaryResource
+                        .withProvisioningState(ProvisioningState.fromString(reader.getString()));
+                } else if ("summaryType".equals(fieldName)) {
                     deserializedCryptoKeySummaryResource.summaryType = SummaryType.fromString(reader.getString());
-                } else if ("totalKeys".equals(fieldName)) {
-                    deserializedCryptoKeySummaryResource.totalKeys = reader.getNullable(JsonReader::getLong);
-                } else if ("publicKeys".equals(fieldName)) {
-                    deserializedCryptoKeySummaryResource.publicKeys = reader.getNullable(JsonReader::getLong);
-                } else if ("privateKeys".equals(fieldName)) {
-                    deserializedCryptoKeySummaryResource.privateKeys = reader.getNullable(JsonReader::getLong);
-                } else if ("pairedKeys".equals(fieldName)) {
-                    deserializedCryptoKeySummaryResource.pairedKeys = reader.getNullable(JsonReader::getLong);
-                } else if ("shortKeySize".equals(fieldName)) {
-                    deserializedCryptoKeySummaryResource.shortKeySize = reader.getNullable(JsonReader::getLong);
+                } else if ("totalKeyCount".equals(fieldName)) {
+                    deserializedCryptoKeySummaryResource.totalKeyCount = reader.getNullable(JsonReader::getLong);
+                } else if ("publicKeyCount".equals(fieldName)) {
+                    deserializedCryptoKeySummaryResource.publicKeyCount = reader.getNullable(JsonReader::getLong);
+                } else if ("privateKeyCount".equals(fieldName)) {
+                    deserializedCryptoKeySummaryResource.privateKeyCount = reader.getNullable(JsonReader::getLong);
+                } else if ("pairedKeyCount".equals(fieldName)) {
+                    deserializedCryptoKeySummaryResource.pairedKeyCount = reader.getNullable(JsonReader::getLong);
+                } else if ("shortKeySizeCount".equals(fieldName)) {
+                    deserializedCryptoKeySummaryResource.shortKeySizeCount = reader.getNullable(JsonReader::getLong);
                 } else {
                     reader.skipChildren();
                 }
