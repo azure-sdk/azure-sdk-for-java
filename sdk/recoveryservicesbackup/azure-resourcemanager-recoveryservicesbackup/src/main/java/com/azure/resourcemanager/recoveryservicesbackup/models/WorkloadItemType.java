@@ -52,6 +52,26 @@ public final class WorkloadItemType extends ExpandableStringEnum<WorkloadItemTyp
     public static final WorkloadItemType SAPHANA_DBINSTANCE = fromString("SAPHanaDBInstance");
 
     /**
+     * Static value OracleSystem for WorkloadItemType.
+     */
+    public static final WorkloadItemType ORACLE_SYSTEM = fromString("OracleSystem");
+
+    /**
+     * Static value OracleDatabase for WorkloadItemType.
+     */
+    public static final WorkloadItemType ORACLE_DATABASE = fromString("OracleDatabase");
+
+    /**
+     * Static value AnyDBSystem for WorkloadItemType.
+     */
+    public static final WorkloadItemType ANY_DBSYSTEM = fromString("AnyDBSystem");
+
+    /**
+     * Static value AnyDatabase for WorkloadItemType.
+     */
+    public static final WorkloadItemType ANY_DATABASE = fromString("AnyDatabase");
+
+    /**
      * Creates a new instance of WorkloadItemType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

@@ -371,6 +371,12 @@ public class AzureVmWorkloadProtectableItem extends WorkloadProtectableItem {
                     return AzureVmWorkloadSapHanaDBInstance.fromJson(readerToUse.reset());
                 } else if ("HanaHSRContainer".equals(discriminatorValue)) {
                     return AzureVmWorkloadSapHanaHsr.fromJson(readerToUse.reset());
+                } else if ("OracleDatabase".equals(discriminatorValue)) {
+                    return AzureVmWorkloadOracleDatabaseProtectableItem.fromJson(readerToUse.reset());
+                } else if ("AnyDatabase".equals(discriminatorValue)) {
+                    return AzureVmWorkloadAnyDatabaseProtectableItem.fromJson(readerToUse.reset());
+                } else if ("HanaScaleoutContainer".equals(discriminatorValue)) {
+                    return AzureVmWorkloadSapHanaScaleoutProtectableItem.fromJson(readerToUse.reset());
                 } else if ("SQLAvailabilityGroupContainer".equals(discriminatorValue)) {
                     return AzureVmWorkloadSqlAvailabilityGroupProtectableItem.fromJson(readerToUse.reset());
                 } else if ("SQLDataBase".equals(discriminatorValue)) {

@@ -240,6 +240,18 @@ public class AzureWorkloadRecoveryPoint extends RecoveryPoint {
                     return AzureWorkloadPointInTimeRecoveryPoint.fromJsonKnownDiscriminator(readerToUse.reset());
                 } else if ("AzureWorkloadSAPHanaPointInTimeRecoveryPoint".equals(discriminatorValue)) {
                     return AzureWorkloadSapHanaPointInTimeRecoveryPoint.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadSAPAsePointInTimeRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadSapAsePointInTimeRecoveryPoint.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadOraclePointInTimeRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadOraclePointInTimeRecoveryPoint.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadAnyDatabasePointInTimeRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadAnyDatabasePointInTimeRecoveryPoint.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadSAPAseRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadSapAseRecoveryPoint.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadOracleRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadOracleRecoveryPoint.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadAnyDatabaseRecoveryPoint".equals(discriminatorValue)) {
+                    return AzureWorkloadAnyDatabaseRecoveryPoint.fromJson(readerToUse.reset());
                 } else if ("AzureWorkloadSAPHanaRecoveryPoint".equals(discriminatorValue)) {
                     return AzureWorkloadSapHanaRecoveryPoint.fromJson(readerToUse.reset());
                 } else if ("AzureWorkloadSQLRecoveryPoint".equals(discriminatorValue)) {

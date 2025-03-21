@@ -253,6 +253,10 @@ public class AzureVmWorkloadItem extends WorkloadItem {
                     return AzureVmWorkloadSapAseDatabaseWorkloadItem.fromJson(readerToUse.reset());
                 } else if ("SAPAseSystem".equals(discriminatorValue)) {
                     return AzureVmWorkloadSapAseSystemWorkloadItem.fromJson(readerToUse.reset());
+                } else if ("OracleDataBase".equals(discriminatorValue)) {
+                    return AzureVmWorkloadOracleDatabaseWorkloadItem.fromJson(readerToUse.reset());
+                } else if ("AnyDataBase".equals(discriminatorValue)) {
+                    return AzureVmWorkloadAnyDatabaseWorkloadItem.fromJson(readerToUse.reset());
                 } else if ("SAPHanaDatabase".equals(discriminatorValue)) {
                     return AzureVmWorkloadSapHanaDatabaseWorkloadItem.fromJson(readerToUse.reset());
                 } else if ("SAPHanaSystem".equals(discriminatorValue)) {

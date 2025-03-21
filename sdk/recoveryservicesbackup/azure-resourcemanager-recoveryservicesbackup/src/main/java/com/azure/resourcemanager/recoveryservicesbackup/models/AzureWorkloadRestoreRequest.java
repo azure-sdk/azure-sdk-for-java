@@ -361,6 +361,32 @@ public class AzureWorkloadRestoreRequest extends RestoreRequest {
                     return AzureWorkloadSapHanaPointInTimeRestoreWithRehydrateRequest.fromJson(readerToUse.reset());
                 } else if ("AzureWorkloadSAPHanaRestoreWithRehydrateRequest".equals(discriminatorValue)) {
                     return AzureWorkloadSapHanaRestoreWithRehydrateRequest.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadSAPAseRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadSapAseRestoreRequest.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadSAPAsePointInTimeRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadSapAsePointInTimeRestoreRequest.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadSAPAsePointInTimeRestoreWithRehydrateRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadSapAsePointInTimeRestoreWithRehydrateRequest.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadSAPAseRestoreWithRehydrateRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadSapAseRestoreWithRehydrateRequest.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadOracleRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadOracleRestoreRequest.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadOraclePointInTimeRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadOraclePointInTimeRestoreRequest.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadOraclePointInTimeRestoreWithRehydrateRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadOraclePointInTimeRestoreWithRehydrateRequest.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadOracleRestoreWithRehydrateRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadOracleRestoreWithRehydrateRequest.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadAnyDatabaseRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadAnyDatabaseRestoreRequest.fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadAnyDatabasePointInTimeRestoreRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadAnyDatabasePointInTimeRestoreRequest
+                        .fromJsonKnownDiscriminator(readerToUse.reset());
+                } else if ("AzureWorkloadAnyDatabasePointInTimeRestoreWithRehydrateRequest"
+                    .equals(discriminatorValue)) {
+                    return AzureWorkloadAnyDatabasePointInTimeRestoreWithRehydrateRequest.fromJson(readerToUse.reset());
+                } else if ("AzureWorkloadAnyDatabaseRestoreWithRehydrateRequest".equals(discriminatorValue)) {
+                    return AzureWorkloadAnyDatabaseRestoreWithRehydrateRequest.fromJson(readerToUse.reset());
                 } else if ("AzureWorkloadSQLRestoreRequest".equals(discriminatorValue)) {
                     return AzureWorkloadSqlRestoreRequest.fromJsonKnownDiscriminator(readerToUse.reset());
                 } else if ("AzureWorkloadSQLPointInTimeRestoreRequest".equals(discriminatorValue)) {
