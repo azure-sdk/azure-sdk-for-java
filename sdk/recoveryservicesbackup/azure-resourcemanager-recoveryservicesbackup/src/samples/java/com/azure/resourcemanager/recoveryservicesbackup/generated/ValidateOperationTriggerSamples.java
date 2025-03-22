@@ -17,8 +17,8 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperation
 public final class ValidateOperationTriggerSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * AzureIaasVm/TriggerValidateOperation_RestoreDisk.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/AzureIaasVm/TriggerValidateOperation_RestoreDisk.json
      */
     /**
      * Sample code: Trigger Validate Operation.

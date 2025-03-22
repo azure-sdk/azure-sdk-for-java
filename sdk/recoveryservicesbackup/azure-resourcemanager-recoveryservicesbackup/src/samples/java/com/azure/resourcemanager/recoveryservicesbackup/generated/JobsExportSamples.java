@@ -10,8 +10,8 @@ package com.azure.resourcemanager.recoveryservicesbackup.generated;
 public final class JobsExportSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * Common/TriggerExportJobs.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/Common/TriggerExportJobs.json
      */
     /**
      * Sample code: Export Jobs.
