@@ -10,8 +10,8 @@ package com.azure.resourcemanager.recoveryservicesbackup.generated;
 public final class ProtectionPoliciesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * AzureIaasVm/ProtectionPolicies_Get.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/AzureIaasVm/ProtectionPolicies_Get.json
      */
     /**
      * Sample code: Get Azure IaasVm Protection Policy Details.
@@ -26,8 +26,8 @@ public final class ProtectionPoliciesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * AzureIaasVm/V2Policy/v2-Get-Policy.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/AzureIaasVm/V2Policy/v2-Get-Policy.json
      */
     /**
      * Sample code: Get Azure IaasVm Enhanced Protection Policy Details.
@@ -38,5 +38,22 @@ public final class ProtectionPoliciesGetSamples {
         com.azure.resourcemanager.recoveryservicesbackup.RecoveryServicesBackupManager manager) {
         manager.protectionPolicies()
             .getWithResponse("NetSDKTestRsVault", "SwaggerTestRg", "v2-daily-sample", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/AzureWorkload/ProtectionPolicies_Get_SapHanaDBInstance.json
+     */
+    /**
+     * Sample code: Get Sap Hana DB Instance Workload Protection Policy Details.
+     * 
+     * @param manager Entry point to RecoveryServicesBackupManager.
+     */
+    public static void getSapHanaDBInstanceWorkloadProtectionPolicyDetails(
+        com.azure.resourcemanager.recoveryservicesbackup.RecoveryServicesBackupManager manager) {
+        manager.protectionPolicies()
+            .getWithResponse("HanaTestRsVault", "SwaggerTestRg", "testHanaSnapshotV2Policy1",
+                com.azure.core.util.Context.NONE);
     }
 }

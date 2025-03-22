@@ -10,8 +10,8 @@ package com.azure.resourcemanager.recoveryservicesbackup.generated;
 public final class ProtectionPoliciesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * AzureIaasVm/ProtectionPolicies_Delete.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/AzureIaasVm/ProtectionPolicies_Delete.json
      */
     /**
      * Sample code: Delete Azure Vm Protection Policy.

@@ -17,8 +17,8 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.RehydrationPriori
 public final class FetchTieringCostPostSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * TieringCost/FetchTieringCostForRehydrate.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/TieringCost/FetchTieringCostForRehydrate.json
      */
     /**
      * Sample code: Get the rehydration cost for recovery point.
@@ -40,8 +40,8 @@ public final class FetchTieringCostPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * TieringCost/FetchTieringCostForProtectedItem.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/TieringCost/FetchTieringCostForProtectedItem.json
      */
     /**
      * Sample code: Get the tiering savings cost info for protected item.
@@ -62,8 +62,8 @@ public final class FetchTieringCostPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * TieringCost/FetchTieringCostForPolicy.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/TieringCost/FetchTieringCostForPolicy.json
      */
     /**
      * Sample code: Get the tiering savings cost info for policy.
@@ -82,8 +82,8 @@ public final class FetchTieringCostPostSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * TieringCost/FetchTieringCostForVault.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/TieringCost/FetchTieringCostForVault.json
      */
     /**
      * Sample code: Get the tiering savings cost info for vault.
