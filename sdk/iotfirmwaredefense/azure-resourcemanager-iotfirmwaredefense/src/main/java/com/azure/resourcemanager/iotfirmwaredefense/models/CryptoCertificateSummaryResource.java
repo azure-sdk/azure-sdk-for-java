@@ -16,44 +16,44 @@ import java.io.IOException;
 @Fluent
 public final class CryptoCertificateSummaryResource extends SummaryResourceProperties {
     /*
-     * Describes the type of summary.
+     * The type of summary.
      */
     private SummaryType summaryType = SummaryType.CRYPTO_CERTIFICATE;
 
     /*
      * Total number of certificates found.
      */
-    private Long totalCertificates;
+    private Long totalCertificateCount;
 
     /*
      * Total number of paired private keys found for the certificates.
      */
-    private Long pairedKeys;
+    private Long pairedKeyCount;
 
     /*
      * Total number of expired certificates found.
      */
-    private Long expired;
+    private Long expiredCertificateCount;
 
     /*
      * Total number of nearly expired certificates found.
      */
-    private Long expiringSoon;
+    private Long expiringSoonCertificateCount;
 
     /*
      * Total number of certificates found using a weak signature algorithm.
      */
-    private Long weakSignature;
+    private Long weakSignatureCount;
 
     /*
      * Total number of certificates found that are self-signed.
      */
-    private Long selfSigned;
+    private Long selfSignedCertificateCount;
 
     /*
      * Total number of certificates found that have an insecure key size for the key algorithm.
      */
-    private Long shortKeySize;
+    private Long shortKeySizeCount;
 
     /**
      * Creates an instance of CryptoCertificateSummaryResource class.
@@ -62,7 +62,7 @@ public final class CryptoCertificateSummaryResource extends SummaryResourcePrope
     }
 
     /**
-     * Get the summaryType property: Describes the type of summary.
+     * Get the summaryType property: The type of summary.
      * 
      * @return the summaryType value.
      */
@@ -72,144 +72,144 @@ public final class CryptoCertificateSummaryResource extends SummaryResourcePrope
     }
 
     /**
-     * Get the totalCertificates property: Total number of certificates found.
+     * Get the totalCertificateCount property: Total number of certificates found.
      * 
-     * @return the totalCertificates value.
+     * @return the totalCertificateCount value.
      */
-    public Long totalCertificates() {
-        return this.totalCertificates;
+    public Long totalCertificateCount() {
+        return this.totalCertificateCount;
     }
 
     /**
-     * Set the totalCertificates property: Total number of certificates found.
+     * Set the totalCertificateCount property: Total number of certificates found.
      * 
-     * @param totalCertificates the totalCertificates value to set.
+     * @param totalCertificateCount the totalCertificateCount value to set.
      * @return the CryptoCertificateSummaryResource object itself.
      */
-    public CryptoCertificateSummaryResource withTotalCertificates(Long totalCertificates) {
-        this.totalCertificates = totalCertificates;
+    public CryptoCertificateSummaryResource withTotalCertificateCount(Long totalCertificateCount) {
+        this.totalCertificateCount = totalCertificateCount;
         return this;
     }
 
     /**
-     * Get the pairedKeys property: Total number of paired private keys found for the certificates.
+     * Get the pairedKeyCount property: Total number of paired private keys found for the certificates.
      * 
-     * @return the pairedKeys value.
+     * @return the pairedKeyCount value.
      */
-    public Long pairedKeys() {
-        return this.pairedKeys;
+    public Long pairedKeyCount() {
+        return this.pairedKeyCount;
     }
 
     /**
-     * Set the pairedKeys property: Total number of paired private keys found for the certificates.
+     * Set the pairedKeyCount property: Total number of paired private keys found for the certificates.
      * 
-     * @param pairedKeys the pairedKeys value to set.
+     * @param pairedKeyCount the pairedKeyCount value to set.
      * @return the CryptoCertificateSummaryResource object itself.
      */
-    public CryptoCertificateSummaryResource withPairedKeys(Long pairedKeys) {
-        this.pairedKeys = pairedKeys;
+    public CryptoCertificateSummaryResource withPairedKeyCount(Long pairedKeyCount) {
+        this.pairedKeyCount = pairedKeyCount;
         return this;
     }
 
     /**
-     * Get the expired property: Total number of expired certificates found.
+     * Get the expiredCertificateCount property: Total number of expired certificates found.
      * 
-     * @return the expired value.
+     * @return the expiredCertificateCount value.
      */
-    public Long expired() {
-        return this.expired;
+    public Long expiredCertificateCount() {
+        return this.expiredCertificateCount;
     }
 
     /**
-     * Set the expired property: Total number of expired certificates found.
+     * Set the expiredCertificateCount property: Total number of expired certificates found.
      * 
-     * @param expired the expired value to set.
+     * @param expiredCertificateCount the expiredCertificateCount value to set.
      * @return the CryptoCertificateSummaryResource object itself.
      */
-    public CryptoCertificateSummaryResource withExpired(Long expired) {
-        this.expired = expired;
+    public CryptoCertificateSummaryResource withExpiredCertificateCount(Long expiredCertificateCount) {
+        this.expiredCertificateCount = expiredCertificateCount;
         return this;
     }
 
     /**
-     * Get the expiringSoon property: Total number of nearly expired certificates found.
+     * Get the expiringSoonCertificateCount property: Total number of nearly expired certificates found.
      * 
-     * @return the expiringSoon value.
+     * @return the expiringSoonCertificateCount value.
      */
-    public Long expiringSoon() {
-        return this.expiringSoon;
+    public Long expiringSoonCertificateCount() {
+        return this.expiringSoonCertificateCount;
     }
 
     /**
-     * Set the expiringSoon property: Total number of nearly expired certificates found.
+     * Set the expiringSoonCertificateCount property: Total number of nearly expired certificates found.
      * 
-     * @param expiringSoon the expiringSoon value to set.
+     * @param expiringSoonCertificateCount the expiringSoonCertificateCount value to set.
      * @return the CryptoCertificateSummaryResource object itself.
      */
-    public CryptoCertificateSummaryResource withExpiringSoon(Long expiringSoon) {
-        this.expiringSoon = expiringSoon;
+    public CryptoCertificateSummaryResource withExpiringSoonCertificateCount(Long expiringSoonCertificateCount) {
+        this.expiringSoonCertificateCount = expiringSoonCertificateCount;
         return this;
     }
 
     /**
-     * Get the weakSignature property: Total number of certificates found using a weak signature algorithm.
+     * Get the weakSignatureCount property: Total number of certificates found using a weak signature algorithm.
      * 
-     * @return the weakSignature value.
+     * @return the weakSignatureCount value.
      */
-    public Long weakSignature() {
-        return this.weakSignature;
+    public Long weakSignatureCount() {
+        return this.weakSignatureCount;
     }
 
     /**
-     * Set the weakSignature property: Total number of certificates found using a weak signature algorithm.
+     * Set the weakSignatureCount property: Total number of certificates found using a weak signature algorithm.
      * 
-     * @param weakSignature the weakSignature value to set.
+     * @param weakSignatureCount the weakSignatureCount value to set.
      * @return the CryptoCertificateSummaryResource object itself.
      */
-    public CryptoCertificateSummaryResource withWeakSignature(Long weakSignature) {
-        this.weakSignature = weakSignature;
+    public CryptoCertificateSummaryResource withWeakSignatureCount(Long weakSignatureCount) {
+        this.weakSignatureCount = weakSignatureCount;
         return this;
     }
 
     /**
-     * Get the selfSigned property: Total number of certificates found that are self-signed.
+     * Get the selfSignedCertificateCount property: Total number of certificates found that are self-signed.
      * 
-     * @return the selfSigned value.
+     * @return the selfSignedCertificateCount value.
      */
-    public Long selfSigned() {
-        return this.selfSigned;
+    public Long selfSignedCertificateCount() {
+        return this.selfSignedCertificateCount;
     }
 
     /**
-     * Set the selfSigned property: Total number of certificates found that are self-signed.
+     * Set the selfSignedCertificateCount property: Total number of certificates found that are self-signed.
      * 
-     * @param selfSigned the selfSigned value to set.
+     * @param selfSignedCertificateCount the selfSignedCertificateCount value to set.
      * @return the CryptoCertificateSummaryResource object itself.
      */
-    public CryptoCertificateSummaryResource withSelfSigned(Long selfSigned) {
-        this.selfSigned = selfSigned;
+    public CryptoCertificateSummaryResource withSelfSignedCertificateCount(Long selfSignedCertificateCount) {
+        this.selfSignedCertificateCount = selfSignedCertificateCount;
         return this;
     }
 
     /**
-     * Get the shortKeySize property: Total number of certificates found that have an insecure key size for the key
+     * Get the shortKeySizeCount property: Total number of certificates found that have an insecure key size for the key
      * algorithm.
      * 
-     * @return the shortKeySize value.
+     * @return the shortKeySizeCount value.
      */
-    public Long shortKeySize() {
-        return this.shortKeySize;
+    public Long shortKeySizeCount() {
+        return this.shortKeySizeCount;
     }
 
     /**
-     * Set the shortKeySize property: Total number of certificates found that have an insecure key size for the key
+     * Set the shortKeySizeCount property: Total number of certificates found that have an insecure key size for the key
      * algorithm.
      * 
-     * @param shortKeySize the shortKeySize value to set.
+     * @param shortKeySizeCount the shortKeySizeCount value to set.
      * @return the CryptoCertificateSummaryResource object itself.
      */
-    public CryptoCertificateSummaryResource withShortKeySize(Long shortKeySize) {
-        this.shortKeySize = shortKeySize;
+    public CryptoCertificateSummaryResource withShortKeySizeCount(Long shortKeySizeCount) {
+        this.shortKeySizeCount = shortKeySizeCount;
         return this;
     }
 
@@ -229,13 +229,13 @@ public final class CryptoCertificateSummaryResource extends SummaryResourcePrope
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("summaryType", this.summaryType == null ? null : this.summaryType.toString());
-        jsonWriter.writeNumberField("totalCertificates", this.totalCertificates);
-        jsonWriter.writeNumberField("pairedKeys", this.pairedKeys);
-        jsonWriter.writeNumberField("expired", this.expired);
-        jsonWriter.writeNumberField("expiringSoon", this.expiringSoon);
-        jsonWriter.writeNumberField("weakSignature", this.weakSignature);
-        jsonWriter.writeNumberField("selfSigned", this.selfSigned);
-        jsonWriter.writeNumberField("shortKeySize", this.shortKeySize);
+        jsonWriter.writeNumberField("totalCertificateCount", this.totalCertificateCount);
+        jsonWriter.writeNumberField("pairedKeyCount", this.pairedKeyCount);
+        jsonWriter.writeNumberField("expiredCertificateCount", this.expiredCertificateCount);
+        jsonWriter.writeNumberField("expiringSoonCertificateCount", this.expiringSoonCertificateCount);
+        jsonWriter.writeNumberField("weakSignatureCount", this.weakSignatureCount);
+        jsonWriter.writeNumberField("selfSignedCertificateCount", this.selfSignedCertificateCount);
+        jsonWriter.writeNumberField("shortKeySizeCount", this.shortKeySizeCount);
         return jsonWriter.writeEndObject();
     }
 
@@ -255,25 +255,33 @@ public final class CryptoCertificateSummaryResource extends SummaryResourcePrope
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("summaryType".equals(fieldName)) {
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedCryptoCertificateSummaryResource
+                        .withProvisioningState(ProvisioningState.fromString(reader.getString()));
+                } else if ("summaryType".equals(fieldName)) {
                     deserializedCryptoCertificateSummaryResource.summaryType
                         = SummaryType.fromString(reader.getString());
-                } else if ("totalCertificates".equals(fieldName)) {
-                    deserializedCryptoCertificateSummaryResource.totalCertificates
+                } else if ("totalCertificateCount".equals(fieldName)) {
+                    deserializedCryptoCertificateSummaryResource.totalCertificateCount
                         = reader.getNullable(JsonReader::getLong);
-                } else if ("pairedKeys".equals(fieldName)) {
-                    deserializedCryptoCertificateSummaryResource.pairedKeys = reader.getNullable(JsonReader::getLong);
-                } else if ("expired".equals(fieldName)) {
-                    deserializedCryptoCertificateSummaryResource.expired = reader.getNullable(JsonReader::getLong);
-                } else if ("expiringSoon".equals(fieldName)) {
-                    deserializedCryptoCertificateSummaryResource.expiringSoon = reader.getNullable(JsonReader::getLong);
-                } else if ("weakSignature".equals(fieldName)) {
-                    deserializedCryptoCertificateSummaryResource.weakSignature
+                } else if ("pairedKeyCount".equals(fieldName)) {
+                    deserializedCryptoCertificateSummaryResource.pairedKeyCount
                         = reader.getNullable(JsonReader::getLong);
-                } else if ("selfSigned".equals(fieldName)) {
-                    deserializedCryptoCertificateSummaryResource.selfSigned = reader.getNullable(JsonReader::getLong);
-                } else if ("shortKeySize".equals(fieldName)) {
-                    deserializedCryptoCertificateSummaryResource.shortKeySize = reader.getNullable(JsonReader::getLong);
+                } else if ("expiredCertificateCount".equals(fieldName)) {
+                    deserializedCryptoCertificateSummaryResource.expiredCertificateCount
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("expiringSoonCertificateCount".equals(fieldName)) {
+                    deserializedCryptoCertificateSummaryResource.expiringSoonCertificateCount
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("weakSignatureCount".equals(fieldName)) {
+                    deserializedCryptoCertificateSummaryResource.weakSignatureCount
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("selfSignedCertificateCount".equals(fieldName)) {
+                    deserializedCryptoCertificateSummaryResource.selfSignedCertificateCount
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("shortKeySizeCount".equals(fieldName)) {
+                    deserializedCryptoCertificateSummaryResource.shortKeySizeCount
+                        = reader.getNullable(JsonReader::getLong);
                 } else {
                     reader.skipChildren();
                 }

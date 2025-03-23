@@ -10,7 +10,6 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.FirmwareInner;
-import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.UrlTokenInner;
 import com.azure.resourcemanager.iotfirmwaredefense.models.FirmwareUpdateDefinition;
 
 /**
@@ -25,7 +24,7 @@ public interface FirmwaresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of firmwares as paginated response with {@link PagedIterable}.
+     * @return the response of a Firmware list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FirmwareInner> listByWorkspace(String resourceGroupName, String workspaceName);
@@ -39,104 +38,10 @@ public interface FirmwaresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of firmwares as paginated response with {@link PagedIterable}.
+     * @return the response of a Firmware list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FirmwareInner> listByWorkspace(String resourceGroupName, String workspaceName, Context context);
-
-    /**
-     * The operation to create a firmware.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param firmware Details of the firmware being created or updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return firmware definition along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<FirmwareInner> createWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
-        FirmwareInner firmware, Context context);
-
-    /**
-     * The operation to create a firmware.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param firmware Details of the firmware being created or updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return firmware definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    FirmwareInner create(String resourceGroupName, String workspaceName, String firmwareId, FirmwareInner firmware);
-
-    /**
-     * The operation to update firmware.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param firmware Details of the firmware being created or updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return firmware definition along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<FirmwareInner> updateWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
-        FirmwareUpdateDefinition firmware, Context context);
-
-    /**
-     * The operation to update firmware.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param firmware Details of the firmware being created or updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return firmware definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    FirmwareInner update(String resourceGroupName, String workspaceName, String firmwareId,
-        FirmwareUpdateDefinition firmware);
-
-    /**
-     * The operation to delete a firmware.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
-        Context context);
-
-    /**
-     * The operation to delete a firmware.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName, String firmwareId);
 
     /**
      * Get firmware.
@@ -169,7 +74,72 @@ public interface FirmwaresClient {
     FirmwareInner get(String resourceGroupName, String workspaceName, String firmwareId);
 
     /**
-     * The operation to a url for file download.
+     * The operation to create a firmware.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the firmware analysis workspace.
+     * @param firmwareId The id of the firmware.
+     * @param resource Details of the firmware being created or updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return firmware definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<FirmwareInner> createWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
+        FirmwareInner resource, Context context);
+
+    /**
+     * The operation to create a firmware.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the firmware analysis workspace.
+     * @param firmwareId The id of the firmware.
+     * @param resource Details of the firmware being created or updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return firmware definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    FirmwareInner create(String resourceGroupName, String workspaceName, String firmwareId, FirmwareInner resource);
+
+    /**
+     * The operation to update firmware.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the firmware analysis workspace.
+     * @param firmwareId The id of the firmware.
+     * @param properties Details of the firmware being created or updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return firmware definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<FirmwareInner> updateWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
+        FirmwareUpdateDefinition properties, Context context);
+
+    /**
+     * The operation to update firmware.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the firmware analysis workspace.
+     * @param firmwareId The id of the firmware.
+     * @param properties Details of the firmware being created or updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return firmware definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    FirmwareInner update(String resourceGroupName, String workspaceName, String firmwareId,
+        FirmwareUpdateDefinition properties);
+
+    /**
+     * The operation to delete a firmware.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
@@ -178,14 +148,14 @@ public interface FirmwaresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return url data for creating or accessing a blob file along with {@link Response}.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<UrlTokenInner> generateDownloadUrlWithResponse(String resourceGroupName, String workspaceName,
-        String firmwareId, Context context);
+    Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
+        Context context);
 
     /**
-     * The operation to a url for file download.
+     * The operation to delete a firmware.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
@@ -193,38 +163,7 @@ public interface FirmwaresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return url data for creating or accessing a blob file.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    UrlTokenInner generateDownloadUrl(String resourceGroupName, String workspaceName, String firmwareId);
-
-    /**
-     * The operation to a url for tar file download.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return url data for creating or accessing a blob file along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<UrlTokenInner> generateFilesystemDownloadUrlWithResponse(String resourceGroupName, String workspaceName,
-        String firmwareId, Context context);
-
-    /**
-     * The operation to a url for tar file download.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return url data for creating or accessing a blob file.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    UrlTokenInner generateFilesystemDownloadUrl(String resourceGroupName, String workspaceName, String firmwareId);
+    void delete(String resourceGroupName, String workspaceName, String firmwareId);
 }

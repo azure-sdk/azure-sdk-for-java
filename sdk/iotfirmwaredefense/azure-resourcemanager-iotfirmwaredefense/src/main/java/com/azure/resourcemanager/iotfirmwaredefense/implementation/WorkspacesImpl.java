@@ -50,15 +50,6 @@ public final class WorkspacesImpl implements Workspaces {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
     }
 
-    public Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String workspaceName,
-        Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, context);
-    }
-
-    public void deleteByResourceGroup(String resourceGroupName, String workspaceName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName);
-    }
-
     public Response<Workspace> getByResourceGroupWithResponse(String resourceGroupName, String workspaceName,
         Context context) {
         Response<WorkspaceInner> inner
@@ -80,10 +71,19 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
+    public Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String workspaceName,
+        Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, context);
+    }
+
+    public void deleteByResourceGroup(String resourceGroupName, String workspaceName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName);
+    }
+
     public Response<UrlToken> generateUploadUrlWithResponse(String resourceGroupName, String workspaceName,
-        GenerateUploadUrlRequest generateUploadUrl, Context context) {
-        Response<UrlTokenInner> inner = this.serviceClient()
-            .generateUploadUrlWithResponse(resourceGroupName, workspaceName, generateUploadUrl, context);
+        GenerateUploadUrlRequest body, Context context) {
+        Response<UrlTokenInner> inner
+            = this.serviceClient().generateUploadUrlWithResponse(resourceGroupName, workspaceName, body, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new UrlTokenImpl(inner.getValue(), this.manager()));
@@ -92,10 +92,8 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
-    public UrlToken generateUploadUrl(String resourceGroupName, String workspaceName,
-        GenerateUploadUrlRequest generateUploadUrl) {
-        UrlTokenInner inner
-            = this.serviceClient().generateUploadUrl(resourceGroupName, workspaceName, generateUploadUrl);
+    public UrlToken generateUploadUrl(String resourceGroupName, String workspaceName, GenerateUploadUrlRequest body) {
+        UrlTokenInner inner = this.serviceClient().generateUploadUrl(resourceGroupName, workspaceName, body);
         if (inner != null) {
             return new UrlTokenImpl(inner, this.manager());
         } else {

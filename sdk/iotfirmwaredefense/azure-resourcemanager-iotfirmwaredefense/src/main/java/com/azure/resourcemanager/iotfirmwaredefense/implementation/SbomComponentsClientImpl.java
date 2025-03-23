@@ -27,7 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.SbomComponentsClient;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.SbomComponentResourceInner;
-import com.azure.resourcemanager.iotfirmwaredefense.models.SbomComponentListResult;
+import com.azure.resourcemanager.iotfirmwaredefense.models.SbomComponentResourceListResult;
 import reactor.core.publisher.Mono;
 
 /**
@@ -42,47 +42,46 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
     /**
      * The service client containing this operation class.
      */
-    private final IoTFirmwareDefenseImpl client;
+    private final IotFirmwareDefenseImpl client;
 
     /**
      * Initializes an instance of SbomComponentsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    SbomComponentsClientImpl(IoTFirmwareDefenseImpl client) {
+    SbomComponentsClientImpl(IotFirmwareDefenseImpl client) {
         this.service
             = RestProxy.create(SbomComponentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for IoTFirmwareDefenseSbomComponents to be used by the proxy service to
+     * The interface defining all the services for IotFirmwareDefenseSbomComponents to be used by the proxy service to
      * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "IoTFirmwareDefenseSb")
+    @ServiceInterface(name = "IotFirmwareDefenseSb")
     public interface SbomComponentsService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/sbomComponents")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SbomComponentListResult>> listByFirmware(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<SbomComponentResourceListResult>> listByFirmware(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
-            @PathParam("firmwareId") String firmwareId, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("firmwareId") String firmwareId, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SbomComponentListResult>> listByFirmwareNext(
+        Mono<Response<SbomComponentResourceListResult>> listByFirmwareNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Lists SBOM analysis results of a firmware.
+     * Lists sbom analysis results of a firmware.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
@@ -90,7 +89,8 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SBOM results along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SbomComponentResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SbomComponentResourceInner>> listByFirmwareSinglePageAsync(String resourceGroupName,
@@ -115,15 +115,15 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFirmware(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, firmwareId, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listByFirmware(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, firmwareId, accept, context))
             .<PagedResponse<SbomComponentResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Lists SBOM analysis results of a firmware.
+     * Lists sbom analysis results of a firmware.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
@@ -132,7 +132,8 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SBOM results along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SbomComponentResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SbomComponentResourceInner>> listByFirmwareSinglePageAsync(String resourceGroupName,
@@ -158,14 +159,14 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByFirmware(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                workspaceName, firmwareId, this.client.getApiVersion(), accept, context)
+            .listByFirmware(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, firmwareId, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * Lists SBOM analysis results of a firmware.
+     * Lists sbom analysis results of a firmware.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
@@ -173,7 +174,7 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SBOM results as paginated response with {@link PagedFlux}.
+     * @return the response of a SbomComponentResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SbomComponentResourceInner> listByFirmwareAsync(String resourceGroupName, String workspaceName,
@@ -183,7 +184,7 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
     }
 
     /**
-     * Lists SBOM analysis results of a firmware.
+     * Lists sbom analysis results of a firmware.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
@@ -192,7 +193,7 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SBOM results as paginated response with {@link PagedFlux}.
+     * @return the response of a SbomComponentResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SbomComponentResourceInner> listByFirmwareAsync(String resourceGroupName, String workspaceName,
@@ -203,7 +204,7 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
     }
 
     /**
-     * Lists SBOM analysis results of a firmware.
+     * Lists sbom analysis results of a firmware.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
@@ -211,7 +212,7 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SBOM results as paginated response with {@link PagedIterable}.
+     * @return the response of a SbomComponentResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SbomComponentResourceInner> listByFirmware(String resourceGroupName, String workspaceName,
@@ -220,7 +221,7 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
     }
 
     /**
-     * Lists SBOM analysis results of a firmware.
+     * Lists sbom analysis results of a firmware.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
@@ -229,7 +230,7 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SBOM results as paginated response with {@link PagedIterable}.
+     * @return the response of a SbomComponentResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SbomComponentResourceInner> listByFirmware(String resourceGroupName, String workspaceName,
@@ -244,7 +245,8 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SBOM results along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SbomComponentResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SbomComponentResourceInner>> listByFirmwareNextSinglePageAsync(String nextLink) {
@@ -271,7 +273,8 @@ public final class SbomComponentsClientImpl implements SbomComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SBOM results along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SbomComponentResource list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SbomComponentResourceInner>> listByFirmwareNextSinglePageAsync(String nextLink,

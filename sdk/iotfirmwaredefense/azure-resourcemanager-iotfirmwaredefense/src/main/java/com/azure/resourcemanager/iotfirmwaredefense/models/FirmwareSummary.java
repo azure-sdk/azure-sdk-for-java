@@ -16,7 +16,7 @@ import java.io.IOException;
 @Fluent
 public final class FirmwareSummary extends SummaryResourceProperties {
     /*
-     * Describes the type of summary.
+     * The type of summary.
      */
     private SummaryType summaryType = SummaryType.FIRMWARE;
 
@@ -62,7 +62,7 @@ public final class FirmwareSummary extends SummaryResourceProperties {
     }
 
     /**
-     * Get the summaryType property: Describes the type of summary.
+     * Get the summaryType property: The type of summary.
      * 
      * @return the summaryType value.
      */
@@ -252,7 +252,9 @@ public final class FirmwareSummary extends SummaryResourceProperties {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("summaryType".equals(fieldName)) {
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedFirmwareSummary.withProvisioningState(ProvisioningState.fromString(reader.getString()));
+                } else if ("summaryType".equals(fieldName)) {
                     deserializedFirmwareSummary.summaryType = SummaryType.fromString(reader.getString());
                 } else if ("extractedSize".equals(fieldName)) {
                     deserializedFirmwareSummary.extractedSize = reader.getNullable(JsonReader::getLong);

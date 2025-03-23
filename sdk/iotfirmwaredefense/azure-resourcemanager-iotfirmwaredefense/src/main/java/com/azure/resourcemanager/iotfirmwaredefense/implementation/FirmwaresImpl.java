@@ -11,10 +11,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.FirmwaresClient;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.FirmwareInner;
-import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.UrlTokenInner;
 import com.azure.resourcemanager.iotfirmwaredefense.models.Firmware;
 import com.azure.resourcemanager.iotfirmwaredefense.models.Firmwares;
-import com.azure.resourcemanager.iotfirmwaredefense.models.UrlToken;
 
 public final class FirmwaresImpl implements Firmwares {
     private static final ClientLogger LOGGER = new ClientLogger(FirmwaresImpl.class);
@@ -40,15 +38,6 @@ public final class FirmwaresImpl implements Firmwares {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new FirmwareImpl(inner1, this.manager()));
     }
 
-    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
-        Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, firmwareId, context);
-    }
-
-    public void delete(String resourceGroupName, String workspaceName, String firmwareId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, firmwareId);
-    }
-
     public Response<Firmware> getWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
         Context context) {
         Response<FirmwareInner> inner
@@ -70,47 +59,13 @@ public final class FirmwaresImpl implements Firmwares {
         }
     }
 
-    public Response<UrlToken> generateDownloadUrlWithResponse(String resourceGroupName, String workspaceName,
-        String firmwareId, Context context) {
-        Response<UrlTokenInner> inner = this.serviceClient()
-            .generateDownloadUrlWithResponse(resourceGroupName, workspaceName, firmwareId, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new UrlTokenImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
+        Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, firmwareId, context);
     }
 
-    public UrlToken generateDownloadUrl(String resourceGroupName, String workspaceName, String firmwareId) {
-        UrlTokenInner inner = this.serviceClient().generateDownloadUrl(resourceGroupName, workspaceName, firmwareId);
-        if (inner != null) {
-            return new UrlTokenImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<UrlToken> generateFilesystemDownloadUrlWithResponse(String resourceGroupName, String workspaceName,
-        String firmwareId, Context context) {
-        Response<UrlTokenInner> inner = this.serviceClient()
-            .generateFilesystemDownloadUrlWithResponse(resourceGroupName, workspaceName, firmwareId, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new UrlTokenImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public UrlToken generateFilesystemDownloadUrl(String resourceGroupName, String workspaceName, String firmwareId) {
-        UrlTokenInner inner
-            = this.serviceClient().generateFilesystemDownloadUrl(resourceGroupName, workspaceName, firmwareId);
-        if (inner != null) {
-            return new UrlTokenImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String workspaceName, String firmwareId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, firmwareId);
     }
 
     public Firmware getById(String id) {

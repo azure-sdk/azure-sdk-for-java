@@ -10,7 +10,7 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.SummaryResourceInner;
-import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryName;
+import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryType;
 
 /**
  * An instance of this class provides access to all the operations defined in SummariesClient.
@@ -25,7 +25,7 @@ public interface SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedIterable}.
+     * @return the response of a SummaryResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SummaryResourceInner> listByFirmware(String resourceGroupName, String workspaceName,
@@ -41,7 +41,7 @@ public interface SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedIterable}.
+     * @return the response of a SummaryResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SummaryResourceInner> listByFirmware(String resourceGroupName, String workspaceName,
@@ -53,7 +53,7 @@ public interface SummariesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
      * @param firmwareId The id of the firmware.
-     * @param summaryName The Firmware analysis summary name describing the type of summary.
+     * @param summaryType The Firmware analysis summary name describing the type of summary.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -62,7 +62,7 @@ public interface SummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummaryResourceInner> getWithResponse(String resourceGroupName, String workspaceName, String firmwareId,
-        SummaryName summaryName, Context context);
+        SummaryType summaryType, Context context);
 
     /**
      * Get an analysis result summary of a firmware by name.
@@ -70,7 +70,7 @@ public interface SummariesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the firmware analysis workspace.
      * @param firmwareId The id of the firmware.
-     * @param summaryName The Firmware analysis summary name describing the type of summary.
+     * @param summaryType The Firmware analysis summary name describing the type of summary.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -78,5 +78,5 @@ public interface SummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     SummaryResourceInner get(String resourceGroupName, String workspaceName, String firmwareId,
-        SummaryName summaryName);
+        SummaryType summaryType);
 }

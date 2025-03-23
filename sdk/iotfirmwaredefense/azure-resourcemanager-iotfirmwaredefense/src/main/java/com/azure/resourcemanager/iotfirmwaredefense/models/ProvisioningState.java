@@ -8,18 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Provisioning state of the resource.
+ * The status of a firmware analysis job.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
-    /**
-     * Static value Accepted for ProvisioningState.
-     */
-    public static final ProvisioningState ACCEPTED = fromString("Accepted");
-
     /**
      * Static value Succeeded for ProvisioningState.
      */
     public static final ProvisioningState SUCCEEDED = fromString("Succeeded");
+
+    /**
+     * Static value Failed for ProvisioningState.
+     */
+    public static final ProvisioningState FAILED = fromString("Failed");
 
     /**
      * Static value Canceled for ProvisioningState.
@@ -27,9 +27,19 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     public static final ProvisioningState CANCELED = fromString("Canceled");
 
     /**
-     * Static value Failed for ProvisioningState.
+     * Static value Pending for ProvisioningState.
      */
-    public static final ProvisioningState FAILED = fromString("Failed");
+    public static final ProvisioningState PENDING = fromString("Pending");
+
+    /**
+     * Static value Extracting for ProvisioningState.
+     */
+    public static final ProvisioningState EXTRACTING = fromString("Extracting");
+
+    /**
+     * Static value Analyzing for ProvisioningState.
+     */
+    public static final ProvisioningState ANALYZING = fromString("Analyzing");
 
     /**
      * Creates a new instance of ProvisioningState value.

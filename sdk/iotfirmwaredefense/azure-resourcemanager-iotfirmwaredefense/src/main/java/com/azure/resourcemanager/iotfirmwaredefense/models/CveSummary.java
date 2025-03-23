@@ -16,34 +16,34 @@ import java.io.IOException;
 @Fluent
 public final class CveSummary extends SummaryResourceProperties {
     /*
-     * Describes the type of summary.
+     * The type of summary.
      */
-    private SummaryType summaryType = SummaryType.CVE;
+    private SummaryType summaryType = SummaryType.COMMON_VULNERABILITIES_AND_EXPOSURES;
 
     /*
      * The total number of critical severity CVEs detected
      */
-    private Long critical;
+    private Long criticalCveCount;
 
     /*
      * The total number of high severity CVEs detected
      */
-    private Long high;
+    private Long highCveCount;
 
     /*
      * The total number of medium severity CVEs detected
      */
-    private Long medium;
+    private Long mediumCveCount;
 
     /*
      * The total number of low severity CVEs detected
      */
-    private Long low;
+    private Long lowCveCount;
 
     /*
      * The total number of unknown severity CVEs detected
      */
-    private Long unknown;
+    private Long unknownCveCount;
 
     /**
      * Creates an instance of CveSummary class.
@@ -52,7 +52,7 @@ public final class CveSummary extends SummaryResourceProperties {
     }
 
     /**
-     * Get the summaryType property: Describes the type of summary.
+     * Get the summaryType property: The type of summary.
      * 
      * @return the summaryType value.
      */
@@ -62,102 +62,102 @@ public final class CveSummary extends SummaryResourceProperties {
     }
 
     /**
-     * Get the critical property: The total number of critical severity CVEs detected.
+     * Get the criticalCveCount property: The total number of critical severity CVEs detected.
      * 
-     * @return the critical value.
+     * @return the criticalCveCount value.
      */
-    public Long critical() {
-        return this.critical;
+    public Long criticalCveCount() {
+        return this.criticalCveCount;
     }
 
     /**
-     * Set the critical property: The total number of critical severity CVEs detected.
+     * Set the criticalCveCount property: The total number of critical severity CVEs detected.
      * 
-     * @param critical the critical value to set.
+     * @param criticalCveCount the criticalCveCount value to set.
      * @return the CveSummary object itself.
      */
-    public CveSummary withCritical(Long critical) {
-        this.critical = critical;
+    public CveSummary withCriticalCveCount(Long criticalCveCount) {
+        this.criticalCveCount = criticalCveCount;
         return this;
     }
 
     /**
-     * Get the high property: The total number of high severity CVEs detected.
+     * Get the highCveCount property: The total number of high severity CVEs detected.
      * 
-     * @return the high value.
+     * @return the highCveCount value.
      */
-    public Long high() {
-        return this.high;
+    public Long highCveCount() {
+        return this.highCveCount;
     }
 
     /**
-     * Set the high property: The total number of high severity CVEs detected.
+     * Set the highCveCount property: The total number of high severity CVEs detected.
      * 
-     * @param high the high value to set.
+     * @param highCveCount the highCveCount value to set.
      * @return the CveSummary object itself.
      */
-    public CveSummary withHigh(Long high) {
-        this.high = high;
+    public CveSummary withHighCveCount(Long highCveCount) {
+        this.highCveCount = highCveCount;
         return this;
     }
 
     /**
-     * Get the medium property: The total number of medium severity CVEs detected.
+     * Get the mediumCveCount property: The total number of medium severity CVEs detected.
      * 
-     * @return the medium value.
+     * @return the mediumCveCount value.
      */
-    public Long medium() {
-        return this.medium;
+    public Long mediumCveCount() {
+        return this.mediumCveCount;
     }
 
     /**
-     * Set the medium property: The total number of medium severity CVEs detected.
+     * Set the mediumCveCount property: The total number of medium severity CVEs detected.
      * 
-     * @param medium the medium value to set.
+     * @param mediumCveCount the mediumCveCount value to set.
      * @return the CveSummary object itself.
      */
-    public CveSummary withMedium(Long medium) {
-        this.medium = medium;
+    public CveSummary withMediumCveCount(Long mediumCveCount) {
+        this.mediumCveCount = mediumCveCount;
         return this;
     }
 
     /**
-     * Get the low property: The total number of low severity CVEs detected.
+     * Get the lowCveCount property: The total number of low severity CVEs detected.
      * 
-     * @return the low value.
+     * @return the lowCveCount value.
      */
-    public Long low() {
-        return this.low;
+    public Long lowCveCount() {
+        return this.lowCveCount;
     }
 
     /**
-     * Set the low property: The total number of low severity CVEs detected.
+     * Set the lowCveCount property: The total number of low severity CVEs detected.
      * 
-     * @param low the low value to set.
+     * @param lowCveCount the lowCveCount value to set.
      * @return the CveSummary object itself.
      */
-    public CveSummary withLow(Long low) {
-        this.low = low;
+    public CveSummary withLowCveCount(Long lowCveCount) {
+        this.lowCveCount = lowCveCount;
         return this;
     }
 
     /**
-     * Get the unknown property: The total number of unknown severity CVEs detected.
+     * Get the unknownCveCount property: The total number of unknown severity CVEs detected.
      * 
-     * @return the unknown value.
+     * @return the unknownCveCount value.
      */
-    public Long unknown() {
-        return this.unknown;
+    public Long unknownCveCount() {
+        return this.unknownCveCount;
     }
 
     /**
-     * Set the unknown property: The total number of unknown severity CVEs detected.
+     * Set the unknownCveCount property: The total number of unknown severity CVEs detected.
      * 
-     * @param unknown the unknown value to set.
+     * @param unknownCveCount the unknownCveCount value to set.
      * @return the CveSummary object itself.
      */
-    public CveSummary withUnknown(Long unknown) {
-        this.unknown = unknown;
+    public CveSummary withUnknownCveCount(Long unknownCveCount) {
+        this.unknownCveCount = unknownCveCount;
         return this;
     }
 
@@ -177,11 +177,11 @@ public final class CveSummary extends SummaryResourceProperties {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("summaryType", this.summaryType == null ? null : this.summaryType.toString());
-        jsonWriter.writeNumberField("critical", this.critical);
-        jsonWriter.writeNumberField("high", this.high);
-        jsonWriter.writeNumberField("medium", this.medium);
-        jsonWriter.writeNumberField("low", this.low);
-        jsonWriter.writeNumberField("unknown", this.unknown);
+        jsonWriter.writeNumberField("criticalCveCount", this.criticalCveCount);
+        jsonWriter.writeNumberField("highCveCount", this.highCveCount);
+        jsonWriter.writeNumberField("mediumCveCount", this.mediumCveCount);
+        jsonWriter.writeNumberField("lowCveCount", this.lowCveCount);
+        jsonWriter.writeNumberField("unknownCveCount", this.unknownCveCount);
         return jsonWriter.writeEndObject();
     }
 
@@ -200,18 +200,20 @@ public final class CveSummary extends SummaryResourceProperties {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("summaryType".equals(fieldName)) {
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedCveSummary.withProvisioningState(ProvisioningState.fromString(reader.getString()));
+                } else if ("summaryType".equals(fieldName)) {
                     deserializedCveSummary.summaryType = SummaryType.fromString(reader.getString());
-                } else if ("critical".equals(fieldName)) {
-                    deserializedCveSummary.critical = reader.getNullable(JsonReader::getLong);
-                } else if ("high".equals(fieldName)) {
-                    deserializedCveSummary.high = reader.getNullable(JsonReader::getLong);
-                } else if ("medium".equals(fieldName)) {
-                    deserializedCveSummary.medium = reader.getNullable(JsonReader::getLong);
-                } else if ("low".equals(fieldName)) {
-                    deserializedCveSummary.low = reader.getNullable(JsonReader::getLong);
-                } else if ("unknown".equals(fieldName)) {
-                    deserializedCveSummary.unknown = reader.getNullable(JsonReader::getLong);
+                } else if ("criticalCveCount".equals(fieldName)) {
+                    deserializedCveSummary.criticalCveCount = reader.getNullable(JsonReader::getLong);
+                } else if ("highCveCount".equals(fieldName)) {
+                    deserializedCveSummary.highCveCount = reader.getNullable(JsonReader::getLong);
+                } else if ("mediumCveCount".equals(fieldName)) {
+                    deserializedCveSummary.mediumCveCount = reader.getNullable(JsonReader::getLong);
+                } else if ("lowCveCount".equals(fieldName)) {
+                    deserializedCveSummary.lowCveCount = reader.getNullable(JsonReader::getLong);
+                } else if ("unknownCveCount".equals(fieldName)) {
+                    deserializedCveSummary.unknownCveCount = reader.getNullable(JsonReader::getLong);
                 } else {
                     reader.skipChildren();
                 }

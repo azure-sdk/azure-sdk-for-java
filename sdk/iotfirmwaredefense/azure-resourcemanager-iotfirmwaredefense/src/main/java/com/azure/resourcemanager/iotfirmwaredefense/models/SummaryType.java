@@ -17,9 +17,10 @@ public final class SummaryType extends ExpandableStringEnum<SummaryType> {
     public static final SummaryType FIRMWARE = fromString("Firmware");
 
     /**
-     * Static value CVE for SummaryType.
+     * Static value CommonVulnerabilitiesAndExposures for SummaryType.
      */
-    public static final SummaryType CVE = fromString("CVE");
+    public static final SummaryType COMMON_VULNERABILITIES_AND_EXPOSURES
+        = fromString("CommonVulnerabilitiesAndExposures");
 
     /**
      * Static value BinaryHardening for SummaryType.

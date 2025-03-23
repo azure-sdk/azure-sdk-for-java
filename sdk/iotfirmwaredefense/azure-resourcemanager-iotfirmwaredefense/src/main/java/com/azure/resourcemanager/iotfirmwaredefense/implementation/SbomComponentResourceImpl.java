@@ -6,9 +6,8 @@ package com.azure.resourcemanager.iotfirmwaredefense.implementation;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.SbomComponentResourceInner;
+import com.azure.resourcemanager.iotfirmwaredefense.models.SbomComponent;
 import com.azure.resourcemanager.iotfirmwaredefense.models.SbomComponentResource;
-import java.util.Collections;
-import java.util.List;
 
 public final class SbomComponentResourceImpl implements SbomComponentResource {
     private SbomComponentResourceInner innerObject;
@@ -33,33 +32,12 @@ public final class SbomComponentResourceImpl implements SbomComponentResource {
         return this.innerModel().type();
     }
 
+    public SbomComponent properties() {
+        return this.innerModel().properties();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public String componentId() {
-        return this.innerModel().componentId();
-    }
-
-    public String componentName() {
-        return this.innerModel().componentName();
-    }
-
-    public String version() {
-        return this.innerModel().version();
-    }
-
-    public String license() {
-        return this.innerModel().license();
-    }
-
-    public List<String> filePaths() {
-        List<String> inner = this.innerModel().filePaths();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
     }
 
     public SbomComponentResourceInner innerModel() {

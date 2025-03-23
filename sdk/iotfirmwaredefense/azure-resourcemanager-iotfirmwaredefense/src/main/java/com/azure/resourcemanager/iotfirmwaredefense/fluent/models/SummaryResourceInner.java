@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.iotfirmwaredefense.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
@@ -16,10 +16,10 @@ import java.io.IOException;
 /**
  * The object representing a firmware analysis summary resource.
  */
-@Immutable
+@Fluent
 public final class SummaryResourceInner extends ProxyResource {
     /*
-     * Properties of an analysis summary.
+     * The resource-specific properties for this resource.
      */
     private SummaryResourceProperties properties;
 
@@ -50,12 +50,23 @@ public final class SummaryResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: Properties of an analysis summary.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
     public SummaryResourceProperties properties() {
         return this.properties;
+    }
+
+    /**
+     * Set the properties property: The resource-specific properties for this resource.
+     * 
+     * @param properties the properties value to set.
+     * @return the SummaryResourceInner object itself.
+     */
+    public SummaryResourceInner withProperties(SummaryResourceProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -114,6 +125,7 @@ public final class SummaryResourceInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 

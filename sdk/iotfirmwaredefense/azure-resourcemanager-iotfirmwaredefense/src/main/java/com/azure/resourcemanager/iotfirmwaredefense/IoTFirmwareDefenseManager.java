@@ -22,18 +22,20 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.iotfirmwaredefense.fluent.IoTFirmwareDefense;
+import com.azure.resourcemanager.iotfirmwaredefense.fluent.IotFirmwareDefense;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.BinaryHardeningsImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.CryptoCertificatesImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.CryptoKeysImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.CvesImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.FirmwaresImpl;
-import com.azure.resourcemanager.iotfirmwaredefense.implementation.IoTFirmwareDefenseBuilder;
+import com.azure.resourcemanager.iotfirmwaredefense.implementation.IotFirmwareDefenseBuilder;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.OperationsImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.PasswordHashesImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.SbomComponentsImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.SummariesImpl;
+import com.azure.resourcemanager.iotfirmwaredefense.implementation.UsageMetricsImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.implementation.WorkspacesImpl;
 import com.azure.resourcemanager.iotfirmwaredefense.models.BinaryHardenings;
 import com.azure.resourcemanager.iotfirmwaredefense.models.CryptoCertificates;
@@ -44,11 +46,13 @@ import com.azure.resourcemanager.iotfirmwaredefense.models.Operations;
 import com.azure.resourcemanager.iotfirmwaredefense.models.PasswordHashes;
 import com.azure.resourcemanager.iotfirmwaredefense.models.SbomComponents;
 import com.azure.resourcemanager.iotfirmwaredefense.models.Summaries;
+import com.azure.resourcemanager.iotfirmwaredefense.models.UsageMetrics;
 import com.azure.resourcemanager.iotfirmwaredefense.models.Workspaces;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -57,17 +61,19 @@ import java.util.stream.Collectors;
  * Firmware &amp; IoT Security REST API.
  */
 public final class IoTFirmwareDefenseManager {
+    private Operations operations;
+
+    private Workspaces workspaces;
+
+    private Firmwares firmwares;
+
     private BinaryHardenings binaryHardenings;
+
+    private Cves cves;
 
     private CryptoCertificates cryptoCertificates;
 
     private CryptoKeys cryptoKeys;
-
-    private Cves cves;
-
-    private Firmwares firmwares;
-
-    private Operations operations;
 
     private PasswordHashes passwordHashes;
 
@@ -75,14 +81,14 @@ public final class IoTFirmwareDefenseManager {
 
     private Summaries summaries;
 
-    private Workspaces workspaces;
+    private UsageMetrics usageMetrics;
 
-    private final IoTFirmwareDefense clientObject;
+    private final IotFirmwareDefense clientObject;
 
     private IoTFirmwareDefenseManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new IoTFirmwareDefenseBuilder().pipeline(httpPipeline)
+        this.clientObject = new IotFirmwareDefenseBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
             .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
@@ -129,6 +135,9 @@ public final class IoTFirmwareDefenseManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-iotfirmwaredefense.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -236,12 +245,14 @@ public final class IoTFirmwareDefenseManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.iotfirmwaredefense")
                 .append("/")
-                .append("1.1.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -288,6 +299,42 @@ public final class IoTFirmwareDefenseManager {
     }
 
     /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Workspaces. It manages Workspace.
+     * 
+     * @return Resource collection API of Workspaces.
+     */
+    public Workspaces workspaces() {
+        if (this.workspaces == null) {
+            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
+        }
+        return workspaces;
+    }
+
+    /**
+     * Gets the resource collection API of Firmwares. It manages Firmware.
+     * 
+     * @return Resource collection API of Firmwares.
+     */
+    public Firmwares firmwares() {
+        if (this.firmwares == null) {
+            this.firmwares = new FirmwaresImpl(clientObject.getFirmwares(), this);
+        }
+        return firmwares;
+    }
+
+    /**
      * Gets the resource collection API of BinaryHardenings.
      * 
      * @return Resource collection API of BinaryHardenings.
@@ -297,6 +344,18 @@ public final class IoTFirmwareDefenseManager {
             this.binaryHardenings = new BinaryHardeningsImpl(clientObject.getBinaryHardenings(), this);
         }
         return binaryHardenings;
+    }
+
+    /**
+     * Gets the resource collection API of Cves.
+     * 
+     * @return Resource collection API of Cves.
+     */
+    public Cves cves() {
+        if (this.cves == null) {
+            this.cves = new CvesImpl(clientObject.getCves(), this);
+        }
+        return cves;
     }
 
     /**
@@ -321,42 +380,6 @@ public final class IoTFirmwareDefenseManager {
             this.cryptoKeys = new CryptoKeysImpl(clientObject.getCryptoKeys(), this);
         }
         return cryptoKeys;
-    }
-
-    /**
-     * Gets the resource collection API of Cves.
-     * 
-     * @return Resource collection API of Cves.
-     */
-    public Cves cves() {
-        if (this.cves == null) {
-            this.cves = new CvesImpl(clientObject.getCves(), this);
-        }
-        return cves;
-    }
-
-    /**
-     * Gets the resource collection API of Firmwares. It manages Firmware.
-     * 
-     * @return Resource collection API of Firmwares.
-     */
-    public Firmwares firmwares() {
-        if (this.firmwares == null) {
-            this.firmwares = new FirmwaresImpl(clientObject.getFirmwares(), this);
-        }
-        return firmwares;
-    }
-
-    /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
     }
 
     /**
@@ -396,24 +419,24 @@ public final class IoTFirmwareDefenseManager {
     }
 
     /**
-     * Gets the resource collection API of Workspaces. It manages Workspace.
+     * Gets the resource collection API of UsageMetrics.
      * 
-     * @return Resource collection API of Workspaces.
+     * @return Resource collection API of UsageMetrics.
      */
-    public Workspaces workspaces() {
-        if (this.workspaces == null) {
-            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
+    public UsageMetrics usageMetrics() {
+        if (this.usageMetrics == null) {
+            this.usageMetrics = new UsageMetricsImpl(clientObject.getUsageMetrics(), this);
         }
-        return workspaces;
+        return usageMetrics;
     }
 
     /**
-     * Gets wrapped service client IoTFirmwareDefense providing direct access to the underlying auto-generated API
+     * Gets wrapped service client IotFirmwareDefense providing direct access to the underlying auto-generated API
      * implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client IoTFirmwareDefense.
+     * @return Wrapped service client IotFirmwareDefense.
      */
-    public IoTFirmwareDefense serviceClient() {
+    public IotFirmwareDefense serviceClient() {
         return this.clientObject;
     }
 }
