@@ -101,8 +101,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -137,8 +137,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -189,8 +189,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -339,8 +339,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -370,8 +370,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -418,8 +418,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
