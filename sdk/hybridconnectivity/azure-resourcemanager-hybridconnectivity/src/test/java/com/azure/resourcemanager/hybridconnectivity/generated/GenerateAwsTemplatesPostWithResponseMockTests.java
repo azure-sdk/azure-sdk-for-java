@@ -36,12 +36,9 @@ public final class GenerateAwsTemplatesPostWithResponseMockTests {
 
         PostResponse response = manager.generateAwsTemplates()
             .postWithResponse(
-                new GenerateAwsTemplateRequest().withConnectorId("qyib")
-                    .withSolutionTypes(Arrays.asList(
-                        new SolutionTypeSettings().withSolutionType("fluszdtm")
-                            .withSolutionSettings(new SolutionSettings().withAdditionalProperties(mapOf())),
-                        new SolutionTypeSettings().withSolutionType("dbutauvfbtkuwhh")
-                            .withSolutionSettings(new SolutionSettings().withAdditionalProperties(mapOf())))),
+                new GenerateAwsTemplateRequest().withConnectorId("ld")
+                    .withSolutionTypes(Arrays.asList(new SolutionTypeSettings().withSolutionType("xcxrsl")
+                        .withSolutionSettings(new SolutionSettings().withAdditionalProperties(mapOf())))),
                 com.azure.core.util.Context.NONE)
             .getValue();
 
