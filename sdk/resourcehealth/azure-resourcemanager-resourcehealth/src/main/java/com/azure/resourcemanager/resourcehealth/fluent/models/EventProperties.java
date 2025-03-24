@@ -16,7 +16,6 @@ import com.azure.resourcemanager.resourcehealth.models.EventPropertiesArticle;
 import com.azure.resourcemanager.resourcehealth.models.EventPropertiesRecommendedActions;
 import com.azure.resourcemanager.resourcehealth.models.EventSourceValues;
 import com.azure.resourcemanager.resourcehealth.models.EventStatusValues;
-import com.azure.resourcemanager.resourcehealth.models.EventSubTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.EventTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.Faq;
 import com.azure.resourcemanager.resourcehealth.models.Impact;
@@ -38,11 +37,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private EventTypeValues eventType;
 
     /*
-     * Sub type of the event. Currently used to determine retirement communications for health advisory events
-     */
-    private EventSubTypeValues eventSubType;
-
-    /*
      * Source of event.
      */
     private EventSourceValues eventSource;
@@ -58,7 +52,7 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private String title;
 
     /*
-     * Summary text of event.
+     * Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive events.
      */
     private String summary;
 
@@ -133,7 +127,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private Boolean enableMicrosoftSupport;
 
     /*
-     * Contains the communication message for the event, that could include summary, root cause and other details.
+     * Contains the communication message for the event, that could include summary, root cause and other details. Use
+     * fetchEventDetails endpoint to get description of sensitive events.
      */
     private String description;
 
@@ -179,21 +174,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
      */
     private String impactType;
 
-    /*
-     * Unique identifier for planned maintenance event.
-     */
-    private String maintenanceId;
-
-    /*
-     * The type of planned maintenance event.
-     */
-    private String maintenanceType;
-
-    /*
-     * Azure Resource Graph query to fetch the affected resources from their existing Azure Resource Graph locations.
-     */
-    private String argQuery;
-
     /**
      * Creates an instance of EventProperties class.
      */
@@ -217,28 +197,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
      */
     public EventProperties withEventType(EventTypeValues eventType) {
         this.eventType = eventType;
-        return this;
-    }
-
-    /**
-     * Get the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     * 
-     * @return the eventSubType value.
-     */
-    public EventSubTypeValues eventSubType() {
-        return this.eventSubType;
-    }
-
-    /**
-     * Set the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     * 
-     * @param eventSubType the eventSubType value to set.
-     * @return the EventProperties object itself.
-     */
-    public EventProperties withEventSubType(EventSubTypeValues eventSubType) {
-        this.eventSubType = eventSubType;
         return this;
     }
 
@@ -303,7 +261,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Get the summary property: Summary text of event.
+     * Get the summary property: Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive
+     * events.
      * 
      * @return the summary value.
      */
@@ -312,7 +271,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Set the summary property: Summary text of event.
+     * Set the summary property: Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive
+     * events.
      * 
      * @param summary the summary value to set.
      * @return the EventProperties object itself.
@@ -604,7 +564,7 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
 
     /**
      * Get the description property: Contains the communication message for the event, that could include summary, root
-     * cause and other details.
+     * cause and other details. Use fetchEventDetails endpoint to get description of sensitive events.
      * 
      * @return the description value.
      */
@@ -614,7 +574,7 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
 
     /**
      * Set the description property: Contains the communication message for the event, that could include summary, root
-     * cause and other details.
+     * cause and other details. Use fetchEventDetails endpoint to get description of sensitive events.
      * 
      * @param description the description value to set.
      * @return the EventProperties object itself.
@@ -791,68 +751,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Get the maintenanceId property: Unique identifier for planned maintenance event.
-     * 
-     * @return the maintenanceId value.
-     */
-    public String maintenanceId() {
-        return this.maintenanceId;
-    }
-
-    /**
-     * Set the maintenanceId property: Unique identifier for planned maintenance event.
-     * 
-     * @param maintenanceId the maintenanceId value to set.
-     * @return the EventProperties object itself.
-     */
-    public EventProperties withMaintenanceId(String maintenanceId) {
-        this.maintenanceId = maintenanceId;
-        return this;
-    }
-
-    /**
-     * Get the maintenanceType property: The type of planned maintenance event.
-     * 
-     * @return the maintenanceType value.
-     */
-    public String maintenanceType() {
-        return this.maintenanceType;
-    }
-
-    /**
-     * Set the maintenanceType property: The type of planned maintenance event.
-     * 
-     * @param maintenanceType the maintenanceType value to set.
-     * @return the EventProperties object itself.
-     */
-    public EventProperties withMaintenanceType(String maintenanceType) {
-        this.maintenanceType = maintenanceType;
-        return this;
-    }
-
-    /**
-     * Get the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     * 
-     * @return the argQuery value.
-     */
-    public String argQuery() {
-        return this.argQuery;
-    }
-
-    /**
-     * Set the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     * 
-     * @param argQuery the argQuery value to set.
-     * @return the EventProperties object itself.
-     */
-    public EventProperties withArgQuery(String argQuery) {
-        this.argQuery = argQuery;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -885,7 +783,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("eventType", this.eventType == null ? null : this.eventType.toString());
-        jsonWriter.writeStringField("eventSubType", this.eventSubType == null ? null : this.eventSubType.toString());
         jsonWriter.writeStringField("eventSource", this.eventSource == null ? null : this.eventSource.toString());
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         jsonWriter.writeStringField("title", this.title);
@@ -918,9 +815,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
         jsonWriter.writeJsonField("additionalInformation", this.additionalInformation);
         jsonWriter.writeNumberField("duration", this.duration);
         jsonWriter.writeStringField("impactType", this.impactType);
-        jsonWriter.writeStringField("maintenanceId", this.maintenanceId);
-        jsonWriter.writeStringField("maintenanceType", this.maintenanceType);
-        jsonWriter.writeStringField("argQuery", this.argQuery);
         return jsonWriter.writeEndObject();
     }
 
@@ -941,8 +835,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
 
                 if ("eventType".equals(fieldName)) {
                     deserializedEventProperties.eventType = EventTypeValues.fromString(reader.getString());
-                } else if ("eventSubType".equals(fieldName)) {
-                    deserializedEventProperties.eventSubType = EventSubTypeValues.fromString(reader.getString());
                 } else if ("eventSource".equals(fieldName)) {
                     deserializedEventProperties.eventSource = EventSourceValues.fromString(reader.getString());
                 } else if ("status".equals(fieldName)) {
@@ -1004,12 +896,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
                     deserializedEventProperties.duration = reader.getNullable(JsonReader::getInt);
                 } else if ("impactType".equals(fieldName)) {
                     deserializedEventProperties.impactType = reader.getString();
-                } else if ("maintenanceId".equals(fieldName)) {
-                    deserializedEventProperties.maintenanceId = reader.getString();
-                } else if ("maintenanceType".equals(fieldName)) {
-                    deserializedEventProperties.maintenanceType = reader.getString();
-                } else if ("argQuery".equals(fieldName)) {
-                    deserializedEventProperties.argQuery = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
