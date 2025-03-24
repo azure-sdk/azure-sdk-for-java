@@ -1,14 +1,19 @@
 # Release History
 
-## 1.0.0-beta.2 (Unreleased)
+## 1.0.0-beta.2 (2025-03-24)
+
+- Azure Resource Manager Azure Terraform client library for Java. This package contains Microsoft Azure SDK for Azure Terraform Management SDK. The Azure Terraform management API provides a RESTful set of web services that used to manage your Azure Terraform resources. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.AuthorizationScopeFilter` was added
 
-### Bugs Fixed
+#### `models.ExportQuery` was modified
 
-### Other Changes
+* `withTable(java.lang.String)` was added
+* `table()` was added
+* `authorizationScopeFilter()` was added
+* `withAuthorizationScopeFilter(models.AuthorizationScopeFilter)` was added
 
 ## 1.0.0-beta.1 (2024-11-20)
 
