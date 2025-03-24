@@ -21,7 +21,7 @@ public final class PurchaseRequest implements JsonSerializable<PurchaseRequest> 
     /*
      * The SKU to be applied for this resource
      */
-    private Sku sku;
+    private ResourceSku sku;
 
     /*
      * The properties property.
@@ -39,7 +39,7 @@ public final class PurchaseRequest implements JsonSerializable<PurchaseRequest> 
      * 
      * @return the sku value.
      */
-    public Sku sku() {
+    public ResourceSku sku() {
         return this.sku;
     }
 
@@ -49,7 +49,7 @@ public final class PurchaseRequest implements JsonSerializable<PurchaseRequest> 
      * @param sku the sku value to set.
      * @return the PurchaseRequest object itself.
      */
-    public PurchaseRequest withSku(Sku sku) {
+    public PurchaseRequest withSku(ResourceSku sku) {
         this.sku = sku;
         return this;
     }
@@ -303,7 +303,7 @@ public final class PurchaseRequest implements JsonSerializable<PurchaseRequest> 
                 reader.nextToken();
 
                 if ("sku".equals(fieldName)) {
-                    deserializedPurchaseRequest.sku = Sku.fromJson(reader);
+                    deserializedPurchaseRequest.sku = ResourceSku.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedPurchaseRequest.innerProperties = PurchaseRequestProperties.fromJson(reader);
                 } else {

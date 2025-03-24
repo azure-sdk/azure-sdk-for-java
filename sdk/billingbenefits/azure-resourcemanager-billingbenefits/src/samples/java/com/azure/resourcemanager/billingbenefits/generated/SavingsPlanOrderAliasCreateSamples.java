@@ -10,7 +10,7 @@ import com.azure.resourcemanager.billingbenefits.models.AppliedScopeType;
 import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.Commitment;
 import com.azure.resourcemanager.billingbenefits.models.CommitmentGrain;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 
 /**
@@ -19,7 +19,7 @@ import com.azure.resourcemanager.billingbenefits.models.Term;
 public final class SavingsPlanOrderAliasCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/stable/2022-11-01/examples/
+     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/preview/2024-11-01-preview/examples/
      * SavingsPlanOrderAliasCreate.json
      */
     /**
@@ -31,7 +31,7 @@ public final class SavingsPlanOrderAliasCreateSamples {
         savingsPlanOrderAliasCreate(com.azure.resourcemanager.billingbenefits.BillingBenefitsManager manager) {
         manager.savingsPlanOrderAlias()
             .create("spAlias123",
-                new SavingsPlanOrderAliasModelInner().withSku(new Sku().withName("Compute_Savings_Plan"))
+                new SavingsPlanOrderAliasModelInner().withSku(new ResourceSku().withName("Compute_Savings_Plan"))
                     .withDisplayName("Compute_SavingsPlan_10-28-2022_16-38")
                     .withBillingScopeId("/subscriptions/30000000-0000-0000-0000-000000000000")
                     .withTerm(Term.P3Y)
@@ -45,7 +45,7 @@ public final class SavingsPlanOrderAliasCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/stable/2022-11-01/examples/
+     * specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/preview/2024-11-01-preview/examples/
      * SavingsPlanOrderAliasCreateSingleScope.json
      */
     /**
@@ -57,7 +57,7 @@ public final class SavingsPlanOrderAliasCreateSamples {
         com.azure.resourcemanager.billingbenefits.BillingBenefitsManager manager) {
         manager.savingsPlanOrderAlias()
             .create("spAlias123", new SavingsPlanOrderAliasModelInner()
-                .withSku(new Sku().withName("Compute_Savings_Plan"))
+                .withSku(new ResourceSku().withName("Compute_Savings_Plan"))
                 .withDisplayName("Compute_SavingsPlan_10-28-2022_16-38")
                 .withBillingScopeId(
                     "/providers/Microsoft.Billing/billingAccounts/1234567/billingSubscriptions/30000000-0000-0000-0000-000000000000")

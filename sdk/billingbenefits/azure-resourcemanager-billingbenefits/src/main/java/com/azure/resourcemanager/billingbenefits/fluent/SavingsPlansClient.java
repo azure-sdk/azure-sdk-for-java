@@ -8,12 +8,13 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanModelInner;
 import com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanValidateResponseInner;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanUpdateRequest;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanUpdateValidateRequest;
-import com.azure.resourcemanager.billingbenefits.models.SavingsPlansUpdateResponse;
 
 /**
  * An instance of this class provides access to all the operations defined in SavingsPlansClient.
@@ -113,17 +114,34 @@ public interface SavingsPlansClient {
      * @param savingsPlanOrderId Order ID of the savings plan.
      * @param savingsPlanId ID of the savings plan.
      * @param body Request body for patching a savings plan order alias.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     * status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of savings plan.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner> beginUpdate(String savingsPlanOrderId,
+        String savingsPlanId, SavingsPlanUpdateRequest body);
+
+    /**
+     * Update savings plan.
+     * 
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
      * status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan.
+     * @return the {@link SyncPoller} for polling of savings plan.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SavingsPlansUpdateResponse updateWithResponse(String savingsPlanOrderId, String savingsPlanId,
-        SavingsPlanUpdateRequest body, Context context);
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner> beginUpdate(String savingsPlanOrderId,
+        String savingsPlanId, SavingsPlanUpdateRequest body, Context context);
 
     /**
      * Update savings plan.
@@ -140,6 +158,24 @@ public interface SavingsPlansClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     SavingsPlanModelInner update(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body);
+
+    /**
+     * Update savings plan.
+     * 
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     * status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return savings plan.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SavingsPlanModelInner update(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body,
+        Context context);
 
     /**
      * Validate savings plan patch.

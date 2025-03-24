@@ -20,6 +20,22 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { BillingBenefitsRPImpl.class })
 public final class BillingBenefitsRPBuilder {
     /*
+     * The ID of the target subscription. The value must be an UUID.
+     */
+    private String subscriptionId;
+
+    /**
+     * Sets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @param subscriptionId the subscriptionId value.
+     * @return the BillingBenefitsRPBuilder.
+     */
+    public BillingBenefitsRPBuilder subscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /*
      * server parameter
      */
     private String endpoint;
@@ -116,7 +132,7 @@ public final class BillingBenefitsRPBuilder {
             ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
         BillingBenefitsRPImpl client = new BillingBenefitsRPImpl(localPipeline, localSerializerAdapter,
-            localDefaultPollInterval, localEnvironment, localEndpoint);
+            localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }

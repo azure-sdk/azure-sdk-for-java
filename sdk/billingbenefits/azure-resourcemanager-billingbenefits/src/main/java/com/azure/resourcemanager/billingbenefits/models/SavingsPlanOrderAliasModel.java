@@ -37,7 +37,7 @@ public interface SavingsPlanOrderAliasModel {
      * 
      * @return the sku value.
      */
-    Sku sku();
+    ResourceSku sku();
 
     /**
      * Gets the kind property: Resource provider kind.

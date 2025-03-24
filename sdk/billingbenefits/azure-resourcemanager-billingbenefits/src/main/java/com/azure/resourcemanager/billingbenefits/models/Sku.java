@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.billingbenefits.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -12,14 +13,37 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The SKU to be applied for this resource.
+ * The resource model definition representing SKU.
  */
 @Fluent
 public final class Sku implements JsonSerializable<Sku> {
     /*
-     * Name of the SKU to be applied
+     * The name of the SKU. E.g. P3. It is typically a letter+number code
      */
     private String name;
+
+    /*
+     * This field is required to be implemented by the Resource Provider if the service has more than one tier, but is
+     * not required on a PUT.
+     */
+    private SkuTier tier;
+
+    /*
+     * The SKU size. When the name field is the combination of tier and some other value, this would be the standalone
+     * code.
+     */
+    private String size;
+
+    /*
+     * If the service has different generations of hardware, for the same SKU, then that can be captured here.
+     */
+    private String family;
+
+    /*
+     * If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible
+     * for the resource this may be omitted.
+     */
+    private Integer capacity;
 
     /**
      * Creates an instance of Sku class.
@@ -28,7 +52,7 @@ public final class Sku implements JsonSerializable<Sku> {
     }
 
     /**
-     * Get the name property: Name of the SKU to be applied.
+     * Get the name property: The name of the SKU. E.g. P3. It is typically a letter+number code.
      * 
      * @return the name value.
      */
@@ -37,7 +61,7 @@ public final class Sku implements JsonSerializable<Sku> {
     }
 
     /**
-     * Set the name property: Name of the SKU to be applied.
+     * Set the name property: The name of the SKU. E.g. P3. It is typically a letter+number code.
      * 
      * @param name the name value to set.
      * @return the Sku object itself.
@@ -48,12 +72,105 @@ public final class Sku implements JsonSerializable<Sku> {
     }
 
     /**
+     * Get the tier property: This field is required to be implemented by the Resource Provider if the service has more
+     * than one tier, but is not required on a PUT.
+     * 
+     * @return the tier value.
+     */
+    public SkuTier tier() {
+        return this.tier;
+    }
+
+    /**
+     * Set the tier property: This field is required to be implemented by the Resource Provider if the service has more
+     * than one tier, but is not required on a PUT.
+     * 
+     * @param tier the tier value to set.
+     * @return the Sku object itself.
+     */
+    public Sku withTier(SkuTier tier) {
+        this.tier = tier;
+        return this;
+    }
+
+    /**
+     * Get the size property: The SKU size. When the name field is the combination of tier and some other value, this
+     * would be the standalone code.
+     * 
+     * @return the size value.
+     */
+    public String size() {
+        return this.size;
+    }
+
+    /**
+     * Set the size property: The SKU size. When the name field is the combination of tier and some other value, this
+     * would be the standalone code.
+     * 
+     * @param size the size value to set.
+     * @return the Sku object itself.
+     */
+    public Sku withSize(String size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get the family property: If the service has different generations of hardware, for the same SKU, then that can be
+     * captured here.
+     * 
+     * @return the family value.
+     */
+    public String family() {
+        return this.family;
+    }
+
+    /**
+     * Set the family property: If the service has different generations of hardware, for the same SKU, then that can be
+     * captured here.
+     * 
+     * @param family the family value to set.
+     * @return the Sku object itself.
+     */
+    public Sku withFamily(String family) {
+        this.family = family;
+        return this;
+    }
+
+    /**
+     * Get the capacity property: If the SKU supports scale out/in then the capacity integer should be included. If
+     * scale out/in is not possible for the resource this may be omitted.
+     * 
+     * @return the capacity value.
+     */
+    public Integer capacity() {
+        return this.capacity;
+    }
+
+    /**
+     * Set the capacity property: If the SKU supports scale out/in then the capacity integer should be included. If
+     * scale out/in is not possible for the resource this may be omitted.
+     * 
+     * @param capacity the capacity value to set.
+     * @return the Sku object itself.
+     */
+    public Sku withCapacity(Integer capacity) {
+        this.capacity = capacity;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (name() == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property name in model Sku"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(Sku.class);
 
     /**
      * {@inheritDoc}
@@ -62,6 +179,10 @@ public final class Sku implements JsonSerializable<Sku> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name);
+        jsonWriter.writeStringField("tier", this.tier == null ? null : this.tier.toString());
+        jsonWriter.writeStringField("size", this.size);
+        jsonWriter.writeStringField("family", this.family);
+        jsonWriter.writeNumberField("capacity", this.capacity);
         return jsonWriter.writeEndObject();
     }
 
@@ -71,6 +192,7 @@ public final class Sku implements JsonSerializable<Sku> {
      * @param jsonReader The JsonReader being read.
      * @return An instance of Sku if the JsonReader was pointing to an instance of it, or null if it was pointing to
      * JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the Sku.
      */
     public static Sku fromJson(JsonReader jsonReader) throws IOException {
@@ -82,6 +204,14 @@ public final class Sku implements JsonSerializable<Sku> {
 
                 if ("name".equals(fieldName)) {
                     deserializedSku.name = reader.getString();
+                } else if ("tier".equals(fieldName)) {
+                    deserializedSku.tier = SkuTier.fromString(reader.getString());
+                } else if ("size".equals(fieldName)) {
+                    deserializedSku.size = reader.getString();
+                } else if ("family".equals(fieldName)) {
+                    deserializedSku.family = reader.getString();
+                } else if ("capacity".equals(fieldName)) {
+                    deserializedSku.capacity = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }

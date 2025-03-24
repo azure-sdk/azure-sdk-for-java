@@ -13,7 +13,7 @@ import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
 import com.azure.resourcemanager.billingbenefits.models.ReservationOrderAliasResponse;
 import com.azure.resourcemanager.billingbenefits.models.ReservationOrderAliasResponsePropertiesReservedResourceProperties;
 import com.azure.resourcemanager.billingbenefits.models.ReservedResourceType;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import java.time.OffsetDateTime;
 
@@ -40,7 +40,7 @@ public final class ReservationOrderAliasResponseImpl implements ReservationOrder
         return this.innerModel().type();
     }
 
-    public Sku sku() {
+    public ResourceSku sku() {
         return this.innerModel().sku();
     }
 

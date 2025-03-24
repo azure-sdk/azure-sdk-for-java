@@ -24,6 +24,8 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.billingbenefits.fluent.BillingBenefitsRP;
+import com.azure.resourcemanager.billingbenefits.fluent.DiscountOperationsClient;
+import com.azure.resourcemanager.billingbenefits.fluent.DiscountsClient;
 import com.azure.resourcemanager.billingbenefits.fluent.OperationsClient;
 import com.azure.resourcemanager.billingbenefits.fluent.ReservationOrderAliasClient;
 import com.azure.resourcemanager.billingbenefits.fluent.ResourceProvidersClient;
@@ -44,6 +46,20 @@ import reactor.core.publisher.Mono;
  */
 @ServiceClient(builder = BillingBenefitsRPBuilder.class)
 public final class BillingBenefitsRPImpl implements BillingBenefitsRP {
+    /**
+     * The ID of the target subscription. The value must be an UUID.
+     */
+    private final String subscriptionId;
+
+    /**
+     * Gets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String getSubscriptionId() {
+        return this.subscriptionId;
+    }
+
     /**
      * server parameter.
      */
@@ -199,27 +215,59 @@ public final class BillingBenefitsRPImpl implements BillingBenefitsRP {
     }
 
     /**
+     * The DiscountsClient object to access its operations.
+     */
+    private final DiscountsClient discounts;
+
+    /**
+     * Gets the DiscountsClient object to access its operations.
+     * 
+     * @return the DiscountsClient object.
+     */
+    public DiscountsClient getDiscounts() {
+        return this.discounts;
+    }
+
+    /**
+     * The DiscountOperationsClient object to access its operations.
+     */
+    private final DiscountOperationsClient discountOperations;
+
+    /**
+     * Gets the DiscountOperationsClient object to access its operations.
+     * 
+     * @return the DiscountOperationsClient object.
+     */
+    public DiscountOperationsClient getDiscountOperations() {
+        return this.discountOperations;
+    }
+
+    /**
      * Initializes an instance of BillingBenefitsRP client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     BillingBenefitsRPImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
-        AzureEnvironment environment, String endpoint) {
+        AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
+        this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-11-01";
+        this.apiVersion = "2024-11-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.savingsPlanOrderAlias = new SavingsPlanOrderAliasClientImpl(this);
         this.savingsPlanOrders = new SavingsPlanOrdersClientImpl(this);
         this.savingsPlans = new SavingsPlansClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.reservationOrderAlias = new ReservationOrderAliasClientImpl(this);
+        this.discounts = new DiscountsClientImpl(this);
+        this.discountOperations = new DiscountOperationsClientImpl(this);
     }
 
     /**

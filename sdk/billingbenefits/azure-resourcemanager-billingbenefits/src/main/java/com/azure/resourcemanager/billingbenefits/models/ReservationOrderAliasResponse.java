@@ -38,7 +38,7 @@ public interface ReservationOrderAliasResponse {
      * 
      * @return the sku value.
      */
-    Sku sku();
+    ResourceSku sku();
 
     /**
      * Gets the location property: The Azure Region where the reserved resource lives.

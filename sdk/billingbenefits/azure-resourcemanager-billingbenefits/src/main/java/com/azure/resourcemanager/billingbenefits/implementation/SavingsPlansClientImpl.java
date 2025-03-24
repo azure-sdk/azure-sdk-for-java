@@ -26,8 +26,11 @@ import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billingbenefits.fluent.SavingsPlansClient;
 import com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanModelInner;
 import com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanValidateResponseInner;
@@ -35,7 +38,8 @@ import com.azure.resourcemanager.billingbenefits.models.SavingsPlanModelList;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanModelListResult;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanUpdateRequest;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanUpdateValidateRequest;
-import com.azure.resourcemanager.billingbenefits.models.SavingsPlansUpdateResponse;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -102,7 +106,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(value = ManagementException.class, code = { 404 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<SavingsPlansUpdateResponse> update(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam("savingsPlanOrderId") String savingsPlanOrderId,
             @PathParam("savingsPlanId") String savingsPlanId, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") SavingsPlanUpdateRequest body, @HeaderParam("Accept") String accept,
@@ -565,10 +569,10 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan on successful completion of {@link Mono}.
+     * @return savings plan along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SavingsPlansUpdateResponse> updateWithResponseAsync(String savingsPlanOrderId, String savingsPlanId,
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String savingsPlanOrderId, String savingsPlanId,
         SavingsPlanUpdateRequest body) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -604,10 +608,10 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan on successful completion of {@link Mono}.
+     * @return savings plan along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SavingsPlansUpdateResponse> updateWithResponseAsync(String savingsPlanOrderId, String savingsPlanId,
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String savingsPlanOrderId, String savingsPlanId,
         SavingsPlanUpdateRequest body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -641,13 +645,15 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of savings plan.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SavingsPlanModelInner> updateAsync(String savingsPlanOrderId, String savingsPlanId,
-        SavingsPlanUpdateRequest body) {
-        return updateWithResponseAsync(savingsPlanOrderId, savingsPlanId, body)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner>
+        beginUpdateAsync(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(savingsPlanOrderId, savingsPlanId, body);
+        return this.client.<SavingsPlanModelInner, SavingsPlanModelInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SavingsPlanModelInner.class, SavingsPlanModelInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -661,12 +667,92 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan.
+     * @return the {@link PollerFlux} for polling of savings plan.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner> beginUpdateAsync(
+        String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(savingsPlanOrderId, savingsPlanId, body, context);
+        return this.client.<SavingsPlanModelInner, SavingsPlanModelInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SavingsPlanModelInner.class, SavingsPlanModelInner.class, context);
+    }
+
+    /**
+     * Update savings plan.
+     * 
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of savings plan.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner> beginUpdate(String savingsPlanOrderId,
+        String savingsPlanId, SavingsPlanUpdateRequest body) {
+        return this.beginUpdateAsync(savingsPlanOrderId, savingsPlanId, body).getSyncPoller();
+    }
+
+    /**
+     * Update savings plan.
+     * 
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of savings plan.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner> beginUpdate(String savingsPlanOrderId,
+        String savingsPlanId, SavingsPlanUpdateRequest body, Context context) {
+        return this.beginUpdateAsync(savingsPlanOrderId, savingsPlanId, body, context).getSyncPoller();
+    }
+
+    /**
+     * Update savings plan.
+     * 
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return savings plan on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public SavingsPlansUpdateResponse updateWithResponse(String savingsPlanOrderId, String savingsPlanId,
+    private Mono<SavingsPlanModelInner> updateAsync(String savingsPlanOrderId, String savingsPlanId,
+        SavingsPlanUpdateRequest body) {
+        return beginUpdateAsync(savingsPlanOrderId, savingsPlanId, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update savings plan.
+     * 
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return savings plan on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SavingsPlanModelInner> updateAsync(String savingsPlanOrderId, String savingsPlanId,
         SavingsPlanUpdateRequest body, Context context) {
-        return updateWithResponseAsync(savingsPlanOrderId, savingsPlanId, body, context).block();
+        return beginUpdateAsync(savingsPlanOrderId, savingsPlanId, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -684,7 +770,26 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SavingsPlanModelInner update(String savingsPlanOrderId, String savingsPlanId,
         SavingsPlanUpdateRequest body) {
-        return updateWithResponse(savingsPlanOrderId, savingsPlanId, body, Context.NONE).getValue();
+        return updateAsync(savingsPlanOrderId, savingsPlanId, body).block();
+    }
+
+    /**
+     * Update savings plan.
+     * 
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return savings plan.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SavingsPlanModelInner update(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body,
+        Context context) {
+        return updateAsync(savingsPlanOrderId, savingsPlanId, body, context).block();
     }
 
     /**

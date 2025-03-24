@@ -39,7 +39,7 @@ public interface SavingsPlanOrderModel {
      * 
      * @return the sku value.
      */
-    Sku sku();
+    ResourceSku sku();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
