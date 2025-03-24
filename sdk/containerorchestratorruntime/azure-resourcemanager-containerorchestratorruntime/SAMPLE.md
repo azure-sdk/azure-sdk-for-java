@@ -36,6 +36,165 @@
 ### BgpPeers_CreateOrUpdate
 
 ```java
+/**
+ * Samples for StorageClass Delete.
+ */
+public final class StorageClassDeleteSamples {
+    /*
+     * x-ms-original-file: 2024-03-01/StorageClass_Delete.json
+     */
+    /**
+     * Sample code: StorageClass_Delete_0.
+     * 
+     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
+     */
+    public static void storageClassDelete0(
+        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
+        manager.storageClass()
+            .delete(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
+                "testrwx", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BgpPeers_Delete
+
+```java
+import com.azure.resourcemanager.containerorchestratorruntime.models.StorageClassPropertiesUpdate;
+import com.azure.resourcemanager.containerorchestratorruntime.models.StorageClassResource;
+import com.azure.resourcemanager.containerorchestratorruntime.models.StorageClassTypePropertiesUpdate;
+
+/**
+ * Samples for StorageClass Update.
+ */
+public final class StorageClassUpdateSamples {
+    /*
+     * x-ms-original-file: 2024-03-01/StorageClass_Update.json
+     */
+    /**
+     * Sample code: StorageClass_Update_0.
+     * 
+     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
+     */
+    public static void storageClassUpdate0(
+        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
+        StorageClassResource resource = manager.storageClass()
+            .getWithResponse(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
+                "testrwx", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new StorageClassPropertiesUpdate()
+                .withTypeProperties(new StorageClassTypePropertiesUpdate().withBackingStorageClassName("default")))
+            .apply();
+    }
+}
+```
+
+### BgpPeers_Get
+
+```java
+/**
+ * Samples for BgpPeers Delete.
+ */
+public final class BgpPeersDeleteSamples {
+    /*
+     * x-ms-original-file: 2024-03-01/BgpPeers_Delete.json
+     */
+    /**
+     * Sample code: BgpPeers_Delete.
+     * 
+     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
+     */
+    public static void bgpPeersDelete(
+        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
+        manager.bgpPeers()
+            .deleteByResourceGroupWithResponse(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
+                "testpeer", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BgpPeers_List
+
+```java
+/**
+ * Samples for Services Delete.
+ */
+public final class ServicesDeleteSamples {
+    /*
+     * x-ms-original-file: 2024-03-01/Services_Delete.json
+     */
+    /**
+     * Sample code: Services_Delete.
+     * 
+     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
+     */
+    public static void servicesDelete(
+        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
+        manager.services()
+            .deleteByResourceGroupWithResponse(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
+                "storageclass", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LoadBalancers_CreateOrUpdate
+
+```java
+/**
+ * Samples for LoadBalancers Get.
+ */
+public final class LoadBalancersGetSamples {
+    /*
+     * x-ms-original-file: 2024-03-01/LoadBalancers_Get.json
+     */
+    /**
+     * Sample code: LoadBalancers_Get.
+     * 
+     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
+     */
+    public static void loadBalancersGet(
+        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
+        manager.loadBalancers()
+            .getWithResponse(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
+                "testlb", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LoadBalancers_Delete
+
+```java
+/**
+ * Samples for Services List.
+ */
+public final class ServicesListSamples {
+    /*
+     * x-ms-original-file: 2024-03-01/Services_List.json
+     */
+    /**
+     * Sample code: Services_List.
+     * 
+     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
+     */
+    public static void servicesList(
+        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
+        manager.services()
+            .list(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LoadBalancers_Get
+
+```java
 import com.azure.resourcemanager.containerorchestratorruntime.models.BgpPeerProperties;
 
 /**
@@ -62,74 +221,49 @@ public final class BgpPeersCreateOrUpdateSamples {
 }
 ```
 
-### BgpPeers_Delete
+### LoadBalancers_List
 
 ```java
 /**
- * Samples for BgpPeers Delete.
+ * Samples for Services Get.
  */
-public final class BgpPeersDeleteSamples {
+public final class ServicesGetSamples {
     /*
-     * x-ms-original-file: 2024-03-01/BgpPeers_Delete.json
+     * x-ms-original-file: 2024-03-01/Services_Get.json
      */
     /**
-     * Sample code: BgpPeers_Delete.
+     * Sample code: Services_Get.
      * 
      * @param manager Entry point to ContainerOrchestratorRuntimeManager.
      */
-    public static void bgpPeersDelete(
+    public static void servicesGet(
         com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.bgpPeers()
-            .deleteByResourceGroupWithResponse(
-                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "testpeer", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BgpPeers_Get
-
-```java
-/**
- * Samples for BgpPeers Get.
- */
-public final class BgpPeersGetSamples {
-    /*
-     * x-ms-original-file: 2024-03-01/BgpPeers_Get.json
-     */
-    /**
-     * Sample code: BgpPeers_Get.
-     * 
-     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
-     */
-    public static void bgpPeersGet(
-        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.bgpPeers()
+        manager.services()
             .getWithResponse(
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "testpeer", com.azure.core.util.Context.NONE);
+                "storageclass", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### BgpPeers_List
+### Operations_List
 
 ```java
 /**
- * Samples for BgpPeers List.
+ * Samples for LoadBalancers List.
  */
-public final class BgpPeersListSamples {
+public final class LoadBalancersListSamples {
     /*
-     * x-ms-original-file: 2024-03-01/BgpPeers_List.json
+     * x-ms-original-file: 2024-03-01/LoadBalancers_List.json
      */
     /**
-     * Sample code: BgpPeers_List.
+     * Sample code: LoadBalancers_List.
      * 
      * @param manager Entry point to ContainerOrchestratorRuntimeManager.
      */
-    public static void bgpPeersList(
+    public static void loadBalancersList(
         com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.bgpPeers()
+        manager.loadBalancers()
             .list(
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
                 com.azure.core.util.Context.NONE);
@@ -137,7 +271,7 @@ public final class BgpPeersListSamples {
 }
 ```
 
-### LoadBalancers_CreateOrUpdate
+### Services_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.containerorchestratorruntime.models.AdvertiseMode;
@@ -185,104 +319,7 @@ public final class LoadBalancersCreateOrUpdateSamples {
 }
 ```
 
-### LoadBalancers_Delete
-
-```java
-/**
- * Samples for LoadBalancers Delete.
- */
-public final class LoadBalancersDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-03-01/LoadBalancers_Delete.json
-     */
-    /**
-     * Sample code: LoadBalancers_Delete.
-     * 
-     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
-     */
-    public static void loadBalancersDelete(
-        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.loadBalancers()
-            .deleteByResourceGroupWithResponse(
-                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "testlb", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### LoadBalancers_Get
-
-```java
-/**
- * Samples for LoadBalancers Get.
- */
-public final class LoadBalancersGetSamples {
-    /*
-     * x-ms-original-file: 2024-03-01/LoadBalancers_Get.json
-     */
-    /**
-     * Sample code: LoadBalancers_Get.
-     * 
-     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
-     */
-    public static void loadBalancersGet(
-        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.loadBalancers()
-            .getWithResponse(
-                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "testlb", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### LoadBalancers_List
-
-```java
-/**
- * Samples for LoadBalancers List.
- */
-public final class LoadBalancersListSamples {
-    /*
-     * x-ms-original-file: 2024-03-01/LoadBalancers_List.json
-     */
-    /**
-     * Sample code: LoadBalancers_List.
-     * 
-     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
-     */
-    public static void loadBalancersList(
-        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.loadBalancers()
-            .list(
-                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: 2024-03-01/Operations_List.json
-     */
-    /**
-     * Sample code: Operations_List_0.
-     * 
-     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
-     */
-    public static void operationsList0(
-        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Services_CreateOrUpdate
+### Services_Delete
 
 ```java
 import com.azure.resourcemanager.containerorchestratorruntime.models.ServiceProperties;
@@ -311,52 +348,27 @@ public final class ServicesCreateOrUpdateSamples {
 }
 ```
 
-### Services_Delete
-
-```java
-/**
- * Samples for Services Delete.
- */
-public final class ServicesDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-03-01/Services_Delete.json
-     */
-    /**
-     * Sample code: Services_Delete.
-     * 
-     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
-     */
-    public static void servicesDelete(
-        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.services()
-            .deleteByResourceGroupWithResponse(
-                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "storageclass", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Services_Get
 
 ```java
 /**
- * Samples for Services Get.
+ * Samples for StorageClass Get.
  */
-public final class ServicesGetSamples {
+public final class StorageClassGetSamples {
     /*
-     * x-ms-original-file: 2024-03-01/Services_Get.json
+     * x-ms-original-file: 2024-03-01/StorageClass_Get.json
      */
     /**
-     * Sample code: Services_Get.
+     * Sample code: StorageClass_Get_0.
      * 
      * @param manager Entry point to ContainerOrchestratorRuntimeManager.
      */
-    public static void servicesGet(
+    public static void storageClassGet0(
         com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.services()
+        manager.storageClass()
             .getWithResponse(
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "storageclass", com.azure.core.util.Context.NONE);
+                "testrwx", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -365,23 +377,23 @@ public final class ServicesGetSamples {
 
 ```java
 /**
- * Samples for Services List.
+ * Samples for BgpPeers Get.
  */
-public final class ServicesListSamples {
+public final class BgpPeersGetSamples {
     /*
-     * x-ms-original-file: 2024-03-01/Services_List.json
+     * x-ms-original-file: 2024-03-01/BgpPeers_Get.json
      */
     /**
-     * Sample code: Services_List.
+     * Sample code: BgpPeers_Get.
      * 
      * @param manager Entry point to ContainerOrchestratorRuntimeManager.
      */
-    public static void servicesList(
+    public static void bgpPeersGet(
         com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.services()
-            .list(
+        manager.bgpPeers()
+            .getWithResponse(
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                com.azure.core.util.Context.NONE);
+                "testpeer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -421,23 +433,23 @@ public final class StorageClassCreateOrUpdateSamples {
 
 ```java
 /**
- * Samples for StorageClass Delete.
+ * Samples for BgpPeers List.
  */
-public final class StorageClassDeleteSamples {
+public final class BgpPeersListSamples {
     /*
-     * x-ms-original-file: 2024-03-01/StorageClass_Delete.json
+     * x-ms-original-file: 2024-03-01/BgpPeers_List.json
      */
     /**
-     * Sample code: StorageClass_Delete_0.
+     * Sample code: BgpPeers_List.
      * 
      * @param manager Entry point to ContainerOrchestratorRuntimeManager.
      */
-    public static void storageClassDelete0(
+    public static void bgpPeersList(
         com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.storageClass()
-            .delete(
+        manager.bgpPeers()
+            .list(
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "testrwx", com.azure.core.util.Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -446,28 +458,50 @@ public final class StorageClassDeleteSamples {
 
 ```java
 /**
- * Samples for StorageClass Get.
+ * Samples for LoadBalancers Delete.
  */
-public final class StorageClassGetSamples {
+public final class LoadBalancersDeleteSamples {
     /*
-     * x-ms-original-file: 2024-03-01/StorageClass_Get.json
+     * x-ms-original-file: 2024-03-01/LoadBalancers_Delete.json
      */
     /**
-     * Sample code: StorageClass_Get_0.
+     * Sample code: LoadBalancers_Delete.
      * 
      * @param manager Entry point to ContainerOrchestratorRuntimeManager.
      */
-    public static void storageClassGet0(
+    public static void loadBalancersDelete(
         com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        manager.storageClass()
-            .getWithResponse(
+        manager.loadBalancers()
+            .deleteByResourceGroupWithResponse(
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "testrwx", com.azure.core.util.Context.NONE);
+                "testlb", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### StorageClass_List
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: 2024-03-01/Operations_List.json
+     */
+    /**
+     * Sample code: Operations_List_0.
+     * 
+     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
+     */
+    public static void operationsList0(
+        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageClass_Update
 
 ```java
 /**
@@ -488,40 +522,6 @@ public final class StorageClassListSamples {
             .list(
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
                 com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageClass_Update
-
-```java
-import com.azure.resourcemanager.containerorchestratorruntime.models.StorageClassPropertiesUpdate;
-import com.azure.resourcemanager.containerorchestratorruntime.models.StorageClassResource;
-import com.azure.resourcemanager.containerorchestratorruntime.models.StorageClassTypePropertiesUpdate;
-
-/**
- * Samples for StorageClass Update.
- */
-public final class StorageClassUpdateSamples {
-    /*
-     * x-ms-original-file: 2024-03-01/StorageClass_Update.json
-     */
-    /**
-     * Sample code: StorageClass_Update_0.
-     * 
-     * @param manager Entry point to ContainerOrchestratorRuntimeManager.
-     */
-    public static void storageClassUpdate0(
-        com.azure.resourcemanager.containerorchestratorruntime.ContainerOrchestratorRuntimeManager manager) {
-        StorageClassResource resource = manager.storageClass()
-            .getWithResponse(
-                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/example/providers/Microsoft.Kubernetes/connectedClusters/cluster1",
-                "testrwx", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withProperties(new StorageClassPropertiesUpdate()
-                .withTypeProperties(new StorageClassTypePropertiesUpdate().withBackingStorageClassName("default")))
-            .apply();
     }
 }
 ```
