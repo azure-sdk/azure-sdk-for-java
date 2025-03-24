@@ -9,6 +9,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.ArmServerKeyTyp
 import com.azure.resourcemanager.postgresqlflexibleserver.models.AuthConfig;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.AzureManagedDiskPerformanceTiers;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Backup;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.Cluster;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.GeoRedundantBackupEnum;
@@ -17,6 +18,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.HighAvailabilit
 import com.azure.resourcemanager.postgresqlflexibleserver.models.IdentityType;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Network;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.PasswordAuthEnum;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerPublicNetworkAccessState;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerVersion;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Sku;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.SkuTier;
@@ -34,7 +36,7 @@ import java.util.Map;
 public final class ServersCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
      * ServerCreateWithDataEncryptionEnabled.json
      */
     /**
@@ -76,7 +78,7 @@ public final class ServersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
      * ServerCreateReviveDropped.json
      */
     /**
@@ -99,7 +101,7 @@ public final class ServersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
      * ServerCreateGeoRestoreWithDataEncryptionEnabled.json
      */
     /**
@@ -134,7 +136,8 @@ public final class ServersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/ServerCreate.json
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ServerCreate.json
      */
     /**
      * Sample code: Create a new server.
@@ -150,7 +153,7 @@ public final class ServersCreateSamples {
             .withSku(new Sku().withName("Standard_D4s_v3").withTier(SkuTier.GENERAL_PURPOSE))
             .withAdministratorLogin("cloudsa")
             .withAdministratorLoginPassword("password")
-            .withVersion(ServerVersion.ONE_TWO)
+            .withVersion(ServerVersion.ONE_SIX)
             .withStorage(new Storage().withStorageSizeGB(512)
                 .withAutoGrow(StorageAutoGrow.DISABLED)
                 .withTier(AzureManagedDiskPerformanceTiers.P20))
@@ -167,7 +170,7 @@ public final class ServersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
      * ServerCreateWithAadAuthEnabled.json
      */
     /**
@@ -206,7 +209,7 @@ public final class ServersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
      * ServerCreateReplica.json
      */
     /**
@@ -238,7 +241,37 @@ public final class ServersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
+     * ClusterCreate.json
+     */
+    /**
+     * Sample code: ClusterCreate.
+     * 
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void clusterCreate(com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager.servers()
+            .define("pgtestcluster")
+            .withRegion("westus")
+            .withExistingResourceGroup("testrg")
+            .withSku(new Sku().withName("Standard_D4s_v3").withTier(SkuTier.GENERAL_PURPOSE))
+            .withAdministratorLogin("cloudsa")
+            .withAdministratorLoginPassword("password")
+            .withVersion(ServerVersion.ONE_SIX)
+            .withStorage(new Storage().withStorageSizeGB(256)
+                .withAutoGrow(StorageAutoGrow.DISABLED)
+                .withTier(AzureManagedDiskPerformanceTiers.P15))
+            .withBackup(new Backup().withBackupRetentionDays(7).withGeoRedundantBackup(GeoRedundantBackupEnum.DISABLED))
+            .withNetwork(new Network().withPublicNetworkAccess(ServerPublicNetworkAccessState.DISABLED))
+            .withHighAvailability(new HighAvailability().withMode(HighAvailabilityMode.DISABLED))
+            .withCreateMode(CreateMode.CREATE)
+            .withCluster(new Cluster().withClusterSize(2))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2024-11-01-preview/examples/
      * ServerCreatePointInTimeRestore.json
      */
     /**

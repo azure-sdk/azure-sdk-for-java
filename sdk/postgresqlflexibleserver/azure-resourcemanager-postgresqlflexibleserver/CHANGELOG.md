@@ -1,14 +1,88 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-24)
+
+- Azure Resource Manager PostgreSql client library for Java. This package contains Microsoft Azure SDK for PostgreSql Management SDK. The Microsoft Azure management API provides create, read, update, and delete functionality for Azure PostgreSQL resources including servers, databases, firewall rules, VNET rules, security alert policies, log files and configurations with new business model. Package tag package-flexibleserver-2024-11-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.SupportedFeatureStatusEnum` was added
 
-### Bugs Fixed
+* `models.QuotaUsages` was added
 
-### Other Changes
+* `models.TuningOptionsListResult` was added
+
+* `models.QuotaUsage` was added
+
+* `models.IndexRecommendationListResult` was added
+
+* `models.ImpactRecord` was added
+
+* `models.QuotaUsagesListResult` was added
+
+* `models.NameProperty` was added
+
+* `models.IndexRecommendationResourcePropertiesAnalyzedWorkload` was added
+
+* `models.TuningOptions` was added
+
+* `models.IndexRecommendationDetails` was added
+
+* `models.IndexRecommendationResource` was added
+
+* `models.RecommendationTypeEnum` was added
+
+* `models.SupportedFeature` was added
+
+* `models.IndexRecommendationResourcePropertiesImplementationDetails` was added
+
+* `models.RecommendationType` was added
+
+* `models.TuningOptionEnum` was added
+
+* `models.Cluster` was added
+
+* `models.TuningOptionsResource` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `withPrincipalId(java.lang.String)` was added
+* `principalId()` was added
+
+#### `models.ServerForUpdate` was modified
+
+* `cluster()` was added
+* `withCluster(models.Cluster)` was added
+
+#### `models.FlexibleServerCapability` was modified
+
+* `supportedFeatures()` was added
+
+#### `models.ServerVersionCapability` was modified
+
+* `supportedFeatures()` was added
+
+#### `models.ServerSkuCapability` was modified
+
+* `supportedFeatures()` was added
+* `securityProfile()` was added
+
+#### `models.Server$Update` was modified
+
+* `withCluster(models.Cluster)` was added
+
+#### `models.Server` was modified
+
+* `cluster()` was added
+
+#### `models.Server$Definition` was modified
+
+* `withCluster(models.Cluster)` was added
+
+#### `PostgreSqlManager` was modified
+
+* `tuningOptions()` was added
+* `quotaUsages()` was added
 
 ## 1.1.0 (2025-01-06)
 

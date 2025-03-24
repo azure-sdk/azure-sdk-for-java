@@ -419,6 +419,29 @@ public final class ServerForUpdate implements JsonSerializable<ServerForUpdate> 
     }
 
     /**
+     * Get the cluster property: Cluster properties of a server.
+     * 
+     * @return the cluster value.
+     */
+    public Cluster cluster() {
+        return this.innerProperties() == null ? null : this.innerProperties().cluster();
+    }
+
+    /**
+     * Set the cluster property: Cluster properties of a server.
+     * 
+     * @param cluster the cluster value to set.
+     * @return the ServerForUpdate object itself.
+     */
+    public ServerForUpdate withCluster(Cluster cluster) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerPropertiesForUpdate();
+        }
+        this.innerProperties().withCluster(cluster);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
