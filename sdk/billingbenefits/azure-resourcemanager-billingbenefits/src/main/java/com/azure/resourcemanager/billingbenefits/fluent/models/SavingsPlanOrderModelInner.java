@@ -15,7 +15,7 @@ import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.BillingPlanInformation;
 import com.azure.resourcemanager.billingbenefits.models.ExtendedStatusInfo;
 import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -29,7 +29,7 @@ public final class SavingsPlanOrderModelInner extends ProxyResource {
     /*
      * Savings plan SKU
      */
-    private Sku sku;
+    private ResourceSku sku;
 
     /*
      * Savings plan order properties
@@ -67,7 +67,7 @@ public final class SavingsPlanOrderModelInner extends ProxyResource {
      * 
      * @return the sku value.
      */
-    public Sku sku() {
+    public ResourceSku sku() {
         return this.sku;
     }
 
@@ -77,7 +77,7 @@ public final class SavingsPlanOrderModelInner extends ProxyResource {
      * @param sku the sku value to set.
      * @return the SavingsPlanOrderModelInner object itself.
      */
-    public SavingsPlanOrderModelInner withSku(Sku sku) {
+    public SavingsPlanOrderModelInner withSku(ResourceSku sku) {
         this.sku = sku;
         return this;
     }
@@ -403,7 +403,7 @@ public final class SavingsPlanOrderModelInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedSavingsPlanOrderModelInner.type = reader.getString();
                 } else if ("sku".equals(fieldName)) {
-                    deserializedSavingsPlanOrderModelInner.sku = Sku.fromJson(reader);
+                    deserializedSavingsPlanOrderModelInner.sku = ResourceSku.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedSavingsPlanOrderModelInner.innerProperties
                         = SavingsPlanOrderModelProperties.fromJson(reader);

@@ -11,8 +11,8 @@ import com.azure.resourcemanager.billingbenefits.models.AppliedScopeType;
 import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.Commitment;
 import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanOrderAliasModel;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 
 public final class SavingsPlanOrderAliasModelImpl implements SavingsPlanOrderAliasModel {
@@ -38,7 +38,7 @@ public final class SavingsPlanOrderAliasModelImpl implements SavingsPlanOrderAli
         return this.innerModel().type();
     }
 
-    public Sku sku() {
+    public ResourceSku sku() {
         return this.innerModel().sku();
     }
 

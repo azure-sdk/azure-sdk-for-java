@@ -17,7 +17,7 @@ import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
 import com.azure.resourcemanager.billingbenefits.models.ReservationOrderAliasResponsePropertiesReservedResourceProperties;
 import com.azure.resourcemanager.billingbenefits.models.ReservedResourceType;
-import com.azure.resourcemanager.billingbenefits.models.Sku;
+import com.azure.resourcemanager.billingbenefits.models.ResourceSku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -30,7 +30,7 @@ public final class ReservationOrderAliasResponseInner extends ProxyResource {
     /*
      * Reservation order SKU
      */
-    private Sku sku;
+    private ResourceSku sku;
 
     /*
      * The Azure Region where the reserved resource lives.
@@ -73,7 +73,7 @@ public final class ReservationOrderAliasResponseInner extends ProxyResource {
      * 
      * @return the sku value.
      */
-    public Sku sku() {
+    public ResourceSku sku() {
         return this.sku;
     }
 
@@ -83,7 +83,7 @@ public final class ReservationOrderAliasResponseInner extends ProxyResource {
      * @param sku the sku value to set.
      * @return the ReservationOrderAliasResponseInner object itself.
      */
-    public ReservationOrderAliasResponseInner withSku(Sku sku) {
+    public ReservationOrderAliasResponseInner withSku(ResourceSku sku) {
         this.sku = sku;
         return this;
     }
@@ -493,7 +493,7 @@ public final class ReservationOrderAliasResponseInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedReservationOrderAliasResponseInner.type = reader.getString();
                 } else if ("sku".equals(fieldName)) {
-                    deserializedReservationOrderAliasResponseInner.sku = Sku.fromJson(reader);
+                    deserializedReservationOrderAliasResponseInner.sku = ResourceSku.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedReservationOrderAliasResponseInner.location = reader.getString();
                 } else if ("properties".equals(fieldName)) {

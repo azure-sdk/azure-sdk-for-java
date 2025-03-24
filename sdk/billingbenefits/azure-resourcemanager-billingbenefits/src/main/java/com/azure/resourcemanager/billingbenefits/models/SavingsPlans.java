@@ -100,23 +100,6 @@ public interface SavingsPlans {
      * @param savingsPlanOrderId Order ID of the savings plan.
      * @param savingsPlanId ID of the savings plan.
      * @param body Request body for patching a savings plan order alias.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan.
-     */
-    Response<SavingsPlanModel> updateWithResponse(String savingsPlanOrderId, String savingsPlanId,
-        SavingsPlanUpdateRequest body, Context context);
-
-    /**
-     * Update savings plan.
-     * 
-     * @param savingsPlanOrderId Order ID of the savings plan.
-     * @param savingsPlanId ID of the savings plan.
-     * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
@@ -125,6 +108,23 @@ public interface SavingsPlans {
      * @return savings plan.
      */
     SavingsPlanModel update(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body);
+
+    /**
+     * Update savings plan.
+     * 
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     * status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return savings plan.
+     */
+    SavingsPlanModel update(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body,
+        Context context);
 
     /**
      * Validate savings plan patch.

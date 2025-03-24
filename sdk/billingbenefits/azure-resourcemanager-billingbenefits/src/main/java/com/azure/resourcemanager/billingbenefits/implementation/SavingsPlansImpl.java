@@ -17,7 +17,6 @@ import com.azure.resourcemanager.billingbenefits.models.SavingsPlanUpdateRequest
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanUpdateValidateRequest;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanValidateResponse;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlans;
-import com.azure.resourcemanager.billingbenefits.models.SavingsPlansUpdateResponse;
 
 public final class SavingsPlansImpl implements SavingsPlans {
     private static final ClientLogger LOGGER = new ClientLogger(SavingsPlansImpl.class);
@@ -75,20 +74,18 @@ public final class SavingsPlansImpl implements SavingsPlans {
         }
     }
 
-    public Response<SavingsPlanModel> updateWithResponse(String savingsPlanOrderId, String savingsPlanId,
-        SavingsPlanUpdateRequest body, Context context) {
-        SavingsPlansUpdateResponse inner
-            = this.serviceClient().updateWithResponse(savingsPlanOrderId, savingsPlanId, body, context);
+    public SavingsPlanModel update(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body) {
+        SavingsPlanModelInner inner = this.serviceClient().update(savingsPlanOrderId, savingsPlanId, body);
         if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new SavingsPlanModelImpl(inner.getValue(), this.manager()));
+            return new SavingsPlanModelImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public SavingsPlanModel update(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body) {
-        SavingsPlanModelInner inner = this.serviceClient().update(savingsPlanOrderId, savingsPlanId, body);
+    public SavingsPlanModel update(String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body,
+        Context context) {
+        SavingsPlanModelInner inner = this.serviceClient().update(savingsPlanOrderId, savingsPlanId, body, context);
         if (inner != null) {
             return new SavingsPlanModelImpl(inner, this.manager());
         } else {
