@@ -25,105 +25,35 @@
 ### CertificateProfiles_Create
 
 ```java
-import com.azure.resourcemanager.trustedsigning.models.CertificateProfileProperties;
-import com.azure.resourcemanager.trustedsigning.models.ProfileType;
+import com.azure.resourcemanager.trustedsigning.models.AccountSku;
+import com.azure.resourcemanager.trustedsigning.models.CodeSigningAccountProperties;
+import com.azure.resourcemanager.trustedsigning.models.SkuName;
 
 /**
- * Samples for CertificateProfiles Create.
+ * Samples for CodeSigningAccounts Create.
  */
-public final class CertificateProfilesCreateSamples {
+public final class CodeSigningAccountsCreateSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/CertificateProfiles_Create.json
+     * x-ms-original-file: 2024-09-30-preview/CodeSigningAccounts_Create.json
      */
     /**
-     * Sample code: Create a certificate profile.
+     * Sample code: Create a trusted Signing Account.
      * 
      * @param manager Entry point to TrustedSigningManager.
      */
     public static void
-        createACertificateProfile(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.certificateProfiles()
-            .define("profileA")
-            .withExistingCodeSigningAccount("MyResourceGroup", "MyAccount")
-            .withProperties(new CertificateProfileProperties().withProfileType(ProfileType.PUBLIC_TRUST)
-                .withIncludeStreetAddress(false)
-                .withIncludePostalCode(true)
-                .withIdentityValidationId("00000000-1234-5678-3333-444444444444"))
+        createATrustedSigningAccount(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.codeSigningAccounts()
+            .define("MyAccount")
+            .withRegion("westus")
+            .withExistingResourceGroup("MyResourceGroup")
+            .withProperties(new CodeSigningAccountProperties().withSku(new AccountSku().withName(SkuName.BASIC)))
             .create();
     }
 }
 ```
 
 ### CertificateProfiles_Delete
-
-```java
-/**
- * Samples for CertificateProfiles Delete.
- */
-public final class CertificateProfilesDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-02-05-preview/CertificateProfiles_Delete.json
-     */
-    /**
-     * Sample code: Delete a certificate profile.
-     * 
-     * @param manager Entry point to TrustedSigningManager.
-     */
-    public static void
-        deleteACertificateProfile(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.certificateProfiles()
-            .delete("MyResourceGroup", "MyAccount", "profileA", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CertificateProfiles_Get
-
-```java
-/**
- * Samples for CertificateProfiles Get.
- */
-public final class CertificateProfilesGetSamples {
-    /*
-     * x-ms-original-file: 2024-02-05-preview/CertificateProfiles_Get.json
-     */
-    /**
-     * Sample code: Get details of a certificate profile.
-     * 
-     * @param manager Entry point to TrustedSigningManager.
-     */
-    public static void
-        getDetailsOfACertificateProfile(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.certificateProfiles()
-            .getWithResponse("MyResourceGroup", "MyAccount", "profileA", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CertificateProfiles_ListByCodeSigningAccount
-
-```java
-/**
- * Samples for CertificateProfiles ListByCodeSigningAccount.
- */
-public final class CertificateProfilesListByCodeSigningAccountSamples {
-    /*
-     * x-ms-original-file: 2024-02-05-preview/CertificateProfiles_ListByCodeSigningAccount.json
-     */
-    /**
-     * Sample code: List certificate profiles under a trusted signing account.
-     * 
-     * @param manager Entry point to TrustedSigningManager.
-     */
-    public static void listCertificateProfilesUnderATrustedSigningAccount(
-        com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.certificateProfiles()
-            .listByCodeSigningAccount("MyResourceGroup", "MyAccount", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CertificateProfiles_RevokeCertificate
 
 ```java
 import com.azure.resourcemanager.trustedsigning.models.RevokeCertificate;
@@ -134,7 +64,7 @@ import java.time.OffsetDateTime;
  */
 public final class CertificateProfilesRevokeCertificateSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/CertificateProfiles_RevokeCertificate.json
+     * x-ms-original-file: 2024-09-30-preview/CertificateProfiles_RevokeCertificate.json
      */
     /**
      * Sample code: Revoke a certificate under a certificate profile.
@@ -155,28 +85,93 @@ public final class CertificateProfilesRevokeCertificateSamples {
 }
 ```
 
-### CodeSigningAccounts_CheckNameAvailability
+### CertificateProfiles_Get
 
 ```java
-import com.azure.resourcemanager.trustedsigning.models.CheckNameAvailability;
-
 /**
- * Samples for CodeSigningAccounts CheckNameAvailability.
+ * Samples for CertificateProfiles Delete.
  */
-public final class CodeSigningAccountsCheckNameAvailabilitySamples {
+public final class CertificateProfilesDeleteSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/CodeSigningAccounts_CheckNameAvailability.json
+     * x-ms-original-file: 2024-09-30-preview/CertificateProfiles_Delete.json
      */
     /**
-     * Sample code: Checks that the trusted signing account name is available.
+     * Sample code: Delete a certificate profile.
      * 
      * @param manager Entry point to TrustedSigningManager.
      */
-    public static void checksThatTheTrustedSigningAccountNameIsAvailable(
+    public static void
+        deleteACertificateProfile(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.certificateProfiles()
+            .delete("MyResourceGroup", "MyAccount", "profileA", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CertificateProfiles_ListByCodeSigningAccount
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: 2024-09-30-preview/Operations_List.json
+     */
+    /**
+     * Sample code: List trusted signing account operations.
+     * 
+     * @param manager Entry point to TrustedSigningManager.
+     */
+    public static void
+        listTrustedSigningAccountOperations(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CertificateProfiles_RevokeCertificate
+
+```java
+/**
+ * Samples for CertificateProfiles Get.
+ */
+public final class CertificateProfilesGetSamples {
+    /*
+     * x-ms-original-file: 2024-09-30-preview/CertificateProfiles_Get.json
+     */
+    /**
+     * Sample code: Get details of a certificate profile.
+     * 
+     * @param manager Entry point to TrustedSigningManager.
+     */
+    public static void
+        getDetailsOfACertificateProfile(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.certificateProfiles()
+            .getWithResponse("MyResourceGroup", "MyAccount", "profileA", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CodeSigningAccounts_CheckNameAvailability
+
+```java
+/**
+ * Samples for CertificateProfiles ListByCodeSigningAccount.
+ */
+public final class CertificateProfilesListByCodeSigningAccountSamples {
+    /*
+     * x-ms-original-file: 2024-09-30-preview/CertificateProfiles_ListByCodeSigningAccount.json
+     */
+    /**
+     * Sample code: List certificate profiles under a trusted signing account.
+     * 
+     * @param manager Entry point to TrustedSigningManager.
+     */
+    public static void listCertificateProfilesUnderATrustedSigningAccount(
         com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.codeSigningAccounts()
-            .checkNameAvailabilityWithResponse(new CheckNameAvailability().withName("sample-account"),
-                com.azure.core.util.Context.NONE);
+        manager.certificateProfiles()
+            .listByCodeSigningAccount("MyResourceGroup", "MyAccount", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -184,30 +179,21 @@ public final class CodeSigningAccountsCheckNameAvailabilitySamples {
 ### CodeSigningAccounts_Create
 
 ```java
-import com.azure.resourcemanager.trustedsigning.models.AccountSku;
-import com.azure.resourcemanager.trustedsigning.models.CodeSigningAccountProperties;
-import com.azure.resourcemanager.trustedsigning.models.SkuName;
-
 /**
- * Samples for CodeSigningAccounts Create.
+ * Samples for CodeSigningAccounts List.
  */
-public final class CodeSigningAccountsCreateSamples {
+public final class CodeSigningAccountsListSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/CodeSigningAccounts_Create.json
+     * x-ms-original-file: 2024-09-30-preview/CodeSigningAccounts_ListBySubscription.json
      */
     /**
-     * Sample code: Create a trusted Signing Account.
+     * Sample code: Lists trusted signing accounts within a subscription.
      * 
      * @param manager Entry point to TrustedSigningManager.
      */
-    public static void
-        createATrustedSigningAccount(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.codeSigningAccounts()
-            .define("MyAccount")
-            .withRegion("westus")
-            .withExistingResourceGroup("MyResourceGroup")
-            .withProperties(new CodeSigningAccountProperties().withSku(new AccountSku().withName(SkuName.BASIC)))
-            .create();
+    public static void listsTrustedSigningAccountsWithinASubscription(
+        com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.codeSigningAccounts().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -215,21 +201,31 @@ public final class CodeSigningAccountsCreateSamples {
 ### CodeSigningAccounts_Delete
 
 ```java
+import com.azure.resourcemanager.trustedsigning.models.CertificateProfileProperties;
+import com.azure.resourcemanager.trustedsigning.models.ProfileType;
+
 /**
- * Samples for CodeSigningAccounts Delete.
+ * Samples for CertificateProfiles Create.
  */
-public final class CodeSigningAccountsDeleteSamples {
+public final class CertificateProfilesCreateSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/CodeSigningAccounts_Delete.json
+     * x-ms-original-file: 2024-09-30-preview/CertificateProfiles_Create.json
      */
     /**
-     * Sample code: Delete a trusted signing account.
+     * Sample code: Create a certificate profile.
      * 
      * @param manager Entry point to TrustedSigningManager.
      */
     public static void
-        deleteATrustedSigningAccount(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.codeSigningAccounts().delete("MyResourceGroup", "MyAccount", com.azure.core.util.Context.NONE);
+        createACertificateProfile(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.certificateProfiles()
+            .define("profileA")
+            .withExistingCodeSigningAccount("MyResourceGroup", "MyAccount")
+            .withProperties(new CertificateProfileProperties().withProfileType(ProfileType.PUBLIC_TRUST)
+                .withIncludeStreetAddress(false)
+                .withIncludePostalCode(true)
+                .withIdentityValidationId("00000000-1234-5678-3333-444444444444"))
+            .create();
     }
 }
 ```
@@ -242,7 +238,7 @@ public final class CodeSigningAccountsDeleteSamples {
  */
 public final class CodeSigningAccountsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/CodeSigningAccounts_Get.json
+     * x-ms-original-file: 2024-09-30-preview/CodeSigningAccounts_Get.json
      */
     /**
      * Sample code: Get a Trusted Signing Account.
@@ -260,50 +256,6 @@ public final class CodeSigningAccountsGetByResourceGroupSamples {
 ### CodeSigningAccounts_List
 
 ```java
-/**
- * Samples for CodeSigningAccounts List.
- */
-public final class CodeSigningAccountsListSamples {
-    /*
-     * x-ms-original-file: 2024-02-05-preview/CodeSigningAccounts_ListBySubscription.json
-     */
-    /**
-     * Sample code: Lists trusted signing accounts within a subscription.
-     * 
-     * @param manager Entry point to TrustedSigningManager.
-     */
-    public static void listsTrustedSigningAccountsWithinASubscription(
-        com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.codeSigningAccounts().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CodeSigningAccounts_ListByResourceGroup
-
-```java
-/**
- * Samples for CodeSigningAccounts ListByResourceGroup.
- */
-public final class CodeSigningAccountsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-02-05-preview/CodeSigningAccounts_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: Lists trusted signing accounts within a resource group.
-     * 
-     * @param manager Entry point to TrustedSigningManager.
-     */
-    public static void listsTrustedSigningAccountsWithinAResourceGroup(
-        com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.codeSigningAccounts().listByResourceGroup("MyResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CodeSigningAccounts_Update
-
-```java
 import com.azure.resourcemanager.trustedsigning.models.CodeSigningAccount;
 import java.util.HashMap;
 import java.util.Map;
@@ -313,7 +265,7 @@ import java.util.Map;
  */
 public final class CodeSigningAccountsUpdateSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/CodeSigningAccounts_Update.json
+     * x-ms-original-file: 2024-09-30-preview/CodeSigningAccounts_Update.json
      */
     /**
      * Sample code: Update a trusted signing account.
@@ -342,24 +294,72 @@ public final class CodeSigningAccountsUpdateSamples {
 }
 ```
 
-### Operations_List
+### CodeSigningAccounts_ListByResourceGroup
+
+```java
+import com.azure.resourcemanager.trustedsigning.models.CheckNameAvailability;
+
+/**
+ * Samples for CodeSigningAccounts CheckNameAvailability.
+ */
+public final class CodeSigningAccountsCheckNameAvailabilitySamples {
+    /*
+     * x-ms-original-file: 2024-09-30-preview/CodeSigningAccounts_CheckNameAvailability.json
+     */
+    /**
+     * Sample code: Checks that the trusted signing account name is available.
+     * 
+     * @param manager Entry point to TrustedSigningManager.
+     */
+    public static void checksThatTheTrustedSigningAccountNameIsAvailable(
+        com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.codeSigningAccounts()
+            .checkNameAvailabilityWithResponse(new CheckNameAvailability().withName("sample-account"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CodeSigningAccounts_Update
 
 ```java
 /**
- * Samples for Operations List.
+ * Samples for CodeSigningAccounts Delete.
  */
-public final class OperationsListSamples {
+public final class CodeSigningAccountsDeleteSamples {
     /*
-     * x-ms-original-file: 2024-02-05-preview/Operations_List.json
+     * x-ms-original-file: 2024-09-30-preview/CodeSigningAccounts_Delete.json
      */
     /**
-     * Sample code: List trusted signing account operations.
+     * Sample code: Delete a trusted signing account.
      * 
      * @param manager Entry point to TrustedSigningManager.
      */
     public static void
-        listTrustedSigningAccountOperations(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+        deleteATrustedSigningAccount(com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.codeSigningAccounts().delete("MyResourceGroup", "MyAccount", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for CodeSigningAccounts ListByResourceGroup.
+ */
+public final class CodeSigningAccountsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2024-09-30-preview/CodeSigningAccounts_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: Lists trusted signing accounts within a resource group.
+     * 
+     * @param manager Entry point to TrustedSigningManager.
+     */
+    public static void listsTrustedSigningAccountsWithinAResourceGroup(
+        com.azure.resourcemanager.trustedsigning.TrustedSigningManager manager) {
+        manager.codeSigningAccounts().listByResourceGroup("MyResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
