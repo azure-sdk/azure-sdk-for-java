@@ -11,17 +11,18 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.AzureMachineLearningWorkspaces;
 import com.azure.resourcemanager.machinelearning.implementation.AzureMachineLearningWorkspacesBuilder;
@@ -33,13 +34,13 @@ import com.azure.resourcemanager.machinelearning.implementation.ComponentContain
 import com.azure.resourcemanager.machinelearning.implementation.ComponentVersionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.ComputesImpl;
 import com.azure.resourcemanager.machinelearning.implementation.DataContainersImpl;
-import com.azure.resourcemanager.machinelearning.implementation.DatastoresImpl;
 import com.azure.resourcemanager.machinelearning.implementation.DataVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.DatastoresImpl;
 import com.azure.resourcemanager.machinelearning.implementation.EnvironmentContainersImpl;
 import com.azure.resourcemanager.machinelearning.implementation.EnvironmentVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.FeaturesImpl;
 import com.azure.resourcemanager.machinelearning.implementation.FeaturesetContainersImpl;
 import com.azure.resourcemanager.machinelearning.implementation.FeaturesetVersionsImpl;
-import com.azure.resourcemanager.machinelearning.implementation.FeaturesImpl;
 import com.azure.resourcemanager.machinelearning.implementation.FeaturestoreEntityContainersImpl;
 import com.azure.resourcemanager.machinelearning.implementation.FeaturestoreEntityVersionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.JobsImpl;
@@ -81,8 +82,8 @@ import com.azure.resourcemanager.machinelearning.models.ComponentContainers;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersions;
 import com.azure.resourcemanager.machinelearning.models.Computes;
 import com.azure.resourcemanager.machinelearning.models.DataContainers;
-import com.azure.resourcemanager.machinelearning.models.Datastores;
 import com.azure.resourcemanager.machinelearning.models.DataVersions;
+import com.azure.resourcemanager.machinelearning.models.Datastores;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentContainers;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentVersions;
 import com.azure.resourcemanager.machinelearning.models.Features;
@@ -125,6 +126,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -133,10 +135,6 @@ import java.util.stream.Collectors;
  * These APIs allow end users to operate on Azure Machine Learning Workspace resources.
  */
 public final class MachineLearningManager {
-    private Operations operations;
-
-    private Workspaces workspaces;
-
     private Usages usages;
 
     private VirtualMachineSizes virtualMachineSizes;
@@ -144,16 +142,6 @@ public final class MachineLearningManager {
     private Quotas quotas;
 
     private Computes computes;
-
-    private PrivateEndpointConnections privateEndpointConnections;
-
-    private PrivateLinkResources privateLinkResources;
-
-    private WorkspaceConnections workspaceConnections;
-
-    private ManagedNetworkSettingsRules managedNetworkSettingsRules;
-
-    private ManagedNetworkProvisions managedNetworkProvisions;
 
     private RegistryCodeContainers registryCodeContainers;
 
@@ -229,6 +217,20 @@ public final class MachineLearningManager {
 
     private WorkspaceFeatures workspaceFeatures;
 
+    private Operations operations;
+
+    private Workspaces workspaces;
+
+    private PrivateEndpointConnections privateEndpointConnections;
+
+    private PrivateLinkResources privateLinkResources;
+
+    private WorkspaceConnections workspaceConnections;
+
+    private ManagedNetworkSettingsRules managedNetworkSettingsRules;
+
+    private ManagedNetworkProvisions managedNetworkProvisions;
+
     private final AzureMachineLearningWorkspaces clientObject;
 
     private MachineLearningManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
@@ -281,6 +283,9 @@ public final class MachineLearningManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-machinelearning.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -388,12 +393,14 @@ public final class MachineLearningManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.machinelearning")
                 .append("/")
-                .append("1.1.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -426,7 +433,7 @@ public final class MachineLearningManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -437,30 +444,6 @@ public final class MachineLearningManager {
                 .build();
             return new MachineLearningManager(httpPipeline, profile, defaultPollInterval);
         }
-    }
-
-    /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
-     * Gets the resource collection API of Workspaces. It manages Workspace.
-     * 
-     * @return Resource collection API of Workspaces.
-     */
-    public Workspaces workspaces() {
-        if (this.workspaces == null) {
-            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
-        }
-        return workspaces;
     }
 
     /**
@@ -509,70 +492,6 @@ public final class MachineLearningManager {
             this.computes = new ComputesImpl(clientObject.getComputes(), this);
         }
         return computes;
-    }
-
-    /**
-     * Gets the resource collection API of PrivateEndpointConnections. It manages PrivateEndpointConnection.
-     * 
-     * @return Resource collection API of PrivateEndpointConnections.
-     */
-    public PrivateEndpointConnections privateEndpointConnections() {
-        if (this.privateEndpointConnections == null) {
-            this.privateEndpointConnections
-                = new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
-        }
-        return privateEndpointConnections;
-    }
-
-    /**
-     * Gets the resource collection API of PrivateLinkResources.
-     * 
-     * @return Resource collection API of PrivateLinkResources.
-     */
-    public PrivateLinkResources privateLinkResources() {
-        if (this.privateLinkResources == null) {
-            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
-        }
-        return privateLinkResources;
-    }
-
-    /**
-     * Gets the resource collection API of WorkspaceConnections. It manages
-     * WorkspaceConnectionPropertiesV2BasicResource.
-     * 
-     * @return Resource collection API of WorkspaceConnections.
-     */
-    public WorkspaceConnections workspaceConnections() {
-        if (this.workspaceConnections == null) {
-            this.workspaceConnections = new WorkspaceConnectionsImpl(clientObject.getWorkspaceConnections(), this);
-        }
-        return workspaceConnections;
-    }
-
-    /**
-     * Gets the resource collection API of ManagedNetworkSettingsRules. It manages OutboundRuleBasicResource.
-     * 
-     * @return Resource collection API of ManagedNetworkSettingsRules.
-     */
-    public ManagedNetworkSettingsRules managedNetworkSettingsRules() {
-        if (this.managedNetworkSettingsRules == null) {
-            this.managedNetworkSettingsRules
-                = new ManagedNetworkSettingsRulesImpl(clientObject.getManagedNetworkSettingsRules(), this);
-        }
-        return managedNetworkSettingsRules;
-    }
-
-    /**
-     * Gets the resource collection API of ManagedNetworkProvisions.
-     * 
-     * @return Resource collection API of ManagedNetworkProvisions.
-     */
-    public ManagedNetworkProvisions managedNetworkProvisions() {
-        if (this.managedNetworkProvisions == null) {
-            this.managedNetworkProvisions
-                = new ManagedNetworkProvisionsImpl(clientObject.getManagedNetworkProvisions(), this);
-        }
-        return managedNetworkProvisions;
     }
 
     /**
@@ -1028,6 +947,94 @@ public final class MachineLearningManager {
             this.workspaceFeatures = new WorkspaceFeaturesImpl(clientObject.getWorkspaceFeatures(), this);
         }
         return workspaceFeatures;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Workspaces. It manages Workspace.
+     * 
+     * @return Resource collection API of Workspaces.
+     */
+    public Workspaces workspaces() {
+        if (this.workspaces == null) {
+            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
+        }
+        return workspaces;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateEndpointConnections. It manages PrivateEndpointConnection.
+     * 
+     * @return Resource collection API of PrivateEndpointConnections.
+     */
+    public PrivateEndpointConnections privateEndpointConnections() {
+        if (this.privateEndpointConnections == null) {
+            this.privateEndpointConnections
+                = new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
+        }
+        return privateEndpointConnections;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateLinkResources.
+     * 
+     * @return Resource collection API of PrivateLinkResources.
+     */
+    public PrivateLinkResources privateLinkResources() {
+        if (this.privateLinkResources == null) {
+            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
+        }
+        return privateLinkResources;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceConnections. It manages
+     * WorkspaceConnectionPropertiesV2BasicResource.
+     * 
+     * @return Resource collection API of WorkspaceConnections.
+     */
+    public WorkspaceConnections workspaceConnections() {
+        if (this.workspaceConnections == null) {
+            this.workspaceConnections = new WorkspaceConnectionsImpl(clientObject.getWorkspaceConnections(), this);
+        }
+        return workspaceConnections;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedNetworkSettingsRules. It manages OutboundRuleBasicResource.
+     * 
+     * @return Resource collection API of ManagedNetworkSettingsRules.
+     */
+    public ManagedNetworkSettingsRules managedNetworkSettingsRules() {
+        if (this.managedNetworkSettingsRules == null) {
+            this.managedNetworkSettingsRules
+                = new ManagedNetworkSettingsRulesImpl(clientObject.getManagedNetworkSettingsRules(), this);
+        }
+        return managedNetworkSettingsRules;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedNetworkProvisions.
+     * 
+     * @return Resource collection API of ManagedNetworkProvisions.
+     */
+    public ManagedNetworkProvisions managedNetworkProvisions() {
+        if (this.managedNetworkProvisions == null) {
+            this.managedNetworkProvisions
+                = new ManagedNetworkProvisionsImpl(clientObject.getManagedNetworkProvisions(), this);
+        }
+        return managedNetworkProvisions;
     }
 
     /**

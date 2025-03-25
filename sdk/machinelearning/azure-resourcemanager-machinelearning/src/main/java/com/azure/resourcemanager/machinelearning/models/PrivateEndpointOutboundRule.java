@@ -89,7 +89,6 @@ public final class PrivateEndpointOutboundRule extends OutboundRule {
      */
     @Override
     public void validate() {
-        super.validate();
         if (destination() != null) {
             destination().validate();
         }
