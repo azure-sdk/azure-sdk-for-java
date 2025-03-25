@@ -24,6 +24,7 @@ import com.azure.resourcemanager.dataprotection.models.SyncBackupInstanceRequest
 import com.azure.resourcemanager.dataprotection.models.TriggerBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateCrossRegionRestoreRequestObject;
 import com.azure.resourcemanager.dataprotection.models.ValidateForBackupRequest;
+import com.azure.resourcemanager.dataprotection.models.ValidateForModifyBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateRestoreRequestObject;
 
 public final class BackupInstancesImpl implements BackupInstances {
@@ -121,6 +122,17 @@ public final class BackupInstancesImpl implements BackupInstances {
         } else {
             return null;
         }
+    }
+
+    public void validateForModifyBackup(String resourceGroupName, String vaultName, String backupInstanceName,
+        ValidateForModifyBackupRequest parameters) {
+        this.serviceClient().validateForModifyBackup(resourceGroupName, vaultName, backupInstanceName, parameters);
+    }
+
+    public void validateForModifyBackup(String resourceGroupName, String vaultName, String backupInstanceName,
+        ValidateForModifyBackupRequest parameters, Context context) {
+        this.serviceClient()
+            .validateForModifyBackup(resourceGroupName, vaultName, backupInstanceName, parameters, context);
     }
 
     public Response<BackupInstanceResource> getBackupInstanceOperationResultWithResponse(String resourceGroupName,

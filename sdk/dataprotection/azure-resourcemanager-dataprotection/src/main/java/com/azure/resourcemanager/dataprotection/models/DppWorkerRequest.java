@@ -29,7 +29,7 @@ public class DppWorkerRequest implements JsonSerializable<DppWorkerRequest> {
     private String uri;
 
     /*
-     * Dictionary of <components·ikn5y4·schemas·dppworkerrequest·properties·headers·additionalproperties>
+     * Request headers.
      */
     private Map<String, List<String>> headers;
 
@@ -100,8 +100,7 @@ public class DppWorkerRequest implements JsonSerializable<DppWorkerRequest> {
     }
 
     /**
-     * Get the headers property: Dictionary of
-     * &lt;components·ikn5y4·schemas·dppworkerrequest·properties·headers·additionalproperties&gt;.
+     * Get the headers property: Request headers.
      * 
      * @return the headers value.
      */
@@ -110,8 +109,7 @@ public class DppWorkerRequest implements JsonSerializable<DppWorkerRequest> {
     }
 
     /**
-     * Set the headers property: Dictionary of
-     * &lt;components·ikn5y4·schemas·dppworkerrequest·properties·headers·additionalproperties&gt;.
+     * Set the headers property: Request headers.
      * 
      * @param headers the headers value to set.
      * @return the DppWorkerRequest object itself.
