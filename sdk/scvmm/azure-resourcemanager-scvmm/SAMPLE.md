@@ -95,7 +95,7 @@ import java.util.Map;
  */
 public final class AvailabilitySetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -113,7 +113,7 @@ public final class AvailabilitySetsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -160,7 +160,7 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class AvailabilitySetsDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_Delete_MaximumSet_Gen.json
      */
     /**
@@ -173,7 +173,7 @@ public final class AvailabilitySetsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_Delete_MinimumSet_Gen.json
      */
     /**
@@ -195,7 +195,7 @@ public final class AvailabilitySetsDeleteSamples {
  */
 public final class AvailabilitySetsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_Get_MinimumSet_Gen.json
      */
     /**
@@ -208,7 +208,7 @@ public final class AvailabilitySetsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_Get_MaximumSet_Gen.json
      */
     /**
@@ -230,7 +230,7 @@ public final class AvailabilitySetsGetByResourceGroupSamples {
  */
 public final class AvailabilitySetsListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -244,7 +244,7 @@ public final class AvailabilitySetsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -267,7 +267,7 @@ public final class AvailabilitySetsListSamples {
  */
 public final class AvailabilitySetsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -281,7 +281,7 @@ public final class AvailabilitySetsListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -308,7 +308,7 @@ import java.util.Map;
  */
 public final class AvailabilitySetsUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_Update_MinimumSet_Gen.json
      */
     /**
@@ -324,7 +324,7 @@ public final class AvailabilitySetsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * AvailabilitySets_Update_MaximumSet_Gen.json
      */
     /**
@@ -366,7 +366,7 @@ import java.util.Map;
  */
 public final class CloudsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * Clouds_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -384,7 +384,7 @@ public final class CloudsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * Clouds_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -433,7 +433,7 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
 public final class CloudsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Delete_MaximumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Clouds_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Delete_MaximumSet.
@@ -446,7 +446,7 @@ public final class CloudsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Delete_MinimumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Clouds_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Delete_MinimumSet.
@@ -468,7 +468,7 @@ public final class CloudsDeleteSamples {
 public final class CloudsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Get_MaximumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Clouds_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Get_MaximumSet.
@@ -481,7 +481,7 @@ public final class CloudsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Get_MinimumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Clouds_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Get_MinimumSet.
@@ -502,7 +502,7 @@ public final class CloudsGetByResourceGroupSamples {
  */
 public final class CloudsListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * Clouds_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -515,7 +515,7 @@ public final class CloudsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * Clouds_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -537,7 +537,7 @@ public final class CloudsListSamples {
  */
 public final class CloudsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * Clouds_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -550,7 +550,7 @@ public final class CloudsListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * Clouds_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -577,7 +577,7 @@ import java.util.Map;
 public final class CloudsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Update_MinimumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Clouds_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Update_MinimumSet.
@@ -593,7 +593,7 @@ public final class CloudsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Update_MaximumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Clouds_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Update_MaximumSet.
@@ -636,7 +636,7 @@ import com.azure.resourcemanager.scvmm.models.ProvisioningAction;
 public final class GuestAgentsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Create_MinimumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/GuestAgents_Create_MinimumSet_Gen
      * .json
      */
     /**
@@ -650,7 +650,7 @@ public final class GuestAgentsCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Create_MaximumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/GuestAgents_Create_MaximumSet_Gen
      * .json
      */
     /**
@@ -680,7 +680,7 @@ public final class GuestAgentsCreateSamples {
 public final class GuestAgentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Delete_MaximumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/GuestAgents_Delete_MaximumSet_Gen
      * .json
      */
     /**
@@ -694,7 +694,7 @@ public final class GuestAgentsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Delete_MinimumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/GuestAgents_Delete_MinimumSet_Gen
      * .json
      */
     /**
@@ -717,7 +717,7 @@ public final class GuestAgentsDeleteSamples {
 public final class GuestAgentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Get_MaximumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/GuestAgents_Get_MaximumSet_Gen.
      * json
      */
     /**
@@ -731,7 +731,7 @@ public final class GuestAgentsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Get_MinimumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/GuestAgents_Get_MinimumSet_Gen.
      * json
      */
     /**
@@ -753,7 +753,7 @@ public final class GuestAgentsGetSamples {
  */
 public final class GuestAgentsListByVirtualMachineInstanceSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * GuestAgents_ListByVirtualMachineInstance_MaximumSet_Gen.json
      */
     /**
@@ -767,7 +767,7 @@ public final class GuestAgentsListByVirtualMachineInstanceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * GuestAgents_ListByVirtualMachineInstance_MinimumSet_Gen.json
      */
     /**
@@ -792,7 +792,7 @@ import com.azure.resourcemanager.scvmm.models.InventoryItemProperties;
  */
 public final class InventoryItemsCreateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * InventoryItems_Create_MinimumSet_Gen.json
      */
     /**
@@ -808,7 +808,7 @@ public final class InventoryItemsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * InventoryItems_Create_MaximumSet_Gen.json
      */
     /**
@@ -835,7 +835,7 @@ public final class InventoryItemsCreateSamples {
  */
 public final class InventoryItemsDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * InventoryItems_Delete_MaximumSet_Gen.json
      */
     /**
@@ -850,7 +850,7 @@ public final class InventoryItemsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * InventoryItems_Delete_MinimumSet_Gen.json
      */
     /**
@@ -875,7 +875,7 @@ public final class InventoryItemsDeleteSamples {
 public final class InventoryItemsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/InventoryItems_Get_MinimumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/InventoryItems_Get_MinimumSet_Gen
      * .json
      */
     /**
@@ -890,7 +890,7 @@ public final class InventoryItemsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/InventoryItems_Get_MaximumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/InventoryItems_Get_MaximumSet_Gen
      * .json
      */
     /**
@@ -913,7 +913,7 @@ public final class InventoryItemsGetSamples {
  */
 public final class InventoryItemsListByVmmServerSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * InventoryItems_ListByVmmServer_MaximumSet_Gen.json
      */
     /**
@@ -926,7 +926,7 @@ public final class InventoryItemsListByVmmServerSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * InventoryItems_ListByVmmServer_MinimumSet_Gen.json
      */
     /**
@@ -949,7 +949,7 @@ public final class InventoryItemsListByVmmServerSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Operations_List_MinimumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Operations_List_MinimumSet_Gen.
      * json
      */
     /**
@@ -963,7 +963,7 @@ public final class OperationsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Operations_List_MaximumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Operations_List_MaximumSet_Gen.
      * json
      */
     /**
@@ -987,7 +987,7 @@ import com.azure.resourcemanager.scvmm.models.VirtualMachineCreateCheckpoint;
  */
 public final class VirtualMachineInstancesCreateCheckpointSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_CreateCheckpoint_MaximumSet_Gen.json
      */
     /**
@@ -1003,7 +1003,7 @@ public final class VirtualMachineInstancesCreateCheckpointSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_CreateCheckpoint_MinimumSet_Gen.json
      */
     /**
@@ -1045,7 +1045,7 @@ import java.util.Arrays;
  */
 public final class VirtualMachineInstancesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -1061,8 +1061,16 @@ public final class VirtualMachineInstancesCreateOrUpdateSamples {
                     .withAvailabilitySets(Arrays.asList(new AvailabilitySetListItem().withId(
                         "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.ScVmm/availabilitySets/availabilitySetResourceName")
                         .withName("lwbhaseo")))
-                    .withOsProfile(new OsProfileForVmInstance().withAdminPassword("fakeTokenPlaceholder")
-                        .withComputerName("uuxpcxuxcufllc"))
+                    .withOsProfile(new OsProfileForVmInstance().withAdminUsername("asasas")
+                        .withAdminPassword("fakeTokenPlaceholder")
+                        .withComputerName("uuxpcxuxcufllc")
+                        .withDomainName("vblzsoqxzlrygdulnefexjdezo")
+                        .withDomainUsername("sn")
+                        .withDomainPassword("fakeTokenPlaceholder")
+                        .withWorkgroup("bsqftibgcnnjpvmuxligk")
+                        .withProductKey("fakeTokenPlaceholder")
+                        .withTimezone(4)
+                        .withRunOnceCommands("byxpnluptiwxycbbybsf;qwerty"))
                     .withHardwareProfile(new HardwareProfile().withMemoryMB(5)
                         .withCpuCount(22)
                         .withLimitCpuForMigration(LimitCpuForMigration.TRUE)
@@ -1108,7 +1116,7 @@ public final class VirtualMachineInstancesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -1137,7 +1145,7 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class VirtualMachineInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Delete_MaximumSet_Gen.json
      */
     /**
@@ -1151,7 +1159,7 @@ public final class VirtualMachineInstancesDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Delete_MinimumSet_Gen.json
      */
     /**
@@ -1175,7 +1183,7 @@ import com.azure.resourcemanager.scvmm.models.VirtualMachineDeleteCheckpoint;
  */
 public final class VirtualMachineInstancesDeleteCheckpointSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_DeleteCheckpoint_MaximumSet_Gen.json
      */
     /**
@@ -1192,7 +1200,7 @@ public final class VirtualMachineInstancesDeleteCheckpointSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_DeleteCheckpoint_MinimumSet_Gen.json
      */
     /**
@@ -1216,7 +1224,7 @@ public final class VirtualMachineInstancesDeleteCheckpointSamples {
  */
 public final class VirtualMachineInstancesGetSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Get_MinimumSet_Gen.json
      */
     /**
@@ -1229,7 +1237,7 @@ public final class VirtualMachineInstancesGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Get_MaximumSet_Gen.json
      */
     /**
@@ -1251,7 +1259,7 @@ public final class VirtualMachineInstancesGetSamples {
  */
 public final class VirtualMachineInstancesListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_List_MaximumSet_Gen.json
      */
     /**
@@ -1264,7 +1272,7 @@ public final class VirtualMachineInstancesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_List_MinimumSet_Gen.json
      */
     /**
@@ -1286,7 +1294,7 @@ public final class VirtualMachineInstancesListSamples {
  */
 public final class VirtualMachineInstancesRestartSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Restart_MaximumSet_Gen.json
      */
     /**
@@ -1299,7 +1307,7 @@ public final class VirtualMachineInstancesRestartSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Restart_MinimumSet_Gen.json
      */
     /**
@@ -1323,7 +1331,7 @@ import com.azure.resourcemanager.scvmm.models.VirtualMachineRestoreCheckpoint;
  */
 public final class VirtualMachineInstancesRestoreCheckpointSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_RestoreCheckpoint_MinimumSet_Gen.json
      */
     /**
@@ -1339,7 +1347,7 @@ public final class VirtualMachineInstancesRestoreCheckpointSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_RestoreCheckpoint_MaximumSet_Gen.json
      */
     /**
@@ -1364,7 +1372,7 @@ public final class VirtualMachineInstancesRestoreCheckpointSamples {
  */
 public final class VirtualMachineInstancesStartSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Start_MinimumSet_Gen.json
      */
     /**
@@ -1377,7 +1385,7 @@ public final class VirtualMachineInstancesStartSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Start_MaximumSet_Gen.json
      */
     /**
@@ -1402,7 +1410,7 @@ import com.azure.resourcemanager.scvmm.models.StopVirtualMachineOptions;
  */
 public final class VirtualMachineInstancesStopSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Stop_MaximumSet_Gen.json
      */
     /**
@@ -1417,7 +1425,7 @@ public final class VirtualMachineInstancesStopSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Stop_MinimumSet_Gen.json
      */
     /**
@@ -1455,7 +1463,7 @@ import java.util.Arrays;
  */
 public final class VirtualMachineInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Update_MinimumSet_Gen.json
      */
     /**
@@ -1469,7 +1477,7 @@ public final class VirtualMachineInstancesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_Update_MaximumSet_Gen.json
      */
     /**
@@ -1528,7 +1536,7 @@ import java.util.Map;
  */
 public final class VirtualMachineTemplatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -1547,7 +1555,7 @@ public final class VirtualMachineTemplatesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -1596,7 +1604,7 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class VirtualMachineTemplatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_Delete_MinimumSet_Gen.json
      */
     /**
@@ -1609,7 +1617,7 @@ public final class VirtualMachineTemplatesDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_Delete_MaximumSet_Gen.json
      */
     /**
@@ -1631,7 +1639,7 @@ public final class VirtualMachineTemplatesDeleteSamples {
  */
 public final class VirtualMachineTemplatesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_Get_MinimumSet_Gen.json
      */
     /**
@@ -1645,7 +1653,7 @@ public final class VirtualMachineTemplatesGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_Get_MaximumSet_Gen.json
      */
     /**
@@ -1668,7 +1676,7 @@ public final class VirtualMachineTemplatesGetByResourceGroupSamples {
  */
 public final class VirtualMachineTemplatesListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -1682,7 +1690,7 @@ public final class VirtualMachineTemplatesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -1705,7 +1713,7 @@ public final class VirtualMachineTemplatesListSamples {
  */
 public final class VirtualMachineTemplatesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -1719,7 +1727,7 @@ public final class VirtualMachineTemplatesListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -1746,7 +1754,7 @@ import java.util.Map;
  */
 public final class VirtualMachineTemplatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_Update_MaximumSet_Gen.json
      */
     /**
@@ -1762,7 +1770,7 @@ public final class VirtualMachineTemplatesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineTemplates_Update_MinimumSet_Gen.json
      */
     /**
@@ -1804,7 +1812,7 @@ import java.util.Map;
  */
 public final class VirtualNetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -1829,7 +1837,7 @@ public final class VirtualNetworksCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -1870,7 +1878,7 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class VirtualNetworksDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_Delete_MaximumSet_Gen.json
      */
     /**
@@ -1883,7 +1891,7 @@ public final class VirtualNetworksDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_Delete_MinimumSet_Gen.json
      */
     /**
@@ -1905,7 +1913,7 @@ public final class VirtualNetworksDeleteSamples {
  */
 public final class VirtualNetworksGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_Get_MaximumSet_Gen.json
      */
     /**
@@ -1918,7 +1926,7 @@ public final class VirtualNetworksGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_Get_MinimumSet_Gen.json
      */
     /**
@@ -1940,7 +1948,7 @@ public final class VirtualNetworksGetByResourceGroupSamples {
  */
 public final class VirtualNetworksListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -1954,7 +1962,7 @@ public final class VirtualNetworksListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -1977,7 +1985,7 @@ public final class VirtualNetworksListSamples {
  */
 public final class VirtualNetworksListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -1991,7 +1999,7 @@ public final class VirtualNetworksListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -2018,7 +2026,7 @@ import java.util.Map;
  */
 public final class VirtualNetworksUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_Update_MinimumSet_Gen.json
      */
     /**
@@ -2034,7 +2042,7 @@ public final class VirtualNetworksUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualNetworks_Update_MaximumSet_Gen.json
      */
     /**
@@ -2071,7 +2079,7 @@ public final class VirtualNetworksUpdateSamples {
  */
 public final class VmInstanceHybridIdentityMetadatasGetSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmInstanceHybridIdentityMetadatas_Get_MinimumSet_Gen.json
      */
     /**
@@ -2085,7 +2093,7 @@ public final class VmInstanceHybridIdentityMetadatasGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmInstanceHybridIdentityMetadatas_Get_MaximumSet_Gen.json
      */
     /**
@@ -2108,7 +2116,7 @@ public final class VmInstanceHybridIdentityMetadatasGetSamples {
  */
 public final class VmInstanceHybridIdentityMetadatasListByVirtualMachineInstanceSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmInstanceHybridIdentityMetadatas_ListByVirtualMachineInstance_MaximumSet_Gen.json
      */
     /**
@@ -2123,7 +2131,7 @@ public final class VmInstanceHybridIdentityMetadatasListByVirtualMachineInstance
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmInstanceHybridIdentityMetadatas_ListByVirtualMachineInstance_MinimumSet_Gen.json
      */
     /**
@@ -2153,7 +2161,7 @@ import java.util.Map;
  */
 public final class VmmServersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmmServers_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -2171,7 +2179,7 @@ public final class VmmServersCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmmServers_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -2221,7 +2229,7 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
 public final class VmmServersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Delete_MaximumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/VmmServers_Delete_MaximumSet_Gen.
      * json
      */
     /**
@@ -2235,7 +2243,7 @@ public final class VmmServersDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Delete_MinimumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/VmmServers_Delete_MinimumSet_Gen.
      * json
      */
     /**
@@ -2258,7 +2266,7 @@ public final class VmmServersDeleteSamples {
 public final class VmmServersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Get_MinimumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/VmmServers_Get_MinimumSet_Gen.
      * json
      */
     /**
@@ -2272,7 +2280,7 @@ public final class VmmServersGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Get_MaximumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/VmmServers_Get_MaximumSet_Gen.
      * json
      */
     /**
@@ -2294,7 +2302,7 @@ public final class VmmServersGetByResourceGroupSamples {
  */
 public final class VmmServersListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmmServers_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -2307,7 +2315,7 @@ public final class VmmServersListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmmServers_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -2329,7 +2337,7 @@ public final class VmmServersListSamples {
  */
 public final class VmmServersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmmServers_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -2342,7 +2350,7 @@ public final class VmmServersListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmmServers_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -2369,7 +2377,7 @@ import java.util.Map;
 public final class VmmServersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Update_MinimumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/VmmServers_Update_MinimumSet_Gen.
      * json
      */
     /**
@@ -2386,7 +2394,7 @@ public final class VmmServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Update_MaximumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/VmmServers_Update_MaximumSet_Gen.
      * json
      */
     /**
