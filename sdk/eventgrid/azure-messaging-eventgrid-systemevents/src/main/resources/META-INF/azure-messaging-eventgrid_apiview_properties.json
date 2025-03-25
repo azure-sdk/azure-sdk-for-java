@@ -3,6 +3,7 @@
   "CrossLanguageDefinitionId": {
     "com.azure.messaging.eventgrid.implementation.models.AcsMessageChannelEventError": "Microsoft.EventGrid.SystemEvents.AcsMessageChannelEventError",
     "com.azure.messaging.eventgrid.implementation.models.AcsRouterCommunicationError": "Microsoft.EventGrid.SystemEvents.AcsRouterCommunicationError",
+    "com.azure.messaging.eventgrid.systemevents.AcsChatAzureBotCommandReceivedInThreadEventData": "Microsoft.EventGrid.SystemEvents.AcsChatAzureBotCommandReceivedInThreadEventData",
     "com.azure.messaging.eventgrid.systemevents.AcsChatEventBaseProperties": "Microsoft.EventGrid.SystemEvents.AcsChatEventBaseProperties",
     "com.azure.messaging.eventgrid.systemevents.AcsChatEventInThreadBaseProperties": "Microsoft.EventGrid.SystemEvents.AcsChatEventInThreadBaseProperties",
     "com.azure.messaging.eventgrid.systemevents.AcsChatMessageDeletedEventData": "Microsoft.EventGrid.SystemEvents.AcsChatMessageDeletedEventData",
@@ -26,6 +27,7 @@
     "com.azure.messaging.eventgrid.systemevents.AcsChatThreadPropertiesUpdatedEventData": "Microsoft.EventGrid.SystemEvents.AcsChatThreadPropertiesUpdatedEventData",
     "com.azure.messaging.eventgrid.systemevents.AcsChatThreadPropertiesUpdatedPerUserEventData": "Microsoft.EventGrid.SystemEvents.AcsChatThreadPropertiesUpdatedPerUserEventData",
     "com.azure.messaging.eventgrid.systemevents.AcsChatThreadWithUserDeletedEventData": "Microsoft.EventGrid.SystemEvents.AcsChatThreadWithUserDeletedEventData",
+    "com.azure.messaging.eventgrid.systemevents.AcsChatTypingIndicatorReceivedInThreadEventData": "Microsoft.EventGrid.SystemEvents.AcsChatTypingIndicatorReceivedInThreadEventData",
     "com.azure.messaging.eventgrid.systemevents.AcsEmailDeliveryReportReceivedEventData": "Microsoft.EventGrid.SystemEvents.AcsEmailDeliveryReportReceivedEventData",
     "com.azure.messaging.eventgrid.systemevents.AcsEmailDeliveryReportStatus": "Microsoft.EventGrid.SystemEvents.AcsEmailDeliveryReportStatus",
     "com.azure.messaging.eventgrid.systemevents.AcsEmailDeliveryReportStatusDetails": "Microsoft.EventGrid.SystemEvents.AcsEmailDeliveryReportStatusDetails",
