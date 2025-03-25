@@ -28,6 +28,11 @@ public final class AzureVmWorkloadProtectionPolicy extends ProtectionPolicy {
     private WorkloadType workLoadType;
 
     /*
+     * Type of workload for the backup management
+     */
+    private VMWorkloadPolicyType vmWorkloadPolicyType;
+
+    /*
      * Common settings for the backup management
      */
     private Settings settings;
@@ -76,6 +81,26 @@ public final class AzureVmWorkloadProtectionPolicy extends ProtectionPolicy {
      */
     public AzureVmWorkloadProtectionPolicy withWorkLoadType(WorkloadType workLoadType) {
         this.workLoadType = workLoadType;
+        return this;
+    }
+
+    /**
+     * Get the vmWorkloadPolicyType property: Type of workload for the backup management.
+     * 
+     * @return the vmWorkloadPolicyType value.
+     */
+    public VMWorkloadPolicyType vmWorkloadPolicyType() {
+        return this.vmWorkloadPolicyType;
+    }
+
+    /**
+     * Set the vmWorkloadPolicyType property: Type of workload for the backup management.
+     * 
+     * @param vmWorkloadPolicyType the vmWorkloadPolicyType value to set.
+     * @return the AzureVmWorkloadProtectionPolicy object itself.
+     */
+    public AzureVmWorkloadProtectionPolicy withVmWorkloadPolicyType(VMWorkloadPolicyType vmWorkloadPolicyType) {
+        this.vmWorkloadPolicyType = vmWorkloadPolicyType;
         return this;
     }
 
@@ -184,6 +209,8 @@ public final class AzureVmWorkloadProtectionPolicy extends ProtectionPolicy {
             (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("backupManagementType", this.backupManagementType);
         jsonWriter.writeStringField("workLoadType", this.workLoadType == null ? null : this.workLoadType.toString());
+        jsonWriter.writeStringField("vmWorkloadPolicyType",
+            this.vmWorkloadPolicyType == null ? null : this.vmWorkloadPolicyType.toString());
         jsonWriter.writeJsonField("settings", this.settings);
         jsonWriter.writeArrayField("subProtectionPolicy", this.subProtectionPolicy,
             (writer, element) -> writer.writeJson(element));
@@ -219,6 +246,9 @@ public final class AzureVmWorkloadProtectionPolicy extends ProtectionPolicy {
                 } else if ("workLoadType".equals(fieldName)) {
                     deserializedAzureVmWorkloadProtectionPolicy.workLoadType
                         = WorkloadType.fromString(reader.getString());
+                } else if ("vmWorkloadPolicyType".equals(fieldName)) {
+                    deserializedAzureVmWorkloadProtectionPolicy.vmWorkloadPolicyType
+                        = VMWorkloadPolicyType.fromString(reader.getString());
                 } else if ("settings".equals(fieldName)) {
                     deserializedAzureVmWorkloadProtectionPolicy.settings = Settings.fromJson(reader);
                 } else if ("subProtectionPolicy".equals(fieldName)) {
