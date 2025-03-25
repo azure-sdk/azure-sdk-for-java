@@ -10,8 +10,8 @@ package com.azure.resourcemanager.recoveryservicesbackup.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
-     * ListOperations.json
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/preview/2024-11-01-preview/
+     * examples/ListOperations.json
      */
     /**
      * Sample code: ListOperations.
