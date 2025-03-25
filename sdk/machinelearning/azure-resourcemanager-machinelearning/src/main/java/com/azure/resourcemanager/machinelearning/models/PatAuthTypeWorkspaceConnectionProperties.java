@@ -30,16 +30,6 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
      */
     private WorkspaceConnectionPersonalAccessToken credentials;
 
-    /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
-     * Group based on connection category
-     */
-    private ConnectionGroup group;
-
     /**
      * Creates an instance of PatAuthTypeWorkspaceConnectionProperties class.
      */
@@ -75,26 +65,6 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
         withCredentials(WorkspaceConnectionPersonalAccessToken credentials) {
         this.credentials = credentials;
         return this;
-    }
-
-    /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
-     * Get the group property: Group based on connection category.
-     * 
-     * @return the group value.
-     */
-    @Override
-    public ConnectionGroup group() {
-        return this.group;
     }
 
     /**
@@ -176,7 +146,6 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
      */
     @Override
     public void validate() {
-        super.validate();
         if (credentials() != null) {
             credentials().validate();
         }
@@ -223,13 +192,14 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
                     deserializedPatAuthTypeWorkspaceConnectionProperties
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
-                    deserializedPatAuthTypeWorkspaceConnectionProperties.createdByWorkspaceArmId = reader.getString();
+                    deserializedPatAuthTypeWorkspaceConnectionProperties
+                        .withCreatedByWorkspaceArmId(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedPatAuthTypeWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("group".equals(fieldName)) {
-                    deserializedPatAuthTypeWorkspaceConnectionProperties.group
-                        = ConnectionGroup.fromString(reader.getString());
+                    deserializedPatAuthTypeWorkspaceConnectionProperties
+                        .withGroup(ConnectionGroup.fromString(reader.getString()));
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedPatAuthTypeWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));

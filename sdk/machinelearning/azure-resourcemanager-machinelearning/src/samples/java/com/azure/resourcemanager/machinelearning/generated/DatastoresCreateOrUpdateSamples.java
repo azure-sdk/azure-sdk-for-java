@@ -22,7 +22,7 @@ import java.util.UUID;
 public final class DatastoresCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Datastore/AzureDataLakeGen1WServicePrincipal/createOrUpdate.json
      */
     /**
@@ -38,10 +38,10 @@ public final class DatastoresCreateOrUpdateSamples {
             .withProperties(new AzureDataLakeGen1Datastore().withDescription("string")
                 .withTags(mapOf("string", "string"))
                 .withCredentials(new ServicePrincipalDatastoreCredentials().withAuthorityUrl("string")
-                    .withResourceUrl("string")
-                    .withTenantId(UUID.fromString("00000000-1111-2222-3333-444444444444"))
                     .withClientId(UUID.fromString("00000000-1111-2222-3333-444444444444"))
-                    .withSecrets(new ServicePrincipalDatastoreSecrets().withClientSecret("fakeTokenPlaceholder")))
+                    .withResourceUrl("string")
+                    .withSecrets(new ServicePrincipalDatastoreSecrets().withClientSecret("fakeTokenPlaceholder"))
+                    .withTenantId(UUID.fromString("00000000-1111-2222-3333-444444444444")))
                 .withStoreName("string"))
             .withSkipValidation(false)
             .create();
@@ -49,7 +49,7 @@ public final class DatastoresCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Datastore/AzureDataLakeGen2WServicePrincipal/createOrUpdate.json
      */
     /**
@@ -65,13 +65,13 @@ public final class DatastoresCreateOrUpdateSamples {
             .withProperties(new AzureDataLakeGen2Datastore().withDescription("string")
                 .withTags(mapOf("string", "string"))
                 .withCredentials(new ServicePrincipalDatastoreCredentials().withAuthorityUrl("string")
-                    .withResourceUrl("string")
-                    .withTenantId(UUID.fromString("00000000-1111-2222-3333-444444444444"))
                     .withClientId(UUID.fromString("00000000-1111-2222-3333-444444444444"))
-                    .withSecrets(new ServicePrincipalDatastoreSecrets().withClientSecret("fakeTokenPlaceholder")))
-                .withFilesystem("string")
+                    .withResourceUrl("string")
+                    .withSecrets(new ServicePrincipalDatastoreSecrets().withClientSecret("fakeTokenPlaceholder"))
+                    .withTenantId(UUID.fromString("00000000-1111-2222-3333-444444444444")))
                 .withAccountName("string")
                 .withEndpoint("string")
+                .withFilesystem("string")
                 .withProtocol("string"))
             .withSkipValidation(false)
             .create();
@@ -79,7 +79,7 @@ public final class DatastoresCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Datastore/AzureBlobWAccountKey/createOrUpdate.json
      */
     /**
@@ -106,7 +106,7 @@ public final class DatastoresCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Datastore/AzureFileWAccountKey/createOrUpdate.json
      */
     /**
@@ -124,8 +124,8 @@ public final class DatastoresCreateOrUpdateSamples {
                 .withCredentials(new AccountKeyDatastoreCredentials()
                     .withSecrets(new AccountKeyDatastoreSecrets().withKey("fakeTokenPlaceholder")))
                 .withAccountName("string")
-                .withFileShareName("string")
                 .withEndpoint("string")
+                .withFileShareName("string")
                 .withProtocol("string"))
             .withSkipValidation(false)
             .create();
