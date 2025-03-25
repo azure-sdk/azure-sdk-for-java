@@ -31,6 +31,11 @@ public final class CloudCapacity implements JsonSerializable<CloudCapacity> {
      */
     private Long vmCount;
 
+    /*
+     * StorageGB gives the storage in GB present in the cloud.
+     */
+    private Long storageGB;
+
     /**
      * Creates an instance of CloudCapacity class.
      */
@@ -62,6 +67,15 @@ public final class CloudCapacity implements JsonSerializable<CloudCapacity> {
      */
     public Long vmCount() {
         return this.vmCount;
+    }
+
+    /**
+     * Get the storageGB property: StorageGB gives the storage in GB present in the cloud.
+     * 
+     * @return the storageGB value.
+     */
+    public Long storageGB() {
+        return this.storageGB;
     }
 
     /**
@@ -102,6 +116,8 @@ public final class CloudCapacity implements JsonSerializable<CloudCapacity> {
                     deserializedCloudCapacity.memoryMB = reader.getNullable(JsonReader::getLong);
                 } else if ("vmCount".equals(fieldName)) {
                     deserializedCloudCapacity.vmCount = reader.getNullable(JsonReader::getLong);
+                } else if ("storageGB".equals(fieldName)) {
+                    deserializedCloudCapacity.storageGB = reader.getNullable(JsonReader::getLong);
                 } else {
                     reader.skipChildren();
                 }

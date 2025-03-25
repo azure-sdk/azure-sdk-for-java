@@ -1,14 +1,80 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-25)
 
-### Features Added
+- Azure Resource Manager Scvmm client library for Java. This package contains Microsoft Azure SDK for Scvmm Management SDK. SCVMM Client. Package tag package-2025-03. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.VirtualNetworkInventoryItem` was modified
 
-### Other Changes
+* `uuid()` was removed
+* `managedResourceId()` was removed
+* `provisioningState()` was removed
+* `inventoryItemName()` was removed
+
+#### `models.VirtualMachineTemplateInventoryItem` was modified
+
+* `managedResourceId()` was removed
+* `provisioningState()` was removed
+* `uuid()` was removed
+* `inventoryItemName()` was removed
+
+#### `models.CloudInventoryItem` was modified
+
+* `provisioningState()` was removed
+* `uuid()` was removed
+* `inventoryItemName()` was removed
+* `managedResourceId()` was removed
+
+#### `models.VirtualMachineInstances` was modified
+
+* `stop(java.lang.String,models.StopVirtualMachineOptions)` was removed
+
+#### `models.VirtualMachineInventoryItem` was modified
+
+* `uuid()` was removed
+* `provisioningState()` was removed
+* `inventoryItemName()` was removed
+* `managedResourceId()` was removed
+
+### Features Added
+
+#### `models.GuestAgentProperties` was modified
+
+* `withPrivateLinkScopeResourceId(java.lang.String)` was added
+* `privateLinkScopeResourceId()` was added
+
+#### `models.VirtualMachineInstances` was modified
+
+* `stop(java.lang.String)` was added
+
+#### `models.VirtualMachineInventoryItem` was modified
+
+* `generation()` was added
+
+#### `models.CloudCapacity` was modified
+
+* `storageGB()` was added
+
+#### `models.OsProfileForVmInstance` was modified
+
+* `withRunOnceCommands(java.lang.String)` was added
+* `adminUsername()` was added
+* `domainPassword()` was added
+* `productKey()` was added
+* `domainUsername()` was added
+* `timezone()` was added
+* `domainName()` was added
+* `withDomainName(java.lang.String)` was added
+* `workgroup()` was added
+* `runOnceCommands()` was added
+* `withDomainPassword(java.lang.String)` was added
+* `withProductKey(java.lang.String)` was added
+* `withDomainUsername(java.lang.String)` was added
+* `withAdminUsername(java.lang.String)` was added
+* `withTimezone(java.lang.Integer)` was added
+* `withWorkgroup(java.lang.String)` was added
 
 ## 1.0.0 (2024-06-26)
 

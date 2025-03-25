@@ -14,7 +14,7 @@ import java.util.Map;
 public final class CloudsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Update_MinimumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Clouds_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Update_MinimumSet.
@@ -30,7 +30,7 @@ public final class CloudsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Update_MaximumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/Clouds_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Update_MaximumSet.
