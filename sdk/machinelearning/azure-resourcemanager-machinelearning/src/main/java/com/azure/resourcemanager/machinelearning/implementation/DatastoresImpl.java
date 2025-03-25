@@ -13,8 +13,8 @@ import com.azure.resourcemanager.machinelearning.fluent.DatastoresClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreSecretsInner;
 import com.azure.resourcemanager.machinelearning.models.Datastore;
-import com.azure.resourcemanager.machinelearning.models.Datastores;
 import com.azure.resourcemanager.machinelearning.models.DatastoreSecrets;
+import com.azure.resourcemanager.machinelearning.models.Datastores;
 import java.util.List;
 
 public final class DatastoresImpl implements Datastores {
