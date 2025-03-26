@@ -10,9 +10,13 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elasticsan.fluent.VolumeGroupsClient;
+import com.azure.resourcemanager.elasticsan.fluent.models.PreValidationResponseInner;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeGroupInner;
+import com.azure.resourcemanager.elasticsan.models.DiskSnapshotList;
+import com.azure.resourcemanager.elasticsan.models.PreValidationResponse;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroup;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroups;
+import com.azure.resourcemanager.elasticsan.models.VolumeNameList;
 
 public final class VolumeGroupsImpl implements VolumeGroups {
     private static final ClientLogger LOGGER = new ClientLogger(VolumeGroupsImpl.class);
@@ -64,6 +68,50 @@ public final class VolumeGroupsImpl implements VolumeGroups {
         VolumeGroupInner inner = this.serviceClient().get(resourceGroupName, elasticSanName, volumeGroupName);
         if (inner != null) {
             return new VolumeGroupImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PreValidationResponse preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        VolumeNameList parameters) {
+        PreValidationResponseInner inner
+            = this.serviceClient().preBackup(resourceGroupName, elasticSanName, volumeGroupName, parameters);
+        if (inner != null) {
+            return new PreValidationResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PreValidationResponse preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        VolumeNameList parameters, Context context) {
+        PreValidationResponseInner inner
+            = this.serviceClient().preBackup(resourceGroupName, elasticSanName, volumeGroupName, parameters, context);
+        if (inner != null) {
+            return new PreValidationResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PreValidationResponse preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        DiskSnapshotList parameters) {
+        PreValidationResponseInner inner
+            = this.serviceClient().preRestore(resourceGroupName, elasticSanName, volumeGroupName, parameters);
+        if (inner != null) {
+            return new PreValidationResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PreValidationResponse preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        DiskSnapshotList parameters, Context context) {
+        PreValidationResponseInner inner
+            = this.serviceClient().preRestore(resourceGroupName, elasticSanName, volumeGroupName, parameters, context);
+        if (inner != null) {
+            return new PreValidationResponseImpl(inner, this.manager());
         } else {
             return null;
         }

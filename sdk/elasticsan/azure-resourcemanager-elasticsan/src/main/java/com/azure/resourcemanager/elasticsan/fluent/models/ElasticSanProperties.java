@@ -10,7 +10,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.elasticsan.models.AutoScaleProperties;
 import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
 import com.azure.resourcemanager.elasticsan.models.Sku;
@@ -82,11 +81,6 @@ public final class ElasticSanProperties implements JsonSerializable<ElasticSanPr
      * 'Disabled'.
      */
     private PublicNetworkAccess publicNetworkAccess;
-
-    /*
-     * Auto Scale Properties for Elastic San Appliance.
-     */
-    private AutoScaleProperties autoScaleProperties;
 
     /**
      * Creates an instance of ElasticSanProperties class.
@@ -260,26 +254,6 @@ public final class ElasticSanProperties implements JsonSerializable<ElasticSanPr
     }
 
     /**
-     * Get the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
-     * 
-     * @return the autoScaleProperties value.
-     */
-    public AutoScaleProperties autoScaleProperties() {
-        return this.autoScaleProperties;
-    }
-
-    /**
-     * Set the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
-     * 
-     * @param autoScaleProperties the autoScaleProperties value to set.
-     * @return the ElasticSanProperties object itself.
-     */
-    public ElasticSanProperties withAutoScaleProperties(AutoScaleProperties autoScaleProperties) {
-        this.autoScaleProperties = autoScaleProperties;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -293,9 +267,6 @@ public final class ElasticSanProperties implements JsonSerializable<ElasticSanPr
         }
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
-        }
-        if (autoScaleProperties() != null) {
-            autoScaleProperties().validate();
         }
     }
 
@@ -314,7 +285,6 @@ public final class ElasticSanProperties implements JsonSerializable<ElasticSanPr
             (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("publicNetworkAccess",
             this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
-        jsonWriter.writeJsonField("autoScaleProperties", this.autoScaleProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -363,8 +333,6 @@ public final class ElasticSanProperties implements JsonSerializable<ElasticSanPr
                 } else if ("publicNetworkAccess".equals(fieldName)) {
                     deserializedElasticSanProperties.publicNetworkAccess
                         = PublicNetworkAccess.fromString(reader.getString());
-                } else if ("autoScaleProperties".equals(fieldName)) {
-                    deserializedElasticSanProperties.autoScaleProperties = AutoScaleProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

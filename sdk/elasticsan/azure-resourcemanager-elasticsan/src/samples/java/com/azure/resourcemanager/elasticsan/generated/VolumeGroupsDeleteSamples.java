@@ -9,8 +9,7 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class VolumeGroupsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Delete_MinimumSet_Gen.json
      */
     /**
@@ -24,8 +23,7 @@ public final class VolumeGroupsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Delete_MaximumSet_Gen.json
      */
     /**

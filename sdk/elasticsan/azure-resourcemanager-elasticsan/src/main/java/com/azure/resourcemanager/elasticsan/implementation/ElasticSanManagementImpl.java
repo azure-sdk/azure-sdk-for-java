@@ -259,7 +259,7 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-06-01-preview";
+        this.apiVersion = "2025-03-01";
         this.operations = new OperationsClientImpl(this);
         this.skus = new SkusClientImpl(this);
         this.elasticSans = new ElasticSansClientImpl(this);
