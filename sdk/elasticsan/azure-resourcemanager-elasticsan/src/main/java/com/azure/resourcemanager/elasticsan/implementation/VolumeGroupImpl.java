@@ -8,15 +8,18 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeGroupInner;
+import com.azure.resourcemanager.elasticsan.models.DiskSnapshotList;
 import com.azure.resourcemanager.elasticsan.models.EncryptionProperties;
 import com.azure.resourcemanager.elasticsan.models.EncryptionType;
 import com.azure.resourcemanager.elasticsan.models.Identity;
 import com.azure.resourcemanager.elasticsan.models.NetworkRuleSet;
+import com.azure.resourcemanager.elasticsan.models.PreValidationResponse;
 import com.azure.resourcemanager.elasticsan.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.StorageTargetType;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroup;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroupUpdate;
+import com.azure.resourcemanager.elasticsan.models.VolumeNameList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -169,6 +172,24 @@ public final class VolumeGroupImpl implements VolumeGroup, VolumeGroup.Definitio
             .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, context)
             .getValue();
         return this;
+    }
+
+    public PreValidationResponse preBackup(VolumeNameList parameters) {
+        return serviceManager.volumeGroups().preBackup(resourceGroupName, elasticSanName, volumeGroupName, parameters);
+    }
+
+    public PreValidationResponse preBackup(VolumeNameList parameters, Context context) {
+        return serviceManager.volumeGroups()
+            .preBackup(resourceGroupName, elasticSanName, volumeGroupName, parameters, context);
+    }
+
+    public PreValidationResponse preRestore(DiskSnapshotList parameters) {
+        return serviceManager.volumeGroups().preRestore(resourceGroupName, elasticSanName, volumeGroupName, parameters);
+    }
+
+    public PreValidationResponse preRestore(DiskSnapshotList parameters, Context context) {
+        return serviceManager.volumeGroups()
+            .preRestore(resourceGroupName, elasticSanName, volumeGroupName, parameters, context);
     }
 
     public VolumeGroupImpl withIdentity(Identity identity) {

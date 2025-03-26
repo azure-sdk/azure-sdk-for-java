@@ -9,8 +9,7 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Skus_List_MinimumSet_Gen.json
      */
     /**
@@ -23,8 +22,7 @@ public final class SkusListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Skus_List_MaximumSet_Gen.json
      */
     /**
