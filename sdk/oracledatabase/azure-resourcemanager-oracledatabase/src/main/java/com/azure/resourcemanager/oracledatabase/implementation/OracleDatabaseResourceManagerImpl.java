@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -26,8 +26,8 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.oracledatabase.fluent.AutonomousDatabaseBackupsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.AutonomousDatabaseCharacterSetsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.AutonomousDatabaseNationalCharacterSetsClient;
-import com.azure.resourcemanager.oracledatabase.fluent.AutonomousDatabasesClient;
 import com.azure.resourcemanager.oracledatabase.fluent.AutonomousDatabaseVersionsClient;
+import com.azure.resourcemanager.oracledatabase.fluent.AutonomousDatabasesClient;
 import com.azure.resourcemanager.oracledatabase.fluent.CloudExadataInfrastructuresClient;
 import com.azure.resourcemanager.oracledatabase.fluent.CloudVmClustersClient;
 import com.azure.resourcemanager.oracledatabase.fluent.DbNodesClient;
@@ -35,6 +35,11 @@ import com.azure.resourcemanager.oracledatabase.fluent.DbServersClient;
 import com.azure.resourcemanager.oracledatabase.fluent.DbSystemShapesClient;
 import com.azure.resourcemanager.oracledatabase.fluent.DnsPrivateViewsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.DnsPrivateZonesClient;
+import com.azure.resourcemanager.oracledatabase.fluent.ExadbVmClustersClient;
+import com.azure.resourcemanager.oracledatabase.fluent.ExascaleDbNodesClient;
+import com.azure.resourcemanager.oracledatabase.fluent.ExascaleDbStorageVaultsClient;
+import com.azure.resourcemanager.oracledatabase.fluent.FlexComponentsClient;
+import com.azure.resourcemanager.oracledatabase.fluent.GiMinorVersionsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.GiVersionsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.OperationsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.OracleDatabaseResourceManager;
@@ -196,6 +201,34 @@ public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseRe
     }
 
     /**
+     * The ExadbVmClustersClient object to access its operations.
+     */
+    private final ExadbVmClustersClient exadbVmClusters;
+
+    /**
+     * Gets the ExadbVmClustersClient object to access its operations.
+     * 
+     * @return the ExadbVmClustersClient object.
+     */
+    public ExadbVmClustersClient getExadbVmClusters() {
+        return this.exadbVmClusters;
+    }
+
+    /**
+     * The ExascaleDbStorageVaultsClient object to access its operations.
+     */
+    private final ExascaleDbStorageVaultsClient exascaleDbStorageVaults;
+
+    /**
+     * Gets the ExascaleDbStorageVaultsClient object to access its operations.
+     * 
+     * @return the ExascaleDbStorageVaultsClient object.
+     */
+    public ExascaleDbStorageVaultsClient getExascaleDbStorageVaults() {
+        return this.exascaleDbStorageVaults;
+    }
+
+    /**
      * The AutonomousDatabaseCharacterSetsClient object to access its operations.
      */
     private final AutonomousDatabaseCharacterSetsClient autonomousDatabaseCharacterSets;
@@ -280,6 +313,20 @@ public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseRe
     }
 
     /**
+     * The FlexComponentsClient object to access its operations.
+     */
+    private final FlexComponentsClient flexComponents;
+
+    /**
+     * Gets the FlexComponentsClient object to access its operations.
+     * 
+     * @return the FlexComponentsClient object.
+     */
+    public FlexComponentsClient getFlexComponents() {
+        return this.flexComponents;
+    }
+
+    /**
      * The GiVersionsClient object to access its operations.
      */
     private final GiVersionsClient giVersions;
@@ -291,6 +338,20 @@ public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseRe
      */
     public GiVersionsClient getGiVersions() {
         return this.giVersions;
+    }
+
+    /**
+     * The GiMinorVersionsClient object to access its operations.
+     */
+    private final GiMinorVersionsClient giMinorVersions;
+
+    /**
+     * Gets the GiMinorVersionsClient object to access its operations.
+     * 
+     * @return the GiMinorVersionsClient object.
+     */
+    public GiMinorVersionsClient getGiMinorVersions() {
+        return this.giMinorVersions;
     }
 
     /**
@@ -378,6 +439,20 @@ public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseRe
     }
 
     /**
+     * The ExascaleDbNodesClient object to access its operations.
+     */
+    private final ExascaleDbNodesClient exascaleDbNodes;
+
+    /**
+     * Gets the ExascaleDbNodesClient object to access its operations.
+     * 
+     * @return the ExascaleDbNodesClient object.
+     */
+    public ExascaleDbNodesClient getExascaleDbNodes() {
+        return this.exascaleDbNodes;
+    }
+
+    /**
      * Initializes an instance of OracleDatabaseResourceManager client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -394,24 +469,29 @@ public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseRe
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-01";
+        this.apiVersion = "2025-03-01";
         this.operations = new OperationsClientImpl(this);
         this.autonomousDatabases = new AutonomousDatabasesClientImpl(this);
         this.cloudExadataInfrastructures = new CloudExadataInfrastructuresClientImpl(this);
         this.cloudVmClusters = new CloudVmClustersClientImpl(this);
+        this.exadbVmClusters = new ExadbVmClustersClientImpl(this);
+        this.exascaleDbStorageVaults = new ExascaleDbStorageVaultsClientImpl(this);
         this.autonomousDatabaseCharacterSets = new AutonomousDatabaseCharacterSetsClientImpl(this);
         this.autonomousDatabaseNationalCharacterSets = new AutonomousDatabaseNationalCharacterSetsClientImpl(this);
         this.autonomousDatabaseVersions = new AutonomousDatabaseVersionsClientImpl(this);
         this.dbSystemShapes = new DbSystemShapesClientImpl(this);
         this.dnsPrivateViews = new DnsPrivateViewsClientImpl(this);
         this.dnsPrivateZones = new DnsPrivateZonesClientImpl(this);
+        this.flexComponents = new FlexComponentsClientImpl(this);
         this.giVersions = new GiVersionsClientImpl(this);
+        this.giMinorVersions = new GiMinorVersionsClientImpl(this);
         this.systemVersions = new SystemVersionsClientImpl(this);
         this.oracleSubscriptions = new OracleSubscriptionsClientImpl(this);
         this.autonomousDatabaseBackups = new AutonomousDatabaseBackupsClientImpl(this);
         this.dbServers = new DbServersClientImpl(this);
         this.dbNodes = new DbNodesClientImpl(this);
         this.virtualNetworkAddresses = new VirtualNetworkAddressesClientImpl(this);
+        this.exascaleDbNodes = new ExascaleDbNodesClientImpl(this);
     }
 
     /**
