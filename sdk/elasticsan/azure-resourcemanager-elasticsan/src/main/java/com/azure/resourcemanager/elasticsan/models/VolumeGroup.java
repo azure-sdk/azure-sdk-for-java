@@ -379,4 +379,50 @@ public interface VolumeGroup {
      * @return the refreshed resource.
      */
     VolumeGroup refresh(Context context);
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param parameters Volume Name List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    PreValidationResponse preBackup(VolumeNameList parameters);
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param parameters Volume Name List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    PreValidationResponse preBackup(VolumeNameList parameters, Context context);
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param parameters Disk Snapshot List.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    PreValidationResponse preRestore(DiskSnapshotList parameters);
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param parameters Disk Snapshot List.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    PreValidationResponse preRestore(DiskSnapshotList parameters, Context context);
 }

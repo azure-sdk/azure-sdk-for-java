@@ -143,13 +143,6 @@ public interface ElasticSan {
     PublicNetworkAccess publicNetworkAccess();
 
     /**
-     * Gets the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
-     * 
-     * @return the autoScaleProperties value.
-     */
-    AutoScaleProperties autoScaleProperties();
-
-    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -273,7 +266,7 @@ public interface ElasticSan {
          * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithAvailabilityZones,
-            DefinitionStages.WithPublicNetworkAccess, DefinitionStages.WithAutoScaleProperties {
+            DefinitionStages.WithPublicNetworkAccess {
             /**
              * Executes the create request.
              * 
@@ -330,19 +323,6 @@ public interface ElasticSan {
              */
             WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
-
-        /**
-         * The stage of the ElasticSan definition allowing to specify autoScaleProperties.
-         */
-        interface WithAutoScaleProperties {
-            /**
-             * Specifies the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance..
-             * 
-             * @param autoScaleProperties Auto Scale Properties for Elastic San Appliance.
-             * @return the next definition stage.
-             */
-            WithCreate withAutoScaleProperties(AutoScaleProperties autoScaleProperties);
-        }
     }
 
     /**
@@ -355,9 +335,8 @@ public interface ElasticSan {
     /**
      * The template for ElasticSan update.
      */
-    interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithBaseSizeTiB, UpdateStages.WithExtendedCapacitySizeTiB,
-        UpdateStages.WithPublicNetworkAccess, UpdateStages.WithAutoScaleProperties {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithBaseSizeTiB,
+        UpdateStages.WithExtendedCapacitySizeTiB, UpdateStages.WithPublicNetworkAccess {
         /**
          * Executes the update request.
          * 
@@ -430,19 +409,6 @@ public interface ElasticSan {
              * @return the next definition stage.
              */
             Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
-        }
-
-        /**
-         * The stage of the ElasticSan update allowing to specify autoScaleProperties.
-         */
-        interface WithAutoScaleProperties {
-            /**
-             * Specifies the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance..
-             * 
-             * @param autoScaleProperties Auto Scale Properties for Elastic San Appliance.
-             * @return the next definition stage.
-             */
-            Update withAutoScaleProperties(AutoScaleProperties autoScaleProperties);
         }
     }
 
