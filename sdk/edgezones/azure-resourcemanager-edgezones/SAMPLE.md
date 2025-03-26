@@ -15,36 +15,11 @@
 
 ```java
 /**
- * Samples for ExtendedZones Get.
- */
-public final class ExtendedZonesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/
-     * ExtendedZones_Get.json
-     */
-    /**
-     * Sample code: GetExtendedZone.
-     * 
-     * @param manager Entry point to EdgeZonesManager.
-     */
-    public static void getExtendedZone(com.azure.resourcemanager.edgezones.EdgeZonesManager manager) {
-        manager.extendedZones().getWithResponse("losangeles", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ExtendedZones_List
-
-```java
-/**
  * Samples for ExtendedZones List.
  */
 public final class ExtendedZonesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/
-     * ExtendedZones_ListBySubscription.json
+     * x-ms-original-file: 2024-04-01-preview/ExtendedZones_ListBySubscription.json
      */
     /**
      * Sample code: ListExtendedZones.
@@ -57,7 +32,7 @@ public final class ExtendedZonesListSamples {
 }
 ```
 
-### ExtendedZones_Register
+### ExtendedZones_List
 
 ```java
 /**
@@ -65,9 +40,7 @@ public final class ExtendedZonesListSamples {
  */
 public final class ExtendedZonesRegisterSamples {
     /*
-     * x-ms-original-file:
-     * specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/
-     * ExtendedZones_Register.json
+     * x-ms-original-file: 2024-04-01-preview/ExtendedZones_Register.json
      */
     /**
      * Sample code: RegisterExtendedZone.
@@ -80,7 +53,7 @@ public final class ExtendedZonesRegisterSamples {
 }
 ```
 
-### ExtendedZones_Unregister
+### ExtendedZones_Register
 
 ```java
 /**
@@ -88,9 +61,7 @@ public final class ExtendedZonesRegisterSamples {
  */
 public final class ExtendedZonesUnregisterSamples {
     /*
-     * x-ms-original-file:
-     * specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/
-     * ExtendedZones_Unregister.json
+     * x-ms-original-file: 2024-04-01-preview/ExtendedZones_Unregister.json
      */
     /**
      * Sample code: UnregisterExtendedZone.
@@ -103,7 +74,7 @@ public final class ExtendedZonesUnregisterSamples {
 }
 ```
 
-### Operations_List
+### ExtendedZones_Unregister
 
 ```java
 /**
@@ -111,9 +82,7 @@ public final class ExtendedZonesUnregisterSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/Operations_List.
-     * json
+     * x-ms-original-file: 2024-04-01-preview/Operations_List.json
      */
     /**
      * Sample code: ListOperations.
@@ -122,6 +91,27 @@ public final class OperationsListSamples {
      */
     public static void listOperations(com.azure.resourcemanager.edgezones.EdgeZonesManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for ExtendedZones Get.
+ */
+public final class ExtendedZonesGetSamples {
+    /*
+     * x-ms-original-file: 2024-04-01-preview/ExtendedZones_Get.json
+     */
+    /**
+     * Sample code: GetExtendedZone.
+     * 
+     * @param manager Entry point to EdgeZonesManager.
+     */
+    public static void getExtendedZone(com.azure.resourcemanager.edgezones.EdgeZonesManager manager) {
+        manager.extendedZones().getWithResponse("losangeles", com.azure.core.util.Context.NONE);
     }
 }
 ```
