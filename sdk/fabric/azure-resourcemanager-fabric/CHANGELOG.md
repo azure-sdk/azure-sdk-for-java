@@ -1,14 +1,21 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.1.0-beta.1 (2025-03-26)
+
+- Azure Resource Manager Fabric client library for Java. This package contains Microsoft Azure SDK for Fabric Management SDK. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.QuotaName` was added
 
-### Bugs Fixed
+* `implementation.models.PagedQuota` was added
 
-### Other Changes
+* `models.Quota` was added
+
+#### `models.FabricCapacities` was modified
+
+* `listUsages(java.lang.String,com.azure.core.util.Context)` was added
+* `listUsages(java.lang.String)` was added
 
 ## 1.0.0 (2024-10-17)
 
