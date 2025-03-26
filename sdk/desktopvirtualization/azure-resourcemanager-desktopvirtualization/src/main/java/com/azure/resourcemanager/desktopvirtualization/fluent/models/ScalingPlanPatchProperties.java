@@ -40,7 +40,7 @@ public final class ScalingPlanPatchProperties implements JsonSerializable<Scalin
     private String exclusionTag;
 
     /*
-     * List of ScalingSchedule definitions.
+     * List Pooled ScalingSchedule definitions.
      */
     private List<ScalingSchedule> schedules;
 
@@ -136,7 +136,7 @@ public final class ScalingPlanPatchProperties implements JsonSerializable<Scalin
     }
 
     /**
-     * Get the schedules property: List of ScalingSchedule definitions.
+     * Get the schedules property: List Pooled ScalingSchedule definitions.
      * 
      * @return the schedules value.
      */
@@ -145,7 +145,7 @@ public final class ScalingPlanPatchProperties implements JsonSerializable<Scalin
     }
 
     /**
-     * Set the schedules property: List of ScalingSchedule definitions.
+     * Set the schedules property: List Pooled ScalingSchedule definitions.
      * 
      * @param schedules the schedules value to set.
      * @return the ScalingPlanPatchProperties object itself.
