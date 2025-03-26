@@ -26,8 +26,7 @@ public interface DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbServerInner> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename);
+    PagedIterable<DbServerInner> listByParent(String resourceGroupName, String cloudexadatainfrastructurename);
 
     /**
      * List DbServer resources by CloudExadataInfrastructure.
@@ -41,8 +40,8 @@ public interface DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbServerInner> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename, Context context);
+    PagedIterable<DbServerInner> listByParent(String resourceGroupName, String cloudexadatainfrastructurename,
+        Context context);
 
     /**
      * Get a DbServer.

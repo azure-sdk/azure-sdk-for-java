@@ -10,7 +10,7 @@ package com.azure.resourcemanager.oracledatabase.generated;
 public final class SystemVersionsListByLocationSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/systemVersions_listByLocation.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/systemVersions_listByLocation.
      * json
      */
     /**
@@ -25,7 +25,7 @@ public final class SystemVersionsListByLocationSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/systemVersions_listByLocation.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/systemVersions_listByLocation.
      * json
      */
     /**

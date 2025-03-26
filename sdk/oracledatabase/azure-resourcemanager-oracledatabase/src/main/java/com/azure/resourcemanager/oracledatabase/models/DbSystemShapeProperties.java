@@ -4,7 +4,8 @@
 
 package com.azure.resourcemanager.oracledatabase.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,7 +15,7 @@ import java.io.IOException;
 /**
  * DbSystemShape resource model.
  */
-@Immutable
+@Fluent
 public final class DbSystemShapeProperties implements JsonSerializable<DbSystemShapeProperties> {
     /*
      * The family of the shape used for the DB system.
@@ -22,9 +23,14 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     private String shapeFamily;
 
     /*
+     * The shape used for the DB system.
+     */
+    private String shapeName;
+
+    /*
      * The maximum number of CPU cores that can be enabled on the DB system for this shape.
      */
-    private Integer availableCoreCount;
+    private int availableCoreCount;
 
     /*
      * The minimum number of CPU cores that can be enabled on the DB system for this shape.
@@ -117,6 +123,21 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
      */
     private Integer availableCoreCountPerNode;
 
+    /*
+     * The compute model of the Exadata Infrastructure
+     */
+    private ComputeModel computeModel;
+
+    /*
+     * Indicates if the shape supports database and storage server types
+     */
+    private Boolean areServerTypesSupported;
+
+    /*
+     * The display name of the shape used for the DB system
+     */
+    private String displayName;
+
     /**
      * Creates an instance of DbSystemShapeProperties class.
      */
@@ -133,13 +154,56 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the shapeFamily property: The family of the shape used for the DB system.
+     * 
+     * @param shapeFamily the shapeFamily value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withShapeFamily(String shapeFamily) {
+        this.shapeFamily = shapeFamily;
+        return this;
+    }
+
+    /**
+     * Get the shapeName property: The shape used for the DB system.
+     * 
+     * @return the shapeName value.
+     */
+    public String shapeName() {
+        return this.shapeName;
+    }
+
+    /**
+     * Set the shapeName property: The shape used for the DB system.
+     * 
+     * @param shapeName the shapeName value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withShapeName(String shapeName) {
+        this.shapeName = shapeName;
+        return this;
+    }
+
+    /**
      * Get the availableCoreCount property: The maximum number of CPU cores that can be enabled on the DB system for
      * this shape.
      * 
      * @return the availableCoreCount value.
      */
-    public Integer availableCoreCount() {
+    public int availableCoreCount() {
         return this.availableCoreCount;
+    }
+
+    /**
+     * Set the availableCoreCount property: The maximum number of CPU cores that can be enabled on the DB system for
+     * this shape.
+     * 
+     * @param availableCoreCount the availableCoreCount value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAvailableCoreCount(int availableCoreCount) {
+        this.availableCoreCount = availableCoreCount;
+        return this;
     }
 
     /**
@@ -153,6 +217,18 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the minimumCoreCount property: The minimum number of CPU cores that can be enabled on the DB system for this
+     * shape.
+     * 
+     * @param minimumCoreCount the minimumCoreCount value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMinimumCoreCount(Integer minimumCoreCount) {
+        this.minimumCoreCount = minimumCoreCount;
+        return this;
+    }
+
+    /**
      * Get the runtimeMinimumCoreCount property: The runtime minimum number of CPU cores that can be enabled on the DB
      * system for this shape.
      * 
@@ -160,6 +236,18 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
      */
     public Integer runtimeMinimumCoreCount() {
         return this.runtimeMinimumCoreCount;
+    }
+
+    /**
+     * Set the runtimeMinimumCoreCount property: The runtime minimum number of CPU cores that can be enabled on the DB
+     * system for this shape.
+     * 
+     * @param runtimeMinimumCoreCount the runtimeMinimumCoreCount value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withRuntimeMinimumCoreCount(Integer runtimeMinimumCoreCount) {
+        this.runtimeMinimumCoreCount = runtimeMinimumCoreCount;
+        return this;
     }
 
     /**
@@ -173,6 +261,18 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the coreCountIncrement property: The discrete number by which the CPU core count for this shape can be
+     * increased or decreased.
+     * 
+     * @param coreCountIncrement the coreCountIncrement value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withCoreCountIncrement(Integer coreCountIncrement) {
+        this.coreCountIncrement = coreCountIncrement;
+        return this;
+    }
+
+    /**
      * Get the minStorageCount property: The minimum number of Exadata storage servers available for the Exadata
      * infrastructure.
      * 
@@ -180,6 +280,18 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
      */
     public Integer minStorageCount() {
         return this.minStorageCount;
+    }
+
+    /**
+     * Set the minStorageCount property: The minimum number of Exadata storage servers available for the Exadata
+     * infrastructure.
+     * 
+     * @param minStorageCount the minStorageCount value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMinStorageCount(Integer minStorageCount) {
+        this.minStorageCount = minStorageCount;
+        return this;
     }
 
     /**
@@ -193,6 +305,18 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the maxStorageCount property: The maximum number of Exadata storage servers available for the Exadata
+     * infrastructure.
+     * 
+     * @param maxStorageCount the maxStorageCount value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMaxStorageCount(Integer maxStorageCount) {
+        this.maxStorageCount = maxStorageCount;
+        return this;
+    }
+
+    /**
      * Get the availableDataStoragePerServerInTbs property: The maximum data storage available per storage server for
      * this shape. Only applicable to ExaCC Elastic shapes.
      * 
@@ -200,6 +324,18 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
      */
     public Double availableDataStoragePerServerInTbs() {
         return this.availableDataStoragePerServerInTbs;
+    }
+
+    /**
+     * Set the availableDataStoragePerServerInTbs property: The maximum data storage available per storage server for
+     * this shape. Only applicable to ExaCC Elastic shapes.
+     * 
+     * @param availableDataStoragePerServerInTbs the availableDataStoragePerServerInTbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAvailableDataStoragePerServerInTbs(Double availableDataStoragePerServerInTbs) {
+        this.availableDataStoragePerServerInTbs = availableDataStoragePerServerInTbs;
+        return this;
     }
 
     /**
@@ -213,6 +349,18 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the availableMemoryPerNodeInGbs property: The maximum memory available per database node for this shape. Only
+     * applicable to ExaCC Elastic shapes.
+     * 
+     * @param availableMemoryPerNodeInGbs the availableMemoryPerNodeInGbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAvailableMemoryPerNodeInGbs(Integer availableMemoryPerNodeInGbs) {
+        this.availableMemoryPerNodeInGbs = availableMemoryPerNodeInGbs;
+        return this;
+    }
+
+    /**
      * Get the availableDbNodePerNodeInGbs property: The maximum Db Node storage available per database node for this
      * shape. Only applicable to ExaCC Elastic shapes.
      * 
@@ -220,6 +368,18 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
      */
     public Integer availableDbNodePerNodeInGbs() {
         return this.availableDbNodePerNodeInGbs;
+    }
+
+    /**
+     * Set the availableDbNodePerNodeInGbs property: The maximum Db Node storage available per database node for this
+     * shape. Only applicable to ExaCC Elastic shapes.
+     * 
+     * @param availableDbNodePerNodeInGbs the availableDbNodePerNodeInGbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAvailableDbNodePerNodeInGbs(Integer availableDbNodePerNodeInGbs) {
+        this.availableDbNodePerNodeInGbs = availableDbNodePerNodeInGbs;
+        return this;
     }
 
     /**
@@ -233,12 +393,35 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the minCoreCountPerNode property: The minimum number of CPU cores that can be enabled per node for this
+     * shape.
+     * 
+     * @param minCoreCountPerNode the minCoreCountPerNode value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMinCoreCountPerNode(Integer minCoreCountPerNode) {
+        this.minCoreCountPerNode = minCoreCountPerNode;
+        return this;
+    }
+
+    /**
      * Get the availableMemoryInGbs property: The maximum memory that can be enabled for this shape.
      * 
      * @return the availableMemoryInGbs value.
      */
     public Integer availableMemoryInGbs() {
         return this.availableMemoryInGbs;
+    }
+
+    /**
+     * Set the availableMemoryInGbs property: The maximum memory that can be enabled for this shape.
+     * 
+     * @param availableMemoryInGbs the availableMemoryInGbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAvailableMemoryInGbs(Integer availableMemoryInGbs) {
+        this.availableMemoryInGbs = availableMemoryInGbs;
+        return this;
     }
 
     /**
@@ -251,12 +434,34 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the minMemoryPerNodeInGbs property: The minimum memory that need be allocated per node for this shape.
+     * 
+     * @param minMemoryPerNodeInGbs the minMemoryPerNodeInGbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMinMemoryPerNodeInGbs(Integer minMemoryPerNodeInGbs) {
+        this.minMemoryPerNodeInGbs = minMemoryPerNodeInGbs;
+        return this;
+    }
+
+    /**
      * Get the availableDbNodeStorageInGbs property: The maximum Db Node storage that can be enabled for this shape.
      * 
      * @return the availableDbNodeStorageInGbs value.
      */
     public Integer availableDbNodeStorageInGbs() {
         return this.availableDbNodeStorageInGbs;
+    }
+
+    /**
+     * Set the availableDbNodeStorageInGbs property: The maximum Db Node storage that can be enabled for this shape.
+     * 
+     * @param availableDbNodeStorageInGbs the availableDbNodeStorageInGbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAvailableDbNodeStorageInGbs(Integer availableDbNodeStorageInGbs) {
+        this.availableDbNodeStorageInGbs = availableDbNodeStorageInGbs;
+        return this;
     }
 
     /**
@@ -270,12 +475,35 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the minDbNodeStoragePerNodeInGbs property: The minimum Db Node storage that need be allocated per node for
+     * this shape.
+     * 
+     * @param minDbNodeStoragePerNodeInGbs the minDbNodeStoragePerNodeInGbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMinDbNodeStoragePerNodeInGbs(Integer minDbNodeStoragePerNodeInGbs) {
+        this.minDbNodeStoragePerNodeInGbs = minDbNodeStoragePerNodeInGbs;
+        return this;
+    }
+
+    /**
      * Get the availableDataStorageInTbs property: The maximum DATA storage that can be enabled for this shape.
      * 
      * @return the availableDataStorageInTbs value.
      */
     public Integer availableDataStorageInTbs() {
         return this.availableDataStorageInTbs;
+    }
+
+    /**
+     * Set the availableDataStorageInTbs property: The maximum DATA storage that can be enabled for this shape.
+     * 
+     * @param availableDataStorageInTbs the availableDataStorageInTbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAvailableDataStorageInTbs(Integer availableDataStorageInTbs) {
+        this.availableDataStorageInTbs = availableDataStorageInTbs;
+        return this;
     }
 
     /**
@@ -288,6 +516,17 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the minDataStorageInTbs property: The minimum data storage that need be allocated for this shape.
+     * 
+     * @param minDataStorageInTbs the minDataStorageInTbs value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMinDataStorageInTbs(Integer minDataStorageInTbs) {
+        this.minDataStorageInTbs = minDataStorageInTbs;
+        return this;
+    }
+
+    /**
      * Get the minimumNodeCount property: The minimum number of database nodes available for this shape.
      * 
      * @return the minimumNodeCount value.
@@ -297,12 +536,34 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the minimumNodeCount property: The minimum number of database nodes available for this shape.
+     * 
+     * @param minimumNodeCount the minimumNodeCount value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMinimumNodeCount(Integer minimumNodeCount) {
+        this.minimumNodeCount = minimumNodeCount;
+        return this;
+    }
+
+    /**
      * Get the maximumNodeCount property: The maximum number of database nodes available for this shape.
      * 
      * @return the maximumNodeCount value.
      */
     public Integer maximumNodeCount() {
         return this.maximumNodeCount;
+    }
+
+    /**
+     * Set the maximumNodeCount property: The maximum number of database nodes available for this shape.
+     * 
+     * @param maximumNodeCount the maximumNodeCount value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withMaximumNodeCount(Integer maximumNodeCount) {
+        this.maximumNodeCount = maximumNodeCount;
+        return this;
     }
 
     /**
@@ -316,12 +577,91 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     }
 
     /**
+     * Set the availableCoreCountPerNode property: The maximum number of CPU cores per database node that can be enabled
+     * for this shape. Only applicable to the flex Exadata shape and ExaCC Elastic shapes.
+     * 
+     * @param availableCoreCountPerNode the availableCoreCountPerNode value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAvailableCoreCountPerNode(Integer availableCoreCountPerNode) {
+        this.availableCoreCountPerNode = availableCoreCountPerNode;
+        return this;
+    }
+
+    /**
+     * Get the computeModel property: The compute model of the Exadata Infrastructure.
+     * 
+     * @return the computeModel value.
+     */
+    public ComputeModel computeModel() {
+        return this.computeModel;
+    }
+
+    /**
+     * Set the computeModel property: The compute model of the Exadata Infrastructure.
+     * 
+     * @param computeModel the computeModel value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withComputeModel(ComputeModel computeModel) {
+        this.computeModel = computeModel;
+        return this;
+    }
+
+    /**
+     * Get the areServerTypesSupported property: Indicates if the shape supports database and storage server types.
+     * 
+     * @return the areServerTypesSupported value.
+     */
+    public Boolean areServerTypesSupported() {
+        return this.areServerTypesSupported;
+    }
+
+    /**
+     * Set the areServerTypesSupported property: Indicates if the shape supports database and storage server types.
+     * 
+     * @param areServerTypesSupported the areServerTypesSupported value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withAreServerTypesSupported(Boolean areServerTypesSupported) {
+        this.areServerTypesSupported = areServerTypesSupported;
+        return this;
+    }
+
+    /**
+     * Get the displayName property: The display name of the shape used for the DB system.
+     * 
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.displayName;
+    }
+
+    /**
+     * Set the displayName property: The display name of the shape used for the DB system.
+     * 
+     * @param displayName the displayName value to set.
+     * @return the DbSystemShapeProperties object itself.
+     */
+    public DbSystemShapeProperties withDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (shapeName() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property shapeName in model DbSystemShapeProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DbSystemShapeProperties.class);
 
     /**
      * {@inheritDoc}
@@ -329,6 +669,30 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("shapeName", this.shapeName);
+        jsonWriter.writeIntField("availableCoreCount", this.availableCoreCount);
+        jsonWriter.writeStringField("shapeFamily", this.shapeFamily);
+        jsonWriter.writeNumberField("minimumCoreCount", this.minimumCoreCount);
+        jsonWriter.writeNumberField("runtimeMinimumCoreCount", this.runtimeMinimumCoreCount);
+        jsonWriter.writeNumberField("coreCountIncrement", this.coreCountIncrement);
+        jsonWriter.writeNumberField("minStorageCount", this.minStorageCount);
+        jsonWriter.writeNumberField("maxStorageCount", this.maxStorageCount);
+        jsonWriter.writeNumberField("availableDataStoragePerServerInTbs", this.availableDataStoragePerServerInTbs);
+        jsonWriter.writeNumberField("availableMemoryPerNodeInGbs", this.availableMemoryPerNodeInGbs);
+        jsonWriter.writeNumberField("availableDbNodePerNodeInGbs", this.availableDbNodePerNodeInGbs);
+        jsonWriter.writeNumberField("minCoreCountPerNode", this.minCoreCountPerNode);
+        jsonWriter.writeNumberField("availableMemoryInGbs", this.availableMemoryInGbs);
+        jsonWriter.writeNumberField("minMemoryPerNodeInGbs", this.minMemoryPerNodeInGbs);
+        jsonWriter.writeNumberField("availableDbNodeStorageInGbs", this.availableDbNodeStorageInGbs);
+        jsonWriter.writeNumberField("minDbNodeStoragePerNodeInGbs", this.minDbNodeStoragePerNodeInGbs);
+        jsonWriter.writeNumberField("availableDataStorageInTbs", this.availableDataStorageInTbs);
+        jsonWriter.writeNumberField("minDataStorageInTbs", this.minDataStorageInTbs);
+        jsonWriter.writeNumberField("minimumNodeCount", this.minimumNodeCount);
+        jsonWriter.writeNumberField("maximumNodeCount", this.maximumNodeCount);
+        jsonWriter.writeNumberField("availableCoreCountPerNode", this.availableCoreCountPerNode);
+        jsonWriter.writeStringField("computeModel", this.computeModel == null ? null : this.computeModel.toString());
+        jsonWriter.writeBooleanField("areServerTypesSupported", this.areServerTypesSupported);
+        jsonWriter.writeStringField("displayName", this.displayName);
         return jsonWriter.writeEndObject();
     }
 
@@ -338,6 +702,7 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
      * @param jsonReader The JsonReader being read.
      * @return An instance of DbSystemShapeProperties if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the DbSystemShapeProperties.
      */
     public static DbSystemShapeProperties fromJson(JsonReader jsonReader) throws IOException {
@@ -347,10 +712,12 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("shapeFamily".equals(fieldName)) {
-                    deserializedDbSystemShapeProperties.shapeFamily = reader.getString();
+                if ("shapeName".equals(fieldName)) {
+                    deserializedDbSystemShapeProperties.shapeName = reader.getString();
                 } else if ("availableCoreCount".equals(fieldName)) {
-                    deserializedDbSystemShapeProperties.availableCoreCount = reader.getNullable(JsonReader::getInt);
+                    deserializedDbSystemShapeProperties.availableCoreCount = reader.getInt();
+                } else if ("shapeFamily".equals(fieldName)) {
+                    deserializedDbSystemShapeProperties.shapeFamily = reader.getString();
                 } else if ("minimumCoreCount".equals(fieldName)) {
                     deserializedDbSystemShapeProperties.minimumCoreCount = reader.getNullable(JsonReader::getInt);
                 } else if ("runtimeMinimumCoreCount".equals(fieldName)) {
@@ -395,6 +762,13 @@ public final class DbSystemShapeProperties implements JsonSerializable<DbSystemS
                 } else if ("availableCoreCountPerNode".equals(fieldName)) {
                     deserializedDbSystemShapeProperties.availableCoreCountPerNode
                         = reader.getNullable(JsonReader::getInt);
+                } else if ("computeModel".equals(fieldName)) {
+                    deserializedDbSystemShapeProperties.computeModel = ComputeModel.fromString(reader.getString());
+                } else if ("areServerTypesSupported".equals(fieldName)) {
+                    deserializedDbSystemShapeProperties.areServerTypesSupported
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("displayName".equals(fieldName)) {
+                    deserializedDbSystemShapeProperties.displayName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -119,6 +119,11 @@ public final class DbServerProperties implements JsonSerializable<DbServerProper
      */
     private ResourceProvisioningState provisioningState;
 
+    /*
+     * The compute model of the Exadata Infrastructure
+     */
+    private ComputeModel computeModel;
+
     /**
      * Creates an instance of DbServerProperties class.
      */
@@ -309,6 +314,15 @@ public final class DbServerProperties implements JsonSerializable<DbServerProper
     }
 
     /**
+     * Get the computeModel property: The compute model of the Exadata Infrastructure.
+     * 
+     * @return the computeModel value.
+     */
+    public ComputeModel computeModel() {
+        return this.computeModel;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -390,6 +404,8 @@ public final class DbServerProperties implements JsonSerializable<DbServerProper
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedDbServerProperties.provisioningState
                         = ResourceProvisioningState.fromString(reader.getString());
+                } else if ("computeModel".equals(fieldName)) {
+                    deserializedDbServerProperties.computeModel = ComputeModel.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
