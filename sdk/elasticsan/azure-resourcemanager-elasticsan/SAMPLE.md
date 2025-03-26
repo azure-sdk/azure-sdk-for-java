@@ -35,6 +35,8 @@
 - [Delete](#volumegroups_delete)
 - [Get](#volumegroups_get)
 - [ListByElasticSan](#volumegroups_listbyelasticsan)
+- [PreBackup](#volumegroups_prebackup)
+- [PreRestore](#volumegroups_prerestore)
 - [Update](#volumegroups_update)
 
 ## VolumeSnapshots
@@ -54,10 +56,7 @@
 ### ElasticSans_Create
 
 ```java
-import com.azure.resourcemanager.elasticsan.models.AutoScalePolicyEnforcement;
-import com.azure.resourcemanager.elasticsan.models.AutoScaleProperties;
 import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
-import com.azure.resourcemanager.elasticsan.models.ScaleUpProperties;
 import com.azure.resourcemanager.elasticsan.models.Sku;
 import com.azure.resourcemanager.elasticsan.models.SkuName;
 import com.azure.resourcemanager.elasticsan.models.SkuTier;
@@ -70,8 +69,7 @@ import java.util.Map;
  */
 public final class ElasticSansCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Create_MaximumSet_Gen.json
      */
     /**
@@ -85,22 +83,16 @@ public final class ElasticSansCreateSamples {
             .withRegion("France Central")
             .withExistingResourceGroup("resourcegroupname")
             .withSku(new Sku().withName(SkuName.PREMIUM_LRS).withTier(SkuTier.PREMIUM))
-            .withBaseSizeTiB(1L)
-            .withExtendedCapacitySizeTiB(3L)
-            .withTags(mapOf("key9706", "fakeTokenPlaceholder"))
-            .withAvailabilityZones(Arrays.asList("xoz"))
+            .withBaseSizeTiB(5L)
+            .withExtendedCapacitySizeTiB(25L)
+            .withTags(mapOf("key9316", "fakeTokenPlaceholder"))
+            .withAvailabilityZones(Arrays.asList("1"))
             .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
-            .withAutoScaleProperties(
-                new AutoScaleProperties().withScaleUpProperties(new ScaleUpProperties().withUnusedSizeTiB(24L)
-                    .withIncreaseCapacityUnitByTiB(4L)
-                    .withCapacityUnitScaleUpLimitTiB(17L)
-                    .withAutoScalePolicyEnforcement(AutoScalePolicyEnforcement.NONE)))
             .create();
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Create_MinimumSet_Gen.json
      */
     /**
@@ -114,8 +106,8 @@ public final class ElasticSansCreateSamples {
             .withRegion("France Central")
             .withExistingResourceGroup("resourcegroupname")
             .withSku(new Sku().withName(SkuName.PREMIUM_LRS))
-            .withBaseSizeTiB(1L)
-            .withExtendedCapacitySizeTiB(3L)
+            .withBaseSizeTiB(15L)
+            .withExtendedCapacitySizeTiB(27L)
             .create();
     }
 
@@ -141,8 +133,7 @@ public final class ElasticSansCreateSamples {
  */
 public final class ElasticSansDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Delete_MinimumSet_Gen.json
      */
     /**
@@ -155,8 +146,7 @@ public final class ElasticSansDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Delete_MaximumSet_Gen.json
      */
     /**
@@ -178,8 +168,7 @@ public final class ElasticSansDeleteSamples {
  */
 public final class ElasticSansGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Get_MinimumSet_Gen.json
      */
     /**
@@ -193,8 +182,7 @@ public final class ElasticSansGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Get_MaximumSet_Gen.json
      */
     /**
@@ -217,8 +205,7 @@ public final class ElasticSansGetByResourceGroupSamples {
  */
 public final class ElasticSansListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -232,8 +219,7 @@ public final class ElasticSansListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -256,8 +242,7 @@ public final class ElasticSansListSamples {
  */
 public final class ElasticSansListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -271,8 +256,7 @@ public final class ElasticSansListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -290,11 +274,8 @@ public final class ElasticSansListByResourceGroupSamples {
 ### ElasticSans_Update
 
 ```java
-import com.azure.resourcemanager.elasticsan.models.AutoScalePolicyEnforcement;
-import com.azure.resourcemanager.elasticsan.models.AutoScaleProperties;
 import com.azure.resourcemanager.elasticsan.models.ElasticSan;
 import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
-import com.azure.resourcemanager.elasticsan.models.ScaleUpProperties;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -303,8 +284,7 @@ import java.util.Map;
  */
 public final class ElasticSansUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Update_MinimumSet_Gen.json
      */
     /**
@@ -320,8 +300,7 @@ public final class ElasticSansUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * ElasticSans_Update_MaximumSet_Gen.json
      */
     /**
@@ -334,15 +313,10 @@ public final class ElasticSansUpdateSamples {
             .getByResourceGroupWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withTags(mapOf("key5945", "fakeTokenPlaceholder"))
-            .withBaseSizeTiB(21L)
-            .withExtendedCapacitySizeTiB(10L)
+            .withTags(mapOf("key1931", "fakeTokenPlaceholder"))
+            .withBaseSizeTiB(13L)
+            .withExtendedCapacitySizeTiB(29L)
             .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
-            .withAutoScaleProperties(
-                new AutoScaleProperties().withScaleUpProperties(new ScaleUpProperties().withUnusedSizeTiB(24L)
-                    .withIncreaseCapacityUnitByTiB(4L)
-                    .withCapacityUnitScaleUpLimitTiB(17L)
-                    .withAutoScalePolicyEnforcement(AutoScalePolicyEnforcement.NONE)))
             .apply();
     }
 
@@ -368,8 +342,7 @@ public final class ElasticSansUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Operations_List_MinimumSet_Gen.json
      */
     /**
@@ -382,8 +355,7 @@ public final class OperationsListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Operations_List_MaximumSet_Gen.json
      */
     /**
@@ -410,8 +382,7 @@ import java.util.Arrays;
  */
 public final class PrivateEndpointConnectionsCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_Create_MaximumSet_Gen.json
      */
     /**
@@ -434,8 +405,7 @@ public final class PrivateEndpointConnectionsCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_Create_MinimumSet_Gen.json
      */
     /**
@@ -462,8 +432,7 @@ public final class PrivateEndpointConnectionsCreateSamples {
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_Delete_MaximumSet_Gen.json
      */
     /**
@@ -479,8 +448,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_Delete_MinimumSet_Gen.json
      */
     /**
@@ -505,8 +473,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_Get_MinimumSet_Gen.json
      */
     /**
@@ -522,8 +489,7 @@ public final class PrivateEndpointConnectionsGetSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_Get_MaximumSet_Gen.json
      */
     /**
@@ -548,8 +514,7 @@ public final class PrivateEndpointConnectionsGetSamples {
  */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_List_MinimumSet_Gen.json
      */
     /**
@@ -564,8 +529,7 @@ public final class PrivateEndpointConnectionsListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateEndpointConnections_List_MaximumSet_Gen.json
      */
     /**
@@ -589,8 +553,7 @@ public final class PrivateEndpointConnectionsListSamples {
  */
 public final class PrivateLinkResourcesListByElasticSanSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateLinkResources_ListByElasticSan_MinimumSet_Gen.json
      */
     /**
@@ -605,8 +568,7 @@ public final class PrivateLinkResourcesListByElasticSanSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * PrivateLinkResources_ListByElasticSan_MaximumSet_Gen.json
      */
     /**
@@ -630,8 +592,7 @@ public final class PrivateLinkResourcesListByElasticSanSamples {
  */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Skus_List_MinimumSet_Gen.json
      */
     /**
@@ -644,8 +605,7 @@ public final class SkusListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Skus_List_MaximumSet_Gen.json
      */
     /**
@@ -682,8 +642,7 @@ import java.util.Map;
  */
 public final class VolumeGroupsCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Create_MinimumSet_Gen.json
      */
     /**
@@ -699,8 +658,7 @@ public final class VolumeGroupsCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Create_MaximumSet_Gen.json
      */
     /**
@@ -751,8 +709,7 @@ public final class VolumeGroupsCreateSamples {
  */
 public final class VolumeGroupsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Delete_MinimumSet_Gen.json
      */
     /**
@@ -766,8 +723,7 @@ public final class VolumeGroupsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Delete_MaximumSet_Gen.json
      */
     /**
@@ -790,8 +746,7 @@ public final class VolumeGroupsDeleteSamples {
  */
 public final class VolumeGroupsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Get_MinimumSet_Gen.json
      */
     /**
@@ -806,8 +761,7 @@ public final class VolumeGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Get_MaximumSet_Gen.json
      */
     /**
@@ -831,8 +785,7 @@ public final class VolumeGroupsGetSamples {
  */
 public final class VolumeGroupsListByElasticSanSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_ListByElasticSan_MinimumSet_Gen.json
      */
     /**
@@ -847,8 +800,7 @@ public final class VolumeGroupsListByElasticSanSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_ListByElasticSan_MaximumSet_Gen.json
      */
     /**
@@ -860,6 +812,64 @@ public final class VolumeGroupsListByElasticSanSamples {
         volumeGroupsListByElasticSanMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager.volumeGroups()
             .listByElasticSan("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### VolumeGroups_PreBackup
+
+```java
+import com.azure.resourcemanager.elasticsan.models.VolumeNameList;
+import java.util.Arrays;
+
+/**
+ * Samples for VolumeGroups PreBackup.
+ */
+public final class VolumeGroupsPreBackupSamples {
+    /*
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
+     * VolumeGroups_PreBackup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeGroups_PreBackup_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void
+        volumeGroupsPreBackupMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.volumeGroups()
+            .preBackup("rgelasticsan", "elasticSanName", "volumeGroupName",
+                new VolumeNameList().withVolumeNames(Arrays.asList("volume1")), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### VolumeGroups_PreRestore
+
+```java
+import com.azure.resourcemanager.elasticsan.models.DiskSnapshotList;
+import java.util.Arrays;
+
+/**
+ * Samples for VolumeGroups PreRestore.
+ */
+public final class VolumeGroupsPreRestoreSamples {
+    /*
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
+     * VolumeGroups_PreRestore_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeGroups_PreRestore_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void
+        volumeGroupsPreRestoreMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.volumeGroups()
+            .preRestore("rgelasticsan", "elasticSanName", "volumeGroupName",
+                new DiskSnapshotList().withDiskSnapshotIds(Arrays.asList(
+                    "/subscriptions/67B407F8-ED08-4144-B074-BA08FF4FB978/resourceGroups/rgelasticsan/providers/Microsoft.Compute/snapshots/disksnapshot1")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -888,8 +898,7 @@ import java.util.Map;
  */
 public final class VolumeGroupsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Update_MaximumSet_Gen.json
      */
     /**
@@ -920,8 +929,7 @@ public final class VolumeGroupsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeGroups_Update_MinimumSet_Gen.json
      */
     /**
@@ -960,8 +968,7 @@ import com.azure.resourcemanager.elasticsan.models.SnapshotCreationData;
  */
 public final class VolumeSnapshotsCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeSnapshots_Create_MaximumSet_Gen.json
      */
     /**
@@ -980,8 +987,7 @@ public final class VolumeSnapshotsCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeSnapshots_Create_MinimumSet_Gen.json
      */
     /**
@@ -1009,8 +1015,7 @@ public final class VolumeSnapshotsCreateSamples {
  */
 public final class VolumeSnapshotsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeSnapshots_Delete_MaximumSet_Gen.json
      */
     /**
@@ -1026,8 +1031,7 @@ public final class VolumeSnapshotsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeSnapshots_Delete_MinimumSet_Gen.json
      */
     /**
@@ -1052,8 +1056,7 @@ public final class VolumeSnapshotsDeleteSamples {
  */
 public final class VolumeSnapshotsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeSnapshots_Get_MaximumSet_Gen.json
      */
     /**
@@ -1068,8 +1071,7 @@ public final class VolumeSnapshotsGetSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeSnapshots_Get_MinimumSet_Gen.json
      */
     /**
@@ -1093,8 +1095,7 @@ public final class VolumeSnapshotsGetSamples {
  */
 public final class VolumeSnapshotsListByVolumeGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeSnapshots_ListByVolumeGroup_MinimumSet_Gen.json
      */
     /**
@@ -1110,8 +1111,7 @@ public final class VolumeSnapshotsListByVolumeGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * VolumeSnapshots_ListByVolumeGroup_MaximumSet_Gen.json
      */
     /**
@@ -1140,8 +1140,7 @@ import com.azure.resourcemanager.elasticsan.models.VolumeCreateOption;
  */
 public final class VolumesCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Create_MaximumSet_Gen.json
      */
     /**
@@ -1161,8 +1160,7 @@ public final class VolumesCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Create_MinimumSet_Gen.json
      */
     /**
@@ -1191,8 +1189,7 @@ import com.azure.resourcemanager.elasticsan.models.XMsForceDelete;
  */
 public final class VolumesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Delete_MinimumSet_Gen.json
      */
     /**
@@ -1207,8 +1204,7 @@ public final class VolumesDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Delete_MaximumSet_Gen.json
      */
     /**
@@ -1232,8 +1228,7 @@ public final class VolumesDeleteSamples {
  */
 public final class VolumesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Get_MaximumSet_Gen.json
      */
     /**
@@ -1248,8 +1243,7 @@ public final class VolumesGetSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Get_MinimumSet_Gen.json
      */
     /**
@@ -1273,8 +1267,7 @@ public final class VolumesGetSamples {
  */
 public final class VolumesListByVolumeGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_ListByVolumeGroup_MaximumSet_Gen.json
      */
     /**
@@ -1290,8 +1283,7 @@ public final class VolumesListByVolumeGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_ListByVolumeGroup_MinimumSet_Gen.json
      */
     /**
@@ -1318,8 +1310,7 @@ import com.azure.resourcemanager.elasticsan.models.Volume;
  */
 public final class VolumesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Update_MinimumSet_Gen.json
      */
     /**
@@ -1336,8 +1327,7 @@ public final class VolumesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2025-03-01/examples/
      * Volumes_Update_MaximumSet_Gen.json
      */
     /**
