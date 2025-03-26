@@ -26,18 +26,18 @@ public final class TargetTypesImpl implements TargetTypes {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<TargetType> list(String locationName) {
-        PagedIterable<TargetTypeInner> inner = this.serviceClient().list(locationName);
+    public PagedIterable<TargetType> list(String location) {
+        PagedIterable<TargetTypeInner> inner = this.serviceClient().list(location);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new TargetTypeImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<TargetType> list(String locationName, String continuationToken, Context context) {
-        PagedIterable<TargetTypeInner> inner = this.serviceClient().list(locationName, continuationToken, context);
+    public PagedIterable<TargetType> list(String location, String continuationToken, Context context) {
+        PagedIterable<TargetTypeInner> inner = this.serviceClient().list(location, continuationToken, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new TargetTypeImpl(inner1, this.manager()));
     }
 
-    public Response<TargetType> getWithResponse(String locationName, String targetTypeName, Context context) {
-        Response<TargetTypeInner> inner = this.serviceClient().getWithResponse(locationName, targetTypeName, context);
+    public Response<TargetType> getWithResponse(String location, String targetTypeName, Context context) {
+        Response<TargetTypeInner> inner = this.serviceClient().getWithResponse(location, targetTypeName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new TargetTypeImpl(inner.getValue(), this.manager()));
@@ -46,8 +46,8 @@ public final class TargetTypesImpl implements TargetTypes {
         }
     }
 
-    public TargetType get(String locationName, String targetTypeName) {
-        TargetTypeInner inner = this.serviceClient().get(locationName, targetTypeName);
+    public TargetType get(String location, String targetTypeName) {
+        TargetTypeInner inner = this.serviceClient().get(location, targetTypeName);
         if (inner != null) {
             return new TargetTypeImpl(inner, this.manager());
         } else {
