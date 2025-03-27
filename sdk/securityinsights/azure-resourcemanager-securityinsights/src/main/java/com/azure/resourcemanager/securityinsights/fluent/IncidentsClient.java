@@ -13,11 +13,43 @@ import com.azure.resourcemanager.securityinsights.fluent.models.IncidentAlertLis
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentBookmarkListInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentEntitiesResponseInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentInner;
+import com.azure.resourcemanager.securityinsights.models.ManualTriggerRequestBody;
 
 /**
  * An instance of this class provides access to all the operations defined in IncidentsClient.
  */
 public interface IncidentsClient {
+    /**
+     * Triggers playbook on a specific incident.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentIdentifier The incidentIdentifier parameter.
+     * @param requestBody The requestBody parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Object> runPlaybookWithResponse(String resourceGroupName, String workspaceName, String incidentIdentifier,
+        ManualTriggerRequestBody requestBody, Context context);
+
+    /**
+     * Triggers playbook on a specific incident.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentIdentifier The incidentIdentifier parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Object runPlaybook(String resourceGroupName, String workspaceName, String incidentIdentifier);
+
     /**
      * Gets all incidents.
      * 
@@ -53,7 +85,7 @@ public interface IncidentsClient {
         Integer top, String skipToken, Context context);
 
     /**
-     * Gets a given incident.
+     * Gets an incident.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -62,14 +94,14 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a given incident along with {@link Response}.
+     * @return an incident along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IncidentInner> getWithResponse(String resourceGroupName, String workspaceName, String incidentId,
         Context context);
 
     /**
-     * Gets a given incident.
+     * Gets an incident.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -77,13 +109,13 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a given incident.
+     * @return an incident.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IncidentInner get(String resourceGroupName, String workspaceName, String incidentId);
 
     /**
-     * Creates or updates an incident.
+     * Creates or updates the incident.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -93,14 +125,14 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights along with {@link Response}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IncidentInner> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
         String incidentId, IncidentInner incident, Context context);
 
     /**
-     * Creates or updates an incident.
+     * Creates or updates the incident.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -109,14 +141,14 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IncidentInner createOrUpdate(String resourceGroupName, String workspaceName, String incidentId,
         IncidentInner incident);
 
     /**
-     * Deletes a given incident.
+     * Delete the incident.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -132,7 +164,7 @@ public interface IncidentsClient {
         Context context);
 
     /**
-     * Deletes a given incident.
+     * Delete the incident.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -145,7 +177,7 @@ public interface IncidentsClient {
     void delete(String resourceGroupName, String workspaceName, String incidentId);
 
     /**
-     * Gets all alerts for an incident.
+     * Gets all incident alerts.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -154,14 +186,14 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all alerts for an incident along with {@link Response}.
+     * @return all incident alerts along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IncidentAlertListInner> listAlertsWithResponse(String resourceGroupName, String workspaceName,
         String incidentId, Context context);
 
     /**
-     * Gets all alerts for an incident.
+     * Gets all incident alerts.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -169,13 +201,13 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all alerts for an incident.
+     * @return all incident alerts.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IncidentAlertListInner listAlerts(String resourceGroupName, String workspaceName, String incidentId);
 
     /**
-     * Gets all bookmarks for an incident.
+     * Gets all incident bookmarks.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -184,14 +216,14 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all bookmarks for an incident along with {@link Response}.
+     * @return all incident bookmarks along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IncidentBookmarkListInner> listBookmarksWithResponse(String resourceGroupName, String workspaceName,
         String incidentId, Context context);
 
     /**
-     * Gets all bookmarks for an incident.
+     * Gets all incident bookmarks.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -199,13 +231,13 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all bookmarks for an incident.
+     * @return all incident bookmarks.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IncidentBookmarkListInner listBookmarks(String resourceGroupName, String workspaceName, String incidentId);
 
     /**
-     * Gets all entities for an incident.
+     * Gets all incident related entities.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -214,14 +246,14 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all entities for an incident along with {@link Response}.
+     * @return all incident related entities along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IncidentEntitiesResponseInner> listEntitiesWithResponse(String resourceGroupName, String workspaceName,
         String incidentId, Context context);
 
     /**
-     * Gets all entities for an incident.
+     * Gets all incident related entities.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -229,7 +261,7 @@ public interface IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all entities for an incident.
+     * @return all incident related entities.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IncidentEntitiesResponseInner listEntities(String resourceGroupName, String workspaceName, String incidentId);

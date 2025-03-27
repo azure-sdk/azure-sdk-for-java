@@ -20,19 +20,39 @@ import java.util.List;
 @Fluent
 public final class IncidentList implements JsonSerializable<IncidentList> {
     /*
+     * The value property.
+     */
+    private List<IncidentInner> value;
+
+    /*
      * URL to fetch the next set of incidents.
      */
     private String nextLink;
-
-    /*
-     * Array of incidents.
-     */
-    private List<IncidentInner> value;
 
     /**
      * Creates an instance of IncidentList class.
      */
     public IncidentList() {
+    }
+
+    /**
+     * Get the value property: The value property.
+     * 
+     * @return the value value.
+     */
+    public List<IncidentInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: The value property.
+     * 
+     * @param value the value value to set.
+     * @return the IncidentList object itself.
+     */
+    public IncidentList withValue(List<IncidentInner> value) {
+        this.value = value;
+        return this;
     }
 
     /**
@@ -42,26 +62,6 @@ public final class IncidentList implements JsonSerializable<IncidentList> {
      */
     public String nextLink() {
         return this.nextLink;
-    }
-
-    /**
-     * Get the value property: Array of incidents.
-     * 
-     * @return the value value.
-     */
-    public List<IncidentInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: Array of incidents.
-     * 
-     * @param value the value value to set.
-     * @return the IncidentList object itself.
-     */
-    public IncidentList withValue(List<IncidentInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**

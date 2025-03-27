@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.MailMessageEntityProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -20,7 +21,7 @@ import java.util.UUID;
  * Represents a mail message entity.
  */
 @Fluent
-public final class MailMessageEntity extends Entity {
+public final class MailMessageEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
