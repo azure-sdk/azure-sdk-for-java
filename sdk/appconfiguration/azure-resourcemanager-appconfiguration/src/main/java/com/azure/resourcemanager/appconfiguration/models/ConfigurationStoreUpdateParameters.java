@@ -235,6 +235,63 @@ public final class ConfigurationStoreUpdateParameters implements JsonSerializabl
     }
 
     /**
+     * Get the telemetry property: Property specifying the configuration of telemetry to update for this configuration
+     * store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.innerProperties() == null ? null : this.innerProperties().telemetry();
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry to update for this configuration
+     * store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStoreUpdateParameters object itself.
+     */
+    public ConfigurationStoreUpdateParameters withTelemetry(TelemetryProperties telemetry) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStorePropertiesUpdateParameters();
+        }
+        this.innerProperties().withTelemetry(telemetry);
+        return this;
+    }
+
+    /**
+     * Get the defaultKeyValueRevisionRetentionPeriodInSeconds property: The duration in seconds to retain new key value
+     * revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores and
+     * Premium SKU stores.
+     * 
+     * @return the defaultKeyValueRevisionRetentionPeriodInSeconds value.
+     */
+    public Long defaultKeyValueRevisionRetentionPeriodInSeconds() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().defaultKeyValueRevisionRetentionPeriodInSeconds();
+    }
+
+    /**
+     * Set the defaultKeyValueRevisionRetentionPeriodInSeconds property: The duration in seconds to retain new key value
+     * revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores and
+     * Premium SKU stores.
+     * 
+     * @param defaultKeyValueRevisionRetentionPeriodInSeconds the defaultKeyValueRevisionRetentionPeriodInSeconds value
+     * to set.
+     * @return the ConfigurationStoreUpdateParameters object itself.
+     */
+    public ConfigurationStoreUpdateParameters
+        withDefaultKeyValueRevisionRetentionPeriodInSeconds(Long defaultKeyValueRevisionRetentionPeriodInSeconds) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStorePropertiesUpdateParameters();
+        }
+        this.innerProperties()
+            .withDefaultKeyValueRevisionRetentionPeriodInSeconds(defaultKeyValueRevisionRetentionPeriodInSeconds);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
