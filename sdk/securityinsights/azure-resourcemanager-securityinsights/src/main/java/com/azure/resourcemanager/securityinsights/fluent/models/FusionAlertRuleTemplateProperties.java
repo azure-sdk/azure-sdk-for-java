@@ -13,13 +13,14 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplateDataSource;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
+import com.azure.resourcemanager.securityinsights.models.FusionTemplateSourceSetting;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
- * Represents Fusion alert rule template properties.
+ * Fusion alert rule template properties.
  */
 @Fluent
 public final class FusionAlertRuleTemplateProperties implements JsonSerializable<FusionAlertRuleTemplateProperties> {
@@ -69,9 +70,19 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
     private List<AttackTactic> tactics;
 
     /*
-     * The techniques of the alert rule template
+     * The techniques of the alert rule
      */
     private List<String> techniques;
+
+    /*
+     * The sub-techniques of the alert rule
+     */
+    private List<String> subTechniques;
+
+    /*
+     * All supported source signal configurations consumed in fusion detection.
+     */
+    private List<FusionTemplateSourceSetting> sourceSettings;
 
     /**
      * Creates an instance of FusionAlertRuleTemplateProperties class.
@@ -240,7 +251,7 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule template.
+     * Get the techniques property: The techniques of the alert rule.
      * 
      * @return the techniques value.
      */
@@ -249,13 +260,53 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
     }
 
     /**
-     * Set the techniques property: The techniques of the alert rule template.
+     * Set the techniques property: The techniques of the alert rule.
      * 
      * @param techniques the techniques value to set.
      * @return the FusionAlertRuleTemplateProperties object itself.
      */
     public FusionAlertRuleTemplateProperties withTechniques(List<String> techniques) {
         this.techniques = techniques;
+        return this;
+    }
+
+    /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
+     * Set the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @param subTechniques the subTechniques value to set.
+     * @return the FusionAlertRuleTemplateProperties object itself.
+     */
+    public FusionAlertRuleTemplateProperties withSubTechniques(List<String> subTechniques) {
+        this.subTechniques = subTechniques;
+        return this;
+    }
+
+    /**
+     * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
+     * 
+     * @return the sourceSettings value.
+     */
+    public List<FusionTemplateSourceSetting> sourceSettings() {
+        return this.sourceSettings;
+    }
+
+    /**
+     * Set the sourceSettings property: All supported source signal configurations consumed in fusion detection.
+     * 
+     * @param sourceSettings the sourceSettings value to set.
+     * @return the FusionAlertRuleTemplateProperties object itself.
+     */
+    public FusionAlertRuleTemplateProperties withSourceSettings(List<FusionTemplateSourceSetting> sourceSettings) {
+        this.sourceSettings = sourceSettings;
         return this;
     }
 
@@ -267,6 +318,9 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
     public void validate() {
         if (requiredDataConnectors() != null) {
             requiredDataConnectors().forEach(e -> e.validate());
+        }
+        if (sourceSettings() != null) {
+            sourceSettings().forEach(e -> e.validate());
         }
     }
 
@@ -286,6 +340,10 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
         jsonWriter.writeArrayField("tactics", this.tactics,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("techniques", this.techniques, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("subTechniques", this.subTechniques,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("sourceSettings", this.sourceSettings,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -335,6 +393,13 @@ public final class FusionAlertRuleTemplateProperties implements JsonSerializable
                 } else if ("techniques".equals(fieldName)) {
                     List<String> techniques = reader.readArray(reader1 -> reader1.getString());
                     deserializedFusionAlertRuleTemplateProperties.techniques = techniques;
+                } else if ("subTechniques".equals(fieldName)) {
+                    List<String> subTechniques = reader.readArray(reader1 -> reader1.getString());
+                    deserializedFusionAlertRuleTemplateProperties.subTechniques = subTechniques;
+                } else if ("sourceSettings".equals(fieldName)) {
+                    List<FusionTemplateSourceSetting> sourceSettings
+                        = reader.readArray(reader1 -> FusionTemplateSourceSetting.fromJson(reader1));
+                    deserializedFusionAlertRuleTemplateProperties.sourceSettings = sourceSettings;
                 } else {
                     reader.skipChildren();
                 }

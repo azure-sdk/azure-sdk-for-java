@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.HuntingBookmarkProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -19,7 +20,7 @@ import java.util.Map;
  * Represents a Hunting bookmark entity.
  */
 @Fluent
-public final class HuntingBookmark extends Entity {
+public final class HuntingBookmark extends EntityInner {
     /*
      * The kind of the entity.
      */

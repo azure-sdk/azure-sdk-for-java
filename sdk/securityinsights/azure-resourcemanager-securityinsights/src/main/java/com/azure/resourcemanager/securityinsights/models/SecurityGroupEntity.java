@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.SecurityGroupEntityProperties;
 import java.io.IOException;
 import java.util.Map;
@@ -18,7 +19,7 @@ import java.util.UUID;
  * Represents a security group entity.
  */
 @Immutable
-public final class SecurityGroupEntity extends Entity {
+public final class SecurityGroupEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
