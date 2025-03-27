@@ -110,6 +110,87 @@ public interface Workspaces {
     Workspace getByResourceGroup(String resourceGroupName, String workspaceName);
 
     /**
+     * Gets a list of NSP configurations for specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of NSP configurations for specified workspace as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NetworkSecurityPerimeterConfiguration> listNsp(String resourceGroupName, String workspaceName);
+
+    /**
+     * Gets a list of NSP configurations for specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of NSP configurations for specified workspace as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NetworkSecurityPerimeterConfiguration> listNsp(String resourceGroupName, String workspaceName,
+        Context context);
+
+    /**
+     * Gets a network security perimeter configuration.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param networkSecurityPerimeterConfigurationName The name for a network security perimeter configuration.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a network security perimeter configuration along with {@link Response}.
+     */
+    Response<NetworkSecurityPerimeterConfiguration> getNspWithResponse(String resourceGroupName, String workspaceName,
+        String networkSecurityPerimeterConfigurationName, Context context);
+
+    /**
+     * Gets a network security perimeter configuration.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param networkSecurityPerimeterConfigurationName The name for a network security perimeter configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a network security perimeter configuration.
+     */
+    NetworkSecurityPerimeterConfiguration getNsp(String resourceGroupName, String workspaceName,
+        String networkSecurityPerimeterConfigurationName);
+
+    /**
+     * Reconcile network security perimeter configuration for Workspace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param networkSecurityPerimeterConfigurationName The name for a network security perimeter configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void reconcileNsp(String resourceGroupName, String workspaceName, String networkSecurityPerimeterConfigurationName);
+
+    /**
+     * Reconcile network security perimeter configuration for Workspace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param networkSecurityPerimeterConfigurationName The name for a network security perimeter configuration.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void reconcileNsp(String resourceGroupName, String workspaceName, String networkSecurityPerimeterConfigurationName,
+        Context context);
+
+    /**
      * Gets a workspace instance.
      * 
      * @param id the resource ID.

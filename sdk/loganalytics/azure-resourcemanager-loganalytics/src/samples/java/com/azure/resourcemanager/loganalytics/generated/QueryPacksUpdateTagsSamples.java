@@ -14,7 +14,7 @@ import java.util.Map;
 public final class QueryPacksUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2025-02-01/examples/
      * QueryPacksUpdateTagsOnly.json
      */
     /**
