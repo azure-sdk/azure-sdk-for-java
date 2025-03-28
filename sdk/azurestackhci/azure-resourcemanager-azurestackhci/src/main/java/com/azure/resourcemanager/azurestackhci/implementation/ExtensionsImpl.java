@@ -12,8 +12,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.azurestackhci.fluent.ExtensionsClient;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ExtensionInner;
 import com.azure.resourcemanager.azurestackhci.models.Extension;
-import com.azure.resourcemanager.azurestackhci.models.Extensions;
 import com.azure.resourcemanager.azurestackhci.models.ExtensionUpgradeParameters;
+import com.azure.resourcemanager.azurestackhci.models.Extensions;
 
 public final class ExtensionsImpl implements Extensions {
     private static final ClientLogger LOGGER = new ClientLogger(ExtensionsImpl.class);

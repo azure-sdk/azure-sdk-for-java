@@ -17,8 +17,8 @@ import java.util.Arrays;
 public final class UpdatesPutSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutUpdates.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutUpdates.json
      */
     /**
      * Sample code: Put a specific update.

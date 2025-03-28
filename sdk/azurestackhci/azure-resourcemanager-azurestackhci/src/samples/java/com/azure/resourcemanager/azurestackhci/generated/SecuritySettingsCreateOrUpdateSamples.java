@@ -12,8 +12,8 @@ import com.azure.resourcemanager.azurestackhci.models.ComplianceAssignmentType;
 public final class SecuritySettingsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutSecuritySettings.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutSecuritySettings.json
      */
     /**
      * Sample code: Create Security Settings.

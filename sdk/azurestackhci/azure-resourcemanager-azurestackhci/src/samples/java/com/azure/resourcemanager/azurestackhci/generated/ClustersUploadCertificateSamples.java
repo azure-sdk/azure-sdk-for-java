@@ -14,8 +14,8 @@ import java.util.Arrays;
 public final class ClustersUploadCertificateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * UploadCertificate.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /UploadCertificate.json
      */
     /**
      * Sample code: Upload certificate.

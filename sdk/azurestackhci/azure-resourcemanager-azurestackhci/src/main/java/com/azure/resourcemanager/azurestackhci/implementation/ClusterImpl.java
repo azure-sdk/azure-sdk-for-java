@@ -12,15 +12,19 @@ import com.azure.resourcemanager.azurestackhci.models.Cluster;
 import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
 import com.azure.resourcemanager.azurestackhci.models.ClusterIdentityResponse;
 import com.azure.resourcemanager.azurestackhci.models.ClusterPatch;
+import com.azure.resourcemanager.azurestackhci.models.ClusterPattern;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
 import com.azure.resourcemanager.azurestackhci.models.ConnectivityStatus;
 import com.azure.resourcemanager.azurestackhci.models.IsolatedVmAttestationConfiguration;
+import com.azure.resourcemanager.azurestackhci.models.LocalAvailabilityZones;
 import com.azure.resourcemanager.azurestackhci.models.LogCollectionProperties;
 import com.azure.resourcemanager.azurestackhci.models.LogCollectionRequest;
 import com.azure.resourcemanager.azurestackhci.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportProperties;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportRequest;
+import com.azure.resourcemanager.azurestackhci.models.SecretsLocationDetails;
+import com.azure.resourcemanager.azurestackhci.models.SecretsLocationsChangeRequest;
 import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceChangeRequest;
 import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
@@ -28,6 +32,7 @@ import com.azure.resourcemanager.azurestackhci.models.UploadCertificateRequest;
 import com.azure.resourcemanager.azurestackhci.models.UserAssignedIdentity;
 import java.time.OffsetDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -174,6 +179,28 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().resourceProviderObjectId();
     }
 
+    public List<SecretsLocationDetails> secretsLocations() {
+        List<SecretsLocationDetails> inner = this.innerModel().secretsLocations();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public ClusterPattern clusterPattern() {
+        return this.innerModel().clusterPattern();
+    }
+
+    public List<LocalAvailabilityZones> localAvailabilityZones() {
+        List<LocalAvailabilityZones> inner = this.innerModel().localAvailabilityZones();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -269,6 +296,14 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             .getByResourceGroupWithResponse(resourceGroupName, clusterName, context)
             .getValue();
         return this;
+    }
+
+    public Cluster updateSecretsLocations(SecretsLocationsChangeRequest body) {
+        return serviceManager.clusters().updateSecretsLocations(resourceGroupName, clusterName, body);
+    }
+
+    public Cluster updateSecretsLocations(SecretsLocationsChangeRequest body, Context context) {
+        return serviceManager.clusters().updateSecretsLocations(resourceGroupName, clusterName, body, context);
     }
 
     public void uploadCertificate(UploadCertificateRequest uploadCertificateRequest) {
@@ -414,6 +449,16 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             this.updateCluster.withDesiredProperties(desiredProperties);
             return this;
         }
+    }
+
+    public ClusterImpl withSecretsLocations(List<SecretsLocationDetails> secretsLocations) {
+        this.innerModel().withSecretsLocations(secretsLocations);
+        return this;
+    }
+
+    public ClusterImpl withLocalAvailabilityZones(List<LocalAvailabilityZones> localAvailabilityZones) {
+        this.innerModel().withLocalAvailabilityZones(localAvailabilityZones);
+        return this;
     }
 
     public ClusterImpl withType(ManagedServiceIdentityType type) {

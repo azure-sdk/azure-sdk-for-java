@@ -40,6 +40,7 @@ import com.azure.resourcemanager.azurestackhci.models.ClusterList;
 import com.azure.resourcemanager.azurestackhci.models.ClusterPatch;
 import com.azure.resourcemanager.azurestackhci.models.LogCollectionRequest;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportRequest;
+import com.azure.resourcemanager.azurestackhci.models.SecretsLocationsChangeRequest;
 import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceChangeRequest;
 import com.azure.resourcemanager.azurestackhci.models.UploadCertificateRequest;
 import java.nio.ByteBuffer;
@@ -131,6 +132,16 @@ public final class ClustersClientImpl implements ClustersClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("clusterName") String clusterName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSecretsLocations")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> updateSecretsLocations(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("clusterName") String clusterName,
+            @BodyParam("application/json") SecretsLocationsChangeRequest body, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/uploadCertificate")
@@ -1018,6 +1029,238 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String clusterName, Context context) {
         deleteAsync(resourceGroupName, clusterName, context).block();
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateSecretsLocationsWithResponseAsync(String resourceGroupName,
+        String clusterName, SecretsLocationsChangeRequest body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (clusterName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.updateSecretsLocations(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, clusterName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateSecretsLocationsWithResponseAsync(String resourceGroupName,
+        String clusterName, SecretsLocationsChangeRequest body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (clusterName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.updateSecretsLocations(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, clusterName, body, accept, context);
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of cluster details.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ClusterInner>, ClusterInner> beginUpdateSecretsLocationsAsync(
+        String resourceGroupName, String clusterName, SecretsLocationsChangeRequest body) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateSecretsLocationsWithResponseAsync(resourceGroupName, clusterName, body);
+        return this.client.<ClusterInner, ClusterInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ClusterInner.class, ClusterInner.class, this.client.getContext());
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of cluster details.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ClusterInner>, ClusterInner> beginUpdateSecretsLocationsAsync(
+        String resourceGroupName, String clusterName, SecretsLocationsChangeRequest body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateSecretsLocationsWithResponseAsync(resourceGroupName, clusterName, body, context);
+        return this.client.<ClusterInner, ClusterInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ClusterInner.class, ClusterInner.class, context);
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of cluster details.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdateSecretsLocations(String resourceGroupName,
+        String clusterName, SecretsLocationsChangeRequest body) {
+        return this.beginUpdateSecretsLocationsAsync(resourceGroupName, clusterName, body).getSyncPoller();
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of cluster details.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdateSecretsLocations(String resourceGroupName,
+        String clusterName, SecretsLocationsChangeRequest body, Context context) {
+        return this.beginUpdateSecretsLocationsAsync(resourceGroupName, clusterName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ClusterInner> updateSecretsLocationsAsync(String resourceGroupName, String clusterName,
+        SecretsLocationsChangeRequest body) {
+        return beginUpdateSecretsLocationsAsync(resourceGroupName, clusterName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ClusterInner> updateSecretsLocationsAsync(String resourceGroupName, String clusterName,
+        SecretsLocationsChangeRequest body, Context context) {
+        return beginUpdateSecretsLocationsAsync(resourceGroupName, clusterName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ClusterInner updateSecretsLocations(String resourceGroupName, String clusterName,
+        SecretsLocationsChangeRequest body) {
+        return updateSecretsLocationsAsync(resourceGroupName, clusterName, body).block();
+    }
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ClusterInner updateSecretsLocations(String resourceGroupName, String clusterName,
+        SecretsLocationsChangeRequest body, Context context) {
+        return updateSecretsLocationsAsync(resourceGroupName, clusterName, body, context).block();
     }
 
     /**

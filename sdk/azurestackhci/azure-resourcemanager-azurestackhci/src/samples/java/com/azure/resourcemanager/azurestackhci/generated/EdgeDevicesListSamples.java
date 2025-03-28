@@ -10,8 +10,8 @@ package com.azure.resourcemanager.azurestackhci.generated;
 public final class EdgeDevicesListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListEdgeDevices.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListEdgeDevices.json
      */
     /**
      * Sample code: List Edge Devices.

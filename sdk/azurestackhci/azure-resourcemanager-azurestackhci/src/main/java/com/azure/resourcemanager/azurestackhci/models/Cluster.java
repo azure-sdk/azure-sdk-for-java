@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ClusterInner;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -248,6 +249,27 @@ public interface Cluster {
     String resourceProviderObjectId();
 
     /**
+     * Gets the secretsLocations property: List of secret locations.
+     * 
+     * @return the secretsLocations value.
+     */
+    List<SecretsLocationDetails> secretsLocations();
+
+    /**
+     * Gets the clusterPattern property: Supported Storage Type for HCI Cluster.
+     * 
+     * @return the clusterPattern value.
+     */
+    ClusterPattern clusterPattern();
+
+    /**
+     * Gets the localAvailabilityZones property: Local Availability Zone information for HCI cluster.
+     * 
+     * @return the localAvailabilityZones value.
+     */
+    List<LocalAvailabilityZones> localAvailabilityZones();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -335,7 +357,8 @@ public interface Cluster {
             DefinitionStages.WithAadClientId, DefinitionStages.WithAadTenantId,
             DefinitionStages.WithAadApplicationObjectId, DefinitionStages.WithAadServicePrincipalObjectId,
             DefinitionStages.WithSoftwareAssuranceProperties, DefinitionStages.WithLogCollectionProperties,
-            DefinitionStages.WithRemoteSupportProperties, DefinitionStages.WithDesiredProperties {
+            DefinitionStages.WithRemoteSupportProperties, DefinitionStages.WithDesiredProperties,
+            DefinitionStages.WithSecretsLocations, DefinitionStages.WithLocalAvailabilityZones {
             /**
              * Executes the create request.
              * 
@@ -516,6 +539,32 @@ public interface Cluster {
              */
             WithCreate withDesiredProperties(ClusterDesiredProperties desiredProperties);
         }
+
+        /**
+         * The stage of the Cluster definition allowing to specify secretsLocations.
+         */
+        interface WithSecretsLocations {
+            /**
+             * Specifies the secretsLocations property: List of secret locations..
+             * 
+             * @param secretsLocations List of secret locations.
+             * @return the next definition stage.
+             */
+            WithCreate withSecretsLocations(List<SecretsLocationDetails> secretsLocations);
+        }
+
+        /**
+         * The stage of the Cluster definition allowing to specify localAvailabilityZones.
+         */
+        interface WithLocalAvailabilityZones {
+            /**
+             * Specifies the localAvailabilityZones property: Local Availability Zone information for HCI cluster.
+             * 
+             * @param localAvailabilityZones Local Availability Zone information for HCI cluster.
+             * @return the next definition stage.
+             */
+            WithCreate withLocalAvailabilityZones(List<LocalAvailabilityZones> localAvailabilityZones);
+        }
     }
 
     /**
@@ -665,6 +714,29 @@ public interface Cluster {
      * @return the refreshed resource.
      */
     Cluster refresh(Context context);
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details.
+     */
+    Cluster updateSecretsLocations(SecretsLocationsChangeRequest body);
+
+    /**
+     * Update cluster secrets locations.
+     * 
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details.
+     */
+    Cluster updateSecretsLocations(SecretsLocationsChangeRequest body, Context context);
 
     /**
      * Upload certificate.

@@ -10,8 +10,8 @@ package com.azure.resourcemanager.azurestackhci.generated;
 public final class UpdateRunsListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListUpdateRuns.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListUpdateRuns.json
      */
     /**
      * Sample code: List Update runs under cluster resource.

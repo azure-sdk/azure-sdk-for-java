@@ -10,8 +10,8 @@ package com.azure.resourcemanager.azurestackhci.generated;
 public final class PublishersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetPublisher.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetPublisher.json
      */
     /**
      * Sample code: Get Publisher.

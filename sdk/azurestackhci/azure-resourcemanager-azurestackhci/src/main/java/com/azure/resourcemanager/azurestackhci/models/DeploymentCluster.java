@@ -44,6 +44,16 @@ public final class DeploymentCluster implements JsonSerializable<DeploymentClust
      */
     private String azureServiceEndpoint;
 
+    /*
+     * Cluster Pattern supported.
+     */
+    private ClusterPattern clusterPattern;
+
+    /*
+     * Hardware class of the cluster.
+     */
+    private HardwareClass hardwareClass;
+
     /**
      * Creates an instance of DeploymentCluster class.
      */
@@ -159,6 +169,35 @@ public final class DeploymentCluster implements JsonSerializable<DeploymentClust
     }
 
     /**
+     * Get the clusterPattern property: Cluster Pattern supported.
+     * 
+     * @return the clusterPattern value.
+     */
+    public ClusterPattern clusterPattern() {
+        return this.clusterPattern;
+    }
+
+    /**
+     * Set the clusterPattern property: Cluster Pattern supported.
+     * 
+     * @param clusterPattern the clusterPattern value to set.
+     * @return the DeploymentCluster object itself.
+     */
+    public DeploymentCluster withClusterPattern(ClusterPattern clusterPattern) {
+        this.clusterPattern = clusterPattern;
+        return this;
+    }
+
+    /**
+     * Get the hardwareClass property: Hardware class of the cluster.
+     * 
+     * @return the hardwareClass value.
+     */
+    public HardwareClass hardwareClass() {
+        return this.hardwareClass;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -177,6 +216,8 @@ public final class DeploymentCluster implements JsonSerializable<DeploymentClust
         jsonWriter.writeStringField("witnessPath", this.witnessPath);
         jsonWriter.writeStringField("cloudAccountName", this.cloudAccountName);
         jsonWriter.writeStringField("azureServiceEndpoint", this.azureServiceEndpoint);
+        jsonWriter.writeStringField("clusterPattern",
+            this.clusterPattern == null ? null : this.clusterPattern.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -205,6 +246,10 @@ public final class DeploymentCluster implements JsonSerializable<DeploymentClust
                     deserializedDeploymentCluster.cloudAccountName = reader.getString();
                 } else if ("azureServiceEndpoint".equals(fieldName)) {
                     deserializedDeploymentCluster.azureServiceEndpoint = reader.getString();
+                } else if ("clusterPattern".equals(fieldName)) {
+                    deserializedDeploymentCluster.clusterPattern = ClusterPattern.fromString(reader.getString());
+                } else if ("hardwareClass".equals(fieldName)) {
+                    deserializedDeploymentCluster.hardwareClass = HardwareClass.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

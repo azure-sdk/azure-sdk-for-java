@@ -11,16 +11,20 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
+import com.azure.resourcemanager.azurestackhci.models.ClusterPattern;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
 import com.azure.resourcemanager.azurestackhci.models.ConnectivityStatus;
 import com.azure.resourcemanager.azurestackhci.models.IsolatedVmAttestationConfiguration;
+import com.azure.resourcemanager.azurestackhci.models.LocalAvailabilityZones;
 import com.azure.resourcemanager.azurestackhci.models.LogCollectionProperties;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportProperties;
+import com.azure.resourcemanager.azurestackhci.models.SecretsLocationDetails;
 import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /**
  * Cluster properties.
@@ -136,6 +140,21 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
      * Object id of RP Service Principal
      */
     private String resourceProviderObjectId;
+
+    /*
+     * List of secret locations.
+     */
+    private List<SecretsLocationDetails> secretsLocations;
+
+    /*
+     * Supported Storage Type for HCI Cluster
+     */
+    private ClusterPattern clusterPattern;
+
+    /*
+     * Local Availability Zone information for HCI cluster
+     */
+    private List<LocalAvailabilityZones> localAvailabilityZones;
 
     /**
      * Creates an instance of ClusterProperties class.
@@ -442,6 +461,55 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
     }
 
     /**
+     * Get the secretsLocations property: List of secret locations.
+     * 
+     * @return the secretsLocations value.
+     */
+    public List<SecretsLocationDetails> secretsLocations() {
+        return this.secretsLocations;
+    }
+
+    /**
+     * Set the secretsLocations property: List of secret locations.
+     * 
+     * @param secretsLocations the secretsLocations value to set.
+     * @return the ClusterProperties object itself.
+     */
+    public ClusterProperties withSecretsLocations(List<SecretsLocationDetails> secretsLocations) {
+        this.secretsLocations = secretsLocations;
+        return this;
+    }
+
+    /**
+     * Get the clusterPattern property: Supported Storage Type for HCI Cluster.
+     * 
+     * @return the clusterPattern value.
+     */
+    public ClusterPattern clusterPattern() {
+        return this.clusterPattern;
+    }
+
+    /**
+     * Get the localAvailabilityZones property: Local Availability Zone information for HCI cluster.
+     * 
+     * @return the localAvailabilityZones value.
+     */
+    public List<LocalAvailabilityZones> localAvailabilityZones() {
+        return this.localAvailabilityZones;
+    }
+
+    /**
+     * Set the localAvailabilityZones property: Local Availability Zone information for HCI cluster.
+     * 
+     * @param localAvailabilityZones the localAvailabilityZones value to set.
+     * @return the ClusterProperties object itself.
+     */
+    public ClusterProperties withLocalAvailabilityZones(List<LocalAvailabilityZones> localAvailabilityZones) {
+        this.localAvailabilityZones = localAvailabilityZones;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -465,6 +533,12 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
         if (isolatedVmAttestationConfiguration() != null) {
             isolatedVmAttestationConfiguration().validate();
         }
+        if (secretsLocations() != null) {
+            secretsLocations().forEach(e -> e.validate());
+        }
+        if (localAvailabilityZones() != null) {
+            localAvailabilityZones().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -482,6 +556,10 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
         jsonWriter.writeJsonField("logCollectionProperties", this.logCollectionProperties);
         jsonWriter.writeJsonField("remoteSupportProperties", this.remoteSupportProperties);
         jsonWriter.writeJsonField("desiredProperties", this.desiredProperties);
+        jsonWriter.writeArrayField("secretsLocations", this.secretsLocations,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("localAvailabilityZones", this.localAvailabilityZones,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -550,6 +628,16 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
                     deserializedClusterProperties.serviceEndpoint = reader.getString();
                 } else if ("resourceProviderObjectId".equals(fieldName)) {
                     deserializedClusterProperties.resourceProviderObjectId = reader.getString();
+                } else if ("secretsLocations".equals(fieldName)) {
+                    List<SecretsLocationDetails> secretsLocations
+                        = reader.readArray(reader1 -> SecretsLocationDetails.fromJson(reader1));
+                    deserializedClusterProperties.secretsLocations = secretsLocations;
+                } else if ("clusterPattern".equals(fieldName)) {
+                    deserializedClusterProperties.clusterPattern = ClusterPattern.fromString(reader.getString());
+                } else if ("localAvailabilityZones".equals(fieldName)) {
+                    List<LocalAvailabilityZones> localAvailabilityZones
+                        = reader.readArray(reader1 -> LocalAvailabilityZones.fromJson(reader1));
+                    deserializedClusterProperties.localAvailabilityZones = localAvailabilityZones;
                 } else {
                     reader.skipChildren();
                 }

@@ -14,8 +14,8 @@ import java.io.IOException;
 public final class ExtensionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutExtension.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutExtension.json
      */
     /**
      * Sample code: Create Arc Extension.

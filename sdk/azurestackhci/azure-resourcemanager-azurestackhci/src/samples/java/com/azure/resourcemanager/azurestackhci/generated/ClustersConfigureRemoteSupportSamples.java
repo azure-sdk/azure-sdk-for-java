@@ -15,8 +15,8 @@ import java.time.OffsetDateTime;
 public final class ClustersConfigureRemoteSupportSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ConfigureRemoteSupport.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ConfigureRemoteSupport.json
      */
     /**
      * Sample code: Configure Remote Support.

@@ -12,8 +12,8 @@ import com.azure.resourcemanager.azurestackhci.models.ExtensionUpgradeParameters
 public final class ExtensionsUpgradeSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * Extensions_Upgrade.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /Extensions_Upgrade.json
      */
     /**
      * Sample code: Upgrade Machine Extensions.

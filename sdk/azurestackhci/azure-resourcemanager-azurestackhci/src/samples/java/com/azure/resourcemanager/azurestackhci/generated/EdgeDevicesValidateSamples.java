@@ -13,8 +13,8 @@ import java.util.Arrays;
 public final class EdgeDevicesValidateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ValidateEdgeDevices.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ValidateEdgeDevices.json
      */
     /**
      * Sample code: Validate Edge Devices.

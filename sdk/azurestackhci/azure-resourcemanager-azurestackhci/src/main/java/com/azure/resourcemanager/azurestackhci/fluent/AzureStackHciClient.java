@@ -68,6 +68,13 @@ public interface AzureStackHciClient {
     DeploymentSettingsClient getDeploymentSettings();
 
     /**
+     * Gets the EdgeDeviceJobsClient object to access its operations.
+     * 
+     * @return the EdgeDeviceJobsClient object.
+     */
+    EdgeDeviceJobsClient getEdgeDeviceJobs();
+
+    /**
      * Gets the EdgeDevicesClient object to access its operations.
      * 
      * @return the EdgeDevicesClient object.
@@ -124,6 +131,13 @@ public interface AzureStackHciClient {
     UpdateRunsClient getUpdateRuns();
 
     /**
+     * Gets the UpdatesClient object to access its operations.
+     * 
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
+
+    /**
      * Gets the UpdateSummariesOperationsClient object to access its operations.
      * 
      * @return the UpdateSummariesOperationsClient object.
@@ -131,9 +145,9 @@ public interface AzureStackHciClient {
     UpdateSummariesOperationsClient getUpdateSummariesOperations();
 
     /**
-     * Gets the UpdatesClient object to access its operations.
+     * Gets the ValidatedSolutionRecipesClient object to access its operations.
      * 
-     * @return the UpdatesClient object.
+     * @return the ValidatedSolutionRecipesClient object.
      */
-    UpdatesClient getUpdates();
+    ValidatedSolutionRecipesClient getValidatedSolutionRecipes();
 }

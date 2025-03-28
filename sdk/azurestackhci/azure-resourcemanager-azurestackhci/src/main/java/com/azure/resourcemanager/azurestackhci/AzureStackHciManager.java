@@ -11,23 +11,25 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.azurestackhci.fluent.AzureStackHciClient;
 import com.azure.resourcemanager.azurestackhci.implementation.ArcSettingsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.AzureStackHciClientBuilder;
 import com.azure.resourcemanager.azurestackhci.implementation.ClustersImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.DeploymentSettingsImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.EdgeDeviceJobsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.EdgeDevicesImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.ExtensionsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.OffersImpl;
@@ -36,11 +38,13 @@ import com.azure.resourcemanager.azurestackhci.implementation.PublishersImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.SecuritySettingsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.SkusImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.UpdateRunsImpl;
-import com.azure.resourcemanager.azurestackhci.implementation.UpdatesImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.UpdateSummariesOperationsImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.UpdatesImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.ValidatedSolutionRecipesImpl;
 import com.azure.resourcemanager.azurestackhci.models.ArcSettings;
 import com.azure.resourcemanager.azurestackhci.models.Clusters;
 import com.azure.resourcemanager.azurestackhci.models.DeploymentSettings;
+import com.azure.resourcemanager.azurestackhci.models.EdgeDeviceJobs;
 import com.azure.resourcemanager.azurestackhci.models.EdgeDevices;
 import com.azure.resourcemanager.azurestackhci.models.Extensions;
 import com.azure.resourcemanager.azurestackhci.models.Offers;
@@ -49,12 +53,14 @@ import com.azure.resourcemanager.azurestackhci.models.Publishers;
 import com.azure.resourcemanager.azurestackhci.models.SecuritySettings;
 import com.azure.resourcemanager.azurestackhci.models.Skus;
 import com.azure.resourcemanager.azurestackhci.models.UpdateRuns;
-import com.azure.resourcemanager.azurestackhci.models.Updates;
 import com.azure.resourcemanager.azurestackhci.models.UpdateSummariesOperations;
+import com.azure.resourcemanager.azurestackhci.models.Updates;
+import com.azure.resourcemanager.azurestackhci.models.ValidatedSolutionRecipes;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -68,6 +74,8 @@ public final class AzureStackHciManager {
     private Clusters clusters;
 
     private DeploymentSettings deploymentSettings;
+
+    private EdgeDeviceJobs edgeDeviceJobs;
 
     private EdgeDevices edgeDevices;
 
@@ -85,9 +93,11 @@ public final class AzureStackHciManager {
 
     private UpdateRuns updateRuns;
 
+    private Updates updates;
+
     private UpdateSummariesOperations updateSummariesOperations;
 
-    private Updates updates;
+    private ValidatedSolutionRecipes validatedSolutionRecipes;
 
     private final AzureStackHciClient clientObject;
 
@@ -141,6 +151,9 @@ public final class AzureStackHciManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-azurestackhci.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -248,12 +261,14 @@ public final class AzureStackHciManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.azurestackhci")
                 .append("/")
-                .append("1.0.0-beta.5");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -286,7 +301,7 @@ public final class AzureStackHciManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -333,6 +348,18 @@ public final class AzureStackHciManager {
             this.deploymentSettings = new DeploymentSettingsImpl(clientObject.getDeploymentSettings(), this);
         }
         return deploymentSettings;
+    }
+
+    /**
+     * Gets the resource collection API of EdgeDeviceJobs.
+     * 
+     * @return Resource collection API of EdgeDeviceJobs.
+     */
+    public EdgeDeviceJobs edgeDeviceJobs() {
+        if (this.edgeDeviceJobs == null) {
+            this.edgeDeviceJobs = new EdgeDeviceJobsImpl(clientObject.getEdgeDeviceJobs(), this);
+        }
+        return edgeDeviceJobs;
     }
 
     /**
@@ -432,6 +459,18 @@ public final class AzureStackHciManager {
     }
 
     /**
+     * Gets the resource collection API of Updates. It manages HciUpdate.
+     * 
+     * @return Resource collection API of Updates.
+     */
+    public Updates updates() {
+        if (this.updates == null) {
+            this.updates = new UpdatesImpl(clientObject.getUpdates(), this);
+        }
+        return updates;
+    }
+
+    /**
      * Gets the resource collection API of UpdateSummariesOperations.
      * 
      * @return Resource collection API of UpdateSummariesOperations.
@@ -445,15 +484,16 @@ public final class AzureStackHciManager {
     }
 
     /**
-     * Gets the resource collection API of Updates. It manages HciUpdate.
+     * Gets the resource collection API of ValidatedSolutionRecipes.
      * 
-     * @return Resource collection API of Updates.
+     * @return Resource collection API of ValidatedSolutionRecipes.
      */
-    public Updates updates() {
-        if (this.updates == null) {
-            this.updates = new UpdatesImpl(clientObject.getUpdates(), this);
+    public ValidatedSolutionRecipes validatedSolutionRecipes() {
+        if (this.validatedSolutionRecipes == null) {
+            this.validatedSolutionRecipes
+                = new ValidatedSolutionRecipesImpl(clientObject.getValidatedSolutionRecipes(), this);
         }
-        return updates;
+        return validatedSolutionRecipes;
     }
 
     /**
