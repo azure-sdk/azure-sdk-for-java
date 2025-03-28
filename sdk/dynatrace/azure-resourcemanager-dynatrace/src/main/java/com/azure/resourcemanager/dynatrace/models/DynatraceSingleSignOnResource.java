@@ -35,7 +35,7 @@ public interface DynatraceSingleSignOnResource {
     String type();
 
     /**
-     * Gets the systemData property: System metadata for this resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */

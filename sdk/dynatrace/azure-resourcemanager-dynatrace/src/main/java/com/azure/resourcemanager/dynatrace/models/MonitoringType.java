@@ -22,6 +22,11 @@ public final class MonitoringType extends ExpandableStringEnum<MonitoringType> {
     public static final MonitoringType FULL_STACK = fromString("FULL_STACK");
 
     /**
+     * Static value DISCOVERY for MonitoringType.
+     */
+    public static final MonitoringType DISCOVERY = fromString("DISCOVERY");
+
+    /**
      * Creates a new instance of MonitoringType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

@@ -31,6 +31,10 @@ public final class MarketplaceSaaSResourceDetailsResponseImpl implements Marketp
         return this.innerModel().marketplaceSubscriptionStatus();
     }
 
+    public String marketplaceSaaSResourceName() {
+        return this.innerModel().marketplaceSaaSResourceName();
+    }
+
     public MarketplaceSaaSResourceDetailsResponseInner innerModel() {
         return this.innerObject;
     }
