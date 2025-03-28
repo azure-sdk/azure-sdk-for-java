@@ -19,7 +19,7 @@ import java.util.Arrays;
  */
 public final class TagRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -45,7 +45,7 @@ public final class TagRulesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**

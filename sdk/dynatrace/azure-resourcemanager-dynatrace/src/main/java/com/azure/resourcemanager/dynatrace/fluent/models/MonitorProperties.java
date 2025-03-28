@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.dynatrace.models.DynatraceEnvironmentProperties;
 import com.azure.resourcemanager.dynatrace.models.LiftrResourceCategories;
+import com.azure.resourcemanager.dynatrace.models.MarketplaceSaasAutoRenew;
 import com.azure.resourcemanager.dynatrace.models.MarketplaceSubscriptionStatus;
 import com.azure.resourcemanager.dynatrace.models.MonitoringStatus;
 import com.azure.resourcemanager.dynatrace.models.PlanData;
@@ -32,6 +33,11 @@ public final class MonitorProperties implements JsonSerializable<MonitorProperti
      * Marketplace subscription status.
      */
     private MarketplaceSubscriptionStatus marketplaceSubscriptionStatus;
+
+    /*
+     * Marketplace resource autorenew flag
+     */
+    private MarketplaceSaasAutoRenew marketplaceSaasAutoRenew;
 
     /*
      * Properties of the Dynatrace environment.
@@ -107,6 +113,26 @@ public final class MonitorProperties implements JsonSerializable<MonitorProperti
     public MonitorProperties
         withMarketplaceSubscriptionStatus(MarketplaceSubscriptionStatus marketplaceSubscriptionStatus) {
         this.marketplaceSubscriptionStatus = marketplaceSubscriptionStatus;
+        return this;
+    }
+
+    /**
+     * Get the marketplaceSaasAutoRenew property: Marketplace resource autorenew flag.
+     * 
+     * @return the marketplaceSaasAutoRenew value.
+     */
+    public MarketplaceSaasAutoRenew marketplaceSaasAutoRenew() {
+        return this.marketplaceSaasAutoRenew;
+    }
+
+    /**
+     * Set the marketplaceSaasAutoRenew property: Marketplace resource autorenew flag.
+     * 
+     * @param marketplaceSaasAutoRenew the marketplaceSaasAutoRenew value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withMarketplaceSaasAutoRenew(MarketplaceSaasAutoRenew marketplaceSaasAutoRenew) {
+        this.marketplaceSaasAutoRenew = marketplaceSaasAutoRenew;
         return this;
     }
 
@@ -225,6 +251,8 @@ public final class MonitorProperties implements JsonSerializable<MonitorProperti
             this.monitoringStatus == null ? null : this.monitoringStatus.toString());
         jsonWriter.writeStringField("marketplaceSubscriptionStatus",
             this.marketplaceSubscriptionStatus == null ? null : this.marketplaceSubscriptionStatus.toString());
+        jsonWriter.writeStringField("marketplaceSaasAutoRenew",
+            this.marketplaceSaasAutoRenew == null ? null : this.marketplaceSaasAutoRenew.toString());
         jsonWriter.writeJsonField("dynatraceEnvironmentProperties", this.dynatraceEnvironmentProperties);
         jsonWriter.writeJsonField("userInfo", this.userInfo);
         jsonWriter.writeJsonField("planData", this.planData);
@@ -251,6 +279,9 @@ public final class MonitorProperties implements JsonSerializable<MonitorProperti
                 } else if ("marketplaceSubscriptionStatus".equals(fieldName)) {
                     deserializedMonitorProperties.marketplaceSubscriptionStatus
                         = MarketplaceSubscriptionStatus.fromString(reader.getString());
+                } else if ("marketplaceSaasAutoRenew".equals(fieldName)) {
+                    deserializedMonitorProperties.marketplaceSaasAutoRenew
+                        = MarketplaceSaasAutoRenew.fromString(reader.getString());
                 } else if ("dynatraceEnvironmentProperties".equals(fieldName)) {
                     deserializedMonitorProperties.dynatraceEnvironmentProperties
                         = DynatraceEnvironmentProperties.fromJson(reader);
