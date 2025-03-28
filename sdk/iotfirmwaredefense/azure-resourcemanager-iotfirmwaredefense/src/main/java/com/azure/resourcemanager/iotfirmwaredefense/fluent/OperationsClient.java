@@ -15,7 +15,7 @@ import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.OperationInner
  */
 public interface OperationsClient {
     /**
-     * Lists the operations for this resource provider.
+     * List the operations for the provider.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -26,7 +26,7 @@ public interface OperationsClient {
     PagedIterable<OperationInner> list();
 
     /**
-     * Lists the operations for this resource provider.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

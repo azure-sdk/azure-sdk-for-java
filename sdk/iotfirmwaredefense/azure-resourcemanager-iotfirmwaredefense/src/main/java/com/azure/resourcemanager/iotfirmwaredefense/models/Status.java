@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * The status of firmware scan.
+ * The status of a firmware analysis job.
  */
 public final class Status extends ExpandableStringEnum<Status> {
     /**

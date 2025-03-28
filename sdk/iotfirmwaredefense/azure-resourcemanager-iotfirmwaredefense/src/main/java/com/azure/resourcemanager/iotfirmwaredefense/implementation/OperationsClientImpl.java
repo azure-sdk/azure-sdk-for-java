@@ -42,25 +42,25 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * The service client containing this operation class.
      */
-    private final IoTFirmwareDefenseImpl client;
+    private final IotFirmwareDefenseImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(IoTFirmwareDefenseImpl client) {
+    OperationsClientImpl(IotFirmwareDefenseImpl client) {
         this.service
             = RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for IoTFirmwareDefenseOperations to be used by the proxy service to
+     * The interface defining all the services for IotFirmwareDefenseOperations to be used by the proxy service to
      * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "IoTFirmwareDefenseOp")
+    @ServiceInterface(name = "IotFirmwareDefenseOp")
     public interface OperationsService {
         @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.IoTFirmwareDefense/operations")
@@ -78,7 +78,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists the operations for this resource provider.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -101,7 +101,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists the operations for this resource provider.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -124,7 +124,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists the operations for this resource provider.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -137,7 +137,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists the operations for this resource provider.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -153,7 +153,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists the operations for this resource provider.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -166,7 +166,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists the operations for this resource provider.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

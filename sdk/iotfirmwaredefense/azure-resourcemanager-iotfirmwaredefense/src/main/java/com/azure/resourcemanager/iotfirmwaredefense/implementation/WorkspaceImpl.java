@@ -9,11 +9,13 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.iotfirmwaredefense.models.AzureResourceManagerCommonTypesSkuUpdate;
 import com.azure.resourcemanager.iotfirmwaredefense.models.GenerateUploadUrlRequest;
-import com.azure.resourcemanager.iotfirmwaredefense.models.ProvisioningState;
+import com.azure.resourcemanager.iotfirmwaredefense.models.Sku;
 import com.azure.resourcemanager.iotfirmwaredefense.models.UrlToken;
 import com.azure.resourcemanager.iotfirmwaredefense.models.Workspace;
-import com.azure.resourcemanager.iotfirmwaredefense.models.WorkspaceUpdateDefinition;
+import com.azure.resourcemanager.iotfirmwaredefense.models.WorkspaceProperties;
+import com.azure.resourcemanager.iotfirmwaredefense.models.WorkspaceUpdate;
 import java.util.Collections;
 import java.util.Map;
 
@@ -47,12 +49,16 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
+    public WorkspaceProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public ProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
+    public Sku sku() {
+        return this.innerModel().sku();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public Region region() {
@@ -79,7 +85,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     private String workspaceName;
 
-    private WorkspaceUpdateDefinition updateWorkspace;
+    private WorkspaceUpdate updateProperties;
 
     public WorkspaceImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -109,14 +115,14 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public WorkspaceImpl update() {
-        this.updateWorkspace = new WorkspaceUpdateDefinition();
+        this.updateProperties = new WorkspaceUpdate();
         return this;
     }
 
     public Workspace apply() {
         this.innerObject = serviceManager.serviceClient()
             .getWorkspaces()
-            .updateWithResponse(resourceGroupName, workspaceName, updateWorkspace, Context.NONE)
+            .updateWithResponse(resourceGroupName, workspaceName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
@@ -124,7 +130,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     public Workspace apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getWorkspaces()
-            .updateWithResponse(resourceGroupName, workspaceName, updateWorkspace, context)
+            .updateWithResponse(resourceGroupName, workspaceName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -153,14 +159,13 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this;
     }
 
-    public Response<UrlToken> generateUploadUrlWithResponse(GenerateUploadUrlRequest generateUploadUrl,
-        Context context) {
+    public Response<UrlToken> generateUploadUrlWithResponse(GenerateUploadUrlRequest body, Context context) {
         return serviceManager.workspaces()
-            .generateUploadUrlWithResponse(resourceGroupName, workspaceName, generateUploadUrl, context);
+            .generateUploadUrlWithResponse(resourceGroupName, workspaceName, body, context);
     }
 
-    public UrlToken generateUploadUrl(GenerateUploadUrlRequest generateUploadUrl) {
-        return serviceManager.workspaces().generateUploadUrl(resourceGroupName, workspaceName, generateUploadUrl);
+    public UrlToken generateUploadUrl(GenerateUploadUrlRequest body) {
+        return serviceManager.workspaces().generateUploadUrl(resourceGroupName, workspaceName, body);
     }
 
     public WorkspaceImpl withRegion(Region location) {
@@ -174,7 +179,31 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public WorkspaceImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateProperties.withTags(tags);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withProperties(WorkspaceProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
+    }
+
+    public WorkspaceImpl withSku(Sku sku) {
+        this.innerModel().withSku(sku);
+        return this;
+    }
+
+    public WorkspaceImpl withSku(AzureResourceManagerCommonTypesSkuUpdate sku) {
+        this.updateProperties.withSku(sku);
+        return this;
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

@@ -33,7 +33,7 @@ public interface SummaryResource {
     String type();
 
     /**
-     * Gets the properties property: Properties of an analysis summary.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
