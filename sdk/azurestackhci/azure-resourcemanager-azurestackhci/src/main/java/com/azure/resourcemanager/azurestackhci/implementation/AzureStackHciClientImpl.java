@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -27,6 +27,7 @@ import com.azure.resourcemanager.azurestackhci.fluent.ArcSettingsClient;
 import com.azure.resourcemanager.azurestackhci.fluent.AzureStackHciClient;
 import com.azure.resourcemanager.azurestackhci.fluent.ClustersClient;
 import com.azure.resourcemanager.azurestackhci.fluent.DeploymentSettingsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.EdgeDeviceJobsClient;
 import com.azure.resourcemanager.azurestackhci.fluent.EdgeDevicesClient;
 import com.azure.resourcemanager.azurestackhci.fluent.ExtensionsClient;
 import com.azure.resourcemanager.azurestackhci.fluent.OffersClient;
@@ -35,8 +36,9 @@ import com.azure.resourcemanager.azurestackhci.fluent.PublishersClient;
 import com.azure.resourcemanager.azurestackhci.fluent.SecuritySettingsClient;
 import com.azure.resourcemanager.azurestackhci.fluent.SkusClient;
 import com.azure.resourcemanager.azurestackhci.fluent.UpdateRunsClient;
-import com.azure.resourcemanager.azurestackhci.fluent.UpdatesClient;
 import com.azure.resourcemanager.azurestackhci.fluent.UpdateSummariesOperationsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.UpdatesClient;
+import com.azure.resourcemanager.azurestackhci.fluent.ValidatedSolutionRecipesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -178,6 +180,20 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
     }
 
     /**
+     * The EdgeDeviceJobsClient object to access its operations.
+     */
+    private final EdgeDeviceJobsClient edgeDeviceJobs;
+
+    /**
+     * Gets the EdgeDeviceJobsClient object to access its operations.
+     * 
+     * @return the EdgeDeviceJobsClient object.
+     */
+    public EdgeDeviceJobsClient getEdgeDeviceJobs() {
+        return this.edgeDeviceJobs;
+    }
+
+    /**
      * The EdgeDevicesClient object to access its operations.
      */
     private final EdgeDevicesClient edgeDevices;
@@ -290,6 +306,20 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
     }
 
     /**
+     * The UpdatesClient object to access its operations.
+     */
+    private final UpdatesClient updates;
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     * 
+     * @return the UpdatesClient object.
+     */
+    public UpdatesClient getUpdates() {
+        return this.updates;
+    }
+
+    /**
      * The UpdateSummariesOperationsClient object to access its operations.
      */
     private final UpdateSummariesOperationsClient updateSummariesOperations;
@@ -304,17 +334,17 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
     }
 
     /**
-     * The UpdatesClient object to access its operations.
+     * The ValidatedSolutionRecipesClient object to access its operations.
      */
-    private final UpdatesClient updates;
+    private final ValidatedSolutionRecipesClient validatedSolutionRecipes;
 
     /**
-     * Gets the UpdatesClient object to access its operations.
+     * Gets the ValidatedSolutionRecipesClient object to access its operations.
      * 
-     * @return the UpdatesClient object.
+     * @return the ValidatedSolutionRecipesClient object.
      */
-    public UpdatesClient getUpdates() {
-        return this.updates;
+    public ValidatedSolutionRecipesClient getValidatedSolutionRecipes() {
+        return this.validatedSolutionRecipes;
     }
 
     /**
@@ -334,10 +364,11 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-04-01";
+        this.apiVersion = "2025-02-01-preview";
         this.arcSettings = new ArcSettingsClientImpl(this);
         this.clusters = new ClustersClientImpl(this);
         this.deploymentSettings = new DeploymentSettingsClientImpl(this);
+        this.edgeDeviceJobs = new EdgeDeviceJobsClientImpl(this);
         this.edgeDevices = new EdgeDevicesClientImpl(this);
         this.extensions = new ExtensionsClientImpl(this);
         this.offers = new OffersClientImpl(this);
@@ -346,8 +377,9 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
         this.securitySettings = new SecuritySettingsClientImpl(this);
         this.skus = new SkusClientImpl(this);
         this.updateRuns = new UpdateRunsClientImpl(this);
-        this.updateSummariesOperations = new UpdateSummariesOperationsClientImpl(this);
         this.updates = new UpdatesClientImpl(this);
+        this.updateSummariesOperations = new UpdateSummariesOperationsClientImpl(this);
+        this.validatedSolutionRecipes = new ValidatedSolutionRecipesClientImpl(this);
     }
 
     /**

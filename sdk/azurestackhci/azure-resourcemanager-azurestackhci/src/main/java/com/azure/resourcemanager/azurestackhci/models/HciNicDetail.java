@@ -92,6 +92,11 @@ public final class HciNicDetail implements JsonSerializable<HciNicDetail> {
      */
     private String nicStatus;
 
+    /*
+     * Describes the RDMA capability of the network adapter.
+     */
+    private RdmaCapability rdmaCapability;
+
     /**
      * Creates an instance of HciNicDetail class.
      */
@@ -234,6 +239,15 @@ public final class HciNicDetail implements JsonSerializable<HciNicDetail> {
     }
 
     /**
+     * Get the rdmaCapability property: Describes the RDMA capability of the network adapter.
+     * 
+     * @return the rdmaCapability value.
+     */
+    public RdmaCapability rdmaCapability() {
+        return this.rdmaCapability;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -296,6 +310,8 @@ public final class HciNicDetail implements JsonSerializable<HciNicDetail> {
                     deserializedHciNicDetail.vlanId = reader.getString();
                 } else if ("nicStatus".equals(fieldName)) {
                     deserializedHciNicDetail.nicStatus = reader.getString();
+                } else if ("rdmaCapability".equals(fieldName)) {
+                    deserializedHciNicDetail.rdmaCapability = RdmaCapability.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

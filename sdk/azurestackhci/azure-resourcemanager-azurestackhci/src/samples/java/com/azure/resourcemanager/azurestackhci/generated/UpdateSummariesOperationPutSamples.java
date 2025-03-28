@@ -14,8 +14,8 @@ import java.time.OffsetDateTime;
 public final class UpdateSummariesOperationPutSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutUpdateSummaries.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutUpdateSummaries.json
      */
     /**
      * Sample code: Put Update summaries under cluster resource.

@@ -17,6 +17,7 @@ import com.azure.resourcemanager.azurestackhci.models.ClusterIdentityResponse;
 import com.azure.resourcemanager.azurestackhci.models.Clusters;
 import com.azure.resourcemanager.azurestackhci.models.LogCollectionRequest;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportRequest;
+import com.azure.resourcemanager.azurestackhci.models.SecretsLocationsChangeRequest;
 import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceChangeRequest;
 import com.azure.resourcemanager.azurestackhci.models.UploadCertificateRequest;
 
@@ -80,6 +81,26 @@ public final class ClustersImpl implements Clusters {
 
     public void delete(String resourceGroupName, String clusterName, Context context) {
         this.serviceClient().delete(resourceGroupName, clusterName, context);
+    }
+
+    public Cluster updateSecretsLocations(String resourceGroupName, String clusterName,
+        SecretsLocationsChangeRequest body) {
+        ClusterInner inner = this.serviceClient().updateSecretsLocations(resourceGroupName, clusterName, body);
+        if (inner != null) {
+            return new ClusterImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Cluster updateSecretsLocations(String resourceGroupName, String clusterName,
+        SecretsLocationsChangeRequest body, Context context) {
+        ClusterInner inner = this.serviceClient().updateSecretsLocations(resourceGroupName, clusterName, body, context);
+        if (inner != null) {
+            return new ClusterImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void uploadCertificate(String resourceGroupName, String clusterName,

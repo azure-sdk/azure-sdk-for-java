@@ -11,18 +11,22 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
+import com.azure.resourcemanager.azurestackhci.models.ClusterPattern;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
 import com.azure.resourcemanager.azurestackhci.models.ConnectivityStatus;
 import com.azure.resourcemanager.azurestackhci.models.IsolatedVmAttestationConfiguration;
+import com.azure.resourcemanager.azurestackhci.models.LocalAvailabilityZones;
 import com.azure.resourcemanager.azurestackhci.models.LogCollectionProperties;
 import com.azure.resourcemanager.azurestackhci.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import com.azure.resourcemanager.azurestackhci.models.RemoteSupportProperties;
+import com.azure.resourcemanager.azurestackhci.models.SecretsLocationDetails;
 import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import com.azure.resourcemanager.azurestackhci.models.UserAssignedIdentity;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -47,9 +51,9 @@ public final class ClusterInner extends Resource {
     private SystemData systemData;
 
     /*
-     * Fully qualified resource Id for the resource.
+     * The type of the resource.
      */
-    private String id;
+    private String type;
 
     /*
      * The name of the resource.
@@ -57,9 +61,9 @@ public final class ClusterInner extends Resource {
     private String name;
 
     /*
-     * The type of the resource.
+     * Fully qualified resource Id for the resource.
      */
-    private String type;
+    private String id;
 
     /**
      * Creates an instance of ClusterInner class.
@@ -95,13 +99,13 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the id property: Fully qualified resource Id for the resource.
+     * Get the type property: The type of the resource.
      * 
-     * @return the id value.
+     * @return the type value.
      */
     @Override
-    public String id() {
-        return this.id;
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -115,13 +119,13 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the type property: The type of the resource.
+     * Get the id property: Fully qualified resource Id for the resource.
      * 
-     * @return the type value.
+     * @return the id value.
      */
     @Override
-    public String type() {
-        return this.type;
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -539,6 +543,61 @@ public final class ClusterInner extends Resource {
      */
     public String resourceProviderObjectId() {
         return this.innerProperties() == null ? null : this.innerProperties().resourceProviderObjectId();
+    }
+
+    /**
+     * Get the secretsLocations property: List of secret locations.
+     * 
+     * @return the secretsLocations value.
+     */
+    public List<SecretsLocationDetails> secretsLocations() {
+        return this.innerProperties() == null ? null : this.innerProperties().secretsLocations();
+    }
+
+    /**
+     * Set the secretsLocations property: List of secret locations.
+     * 
+     * @param secretsLocations the secretsLocations value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withSecretsLocations(List<SecretsLocationDetails> secretsLocations) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withSecretsLocations(secretsLocations);
+        return this;
+    }
+
+    /**
+     * Get the clusterPattern property: Supported Storage Type for HCI Cluster.
+     * 
+     * @return the clusterPattern value.
+     */
+    public ClusterPattern clusterPattern() {
+        return this.innerProperties() == null ? null : this.innerProperties().clusterPattern();
+    }
+
+    /**
+     * Get the localAvailabilityZones property: Local Availability Zone information for HCI cluster.
+     * 
+     * @return the localAvailabilityZones value.
+     */
+    public List<LocalAvailabilityZones> localAvailabilityZones() {
+        return this.innerProperties() == null ? null : this.innerProperties().localAvailabilityZones();
+    }
+
+    /**
+     * Set the localAvailabilityZones property: Local Availability Zone information for HCI cluster.
+     * 
+     * @param localAvailabilityZones the localAvailabilityZones value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withLocalAvailabilityZones(List<LocalAvailabilityZones> localAvailabilityZones) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withLocalAvailabilityZones(localAvailabilityZones);
+        return this;
     }
 
     /**

@@ -88,6 +88,16 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
      */
     private OptionalServices optionalServices;
 
+    /*
+     * Local Availability Zone information for HCI cluster
+     */
+    private List<LocalAvailabilityZones> localAvailabilityZones;
+
+    /*
+     * Assembly Package details for Validated Solution Recipe for AzureStackHCI Cluster
+     */
+    private AssemblyInfo assemblyInfo;
+
     /**
      * Creates an instance of DeploymentData class.
      */
@@ -379,6 +389,46 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
     }
 
     /**
+     * Get the localAvailabilityZones property: Local Availability Zone information for HCI cluster.
+     * 
+     * @return the localAvailabilityZones value.
+     */
+    public List<LocalAvailabilityZones> localAvailabilityZones() {
+        return this.localAvailabilityZones;
+    }
+
+    /**
+     * Set the localAvailabilityZones property: Local Availability Zone information for HCI cluster.
+     * 
+     * @param localAvailabilityZones the localAvailabilityZones value to set.
+     * @return the DeploymentData object itself.
+     */
+    public DeploymentData withLocalAvailabilityZones(List<LocalAvailabilityZones> localAvailabilityZones) {
+        this.localAvailabilityZones = localAvailabilityZones;
+        return this;
+    }
+
+    /**
+     * Get the assemblyInfo property: Assembly Package details for Validated Solution Recipe for AzureStackHCI Cluster.
+     * 
+     * @return the assemblyInfo value.
+     */
+    public AssemblyInfo assemblyInfo() {
+        return this.assemblyInfo;
+    }
+
+    /**
+     * Set the assemblyInfo property: Assembly Package details for Validated Solution Recipe for AzureStackHCI Cluster.
+     * 
+     * @param assemblyInfo the assemblyInfo value to set.
+     * @return the DeploymentData object itself.
+     */
+    public DeploymentData withAssemblyInfo(AssemblyInfo assemblyInfo) {
+        this.assemblyInfo = assemblyInfo;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -414,6 +464,12 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
         if (optionalServices() != null) {
             optionalServices().validate();
         }
+        if (localAvailabilityZones() != null) {
+            localAvailabilityZones().forEach(e -> e.validate());
+        }
+        if (assemblyInfo() != null) {
+            assemblyInfo().validate();
+        }
     }
 
     /**
@@ -437,6 +493,9 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
         jsonWriter.writeStringField("secretsLocation", this.secretsLocation);
         jsonWriter.writeArrayField("secrets", this.secrets, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("optionalServices", this.optionalServices);
+        jsonWriter.writeArrayField("localAvailabilityZones", this.localAvailabilityZones,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("assemblyInfo", this.assemblyInfo);
         return jsonWriter.writeEndObject();
     }
 
@@ -488,6 +547,12 @@ public final class DeploymentData implements JsonSerializable<DeploymentData> {
                     deserializedDeploymentData.secrets = secrets;
                 } else if ("optionalServices".equals(fieldName)) {
                     deserializedDeploymentData.optionalServices = OptionalServices.fromJson(reader);
+                } else if ("localAvailabilityZones".equals(fieldName)) {
+                    List<LocalAvailabilityZones> localAvailabilityZones
+                        = reader.readArray(reader1 -> LocalAvailabilityZones.fromJson(reader1));
+                    deserializedDeploymentData.localAvailabilityZones = localAvailabilityZones;
+                } else if ("assemblyInfo".equals(fieldName)) {
+                    deserializedDeploymentData.assemblyInfo = AssemblyInfo.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

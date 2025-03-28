@@ -74,6 +74,11 @@ public final class ClusterReportedProperties implements JsonSerializable<Cluster
      */
     private OemActivation oemActivation;
 
+    /*
+     * Hardware class of the cluster.
+     */
+    private HardwareClass hardwareClass;
+
     /**
      * Creates an instance of ClusterReportedProperties class.
      */
@@ -191,6 +196,15 @@ public final class ClusterReportedProperties implements JsonSerializable<Cluster
     }
 
     /**
+     * Get the hardwareClass property: Hardware class of the cluster.
+     * 
+     * @return the hardwareClass value.
+     */
+    public HardwareClass hardwareClass() {
+        return this.hardwareClass;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -254,6 +268,8 @@ public final class ClusterReportedProperties implements JsonSerializable<Cluster
                     deserializedClusterReportedProperties.manufacturer = reader.getString();
                 } else if ("oemActivation".equals(fieldName)) {
                     deserializedClusterReportedProperties.oemActivation = OemActivation.fromString(reader.getString());
+                } else if ("hardwareClass".equals(fieldName)) {
+                    deserializedClusterReportedProperties.hardwareClass = HardwareClass.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

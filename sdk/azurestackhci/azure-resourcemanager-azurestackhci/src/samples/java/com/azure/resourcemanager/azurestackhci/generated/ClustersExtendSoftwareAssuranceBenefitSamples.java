@@ -14,8 +14,8 @@ import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceIntent;
 public final class ClustersExtendSoftwareAssuranceBenefitSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ExtendSoftwareAssuranceBenefit.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ExtendSoftwareAssuranceBenefit.json
      */
     /**
      * Sample code: Create cluster Identity.

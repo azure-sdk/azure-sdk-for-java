@@ -31,14 +31,24 @@ public final class HciReportedProperties extends ReportedProperties {
     private SbeDeploymentPackageInfo sbeDeploymentPackageInfo;
 
     /*
-     * edge device state.
+     * Hci device storage specific information.
      */
-    private DeviceState deviceState;
+    private HciStorageProfile storageProfile;
+
+    /*
+     * Hci device hardware specific information.
+     */
+    private HciHardwareProfile hardwareProfile;
 
     /*
      * Extensions details for edge device.
      */
     private ExtensionProfile extensionProfile;
+
+    /*
+     * edge device state.
+     */
+    private DeviceState deviceState;
 
     /**
      * Creates an instance of HciReportedProperties class.
@@ -74,13 +84,21 @@ public final class HciReportedProperties extends ReportedProperties {
     }
 
     /**
-     * Get the deviceState property: edge device state.
+     * Get the storageProfile property: Hci device storage specific information.
      * 
-     * @return the deviceState value.
+     * @return the storageProfile value.
      */
-    @Override
-    public DeviceState deviceState() {
-        return this.deviceState;
+    public HciStorageProfile storageProfile() {
+        return this.storageProfile;
+    }
+
+    /**
+     * Get the hardwareProfile property: Hci device hardware specific information.
+     * 
+     * @return the hardwareProfile value.
+     */
+    public HciHardwareProfile hardwareProfile() {
+        return this.hardwareProfile;
     }
 
     /**
@@ -94,13 +112,22 @@ public final class HciReportedProperties extends ReportedProperties {
     }
 
     /**
+     * Get the deviceState property: edge device state.
+     * 
+     * @return the deviceState value.
+     */
+    @Override
+    public DeviceState deviceState() {
+        return this.deviceState;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (networkProfile() != null) {
             networkProfile().validate();
         }
@@ -109,6 +136,15 @@ public final class HciReportedProperties extends ReportedProperties {
         }
         if (sbeDeploymentPackageInfo() != null) {
             sbeDeploymentPackageInfo().validate();
+        }
+        if (storageProfile() != null) {
+            storageProfile().validate();
+        }
+        if (hardwareProfile() != null) {
+            hardwareProfile().validate();
+        }
+        if (extensionProfile() != null) {
+            extensionProfile().validate();
         }
     }
 
@@ -147,6 +183,10 @@ public final class HciReportedProperties extends ReportedProperties {
                 } else if ("sbeDeploymentPackageInfo".equals(fieldName)) {
                     deserializedHciReportedProperties.sbeDeploymentPackageInfo
                         = SbeDeploymentPackageInfo.fromJson(reader);
+                } else if ("storageProfile".equals(fieldName)) {
+                    deserializedHciReportedProperties.storageProfile = HciStorageProfile.fromJson(reader);
+                } else if ("hardwareProfile".equals(fieldName)) {
+                    deserializedHciReportedProperties.hardwareProfile = HciHardwareProfile.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

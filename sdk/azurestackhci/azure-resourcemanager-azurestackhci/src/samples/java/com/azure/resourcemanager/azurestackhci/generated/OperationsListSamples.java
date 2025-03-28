@@ -10,15 +10,16 @@ package com.azure.resourcemanager.azurestackhci.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/operations/stable/2024-04-01/examples/
-     * ListOperations.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/operations/preview/2025-02-01-preview/
+     * examples/Operations_List.json
      */
     /**
-     * Sample code: Create cluster.
+     * Sample code: List the operations for the provider.
      * 
      * @param manager Entry point to AzureStackHciManager.
      */
-    public static void createCluster(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        manager.operations().listWithResponse(com.azure.core.util.Context.NONE);
+    public static void
+        listTheOperationsForTheProvider(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

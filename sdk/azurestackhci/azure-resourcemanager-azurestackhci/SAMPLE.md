@@ -25,6 +25,7 @@
 - [ListByResourceGroup](#clusters_listbyresourcegroup)
 - [TriggerLogCollection](#clusters_triggerlogcollection)
 - [Update](#clusters_update)
+- [UpdateSecretsLocations](#clusters_updatesecretslocations)
 - [UploadCertificate](#clusters_uploadcertificate)
 
 ## DeploymentSettings
@@ -33,6 +34,13 @@
 - [Delete](#deploymentsettings_delete)
 - [Get](#deploymentsettings_get)
 - [ListByClusters](#deploymentsettings_listbyclusters)
+
+## EdgeDeviceJobs
+
+- [CreateOrUpdate](#edgedevicejobs_createorupdate)
+- [Delete](#edgedevicejobs_delete)
+- [Get](#edgedevicejobs_get)
+- [ListByEdgeDevice](#edgedevicejobs_listbyedgedevice)
 
 ## EdgeDevices
 
@@ -99,6 +107,11 @@
 - [List](#updates_list)
 - [Post](#updates_post)
 - [Put](#updates_put)
+
+## ValidatedSolutionRecipes
+
+- [Get](#validatedsolutionrecipes_get)
+- [ListBySubscriptionLocationResource](#validatedsolutionrecipes_listbysubscriptionlocationresource)
 ### ArcSettings_ConsentAndInstallDefaultExtensions
 
 ```java
@@ -108,8 +121,8 @@
 public final class ArcSettingsConsentAndInstallDefaultExtensionsSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ConsentAndInstallDefaultExtensions.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ConsentAndInstallDefaultExtensions.json
      */
     /**
      * Sample code: Consent And Install Default Extensions.
@@ -134,8 +147,8 @@ public final class ArcSettingsConsentAndInstallDefaultExtensionsSamples {
 public final class ArcSettingsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutArcSetting.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutArcSetting.json
      */
     /**
      * Sample code: Create ArcSetting.
@@ -157,8 +170,8 @@ public final class ArcSettingsCreateSamples {
 public final class ArcSettingsCreateIdentitySamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * CreateArcIdentity.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /CreateArcIdentity.json
      */
     /**
      * Sample code: Create Arc Identity.
@@ -180,8 +193,8 @@ public final class ArcSettingsCreateIdentitySamples {
 public final class ArcSettingsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteArcSetting.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteArcSetting.json
      */
     /**
      * Sample code: Delete ArcSetting.
@@ -203,8 +216,8 @@ public final class ArcSettingsDeleteSamples {
 public final class ArcSettingsGeneratePasswordSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GeneratePassword.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GeneratePassword.json
      */
     /**
      * Sample code: Generate Password.
@@ -227,8 +240,8 @@ public final class ArcSettingsGeneratePasswordSamples {
 public final class ArcSettingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetArcSetting.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetArcSetting.json
      */
     /**
      * Sample code: Get ArcSetting.
@@ -250,8 +263,8 @@ public final class ArcSettingsGetSamples {
 public final class ArcSettingsInitializeDisableProcessSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * InitializeDisableProcess.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /InitializeDisableProcess.json
      */
     /**
      * Sample code: Trigger ARC Disable.
@@ -274,8 +287,8 @@ public final class ArcSettingsInitializeDisableProcessSamples {
 public final class ArcSettingsListByClusterSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListArcSettingsByCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListArcSettingsByCluster.json
      */
     /**
      * Sample code: List ArcSetting resources by HCI Cluster.
@@ -303,8 +316,8 @@ import java.io.IOException;
 public final class ArcSettingsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PatchArcSetting.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PatchArcSetting.json
      */
     /**
      * Sample code: Patch ArcSetting.
@@ -339,8 +352,8 @@ import java.time.OffsetDateTime;
 public final class ClustersConfigureRemoteSupportSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ConfigureRemoteSupport.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ConfigureRemoteSupport.json
      */
     /**
      * Sample code: Configure Remote Support.
@@ -369,8 +382,8 @@ import com.azure.resourcemanager.azurestackhci.models.ManagedServiceIdentityType
 public final class ClustersCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * CreateCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /CreateCluster.json
      */
     /**
      * Sample code: Create cluster.
@@ -400,8 +413,8 @@ public final class ClustersCreateSamples {
 public final class ClustersCreateIdentitySamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * CreateClusterIdentity.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /CreateClusterIdentity.json
      */
     /**
      * Sample code: Create cluster Identity.
@@ -423,8 +436,8 @@ public final class ClustersCreateIdentitySamples {
 public final class ClustersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteCluster.json
      */
     /**
      * Sample code: Delete cluster.
@@ -450,8 +463,8 @@ import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceIntent;
 public final class ClustersExtendSoftwareAssuranceBenefitSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ExtendSoftwareAssuranceBenefit.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ExtendSoftwareAssuranceBenefit.json
      */
     /**
      * Sample code: Create cluster Identity.
@@ -477,8 +490,8 @@ public final class ClustersExtendSoftwareAssuranceBenefitSamples {
 public final class ClustersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetCluster.json
      */
     /**
      * Sample code: Get cluster.
@@ -500,8 +513,8 @@ public final class ClustersGetByResourceGroupSamples {
 public final class ClustersListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListClustersBySubscription.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListClustersBySubscription.json
      */
     /**
      * Sample code: List clusters in a given subscription.
@@ -524,8 +537,8 @@ public final class ClustersListSamples {
 public final class ClustersListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListClustersByResourceGroup.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListClustersByResourceGroup.json
      */
     /**
      * Sample code: List clusters in a given resource group.
@@ -552,8 +565,8 @@ import java.time.OffsetDateTime;
 public final class ClustersTriggerLogCollectionSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * TriggerLogCollection.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /TriggerLogCollection.json
      */
     /**
      * Sample code: Trigger Log Collection.
@@ -588,8 +601,8 @@ import java.util.Map;
 public final class ClustersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * UpdateCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /UpdateCluster.json
      */
     /**
      * Sample code: Update cluster.
@@ -624,6 +637,40 @@ public final class ClustersUpdateSamples {
 }
 ```
 
+### Clusters_UpdateSecretsLocations
+
+```java
+import com.azure.resourcemanager.azurestackhci.models.SecretsLocationDetails;
+import com.azure.resourcemanager.azurestackhci.models.SecretsLocationsChangeRequest;
+import com.azure.resourcemanager.azurestackhci.models.SecretsType;
+import java.util.Arrays;
+
+/**
+ * Samples for Clusters UpdateSecretsLocations.
+ */
+public final class ClustersUpdateSecretsLocationsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /Clusters_UpdateSecretsLocations.json
+     */
+    /**
+     * Sample code: Update secrets locations for a Cluster.
+     * 
+     * @param manager Entry point to AzureStackHciManager.
+     */
+    public static void
+        updateSecretsLocationsForACluster(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.clusters()
+            .updateSecretsLocations("test-rg", "myCluster",
+                new SecretsLocationsChangeRequest().withProperties(
+                    Arrays.asList(new SecretsLocationDetails().withSecretsType(SecretsType.BACKUP_SECRETS)
+                        .withSecretsLocation("fakeTokenPlaceholder"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Clusters_UploadCertificate
 
 ```java
@@ -637,8 +684,8 @@ import java.util.Arrays;
 public final class ClustersUploadCertificateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * UploadCertificate.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /UploadCertificate.json
      */
     /**
      * Sample code: Upload certificate.
@@ -695,8 +742,8 @@ import java.util.Arrays;
 public final class DeploymentSettingsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutDeploymentSettings.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutDeploymentSettings.json
      */
     /**
      * Sample code: Create Deployment Settings.
@@ -816,8 +863,8 @@ public final class DeploymentSettingsCreateOrUpdateSamples {
 public final class DeploymentSettingsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteDeploymentSettings.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteDeploymentSettings.json
      */
     /**
      * Sample code: Delete Deployment Settings.
@@ -839,8 +886,8 @@ public final class DeploymentSettingsDeleteSamples {
 public final class DeploymentSettingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetDeploymentSettings.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetDeploymentSettings.json
      */
     /**
      * Sample code: Get Deployment Settings.
@@ -863,8 +910,8 @@ public final class DeploymentSettingsGetSamples {
 public final class DeploymentSettingsListByClustersSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListDeploymentSettingsByCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListDeploymentSettingsByCluster.json
      */
     /**
      * Sample code: List Deployment Settings.
@@ -873,6 +920,147 @@ public final class DeploymentSettingsListByClustersSamples {
      */
     public static void listDeploymentSettings(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
         manager.deploymentSettings().listByClusters("test-rg", "myCluster", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EdgeDeviceJobs_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.azurestackhci.models.HciCollectLogJobProperties;
+import com.azure.resourcemanager.azurestackhci.models.HciEdgeDeviceJob;
+import com.azure.resourcemanager.azurestackhci.models.HciRemoteSupportJobProperties;
+import com.azure.resourcemanager.azurestackhci.models.RemoteSupportAccessLevel;
+import com.azure.resourcemanager.azurestackhci.models.RemoteSupportType;
+import java.time.OffsetDateTime;
+
+/**
+ * Samples for EdgeDeviceJobs CreateOrUpdate.
+ */
+public final class EdgeDeviceJobsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /EdgeDeviceJobs_CreateOrUpdate_RemoteSupport.json
+     */
+    /**
+     * Sample code: EdgeDeviceJobs_CreateOrUpdate_RemoteSupport.
+     * 
+     * @param manager Entry point to AzureStackHciManager.
+     */
+    public static void edgeDeviceJobsCreateOrUpdateRemoteSupport(
+        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.edgeDeviceJobs()
+            .createOrUpdate(
+                "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/ArcInstance-rg/providers/Microsoft.HybridCompute/machines/Node-1",
+                "default", "collectLog",
+                new HciEdgeDeviceJob().withProperties(
+                    new HciRemoteSupportJobProperties().withAccessLevel(RemoteSupportAccessLevel.DIAGNOSTICS)
+                        .withExpirationTimestamp(OffsetDateTime.parse("2024-01-29T10:43:27.9471574Z"))
+                        .withType(RemoteSupportType.ENABLE)),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /EdgeDeviceJobs_CreateOrUpdate_CollectLog.json
+     */
+    /**
+     * Sample code: EdgeDeviceJobs_CreateOrUpdate_CollectLog.
+     * 
+     * @param manager Entry point to AzureStackHciManager.
+     */
+    public static void
+        edgeDeviceJobsCreateOrUpdateCollectLog(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.edgeDeviceJobs()
+            .createOrUpdate(
+                "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/ArcInstance-rg/providers/Microsoft.HybridCompute/machines/Node-1",
+                "default", "collectLog",
+                new HciEdgeDeviceJob().withProperties(
+                    new HciCollectLogJobProperties().withFromDate(OffsetDateTime.parse("2024-01-29T10:43:27.9471574Z"))
+                        .withToDate(OffsetDateTime.parse("2024-01-29T10:43:27.9471574Z"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EdgeDeviceJobs_Delete
+
+```java
+/**
+ * Samples for EdgeDeviceJobs Delete.
+ */
+public final class EdgeDeviceJobsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /EdgeDeviceJobs_Delete.json
+     */
+    /**
+     * Sample code: EdgeDeviceJobs_Delete.
+     * 
+     * @param manager Entry point to AzureStackHciManager.
+     */
+    public static void edgeDeviceJobsDelete(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.edgeDeviceJobs()
+            .delete(
+                "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/ArcInstance-rg/providers/Microsoft.HybridCompute/machines/Node-1",
+                "lAq", "Ihlm3R-bZ4vTC4ABA456", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EdgeDeviceJobs_Get
+
+```java
+/**
+ * Samples for EdgeDeviceJobs Get.
+ */
+public final class EdgeDeviceJobsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /EdgeDeviceJobs_Get_RemoteSupport.json
+     */
+    /**
+     * Sample code: EdgeDeviceJobs_Get_RemoteSupport.
+     * 
+     * @param manager Entry point to AzureStackHciManager.
+     */
+    public static void
+        edgeDeviceJobsGetRemoteSupport(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.edgeDeviceJobs()
+            .getWithResponse(
+                "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/ArcInstance-rg/providers/Microsoft.HybridCompute/machines/Node-1",
+                "-5M1G7G10OZ-o5b-HS3-c72", "-oUxs", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EdgeDeviceJobs_ListByEdgeDevice
+
+```java
+/**
+ * Samples for EdgeDeviceJobs ListByEdgeDevice.
+ */
+public final class EdgeDeviceJobsListByEdgeDeviceSamples {
+    /*
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /EdgeDeviceJobs_ListByEdgeDevice.json
+     */
+    /**
+     * Sample code: EdgeDeviceJobs_ListByEdgeDevice.
+     * 
+     * @param manager Entry point to AzureStackHciManager.
+     */
+    public static void
+        edgeDeviceJobsListByEdgeDevice(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.edgeDeviceJobs()
+            .listByEdgeDevice(
+                "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/ArcInstance-rg/providers/Microsoft.HybridCompute/machines/Node-1",
+                "YE-855IEIN585-", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -892,8 +1080,8 @@ import java.util.Arrays;
 public final class EdgeDevicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * CreateHciEdgeDevice.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /CreateHciEdgeDevice.json
      */
     /**
      * Sample code: Create HCI Edge Device.
@@ -929,8 +1117,8 @@ public final class EdgeDevicesCreateOrUpdateSamples {
 public final class EdgeDevicesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteEdgeDevices.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteEdgeDevices.json
      */
     /**
      * Sample code: Delete Edge Devices.
@@ -955,8 +1143,8 @@ public final class EdgeDevicesDeleteSamples {
 public final class EdgeDevicesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetEdgeDevices.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetEdgeDevices.json
      */
     /**
      * Sample code: Get Edge Device.
@@ -981,8 +1169,8 @@ public final class EdgeDevicesGetSamples {
 public final class EdgeDevicesListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListEdgeDevices.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListEdgeDevices.json
      */
     /**
      * Sample code: List Edge Devices.
@@ -1010,8 +1198,8 @@ import java.util.Arrays;
 public final class EdgeDevicesValidateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ValidateEdgeDevices.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ValidateEdgeDevices.json
      */
     /**
      * Sample code: Validate Edge Devices.
@@ -1045,8 +1233,8 @@ import java.io.IOException;
 public final class ExtensionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutExtension.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutExtension.json
      */
     /**
      * Sample code: Create Arc Extension.
@@ -1080,8 +1268,8 @@ public final class ExtensionsCreateSamples {
 public final class ExtensionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteExtension.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteExtension.json
      */
     /**
      * Sample code: Delete Arc Extension.
@@ -1104,8 +1292,8 @@ public final class ExtensionsDeleteSamples {
 public final class ExtensionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetExtension.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetExtension.json
      */
     /**
      * Sample code: Get ArcSettings Extension.
@@ -1129,8 +1317,8 @@ public final class ExtensionsGetSamples {
 public final class ExtensionsListByArcSettingSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListExtensionsByArcSetting.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListExtensionsByArcSetting.json
      */
     /**
      * Sample code: List Extensions under ArcSetting resource.
@@ -1159,8 +1347,8 @@ import java.io.IOException;
 public final class ExtensionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PatchExtension.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PatchExtension.json
      */
     /**
      * Sample code: Update Arc Extension.
@@ -1196,8 +1384,8 @@ import com.azure.resourcemanager.azurestackhci.models.ExtensionUpgradeParameters
 public final class ExtensionsUpgradeSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * Extensions_Upgrade.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /Extensions_Upgrade.json
      */
     /**
      * Sample code: Upgrade Machine Extensions.
@@ -1221,8 +1409,8 @@ public final class ExtensionsUpgradeSamples {
 public final class OffersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/GetOffer
-     * .json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetOffer.json
      */
     /**
      * Sample code: Get Offer.
@@ -1245,8 +1433,8 @@ public final class OffersGetSamples {
 public final class OffersListByClusterSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListOffersByCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListOffersByCluster.json
      */
     /**
      * Sample code: List Offer resources by HCI Cluster.
@@ -1269,8 +1457,8 @@ public final class OffersListByClusterSamples {
 public final class OffersListByPublisherSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListOffersByPublisher.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListOffersByPublisher.json
      */
     /**
      * Sample code: List Offer resources by publisher for the HCI Cluster.
@@ -1293,16 +1481,17 @@ public final class OffersListByPublisherSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/operations/stable/2024-04-01/examples/
-     * ListOperations.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/operations/preview/2025-02-01-preview/
+     * examples/Operations_List.json
      */
     /**
-     * Sample code: Create cluster.
+     * Sample code: List the operations for the provider.
      * 
      * @param manager Entry point to AzureStackHciManager.
      */
-    public static void createCluster(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        manager.operations().listWithResponse(com.azure.core.util.Context.NONE);
+    public static void
+        listTheOperationsForTheProvider(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1316,8 +1505,8 @@ public final class OperationsListSamples {
 public final class PublishersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetPublisher.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetPublisher.json
      */
     /**
      * Sample code: Get Publisher.
@@ -1339,8 +1528,8 @@ public final class PublishersGetSamples {
 public final class PublishersListByClusterSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListPublishersByCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListPublishersByCluster.json
      */
     /**
      * Sample code: List Publisher resources by HCI Cluster.
@@ -1365,8 +1554,8 @@ import com.azure.resourcemanager.azurestackhci.models.ComplianceAssignmentType;
 public final class SecuritySettingsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutSecuritySettings.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutSecuritySettings.json
      */
     /**
      * Sample code: Create Security Settings.
@@ -1394,8 +1583,8 @@ public final class SecuritySettingsCreateOrUpdateSamples {
 public final class SecuritySettingsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteSecuritySettings.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteSecuritySettings.json
      */
     /**
      * Sample code: Delete Security Settings.
@@ -1417,8 +1606,8 @@ public final class SecuritySettingsDeleteSamples {
 public final class SecuritySettingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetSecuritySettings.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetSecuritySettings.json
      */
     /**
      * Sample code: Get Security Settings.
@@ -1440,8 +1629,8 @@ public final class SecuritySettingsGetSamples {
 public final class SecuritySettingsListByClustersSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListSecuritySettingsByCluster.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListSecuritySettingsByCluster.json
      */
     /**
      * Sample code: List Security Settings.
@@ -1463,8 +1652,8 @@ public final class SecuritySettingsListByClustersSamples {
 public final class SkusGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/GetSku.
-     * json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetSku.json
      */
     /**
      * Sample code: Get Sku.
@@ -1488,8 +1677,8 @@ public final class SkusGetSamples {
 public final class SkusListByOfferSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListSkusByOffer.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListSkusByOffer.json
      */
     /**
      * Sample code: List SKU resources by offer for the HCI Cluster.
@@ -1513,8 +1702,8 @@ public final class SkusListByOfferSamples {
 public final class UpdateRunsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteUpdateRuns.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteUpdateRuns.json
      */
     /**
      * Sample code: Delete an Update.
@@ -1538,8 +1727,8 @@ public final class UpdateRunsDeleteSamples {
 public final class UpdateRunsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetUpdateRuns.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetUpdateRuns.json
      */
     /**
      * Sample code: Get Update runs under cluster resource.
@@ -1564,8 +1753,8 @@ public final class UpdateRunsGetSamples {
 public final class UpdateRunsListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListUpdateRuns.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListUpdateRuns.json
      */
     /**
      * Sample code: List Update runs under cluster resource.
@@ -1593,8 +1782,8 @@ import java.util.Arrays;
 public final class UpdateRunsPutSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutUpdateRuns.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutUpdateRuns.json
      */
     /**
      * Sample code: Get Update runs under cluster resource.
@@ -1637,8 +1826,8 @@ public final class UpdateRunsPutSamples {
 public final class UpdateSummariesOperationDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteUpdateSummaries.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteUpdateSummaries.json
      */
     /**
      * Sample code: Delete an Update.
@@ -1660,8 +1849,8 @@ public final class UpdateSummariesOperationDeleteSamples {
 public final class UpdateSummariesOperationGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetUpdateSummaries.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetUpdateSummaries.json
      */
     /**
      * Sample code: Get Update summaries under cluster resource.
@@ -1684,8 +1873,8 @@ public final class UpdateSummariesOperationGetSamples {
 public final class UpdateSummariesOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListUpdateSummaries.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListUpdateSummaries.json
      */
     /**
      * Sample code: Get Update summaries under cluster resource.
@@ -1712,8 +1901,8 @@ import java.time.OffsetDateTime;
 public final class UpdateSummariesOperationPutSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutUpdateSummaries.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutUpdateSummaries.json
      */
     /**
      * Sample code: Put Update summaries under cluster resource.
@@ -1744,8 +1933,8 @@ public final class UpdateSummariesOperationPutSamples {
 public final class UpdatesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * DeleteUpdates.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /DeleteUpdates.json
      */
     /**
      * Sample code: Delete an Update.
@@ -1767,8 +1956,8 @@ public final class UpdatesDeleteSamples {
 public final class UpdatesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * GetUpdates.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /GetUpdates.json
      */
     /**
      * Sample code: Get a specific update.
@@ -1791,8 +1980,8 @@ public final class UpdatesGetSamples {
 public final class UpdatesListSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * ListUpdates.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ListUpdates.json
      */
     /**
      * Sample code: List available updates.
@@ -1814,8 +2003,8 @@ public final class UpdatesListSamples {
 public final class UpdatesPostSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PostUpdates.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PostUpdates.json
      */
     /**
      * Sample code: List available updates.
@@ -1844,8 +2033,8 @@ import java.util.Arrays;
 public final class UpdatesPutSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PutUpdates.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PutUpdates.json
      */
     /**
      * Sample code: Put a specific update.
@@ -1875,6 +2064,55 @@ public final class UpdatesPutSamples {
             .withProgressPercentage(0.0F)
             .withNotifyMessage("Brief message with instructions for updates of AvailabilityType Notify")
             .apply();
+    }
+}
+```
+
+### ValidatedSolutionRecipes_Get
+
+```java
+/**
+ * Samples for ValidatedSolutionRecipes Get.
+ */
+public final class ValidatedSolutionRecipesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ValidatedSolutionRecipes_Get.json
+     */
+    /**
+     * Sample code: ValidatedSolutionRecipes_Get.
+     * 
+     * @param manager Entry point to AzureStackHciManager.
+     */
+    public static void
+        validatedSolutionRecipesGet(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.validatedSolutionRecipes().getWithResponse("westus2", "10.2408.0", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ValidatedSolutionRecipes_ListBySubscriptionLocationResource
+
+```java
+/**
+ * Samples for ValidatedSolutionRecipes ListBySubscriptionLocationResource.
+ */
+public final class ValidatedSolutionRecipesListBySubscriptionLocationResourceSamples {
+    /*
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /ValidatedSolutionRecipes_ListBySubscriptionLocationResource.json
+     */
+    /**
+     * Sample code: ValidatedSolutionRecipes_ListBySubscriptionLocationResource.
+     * 
+     * @param manager Entry point to AzureStackHciManager.
+     */
+    public static void validatedSolutionRecipesListBySubscriptionLocationResource(
+        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.validatedSolutionRecipes()
+            .listBySubscriptionLocationResource("westus2", com.azure.core.util.Context.NONE);
     }
 }
 ```

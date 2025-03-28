@@ -15,8 +15,8 @@ import java.io.IOException;
 public final class ArcSettingsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/stable/2024-04-01/examples/
-     * PatchArcSetting.json
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/StackHCI/preview/2025-02-01-preview/examples
+     * /PatchArcSetting.json
      */
     /**
      * Sample code: Patch ArcSetting.
