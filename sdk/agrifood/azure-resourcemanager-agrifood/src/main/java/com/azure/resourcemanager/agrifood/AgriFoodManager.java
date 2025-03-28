@@ -22,23 +22,24 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.agrifood.fluent.AgriFoodManagementClient;
 import com.azure.resourcemanager.agrifood.implementation.AgriFoodManagementClientBuilder;
+import com.azure.resourcemanager.agrifood.implementation.DataConnectorsImpl;
+import com.azure.resourcemanager.agrifood.implementation.DataManagerForAgricultureExtensionsImpl;
+import com.azure.resourcemanager.agrifood.implementation.DataManagerForAgricultureResourcesImpl;
 import com.azure.resourcemanager.agrifood.implementation.ExtensionsImpl;
-import com.azure.resourcemanager.agrifood.implementation.FarmBeatsExtensionsImpl;
-import com.azure.resourcemanager.agrifood.implementation.FarmBeatsModelsImpl;
-import com.azure.resourcemanager.agrifood.implementation.LocationsImpl;
 import com.azure.resourcemanager.agrifood.implementation.OperationResultsImpl;
 import com.azure.resourcemanager.agrifood.implementation.OperationsImpl;
 import com.azure.resourcemanager.agrifood.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.agrifood.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.agrifood.implementation.SolutionsDiscoverabilitiesImpl;
 import com.azure.resourcemanager.agrifood.implementation.SolutionsImpl;
+import com.azure.resourcemanager.agrifood.models.DataConnectors;
+import com.azure.resourcemanager.agrifood.models.DataManagerForAgricultureExtensions;
+import com.azure.resourcemanager.agrifood.models.DataManagerForAgricultureResources;
 import com.azure.resourcemanager.agrifood.models.Extensions;
-import com.azure.resourcemanager.agrifood.models.FarmBeatsExtensions;
-import com.azure.resourcemanager.agrifood.models.FarmBeatsModels;
-import com.azure.resourcemanager.agrifood.models.Locations;
 import com.azure.resourcemanager.agrifood.models.OperationResults;
 import com.azure.resourcemanager.agrifood.models.Operations;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnections;
@@ -49,23 +50,24 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
  * Entry point to AgriFoodManager.
- * APIs documentation for Azure AgFoodPlatform Resource Provider Service.
+ * APIs documentation for Microsoft Azure Data Manager for Agriculture Service.
  */
 public final class AgriFoodManager {
-    private Extensions extensions;
+    private DataConnectors dataConnectors;
 
-    private FarmBeatsExtensions farmBeatsExtensions;
+    private DataManagerForAgricultureExtensions dataManagerForAgricultureExtensions;
 
-    private FarmBeatsModels farmBeatsModels;
+    private DataManagerForAgricultureResources dataManagerForAgricultureResources;
 
     private OperationResults operationResults;
 
-    private Locations locations;
+    private Extensions extensions;
 
     private Operations operations;
 
@@ -129,6 +131,9 @@ public final class AgriFoodManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-agrifood.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -236,12 +241,14 @@ public final class AgriFoodManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.agrifood")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -288,39 +295,41 @@ public final class AgriFoodManager {
     }
 
     /**
-     * Gets the resource collection API of Extensions. It manages Extension.
+     * Gets the resource collection API of DataConnectors. It manages DataConnector.
      * 
-     * @return Resource collection API of Extensions.
+     * @return Resource collection API of DataConnectors.
      */
-    public Extensions extensions() {
-        if (this.extensions == null) {
-            this.extensions = new ExtensionsImpl(clientObject.getExtensions(), this);
+    public DataConnectors dataConnectors() {
+        if (this.dataConnectors == null) {
+            this.dataConnectors = new DataConnectorsImpl(clientObject.getDataConnectors(), this);
         }
-        return extensions;
+        return dataConnectors;
     }
 
     /**
-     * Gets the resource collection API of FarmBeatsExtensions.
+     * Gets the resource collection API of DataManagerForAgricultureExtensions.
      * 
-     * @return Resource collection API of FarmBeatsExtensions.
+     * @return Resource collection API of DataManagerForAgricultureExtensions.
      */
-    public FarmBeatsExtensions farmBeatsExtensions() {
-        if (this.farmBeatsExtensions == null) {
-            this.farmBeatsExtensions = new FarmBeatsExtensionsImpl(clientObject.getFarmBeatsExtensions(), this);
+    public DataManagerForAgricultureExtensions dataManagerForAgricultureExtensions() {
+        if (this.dataManagerForAgricultureExtensions == null) {
+            this.dataManagerForAgricultureExtensions = new DataManagerForAgricultureExtensionsImpl(
+                clientObject.getDataManagerForAgricultureExtensions(), this);
         }
-        return farmBeatsExtensions;
+        return dataManagerForAgricultureExtensions;
     }
 
     /**
-     * Gets the resource collection API of FarmBeatsModels. It manages FarmBeats.
+     * Gets the resource collection API of DataManagerForAgricultureResources. It manages DataManagerForAgriculture.
      * 
-     * @return Resource collection API of FarmBeatsModels.
+     * @return Resource collection API of DataManagerForAgricultureResources.
      */
-    public FarmBeatsModels farmBeatsModels() {
-        if (this.farmBeatsModels == null) {
-            this.farmBeatsModels = new FarmBeatsModelsImpl(clientObject.getFarmBeatsModels(), this);
+    public DataManagerForAgricultureResources dataManagerForAgricultureResources() {
+        if (this.dataManagerForAgricultureResources == null) {
+            this.dataManagerForAgricultureResources = new DataManagerForAgricultureResourcesImpl(
+                clientObject.getDataManagerForAgricultureResources(), this);
         }
-        return farmBeatsModels;
+        return dataManagerForAgricultureResources;
     }
 
     /**
@@ -336,15 +345,15 @@ public final class AgriFoodManager {
     }
 
     /**
-     * Gets the resource collection API of Locations.
+     * Gets the resource collection API of Extensions. It manages Extension.
      * 
-     * @return Resource collection API of Locations.
+     * @return Resource collection API of Extensions.
      */
-    public Locations locations() {
-        if (this.locations == null) {
-            this.locations = new LocationsImpl(clientObject.getLocations(), this);
+    public Extensions extensions() {
+        if (this.extensions == null) {
+            this.extensions = new ExtensionsImpl(clientObject.getExtensions(), this);
         }
-        return locations;
+        return extensions;
     }
 
     /**

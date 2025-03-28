@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.agrifood.fluent.SolutionsDiscoverabilitiesClient;
-import com.azure.resourcemanager.agrifood.fluent.models.FarmBeatsSolutionInner;
-import com.azure.resourcemanager.agrifood.models.FarmBeatsSolution;
+import com.azure.resourcemanager.agrifood.fluent.models.DataManagerForAgricultureSolutionInner;
+import com.azure.resourcemanager.agrifood.models.DataManagerForAgricultureSolution;
 import com.azure.resourcemanager.agrifood.models.SolutionsDiscoverabilities;
 import java.util.List;
 
@@ -28,32 +28,36 @@ public final class SolutionsDiscoverabilitiesImpl implements SolutionsDiscoverab
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<FarmBeatsSolution> list() {
-        PagedIterable<FarmBeatsSolutionInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FarmBeatsSolutionImpl(inner1, this.manager()));
+    public PagedIterable<DataManagerForAgricultureSolution> list() {
+        PagedIterable<DataManagerForAgricultureSolutionInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new DataManagerForAgricultureSolutionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<FarmBeatsSolution> list(List<String> farmBeatsSolutionIds, List<String> farmBeatsSolutionNames,
-        Integer maxPageSize, Context context) {
-        PagedIterable<FarmBeatsSolutionInner> inner
+    public PagedIterable<DataManagerForAgricultureSolution> list(List<String> farmBeatsSolutionIds,
+        List<String> farmBeatsSolutionNames, Integer maxPageSize, Context context) {
+        PagedIterable<DataManagerForAgricultureSolutionInner> inner
             = this.serviceClient().list(farmBeatsSolutionIds, farmBeatsSolutionNames, maxPageSize, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FarmBeatsSolutionImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new DataManagerForAgricultureSolutionImpl(inner1, this.manager()));
     }
 
-    public Response<FarmBeatsSolution> getWithResponse(String farmBeatsSolutionId, Context context) {
-        Response<FarmBeatsSolutionInner> inner = this.serviceClient().getWithResponse(farmBeatsSolutionId, context);
+    public Response<DataManagerForAgricultureSolution> getWithResponse(String dataManagerForAgricultureSolutionId,
+        Context context) {
+        Response<DataManagerForAgricultureSolutionInner> inner
+            = this.serviceClient().getWithResponse(dataManagerForAgricultureSolutionId, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new FarmBeatsSolutionImpl(inner.getValue(), this.manager()));
+                new DataManagerForAgricultureSolutionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public FarmBeatsSolution get(String farmBeatsSolutionId) {
-        FarmBeatsSolutionInner inner = this.serviceClient().get(farmBeatsSolutionId);
+    public DataManagerForAgricultureSolution get(String dataManagerForAgricultureSolutionId) {
+        DataManagerForAgricultureSolutionInner inner = this.serviceClient().get(dataManagerForAgricultureSolutionId);
         if (inner != null) {
-            return new FarmBeatsSolutionImpl(inner, this.manager());
+            return new DataManagerForAgricultureSolutionImpl(inner, this.manager());
         } else {
             return null;
         }
