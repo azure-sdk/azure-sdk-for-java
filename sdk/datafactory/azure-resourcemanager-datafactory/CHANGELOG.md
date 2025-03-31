@@ -1,14 +1,176 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-03-31)
+
+- Azure Resource Manager DataFactory client library for Java. This package contains Microsoft Azure SDK for DataFactory Management SDK. The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services. Package tag package-2018-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.GreenplumAuthenticationType` was added
 
-### Bugs Fixed
+* `models.AzurePostgreSqlSinkUpsertSettings` was added
 
-### Other Changes
+* `models.ImpalaThriftTransportProtocol` was added
+
+* `models.ValueType` was added
+
+* `models.TeradataSink` was added
+
+* `models.OracleAuthenticationType` was added
+
+* `models.TeradataImportCommand` was added
+
+* `models.AzurePostgreSqlWriteMethodEnum` was added
+
+#### `models.GreenplumLinkedService` was modified
+
+* `commandTimeout()` was added
+* `withDatabase(java.lang.Object)` was added
+* `authenticationType()` was added
+* `host()` was added
+* `sslMode()` was added
+* `withPort(java.lang.Object)` was added
+* `withCommandTimeout(java.lang.Object)` was added
+* `username()` was added
+* `port()` was added
+* `connectionTimeout()` was added
+* `withConnectionTimeout(java.lang.Object)` was added
+* `withSslMode(java.lang.Object)` was added
+* `database()` was added
+* `withHost(java.lang.Object)` was added
+* `withAuthenticationType(models.GreenplumAuthenticationType)` was added
+* `withUsername(java.lang.Object)` was added
+
+#### `models.DynamicsCrmSink` was modified
+
+* `withBypassPowerAutomateFlows(java.lang.Object)` was added
+* `bypassBusinessLogicExecution()` was added
+* `withBypassBusinessLogicExecution(java.lang.Object)` was added
+* `bypassPowerAutomateFlows()` was added
+
+#### `models.AzurePostgreSqlSink` was modified
+
+* `withUpsertSettings(models.AzurePostgreSqlSinkUpsertSettings)` was added
+* `withWriteMethod(models.AzurePostgreSqlWriteMethodEnum)` was added
+* `upsertSettings()` was added
+* `writeMethod()` was added
+
+#### `models.ServiceNowV2ObjectDataset` was modified
+
+* `valueType()` was added
+* `withValueType(models.ValueType)` was added
+
+#### `models.PrestoLinkedService` was modified
+
+* `enableServerCertificateValidation()` was added
+* `withEnableServerCertificateValidation(java.lang.Object)` was added
+
+#### `models.TeradataLinkedService` was modified
+
+* `withUseDataEncryption(java.lang.Object)` was added
+* `withHttpsPortNumber(java.lang.Object)` was added
+* `maxRespSize()` was added
+* `portNumber()` was added
+* `httpsPortNumber()` was added
+* `useDataEncryption()` was added
+* `withSslMode(java.lang.Object)` was added
+* `sslMode()` was added
+* `withPortNumber(java.lang.Object)` was added
+* `withCharacterSet(java.lang.Object)` was added
+* `characterSet()` was added
+* `withMaxRespSize(java.lang.Object)` was added
+
+#### `models.DynamicsSink` was modified
+
+* `bypassBusinessLogicExecution()` was added
+* `bypassPowerAutomateFlows()` was added
+* `withBypassPowerAutomateFlows(java.lang.Object)` was added
+* `withBypassBusinessLogicExecution(java.lang.Object)` was added
+
+#### `models.SnowflakeV2LinkedService` was modified
+
+* `withRole(java.lang.Object)` was added
+* `schema()` was added
+* `withSchema(java.lang.Object)` was added
+* `role()` was added
+
+#### `models.TypeConversionSettings` was modified
+
+* `withTimeFormat(java.lang.Object)` was added
+* `withDateFormat(java.lang.Object)` was added
+* `dateFormat()` was added
+* `timeFormat()` was added
+
+#### `models.AzurePostgreSqlLinkedService` was modified
+
+* `servicePrincipalKey()` was added
+* `withAzureCloudType(java.lang.Object)` was added
+* `withServicePrincipalEmbeddedCert(models.SecretBase)` was added
+* `servicePrincipalEmbeddedCertPassword()` was added
+* `withServicePrincipalKey(models.SecretBase)` was added
+* `withServicePrincipalCredentialType(java.lang.Object)` was added
+* `withCredential(models.CredentialReference)` was added
+* `withTenant(java.lang.Object)` was added
+* `withServicePrincipalEmbeddedCertPassword(models.SecretBase)` was added
+* `credential()` was added
+* `azureCloudType()` was added
+* `servicePrincipalEmbeddedCert()` was added
+* `servicePrincipalCredentialType()` was added
+* `servicePrincipalId()` was added
+* `withServicePrincipalId(java.lang.Object)` was added
+* `tenant()` was added
+
+#### `models.OracleLinkedService` was modified
+
+* `withSupportV1DataTypes(java.lang.Object)` was added
+* `withInitialLobFetchSize(java.lang.Object)` was added
+* `withInitializationString(java.lang.Object)` was added
+* `initializationString()` was added
+* `withEncryptionClient(java.lang.Object)` was added
+* `authenticationType()` was added
+* `withEncryptionTypesClient(java.lang.Object)` was added
+* `enableBulkLoad()` was added
+* `withAuthenticationType(models.OracleAuthenticationType)` was added
+* `statementCacheSize()` was added
+* `withStatementCacheSize(java.lang.Object)` was added
+* `cryptoChecksumClient()` was added
+* `withEnableBulkLoad(java.lang.Object)` was added
+* `server()` was added
+* `withUsername(java.lang.Object)` was added
+* `supportV1DataTypes()` was added
+* `withCryptoChecksumTypesClient(java.lang.Object)` was added
+* `encryptionTypesClient()` was added
+* `encryptionClient()` was added
+* `fetchSize()` was added
+* `cryptoChecksumTypesClient()` was added
+* `fetchTswtzAsTimestamp()` was added
+* `withFetchSize(java.lang.Object)` was added
+* `initialLobFetchSize()` was added
+* `withFetchTswtzAsTimestamp(java.lang.Object)` was added
+* `username()` was added
+* `withServer(java.lang.Object)` was added
+* `withCryptoChecksumClient(java.lang.Object)` was added
+
+#### `models.CommonDataServiceForAppsSink` was modified
+
+* `bypassPowerAutomateFlows()` was added
+* `bypassBusinessLogicExecution()` was added
+* `withBypassBusinessLogicExecution(java.lang.Object)` was added
+* `withBypassPowerAutomateFlows(java.lang.Object)` was added
+
+#### `models.ImpalaLinkedService` was modified
+
+* `thriftTransportProtocol()` was added
+* `withThriftTransportProtocol(models.ImpalaThriftTransportProtocol)` was added
+
+#### `models.Office365LinkedService` was modified
+
+* `withServicePrincipalEmbeddedCertPassword(models.SecretBase)` was added
+* `withServicePrincipalCredentialType(java.lang.Object)` was added
+* `withServicePrincipalEmbeddedCert(models.SecretBase)` was added
+* `servicePrincipalCredentialType()` was added
+* `servicePrincipalEmbeddedCertPassword()` was added
+* `servicePrincipalEmbeddedCert()` was added
 
 ## 1.0.0 (2024-12-16)
 
