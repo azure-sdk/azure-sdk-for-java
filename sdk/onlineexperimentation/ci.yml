@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/onlineexperimentation/ci.yml
+      - sdk/onlineexperimentation/azure-analytics-onlineexperimentation/
+    exclude:
+      - sdk/onlineexperimentation/pom.xml
+      - sdk/onlineexperimentation/azure-analytics-onlineexperimentation/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/onlineexperimentation/ci.yml
+      - sdk/onlineexperimentation/azure-analytics-onlineexperimentation/
+    exclude:
+      - sdk/onlineexperimentation/pom.xml
+      - sdk/onlineexperimentation/azure-analytics-onlineexperimentation/pom.xml
+
+parameters:
+  - name: release_azureanalyticsonlineexperimentation
+    displayName: azure-analytics-onlineexperimentation
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: onlineexperimentation
+    Artifacts:
+      - name: azure-analytics-onlineexperimentation
+        groupId: com.azure
+        safeName: azureanalyticsonlineexperimentation
+        releaseInBatch: ${{ parameters.release_azureanalyticsonlineexperimentation }}
