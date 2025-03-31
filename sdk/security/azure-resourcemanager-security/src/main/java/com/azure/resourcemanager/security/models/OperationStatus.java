@@ -12,14 +12,14 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * A status describing the success/failure of the extension's enablement/disablement operation.
+ * A status describing the success/failure of the enablement/disablement operation.
  */
 @Fluent
 public final class OperationStatus implements JsonSerializable<OperationStatus> {
     /*
      * The operation status code.
      */
-    private Code code;
+    private String code;
 
     /*
      * Additional information regarding the success/failure of the operation.
@@ -37,7 +37,7 @@ public final class OperationStatus implements JsonSerializable<OperationStatus> 
      * 
      * @return the code value.
      */
-    public Code code() {
+    public String code() {
         return this.code;
     }
 
@@ -47,7 +47,7 @@ public final class OperationStatus implements JsonSerializable<OperationStatus> 
      * @param code the code value to set.
      * @return the OperationStatus object itself.
      */
-    public OperationStatus withCode(Code code) {
+    public OperationStatus withCode(String code) {
         this.code = code;
         return this;
     }
@@ -86,7 +86,7 @@ public final class OperationStatus implements JsonSerializable<OperationStatus> 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("code", this.code == null ? null : this.code.toString());
+        jsonWriter.writeStringField("code", this.code);
         jsonWriter.writeStringField("message", this.message);
         return jsonWriter.writeEndObject();
     }
@@ -107,7 +107,7 @@ public final class OperationStatus implements JsonSerializable<OperationStatus> 
                 reader.nextToken();
 
                 if ("code".equals(fieldName)) {
-                    deserializedOperationStatus.code = Code.fromString(reader.getString());
+                    deserializedOperationStatus.code = reader.getString();
                 } else if ("message".equals(fieldName)) {
                     deserializedOperationStatus.message = reader.getString();
                 } else {
