@@ -57,6 +57,11 @@ public final class Dapr implements JsonSerializable<Dapr> {
      */
     private Boolean enableApiLogging;
 
+    /*
+     * Dapr application health check configuration
+     */
+    private DaprAppHealth appHealth;
+
     /**
      * Creates an instance of Dapr class.
      */
@@ -232,11 +237,34 @@ public final class Dapr implements JsonSerializable<Dapr> {
     }
 
     /**
+     * Get the appHealth property: Dapr application health check configuration.
+     * 
+     * @return the appHealth value.
+     */
+    public DaprAppHealth appHealth() {
+        return this.appHealth;
+    }
+
+    /**
+     * Set the appHealth property: Dapr application health check configuration.
+     * 
+     * @param appHealth the appHealth value to set.
+     * @return the Dapr object itself.
+     */
+    public Dapr withAppHealth(DaprAppHealth appHealth) {
+        this.appHealth = appHealth;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (appHealth() != null) {
+            appHealth().validate();
+        }
     }
 
     /**
@@ -253,6 +281,7 @@ public final class Dapr implements JsonSerializable<Dapr> {
         jsonWriter.writeNumberField("httpMaxRequestSize", this.httpMaxRequestSize);
         jsonWriter.writeStringField("logLevel", this.logLevel == null ? null : this.logLevel.toString());
         jsonWriter.writeBooleanField("enableApiLogging", this.enableApiLogging);
+        jsonWriter.writeJsonField("appHealth", this.appHealth);
         return jsonWriter.writeEndObject();
     }
 
@@ -287,6 +316,8 @@ public final class Dapr implements JsonSerializable<Dapr> {
                     deserializedDapr.logLevel = LogLevel.fromString(reader.getString());
                 } else if ("enableApiLogging".equals(fieldName)) {
                     deserializedDapr.enableApiLogging = reader.getNullable(JsonReader::getBoolean);
+                } else if ("appHealth".equals(fieldName)) {
+                    deserializedDapr.appHealth = DaprAppHealth.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
