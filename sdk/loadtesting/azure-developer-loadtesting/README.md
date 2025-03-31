@@ -1,16 +1,15 @@
 # Azure Load Testing client library for Java
 
-Azure Load Testing provides client library in Java to the user by which they can interact natively with Azure Load Testing service. Azure Load Testing is a fully managed load-testing service that enables you to generate high-scale load. The service simulates traffic for your applications, regardless of where they're hosted. Developers, testers, and quality assurance (QA) engineers can use it to optimize application performance, scalability, or capacity
+Azure Load Testing client library for Java.
 
-This package contains Microsoft Azure Developer LoadTesting client library.
+This package contains Microsoft Azure Load Testing client library.
 
 ## Documentation
 
 Various documentation is available to help you get started
 
-- [Source code][source_code]
-- [API reference documentation][api_reference_doc]
-- [Product Documentation][product_documentation]
+- [API reference documentation][docs]
+- [Product documentation][product_documentation]
 
 ## Getting started
 
@@ -18,7 +17,6 @@ Various documentation is available to help you get started
 
 - [Java Development Kit (JDK)][jdk] with version 8 or above
 - [Azure Subscription][azure_subscription]
-- Azure Load Testing resource
 
 ### Adding the package to your product
 
@@ -27,7 +25,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-developer-loadtesting</artifactId>
-    <version>1.1.0-beta.1</version>
+    <version>1.0.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -36,281 +34,31 @@ Various documentation is available to help you get started
 
 [Azure Identity][azure_identity] package provides the default implementation for authenticating the client.
 
-By default, Azure Active Directory token authentication depends on correct configure of following environment variables.
-
-- `AZURE_CLIENT_ID` for Azure client ID.
-- `AZURE_TENANT_ID` for Azure tenant ID.
-- `AZURE_CLIENT_SECRET` or `AZURE_CLIENT_CERTIFICATE_PATH` for client secret or client certificate.
-
-In addition, Azure subscription ID can be configured via environment variable `AZURE_SUBSCRIPTION_ID`.
-
-With above configuration, `azure` client can be authenticated by following code:
-
-```java java-readme-sample-auth
-// ensure the user, service principal or managed identity used has Loadtesting Contributor role for the resource
-TokenCredential credential = new DefaultAzureCredentialBuilder().build();
-// create client using DefaultAzureCredential
-LoadTestAdministrationClient adminClient = new LoadTestAdministrationClientBuilder()
-    .credential(credential)
-    .endpoint("<Enter Azure Load Testing Data-Plane URL>")
-    .buildClient();
-LoadTestRunClient testRunClient = new LoadTestRunClientBuilder()
-    .credential(credential)
-    .endpoint("<Enter Azure Load Testing Data-Plane URL>")
-    .buildClient();
-
-RequestOptions reqOpts = new RequestOptions()
-    .addQueryParam("orderBy", "lastModifiedDateTime")
-    .addQueryParam("maxPageSize", "10");
-adminClient.listTests(reqOpts);
-
-reqOpts = new RequestOptions()
-    .addQueryParam("orderBy", "lastModifiedDateTime")
-    .addQueryParam("status", "EXECUTING,DONE")
-    .addQueryParam("maxPageSize", "10");
-testRunClient.listTestRuns(reqOpts);
-```
-
 ## Key concepts
-
-The following components make up the Azure Load Testing service. The Azure Load Test client library for Java allows you to interact with each of these components through the use of clients. There are two top-level clients which are the main entry points for the library
-
-- `LoadTestingClient`
-
-- `LoadTestingAsyncClient`
-
-The two clients have similar methods in them except the methods in the async client are async as well.
-
-The top-level clients have two sub-clients
-
-- `LoadTestAdministration`
-
-- `TestRun`
-
-These sub-clients are used for managing and using different components of the service.
-
-### Load Test Administration Client
-
-The `LoadTestAdministration` sub-clients is used to administer and configure the load tests, app components and metrics.
-
-#### Test
-
-A test specifies the test script, and configuration settings for running a load test. You can create one or more tests in an Azure Load Testing resource.
-
-#### App Component
-
-When you run a load test for an Azure-hosted application, you can monitor resource metrics for the different Azure application components (server-side metrics). While the load test runs, and after completion of the test, you can monitor and analyze the resource metrics in the Azure Load Testing dashboard.
-
-#### Metrics
-
-During a load test, Azure Load Testing collects metrics about the test execution. There are two types of metrics:
-
-1. Client-side metrics give you details reported by the test engine. These metrics include the number of virtual users, the request response time, the number of failed requests, or the number of requests per second.
-
-2. Server-side metrics are available for Azure-hosted applications and provide information about your Azure application components. Metrics can be for the number of database reads, the type of HTTP responses, or container resource consumption.
-
-### Test Run Client
-
-The `TestRun` sub-clients is used to start and stop test runs corresponding to a load test. A test run represents one execution of a load test. It collects the logs associated with running the Apache JMeter script, the load test YAML configuration, the list of app components to monitor, and the results of the test.
-
-### Data-Plane Endpoint
-
-Data-plane of Azure Load Testing resources is addressable using the following URL format:
-
-`00000000-0000-0000-0000-000000000000.aaa.cnt-prod.loadtesting.azure.com`
-
-The first GUID `00000000-0000-0000-0000-000000000000` is the unique identifier used for accessing the Azure Load Testing resource. This is followed by  `aaa` which is the Azure region of the resource.
-
-The data-plane endpoint is obtained from Control Plane APIs.
-
-**Example:** `1234abcd-12ab-12ab-12ab-123456abcdef.eus.cnt-prod.loadtesting.azure.com`
-
-In the above example, `eus` represents the Azure region `East US`.
 
 ## Examples
 
-### Creating a Load Test
-
-```java java-readme-sample-createTest
-LoadTestAdministrationClient adminClient = new LoadTestAdministrationClientBuilder()
-    .credential(new DefaultAzureCredentialBuilder().build())
-    .endpoint("<endpoint>")
-    .buildClient();
-
-// construct Test object using nested String:Object Maps
-Map<String, Object> testMap = new HashMap<>();
-testMap.put("displayName", "Sample Display Name");
-testMap.put("description", "Sample Description");
-
-// loadTestConfig describes the number of test engines to generate load
-Map<String, Object> loadTestConfigMap = new HashMap<>();
-loadTestConfigMap.put("engineInstances", 1);
-testMap.put("loadTestConfiguration", loadTestConfigMap);
-
-// environmentVariables are plain-text data passed to test engines
-Map<String, Object> envVarMap = new HashMap<>();
-envVarMap.put("a", "b");
-envVarMap.put("x", "y");
-testMap.put("environmentVariables", envVarMap);
-
-// secrets are secure data sent using Azure Key Vault
-Map<String, Object> secretMap = new HashMap<>();
-Map<String, Object> sampleSecretMap = new HashMap<>();
-sampleSecretMap.put("value", "https://samplevault.vault.azure.net/secrets/samplesecret/f113f91fd4c44a368049849c164db827");
-sampleSecretMap.put("type", "AKV_SECRET_URI");
-secretMap.put("sampleSecret", sampleSecretMap);
-testMap.put("secrets", secretMap);
-
-// passFailCriteria define the conditions to conclude the test as success
-Map<String, Object> passFailMap = new HashMap<>();
-Map<String, Object> passFailMetrics = new HashMap<>();
-Map<String, Object> samplePassFailMetric = new HashMap<>();
-samplePassFailMetric.put("clientmetric", "response_time_ms");
-samplePassFailMetric.put("aggregate", "percentage");
-samplePassFailMetric.put("condition", ">");
-samplePassFailMetric.put("value", "20");
-samplePassFailMetric.put("action", "continue");
-passFailMetrics.put("fefd759d-7fe8-4f83-8b6d-aeebe0f491fe", samplePassFailMetric);
-passFailMap.put("passFailMetrics", passFailMetrics);
-testMap.put("passFailCriteria", passFailMap);
-
-// convert the object Map to JSON BinaryData
-BinaryData test = BinaryData.fromObject(testMap);
-
-// receive response with BinaryData content
-Response<BinaryData> testOutResponse = adminClient.createOrUpdateTestWithResponse("test12345", test, null);
-System.out.println(testOutResponse.getValue().toString());
+```java com.azure.developer.loadtesting.readme
 ```
 
-### Uploading .jmx file to a Load Test
+### Service API versions
 
-```java java-readme-sample-uploadTestFile
-LoadTestAdministrationClient adminClient = new LoadTestAdministrationClientBuilder()
-    .credential(new DefaultAzureCredentialBuilder().build())
-    .endpoint("<endpoint>")
-    .buildClient();
+The client library targets the latest service API version by default.
+The service client builder accepts an optional service API version parameter to specify which API version to communicate.
 
-// extract file contents to BinaryData
-BinaryData fileData = BinaryData.fromFile(new File("path/to/file").toPath());
+#### Select a service API version
 
-// receive response with BinaryData content
-PollResponse<BinaryData> fileUrlOut = adminClient.beginUploadTestFile("test12345", "sample-file.jmx", fileData, null)
-    .waitForCompletion(Duration.ofMinutes(2));
-System.out.println(fileUrlOut.getValue().toString());
-```
+You have the flexibility to explicitly select a supported service API version when initializing a service client via the service client builder.
+This ensures that the client can communicate with services using the specified API version.
 
-### Running a Load Test
+When selecting an API version, it is important to verify that there are no breaking changes compared to the latest API version.
+If there are significant differences, API calls may fail due to incompatibility.
 
-```java java-readme-sample-runTest
-LoadTestRunClient testRunClient = new LoadTestRunClientBuilder()
-    .credential(new DefaultAzureCredentialBuilder().build())
-    .endpoint("<endpoint>")
-    .buildClient();
-
-// construct Test Run object using nested String:Object Maps
-Map<String, Object> testRunMap = new HashMap<>();
-testRunMap.put("testId", "test12345");
-testRunMap.put("displayName", "SDK-Created-TestRun");
-
-// convert the object Map to JSON BinaryData
-BinaryData testRun = BinaryData.fromObject(testRunMap);
-
-// start test with poller
-SyncPoller<BinaryData, BinaryData> poller = testRunClient.beginTestRun("testrun12345", testRun, null);
-Duration pollInterval = Duration.ofSeconds(5);
-poller = poller.setPollInterval(pollInterval);
-
-// wait for test to reach terminal state
-Map<String, Object> jsonTree = null;
-String testStatus;
-PollResponse<BinaryData> pollResponse = poller.poll();
-while (pollResponse.getStatus() == LongRunningOperationStatus.IN_PROGRESS
-    || pollResponse.getStatus() == LongRunningOperationStatus.NOT_STARTED) {
-
-    try (JsonReader jsonReader = JsonProviders.createReader(pollResponse.getValue().toBytes())) {
-        jsonTree = jsonReader.readMap(JsonReader::readUntyped);
-
-        testStatus = jsonTree.get("status").toString();
-        System.out.println("Test run status: " + testStatus);
-    } catch (IOException e) {
-        System.out.println("Error processing JSON response");
-        // handle error condition
-    }
-
-    // wait and check test status every 5 seconds
-    try {
-        Thread.sleep(pollInterval.toMillis());
-    } catch (InterruptedException e) {
-        // handle interruption
-    }
-
-    pollResponse = poller.poll();
-}
-
-poller.waitForCompletion();
-BinaryData testRunBinary = poller.getFinalResult();
-
-try (JsonReader jsonReader = JsonProviders.createReader(testRunBinary.toBytes())) {
-    jsonTree = jsonReader.readMap(JsonReader::readUntyped);
-
-    testStatus = jsonTree.get("status").toString();
-    System.out.println("Test run status: " + testStatus);
-} catch (IOException e) {
-    System.out.println("Error processing JSON response");
-    // handle error condition
-}
-
-String startDateTime = jsonTree.get("startDateTime").toString();
-String endDateTime = jsonTree.get("endDateTime").toString();
-OffsetDateTime startOffsetDateTime = OffsetDateTime.parse(startDateTime);
-OffsetDateTime endOffsetDateTime = OffsetDateTime.parse(endDateTime);
-
-// get list of all metric namespaces and pick the first one
-Response<BinaryData> metricNamespacesOut = testRunClient.getMetricNamespacesWithResponse("testrun12345", null);
-String metricNamespace = null;
-// parse JSON and read first value
-try (JsonReader jsonReader = JsonProviders.createReader(metricNamespacesOut.getValue().toBytes())) {
-    jsonTree = jsonReader.readMap(JsonReader::readUntyped);
-    List<Object> metricNamespaces = (List<Object>) jsonTree.get("value");
-    Map<String, Object> namespaceMap = (Map<String, Object>) metricNamespaces.get(0);
-    metricNamespace = namespaceMap.get("name").toString();
-} catch (IOException e) {
-    System.out.println("Error processing JSON response");
-    // handle error condition
-}
-
-// get list of all metric definitions and pick the first one
-Response<BinaryData> metricDefinitionsOut = testRunClient.getMetricDefinitionsWithResponse("testrun12345", metricNamespace, null);
-String metricName = null;
-// parse JSON and read first value
-try (JsonReader jsonReader = JsonProviders.createReader(metricDefinitionsOut.getValue().toBytes())) {
-    jsonTree = jsonReader.readMap(JsonReader::readUntyped);
-    List<Object> metricDefinitions = (List<Object>) jsonTree.get("value");
-    Map<String, Object> definitionMap = (Map<String, Object>) metricDefinitions.get(0);
-    Map<String, Object> nameMap = (Map<String, Object>) definitionMap.get("name");
-    metricName = nameMap.get("value").toString();
-} catch (IOException e) {
-    System.out.println("Error processing JSON response");
-    // handle error condition
-}
-
-// fetch client metrics using metric namespace and metric name
-PagedIterable<BinaryData> clientMetricsOut = testRunClient.listMetrics("testrun12345", metricName, metricNamespace, startDateTime + '/' + endDateTime, null);
-clientMetricsOut.forEach((clientMetric) -> {
-    System.out.println(clientMetric.toString());
-});
-```
+Always ensure that the chosen API version is fully supported and operational for your specific use case and that it aligns with the service's versioning policy.
 
 ## Troubleshooting
 
-Azure SDKs for Java offer a consistent logging story to help aid in troubleshooting application errors and expedite
-their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help
-locate the root issue. View the [logging][logging] wiki for guidance about enabling logging.
-
 ## Next steps
-
-Azure Loading Testing Java SDK samples are available to you in the SDK's GitHub repository. These samples provide example code for additional scenarios commonly encountered.
-See [Azure Load Testing samples][sample_code].
 
 ## Contributing
 
@@ -323,11 +71,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/loadtesting/azure-developer-loadtesting/src
-[sample_code]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/loadtesting/azure-developer-loadtesting/src/samples
-[api_reference_doc]: https://learn.microsoft.com/rest/api/loadtesting/
-[product_documentation]: https://azure.microsoft.com/services/load-testing/
-[jdk]: https://learn.microsoft.com/java/azure/jdk/
+[product_documentation]: https://azure.microsoft.com/services/
+[docs]: https://azure.github.io/azure-sdk-for-java/
+[jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity
-[logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-in-Azure-SDK
