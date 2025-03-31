@@ -2,13 +2,15 @@
 
 ## 1.1.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.DevCenterOperationDetails` was modified
 
-### Other Changes
+* `java.lang.Object getProperties()` -> `java.util.Map getProperties()`
+
+#### `models.DevBox` was modified
+
+* `setLocalAdministratorStatus(models.LocalAdministratorStatus)` was removed
 
 ## 1.0.8 (2025-03-24)
 
