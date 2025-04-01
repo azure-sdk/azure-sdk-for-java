@@ -31,6 +31,11 @@ public final class ImageMetadata implements JsonSerializable<ImageMetadata> {
      */
     private Boolean isLatestOsImageVersion;
 
+    /*
+     * Metadata about the os patching.
+     */
+    private OsPatchingStatus osPatchingStatus;
+
     /**
      * Creates an instance of ImageMetadata class.
      */
@@ -102,11 +107,23 @@ public final class ImageMetadata implements JsonSerializable<ImageMetadata> {
     }
 
     /**
+     * Get the osPatchingStatus property: Metadata about the os patching.
+     * 
+     * @return the osPatchingStatus value.
+     */
+    public OsPatchingStatus osPatchingStatus() {
+        return this.osPatchingStatus;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (osPatchingStatus() != null) {
+            osPatchingStatus().validate();
+        }
     }
 
     /**
@@ -142,6 +159,8 @@ public final class ImageMetadata implements JsonSerializable<ImageMetadata> {
                     deserializedImageMetadata.latestImageVersion = reader.getString();
                 } else if ("isLatestOsImageVersion".equals(fieldName)) {
                     deserializedImageMetadata.isLatestOsImageVersion = reader.getNullable(JsonReader::getBoolean);
+                } else if ("osPatchingStatus".equals(fieldName)) {
+                    deserializedImageMetadata.osPatchingStatus = OsPatchingStatus.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

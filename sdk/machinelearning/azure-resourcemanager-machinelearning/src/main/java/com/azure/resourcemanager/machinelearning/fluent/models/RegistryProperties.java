@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.models.ArmResourceId;
+import com.azure.resourcemanager.machinelearning.models.ManagedResourceGroupSettings;
 import com.azure.resourcemanager.machinelearning.models.RegistryPrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.RegistryRegionArmDetails;
 import java.io.IOException;
@@ -34,6 +35,11 @@ public final class RegistryProperties implements JsonSerializable<RegistryProper
      * ResourceId of the managed RG if the registry has system created resources
      */
     private ArmResourceId managedResourceGroup;
+
+    /*
+     * Managed resource group specific settings
+     */
+    private ManagedResourceGroupSettings managedResourceGroupSettings;
 
     /*
      * MLFlow Registry URI for the Registry
@@ -119,6 +125,27 @@ public final class RegistryProperties implements JsonSerializable<RegistryProper
      */
     public RegistryProperties withManagedResourceGroup(ArmResourceId managedResourceGroup) {
         this.managedResourceGroup = managedResourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the managedResourceGroupSettings property: Managed resource group specific settings.
+     * 
+     * @return the managedResourceGroupSettings value.
+     */
+    public ManagedResourceGroupSettings managedResourceGroupSettings() {
+        return this.managedResourceGroupSettings;
+    }
+
+    /**
+     * Set the managedResourceGroupSettings property: Managed resource group specific settings.
+     * 
+     * @param managedResourceGroupSettings the managedResourceGroupSettings value to set.
+     * @return the RegistryProperties object itself.
+     */
+    public RegistryProperties
+        withManagedResourceGroupSettings(ManagedResourceGroupSettings managedResourceGroupSettings) {
+        this.managedResourceGroupSettings = managedResourceGroupSettings;
         return this;
     }
 
@@ -216,6 +243,9 @@ public final class RegistryProperties implements JsonSerializable<RegistryProper
         if (managedResourceGroup() != null) {
             managedResourceGroup().validate();
         }
+        if (managedResourceGroupSettings() != null) {
+            managedResourceGroupSettings().validate();
+        }
         if (registryPrivateEndpointConnections() != null) {
             registryPrivateEndpointConnections().forEach(e -> e.validate());
         }
@@ -233,6 +263,7 @@ public final class RegistryProperties implements JsonSerializable<RegistryProper
         jsonWriter.writeStringField("discoveryUrl", this.discoveryUrl);
         jsonWriter.writeStringField("intellectualPropertyPublisher", this.intellectualPropertyPublisher);
         jsonWriter.writeJsonField("managedResourceGroup", this.managedResourceGroup);
+        jsonWriter.writeJsonField("managedResourceGroupSettings", this.managedResourceGroupSettings);
         jsonWriter.writeStringField("mlFlowRegistryUri", this.mlFlowRegistryUri);
         jsonWriter.writeArrayField("registryPrivateEndpointConnections", this.registryPrivateEndpointConnections,
             (writer, element) -> writer.writeJson(element));
@@ -262,6 +293,9 @@ public final class RegistryProperties implements JsonSerializable<RegistryProper
                     deserializedRegistryProperties.intellectualPropertyPublisher = reader.getString();
                 } else if ("managedResourceGroup".equals(fieldName)) {
                     deserializedRegistryProperties.managedResourceGroup = ArmResourceId.fromJson(reader);
+                } else if ("managedResourceGroupSettings".equals(fieldName)) {
+                    deserializedRegistryProperties.managedResourceGroupSettings
+                        = ManagedResourceGroupSettings.fromJson(reader);
                 } else if ("mlFlowRegistryUri".equals(fieldName)) {
                     deserializedRegistryProperties.mlFlowRegistryUri = reader.getString();
                 } else if ("registryPrivateEndpointConnections".equals(fieldName)) {
