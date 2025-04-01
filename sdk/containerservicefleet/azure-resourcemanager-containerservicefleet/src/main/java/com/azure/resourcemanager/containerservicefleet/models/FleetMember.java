@@ -74,6 +74,13 @@ public interface FleetMember {
     FleetMemberProvisioningState provisioningState();
 
     /**
+     * Gets the status property: Status information of the last operation for fleet member.
+     * 
+     * @return the status value.
+     */
+    FleetMemberStatus status();
+
+    /**
      * Gets the name of the resource group.
      * 
      * @return the name of the resource group.

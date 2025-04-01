@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,11 +20,12 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.containerservicefleet.fluent.ContainerServiceFleetManagementClient;
+import com.azure.resourcemanager.containerservicefleet.implementation.AutoUpgradeProfileOperationsImpl;
 import com.azure.resourcemanager.containerservicefleet.implementation.AutoUpgradeProfilesImpl;
 import com.azure.resourcemanager.containerservicefleet.implementation.ContainerServiceFleetManagementClientBuilder;
 import com.azure.resourcemanager.containerservicefleet.implementation.FleetMembersImpl;
@@ -31,6 +33,7 @@ import com.azure.resourcemanager.containerservicefleet.implementation.FleetUpdat
 import com.azure.resourcemanager.containerservicefleet.implementation.FleetsImpl;
 import com.azure.resourcemanager.containerservicefleet.implementation.OperationsImpl;
 import com.azure.resourcemanager.containerservicefleet.implementation.UpdateRunsImpl;
+import com.azure.resourcemanager.containerservicefleet.models.AutoUpgradeProfileOperations;
 import com.azure.resourcemanager.containerservicefleet.models.AutoUpgradeProfiles;
 import com.azure.resourcemanager.containerservicefleet.models.FleetMembers;
 import com.azure.resourcemanager.containerservicefleet.models.FleetUpdateStrategies;
@@ -41,6 +44,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -54,6 +58,8 @@ public final class ContainerServiceFleetManager {
     private Fleets fleets;
 
     private AutoUpgradeProfiles autoUpgradeProfiles;
+
+    private AutoUpgradeProfileOperations autoUpgradeProfileOperations;
 
     private FleetMembers fleetMembers;
 
@@ -114,6 +120,9 @@ public final class ContainerServiceFleetManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-containerservicefleet.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -221,12 +230,14 @@ public final class ContainerServiceFleetManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.containerservicefleet")
                 .append("/")
-                .append("1.2.0-beta.1");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -259,7 +270,7 @@ public final class ContainerServiceFleetManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -306,6 +317,19 @@ public final class ContainerServiceFleetManager {
             this.autoUpgradeProfiles = new AutoUpgradeProfilesImpl(clientObject.getAutoUpgradeProfiles(), this);
         }
         return autoUpgradeProfiles;
+    }
+
+    /**
+     * Gets the resource collection API of AutoUpgradeProfileOperations.
+     * 
+     * @return Resource collection API of AutoUpgradeProfileOperations.
+     */
+    public AutoUpgradeProfileOperations autoUpgradeProfileOperations() {
+        if (this.autoUpgradeProfileOperations == null) {
+            this.autoUpgradeProfileOperations
+                = new AutoUpgradeProfileOperationsImpl(clientObject.getAutoUpgradeProfileOperations(), this);
+        }
+        return autoUpgradeProfileOperations;
     }
 
     /**

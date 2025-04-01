@@ -10,6 +10,7 @@ import com.azure.resourcemanager.containerservicefleet.fluent.models.AutoUpgrade
 import com.azure.resourcemanager.containerservicefleet.models.AutoUpgradeNodeImageSelection;
 import com.azure.resourcemanager.containerservicefleet.models.AutoUpgradeProfile;
 import com.azure.resourcemanager.containerservicefleet.models.AutoUpgradeProfileProvisioningState;
+import com.azure.resourcemanager.containerservicefleet.models.AutoUpgradeProfileStatus;
 import com.azure.resourcemanager.containerservicefleet.models.UpgradeChannel;
 
 public final class AutoUpgradeProfileImpl
@@ -56,6 +57,10 @@ public final class AutoUpgradeProfileImpl
 
     public Boolean disabled() {
         return this.innerModel().disabled();
+    }
+
+    public AutoUpgradeProfileStatus autoUpgradeProfileStatus() {
+        return this.innerModel().autoUpgradeProfileStatus();
     }
 
     public String resourceGroupName() {
@@ -180,6 +185,11 @@ public final class AutoUpgradeProfileImpl
 
     public AutoUpgradeProfileImpl withDisabled(Boolean disabled) {
         this.innerModel().withDisabled(disabled);
+        return this;
+    }
+
+    public AutoUpgradeProfileImpl withAutoUpgradeProfileStatus(AutoUpgradeProfileStatus autoUpgradeProfileStatus) {
+        this.innerModel().withAutoUpgradeProfileStatus(autoUpgradeProfileStatus);
         return this;
     }
 

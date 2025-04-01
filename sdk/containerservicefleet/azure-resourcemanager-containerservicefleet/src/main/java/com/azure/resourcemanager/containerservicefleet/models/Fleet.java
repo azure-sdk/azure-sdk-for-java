@@ -89,6 +89,13 @@ public interface Fleet {
     FleetHubProfile hubProfile();
 
     /**
+     * Gets the status property: Status information for the fleet.
+     * 
+     * @return the status value.
+     */
+    FleetStatus status();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.

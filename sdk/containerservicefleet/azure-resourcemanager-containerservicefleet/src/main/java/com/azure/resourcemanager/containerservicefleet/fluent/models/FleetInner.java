@@ -12,6 +12,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.containerservicefleet.models.FleetHubProfile;
 import com.azure.resourcemanager.containerservicefleet.models.FleetProvisioningState;
+import com.azure.resourcemanager.containerservicefleet.models.FleetStatus;
 import com.azure.resourcemanager.containerservicefleet.models.ManagedServiceIdentity;
 import java.io.IOException;
 import java.util.Map;
@@ -193,6 +194,15 @@ public final class FleetInner extends Resource {
         }
         this.innerProperties().withHubProfile(hubProfile);
         return this;
+    }
+
+    /**
+     * Get the status property: Status information for the fleet.
+     * 
+     * @return the status value.
+     */
+    public FleetStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
     }
 
     /**
