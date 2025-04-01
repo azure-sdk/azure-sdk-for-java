@@ -142,6 +142,11 @@ public final class ReservedResourceType extends ExpandableStringEnum<ReservedRes
     public static final ReservedResourceType VIRTUAL_MACHINE_SOFTWARE = fromString("VirtualMachineSoftware");
 
     /**
+     * Static value OpenAIPTU for ReservedResourceType.
+     */
+    public static final ReservedResourceType OPEN_AIPTU = fromString("OpenAIPTU");
+
+    /**
      * Creates a new instance of ReservedResourceType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
