@@ -17,39 +17,19 @@ import java.io.IOException;
 @Fluent
 public final class IndexColumn implements JsonSerializable<IndexColumn> {
     /*
-     * Specifies the data type
-     */
-    private FeatureDataType dataType;
-
-    /*
      * Specifies the column name
      */
     private String columnName;
+
+    /*
+     * Specifies the data type
+     */
+    private FeatureDataType dataType;
 
     /**
      * Creates an instance of IndexColumn class.
      */
     public IndexColumn() {
-    }
-
-    /**
-     * Get the dataType property: Specifies the data type.
-     * 
-     * @return the dataType value.
-     */
-    public FeatureDataType dataType() {
-        return this.dataType;
-    }
-
-    /**
-     * Set the dataType property: Specifies the data type.
-     * 
-     * @param dataType the dataType value to set.
-     * @return the IndexColumn object itself.
-     */
-    public IndexColumn withDataType(FeatureDataType dataType) {
-        this.dataType = dataType;
-        return this;
     }
 
     /**
@@ -73,6 +53,26 @@ public final class IndexColumn implements JsonSerializable<IndexColumn> {
     }
 
     /**
+     * Get the dataType property: Specifies the data type.
+     * 
+     * @return the dataType value.
+     */
+    public FeatureDataType dataType() {
+        return this.dataType;
+    }
+
+    /**
+     * Set the dataType property: Specifies the data type.
+     * 
+     * @param dataType the dataType value to set.
+     * @return the IndexColumn object itself.
+     */
+    public IndexColumn withDataType(FeatureDataType dataType) {
+        this.dataType = dataType;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -86,8 +86,8 @@ public final class IndexColumn implements JsonSerializable<IndexColumn> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
         jsonWriter.writeStringField("columnName", this.columnName);
+        jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -106,10 +106,10 @@ public final class IndexColumn implements JsonSerializable<IndexColumn> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("dataType".equals(fieldName)) {
-                    deserializedIndexColumn.dataType = FeatureDataType.fromString(reader.getString());
-                } else if ("columnName".equals(fieldName)) {
+                if ("columnName".equals(fieldName)) {
                     deserializedIndexColumn.columnName = reader.getString();
+                } else if ("dataType".equals(fieldName)) {
+                    deserializedIndexColumn.dataType = FeatureDataType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

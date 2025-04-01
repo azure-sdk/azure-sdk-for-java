@@ -10,7 +10,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class ComputeGetSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/get/AKSCompute.json
      */
     /**
@@ -25,7 +25,7 @@ public final class ComputeGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/get/KubernetesCompute.json
      */
     /**
@@ -40,7 +40,7 @@ public final class ComputeGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/get/ComputeInstance.json
      */
     /**
@@ -55,7 +55,7 @@ public final class ComputeGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/get/AmlCompute.json
      */
     /**
