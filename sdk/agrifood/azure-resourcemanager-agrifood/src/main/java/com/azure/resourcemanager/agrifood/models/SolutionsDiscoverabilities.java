@@ -14,50 +14,52 @@ import java.util.List;
  */
 public interface SolutionsDiscoverabilities {
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions as paginated response with {@link PagedIterable}.
+     * @return list of Data Manager For Agriculture solutions as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<FarmBeatsSolution> list();
+    PagedIterable<DataManagerForAgricultureSolution> list();
 
     /**
-     * Get list of farmBeats solutions.
+     * Get list of Data Manager For Agriculture solutions.
      * 
-     * @param farmBeatsSolutionIds Ids of FarmBeats Solutions which the customer requests to fetch.
-     * @param farmBeatsSolutionNames Names of FarmBeats Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionIds Ids of Data Manager For Agriculture Solutions which the customer requests to fetch.
+     * @param farmBeatsSolutionNames Names of Data Manager For Agriculture Solutions which the customer requests to
+     * fetch.
      * @param maxPageSize Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of farmBeats solutions as paginated response with {@link PagedIterable}.
+     * @return list of Data Manager For Agriculture solutions as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<FarmBeatsSolution> list(List<String> farmBeatsSolutionIds, List<String> farmBeatsSolutionNames,
-        Integer maxPageSize, Context context);
+    PagedIterable<DataManagerForAgricultureSolution> list(List<String> farmBeatsSolutionIds,
+        List<String> farmBeatsSolutionNames, Integer maxPageSize, Context context);
 
     /**
-     * Get farmBeats solution by id.
+     * Get Data Manager For Agriculture solution by id.
      * 
-     * @param farmBeatsSolutionId farmBeatsSolutionId to be queried.
+     * @param dataManagerForAgricultureSolutionId dataManagerForAgricultureSolutionId to be queried.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats solution by id along with {@link Response}.
+     * @return data Manager For Agriculture solution by id along with {@link Response}.
      */
-    Response<FarmBeatsSolution> getWithResponse(String farmBeatsSolutionId, Context context);
+    Response<DataManagerForAgricultureSolution> getWithResponse(String dataManagerForAgricultureSolutionId,
+        Context context);
 
     /**
-     * Get farmBeats solution by id.
+     * Get Data Manager For Agriculture solution by id.
      * 
-     * @param farmBeatsSolutionId farmBeatsSolutionId to be queried.
+     * @param dataManagerForAgricultureSolutionId dataManagerForAgricultureSolutionId to be queried.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats solution by id.
+     * @return data Manager For Agriculture solution by id.
      */
-    FarmBeatsSolution get(String farmBeatsSolutionId);
+    DataManagerForAgricultureSolution get(String dataManagerForAgricultureSolutionId);
 }

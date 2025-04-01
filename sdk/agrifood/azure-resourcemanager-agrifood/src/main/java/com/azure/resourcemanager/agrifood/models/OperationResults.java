@@ -12,27 +12,27 @@ import com.azure.core.util.Context;
  */
 public interface OperationResults {
     /**
-     * Get operationResults for a FarmBeats resource.
+     * Get operationResults for a Data Manager For Agriculture resource.
      * 
      * @param locations Location.
-     * @param operationResultsId operation Results Id.
+     * @param operationResultsId operationResultsId for a specific location.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operationResults for a FarmBeats resource along with {@link Response}.
+     * @return operationResults for a Data Manager For Agriculture resource along with {@link Response}.
      */
     Response<ArmAsyncOperation> getWithResponse(String locations, String operationResultsId, Context context);
 
     /**
-     * Get operationResults for a FarmBeats resource.
+     * Get operationResults for a Data Manager For Agriculture resource.
      * 
      * @param locations Location.
-     * @param operationResultsId operation Results Id.
+     * @param operationResultsId operationResultsId for a specific location.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operationResults for a FarmBeats resource.
+     * @return operationResults for a Data Manager For Agriculture resource.
      */
     ArmAsyncOperation get(String locations, String operationResultsId);
 }

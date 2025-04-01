@@ -10,7 +10,7 @@ package com.azure.resourcemanager.agrifood.generated;
 public final class ExtensionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * Extensions_CreateOrUpdate.json
      */
     /**
@@ -21,7 +21,7 @@ public final class ExtensionsCreateOrUpdateSamples {
     public static void extensionsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager.extensions()
             .define("provider.extension")
-            .withExistingFarmBeat("examples-rg", "examples-farmbeatsResourceName")
+            .withExistingFarmBeat("examples-rg", "examples-dataManagerForAgricultureResourceName")
             .create();
     }
 }

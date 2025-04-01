@@ -16,10 +16,6 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
-import com.azure.core.http.rest.PagedFlux;
-import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.PagedResponse;
-import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
@@ -27,7 +23,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.agrifood.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.agrifood.fluent.models.PrivateLinkResourceInner;
-import com.azure.resourcemanager.agrifood.models.PrivateLinkResourceListResult;
+import com.azure.resourcemanager.agrifood.fluent.models.PrivateLinkResourceListResultInner;
 import reactor.core.publisher.Mono;
 
 /**
@@ -63,24 +59,24 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     @ServiceInterface(name = "AgriFoodManagementCl")
     public interface PrivateLinkResourcesService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/privateLinkResources")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/privateLinkResources")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PrivateLinkResourceListResult>> listByResource(@HostParam("$host") String endpoint,
+        Mono<Response<PrivateLinkResourceListResultInner>> listByResource(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/privateLinkResources/{subResourceName}")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/privateLinkResources/{subResourceName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ManagementException.class, code = { 404 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @PathParam("subResourceName") String subResourceName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -89,15 +85,15 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * Get list of Private link resources.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private link resources along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of Private link resources along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateLinkResourceInner>> listByResourceSinglePageAsync(String resourceGroupName,
-        String farmBeatsResourceName) {
+    private Mono<Response<PrivateLinkResourceListResultInner>> listByResourceWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -110,16 +106,14 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResource(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, farmBeatsResourceName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<PrivateLinkResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
+                resourceGroupName, dataManagerForAgricultureResourceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -127,16 +121,16 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * Get list of Private link resources.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private link resources along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of Private link resources along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateLinkResourceInner>> listByResourceSinglePageAsync(String resourceGroupName,
-        String farmBeatsResourceName, Context context) {
+    private Mono<Response<PrivateLinkResourceListResultInner>> listByResourceWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -149,90 +143,73 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByResource(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                farmBeatsResourceName, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), null, null));
+        return service.listByResource(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            dataManagerForAgricultureResourceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get list of Private link resources.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private link resources as paginated response with {@link PagedFlux}.
+     * @return list of Private link resources on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateLinkResourceInner> listByResourceAsync(String resourceGroupName,
-        String farmBeatsResourceName) {
-        return new PagedFlux<>(() -> listByResourceSinglePageAsync(resourceGroupName, farmBeatsResourceName));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PrivateLinkResourceListResultInner> listByResourceAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName) {
+        return listByResourceWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get list of Private link resources.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private link resources as paginated response with {@link PagedFlux}.
+     * @return list of Private link resources along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateLinkResourceInner> listByResourceAsync(String resourceGroupName,
-        String farmBeatsResourceName, Context context) {
-        return new PagedFlux<>(() -> listByResourceSinglePageAsync(resourceGroupName, farmBeatsResourceName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PrivateLinkResourceListResultInner> listByResourceWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, Context context) {
+        return listByResourceWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, context)
+            .block();
     }
 
     /**
      * Get list of Private link resources.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private link resources as paginated response with {@link PagedIterable}.
+     * @return list of Private link resources.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateLinkResourceInner> listByResource(String resourceGroupName,
-        String farmBeatsResourceName) {
-        return new PagedIterable<>(listByResourceAsync(resourceGroupName, farmBeatsResourceName));
-    }
-
-    /**
-     * Get list of Private link resources.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private link resources as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateLinkResourceInner> listByResource(String resourceGroupName,
-        String farmBeatsResourceName, Context context) {
-        return new PagedIterable<>(listByResourceAsync(resourceGroupName, farmBeatsResourceName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceListResultInner listByResource(String resourceGroupName,
+        String dataManagerForAgricultureResourceName) {
+        return listByResourceWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, Context.NONE)
+            .getValue();
     }
 
     /**
      * Get Private link resource object.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param subResourceName Sub resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -242,7 +219,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateLinkResourceInner>> getWithResponseAsync(String resourceGroupName,
-        String farmBeatsResourceName, String subResourceName) {
+        String dataManagerForAgricultureResourceName, String subResourceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -255,9 +232,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (subResourceName == null) {
             return Mono
@@ -265,9 +242,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    farmBeatsResourceName, subResourceName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, dataManagerForAgricultureResourceName, subResourceName, this.client.getApiVersion(),
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -275,7 +252,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * Get Private link resource object.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param subResourceName Sub resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -286,7 +263,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateLinkResourceInner>> getWithResponseAsync(String resourceGroupName,
-        String farmBeatsResourceName, String subResourceName, Context context) {
+        String dataManagerForAgricultureResourceName, String subResourceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -299,9 +276,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (subResourceName == null) {
             return Mono
@@ -310,14 +287,14 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            farmBeatsResourceName, subResourceName, this.client.getApiVersion(), accept, context);
+            dataManagerForAgricultureResourceName, subResourceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get Private link resource object.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param subResourceName Sub resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -326,9 +303,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @return private link resource object on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PrivateLinkResourceInner> getAsync(String resourceGroupName, String farmBeatsResourceName,
-        String subResourceName) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, subResourceName)
+    private Mono<PrivateLinkResourceInner> getAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String subResourceName) {
+        return getWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, subResourceName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -336,7 +313,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * Get Private link resource object.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param subResourceName Sub resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -346,16 +323,17 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @return private link resource object along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PrivateLinkResourceInner> getWithResponse(String resourceGroupName, String farmBeatsResourceName,
-        String subResourceName, Context context) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, subResourceName, context).block();
+    public Response<PrivateLinkResourceInner> getWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String subResourceName, Context context) {
+        return getWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, subResourceName, context)
+            .block();
     }
 
     /**
      * Get Private link resource object.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param subResourceName Sub resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -364,8 +342,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @return private link resource object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(String resourceGroupName, String farmBeatsResourceName,
+    public PrivateLinkResourceInner get(String resourceGroupName, String dataManagerForAgricultureResourceName,
         String subResourceName) {
-        return getWithResponse(resourceGroupName, farmBeatsResourceName, subResourceName, Context.NONE).getValue();
+        return getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, subResourceName, Context.NONE)
+            .getValue();
     }
 }
