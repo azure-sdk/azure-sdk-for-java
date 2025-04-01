@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,6 +30,12 @@ public final class ConfigDataProperties implements JsonSerializable<ConfigDataPr
      * values: 5 (default), 10, 15 or 20.
      */
     private CpuThreshold lowCpuThreshold;
+
+    /*
+     * Minimum duration for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid values: 7
+     * (default), 14, 21, 30, 60 or 90.
+     */
+    private DurationModel duration;
 
     /*
      * Advisor digest configuration. Valid only for subscriptions
@@ -84,6 +91,28 @@ public final class ConfigDataProperties implements JsonSerializable<ConfigDataPr
     }
 
     /**
+     * Get the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @return the duration value.
+     */
+    public DurationModel duration() {
+        return this.duration;
+    }
+
+    /**
+     * Set the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @param duration the duration value to set.
+     * @return the ConfigDataProperties object itself.
+     */
+    public ConfigDataProperties withDuration(DurationModel duration) {
+        this.duration = duration;
+        return this;
+    }
+
+    /**
      * Get the digests property: Advisor digest configuration. Valid only for subscriptions.
      * 
      * @return the digests value.
@@ -123,6 +152,7 @@ public final class ConfigDataProperties implements JsonSerializable<ConfigDataPr
         jsonWriter.writeBooleanField("exclude", this.exclude);
         jsonWriter.writeStringField("lowCpuThreshold",
             this.lowCpuThreshold == null ? null : this.lowCpuThreshold.toString());
+        jsonWriter.writeStringField("duration", this.duration == null ? null : this.duration.toString());
         jsonWriter.writeArrayField("digests", this.digests, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
@@ -146,6 +176,8 @@ public final class ConfigDataProperties implements JsonSerializable<ConfigDataPr
                     deserializedConfigDataProperties.exclude = reader.getNullable(JsonReader::getBoolean);
                 } else if ("lowCpuThreshold".equals(fieldName)) {
                     deserializedConfigDataProperties.lowCpuThreshold = CpuThreshold.fromString(reader.getString());
+                } else if ("duration".equals(fieldName)) {
+                    deserializedConfigDataProperties.duration = DurationModel.fromString(reader.getString());
                 } else if ("digests".equals(fieldName)) {
                     List<DigestConfig> digests = reader.readArray(reader1 -> DigestConfig.fromJson(reader1));
                     deserializedConfigDataProperties.digests = digests;
