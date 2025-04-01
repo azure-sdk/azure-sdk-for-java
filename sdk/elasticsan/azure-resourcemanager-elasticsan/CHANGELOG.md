@@ -1,14 +1,96 @@
 # Release History
 
-## 1.2.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-04-01)
 
-### Features Added
+- Azure Resource Manager ElasticSan client library for Java. This package contains Microsoft Azure SDK for ElasticSan Management SDK.  Package tag package-2024-07-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.VolumeGroups` was modified
 
-### Other Changes
+* `listByElasticSan(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.Volumes` was modified
+
+* `deleteByIdWithResponse(java.lang.String,models.XMsDeleteSnapshots,models.XMsForceDelete,com.azure.core.util.Context)` was removed
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.XMsDeleteSnapshots,models.XMsForceDelete,com.azure.core.util.Context)` was removed
+* `listByVolumeGroup(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.PreValidationResponse` was added
+
+* `models.PolicyState` was added
+
+* `models.AutoScaleProperties` was added
+
+* `models.XMsAccessSoftDeletedResources` was added
+
+* `models.DiskSnapshotList` was added
+
+* `models.VolumeNameList` was added
+
+* `models.DeleteRetentionPolicy` was added
+
+* `models.AutoScalePolicyEnforcement` was added
+
+* `models.DeleteType` was added
+
+* `models.ScaleUpProperties` was added
+
+* `models.ResourceProviders` was added
+
+#### `models.ElasticSanUpdate` was modified
+
+* `autoScaleProperties()` was added
+* `withAutoScaleProperties(models.AutoScaleProperties)` was added
+
+#### `models.VolumeGroup$Update` was modified
+
+* `withDeleteRetentionPolicy(models.DeleteRetentionPolicy)` was added
+
+#### `models.VolumeGroups` was modified
+
+* `listByElasticSan(java.lang.String,java.lang.String,models.XMsAccessSoftDeletedResources,com.azure.core.util.Context)` was added
+
+#### `models.ElasticSan` was modified
+
+* `autoScaleProperties()` was added
+
+#### `models.VolumeGroupUpdate` was modified
+
+* `withDeleteRetentionPolicy(models.DeleteRetentionPolicy)` was added
+* `deleteRetentionPolicy()` was added
+
+#### `models.Volumes` was modified
+
+* `preRestore(java.lang.String,java.lang.String,java.lang.String,models.DiskSnapshotList)` was added
+* `deleteByIdWithResponse(java.lang.String,models.XMsDeleteSnapshots,models.XMsForceDelete,models.DeleteType,com.azure.core.util.Context)` was added
+* `preBackup(java.lang.String,java.lang.String,java.lang.String,models.VolumeNameList)` was added
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.XMsDeleteSnapshots,models.XMsForceDelete,models.DeleteType,com.azure.core.util.Context)` was added
+* `listByVolumeGroup(java.lang.String,java.lang.String,java.lang.String,models.XMsAccessSoftDeletedResources,com.azure.core.util.Context)` was added
+* `preRestore(java.lang.String,java.lang.String,java.lang.String,models.DiskSnapshotList,com.azure.core.util.Context)` was added
+* `preBackup(java.lang.String,java.lang.String,java.lang.String,models.VolumeNameList,com.azure.core.util.Context)` was added
+
+#### `ElasticSanManager` was modified
+
+* `resourceProviders()` was added
+
+#### `models.ElasticSan$Definition` was modified
+
+* `withAutoScaleProperties(models.AutoScaleProperties)` was added
+
+#### `models.ElasticSan$Update` was modified
+
+* `withAutoScaleProperties(models.AutoScaleProperties)` was added
+
+#### `models.VolumeGroup$Definition` was modified
+
+* `withDeleteRetentionPolicy(models.DeleteRetentionPolicy)` was added
+
+#### `models.VolumeGroup` was modified
+
+* `deleteRetentionPolicy()` was added
 
 ## 1.2.0-beta.1 (2024-10-23)
 
