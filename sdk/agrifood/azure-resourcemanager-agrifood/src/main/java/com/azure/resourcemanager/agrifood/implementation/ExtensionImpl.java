@@ -81,7 +81,7 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
 
     private String resourceGroupName;
 
-    private String farmBeatsResourceName;
+    private String dataManagerForAgricultureResourceName;
 
     private String extensionId;
 
@@ -89,17 +89,17 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
 
     private ExtensionInstallationRequest updateRequestBody;
 
-    public ExtensionImpl withExistingFarmBeat(String resourceGroupName, String farmBeatsResourceName) {
+    public ExtensionImpl withExistingFarmBeat(String resourceGroupName, String dataManagerForAgricultureResourceName) {
         this.resourceGroupName = resourceGroupName;
-        this.farmBeatsResourceName = farmBeatsResourceName;
+        this.dataManagerForAgricultureResourceName = dataManagerForAgricultureResourceName;
         return this;
     }
 
     public Extension create() {
         this.innerObject = serviceManager.serviceClient()
             .getExtensions()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, createRequestBody,
-                Context.NONE)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+                createRequestBody, Context.NONE)
             .getValue();
         return this;
     }
@@ -107,8 +107,8 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
     public Extension create(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getExtensions()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, createRequestBody,
-                context)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+                createRequestBody, context)
             .getValue();
         return this;
     }
@@ -128,8 +128,8 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
     public Extension apply() {
         this.innerObject = serviceManager.serviceClient()
             .getExtensions()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, updateRequestBody,
-                Context.NONE)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+                updateRequestBody, Context.NONE)
             .getValue();
         return this;
     }
@@ -137,8 +137,8 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
     public Extension apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getExtensions()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, updateRequestBody,
-                context)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+                updateRequestBody, context)
             .getValue();
         return this;
     }
@@ -147,14 +147,15 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "farmBeats");
+        this.dataManagerForAgricultureResourceName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "farmBeats");
         this.extensionId = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "extensions");
     }
 
     public Extension refresh() {
         this.innerObject = serviceManager.serviceClient()
             .getExtensions()
-            .getWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, Context.NONE)
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, Context.NONE)
             .getValue();
         return this;
     }
@@ -162,7 +163,7 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
     public Extension refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getExtensions()
-            .getWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, context)
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, context)
             .getValue();
         return this;
     }

@@ -71,21 +71,22 @@ public final class PrivateEndpointConnectionImpl
 
     private String resourceGroupName;
 
-    private String farmBeatsResourceName;
+    private String dataManagerForAgricultureResourceName;
 
     private String privateEndpointConnectionName;
 
-    public PrivateEndpointConnectionImpl withExistingFarmBeat(String resourceGroupName, String farmBeatsResourceName) {
+    public PrivateEndpointConnectionImpl withExistingFarmBeat(String resourceGroupName,
+        String dataManagerForAgricultureResourceName) {
         this.resourceGroupName = resourceGroupName;
-        this.farmBeatsResourceName = farmBeatsResourceName;
+        this.dataManagerForAgricultureResourceName = dataManagerForAgricultureResourceName;
         return this;
     }
 
     public PrivateEndpointConnection create() {
         this.innerObject = serviceManager.serviceClient()
             .getPrivateEndpointConnections()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName,
-                this.innerModel(), Context.NONE)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName,
+                privateEndpointConnectionName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
@@ -93,8 +94,8 @@ public final class PrivateEndpointConnectionImpl
     public PrivateEndpointConnection create(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getPrivateEndpointConnections()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName,
-                this.innerModel(), context)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName,
+                privateEndpointConnectionName, this.innerModel(), context)
             .getValue();
         return this;
     }
@@ -112,8 +113,8 @@ public final class PrivateEndpointConnectionImpl
     public PrivateEndpointConnection apply() {
         this.innerObject = serviceManager.serviceClient()
             .getPrivateEndpointConnections()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName,
-                this.innerModel(), Context.NONE)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName,
+                privateEndpointConnectionName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
@@ -121,8 +122,8 @@ public final class PrivateEndpointConnectionImpl
     public PrivateEndpointConnection apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getPrivateEndpointConnections()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName,
-                this.innerModel(), context)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName,
+                privateEndpointConnectionName, this.innerModel(), context)
             .getValue();
         return this;
     }
@@ -132,7 +133,8 @@ public final class PrivateEndpointConnectionImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "farmBeats");
+        this.dataManagerForAgricultureResourceName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "farmBeats");
         this.privateEndpointConnectionName
             = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "privateEndpointConnections");
     }
@@ -140,7 +142,8 @@ public final class PrivateEndpointConnectionImpl
     public PrivateEndpointConnection refresh() {
         this.innerObject = serviceManager.serviceClient()
             .getPrivateEndpointConnections()
-            .getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, Context.NONE)
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName,
+                Context.NONE)
             .getValue();
         return this;
     }
@@ -148,7 +151,8 @@ public final class PrivateEndpointConnectionImpl
     public PrivateEndpointConnection refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getPrivateEndpointConnections()
-            .getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName,
+                context)
             .getValue();
         return this;
     }
