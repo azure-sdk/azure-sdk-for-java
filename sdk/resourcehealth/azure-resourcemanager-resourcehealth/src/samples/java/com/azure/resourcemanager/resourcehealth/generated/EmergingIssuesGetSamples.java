@@ -12,7 +12,7 @@ import com.azure.resourcemanager.resourcehealth.models.IssueNameParameter;
 public final class EmergingIssuesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * EmergingIssues_Get.json
      */
     /**

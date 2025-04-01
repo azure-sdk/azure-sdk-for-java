@@ -64,7 +64,7 @@
 public final class AvailabilityStatusesGetByResourceSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * AvailabilityStatus_GetByResource.json
      */
     /**
@@ -89,7 +89,7 @@ public final class AvailabilityStatusesGetByResourceSamples {
 public final class AvailabilityStatusesListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * AvailabilityStatuses_List.json
      */
     /**
@@ -113,7 +113,7 @@ public final class AvailabilityStatusesListSamples {
 public final class AvailabilityStatusesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * AvailabilityStatuses_ListByResourceGroup.json
      */
     /**
@@ -137,7 +137,7 @@ public final class AvailabilityStatusesListByResourceGroupSamples {
 public final class AvailabilityStatusesListBySubscriptionIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * AvailabilityStatuses_ListBySubscriptionId.json
      */
     /**
@@ -162,7 +162,7 @@ public final class AvailabilityStatusesListBySubscriptionIdSamples {
 public final class ChildAvailabilityStatusesGetByResourceSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * ChildAvailabilityStatus_GetByResource.json
      */
     /**
@@ -189,7 +189,7 @@ public final class ChildAvailabilityStatusesGetByResourceSamples {
 public final class ChildAvailabilityStatusesListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * ChildAvailabilityStatuses_List.json
      */
     /**
@@ -216,7 +216,7 @@ public final class ChildAvailabilityStatusesListSamples {
 public final class ChildResourcesListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * ChildResources_List.json
      */
     /**
@@ -242,7 +242,7 @@ import com.azure.resourcemanager.resourcehealth.models.IssueNameParameter;
 public final class EmergingIssuesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * EmergingIssues_Get.json
      */
     /**
@@ -265,7 +265,7 @@ public final class EmergingIssuesGetSamples {
 public final class EmergingIssuesListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * EmergingIssues_List.json
      */
     /**
@@ -288,7 +288,7 @@ public final class EmergingIssuesListSamples {
 public final class EventOperationFetchDetailsBySubscriptionIdAndTrackingIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * Event_fetchDetailsBySubscriptionIdAndTrackingId.json
      */
     /**
@@ -313,7 +313,7 @@ public final class EventOperationFetchDetailsBySubscriptionIdAndTrackingIdSample
 public final class EventOperationFetchDetailsByTenantIdAndTrackingIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * Event_fetchDetailsByTenantIdAndTrackingId.json
      */
     /**
@@ -338,7 +338,7 @@ public final class EventOperationFetchDetailsByTenantIdAndTrackingIdSamples {
 public final class EventOperationGetBySubscriptionIdAndTrackingIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * Event_GetBySubscriptionIdAndTrackingId.json
      */
     /**
@@ -364,7 +364,7 @@ public final class EventOperationGetBySubscriptionIdAndTrackingIdSamples {
 public final class EventOperationGetByTenantIdAndTrackingIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * Event_GetByTenantIdAndTrackingId.json
      */
     /**
@@ -390,7 +390,7 @@ public final class EventOperationGetByTenantIdAndTrackingIdSamples {
 public final class EventsOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * Events_ListBySubscriptionId.json
      */
     /**
@@ -416,7 +416,7 @@ public final class EventsOperationListSamples {
 public final class EventsOperationListBySingleResourceSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * Events_ListBySingleResource.json
      */
     /**
@@ -443,7 +443,7 @@ public final class EventsOperationListBySingleResourceSamples {
 public final class EventsOperationListByTenantIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * Events_ListByTenantId.json
      */
     /**
@@ -468,7 +468,7 @@ public final class EventsOperationListByTenantIdSamples {
 public final class ImpactedResourcesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * ImpactedResources_Get.json
      */
     /**
@@ -491,7 +491,7 @@ public final class ImpactedResourcesGetSamples {
 public final class ImpactedResourcesGetByTenantIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * ImpactedResources_GetByTenantId.json
      */
     /**
@@ -515,7 +515,7 @@ public final class ImpactedResourcesGetByTenantIdSamples {
 public final class ImpactedResourcesListBySubscriptionIdAndEventIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * ImpactedResources_ListBySubscriptionId_ListByEventId.json
      */
     /**
@@ -540,7 +540,7 @@ public final class ImpactedResourcesListBySubscriptionIdAndEventIdSamples {
 public final class ImpactedResourcesListByTenantIdAndEventIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * ImpactedResources_ListByTenantId_ListByEventId.json
      */
     /**
@@ -564,7 +564,7 @@ public final class ImpactedResourcesListByTenantIdAndEventIdSamples {
 public final class MetadataGetEntitySamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * Metadata_GetEntity.json
      */
     /**
@@ -587,8 +587,8 @@ public final class MetadataGetEntitySamples {
 public final class MetadataListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
-     * Metadata_List.json
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/Metadata_List.
+     * json
      */
     /**
      * Sample code: GetMetadata.
@@ -610,8 +610,8 @@ public final class MetadataListSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
-     * Operations_List.json
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/Operations_List
+     * .json
      */
     /**
      * Sample code: GetOperationsList.
@@ -633,7 +633,7 @@ public final class OperationsListSamples {
 public final class SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * SecurityAdvisoryImpactedResources_ListBySubscriptionId_ListByEventId.json
      */
     /**
@@ -658,7 +658,7 @@ public final class SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEvent
 public final class SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/
      * SecurityAdvisoryImpactedResources_ListByTenantId_ListByEventId.json
      */
     /**
