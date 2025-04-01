@@ -4,12 +4,17 @@
 
 package com.azure.resourcemanager.advisor.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
+import com.azure.resourcemanager.advisor.models.RecommendationPropertiesResourceWorkload;
+import com.azure.resourcemanager.advisor.models.RecommendationPropertiesReview;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
 import com.azure.resourcemanager.advisor.models.ResourceRecommendationBase;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationProperties;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +42,10 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public Category category() {
@@ -70,6 +79,10 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
 
     public String recommendationTypeId() {
         return this.innerModel().recommendationTypeId();
+    }
+
+    public Risk risk() {
+        return this.innerModel().risk();
     }
 
     public ShortDescription shortDescription() {
@@ -139,6 +152,30 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public Boolean tracked() {
+        return this.innerModel().tracked();
+    }
+
+    public TrackedRecommendationProperties trackedProperties() {
+        return this.innerModel().trackedProperties();
+    }
+
+    public RecommendationPropertiesReview review() {
+        return this.innerModel().review();
+    }
+
+    public RecommendationPropertiesResourceWorkload resourceWorkload() {
+        return this.innerModel().resourceWorkload();
+    }
+
+    public String sourceSystem() {
+        return this.innerModel().sourceSystem();
+    }
+
+    public String notes() {
+        return this.innerModel().notes();
     }
 
     public ResourceRecommendationBaseInner innerModel() {
