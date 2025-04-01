@@ -16,8 +16,8 @@ import java.util.Map;
 public final class OnlineDeploymentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/OnlineDeployment/ManagedOnlineDeployment/update.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/OnlineDeployment/ManagedOnlineDeployment/update.json
      */
     /**
      * Sample code: Update Managed Online Deployment.
@@ -32,18 +32,18 @@ public final class OnlineDeploymentsUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf())
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.FREE)
-                .withSize("string")
+            .withSku(new PartialSku().withCapacity(1)
                 .withFamily("string")
-                .withCapacity(1))
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.FREE))
             .apply();
     }
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
      */
     /**
      * Sample code: Update Kubernetes Online Deployment.
@@ -58,11 +58,11 @@ public final class OnlineDeploymentsUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf())
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.FREE)
-                .withSize("string")
+            .withSku(new PartialSku().withCapacity(1)
                 .withFamily("string")
-                .withCapacity(1))
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.FREE))
             .apply();
     }
 

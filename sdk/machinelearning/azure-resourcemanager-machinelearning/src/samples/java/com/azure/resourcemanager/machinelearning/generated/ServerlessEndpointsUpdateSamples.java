@@ -21,8 +21,8 @@ import java.util.Map;
 public final class ServerlessEndpointsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/ServerlessEndpoint/update.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/ServerlessEndpoint/update.json
      */
     /**
      * Sample code: Update Workspace Serverless Endpoint.
@@ -36,15 +36,15 @@ public final class ServerlessEndpointsUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf())
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.PREMIUM)
-                .withSize("string")
-                .withFamily("string")
-                .withCapacity(1))
             .withIdentity(new PartialManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
                 .withUserAssignedIdentities(mapOf("string",
                     SerializerFactory.createDefaultManagementSerializerAdapter()
                         .deserialize("{}", Object.class, SerializerEncoding.JSON))))
+            .withSku(new PartialSku().withCapacity(1)
+                .withFamily("string")
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.PREMIUM))
             .apply();
     }
 

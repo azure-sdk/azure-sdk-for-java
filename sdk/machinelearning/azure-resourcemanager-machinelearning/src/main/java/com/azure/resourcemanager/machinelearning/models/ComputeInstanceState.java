@@ -37,6 +37,11 @@ public final class ComputeInstanceState extends ExpandableStringEnum<ComputeInst
     public static final ComputeInstanceState RESTARTING = fromString("Restarting");
 
     /**
+     * Static value Resizing for ComputeInstanceState.
+     */
+    public static final ComputeInstanceState RESIZING = fromString("Resizing");
+
+    /**
      * Static value JobRunning for ComputeInstanceState.
      */
     public static final ComputeInstanceState JOB_RUNNING = fromString("JobRunning");
