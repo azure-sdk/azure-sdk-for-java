@@ -25,7 +25,7 @@ import com.azure.resourcemanager.dataprotection.models.TargetDetails;
 public final class BackupInstancesTriggerRestoreSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-02-01/examples/
      * BackupInstanceOperations/TriggerRestoreAsFiles.json
      */
     /**
@@ -52,7 +52,7 @@ public final class BackupInstancesTriggerRestoreSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-02-01/examples/
      * BackupInstanceOperations/TriggerRestoreWithRehydration.json
      */
     /**
@@ -94,7 +94,7 @@ public final class BackupInstancesTriggerRestoreSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2025-02-01/examples/
      * BackupInstanceOperations/TriggerRestore.json
      */
     /**
