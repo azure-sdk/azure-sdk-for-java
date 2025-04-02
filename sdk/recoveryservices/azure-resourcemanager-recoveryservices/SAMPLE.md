@@ -59,7 +59,7 @@
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * ListOperations.json
      */
     /**
@@ -82,7 +82,7 @@ public final class OperationsListSamples {
 public final class PrivateLinkResourcesOperationGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * GetPrivateLinkResources.json
      */
     /**
@@ -107,7 +107,7 @@ public final class PrivateLinkResourcesOperationGetSamples {
 public final class PrivateLinkResourcesOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * ListPrivateLinkResources.json
      */
     /**
@@ -137,7 +137,7 @@ import java.util.Arrays;
 public final class RecoveryServicesCapabilitiesSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * Capabilities.json
      */
     /**
@@ -169,7 +169,7 @@ import com.azure.resourcemanager.recoveryservices.models.CheckNameAvailabilityPa
 public final class RecoveryServicesCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * CheckNameAvailability_Available.json
      */
     /**
@@ -190,7 +190,7 @@ public final class RecoveryServicesCheckNameAvailabilitySamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * CheckNameAvailability_NotAvailable.json
      */
     /**
@@ -218,7 +218,7 @@ public final class RecoveryServicesCheckNameAvailabilitySamples {
 public final class RegisteredIdentitiesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * DeleteRegisteredIdentities.json
      */
     /**
@@ -243,7 +243,7 @@ public final class RegisteredIdentitiesDeleteSamples {
 public final class ReplicationUsagesListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * ListReplicationUsages.json
      */
     /**
@@ -267,7 +267,7 @@ public final class ReplicationUsagesListSamples {
 public final class ResourceProviderGetOperationResultSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * GetOperationResult.json
      */
     /**
@@ -293,7 +293,7 @@ public final class ResourceProviderGetOperationResultSamples {
 public final class ResourceProviderGetOperationStatusSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * GetOperationStatus.json
      */
     /**
@@ -319,7 +319,7 @@ public final class ResourceProviderGetOperationStatusSamples {
 public final class UsagesListByVaultsSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ListUsages.
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/ListUsages.
      * json
      */
     /**
@@ -346,7 +346,7 @@ import com.azure.resourcemanager.recoveryservices.models.RawCertificateData;
 public final class VaultCertificatesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PUTVaultCred.json
      */
     /**
@@ -378,7 +378,7 @@ public final class VaultCertificatesCreateSamples {
 public final class VaultExtendedInfoCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * UpdateVaultExtendedInfo.json
      */
     /**
@@ -404,7 +404,7 @@ public final class VaultExtendedInfoCreateOrUpdateSamples {
 public final class VaultExtendedInfoGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * GETVaultExtendedInfo.json
      */
     /**
@@ -431,7 +431,7 @@ public final class VaultExtendedInfoGetSamples {
 public final class VaultExtendedInfoUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * UpdateVaultExtendedInfo.json
      */
     /**
@@ -479,7 +479,7 @@ import java.util.Map;
 public final class VaultsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PUTVault_WithCMK.json
      */
     /**
@@ -509,7 +509,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/PUTVault.
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/PUTVault.
      * json
      */
     /**
@@ -531,7 +531,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PUTVault_ResourceGuardEnabled.json
      */
     /**
@@ -563,7 +563,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PUTVault_WithUserAssignedIdentity.json
      */
     /**
@@ -588,7 +588,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PUTVault_WithMonitoringSettings.json
      */
     /**
@@ -618,7 +618,7 @@ public final class VaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PUTVault_WithRedundancySettings.json
      */
     /**
@@ -664,7 +664,7 @@ public final class VaultsCreateOrUpdateSamples {
 public final class VaultsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/DeleteVault
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/DeleteVault
      * .json
      */
     /**
@@ -689,7 +689,7 @@ public final class VaultsDeleteSamples {
 public final class VaultsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/GETVault.
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/GETVault.
      * json
      */
     /**
@@ -715,7 +715,7 @@ public final class VaultsGetByResourceGroupSamples {
 public final class VaultsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * ListBySubscriptionIds.json
      */
     /**
@@ -739,7 +739,7 @@ public final class VaultsListSamples {
 public final class VaultsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * ListResources.json
      */
     /**
@@ -783,7 +783,7 @@ import java.util.Map;
 public final class VaultsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PATCHVault_WithMonitoringSettings.json
      */
     /**
@@ -811,7 +811,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PATCHVault_WithCMK.json
      */
     /**
@@ -840,7 +840,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PatchVault_WithCMK2.json
      */
     /**
@@ -863,7 +863,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PATCHVault_WithCMK3.json
      */
     /**
@@ -889,7 +889,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/PATCHVault.
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/PATCHVault.
      * json
      */
     /**
@@ -906,7 +906,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PATCHVault_WithRedundancySettings.json
      */
     /**
@@ -928,7 +928,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-01-01/examples/
      * PATCHVault_WithUserAssignedIdentity.json
      */
     /**
