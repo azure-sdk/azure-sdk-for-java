@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Defines the virtual network subnets resource settings.
@@ -25,6 +26,11 @@ public final class SubnetResourceSettings implements JsonSerializable<SubnetReso
      * Gets or sets address prefix for the subnet.
      */
     private String addressPrefix;
+
+    /*
+     * Gets or sets address prefixes for the subnet.
+     */
+    private List<String> addressPrefixes;
 
     /*
      * Defines reference to NSG.
@@ -78,6 +84,26 @@ public final class SubnetResourceSettings implements JsonSerializable<SubnetReso
     }
 
     /**
+     * Get the addressPrefixes property: Gets or sets address prefixes for the subnet.
+     * 
+     * @return the addressPrefixes value.
+     */
+    public List<String> addressPrefixes() {
+        return this.addressPrefixes;
+    }
+
+    /**
+     * Set the addressPrefixes property: Gets or sets address prefixes for the subnet.
+     * 
+     * @param addressPrefixes the addressPrefixes value to set.
+     * @return the SubnetResourceSettings object itself.
+     */
+    public SubnetResourceSettings withAddressPrefixes(List<String> addressPrefixes) {
+        this.addressPrefixes = addressPrefixes;
+        return this;
+    }
+
+    /**
      * Get the networkSecurityGroup property: Defines reference to NSG.
      * 
      * @return the networkSecurityGroup value.
@@ -116,6 +142,8 @@ public final class SubnetResourceSettings implements JsonSerializable<SubnetReso
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name);
         jsonWriter.writeStringField("addressPrefix", this.addressPrefix);
+        jsonWriter.writeArrayField("addressPrefixes", this.addressPrefixes,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("networkSecurityGroup", this.networkSecurityGroup);
         return jsonWriter.writeEndObject();
     }
@@ -139,6 +167,9 @@ public final class SubnetResourceSettings implements JsonSerializable<SubnetReso
                     deserializedSubnetResourceSettings.name = reader.getString();
                 } else if ("addressPrefix".equals(fieldName)) {
                     deserializedSubnetResourceSettings.addressPrefix = reader.getString();
+                } else if ("addressPrefixes".equals(fieldName)) {
+                    List<String> addressPrefixes = reader.readArray(reader1 -> reader1.getString());
+                    deserializedSubnetResourceSettings.addressPrefixes = addressPrefixes;
                 } else if ("networkSecurityGroup".equals(fieldName)) {
                     deserializedSubnetResourceSettings.networkSecurityGroup = NsgReference.fromJson(reader);
                 } else {

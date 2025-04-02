@@ -108,6 +108,15 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkSecurityGroupResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -127,6 +136,7 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("targetResourceName", targetResourceName());
         jsonWriter.writeStringField("targetResourceGroupName", targetResourceGroupName());
+        jsonWriter.writeStringField("targetSubscriptionId", targetSubscriptionId());
         jsonWriter.writeStringField("resourceType", this.resourceType);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("securityRules", this.securityRules, (writer, element) -> writer.writeJson(element));
@@ -153,6 +163,8 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
                     deserializedNetworkSecurityGroupResourceSettings.withTargetResourceName(reader.getString());
                 } else if ("targetResourceGroupName".equals(fieldName)) {
                     deserializedNetworkSecurityGroupResourceSettings.withTargetResourceGroupName(reader.getString());
+                } else if ("targetSubscriptionId".equals(fieldName)) {
+                    deserializedNetworkSecurityGroupResourceSettings.withTargetSubscriptionId(reader.getString());
                 } else if ("resourceType".equals(fieldName)) {
                     deserializedNetworkSecurityGroupResourceSettings.resourceType = reader.getString();
                 } else if ("tags".equals(fieldName)) {

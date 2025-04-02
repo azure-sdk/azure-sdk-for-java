@@ -15,7 +15,7 @@ import com.azure.resourcemanager.resourcemover.models.ResourceIdentityType;
 public final class MoveCollectionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Create.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Create.
      * json
      */
     /**
@@ -25,7 +25,7 @@ public final class MoveCollectionsCreateSamples {
      */
     public static void moveCollectionsCreate(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .define("movecollection1")
+            .define("movecollection_1")
             .withRegion("eastus2")
             .withExistingResourceGroup("rg1")
             .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))

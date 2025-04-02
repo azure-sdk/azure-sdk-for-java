@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public final class MoveCollectionsBulkRemoveSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * MoveCollections_BulkRemove.json
      */
     /**
@@ -22,9 +22,9 @@ public final class MoveCollectionsBulkRemoveSamples {
      */
     public static void moveCollectionsBulkRemove(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .bulkRemove("rg1", "movecollection1", new BulkRemoveRequest().withValidateOnly(false)
+            .bulkRemove("rg1", "movecollection_1", new BulkRemoveRequest().withValidateOnly(false)
                 .withMoveResources(Arrays.asList(
-                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection1/MoveResources/moveresource1")),
+                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection_1/MoveResources/moveresource_1")),
                 com.azure.core.util.Context.NONE);
     }
 }

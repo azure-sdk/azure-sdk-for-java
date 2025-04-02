@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.resourcemover.generated;
 
+import com.azure.resourcemanager.resourcemover.models.DiskDetails;
 import com.azure.resourcemanager.resourcemover.models.MoveResourceDependencyOverride;
 import com.azure.resourcemanager.resourcemover.models.MoveResourceProperties;
 import com.azure.resourcemanager.resourcemover.models.TargetAvailabilityZone;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 public final class MoveResourcesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveResources_Create.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveResources_Create.
      * json
      */
     /**
@@ -27,7 +28,7 @@ public final class MoveResourcesCreateSamples {
     public static void moveResourcesCreate(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveResources()
             .define("moveresourcename1")
-            .withExistingMoveCollection("rg1", "movecollection1")
+            .withExistingMoveCollection("rg1", "movecollection_1")
             .withProperties(new MoveResourceProperties().withSourceId(
                 "/subscriptions/subid/resourceGroups/eastusRG/providers/Microsoft.Compute/virtualMachines/eastusvm1")
                 .withResourceSettings(new VirtualMachineResourceSettings().withTargetResourceName("westusvm1")
@@ -35,7 +36,10 @@ public final class MoveResourcesCreateSamples {
                         "/subscriptions/subid/resourceGroups/eastusRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/umi1"))
                     .withTargetAvailabilityZone(TargetAvailabilityZone.TWO)
                     .withTargetAvailabilitySetId(
-                        "/subscriptions/subid/resourceGroups/eastusRG/providers/Microsoft.Compute/availabilitySets/avset1"))
+                        "/subscriptions/subid/resourceGroups/eastusRG/providers/Microsoft.Compute/availabilitySets/avset1")
+                    .withTargetDiskDetails(Arrays.asList(new DiskDetails().withSourceId(
+                        "/subscriptions/c4488a3f-a7f7-4ad4-aa72-0e1f4d9c0756/resourceGroups/EASTUS/providers/Microsoft.Compute/disks/eastusvm1_OsDisk_1_a88a2f0e8cf44fb3af24aa0f27101f83")
+                        .withTargetDiskName("eastusvm1_OsDisk_1_a88a2f0e8cf44fb3af24aa0f27101f83"))))
                 .withDependsOnOverrides(Arrays.asList(new MoveResourceDependencyOverride().withId(
                     "/subscriptions/c4488a3f-a7f7-4ad4-aa72-0e1f4d9c0756/resourceGroups/eastusRG/providers/Microsoft.Network/networkInterfaces/eastusvm140")
                     .withTargetId(
