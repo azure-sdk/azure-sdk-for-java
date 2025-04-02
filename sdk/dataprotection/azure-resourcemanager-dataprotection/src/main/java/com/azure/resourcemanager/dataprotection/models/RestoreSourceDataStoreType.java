@@ -17,11 +17,6 @@ public final class RestoreSourceDataStoreType extends ExpandableStringEnum<Resto
     public static final RestoreSourceDataStoreType OPERATIONAL_STORE = fromString("OperationalStore");
 
     /**
-     * Static value VaultStore for RestoreSourceDataStoreType.
-     */
-    public static final RestoreSourceDataStoreType VAULT_STORE = fromString("VaultStore");
-
-    /**
      * Static value ArchiveStore for RestoreSourceDataStoreType.
      */
     public static final RestoreSourceDataStoreType ARCHIVE_STORE = fromString("ArchiveStore");
