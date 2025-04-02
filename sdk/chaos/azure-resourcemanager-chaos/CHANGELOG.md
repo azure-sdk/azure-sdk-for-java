@@ -1,14 +1,141 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-02)
 
-### Features Added
+- Azure Resource Manager Chaos client library for Java. This package contains Microsoft Azure SDK for Chaos Management SDK. Chaos Management Client. Package tag package-2025-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ResourceIdentity` was removed
 
-### Other Changes
+#### `models.ResourceIdentityType` was removed
+
+#### `models.OperationStatus` was removed
+
+#### `models.TargetType` was modified
+
+* `location()` was removed
+
+#### `models.ExperimentExecutionDetails` was modified
+
+* `lastActionAt()` was removed
+* `failureReason()` was removed
+* `runInformation()` was removed
+* `startedAt()` was removed
+* `status()` was removed
+* `stoppedAt()` was removed
+
+#### `models.DelayAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.ContinuousAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.CapabilityType` was modified
+
+* `location()` was removed
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.ChaosExperimentAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.Experiment` was modified
+
+* `models.ResourceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.DiscreteAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.ChaosTargetSelector` was modified
+
+* `additionalProperties()` was removed
+* `withAdditionalProperties(java.util.Map)` was removed
+
+#### `models.ExperimentUpdate` was modified
+
+* `models.ResourceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.OperationStatuses` was modified
+
+* `models.OperationStatus get(java.lang.String,java.lang.String)` -> `models.OperationStatusResult get(java.lang.String,java.lang.String)`
+
+### Features Added
+
+* `models.ExperimentActionType` was added
+
+* `models.ExperimentExecutionDetailsProperties` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.OperationStatusResult` was added
+
+* `models.ManagedServiceIdentity` was added
+
+#### `models.TargetListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+* `withValue(java.util.List)` was added
+
+#### `models.ExperimentExecutionDetails` was modified
+
+* `properties()` was added
+
+#### `models.CapabilityTypeListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ExperimentListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+* `withValue(java.util.List)` was added
+
+#### `models.CapabilityType` was modified
+
+* `requiredAzureRoleDefinitionIds()` was added
+
+#### `models.ExperimentExecutionListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ExperimentExecution` was modified
+
+* `systemData()` was added
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.TargetTypeListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+* `withValue(java.util.List)` was added
+
+#### `models.CapabilityListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ExperimentUpdate` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
 
 ## 1.2.0 (2024-12-19)
 

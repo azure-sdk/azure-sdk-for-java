@@ -9,9 +9,8 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsPropertiesRunInformation;
+import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsProperties;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Model that represents the execution details of an Experiment.
@@ -36,7 +35,7 @@ public final class ExperimentExecutionDetailsInner implements JsonSerializable<E
     /*
      * The properties of the experiment execution details.
      */
-    private ExperimentExecutionDetailsProperties innerProperties;
+    private ExperimentExecutionDetailsProperties properties;
 
     /**
      * Creates an instance of ExperimentExecutionDetailsInner class.
@@ -72,66 +71,12 @@ public final class ExperimentExecutionDetailsInner implements JsonSerializable<E
     }
 
     /**
-     * Get the innerProperties property: The properties of the experiment execution details.
+     * Get the properties property: The properties of the experiment execution details.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private ExperimentExecutionDetailsProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the failureReason property: The reason why the execution failed.
-     * 
-     * @return the failureReason value.
-     */
-    public String failureReason() {
-        return this.innerProperties() == null ? null : this.innerProperties().failureReason();
-    }
-
-    /**
-     * Get the lastActionAt property: String that represents the last action date time.
-     * 
-     * @return the lastActionAt value.
-     */
-    public OffsetDateTime lastActionAt() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastActionAt();
-    }
-
-    /**
-     * Get the runInformation property: The information of the experiment run.
-     * 
-     * @return the runInformation value.
-     */
-    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
-        return this.innerProperties() == null ? null : this.innerProperties().runInformation();
-    }
-
-    /**
-     * Get the status property: The status of the execution.
-     * 
-     * @return the status value.
-     */
-    public String status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
-    }
-
-    /**
-     * Get the startedAt property: String that represents the start date time.
-     * 
-     * @return the startedAt value.
-     */
-    public OffsetDateTime startedAt() {
-        return this.innerProperties() == null ? null : this.innerProperties().startedAt();
-    }
-
-    /**
-     * Get the stoppedAt property: String that represents the stop date time.
-     * 
-     * @return the stoppedAt value.
-     */
-    public OffsetDateTime stoppedAt() {
-        return this.innerProperties() == null ? null : this.innerProperties().stoppedAt();
+    public ExperimentExecutionDetailsProperties properties() {
+        return this.properties;
     }
 
     /**
@@ -140,8 +85,8 @@ public final class ExperimentExecutionDetailsInner implements JsonSerializable<E
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -177,7 +122,7 @@ public final class ExperimentExecutionDetailsInner implements JsonSerializable<E
                 } else if ("name".equals(fieldName)) {
                     deserializedExperimentExecutionDetailsInner.name = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedExperimentExecutionDetailsInner.innerProperties
+                    deserializedExperimentExecutionDetailsInner.properties
                         = ExperimentExecutionDetailsProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
