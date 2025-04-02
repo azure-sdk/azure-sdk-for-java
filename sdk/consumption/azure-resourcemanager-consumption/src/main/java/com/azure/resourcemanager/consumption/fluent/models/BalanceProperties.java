@@ -87,6 +87,11 @@ public final class BalanceProperties implements JsonSerializable<BalanceProperti
     private Boolean priceHidden;
 
     /*
+     * Overage Refunds
+     */
+    private BigDecimal overageRefund;
+
+    /*
      * List of new purchases.
      */
     private List<BalancePropertiesNewPurchasesDetailsItem> newPurchasesDetails;
@@ -232,6 +237,15 @@ public final class BalanceProperties implements JsonSerializable<BalanceProperti
     }
 
     /**
+     * Get the overageRefund property: Overage Refunds.
+     * 
+     * @return the overageRefund value.
+     */
+    public BigDecimal overageRefund() {
+        return this.overageRefund;
+    }
+
+    /**
      * Get the newPurchasesDetails property: List of new purchases.
      * 
      * @return the newPurchasesDetails value.
@@ -325,6 +339,9 @@ public final class BalanceProperties implements JsonSerializable<BalanceProperti
                     deserializedBalanceProperties.billingFrequency = BillingFrequency.fromString(reader.getString());
                 } else if ("priceHidden".equals(fieldName)) {
                     deserializedBalanceProperties.priceHidden = reader.getNullable(JsonReader::getBoolean);
+                } else if ("overageRefund".equals(fieldName)) {
+                    deserializedBalanceProperties.overageRefund
+                        = reader.getNullable(nonNullReader -> new BigDecimal(nonNullReader.getString()));
                 } else if ("newPurchasesDetails".equals(fieldName)) {
                     List<BalancePropertiesNewPurchasesDetailsItem> newPurchasesDetails
                         = reader.readArray(reader1 -> BalancePropertiesNewPurchasesDetailsItem.fromJson(reader1));
