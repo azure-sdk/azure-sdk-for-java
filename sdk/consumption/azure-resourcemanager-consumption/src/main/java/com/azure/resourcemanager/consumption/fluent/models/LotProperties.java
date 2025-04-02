@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.LotSource;
+import com.azure.resourcemanager.consumption.models.OrganizationType;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import com.azure.resourcemanager.consumption.models.Status;
 import java.io.IOException;
@@ -24,7 +25,8 @@ import java.time.OffsetDateTime;
 @Immutable
 public final class LotProperties implements JsonSerializable<LotProperties> {
     /*
-     * The original amount of a lot.
+     * The original amount of a lot, Note: This will not be returned for Contributor Organization Type in Multi-Entity
+     * consumption commitment
      */
     private Amount originalAmount;
 
@@ -75,7 +77,8 @@ public final class LotProperties implements JsonSerializable<LotProperties> {
     private String billingCurrency;
 
     /*
-     * The original amount of a lot in billing currency.
+     * The original amount of a lot in billing currency, Note: This will not be returned for Contributor Organization
+     * Type in Multi-Entity consumption commitment
      */
     private AmountWithExchangeRate originalAmountInBillingCurrency;
 
@@ -90,9 +93,24 @@ public final class LotProperties implements JsonSerializable<LotProperties> {
     private Reseller reseller;
 
     /*
+     * If true, the listed details are based on an estimation and it will be subjected to change.
+     */
+    private Boolean isEstimatedBalance;
+
+    /*
      * The eTag for the resource.
      */
     private String etag;
+
+    /*
+     * The organization type of the lot.
+     */
+    private OrganizationType organizationType;
+
+    /*
+     * Amount consumed from the commitment.
+     */
+    private Amount usedAmount;
 
     /**
      * Creates an instance of LotProperties class.
@@ -101,7 +119,8 @@ public final class LotProperties implements JsonSerializable<LotProperties> {
     }
 
     /**
-     * Get the originalAmount property: The original amount of a lot.
+     * Get the originalAmount property: The original amount of a lot, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
      * 
      * @return the originalAmount value.
      */
@@ -192,7 +211,8 @@ public final class LotProperties implements JsonSerializable<LotProperties> {
     }
 
     /**
-     * Get the originalAmountInBillingCurrency property: The original amount of a lot in billing currency.
+     * Get the originalAmountInBillingCurrency property: The original amount of a lot in billing currency, Note: This
+     * will not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
      * 
      * @return the originalAmountInBillingCurrency value.
      */
@@ -219,12 +239,40 @@ public final class LotProperties implements JsonSerializable<LotProperties> {
     }
 
     /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.isEstimatedBalance;
+    }
+
+    /**
      * Get the etag property: The eTag for the resource.
      * 
      * @return the etag value.
      */
     public String etag() {
         return this.etag;
+    }
+
+    /**
+     * Get the organizationType property: The organization type of the lot.
+     * 
+     * @return the organizationType value.
+     */
+    public OrganizationType organizationType() {
+        return this.organizationType;
+    }
+
+    /**
+     * Get the usedAmount property: Amount consumed from the commitment.
+     * 
+     * @return the usedAmount value.
+     */
+    public Amount usedAmount() {
+        return this.usedAmount;
     }
 
     /**
@@ -247,6 +295,9 @@ public final class LotProperties implements JsonSerializable<LotProperties> {
         }
         if (reseller() != null) {
             reseller().validate();
+        }
+        if (usedAmount() != null) {
+            usedAmount().validate();
         }
     }
 
@@ -303,8 +354,14 @@ public final class LotProperties implements JsonSerializable<LotProperties> {
                     deserializedLotProperties.closedBalanceInBillingCurrency = AmountWithExchangeRate.fromJson(reader);
                 } else if ("reseller".equals(fieldName)) {
                     deserializedLotProperties.reseller = Reseller.fromJson(reader);
+                } else if ("isEstimatedBalance".equals(fieldName)) {
+                    deserializedLotProperties.isEstimatedBalance = reader.getNullable(JsonReader::getBoolean);
                 } else if ("eTag".equals(fieldName)) {
                     deserializedLotProperties.etag = reader.getString();
+                } else if ("OrganizationType".equals(fieldName)) {
+                    deserializedLotProperties.organizationType = OrganizationType.fromString(reader.getString());
+                } else if ("usedAmount".equals(fieldName)) {
+                    deserializedLotProperties.usedAmount = Amount.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

@@ -248,6 +248,15 @@ public final class BalanceInner extends ProxyResource {
     }
 
     /**
+     * Get the overageRefund property: Overage Refunds.
+     * 
+     * @return the overageRefund value.
+     */
+    public BigDecimal overageRefund() {
+        return this.innerProperties() == null ? null : this.innerProperties().overageRefund();
+    }
+
+    /**
      * Get the newPurchasesDetails property: List of new purchases.
      * 
      * @return the newPurchasesDetails value.
