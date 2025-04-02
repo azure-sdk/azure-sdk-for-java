@@ -69,6 +69,33 @@ public final class CapabilitiesImpl implements Capabilities {
         }
     }
 
+    public Response<Capability> createOrUpdateWithResponse(String resourceGroupName, String parentProviderNamespace,
+        String parentResourceType, String parentResourceName, String targetName, String capabilityName,
+        CapabilityInner resource, Context context) {
+        Response<CapabilityInner> inner = this.serviceClient()
+            .createOrUpdateWithResponse(resourceGroupName, parentProviderNamespace, parentResourceType,
+                parentResourceName, targetName, capabilityName, resource, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new CapabilityImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Capability createOrUpdate(String resourceGroupName, String parentProviderNamespace,
+        String parentResourceType, String parentResourceName, String targetName, String capabilityName,
+        CapabilityInner resource) {
+        CapabilityInner inner = this.serviceClient()
+            .createOrUpdate(resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName,
+                targetName, capabilityName, resource);
+        if (inner != null) {
+            return new CapabilityImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public Response<Void> deleteWithResponse(String resourceGroupName, String parentProviderNamespace,
         String parentResourceType, String parentResourceName, String targetName, String capabilityName,
         Context context) {
@@ -82,33 +109,6 @@ public final class CapabilitiesImpl implements Capabilities {
         this.serviceClient()
             .delete(resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName, targetName,
                 capabilityName);
-    }
-
-    public Response<Capability> createOrUpdateWithResponse(String resourceGroupName, String parentProviderNamespace,
-        String parentResourceType, String parentResourceName, String targetName, String capabilityName,
-        CapabilityInner capability, Context context) {
-        Response<CapabilityInner> inner = this.serviceClient()
-            .createOrUpdateWithResponse(resourceGroupName, parentProviderNamespace, parentResourceType,
-                parentResourceName, targetName, capabilityName, capability, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new CapabilityImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public Capability createOrUpdate(String resourceGroupName, String parentProviderNamespace,
-        String parentResourceType, String parentResourceName, String targetName, String capabilityName,
-        CapabilityInner capability) {
-        CapabilityInner inner = this.serviceClient()
-            .createOrUpdate(resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName,
-                targetName, capabilityName, capability);
-        if (inner != null) {
-            return new CapabilityImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     private CapabilitiesClient serviceClient() {

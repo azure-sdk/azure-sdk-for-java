@@ -38,7 +38,7 @@ public interface Experiments {
     /**
      * Get a list of Experiment resources in a resource group.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -49,7 +49,7 @@ public interface Experiments {
     /**
      * Get a list of Experiment resources in a resource group.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
      * running. If null, then the results will not be filtered.
      * @param continuationToken String that sets the continuation token.
@@ -63,32 +63,9 @@ public interface Experiments {
         Context context);
 
     /**
-     * Delete a Experiment resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteByResourceGroup(String resourceGroupName, String experimentName);
-
-    /**
-     * Delete a Experiment resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String experimentName, Context context);
-
-    /**
      * Get a Experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -102,7 +79,7 @@ public interface Experiments {
     /**
      * Get a Experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -112,9 +89,32 @@ public interface Experiments {
     Experiment getByResourceGroup(String resourceGroupName, String experimentName);
 
     /**
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByResourceGroup(String resourceGroupName, String experimentName);
+
+    /**
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String experimentName, Context context);
+
+    /**
      * Cancel a running Experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -125,7 +125,7 @@ public interface Experiments {
     /**
      * Cancel a running Experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -135,32 +135,9 @@ public interface Experiments {
     void cancel(String resourceGroupName, String experimentName, Context context);
 
     /**
-     * Start a Experiment resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void start(String resourceGroupName, String experimentName);
-
-    /**
-     * Start a Experiment resource.
-     * 
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void start(String resourceGroupName, String experimentName, Context context);
-
-    /**
      * Get a list of executions of an Experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -172,7 +149,7 @@ public interface Experiments {
     /**
      * Get a list of executions of an Experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -186,7 +163,7 @@ public interface Experiments {
     /**
      * Get an execution of an Experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param executionId GUID that represents a Experiment execution detail.
      * @param context The context to associate with this operation.
@@ -201,7 +178,7 @@ public interface Experiments {
     /**
      * Get an execution of an Experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param executionId GUID that represents a Experiment execution detail.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -214,7 +191,7 @@ public interface Experiments {
     /**
      * Execution details of an experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param executionId GUID that represents a Experiment execution detail.
      * @param context The context to associate with this operation.
@@ -229,7 +206,7 @@ public interface Experiments {
     /**
      * Execution details of an experiment resource.
      * 
-     * @param resourceGroupName String that represents an Azure resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param executionId GUID that represents a Experiment execution detail.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -238,6 +215,29 @@ public interface Experiments {
      * @return model that represents the execution details of an Experiment.
      */
     ExperimentExecutionDetails executionDetails(String resourceGroupName, String experimentName, String executionId);
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void start(String resourceGroupName, String experimentName);
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void start(String resourceGroupName, String experimentName, Context context);
 
     /**
      * Get a Experiment resource.
