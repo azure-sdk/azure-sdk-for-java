@@ -31,6 +31,11 @@ public class ResourceSettings implements JsonSerializable<ResourceSettings> {
      */
     private String targetResourceGroupName;
 
+    /*
+     * Gets or sets the target subscription id.
+     */
+    private String targetSubscriptionId;
+
     /**
      * Creates an instance of ResourceSettings class.
      */
@@ -88,6 +93,26 @@ public class ResourceSettings implements JsonSerializable<ResourceSettings> {
     }
 
     /**
+     * Get the targetSubscriptionId property: Gets or sets the target subscription id.
+     * 
+     * @return the targetSubscriptionId value.
+     */
+    public String targetSubscriptionId() {
+        return this.targetSubscriptionId;
+    }
+
+    /**
+     * Set the targetSubscriptionId property: Gets or sets the target subscription id.
+     * 
+     * @param targetSubscriptionId the targetSubscriptionId value to set.
+     * @return the ResourceSettings object itself.
+     */
+    public ResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        this.targetSubscriptionId = targetSubscriptionId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -104,6 +129,7 @@ public class ResourceSettings implements JsonSerializable<ResourceSettings> {
         jsonWriter.writeStringField("resourceType", this.resourceType);
         jsonWriter.writeStringField("targetResourceName", this.targetResourceName);
         jsonWriter.writeStringField("targetResourceGroupName", this.targetResourceGroupName);
+        jsonWriter.writeStringField("targetSubscriptionId", this.targetSubscriptionId);
         return jsonWriter.writeEndObject();
     }
 
@@ -177,6 +203,8 @@ public class ResourceSettings implements JsonSerializable<ResourceSettings> {
                     deserializedResourceSettings.targetResourceName = reader.getString();
                 } else if ("targetResourceGroupName".equals(fieldName)) {
                     deserializedResourceSettings.targetResourceGroupName = reader.getString();
+                } else if ("targetSubscriptionId".equals(fieldName)) {
+                    deserializedResourceSettings.targetSubscriptionId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

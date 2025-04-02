@@ -9,7 +9,7 @@ package com.azure.resourcemanager.resourcemover.generated;
  */
 public final class UnresolvedDependenciesGetSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * UnresolvedDependencies_Get.json
      */
     /**
@@ -19,6 +19,6 @@ public final class UnresolvedDependenciesGetSamples {
      */
     public static void unresolvedDependenciesGet(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.unresolvedDependencies()
-            .get("rg1", "movecollection1", null, null, null, com.azure.core.util.Context.NONE);
+            .get("rg1", "movecollection_1", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
