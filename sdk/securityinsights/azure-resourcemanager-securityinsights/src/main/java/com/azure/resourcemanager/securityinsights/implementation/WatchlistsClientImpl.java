@@ -26,11 +26,16 @@ import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.WatchlistInner;
 import com.azure.resourcemanager.securityinsights.models.WatchlistList;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -85,10 +90,10 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}")
-        @ExpectedResponses({ 200, 204 })
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("watchlistAlias") String watchlistAlias, @HeaderParam("Accept") String accept, Context context);
 
@@ -96,7 +101,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WatchlistInner>> createOrUpdate(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("watchlistAlias") String watchlistAlias, @BodyParam("application/json") WatchlistInner watchlist,
@@ -111,7 +116,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get all watchlists, without watchlist items.
+     * Gets all watchlists, without watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -152,7 +157,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get all watchlists, without watchlist items.
+     * Gets all watchlists, without watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -194,7 +199,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get all watchlists, without watchlist items.
+     * Gets all watchlists, without watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -213,7 +218,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get all watchlists, without watchlist items.
+     * Gets all watchlists, without watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -230,7 +235,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get all watchlists, without watchlist items.
+     * Gets all watchlists, without watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -251,7 +256,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get all watchlists, without watchlist items.
+     * Gets all watchlists, without watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -267,7 +272,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get all watchlists, without watchlist items.
+     * Gets all watchlists, without watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -287,11 +292,11 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get a watchlist, without its watchlist items.
+     * Gets a watchlist, without its watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -327,11 +332,11 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get a watchlist, without its watchlist items.
+     * Gets a watchlist, without its watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -367,11 +372,11 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get a watchlist, without its watchlist items.
+     * Gets a watchlist, without its watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -384,11 +389,11 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get a watchlist, without its watchlist items.
+     * Gets a watchlist, without its watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -402,11 +407,11 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     }
 
     /**
-     * Get a watchlist, without its watchlist items.
+     * Gets a watchlist, without its watchlist items.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -422,14 +427,14 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
         String watchlistAlias) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -461,7 +466,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -469,7 +474,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
         String watchlistAlias, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -500,7 +505,84 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String workspaceName,
+        String watchlistAlias) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, workspaceName, watchlistAlias);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Delete a watchlist.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String workspaceName,
+        String watchlistAlias, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, workspaceName, watchlistAlias, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Delete a watchlist.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName,
+        String watchlistAlias) {
+        return this.beginDeleteAsync(resourceGroupName, workspaceName, watchlistAlias).getSyncPoller();
+    }
+
+    /**
+     * Delete a watchlist.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName,
+        String watchlistAlias, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, workspaceName, watchlistAlias, context).getSyncPoller();
+    }
+
+    /**
+     * Delete a watchlist.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -508,8 +590,8 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName, String watchlistAlias) {
-        return deleteWithResponseAsync(resourceGroupName, workspaceName, watchlistAlias)
-            .flatMap(ignored -> Mono.empty());
+        return beginDeleteAsync(resourceGroupName, workspaceName, watchlistAlias).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -517,17 +599,18 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String watchlistAlias,
+    private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName, String watchlistAlias,
         Context context) {
-        return deleteWithResponseAsync(resourceGroupName, workspaceName, watchlistAlias, context).block();
+        return beginDeleteAsync(resourceGroupName, workspaceName, watchlistAlias, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -535,23 +618,42 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, String watchlistAlias) {
-        deleteWithResponse(resourceGroupName, workspaceName, watchlistAlias, Context.NONE);
+        deleteAsync(resourceGroupName, workspaceName, watchlistAlias).block();
+    }
+
+    /**
+     * Delete a watchlist.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String watchlistAlias, Context context) {
+        deleteAsync(resourceGroupName, workspaceName, watchlistAlias, context).block();
     }
 
     /**
      * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
-     * create a Watchlist and its Items, we should call this endpoint with rawContent and contentType properties.
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @param watchlist The watchlist.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -560,7 +662,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WatchlistInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
         String workspaceName, String watchlistAlias, WatchlistInner watchlist) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -595,11 +697,14 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
 
     /**
      * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
-     * create a Watchlist and its Items, we should call this endpoint with rawContent and contentType properties.
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @param watchlist The watchlist.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -609,7 +714,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WatchlistInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
         String workspaceName, String watchlistAlias, WatchlistInner watchlist, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -643,11 +748,113 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
 
     /**
      * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
-     * create a Watchlist and its Items, we should call this endpoint with rawContent and contentType properties.
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
+     * @param watchlist The watchlist.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of represents a Watchlist in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<WatchlistInner>, WatchlistInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String workspaceName, String watchlistAlias, WatchlistInner watchlist) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist);
+        return this.client.<WatchlistInner, WatchlistInner>getLroResult(mono, this.client.getHttpPipeline(),
+            WatchlistInner.class, WatchlistInner.class, this.client.getContext());
+    }
+
+    /**
+     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @param watchlist The watchlist.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of represents a Watchlist in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<WatchlistInner>, WatchlistInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String workspaceName, String watchlistAlias, WatchlistInner watchlist, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist, context);
+        return this.client.<WatchlistInner, WatchlistInner>getLroResult(mono, this.client.getHttpPipeline(),
+            WatchlistInner.class, WatchlistInner.class, context);
+    }
+
+    /**
+     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @param watchlist The watchlist.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of represents a Watchlist in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<WatchlistInner>, WatchlistInner> beginCreateOrUpdate(String resourceGroupName,
+        String workspaceName, String watchlistAlias, WatchlistInner watchlist) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @param watchlist The watchlist.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of represents a Watchlist in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<WatchlistInner>, WatchlistInner> beginCreateOrUpdate(String resourceGroupName,
+        String workspaceName, String watchlistAlias, WatchlistInner watchlist, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
      * @param watchlist The watchlist.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -657,38 +864,44 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WatchlistInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
         String watchlistAlias, WatchlistInner watchlist) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
-     * create a Watchlist and its Items, we should call this endpoint with rawContent and contentType properties.
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @param watchlist The watchlist.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist in Azure Security Insights along with {@link Response}.
+     * @return represents a Watchlist in Azure Security Insights on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WatchlistInner> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
+    private Mono<WatchlistInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
         String watchlistAlias, WatchlistInner watchlist, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist, context)
-            .block();
+        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
-     * create a Watchlist and its Items, we should call this endpoint with rawContent and contentType properties.
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias The watchlist alias.
+     * @param watchlistAlias Watchlist Alias.
      * @param watchlist The watchlist.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -698,8 +911,30 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WatchlistInner createOrUpdate(String resourceGroupName, String workspaceName, String watchlistAlias,
         WatchlistInner watchlist) {
-        return createOrUpdateWithResponse(resourceGroupName, workspaceName, watchlistAlias, watchlist, Context.NONE)
-            .getValue();
+        return createOrUpdateAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist).block();
+    }
+
+    /**
+     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @param watchlist The watchlist.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a Watchlist in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WatchlistInner createOrUpdate(String resourceGroupName, String workspaceName, String watchlistAlias,
+        WatchlistInner watchlist, Context context) {
+        return createOrUpdateAsync(resourceGroupName, workspaceName, watchlistAlias, watchlist, context).block();
     }
 
     /**

@@ -109,24 +109,6 @@ public final class IncidentCommentInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the createdTimeUtc property: The time the comment was created.
-     * 
-     * @return the createdTimeUtc value.
-     */
-    public OffsetDateTime createdTimeUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdTimeUtc();
-    }
-
-    /**
-     * Get the lastModifiedTimeUtc property: The time the comment was updated.
-     * 
-     * @return the lastModifiedTimeUtc value.
-     */
-    public OffsetDateTime lastModifiedTimeUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastModifiedTimeUtc();
-    }
-
-    /**
      * Get the message property: The comment message.
      * 
      * @return the message value.
@@ -147,6 +129,24 @@ public final class IncidentCommentInner extends ResourceWithEtag {
         }
         this.innerProperties().withMessage(message);
         return this;
+    }
+
+    /**
+     * Get the createdTimeUtc property: The time the comment was created.
+     * 
+     * @return the createdTimeUtc value.
+     */
+    public OffsetDateTime createdTimeUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdTimeUtc();
+    }
+
+    /**
+     * Get the lastModifiedTimeUtc property: The time the comment was updated.
+     * 
+     * @return the lastModifiedTimeUtc value.
+     */
+    public OffsetDateTime lastModifiedTimeUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastModifiedTimeUtc();
     }
 
     /**
