@@ -11,6 +11,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import com.azure.resourcemanager.advisor.models.RecommendationsGenerateResponse;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationPropertiesPayload;
 import java.util.UUID;
 
 /**
@@ -126,4 +127,37 @@ public interface RecommendationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ResourceRecommendationBaseInner get(String resourceUri, String recommendationId);
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the tracked
+     * recommendation applies.
+     * @param recommendationId The RecommendationId ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ResourceRecommendationBaseInner> patchWithResponse(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties, Context context);
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the tracked
+     * recommendation applies.
+     * @param recommendationId The RecommendationId ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ResourceRecommendationBaseInner patch(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties);
 }
