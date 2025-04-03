@@ -22,47 +22,141 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityInsights;
 import com.azure.resourcemanager.securityinsights.implementation.ActionsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.AlertRuleOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AlertRuleTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AlertRulesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AutomationRulesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.BillingStatisticsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.BookmarkOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.BookmarkRelationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.BookmarksImpl;
+import com.azure.resourcemanager.securityinsights.implementation.BusinessApplicationAgentOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.BusinessApplicationAgentsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ContentPackageOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ContentPackagesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ContentTemplateOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ContentTemplatesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.DataConnectorDefinitionsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.DataConnectorsCheckRequirementsOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.DataConnectorsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.EntitiesGetTimelinesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.EntitiesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.EntitiesRelationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.EntityQueriesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.EntityQueryTemplatesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.EntityRelationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.FileImportsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetRecommendationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetTriggeredAnalyticsRuleRunsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.HuntCommentsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.HuntRelationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.HuntsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentCommentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentRelationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.IncidentTasksImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.MetadatasImpl;
+import com.azure.resourcemanager.securityinsights.implementation.OfficeConsentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.OperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductPackageOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductPackagesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductSettingsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductTemplateOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductTemplatesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ReevaluatesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SecurityInsightsBuilder;
 import com.azure.resourcemanager.securityinsights.implementation.SecurityMLAnalyticsSettingsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SentinelOnboardingStatesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.SourceControlsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.SourceControlsOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.SystemsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorMetricsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligencesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.TriggeredAnalyticsRuleRunOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.UpdatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistItemsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.WorkspaceManagerAssignmentJobsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.WorkspaceManagerAssignmentsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.WorkspaceManagerConfigurationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.WorkspaceManagerGroupsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.WorkspaceManagerMembersImpl;
 import com.azure.resourcemanager.securityinsights.models.Actions;
+import com.azure.resourcemanager.securityinsights.models.AlertRuleOperations;
 import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplates;
 import com.azure.resourcemanager.securityinsights.models.AlertRules;
 import com.azure.resourcemanager.securityinsights.models.AutomationRules;
+import com.azure.resourcemanager.securityinsights.models.BillingStatistics;
+import com.azure.resourcemanager.securityinsights.models.BookmarkOperations;
+import com.azure.resourcemanager.securityinsights.models.BookmarkRelations;
 import com.azure.resourcemanager.securityinsights.models.Bookmarks;
+import com.azure.resourcemanager.securityinsights.models.BusinessApplicationAgentOperations;
+import com.azure.resourcemanager.securityinsights.models.BusinessApplicationAgents;
+import com.azure.resourcemanager.securityinsights.models.ContentPackageOperations;
+import com.azure.resourcemanager.securityinsights.models.ContentPackages;
+import com.azure.resourcemanager.securityinsights.models.ContentTemplateOperations;
+import com.azure.resourcemanager.securityinsights.models.ContentTemplates;
+import com.azure.resourcemanager.securityinsights.models.DataConnectorDefinitions;
 import com.azure.resourcemanager.securityinsights.models.DataConnectors;
+import com.azure.resourcemanager.securityinsights.models.DataConnectorsCheckRequirementsOperations;
+import com.azure.resourcemanager.securityinsights.models.Entities;
+import com.azure.resourcemanager.securityinsights.models.EntitiesGetTimelines;
+import com.azure.resourcemanager.securityinsights.models.EntitiesRelations;
+import com.azure.resourcemanager.securityinsights.models.EntityQueries;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplates;
+import com.azure.resourcemanager.securityinsights.models.EntityRelations;
+import com.azure.resourcemanager.securityinsights.models.FileImports;
+import com.azure.resourcemanager.securityinsights.models.GetRecommendations;
+import com.azure.resourcemanager.securityinsights.models.GetTriggeredAnalyticsRuleRuns;
+import com.azure.resourcemanager.securityinsights.models.Gets;
+import com.azure.resourcemanager.securityinsights.models.HuntComments;
+import com.azure.resourcemanager.securityinsights.models.HuntRelations;
+import com.azure.resourcemanager.securityinsights.models.Hunts;
 import com.azure.resourcemanager.securityinsights.models.IncidentComments;
 import com.azure.resourcemanager.securityinsights.models.IncidentRelations;
+import com.azure.resourcemanager.securityinsights.models.IncidentTasks;
 import com.azure.resourcemanager.securityinsights.models.Incidents;
+import com.azure.resourcemanager.securityinsights.models.Metadatas;
+import com.azure.resourcemanager.securityinsights.models.OfficeConsents;
 import com.azure.resourcemanager.securityinsights.models.Operations;
+import com.azure.resourcemanager.securityinsights.models.ProductPackageOperations;
+import com.azure.resourcemanager.securityinsights.models.ProductPackages;
+import com.azure.resourcemanager.securityinsights.models.ProductSettings;
+import com.azure.resourcemanager.securityinsights.models.ProductTemplateOperations;
+import com.azure.resourcemanager.securityinsights.models.ProductTemplates;
+import com.azure.resourcemanager.securityinsights.models.Reevaluates;
+import com.azure.resourcemanager.securityinsights.models.ResourceProviders;
 import com.azure.resourcemanager.securityinsights.models.SecurityMLAnalyticsSettings;
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingStates;
+import com.azure.resourcemanager.securityinsights.models.SourceControls;
+import com.azure.resourcemanager.securityinsights.models.SourceControlsOperations;
+import com.azure.resourcemanager.securityinsights.models.Systems;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorMetrics;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicators;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorsOperations;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligences;
+import com.azure.resourcemanager.securityinsights.models.TriggeredAnalyticsRuleRunOperations;
+import com.azure.resourcemanager.securityinsights.models.Updates;
 import com.azure.resourcemanager.securityinsights.models.WatchlistItems;
 import com.azure.resourcemanager.securityinsights.models.Watchlists;
+import com.azure.resourcemanager.securityinsights.models.WorkspaceManagerAssignmentJobs;
+import com.azure.resourcemanager.securityinsights.models.WorkspaceManagerAssignments;
+import com.azure.resourcemanager.securityinsights.models.WorkspaceManagerConfigurations;
+import com.azure.resourcemanager.securityinsights.models.WorkspaceManagerGroups;
+import com.azure.resourcemanager.securityinsights.models.WorkspaceManagerMembers;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -79,19 +173,95 @@ public final class SecurityInsightsManager {
 
     private AutomationRules automationRules;
 
+    private Entities entities;
+
+    private Incidents incidents;
+
+    private BillingStatistics billingStatistics;
+
     private Bookmarks bookmarks;
+
+    private BookmarkRelations bookmarkRelations;
+
+    private BookmarkOperations bookmarkOperations;
+
+    private BusinessApplicationAgents businessApplicationAgents;
+
+    private BusinessApplicationAgentOperations businessApplicationAgentOperations;
+
+    private Systems systems;
+
+    private ContentPackages contentPackages;
+
+    private ContentPackageOperations contentPackageOperations;
+
+    private ProductPackages productPackages;
+
+    private ProductPackageOperations productPackageOperations;
+
+    private ProductTemplates productTemplates;
+
+    private ProductTemplateOperations productTemplateOperations;
+
+    private ContentTemplates contentTemplates;
+
+    private ContentTemplateOperations contentTemplateOperations;
+
+    private DataConnectorDefinitions dataConnectorDefinitions;
 
     private DataConnectors dataConnectors;
 
-    private Incidents incidents;
+    private DataConnectorsCheckRequirementsOperations dataConnectorsCheckRequirementsOperations;
+
+    private ResourceProviders resourceProviders;
+
+    private EntitiesGetTimelines entitiesGetTimelines;
+
+    private EntitiesRelations entitiesRelations;
+
+    private EntityRelations entityRelations;
+
+    private EntityQueries entityQueries;
+
+    private EntityQueryTemplates entityQueryTemplates;
+
+    private FileImports fileImports;
+
+    private Hunts hunts;
+
+    private HuntRelations huntRelations;
+
+    private HuntComments huntComments;
 
     private IncidentComments incidentComments;
 
     private IncidentRelations incidentRelations;
 
+    private IncidentTasks incidentTasks;
+
+    private Metadatas metadatas;
+
+    private OfficeConsents officeConsents;
+
     private SentinelOnboardingStates sentinelOnboardingStates;
 
+    private Operations operations;
+
+    private GetRecommendations getRecommendations;
+
+    private Gets gets;
+
+    private Updates updates;
+
+    private Reevaluates reevaluates;
+
     private SecurityMLAnalyticsSettings securityMLAnalyticsSettings;
+
+    private ProductSettings productSettings;
+
+    private SourceControls sourceControls;
+
+    private SourceControlsOperations sourceControlsOperations;
 
     private ThreatIntelligenceIndicators threatIntelligenceIndicators;
 
@@ -99,11 +269,27 @@ public final class SecurityInsightsManager {
 
     private ThreatIntelligenceIndicatorMetrics threatIntelligenceIndicatorMetrics;
 
+    private ThreatIntelligences threatIntelligences;
+
+    private TriggeredAnalyticsRuleRunOperations triggeredAnalyticsRuleRunOperations;
+
+    private GetTriggeredAnalyticsRuleRuns getTriggeredAnalyticsRuleRuns;
+
+    private AlertRuleOperations alertRuleOperations;
+
     private Watchlists watchlists;
 
     private WatchlistItems watchlistItems;
 
-    private Operations operations;
+    private WorkspaceManagerAssignments workspaceManagerAssignments;
+
+    private WorkspaceManagerAssignmentJobs workspaceManagerAssignmentJobs;
+
+    private WorkspaceManagerConfigurations workspaceManagerConfigurations;
+
+    private WorkspaceManagerGroups workspaceManagerGroups;
+
+    private WorkspaceManagerMembers workspaceManagerMembers;
 
     private final SecurityInsights clientObject;
 
@@ -157,6 +343,9 @@ public final class SecurityInsightsManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-securityinsights.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -264,12 +453,14 @@ public final class SecurityInsightsManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -364,27 +555,15 @@ public final class SecurityInsightsManager {
     }
 
     /**
-     * Gets the resource collection API of Bookmarks. It manages Bookmark.
+     * Gets the resource collection API of Entities.
      * 
-     * @return Resource collection API of Bookmarks.
+     * @return Resource collection API of Entities.
      */
-    public Bookmarks bookmarks() {
-        if (this.bookmarks == null) {
-            this.bookmarks = new BookmarksImpl(clientObject.getBookmarks(), this);
+    public Entities entities() {
+        if (this.entities == null) {
+            this.entities = new EntitiesImpl(clientObject.getEntities(), this);
         }
-        return bookmarks;
-    }
-
-    /**
-     * Gets the resource collection API of DataConnectors.
-     * 
-     * @return Resource collection API of DataConnectors.
-     */
-    public DataConnectors dataConnectors() {
-        if (this.dataConnectors == null) {
-            this.dataConnectors = new DataConnectorsImpl(clientObject.getDataConnectors(), this);
-        }
-        return dataConnectors;
+        return entities;
     }
 
     /**
@@ -400,6 +579,350 @@ public final class SecurityInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of BillingStatistics.
+     * 
+     * @return Resource collection API of BillingStatistics.
+     */
+    public BillingStatistics billingStatistics() {
+        if (this.billingStatistics == null) {
+            this.billingStatistics = new BillingStatisticsImpl(clientObject.getBillingStatistics(), this);
+        }
+        return billingStatistics;
+    }
+
+    /**
+     * Gets the resource collection API of Bookmarks. It manages Bookmark.
+     * 
+     * @return Resource collection API of Bookmarks.
+     */
+    public Bookmarks bookmarks() {
+        if (this.bookmarks == null) {
+            this.bookmarks = new BookmarksImpl(clientObject.getBookmarks(), this);
+        }
+        return bookmarks;
+    }
+
+    /**
+     * Gets the resource collection API of BookmarkRelations. It manages Relation.
+     * 
+     * @return Resource collection API of BookmarkRelations.
+     */
+    public BookmarkRelations bookmarkRelations() {
+        if (this.bookmarkRelations == null) {
+            this.bookmarkRelations = new BookmarkRelationsImpl(clientObject.getBookmarkRelations(), this);
+        }
+        return bookmarkRelations;
+    }
+
+    /**
+     * Gets the resource collection API of BookmarkOperations.
+     * 
+     * @return Resource collection API of BookmarkOperations.
+     */
+    public BookmarkOperations bookmarkOperations() {
+        if (this.bookmarkOperations == null) {
+            this.bookmarkOperations = new BookmarkOperationsImpl(clientObject.getBookmarkOperations(), this);
+        }
+        return bookmarkOperations;
+    }
+
+    /**
+     * Gets the resource collection API of BusinessApplicationAgents. It manages BusinessApplicationAgentResource.
+     * 
+     * @return Resource collection API of BusinessApplicationAgents.
+     */
+    public BusinessApplicationAgents businessApplicationAgents() {
+        if (this.businessApplicationAgents == null) {
+            this.businessApplicationAgents
+                = new BusinessApplicationAgentsImpl(clientObject.getBusinessApplicationAgents(), this);
+        }
+        return businessApplicationAgents;
+    }
+
+    /**
+     * Gets the resource collection API of BusinessApplicationAgentOperations.
+     * 
+     * @return Resource collection API of BusinessApplicationAgentOperations.
+     */
+    public BusinessApplicationAgentOperations businessApplicationAgentOperations() {
+        if (this.businessApplicationAgentOperations == null) {
+            this.businessApplicationAgentOperations = new BusinessApplicationAgentOperationsImpl(
+                clientObject.getBusinessApplicationAgentOperations(), this);
+        }
+        return businessApplicationAgentOperations;
+    }
+
+    /**
+     * Gets the resource collection API of Systems. It manages SystemResource.
+     * 
+     * @return Resource collection API of Systems.
+     */
+    public Systems systems() {
+        if (this.systems == null) {
+            this.systems = new SystemsImpl(clientObject.getSystems(), this);
+        }
+        return systems;
+    }
+
+    /**
+     * Gets the resource collection API of ContentPackages.
+     * 
+     * @return Resource collection API of ContentPackages.
+     */
+    public ContentPackages contentPackages() {
+        if (this.contentPackages == null) {
+            this.contentPackages = new ContentPackagesImpl(clientObject.getContentPackages(), this);
+        }
+        return contentPackages;
+    }
+
+    /**
+     * Gets the resource collection API of ContentPackageOperations. It manages PackageModel.
+     * 
+     * @return Resource collection API of ContentPackageOperations.
+     */
+    public ContentPackageOperations contentPackageOperations() {
+        if (this.contentPackageOperations == null) {
+            this.contentPackageOperations
+                = new ContentPackageOperationsImpl(clientObject.getContentPackageOperations(), this);
+        }
+        return contentPackageOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ProductPackages.
+     * 
+     * @return Resource collection API of ProductPackages.
+     */
+    public ProductPackages productPackages() {
+        if (this.productPackages == null) {
+            this.productPackages = new ProductPackagesImpl(clientObject.getProductPackages(), this);
+        }
+        return productPackages;
+    }
+
+    /**
+     * Gets the resource collection API of ProductPackageOperations.
+     * 
+     * @return Resource collection API of ProductPackageOperations.
+     */
+    public ProductPackageOperations productPackageOperations() {
+        if (this.productPackageOperations == null) {
+            this.productPackageOperations
+                = new ProductPackageOperationsImpl(clientObject.getProductPackageOperations(), this);
+        }
+        return productPackageOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ProductTemplates.
+     * 
+     * @return Resource collection API of ProductTemplates.
+     */
+    public ProductTemplates productTemplates() {
+        if (this.productTemplates == null) {
+            this.productTemplates = new ProductTemplatesImpl(clientObject.getProductTemplates(), this);
+        }
+        return productTemplates;
+    }
+
+    /**
+     * Gets the resource collection API of ProductTemplateOperations.
+     * 
+     * @return Resource collection API of ProductTemplateOperations.
+     */
+    public ProductTemplateOperations productTemplateOperations() {
+        if (this.productTemplateOperations == null) {
+            this.productTemplateOperations
+                = new ProductTemplateOperationsImpl(clientObject.getProductTemplateOperations(), this);
+        }
+        return productTemplateOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ContentTemplates.
+     * 
+     * @return Resource collection API of ContentTemplates.
+     */
+    public ContentTemplates contentTemplates() {
+        if (this.contentTemplates == null) {
+            this.contentTemplates = new ContentTemplatesImpl(clientObject.getContentTemplates(), this);
+        }
+        return contentTemplates;
+    }
+
+    /**
+     * Gets the resource collection API of ContentTemplateOperations. It manages TemplateModel.
+     * 
+     * @return Resource collection API of ContentTemplateOperations.
+     */
+    public ContentTemplateOperations contentTemplateOperations() {
+        if (this.contentTemplateOperations == null) {
+            this.contentTemplateOperations
+                = new ContentTemplateOperationsImpl(clientObject.getContentTemplateOperations(), this);
+        }
+        return contentTemplateOperations;
+    }
+
+    /**
+     * Gets the resource collection API of DataConnectorDefinitions.
+     * 
+     * @return Resource collection API of DataConnectorDefinitions.
+     */
+    public DataConnectorDefinitions dataConnectorDefinitions() {
+        if (this.dataConnectorDefinitions == null) {
+            this.dataConnectorDefinitions
+                = new DataConnectorDefinitionsImpl(clientObject.getDataConnectorDefinitions(), this);
+        }
+        return dataConnectorDefinitions;
+    }
+
+    /**
+     * Gets the resource collection API of DataConnectors.
+     * 
+     * @return Resource collection API of DataConnectors.
+     */
+    public DataConnectors dataConnectors() {
+        if (this.dataConnectors == null) {
+            this.dataConnectors = new DataConnectorsImpl(clientObject.getDataConnectors(), this);
+        }
+        return dataConnectors;
+    }
+
+    /**
+     * Gets the resource collection API of DataConnectorsCheckRequirementsOperations.
+     * 
+     * @return Resource collection API of DataConnectorsCheckRequirementsOperations.
+     */
+    public DataConnectorsCheckRequirementsOperations dataConnectorsCheckRequirementsOperations() {
+        if (this.dataConnectorsCheckRequirementsOperations == null) {
+            this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsImpl(
+                clientObject.getDataConnectorsCheckRequirementsOperations(), this);
+        }
+        return dataConnectorsCheckRequirementsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ResourceProviders.
+     * 
+     * @return Resource collection API of ResourceProviders.
+     */
+    public ResourceProviders resourceProviders() {
+        if (this.resourceProviders == null) {
+            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
+        }
+        return resourceProviders;
+    }
+
+    /**
+     * Gets the resource collection API of EntitiesGetTimelines.
+     * 
+     * @return Resource collection API of EntitiesGetTimelines.
+     */
+    public EntitiesGetTimelines entitiesGetTimelines() {
+        if (this.entitiesGetTimelines == null) {
+            this.entitiesGetTimelines = new EntitiesGetTimelinesImpl(clientObject.getEntitiesGetTimelines(), this);
+        }
+        return entitiesGetTimelines;
+    }
+
+    /**
+     * Gets the resource collection API of EntitiesRelations.
+     * 
+     * @return Resource collection API of EntitiesRelations.
+     */
+    public EntitiesRelations entitiesRelations() {
+        if (this.entitiesRelations == null) {
+            this.entitiesRelations = new EntitiesRelationsImpl(clientObject.getEntitiesRelations(), this);
+        }
+        return entitiesRelations;
+    }
+
+    /**
+     * Gets the resource collection API of EntityRelations.
+     * 
+     * @return Resource collection API of EntityRelations.
+     */
+    public EntityRelations entityRelations() {
+        if (this.entityRelations == null) {
+            this.entityRelations = new EntityRelationsImpl(clientObject.getEntityRelations(), this);
+        }
+        return entityRelations;
+    }
+
+    /**
+     * Gets the resource collection API of EntityQueries.
+     * 
+     * @return Resource collection API of EntityQueries.
+     */
+    public EntityQueries entityQueries() {
+        if (this.entityQueries == null) {
+            this.entityQueries = new EntityQueriesImpl(clientObject.getEntityQueries(), this);
+        }
+        return entityQueries;
+    }
+
+    /**
+     * Gets the resource collection API of EntityQueryTemplates.
+     * 
+     * @return Resource collection API of EntityQueryTemplates.
+     */
+    public EntityQueryTemplates entityQueryTemplates() {
+        if (this.entityQueryTemplates == null) {
+            this.entityQueryTemplates = new EntityQueryTemplatesImpl(clientObject.getEntityQueryTemplates(), this);
+        }
+        return entityQueryTemplates;
+    }
+
+    /**
+     * Gets the resource collection API of FileImports. It manages FileImport.
+     * 
+     * @return Resource collection API of FileImports.
+     */
+    public FileImports fileImports() {
+        if (this.fileImports == null) {
+            this.fileImports = new FileImportsImpl(clientObject.getFileImports(), this);
+        }
+        return fileImports;
+    }
+
+    /**
+     * Gets the resource collection API of Hunts. It manages Hunt.
+     * 
+     * @return Resource collection API of Hunts.
+     */
+    public Hunts hunts() {
+        if (this.hunts == null) {
+            this.hunts = new HuntsImpl(clientObject.getHunts(), this);
+        }
+        return hunts;
+    }
+
+    /**
+     * Gets the resource collection API of HuntRelations. It manages HuntRelation.
+     * 
+     * @return Resource collection API of HuntRelations.
+     */
+    public HuntRelations huntRelations() {
+        if (this.huntRelations == null) {
+            this.huntRelations = new HuntRelationsImpl(clientObject.getHuntRelations(), this);
+        }
+        return huntRelations;
+    }
+
+    /**
+     * Gets the resource collection API of HuntComments. It manages HuntComment.
+     * 
+     * @return Resource collection API of HuntComments.
+     */
+    public HuntComments huntComments() {
+        if (this.huntComments == null) {
+            this.huntComments = new HuntCommentsImpl(clientObject.getHuntComments(), this);
+        }
+        return huntComments;
+    }
+
+    /**
      * Gets the resource collection API of IncidentComments. It manages IncidentComment.
      * 
      * @return Resource collection API of IncidentComments.
@@ -412,7 +935,7 @@ public final class SecurityInsightsManager {
     }
 
     /**
-     * Gets the resource collection API of IncidentRelations. It manages Relation.
+     * Gets the resource collection API of IncidentRelations.
      * 
      * @return Resource collection API of IncidentRelations.
      */
@@ -421,6 +944,42 @@ public final class SecurityInsightsManager {
             this.incidentRelations = new IncidentRelationsImpl(clientObject.getIncidentRelations(), this);
         }
         return incidentRelations;
+    }
+
+    /**
+     * Gets the resource collection API of IncidentTasks. It manages IncidentTask.
+     * 
+     * @return Resource collection API of IncidentTasks.
+     */
+    public IncidentTasks incidentTasks() {
+        if (this.incidentTasks == null) {
+            this.incidentTasks = new IncidentTasksImpl(clientObject.getIncidentTasks(), this);
+        }
+        return incidentTasks;
+    }
+
+    /**
+     * Gets the resource collection API of Metadatas. It manages MetadataModel.
+     * 
+     * @return Resource collection API of Metadatas.
+     */
+    public Metadatas metadatas() {
+        if (this.metadatas == null) {
+            this.metadatas = new MetadatasImpl(clientObject.getMetadatas(), this);
+        }
+        return metadatas;
+    }
+
+    /**
+     * Gets the resource collection API of OfficeConsents.
+     * 
+     * @return Resource collection API of OfficeConsents.
+     */
+    public OfficeConsents officeConsents() {
+        if (this.officeConsents == null) {
+            this.officeConsents = new OfficeConsentsImpl(clientObject.getOfficeConsents(), this);
+        }
+        return officeConsents;
     }
 
     /**
@@ -437,6 +996,66 @@ public final class SecurityInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets the resource collection API of GetRecommendations.
+     * 
+     * @return Resource collection API of GetRecommendations.
+     */
+    public GetRecommendations getRecommendations() {
+        if (this.getRecommendations == null) {
+            this.getRecommendations = new GetRecommendationsImpl(clientObject.getGetRecommendations(), this);
+        }
+        return getRecommendations;
+    }
+
+    /**
+     * Gets the resource collection API of Gets.
+     * 
+     * @return Resource collection API of Gets.
+     */
+    public Gets gets() {
+        if (this.gets == null) {
+            this.gets = new GetsImpl(clientObject.getGets(), this);
+        }
+        return gets;
+    }
+
+    /**
+     * Gets the resource collection API of Updates.
+     * 
+     * @return Resource collection API of Updates.
+     */
+    public Updates updates() {
+        if (this.updates == null) {
+            this.updates = new UpdatesImpl(clientObject.getUpdates(), this);
+        }
+        return updates;
+    }
+
+    /**
+     * Gets the resource collection API of Reevaluates.
+     * 
+     * @return Resource collection API of Reevaluates.
+     */
+    public Reevaluates reevaluates() {
+        if (this.reevaluates == null) {
+            this.reevaluates = new ReevaluatesImpl(clientObject.getReevaluates(), this);
+        }
+        return reevaluates;
+    }
+
+    /**
      * Gets the resource collection API of SecurityMLAnalyticsSettings.
      * 
      * @return Resource collection API of SecurityMLAnalyticsSettings.
@@ -447,6 +1066,43 @@ public final class SecurityInsightsManager {
                 = new SecurityMLAnalyticsSettingsImpl(clientObject.getSecurityMLAnalyticsSettings(), this);
         }
         return securityMLAnalyticsSettings;
+    }
+
+    /**
+     * Gets the resource collection API of ProductSettings.
+     * 
+     * @return Resource collection API of ProductSettings.
+     */
+    public ProductSettings productSettings() {
+        if (this.productSettings == null) {
+            this.productSettings = new ProductSettingsImpl(clientObject.getProductSettings(), this);
+        }
+        return productSettings;
+    }
+
+    /**
+     * Gets the resource collection API of SourceControls.
+     * 
+     * @return Resource collection API of SourceControls.
+     */
+    public SourceControls sourceControls() {
+        if (this.sourceControls == null) {
+            this.sourceControls = new SourceControlsImpl(clientObject.getSourceControls(), this);
+        }
+        return sourceControls;
+    }
+
+    /**
+     * Gets the resource collection API of SourceControlsOperations. It manages SourceControl.
+     * 
+     * @return Resource collection API of SourceControlsOperations.
+     */
+    public SourceControlsOperations sourceControlsOperations() {
+        if (this.sourceControlsOperations == null) {
+            this.sourceControlsOperations
+                = new SourceControlsOperationsImpl(clientObject.getSourceControlsOperations(), this);
+        }
+        return sourceControlsOperations;
     }
 
     /**
@@ -489,6 +1145,56 @@ public final class SecurityInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of ThreatIntelligences.
+     * 
+     * @return Resource collection API of ThreatIntelligences.
+     */
+    public ThreatIntelligences threatIntelligences() {
+        if (this.threatIntelligences == null) {
+            this.threatIntelligences = new ThreatIntelligencesImpl(clientObject.getThreatIntelligences(), this);
+        }
+        return threatIntelligences;
+    }
+
+    /**
+     * Gets the resource collection API of TriggeredAnalyticsRuleRunOperations.
+     * 
+     * @return Resource collection API of TriggeredAnalyticsRuleRunOperations.
+     */
+    public TriggeredAnalyticsRuleRunOperations triggeredAnalyticsRuleRunOperations() {
+        if (this.triggeredAnalyticsRuleRunOperations == null) {
+            this.triggeredAnalyticsRuleRunOperations = new TriggeredAnalyticsRuleRunOperationsImpl(
+                clientObject.getTriggeredAnalyticsRuleRunOperations(), this);
+        }
+        return triggeredAnalyticsRuleRunOperations;
+    }
+
+    /**
+     * Gets the resource collection API of GetTriggeredAnalyticsRuleRuns.
+     * 
+     * @return Resource collection API of GetTriggeredAnalyticsRuleRuns.
+     */
+    public GetTriggeredAnalyticsRuleRuns getTriggeredAnalyticsRuleRuns() {
+        if (this.getTriggeredAnalyticsRuleRuns == null) {
+            this.getTriggeredAnalyticsRuleRuns
+                = new GetTriggeredAnalyticsRuleRunsImpl(clientObject.getGetTriggeredAnalyticsRuleRuns(), this);
+        }
+        return getTriggeredAnalyticsRuleRuns;
+    }
+
+    /**
+     * Gets the resource collection API of AlertRuleOperations.
+     * 
+     * @return Resource collection API of AlertRuleOperations.
+     */
+    public AlertRuleOperations alertRuleOperations() {
+        if (this.alertRuleOperations == null) {
+            this.alertRuleOperations = new AlertRuleOperationsImpl(clientObject.getAlertRuleOperations(), this);
+        }
+        return alertRuleOperations;
+    }
+
+    /**
      * Gets the resource collection API of Watchlists. It manages Watchlist.
      * 
      * @return Resource collection API of Watchlists.
@@ -513,15 +1219,68 @@ public final class SecurityInsightsManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
+     * Gets the resource collection API of WorkspaceManagerAssignments. It manages WorkspaceManagerAssignment.
      * 
-     * @return Resource collection API of Operations.
+     * @return Resource collection API of WorkspaceManagerAssignments.
      */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+    public WorkspaceManagerAssignments workspaceManagerAssignments() {
+        if (this.workspaceManagerAssignments == null) {
+            this.workspaceManagerAssignments
+                = new WorkspaceManagerAssignmentsImpl(clientObject.getWorkspaceManagerAssignments(), this);
         }
-        return operations;
+        return workspaceManagerAssignments;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceManagerAssignmentJobs.
+     * 
+     * @return Resource collection API of WorkspaceManagerAssignmentJobs.
+     */
+    public WorkspaceManagerAssignmentJobs workspaceManagerAssignmentJobs() {
+        if (this.workspaceManagerAssignmentJobs == null) {
+            this.workspaceManagerAssignmentJobs
+                = new WorkspaceManagerAssignmentJobsImpl(clientObject.getWorkspaceManagerAssignmentJobs(), this);
+        }
+        return workspaceManagerAssignmentJobs;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceManagerConfigurations. It manages WorkspaceManagerConfiguration.
+     * 
+     * @return Resource collection API of WorkspaceManagerConfigurations.
+     */
+    public WorkspaceManagerConfigurations workspaceManagerConfigurations() {
+        if (this.workspaceManagerConfigurations == null) {
+            this.workspaceManagerConfigurations
+                = new WorkspaceManagerConfigurationsImpl(clientObject.getWorkspaceManagerConfigurations(), this);
+        }
+        return workspaceManagerConfigurations;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceManagerGroups. It manages WorkspaceManagerGroup.
+     * 
+     * @return Resource collection API of WorkspaceManagerGroups.
+     */
+    public WorkspaceManagerGroups workspaceManagerGroups() {
+        if (this.workspaceManagerGroups == null) {
+            this.workspaceManagerGroups
+                = new WorkspaceManagerGroupsImpl(clientObject.getWorkspaceManagerGroups(), this);
+        }
+        return workspaceManagerGroups;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceManagerMembers. It manages WorkspaceManagerMember.
+     * 
+     * @return Resource collection API of WorkspaceManagerMembers.
+     */
+    public WorkspaceManagerMembers workspaceManagerMembers() {
+        if (this.workspaceManagerMembers == null) {
+            this.workspaceManagerMembers
+                = new WorkspaceManagerMembersImpl(clientObject.getWorkspaceManagerMembers(), this);
+        }
+        return workspaceManagerMembers;
     }
 
     /**

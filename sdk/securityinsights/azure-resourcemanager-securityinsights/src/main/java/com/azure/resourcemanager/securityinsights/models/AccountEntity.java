@@ -10,6 +10,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.fluent.models.AccountEntityProperties;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
@@ -18,7 +19,7 @@ import java.util.UUID;
  * Represents an account entity.
  */
 @Immutable
-public final class AccountEntity extends Entity {
+public final class AccountEntity extends EntityInner {
     /*
      * The kind of the entity.
      */
@@ -171,7 +172,7 @@ public final class AccountEntity extends Entity {
     }
 
     /**
-     * Get the ntDomain property: The NetBIOS domain name as it appears in the alert format - domain/username. Examples:
+     * Get the ntDomain property: The NetBIOS domain name as it appears in the alert format domain/username. Examples:
      * NT AUTHORITY.
      * 
      * @return the ntDomain value.

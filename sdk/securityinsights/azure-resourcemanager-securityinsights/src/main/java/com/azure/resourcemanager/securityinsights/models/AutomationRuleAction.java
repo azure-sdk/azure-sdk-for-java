@@ -105,7 +105,9 @@ public class AutomationRuleAction implements JsonSerializable<AutomationRuleActi
                     }
                 }
                 // Use the discriminator value to determine which subtype should be deserialized.
-                if ("ModifyProperties".equals(discriminatorValue)) {
+                if ("AddIncidentTask".equals(discriminatorValue)) {
+                    return AutomationRuleAddIncidentTaskAction.fromJson(readerToUse.reset());
+                } else if ("ModifyProperties".equals(discriminatorValue)) {
                     return AutomationRuleModifyPropertiesAction.fromJson(readerToUse.reset());
                 } else if ("RunPlaybook".equals(discriminatorValue)) {
                     return AutomationRuleRunPlaybookAction.fromJson(readerToUse.reset());
