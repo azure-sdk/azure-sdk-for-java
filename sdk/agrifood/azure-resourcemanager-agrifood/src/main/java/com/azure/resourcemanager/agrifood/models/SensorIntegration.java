@@ -18,7 +18,7 @@ import java.io.IOException;
 @Fluent
 public final class SensorIntegration implements JsonSerializable<SensorIntegration> {
     /*
-     * Sensor integration enable state. Allowed values are True, None
+     * Sensor integration enable state.
      */
     private String enabled;
 
@@ -40,7 +40,7 @@ public final class SensorIntegration implements JsonSerializable<SensorIntegrati
     }
 
     /**
-     * Get the enabled property: Sensor integration enable state. Allowed values are True, None.
+     * Get the enabled property: Sensor integration enable state.
      * 
      * @return the enabled value.
      */
@@ -49,7 +49,7 @@ public final class SensorIntegration implements JsonSerializable<SensorIntegrati
     }
 
     /**
-     * Set the enabled property: Sensor integration enable state. Allowed values are True, None.
+     * Set the enabled property: Sensor integration enable state.
      * 
      * @param enabled the enabled value to set.
      * @return the SensorIntegration object itself.

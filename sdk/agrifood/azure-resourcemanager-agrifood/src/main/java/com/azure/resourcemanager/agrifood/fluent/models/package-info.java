@@ -4,6 +4,6 @@
 
 /**
  * Package containing the inner data models for AgriFoodManagementClient.
- * APIs documentation for Azure AgFoodPlatform Resource Provider Service.
+ * APIs documentation for Microsoft Azure Data Manager for Agriculture Service.
  */
 package com.azure.resourcemanager.agrifood.fluent.models;

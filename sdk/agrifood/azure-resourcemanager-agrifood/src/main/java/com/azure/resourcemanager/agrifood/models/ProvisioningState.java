@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Sensor integration instance provisioning state.
+ * Data Manager For Agriculture instance provisioning state.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**
@@ -35,6 +35,11 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
      * Static value Failed for ProvisioningState.
      */
     public static final ProvisioningState FAILED = fromString("Failed");
+
+    /**
+     * Static value Running for ProvisioningState.
+     */
+    public static final ProvisioningState RUNNING = fromString("Running");
 
     /**
      * Creates a new instance of ProvisioningState value.
