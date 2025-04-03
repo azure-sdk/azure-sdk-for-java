@@ -8,8 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Enabled allows this resource to be accessed from both public and private networks, Disabled allows this resource to
- * only be accessed via private endpoints.
+ * Enabled to allow this resource to be access from the public network.
  */
 public final class HostpoolPublicNetworkAccess extends ExpandableStringEnum<HostpoolPublicNetworkAccess> {
     /**
