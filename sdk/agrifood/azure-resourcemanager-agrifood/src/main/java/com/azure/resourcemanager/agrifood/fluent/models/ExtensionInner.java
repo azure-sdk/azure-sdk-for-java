@@ -158,7 +158,7 @@ public final class ExtensionInner extends ProxyResource {
     }
 
     /**
-     * Get the additionalApiProperties property: Additional api properties.
+     * Get the additionalApiProperties property: Additional Api Properties.
      * 
      * @return the additionalApiProperties value.
      */

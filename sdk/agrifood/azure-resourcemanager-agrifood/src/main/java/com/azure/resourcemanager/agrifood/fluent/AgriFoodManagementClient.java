@@ -47,25 +47,32 @@ public interface AgriFoodManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the ExtensionsClient object to access its operations.
+     * Gets the CheckNameAvailabilitiesClient object to access its operations.
      * 
-     * @return the ExtensionsClient object.
+     * @return the CheckNameAvailabilitiesClient object.
      */
-    ExtensionsClient getExtensions();
+    CheckNameAvailabilitiesClient getCheckNameAvailabilities();
 
     /**
-     * Gets the FarmBeatsExtensionsClient object to access its operations.
+     * Gets the DataConnectorsClient object to access its operations.
      * 
-     * @return the FarmBeatsExtensionsClient object.
+     * @return the DataConnectorsClient object.
      */
-    FarmBeatsExtensionsClient getFarmBeatsExtensions();
+    DataConnectorsClient getDataConnectors();
 
     /**
-     * Gets the FarmBeatsModelsClient object to access its operations.
+     * Gets the DataManagerForAgricultureExtensionsClient object to access its operations.
      * 
-     * @return the FarmBeatsModelsClient object.
+     * @return the DataManagerForAgricultureExtensionsClient object.
      */
-    FarmBeatsModelsClient getFarmBeatsModels();
+    DataManagerForAgricultureExtensionsClient getDataManagerForAgricultureExtensions();
+
+    /**
+     * Gets the DataManagerForAgricultureResourcesClient object to access its operations.
+     * 
+     * @return the DataManagerForAgricultureResourcesClient object.
+     */
+    DataManagerForAgricultureResourcesClient getDataManagerForAgricultureResources();
 
     /**
      * Gets the OperationResultsClient object to access its operations.
@@ -75,11 +82,11 @@ public interface AgriFoodManagementClient {
     OperationResultsClient getOperationResults();
 
     /**
-     * Gets the LocationsClient object to access its operations.
+     * Gets the ExtensionsClient object to access its operations.
      * 
-     * @return the LocationsClient object.
+     * @return the ExtensionsClient object.
      */
-    LocationsClient getLocations();
+    ExtensionsClient getExtensions();
 
     /**
      * Gets the OperationsClient object to access its operations.
