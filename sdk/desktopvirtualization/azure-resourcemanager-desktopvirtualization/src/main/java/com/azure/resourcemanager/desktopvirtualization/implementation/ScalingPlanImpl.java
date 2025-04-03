@@ -8,14 +8,15 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanInner;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlan;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPatch;
+import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPatchProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -50,28 +51,28 @@ public final class ScalingPlanImpl implements ScalingPlan, ScalingPlan.Definitio
         }
     }
 
-    public String managedBy() {
-        return this.innerModel().managedBy();
-    }
-
-    public String kind() {
-        return this.innerModel().kind();
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public String etag() {
         return this.innerModel().etag();
     }
 
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
-        return this.innerModel().identity();
+    public String kind() {
+        return this.innerModel().kind();
     }
 
-    public ResourceModelWithAllowedPropertySetSku sku() {
-        return this.innerModel().sku();
+    public String managedBy() {
+        return this.innerModel().managedBy();
     }
 
-    public ResourceModelWithAllowedPropertySetPlan plan() {
+    public Plan plan() {
         return this.innerModel().plan();
+    }
+
+    public Sku sku() {
+        return this.innerModel().sku();
     }
 
     public SystemData systemData() {
@@ -230,13 +231,8 @@ public final class ScalingPlanImpl implements ScalingPlan, ScalingPlan.Definitio
     }
 
     public ScalingPlanImpl withTimeZone(String timeZone) {
-        if (isInCreateMode()) {
-            this.innerModel().withTimeZone(timeZone);
-            return this;
-        } else {
-            this.updateScalingPlan.withTimeZone(timeZone);
-            return this;
-        }
+        this.innerModel().withTimeZone(timeZone);
+        return this;
     }
 
     public ScalingPlanImpl withTags(Map<String, String> tags) {
@@ -249,8 +245,8 @@ public final class ScalingPlanImpl implements ScalingPlan, ScalingPlan.Definitio
         }
     }
 
-    public ScalingPlanImpl withManagedBy(String managedBy) {
-        this.innerModel().withManagedBy(managedBy);
+    public ScalingPlanImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
@@ -259,39 +255,29 @@ public final class ScalingPlanImpl implements ScalingPlan, ScalingPlan.Definitio
         return this;
     }
 
-    public ScalingPlanImpl withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
-        this.innerModel().withIdentity(identity);
+    public ScalingPlanImpl withManagedBy(String managedBy) {
+        this.innerModel().withManagedBy(managedBy);
         return this;
     }
 
-    public ScalingPlanImpl withSku(ResourceModelWithAllowedPropertySetSku sku) {
-        this.innerModel().withSku(sku);
-        return this;
-    }
-
-    public ScalingPlanImpl withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public ScalingPlanImpl withPlan(Plan plan) {
         this.innerModel().withPlan(plan);
         return this;
     }
 
+    public ScalingPlanImpl withSku(Sku sku) {
+        this.innerModel().withSku(sku);
+        return this;
+    }
+
     public ScalingPlanImpl withDescription(String description) {
-        if (isInCreateMode()) {
-            this.innerModel().withDescription(description);
-            return this;
-        } else {
-            this.updateScalingPlan.withDescription(description);
-            return this;
-        }
+        this.innerModel().withDescription(description);
+        return this;
     }
 
     public ScalingPlanImpl withFriendlyName(String friendlyName) {
-        if (isInCreateMode()) {
-            this.innerModel().withFriendlyName(friendlyName);
-            return this;
-        } else {
-            this.updateScalingPlan.withFriendlyName(friendlyName);
-            return this;
-        }
+        this.innerModel().withFriendlyName(friendlyName);
+        return this;
     }
 
     public ScalingPlanImpl withHostPoolType(ScalingHostPoolType hostPoolType) {
@@ -300,33 +286,23 @@ public final class ScalingPlanImpl implements ScalingPlan, ScalingPlan.Definitio
     }
 
     public ScalingPlanImpl withExclusionTag(String exclusionTag) {
-        if (isInCreateMode()) {
-            this.innerModel().withExclusionTag(exclusionTag);
-            return this;
-        } else {
-            this.updateScalingPlan.withExclusionTag(exclusionTag);
-            return this;
-        }
+        this.innerModel().withExclusionTag(exclusionTag);
+        return this;
     }
 
     public ScalingPlanImpl withSchedules(List<ScalingSchedule> schedules) {
-        if (isInCreateMode()) {
-            this.innerModel().withSchedules(schedules);
-            return this;
-        } else {
-            this.updateScalingPlan.withSchedules(schedules);
-            return this;
-        }
+        this.innerModel().withSchedules(schedules);
+        return this;
     }
 
     public ScalingPlanImpl withHostPoolReferences(List<ScalingHostPoolReference> hostPoolReferences) {
-        if (isInCreateMode()) {
-            this.innerModel().withHostPoolReferences(hostPoolReferences);
-            return this;
-        } else {
-            this.updateScalingPlan.withHostPoolReferences(hostPoolReferences);
-            return this;
-        }
+        this.innerModel().withHostPoolReferences(hostPoolReferences);
+        return this;
+    }
+
+    public ScalingPlanImpl withProperties(ScalingPlanPatchProperties properties) {
+        this.updateScalingPlan.withProperties(properties);
+        return this;
     }
 
     private boolean isInCreateMode() {

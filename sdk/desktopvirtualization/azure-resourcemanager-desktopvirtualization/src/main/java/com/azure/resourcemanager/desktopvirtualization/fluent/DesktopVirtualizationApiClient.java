@@ -54,46 +54,11 @@ public interface DesktopVirtualizationApiClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the WorkspacesClient object to access its operations.
+     * Gets the AppAttachPackagesClient object to access its operations.
      * 
-     * @return the WorkspacesClient object.
+     * @return the AppAttachPackagesClient object.
      */
-    WorkspacesClient getWorkspaces();
-
-    /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
-     * 
-     * @return the PrivateEndpointConnectionsClient object.
-     */
-    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
-
-    /**
-     * Gets the PrivateLinkResourcesClient object to access its operations.
-     * 
-     * @return the PrivateLinkResourcesClient object.
-     */
-    PrivateLinkResourcesClient getPrivateLinkResources();
-
-    /**
-     * Gets the ScalingPlansClient object to access its operations.
-     * 
-     * @return the ScalingPlansClient object.
-     */
-    ScalingPlansClient getScalingPlans();
-
-    /**
-     * Gets the ScalingPlanPooledSchedulesClient object to access its operations.
-     * 
-     * @return the ScalingPlanPooledSchedulesClient object.
-     */
-    ScalingPlanPooledSchedulesClient getScalingPlanPooledSchedules();
-
-    /**
-     * Gets the ScalingPlanPersonalSchedulesClient object to access its operations.
-     * 
-     * @return the ScalingPlanPersonalSchedulesClient object.
-     */
-    ScalingPlanPersonalSchedulesClient getScalingPlanPersonalSchedules();
+    AppAttachPackagesClient getAppAttachPackages();
 
     /**
      * Gets the ApplicationGroupsClient object to access its operations.
@@ -103,11 +68,25 @@ public interface DesktopVirtualizationApiClient {
     ApplicationGroupsClient getApplicationGroups();
 
     /**
-     * Gets the StartMenuItemsClient object to access its operations.
+     * Gets the HostPoolsClient object to access its operations.
      * 
-     * @return the StartMenuItemsClient object.
+     * @return the HostPoolsClient object.
      */
-    StartMenuItemsClient getStartMenuItems();
+    HostPoolsClient getHostPools();
+
+    /**
+     * Gets the ScalingPlansClient object to access its operations.
+     * 
+     * @return the ScalingPlansClient object.
+     */
+    ScalingPlansClient getScalingPlans();
+
+    /**
+     * Gets the WorkspacesClient object to access its operations.
+     * 
+     * @return the WorkspacesClient object.
+     */
+    WorkspacesClient getWorkspaces();
 
     /**
      * Gets the ApplicationsClient object to access its operations.
@@ -124,39 +103,18 @@ public interface DesktopVirtualizationApiClient {
     DesktopsClient getDesktops();
 
     /**
-     * Gets the HostPoolsClient object to access its operations.
+     * Gets the StartMenuItemsClient object to access its operations.
      * 
-     * @return the HostPoolsClient object.
+     * @return the StartMenuItemsClient object.
      */
-    HostPoolsClient getHostPools();
+    StartMenuItemsClient getStartMenuItems();
 
     /**
-     * Gets the UserSessionsClient object to access its operations.
+     * Gets the ActiveSessionHostConfigurationsClient object to access its operations.
      * 
-     * @return the UserSessionsClient object.
+     * @return the ActiveSessionHostConfigurationsClient object.
      */
-    UserSessionsClient getUserSessions();
-
-    /**
-     * Gets the SessionHostsClient object to access its operations.
-     * 
-     * @return the SessionHostsClient object.
-     */
-    SessionHostsClient getSessionHosts();
-
-    /**
-     * Gets the MsixPackagesClient object to access its operations.
-     * 
-     * @return the MsixPackagesClient object.
-     */
-    MsixPackagesClient getMsixPackages();
-
-    /**
-     * Gets the AppAttachPackageInfoesClient object to access its operations.
-     * 
-     * @return the AppAttachPackageInfoesClient object.
-     */
-    AppAttachPackageInfoesClient getAppAttachPackageInfoes();
+    ActiveSessionHostConfigurationsClient getActiveSessionHostConfigurations();
 
     /**
      * Gets the MsixImagesClient object to access its operations.
@@ -166,9 +124,93 @@ public interface DesktopVirtualizationApiClient {
     MsixImagesClient getMsixImages();
 
     /**
-     * Gets the AppAttachPackagesClient object to access its operations.
+     * Gets the AppAttachPackageInfoesClient object to access its operations.
      * 
-     * @return the AppAttachPackagesClient object.
+     * @return the AppAttachPackageInfoesClient object.
      */
-    AppAttachPackagesClient getAppAttachPackages();
+    AppAttachPackageInfoesClient getAppAttachPackageInfoes();
+
+    /**
+     * Gets the MsixPackagesClient object to access its operations.
+     * 
+     * @return the MsixPackagesClient object.
+     */
+    MsixPackagesClient getMsixPackages();
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     * 
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the PrivateLinkResourcesClient object.
+     */
+    PrivateLinkResourcesClient getPrivateLinkResources();
+
+    /**
+     * Gets the SessionHostConfigurationsClient object to access its operations.
+     * 
+     * @return the SessionHostConfigurationsClient object.
+     */
+    SessionHostConfigurationsClient getSessionHostConfigurations();
+
+    /**
+     * Gets the SessionHostManagementsClient object to access its operations.
+     * 
+     * @return the SessionHostManagementsClient object.
+     */
+    SessionHostManagementsClient getSessionHostManagements();
+
+    /**
+     * Gets the ControlSessionHostUpdatesClient object to access its operations.
+     * 
+     * @return the ControlSessionHostUpdatesClient object.
+     */
+    ControlSessionHostUpdatesClient getControlSessionHostUpdates();
+
+    /**
+     * Gets the InitiateSessionHostUpdatesClient object to access its operations.
+     * 
+     * @return the InitiateSessionHostUpdatesClient object.
+     */
+    InitiateSessionHostUpdatesClient getInitiateSessionHostUpdates();
+
+    /**
+     * Gets the SessionHostManagementsUpdateStatusClient object to access its operations.
+     * 
+     * @return the SessionHostManagementsUpdateStatusClient object.
+     */
+    SessionHostManagementsUpdateStatusClient getSessionHostManagementsUpdateStatus();
+
+    /**
+     * Gets the SessionHostsClient object to access its operations.
+     * 
+     * @return the SessionHostsClient object.
+     */
+    SessionHostsClient getSessionHosts();
+
+    /**
+     * Gets the UserSessionsClient object to access its operations.
+     * 
+     * @return the UserSessionsClient object.
+     */
+    UserSessionsClient getUserSessions();
+
+    /**
+     * Gets the ScalingPlanPersonalSchedulesClient object to access its operations.
+     * 
+     * @return the ScalingPlanPersonalSchedulesClient object.
+     */
+    ScalingPlanPersonalSchedulesClient getScalingPlanPersonalSchedules();
+
+    /**
+     * Gets the ScalingPlanPooledSchedulesClient object to access its operations.
+     * 
+     * @return the ScalingPlanPooledSchedulesClient object.
+     */
+    ScalingPlanPooledSchedulesClient getScalingPlanPooledSchedules();
 }

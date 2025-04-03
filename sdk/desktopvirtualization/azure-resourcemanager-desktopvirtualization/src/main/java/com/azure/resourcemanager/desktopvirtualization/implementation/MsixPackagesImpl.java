@@ -27,6 +27,18 @@ public final class MsixPackagesImpl implements MsixPackages {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<MsixPackage> list(String resourceGroupName, String hostPoolName) {
+        PagedIterable<MsixPackageInner> inner = this.serviceClient().list(resourceGroupName, hostPoolName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MsixPackageImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<MsixPackage> list(String resourceGroupName, String hostPoolName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<MsixPackageInner> inner
+            = this.serviceClient().list(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MsixPackageImpl(inner1, this.manager()));
+    }
+
     public Response<MsixPackage> getWithResponse(String resourceGroupName, String hostPoolName,
         String msixPackageFullName, Context context) {
         Response<MsixPackageInner> inner
@@ -57,23 +69,11 @@ public final class MsixPackagesImpl implements MsixPackages {
         this.serviceClient().delete(resourceGroupName, hostPoolName, msixPackageFullName);
     }
 
-    public PagedIterable<MsixPackage> list(String resourceGroupName, String hostPoolName) {
-        PagedIterable<MsixPackageInner> inner = this.serviceClient().list(resourceGroupName, hostPoolName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MsixPackageImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<MsixPackage> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<MsixPackageInner> inner
-            = this.serviceClient().list(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MsixPackageImpl(inner1, this.manager()));
-    }
-
     public MsixPackage getById(String id) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourcegroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourcegroups'.", id)));
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String hostPoolName = ResourceManagerUtils.getValueFromIdByName(id, "hostPools");
         if (hostPoolName == null) {
@@ -89,10 +89,10 @@ public final class MsixPackagesImpl implements MsixPackages {
     }
 
     public Response<MsixPackage> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourcegroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourcegroups'.", id)));
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String hostPoolName = ResourceManagerUtils.getValueFromIdByName(id, "hostPools");
         if (hostPoolName == null) {
@@ -108,10 +108,10 @@ public final class MsixPackagesImpl implements MsixPackages {
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourcegroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourcegroups'.", id)));
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String hostPoolName = ResourceManagerUtils.getValueFromIdByName(id, "hostPools");
         if (hostPoolName == null) {
@@ -127,10 +127,10 @@ public final class MsixPackagesImpl implements MsixPackages {
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourcegroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourcegroups'.", id)));
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String hostPoolName = ResourceManagerUtils.getValueFromIdByName(id, "hostPools");
         if (hostPoolName == null) {
