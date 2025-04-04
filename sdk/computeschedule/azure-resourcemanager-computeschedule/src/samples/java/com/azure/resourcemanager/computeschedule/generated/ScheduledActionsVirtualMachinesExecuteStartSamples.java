@@ -6,6 +6,7 @@ package com.azure.resourcemanager.computeschedule.generated;
 
 import com.azure.resourcemanager.computeschedule.models.ExecuteStartRequest;
 import com.azure.resourcemanager.computeschedule.models.ExecutionParameters;
+import com.azure.resourcemanager.computeschedule.models.OptimizationPreference;
 import com.azure.resourcemanager.computeschedule.models.Resources;
 import com.azure.resourcemanager.computeschedule.models.RetryPolicy;
 import java.util.Arrays;
@@ -15,7 +16,7 @@ import java.util.Arrays;
  */
 public final class ScheduledActionsVirtualMachinesExecuteStartSamples {
     /*
-     * x-ms-original-file: 2024-10-01/ScheduledActions_VirtualMachinesExecuteStart.json
+     * x-ms-original-file: 2025-05-01/ScheduledActions_VirtualMachinesExecuteStart_MaximumSet_Gen.json
      */
     /**
      * Sample code: ScheduledActions_VirtualMachinesExecuteStart.
@@ -25,11 +26,13 @@ public final class ScheduledActionsVirtualMachinesExecuteStartSamples {
     public static void scheduledActionsVirtualMachinesExecuteStart(
         com.azure.resourcemanager.computeschedule.ComputeScheduleManager manager) {
         manager.scheduledActions()
-            .virtualMachinesExecuteStartWithResponse("eastus2euap", new ExecuteStartRequest()
-                .withExecutionParameters(new ExecutionParameters()
-                    .withRetryPolicy(new RetryPolicy().withRetryCount(2).withRetryWindowInMinutes(27)))
-                .withResources(new Resources().withIds(Arrays.asList(
-                    "/subscriptions/YourSubscriptionId/resourceGroups/YourResourceGroupName/providers/Microsoft.Compute/virtualMachines/testResource3")))
-                .withCorrelationid("23480d2f-1dca-4610-afb4-dd25eec1f34r"), com.azure.core.util.Context.NONE);
+            .virtualMachinesExecuteStartWithResponse("aniuyuffau",
+                new ExecuteStartRequest()
+                    .withExecutionParameters(
+                        new ExecutionParameters().withOptimizationPreference(OptimizationPreference.COST)
+                            .withRetryPolicy(new RetryPolicy().withRetryCount(1).withRetryWindowInMinutes(8)))
+                    .withResources(new Resources().withIds(Arrays.asList("npfmjea")))
+                    .withCorrelationid("rfwibowqbubbdvx"),
+                com.azure.core.util.Context.NONE);
     }
 }
