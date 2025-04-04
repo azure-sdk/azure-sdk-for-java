@@ -4,42 +4,34 @@
 
 package com.azure.resourcemanager.computeschedule.generated;
 
-import com.azure.resourcemanager.computeschedule.models.DeadlineType;
+import com.azure.resourcemanager.computeschedule.models.ExecuteDeleteRequest;
 import com.azure.resourcemanager.computeschedule.models.ExecutionParameters;
 import com.azure.resourcemanager.computeschedule.models.OptimizationPreference;
 import com.azure.resourcemanager.computeschedule.models.Resources;
 import com.azure.resourcemanager.computeschedule.models.RetryPolicy;
-import com.azure.resourcemanager.computeschedule.models.Schedule;
-import com.azure.resourcemanager.computeschedule.models.SubmitDeallocateRequest;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 /**
- * Samples for ScheduledActions VirtualMachinesSubmitDeallocate.
+ * Samples for ScheduledActions VirtualMachinesExecuteDelete.
  */
-public final class ScheduledActionsVirtualMachinesSubmitDeallocateSamples {
+public final class ScheduledActionsVirtualMachinesExecuteDeleteSamples {
     /*
-     * x-ms-original-file: 2025-05-01/ScheduledActions_VirtualMachinesSubmitDeallocate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-05-01/ScheduledActions_VirtualMachinesExecuteDelete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ScheduledActions_VirtualMachinesSubmitDeallocate.
+     * Sample code: ScheduledActions_VirtualMachinesExecuteDelete.
      * 
      * @param manager Entry point to ComputeScheduleManager.
      */
-    public static void scheduledActionsVirtualMachinesSubmitDeallocate(
+    public static void scheduledActionsVirtualMachinesExecuteDelete(
         com.azure.resourcemanager.computeschedule.ComputeScheduleManager manager) {
         manager.scheduledActions()
-            .virtualMachinesSubmitDeallocateWithResponse("lawcyjjebyry", new SubmitDeallocateRequest()
-                .withSchedule(new Schedule().withDeadline(OffsetDateTime.parse("2025-04-04T20:33:27.504Z"))
-                    .withDeadLine(OffsetDateTime.parse("2025-04-04T20:33:27.504Z"))
-                    .withTimezone("vnmijvfoqyplvcttbjdl")
-                    .withTimeZone("ahowpd")
-                    .withDeadlineType(DeadlineType.UNKNOWN))
+            .virtualMachinesExecuteDeleteWithResponse("fbf", new ExecuteDeleteRequest()
                 .withExecutionParameters(
                     new ExecutionParameters().withOptimizationPreference(OptimizationPreference.COST)
                         .withRetryPolicy(new RetryPolicy().withRetryCount(1).withRetryWindowInMinutes(8)))
                 .withResources(new Resources().withIds(Arrays.asList(
                     "/subscriptions/YourSubscriptionId/resourceGroups/YourResourceGroupName/providers/Microsoft.Compute/virtualMachines/testResource3")))
-                .withCorrelationid("yecdtyugquymakkxgzrrplbrx"), com.azure.core.util.Context.NONE);
+                .withCorrelationid("mbkmatbycmmph"), com.azure.core.util.Context.NONE);
     }
 }
