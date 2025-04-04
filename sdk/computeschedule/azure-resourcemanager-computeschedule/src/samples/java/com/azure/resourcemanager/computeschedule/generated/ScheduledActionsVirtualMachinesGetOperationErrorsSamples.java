@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public final class ScheduledActionsVirtualMachinesGetOperationErrorsSamples {
     /*
-     * x-ms-original-file: 2024-10-01/ScheduledActions_VirtualMachinesGetOperationErrors.json
+     * x-ms-original-file: 2025-05-01/ScheduledActions_VirtualMachinesGetOperationErrors_MinimumSet_Gen.json
      */
     /**
      * Sample code: ScheduledActions_VirtualMachinesGetOperationErrors.
@@ -22,8 +22,8 @@ public final class ScheduledActionsVirtualMachinesGetOperationErrorsSamples {
     public static void scheduledActionsVirtualMachinesGetOperationErrors(
         com.azure.resourcemanager.computeschedule.ComputeScheduleManager manager) {
         manager.scheduledActions()
-            .virtualMachinesGetOperationErrorsWithResponse("eastus2euap",
-                new GetOperationErrorsRequest().withOperationIds(Arrays.asList("23480d2f-1dca-4610-afb4-dd25eec1f34r")),
+            .virtualMachinesGetOperationErrorsWithResponse("qcxlwgpfxkxonanr",
+                new GetOperationErrorsRequest().withOperationIds(Arrays.asList("xqdknmquvfghcphlgantujwqtssab")),
                 com.azure.core.util.Context.NONE);
     }
 }

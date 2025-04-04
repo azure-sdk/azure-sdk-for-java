@@ -6,6 +6,7 @@ package com.azure.resourcemanager.computeschedule.generated;
 
 import com.azure.resourcemanager.computeschedule.models.ExecuteDeallocateRequest;
 import com.azure.resourcemanager.computeschedule.models.ExecutionParameters;
+import com.azure.resourcemanager.computeschedule.models.OptimizationPreference;
 import com.azure.resourcemanager.computeschedule.models.Resources;
 import com.azure.resourcemanager.computeschedule.models.RetryPolicy;
 import java.util.Arrays;
@@ -15,7 +16,7 @@ import java.util.Arrays;
  */
 public final class ScheduledActionsVirtualMachinesExecuteDeallocateSamples {
     /*
-     * x-ms-original-file: 2024-10-01/ScheduledActions_VirtualMachinesExecuteDeallocate.json
+     * x-ms-original-file: 2025-05-01/ScheduledActions_VirtualMachinesExecuteDeallocate_MaximumSet_Gen.json
      */
     /**
      * Sample code: ScheduledActions_VirtualMachinesExecuteDeallocate.
@@ -25,11 +26,13 @@ public final class ScheduledActionsVirtualMachinesExecuteDeallocateSamples {
     public static void scheduledActionsVirtualMachinesExecuteDeallocate(
         com.azure.resourcemanager.computeschedule.ComputeScheduleManager manager) {
         manager.scheduledActions()
-            .virtualMachinesExecuteDeallocateWithResponse("eastus2euap", new ExecuteDeallocateRequest()
-                .withExecutionParameters(new ExecutionParameters()
-                    .withRetryPolicy(new RetryPolicy().withRetryCount(4).withRetryWindowInMinutes(27)))
-                .withResources(new Resources().withIds(Arrays.asList(
-                    "/subscriptions/YourSubscriptionId/resourceGroups/YourResourceGroupName/providers/Microsoft.Compute/virtualMachines/testResource3")))
-                .withCorrelationid("23480d2f-1dca-4610-afb4-dd25eec1f34r"), com.azure.core.util.Context.NONE);
+            .virtualMachinesExecuteDeallocateWithResponse("lqbea",
+                new ExecuteDeallocateRequest()
+                    .withExecutionParameters(
+                        new ExecutionParameters().withOptimizationPreference(OptimizationPreference.COST)
+                            .withRetryPolicy(new RetryPolicy().withRetryCount(1).withRetryWindowInMinutes(8)))
+                    .withResources(new Resources().withIds(Arrays.asList("npfmjea")))
+                    .withCorrelationid("wmfrxicixogubeuvikqzrry"),
+                com.azure.core.util.Context.NONE);
     }
 }
