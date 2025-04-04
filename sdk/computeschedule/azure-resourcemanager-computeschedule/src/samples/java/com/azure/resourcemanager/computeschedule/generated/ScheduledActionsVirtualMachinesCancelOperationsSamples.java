@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public final class ScheduledActionsVirtualMachinesCancelOperationsSamples {
     /*
-     * x-ms-original-file: 2024-10-01/ScheduledActions_VirtualMachinesCancelOperations.json
+     * x-ms-original-file: 2025-05-01/ScheduledActions_VirtualMachinesCancelOperations_MaximumSet_Gen.json
      */
     /**
      * Sample code: ScheduledActions_VirtualMachinesCancelOperations.
@@ -22,9 +22,9 @@ public final class ScheduledActionsVirtualMachinesCancelOperationsSamples {
     public static void scheduledActionsVirtualMachinesCancelOperations(
         com.azure.resourcemanager.computeschedule.ComputeScheduleManager manager) {
         manager.scheduledActions()
-            .virtualMachinesCancelOperationsWithResponse("eastus2euap",
-                new CancelOperationsRequest().withOperationIds(Arrays.asList("23480d2f-1dca-4610-afb4-dd25eec1f34r"))
-                    .withCorrelationid("23480d2f-1dca-4610-afb4-gg25eec1f34r"),
+            .virtualMachinesCancelOperationsWithResponse("rqftdooona",
+                new CancelOperationsRequest().withOperationIds(Arrays.asList("lmgwkjlng"))
+                    .withCorrelationid("vhgqpkvmxkzusevudcelljti"),
                 com.azure.core.util.Context.NONE);
     }
 }
