@@ -10,7 +10,8 @@ package com.azure.resourcemanager.devcenter.generated;
 public final class CatalogsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_Delete.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Catalogs_Delete.
+     * json
      */
     /**
      * Sample code: Catalogs_Delete.

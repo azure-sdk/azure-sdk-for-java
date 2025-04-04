@@ -4,13 +4,16 @@
 
 package com.azure.resourcemanager.devcenter.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.ProjectInner;
+import com.azure.resourcemanager.devcenter.models.InheritedSettingsForProject;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.Project;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
 import com.azure.resourcemanager.devcenter.models.ProjectUpdate;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import java.util.Collections;
@@ -80,6 +83,10 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
 
     public ProjectCatalogSettings catalogSettings() {
         return this.innerModel().catalogSettings();
+    }
+
+    public ProjectCustomizationSettings customizationSettings() {
+        return this.innerModel().customizationSettings();
     }
 
     public Region region() {
@@ -174,6 +181,14 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
         return this;
     }
 
+    public Response<InheritedSettingsForProject> getInheritedSettingsWithResponse(Context context) {
+        return serviceManager.projects().getInheritedSettingsWithResponse(resourceGroupName, projectName, context);
+    }
+
+    public InheritedSettingsForProject getInheritedSettings() {
+        return serviceManager.projects().getInheritedSettings(resourceGroupName, projectName);
+    }
+
     public ProjectImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -250,6 +265,16 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
             return this;
         } else {
             this.updateBody.withCatalogSettings(catalogSettings);
+            return this;
+        }
+    }
+
+    public ProjectImpl withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withCustomizationSettings(customizationSettings);
+            return this;
+        } else {
+            this.updateBody.withCustomizationSettings(customizationSettings);
             return this;
         }
     }

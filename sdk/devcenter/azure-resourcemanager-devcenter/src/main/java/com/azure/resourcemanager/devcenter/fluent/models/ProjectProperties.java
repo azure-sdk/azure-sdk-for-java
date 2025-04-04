@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import java.io.IOException;
 
@@ -97,6 +98,15 @@ public final class ProjectProperties extends ProjectUpdateProperties {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProjectProperties withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        super.withCustomizationSettings(customizationSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -105,6 +115,9 @@ public final class ProjectProperties extends ProjectUpdateProperties {
     public void validate() {
         if (catalogSettings() != null) {
             catalogSettings().validate();
+        }
+        if (customizationSettings() != null) {
+            customizationSettings().validate();
         }
     }
 
@@ -119,6 +132,7 @@ public final class ProjectProperties extends ProjectUpdateProperties {
         jsonWriter.writeNumberField("maxDevBoxesPerUser", maxDevBoxesPerUser());
         jsonWriter.writeStringField("displayName", displayName());
         jsonWriter.writeJsonField("catalogSettings", catalogSettings());
+        jsonWriter.writeJsonField("customizationSettings", customizationSettings());
         return jsonWriter.writeEndObject();
     }
 
@@ -147,6 +161,9 @@ public final class ProjectProperties extends ProjectUpdateProperties {
                     deserializedProjectProperties.withDisplayName(reader.getString());
                 } else if ("catalogSettings".equals(fieldName)) {
                     deserializedProjectProperties.withCatalogSettings(ProjectCatalogSettings.fromJson(reader));
+                } else if ("customizationSettings".equals(fieldName)) {
+                    deserializedProjectProperties
+                        .withCustomizationSettings(ProjectCustomizationSettings.fromJson(reader));
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedProjectProperties.provisioningState = ProvisioningState.fromString(reader.getString());
                 } else if ("devCenterUri".equals(fieldName)) {

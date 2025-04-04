@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
 import java.io.IOException;
 
 /**
@@ -42,6 +43,11 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
      * Settings to be used when associating a project with a catalog.
      */
     private ProjectCatalogSettings catalogSettings;
+
+    /*
+     * Settings to be used for customizations.
+     */
+    private ProjectCustomizationSettings customizationSettings;
 
     /**
      * Creates an instance of ProjectUpdateProperties class.
@@ -152,6 +158,26 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
     }
 
     /**
+     * Get the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @return the customizationSettings value.
+     */
+    public ProjectCustomizationSettings customizationSettings() {
+        return this.customizationSettings;
+    }
+
+    /**
+     * Set the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @param customizationSettings the customizationSettings value to set.
+     * @return the ProjectUpdateProperties object itself.
+     */
+    public ProjectUpdateProperties withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        this.customizationSettings = customizationSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -159,6 +185,9 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
     public void validate() {
         if (catalogSettings() != null) {
             catalogSettings().validate();
+        }
+        if (customizationSettings() != null) {
+            customizationSettings().validate();
         }
     }
 
@@ -173,6 +202,7 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
         jsonWriter.writeNumberField("maxDevBoxesPerUser", this.maxDevBoxesPerUser);
         jsonWriter.writeStringField("displayName", this.displayName);
         jsonWriter.writeJsonField("catalogSettings", this.catalogSettings);
+        jsonWriter.writeJsonField("customizationSettings", this.customizationSettings);
         return jsonWriter.writeEndObject();
     }
 
@@ -201,6 +231,9 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
                     deserializedProjectUpdateProperties.displayName = reader.getString();
                 } else if ("catalogSettings".equals(fieldName)) {
                     deserializedProjectUpdateProperties.catalogSettings = ProjectCatalogSettings.fromJson(reader);
+                } else if ("customizationSettings".equals(fieldName)) {
+                    deserializedProjectUpdateProperties.customizationSettings
+                        = ProjectCustomizationSettings.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
