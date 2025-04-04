@@ -1,14 +1,263 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-04)
+
+- Azure Resource Manager DevCenter client library for Java. This package contains Microsoft Azure SDK for DevCenter Management SDK. DevCenter Management API. Package tag package-preview-2025-04-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.StopOnNoConnectEnableStatus` was added
 
-### Bugs Fixed
+* `models.DevCenterCatalogImageDefinitionBuildOperations` was added
 
-### Other Changes
+* `models.PoolDevBoxDefinition` was added
+
+* `models.ProjectCatalogImageDefinitions` was added
+
+* `models.CustomizationTaskInstance` was added
+
+* `models.DevBoxTunnelEnableStatus` was added
+
+* `models.ImageDefinition` was added
+
+* `models.DevCenterCatalogImageDefinition` was added
+
+* `models.KeepAwakeEnableStatus` was added
+
+* `models.DevCenterNetworkSettings` was added
+
+* `models.PoolDevBoxDefinitionType` was added
+
+* `models.CustomizationTaskInputType` was added
+
+* `models.AutoImageBuildStatus` was added
+
+* `models.ImageDefinitionMetadataProperties` was added
+
+* `models.ProjectPolicyUpdate` was added
+
+* `models.ProjectPolicy$DefinitionStages` was added
+
+* `models.DevCenterCatalogImageDefinitionBuilds` was added
+
+* `models.ImageDefinitionBuildTask` was added
+
+* `models.UserCustomizationsEnableStatus` was added
+
+* `models.DevBoxAutoDeleteConfiguration` was added
+
+* `models.StopOnNoConnectConfiguration` was added
+
+* `models.CustomizationTaskListResult` was added
+
+* `models.DevCenterEncryptionSet$DefinitionStages` was added
+
+* `models.DevboxDisksEncryptionEnableStatus` was added
+
+* `models.ImageDefinitionReference` was added
+
+* `models.ImageDefinitionBuild` was added
+
+* `models.DevBoxAutoDeleteEnableStatus` was added
+
+* `models.EncryptionSetListResult` was added
+
+* `models.DevBoxProvisioningSettings` was added
+
+* `models.ProjectPolicy$UpdateStages` was added
+
+* `models.DevCenterEncryptionSet$Definition` was added
+
+* `models.ProjectPolicy$Update` was added
+
+* `models.ActiveHoursConfiguration` was added
+
+* `models.ProjectNetworkSettings` was added
+
+* `models.ProjectCatalogImageDefinitionBuildOperations` was added
+
+* `models.ImageDefinitionBuildListResult` was added
+
+* `models.InheritedSettingsForProject` was added
+
+* `models.ImageDefinitionBuildTaskParametersItem` was added
+
+* `models.DevCenterCatalogImageDefinitions` was added
+
+* `models.AzureAiServicesConfiguration` was added
+
+* `models.EncryptionSetUpdate` was added
+
+* `models.CustomizationTasks` was added
+
+* `models.ProjectPolicy` was added
+
+* `models.LatestImageBuild` was added
+
+* `models.ImageDefinitionListResult` was added
+
+* `models.DevCenterEncryptionSet$UpdateStages` was added
+
+* `models.MicrosoftHostedNetworkEnableStatus` was added
+
+* `models.PolicyAction` was added
+
+* `models.ImageDefinitionBuildStatus` was added
+
+* `models.AzureAiServicesEnableStatus` was added
+
+* `models.ImageDefinitionBuildTaskGroup` was added
+
+* `models.DevCenterResourceType` was added
+
+* `models.ResourcePolicy` was added
+
+* `models.ProjectPolicy$Definition` was added
+
+* `models.ImageDefinitionProperties` was added
+
+* `models.ProjectCustomizationIdentityType` was added
+
+* `models.ProjectPolicyListResult` was added
+
+* `models.CustomizationTask` was added
+
+* `models.ProjectCustomizationManagedIdentity` was added
+
+* `models.ProjectCustomizationSettings` was added
+
+* `models.EncryptionSets` was added
+
+* `models.ProjectCatalogImageDefinitionBuilds` was added
+
+* `models.AutoStartEnableStatus` was added
+
+* `models.DevCenterEncryptionSet` was added
+
+* `models.ImageDefinitionUserContentProperties` was added
+
+* `models.ImageCreationErrorDetails` was added
+
+* `models.ConfigurationPolicies` was added
+
+* `models.CustomizationTaskInput` was added
+
+* `models.InstallAzureMonitorAgentEnableStatus` was added
+
+* `models.ProjectPolicies` was added
+
+* `models.DevCenterEncryptionSet$Update` was added
+
+* `models.ImageDefinitionBuildDetails` was added
+
+#### `models.DevCenter$Update` was modified
+
+* `withNetworkSettings(models.DevCenterNetworkSettings)` was added
+* `withDevBoxProvisioningSettings(models.DevBoxProvisioningSettings)` was added
+
+#### `models.DevCenter` was modified
+
+* `devBoxProvisioningSettings()` was added
+* `networkSettings()` was added
+
+#### `models.DevCenterUpdate` was modified
+
+* `networkSettings()` was added
+* `withDevBoxProvisioningSettings(models.DevBoxProvisioningSettings)` was added
+* `devBoxProvisioningSettings()` was added
+* `withNetworkSettings(models.DevCenterNetworkSettings)` was added
+
+#### `models.DevCenter$Definition` was modified
+
+* `withNetworkSettings(models.DevCenterNetworkSettings)` was added
+* `withDevBoxProvisioningSettings(models.DevBoxProvisioningSettings)` was added
+
+#### `models.Images` was modified
+
+* `listByProject(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getByProject(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getByProjectWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByProject(java.lang.String,java.lang.String)` was added
+
+#### `models.Project$Update` was modified
+
+* `withCustomizationSettings(models.ProjectCustomizationSettings)` was added
+
+#### `models.Project` was modified
+
+* `getInheritedSettings()` was added
+* `getInheritedSettingsWithResponse(com.azure.core.util.Context)` was added
+* `customizationSettings()` was added
+
+#### `models.Projects` was modified
+
+* `getInheritedSettings(java.lang.String,java.lang.String)` was added
+* `getInheritedSettingsWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.Pool$Update` was modified
+
+* `withActiveHoursConfiguration(models.ActiveHoursConfiguration)` was added
+* `withStopOnNoConnect(models.StopOnNoConnectConfiguration)` was added
+* `withDevBoxDefinition(models.PoolDevBoxDefinition)` was added
+* `withDevBoxDefinitionType(models.PoolDevBoxDefinitionType)` was added
+
+#### `models.Pool` was modified
+
+* `devBoxDefinitionType()` was added
+* `stopOnNoConnect()` was added
+* `devBoxDefinition()` was added
+* `activeHoursConfiguration()` was added
+
+#### `DevCenterManager` was modified
+
+* `devCenterCatalogImageDefinitionBuilds()` was added
+* `projectCatalogImageDefinitions()` was added
+* `encryptionSets()` was added
+* `devCenterCatalogImageDefinitionBuildOperations()` was added
+* `projectPolicies()` was added
+* `customizationTasks()` was added
+* `devCenterCatalogImageDefinitions()` was added
+* `projectCatalogImageDefinitionBuildOperations()` was added
+* `projectCatalogImageDefinitionBuilds()` was added
+
+#### `models.PoolUpdate` was modified
+
+* `withDevBoxDefinition(models.PoolDevBoxDefinition)` was added
+* `withDevBoxDefinitionType(models.PoolDevBoxDefinitionType)` was added
+* `activeHoursConfiguration()` was added
+* `withActiveHoursConfiguration(models.ActiveHoursConfiguration)` was added
+* `withStopOnNoConnect(models.StopOnNoConnectConfiguration)` was added
+* `devBoxDefinitionType()` was added
+* `devBoxDefinition()` was added
+* `stopOnNoConnect()` was added
+
+#### `models.Pool$Definition` was modified
+
+* `withStopOnNoConnect(models.StopOnNoConnectConfiguration)` was added
+* `withActiveHoursConfiguration(models.ActiveHoursConfiguration)` was added
+* `withDevBoxDefinition(models.PoolDevBoxDefinition)` was added
+* `withDevBoxDefinitionType(models.PoolDevBoxDefinitionType)` was added
+
+#### `models.Project$Definition` was modified
+
+* `withCustomizationSettings(models.ProjectCustomizationSettings)` was added
+
+#### `models.ProjectUpdate` was modified
+
+* `customizationSettings()` was added
+* `withCustomizationSettings(models.ProjectCustomizationSettings)` was added
+
+#### `models.ImageVersions` was modified
+
+* `listByProject(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getByProject(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getByProjectWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByProject(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.Skus` was modified
+
+* `listByProject(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByProject(java.lang.String,java.lang.String)` was added
 
 ## 1.0.0 (2024-12-25)
 

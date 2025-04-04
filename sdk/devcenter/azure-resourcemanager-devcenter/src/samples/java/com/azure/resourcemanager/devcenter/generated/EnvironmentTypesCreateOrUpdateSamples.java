@@ -13,7 +13,8 @@ import java.util.Map;
 public final class EnvironmentTypesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/EnvironmentTypes_Put.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentTypes_Put.json
      */
     /**
      * Sample code: EnvironmentTypes_CreateOrUpdate.

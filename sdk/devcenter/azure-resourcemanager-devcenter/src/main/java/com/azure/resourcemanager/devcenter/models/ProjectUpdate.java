@@ -198,6 +198,29 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
     }
 
     /**
+     * Get the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @return the customizationSettings value.
+     */
+    public ProjectCustomizationSettings customizationSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().customizationSettings();
+    }
+
+    /**
+     * Set the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @param customizationSettings the customizationSettings value to set.
+     * @return the ProjectUpdate object itself.
+     */
+    public ProjectUpdate withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectUpdateProperties();
+        }
+        this.innerProperties().withCustomizationSettings(customizationSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

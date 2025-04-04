@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devcenter.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -114,6 +115,13 @@ public interface Project {
     ProjectCatalogSettings catalogSettings();
 
     /**
+     * Gets the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @return the customizationSettings value.
+     */
+    ProjectCustomizationSettings customizationSettings();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -196,9 +204,10 @@ public interface Project {
          * The stage of the Project definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
-            DefinitionStages.WithDevCenterId, DefinitionStages.WithDescription, DefinitionStages.WithMaxDevBoxesPerUser,
-            DefinitionStages.WithDisplayName, DefinitionStages.WithCatalogSettings {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithDevCenterId,
+            DefinitionStages.WithDescription, DefinitionStages.WithMaxDevBoxesPerUser, DefinitionStages.WithDisplayName,
+            DefinitionStages.WithCatalogSettings, DefinitionStages.WithCustomizationSettings {
             /**
              * Executes the create request.
              * 
@@ -308,6 +317,19 @@ public interface Project {
              */
             WithCreate withCatalogSettings(ProjectCatalogSettings catalogSettings);
         }
+
+        /**
+         * The stage of the Project definition allowing to specify customizationSettings.
+         */
+        interface WithCustomizationSettings {
+            /**
+             * Specifies the customizationSettings property: Settings to be used for customizations..
+             * 
+             * @param customizationSettings Settings to be used for customizations.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomizationSettings(ProjectCustomizationSettings customizationSettings);
+        }
     }
 
     /**
@@ -322,7 +344,7 @@ public interface Project {
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithDevCenterId,
         UpdateStages.WithDescription, UpdateStages.WithMaxDevBoxesPerUser, UpdateStages.WithDisplayName,
-        UpdateStages.WithCatalogSettings {
+        UpdateStages.WithCatalogSettings, UpdateStages.WithCustomizationSettings {
         /**
          * Executes the update request.
          * 
@@ -436,6 +458,19 @@ public interface Project {
              */
             Update withCatalogSettings(ProjectCatalogSettings catalogSettings);
         }
+
+        /**
+         * The stage of the Project update allowing to specify customizationSettings.
+         */
+        interface WithCustomizationSettings {
+            /**
+             * Specifies the customizationSettings property: Settings to be used for customizations..
+             * 
+             * @param customizationSettings Settings to be used for customizations.
+             * @return the next definition stage.
+             */
+            Update withCustomizationSettings(ProjectCustomizationSettings customizationSettings);
+        }
     }
 
     /**
@@ -452,4 +487,24 @@ public interface Project {
      * @return the refreshed resource.
      */
     Project refresh(Context context);
+
+    /**
+     * Gets applicable inherited settings for this project.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return applicable inherited settings for this project along with {@link Response}.
+     */
+    Response<InheritedSettingsForProject> getInheritedSettingsWithResponse(Context context);
+
+    /**
+     * Gets applicable inherited settings for this project.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return applicable inherited settings for this project.
+     */
+    InheritedSettingsForProject getInheritedSettings();
 }

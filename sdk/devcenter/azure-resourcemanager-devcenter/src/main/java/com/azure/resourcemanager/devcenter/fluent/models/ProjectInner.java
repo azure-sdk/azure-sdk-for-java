@@ -12,6 +12,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import java.io.IOException;
 import java.util.Map;
@@ -275,6 +276,29 @@ public final class ProjectInner extends Resource {
             this.innerProperties = new ProjectProperties();
         }
         this.innerProperties().withCatalogSettings(catalogSettings);
+        return this;
+    }
+
+    /**
+     * Get the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @return the customizationSettings value.
+     */
+    public ProjectCustomizationSettings customizationSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().customizationSettings();
+    }
+
+    /**
+     * Set the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @param customizationSettings the customizationSettings value to set.
+     * @return the ProjectInner object itself.
+     */
+    public ProjectInner withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectProperties();
+        }
+        this.innerProperties().withCustomizationSettings(customizationSettings);
         return this;
     }
 
