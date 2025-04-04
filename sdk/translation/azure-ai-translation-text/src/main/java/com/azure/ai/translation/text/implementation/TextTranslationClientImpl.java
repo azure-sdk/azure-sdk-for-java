@@ -223,76 +223,6 @@ public final class TextTranslationClientImpl {
             @QueryParam("toScript") String targetLanguageScript, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
             @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
-
-        @Post("/breaksentence")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> findSentenceBoundaries(@HostParam("Endpoint") String endpoint,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
-
-        @Post("/breaksentence")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> findSentenceBoundariesSync(@HostParam("Endpoint") String endpoint,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
-
-        @Post("/dictionary/lookup")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> lookupDictionaryEntries(@HostParam("Endpoint") String endpoint,
-            @QueryParam("from") String sourceLanguage, @QueryParam("to") String targetLanguage,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
-
-        @Post("/dictionary/lookup")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> lookupDictionaryEntriesSync(@HostParam("Endpoint") String endpoint,
-            @QueryParam("from") String sourceLanguage, @QueryParam("to") String targetLanguage,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
-
-        @Post("/dictionary/examples")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> lookupDictionaryExamples(@HostParam("Endpoint") String endpoint,
-            @QueryParam("from") String sourceLanguage, @QueryParam("to") String targetLanguage,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
-
-        @Post("/dictionary/examples")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
-        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> lookupDictionaryExamplesSync(@HostParam("Endpoint") String endpoint,
-            @QueryParam("from") String sourceLanguage, @QueryParam("to") String targetLanguage,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
     }
 
     /**
@@ -536,8 +466,11 @@ public final class TextTranslationClientImpl {
      * the suggestedFrom language will be assumed.</td></tr>
      * <tr><td>fromScript</td><td>String</td><td>No</td><td>Specifies the script of the input text.</td></tr>
      * <tr><td>toScript</td><td>String</td><td>No</td><td>Specifies the script of the translated text.</td></tr>
-     * <tr><td>allowFallback</td><td>Boolean</td><td>No</td><td>Specifies that the service is allowed to fall back to a
+     * <tr><td>allowFallback</td><td>Boolean</td><td>No</td><td>In the case where a custom system is being used,
+     * specifies that the service is allowed to fall back to a
      * general system when a custom system doesn't exist.
+     * In the case where a Large Language Model is being used, specifies that the service is allowed to fall
+     * back to a Small Language Model if an error occurs.
      * Possible values are: true (default) or false.
      * 
      * allowFallback=false specifies that the translation should only use systems trained for the category specified
@@ -554,17 +487,35 @@ public final class TextTranslationClientImpl {
      * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
      * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
      * request.</td></tr>
+     * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
+     * request.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addHeader}
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>
      * {@code
-     * [
-     *      (Required){
+     * {
+     *     text (Required): {
      *         text: String (Required)
      *     }
-     * ]
+     *     targetsLanguage (Required): [
+     *         String (Required)
+     *     ]
+     *     targetsTextType: String(Plain/Html) (Optional)
+     *     targetsProfanityAction: String(NoAction/Marked/Deleted) (Optional)
+     *     targetsProfanityMarker: String(Asterisk/Tag) (Optional)
+     *     script: String (Optional)
+     *     targetsScript: String (Optional)
+     *     targetsdeploymentNameModel: String (Optional)
+     *     targetsAllowFallback: Boolean (Optional)
+     *     targetsGrade: String (Optional)
+     *     targetsTone: String (Optional)
+     *     targetsGender: String (Optional)
+     *     targetsAdaptiveDatasetIds (Optional): [
+     *         String (Optional)
+     *     ]
+     * }
      * }
      * </pre>
      * 
@@ -586,17 +537,6 @@ public final class TextTranslationClientImpl {
      *                     text: String (Required)
      *                     script: String (Required)
      *                 }
-     *                 alignment (Optional): {
-     *                     proj: String (Required)
-     *                 }
-     *                 sentLen (Optional): {
-     *                     srcSentLen (Required): [
-     *                         int (Required)
-     *                     ]
-     *                     transSentLen (Required): [
-     *                         int (Required)
-     *                     ]
-     *                 }
      *             }
      *         ]
      *         sourceText (Optional): {
@@ -612,7 +552,7 @@ public final class TextTranslationClientImpl {
      * in the translation scope. For example, use to=de to translate to German.
      * It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string.
      * For example, use to=de&amp;to=it to translate to German and Italian.
-     * @param body Defines the content of the request.
+     * @param body Details of the translate request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -670,8 +610,11 @@ public final class TextTranslationClientImpl {
      * the suggestedFrom language will be assumed.</td></tr>
      * <tr><td>fromScript</td><td>String</td><td>No</td><td>Specifies the script of the input text.</td></tr>
      * <tr><td>toScript</td><td>String</td><td>No</td><td>Specifies the script of the translated text.</td></tr>
-     * <tr><td>allowFallback</td><td>Boolean</td><td>No</td><td>Specifies that the service is allowed to fall back to a
+     * <tr><td>allowFallback</td><td>Boolean</td><td>No</td><td>In the case where a custom system is being used,
+     * specifies that the service is allowed to fall back to a
      * general system when a custom system doesn't exist.
+     * In the case where a Large Language Model is being used, specifies that the service is allowed to fall
+     * back to a Small Language Model if an error occurs.
      * Possible values are: true (default) or false.
      * 
      * allowFallback=false specifies that the translation should only use systems trained for the category specified
@@ -688,17 +631,35 @@ public final class TextTranslationClientImpl {
      * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
      * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
      * request.</td></tr>
+     * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
+     * request.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addHeader}
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>
      * {@code
-     * [
-     *      (Required){
+     * {
+     *     text (Required): {
      *         text: String (Required)
      *     }
-     * ]
+     *     targetsLanguage (Required): [
+     *         String (Required)
+     *     ]
+     *     targetsTextType: String(Plain/Html) (Optional)
+     *     targetsProfanityAction: String(NoAction/Marked/Deleted) (Optional)
+     *     targetsProfanityMarker: String(Asterisk/Tag) (Optional)
+     *     script: String (Optional)
+     *     targetsScript: String (Optional)
+     *     targetsdeploymentNameModel: String (Optional)
+     *     targetsAllowFallback: Boolean (Optional)
+     *     targetsGrade: String (Optional)
+     *     targetsTone: String (Optional)
+     *     targetsGender: String (Optional)
+     *     targetsAdaptiveDatasetIds (Optional): [
+     *         String (Optional)
+     *     ]
+     * }
      * }
      * </pre>
      * 
@@ -720,17 +681,6 @@ public final class TextTranslationClientImpl {
      *                     text: String (Required)
      *                     script: String (Required)
      *                 }
-     *                 alignment (Optional): {
-     *                     proj: String (Required)
-     *                 }
-     *                 sentLen (Optional): {
-     *                     srcSentLen (Required): [
-     *                         int (Required)
-     *                     ]
-     *                     transSentLen (Required): [
-     *                         int (Required)
-     *                     ]
-     *                 }
      *             }
      *         ]
      *         sourceText (Optional): {
@@ -746,7 +696,7 @@ public final class TextTranslationClientImpl {
      * in the translation scope. For example, use to=de to translate to German.
      * It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string.
      * For example, use to=de&amp;to=it to translate to German and Italian.
-     * @param body Defines the content of the request.
+     * @param body Details of the translate request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -885,419 +835,6 @@ public final class TextTranslationClientImpl {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.transliterateSync(this.getEndpoint(), language, sourceLanguageScript, targetLanguageScript,
-            this.getServiceVersion().getVersion(), contentType, accept, body, requestOptions, Context.NONE);
-    }
-
-    /**
-     * Find Sentence Boundaries.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>language</td><td>String</td><td>No</td><td>Language tag identifying the language of the input text.
-     * If a code isn't specified, automatic language detection will be applied.</td></tr>
-     * <tr><td>script</td><td>String</td><td>No</td><td>Script tag identifying the script used by the input text.
-     * If a script isn't specified, the default script of the language will be assumed.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Header Parameters</strong></p>
-     * <table border="1">
-     * <caption>Header Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
-     * request.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addHeader}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         text: String (Required)
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         detectedLanguage (Optional): {
-     *             language: String (Required)
-     *             score: double (Required)
-     *         }
-     *         sentLen (Required): [
-     *             int (Required)
-     *         ]
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * @param body Defines the content of the request.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> findSentenceBoundariesWithResponseAsync(BinaryData body,
-        RequestOptions requestOptions) {
-        final String contentType = "application/json";
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.findSentenceBoundaries(this.getEndpoint(),
-            this.getServiceVersion().getVersion(), contentType, accept, body, requestOptions, context));
-    }
-
-    /**
-     * Find Sentence Boundaries.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>language</td><td>String</td><td>No</td><td>Language tag identifying the language of the input text.
-     * If a code isn't specified, automatic language detection will be applied.</td></tr>
-     * <tr><td>script</td><td>String</td><td>No</td><td>Script tag identifying the script used by the input text.
-     * If a script isn't specified, the default script of the language will be assumed.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Header Parameters</strong></p>
-     * <table border="1">
-     * <caption>Header Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
-     * request.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addHeader}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         text: String (Required)
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         detectedLanguage (Optional): {
-     *             language: String (Required)
-     *             score: double (Required)
-     *         }
-     *         sentLen (Required): [
-     *             int (Required)
-     *         ]
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * @param body Defines the content of the request.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> findSentenceBoundariesWithResponse(BinaryData body, RequestOptions requestOptions) {
-        final String contentType = "application/json";
-        final String accept = "application/json";
-        return service.findSentenceBoundariesSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
-            contentType, accept, body, requestOptions, Context.NONE);
-    }
-
-    /**
-     * Lookup Dictionary Entries.
-     * <p><strong>Header Parameters</strong></p>
-     * <table border="1">
-     * <caption>Header Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
-     * request.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addHeader}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         text: String (Required)
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         normalizedSource: String (Required)
-     *         displaySource: String (Required)
-     *         translations (Required): [
-     *              (Required){
-     *                 normalizedTarget: String (Required)
-     *                 displayTarget: String (Required)
-     *                 posTag: String (Required)
-     *                 confidence: double (Required)
-     *                 prefixWord: String (Required)
-     *                 backTranslations (Required): [
-     *                      (Required){
-     *                         normalizedText: String (Required)
-     *                         displayText: String (Required)
-     *                         numExamples: int (Required)
-     *                         frequencyCount: int (Required)
-     *                     }
-     *                 ]
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * @param sourceLanguage Specifies the language of the input text.
-     * The source language must be one of the supported languages included in the dictionary scope.
-     * @param targetLanguage Specifies the language of the output text.
-     * The target language must be one of the supported languages included in the dictionary scope.
-     * @param body Defines the content of the request.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> lookupDictionaryEntriesWithResponseAsync(String sourceLanguage,
-        String targetLanguage, BinaryData body, RequestOptions requestOptions) {
-        final String contentType = "application/json";
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.lookupDictionaryEntries(this.getEndpoint(), sourceLanguage,
-            targetLanguage, this.getServiceVersion().getVersion(), contentType, accept, body, requestOptions, context));
-    }
-
-    /**
-     * Lookup Dictionary Entries.
-     * <p><strong>Header Parameters</strong></p>
-     * <table border="1">
-     * <caption>Header Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
-     * request.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addHeader}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         text: String (Required)
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         normalizedSource: String (Required)
-     *         displaySource: String (Required)
-     *         translations (Required): [
-     *              (Required){
-     *                 normalizedTarget: String (Required)
-     *                 displayTarget: String (Required)
-     *                 posTag: String (Required)
-     *                 confidence: double (Required)
-     *                 prefixWord: String (Required)
-     *                 backTranslations (Required): [
-     *                      (Required){
-     *                         normalizedText: String (Required)
-     *                         displayText: String (Required)
-     *                         numExamples: int (Required)
-     *                         frequencyCount: int (Required)
-     *                     }
-     *                 ]
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * @param sourceLanguage Specifies the language of the input text.
-     * The source language must be one of the supported languages included in the dictionary scope.
-     * @param targetLanguage Specifies the language of the output text.
-     * The target language must be one of the supported languages included in the dictionary scope.
-     * @param body Defines the content of the request.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> lookupDictionaryEntriesWithResponse(String sourceLanguage, String targetLanguage,
-        BinaryData body, RequestOptions requestOptions) {
-        final String contentType = "application/json";
-        final String accept = "application/json";
-        return service.lookupDictionaryEntriesSync(this.getEndpoint(), sourceLanguage, targetLanguage,
-            this.getServiceVersion().getVersion(), contentType, accept, body, requestOptions, Context.NONE);
-    }
-
-    /**
-     * Lookup Dictionary Examples.
-     * <p><strong>Header Parameters</strong></p>
-     * <table border="1">
-     * <caption>Header Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
-     * request.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addHeader}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         text: String (Required)
-     *         translation: String (Required)
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         normalizedSource: String (Required)
-     *         normalizedTarget: String (Required)
-     *         examples (Required): [
-     *              (Required){
-     *                 sourcePrefix: String (Required)
-     *                 sourceTerm: String (Required)
-     *                 sourceSuffix: String (Required)
-     *                 targetPrefix: String (Required)
-     *                 targetTerm: String (Required)
-     *                 targetSuffix: String (Required)
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * @param sourceLanguage Specifies the language of the input text.
-     * The source language must be one of the supported languages included in the dictionary scope.
-     * @param targetLanguage Specifies the language of the output text.
-     * The target language must be one of the supported languages included in the dictionary scope.
-     * @param body Defines the content of the request.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> lookupDictionaryExamplesWithResponseAsync(String sourceLanguage,
-        String targetLanguage, BinaryData body, RequestOptions requestOptions) {
-        final String contentType = "application/json";
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.lookupDictionaryExamples(this.getEndpoint(), sourceLanguage,
-            targetLanguage, this.getServiceVersion().getVersion(), contentType, accept, body, requestOptions, context));
-    }
-
-    /**
-     * Lookup Dictionary Examples.
-     * <p><strong>Header Parameters</strong></p>
-     * <table border="1">
-     * <caption>Header Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>X-ClientTraceId</td><td>String</td><td>No</td><td>A client-generated GUID to uniquely identify the
-     * request.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addHeader}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         text: String (Required)
-     *         translation: String (Required)
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         normalizedSource: String (Required)
-     *         normalizedTarget: String (Required)
-     *         examples (Required): [
-     *              (Required){
-     *                 sourcePrefix: String (Required)
-     *                 sourceTerm: String (Required)
-     *                 sourceSuffix: String (Required)
-     *                 targetPrefix: String (Required)
-     *                 targetTerm: String (Required)
-     *                 targetSuffix: String (Required)
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }
-     * </pre>
-     * 
-     * @param sourceLanguage Specifies the language of the input text.
-     * The source language must be one of the supported languages included in the dictionary scope.
-     * @param targetLanguage Specifies the language of the output text.
-     * The target language must be one of the supported languages included in the dictionary scope.
-     * @param body Defines the content of the request.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> lookupDictionaryExamplesWithResponse(String sourceLanguage, String targetLanguage,
-        BinaryData body, RequestOptions requestOptions) {
-        final String contentType = "application/json";
-        final String accept = "application/json";
-        return service.lookupDictionaryExamplesSync(this.getEndpoint(), sourceLanguage, targetLanguage,
             this.getServiceVersion().getVersion(), contentType, accept, body, requestOptions, Context.NONE);
     }
 }
