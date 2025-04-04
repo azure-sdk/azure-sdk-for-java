@@ -34,6 +34,10 @@ parameters:
     displayName: azure-resourcemanager-oracledatabase
     type: boolean
     default: false
+  - name: release_azureoracledatabase
+    displayName: azure-oracledatabase
+    type: boolean
+    default: true
 
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -44,3 +48,7 @@ extends:
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanageroracledatabase
         releaseInBatch: ${{ parameters.release_azureresourcemanageroracledatabase }}
+      - name: azure-oracledatabase
+        groupId: com.azure.resourcemanager
+        safeName: azureoracledatabase
+        releaseInBatch: ${{ parameters.release_azureoracledatabase }}
