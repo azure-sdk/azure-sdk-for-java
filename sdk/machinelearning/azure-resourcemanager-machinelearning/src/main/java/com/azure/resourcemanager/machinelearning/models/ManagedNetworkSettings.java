@@ -40,6 +40,27 @@ public interface ManagedNetworkSettings {
     ManagedNetworkProvisionStatus status();
 
     /**
+     * Gets the firewallSku property: Firewall Sku used for FQDN Rules.
+     * 
+     * @return the firewallSku value.
+     */
+    FirewallSku firewallSku();
+
+    /**
+     * Gets the managedNetworkKind property: Kind of the managed network.
+     * 
+     * @return the managedNetworkKind value.
+     */
+    ManagedNetworkKind managedNetworkKind();
+
+    /**
+     * Gets the firewallPublicIpAddress property: Public IP address assigned to the Azure Firewall.
+     * 
+     * @return the firewallPublicIpAddress value.
+     */
+    String firewallPublicIpAddress();
+
+    /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner object.
      * 
      * @return the inner object.
