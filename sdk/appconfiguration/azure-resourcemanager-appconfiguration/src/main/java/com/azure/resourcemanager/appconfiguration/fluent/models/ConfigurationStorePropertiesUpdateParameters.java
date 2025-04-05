@@ -12,6 +12,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import java.io.IOException;
 
 /**
@@ -44,6 +45,11 @@ public final class ConfigurationStorePropertiesUpdateParameters
      * Property specifying the configuration of data plane proxy for Azure Resource Manager (ARM).
      */
     private DataPlaneProxyProperties dataPlaneProxy;
+
+    /*
+     * Property specifying the configuration of telemetry to update for this configuration store
+     */
+    private TelemetryProperties telemetry;
 
     /**
      * Creates an instance of ConfigurationStorePropertiesUpdateParameters class.
@@ -159,6 +165,28 @@ public final class ConfigurationStorePropertiesUpdateParameters
     }
 
     /**
+     * Get the telemetry property: Property specifying the configuration of telemetry to update for this configuration
+     * store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.telemetry;
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry to update for this configuration
+     * store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStorePropertiesUpdateParameters object itself.
+     */
+    public ConfigurationStorePropertiesUpdateParameters withTelemetry(TelemetryProperties telemetry) {
+        this.telemetry = telemetry;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -169,6 +197,9 @@ public final class ConfigurationStorePropertiesUpdateParameters
         }
         if (dataPlaneProxy() != null) {
             dataPlaneProxy().validate();
+        }
+        if (telemetry() != null) {
+            telemetry().validate();
         }
     }
 
@@ -184,6 +215,7 @@ public final class ConfigurationStorePropertiesUpdateParameters
             this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
         jsonWriter.writeBooleanField("enablePurgeProtection", this.enablePurgeProtection);
         jsonWriter.writeJsonField("dataPlaneProxy", this.dataPlaneProxy);
+        jsonWriter.writeJsonField("telemetry", this.telemetry);
         return jsonWriter.writeEndObject();
     }
 
@@ -218,6 +250,9 @@ public final class ConfigurationStorePropertiesUpdateParameters
                 } else if ("dataPlaneProxy".equals(fieldName)) {
                     deserializedConfigurationStorePropertiesUpdateParameters.dataPlaneProxy
                         = DataPlaneProxyProperties.fromJson(reader);
+                } else if ("telemetry".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.telemetry
+                        = TelemetryProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

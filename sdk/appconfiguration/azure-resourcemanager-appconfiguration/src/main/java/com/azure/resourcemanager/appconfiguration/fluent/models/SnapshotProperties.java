@@ -75,7 +75,7 @@ public final class SnapshotProperties implements JsonSerializable<SnapshotProper
     private Long itemsCount;
 
     /*
-     * The tags of the snapshot. NOTE: These are data plane tags, not Azure Resource Manager (ARM) tags.
+     * The tags of the snapshot. NOTE: These are data plane tags, not ARM tags.
      */
     private Map<String, String> tags;
 
@@ -213,8 +213,7 @@ public final class SnapshotProperties implements JsonSerializable<SnapshotProper
     }
 
     /**
-     * Get the tags property: The tags of the snapshot. NOTE: These are data plane tags, not Azure Resource Manager
-     * (ARM) tags.
+     * Get the tags property: The tags of the snapshot. NOTE: These are data plane tags, not ARM tags.
      * 
      * @return the tags value.
      */
@@ -223,8 +222,7 @@ public final class SnapshotProperties implements JsonSerializable<SnapshotProper
     }
 
     /**
-     * Set the tags property: The tags of the snapshot. NOTE: These are data plane tags, not Azure Resource Manager
-     * (ARM) tags.
+     * Set the tags property: The tags of the snapshot. NOTE: These are data plane tags, not ARM tags.
      * 
      * @param tags the tags value to set.
      * @return the SnapshotProperties object itself.
