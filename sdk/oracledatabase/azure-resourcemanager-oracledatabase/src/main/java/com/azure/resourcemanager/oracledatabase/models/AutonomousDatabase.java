@@ -240,9 +240,9 @@ public interface AutonomousDatabase {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The updatable properties of the AutonomousDatabase..
+             * Specifies the properties property: The resource-specific properties for this resource..
              * 
-             * @param properties The updatable properties of the AutonomousDatabase.
+             * @param properties The resource-specific properties for this resource.
              * @return the next definition stage.
              */
             Update withProperties(AutonomousDatabaseUpdateProperties properties);
@@ -263,6 +263,29 @@ public interface AutonomousDatabase {
      * @return the refreshed resource.
      */
     AutonomousDatabase refresh(Context context);
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model.
+     */
+    AutonomousDatabase changeDisasterRecoveryConfiguration(DisasterRecoveryConfigurationDetails body);
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model.
+     */
+    AutonomousDatabase changeDisasterRecoveryConfiguration(DisasterRecoveryConfigurationDetails body, Context context);
 
     /**
      * Perform failover action on Autonomous Database.
