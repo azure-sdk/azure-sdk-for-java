@@ -78,11 +78,13 @@ public final class NumericalDataQualityMetricThreshold extends DataQualityMetric
      */
     @Override
     public void validate() {
-        super.validate();
         if (metric() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property metric in model NumericalDataQualityMetricThreshold"));
+        }
+        if (threshold() != null) {
+            threshold().validate();
         }
     }
 

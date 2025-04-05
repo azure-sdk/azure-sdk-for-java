@@ -21,14 +21,14 @@ public final class TensorFlow extends DistributionConfiguration {
     private DistributionType distributionType = DistributionType.TENSOR_FLOW;
 
     /*
-     * Number of workers. If not specified, will default to the instance count.
-     */
-    private Integer workerCount;
-
-    /*
      * Number of parameter server tasks.
      */
     private Integer parameterServerCount;
+
+    /*
+     * Number of workers. If not specified, will default to the instance count.
+     */
+    private Integer workerCount;
 
     /**
      * Creates an instance of TensorFlow class.
@@ -44,26 +44,6 @@ public final class TensorFlow extends DistributionConfiguration {
     @Override
     public DistributionType distributionType() {
         return this.distributionType;
-    }
-
-    /**
-     * Get the workerCount property: Number of workers. If not specified, will default to the instance count.
-     * 
-     * @return the workerCount value.
-     */
-    public Integer workerCount() {
-        return this.workerCount;
-    }
-
-    /**
-     * Set the workerCount property: Number of workers. If not specified, will default to the instance count.
-     * 
-     * @param workerCount the workerCount value to set.
-     * @return the TensorFlow object itself.
-     */
-    public TensorFlow withWorkerCount(Integer workerCount) {
-        this.workerCount = workerCount;
-        return this;
     }
 
     /**
@@ -87,13 +67,32 @@ public final class TensorFlow extends DistributionConfiguration {
     }
 
     /**
+     * Get the workerCount property: Number of workers. If not specified, will default to the instance count.
+     * 
+     * @return the workerCount value.
+     */
+    public Integer workerCount() {
+        return this.workerCount;
+    }
+
+    /**
+     * Set the workerCount property: Number of workers. If not specified, will default to the instance count.
+     * 
+     * @param workerCount the workerCount value to set.
+     * @return the TensorFlow object itself.
+     */
+    public TensorFlow withWorkerCount(Integer workerCount) {
+        this.workerCount = workerCount;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -104,8 +103,8 @@ public final class TensorFlow extends DistributionConfiguration {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("distributionType",
             this.distributionType == null ? null : this.distributionType.toString());
-        jsonWriter.writeNumberField("workerCount", this.workerCount);
         jsonWriter.writeNumberField("parameterServerCount", this.parameterServerCount);
+        jsonWriter.writeNumberField("workerCount", this.workerCount);
         return jsonWriter.writeEndObject();
     }
 
@@ -126,10 +125,10 @@ public final class TensorFlow extends DistributionConfiguration {
 
                 if ("distributionType".equals(fieldName)) {
                     deserializedTensorFlow.distributionType = DistributionType.fromString(reader.getString());
-                } else if ("workerCount".equals(fieldName)) {
-                    deserializedTensorFlow.workerCount = reader.getNullable(JsonReader::getInt);
                 } else if ("parameterServerCount".equals(fieldName)) {
                     deserializedTensorFlow.parameterServerCount = reader.getNullable(JsonReader::getInt);
+                } else if ("workerCount".equals(fieldName)) {
+                    deserializedTensorFlow.workerCount = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }
