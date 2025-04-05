@@ -23,14 +23,14 @@ public final class DataContainerProperties extends AssetContainer {
     private DataType dataType;
 
     /*
-     * The latest version inside this container.
-     */
-    private String latestVersion;
-
-    /*
      * The next auto incremental version
      */
     private String nextVersion;
+
+    /*
+     * The latest version inside this container.
+     */
+    private String latestVersion;
 
     /**
      * Creates an instance of DataContainerProperties class.
@@ -59,16 +59,6 @@ public final class DataContainerProperties extends AssetContainer {
     }
 
     /**
-     * Get the latestVersion property: The latest version inside this container.
-     * 
-     * @return the latestVersion value.
-     */
-    @Override
-    public String latestVersion() {
-        return this.latestVersion;
-    }
-
-    /**
      * Get the nextVersion property: The next auto incremental version.
      * 
      * @return the nextVersion value.
@@ -76,6 +66,16 @@ public final class DataContainerProperties extends AssetContainer {
     @Override
     public String nextVersion() {
         return this.nextVersion;
+    }
+
+    /**
+     * Get the latestVersion property: The latest version inside this container.
+     * 
+     * @return the latestVersion value.
+     */
+    @Override
+    public String latestVersion() {
+        return this.latestVersion;
     }
 
     /**
@@ -100,8 +100,8 @@ public final class DataContainerProperties extends AssetContainer {
      * {@inheritDoc}
      */
     @Override
-    public DataContainerProperties withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public DataContainerProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -109,8 +109,8 @@ public final class DataContainerProperties extends AssetContainer {
      * {@inheritDoc}
      */
     @Override
-    public DataContainerProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public DataContainerProperties withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -121,7 +121,6 @@ public final class DataContainerProperties extends AssetContainer {
      */
     @Override
     public void validate() {
-        super.validate();
         if (dataType() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -138,8 +137,8 @@ public final class DataContainerProperties extends AssetContainer {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
         return jsonWriter.writeEndObject();
@@ -163,12 +162,12 @@ public final class DataContainerProperties extends AssetContainer {
 
                 if ("description".equals(fieldName)) {
                     deserializedDataContainerProperties.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedDataContainerProperties.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedDataContainerProperties.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedDataContainerProperties.withTags(tags);
                 } else if ("isArchived".equals(fieldName)) {
                     deserializedDataContainerProperties.withIsArchived(reader.getNullable(JsonReader::getBoolean));
                 } else if ("latestVersion".equals(fieldName)) {
