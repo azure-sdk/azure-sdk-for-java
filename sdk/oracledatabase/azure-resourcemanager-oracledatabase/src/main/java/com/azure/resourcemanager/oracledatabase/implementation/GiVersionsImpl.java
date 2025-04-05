@@ -13,6 +13,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.GiVersionsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.models.GiVersionInner;
 import com.azure.resourcemanager.oracledatabase.models.GiVersion;
 import com.azure.resourcemanager.oracledatabase.models.GiVersions;
+import com.azure.resourcemanager.oracledatabase.models.SystemShapes;
 
 public final class GiVersionsImpl implements GiVersions {
     private static final ClientLogger LOGGER = new ClientLogger(GiVersionsImpl.class);
@@ -32,8 +33,8 @@ public final class GiVersionsImpl implements GiVersions {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new GiVersionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<GiVersion> listByLocation(String location, Context context) {
-        PagedIterable<GiVersionInner> inner = this.serviceClient().listByLocation(location, context);
+    public PagedIterable<GiVersion> listByLocation(String location, SystemShapes shape, String zone, Context context) {
+        PagedIterable<GiVersionInner> inner = this.serviceClient().listByLocation(location, shape, zone, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new GiVersionImpl(inner1, this.manager()));
     }
 

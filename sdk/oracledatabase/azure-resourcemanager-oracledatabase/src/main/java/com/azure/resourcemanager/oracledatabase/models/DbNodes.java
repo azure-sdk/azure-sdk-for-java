@@ -22,7 +22,7 @@ public interface DbNodes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DbNode> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername);
+    PagedIterable<DbNode> listByParent(String resourceGroupName, String cloudvmclustername);
 
     /**
      * List DbNode resources by CloudVmCluster.
@@ -35,7 +35,7 @@ public interface DbNodes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DbNode> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername, Context context);
+    PagedIterable<DbNode> listByParent(String resourceGroupName, String cloudvmclustername, Context context);
 
     /**
      * Get a DbNode.
