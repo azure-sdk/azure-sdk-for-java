@@ -14,11 +14,13 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.appconfiguration.models.CreateMode;
 import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
+import com.azure.resourcemanager.appconfiguration.models.ManagedOnBehalfOfConfiguration;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -381,6 +383,38 @@ public final class ConfigurationStoreInner extends Resource {
         }
         this.innerProperties().withCreateMode(createMode);
         return this;
+    }
+
+    /**
+     * Get the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.innerProperties() == null ? null : this.innerProperties().telemetry();
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withTelemetry(TelemetryProperties telemetry) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withTelemetry(telemetry);
+        return this;
+    }
+
+    /**
+     * Get the managedOnBehalfOfConfiguration property: Managed On Behalf Of Configuration.
+     * 
+     * @return the managedOnBehalfOfConfiguration value.
+     */
+    public ManagedOnBehalfOfConfiguration managedOnBehalfOfConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedOnBehalfOfConfiguration();
     }
 
     /**

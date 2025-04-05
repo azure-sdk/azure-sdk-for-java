@@ -23,8 +23,8 @@ public final class DataPlaneProxyProperties implements JsonSerializable<DataPlan
     private AuthenticationMode authenticationMode;
 
     /*
-     * The data plane proxy private link delegation. This property manages if a request from delegated Azure Resource
-     * Manager (ARM) private link is allowed when the data plane resource requires private link.
+     * The data plane proxy private link delegation. This property manages if a request from delegated ARM private link
+     * is allowed when the data plane resource requires private link.
      */
     private PrivateLinkDelegation privateLinkDelegation;
 
@@ -58,8 +58,7 @@ public final class DataPlaneProxyProperties implements JsonSerializable<DataPlan
 
     /**
      * Get the privateLinkDelegation property: The data plane proxy private link delegation. This property manages if a
-     * request from delegated Azure Resource Manager (ARM) private link is allowed when the data plane resource requires
-     * private link.
+     * request from delegated ARM private link is allowed when the data plane resource requires private link.
      * 
      * @return the privateLinkDelegation value.
      */
@@ -69,8 +68,7 @@ public final class DataPlaneProxyProperties implements JsonSerializable<DataPlan
 
     /**
      * Set the privateLinkDelegation property: The data plane proxy private link delegation. This property manages if a
-     * request from delegated Azure Resource Manager (ARM) private link is allowed when the data plane resource requires
-     * private link.
+     * request from delegated ARM private link is allowed when the data plane resource requires private link.
      * 
      * @param privateLinkDelegation the privateLinkDelegation value to set.
      * @return the DataPlaneProxyProperties object itself.

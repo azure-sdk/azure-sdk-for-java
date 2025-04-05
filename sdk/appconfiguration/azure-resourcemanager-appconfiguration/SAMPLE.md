@@ -15,6 +15,13 @@
 - [RegenerateKey](#configurationstores_regeneratekey)
 - [Update](#configurationstores_update)
 
+## Experimentation
+
+- [Create](#experimentation_create)
+- [Delete](#experimentation_delete)
+- [Get](#experimentation_get)
+- [List](#experimentation_list)
+
 ## KeyValues
 
 - [CreateOrUpdate](#keyvalues_createorupdate)
@@ -59,6 +66,7 @@ import com.azure.resourcemanager.appconfiguration.models.IdentityType;
 import com.azure.resourcemanager.appconfiguration.models.PrivateLinkDelegation;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import com.azure.resourcemanager.appconfiguration.models.UserIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,7 +77,7 @@ import java.util.Map;
 public final class ConfigurationStoresCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresCreate.json
      */
     /**
@@ -90,7 +98,7 @@ public final class ConfigurationStoresCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresCreateWithIdentity.json
      */
     /**
@@ -115,7 +123,7 @@ public final class ConfigurationStoresCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresCreateWithDataPlaneProxy.json
      */
     /**
@@ -137,7 +145,30 @@ public final class ConfigurationStoresCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
+     * ConfigurationStoresCreateWithTelemetry.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Create_With_Telemetry.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresCreateWithTelemetry(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.configurationStores()
+            .define("contoso")
+            .withRegion("westus")
+            .withExistingResourceGroup("myResourceGroup")
+            .withSku(new Sku().withName("Standard"))
+            .withTags(mapOf("myTag", "myTagValue"))
+            .withTelemetry(new TelemetryProperties().withResourceId(
+                "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourceGroups/myResourceGroup/providers/microsoft.insights/components/appInsightsName"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresCreateWithLocalAuthDisabled.json
      */
     /**
@@ -179,7 +210,7 @@ public final class ConfigurationStoresCreateSamples {
 public final class ConfigurationStoresDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresDelete.json
      */
     /**
@@ -203,7 +234,7 @@ public final class ConfigurationStoresDeleteSamples {
 public final class ConfigurationStoresGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresGet.json
      */
     /**
@@ -228,7 +259,7 @@ public final class ConfigurationStoresGetByResourceGroupSamples {
 public final class ConfigurationStoresGetDeletedSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * DeletedConfigurationStoresGet.json
      */
     /**
@@ -252,7 +283,7 @@ public final class ConfigurationStoresGetDeletedSamples {
 public final class ConfigurationStoresListSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresList.json
      */
     /**
@@ -276,7 +307,7 @@ public final class ConfigurationStoresListSamples {
 public final class ConfigurationStoresListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresListByResourceGroup.json
      */
     /**
@@ -300,7 +331,7 @@ public final class ConfigurationStoresListByResourceGroupSamples {
 public final class ConfigurationStoresListDeletedSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * DeletedConfigurationStoresList.json
      */
     /**
@@ -324,7 +355,7 @@ public final class ConfigurationStoresListDeletedSamples {
 public final class ConfigurationStoresListKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresListKeys.json
      */
     /**
@@ -348,7 +379,7 @@ public final class ConfigurationStoresListKeysSamples {
 public final class ConfigurationStoresPurgeDeletedSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * DeletedConfigurationStoresPurge.json
      */
     /**
@@ -374,7 +405,7 @@ import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters
 public final class ConfigurationStoresRegenerateKeySamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresRegenerateKey.json
      */
     /**
@@ -408,7 +439,7 @@ import java.util.Map;
 public final class ConfigurationStoresUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresUpdateDisableLocalAuth.json
      */
     /**
@@ -426,7 +457,7 @@ public final class ConfigurationStoresUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresUpdate.json
      */
     /**
@@ -444,7 +475,7 @@ public final class ConfigurationStoresUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresUpdateWithIdentity.json
      */
     /**
@@ -481,6 +512,105 @@ public final class ConfigurationStoresUpdateSamples {
 }
 ```
 
+### Experimentation_Create
+
+```java
+/**
+ * Samples for Experimentation Create.
+ */
+public final class ExperimentationCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
+     * ConfigurationStoresCreateExperimentation.json
+     */
+    /**
+     * Sample code: Experimentation_Create.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void
+        experimentationCreate(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.experimentations()
+            .define("default")
+            .withExistingConfigurationStore("myResourceGroup", "contoso")
+            .withManagedResourceGroupName("AAC_MRG_myResourceGroup_contoso_eastus")
+            .create();
+    }
+}
+```
+
+### Experimentation_Delete
+
+```java
+/**
+ * Samples for Experimentation Delete.
+ */
+public final class ExperimentationDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
+     * ConfigurationStoresDeleteExperimentation.json
+     */
+    /**
+     * Sample code: Experimentation_Delete.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void
+        experimentationDelete(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.experimentations().delete("myResourceGroup", "contoso", "default", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Experimentation_Get
+
+```java
+/**
+ * Samples for Experimentation Get.
+ */
+public final class ExperimentationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
+     * ConfigurationStoresGetExperimentation.json
+     */
+    /**
+     * Sample code: Experimentation_Get.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void experimentationGet(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.experimentations()
+            .getWithResponse("myResourceGroup", "contoso", "Experimentation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Experimentation_List
+
+```java
+/**
+ * Samples for Experimentation List.
+ */
+public final class ExperimentationListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
+     * ConfigurationStoresListExperimentation.json
+     */
+    /**
+     * Sample code: Experimentation_Get.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void experimentationGet(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.experimentations().list("myResourceGroup", "contoso", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### KeyValues_CreateOrUpdate
 
 ```java
@@ -493,7 +623,7 @@ import java.util.Map;
 public final class KeyValuesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresCreateKeyValue.json
      */
     /**
@@ -534,7 +664,7 @@ public final class KeyValuesCreateOrUpdateSamples {
 public final class KeyValuesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresDeleteKeyValue.json
      */
     /**
@@ -557,7 +687,7 @@ public final class KeyValuesDeleteSamples {
 public final class KeyValuesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresGetKeyValue.json
      */
     /**
@@ -584,7 +714,7 @@ import com.azure.resourcemanager.appconfiguration.models.ConfigurationResourceTy
 public final class OperationsCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * CheckNameAvailable.json
      */
     /**
@@ -603,7 +733,7 @@ public final class OperationsCheckNameAvailabilitySamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * CheckNameNotAvailable.json
      */
     /**
@@ -631,7 +761,7 @@ public final class OperationsCheckNameAvailabilitySamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * OperationsList.json
      */
     /**
@@ -657,7 +787,7 @@ import com.azure.resourcemanager.appconfiguration.models.ConfigurationResourceTy
 public final class OperationsRegionalCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * RegionalCheckNameAvailable.json
      */
     /**
@@ -676,7 +806,7 @@ public final class OperationsRegionalCheckNameAvailabilitySamples {
 
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * RegionalCheckNameNotAvailable.json
      */
     /**
@@ -708,7 +838,7 @@ import com.azure.resourcemanager.appconfiguration.models.PrivateLinkServiceConne
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresUpdatePrivateEndpointConnection.json
      */
     /**
@@ -739,7 +869,7 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresDeletePrivateEndpointConnection.json
      */
     /**
@@ -764,7 +894,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 public final class PrivateEndpointConnectionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresGetPrivateEndpointConnection.json
      */
     /**
@@ -789,7 +919,7 @@ public final class PrivateEndpointConnectionsGetSamples {
 public final class PrivateEndpointConnectionsListByConfigurationStoreSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresListPrivateEndpointConnections.json
      */
     /**
@@ -814,7 +944,7 @@ public final class PrivateEndpointConnectionsListByConfigurationStoreSamples {
 public final class PrivateLinkResourcesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * PrivateLinkResourceGet.json
      */
     /**
@@ -839,7 +969,7 @@ public final class PrivateLinkResourcesGetSamples {
 public final class PrivateLinkResourcesListByConfigurationStoreSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * PrivateLinkResourcesListByConfigurationStore.json
      */
     /**
@@ -864,7 +994,7 @@ public final class PrivateLinkResourcesListByConfigurationStoreSamples {
 public final class ReplicasCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresCreateReplica.json
      */
     /**
@@ -891,7 +1021,7 @@ public final class ReplicasCreateSamples {
 public final class ReplicasDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresDeleteReplica.json
      */
     /**
@@ -914,7 +1044,7 @@ public final class ReplicasDeleteSamples {
 public final class ReplicasGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresGetReplica.json
      */
     /**
@@ -938,7 +1068,7 @@ public final class ReplicasGetSamples {
 public final class ReplicasListByConfigurationStoreSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresListReplicas.json
      */
     /**
@@ -966,7 +1096,7 @@ import java.util.Arrays;
 public final class SnapshotsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresCreateSnapshot.json
      */
     /**
@@ -994,7 +1124,7 @@ public final class SnapshotsCreateSamples {
 public final class SnapshotsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2024-05-01/examples/
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
      * ConfigurationStoresGetSnapshot.json
      */
     /**
