@@ -63,7 +63,6 @@ public final class PartialMinimalTrackedResourceWithSku extends PartialMinimalTr
      */
     @Override
     public void validate() {
-        super.validate();
         if (sku() != null) {
             sku().validate();
         }
