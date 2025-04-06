@@ -21,11 +21,6 @@ public final class AcrDetails implements JsonSerializable<AcrDetails> {
      */
     private SystemCreatedAcrAccount systemCreatedAcrAccount;
 
-    /*
-     * Details of user created ACR account to be used for the Registry
-     */
-    private UserCreatedAcrAccount userCreatedAcrAccount;
-
     /**
      * Creates an instance of AcrDetails class.
      */
@@ -53,26 +48,6 @@ public final class AcrDetails implements JsonSerializable<AcrDetails> {
     }
 
     /**
-     * Get the userCreatedAcrAccount property: Details of user created ACR account to be used for the Registry.
-     * 
-     * @return the userCreatedAcrAccount value.
-     */
-    public UserCreatedAcrAccount userCreatedAcrAccount() {
-        return this.userCreatedAcrAccount;
-    }
-
-    /**
-     * Set the userCreatedAcrAccount property: Details of user created ACR account to be used for the Registry.
-     * 
-     * @param userCreatedAcrAccount the userCreatedAcrAccount value to set.
-     * @return the AcrDetails object itself.
-     */
-    public AcrDetails withUserCreatedAcrAccount(UserCreatedAcrAccount userCreatedAcrAccount) {
-        this.userCreatedAcrAccount = userCreatedAcrAccount;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -80,9 +55,6 @@ public final class AcrDetails implements JsonSerializable<AcrDetails> {
     public void validate() {
         if (systemCreatedAcrAccount() != null) {
             systemCreatedAcrAccount().validate();
-        }
-        if (userCreatedAcrAccount() != null) {
-            userCreatedAcrAccount().validate();
         }
     }
 
@@ -93,7 +65,6 @@ public final class AcrDetails implements JsonSerializable<AcrDetails> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("systemCreatedAcrAccount", this.systemCreatedAcrAccount);
-        jsonWriter.writeJsonField("userCreatedAcrAccount", this.userCreatedAcrAccount);
         return jsonWriter.writeEndObject();
     }
 
@@ -114,8 +85,6 @@ public final class AcrDetails implements JsonSerializable<AcrDetails> {
 
                 if ("systemCreatedAcrAccount".equals(fieldName)) {
                     deserializedAcrDetails.systemCreatedAcrAccount = SystemCreatedAcrAccount.fromJson(reader);
-                } else if ("userCreatedAcrAccount".equals(fieldName)) {
-                    deserializedAcrDetails.userCreatedAcrAccount = UserCreatedAcrAccount.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

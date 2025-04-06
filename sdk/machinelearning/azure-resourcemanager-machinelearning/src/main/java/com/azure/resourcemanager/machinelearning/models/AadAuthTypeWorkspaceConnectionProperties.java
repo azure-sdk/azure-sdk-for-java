@@ -25,16 +25,6 @@ public final class AadAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
      */
     private ConnectionAuthType authType = ConnectionAuthType.AAD;
 
-    /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
-     * Group based on connection category
-     */
-    private ConnectionGroup group;
-
     /**
      * Creates an instance of AadAuthTypeWorkspaceConnectionProperties class.
      */
@@ -49,26 +39,6 @@ public final class AadAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
     @Override
     public ConnectionAuthType authType() {
         return this.authType;
-    }
-
-    /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
-     * Get the group property: Group based on connection category.
-     * 
-     * @return the group value.
-     */
-    @Override
-    public ConnectionGroup group() {
-        return this.group;
     }
 
     /**
@@ -150,7 +120,6 @@ public final class AadAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -193,13 +162,14 @@ public final class AadAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
                     deserializedAadAuthTypeWorkspaceConnectionProperties
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
-                    deserializedAadAuthTypeWorkspaceConnectionProperties.createdByWorkspaceArmId = reader.getString();
+                    deserializedAadAuthTypeWorkspaceConnectionProperties
+                        .withCreatedByWorkspaceArmId(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedAadAuthTypeWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("group".equals(fieldName)) {
-                    deserializedAadAuthTypeWorkspaceConnectionProperties.group
-                        = ConnectionGroup.fromString(reader.getString());
+                    deserializedAadAuthTypeWorkspaceConnectionProperties
+                        .withGroup(ConnectionGroup.fromString(reader.getString()));
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedAadAuthTypeWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));

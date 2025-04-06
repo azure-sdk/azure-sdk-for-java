@@ -66,8 +66,8 @@ public class DataVersionBaseProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public DataVersionBaseProperties withIsArchived(Boolean isArchived) {
-        super.withIsArchived(isArchived);
+    public DataVersionBaseProperties withIsAnonymous(Boolean isAnonymous) {
+        super.withIsAnonymous(isAnonymous);
         return this;
     }
 
@@ -75,8 +75,8 @@ public class DataVersionBaseProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public DataVersionBaseProperties withIsAnonymous(Boolean isAnonymous) {
-        super.withIsAnonymous(isAnonymous);
+    public DataVersionBaseProperties withIsArchived(Boolean isArchived) {
+        super.withIsArchived(isArchived);
         return this;
     }
 
@@ -93,8 +93,8 @@ public class DataVersionBaseProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public DataVersionBaseProperties withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public DataVersionBaseProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -102,8 +102,8 @@ public class DataVersionBaseProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public DataVersionBaseProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public DataVersionBaseProperties withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -114,7 +114,6 @@ public class DataVersionBaseProperties extends AssetBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (dataUri() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -131,10 +130,10 @@ public class DataVersionBaseProperties extends AssetBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeBooleanField("isArchived", isArchived());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isAnonymous", isAnonymous());
+        jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeStringField("dataUri", this.dataUri);
         jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
         return jsonWriter.writeEndObject();
@@ -187,16 +186,16 @@ public class DataVersionBaseProperties extends AssetBase {
 
                 if ("description".equals(fieldName)) {
                     deserializedDataVersionBaseProperties.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedDataVersionBaseProperties.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedDataVersionBaseProperties.withProperties(properties);
-                } else if ("isArchived".equals(fieldName)) {
-                    deserializedDataVersionBaseProperties.withIsArchived(reader.getNullable(JsonReader::getBoolean));
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedDataVersionBaseProperties.withTags(tags);
                 } else if ("isAnonymous".equals(fieldName)) {
                     deserializedDataVersionBaseProperties.withIsAnonymous(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isArchived".equals(fieldName)) {
+                    deserializedDataVersionBaseProperties.withIsArchived(reader.getNullable(JsonReader::getBoolean));
                 } else if ("dataUri".equals(fieldName)) {
                     deserializedDataVersionBaseProperties.dataUri = reader.getString();
                 } else if ("dataType".equals(fieldName)) {
