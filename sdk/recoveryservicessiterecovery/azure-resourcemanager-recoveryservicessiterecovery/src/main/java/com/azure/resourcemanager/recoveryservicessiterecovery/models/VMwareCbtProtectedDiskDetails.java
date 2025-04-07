@@ -91,6 +91,26 @@ public final class VMwareCbtProtectedDiskDetails implements JsonSerializable<VMw
      */
     private GatewayOperationDetails gatewayOperationDetails;
 
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    private Integer sectorSizeInBytes;
+
+    /*
+     * The number of IOPS allowed for Premium V2 and Ultra disks.
+     */
+    private Long iops;
+
+    /*
+     * The total throughput in Mbps for Premium V2 and Ultra disks.
+     */
+    private Long throughputInMbps;
+
+    /*
+     * The target disk size in GB.
+     */
+    private Long diskSizeInGB;
+
     /**
      * Creates an instance of VMwareCbtProtectedDiskDetails class.
      */
@@ -255,6 +275,86 @@ public final class VMwareCbtProtectedDiskDetails implements JsonSerializable<VMw
     }
 
     /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the VMwareCbtProtectedDiskDetails object itself.
+     */
+    public VMwareCbtProtectedDiskDetails withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
+        return this;
+    }
+
+    /**
+     * Get the iops property: The number of IOPS allowed for Premium V2 and Ultra disks.
+     * 
+     * @return the iops value.
+     */
+    public Long iops() {
+        return this.iops;
+    }
+
+    /**
+     * Set the iops property: The number of IOPS allowed for Premium V2 and Ultra disks.
+     * 
+     * @param iops the iops value to set.
+     * @return the VMwareCbtProtectedDiskDetails object itself.
+     */
+    public VMwareCbtProtectedDiskDetails withIops(Long iops) {
+        this.iops = iops;
+        return this;
+    }
+
+    /**
+     * Get the throughputInMbps property: The total throughput in Mbps for Premium V2 and Ultra disks.
+     * 
+     * @return the throughputInMbps value.
+     */
+    public Long throughputInMbps() {
+        return this.throughputInMbps;
+    }
+
+    /**
+     * Set the throughputInMbps property: The total throughput in Mbps for Premium V2 and Ultra disks.
+     * 
+     * @param throughputInMbps the throughputInMbps value to set.
+     * @return the VMwareCbtProtectedDiskDetails object itself.
+     */
+    public VMwareCbtProtectedDiskDetails withThroughputInMbps(Long throughputInMbps) {
+        this.throughputInMbps = throughputInMbps;
+        return this;
+    }
+
+    /**
+     * Get the diskSizeInGB property: The target disk size in GB.
+     * 
+     * @return the diskSizeInGB value.
+     */
+    public Long diskSizeInGB() {
+        return this.diskSizeInGB;
+    }
+
+    /**
+     * Set the diskSizeInGB property: The target disk size in GB.
+     * 
+     * @param diskSizeInGB the diskSizeInGB value to set.
+     * @return the VMwareCbtProtectedDiskDetails object itself.
+     */
+    public VMwareCbtProtectedDiskDetails withDiskSizeInGB(Long diskSizeInGB) {
+        this.diskSizeInGB = diskSizeInGB;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -273,6 +373,10 @@ public final class VMwareCbtProtectedDiskDetails implements JsonSerializable<VMw
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("diskType", this.diskType == null ? null : this.diskType.toString());
         jsonWriter.writeStringField("targetDiskName", this.targetDiskName);
+        jsonWriter.writeNumberField("sectorSizeInBytes", this.sectorSizeInBytes);
+        jsonWriter.writeNumberField("iops", this.iops);
+        jsonWriter.writeNumberField("throughputInMbps", this.throughputInMbps);
+        jsonWriter.writeNumberField("diskSizeInGB", this.diskSizeInGB);
         return jsonWriter.writeEndObject();
     }
 
@@ -323,6 +427,16 @@ public final class VMwareCbtProtectedDiskDetails implements JsonSerializable<VMw
                 } else if ("gatewayOperationDetails".equals(fieldName)) {
                     deserializedVMwareCbtProtectedDiskDetails.gatewayOperationDetails
                         = GatewayOperationDetails.fromJson(reader);
+                } else if ("sectorSizeInBytes".equals(fieldName)) {
+                    deserializedVMwareCbtProtectedDiskDetails.sectorSizeInBytes
+                        = reader.getNullable(JsonReader::getInt);
+                } else if ("iops".equals(fieldName)) {
+                    deserializedVMwareCbtProtectedDiskDetails.iops = reader.getNullable(JsonReader::getLong);
+                } else if ("throughputInMbps".equals(fieldName)) {
+                    deserializedVMwareCbtProtectedDiskDetails.throughputInMbps
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("diskSizeInGB".equals(fieldName)) {
+                    deserializedVMwareCbtProtectedDiskDetails.diskSizeInGB = reader.getNullable(JsonReader::getLong);
                 } else {
                     reader.skipChildren();
                 }

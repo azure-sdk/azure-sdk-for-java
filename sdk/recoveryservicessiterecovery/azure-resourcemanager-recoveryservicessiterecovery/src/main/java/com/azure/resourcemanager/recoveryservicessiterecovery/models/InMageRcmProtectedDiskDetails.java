@@ -37,6 +37,11 @@ public final class InMageRcmProtectedDiskDetails implements JsonSerializable<InM
     private Long capacityInBytes;
 
     /*
+     * The disk state.
+     */
+    private DiskState diskState;
+
+    /*
      * The log storage account ARM Id.
      */
     private String logStorageAccountId;
@@ -91,6 +96,31 @@ public final class InMageRcmProtectedDiskDetails implements JsonSerializable<InM
      */
     private InMageRcmSyncDetails resyncDetails;
 
+    /*
+     * The custom target Azure disk name.
+     */
+    private String customTargetDiskName;
+
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    private Integer sectorSizeInBytes;
+
+    /*
+     * The number of IOPS allowed for Premium V2 and Ultra disks.
+     */
+    private Long iops;
+
+    /*
+     * The total throughput in Mbps for Premium V2 and Ultra disks.
+     */
+    private Long throughputInMbps;
+
+    /*
+     * The target disk size in GB.
+     */
+    private Long diskSizeInGB;
+
     /**
      * Creates an instance of InMageRcmProtectedDiskDetails class.
      */
@@ -131,6 +161,15 @@ public final class InMageRcmProtectedDiskDetails implements JsonSerializable<InM
      */
     public Long capacityInBytes() {
         return this.capacityInBytes;
+    }
+
+    /**
+     * Get the diskState property: The disk state.
+     * 
+     * @return the diskState value.
+     */
+    public DiskState diskState() {
+        return this.diskState;
     }
 
     /**
@@ -266,6 +305,106 @@ public final class InMageRcmProtectedDiskDetails implements JsonSerializable<InM
     }
 
     /**
+     * Get the customTargetDiskName property: The custom target Azure disk name.
+     * 
+     * @return the customTargetDiskName value.
+     */
+    public String customTargetDiskName() {
+        return this.customTargetDiskName;
+    }
+
+    /**
+     * Set the customTargetDiskName property: The custom target Azure disk name.
+     * 
+     * @param customTargetDiskName the customTargetDiskName value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withCustomTargetDiskName(String customTargetDiskName) {
+        this.customTargetDiskName = customTargetDiskName;
+        return this;
+    }
+
+    /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
+        return this;
+    }
+
+    /**
+     * Get the iops property: The number of IOPS allowed for Premium V2 and Ultra disks.
+     * 
+     * @return the iops value.
+     */
+    public Long iops() {
+        return this.iops;
+    }
+
+    /**
+     * Set the iops property: The number of IOPS allowed for Premium V2 and Ultra disks.
+     * 
+     * @param iops the iops value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withIops(Long iops) {
+        this.iops = iops;
+        return this;
+    }
+
+    /**
+     * Get the throughputInMbps property: The total throughput in Mbps for Premium V2 and Ultra disks.
+     * 
+     * @return the throughputInMbps value.
+     */
+    public Long throughputInMbps() {
+        return this.throughputInMbps;
+    }
+
+    /**
+     * Set the throughputInMbps property: The total throughput in Mbps for Premium V2 and Ultra disks.
+     * 
+     * @param throughputInMbps the throughputInMbps value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withThroughputInMbps(Long throughputInMbps) {
+        this.throughputInMbps = throughputInMbps;
+        return this;
+    }
+
+    /**
+     * Get the diskSizeInGB property: The target disk size in GB.
+     * 
+     * @return the diskSizeInGB value.
+     */
+    public Long diskSizeInGB() {
+        return this.diskSizeInGB;
+    }
+
+    /**
+     * Set the diskSizeInGB property: The target disk size in GB.
+     * 
+     * @param diskSizeInGB the diskSizeInGB value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withDiskSizeInGB(Long diskSizeInGB) {
+        this.diskSizeInGB = diskSizeInGB;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -288,6 +427,11 @@ public final class InMageRcmProtectedDiskDetails implements JsonSerializable<InM
         jsonWriter.writeStringField("diskType", this.diskType == null ? null : this.diskType.toString());
         jsonWriter.writeJsonField("irDetails", this.irDetails);
         jsonWriter.writeJsonField("resyncDetails", this.resyncDetails);
+        jsonWriter.writeStringField("customTargetDiskName", this.customTargetDiskName);
+        jsonWriter.writeNumberField("sectorSizeInBytes", this.sectorSizeInBytes);
+        jsonWriter.writeNumberField("iops", this.iops);
+        jsonWriter.writeNumberField("throughputInMbps", this.throughputInMbps);
+        jsonWriter.writeNumberField("diskSizeInGB", this.diskSizeInGB);
         return jsonWriter.writeEndObject();
     }
 
@@ -315,6 +459,8 @@ public final class InMageRcmProtectedDiskDetails implements JsonSerializable<InM
                     deserializedInMageRcmProtectedDiskDetails.isOSDisk = reader.getString();
                 } else if ("capacityInBytes".equals(fieldName)) {
                     deserializedInMageRcmProtectedDiskDetails.capacityInBytes = reader.getNullable(JsonReader::getLong);
+                } else if ("diskState".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.diskState = DiskState.fromString(reader.getString());
                 } else if ("logStorageAccountId".equals(fieldName)) {
                     deserializedInMageRcmProtectedDiskDetails.logStorageAccountId = reader.getString();
                 } else if ("diskEncryptionSetId".equals(fieldName)) {
@@ -339,6 +485,18 @@ public final class InMageRcmProtectedDiskDetails implements JsonSerializable<InM
                     deserializedInMageRcmProtectedDiskDetails.irDetails = InMageRcmSyncDetails.fromJson(reader);
                 } else if ("resyncDetails".equals(fieldName)) {
                     deserializedInMageRcmProtectedDiskDetails.resyncDetails = InMageRcmSyncDetails.fromJson(reader);
+                } else if ("customTargetDiskName".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.customTargetDiskName = reader.getString();
+                } else if ("sectorSizeInBytes".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.sectorSizeInBytes
+                        = reader.getNullable(JsonReader::getInt);
+                } else if ("iops".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.iops = reader.getNullable(JsonReader::getLong);
+                } else if ("throughputInMbps".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.throughputInMbps
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("diskSizeInGB".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.diskSizeInGB = reader.getNullable(JsonReader::getLong);
                 } else {
                     reader.skipChildren();
                 }
