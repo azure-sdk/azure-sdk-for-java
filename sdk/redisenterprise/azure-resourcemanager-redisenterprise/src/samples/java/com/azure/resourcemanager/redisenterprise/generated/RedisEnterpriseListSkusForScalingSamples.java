@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.redisenterprise.generated;
 
 /**
- * Samples for Databases Delete.
+ * Samples for RedisEnterprise ListSkusForScaling.
  */
-public final class DatabasesDeleteSamples {
+public final class RedisEnterpriseListSkusForScalingSamples {
     /*
      * x-ms-original-file:
      * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2025-05-01-preview/examples/
-     * RedisEnterpriseDatabasesDelete.json
+     * RedisEnterpriseListSkusForScaling.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesDelete.
+     * Sample code: RedisEnterpriseListSkusForScaling.
      * 
      * @param manager Entry point to RedisEnterpriseManager.
      */
     public static void
-        redisEnterpriseDatabasesDelete(com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager.databases().delete("rg1", "cache1", "db1", com.azure.core.util.Context.NONE);
+        redisEnterpriseListSkusForScaling(com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
+        manager.redisEnterprises().listSkusForScalingWithResponse("rg1", "cache1", com.azure.core.util.Context.NONE);
     }
 }
