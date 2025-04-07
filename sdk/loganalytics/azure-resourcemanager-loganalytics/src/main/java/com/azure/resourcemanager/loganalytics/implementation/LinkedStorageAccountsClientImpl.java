@@ -145,11 +145,11 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                dataSourceType, this.client.getSubscriptionId(), apiVersion, parameters, accept, context))
+                dataSourceType, this.client.getSubscriptionId(), this.client.getApiVersion(), parameters, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -195,11 +195,10 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceType,
-            this.client.getSubscriptionId(), apiVersion, parameters, accept, context);
+            this.client.getSubscriptionId(), this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -296,10 +295,9 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                dataSourceType, apiVersion, this.client.getSubscriptionId(), context))
+                dataSourceType, this.client.getApiVersion(), this.client.getSubscriptionId(), context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -336,10 +334,9 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceType, apiVersion,
-            this.client.getSubscriptionId(), context);
+        return service.delete(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceType,
+            this.client.getApiVersion(), this.client.getSubscriptionId(), context);
     }
 
     /**
@@ -425,11 +422,10 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), resourceGroupName, workspaceName,
-                dataSourceType, apiVersion, this.client.getSubscriptionId(), accept, context))
+                dataSourceType, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -467,11 +463,10 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceType, apiVersion,
-            this.client.getSubscriptionId(), accept, context);
+        return service.get(this.client.getEndpoint(), resourceGroupName, workspaceName, dataSourceType,
+            this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context);
     }
 
     /**
@@ -559,11 +554,10 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, apiVersion, workspaceName, accept, context))
+                resourceGroupName, this.client.getApiVersion(), workspaceName, accept, context))
             .<PagedResponse<LinkedStorageAccountsResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -600,12 +594,11 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, apiVersion,
-                workspaceName, accept, context)
+            .listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), workspaceName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
     }
