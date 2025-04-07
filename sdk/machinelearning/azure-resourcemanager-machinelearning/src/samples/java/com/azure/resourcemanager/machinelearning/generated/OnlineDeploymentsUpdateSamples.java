@@ -16,7 +16,7 @@ import java.util.Map;
 public final class OnlineDeploymentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/OnlineDeployment/ManagedOnlineDeployment/update.json
      */
     /**
@@ -32,17 +32,17 @@ public final class OnlineDeploymentsUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf())
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.FREE)
-                .withSize("string")
+            .withSku(new PartialSku().withCapacity(1)
                 .withFamily("string")
-                .withCapacity(1))
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.FREE))
             .apply();
     }
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
      */
     /**
@@ -58,11 +58,11 @@ public final class OnlineDeploymentsUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf())
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.FREE)
-                .withSize("string")
+            .withSku(new PartialSku().withCapacity(1)
                 .withFamily("string")
-                .withCapacity(1))
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.FREE))
             .apply();
     }
 

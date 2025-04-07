@@ -69,7 +69,6 @@ public final class ServicePrincipalDatastoreSecrets extends DatastoreSecretsInne
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
