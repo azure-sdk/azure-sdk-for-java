@@ -2,14 +2,289 @@
 
 ## 4.7.0-beta.1 (Unreleased)
 
-### Features Added
-- Added support for pre-backup and pre-restore operations in `KeyVaultBackupClient` and `KeyVaultBackupAsyncClient`. These are long-running operations that check whether it is possible to perform a full key backup or a full key restore from a backup.
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.models.RoleAssignmentListResult` was removed
 
-### Other Changes
+#### `implementation.KeyVaultAccessControlClientImpl` was removed
+
+#### `implementation.models.RoleDefinitionFilter` was removed
+
+#### `implementation.KeyVaultErrorCodeStrings` was removed
+
+#### `implementation.models.KeyVaultError` was removed
+
+#### `implementation.KeyVaultSettingsClientImpl` was removed
+
+#### `implementation.models.SelectiveKeyRestoreOperationHeaders` was removed
+
+#### `implementation.models.FullRestoreOperationHeaders` was removed
+
+#### `implementation.models.KeyVaultErrorException` was removed
+
+#### `implementation.KeyVaultBackupClientImpl$KeyVaultBackupClientService` was removed
+
+#### `implementation.models.FullBackupHeaders` was removed
+
+#### `implementation.models.RoleDefinitionListResult` was removed
+
+#### `implementation.models.RoleAssignmentFilter` was removed
+
+#### `implementation.KeyVaultBackupClientImpl` was removed
+
+#### `implementation.KeyVaultSettingsClientImpl$KeyVaultSettingsClientService` was removed
+
+#### `implementation.models.SelectiveKeyRestoreOperationResponse` was removed
+
+#### `implementation.RoleAssignmentsImpl$RoleAssignmentsService` was modified
+
+* `listForScopeSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `create(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleAssignmentCreateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `get(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScope(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScopeNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScopeNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleAssignmentCreateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `implementation.models.RoleDefinition` was modified
+
+* `setRoleType(models.KeyVaultRoleType)` was removed
+* `getDescription()` was removed
+* `setDescription(java.lang.String)` was removed
+* `setRoleName(java.lang.String)` was removed
+* `getPermissions()` was removed
+* `getRoleType()` was removed
+* `setAssignableScopes(java.util.List)` was removed
+* `setPermissions(java.util.List)` was removed
+* `getAssignableScopes()` was removed
+* `getRoleName()` was removed
+
+#### `implementation.models.RestoreOperation` was modified
+
+* `implementation.models.Error getError()` -> `implementation.models.FullBackupOperationError getError()`
+* `java.lang.String getStatus()` -> `implementation.models.OperationStatus getStatus()`
+* `setEndTime(java.time.OffsetDateTime)` was removed
+* `setJobId(java.lang.String)` was removed
+* `setError(implementation.models.Error)` was removed
+* `setStatusDetails(java.lang.String)` was removed
+* `setStatus(java.lang.String)` was removed
+* `setStartTime(java.time.OffsetDateTime)` was removed
+
+#### `implementation.models.SelectiveKeyRestoreOperation` was modified
+
+* `setStatusDetails(java.lang.String)` was removed
+* `setStatus(java.lang.String)` was removed
+* `java.lang.String getStatus()` -> `implementation.models.OperationStatus getStatus()`
+* `setError(implementation.models.Error)` was removed
+* `setStartTime(java.time.OffsetDateTime)` was removed
+* `implementation.models.Error getError()` -> `implementation.models.FullBackupOperationError getError()`
+* `setEndTime(java.time.OffsetDateTime)` was removed
+* `setJobId(java.lang.String)` was removed
+
+#### `implementation.models.UpdateSettingRequest` was modified
+
+* `setValue(java.lang.String)` was removed
+
+#### `implementation.RoleDefinitionsImpl$RoleDefinitionsService` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleDefinitionCreateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `get(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createOrUpdateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleDefinitionCreateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `listNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `implementation.KeyVaultAdministrationUtils` was modified
+
+* `createKeyVaultErrorFromError(implementation.models.Error)` was removed
+* `toKeyVaultError(implementation.models.KeyVaultError)` was removed
+* `toKeyVaultAdministrationException(implementation.models.KeyVaultErrorException)` was removed
+
+#### `implementation.models.RoleAssignmentPropertiesWithScope` was modified
+
+* `setPrincipalId(java.lang.String)` was removed
+* `setRoleDefinitionId(java.lang.String)` was removed
+* `setScope(models.KeyVaultRoleScope)` was removed
+
+#### `implementation.models.FullBackupOperation` was modified
+
+* `setStatusDetails(java.lang.String)` was removed
+* `setError(implementation.models.Error)` was removed
+* `setStartTime(java.time.OffsetDateTime)` was removed
+* `setStatus(java.lang.String)` was removed
+* `implementation.models.Error getError()` -> `implementation.models.FullBackupOperationError getError()`
+* `setEndTime(java.time.OffsetDateTime)` was removed
+* `setAzureStorageBlobContainerUri(java.lang.String)` was removed
+* `setJobId(java.lang.String)` was removed
+* `java.lang.String getStatus()` -> `implementation.models.OperationStatus getStatus()`
+
+#### `implementation.models.RoleAssignment` was modified
+
+* `setProperties(implementation.models.RoleAssignmentPropertiesWithScope)` was removed
+
+#### `implementation.RoleDefinitionsImpl` was modified
+
+* `createOrUpdateWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleDefinitionCreateParameters,com.azure.core.util.Context)` was removed
+* `deleteAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `createOrUpdateAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleDefinitionCreateParameters,com.azure.core.util.Context)` was removed
+* `getAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `list(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listSinglePageAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createOrUpdateWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleDefinitionCreateParameters)` was removed
+* `deleteWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listSinglePage(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `delete(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `listSinglePage(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `get(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleDefinitionCreateParameters)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createOrUpdateAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleDefinitionCreateParameters)` was removed
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleDefinitionCreateParameters,com.azure.core.util.Context)` was removed
+* `listNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `list(java.lang.String,java.lang.String,java.lang.String)` was removed
+
+#### `implementation.models.Setting` was modified
+
+* `setType(models.KeyVaultSettingType)` was removed
+
+#### `implementation.RoleAssignmentsImpl` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `get(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listForScopeSinglePageAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `createAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleAssignmentCreateParameters)` was removed
+* `createWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleAssignmentCreateParameters,com.azure.core.util.Context)` was removed
+* `getAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `createWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleAssignmentCreateParameters,com.azure.core.util.Context)` was removed
+* `createWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleAssignmentCreateParameters)` was removed
+* `listForScopeAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listForScope(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScopeNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `listForScopeSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScopeAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScopeNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listForScopeSinglePage(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScopeSinglePage(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listForScopeNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScopeNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `create(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleAssignmentCreateParameters)` was removed
+* `deleteAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listForScope(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `createAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.RoleAssignmentCreateParameters,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `implementation.KeyVaultAdministrationClientImpl` was added
+
+* `implementation.models.OperationStatus` was added
+
+* `implementation.models.PreBackupOperationParameters` was added
+
+* `implementation.models.FullBackupOperationError` was added
+
+* `implementation.KeyVaultAdministrationClientImpl$KeyVaultAdministrationClientService` was added
+
+* `implementation.models.PreRestoreOperationParameters` was added
+
+#### `implementation.RoleAssignmentsImpl$RoleAssignmentsService` was modified
+
+* `deleteSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `listForScopeNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `get(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `listForScopeNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `create(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `listForScopeSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `listForScope(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `implementation.models.RoleDefinition` was modified
+
+* `getProperties()` was added
+
+#### `implementation.RoleDefinitionsImpl$RoleDefinitionsService` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `listNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `listNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createOrUpdateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `listSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `get(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `KeyVaultBackupClient` was modified
+
+* `beginPreBackup(java.lang.String,java.lang.String)` was added
+* `beginPreRestore(java.lang.String,java.lang.String)` was added
+
+#### `KeyVaultBackupAsyncClient` was modified
+
+* `beginPreRestore(java.lang.String,java.lang.String)` was added
+* `beginPreBackup(java.lang.String,java.lang.String)` was added
+
+#### `implementation.KeyVaultAdministrationUtils` was modified
+
+* `toKeyVaultAdministrationError(java.lang.Object)` was added
+* `toKeyVaultAdministrationException(com.azure.core.exception.HttpResponseException)` was added
+
+#### `implementation.RoleDefinitionsImpl` was modified
+
+* `listNextSinglePageAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `createOrUpdateWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `list(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteWithResponse(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `listAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `listSinglePageAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getWithResponse(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getServiceVersion()` was added
+* `getWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+
+#### `implementation.RoleAssignmentsImpl` was modified
+
+* `createWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteWithResponse(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getServiceVersion()` was added
+* `listForScopeSinglePageAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `listForScopeNextSinglePageAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getWithResponse(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `listForScope(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `createWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `listForScopeAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
 
 ## 4.6.4 (2025-03-24)
 
