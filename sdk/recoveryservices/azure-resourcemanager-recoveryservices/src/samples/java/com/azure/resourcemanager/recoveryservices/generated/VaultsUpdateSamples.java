@@ -29,7 +29,7 @@ import java.util.Map;
 public final class VaultsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-03-01/examples/
      * PATCHVault_WithMonitoringSettings.json
      */
     /**
@@ -57,7 +57,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-03-01/examples/
      * PATCHVault_WithCMK.json
      */
     /**
@@ -86,7 +86,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-03-01/examples/
      * PatchVault_WithCMK2.json
      */
     /**
@@ -109,7 +109,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-03-01/examples/
      * PATCHVault_WithCMK3.json
      */
     /**
@@ -135,7 +135,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/PATCHVault.
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-03-01/examples/PATCHVault.
      * json
      */
     /**
@@ -152,7 +152,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-03-01/examples/
      * PATCHVault_WithRedundancySettings.json
      */
     /**
@@ -174,7 +174,7 @@ public final class VaultsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
+     * specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2025-03-01/examples/
      * PATCHVault_WithUserAssignedIdentity.json
      */
     /**
