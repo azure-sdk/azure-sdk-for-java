@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class WorkspacesListNotebookKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Notebook/listKeys.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Notebook/listKeys.json
      */
     /**
      * Sample code: List Workspace Keys.
