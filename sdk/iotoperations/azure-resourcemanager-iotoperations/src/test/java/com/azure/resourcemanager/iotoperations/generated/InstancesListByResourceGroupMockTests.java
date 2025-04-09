@@ -26,7 +26,7 @@ public final class InstancesListByResourceGroupMockTests {
     @Test
     public void testListByResourceGroup() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"description\":\"bbejdcngqqm\",\"provisioningState\":\"Failed\",\"version\":\"fgmjzrwrdgrt\",\"schemaRegistryRef\":{\"resourceId\":\"aenuuz\"},\"features\":{\"efozbhdms\":{\"mode\":\"Preview\",\"settings\":{\"fdwoyuhh\":\"Enabled\",\"u\":\"Disabled\"}},\"gwol\":{\"mode\":\"Preview\",\"settings\":{\"oftrmaequia\":\"Enabled\",\"icslfaoq\":\"Enabled\",\"iyylhalnswhccsp\":\"Disabled\",\"aivwitqscywu\":\"Enabled\"}}}},\"extendedLocation\":{\"name\":\"h\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"emh\",\"tenantId\":\"rsbrgzdwm\",\"type\":\"None\",\"userAssignedIdentities\":{\"ttlstvlzywemhz\":{\"clientId\":\"qwdxggicc\",\"principalId\":\"xqhuexm\"},\"adcy\":{\"clientId\":\"csdtclusiypbs\",\"principalId\":\"ytguslf\"},\"lppvksrpq\":{\"clientId\":\"ukyhejhzis\",\"principalId\":\"fpel\"}}},\"location\":\"jzraehtwdwrf\",\"tags\":{\"cdl\":\"iby\"},\"id\":\"h\",\"name\":\"hfwpracstwit\",\"type\":\"khevxccedc\"}]}";
+            = "{\"value\":[{\"properties\":{\"description\":\"ykqgaifmvik\",\"provisioningState\":\"Succeeded\",\"version\":\"vkhbejdznx\",\"schemaRegistryRef\":{\"resourceId\":\"vdsrhnjiv\"},\"features\":{\"mjdftu\":{\"mode\":\"Disabled\",\"settings\":{\"fzg\":\"Disabled\"}}}},\"extendedLocation\":{\"name\":\"jltduceam\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"u\",\"tenantId\":\"ejwcwwqiok\",\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"yxgtczh\":{\"clientId\":\"ojmsvpkjprvkwc\",\"principalId\":\"ql\"},\"tfnhtbaxkgxywr\":{\"clientId\":\"dbsdshm\",\"principalId\":\"maehvbbxurip\"},\"thost\":{\"clientId\":\"pyklyhpluodpvru\",\"principalId\":\"lgzi\"}}},\"location\":\"tstvdxeclzedq\",\"tags\":{\"fbumlkx\":\"hzlhplodqkdlww\"},\"id\":\"rqjfsmlm\",\"name\":\"txhwgfws\",\"type\":\"tawc\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -36,19 +36,20 @@ public final class InstancesListByResourceGroupMockTests {
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         PagedIterable<InstanceResource> response
-            = manager.instances().listByResourceGroup("hewpusdsttwv", com.azure.core.util.Context.NONE);
+            = manager.instances().listByResourceGroup("rpxeh", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("jzraehtwdwrf", response.iterator().next().location());
-        Assertions.assertEquals("iby", response.iterator().next().tags().get("cdl"));
-        Assertions.assertEquals("bbejdcngqqm", response.iterator().next().properties().description());
-        Assertions.assertEquals("aenuuz", response.iterator().next().properties().schemaRegistryRef().resourceId());
-        Assertions.assertEquals(InstanceFeatureMode.PREVIEW,
-            response.iterator().next().properties().features().get("efozbhdms").mode());
-        Assertions.assertEquals(OperationalMode.ENABLED,
-            response.iterator().next().properties().features().get("efozbhdms").settings().get("fdwoyuhh"));
-        Assertions.assertEquals("h", response.iterator().next().extendedLocation().name());
+        Assertions.assertEquals("tstvdxeclzedq", response.iterator().next().location());
+        Assertions.assertEquals("hzlhplodqkdlww", response.iterator().next().tags().get("fbumlkx"));
+        Assertions.assertEquals("ykqgaifmvik", response.iterator().next().properties().description());
+        Assertions.assertEquals("vdsrhnjiv", response.iterator().next().properties().schemaRegistryRef().resourceId());
+        Assertions.assertEquals(InstanceFeatureMode.DISABLED,
+            response.iterator().next().properties().features().get("mjdftu").mode());
+        Assertions.assertEquals(OperationalMode.DISABLED,
+            response.iterator().next().properties().features().get("mjdftu").settings().get("fzg"));
+        Assertions.assertEquals("jltduceam", response.iterator().next().extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION,
             response.iterator().next().extendedLocation().type());
-        Assertions.assertEquals(ManagedServiceIdentityType.NONE, response.iterator().next().identity().type());
+        Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED,
+            response.iterator().next().identity().type());
     }
 }

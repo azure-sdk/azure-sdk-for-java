@@ -14,25 +14,25 @@ public final class DataflowBuiltInTransformationFilterTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         DataflowBuiltInTransformationFilter model = BinaryData.fromString(
-            "{\"type\":\"Filter\",\"description\":\"ppfufl\",\"inputs\":[\"dmhdlxyjr\",\"sag\",\"fcnihgwq\"],\"expression\":\"pnedgf\"}")
+            "{\"type\":\"Filter\",\"description\":\"ndzwmkrefa\",\"inputs\":[\"jorwkqnyhgbij\",\"jivfxzsjabib\",\"ystawfsdjpvkvp\"],\"expression\":\"jxbkzbzkdvn\"}")
             .toObject(DataflowBuiltInTransformationFilter.class);
         Assertions.assertEquals(FilterType.FILTER, model.type());
-        Assertions.assertEquals("ppfufl", model.description());
-        Assertions.assertEquals("dmhdlxyjr", model.inputs().get(0));
-        Assertions.assertEquals("pnedgf", model.expression());
+        Assertions.assertEquals("ndzwmkrefa", model.description());
+        Assertions.assertEquals("jorwkqnyhgbij", model.inputs().get(0));
+        Assertions.assertEquals("jxbkzbzkdvn", model.expression());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         DataflowBuiltInTransformationFilter model
             = new DataflowBuiltInTransformationFilter().withType(FilterType.FILTER)
-                .withDescription("ppfufl")
-                .withInputs(Arrays.asList("dmhdlxyjr", "sag", "fcnihgwq"))
-                .withExpression("pnedgf");
+                .withDescription("ndzwmkrefa")
+                .withInputs(Arrays.asList("jorwkqnyhgbij", "jivfxzsjabib", "ystawfsdjpvkvp"))
+                .withExpression("jxbkzbzkdvn");
         model = BinaryData.fromObject(model).toObject(DataflowBuiltInTransformationFilter.class);
         Assertions.assertEquals(FilterType.FILTER, model.type());
-        Assertions.assertEquals("ppfufl", model.description());
-        Assertions.assertEquals("dmhdlxyjr", model.inputs().get(0));
-        Assertions.assertEquals("pnedgf", model.expression());
+        Assertions.assertEquals("ndzwmkrefa", model.description());
+        Assertions.assertEquals("jorwkqnyhgbij", model.inputs().get(0));
+        Assertions.assertEquals("jxbkzbzkdvn", model.expression());
     }
 }

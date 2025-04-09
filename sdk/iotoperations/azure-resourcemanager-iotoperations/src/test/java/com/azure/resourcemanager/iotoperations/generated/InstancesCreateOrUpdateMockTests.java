@@ -33,7 +33,7 @@ public final class InstancesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"description\":\"bxvvyhg\",\"provisioningState\":\"Succeeded\",\"version\":\"yrqufegxuvwz\",\"schemaRegistryRef\":{\"resourceId\":\"bnhlmc\"},\"features\":{\"rvqahqkghtpwi\":{\"mode\":\"Stable\",\"settings\":{\"vgbmhr\":\"Disabled\",\"kw\":\"Enabled\",\"ijejvegrhbpn\":\"Disabled\",\"xexccbdreaxhcexd\":\"Enabled\"}}}},\"extendedLocation\":{\"name\":\"nhyjsv\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"z\",\"tenantId\":\"voowvr\",\"type\":\"None\",\"userAssignedIdentities\":{\"yhgfipnsx\":{\"clientId\":\"qp\",\"principalId\":\"ostronz\"},\"gumhjglikkxws\":{\"clientId\":\"cwaekrrjre\",\"principalId\":\"xt\"}}},\"location\":\"lbqpvuzlmvfelf\",\"tags\":{\"rnjwmw\":\"plcrpwjxeznoig\",\"saz\":\"pn\",\"sxtta\":\"jjoqkagf\",\"mkqjj\":\"gzxnfaazpxdtnk\"},\"id\":\"wuenvr\",\"name\":\"pyouaibrebqaays\",\"type\":\"kixqtnqtt\"}";
+            = "{\"properties\":{\"description\":\"dtj\",\"provisioningState\":\"Succeeded\",\"version\":\"cihxuuwhcjyx\",\"schemaRegistryRef\":{\"resourceId\":\"cybvpayakkudzpxg\"},\"features\":{\"mnwqj\":{\"mode\":\"Preview\",\"settings\":{\"tcyohpfkyrk\":\"Disabled\",\"dg\":\"Disabled\",\"gsj\":\"Disabled\"}},\"mvmemfnczd\":{\"mode\":\"Preview\",\"settings\":{\"hdd\":\"Enabled\",\"acegfnmntf\":\"Disabled\"}}}},\"extendedLocation\":{\"name\":\"vvbalx\",\"type\":\"CustomLocation\"},\"identity\":{\"principalId\":\"hpodbzev\",\"tenantId\":\"dnhfuk\",\"type\":\"SystemAssigned,UserAssigned\",\"userAssignedIdentities\":{\"qbmfpjbabwidf\":{\"clientId\":\"swsmys\",\"principalId\":\"luqypfcvlerch\"},\"oqcaaewdaomdj\":{\"clientId\":\"sspuunnoxyhkx\",\"principalId\":\"ddrihpf\"}}},\"location\":\"pjxxkzb\",\"tags\":{\"xonbzoggculapz\":\"geivsiykzkdncj\",\"pgogtqxepny\":\"y\"},\"id\":\"b\",\"name\":\"uajlyj\",\"type\":\"lvofqzhvfcibyfmo\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -43,40 +43,42 @@ public final class InstancesCreateOrUpdateMockTests {
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         InstanceResource response = manager.instances()
-            .define("dhszfjv")
-            .withRegion("snjvcdwxlpqekftn")
-            .withExistingResourceGroup("lsj")
+            .define("nnrwrbiork")
+            .withRegion("tnwxy")
+            .withExistingResourceGroup("soldweyuqdunv")
             .withExtendedLocation(
-                new ExtendedLocation().withName("vvsccyajguq").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withTags(mapOf("dhtmdvypgikd", "jsyingwfqatm", "hlhkjoqrvqqaatj", "szywkbirryu"))
-            .withProperties(new InstanceProperties().withDescription("ofel")
-                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("jnalghf"))
-                .withFeatures(mapOf("wws", new InstanceFeature().withMode(InstanceFeatureMode.PREVIEW)
-                    .withSettings(mapOf("owueluqh", OperationalMode.DISABLED, "hhxvrhmzkwpj", OperationalMode.ENABLED)),
-                    "phoszqz",
+                new ExtendedLocation().withName("thjoxoism").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withTags(mapOf("qqfkuv", "id", "rxkpmloazuruoc", "cxkdmligovi", "bfhjxakvvjgsl", "goorbteo", "il", "r"))
+            .withProperties(new InstanceProperties().withDescription("ywjhhgdnhx")
+                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId("ufiqndieuzaof"))
+                .withFeatures(mapOf("oqonma",
                     new InstanceFeature().withMode(InstanceFeatureMode.DISABLED)
-                        .withSettings(mapOf("qs", OperationalMode.ENABLED, "qxujxukndxd", OperationalMode.DISABLED,
-                            "rjguufzdmsyqtf", OperationalMode.DISABLED, "whbotzingamv", OperationalMode.DISABLED)),
-                    "npwzcjaes",
+                        .withSettings(mapOf("s", OperationalMode.ENABLED, "dotcubiipuip", OperationalMode.DISABLED)),
+                    "rrilbywdxsmic",
+                    new InstanceFeature().withMode(InstanceFeatureMode.DISABLED)
+                        .withSettings(mapOf("zshq", OperationalMode.ENABLED, "impevf", OperationalMode.ENABLED, "b",
+                            OperationalMode.DISABLED)),
+                    "bblgyavut",
                     new InstanceFeature().withMode(InstanceFeatureMode.STABLE)
-                        .withSettings(mapOf("mvdk", OperationalMode.DISABLED, "ynwcvtbv", OperationalMode.DISABLED,
-                            "yhmtnvyqiat", OperationalMode.DISABLED, "wp", OperationalMode.DISABLED)))))
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
-                .withUserAssignedIdentities(mapOf("elvezrypq", new UserAssignedIdentity(), "kobopgxed",
-                    new UserAssignedIdentity(), "fkbw", new UserAssignedIdentity())))
+                        .withSettings(mapOf("cj", OperationalMode.ENABLED, "ynszquji", OperationalMode.ENABLED, "voqyt",
+                            OperationalMode.ENABLED, "yo", OperationalMode.DISABLED)))))
+            .withIdentity(
+                new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                    .withUserAssignedIdentities(
+                        mapOf("zdwlvwlyoupfgfb", new UserAssignedIdentity(), "g", new UserAssignedIdentity(),
+                            "mmqtgqqqxhr", new UserAssignedIdentity(), "azivjlfrqttbajl", new UserAssignedIdentity())))
             .create();
 
-        Assertions.assertEquals("lbqpvuzlmvfelf", response.location());
-        Assertions.assertEquals("plcrpwjxeznoig", response.tags().get("rnjwmw"));
-        Assertions.assertEquals("bxvvyhg", response.properties().description());
-        Assertions.assertEquals("bnhlmc", response.properties().schemaRegistryRef().resourceId());
-        Assertions.assertEquals(InstanceFeatureMode.STABLE,
-            response.properties().features().get("rvqahqkghtpwi").mode());
+        Assertions.assertEquals("pjxxkzb", response.location());
+        Assertions.assertEquals("geivsiykzkdncj", response.tags().get("xonbzoggculapz"));
+        Assertions.assertEquals("dtj", response.properties().description());
+        Assertions.assertEquals("cybvpayakkudzpxg", response.properties().schemaRegistryRef().resourceId());
+        Assertions.assertEquals(InstanceFeatureMode.PREVIEW, response.properties().features().get("mnwqj").mode());
         Assertions.assertEquals(OperationalMode.DISABLED,
-            response.properties().features().get("rvqahqkghtpwi").settings().get("vgbmhr"));
-        Assertions.assertEquals("nhyjsv", response.extendedLocation().name());
+            response.properties().features().get("mnwqj").settings().get("tcyohpfkyrk"));
+        Assertions.assertEquals("vvbalx", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
-        Assertions.assertEquals(ManagedServiceIdentityType.NONE, response.identity().type());
+        Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED, response.identity().type());
     }
 
     // Use "Map.of" if available

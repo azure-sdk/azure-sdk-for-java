@@ -12,16 +12,17 @@ import org.junit.jupiter.api.Assertions;
 public final class BrokerAuthenticatorMethodSatTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        BrokerAuthenticatorMethodSat model = BinaryData.fromString("{\"audiences\":[\"l\",\"mg\",\"xnkjzkdesl\"]}")
+        BrokerAuthenticatorMethodSat model = BinaryData
+            .fromString("{\"audiences\":[\"sdqrhzoymibmrq\",\"ibahwflus\",\"dtmhrkwofyyvoqa\",\"piexpbtgiw\"]}")
             .toObject(BrokerAuthenticatorMethodSat.class);
-        Assertions.assertEquals("l", model.audiences().get(0));
+        Assertions.assertEquals("sdqrhzoymibmrq", model.audiences().get(0));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        BrokerAuthenticatorMethodSat model
-            = new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("l", "mg", "xnkjzkdesl"));
+        BrokerAuthenticatorMethodSat model = new BrokerAuthenticatorMethodSat()
+            .withAudiences(Arrays.asList("sdqrhzoymibmrq", "ibahwflus", "dtmhrkwofyyvoqa", "piexpbtgiw"));
         model = BinaryData.fromObject(model).toObject(BrokerAuthenticatorMethodSat.class);
-        Assertions.assertEquals("l", model.audiences().get(0));
+        Assertions.assertEquals("sdqrhzoymibmrq", model.audiences().get(0));
     }
 }

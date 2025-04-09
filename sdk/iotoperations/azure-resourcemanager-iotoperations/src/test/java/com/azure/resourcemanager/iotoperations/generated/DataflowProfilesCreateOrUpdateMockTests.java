@@ -27,7 +27,7 @@ public final class DataflowProfilesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"wqfbumlkxtrqjfsm\"},\"metrics\":{\"prometheusPort\":1888053234}},\"instanceCount\":2023709214,\"provisioningState\":\"Succeeded\"},\"extendedLocation\":{\"name\":\"fwsrtawcoezbrhu\",\"type\":\"CustomLocation\"},\"id\":\"hud\",\"name\":\"goo\",\"type\":\"kkqfqjbvle\"}";
+            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"qxzhem\"},\"metrics\":{\"prometheusPort\":707262986}},\"instanceCount\":453799283,\"provisioningState\":\"Succeeded\"},\"extendedLocation\":{\"name\":\"wtwko\",\"type\":\"CustomLocation\"},\"id\":\"culkbawpfaj\",\"name\":\"jwltlwtjjgu\",\"type\":\"talhsnvkcdmxzr\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -38,22 +38,22 @@ public final class DataflowProfilesCreateOrUpdateMockTests {
 
         DataflowProfileResource response
             = manager.dataflowProfiles()
-                .define("hmkxmaehvbb")
-                .withExistingInstance("jyxgtczh", "ydbsd")
+                .define("joxslhvnhla")
+                .withExistingInstance("zhyrpeto", "e")
                 .withExtendedLocation(
-                    new ExtendedLocation().withName("lyhpluodpvruud").withType(ExtendedLocationType.CUSTOM_LOCATION))
+                    new ExtendedLocation().withName("jsto").withType(ExtendedLocationType.CUSTOM_LOCATION))
                 .withProperties(
                     new DataflowProfileProperties()
                         .withDiagnostics(
-                            new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("ltfnhtbaxkgx"))
-                                .withMetrics(new Metrics().withPrometheusPort(674255307)))
-                        .withInstanceCount(1619197472))
+                            new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("kzjcjbtrgae"))
+                                .withMetrics(new Metrics().withPrometheusPort(517862946)))
+                        .withInstanceCount(1534669686))
                 .create();
 
-        Assertions.assertEquals("wqfbumlkxtrqjfsm", response.properties().diagnostics().logs().level());
-        Assertions.assertEquals(1888053234, response.properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(2023709214, response.properties().instanceCount());
-        Assertions.assertEquals("fwsrtawcoezbrhu", response.extendedLocation().name());
+        Assertions.assertEquals("qxzhem", response.properties().diagnostics().logs().level());
+        Assertions.assertEquals(707262986, response.properties().diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(453799283, response.properties().instanceCount());
+        Assertions.assertEquals("wtwko", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
     }
 }

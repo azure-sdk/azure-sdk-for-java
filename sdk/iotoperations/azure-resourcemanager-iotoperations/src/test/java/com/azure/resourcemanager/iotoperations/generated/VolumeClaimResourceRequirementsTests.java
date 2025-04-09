@@ -6,6 +6,8 @@ package com.azure.resourcemanager.iotoperations.generated;
 
 import com.azure.core.util.BinaryData;
 import com.azure.resourcemanager.iotoperations.models.VolumeClaimResourceRequirements;
+import com.azure.resourcemanager.iotoperations.models.VolumeClaimResourceRequirementsClaims;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -14,20 +16,39 @@ public final class VolumeClaimResourceRequirementsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VolumeClaimResourceRequirements model = BinaryData.fromString(
-            "{\"limits\":{\"vf\":\"hkaetcktvfc\",\"xerf\":\"nkymuctqhjfbebrj\",\"phxepcyvahf\":\"wutttxfvjrbi\"},\"requests\":{\"ljyoxgvcltb\":\"kyqxjvuujqgidokg\"}}")
+            "{\"limits\":{\"eiotwmcdytdx\":\"vyhzceuojgjrwj\",\"nrjawgqwg\":\"it\",\"klwndnhjdauwhv\":\"hniskxfbkpyc\",\"zbtd\":\"l\"},\"requests\":{\"pow\":\"jznb\",\"qlveualupjmkh\":\"wpr\"},\"claims\":[{\"name\":\"bbcswsrtjri\",\"resources\":{\"limits\":{\"vlvqhjkbegi\":\"pbewtghfgblcgwx\",\"mxiebw\":\"t\",\"gwyzm\":\"aloayqcgwrtzju\"},\"requests\":{\"jcbpwxqpsrknft\":\"ongmtsa\",\"yvxqtayriwwroy\":\"uvriuhprwm\",\"bycnojvkn\":\"bexrmcq\",\"qsgzvahapj\":\"e\"},\"claims\":[{\"name\":\"pvgqzcjrvxdjzlm\",\"resources\":{}},{\"name\":\"xkvugfhzov\",\"resources\":{}}]}}]}")
             .toObject(VolumeClaimResourceRequirements.class);
-        Assertions.assertEquals("hkaetcktvfc", model.limits().get("vf"));
-        Assertions.assertEquals("kyqxjvuujqgidokg", model.requests().get("ljyoxgvcltb"));
+        Assertions.assertEquals("vyhzceuojgjrwj", model.limits().get("eiotwmcdytdx"));
+        Assertions.assertEquals("jznb", model.requests().get("pow"));
+        Assertions.assertEquals("bbcswsrtjri", model.claims().get(0).name());
+        Assertions.assertEquals("pbewtghfgblcgwx", model.claims().get(0).resources().limits().get("vlvqhjkbegi"));
+        Assertions.assertEquals("ongmtsa", model.claims().get(0).resources().requests().get("jcbpwxqpsrknft"));
+        Assertions.assertEquals("pvgqzcjrvxdjzlm", model.claims().get(0).resources().claims().get(0).name());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         VolumeClaimResourceRequirements model = new VolumeClaimResourceRequirements()
-            .withLimits(mapOf("vf", "hkaetcktvfc", "xerf", "nkymuctqhjfbebrj", "phxepcyvahf", "wutttxfvjrbi"))
-            .withRequests(mapOf("ljyoxgvcltb", "kyqxjvuujqgidokg"));
+            .withLimits(mapOf("eiotwmcdytdx", "vyhzceuojgjrwj", "nrjawgqwg", "it", "klwndnhjdauwhv", "hniskxfbkpyc",
+                "zbtd", "l"))
+            .withRequests(mapOf("pow", "jznb", "qlveualupjmkh", "wpr"))
+            .withClaims(Arrays.asList(new VolumeClaimResourceRequirementsClaims().withName("bbcswsrtjri")
+                .withResources(new VolumeClaimResourceRequirements()
+                    .withLimits(mapOf("vlvqhjkbegi", "pbewtghfgblcgwx", "mxiebw", "t", "gwyzm", "aloayqcgwrtzju"))
+                    .withRequests(mapOf("jcbpwxqpsrknft", "ongmtsa", "yvxqtayriwwroy", "uvriuhprwm", "bycnojvkn",
+                        "bexrmcq", "qsgzvahapj", "e"))
+                    .withClaims(Arrays.asList(
+                        new VolumeClaimResourceRequirementsClaims().withName("pvgqzcjrvxdjzlm")
+                            .withResources(new VolumeClaimResourceRequirements()),
+                        new VolumeClaimResourceRequirementsClaims().withName("xkvugfhzov")
+                            .withResources(new VolumeClaimResourceRequirements()))))));
         model = BinaryData.fromObject(model).toObject(VolumeClaimResourceRequirements.class);
-        Assertions.assertEquals("hkaetcktvfc", model.limits().get("vf"));
-        Assertions.assertEquals("kyqxjvuujqgidokg", model.requests().get("ljyoxgvcltb"));
+        Assertions.assertEquals("vyhzceuojgjrwj", model.limits().get("eiotwmcdytdx"));
+        Assertions.assertEquals("jznb", model.requests().get("pow"));
+        Assertions.assertEquals("bbcswsrtjri", model.claims().get(0).name());
+        Assertions.assertEquals("pbewtghfgblcgwx", model.claims().get(0).resources().limits().get("vlvqhjkbegi"));
+        Assertions.assertEquals("ongmtsa", model.claims().get(0).resources().requests().get("jcbpwxqpsrknft"));
+        Assertions.assertEquals("pvgqzcjrvxdjzlm", model.claims().get(0).resources().claims().get(0).name());
     }
 
     // Use "Map.of" if available

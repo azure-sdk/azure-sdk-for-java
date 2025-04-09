@@ -18,32 +18,31 @@ public final class DataflowProfileResourceInnerTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         DataflowProfileResourceInner model = BinaryData.fromString(
-            "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"shqjohxcrsbf\"},\"metrics\":{\"prometheusPort\":1966093769}},\"instanceCount\":1060545026,\"provisioningState\":\"Provisioning\"},\"extendedLocation\":{\"name\":\"wbhsqfsub\",\"type\":\"CustomLocation\"},\"id\":\"birx\",\"name\":\"pybsrfbjfdtw\",\"type\":\"sotftpvj\"}")
+            "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"vdmovsmzlxwabm\"},\"metrics\":{\"prometheusPort\":1154493453}},\"instanceCount\":1641212216,\"provisioningState\":\"Failed\"},\"extendedLocation\":{\"name\":\"vtpuqujmqlgk\",\"type\":\"CustomLocation\"},\"id\":\"ndo\",\"name\":\"ongbjcnt\",\"type\":\"jitcjedftwwaez\"}")
             .toObject(DataflowProfileResourceInner.class);
-        Assertions.assertEquals("shqjohxcrsbf", model.properties().diagnostics().logs().level());
-        Assertions.assertEquals(1966093769, model.properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(1060545026, model.properties().instanceCount());
-        Assertions.assertEquals("wbhsqfsub", model.extendedLocation().name());
+        Assertions.assertEquals("vdmovsmzlxwabm", model.properties().diagnostics().logs().level());
+        Assertions.assertEquals(1154493453, model.properties().diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(1641212216, model.properties().instanceCount());
+        Assertions.assertEquals("vtpuqujmqlgk", model.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, model.extendedLocation().type());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        DataflowProfileResourceInner model
-            = new DataflowProfileResourceInner()
-                .withProperties(
-                    new DataflowProfileProperties()
-                        .withDiagnostics(
-                            new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("shqjohxcrsbf"))
-                                .withMetrics(new Metrics().withPrometheusPort(1966093769)))
-                        .withInstanceCount(1060545026))
-                .withExtendedLocation(
-                    new ExtendedLocation().withName("wbhsqfsub").withType(ExtendedLocationType.CUSTOM_LOCATION));
+        DataflowProfileResourceInner model = new DataflowProfileResourceInner()
+            .withProperties(
+                new DataflowProfileProperties()
+                    .withDiagnostics(
+                        new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("vdmovsmzlxwabm"))
+                            .withMetrics(new Metrics().withPrometheusPort(1154493453)))
+                    .withInstanceCount(1641212216))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("vtpuqujmqlgk").withType(ExtendedLocationType.CUSTOM_LOCATION));
         model = BinaryData.fromObject(model).toObject(DataflowProfileResourceInner.class);
-        Assertions.assertEquals("shqjohxcrsbf", model.properties().diagnostics().logs().level());
-        Assertions.assertEquals(1966093769, model.properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(1060545026, model.properties().instanceCount());
-        Assertions.assertEquals("wbhsqfsub", model.extendedLocation().name());
+        Assertions.assertEquals("vdmovsmzlxwabm", model.properties().diagnostics().logs().level());
+        Assertions.assertEquals(1154493453, model.properties().diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(1641212216, model.properties().instanceCount());
+        Assertions.assertEquals("vtpuqujmqlgk", model.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, model.extendedLocation().type());
     }
 }

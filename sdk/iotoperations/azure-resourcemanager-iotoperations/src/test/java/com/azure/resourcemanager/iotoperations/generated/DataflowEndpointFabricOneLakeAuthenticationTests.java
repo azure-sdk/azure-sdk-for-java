@@ -15,13 +15,13 @@ public final class DataflowEndpointFabricOneLakeAuthenticationTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         DataflowEndpointFabricOneLakeAuthentication model = BinaryData.fromString(
-            "{\"method\":\"SystemAssignedManagedIdentity\",\"systemAssignedManagedIdentitySettings\":{\"audience\":\"iekkezz\"},\"userAssignedManagedIdentitySettings\":{\"clientId\":\"hlyfjhdgqgg\",\"scope\":\"dunyg\",\"tenantId\":\"eqidbqfatpx\"}}")
+            "{\"method\":\"SystemAssignedManagedIdentity\",\"systemAssignedManagedIdentitySettings\":{\"audience\":\"dm\"},\"userAssignedManagedIdentitySettings\":{\"clientId\":\"j\",\"scope\":\"wuenvr\",\"tenantId\":\"pyouaibrebqaays\"}}")
             .toObject(DataflowEndpointFabricOneLakeAuthentication.class);
         Assertions.assertEquals(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY, model.method());
-        Assertions.assertEquals("iekkezz", model.systemAssignedManagedIdentitySettings().audience());
-        Assertions.assertEquals("hlyfjhdgqgg", model.userAssignedManagedIdentitySettings().clientId());
-        Assertions.assertEquals("dunyg", model.userAssignedManagedIdentitySettings().scope());
-        Assertions.assertEquals("eqidbqfatpx", model.userAssignedManagedIdentitySettings().tenantId());
+        Assertions.assertEquals("dm", model.systemAssignedManagedIdentitySettings().audience());
+        Assertions.assertEquals("j", model.userAssignedManagedIdentitySettings().clientId());
+        Assertions.assertEquals("wuenvr", model.userAssignedManagedIdentitySettings().scope());
+        Assertions.assertEquals("pyouaibrebqaays", model.userAssignedManagedIdentitySettings().tenantId());
     }
 
     @org.junit.jupiter.api.Test
@@ -29,16 +29,16 @@ public final class DataflowEndpointFabricOneLakeAuthenticationTests {
         DataflowEndpointFabricOneLakeAuthentication model = new DataflowEndpointFabricOneLakeAuthentication()
             .withMethod(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY)
             .withSystemAssignedManagedIdentitySettings(
-                new DataflowEndpointAuthenticationSystemAssignedManagedIdentity().withAudience("iekkezz"))
+                new DataflowEndpointAuthenticationSystemAssignedManagedIdentity().withAudience("dm"))
             .withUserAssignedManagedIdentitySettings(
-                new DataflowEndpointAuthenticationUserAssignedManagedIdentity().withClientId("hlyfjhdgqgg")
-                    .withScope("dunyg")
-                    .withTenantId("eqidbqfatpx"));
+                new DataflowEndpointAuthenticationUserAssignedManagedIdentity().withClientId("j")
+                    .withScope("wuenvr")
+                    .withTenantId("pyouaibrebqaays"));
         model = BinaryData.fromObject(model).toObject(DataflowEndpointFabricOneLakeAuthentication.class);
         Assertions.assertEquals(FabricOneLakeAuthMethod.SYSTEM_ASSIGNED_MANAGED_IDENTITY, model.method());
-        Assertions.assertEquals("iekkezz", model.systemAssignedManagedIdentitySettings().audience());
-        Assertions.assertEquals("hlyfjhdgqgg", model.userAssignedManagedIdentitySettings().clientId());
-        Assertions.assertEquals("dunyg", model.userAssignedManagedIdentitySettings().scope());
-        Assertions.assertEquals("eqidbqfatpx", model.userAssignedManagedIdentitySettings().tenantId());
+        Assertions.assertEquals("dm", model.systemAssignedManagedIdentitySettings().audience());
+        Assertions.assertEquals("j", model.userAssignedManagedIdentitySettings().clientId());
+        Assertions.assertEquals("wuenvr", model.userAssignedManagedIdentitySettings().scope());
+        Assertions.assertEquals("pyouaibrebqaays", model.userAssignedManagedIdentitySettings().tenantId());
     }
 }
