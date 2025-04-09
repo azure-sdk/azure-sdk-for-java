@@ -96,7 +96,6 @@
     "com.azure.messaging.eventgrid.systemevents.ApiManagementApiReleaseUpdatedEventData": "Microsoft.EventGrid.SystemEvents.ApiManagementApiReleaseUpdatedEventData",
     "com.azure.messaging.eventgrid.systemevents.ApiManagementApiUpdatedEventData": "Microsoft.EventGrid.SystemEvents.ApiManagementApiUpdatedEventData",
     "com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayApiAddedEventData": "Microsoft.EventGrid.SystemEvents.ApiManagementGatewayApiAddedEventData",
-    "com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayApiRemovedEventData": "Microsoft.EventGrid.SystemEvents.ApiManagementGatewayApiRemovedEventData",
     "com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayCertificateAuthorityCreatedEventData": "Microsoft.EventGrid.SystemEvents.ApiManagementGatewayCertificateAuthorityCreatedEventData",
     "com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayCertificateAuthorityDeletedEventData": "Microsoft.EventGrid.SystemEvents.ApiManagementGatewayCertificateAuthorityDeletedEventData",
     "com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayCertificateAuthorityUpdatedEventData": "Microsoft.EventGrid.SystemEvents.ApiManagementGatewayCertificateAuthorityUpdatedEventData",
