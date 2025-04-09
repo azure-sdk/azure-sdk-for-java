@@ -176,6 +176,16 @@ public final class CreditSummaryInner extends ProxyResource {
     }
 
     /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.innerProperties() == null ? null : this.innerProperties().isEstimatedBalance();
+    }
+
+    /**
      * Get the etag property: The eTag for the resource.
      * 
      * @return the etag value.

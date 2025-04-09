@@ -48,14 +48,36 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private Amount creditExpired;
 
     /*
-     * The amount of charges for events of type SettleCharges and PendingEligibleCharges.
+     * The amount of charges for events of type SettleCharges and PendingEligibleCharges in Lot Currency.
      */
     private Amount charges;
 
     /*
-     * The balance after the event.
+     * The amount of charges for events of type SettleCharges and PendingEligibleCharges in Lot Currency.
+     */
+    private Amount chargesInLotCurrency;
+
+    /*
+     * The balance after the event, Note: This will not be returned for Contributor Organization Type in Multi-Entity
+     * consumption commitment
      */
     private Amount closedBalance;
+
+    /*
+     * The balance after the event, Note: This will not be returned for Contributor Organization Type in Multi-Entity
+     * consumption commitment
+     */
+    private Amount closedBalanceInLotCurrency;
+
+    /*
+     * Identifier of the billing account.
+     */
+    private String billingAccountId;
+
+    /*
+     * Name of the billing account.
+     */
+    private String billingAccountDisplayName;
 
     /*
      * Identifies the type of the event.
@@ -131,9 +153,15 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private AmountWithExchangeRate chargesInBillingCurrency;
 
     /*
-     * The balance in billing currency after the event.
+     * The balance in billing currency after the event, Note: This will not be returned for Contributor Organization
+     * Type in Multi-Entity consumption commitment
      */
     private AmountWithExchangeRate closedBalanceInBillingCurrency;
+
+    /*
+     * If true, the listed details are based on an estimation and it will be subjected to change.
+     */
+    private Boolean isEstimatedBalance;
 
     /*
      * The eTag for the resource.
@@ -193,7 +221,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Get the charges property: The amount of charges for events of type SettleCharges and PendingEligibleCharges.
+     * Get the charges property: The amount of charges for events of type SettleCharges and PendingEligibleCharges in
+     * Lot Currency.
      * 
      * @return the charges value.
      */
@@ -202,12 +231,51 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Get the closedBalance property: The balance after the event.
+     * Get the chargesInLotCurrency property: The amount of charges for events of type SettleCharges and
+     * PendingEligibleCharges in Lot Currency.
+     * 
+     * @return the chargesInLotCurrency value.
+     */
+    public Amount chargesInLotCurrency() {
+        return this.chargesInLotCurrency;
+    }
+
+    /**
+     * Get the closedBalance property: The balance after the event, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
      * 
      * @return the closedBalance value.
      */
     public Amount closedBalance() {
         return this.closedBalance;
+    }
+
+    /**
+     * Get the closedBalanceInLotCurrency property: The balance after the event, Note: This will not be returned for
+     * Contributor Organization Type in Multi-Entity consumption commitment.
+     * 
+     * @return the closedBalanceInLotCurrency value.
+     */
+    public Amount closedBalanceInLotCurrency() {
+        return this.closedBalanceInLotCurrency;
+    }
+
+    /**
+     * Get the billingAccountId property: Identifier of the billing account.
+     * 
+     * @return the billingAccountId value.
+     */
+    public String billingAccountId() {
+        return this.billingAccountId;
+    }
+
+    /**
+     * Get the billingAccountDisplayName property: Name of the billing account.
+     * 
+     * @return the billingAccountDisplayName value.
+     */
+    public String billingAccountDisplayName() {
+        return this.billingAccountDisplayName;
     }
 
     /**
@@ -354,12 +422,23 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Get the closedBalanceInBillingCurrency property: The balance in billing currency after the event.
+     * Get the closedBalanceInBillingCurrency property: The balance in billing currency after the event, Note: This will
+     * not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
      * 
      * @return the closedBalanceInBillingCurrency value.
      */
     public AmountWithExchangeRate closedBalanceInBillingCurrency() {
         return this.closedBalanceInBillingCurrency;
+    }
+
+    /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.isEstimatedBalance;
     }
 
     /**
@@ -389,8 +468,14 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
         if (charges() != null) {
             charges().validate();
         }
+        if (chargesInLotCurrency() != null) {
+            chargesInLotCurrency().validate();
+        }
         if (closedBalance() != null) {
             closedBalance().validate();
+        }
+        if (closedBalanceInLotCurrency() != null) {
+            closedBalanceInLotCurrency().validate();
         }
         if (canceledCredit() != null) {
             canceledCredit().validate();
@@ -453,8 +538,16 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
                     deserializedEventProperties.creditExpired = Amount.fromJson(reader);
                 } else if ("charges".equals(fieldName)) {
                     deserializedEventProperties.charges = Amount.fromJson(reader);
+                } else if ("chargesInLotCurrency".equals(fieldName)) {
+                    deserializedEventProperties.chargesInLotCurrency = Amount.fromJson(reader);
                 } else if ("closedBalance".equals(fieldName)) {
                     deserializedEventProperties.closedBalance = Amount.fromJson(reader);
+                } else if ("closedBalanceInLotCurrency".equals(fieldName)) {
+                    deserializedEventProperties.closedBalanceInLotCurrency = Amount.fromJson(reader);
+                } else if ("billingAccountId".equals(fieldName)) {
+                    deserializedEventProperties.billingAccountId = reader.getString();
+                } else if ("billingAccountDisplayName".equals(fieldName)) {
+                    deserializedEventProperties.billingAccountDisplayName = reader.getString();
                 } else if ("eventType".equals(fieldName)) {
                     deserializedEventProperties.eventType = EventType.fromString(reader.getString());
                 } else if ("invoiceNumber".equals(fieldName)) {
@@ -487,6 +580,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
                 } else if ("closedBalanceInBillingCurrency".equals(fieldName)) {
                     deserializedEventProperties.closedBalanceInBillingCurrency
                         = AmountWithExchangeRate.fromJson(reader);
+                } else if ("isEstimatedBalance".equals(fieldName)) {
+                    deserializedEventProperties.isEstimatedBalance = reader.getNullable(JsonReader::getBoolean);
                 } else if ("eTag".equals(fieldName)) {
                     deserializedEventProperties.etag = reader.getString();
                 } else {
