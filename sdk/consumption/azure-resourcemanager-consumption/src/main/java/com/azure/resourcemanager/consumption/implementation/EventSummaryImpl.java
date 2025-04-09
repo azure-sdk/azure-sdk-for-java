@@ -63,8 +63,24 @@ public final class EventSummaryImpl implements EventSummary {
         return this.innerModel().charges();
     }
 
+    public Amount chargesInLotCurrency() {
+        return this.innerModel().chargesInLotCurrency();
+    }
+
     public Amount closedBalance() {
         return this.innerModel().closedBalance();
+    }
+
+    public Amount closedBalanceInLotCurrency() {
+        return this.innerModel().closedBalanceInLotCurrency();
+    }
+
+    public String billingAccountId() {
+        return this.innerModel().billingAccountId();
+    }
+
+    public String billingAccountDisplayName() {
+        return this.innerModel().billingAccountDisplayName();
     }
 
     public EventType eventType() {
@@ -125,6 +141,10 @@ public final class EventSummaryImpl implements EventSummary {
 
     public AmountWithExchangeRate closedBalanceInBillingCurrency() {
         return this.innerModel().closedBalanceInBillingCurrency();
+    }
+
+    public Boolean isEstimatedBalance() {
+        return this.innerModel().isEstimatedBalance();
     }
 
     public String etagPropertiesEtag() {

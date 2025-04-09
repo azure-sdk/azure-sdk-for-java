@@ -12,6 +12,11 @@ import java.util.Collection;
  */
 public final class Term extends ExpandableStringEnum<Term> {
     /**
+     * Static value P1M for Term.
+     */
+    public static final Term P1M = fromString("P1M");
+
+    /**
      * Static value P1Y for Term.
      */
     public static final Term P1Y = fromString("P1Y");

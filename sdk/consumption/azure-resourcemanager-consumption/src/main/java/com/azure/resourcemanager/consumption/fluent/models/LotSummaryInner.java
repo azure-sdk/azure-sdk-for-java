@@ -12,6 +12,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.LotSource;
+import com.azure.resourcemanager.consumption.models.OrganizationType;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import com.azure.resourcemanager.consumption.models.Status;
 import java.io.IOException;
@@ -116,7 +117,8 @@ public final class LotSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the originalAmount property: The original amount of a lot.
+     * Get the originalAmount property: The original amount of a lot, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
      * 
      * @return the originalAmount value.
      */
@@ -207,7 +209,8 @@ public final class LotSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the originalAmountInBillingCurrency property: The original amount of a lot in billing currency.
+     * Get the originalAmountInBillingCurrency property: The original amount of a lot in billing currency, Note: This
+     * will not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
      * 
      * @return the originalAmountInBillingCurrency value.
      */
@@ -234,12 +237,40 @@ public final class LotSummaryInner extends ProxyResource {
     }
 
     /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.innerProperties() == null ? null : this.innerProperties().isEstimatedBalance();
+    }
+
+    /**
      * Get the etag property: The eTag for the resource.
      * 
      * @return the etag value.
      */
     public String etagPropertiesEtag() {
         return this.innerProperties() == null ? null : this.innerProperties().etag();
+    }
+
+    /**
+     * Get the organizationType property: The organization type of the lot.
+     * 
+     * @return the organizationType value.
+     */
+    public OrganizationType organizationType() {
+        return this.innerProperties() == null ? null : this.innerProperties().organizationType();
+    }
+
+    /**
+     * Get the usedAmount property: Amount consumed from the commitment.
+     * 
+     * @return the usedAmount value.
+     */
+    public Amount usedAmount() {
+        return this.innerProperties() == null ? null : this.innerProperties().usedAmount();
     }
 
     /**

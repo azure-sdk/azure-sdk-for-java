@@ -63,7 +63,7 @@ public class LegacyReservationRecommendationProperties
     private String resourceType;
 
     /*
-     * RI recommendations in one or three year terms.
+     * Term period of the reservation. ex: P1M, P1Y or P3Y.
      */
     private String term;
 
@@ -96,6 +96,16 @@ public class LegacyReservationRecommendationProperties
      * List of sku properties
      */
     private List<SkuProperty> skuProperties;
+
+    /*
+     * The last usage date used for looking back for computing the recommendation.
+     */
+    private OffsetDateTime lastUsageDate;
+
+    /*
+     * The total hours for which the cost is covered.
+     */
+    private Integer totalHours;
 
     /**
      * Creates an instance of LegacyReservationRecommendationProperties class.
@@ -253,7 +263,7 @@ public class LegacyReservationRecommendationProperties
     }
 
     /**
-     * Get the term property: RI recommendations in one or three year terms.
+     * Get the term property: Term period of the reservation. ex: P1M, P1Y or P3Y.
      * 
      * @return the term value.
      */
@@ -262,7 +272,7 @@ public class LegacyReservationRecommendationProperties
     }
 
     /**
-     * Set the term property: RI recommendations in one or three year terms.
+     * Set the term property: Term period of the reservation. ex: P1M, P1Y or P3Y.
      * 
      * @param term the term value to set.
      * @return the LegacyReservationRecommendationProperties object itself.
@@ -394,6 +404,46 @@ public class LegacyReservationRecommendationProperties
     }
 
     /**
+     * Get the lastUsageDate property: The last usage date used for looking back for computing the recommendation.
+     * 
+     * @return the lastUsageDate value.
+     */
+    public OffsetDateTime lastUsageDate() {
+        return this.lastUsageDate;
+    }
+
+    /**
+     * Set the lastUsageDate property: The last usage date used for looking back for computing the recommendation.
+     * 
+     * @param lastUsageDate the lastUsageDate value to set.
+     * @return the LegacyReservationRecommendationProperties object itself.
+     */
+    LegacyReservationRecommendationProperties withLastUsageDate(OffsetDateTime lastUsageDate) {
+        this.lastUsageDate = lastUsageDate;
+        return this;
+    }
+
+    /**
+     * Get the totalHours property: The total hours for which the cost is covered.
+     * 
+     * @return the totalHours value.
+     */
+    public Integer totalHours() {
+        return this.totalHours;
+    }
+
+    /**
+     * Set the totalHours property: The total hours for which the cost is covered.
+     * 
+     * @param totalHours the totalHours value to set.
+     * @return the LegacyReservationRecommendationProperties object itself.
+     */
+    LegacyReservationRecommendationProperties withTotalHours(Integer totalHours) {
+        this.totalHours = totalHours;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -497,6 +547,12 @@ public class LegacyReservationRecommendationProperties
                 } else if ("skuProperties".equals(fieldName)) {
                     List<SkuProperty> skuProperties = reader.readArray(reader1 -> SkuProperty.fromJson(reader1));
                     deserializedLegacyReservationRecommendationProperties.skuProperties = skuProperties;
+                } else if ("lastUsageDate".equals(fieldName)) {
+                    deserializedLegacyReservationRecommendationProperties.lastUsageDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("totalHours".equals(fieldName)) {
+                    deserializedLegacyReservationRecommendationProperties.totalHours
+                        = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }
