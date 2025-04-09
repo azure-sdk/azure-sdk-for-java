@@ -13,13 +13,13 @@ public final class DataflowProfileResourceListResultTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         DataflowProfileResourceListResult model = BinaryData.fromString(
-            "{\"value\":[{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"naenqpehindo\"},\"metrics\":{\"prometheusPort\":1553722584}},\"instanceCount\":1126761283,\"provisioningState\":\"Provisioning\"},\"extendedLocation\":{\"name\":\"zdnds\",\"type\":\"CustomLocation\"},\"id\":\"ayqigynduhav\",\"name\":\"qlkth\",\"type\":\"maqolbgycduie\"},{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"y\"},\"metrics\":{\"prometheusPort\":50940581}},\"instanceCount\":76010479,\"provisioningState\":\"Canceled\"},\"extendedLocation\":{\"name\":\"lqlfm\",\"type\":\"CustomLocation\"},\"id\":\"bbglzpswiydmc\",\"name\":\"yhz\",\"type\":\"xssadbzmnvdf\"}],\"nextLink\":\"ud\"}")
+            "{\"value\":[{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"zxkhnzbonlwnto\"},\"metrics\":{\"prometheusPort\":510651029}},\"instanceCount\":541688375,\"provisioningState\":\"Accepted\"},\"extendedLocation\":{\"name\":\"hksz\",\"type\":\"CustomLocation\"},\"id\":\"rvexztvb\",\"name\":\"qgsfraoyzkoow\",\"type\":\"lmnguxaw\"},{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"yuuximerqfobwyzn\"},\"metrics\":{\"prometheusPort\":1383706321}},\"instanceCount\":189482477,\"provisioningState\":\"Deleting\"},\"extendedLocation\":{\"name\":\"fhpagmhrskdsnf\",\"type\":\"CustomLocation\"},\"id\":\"oakgtdlmkkzev\",\"name\":\"l\",\"type\":\"ewpusdsttwvogvb\"}],\"nextLink\":\"jdcngqqm\"}")
             .toObject(DataflowProfileResourceListResult.class);
-        Assertions.assertEquals("naenqpehindo", model.value().get(0).properties().diagnostics().logs().level());
-        Assertions.assertEquals(1553722584, model.value().get(0).properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(1126761283, model.value().get(0).properties().instanceCount());
-        Assertions.assertEquals("zdnds", model.value().get(0).extendedLocation().name());
+        Assertions.assertEquals("zxkhnzbonlwnto", model.value().get(0).properties().diagnostics().logs().level());
+        Assertions.assertEquals(510651029, model.value().get(0).properties().diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(541688375, model.value().get(0).properties().instanceCount());
+        Assertions.assertEquals("hksz", model.value().get(0).extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, model.value().get(0).extendedLocation().type());
-        Assertions.assertEquals("ud", model.nextLink());
+        Assertions.assertEquals("jdcngqqm", model.nextLink());
     }
 }

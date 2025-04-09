@@ -15,24 +15,23 @@ public final class PrincipalDefinitionTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         PrincipalDefinition model = BinaryData.fromString(
-            "{\"attributes\":[{\"mfqjhhkxbp\":\"oizpostmgrcfbun\",\"jhxxjyn\":\"jy\"},{\"wbxqzvszjfau\":\"divkrt\"},{\"qmcbxvwvxyslqbhs\":\"fdxxivetvtcqaqtd\"}],\"clientIds\":[\"blytk\"],\"usernames\":[\"pe\"]}")
+            "{\"attributes\":[{\"mr\":\"udutnco\",\"f\":\"xqtvcofu\",\"u\":\"vkg\"}],\"clientIds\":[\"knnqvsaznq\",\"tor\",\"dsg\"],\"usernames\":[\"mkycgra\"]}")
             .toObject(PrincipalDefinition.class);
-        Assertions.assertEquals("oizpostmgrcfbun", model.attributes().get(0).get("mfqjhhkxbp"));
-        Assertions.assertEquals("blytk", model.clientIds().get(0));
-        Assertions.assertEquals("pe", model.usernames().get(0));
+        Assertions.assertEquals("udutnco", model.attributes().get(0).get("mr"));
+        Assertions.assertEquals("knnqvsaznq", model.clientIds().get(0));
+        Assertions.assertEquals("mkycgra", model.usernames().get(0));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         PrincipalDefinition model = new PrincipalDefinition()
-            .withAttributes(Arrays.asList(mapOf("mfqjhhkxbp", "oizpostmgrcfbun", "jhxxjyn", "jy"),
-                mapOf("wbxqzvszjfau", "divkrt"), mapOf("qmcbxvwvxyslqbhs", "fdxxivetvtcqaqtd")))
-            .withClientIds(Arrays.asList("blytk"))
-            .withUsernames(Arrays.asList("pe"));
+            .withAttributes(Arrays.asList(mapOf("mr", "udutnco", "f", "xqtvcofu", "u", "vkg")))
+            .withClientIds(Arrays.asList("knnqvsaznq", "tor", "dsg"))
+            .withUsernames(Arrays.asList("mkycgra"));
         model = BinaryData.fromObject(model).toObject(PrincipalDefinition.class);
-        Assertions.assertEquals("oizpostmgrcfbun", model.attributes().get(0).get("mfqjhhkxbp"));
-        Assertions.assertEquals("blytk", model.clientIds().get(0));
-        Assertions.assertEquals("pe", model.usernames().get(0));
+        Assertions.assertEquals("udutnco", model.attributes().get(0).get("mr"));
+        Assertions.assertEquals("knnqvsaznq", model.clientIds().get(0));
+        Assertions.assertEquals("mkycgra", model.usernames().get(0));
     }
 
     // Use "Map.of" if available

@@ -22,7 +22,7 @@ public final class DataflowProfilesGetWithResponseMockTests {
     @Test
     public void testGetWithResponse() throws Exception {
         String responseStr
-            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"hqnrn\"},\"metrics\":{\"prometheusPort\":2099945195}},\"instanceCount\":1644281123,\"provisioningState\":\"Deleting\"},\"extendedLocation\":{\"name\":\"ykqgaifmvik\",\"type\":\"CustomLocation\"},\"id\":\"dvk\",\"name\":\"bejdznxcv\",\"type\":\"srhnjivo\"}";
+            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"hlhzdsqtzbsrgno\"},\"metrics\":{\"prometheusPort\":994844547}},\"instanceCount\":741446459,\"provisioningState\":\"Canceled\"},\"extendedLocation\":{\"name\":\"ecactx\",\"type\":\"CustomLocation\"},\"id\":\"teyowclu\",\"name\":\"ovekqvgqouwi\",\"type\":\"zmpjwyiv\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -32,13 +32,13 @@ public final class DataflowProfilesGetWithResponseMockTests {
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         DataflowProfileResource response = manager.dataflowProfiles()
-            .getWithResponse("ftumrtwnawjslbiw", "ojgcyzt", "fmznba", com.azure.core.util.Context.NONE)
+            .getWithResponse("jqctojcmisofie", "pe", "ojyqdhcuplcplcw", com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals("hqnrn", response.properties().diagnostics().logs().level());
-        Assertions.assertEquals(2099945195, response.properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(1644281123, response.properties().instanceCount());
-        Assertions.assertEquals("ykqgaifmvik", response.extendedLocation().name());
+        Assertions.assertEquals("hlhzdsqtzbsrgno", response.properties().diagnostics().logs().level());
+        Assertions.assertEquals(994844547, response.properties().diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(741446459, response.properties().instanceCount());
+        Assertions.assertEquals("ecactx", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
     }
 }
