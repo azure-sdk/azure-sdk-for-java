@@ -274,7 +274,7 @@ public final class NewRelicObservabilityImpl implements NewRelicObservability {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-01-01";
+        this.apiVersion = "2024-10-01";
         this.operations = new OperationsClientImpl(this);
         this.accounts = new AccountsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);

@@ -92,7 +92,7 @@ public interface MonitoredSubscriptionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MonitoredSubscriptionPropertiesInner>, MonitoredSubscriptionPropertiesInner>
-        beginCreateorUpdate(String resourceGroupName, String monitorName, ConfigurationName configurationName);
+        beginCreateOrUpdate(String resourceGroupName, String monitorName, ConfigurationName configurationName);
 
     /**
      * Add the subscriptions that should be monitored by the NewRelic monitor resource.
@@ -110,7 +110,7 @@ public interface MonitoredSubscriptionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MonitoredSubscriptionPropertiesInner>, MonitoredSubscriptionPropertiesInner>
-        beginCreateorUpdate(String resourceGroupName, String monitorName, ConfigurationName configurationName,
+        beginCreateOrUpdate(String resourceGroupName, String monitorName, ConfigurationName configurationName,
             MonitoredSubscriptionPropertiesInner body, Context context);
 
     /**
@@ -125,7 +125,7 @@ public interface MonitoredSubscriptionsClient {
      * @return the request to update subscriptions needed to be monitored by the NewRelic monitor resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MonitoredSubscriptionPropertiesInner createorUpdate(String resourceGroupName, String monitorName,
+    MonitoredSubscriptionPropertiesInner createOrUpdate(String resourceGroupName, String monitorName,
         ConfigurationName configurationName);
 
     /**
@@ -142,7 +142,7 @@ public interface MonitoredSubscriptionsClient {
      * @return the request to update subscriptions needed to be monitored by the NewRelic monitor resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MonitoredSubscriptionPropertiesInner createorUpdate(String resourceGroupName, String monitorName,
+    MonitoredSubscriptionPropertiesInner createOrUpdate(String resourceGroupName, String monitorName,
         ConfigurationName configurationName, MonitoredSubscriptionPropertiesInner body, Context context);
 
     /**
