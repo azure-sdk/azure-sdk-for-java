@@ -4,6 +4,83 @@
 package com.azure.compute.batch;
 
 import com.azure.compute.batch.implementation.BatchClientImpl;
+import com.azure.compute.batch.implementation.models.BatchJobScheduleExistsOptions;
+import com.azure.compute.batch.implementation.models.BatchPoolExistsOptions;
+import com.azure.compute.batch.implementation.models.CancelBatchCertificateDeletionOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchCertificateOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchJobOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchNodeUserOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchTaskCollectionOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.DeallocateBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchCertificateOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchJobOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchNodeFileOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchNodeUserOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchTaskFileOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.DisableBatchJobOptions;
+import com.azure.compute.batch.implementation.models.DisableBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.DisableBatchNodeSchedulingOptions;
+import com.azure.compute.batch.implementation.models.DisableBatchPoolAutoScaleOptions;
+import com.azure.compute.batch.implementation.models.EnableBatchJobOptions;
+import com.azure.compute.batch.implementation.models.EnableBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.EnableBatchNodeSchedulingOptions;
+import com.azure.compute.batch.implementation.models.EnableBatchPoolAutoScaleOptions;
+import com.azure.compute.batch.implementation.models.EvaluateBatchPoolAutoScaleOptions;
+import com.azure.compute.batch.implementation.models.GetBatchApplicationOptions;
+import com.azure.compute.batch.implementation.models.GetBatchCertificateOptions;
+import com.azure.compute.batch.implementation.models.GetBatchJobOptions;
+import com.azure.compute.batch.implementation.models.GetBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.GetBatchJobTaskCountsOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeExtensionOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeFileOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeFilePropertiesOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeRemoteLoginSettingsOptions;
+import com.azure.compute.batch.implementation.models.GetBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.GetBatchTaskFileOptions;
+import com.azure.compute.batch.implementation.models.GetBatchTaskFilePropertiesOptions;
+import com.azure.compute.batch.implementation.models.GetBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.ListBatchApplicationsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchCertificatesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchJobPreparationAndReleaseTaskStatusOptions;
+import com.azure.compute.batch.implementation.models.ListBatchJobSchedulesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchJobsFromScheduleOptions;
+import com.azure.compute.batch.implementation.models.ListBatchJobsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchNodeExtensionsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchNodeFilesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchNodesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchPoolNodeCountsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchPoolUsageMetricsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchPoolsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchSubTasksOptions;
+import com.azure.compute.batch.implementation.models.ListBatchTaskFilesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchTasksOptions;
+import com.azure.compute.batch.implementation.models.ListSupportedBatchImagesOptions;
+import com.azure.compute.batch.implementation.models.ReactivateBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.RebootBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.ReimageBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.RemoveBatchNodesOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchJobOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchNodeUserOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchPoolPropertiesOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.ResizeBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.StartBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.StopBatchPoolResizeOptions;
+import com.azure.compute.batch.implementation.models.TerminateBatchJobOptions;
+import com.azure.compute.batch.implementation.models.TerminateBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.TerminateBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.UpdateBatchJobOptions;
+import com.azure.compute.batch.implementation.models.UpdateBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.UpdateBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.UploadBatchNodeLogsOptions;
 import com.azure.compute.batch.implementation.task.AsyncTaskSubmitter;
 import com.azure.compute.batch.implementation.task.TaskManager;
 import com.azure.compute.batch.implementation.task.TaskSubmitter;
@@ -90,7 +167,6 @@ import com.azure.compute.batch.models.GetBatchPoolOptions;
 import com.azure.compute.batch.models.GetBatchTaskFileOptions;
 import com.azure.compute.batch.models.GetBatchTaskFilePropertiesOptions;
 import com.azure.compute.batch.models.GetBatchTaskOptions;
-import com.azure.compute.batch.models.GetCertificateResponse;
 import com.azure.compute.batch.models.ListBatchApplicationsOptions;
 import com.azure.compute.batch.models.ListBatchCertificatesOptions;
 import com.azure.compute.batch.models.ListBatchJobPreparationAndReleaseTaskStatusOptions;
@@ -212,6 +288,122 @@ public final class BatchAsyncClient {
     }
 
     /**
+     * Gets the properties of the specified Task file.
+     *
+     * @param jobId The ID of the Job that contains the Task.
+     * @param taskId The ID of the Task whose file you want to retrieve.
+     * @param filePath The path to the Task file that you want to get the content of.
+     * @param options Optional parameters for Get Task File Properties operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified Task file on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<FileResponseHeaderProperties> getTaskFileProperties(String jobId, String taskId, String filePath,
+        GetBatchTaskFilePropertiesOptions options) {
+        RequestOptions requestOptions = new RequestOptions();
+        Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
+        OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
+        OffsetDateTime ifUnmodifiedSince = options == null ? null : options.getIfUnmodifiedSince();
+        if (timeOutInSeconds != null) {
+            requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
+        }
+        if (ifModifiedSince != null) {
+            requestOptions.setHeader(HttpHeaderName.IF_MODIFIED_SINCE,
+                String.valueOf(new DateTimeRfc1123(ifModifiedSince)));
+        }
+        if (ifUnmodifiedSince != null) {
+            requestOptions.setHeader(HttpHeaderName.IF_UNMODIFIED_SINCE,
+                String.valueOf(new DateTimeRfc1123(ifUnmodifiedSince)));
+        }
+        // Map the response headers of getTaskFilePropertiesWithResponse to FileResponseHeaderProperties
+        return getTaskFilePropertiesWithResponse(jobId, taskId, filePath, requestOptions)
+            .map(response -> new FileResponseHeaderProperties(response.getHeaders()));
+    }
+
+    /**
+     * Gets the properties of the specified Task file.
+     *
+     * @param jobId The ID of the Job that contains the Task.
+     * @param taskId The ID of the Task whose file you want to retrieve.
+     * @param filePath The path to the Task file that you want to get the content of.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified Task file on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<FileResponseHeaderProperties> getTaskFileProperties(String jobId, String taskId, String filePath) {
+        return getTaskFilePropertiesWithResponse(jobId, taskId, filePath, new RequestOptions())
+            .map(response -> new FileResponseHeaderProperties(response.getHeaders()));
+    }
+
+    /**
+     * Gets the properties of the specified Compute Node file.
+     *
+     * @param poolId The ID of the Pool that contains the Compute Node.
+     * @param nodeId The ID of the Compute Node.
+     * @param filePath The path to the file or directory.
+     * @param options Optional parameters for Get Node File Properties operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified Compute Node file on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<FileResponseHeaderProperties> getNodeFileProperties(String poolId, String nodeId, String filePath,
+        GetBatchNodeFilePropertiesOptions options) {
+        RequestOptions requestOptions = new RequestOptions();
+        Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
+        OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
+        OffsetDateTime ifUnmodifiedSince = options == null ? null : options.getIfUnmodifiedSince();
+        if (timeOutInSeconds != null) {
+            requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
+        }
+        if (ifModifiedSince != null) {
+            requestOptions.setHeader(HttpHeaderName.IF_MODIFIED_SINCE,
+                String.valueOf(new DateTimeRfc1123(ifModifiedSince)));
+        }
+        if (ifUnmodifiedSince != null) {
+            requestOptions.setHeader(HttpHeaderName.IF_UNMODIFIED_SINCE,
+                String.valueOf(new DateTimeRfc1123(ifUnmodifiedSince)));
+        }
+        // Map the response headers of getNodeFilePropertiesWithResponse to NodeFileProperties
+        return getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, requestOptions)
+            .map(response -> new FileResponseHeaderProperties(response.getHeaders()));
+    }
+
+    /**
+     * Gets the properties of the specified Compute Node file.
+     *
+     * @param poolId The ID of the Pool that contains the Compute Node.
+     * @param nodeId The ID of the Compute Node.
+     * @param filePath The path to the file or directory.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified Compute Node file on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<FileResponseHeaderProperties> getNodeFileProperties(String poolId, String nodeId, String filePath) {
+        return getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, new RequestOptions())
+            .map(response -> new FileResponseHeaderProperties(response.getHeaders()));
+    }
+
+    /**
      * Lists all of the applications available in the specified Account.
      *
      * This operation returns only Applications and versions that are available for
@@ -255,8 +447,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listApplications(RequestOptions requestOptions) {
-        return this.serviceClient.listApplicationsAsync(requestOptions);
+    PagedFlux<BinaryData> listApplicationsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listApplicationsInternalAsync(requestOptions);
     }
 
     /**
@@ -304,8 +496,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getApplicationWithResponse(String applicationId, RequestOptions requestOptions) {
-        return this.serviceClient.getApplicationWithResponseAsync(applicationId, requestOptions);
+    Mono<Response<BinaryData>> getApplicationInternalWithResponse(String applicationId, RequestOptions requestOptions) {
+        return this.serviceClient.getApplicationInternalWithResponseAsync(applicationId, requestOptions);
     }
 
     /**
@@ -364,8 +556,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listPoolUsageMetrics(RequestOptions requestOptions) {
-        return this.serviceClient.listPoolUsageMetricsAsync(requestOptions);
+    PagedFlux<BinaryData> listPoolUsageMetricsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listPoolUsageMetricsInternalAsync(requestOptions);
     }
 
     /**
@@ -674,8 +866,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createPoolWithResponse(BinaryData pool, RequestOptions requestOptions) {
-        return this.serviceClient.createPoolWithResponseAsync(pool, requestOptions);
+    Mono<Response<Void>> createPoolInternalWithResponse(BinaryData pool, RequestOptions requestOptions) {
+        return this.serviceClient.createPoolInternalWithResponseAsync(pool, requestOptions);
     }
 
     /**
@@ -1058,8 +1250,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listPools(RequestOptions requestOptions) {
-        return this.serviceClient.listPoolsAsync(requestOptions);
+    PagedFlux<BinaryData> listPoolsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listPoolsInternalAsync(requestOptions);
     }
 
     /**
@@ -1119,8 +1311,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deletePoolWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.deletePoolWithResponseAsync(poolId, requestOptions);
+    Mono<Response<Void>> deletePoolInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.deletePoolInternalWithResponseAsync(poolId, requestOptions);
     }
 
     /**
@@ -1173,8 +1365,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Boolean>> poolExistsWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.poolExistsWithResponseAsync(poolId, requestOptions);
+    Mono<Response<Boolean>> poolExistsInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.poolExistsInternalWithResponseAsync(poolId, requestOptions);
     }
 
     /**
@@ -1575,8 +1767,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getPoolWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.getPoolWithResponseAsync(poolId, requestOptions);
+    Mono<Response<BinaryData>> getPoolInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.getPoolInternalWithResponseAsync(poolId, requestOptions);
     }
 
     /**
@@ -1901,8 +2093,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> updatePoolWithResponse(String poolId, BinaryData pool, RequestOptions requestOptions) {
-        return this.serviceClient.updatePoolWithResponseAsync(poolId, pool, requestOptions);
+    Mono<Response<Void>> updatePoolInternalWithResponse(String poolId, BinaryData pool, RequestOptions requestOptions) {
+        return this.serviceClient.updatePoolInternalWithResponseAsync(poolId, pool, requestOptions);
     }
 
     /**
@@ -1927,8 +2119,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> disablePoolAutoScaleWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.disablePoolAutoScaleWithResponseAsync(poolId, requestOptions);
+    Mono<Response<Void>> disablePoolAutoScaleInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.disablePoolAutoScaleInternalWithResponseAsync(poolId, requestOptions);
     }
 
     /**
@@ -1993,9 +2185,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> enablePoolAutoScaleWithResponse(String poolId, BinaryData content,
+    Mono<Response<Void>> enablePoolAutoScaleInternalWithResponse(String poolId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.enablePoolAutoScaleWithResponseAsync(poolId, content, requestOptions);
+        return this.serviceClient.enablePoolAutoScaleInternalWithResponseAsync(poolId, content, requestOptions);
     }
 
     /**
@@ -2059,9 +2251,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> evaluatePoolAutoScaleWithResponse(String poolId, BinaryData content,
+    Mono<Response<BinaryData>> evaluatePoolAutoScaleInternalWithResponse(String poolId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.evaluatePoolAutoScaleWithResponseAsync(poolId, content, requestOptions);
+        return this.serviceClient.evaluatePoolAutoScaleInternalWithResponseAsync(poolId, content, requestOptions);
     }
 
     /**
@@ -2129,9 +2321,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> resizePoolWithResponse(String poolId, BinaryData content,
+    Mono<Response<Void>> resizePoolInternalWithResponse(String poolId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.resizePoolWithResponseAsync(poolId, content, requestOptions);
+        return this.serviceClient.resizePoolInternalWithResponseAsync(poolId, content, requestOptions);
     }
 
     /**
@@ -2186,8 +2378,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> stopPoolResizeWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.stopPoolResizeWithResponseAsync(poolId, requestOptions);
+    Mono<Response<Void>> stopPoolResizeInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.stopPoolResizeInternalWithResponseAsync(poolId, requestOptions);
     }
 
     /**
@@ -2297,9 +2489,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> replacePoolPropertiesWithResponse(String poolId, BinaryData pool,
+    Mono<Response<Void>> replacePoolPropertiesInternalWithResponse(String poolId, BinaryData pool,
         RequestOptions requestOptions) {
-        return this.serviceClient.replacePoolPropertiesWithResponseAsync(poolId, pool, requestOptions);
+        return this.serviceClient.replacePoolPropertiesInternalWithResponseAsync(poolId, pool, requestOptions);
     }
 
     /**
@@ -2364,9 +2556,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> removeNodesWithResponse(String poolId, BinaryData content,
+    Mono<Response<Void>> removeNodesInternalWithResponse(String poolId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.removeNodesWithResponseAsync(poolId, content, requestOptions);
+        return this.serviceClient.removeNodesInternalWithResponseAsync(poolId, content, requestOptions);
     }
 
     /**
@@ -2421,8 +2613,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listSupportedImages(RequestOptions requestOptions) {
-        return this.serviceClient.listSupportedImagesAsync(requestOptions);
+    PagedFlux<BinaryData> listSupportedImagesInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listSupportedImagesInternalAsync(requestOptions);
     }
 
     /**
@@ -2483,8 +2675,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listPoolNodeCounts(RequestOptions requestOptions) {
-        return this.serviceClient.listPoolNodeCountsAsync(requestOptions);
+    PagedFlux<BinaryData> listPoolNodeCountsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listPoolNodeCountsInternalAsync(requestOptions);
     }
 
     /**
@@ -2542,8 +2734,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteJobWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.deleteJobWithResponseAsync(jobId, requestOptions);
+    Mono<Response<Void>> deleteJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteJobInternalWithResponseAsync(jobId, requestOptions);
     }
 
     /**
@@ -3024,8 +3216,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getJobWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.getJobWithResponseAsync(jobId, requestOptions);
+    Mono<Response<BinaryData>> getJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.getJobInternalWithResponseAsync(jobId, requestOptions);
     }
 
     /**
@@ -3379,8 +3571,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> updateJobWithResponse(String jobId, BinaryData job, RequestOptions requestOptions) {
-        return this.serviceClient.updateJobWithResponseAsync(jobId, job, requestOptions);
+    Mono<Response<Void>> updateJobInternalWithResponse(String jobId, BinaryData job, RequestOptions requestOptions) {
+        return this.serviceClient.updateJobInternalWithResponseAsync(jobId, job, requestOptions);
     }
 
     /**
@@ -3862,8 +4054,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> replaceJobWithResponse(String jobId, BinaryData job, RequestOptions requestOptions) {
-        return this.serviceClient.replaceJobWithResponseAsync(jobId, job, requestOptions);
+    Mono<Response<Void>> replaceJobInternalWithResponse(String jobId, BinaryData job, RequestOptions requestOptions) {
+        return this.serviceClient.replaceJobInternalWithResponseAsync(jobId, job, requestOptions);
     }
 
     /**
@@ -3929,9 +4121,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> disableJobWithResponse(String jobId, BinaryData content,
+    Mono<Response<Void>> disableJobInternalWithResponse(String jobId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.disableJobWithResponseAsync(jobId, content, requestOptions);
+        return this.serviceClient.disableJobInternalWithResponseAsync(jobId, content, requestOptions);
     }
 
     /**
@@ -3985,8 +4177,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> enableJobWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.enableJobWithResponseAsync(jobId, requestOptions);
+    Mono<Response<Void>> enableJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.enableJobInternalWithResponseAsync(jobId, requestOptions);
     }
 
     /**
@@ -4053,8 +4245,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> terminateJobWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.terminateJobWithResponseAsync(jobId, requestOptions);
+    Mono<Response<Void>> terminateJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.terminateJobInternalWithResponseAsync(jobId, requestOptions);
     }
 
     /**
@@ -4478,8 +4670,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createJobWithResponse(BinaryData job, RequestOptions requestOptions) {
-        return this.serviceClient.createJobWithResponseAsync(job, requestOptions);
+    Mono<Response<Void>> createJobInternalWithResponse(BinaryData job, RequestOptions requestOptions) {
+        return this.serviceClient.createJobInternalWithResponseAsync(job, requestOptions);
     }
 
     /**
@@ -4943,8 +5135,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listJobs(RequestOptions requestOptions) {
-        return this.serviceClient.listJobsAsync(requestOptions);
+    PagedFlux<BinaryData> listJobsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listJobsInternalAsync(requestOptions);
     }
 
     /**
@@ -5409,8 +5601,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listJobsFromSchedule(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.listJobsFromScheduleAsync(jobScheduleId, requestOptions);
+    PagedFlux<BinaryData> listJobsFromScheduleInternal(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.listJobsFromScheduleInternalAsync(jobScheduleId, requestOptions);
     }
 
     /**
@@ -5501,8 +5693,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listJobPreparationAndReleaseTaskStatus(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.listJobPreparationAndReleaseTaskStatusAsync(jobId, requestOptions);
+    PagedFlux<BinaryData> listJobPreparationAndReleaseTaskStatusInternal(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.listJobPreparationAndReleaseTaskStatusInternalAsync(jobId, requestOptions);
     }
 
     /**
@@ -5558,8 +5750,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getJobTaskCountsWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.getJobTaskCountsWithResponseAsync(jobId, requestOptions);
+    Mono<Response<BinaryData>> getJobTaskCountsInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.getJobTaskCountsInternalWithResponseAsync(jobId, requestOptions);
     }
 
     /**
@@ -5613,8 +5805,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createCertificateWithResponse(BinaryData certificate, RequestOptions requestOptions) {
-        return this.serviceClient.createCertificateWithResponseAsync(certificate, requestOptions);
+    Mono<Response<Void>> createCertificateInternalWithResponse(BinaryData certificate, RequestOptions requestOptions) {
+        return this.serviceClient.createCertificateInternalWithResponseAsync(certificate, requestOptions);
     }
 
     /**
@@ -5675,8 +5867,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listCertificates(RequestOptions requestOptions) {
-        return this.serviceClient.listCertificatesAsync(requestOptions);
+    PagedFlux<BinaryData> listCertificatesInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listCertificatesInternalAsync(requestOptions);
     }
 
     /**
@@ -5710,9 +5902,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> cancelCertificateDeletionWithResponse(String thumbprintAlgorithm, String thumbprint,
+    Mono<Response<Void>> cancelCertificateDeletionInternalWithResponse(String thumbprintAlgorithm, String thumbprint,
         RequestOptions requestOptions) {
-        return this.serviceClient.cancelCertificateDeletionWithResponseAsync(thumbprintAlgorithm, thumbprint,
+        return this.serviceClient.cancelCertificateDeletionInternalWithResponseAsync(thumbprintAlgorithm, thumbprint,
             requestOptions);
     }
 
@@ -5749,9 +5941,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteCertificateWithResponse(String thumbprintAlgorithm, String thumbprint,
+    Mono<Response<Void>> deleteCertificateInternalWithResponse(String thumbprintAlgorithm, String thumbprint,
         RequestOptions requestOptions) {
-        return this.serviceClient.deleteCertificateWithResponseAsync(thumbprintAlgorithm, thumbprint, requestOptions);
+        return this.serviceClient.deleteCertificateInternalWithResponseAsync(thumbprintAlgorithm, thumbprint,
+            requestOptions);
     }
 
     /**
@@ -5790,6 +5983,9 @@ public final class BatchAsyncClient {
      *             }
      *         ]
      *     }
+     *     data: String (Required)
+     *     certificateFormat: String(pfx/cer) (Optional)
+     *     password: String (Optional)
      * }
      * }
      * </pre>
@@ -5806,9 +6002,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getCertificateWithResponse(String thumbprintAlgorithm, String thumbprint,
+    Mono<Response<BinaryData>> getCertificateInternalWithResponse(String thumbprintAlgorithm, String thumbprint,
         RequestOptions requestOptions) {
-        return this.serviceClient.getCertificateWithResponseAsync(thumbprintAlgorithm, thumbprint, requestOptions);
+        return this.serviceClient.getCertificateInternalWithResponseAsync(thumbprintAlgorithm, thumbprint,
+            requestOptions);
     }
 
     /**
@@ -5861,8 +6058,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Boolean>> jobScheduleExistsWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.jobScheduleExistsWithResponseAsync(jobScheduleId, requestOptions);
+    Mono<Response<Boolean>> jobScheduleExistsInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.jobScheduleExistsInternalWithResponseAsync(jobScheduleId, requestOptions);
     }
 
     /**
@@ -5917,8 +6114,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.deleteJobScheduleWithResponseAsync(jobScheduleId, requestOptions);
+    Mono<Response<Void>> deleteJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteJobScheduleInternalWithResponseAsync(jobScheduleId, requestOptions);
     }
 
     /**
@@ -6403,8 +6600,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.getJobScheduleWithResponseAsync(jobScheduleId, requestOptions);
+    Mono<Response<BinaryData>> getJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.getJobScheduleInternalWithResponseAsync(jobScheduleId, requestOptions);
     }
 
     /**
@@ -6857,9 +7054,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> updateJobScheduleWithResponse(String jobScheduleId, BinaryData jobSchedule,
+    Mono<Response<Void>> updateJobScheduleInternalWithResponse(String jobScheduleId, BinaryData jobSchedule,
         RequestOptions requestOptions) {
-        return this.serviceClient.updateJobScheduleWithResponseAsync(jobScheduleId, jobSchedule, requestOptions);
+        return this.serviceClient.updateJobScheduleInternalWithResponseAsync(jobScheduleId, jobSchedule,
+            requestOptions);
     }
 
     /**
@@ -7346,9 +7544,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> replaceJobScheduleWithResponse(String jobScheduleId, BinaryData jobSchedule,
+    Mono<Response<Void>> replaceJobScheduleInternalWithResponse(String jobScheduleId, BinaryData jobSchedule,
         RequestOptions requestOptions) {
-        return this.serviceClient.replaceJobScheduleWithResponseAsync(jobScheduleId, jobSchedule, requestOptions);
+        return this.serviceClient.replaceJobScheduleInternalWithResponseAsync(jobScheduleId, jobSchedule,
+            requestOptions);
     }
 
     /**
@@ -7397,8 +7596,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> disableJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.disableJobScheduleWithResponseAsync(jobScheduleId, requestOptions);
+    Mono<Response<Void>> disableJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.disableJobScheduleInternalWithResponseAsync(jobScheduleId, requestOptions);
     }
 
     /**
@@ -7445,8 +7644,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> enableJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.enableJobScheduleWithResponseAsync(jobScheduleId, requestOptions);
+    Mono<Response<Void>> enableJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.enableJobScheduleInternalWithResponseAsync(jobScheduleId, requestOptions);
     }
 
     /**
@@ -7495,8 +7694,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> terminateJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.terminateJobScheduleWithResponseAsync(jobScheduleId, requestOptions);
+    Mono<Response<Void>> terminateJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.terminateJobScheduleInternalWithResponseAsync(jobScheduleId, requestOptions);
     }
 
     /**
@@ -7922,8 +8121,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createJobScheduleWithResponse(BinaryData jobSchedule, RequestOptions requestOptions) {
-        return this.serviceClient.createJobScheduleWithResponseAsync(jobSchedule, requestOptions);
+    Mono<Response<Void>> createJobScheduleInternalWithResponse(BinaryData jobSchedule, RequestOptions requestOptions) {
+        return this.serviceClient.createJobScheduleInternalWithResponseAsync(jobSchedule, requestOptions);
     }
 
     /**
@@ -8390,8 +8589,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listJobSchedules(RequestOptions requestOptions) {
-        return this.serviceClient.listJobSchedulesAsync(requestOptions);
+    PagedFlux<BinaryData> listJobSchedulesInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listJobSchedulesInternalAsync(requestOptions);
     }
 
     /**
@@ -8555,8 +8754,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createTaskWithResponse(String jobId, BinaryData task, RequestOptions requestOptions) {
-        return this.serviceClient.createTaskWithResponseAsync(jobId, task, requestOptions);
+    Mono<Response<Void>> createTaskInternalWithResponse(String jobId, BinaryData task, RequestOptions requestOptions) {
+        return this.serviceClient.createTaskInternalWithResponseAsync(jobId, task, requestOptions);
     }
 
     /**
@@ -8784,8 +8983,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listTasks(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.listTasksAsync(jobId, requestOptions);
+    PagedFlux<BinaryData> listTasksInternal(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.listTasksInternalAsync(jobId, requestOptions);
     }
 
     /**
@@ -8996,9 +9195,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createTaskCollectionWithResponse(String jobId, BinaryData taskCollection,
+    Mono<Response<BinaryData>> createTaskCollectionInternalWithResponse(String jobId, BinaryData taskCollection,
         RequestOptions requestOptions) {
-        return this.serviceClient.createTaskCollectionWithResponseAsync(jobId, taskCollection, requestOptions);
+        return this.serviceClient.createTaskCollectionInternalWithResponseAsync(jobId, taskCollection, requestOptions);
     }
 
     /**
@@ -9052,8 +9251,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteTaskWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.deleteTaskWithResponseAsync(jobId, taskId, requestOptions);
+    Mono<Response<Void>> deleteTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteTaskInternalWithResponseAsync(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9301,8 +9500,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getTaskWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.getTaskWithResponseAsync(jobId, taskId, requestOptions);
+    Mono<Response<BinaryData>> getTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.getTaskInternalWithResponseAsync(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9540,9 +9739,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> replaceTaskWithResponse(String jobId, String taskId, BinaryData task,
+    Mono<Response<Void>> replaceTaskInternalWithResponse(String jobId, String taskId, BinaryData task,
         RequestOptions requestOptions) {
-        return this.serviceClient.replaceTaskWithResponseAsync(jobId, taskId, task, requestOptions);
+        return this.serviceClient.replaceTaskInternalWithResponseAsync(jobId, taskId, task, requestOptions);
     }
 
     /**
@@ -9614,8 +9813,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listSubTasks(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.listSubTasksAsync(jobId, taskId, requestOptions);
+    PagedFlux<BinaryData> listSubTasksInternal(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.listSubTasksInternalAsync(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9667,8 +9866,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> terminateTaskWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.terminateTaskWithResponseAsync(jobId, taskId, requestOptions);
+    Mono<Response<Void>> terminateTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.terminateTaskInternalWithResponseAsync(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9725,8 +9924,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> reactivateTaskWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.reactivateTaskWithResponseAsync(jobId, taskId, requestOptions);
+    Mono<Response<Void>> reactivateTaskInternalWithResponse(String jobId, String taskId,
+        RequestOptions requestOptions) {
+        return this.serviceClient.reactivateTaskInternalWithResponseAsync(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9758,9 +9958,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteTaskFileWithResponse(String jobId, String taskId, String filePath,
+    Mono<Response<Void>> deleteTaskFileInternalWithResponse(String jobId, String taskId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.deleteTaskFileWithResponseAsync(jobId, taskId, filePath, requestOptions);
+        return this.serviceClient.deleteTaskFileInternalWithResponseAsync(jobId, taskId, filePath, requestOptions);
     }
 
     /**
@@ -9811,9 +10011,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getTaskFileWithResponse(String jobId, String taskId, String filePath,
+    Mono<Response<BinaryData>> getTaskFileInternalWithResponse(String jobId, String taskId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.getTaskFileWithResponseAsync(jobId, taskId, filePath, requestOptions);
+        return this.serviceClient.getTaskFileInternalWithResponseAsync(jobId, taskId, filePath, requestOptions);
     }
 
     /**
@@ -9855,9 +10055,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> getTaskFilePropertiesWithResponse(String jobId, String taskId, String filePath,
+    Mono<Response<Void>> getTaskFilePropertiesInternalWithResponse(String jobId, String taskId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.getTaskFilePropertiesWithResponseAsync(jobId, taskId, filePath, requestOptions);
+        return this.serviceClient.getTaskFilePropertiesInternalWithResponseAsync(jobId, taskId, filePath,
+            requestOptions);
     }
 
     /**
@@ -9911,8 +10112,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listTaskFiles(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.listTaskFilesAsync(jobId, taskId, requestOptions);
+    PagedFlux<BinaryData> listTaskFilesInternal(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.listTaskFilesInternalAsync(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9955,9 +10156,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createNodeUserWithResponse(String poolId, String nodeId, BinaryData user,
+    Mono<Response<Void>> createNodeUserInternalWithResponse(String poolId, String nodeId, BinaryData user,
         RequestOptions requestOptions) {
-        return this.serviceClient.createNodeUserWithResponseAsync(poolId, nodeId, user, requestOptions);
+        return this.serviceClient.createNodeUserInternalWithResponseAsync(poolId, nodeId, user, requestOptions);
     }
 
     /**
@@ -9987,9 +10188,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteNodeUserWithResponse(String poolId, String nodeId, String userName,
+    Mono<Response<Void>> deleteNodeUserInternalWithResponse(String poolId, String nodeId, String userName,
         RequestOptions requestOptions) {
-        return this.serviceClient.deleteNodeUserWithResponseAsync(poolId, nodeId, userName, requestOptions);
+        return this.serviceClient.deleteNodeUserInternalWithResponseAsync(poolId, nodeId, userName, requestOptions);
     }
 
     /**
@@ -10033,9 +10234,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> replaceNodeUserWithResponse(String poolId, String nodeId, String userName,
+    Mono<Response<Void>> replaceNodeUserInternalWithResponse(String poolId, String nodeId, String userName,
         BinaryData content, RequestOptions requestOptions) {
-        return this.serviceClient.replaceNodeUserWithResponseAsync(poolId, nodeId, userName, content, requestOptions);
+        return this.serviceClient.replaceNodeUserInternalWithResponseAsync(poolId, nodeId, userName, content,
+            requestOptions);
     }
 
     /**
@@ -10230,8 +10432,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.getNodeWithResponseAsync(poolId, nodeId, requestOptions);
+    Mono<Response<BinaryData>> getNodeInternalWithResponse(String poolId, String nodeId,
+        RequestOptions requestOptions) {
+        return this.serviceClient.getNodeInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10276,8 +10479,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> rebootNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.rebootNodeWithResponseAsync(poolId, nodeId, requestOptions);
+    Mono<Response<Void>> rebootNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.rebootNodeInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10305,8 +10508,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> startNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.startNodeWithResponseAsync(poolId, nodeId, requestOptions);
+    Mono<Response<Void>> startNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.startNodeInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10353,8 +10556,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> reimageNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.reimageNodeWithResponseAsync(poolId, nodeId, requestOptions);
+    Mono<Response<Void>> reimageNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.reimageNodeInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10399,9 +10602,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deallocateNodeWithResponse(String poolId, String nodeId,
+    Mono<Response<Void>> deallocateNodeInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
-        return this.serviceClient.deallocateNodeWithResponseAsync(poolId, nodeId, requestOptions);
+        return this.serviceClient.deallocateNodeInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10447,9 +10650,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> disableNodeSchedulingWithResponse(String poolId, String nodeId,
+    Mono<Response<Void>> disableNodeSchedulingInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
-        return this.serviceClient.disableNodeSchedulingWithResponseAsync(poolId, nodeId, requestOptions);
+        return this.serviceClient.disableNodeSchedulingInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10478,9 +10681,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> enableNodeSchedulingWithResponse(String poolId, String nodeId,
+    Mono<Response<Void>> enableNodeSchedulingInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
-        return this.serviceClient.enableNodeSchedulingWithResponseAsync(poolId, nodeId, requestOptions);
+        return this.serviceClient.enableNodeSchedulingInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10523,9 +10726,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getNodeRemoteLoginSettingsWithResponse(String poolId, String nodeId,
+    Mono<Response<BinaryData>> getNodeRemoteLoginSettingsInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
-        return this.serviceClient.getNodeRemoteLoginSettingsWithResponseAsync(poolId, nodeId, requestOptions);
+        return this.serviceClient.getNodeRemoteLoginSettingsInternalWithResponseAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10585,9 +10788,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> uploadNodeLogsWithResponse(String poolId, String nodeId, BinaryData content,
+    Mono<Response<BinaryData>> uploadNodeLogsInternalWithResponse(String poolId, String nodeId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.uploadNodeLogsWithResponseAsync(poolId, nodeId, content, requestOptions);
+        return this.serviceClient.uploadNodeLogsInternalWithResponseAsync(poolId, nodeId, content, requestOptions);
     }
 
     /**
@@ -10786,8 +10989,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listNodes(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.listNodesAsync(poolId, requestOptions);
+    PagedFlux<BinaryData> listNodesInternal(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.listNodesInternalAsync(poolId, requestOptions);
     }
 
     /**
@@ -10858,9 +11061,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getNodeExtensionWithResponse(String poolId, String nodeId, String extensionName,
+    Mono<Response<BinaryData>> getNodeExtensionInternalWithResponse(String poolId, String nodeId, String extensionName,
         RequestOptions requestOptions) {
-        return this.serviceClient.getNodeExtensionWithResponseAsync(poolId, nodeId, extensionName, requestOptions);
+        return this.serviceClient.getNodeExtensionInternalWithResponseAsync(poolId, nodeId, extensionName,
+            requestOptions);
     }
 
     /**
@@ -10932,8 +11136,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listNodeExtensions(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.listNodeExtensionsAsync(poolId, nodeId, requestOptions);
+    PagedFlux<BinaryData> listNodeExtensionsInternal(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.listNodeExtensionsInternalAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10965,9 +11169,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteNodeFileWithResponse(String poolId, String nodeId, String filePath,
+    Mono<Response<Void>> deleteNodeFileInternalWithResponse(String poolId, String nodeId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.deleteNodeFileWithResponseAsync(poolId, nodeId, filePath, requestOptions);
+        return this.serviceClient.deleteNodeFileInternalWithResponseAsync(poolId, nodeId, filePath, requestOptions);
     }
 
     /**
@@ -11018,9 +11222,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getNodeFileWithResponse(String poolId, String nodeId, String filePath,
+    Mono<Response<BinaryData>> getNodeFileInternalWithResponse(String poolId, String nodeId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.getNodeFileWithResponseAsync(poolId, nodeId, filePath, requestOptions);
+        return this.serviceClient.getNodeFileInternalWithResponseAsync(poolId, nodeId, filePath, requestOptions);
     }
 
     /**
@@ -11062,9 +11266,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> getNodeFilePropertiesWithResponse(String poolId, String nodeId, String filePath,
+    Mono<Response<Void>> getNodeFilePropertiesInternalWithResponse(String poolId, String nodeId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.getNodeFilePropertiesWithResponseAsync(poolId, nodeId, filePath, requestOptions);
+        return this.serviceClient.getNodeFilePropertiesInternalWithResponseAsync(poolId, nodeId, filePath,
+            requestOptions);
     }
 
     /**
@@ -11116,8 +11321,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listNodeFiles(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.listNodeFilesAsync(poolId, nodeId, requestOptions);
+    PagedFlux<BinaryData> listNodeFilesInternal(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.listNodeFilesInternalAsync(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -11141,14 +11346,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchApplication> listApplications(ListBatchApplicationsOptions options) {
-        // Generated convenience method for listApplications
+    PagedFlux<BatchApplication> listApplicationsInternal(ListBatchApplicationsOptions options) {
+        // Generated convenience method for listApplicationsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listApplications(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listApplicationsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -11182,10 +11387,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchApplication> listApplications() {
-        // Generated convenience method for listApplications
+    PagedFlux<BatchApplication> listApplicationsInternal() {
+        // Generated convenience method for listApplicationsInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listApplications(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listApplicationsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -11224,14 +11429,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchApplication> getApplication(String applicationId, GetBatchApplicationOptions options) {
-        // Generated convenience method for getApplicationWithResponse
+    Mono<BatchApplication> getApplicationInternal(String applicationId, GetBatchApplicationOptions options) {
+        // Generated convenience method for getApplicationInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return getApplicationWithResponse(applicationId, requestOptions).flatMap(FluxUtil::toMono)
+        return getApplicationInternalWithResponse(applicationId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchApplication.class));
     }
 
@@ -11258,10 +11463,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchApplication> getApplication(String applicationId) {
-        // Generated convenience method for getApplicationWithResponse
+    Mono<BatchApplication> getApplicationInternal(String applicationId) {
+        // Generated convenience method for getApplicationInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getApplicationWithResponse(applicationId, requestOptions).flatMap(FluxUtil::toMono)
+        return getApplicationInternalWithResponse(applicationId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchApplication.class));
     }
 
@@ -11287,8 +11492,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchPoolUsageMetrics> listPoolUsageMetrics(ListBatchPoolUsageMetricsOptions options) {
-        // Generated convenience method for listPoolUsageMetrics
+    PagedFlux<BatchPoolUsageMetrics> listPoolUsageMetricsInternal(ListBatchPoolUsageMetricsOptions options) {
+        // Generated convenience method for listPoolUsageMetricsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime startTime = options == null ? null : options.getStartTime();
@@ -11306,7 +11511,7 @@ public final class BatchAsyncClient {
         if (filter != null) {
             requestOptions.addQueryParam("$filter", filter, false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listPoolUsageMetrics(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listPoolUsageMetricsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -11342,10 +11547,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchPoolUsageMetrics> listPoolUsageMetrics() {
-        // Generated convenience method for listPoolUsageMetrics
+    PagedFlux<BatchPoolUsageMetrics> listPoolUsageMetricsInternal() {
+        // Generated convenience method for listPoolUsageMetricsInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listPoolUsageMetrics(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listPoolUsageMetricsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -11380,14 +11585,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createPool(BatchPoolCreateContent pool, CreateBatchPoolOptions options) {
-        // Generated convenience method for createPoolWithResponse
+    Mono<Void> createPoolInternal(BatchPoolCreateContent pool, CreateBatchPoolOptions options) {
+        // Generated convenience method for createPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return createPoolWithResponse(BinaryData.fromObject(pool), requestOptions).flatMap(FluxUtil::toMono);
+        return createPoolInternalWithResponse(BinaryData.fromObject(pool), requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11408,10 +11613,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createPool(BatchPoolCreateContent pool) {
-        // Generated convenience method for createPoolWithResponse
+    Mono<Void> createPoolInternal(BatchPoolCreateContent pool) {
+        // Generated convenience method for createPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createPoolWithResponse(BinaryData.fromObject(pool), requestOptions).flatMap(FluxUtil::toMono);
+        return createPoolInternalWithResponse(BinaryData.fromObject(pool), requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11428,8 +11633,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchPool> listPools(ListBatchPoolsOptions options) {
-        // Generated convenience method for listPools
+    PagedFlux<BatchPool> listPoolsInternal(ListBatchPoolsOptions options) {
+        // Generated convenience method for listPoolsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -11455,7 +11660,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listPools(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listPoolsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -11482,10 +11687,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchPool> listPools() {
-        // Generated convenience method for listPools
+    PagedFlux<BatchPool> listPoolsInternal() {
+        // Generated convenience method for listPoolsInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listPools(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listPoolsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -11529,8 +11734,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deletePool(String poolId, DeleteBatchPoolOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for deletePoolWithResponse
+    Mono<Void> deletePoolInternal(String poolId, DeleteBatchPoolOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for deletePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11554,7 +11759,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return deletePoolWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
+        return deletePoolInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11584,10 +11789,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deletePool(String poolId) {
-        // Generated convenience method for deletePoolWithResponse
+    Mono<Void> deletePoolInternal(String poolId) {
+        // Generated convenience method for deletePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deletePoolWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
+        return deletePoolInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11605,9 +11810,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Boolean> poolExists(String poolId, BatchPoolExistsOptions options,
+    Mono<Boolean> poolExistsInternal(String poolId, BatchPoolExistsOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for poolExistsWithResponse
+        // Generated convenience method for poolExistsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11631,7 +11836,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return poolExistsWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
+        return poolExistsInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11647,10 +11852,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Boolean> poolExists(String poolId) {
-        // Generated convenience method for poolExistsWithResponse
+    Mono<Boolean> poolExistsInternal(String poolId) {
+        // Generated convenience method for poolExistsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return poolExistsWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
+        return poolExistsInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11669,8 +11874,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchPool> getPool(String poolId, GetBatchPoolOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for getPoolWithResponse
+    Mono<BatchPool> getPoolInternal(String poolId, GetBatchPoolOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for getPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -11710,7 +11915,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return getPoolWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono)
+        return getPoolInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchPool.class));
     }
 
@@ -11728,10 +11933,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchPool> getPool(String poolId) {
-        // Generated convenience method for getPoolWithResponse
+    Mono<BatchPool> getPoolInternal(String poolId) {
+        // Generated convenience method for getPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getPoolWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono)
+        return getPoolInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchPool.class));
     }
 
@@ -11756,9 +11961,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> updatePool(String poolId, BatchPoolUpdateContent pool, UpdateBatchPoolOptions options,
+    Mono<Void> updatePoolInternal(String poolId, BatchPoolUpdateContent pool, UpdateBatchPoolOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for updatePoolWithResponse
+        // Generated convenience method for updatePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11782,7 +11987,8 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return updatePoolWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).flatMap(FluxUtil::toMono);
+        return updatePoolInternalWithResponse(poolId, BinaryData.fromObject(pool), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11804,10 +12010,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> updatePool(String poolId, BatchPoolUpdateContent pool) {
-        // Generated convenience method for updatePoolWithResponse
+    Mono<Void> updatePoolInternal(String poolId, BatchPoolUpdateContent pool) {
+        // Generated convenience method for updatePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return updatePoolWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).flatMap(FluxUtil::toMono);
+        return updatePoolInternalWithResponse(poolId, BinaryData.fromObject(pool), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11825,14 +12032,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disablePoolAutoScale(String poolId, DisableBatchPoolAutoScaleOptions options) {
-        // Generated convenience method for disablePoolAutoScaleWithResponse
+    Mono<Void> disablePoolAutoScaleInternal(String poolId, DisableBatchPoolAutoScaleOptions options) {
+        // Generated convenience method for disablePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return disablePoolAutoScaleWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
+        return disablePoolAutoScaleInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11849,10 +12056,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disablePoolAutoScale(String poolId) {
-        // Generated convenience method for disablePoolAutoScaleWithResponse
+    Mono<Void> disablePoolAutoScaleInternal(String poolId) {
+        // Generated convenience method for disablePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return disablePoolAutoScaleWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
+        return disablePoolAutoScaleInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -11879,9 +12086,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> enablePoolAutoScale(String poolId, BatchPoolEnableAutoScaleContent content,
+    Mono<Void> enablePoolAutoScaleInternal(String poolId, BatchPoolEnableAutoScaleContent content,
         EnableBatchPoolAutoScaleOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for enablePoolAutoScaleWithResponse
+        // Generated convenience method for enablePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11905,7 +12112,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return enablePoolAutoScaleWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+        return enablePoolAutoScaleInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -11931,10 +12138,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> enablePoolAutoScale(String poolId, BatchPoolEnableAutoScaleContent content) {
-        // Generated convenience method for enablePoolAutoScaleWithResponse
+    Mono<Void> enablePoolAutoScaleInternal(String poolId, BatchPoolEnableAutoScaleContent content) {
+        // Generated convenience method for enablePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return enablePoolAutoScaleWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+        return enablePoolAutoScaleInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -11961,15 +12168,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<AutoScaleRun> evaluatePoolAutoScale(String poolId, BatchPoolEvaluateAutoScaleContent content,
+    Mono<AutoScaleRun> evaluatePoolAutoScaleInternal(String poolId, BatchPoolEvaluateAutoScaleContent content,
         EvaluateBatchPoolAutoScaleOptions options) {
-        // Generated convenience method for evaluatePoolAutoScaleWithResponse
+        // Generated convenience method for evaluatePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return evaluatePoolAutoScaleWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+        return evaluatePoolAutoScaleInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(AutoScaleRun.class));
     }
@@ -11996,10 +12203,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<AutoScaleRun> evaluatePoolAutoScale(String poolId, BatchPoolEvaluateAutoScaleContent content) {
-        // Generated convenience method for evaluatePoolAutoScaleWithResponse
+    Mono<AutoScaleRun> evaluatePoolAutoScaleInternal(String poolId, BatchPoolEvaluateAutoScaleContent content) {
+        // Generated convenience method for evaluatePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return evaluatePoolAutoScaleWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+        return evaluatePoolAutoScaleInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(AutoScaleRun.class));
     }
@@ -12029,9 +12236,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> resizePool(String poolId, BatchPoolResizeContent content, ResizeBatchPoolOptions options,
+    Mono<Void> resizePoolInternal(String poolId, BatchPoolResizeContent content, ResizeBatchPoolOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for resizePoolWithResponse
+        // Generated convenience method for resizePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12055,7 +12262,8 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return resizePoolWithResponse(poolId, BinaryData.fromObject(content), requestOptions).flatMap(FluxUtil::toMono);
+        return resizePoolInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12081,10 +12289,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> resizePool(String poolId, BatchPoolResizeContent content) {
-        // Generated convenience method for resizePoolWithResponse
+    Mono<Void> resizePoolInternal(String poolId, BatchPoolResizeContent content) {
+        // Generated convenience method for resizePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return resizePoolWithResponse(poolId, BinaryData.fromObject(content), requestOptions).flatMap(FluxUtil::toMono);
+        return resizePoolInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12111,9 +12320,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> stopPoolResize(String poolId, StopBatchPoolResizeOptions options,
+    Mono<Void> stopPoolResizeInternal(String poolId, StopBatchPoolResizeOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for stopPoolResizeWithResponse
+        // Generated convenience method for stopPoolResizeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12137,7 +12346,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return stopPoolResizeWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
+        return stopPoolResizeInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12162,10 +12371,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> stopPoolResize(String poolId) {
-        // Generated convenience method for stopPoolResizeWithResponse
+    Mono<Void> stopPoolResizeInternal(String poolId) {
+        // Generated convenience method for stopPoolResizeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return stopPoolResizeWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
+        return stopPoolResizeInternalWithResponse(poolId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12188,15 +12397,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replacePoolProperties(String poolId, BatchPoolReplaceContent pool,
+    Mono<Void> replacePoolPropertiesInternal(String poolId, BatchPoolReplaceContent pool,
         ReplaceBatchPoolPropertiesOptions options) {
-        // Generated convenience method for replacePoolPropertiesWithResponse
+        // Generated convenience method for replacePoolPropertiesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return replacePoolPropertiesWithResponse(poolId, BinaryData.fromObject(pool), requestOptions)
+        return replacePoolPropertiesInternalWithResponse(poolId, BinaryData.fromObject(pool), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -12219,10 +12428,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replacePoolProperties(String poolId, BatchPoolReplaceContent pool) {
-        // Generated convenience method for replacePoolPropertiesWithResponse
+    Mono<Void> replacePoolPropertiesInternal(String poolId, BatchPoolReplaceContent pool) {
+        // Generated convenience method for replacePoolPropertiesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return replacePoolPropertiesWithResponse(poolId, BinaryData.fromObject(pool), requestOptions)
+        return replacePoolPropertiesInternalWithResponse(poolId, BinaryData.fromObject(pool), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -12247,9 +12456,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> removeNodes(String poolId, BatchNodeRemoveContent content, RemoveBatchNodesOptions options,
+    Mono<Void> removeNodesInternal(String poolId, BatchNodeRemoveContent content, RemoveBatchNodesOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for removeNodesWithResponse
+        // Generated convenience method for removeNodesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12273,7 +12482,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return removeNodesWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+        return removeNodesInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -12296,10 +12505,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> removeNodes(String poolId, BatchNodeRemoveContent content) {
-        // Generated convenience method for removeNodesWithResponse
+    Mono<Void> removeNodesInternal(String poolId, BatchNodeRemoveContent content) {
+        // Generated convenience method for removeNodesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return removeNodesWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+        return removeNodesInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -12317,8 +12526,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchSupportedImage> listSupportedImages(ListSupportedBatchImagesOptions options) {
-        // Generated convenience method for listSupportedImages
+    PagedFlux<BatchSupportedImage> listSupportedImagesInternal(ListSupportedBatchImagesOptions options) {
+        // Generated convenience method for listSupportedImagesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -12328,7 +12537,7 @@ public final class BatchAsyncClient {
         if (filter != null) {
             requestOptions.addQueryParam("$filter", filter, false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listSupportedImages(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listSupportedImagesInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -12356,10 +12565,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchSupportedImage> listSupportedImages() {
-        // Generated convenience method for listSupportedImages
+    PagedFlux<BatchSupportedImage> listSupportedImagesInternal() {
+        // Generated convenience method for listSupportedImagesInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listSupportedImages(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listSupportedImagesInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -12391,8 +12600,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchPoolNodeCounts> listPoolNodeCounts(ListBatchPoolNodeCountsOptions options) {
-        // Generated convenience method for listPoolNodeCounts
+    PagedFlux<BatchPoolNodeCounts> listPoolNodeCountsInternal(ListBatchPoolNodeCountsOptions options) {
+        // Generated convenience method for listPoolNodeCountsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -12402,7 +12611,7 @@ public final class BatchAsyncClient {
         if (filter != null) {
             requestOptions.addQueryParam("$filter", filter, false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listPoolNodeCounts(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listPoolNodeCountsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -12432,10 +12641,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchPoolNodeCounts> listPoolNodeCounts() {
-        // Generated convenience method for listPoolNodeCounts
+    PagedFlux<BatchPoolNodeCounts> listPoolNodeCountsInternal() {
+        // Generated convenience method for listPoolNodeCountsInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listPoolNodeCounts(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listPoolNodeCountsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -12476,8 +12685,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteJob(String jobId, DeleteBatchJobOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for deleteJobWithResponse
+    Mono<Void> deleteJobInternal(String jobId, DeleteBatchJobOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for deleteJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean force = options == null ? null : options.isForce();
@@ -12505,7 +12714,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return deleteJobWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12531,10 +12740,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteJob(String jobId) {
-        // Generated convenience method for deleteJobWithResponse
+    Mono<Void> deleteJobInternal(String jobId) {
+        // Generated convenience method for deleteJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deleteJobWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12553,8 +12762,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchJob> getJob(String jobId, GetBatchJobOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for getJobWithResponse
+    Mono<BatchJob> getJobInternal(String jobId, GetBatchJobOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for getJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -12594,7 +12803,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return getJobWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
+        return getJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchJob.class));
     }
 
@@ -12612,10 +12821,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchJob> getJob(String jobId) {
-        // Generated convenience method for getJobWithResponse
+    Mono<BatchJob> getJobInternal(String jobId) {
+        // Generated convenience method for getJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getJobWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
+        return getJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchJob.class));
     }
 
@@ -12640,9 +12849,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> updateJob(String jobId, BatchJobUpdateContent job, UpdateBatchJobOptions options,
+    Mono<Void> updateJobInternal(String jobId, BatchJobUpdateContent job, UpdateBatchJobOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for updateJobWithResponse
+        // Generated convenience method for updateJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12666,7 +12875,8 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return updateJobWithResponse(jobId, BinaryData.fromObject(job), requestOptions).flatMap(FluxUtil::toMono);
+        return updateJobInternalWithResponse(jobId, BinaryData.fromObject(job), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12688,10 +12898,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> updateJob(String jobId, BatchJobUpdateContent job) {
-        // Generated convenience method for updateJobWithResponse
+    Mono<Void> updateJobInternal(String jobId, BatchJobUpdateContent job) {
+        // Generated convenience method for updateJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return updateJobWithResponse(jobId, BinaryData.fromObject(job), requestOptions).flatMap(FluxUtil::toMono);
+        return updateJobInternalWithResponse(jobId, BinaryData.fromObject(job), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12715,9 +12926,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replaceJob(String jobId, BatchJob job, ReplaceBatchJobOptions options,
+    Mono<Void> replaceJobInternal(String jobId, BatchJob job, ReplaceBatchJobOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for replaceJobWithResponse
+        // Generated convenience method for replaceJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12741,7 +12952,8 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return replaceJobWithResponse(jobId, BinaryData.fromObject(job), requestOptions).flatMap(FluxUtil::toMono);
+        return replaceJobInternalWithResponse(jobId, BinaryData.fromObject(job), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12763,10 +12975,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replaceJob(String jobId, BatchJob job) {
-        // Generated convenience method for replaceJobWithResponse
+    Mono<Void> replaceJobInternal(String jobId, BatchJob job) {
+        // Generated convenience method for replaceJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return replaceJobWithResponse(jobId, BinaryData.fromObject(job), requestOptions).flatMap(FluxUtil::toMono);
+        return replaceJobInternalWithResponse(jobId, BinaryData.fromObject(job), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12795,9 +13008,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disableJob(String jobId, BatchJobDisableContent content, DisableBatchJobOptions options,
+    Mono<Void> disableJobInternal(String jobId, BatchJobDisableContent content, DisableBatchJobOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for disableJobWithResponse
+        // Generated convenience method for disableJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12821,7 +13034,8 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return disableJobWithResponse(jobId, BinaryData.fromObject(content), requestOptions).flatMap(FluxUtil::toMono);
+        return disableJobInternalWithResponse(jobId, BinaryData.fromObject(content), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12848,10 +13062,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disableJob(String jobId, BatchJobDisableContent content) {
-        // Generated convenience method for disableJobWithResponse
+    Mono<Void> disableJobInternal(String jobId, BatchJobDisableContent content) {
+        // Generated convenience method for disableJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return disableJobWithResponse(jobId, BinaryData.fromObject(content), requestOptions).flatMap(FluxUtil::toMono);
+        return disableJobInternalWithResponse(jobId, BinaryData.fromObject(content), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12877,8 +13092,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> enableJob(String jobId, EnableBatchJobOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for enableJobWithResponse
+    Mono<Void> enableJobInternal(String jobId, EnableBatchJobOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for enableJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12902,7 +13117,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return enableJobWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
+        return enableJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12926,10 +13141,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> enableJob(String jobId) {
-        // Generated convenience method for enableJobWithResponse
+    Mono<Void> enableJobInternal(String jobId) {
+        // Generated convenience method for enableJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return enableJobWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
+        return enableJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -12955,9 +13170,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> terminateJob(String jobId, TerminateBatchJobOptions options,
+    Mono<Void> terminateJobInternal(String jobId, TerminateBatchJobOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for terminateJobWithResponse
+        // Generated convenience method for terminateJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchJobTerminateContent parameters = options == null ? null : options.getParameters();
@@ -12989,7 +13204,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return terminateJobWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
+        return terminateJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13013,10 +13228,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> terminateJob(String jobId) {
-        // Generated convenience method for terminateJobWithResponse
+    Mono<Void> terminateJobInternal(String jobId) {
+        // Generated convenience method for terminateJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return terminateJobWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
+        return terminateJobInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13044,14 +13259,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createJob(BatchJobCreateContent job, CreateBatchJobOptions options) {
-        // Generated convenience method for createJobWithResponse
+    Mono<Void> createJobInternal(BatchJobCreateContent job, CreateBatchJobOptions options) {
+        // Generated convenience method for createJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return createJobWithResponse(BinaryData.fromObject(job), requestOptions).flatMap(FluxUtil::toMono);
+        return createJobInternalWithResponse(BinaryData.fromObject(job), requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13078,10 +13293,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createJob(BatchJobCreateContent job) {
-        // Generated convenience method for createJobWithResponse
+    Mono<Void> createJobInternal(BatchJobCreateContent job) {
+        // Generated convenience method for createJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createJobWithResponse(BinaryData.fromObject(job), requestOptions).flatMap(FluxUtil::toMono);
+        return createJobInternalWithResponse(BinaryData.fromObject(job), requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13098,8 +13313,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchJob> listJobs(ListBatchJobsOptions options) {
-        // Generated convenience method for listJobs
+    PagedFlux<BatchJob> listJobsInternal(ListBatchJobsOptions options) {
+        // Generated convenience method for listJobsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -13125,7 +13340,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listJobs(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listJobsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -13152,10 +13367,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchJob> listJobs() {
-        // Generated convenience method for listJobs
+    PagedFlux<BatchJob> listJobsInternal() {
+        // Generated convenience method for listJobsInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listJobs(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listJobsInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -13185,8 +13400,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchJob> listJobsFromSchedule(String jobScheduleId, ListBatchJobsFromScheduleOptions options) {
-        // Generated convenience method for listJobsFromSchedule
+    PagedFlux<BatchJob> listJobsFromScheduleInternal(String jobScheduleId, ListBatchJobsFromScheduleOptions options) {
+        // Generated convenience method for listJobsFromScheduleInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -13212,7 +13427,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listJobsFromSchedule(jobScheduleId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listJobsFromScheduleInternal(jobScheduleId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -13241,10 +13456,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchJob> listJobsFromSchedule(String jobScheduleId) {
-        // Generated convenience method for listJobsFromSchedule
+    PagedFlux<BatchJob> listJobsFromScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for listJobsFromScheduleInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listJobsFromSchedule(jobScheduleId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listJobsFromScheduleInternal(jobScheduleId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -13283,9 +13498,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatus(String jobId,
+    PagedFlux<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatusInternal(String jobId,
         ListBatchJobPreparationAndReleaseTaskStatusOptions options) {
-        // Generated convenience method for listJobPreparationAndReleaseTaskStatus
+        // Generated convenience method for listJobPreparationAndReleaseTaskStatusInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -13303,7 +13518,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listJobPreparationAndReleaseTaskStatus(jobId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listJobPreparationAndReleaseTaskStatusInternal(jobId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -13342,10 +13557,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatus(String jobId) {
-        // Generated convenience method for listJobPreparationAndReleaseTaskStatus
+    PagedFlux<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatusInternal(String jobId) {
+        // Generated convenience method for listJobPreparationAndReleaseTaskStatusInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listJobPreparationAndReleaseTaskStatus(jobId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listJobPreparationAndReleaseTaskStatusInternal(jobId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -13384,14 +13599,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchTaskCountsResult> getJobTaskCounts(String jobId, GetBatchJobTaskCountsOptions options) {
-        // Generated convenience method for getJobTaskCountsWithResponse
+    Mono<BatchTaskCountsResult> getJobTaskCountsInternal(String jobId, GetBatchJobTaskCountsOptions options) {
+        // Generated convenience method for getJobTaskCountsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return getJobTaskCountsWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
+        return getJobTaskCountsInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchTaskCountsResult.class));
     }
 
@@ -13417,10 +13632,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchTaskCountsResult> getJobTaskCounts(String jobId) {
-        // Generated convenience method for getJobTaskCountsWithResponse
+    Mono<BatchTaskCountsResult> getJobTaskCountsInternal(String jobId) {
+        // Generated convenience method for getJobTaskCountsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getJobTaskCountsWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
+        return getJobTaskCountsInternalWithResponse(jobId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchTaskCountsResult.class));
     }
 
@@ -13439,14 +13654,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createCertificate(BatchCertificate certificate, CreateBatchCertificateOptions options) {
-        // Generated convenience method for createCertificateWithResponse
+    Mono<Void> createCertificateInternal(BatchCertificate certificate, CreateBatchCertificateOptions options) {
+        // Generated convenience method for createCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return createCertificateWithResponse(BinaryData.fromObject(certificate), requestOptions)
+        return createCertificateInternalWithResponse(BinaryData.fromObject(certificate), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -13464,10 +13679,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createCertificate(BatchCertificate certificate) {
-        // Generated convenience method for createCertificateWithResponse
+    Mono<Void> createCertificateInternal(BatchCertificate certificate) {
+        // Generated convenience method for createCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createCertificateWithResponse(BinaryData.fromObject(certificate), requestOptions)
+        return createCertificateInternalWithResponse(BinaryData.fromObject(certificate), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -13485,8 +13700,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchCertificate> listCertificates(ListBatchCertificatesOptions options) {
-        // Generated convenience method for listCertificates
+    PagedFlux<BatchCertificate> listCertificatesInternal(ListBatchCertificatesOptions options) {
+        // Generated convenience method for listCertificatesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -13504,7 +13719,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listCertificates(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listCertificatesInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -13531,10 +13746,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchCertificate> listCertificates() {
-        // Generated convenience method for listCertificates
+    PagedFlux<BatchCertificate> listCertificatesInternal() {
+        // Generated convenience method for listCertificatesInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listCertificates(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listCertificatesInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -13573,15 +13788,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> cancelCertificateDeletion(String thumbprintAlgorithm, String thumbprint,
+    Mono<Void> cancelCertificateDeletionInternal(String thumbprintAlgorithm, String thumbprint,
         CancelBatchCertificateDeletionOptions options) {
-        // Generated convenience method for cancelCertificateDeletionWithResponse
+        // Generated convenience method for cancelCertificateDeletionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return cancelCertificateDeletionWithResponse(thumbprintAlgorithm, thumbprint, requestOptions)
+        return cancelCertificateDeletionInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -13608,10 +13823,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> cancelCertificateDeletion(String thumbprintAlgorithm, String thumbprint) {
-        // Generated convenience method for cancelCertificateDeletionWithResponse
+    Mono<Void> cancelCertificateDeletionInternal(String thumbprintAlgorithm, String thumbprint) {
+        // Generated convenience method for cancelCertificateDeletionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return cancelCertificateDeletionWithResponse(thumbprintAlgorithm, thumbprint, requestOptions)
+        return cancelCertificateDeletionInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -13641,15 +13856,16 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteCertificate(String thumbprintAlgorithm, String thumbprint,
+    Mono<Void> deleteCertificateInternal(String thumbprintAlgorithm, String thumbprint,
         DeleteBatchCertificateOptions options) {
-        // Generated convenience method for deleteCertificateWithResponse
+        // Generated convenience method for deleteCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return deleteCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13677,10 +13893,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteCertificate(String thumbprintAlgorithm, String thumbprint) {
-        // Generated convenience method for deleteCertificateWithResponse
+    Mono<Void> deleteCertificateInternal(String thumbprintAlgorithm, String thumbprint) {
+        // Generated convenience method for deleteCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deleteCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13699,9 +13916,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetCertificateResponse> getCertificate(String thumbprintAlgorithm, String thumbprint,
+    Mono<BatchCertificate> getCertificateInternal(String thumbprintAlgorithm, String thumbprint,
         GetBatchCertificateOptions options) {
-        // Generated convenience method for getCertificateWithResponse
+        // Generated convenience method for getCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -13715,8 +13932,9 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return getCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).flatMap(FluxUtil::toMono)
-            .map(protocolMethodData -> protocolMethodData.toObject(GetCertificateResponse.class));
+        return getCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions)
+            .flatMap(FluxUtil::toMono)
+            .map(protocolMethodData -> protocolMethodData.toObject(BatchCertificate.class));
     }
 
     /**
@@ -13734,11 +13952,12 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetCertificateResponse> getCertificate(String thumbprintAlgorithm, String thumbprint) {
-        // Generated convenience method for getCertificateWithResponse
+    Mono<BatchCertificate> getCertificateInternal(String thumbprintAlgorithm, String thumbprint) {
+        // Generated convenience method for getCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).flatMap(FluxUtil::toMono)
-            .map(protocolMethodData -> protocolMethodData.toObject(GetCertificateResponse.class));
+        return getCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions)
+            .flatMap(FluxUtil::toMono)
+            .map(protocolMethodData -> protocolMethodData.toObject(BatchCertificate.class));
     }
 
     /**
@@ -13756,9 +13975,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Boolean> jobScheduleExists(String jobScheduleId, BatchJobScheduleExistsOptions options,
+    Mono<Boolean> jobScheduleExistsInternal(String jobScheduleId, BatchJobScheduleExistsOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for jobScheduleExistsWithResponse
+        // Generated convenience method for jobScheduleExistsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -13782,7 +14001,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return jobScheduleExistsWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return jobScheduleExistsInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13798,10 +14017,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Boolean> jobScheduleExists(String jobScheduleId) {
-        // Generated convenience method for jobScheduleExistsWithResponse
+    Mono<Boolean> jobScheduleExistsInternal(String jobScheduleId) {
+        // Generated convenience method for jobScheduleExistsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return jobScheduleExistsWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return jobScheduleExistsInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13826,9 +14045,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteJobSchedule(String jobScheduleId, DeleteBatchJobScheduleOptions options,
+    Mono<Void> deleteJobScheduleInternal(String jobScheduleId, DeleteBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for deleteJobScheduleWithResponse
+        // Generated convenience method for deleteJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean force = options == null ? null : options.isForce();
@@ -13856,7 +14075,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return deleteJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13879,10 +14098,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteJobSchedule(String jobScheduleId) {
-        // Generated convenience method for deleteJobScheduleWithResponse
+    Mono<Void> deleteJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for deleteJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deleteJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -13901,9 +14120,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchJobSchedule> getJobSchedule(String jobScheduleId, GetBatchJobScheduleOptions options,
+    Mono<BatchJobSchedule> getJobScheduleInternal(String jobScheduleId, GetBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for getJobScheduleWithResponse
+        // Generated convenience method for getJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -13943,7 +14162,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return getJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono)
+        return getJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchJobSchedule.class));
     }
 
@@ -13961,10 +14180,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchJobSchedule> getJobSchedule(String jobScheduleId) {
-        // Generated convenience method for getJobScheduleWithResponse
+    Mono<BatchJobSchedule> getJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for getJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono)
+        return getJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchJobSchedule.class));
     }
 
@@ -13991,9 +14210,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> updateJobSchedule(String jobScheduleId, BatchJobScheduleUpdateContent jobSchedule,
+    Mono<Void> updateJobScheduleInternal(String jobScheduleId, BatchJobScheduleUpdateContent jobSchedule,
         UpdateBatchJobScheduleOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for updateJobScheduleWithResponse
+        // Generated convenience method for updateJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14017,7 +14236,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return updateJobScheduleWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
+        return updateJobScheduleInternalWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -14042,10 +14261,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> updateJobSchedule(String jobScheduleId, BatchJobScheduleUpdateContent jobSchedule) {
-        // Generated convenience method for updateJobScheduleWithResponse
+    Mono<Void> updateJobScheduleInternal(String jobScheduleId, BatchJobScheduleUpdateContent jobSchedule) {
+        // Generated convenience method for updateJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return updateJobScheduleWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
+        return updateJobScheduleInternalWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -14072,9 +14291,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replaceJobSchedule(String jobScheduleId, BatchJobSchedule jobSchedule,
+    Mono<Void> replaceJobScheduleInternal(String jobScheduleId, BatchJobSchedule jobSchedule,
         ReplaceBatchJobScheduleOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for replaceJobScheduleWithResponse
+        // Generated convenience method for replaceJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14098,7 +14317,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return replaceJobScheduleWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
+        return replaceJobScheduleInternalWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -14123,10 +14342,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replaceJobSchedule(String jobScheduleId, BatchJobSchedule jobSchedule) {
-        // Generated convenience method for replaceJobScheduleWithResponse
+    Mono<Void> replaceJobScheduleInternal(String jobScheduleId, BatchJobSchedule jobSchedule) {
+        // Generated convenience method for replaceJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return replaceJobScheduleWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
+        return replaceJobScheduleInternalWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -14148,9 +14367,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disableJobSchedule(String jobScheduleId, DisableBatchJobScheduleOptions options,
+    Mono<Void> disableJobScheduleInternal(String jobScheduleId, DisableBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for disableJobScheduleWithResponse
+        // Generated convenience method for disableJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14174,7 +14393,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return disableJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return disableJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14193,10 +14412,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disableJobSchedule(String jobScheduleId) {
-        // Generated convenience method for disableJobScheduleWithResponse
+    Mono<Void> disableJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for disableJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return disableJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return disableJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14215,9 +14434,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> enableJobSchedule(String jobScheduleId, EnableBatchJobScheduleOptions options,
+    Mono<Void> enableJobScheduleInternal(String jobScheduleId, EnableBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for enableJobScheduleWithResponse
+        // Generated convenience method for enableJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14241,7 +14460,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return enableJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return enableJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14258,10 +14477,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> enableJobSchedule(String jobScheduleId) {
-        // Generated convenience method for enableJobScheduleWithResponse
+    Mono<Void> enableJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for enableJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return enableJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return enableJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14280,9 +14499,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> terminateJobSchedule(String jobScheduleId, TerminateBatchJobScheduleOptions options,
+    Mono<Void> terminateJobScheduleInternal(String jobScheduleId, TerminateBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for terminateJobScheduleWithResponse
+        // Generated convenience method for terminateJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean force = options == null ? null : options.isForce();
@@ -14310,7 +14529,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return terminateJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return terminateJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14327,10 +14546,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> terminateJobSchedule(String jobScheduleId) {
-        // Generated convenience method for terminateJobScheduleWithResponse
+    Mono<Void> terminateJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for terminateJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return terminateJobScheduleWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
+        return terminateJobScheduleInternalWithResponse(jobScheduleId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14348,15 +14567,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createJobSchedule(BatchJobScheduleCreateContent jobSchedule,
+    Mono<Void> createJobScheduleInternal(BatchJobScheduleCreateContent jobSchedule,
         CreateBatchJobScheduleOptions options) {
-        // Generated convenience method for createJobScheduleWithResponse
+        // Generated convenience method for createJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return createJobScheduleWithResponse(BinaryData.fromObject(jobSchedule), requestOptions)
+        return createJobScheduleInternalWithResponse(BinaryData.fromObject(jobSchedule), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -14374,10 +14593,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createJobSchedule(BatchJobScheduleCreateContent jobSchedule) {
-        // Generated convenience method for createJobScheduleWithResponse
+    Mono<Void> createJobScheduleInternal(BatchJobScheduleCreateContent jobSchedule) {
+        // Generated convenience method for createJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createJobScheduleWithResponse(BinaryData.fromObject(jobSchedule), requestOptions)
+        return createJobScheduleInternalWithResponse(BinaryData.fromObject(jobSchedule), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -14395,8 +14614,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchJobSchedule> listJobSchedules(ListBatchJobSchedulesOptions options) {
-        // Generated convenience method for listJobSchedules
+    PagedFlux<BatchJobSchedule> listJobSchedulesInternal(ListBatchJobSchedulesOptions options) {
+        // Generated convenience method for listJobSchedulesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -14422,7 +14641,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listJobSchedules(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listJobSchedulesInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -14449,10 +14668,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchJobSchedule> listJobSchedules() {
-        // Generated convenience method for listJobSchedules
+    PagedFlux<BatchJobSchedule> listJobSchedulesInternal() {
+        // Generated convenience method for listJobSchedulesInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listJobSchedules(requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listJobSchedulesInternal(requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -14487,14 +14706,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createTask(String jobId, BatchTaskCreateContent task, CreateBatchTaskOptions options) {
-        // Generated convenience method for createTaskWithResponse
+    Mono<Void> createTaskInternal(String jobId, BatchTaskCreateContent task, CreateBatchTaskOptions options) {
+        // Generated convenience method for createTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return createTaskWithResponse(jobId, BinaryData.fromObject(task), requestOptions).flatMap(FluxUtil::toMono);
+        return createTaskInternalWithResponse(jobId, BinaryData.fromObject(task), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14516,10 +14736,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createTask(String jobId, BatchTaskCreateContent task) {
-        // Generated convenience method for createTaskWithResponse
+    Mono<Void> createTaskInternal(String jobId, BatchTaskCreateContent task) {
+        // Generated convenience method for createTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createTaskWithResponse(jobId, BinaryData.fromObject(task), requestOptions).flatMap(FluxUtil::toMono);
+        return createTaskInternalWithResponse(jobId, BinaryData.fromObject(task), requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14541,8 +14762,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchTask> listTasks(String jobId, ListBatchTasksOptions options) {
-        // Generated convenience method for listTasks
+    PagedFlux<BatchTask> listTasksInternal(String jobId, ListBatchTasksOptions options) {
+        // Generated convenience method for listTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -14568,7 +14789,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listTasks(jobId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listTasksInternal(jobId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -14601,10 +14822,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchTask> listTasks(String jobId) {
-        // Generated convenience method for listTasks
+    PagedFlux<BatchTask> listTasksInternal(String jobId) {
+        // Generated convenience method for listTasksInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listTasks(jobId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listTasksInternal(jobId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -14650,15 +14871,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchTaskAddCollectionResult> createTaskCollection(String jobId, BatchTaskGroup taskCollection,
+    Mono<BatchTaskAddCollectionResult> createTaskCollectionInternal(String jobId, BatchTaskGroup taskCollection,
         CreateBatchTaskCollectionOptions options) {
-        // Generated convenience method for createTaskCollectionWithResponse
+        // Generated convenience method for createTaskCollectionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return createTaskCollectionWithResponse(jobId, BinaryData.fromObject(taskCollection), requestOptions)
+        return createTaskCollectionInternalWithResponse(jobId, BinaryData.fromObject(taskCollection), requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchTaskAddCollectionResult.class));
     }
@@ -14693,10 +14914,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchTaskAddCollectionResult> createTaskCollection(String jobId, BatchTaskGroup taskCollection) {
-        // Generated convenience method for createTaskCollectionWithResponse
+    Mono<BatchTaskAddCollectionResult> createTaskCollectionInternal(String jobId, BatchTaskGroup taskCollection) {
+        // Generated convenience method for createTaskCollectionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createTaskCollectionWithResponse(jobId, BinaryData.fromObject(taskCollection), requestOptions)
+        return createTaskCollectionInternalWithResponse(jobId, BinaryData.fromObject(taskCollection), requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchTaskAddCollectionResult.class));
     }
@@ -14724,9 +14945,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteTask(String jobId, String taskId, DeleteBatchTaskOptions options,
+    Mono<Void> deleteTaskInternal(String jobId, String taskId, DeleteBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for deleteTaskWithResponse
+        // Generated convenience method for deleteTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14750,7 +14971,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return deleteTaskWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14774,10 +14995,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteTask(String jobId, String taskId) {
-        // Generated convenience method for deleteTaskWithResponse
+    Mono<Void> deleteTaskInternal(String jobId, String taskId) {
+        // Generated convenience method for deleteTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deleteTaskWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -14804,9 +15025,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchTask> getTask(String jobId, String taskId, GetBatchTaskOptions options,
+    Mono<BatchTask> getTaskInternal(String jobId, String taskId, GetBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for getTaskWithResponse
+        // Generated convenience method for getTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -14846,7 +15067,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return getTaskWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono)
+        return getTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchTask.class));
     }
 
@@ -14872,10 +15093,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchTask> getTask(String jobId, String taskId) {
-        // Generated convenience method for getTaskWithResponse
+    Mono<BatchTask> getTaskInternal(String jobId, String taskId) {
+        // Generated convenience method for getTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getTaskWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono)
+        return getTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchTask.class));
     }
 
@@ -14897,9 +15118,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replaceTask(String jobId, String taskId, BatchTask task, ReplaceBatchTaskOptions options,
+    Mono<Void> replaceTaskInternal(String jobId, String taskId, BatchTask task, ReplaceBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for replaceTaskWithResponse
+        // Generated convenience method for replaceTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14923,7 +15144,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return replaceTaskWithResponse(jobId, taskId, BinaryData.fromObject(task), requestOptions)
+        return replaceTaskInternalWithResponse(jobId, taskId, BinaryData.fromObject(task), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -14943,10 +15164,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replaceTask(String jobId, String taskId, BatchTask task) {
-        // Generated convenience method for replaceTaskWithResponse
+    Mono<Void> replaceTaskInternal(String jobId, String taskId, BatchTask task) {
+        // Generated convenience method for replaceTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return replaceTaskWithResponse(jobId, taskId, BinaryData.fromObject(task), requestOptions)
+        return replaceTaskInternalWithResponse(jobId, taskId, BinaryData.fromObject(task), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -14969,8 +15190,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchSubtask> listSubTasks(String jobId, String taskId, ListBatchSubTasksOptions options) {
-        // Generated convenience method for listSubTasks
+    PagedFlux<BatchSubtask> listSubTasksInternal(String jobId, String taskId, ListBatchSubTasksOptions options) {
+        // Generated convenience method for listSubTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -14984,7 +15205,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listSubTasks(jobId, taskId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listSubTasksInternal(jobId, taskId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -15017,10 +15238,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchSubtask> listSubTasks(String jobId, String taskId) {
-        // Generated convenience method for listSubTasks
+    PagedFlux<BatchSubtask> listSubTasksInternal(String jobId, String taskId) {
+        // Generated convenience method for listSubTasksInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listSubTasks(jobId, taskId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listSubTasksInternal(jobId, taskId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -15056,9 +15277,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> terminateTask(String jobId, String taskId, TerminateBatchTaskOptions options,
+    Mono<Void> terminateTaskInternal(String jobId, String taskId, TerminateBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for terminateTaskWithResponse
+        // Generated convenience method for terminateTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -15082,7 +15303,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return terminateTaskWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
+        return terminateTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15104,10 +15325,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> terminateTask(String jobId, String taskId) {
-        // Generated convenience method for terminateTaskWithResponse
+    Mono<Void> terminateTaskInternal(String jobId, String taskId) {
+        // Generated convenience method for terminateTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return terminateTaskWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
+        return terminateTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15136,9 +15357,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> reactivateTask(String jobId, String taskId, ReactivateBatchTaskOptions options,
+    Mono<Void> reactivateTaskInternal(String jobId, String taskId, ReactivateBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for reactivateTaskWithResponse
+        // Generated convenience method for reactivateTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -15162,7 +15383,7 @@ public final class BatchAsyncClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return reactivateTaskWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
+        return reactivateTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15189,10 +15410,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> reactivateTask(String jobId, String taskId) {
-        // Generated convenience method for reactivateTaskWithResponse
+    Mono<Void> reactivateTaskInternal(String jobId, String taskId) {
+        // Generated convenience method for reactivateTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return reactivateTaskWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
+        return reactivateTaskInternalWithResponse(jobId, taskId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15212,8 +15433,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteTaskFile(String jobId, String taskId, String filePath, DeleteBatchTaskFileOptions options) {
-        // Generated convenience method for deleteTaskFileWithResponse
+    Mono<Void> deleteTaskFileInternal(String jobId, String taskId, String filePath,
+        DeleteBatchTaskFileOptions options) {
+        // Generated convenience method for deleteTaskFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean recursive = options == null ? null : options.isRecursive();
@@ -15223,7 +15445,7 @@ public final class BatchAsyncClient {
         if (recursive != null) {
             requestOptions.addQueryParam("recursive", String.valueOf(recursive), false);
         }
-        return deleteTaskFileWithResponse(jobId, taskId, filePath, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15242,10 +15464,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteTaskFile(String jobId, String taskId, String filePath) {
-        // Generated convenience method for deleteTaskFileWithResponse
+    Mono<Void> deleteTaskFileInternal(String jobId, String taskId, String filePath) {
+        // Generated convenience method for deleteTaskFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deleteTaskFileWithResponse(jobId, taskId, filePath, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15265,8 +15487,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BinaryData> getTaskFile(String jobId, String taskId, String filePath, GetBatchTaskFileOptions options) {
-        // Generated convenience method for getTaskFileWithResponse
+    Mono<BinaryData> getTaskFileInternal(String jobId, String taskId, String filePath,
+        GetBatchTaskFileOptions options) {
+        // Generated convenience method for getTaskFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
@@ -15286,7 +15509,7 @@ public final class BatchAsyncClient {
         if (ocpRange != null) {
             requestOptions.setHeader(HttpHeaderName.fromString("ocp-range"), ocpRange);
         }
-        return getTaskFileWithResponse(jobId, taskId, filePath, requestOptions).flatMap(FluxUtil::toMono);
+        return getTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15305,10 +15528,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BinaryData> getTaskFile(String jobId, String taskId, String filePath) {
-        // Generated convenience method for getTaskFileWithResponse
+    Mono<BinaryData> getTaskFileInternal(String jobId, String taskId, String filePath) {
+        // Generated convenience method for getTaskFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getTaskFileWithResponse(jobId, taskId, filePath, requestOptions).flatMap(FluxUtil::toMono);
+        return getTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15326,9 +15549,11 @@ public final class BatchAsyncClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of the specified Task file on successful completion of {@link Mono}.
      */
+    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<FileResponseHeaderProperties> getTaskFileProperties(String jobId, String taskId, String filePath,
+    Mono<Void> getTaskFilePropertiesInternal(String jobId, String taskId, String filePath,
         GetBatchTaskFilePropertiesOptions options) {
+        // Generated convenience method for getTaskFilePropertiesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
@@ -15344,9 +15569,8 @@ public final class BatchAsyncClient {
             requestOptions.setHeader(HttpHeaderName.IF_UNMODIFIED_SINCE,
                 String.valueOf(new DateTimeRfc1123(ifUnmodifiedSince)));
         }
-        // Map the response headers of getTaskFilePropertiesWithResponse to FileResponseHeaderProperties
-        return getTaskFilePropertiesWithResponse(jobId, taskId, filePath, requestOptions)
-            .map(response -> new FileResponseHeaderProperties(response.getHeaders()));
+        return getTaskFilePropertiesInternalWithResponse(jobId, taskId, filePath, requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15363,10 +15587,13 @@ public final class BatchAsyncClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of the specified Task file on successful completion of {@link Mono}.
      */
+    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<FileResponseHeaderProperties> getTaskFileProperties(String jobId, String taskId, String filePath) {
-        return getTaskFilePropertiesWithResponse(jobId, taskId, filePath, new RequestOptions())
-            .map(response -> new FileResponseHeaderProperties(response.getHeaders()));
+    Mono<Void> getTaskFilePropertiesInternal(String jobId, String taskId, String filePath) {
+        // Generated convenience method for getTaskFilePropertiesInternalWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getTaskFilePropertiesInternalWithResponse(jobId, taskId, filePath, requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15386,8 +15613,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchNodeFile> listTaskFiles(String jobId, String taskId, ListBatchTaskFilesOptions options) {
-        // Generated convenience method for listTaskFiles
+    PagedFlux<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId, ListBatchTaskFilesOptions options) {
+        // Generated convenience method for listTaskFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -15401,7 +15628,7 @@ public final class BatchAsyncClient {
         if (recursive != null) {
             requestOptions.addQueryParam("recursive", String.valueOf(recursive), false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listTaskFiles(jobId, taskId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listTaskFilesInternal(jobId, taskId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -15432,10 +15659,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchNodeFile> listTaskFiles(String jobId, String taskId) {
-        // Generated convenience method for listTaskFiles
+    PagedFlux<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId) {
+        // Generated convenience method for listTaskFilesInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listTaskFiles(jobId, taskId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listTaskFilesInternal(jobId, taskId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -15470,15 +15697,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createNodeUser(String poolId, String nodeId, BatchNodeUserCreateContent user,
+    Mono<Void> createNodeUserInternal(String poolId, String nodeId, BatchNodeUserCreateContent user,
         CreateBatchNodeUserOptions options) {
-        // Generated convenience method for createNodeUserWithResponse
+        // Generated convenience method for createNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return createNodeUserWithResponse(poolId, nodeId, BinaryData.fromObject(user), requestOptions)
+        return createNodeUserInternalWithResponse(poolId, nodeId, BinaryData.fromObject(user), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -15501,10 +15728,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> createNodeUser(String poolId, String nodeId, BatchNodeUserCreateContent user) {
-        // Generated convenience method for createNodeUserWithResponse
+    Mono<Void> createNodeUserInternal(String poolId, String nodeId, BatchNodeUserCreateContent user) {
+        // Generated convenience method for createNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createNodeUserWithResponse(poolId, nodeId, BinaryData.fromObject(user), requestOptions)
+        return createNodeUserInternalWithResponse(poolId, nodeId, BinaryData.fromObject(user), requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -15528,15 +15755,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteNodeUser(String poolId, String nodeId, String userName,
+    Mono<Void> deleteNodeUserInternal(String poolId, String nodeId, String userName,
         DeleteBatchNodeUserOptions options) {
-        // Generated convenience method for deleteNodeUserWithResponse
+        // Generated convenience method for deleteNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return deleteNodeUserWithResponse(poolId, nodeId, userName, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteNodeUserInternalWithResponse(poolId, nodeId, userName, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15558,10 +15785,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteNodeUser(String poolId, String nodeId, String userName) {
-        // Generated convenience method for deleteNodeUserWithResponse
+    Mono<Void> deleteNodeUserInternal(String poolId, String nodeId, String userName) {
+        // Generated convenience method for deleteNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deleteNodeUserWithResponse(poolId, nodeId, userName, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteNodeUserInternalWithResponse(poolId, nodeId, userName, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15587,16 +15814,16 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replaceNodeUser(String poolId, String nodeId, String userName, BatchNodeUserUpdateContent content,
-        ReplaceBatchNodeUserOptions options) {
-        // Generated convenience method for replaceNodeUserWithResponse
+    Mono<Void> replaceNodeUserInternal(String poolId, String nodeId, String userName,
+        BatchNodeUserUpdateContent content, ReplaceBatchNodeUserOptions options) {
+        // Generated convenience method for replaceNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return replaceNodeUserWithResponse(poolId, nodeId, userName, BinaryData.fromObject(content), requestOptions)
-            .flatMap(FluxUtil::toMono);
+        return replaceNodeUserInternalWithResponse(poolId, nodeId, userName, BinaryData.fromObject(content),
+            requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15621,12 +15848,12 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> replaceNodeUser(String poolId, String nodeId, String userName,
+    Mono<Void> replaceNodeUserInternal(String poolId, String nodeId, String userName,
         BatchNodeUserUpdateContent content) {
-        // Generated convenience method for replaceNodeUserWithResponse
+        // Generated convenience method for replaceNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return replaceNodeUserWithResponse(poolId, nodeId, userName, BinaryData.fromObject(content), requestOptions)
-            .flatMap(FluxUtil::toMono);
+        return replaceNodeUserInternalWithResponse(poolId, nodeId, userName, BinaryData.fromObject(content),
+            requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15645,8 +15872,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchNode> getNode(String poolId, String nodeId, GetBatchNodeOptions options) {
-        // Generated convenience method for getNodeWithResponse
+    Mono<BatchNode> getNodeInternal(String poolId, String nodeId, GetBatchNodeOptions options) {
+        // Generated convenience method for getNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -15660,7 +15887,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return getNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
+        return getNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchNode.class));
     }
 
@@ -15679,10 +15906,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchNode> getNode(String poolId, String nodeId) {
-        // Generated convenience method for getNodeWithResponse
+    Mono<BatchNode> getNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for getNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
+        return getNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchNode.class));
     }
 
@@ -15704,8 +15931,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> rebootNode(String poolId, String nodeId, RebootBatchNodeOptions options) {
-        // Generated convenience method for rebootNodeWithResponse
+    Mono<Void> rebootNodeInternal(String poolId, String nodeId, RebootBatchNodeOptions options) {
+        // Generated convenience method for rebootNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchNodeRebootContent parameters = options == null ? null : options.getParameters();
@@ -15715,7 +15942,7 @@ public final class BatchAsyncClient {
         if (parameters != null) {
             requestOptions.setBody(BinaryData.fromObject(parameters));
         }
-        return rebootNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return rebootNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15735,10 +15962,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> rebootNode(String poolId, String nodeId) {
-        // Generated convenience method for rebootNodeWithResponse
+    Mono<Void> rebootNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for rebootNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return rebootNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return rebootNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15759,14 +15986,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> startNode(String poolId, String nodeId, StartBatchNodeOptions options) {
-        // Generated convenience method for startNodeWithResponse
+    Mono<Void> startNodeInternal(String poolId, String nodeId, StartBatchNodeOptions options) {
+        // Generated convenience method for startNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return startNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return startNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15786,10 +16013,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> startNode(String poolId, String nodeId) {
-        // Generated convenience method for startNodeWithResponse
+    Mono<Void> startNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for startNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return startNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return startNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15812,8 +16039,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> reimageNode(String poolId, String nodeId, ReimageBatchNodeOptions options) {
-        // Generated convenience method for reimageNodeWithResponse
+    Mono<Void> reimageNodeInternal(String poolId, String nodeId, ReimageBatchNodeOptions options) {
+        // Generated convenience method for reimageNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchNodeReimageContent parameters = options == null ? null : options.getParameters();
@@ -15823,7 +16050,7 @@ public final class BatchAsyncClient {
         if (parameters != null) {
             requestOptions.setBody(BinaryData.fromObject(parameters));
         }
-        return reimageNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return reimageNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15845,10 +16072,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> reimageNode(String poolId, String nodeId) {
-        // Generated convenience method for reimageNodeWithResponse
+    Mono<Void> reimageNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for reimageNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return reimageNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return reimageNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15869,8 +16096,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deallocateNode(String poolId, String nodeId, DeallocateBatchNodeOptions options) {
-        // Generated convenience method for deallocateNodeWithResponse
+    Mono<Void> deallocateNodeInternal(String poolId, String nodeId, DeallocateBatchNodeOptions options) {
+        // Generated convenience method for deallocateNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchNodeDeallocateContent parameters = options == null ? null : options.getParameters();
@@ -15880,7 +16107,7 @@ public final class BatchAsyncClient {
         if (parameters != null) {
             requestOptions.setBody(BinaryData.fromObject(parameters));
         }
-        return deallocateNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return deallocateNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15900,10 +16127,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deallocateNode(String poolId, String nodeId) {
-        // Generated convenience method for deallocateNodeWithResponse
+    Mono<Void> deallocateNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for deallocateNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deallocateNodeWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return deallocateNodeInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15925,8 +16152,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disableNodeScheduling(String poolId, String nodeId, DisableBatchNodeSchedulingOptions options) {
-        // Generated convenience method for disableNodeSchedulingWithResponse
+    Mono<Void> disableNodeSchedulingInternal(String poolId, String nodeId, DisableBatchNodeSchedulingOptions options) {
+        // Generated convenience method for disableNodeSchedulingInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchNodeDisableSchedulingContent parameters = options == null ? null : options.getParameters();
@@ -15936,7 +16163,7 @@ public final class BatchAsyncClient {
         if (parameters != null) {
             requestOptions.setBody(BinaryData.fromObject(parameters));
         }
-        return disableNodeSchedulingWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return disableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15957,10 +16184,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disableNodeScheduling(String poolId, String nodeId) {
-        // Generated convenience method for disableNodeSchedulingWithResponse
+    Mono<Void> disableNodeSchedulingInternal(String poolId, String nodeId) {
+        // Generated convenience method for disableNodeSchedulingInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return disableNodeSchedulingWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return disableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -15982,14 +16209,14 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> enableNodeScheduling(String poolId, String nodeId, EnableBatchNodeSchedulingOptions options) {
-        // Generated convenience method for enableNodeSchedulingWithResponse
+    Mono<Void> enableNodeSchedulingInternal(String poolId, String nodeId, EnableBatchNodeSchedulingOptions options) {
+        // Generated convenience method for enableNodeSchedulingInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return enableNodeSchedulingWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return enableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -16010,10 +16237,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> enableNodeScheduling(String poolId, String nodeId) {
-        // Generated convenience method for enableNodeSchedulingWithResponse
+    Mono<Void> enableNodeSchedulingInternal(String poolId, String nodeId) {
+        // Generated convenience method for enableNodeSchedulingInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return enableNodeSchedulingWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
+        return enableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -16038,15 +16265,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchNodeRemoteLoginSettings> getNodeRemoteLoginSettings(String poolId, String nodeId,
+    Mono<BatchNodeRemoteLoginSettings> getNodeRemoteLoginSettingsInternal(String poolId, String nodeId,
         GetBatchNodeRemoteLoginSettingsOptions options) {
-        // Generated convenience method for getNodeRemoteLoginSettingsWithResponse
+        // Generated convenience method for getNodeRemoteLoginSettingsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return getNodeRemoteLoginSettingsWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
+        return getNodeRemoteLoginSettingsInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchNodeRemoteLoginSettings.class));
     }
 
@@ -16071,10 +16298,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchNodeRemoteLoginSettings> getNodeRemoteLoginSettings(String poolId, String nodeId) {
-        // Generated convenience method for getNodeRemoteLoginSettingsWithResponse
+    Mono<BatchNodeRemoteLoginSettings> getNodeRemoteLoginSettingsInternal(String poolId, String nodeId) {
+        // Generated convenience method for getNodeRemoteLoginSettingsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getNodeRemoteLoginSettingsWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
+        return getNodeRemoteLoginSettingsInternalWithResponse(poolId, nodeId, requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchNodeRemoteLoginSettings.class));
     }
 
@@ -16103,15 +16330,15 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<UploadBatchServiceLogsResult> uploadNodeLogs(String poolId, String nodeId,
+    Mono<UploadBatchServiceLogsResult> uploadNodeLogsInternal(String poolId, String nodeId,
         UploadBatchServiceLogsContent content, UploadBatchNodeLogsOptions options) {
-        // Generated convenience method for uploadNodeLogsWithResponse
+        // Generated convenience method for uploadNodeLogsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return uploadNodeLogsWithResponse(poolId, nodeId, BinaryData.fromObject(content), requestOptions)
+        return uploadNodeLogsInternalWithResponse(poolId, nodeId, BinaryData.fromObject(content), requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(UploadBatchServiceLogsResult.class));
     }
@@ -16140,11 +16367,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<UploadBatchServiceLogsResult> uploadNodeLogs(String poolId, String nodeId,
+    Mono<UploadBatchServiceLogsResult> uploadNodeLogsInternal(String poolId, String nodeId,
         UploadBatchServiceLogsContent content) {
-        // Generated convenience method for uploadNodeLogsWithResponse
+        // Generated convenience method for uploadNodeLogsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return uploadNodeLogsWithResponse(poolId, nodeId, BinaryData.fromObject(content), requestOptions)
+        return uploadNodeLogsInternalWithResponse(poolId, nodeId, BinaryData.fromObject(content), requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(UploadBatchServiceLogsResult.class));
     }
@@ -16164,8 +16391,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchNode> listNodes(String poolId, ListBatchNodesOptions options) {
-        // Generated convenience method for listNodes
+    PagedFlux<BatchNode> listNodesInternal(String poolId, ListBatchNodesOptions options) {
+        // Generated convenience method for listNodesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -16183,7 +16410,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listNodes(poolId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listNodesInternal(poolId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -16212,10 +16439,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchNode> listNodes(String poolId) {
-        // Generated convenience method for listNodes
+    PagedFlux<BatchNode> listNodesInternal(String poolId) {
+        // Generated convenience method for listNodesInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listNodes(poolId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listNodesInternal(poolId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -16247,9 +16474,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchNodeVMExtension> getNodeExtension(String poolId, String nodeId, String extensionName,
+    Mono<BatchNodeVMExtension> getNodeExtensionInternal(String poolId, String nodeId, String extensionName,
         GetBatchNodeExtensionOptions options) {
-        // Generated convenience method for getNodeExtensionWithResponse
+        // Generated convenience method for getNodeExtensionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -16263,7 +16490,8 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return getNodeExtensionWithResponse(poolId, nodeId, extensionName, requestOptions).flatMap(FluxUtil::toMono)
+        return getNodeExtensionInternalWithResponse(poolId, nodeId, extensionName, requestOptions)
+            .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchNodeVMExtension.class));
     }
 
@@ -16283,10 +16511,11 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BatchNodeVMExtension> getNodeExtension(String poolId, String nodeId, String extensionName) {
-        // Generated convenience method for getNodeExtensionWithResponse
+    Mono<BatchNodeVMExtension> getNodeExtensionInternal(String poolId, String nodeId, String extensionName) {
+        // Generated convenience method for getNodeExtensionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getNodeExtensionWithResponse(poolId, nodeId, extensionName, requestOptions).flatMap(FluxUtil::toMono)
+        return getNodeExtensionInternalWithResponse(poolId, nodeId, extensionName, requestOptions)
+            .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(BatchNodeVMExtension.class));
     }
 
@@ -16306,9 +16535,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchNodeVMExtension> listNodeExtensions(String poolId, String nodeId,
+    PagedFlux<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId,
         ListBatchNodeExtensionsOptions options) {
-        // Generated convenience method for listNodeExtensions
+        // Generated convenience method for listNodeExtensionsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -16322,7 +16551,7 @@ public final class BatchAsyncClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listNodeExtensions(poolId, nodeId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listNodeExtensionsInternal(poolId, nodeId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -16353,10 +16582,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchNodeVMExtension> listNodeExtensions(String poolId, String nodeId) {
-        // Generated convenience method for listNodeExtensions
+    PagedFlux<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId) {
+        // Generated convenience method for listNodeExtensionsInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listNodeExtensions(poolId, nodeId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listNodeExtensionsInternal(poolId, nodeId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -16389,9 +16618,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteNodeFile(String poolId, String nodeId, String filePath,
+    Mono<Void> deleteNodeFileInternal(String poolId, String nodeId, String filePath,
         DeleteBatchNodeFileOptions options) {
-        // Generated convenience method for deleteNodeFileWithResponse
+        // Generated convenience method for deleteNodeFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean recursive = options == null ? null : options.isRecursive();
@@ -16401,7 +16630,7 @@ public final class BatchAsyncClient {
         if (recursive != null) {
             requestOptions.addQueryParam("recursive", String.valueOf(recursive), false);
         }
-        return deleteNodeFileWithResponse(poolId, nodeId, filePath, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -16420,10 +16649,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteNodeFile(String poolId, String nodeId, String filePath) {
-        // Generated convenience method for deleteNodeFileWithResponse
+    Mono<Void> deleteNodeFileInternal(String poolId, String nodeId, String filePath) {
+        // Generated convenience method for deleteNodeFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return deleteNodeFileWithResponse(poolId, nodeId, filePath, requestOptions).flatMap(FluxUtil::toMono);
+        return deleteNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -16443,9 +16672,9 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BinaryData> getNodeFile(String poolId, String nodeId, String filePath,
+    Mono<BinaryData> getNodeFileInternal(String poolId, String nodeId, String filePath,
         GetBatchNodeFileOptions options) {
-        // Generated convenience method for getNodeFileWithResponse
+        // Generated convenience method for getNodeFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
@@ -16465,7 +16694,7 @@ public final class BatchAsyncClient {
         if (ocpRange != null) {
             requestOptions.setHeader(HttpHeaderName.fromString("ocp-range"), ocpRange);
         }
-        return getNodeFileWithResponse(poolId, nodeId, filePath, requestOptions).flatMap(FluxUtil::toMono);
+        return getNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -16484,10 +16713,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BinaryData> getNodeFile(String poolId, String nodeId, String filePath) {
-        // Generated convenience method for getNodeFileWithResponse
+    Mono<BinaryData> getNodeFileInternal(String poolId, String nodeId, String filePath) {
+        // Generated convenience method for getNodeFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getNodeFileWithResponse(poolId, nodeId, filePath, requestOptions).flatMap(FluxUtil::toMono);
+        return getNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -16505,9 +16734,11 @@ public final class BatchAsyncClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of the specified Compute Node file on successful completion of {@link Mono}.
      */
+    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<FileResponseHeaderProperties> getNodeFileProperties(String poolId, String nodeId, String filePath,
+    Mono<Void> getNodeFilePropertiesInternal(String poolId, String nodeId, String filePath,
         GetBatchNodeFilePropertiesOptions options) {
+        // Generated convenience method for getNodeFilePropertiesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
@@ -16523,9 +16754,8 @@ public final class BatchAsyncClient {
             requestOptions.setHeader(HttpHeaderName.IF_UNMODIFIED_SINCE,
                 String.valueOf(new DateTimeRfc1123(ifUnmodifiedSince)));
         }
-        // Map the response headers of getNodeFilePropertiesWithResponse to NodeFileProperties
-        return getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, requestOptions)
-            .map(response -> new FileResponseHeaderProperties(response.getHeaders()));
+        return getNodeFilePropertiesInternalWithResponse(poolId, nodeId, filePath, requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -16542,10 +16772,13 @@ public final class BatchAsyncClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of the specified Compute Node file on successful completion of {@link Mono}.
      */
+    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<FileResponseHeaderProperties> getNodeFileProperties(String poolId, String nodeId, String filePath) {
-        return getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, new RequestOptions())
-            .map(response -> new FileResponseHeaderProperties(response.getHeaders()));
+    Mono<Void> getNodeFilePropertiesInternal(String poolId, String nodeId, String filePath) {
+        // Generated convenience method for getNodeFilePropertiesInternalWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getNodeFilePropertiesInternalWithResponse(poolId, nodeId, filePath, requestOptions)
+            .flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -16565,8 +16798,8 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchNodeFile> listNodeFiles(String poolId, String nodeId, ListBatchNodeFilesOptions options) {
-        // Generated convenience method for listNodeFiles
+    PagedFlux<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId, ListBatchNodeFilesOptions options) {
+        // Generated convenience method for listNodeFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -16580,7 +16813,7 @@ public final class BatchAsyncClient {
         if (recursive != null) {
             requestOptions.addQueryParam("recursive", String.valueOf(recursive), false);
         }
-        PagedFlux<BinaryData> pagedFluxResponse = listNodeFiles(poolId, nodeId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listNodeFilesInternal(poolId, nodeId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)
@@ -16611,10 +16844,10 @@ public final class BatchAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BatchNodeFile> listNodeFiles(String poolId, String nodeId) {
-        // Generated convenience method for listNodeFiles
+    PagedFlux<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId) {
+        // Generated convenience method for listNodeFilesInternal
         RequestOptions requestOptions = new RequestOptions();
-        PagedFlux<BinaryData> pagedFluxResponse = listNodeFiles(poolId, nodeId, requestOptions);
+        PagedFlux<BinaryData> pagedFluxResponse = listNodeFilesInternal(poolId, nodeId, requestOptions);
         return PagedFlux.create(() -> (continuationTokenParam, pageSizeParam) -> {
             Flux<PagedResponse<BinaryData>> flux = (continuationTokenParam == null)
                 ? pagedFluxResponse.byPage().take(1)

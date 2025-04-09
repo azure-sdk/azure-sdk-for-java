@@ -4,6 +4,83 @@
 package com.azure.compute.batch;
 
 import com.azure.compute.batch.implementation.BatchClientImpl;
+import com.azure.compute.batch.implementation.models.BatchJobScheduleExistsOptions;
+import com.azure.compute.batch.implementation.models.BatchPoolExistsOptions;
+import com.azure.compute.batch.implementation.models.CancelBatchCertificateDeletionOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchCertificateOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchJobOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchNodeUserOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchTaskCollectionOptions;
+import com.azure.compute.batch.implementation.models.CreateBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.DeallocateBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchCertificateOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchJobOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchNodeFileOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchNodeUserOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchTaskFileOptions;
+import com.azure.compute.batch.implementation.models.DeleteBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.DisableBatchJobOptions;
+import com.azure.compute.batch.implementation.models.DisableBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.DisableBatchNodeSchedulingOptions;
+import com.azure.compute.batch.implementation.models.DisableBatchPoolAutoScaleOptions;
+import com.azure.compute.batch.implementation.models.EnableBatchJobOptions;
+import com.azure.compute.batch.implementation.models.EnableBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.EnableBatchNodeSchedulingOptions;
+import com.azure.compute.batch.implementation.models.EnableBatchPoolAutoScaleOptions;
+import com.azure.compute.batch.implementation.models.EvaluateBatchPoolAutoScaleOptions;
+import com.azure.compute.batch.implementation.models.GetBatchApplicationOptions;
+import com.azure.compute.batch.implementation.models.GetBatchCertificateOptions;
+import com.azure.compute.batch.implementation.models.GetBatchJobOptions;
+import com.azure.compute.batch.implementation.models.GetBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.GetBatchJobTaskCountsOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeExtensionOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeFileOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeFilePropertiesOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.GetBatchNodeRemoteLoginSettingsOptions;
+import com.azure.compute.batch.implementation.models.GetBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.GetBatchTaskFileOptions;
+import com.azure.compute.batch.implementation.models.GetBatchTaskFilePropertiesOptions;
+import com.azure.compute.batch.implementation.models.GetBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.ListBatchApplicationsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchCertificatesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchJobPreparationAndReleaseTaskStatusOptions;
+import com.azure.compute.batch.implementation.models.ListBatchJobSchedulesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchJobsFromScheduleOptions;
+import com.azure.compute.batch.implementation.models.ListBatchJobsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchNodeExtensionsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchNodeFilesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchNodesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchPoolNodeCountsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchPoolUsageMetricsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchPoolsOptions;
+import com.azure.compute.batch.implementation.models.ListBatchSubTasksOptions;
+import com.azure.compute.batch.implementation.models.ListBatchTaskFilesOptions;
+import com.azure.compute.batch.implementation.models.ListBatchTasksOptions;
+import com.azure.compute.batch.implementation.models.ListSupportedBatchImagesOptions;
+import com.azure.compute.batch.implementation.models.ReactivateBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.RebootBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.ReimageBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.RemoveBatchNodesOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchJobOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchNodeUserOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchPoolPropertiesOptions;
+import com.azure.compute.batch.implementation.models.ReplaceBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.ResizeBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.StartBatchNodeOptions;
+import com.azure.compute.batch.implementation.models.StopBatchPoolResizeOptions;
+import com.azure.compute.batch.implementation.models.TerminateBatchJobOptions;
+import com.azure.compute.batch.implementation.models.TerminateBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.TerminateBatchTaskOptions;
+import com.azure.compute.batch.implementation.models.UpdateBatchJobOptions;
+import com.azure.compute.batch.implementation.models.UpdateBatchJobScheduleOptions;
+import com.azure.compute.batch.implementation.models.UpdateBatchPoolOptions;
+import com.azure.compute.batch.implementation.models.UploadBatchNodeLogsOptions;
 import com.azure.compute.batch.implementation.task.SyncTaskSubmitter;
 import com.azure.compute.batch.implementation.task.TaskManager;
 import com.azure.compute.batch.implementation.task.TaskSubmitter;
@@ -90,7 +167,6 @@ import com.azure.compute.batch.models.GetBatchPoolOptions;
 import com.azure.compute.batch.models.GetBatchTaskFileOptions;
 import com.azure.compute.batch.models.GetBatchTaskFilePropertiesOptions;
 import com.azure.compute.batch.models.GetBatchTaskOptions;
-import com.azure.compute.batch.models.GetCertificateResponse;
 import com.azure.compute.batch.models.ListBatchApplicationsOptions;
 import com.azure.compute.batch.models.ListBatchCertificatesOptions;
 import com.azure.compute.batch.models.ListBatchJobPreparationAndReleaseTaskStatusOptions;
@@ -205,6 +281,127 @@ public final class BatchClient {
     }
 
     /**
+     * Gets the properties of the specified Task file.
+     *
+     * @param jobId The ID of the Job that contains the Task.
+     * @param taskId The ID of the Task whose file you want to retrieve.
+     * @param filePath The path to the Task file that you want to get the content of.
+     * @param options Optional parameters for Get Task File Properties operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return The {@link FileResponseHeaderProperties} object containing the properties retrieved from the response
+     * headers.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FileResponseHeaderProperties getTaskFileProperties(String jobId, String taskId, String filePath,
+        GetBatchTaskFilePropertiesOptions options) {
+        RequestOptions requestOptions = new RequestOptions();
+        Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
+        OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
+        OffsetDateTime ifUnmodifiedSince = options == null ? null : options.getIfUnmodifiedSince();
+        if (timeOutInSeconds != null) {
+            requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
+        }
+        if (ifModifiedSince != null) {
+            requestOptions.setHeader(HttpHeaderName.IF_MODIFIED_SINCE,
+                String.valueOf(new DateTimeRfc1123(ifModifiedSince)));
+        }
+        if (ifUnmodifiedSince != null) {
+            requestOptions.setHeader(HttpHeaderName.IF_UNMODIFIED_SINCE,
+                String.valueOf(new DateTimeRfc1123(ifUnmodifiedSince)));
+        }
+        // Retrieve response from getTaskFilePropertiesWithResponse and construct FileResponseHeaderProperties from its
+        // headers
+        Response<Void> response = getTaskFilePropertiesWithResponse(jobId, taskId, filePath, requestOptions);
+        return new FileResponseHeaderProperties(response.getHeaders());
+    }
+
+    /**
+     * Gets the properties of the specified Task file.
+     *
+     * @param jobId The ID of the Job that contains the Task.
+     * @param taskId The ID of the Task whose file you want to retrieve.
+     * @param filePath The path to the Task file that you want to get the content of.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return The {@link FileResponseHeaderProperties} object containing the properties retrieved from the response
+     * headers.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FileResponseHeaderProperties getTaskFileProperties(String jobId, String taskId, String filePath) {
+        Response<Void> response = getTaskFilePropertiesWithResponse(jobId, taskId, filePath, new RequestOptions());
+        return new FileResponseHeaderProperties(response.getHeaders());
+    }
+
+    /**
+     * Gets the properties of the specified Compute Node file.
+     *
+     * @param poolId The ID of the Pool that contains the Compute Node.
+     * @param nodeId The ID of the Compute Node.
+     * @param filePath The path to the file or directory.
+     * @param options Optional parameters for Get Node File Properties operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return The {@link FileResponseHeaderProperties} object containing the properties retrieved from the response
+     * headers.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FileResponseHeaderProperties getNodeFileProperties(String poolId, String nodeId, String filePath,
+        GetBatchNodeFilePropertiesOptions options) {
+        RequestOptions requestOptions = new RequestOptions();
+        Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
+        OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
+        OffsetDateTime ifUnmodifiedSince = options == null ? null : options.getIfUnmodifiedSince();
+        if (timeOutInSeconds != null) {
+            requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
+        }
+        if (ifModifiedSince != null) {
+            requestOptions.setHeader(HttpHeaderName.IF_MODIFIED_SINCE,
+                String.valueOf(new DateTimeRfc1123(ifModifiedSince)));
+        }
+        if (ifUnmodifiedSince != null) {
+            requestOptions.setHeader(HttpHeaderName.IF_UNMODIFIED_SINCE,
+                String.valueOf(new DateTimeRfc1123(ifUnmodifiedSince)));
+        }
+        // Retrieve response from getNodeFilePropertiesWithResponse and construct NodeFileProperties from its headers
+        Response<Void> response = getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, requestOptions);
+        return new FileResponseHeaderProperties(response.getHeaders());
+    }
+
+    /**
+     * Gets the properties of the specified Compute Node file.
+     *
+     * @param poolId The ID of the Pool that contains the Compute Node.
+     * @param nodeId The ID of the Compute Node.
+     * @param filePath The path to the file or directory.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return The {@link FileResponseHeaderProperties} object containing the properties retrieved from the response
+     * headers.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FileResponseHeaderProperties getNodeFileProperties(String poolId, String nodeId, String filePath) {
+        Response<Void> response = getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, new RequestOptions());
+        return new FileResponseHeaderProperties(response.getHeaders());
+    }
+
+    /**
      * Lists all of the applications available in the specified Account.
      *
      * This operation returns only Applications and versions that are available for
@@ -248,8 +445,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listApplications(RequestOptions requestOptions) {
-        return this.serviceClient.listApplications(requestOptions);
+    PagedIterable<BinaryData> listApplicationsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listApplicationsInternal(requestOptions);
     }
 
     /**
@@ -296,8 +493,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getApplicationWithResponse(String applicationId, RequestOptions requestOptions) {
-        return this.serviceClient.getApplicationWithResponse(applicationId, requestOptions);
+    Response<BinaryData> getApplicationInternalWithResponse(String applicationId, RequestOptions requestOptions) {
+        return this.serviceClient.getApplicationInternalWithResponse(applicationId, requestOptions);
     }
 
     /**
@@ -357,8 +554,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listPoolUsageMetrics(RequestOptions requestOptions) {
-        return this.serviceClient.listPoolUsageMetrics(requestOptions);
+    PagedIterable<BinaryData> listPoolUsageMetricsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listPoolUsageMetricsInternal(requestOptions);
     }
 
     /**
@@ -667,8 +864,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createPoolWithResponse(BinaryData pool, RequestOptions requestOptions) {
-        return this.serviceClient.createPoolWithResponse(pool, requestOptions);
+    Response<Void> createPoolInternalWithResponse(BinaryData pool, RequestOptions requestOptions) {
+        return this.serviceClient.createPoolInternalWithResponse(pool, requestOptions);
     }
 
     /**
@@ -1051,8 +1248,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listPools(RequestOptions requestOptions) {
-        return this.serviceClient.listPools(requestOptions);
+    PagedIterable<BinaryData> listPoolsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listPoolsInternal(requestOptions);
     }
 
     /**
@@ -1112,8 +1309,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deletePoolWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.deletePoolWithResponse(poolId, requestOptions);
+    Response<Void> deletePoolInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.deletePoolInternalWithResponse(poolId, requestOptions);
     }
 
     /**
@@ -1166,8 +1363,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Boolean> poolExistsWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.poolExistsWithResponse(poolId, requestOptions);
+    Response<Boolean> poolExistsInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.poolExistsInternalWithResponse(poolId, requestOptions);
     }
 
     /**
@@ -1567,8 +1764,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getPoolWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.getPoolWithResponse(poolId, requestOptions);
+    Response<BinaryData> getPoolInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.getPoolInternalWithResponse(poolId, requestOptions);
     }
 
     /**
@@ -1893,8 +2090,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updatePoolWithResponse(String poolId, BinaryData pool, RequestOptions requestOptions) {
-        return this.serviceClient.updatePoolWithResponse(poolId, pool, requestOptions);
+    Response<Void> updatePoolInternalWithResponse(String poolId, BinaryData pool, RequestOptions requestOptions) {
+        return this.serviceClient.updatePoolInternalWithResponse(poolId, pool, requestOptions);
     }
 
     /**
@@ -1919,8 +2116,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> disablePoolAutoScaleWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.disablePoolAutoScaleWithResponse(poolId, requestOptions);
+    Response<Void> disablePoolAutoScaleInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.disablePoolAutoScaleInternalWithResponse(poolId, requestOptions);
     }
 
     /**
@@ -1985,9 +2182,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> enablePoolAutoScaleWithResponse(String poolId, BinaryData content,
+    Response<Void> enablePoolAutoScaleInternalWithResponse(String poolId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.enablePoolAutoScaleWithResponse(poolId, content, requestOptions);
+        return this.serviceClient.enablePoolAutoScaleInternalWithResponse(poolId, content, requestOptions);
     }
 
     /**
@@ -2050,9 +2247,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> evaluatePoolAutoScaleWithResponse(String poolId, BinaryData content,
+    Response<BinaryData> evaluatePoolAutoScaleInternalWithResponse(String poolId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.evaluatePoolAutoScaleWithResponse(poolId, content, requestOptions);
+        return this.serviceClient.evaluatePoolAutoScaleInternalWithResponse(poolId, content, requestOptions);
     }
 
     /**
@@ -2120,8 +2317,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> resizePoolWithResponse(String poolId, BinaryData content, RequestOptions requestOptions) {
-        return this.serviceClient.resizePoolWithResponse(poolId, content, requestOptions);
+    Response<Void> resizePoolInternalWithResponse(String poolId, BinaryData content, RequestOptions requestOptions) {
+        return this.serviceClient.resizePoolInternalWithResponse(poolId, content, requestOptions);
     }
 
     /**
@@ -2176,8 +2373,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> stopPoolResizeWithResponse(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.stopPoolResizeWithResponse(poolId, requestOptions);
+    Response<Void> stopPoolResizeInternalWithResponse(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.stopPoolResizeInternalWithResponse(poolId, requestOptions);
     }
 
     /**
@@ -2287,9 +2484,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> replacePoolPropertiesWithResponse(String poolId, BinaryData pool,
+    Response<Void> replacePoolPropertiesInternalWithResponse(String poolId, BinaryData pool,
         RequestOptions requestOptions) {
-        return this.serviceClient.replacePoolPropertiesWithResponse(poolId, pool, requestOptions);
+        return this.serviceClient.replacePoolPropertiesInternalWithResponse(poolId, pool, requestOptions);
     }
 
     /**
@@ -2354,8 +2551,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> removeNodesWithResponse(String poolId, BinaryData content, RequestOptions requestOptions) {
-        return this.serviceClient.removeNodesWithResponse(poolId, content, requestOptions);
+    Response<Void> removeNodesInternalWithResponse(String poolId, BinaryData content, RequestOptions requestOptions) {
+        return this.serviceClient.removeNodesInternalWithResponse(poolId, content, requestOptions);
     }
 
     /**
@@ -2411,8 +2608,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listSupportedImages(RequestOptions requestOptions) {
-        return this.serviceClient.listSupportedImages(requestOptions);
+    PagedIterable<BinaryData> listSupportedImagesInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listSupportedImagesInternal(requestOptions);
     }
 
     /**
@@ -2474,8 +2671,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listPoolNodeCounts(RequestOptions requestOptions) {
-        return this.serviceClient.listPoolNodeCounts(requestOptions);
+    PagedIterable<BinaryData> listPoolNodeCountsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listPoolNodeCountsInternal(requestOptions);
     }
 
     /**
@@ -2533,8 +2730,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteJobWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.deleteJobWithResponse(jobId, requestOptions);
+    Response<Void> deleteJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteJobInternalWithResponse(jobId, requestOptions);
     }
 
     /**
@@ -3015,8 +3212,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getJobWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.getJobWithResponse(jobId, requestOptions);
+    Response<BinaryData> getJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.getJobInternalWithResponse(jobId, requestOptions);
     }
 
     /**
@@ -3370,8 +3567,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateJobWithResponse(String jobId, BinaryData job, RequestOptions requestOptions) {
-        return this.serviceClient.updateJobWithResponse(jobId, job, requestOptions);
+    Response<Void> updateJobInternalWithResponse(String jobId, BinaryData job, RequestOptions requestOptions) {
+        return this.serviceClient.updateJobInternalWithResponse(jobId, job, requestOptions);
     }
 
     /**
@@ -3853,8 +4050,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> replaceJobWithResponse(String jobId, BinaryData job, RequestOptions requestOptions) {
-        return this.serviceClient.replaceJobWithResponse(jobId, job, requestOptions);
+    Response<Void> replaceJobInternalWithResponse(String jobId, BinaryData job, RequestOptions requestOptions) {
+        return this.serviceClient.replaceJobInternalWithResponse(jobId, job, requestOptions);
     }
 
     /**
@@ -3920,8 +4117,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> disableJobWithResponse(String jobId, BinaryData content, RequestOptions requestOptions) {
-        return this.serviceClient.disableJobWithResponse(jobId, content, requestOptions);
+    Response<Void> disableJobInternalWithResponse(String jobId, BinaryData content, RequestOptions requestOptions) {
+        return this.serviceClient.disableJobInternalWithResponse(jobId, content, requestOptions);
     }
 
     /**
@@ -3975,8 +4172,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> enableJobWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.enableJobWithResponse(jobId, requestOptions);
+    Response<Void> enableJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.enableJobInternalWithResponse(jobId, requestOptions);
     }
 
     /**
@@ -4043,8 +4240,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> terminateJobWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.terminateJobWithResponse(jobId, requestOptions);
+    Response<Void> terminateJobInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.terminateJobInternalWithResponse(jobId, requestOptions);
     }
 
     /**
@@ -4468,8 +4665,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createJobWithResponse(BinaryData job, RequestOptions requestOptions) {
-        return this.serviceClient.createJobWithResponse(job, requestOptions);
+    Response<Void> createJobInternalWithResponse(BinaryData job, RequestOptions requestOptions) {
+        return this.serviceClient.createJobInternalWithResponse(job, requestOptions);
     }
 
     /**
@@ -4933,8 +5130,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listJobs(RequestOptions requestOptions) {
-        return this.serviceClient.listJobs(requestOptions);
+    PagedIterable<BinaryData> listJobsInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listJobsInternal(requestOptions);
     }
 
     /**
@@ -5399,8 +5596,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listJobsFromSchedule(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.listJobsFromSchedule(jobScheduleId, requestOptions);
+    PagedIterable<BinaryData> listJobsFromScheduleInternal(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.listJobsFromScheduleInternal(jobScheduleId, requestOptions);
     }
 
     /**
@@ -5491,9 +5688,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listJobPreparationAndReleaseTaskStatus(String jobId,
+    PagedIterable<BinaryData> listJobPreparationAndReleaseTaskStatusInternal(String jobId,
         RequestOptions requestOptions) {
-        return this.serviceClient.listJobPreparationAndReleaseTaskStatus(jobId, requestOptions);
+        return this.serviceClient.listJobPreparationAndReleaseTaskStatusInternal(jobId, requestOptions);
     }
 
     /**
@@ -5548,8 +5745,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getJobTaskCountsWithResponse(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.getJobTaskCountsWithResponse(jobId, requestOptions);
+    Response<BinaryData> getJobTaskCountsInternalWithResponse(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.getJobTaskCountsInternalWithResponse(jobId, requestOptions);
     }
 
     /**
@@ -5603,8 +5800,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createCertificateWithResponse(BinaryData certificate, RequestOptions requestOptions) {
-        return this.serviceClient.createCertificateWithResponse(certificate, requestOptions);
+    Response<Void> createCertificateInternalWithResponse(BinaryData certificate, RequestOptions requestOptions) {
+        return this.serviceClient.createCertificateInternalWithResponse(certificate, requestOptions);
     }
 
     /**
@@ -5665,8 +5862,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listCertificates(RequestOptions requestOptions) {
-        return this.serviceClient.listCertificates(requestOptions);
+    PagedIterable<BinaryData> listCertificatesInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listCertificatesInternal(requestOptions);
     }
 
     /**
@@ -5700,9 +5897,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> cancelCertificateDeletionWithResponse(String thumbprintAlgorithm, String thumbprint,
+    Response<Void> cancelCertificateDeletionInternalWithResponse(String thumbprintAlgorithm, String thumbprint,
         RequestOptions requestOptions) {
-        return this.serviceClient.cancelCertificateDeletionWithResponse(thumbprintAlgorithm, thumbprint,
+        return this.serviceClient.cancelCertificateDeletionInternalWithResponse(thumbprintAlgorithm, thumbprint,
             requestOptions);
     }
 
@@ -5739,9 +5936,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteCertificateWithResponse(String thumbprintAlgorithm, String thumbprint,
+    Response<Void> deleteCertificateInternalWithResponse(String thumbprintAlgorithm, String thumbprint,
         RequestOptions requestOptions) {
-        return this.serviceClient.deleteCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions);
+        return this.serviceClient.deleteCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint,
+            requestOptions);
     }
 
     /**
@@ -5780,6 +5978,9 @@ public final class BatchClient {
      *             }
      *         ]
      *     }
+     *     data: String (Required)
+     *     certificateFormat: String(pfx/cer) (Optional)
+     *     password: String (Optional)
      * }
      * }
      * </pre>
@@ -5795,9 +5996,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getCertificateWithResponse(String thumbprintAlgorithm, String thumbprint,
+    Response<BinaryData> getCertificateInternalWithResponse(String thumbprintAlgorithm, String thumbprint,
         RequestOptions requestOptions) {
-        return this.serviceClient.getCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions);
+        return this.serviceClient.getCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions);
     }
 
     /**
@@ -5850,8 +6051,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Boolean> jobScheduleExistsWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.jobScheduleExistsWithResponse(jobScheduleId, requestOptions);
+    Response<Boolean> jobScheduleExistsInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.jobScheduleExistsInternalWithResponse(jobScheduleId, requestOptions);
     }
 
     /**
@@ -5906,8 +6107,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.deleteJobScheduleWithResponse(jobScheduleId, requestOptions);
+    Response<Void> deleteJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteJobScheduleInternalWithResponse(jobScheduleId, requestOptions);
     }
 
     /**
@@ -6391,8 +6592,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.getJobScheduleWithResponse(jobScheduleId, requestOptions);
+    Response<BinaryData> getJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.getJobScheduleInternalWithResponse(jobScheduleId, requestOptions);
     }
 
     /**
@@ -6845,9 +7046,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateJobScheduleWithResponse(String jobScheduleId, BinaryData jobSchedule,
+    Response<Void> updateJobScheduleInternalWithResponse(String jobScheduleId, BinaryData jobSchedule,
         RequestOptions requestOptions) {
-        return this.serviceClient.updateJobScheduleWithResponse(jobScheduleId, jobSchedule, requestOptions);
+        return this.serviceClient.updateJobScheduleInternalWithResponse(jobScheduleId, jobSchedule, requestOptions);
     }
 
     /**
@@ -7334,9 +7535,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> replaceJobScheduleWithResponse(String jobScheduleId, BinaryData jobSchedule,
+    Response<Void> replaceJobScheduleInternalWithResponse(String jobScheduleId, BinaryData jobSchedule,
         RequestOptions requestOptions) {
-        return this.serviceClient.replaceJobScheduleWithResponse(jobScheduleId, jobSchedule, requestOptions);
+        return this.serviceClient.replaceJobScheduleInternalWithResponse(jobScheduleId, jobSchedule, requestOptions);
     }
 
     /**
@@ -7385,8 +7586,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> disableJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.disableJobScheduleWithResponse(jobScheduleId, requestOptions);
+    Response<Void> disableJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.disableJobScheduleInternalWithResponse(jobScheduleId, requestOptions);
     }
 
     /**
@@ -7433,8 +7634,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> enableJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.enableJobScheduleWithResponse(jobScheduleId, requestOptions);
+    Response<Void> enableJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.enableJobScheduleInternalWithResponse(jobScheduleId, requestOptions);
     }
 
     /**
@@ -7483,8 +7684,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> terminateJobScheduleWithResponse(String jobScheduleId, RequestOptions requestOptions) {
-        return this.serviceClient.terminateJobScheduleWithResponse(jobScheduleId, requestOptions);
+    Response<Void> terminateJobScheduleInternalWithResponse(String jobScheduleId, RequestOptions requestOptions) {
+        return this.serviceClient.terminateJobScheduleInternalWithResponse(jobScheduleId, requestOptions);
     }
 
     /**
@@ -7910,8 +8111,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createJobScheduleWithResponse(BinaryData jobSchedule, RequestOptions requestOptions) {
-        return this.serviceClient.createJobScheduleWithResponse(jobSchedule, requestOptions);
+    Response<Void> createJobScheduleInternalWithResponse(BinaryData jobSchedule, RequestOptions requestOptions) {
+        return this.serviceClient.createJobScheduleInternalWithResponse(jobSchedule, requestOptions);
     }
 
     /**
@@ -8378,8 +8579,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listJobSchedules(RequestOptions requestOptions) {
-        return this.serviceClient.listJobSchedules(requestOptions);
+    PagedIterable<BinaryData> listJobSchedulesInternal(RequestOptions requestOptions) {
+        return this.serviceClient.listJobSchedulesInternal(requestOptions);
     }
 
     /**
@@ -8543,8 +8744,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createTaskWithResponse(String jobId, BinaryData task, RequestOptions requestOptions) {
-        return this.serviceClient.createTaskWithResponse(jobId, task, requestOptions);
+    Response<Void> createTaskInternalWithResponse(String jobId, BinaryData task, RequestOptions requestOptions) {
+        return this.serviceClient.createTaskInternalWithResponse(jobId, task, requestOptions);
     }
 
     /**
@@ -8772,8 +8973,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listTasks(String jobId, RequestOptions requestOptions) {
-        return this.serviceClient.listTasks(jobId, requestOptions);
+    PagedIterable<BinaryData> listTasksInternal(String jobId, RequestOptions requestOptions) {
+        return this.serviceClient.listTasksInternal(jobId, requestOptions);
     }
 
     /**
@@ -8983,9 +9184,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createTaskCollectionWithResponse(String jobId, BinaryData taskCollection,
+    Response<BinaryData> createTaskCollectionInternalWithResponse(String jobId, BinaryData taskCollection,
         RequestOptions requestOptions) {
-        return this.serviceClient.createTaskCollectionWithResponse(jobId, taskCollection, requestOptions);
+        return this.serviceClient.createTaskCollectionInternalWithResponse(jobId, taskCollection, requestOptions);
     }
 
     /**
@@ -9039,8 +9240,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteTaskWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.deleteTaskWithResponse(jobId, taskId, requestOptions);
+    Response<Void> deleteTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteTaskInternalWithResponse(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9288,8 +9489,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getTaskWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.getTaskWithResponse(jobId, taskId, requestOptions);
+    Response<BinaryData> getTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.getTaskInternalWithResponse(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9527,9 +9728,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> replaceTaskWithResponse(String jobId, String taskId, BinaryData task,
+    Response<Void> replaceTaskInternalWithResponse(String jobId, String taskId, BinaryData task,
         RequestOptions requestOptions) {
-        return this.serviceClient.replaceTaskWithResponse(jobId, taskId, task, requestOptions);
+        return this.serviceClient.replaceTaskInternalWithResponse(jobId, taskId, task, requestOptions);
     }
 
     /**
@@ -9601,8 +9802,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listSubTasks(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.listSubTasks(jobId, taskId, requestOptions);
+    PagedIterable<BinaryData> listSubTasksInternal(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.listSubTasksInternal(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9654,8 +9855,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> terminateTaskWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.terminateTaskWithResponse(jobId, taskId, requestOptions);
+    Response<Void> terminateTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.terminateTaskInternalWithResponse(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9712,8 +9913,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> reactivateTaskWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.reactivateTaskWithResponse(jobId, taskId, requestOptions);
+    Response<Void> reactivateTaskInternalWithResponse(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.reactivateTaskInternalWithResponse(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9745,9 +9946,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteTaskFileWithResponse(String jobId, String taskId, String filePath,
+    Response<Void> deleteTaskFileInternalWithResponse(String jobId, String taskId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.deleteTaskFileWithResponse(jobId, taskId, filePath, requestOptions);
+        return this.serviceClient.deleteTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions);
     }
 
     /**
@@ -9798,9 +9999,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getTaskFileWithResponse(String jobId, String taskId, String filePath,
+    Response<BinaryData> getTaskFileInternalWithResponse(String jobId, String taskId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.getTaskFileWithResponse(jobId, taskId, filePath, requestOptions);
+        return this.serviceClient.getTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions);
     }
 
     /**
@@ -9841,9 +10042,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> getTaskFilePropertiesWithResponse(String jobId, String taskId, String filePath,
+    Response<Void> getTaskFilePropertiesInternalWithResponse(String jobId, String taskId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.getTaskFilePropertiesWithResponse(jobId, taskId, filePath, requestOptions);
+        return this.serviceClient.getTaskFilePropertiesInternalWithResponse(jobId, taskId, filePath, requestOptions);
     }
 
     /**
@@ -9897,8 +10098,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listTaskFiles(String jobId, String taskId, RequestOptions requestOptions) {
-        return this.serviceClient.listTaskFiles(jobId, taskId, requestOptions);
+    PagedIterable<BinaryData> listTaskFilesInternal(String jobId, String taskId, RequestOptions requestOptions) {
+        return this.serviceClient.listTaskFilesInternal(jobId, taskId, requestOptions);
     }
 
     /**
@@ -9941,9 +10142,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createNodeUserWithResponse(String poolId, String nodeId, BinaryData user,
+    Response<Void> createNodeUserInternalWithResponse(String poolId, String nodeId, BinaryData user,
         RequestOptions requestOptions) {
-        return this.serviceClient.createNodeUserWithResponse(poolId, nodeId, user, requestOptions);
+        return this.serviceClient.createNodeUserInternalWithResponse(poolId, nodeId, user, requestOptions);
     }
 
     /**
@@ -9973,9 +10174,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteNodeUserWithResponse(String poolId, String nodeId, String userName,
+    Response<Void> deleteNodeUserInternalWithResponse(String poolId, String nodeId, String userName,
         RequestOptions requestOptions) {
-        return this.serviceClient.deleteNodeUserWithResponse(poolId, nodeId, userName, requestOptions);
+        return this.serviceClient.deleteNodeUserInternalWithResponse(poolId, nodeId, userName, requestOptions);
     }
 
     /**
@@ -10019,9 +10220,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> replaceNodeUserWithResponse(String poolId, String nodeId, String userName, BinaryData content,
-        RequestOptions requestOptions) {
-        return this.serviceClient.replaceNodeUserWithResponse(poolId, nodeId, userName, content, requestOptions);
+    Response<Void> replaceNodeUserInternalWithResponse(String poolId, String nodeId, String userName,
+        BinaryData content, RequestOptions requestOptions) {
+        return this.serviceClient.replaceNodeUserInternalWithResponse(poolId, nodeId, userName, content,
+            requestOptions);
     }
 
     /**
@@ -10215,8 +10417,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.getNodeWithResponse(poolId, nodeId, requestOptions);
+    Response<BinaryData> getNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.getNodeInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10261,8 +10463,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> rebootNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.rebootNodeWithResponse(poolId, nodeId, requestOptions);
+    Response<Void> rebootNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.rebootNodeInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10290,8 +10492,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> startNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.startNodeWithResponse(poolId, nodeId, requestOptions);
+    Response<Void> startNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.startNodeInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10338,8 +10540,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> reimageNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.reimageNodeWithResponse(poolId, nodeId, requestOptions);
+    Response<Void> reimageNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.reimageNodeInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10384,8 +10586,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deallocateNodeWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.deallocateNodeWithResponse(poolId, nodeId, requestOptions);
+    Response<Void> deallocateNodeInternalWithResponse(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.deallocateNodeInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10431,9 +10633,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> disableNodeSchedulingWithResponse(String poolId, String nodeId,
+    Response<Void> disableNodeSchedulingInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
-        return this.serviceClient.disableNodeSchedulingWithResponse(poolId, nodeId, requestOptions);
+        return this.serviceClient.disableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10462,9 +10664,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> enableNodeSchedulingWithResponse(String poolId, String nodeId,
+    Response<Void> enableNodeSchedulingInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
-        return this.serviceClient.enableNodeSchedulingWithResponse(poolId, nodeId, requestOptions);
+        return this.serviceClient.enableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10506,9 +10708,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getNodeRemoteLoginSettingsWithResponse(String poolId, String nodeId,
+    Response<BinaryData> getNodeRemoteLoginSettingsInternalWithResponse(String poolId, String nodeId,
         RequestOptions requestOptions) {
-        return this.serviceClient.getNodeRemoteLoginSettingsWithResponse(poolId, nodeId, requestOptions);
+        return this.serviceClient.getNodeRemoteLoginSettingsInternalWithResponse(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10567,9 +10769,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> uploadNodeLogsWithResponse(String poolId, String nodeId, BinaryData content,
+    Response<BinaryData> uploadNodeLogsInternalWithResponse(String poolId, String nodeId, BinaryData content,
         RequestOptions requestOptions) {
-        return this.serviceClient.uploadNodeLogsWithResponse(poolId, nodeId, content, requestOptions);
+        return this.serviceClient.uploadNodeLogsInternalWithResponse(poolId, nodeId, content, requestOptions);
     }
 
     /**
@@ -10768,8 +10970,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listNodes(String poolId, RequestOptions requestOptions) {
-        return this.serviceClient.listNodes(poolId, requestOptions);
+    PagedIterable<BinaryData> listNodesInternal(String poolId, RequestOptions requestOptions) {
+        return this.serviceClient.listNodesInternal(poolId, requestOptions);
     }
 
     /**
@@ -10839,9 +11041,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getNodeExtensionWithResponse(String poolId, String nodeId, String extensionName,
+    Response<BinaryData> getNodeExtensionInternalWithResponse(String poolId, String nodeId, String extensionName,
         RequestOptions requestOptions) {
-        return this.serviceClient.getNodeExtensionWithResponse(poolId, nodeId, extensionName, requestOptions);
+        return this.serviceClient.getNodeExtensionInternalWithResponse(poolId, nodeId, extensionName, requestOptions);
     }
 
     /**
@@ -10914,8 +11116,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listNodeExtensions(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.listNodeExtensions(poolId, nodeId, requestOptions);
+    PagedIterable<BinaryData> listNodeExtensionsInternal(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.listNodeExtensionsInternal(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -10947,9 +11149,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteNodeFileWithResponse(String poolId, String nodeId, String filePath,
+    Response<Void> deleteNodeFileInternalWithResponse(String poolId, String nodeId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.deleteNodeFileWithResponse(poolId, nodeId, filePath, requestOptions);
+        return this.serviceClient.deleteNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions);
     }
 
     /**
@@ -11000,9 +11202,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getNodeFileWithResponse(String poolId, String nodeId, String filePath,
+    Response<BinaryData> getNodeFileInternalWithResponse(String poolId, String nodeId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.getNodeFileWithResponse(poolId, nodeId, filePath, requestOptions);
+        return this.serviceClient.getNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions);
     }
 
     /**
@@ -11043,9 +11245,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> getNodeFilePropertiesWithResponse(String poolId, String nodeId, String filePath,
+    Response<Void> getNodeFilePropertiesInternalWithResponse(String poolId, String nodeId, String filePath,
         RequestOptions requestOptions) {
-        return this.serviceClient.getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, requestOptions);
+        return this.serviceClient.getNodeFilePropertiesInternalWithResponse(poolId, nodeId, filePath, requestOptions);
     }
 
     /**
@@ -11097,8 +11299,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listNodeFiles(String poolId, String nodeId, RequestOptions requestOptions) {
-        return this.serviceClient.listNodeFiles(poolId, nodeId, requestOptions);
+    PagedIterable<BinaryData> listNodeFilesInternal(String poolId, String nodeId, RequestOptions requestOptions) {
+        return this.serviceClient.listNodeFilesInternal(poolId, nodeId, requestOptions);
     }
 
     /**
@@ -11122,14 +11324,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchApplication> listApplications(ListBatchApplicationsOptions options) {
-        // Generated convenience method for listApplications
+    PagedIterable<BatchApplication> listApplicationsInternal(ListBatchApplicationsOptions options) {
+        // Generated convenience method for listApplicationsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return serviceClient.listApplications(requestOptions)
+        return serviceClient.listApplicationsInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchApplication.class));
     }
 
@@ -11152,10 +11354,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchApplication> listApplications() {
-        // Generated convenience method for listApplications
+    PagedIterable<BatchApplication> listApplicationsInternal() {
+        // Generated convenience method for listApplicationsInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listApplications(requestOptions)
+        return serviceClient.listApplicationsInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchApplication.class));
     }
 
@@ -11183,14 +11385,15 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchApplication getApplication(String applicationId, GetBatchApplicationOptions options) {
-        // Generated convenience method for getApplicationWithResponse
+    BatchApplication getApplicationInternal(String applicationId, GetBatchApplicationOptions options) {
+        // Generated convenience method for getApplicationInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return getApplicationWithResponse(applicationId, requestOptions).getValue().toObject(BatchApplication.class);
+        return getApplicationInternalWithResponse(applicationId, requestOptions).getValue()
+            .toObject(BatchApplication.class);
     }
 
     /**
@@ -11216,10 +11419,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchApplication getApplication(String applicationId) {
-        // Generated convenience method for getApplicationWithResponse
+    BatchApplication getApplicationInternal(String applicationId) {
+        // Generated convenience method for getApplicationInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getApplicationWithResponse(applicationId, requestOptions).getValue().toObject(BatchApplication.class);
+        return getApplicationInternalWithResponse(applicationId, requestOptions).getValue()
+            .toObject(BatchApplication.class);
     }
 
     /**
@@ -11245,8 +11449,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchPoolUsageMetrics> listPoolUsageMetrics(ListBatchPoolUsageMetricsOptions options) {
-        // Generated convenience method for listPoolUsageMetrics
+    PagedIterable<BatchPoolUsageMetrics> listPoolUsageMetricsInternal(ListBatchPoolUsageMetricsOptions options) {
+        // Generated convenience method for listPoolUsageMetricsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime startTime = options == null ? null : options.getStartTime();
@@ -11264,7 +11468,7 @@ public final class BatchClient {
         if (filter != null) {
             requestOptions.addQueryParam("$filter", filter, false);
         }
-        return serviceClient.listPoolUsageMetrics(requestOptions)
+        return serviceClient.listPoolUsageMetricsInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchPoolUsageMetrics.class));
     }
 
@@ -11289,10 +11493,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchPoolUsageMetrics> listPoolUsageMetrics() {
-        // Generated convenience method for listPoolUsageMetrics
+    PagedIterable<BatchPoolUsageMetrics> listPoolUsageMetricsInternal() {
+        // Generated convenience method for listPoolUsageMetricsInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listPoolUsageMetrics(requestOptions)
+        return serviceClient.listPoolUsageMetricsInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchPoolUsageMetrics.class));
     }
 
@@ -11314,14 +11518,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createPool(BatchPoolCreateContent pool, CreateBatchPoolOptions options) {
-        // Generated convenience method for createPoolWithResponse
+    void createPoolInternal(BatchPoolCreateContent pool, CreateBatchPoolOptions options) {
+        // Generated convenience method for createPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        createPoolWithResponse(BinaryData.fromObject(pool), requestOptions).getValue();
+        createPoolInternalWithResponse(BinaryData.fromObject(pool), requestOptions).getValue();
     }
 
     /**
@@ -11341,10 +11545,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createPool(BatchPoolCreateContent pool) {
-        // Generated convenience method for createPoolWithResponse
+    void createPoolInternal(BatchPoolCreateContent pool) {
+        // Generated convenience method for createPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        createPoolWithResponse(BinaryData.fromObject(pool), requestOptions).getValue();
+        createPoolInternalWithResponse(BinaryData.fromObject(pool), requestOptions).getValue();
     }
 
     /**
@@ -11361,8 +11565,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchPool> listPools(ListBatchPoolsOptions options) {
-        // Generated convenience method for listPools
+    PagedIterable<BatchPool> listPoolsInternal(ListBatchPoolsOptions options) {
+        // Generated convenience method for listPoolsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -11388,7 +11592,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listPools(requestOptions)
+        return serviceClient.listPoolsInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchPool.class));
     }
 
@@ -11404,10 +11608,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchPool> listPools() {
-        // Generated convenience method for listPools
+    PagedIterable<BatchPool> listPoolsInternal() {
+        // Generated convenience method for listPoolsInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listPools(requestOptions)
+        return serviceClient.listPoolsInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchPool.class));
     }
 
@@ -11439,8 +11643,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deletePool(String poolId, DeleteBatchPoolOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for deletePoolWithResponse
+    void deletePoolInternal(String poolId, DeleteBatchPoolOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for deletePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11464,7 +11668,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        deletePoolWithResponse(poolId, requestOptions).getValue();
+        deletePoolInternalWithResponse(poolId, requestOptions).getValue();
     }
 
     /**
@@ -11493,10 +11697,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deletePool(String poolId) {
-        // Generated convenience method for deletePoolWithResponse
+    void deletePoolInternal(String poolId) {
+        // Generated convenience method for deletePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deletePoolWithResponse(poolId, requestOptions).getValue();
+        deletePoolInternalWithResponse(poolId, requestOptions).getValue();
     }
 
     /**
@@ -11514,8 +11718,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public boolean poolExists(String poolId, BatchPoolExistsOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for poolExistsWithResponse
+    boolean poolExistsInternal(String poolId, BatchPoolExistsOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for poolExistsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11539,7 +11743,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return poolExistsWithResponse(poolId, requestOptions).getValue();
+        return poolExistsInternalWithResponse(poolId, requestOptions).getValue();
     }
 
     /**
@@ -11555,10 +11759,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public boolean poolExists(String poolId) {
-        // Generated convenience method for poolExistsWithResponse
+    boolean poolExistsInternal(String poolId) {
+        // Generated convenience method for poolExistsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return poolExistsWithResponse(poolId, requestOptions).getValue();
+        return poolExistsInternalWithResponse(poolId, requestOptions).getValue();
     }
 
     /**
@@ -11577,8 +11781,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchPool getPool(String poolId, GetBatchPoolOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for getPoolWithResponse
+    BatchPool getPoolInternal(String poolId, GetBatchPoolOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for getPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -11618,7 +11822,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return getPoolWithResponse(poolId, requestOptions).getValue().toObject(BatchPool.class);
+        return getPoolInternalWithResponse(poolId, requestOptions).getValue().toObject(BatchPool.class);
     }
 
     /**
@@ -11635,10 +11839,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchPool getPool(String poolId) {
-        // Generated convenience method for getPoolWithResponse
+    BatchPool getPoolInternal(String poolId) {
+        // Generated convenience method for getPoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getPoolWithResponse(poolId, requestOptions).getValue().toObject(BatchPool.class);
+        return getPoolInternalWithResponse(poolId, requestOptions).getValue().toObject(BatchPool.class);
     }
 
     /**
@@ -11661,9 +11865,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updatePool(String poolId, BatchPoolUpdateContent pool, UpdateBatchPoolOptions options,
+    void updatePoolInternal(String poolId, BatchPoolUpdateContent pool, UpdateBatchPoolOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for updatePoolWithResponse
+        // Generated convenience method for updatePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11687,7 +11891,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        updatePoolWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).getValue();
+        updatePoolInternalWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).getValue();
     }
 
     /**
@@ -11708,10 +11912,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updatePool(String poolId, BatchPoolUpdateContent pool) {
-        // Generated convenience method for updatePoolWithResponse
+    void updatePoolInternal(String poolId, BatchPoolUpdateContent pool) {
+        // Generated convenience method for updatePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        updatePoolWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).getValue();
+        updatePoolInternalWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).getValue();
     }
 
     /**
@@ -11728,14 +11932,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disablePoolAutoScale(String poolId, DisableBatchPoolAutoScaleOptions options) {
-        // Generated convenience method for disablePoolAutoScaleWithResponse
+    void disablePoolAutoScaleInternal(String poolId, DisableBatchPoolAutoScaleOptions options) {
+        // Generated convenience method for disablePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        disablePoolAutoScaleWithResponse(poolId, requestOptions).getValue();
+        disablePoolAutoScaleInternalWithResponse(poolId, requestOptions).getValue();
     }
 
     /**
@@ -11751,10 +11955,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disablePoolAutoScale(String poolId) {
-        // Generated convenience method for disablePoolAutoScaleWithResponse
+    void disablePoolAutoScaleInternal(String poolId) {
+        // Generated convenience method for disablePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        disablePoolAutoScaleWithResponse(poolId, requestOptions).getValue();
+        disablePoolAutoScaleInternalWithResponse(poolId, requestOptions).getValue();
     }
 
     /**
@@ -11780,9 +11984,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enablePoolAutoScale(String poolId, BatchPoolEnableAutoScaleContent content,
+    void enablePoolAutoScaleInternal(String poolId, BatchPoolEnableAutoScaleContent content,
         EnableBatchPoolAutoScaleOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for enablePoolAutoScaleWithResponse
+        // Generated convenience method for enablePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11806,7 +12010,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        enablePoolAutoScaleWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
+        enablePoolAutoScaleInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
     }
 
     /**
@@ -11830,10 +12034,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enablePoolAutoScale(String poolId, BatchPoolEnableAutoScaleContent content) {
-        // Generated convenience method for enablePoolAutoScaleWithResponse
+    void enablePoolAutoScaleInternal(String poolId, BatchPoolEnableAutoScaleContent content) {
+        // Generated convenience method for enablePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        enablePoolAutoScaleWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
+        enablePoolAutoScaleInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
     }
 
     /**
@@ -11859,15 +12063,16 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AutoScaleRun evaluatePoolAutoScale(String poolId, BatchPoolEvaluateAutoScaleContent content,
+    AutoScaleRun evaluatePoolAutoScaleInternal(String poolId, BatchPoolEvaluateAutoScaleContent content,
         EvaluateBatchPoolAutoScaleOptions options) {
-        // Generated convenience method for evaluatePoolAutoScaleWithResponse
+        // Generated convenience method for evaluatePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return evaluatePoolAutoScaleWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue()
+        return evaluatePoolAutoScaleInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+            .getValue()
             .toObject(AutoScaleRun.class);
     }
 
@@ -11893,10 +12098,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AutoScaleRun evaluatePoolAutoScale(String poolId, BatchPoolEvaluateAutoScaleContent content) {
-        // Generated convenience method for evaluatePoolAutoScaleWithResponse
+    AutoScaleRun evaluatePoolAutoScaleInternal(String poolId, BatchPoolEvaluateAutoScaleContent content) {
+        // Generated convenience method for evaluatePoolAutoScaleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return evaluatePoolAutoScaleWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue()
+        return evaluatePoolAutoScaleInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions)
+            .getValue()
             .toObject(AutoScaleRun.class);
     }
 
@@ -11924,9 +12130,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void resizePool(String poolId, BatchPoolResizeContent content, ResizeBatchPoolOptions options,
+    void resizePoolInternal(String poolId, BatchPoolResizeContent content, ResizeBatchPoolOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for resizePoolWithResponse
+        // Generated convenience method for resizePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -11950,7 +12156,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        resizePoolWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
+        resizePoolInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
     }
 
     /**
@@ -11975,10 +12181,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void resizePool(String poolId, BatchPoolResizeContent content) {
-        // Generated convenience method for resizePoolWithResponse
+    void resizePoolInternal(String poolId, BatchPoolResizeContent content) {
+        // Generated convenience method for resizePoolInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        resizePoolWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
+        resizePoolInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
     }
 
     /**
@@ -12004,8 +12210,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void stopPoolResize(String poolId, StopBatchPoolResizeOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for stopPoolResizeWithResponse
+    void stopPoolResizeInternal(String poolId, StopBatchPoolResizeOptions options,
+        RequestConditions requestConditions) {
+        // Generated convenience method for stopPoolResizeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12029,7 +12236,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        stopPoolResizeWithResponse(poolId, requestOptions).getValue();
+        stopPoolResizeInternalWithResponse(poolId, requestOptions).getValue();
     }
 
     /**
@@ -12053,10 +12260,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void stopPoolResize(String poolId) {
-        // Generated convenience method for stopPoolResizeWithResponse
+    void stopPoolResizeInternal(String poolId) {
+        // Generated convenience method for stopPoolResizeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        stopPoolResizeWithResponse(poolId, requestOptions).getValue();
+        stopPoolResizeInternalWithResponse(poolId, requestOptions).getValue();
     }
 
     /**
@@ -12078,15 +12285,15 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replacePoolProperties(String poolId, BatchPoolReplaceContent pool,
+    void replacePoolPropertiesInternal(String poolId, BatchPoolReplaceContent pool,
         ReplaceBatchPoolPropertiesOptions options) {
-        // Generated convenience method for replacePoolPropertiesWithResponse
+        // Generated convenience method for replacePoolPropertiesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        replacePoolPropertiesWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).getValue();
+        replacePoolPropertiesInternalWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).getValue();
     }
 
     /**
@@ -12107,10 +12314,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replacePoolProperties(String poolId, BatchPoolReplaceContent pool) {
-        // Generated convenience method for replacePoolPropertiesWithResponse
+    void replacePoolPropertiesInternal(String poolId, BatchPoolReplaceContent pool) {
+        // Generated convenience method for replacePoolPropertiesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        replacePoolPropertiesWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).getValue();
+        replacePoolPropertiesInternalWithResponse(poolId, BinaryData.fromObject(pool), requestOptions).getValue();
     }
 
     /**
@@ -12133,9 +12340,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void removeNodes(String poolId, BatchNodeRemoveContent content, RemoveBatchNodesOptions options,
+    void removeNodesInternal(String poolId, BatchNodeRemoveContent content, RemoveBatchNodesOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for removeNodesWithResponse
+        // Generated convenience method for removeNodesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12159,7 +12366,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        removeNodesWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
+        removeNodesInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
     }
 
     /**
@@ -12180,10 +12387,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void removeNodes(String poolId, BatchNodeRemoveContent content) {
-        // Generated convenience method for removeNodesWithResponse
+    void removeNodesInternal(String poolId, BatchNodeRemoveContent content) {
+        // Generated convenience method for removeNodesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        removeNodesWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
+        removeNodesInternalWithResponse(poolId, BinaryData.fromObject(content), requestOptions).getValue();
     }
 
     /**
@@ -12201,8 +12408,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchSupportedImage> listSupportedImages(ListSupportedBatchImagesOptions options) {
-        // Generated convenience method for listSupportedImages
+    PagedIterable<BatchSupportedImage> listSupportedImagesInternal(ListSupportedBatchImagesOptions options) {
+        // Generated convenience method for listSupportedImagesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -12212,7 +12419,7 @@ public final class BatchClient {
         if (filter != null) {
             requestOptions.addQueryParam("$filter", filter, false);
         }
-        return serviceClient.listSupportedImages(requestOptions)
+        return serviceClient.listSupportedImagesInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchSupportedImage.class));
     }
 
@@ -12229,10 +12436,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchSupportedImage> listSupportedImages() {
-        // Generated convenience method for listSupportedImages
+    PagedIterable<BatchSupportedImage> listSupportedImagesInternal() {
+        // Generated convenience method for listSupportedImagesInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listSupportedImages(requestOptions)
+        return serviceClient.listSupportedImagesInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchSupportedImage.class));
     }
 
@@ -12253,8 +12460,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchPoolNodeCounts> listPoolNodeCounts(ListBatchPoolNodeCountsOptions options) {
-        // Generated convenience method for listPoolNodeCounts
+    PagedIterable<BatchPoolNodeCounts> listPoolNodeCountsInternal(ListBatchPoolNodeCountsOptions options) {
+        // Generated convenience method for listPoolNodeCountsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -12264,7 +12471,7 @@ public final class BatchClient {
         if (filter != null) {
             requestOptions.addQueryParam("$filter", filter, false);
         }
-        return serviceClient.listPoolNodeCounts(requestOptions)
+        return serviceClient.listPoolNodeCountsInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchPoolNodeCounts.class));
     }
 
@@ -12283,10 +12490,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchPoolNodeCounts> listPoolNodeCounts() {
-        // Generated convenience method for listPoolNodeCounts
+    PagedIterable<BatchPoolNodeCounts> listPoolNodeCountsInternal() {
+        // Generated convenience method for listPoolNodeCountsInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listPoolNodeCounts(requestOptions)
+        return serviceClient.listPoolNodeCountsInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchPoolNodeCounts.class));
     }
 
@@ -12314,8 +12521,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteJob(String jobId, DeleteBatchJobOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for deleteJobWithResponse
+    void deleteJobInternal(String jobId, DeleteBatchJobOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for deleteJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean force = options == null ? null : options.isForce();
@@ -12343,7 +12550,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        deleteJobWithResponse(jobId, requestOptions).getValue();
+        deleteJobInternalWithResponse(jobId, requestOptions).getValue();
     }
 
     /**
@@ -12368,10 +12575,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteJob(String jobId) {
-        // Generated convenience method for deleteJobWithResponse
+    void deleteJobInternal(String jobId) {
+        // Generated convenience method for deleteJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deleteJobWithResponse(jobId, requestOptions).getValue();
+        deleteJobInternalWithResponse(jobId, requestOptions).getValue();
     }
 
     /**
@@ -12390,8 +12597,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchJob getJob(String jobId, GetBatchJobOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for getJobWithResponse
+    BatchJob getJobInternal(String jobId, GetBatchJobOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for getJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -12431,7 +12638,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return getJobWithResponse(jobId, requestOptions).getValue().toObject(BatchJob.class);
+        return getJobInternalWithResponse(jobId, requestOptions).getValue().toObject(BatchJob.class);
     }
 
     /**
@@ -12448,10 +12655,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchJob getJob(String jobId) {
-        // Generated convenience method for getJobWithResponse
+    BatchJob getJobInternal(String jobId) {
+        // Generated convenience method for getJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getJobWithResponse(jobId, requestOptions).getValue().toObject(BatchJob.class);
+        return getJobInternalWithResponse(jobId, requestOptions).getValue().toObject(BatchJob.class);
     }
 
     /**
@@ -12474,9 +12681,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updateJob(String jobId, BatchJobUpdateContent job, UpdateBatchJobOptions options,
+    void updateJobInternal(String jobId, BatchJobUpdateContent job, UpdateBatchJobOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for updateJobWithResponse
+        // Generated convenience method for updateJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12500,7 +12707,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        updateJobWithResponse(jobId, BinaryData.fromObject(job), requestOptions).getValue();
+        updateJobInternalWithResponse(jobId, BinaryData.fromObject(job), requestOptions).getValue();
     }
 
     /**
@@ -12521,10 +12728,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updateJob(String jobId, BatchJobUpdateContent job) {
-        // Generated convenience method for updateJobWithResponse
+    void updateJobInternal(String jobId, BatchJobUpdateContent job) {
+        // Generated convenience method for updateJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        updateJobWithResponse(jobId, BinaryData.fromObject(job), requestOptions).getValue();
+        updateJobInternalWithResponse(jobId, BinaryData.fromObject(job), requestOptions).getValue();
     }
 
     /**
@@ -12547,9 +12754,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replaceJob(String jobId, BatchJob job, ReplaceBatchJobOptions options,
+    void replaceJobInternal(String jobId, BatchJob job, ReplaceBatchJobOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for replaceJobWithResponse
+        // Generated convenience method for replaceJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12573,7 +12780,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        replaceJobWithResponse(jobId, BinaryData.fromObject(job), requestOptions).getValue();
+        replaceJobInternalWithResponse(jobId, BinaryData.fromObject(job), requestOptions).getValue();
     }
 
     /**
@@ -12594,10 +12801,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replaceJob(String jobId, BatchJob job) {
-        // Generated convenience method for replaceJobWithResponse
+    void replaceJobInternal(String jobId, BatchJob job) {
+        // Generated convenience method for replaceJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        replaceJobWithResponse(jobId, BinaryData.fromObject(job), requestOptions).getValue();
+        replaceJobInternalWithResponse(jobId, BinaryData.fromObject(job), requestOptions).getValue();
     }
 
     /**
@@ -12625,9 +12832,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disableJob(String jobId, BatchJobDisableContent content, DisableBatchJobOptions options,
+    void disableJobInternal(String jobId, BatchJobDisableContent content, DisableBatchJobOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for disableJobWithResponse
+        // Generated convenience method for disableJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12651,7 +12858,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        disableJobWithResponse(jobId, BinaryData.fromObject(content), requestOptions).getValue();
+        disableJobInternalWithResponse(jobId, BinaryData.fromObject(content), requestOptions).getValue();
     }
 
     /**
@@ -12677,10 +12884,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disableJob(String jobId, BatchJobDisableContent content) {
-        // Generated convenience method for disableJobWithResponse
+    void disableJobInternal(String jobId, BatchJobDisableContent content) {
+        // Generated convenience method for disableJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        disableJobWithResponse(jobId, BinaryData.fromObject(content), requestOptions).getValue();
+        disableJobInternalWithResponse(jobId, BinaryData.fromObject(content), requestOptions).getValue();
     }
 
     /**
@@ -12705,8 +12912,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enableJob(String jobId, EnableBatchJobOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for enableJobWithResponse
+    void enableJobInternal(String jobId, EnableBatchJobOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for enableJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -12730,7 +12937,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        enableJobWithResponse(jobId, requestOptions).getValue();
+        enableJobInternalWithResponse(jobId, requestOptions).getValue();
     }
 
     /**
@@ -12753,10 +12960,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enableJob(String jobId) {
-        // Generated convenience method for enableJobWithResponse
+    void enableJobInternal(String jobId) {
+        // Generated convenience method for enableJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        enableJobWithResponse(jobId, requestOptions).getValue();
+        enableJobInternalWithResponse(jobId, requestOptions).getValue();
     }
 
     /**
@@ -12781,8 +12988,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void terminateJob(String jobId, TerminateBatchJobOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for terminateJobWithResponse
+    void terminateJobInternal(String jobId, TerminateBatchJobOptions options, RequestConditions requestConditions) {
+        // Generated convenience method for terminateJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchJobTerminateContent parameters = options == null ? null : options.getParameters();
@@ -12814,7 +13021,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        terminateJobWithResponse(jobId, requestOptions).getValue();
+        terminateJobInternalWithResponse(jobId, requestOptions).getValue();
     }
 
     /**
@@ -12837,10 +13044,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void terminateJob(String jobId) {
-        // Generated convenience method for terminateJobWithResponse
+    void terminateJobInternal(String jobId) {
+        // Generated convenience method for terminateJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        terminateJobWithResponse(jobId, requestOptions).getValue();
+        terminateJobInternalWithResponse(jobId, requestOptions).getValue();
     }
 
     /**
@@ -12867,14 +13074,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createJob(BatchJobCreateContent job, CreateBatchJobOptions options) {
-        // Generated convenience method for createJobWithResponse
+    void createJobInternal(BatchJobCreateContent job, CreateBatchJobOptions options) {
+        // Generated convenience method for createJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        createJobWithResponse(BinaryData.fromObject(job), requestOptions).getValue();
+        createJobInternalWithResponse(BinaryData.fromObject(job), requestOptions).getValue();
     }
 
     /**
@@ -12900,10 +13107,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createJob(BatchJobCreateContent job) {
-        // Generated convenience method for createJobWithResponse
+    void createJobInternal(BatchJobCreateContent job) {
+        // Generated convenience method for createJobInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        createJobWithResponse(BinaryData.fromObject(job), requestOptions).getValue();
+        createJobInternalWithResponse(BinaryData.fromObject(job), requestOptions).getValue();
     }
 
     /**
@@ -12920,8 +13127,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchJob> listJobs(ListBatchJobsOptions options) {
-        // Generated convenience method for listJobs
+    PagedIterable<BatchJob> listJobsInternal(ListBatchJobsOptions options) {
+        // Generated convenience method for listJobsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -12947,7 +13154,8 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listJobs(requestOptions).mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJob.class));
+        return serviceClient.listJobsInternal(requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJob.class));
     }
 
     /**
@@ -12962,10 +13170,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchJob> listJobs() {
-        // Generated convenience method for listJobs
+    PagedIterable<BatchJob> listJobsInternal() {
+        // Generated convenience method for listJobsInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listJobs(requestOptions).mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJob.class));
+        return serviceClient.listJobsInternal(requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJob.class));
     }
 
     /**
@@ -12983,9 +13192,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchJob> listJobsFromSchedule(String jobScheduleId,
+    PagedIterable<BatchJob> listJobsFromScheduleInternal(String jobScheduleId,
         ListBatchJobsFromScheduleOptions options) {
-        // Generated convenience method for listJobsFromSchedule
+        // Generated convenience method for listJobsFromScheduleInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -13011,7 +13220,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listJobsFromSchedule(jobScheduleId, requestOptions)
+        return serviceClient.listJobsFromScheduleInternal(jobScheduleId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJob.class));
     }
 
@@ -13029,10 +13238,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchJob> listJobsFromSchedule(String jobScheduleId) {
-        // Generated convenience method for listJobsFromSchedule
+    PagedIterable<BatchJob> listJobsFromScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for listJobsFromScheduleInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listJobsFromSchedule(jobScheduleId, requestOptions)
+        return serviceClient.listJobsFromScheduleInternal(jobScheduleId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJob.class));
     }
 
@@ -13060,9 +13269,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatus(String jobId,
+    PagedIterable<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatusInternal(String jobId,
         ListBatchJobPreparationAndReleaseTaskStatusOptions options) {
-        // Generated convenience method for listJobPreparationAndReleaseTaskStatus
+        // Generated convenience method for listJobPreparationAndReleaseTaskStatusInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -13080,7 +13289,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listJobPreparationAndReleaseTaskStatus(jobId, requestOptions)
+        return serviceClient.listJobPreparationAndReleaseTaskStatusInternal(jobId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJobPreparationAndReleaseTaskStatus.class));
     }
 
@@ -13107,10 +13316,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchJobPreparationAndReleaseTaskStatus> listJobPreparationAndReleaseTaskStatus(String jobId) {
-        // Generated convenience method for listJobPreparationAndReleaseTaskStatus
+    PagedIterable<BatchJobPreparationAndReleaseTaskStatus>
+        listJobPreparationAndReleaseTaskStatusInternal(String jobId) {
+        // Generated convenience method for listJobPreparationAndReleaseTaskStatusInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listJobPreparationAndReleaseTaskStatus(jobId, requestOptions)
+        return serviceClient.listJobPreparationAndReleaseTaskStatusInternal(jobId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJobPreparationAndReleaseTaskStatus.class));
     }
 
@@ -13137,14 +13347,15 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchTaskCountsResult getJobTaskCounts(String jobId, GetBatchJobTaskCountsOptions options) {
-        // Generated convenience method for getJobTaskCountsWithResponse
+    BatchTaskCountsResult getJobTaskCountsInternal(String jobId, GetBatchJobTaskCountsOptions options) {
+        // Generated convenience method for getJobTaskCountsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return getJobTaskCountsWithResponse(jobId, requestOptions).getValue().toObject(BatchTaskCountsResult.class);
+        return getJobTaskCountsInternalWithResponse(jobId, requestOptions).getValue()
+            .toObject(BatchTaskCountsResult.class);
     }
 
     /**
@@ -13169,10 +13380,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchTaskCountsResult getJobTaskCounts(String jobId) {
-        // Generated convenience method for getJobTaskCountsWithResponse
+    BatchTaskCountsResult getJobTaskCountsInternal(String jobId) {
+        // Generated convenience method for getJobTaskCountsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getJobTaskCountsWithResponse(jobId, requestOptions).getValue().toObject(BatchTaskCountsResult.class);
+        return getJobTaskCountsInternalWithResponse(jobId, requestOptions).getValue()
+            .toObject(BatchTaskCountsResult.class);
     }
 
     /**
@@ -13189,14 +13401,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createCertificate(BatchCertificate certificate, CreateBatchCertificateOptions options) {
-        // Generated convenience method for createCertificateWithResponse
+    void createCertificateInternal(BatchCertificate certificate, CreateBatchCertificateOptions options) {
+        // Generated convenience method for createCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        createCertificateWithResponse(BinaryData.fromObject(certificate), requestOptions).getValue();
+        createCertificateInternalWithResponse(BinaryData.fromObject(certificate), requestOptions).getValue();
     }
 
     /**
@@ -13212,10 +13424,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createCertificate(BatchCertificate certificate) {
-        // Generated convenience method for createCertificateWithResponse
+    void createCertificateInternal(BatchCertificate certificate) {
+        // Generated convenience method for createCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        createCertificateWithResponse(BinaryData.fromObject(certificate), requestOptions).getValue();
+        createCertificateInternalWithResponse(BinaryData.fromObject(certificate), requestOptions).getValue();
     }
 
     /**
@@ -13232,8 +13444,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchCertificate> listCertificates(ListBatchCertificatesOptions options) {
-        // Generated convenience method for listCertificates
+    PagedIterable<BatchCertificate> listCertificatesInternal(ListBatchCertificatesOptions options) {
+        // Generated convenience method for listCertificatesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -13251,7 +13463,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listCertificates(requestOptions)
+        return serviceClient.listCertificatesInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchCertificate.class));
     }
 
@@ -13267,10 +13479,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchCertificate> listCertificates() {
-        // Generated convenience method for listCertificates
+    PagedIterable<BatchCertificate> listCertificatesInternal() {
+        // Generated convenience method for listCertificatesInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listCertificates(requestOptions)
+        return serviceClient.listCertificatesInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchCertificate.class));
     }
 
@@ -13297,15 +13509,15 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void cancelCertificateDeletion(String thumbprintAlgorithm, String thumbprint,
+    void cancelCertificateDeletionInternal(String thumbprintAlgorithm, String thumbprint,
         CancelBatchCertificateDeletionOptions options) {
-        // Generated convenience method for cancelCertificateDeletionWithResponse
+        // Generated convenience method for cancelCertificateDeletionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        cancelCertificateDeletionWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue();
+        cancelCertificateDeletionInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue();
     }
 
     /**
@@ -13330,10 +13542,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void cancelCertificateDeletion(String thumbprintAlgorithm, String thumbprint) {
-        // Generated convenience method for cancelCertificateDeletionWithResponse
+    void cancelCertificateDeletionInternal(String thumbprintAlgorithm, String thumbprint) {
+        // Generated convenience method for cancelCertificateDeletionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        cancelCertificateDeletionWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue();
+        cancelCertificateDeletionInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue();
     }
 
     /**
@@ -13361,15 +13573,15 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteCertificate(String thumbprintAlgorithm, String thumbprint,
+    void deleteCertificateInternal(String thumbprintAlgorithm, String thumbprint,
         DeleteBatchCertificateOptions options) {
-        // Generated convenience method for deleteCertificateWithResponse
+        // Generated convenience method for deleteCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        deleteCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue();
+        deleteCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue();
     }
 
     /**
@@ -13396,10 +13608,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteCertificate(String thumbprintAlgorithm, String thumbprint) {
-        // Generated convenience method for deleteCertificateWithResponse
+    void deleteCertificateInternal(String thumbprintAlgorithm, String thumbprint) {
+        // Generated convenience method for deleteCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deleteCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue();
+        deleteCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue();
     }
 
     /**
@@ -13418,9 +13630,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetCertificateResponse getCertificate(String thumbprintAlgorithm, String thumbprint,
+    BatchCertificate getCertificateInternal(String thumbprintAlgorithm, String thumbprint,
         GetBatchCertificateOptions options) {
-        // Generated convenience method for getCertificateWithResponse
+        // Generated convenience method for getCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -13434,8 +13646,8 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return getCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue()
-            .toObject(GetCertificateResponse.class);
+        return getCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue()
+            .toObject(BatchCertificate.class);
     }
 
     /**
@@ -13453,11 +13665,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetCertificateResponse getCertificate(String thumbprintAlgorithm, String thumbprint) {
-        // Generated convenience method for getCertificateWithResponse
+    BatchCertificate getCertificateInternal(String thumbprintAlgorithm, String thumbprint) {
+        // Generated convenience method for getCertificateInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getCertificateWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue()
-            .toObject(GetCertificateResponse.class);
+        return getCertificateInternalWithResponse(thumbprintAlgorithm, thumbprint, requestOptions).getValue()
+            .toObject(BatchCertificate.class);
     }
 
     /**
@@ -13475,9 +13687,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public boolean jobScheduleExists(String jobScheduleId, BatchJobScheduleExistsOptions options,
+    boolean jobScheduleExistsInternal(String jobScheduleId, BatchJobScheduleExistsOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for jobScheduleExistsWithResponse
+        // Generated convenience method for jobScheduleExistsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -13501,7 +13713,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return jobScheduleExistsWithResponse(jobScheduleId, requestOptions).getValue();
+        return jobScheduleExistsInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -13517,10 +13729,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public boolean jobScheduleExists(String jobScheduleId) {
-        // Generated convenience method for jobScheduleExistsWithResponse
+    boolean jobScheduleExistsInternal(String jobScheduleId) {
+        // Generated convenience method for jobScheduleExistsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return jobScheduleExistsWithResponse(jobScheduleId, requestOptions).getValue();
+        return jobScheduleExistsInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -13544,9 +13756,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteJobSchedule(String jobScheduleId, DeleteBatchJobScheduleOptions options,
+    void deleteJobScheduleInternal(String jobScheduleId, DeleteBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for deleteJobScheduleWithResponse
+        // Generated convenience method for deleteJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean force = options == null ? null : options.isForce();
@@ -13574,7 +13786,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        deleteJobScheduleWithResponse(jobScheduleId, requestOptions).getValue();
+        deleteJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -13596,10 +13808,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteJobSchedule(String jobScheduleId) {
-        // Generated convenience method for deleteJobScheduleWithResponse
+    void deleteJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for deleteJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deleteJobScheduleWithResponse(jobScheduleId, requestOptions).getValue();
+        deleteJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -13618,9 +13830,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchJobSchedule getJobSchedule(String jobScheduleId, GetBatchJobScheduleOptions options,
+    BatchJobSchedule getJobScheduleInternal(String jobScheduleId, GetBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for getJobScheduleWithResponse
+        // Generated convenience method for getJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -13660,7 +13872,8 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return getJobScheduleWithResponse(jobScheduleId, requestOptions).getValue().toObject(BatchJobSchedule.class);
+        return getJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue()
+            .toObject(BatchJobSchedule.class);
     }
 
     /**
@@ -13677,10 +13890,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchJobSchedule getJobSchedule(String jobScheduleId) {
-        // Generated convenience method for getJobScheduleWithResponse
+    BatchJobSchedule getJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for getJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getJobScheduleWithResponse(jobScheduleId, requestOptions).getValue().toObject(BatchJobSchedule.class);
+        return getJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue()
+            .toObject(BatchJobSchedule.class);
     }
 
     /**
@@ -13705,9 +13919,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updateJobSchedule(String jobScheduleId, BatchJobScheduleUpdateContent jobSchedule,
+    void updateJobScheduleInternal(String jobScheduleId, BatchJobScheduleUpdateContent jobSchedule,
         UpdateBatchJobScheduleOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for updateJobScheduleWithResponse
+        // Generated convenience method for updateJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -13731,7 +13945,8 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        updateJobScheduleWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions).getValue();
+        updateJobScheduleInternalWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
+            .getValue();
     }
 
     /**
@@ -13754,10 +13969,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updateJobSchedule(String jobScheduleId, BatchJobScheduleUpdateContent jobSchedule) {
-        // Generated convenience method for updateJobScheduleWithResponse
+    void updateJobScheduleInternal(String jobScheduleId, BatchJobScheduleUpdateContent jobSchedule) {
+        // Generated convenience method for updateJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        updateJobScheduleWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions).getValue();
+        updateJobScheduleInternalWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
+            .getValue();
     }
 
     /**
@@ -13782,9 +13998,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replaceJobSchedule(String jobScheduleId, BatchJobSchedule jobSchedule,
+    void replaceJobScheduleInternal(String jobScheduleId, BatchJobSchedule jobSchedule,
         ReplaceBatchJobScheduleOptions options, RequestConditions requestConditions) {
-        // Generated convenience method for replaceJobScheduleWithResponse
+        // Generated convenience method for replaceJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -13808,7 +14024,8 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        replaceJobScheduleWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions).getValue();
+        replaceJobScheduleInternalWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
+            .getValue();
     }
 
     /**
@@ -13831,10 +14048,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replaceJobSchedule(String jobScheduleId, BatchJobSchedule jobSchedule) {
-        // Generated convenience method for replaceJobScheduleWithResponse
+    void replaceJobScheduleInternal(String jobScheduleId, BatchJobSchedule jobSchedule) {
+        // Generated convenience method for replaceJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        replaceJobScheduleWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions).getValue();
+        replaceJobScheduleInternalWithResponse(jobScheduleId, BinaryData.fromObject(jobSchedule), requestOptions)
+            .getValue();
     }
 
     /**
@@ -13854,9 +14072,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disableJobSchedule(String jobScheduleId, DisableBatchJobScheduleOptions options,
+    void disableJobScheduleInternal(String jobScheduleId, DisableBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for disableJobScheduleWithResponse
+        // Generated convenience method for disableJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -13880,7 +14098,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        disableJobScheduleWithResponse(jobScheduleId, requestOptions).getValue();
+        disableJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -13898,10 +14116,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disableJobSchedule(String jobScheduleId) {
-        // Generated convenience method for disableJobScheduleWithResponse
+    void disableJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for disableJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        disableJobScheduleWithResponse(jobScheduleId, requestOptions).getValue();
+        disableJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -13919,9 +14137,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enableJobSchedule(String jobScheduleId, EnableBatchJobScheduleOptions options,
+    void enableJobScheduleInternal(String jobScheduleId, EnableBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for enableJobScheduleWithResponse
+        // Generated convenience method for enableJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -13945,7 +14163,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        enableJobScheduleWithResponse(jobScheduleId, requestOptions).getValue();
+        enableJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -13961,10 +14179,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enableJobSchedule(String jobScheduleId) {
-        // Generated convenience method for enableJobScheduleWithResponse
+    void enableJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for enableJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        enableJobScheduleWithResponse(jobScheduleId, requestOptions).getValue();
+        enableJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -13982,9 +14200,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void terminateJobSchedule(String jobScheduleId, TerminateBatchJobScheduleOptions options,
+    void terminateJobScheduleInternal(String jobScheduleId, TerminateBatchJobScheduleOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for terminateJobScheduleWithResponse
+        // Generated convenience method for terminateJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean force = options == null ? null : options.isForce();
@@ -14012,7 +14230,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        terminateJobScheduleWithResponse(jobScheduleId, requestOptions).getValue();
+        terminateJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -14028,10 +14246,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void terminateJobSchedule(String jobScheduleId) {
-        // Generated convenience method for terminateJobScheduleWithResponse
+    void terminateJobScheduleInternal(String jobScheduleId) {
+        // Generated convenience method for terminateJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        terminateJobScheduleWithResponse(jobScheduleId, requestOptions).getValue();
+        terminateJobScheduleInternalWithResponse(jobScheduleId, requestOptions).getValue();
     }
 
     /**
@@ -14048,14 +14266,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createJobSchedule(BatchJobScheduleCreateContent jobSchedule, CreateBatchJobScheduleOptions options) {
-        // Generated convenience method for createJobScheduleWithResponse
+    void createJobScheduleInternal(BatchJobScheduleCreateContent jobSchedule, CreateBatchJobScheduleOptions options) {
+        // Generated convenience method for createJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        createJobScheduleWithResponse(BinaryData.fromObject(jobSchedule), requestOptions).getValue();
+        createJobScheduleInternalWithResponse(BinaryData.fromObject(jobSchedule), requestOptions).getValue();
     }
 
     /**
@@ -14071,10 +14289,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createJobSchedule(BatchJobScheduleCreateContent jobSchedule) {
-        // Generated convenience method for createJobScheduleWithResponse
+    void createJobScheduleInternal(BatchJobScheduleCreateContent jobSchedule) {
+        // Generated convenience method for createJobScheduleInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        createJobScheduleWithResponse(BinaryData.fromObject(jobSchedule), requestOptions).getValue();
+        createJobScheduleInternalWithResponse(BinaryData.fromObject(jobSchedule), requestOptions).getValue();
     }
 
     /**
@@ -14091,8 +14309,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchJobSchedule> listJobSchedules(ListBatchJobSchedulesOptions options) {
-        // Generated convenience method for listJobSchedules
+    PagedIterable<BatchJobSchedule> listJobSchedulesInternal(ListBatchJobSchedulesOptions options) {
+        // Generated convenience method for listJobSchedulesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -14118,7 +14336,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listJobSchedules(requestOptions)
+        return serviceClient.listJobSchedulesInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJobSchedule.class));
     }
 
@@ -14134,10 +14352,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchJobSchedule> listJobSchedules() {
-        // Generated convenience method for listJobSchedules
+    PagedIterable<BatchJobSchedule> listJobSchedulesInternal() {
+        // Generated convenience method for listJobSchedulesInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listJobSchedules(requestOptions)
+        return serviceClient.listJobSchedulesInternal(requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchJobSchedule.class));
     }
 
@@ -14160,14 +14378,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createTask(String jobId, BatchTaskCreateContent task, CreateBatchTaskOptions options) {
-        // Generated convenience method for createTaskWithResponse
+    void createTaskInternal(String jobId, BatchTaskCreateContent task, CreateBatchTaskOptions options) {
+        // Generated convenience method for createTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        createTaskWithResponse(jobId, BinaryData.fromObject(task), requestOptions).getValue();
+        createTaskInternalWithResponse(jobId, BinaryData.fromObject(task), requestOptions).getValue();
     }
 
     /**
@@ -14188,10 +14406,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createTask(String jobId, BatchTaskCreateContent task) {
-        // Generated convenience method for createTaskWithResponse
+    void createTaskInternal(String jobId, BatchTaskCreateContent task) {
+        // Generated convenience method for createTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        createTaskWithResponse(jobId, BinaryData.fromObject(task), requestOptions).getValue();
+        createTaskInternalWithResponse(jobId, BinaryData.fromObject(task), requestOptions).getValue();
     }
 
     /**
@@ -14213,8 +14431,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchTask> listTasks(String jobId, ListBatchTasksOptions options) {
-        // Generated convenience method for listTasks
+    PagedIterable<BatchTask> listTasksInternal(String jobId, ListBatchTasksOptions options) {
+        // Generated convenience method for listTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -14240,7 +14458,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listTasks(jobId, requestOptions)
+        return serviceClient.listTasksInternal(jobId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchTask.class));
     }
 
@@ -14262,10 +14480,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchTask> listTasks(String jobId) {
-        // Generated convenience method for listTasks
+    PagedIterable<BatchTask> listTasksInternal(String jobId) {
+        // Generated convenience method for listTasksInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listTasks(jobId, requestOptions)
+        return serviceClient.listTasksInternal(jobId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchTask.class));
     }
 
@@ -14300,15 +14518,16 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchTaskAddCollectionResult createTaskCollection(String jobId, BatchTaskGroup taskCollection,
+    BatchTaskAddCollectionResult createTaskCollectionInternal(String jobId, BatchTaskGroup taskCollection,
         CreateBatchTaskCollectionOptions options) {
-        // Generated convenience method for createTaskCollectionWithResponse
+        // Generated convenience method for createTaskCollectionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return createTaskCollectionWithResponse(jobId, BinaryData.fromObject(taskCollection), requestOptions).getValue()
+        return createTaskCollectionInternalWithResponse(jobId, BinaryData.fromObject(taskCollection), requestOptions)
+            .getValue()
             .toObject(BatchTaskAddCollectionResult.class);
     }
 
@@ -14342,10 +14561,11 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchTaskAddCollectionResult createTaskCollection(String jobId, BatchTaskGroup taskCollection) {
-        // Generated convenience method for createTaskCollectionWithResponse
+    BatchTaskAddCollectionResult createTaskCollectionInternal(String jobId, BatchTaskGroup taskCollection) {
+        // Generated convenience method for createTaskCollectionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createTaskCollectionWithResponse(jobId, BinaryData.fromObject(taskCollection), requestOptions).getValue()
+        return createTaskCollectionInternalWithResponse(jobId, BinaryData.fromObject(taskCollection), requestOptions)
+            .getValue()
             .toObject(BatchTaskAddCollectionResult.class);
     }
 
@@ -14371,9 +14591,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteTask(String jobId, String taskId, DeleteBatchTaskOptions options,
+    void deleteTaskInternal(String jobId, String taskId, DeleteBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for deleteTaskWithResponse
+        // Generated convenience method for deleteTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14397,7 +14617,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        deleteTaskWithResponse(jobId, taskId, requestOptions).getValue();
+        deleteTaskInternalWithResponse(jobId, taskId, requestOptions).getValue();
     }
 
     /**
@@ -14420,10 +14640,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteTask(String jobId, String taskId) {
-        // Generated convenience method for deleteTaskWithResponse
+    void deleteTaskInternal(String jobId, String taskId) {
+        // Generated convenience method for deleteTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deleteTaskWithResponse(jobId, taskId, requestOptions).getValue();
+        deleteTaskInternalWithResponse(jobId, taskId, requestOptions).getValue();
     }
 
     /**
@@ -14450,9 +14670,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchTask getTask(String jobId, String taskId, GetBatchTaskOptions options,
+    BatchTask getTaskInternal(String jobId, String taskId, GetBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for getTaskWithResponse
+        // Generated convenience method for getTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -14492,7 +14712,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        return getTaskWithResponse(jobId, taskId, requestOptions).getValue().toObject(BatchTask.class);
+        return getTaskInternalWithResponse(jobId, taskId, requestOptions).getValue().toObject(BatchTask.class);
     }
 
     /**
@@ -14517,10 +14737,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchTask getTask(String jobId, String taskId) {
-        // Generated convenience method for getTaskWithResponse
+    BatchTask getTaskInternal(String jobId, String taskId) {
+        // Generated convenience method for getTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getTaskWithResponse(jobId, taskId, requestOptions).getValue().toObject(BatchTask.class);
+        return getTaskInternalWithResponse(jobId, taskId, requestOptions).getValue().toObject(BatchTask.class);
     }
 
     /**
@@ -14540,9 +14760,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replaceTask(String jobId, String taskId, BatchTask task, ReplaceBatchTaskOptions options,
+    void replaceTaskInternal(String jobId, String taskId, BatchTask task, ReplaceBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for replaceTaskWithResponse
+        // Generated convenience method for replaceTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14566,7 +14786,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        replaceTaskWithResponse(jobId, taskId, BinaryData.fromObject(task), requestOptions).getValue();
+        replaceTaskInternalWithResponse(jobId, taskId, BinaryData.fromObject(task), requestOptions).getValue();
     }
 
     /**
@@ -14584,10 +14804,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replaceTask(String jobId, String taskId, BatchTask task) {
-        // Generated convenience method for replaceTaskWithResponse
+    void replaceTaskInternal(String jobId, String taskId, BatchTask task) {
+        // Generated convenience method for replaceTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        replaceTaskWithResponse(jobId, taskId, BinaryData.fromObject(task), requestOptions).getValue();
+        replaceTaskInternalWithResponse(jobId, taskId, BinaryData.fromObject(task), requestOptions).getValue();
     }
 
     /**
@@ -14609,8 +14829,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchSubtask> listSubTasks(String jobId, String taskId, ListBatchSubTasksOptions options) {
-        // Generated convenience method for listSubTasks
+    PagedIterable<BatchSubtask> listSubTasksInternal(String jobId, String taskId, ListBatchSubTasksOptions options) {
+        // Generated convenience method for listSubTasksInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -14624,7 +14844,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listSubTasks(jobId, taskId, requestOptions)
+        return serviceClient.listSubTasksInternal(jobId, taskId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchSubtask.class));
     }
 
@@ -14646,10 +14866,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchSubtask> listSubTasks(String jobId, String taskId) {
-        // Generated convenience method for listSubTasks
+    PagedIterable<BatchSubtask> listSubTasksInternal(String jobId, String taskId) {
+        // Generated convenience method for listSubTasksInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listSubTasks(jobId, taskId, requestOptions)
+        return serviceClient.listSubTasksInternal(jobId, taskId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchSubtask.class));
     }
 
@@ -14673,9 +14893,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void terminateTask(String jobId, String taskId, TerminateBatchTaskOptions options,
+    void terminateTaskInternal(String jobId, String taskId, TerminateBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for terminateTaskWithResponse
+        // Generated convenience method for terminateTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14699,7 +14919,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        terminateTaskWithResponse(jobId, taskId, requestOptions).getValue();
+        terminateTaskInternalWithResponse(jobId, taskId, requestOptions).getValue();
     }
 
     /**
@@ -14720,10 +14940,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void terminateTask(String jobId, String taskId) {
-        // Generated convenience method for terminateTaskWithResponse
+    void terminateTaskInternal(String jobId, String taskId) {
+        // Generated convenience method for terminateTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        terminateTaskWithResponse(jobId, taskId, requestOptions).getValue();
+        terminateTaskInternalWithResponse(jobId, taskId, requestOptions).getValue();
     }
 
     /**
@@ -14751,9 +14971,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void reactivateTask(String jobId, String taskId, ReactivateBatchTaskOptions options,
+    void reactivateTaskInternal(String jobId, String taskId, ReactivateBatchTaskOptions options,
         RequestConditions requestConditions) {
-        // Generated convenience method for reactivateTaskWithResponse
+        // Generated convenience method for reactivateTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = requestConditions == null ? null : requestConditions.getIfModifiedSince();
@@ -14777,7 +14997,7 @@ public final class BatchClient {
         if (ifNoneMatch != null) {
             requestOptions.setHeader(HttpHeaderName.IF_NONE_MATCH, ifNoneMatch);
         }
-        reactivateTaskWithResponse(jobId, taskId, requestOptions).getValue();
+        reactivateTaskInternalWithResponse(jobId, taskId, requestOptions).getValue();
     }
 
     /**
@@ -14803,10 +15023,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void reactivateTask(String jobId, String taskId) {
-        // Generated convenience method for reactivateTaskWithResponse
+    void reactivateTaskInternal(String jobId, String taskId) {
+        // Generated convenience method for reactivateTaskInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        reactivateTaskWithResponse(jobId, taskId, requestOptions).getValue();
+        reactivateTaskInternalWithResponse(jobId, taskId, requestOptions).getValue();
     }
 
     /**
@@ -14825,8 +15045,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteTaskFile(String jobId, String taskId, String filePath, DeleteBatchTaskFileOptions options) {
-        // Generated convenience method for deleteTaskFileWithResponse
+    void deleteTaskFileInternal(String jobId, String taskId, String filePath, DeleteBatchTaskFileOptions options) {
+        // Generated convenience method for deleteTaskFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean recursive = options == null ? null : options.isRecursive();
@@ -14836,7 +15056,7 @@ public final class BatchClient {
         if (recursive != null) {
             requestOptions.addQueryParam("recursive", String.valueOf(recursive), false);
         }
-        deleteTaskFileWithResponse(jobId, taskId, filePath, requestOptions).getValue();
+        deleteTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -14854,10 +15074,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteTaskFile(String jobId, String taskId, String filePath) {
-        // Generated convenience method for deleteTaskFileWithResponse
+    void deleteTaskFileInternal(String jobId, String taskId, String filePath) {
+        // Generated convenience method for deleteTaskFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deleteTaskFileWithResponse(jobId, taskId, filePath, requestOptions).getValue();
+        deleteTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -14877,8 +15097,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BinaryData getTaskFile(String jobId, String taskId, String filePath, GetBatchTaskFileOptions options) {
-        // Generated convenience method for getTaskFileWithResponse
+    BinaryData getTaskFileInternal(String jobId, String taskId, String filePath, GetBatchTaskFileOptions options) {
+        // Generated convenience method for getTaskFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
@@ -14898,7 +15118,7 @@ public final class BatchClient {
         if (ocpRange != null) {
             requestOptions.setHeader(HttpHeaderName.fromString("ocp-range"), ocpRange);
         }
-        return getTaskFileWithResponse(jobId, taskId, filePath, requestOptions).getValue();
+        return getTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -14917,10 +15137,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BinaryData getTaskFile(String jobId, String taskId, String filePath) {
-        // Generated convenience method for getTaskFileWithResponse
+    BinaryData getTaskFileInternal(String jobId, String taskId, String filePath) {
+        // Generated convenience method for getTaskFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getTaskFileWithResponse(jobId, taskId, filePath, requestOptions).getValue();
+        return getTaskFileInternalWithResponse(jobId, taskId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -14936,12 +15156,12 @@ public final class BatchClient {
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return The {@link FileResponseHeaderProperties} object containing the properties retrieved from the response
-     * headers.
      */
+    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileResponseHeaderProperties getTaskFileProperties(String jobId, String taskId, String filePath,
+    void getTaskFilePropertiesInternal(String jobId, String taskId, String filePath,
         GetBatchTaskFilePropertiesOptions options) {
+        // Generated convenience method for getTaskFilePropertiesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
@@ -14957,10 +15177,7 @@ public final class BatchClient {
             requestOptions.setHeader(HttpHeaderName.IF_UNMODIFIED_SINCE,
                 String.valueOf(new DateTimeRfc1123(ifUnmodifiedSince)));
         }
-        // Retrieve response from getTaskFilePropertiesWithResponse and construct FileResponseHeaderProperties from its
-        // headers
-        Response<Void> response = getTaskFilePropertiesWithResponse(jobId, taskId, filePath, requestOptions);
-        return new FileResponseHeaderProperties(response.getHeaders());
+        getTaskFilePropertiesInternalWithResponse(jobId, taskId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -14975,13 +15192,13 @@ public final class BatchClient {
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return The {@link FileResponseHeaderProperties} object containing the properties retrieved from the response
-     * headers.
      */
+    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileResponseHeaderProperties getTaskFileProperties(String jobId, String taskId, String filePath) {
-        Response<Void> response = getTaskFilePropertiesWithResponse(jobId, taskId, filePath, new RequestOptions());
-        return new FileResponseHeaderProperties(response.getHeaders());
+    void getTaskFilePropertiesInternal(String jobId, String taskId, String filePath) {
+        // Generated convenience method for getTaskFilePropertiesInternalWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        getTaskFilePropertiesInternalWithResponse(jobId, taskId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -15001,8 +15218,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchNodeFile> listTaskFiles(String jobId, String taskId, ListBatchTaskFilesOptions options) {
-        // Generated convenience method for listTaskFiles
+    PagedIterable<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId, ListBatchTaskFilesOptions options) {
+        // Generated convenience method for listTaskFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -15016,7 +15233,7 @@ public final class BatchClient {
         if (recursive != null) {
             requestOptions.addQueryParam("recursive", String.valueOf(recursive), false);
         }
-        return serviceClient.listTaskFiles(jobId, taskId, requestOptions)
+        return serviceClient.listTaskFilesInternal(jobId, taskId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchNodeFile.class));
     }
 
@@ -15036,10 +15253,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchNodeFile> listTaskFiles(String jobId, String taskId) {
-        // Generated convenience method for listTaskFiles
+    PagedIterable<BatchNodeFile> listTaskFilesInternal(String jobId, String taskId) {
+        // Generated convenience method for listTaskFilesInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listTaskFiles(jobId, taskId, requestOptions)
+        return serviceClient.listTaskFilesInternal(jobId, taskId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchNodeFile.class));
     }
 
@@ -15062,15 +15279,15 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createNodeUser(String poolId, String nodeId, BatchNodeUserCreateContent user,
+    void createNodeUserInternal(String poolId, String nodeId, BatchNodeUserCreateContent user,
         CreateBatchNodeUserOptions options) {
-        // Generated convenience method for createNodeUserWithResponse
+        // Generated convenience method for createNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        createNodeUserWithResponse(poolId, nodeId, BinaryData.fromObject(user), requestOptions).getValue();
+        createNodeUserInternalWithResponse(poolId, nodeId, BinaryData.fromObject(user), requestOptions).getValue();
     }
 
     /**
@@ -15091,10 +15308,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createNodeUser(String poolId, String nodeId, BatchNodeUserCreateContent user) {
-        // Generated convenience method for createNodeUserWithResponse
+    void createNodeUserInternal(String poolId, String nodeId, BatchNodeUserCreateContent user) {
+        // Generated convenience method for createNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        createNodeUserWithResponse(poolId, nodeId, BinaryData.fromObject(user), requestOptions).getValue();
+        createNodeUserInternalWithResponse(poolId, nodeId, BinaryData.fromObject(user), requestOptions).getValue();
     }
 
     /**
@@ -15116,14 +15333,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteNodeUser(String poolId, String nodeId, String userName, DeleteBatchNodeUserOptions options) {
-        // Generated convenience method for deleteNodeUserWithResponse
+    void deleteNodeUserInternal(String poolId, String nodeId, String userName, DeleteBatchNodeUserOptions options) {
+        // Generated convenience method for deleteNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        deleteNodeUserWithResponse(poolId, nodeId, userName, requestOptions).getValue();
+        deleteNodeUserInternalWithResponse(poolId, nodeId, userName, requestOptions).getValue();
     }
 
     /**
@@ -15144,10 +15361,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteNodeUser(String poolId, String nodeId, String userName) {
-        // Generated convenience method for deleteNodeUserWithResponse
+    void deleteNodeUserInternal(String poolId, String nodeId, String userName) {
+        // Generated convenience method for deleteNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deleteNodeUserWithResponse(poolId, nodeId, userName, requestOptions).getValue();
+        deleteNodeUserInternalWithResponse(poolId, nodeId, userName, requestOptions).getValue();
     }
 
     /**
@@ -15172,15 +15389,15 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replaceNodeUser(String poolId, String nodeId, String userName, BatchNodeUserUpdateContent content,
+    void replaceNodeUserInternal(String poolId, String nodeId, String userName, BatchNodeUserUpdateContent content,
         ReplaceBatchNodeUserOptions options) {
-        // Generated convenience method for replaceNodeUserWithResponse
+        // Generated convenience method for replaceNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        replaceNodeUserWithResponse(poolId, nodeId, userName, BinaryData.fromObject(content), requestOptions)
+        replaceNodeUserInternalWithResponse(poolId, nodeId, userName, BinaryData.fromObject(content), requestOptions)
             .getValue();
     }
 
@@ -15205,10 +15422,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void replaceNodeUser(String poolId, String nodeId, String userName, BatchNodeUserUpdateContent content) {
-        // Generated convenience method for replaceNodeUserWithResponse
+    void replaceNodeUserInternal(String poolId, String nodeId, String userName, BatchNodeUserUpdateContent content) {
+        // Generated convenience method for replaceNodeUserInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        replaceNodeUserWithResponse(poolId, nodeId, userName, BinaryData.fromObject(content), requestOptions)
+        replaceNodeUserInternalWithResponse(poolId, nodeId, userName, BinaryData.fromObject(content), requestOptions)
             .getValue();
     }
 
@@ -15228,8 +15445,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchNode getNode(String poolId, String nodeId, GetBatchNodeOptions options) {
-        // Generated convenience method for getNodeWithResponse
+    BatchNode getNodeInternal(String poolId, String nodeId, GetBatchNodeOptions options) {
+        // Generated convenience method for getNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -15243,7 +15460,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return getNodeWithResponse(poolId, nodeId, requestOptions).getValue().toObject(BatchNode.class);
+        return getNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue().toObject(BatchNode.class);
     }
 
     /**
@@ -15261,10 +15478,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchNode getNode(String poolId, String nodeId) {
-        // Generated convenience method for getNodeWithResponse
+    BatchNode getNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for getNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getNodeWithResponse(poolId, nodeId, requestOptions).getValue().toObject(BatchNode.class);
+        return getNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue().toObject(BatchNode.class);
     }
 
     /**
@@ -15284,8 +15501,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void rebootNode(String poolId, String nodeId, RebootBatchNodeOptions options) {
-        // Generated convenience method for rebootNodeWithResponse
+    void rebootNodeInternal(String poolId, String nodeId, RebootBatchNodeOptions options) {
+        // Generated convenience method for rebootNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchNodeRebootContent parameters = options == null ? null : options.getParameters();
@@ -15295,7 +15512,7 @@ public final class BatchClient {
         if (parameters != null) {
             requestOptions.setBody(BinaryData.fromObject(parameters));
         }
-        rebootNodeWithResponse(poolId, nodeId, requestOptions).getValue();
+        rebootNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15314,10 +15531,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void rebootNode(String poolId, String nodeId) {
-        // Generated convenience method for rebootNodeWithResponse
+    void rebootNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for rebootNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        rebootNodeWithResponse(poolId, nodeId, requestOptions).getValue();
+        rebootNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15337,14 +15554,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void startNode(String poolId, String nodeId, StartBatchNodeOptions options) {
-        // Generated convenience method for startNodeWithResponse
+    void startNodeInternal(String poolId, String nodeId, StartBatchNodeOptions options) {
+        // Generated convenience method for startNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        startNodeWithResponse(poolId, nodeId, requestOptions).getValue();
+        startNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15363,10 +15580,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void startNode(String poolId, String nodeId) {
-        // Generated convenience method for startNodeWithResponse
+    void startNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for startNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        startNodeWithResponse(poolId, nodeId, requestOptions).getValue();
+        startNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15388,8 +15605,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void reimageNode(String poolId, String nodeId, ReimageBatchNodeOptions options) {
-        // Generated convenience method for reimageNodeWithResponse
+    void reimageNodeInternal(String poolId, String nodeId, ReimageBatchNodeOptions options) {
+        // Generated convenience method for reimageNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchNodeReimageContent parameters = options == null ? null : options.getParameters();
@@ -15399,7 +15616,7 @@ public final class BatchClient {
         if (parameters != null) {
             requestOptions.setBody(BinaryData.fromObject(parameters));
         }
-        reimageNodeWithResponse(poolId, nodeId, requestOptions).getValue();
+        reimageNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15420,10 +15637,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void reimageNode(String poolId, String nodeId) {
-        // Generated convenience method for reimageNodeWithResponse
+    void reimageNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for reimageNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        reimageNodeWithResponse(poolId, nodeId, requestOptions).getValue();
+        reimageNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15443,8 +15660,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deallocateNode(String poolId, String nodeId, DeallocateBatchNodeOptions options) {
-        // Generated convenience method for deallocateNodeWithResponse
+    void deallocateNodeInternal(String poolId, String nodeId, DeallocateBatchNodeOptions options) {
+        // Generated convenience method for deallocateNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchNodeDeallocateContent parameters = options == null ? null : options.getParameters();
@@ -15454,7 +15671,7 @@ public final class BatchClient {
         if (parameters != null) {
             requestOptions.setBody(BinaryData.fromObject(parameters));
         }
-        deallocateNodeWithResponse(poolId, nodeId, requestOptions).getValue();
+        deallocateNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15473,10 +15690,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deallocateNode(String poolId, String nodeId) {
-        // Generated convenience method for deallocateNodeWithResponse
+    void deallocateNodeInternal(String poolId, String nodeId) {
+        // Generated convenience method for deallocateNodeInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deallocateNodeWithResponse(poolId, nodeId, requestOptions).getValue();
+        deallocateNodeInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15497,8 +15714,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disableNodeScheduling(String poolId, String nodeId, DisableBatchNodeSchedulingOptions options) {
-        // Generated convenience method for disableNodeSchedulingWithResponse
+    void disableNodeSchedulingInternal(String poolId, String nodeId, DisableBatchNodeSchedulingOptions options) {
+        // Generated convenience method for disableNodeSchedulingInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         BatchNodeDisableSchedulingContent parameters = options == null ? null : options.getParameters();
@@ -15508,7 +15725,7 @@ public final class BatchClient {
         if (parameters != null) {
             requestOptions.setBody(BinaryData.fromObject(parameters));
         }
-        disableNodeSchedulingWithResponse(poolId, nodeId, requestOptions).getValue();
+        disableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15528,10 +15745,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disableNodeScheduling(String poolId, String nodeId) {
-        // Generated convenience method for disableNodeSchedulingWithResponse
+    void disableNodeSchedulingInternal(String poolId, String nodeId) {
+        // Generated convenience method for disableNodeSchedulingInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        disableNodeSchedulingWithResponse(poolId, nodeId, requestOptions).getValue();
+        disableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15552,14 +15769,14 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enableNodeScheduling(String poolId, String nodeId, EnableBatchNodeSchedulingOptions options) {
-        // Generated convenience method for enableNodeSchedulingWithResponse
+    void enableNodeSchedulingInternal(String poolId, String nodeId, EnableBatchNodeSchedulingOptions options) {
+        // Generated convenience method for enableNodeSchedulingInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        enableNodeSchedulingWithResponse(poolId, nodeId, requestOptions).getValue();
+        enableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15579,10 +15796,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enableNodeScheduling(String poolId, String nodeId) {
-        // Generated convenience method for enableNodeSchedulingWithResponse
+    void enableNodeSchedulingInternal(String poolId, String nodeId) {
+        // Generated convenience method for enableNodeSchedulingInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        enableNodeSchedulingWithResponse(poolId, nodeId, requestOptions).getValue();
+        enableNodeSchedulingInternalWithResponse(poolId, nodeId, requestOptions).getValue();
     }
 
     /**
@@ -15607,15 +15824,15 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchNodeRemoteLoginSettings getNodeRemoteLoginSettings(String poolId, String nodeId,
+    BatchNodeRemoteLoginSettings getNodeRemoteLoginSettingsInternal(String poolId, String nodeId,
         GetBatchNodeRemoteLoginSettingsOptions options) {
-        // Generated convenience method for getNodeRemoteLoginSettingsWithResponse
+        // Generated convenience method for getNodeRemoteLoginSettingsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return getNodeRemoteLoginSettingsWithResponse(poolId, nodeId, requestOptions).getValue()
+        return getNodeRemoteLoginSettingsInternalWithResponse(poolId, nodeId, requestOptions).getValue()
             .toObject(BatchNodeRemoteLoginSettings.class);
     }
 
@@ -15640,10 +15857,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchNodeRemoteLoginSettings getNodeRemoteLoginSettings(String poolId, String nodeId) {
-        // Generated convenience method for getNodeRemoteLoginSettingsWithResponse
+    BatchNodeRemoteLoginSettings getNodeRemoteLoginSettingsInternal(String poolId, String nodeId) {
+        // Generated convenience method for getNodeRemoteLoginSettingsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getNodeRemoteLoginSettingsWithResponse(poolId, nodeId, requestOptions).getValue()
+        return getNodeRemoteLoginSettingsInternalWithResponse(poolId, nodeId, requestOptions).getValue()
             .toObject(BatchNodeRemoteLoginSettings.class);
     }
 
@@ -15671,15 +15888,16 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public UploadBatchServiceLogsResult uploadNodeLogs(String poolId, String nodeId,
+    UploadBatchServiceLogsResult uploadNodeLogsInternal(String poolId, String nodeId,
         UploadBatchServiceLogsContent content, UploadBatchNodeLogsOptions options) {
-        // Generated convenience method for uploadNodeLogsWithResponse
+        // Generated convenience method for uploadNodeLogsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         if (timeOutInSeconds != null) {
             requestOptions.addQueryParam("timeOut", String.valueOf(timeOutInSeconds), false);
         }
-        return uploadNodeLogsWithResponse(poolId, nodeId, BinaryData.fromObject(content), requestOptions).getValue()
+        return uploadNodeLogsInternalWithResponse(poolId, nodeId, BinaryData.fromObject(content), requestOptions)
+            .getValue()
             .toObject(UploadBatchServiceLogsResult.class);
     }
 
@@ -15706,11 +15924,12 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public UploadBatchServiceLogsResult uploadNodeLogs(String poolId, String nodeId,
+    UploadBatchServiceLogsResult uploadNodeLogsInternal(String poolId, String nodeId,
         UploadBatchServiceLogsContent content) {
-        // Generated convenience method for uploadNodeLogsWithResponse
+        // Generated convenience method for uploadNodeLogsInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return uploadNodeLogsWithResponse(poolId, nodeId, BinaryData.fromObject(content), requestOptions).getValue()
+        return uploadNodeLogsInternalWithResponse(poolId, nodeId, BinaryData.fromObject(content), requestOptions)
+            .getValue()
             .toObject(UploadBatchServiceLogsResult.class);
     }
 
@@ -15729,8 +15948,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchNode> listNodes(String poolId, ListBatchNodesOptions options) {
-        // Generated convenience method for listNodes
+    PagedIterable<BatchNode> listNodesInternal(String poolId, ListBatchNodesOptions options) {
+        // Generated convenience method for listNodesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -15748,7 +15967,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listNodes(poolId, requestOptions)
+        return serviceClient.listNodesInternal(poolId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchNode.class));
     }
 
@@ -15766,10 +15985,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchNode> listNodes(String poolId) {
-        // Generated convenience method for listNodes
+    PagedIterable<BatchNode> listNodesInternal(String poolId) {
+        // Generated convenience method for listNodesInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listNodes(poolId, requestOptions)
+        return serviceClient.listNodesInternal(poolId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchNode.class));
     }
 
@@ -15790,9 +16009,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchNodeVMExtension getNodeExtension(String poolId, String nodeId, String extensionName,
+    BatchNodeVMExtension getNodeExtensionInternal(String poolId, String nodeId, String extensionName,
         GetBatchNodeExtensionOptions options) {
-        // Generated convenience method for getNodeExtensionWithResponse
+        // Generated convenience method for getNodeExtensionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -15806,7 +16025,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return getNodeExtensionWithResponse(poolId, nodeId, extensionName, requestOptions).getValue()
+        return getNodeExtensionInternalWithResponse(poolId, nodeId, extensionName, requestOptions).getValue()
             .toObject(BatchNodeVMExtension.class);
     }
 
@@ -15826,10 +16045,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BatchNodeVMExtension getNodeExtension(String poolId, String nodeId, String extensionName) {
-        // Generated convenience method for getNodeExtensionWithResponse
+    BatchNodeVMExtension getNodeExtensionInternal(String poolId, String nodeId, String extensionName) {
+        // Generated convenience method for getNodeExtensionInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getNodeExtensionWithResponse(poolId, nodeId, extensionName, requestOptions).getValue()
+        return getNodeExtensionInternalWithResponse(poolId, nodeId, extensionName, requestOptions).getValue()
             .toObject(BatchNodeVMExtension.class);
     }
 
@@ -15850,9 +16069,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchNodeVMExtension> listNodeExtensions(String poolId, String nodeId,
+    PagedIterable<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId,
         ListBatchNodeExtensionsOptions options) {
-        // Generated convenience method for listNodeExtensions
+        // Generated convenience method for listNodeExtensionsInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         List<String> select = options == null ? null : options.getSelect();
@@ -15866,7 +16085,7 @@ public final class BatchClient {
                     .collect(Collectors.joining(",")),
                 false);
         }
-        return serviceClient.listNodeExtensions(poolId, nodeId, requestOptions)
+        return serviceClient.listNodeExtensionsInternal(poolId, nodeId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchNodeVMExtension.class));
     }
 
@@ -15886,10 +16105,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchNodeVMExtension> listNodeExtensions(String poolId, String nodeId) {
-        // Generated convenience method for listNodeExtensions
+    PagedIterable<BatchNodeVMExtension> listNodeExtensionsInternal(String poolId, String nodeId) {
+        // Generated convenience method for listNodeExtensionsInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listNodeExtensions(poolId, nodeId, requestOptions)
+        return serviceClient.listNodeExtensionsInternal(poolId, nodeId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchNodeVMExtension.class));
     }
 
@@ -15909,8 +16128,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteNodeFile(String poolId, String nodeId, String filePath, DeleteBatchNodeFileOptions options) {
-        // Generated convenience method for deleteNodeFileWithResponse
+    void deleteNodeFileInternal(String poolId, String nodeId, String filePath, DeleteBatchNodeFileOptions options) {
+        // Generated convenience method for deleteNodeFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         Boolean recursive = options == null ? null : options.isRecursive();
@@ -15920,7 +16139,7 @@ public final class BatchClient {
         if (recursive != null) {
             requestOptions.addQueryParam("recursive", String.valueOf(recursive), false);
         }
-        deleteNodeFileWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
+        deleteNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -15938,10 +16157,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteNodeFile(String poolId, String nodeId, String filePath) {
-        // Generated convenience method for deleteNodeFileWithResponse
+    void deleteNodeFileInternal(String poolId, String nodeId, String filePath) {
+        // Generated convenience method for deleteNodeFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deleteNodeFileWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
+        deleteNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -15961,8 +16180,8 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BinaryData getNodeFile(String poolId, String nodeId, String filePath, GetBatchNodeFileOptions options) {
-        // Generated convenience method for getNodeFileWithResponse
+    BinaryData getNodeFileInternal(String poolId, String nodeId, String filePath, GetBatchNodeFileOptions options) {
+        // Generated convenience method for getNodeFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
@@ -15982,7 +16201,7 @@ public final class BatchClient {
         if (ocpRange != null) {
             requestOptions.setHeader(HttpHeaderName.fromString("ocp-range"), ocpRange);
         }
-        return getNodeFileWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
+        return getNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -16001,10 +16220,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BinaryData getNodeFile(String poolId, String nodeId, String filePath) {
-        // Generated convenience method for getNodeFileWithResponse
+    BinaryData getNodeFileInternal(String poolId, String nodeId, String filePath) {
+        // Generated convenience method for getNodeFileInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getNodeFileWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
+        return getNodeFileInternalWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -16020,12 +16239,12 @@ public final class BatchClient {
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return The {@link FileResponseHeaderProperties} object containing the properties retrieved from the response
-     * headers.
      */
+    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileResponseHeaderProperties getNodeFileProperties(String poolId, String nodeId, String filePath,
+    void getNodeFilePropertiesInternal(String poolId, String nodeId, String filePath,
         GetBatchNodeFilePropertiesOptions options) {
+        // Generated convenience method for getNodeFilePropertiesInternalWithResponse
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         OffsetDateTime ifModifiedSince = options == null ? null : options.getIfModifiedSince();
@@ -16041,9 +16260,7 @@ public final class BatchClient {
             requestOptions.setHeader(HttpHeaderName.IF_UNMODIFIED_SINCE,
                 String.valueOf(new DateTimeRfc1123(ifUnmodifiedSince)));
         }
-        // Retrieve response from getNodeFilePropertiesWithResponse and construct NodeFileProperties from its headers
-        Response<Void> response = getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, requestOptions);
-        return new FileResponseHeaderProperties(response.getHeaders());
+        getNodeFilePropertiesInternalWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -16058,13 +16275,13 @@ public final class BatchClient {
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return The {@link FileResponseHeaderProperties} object containing the properties retrieved from the response
-     * headers.
      */
+    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileResponseHeaderProperties getNodeFileProperties(String poolId, String nodeId, String filePath) {
-        Response<Void> response = getNodeFilePropertiesWithResponse(poolId, nodeId, filePath, new RequestOptions());
-        return new FileResponseHeaderProperties(response.getHeaders());
+    void getNodeFilePropertiesInternal(String poolId, String nodeId, String filePath) {
+        // Generated convenience method for getNodeFilePropertiesInternalWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        getNodeFilePropertiesInternalWithResponse(poolId, nodeId, filePath, requestOptions).getValue();
     }
 
     /**
@@ -16084,8 +16301,9 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchNodeFile> listNodeFiles(String poolId, String nodeId, ListBatchNodeFilesOptions options) {
-        // Generated convenience method for listNodeFiles
+    PagedIterable<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId,
+        ListBatchNodeFilesOptions options) {
+        // Generated convenience method for listNodeFilesInternal
         RequestOptions requestOptions = new RequestOptions();
         Integer timeOutInSeconds = options == null ? null : options.getTimeOutInSeconds();
         String filter = options == null ? null : options.getFilter();
@@ -16099,7 +16317,7 @@ public final class BatchClient {
         if (recursive != null) {
             requestOptions.addQueryParam("recursive", String.valueOf(recursive), false);
         }
-        return serviceClient.listNodeFiles(poolId, nodeId, requestOptions)
+        return serviceClient.listNodeFilesInternal(poolId, nodeId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchNodeFile.class));
     }
 
@@ -16119,10 +16337,10 @@ public final class BatchClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BatchNodeFile> listNodeFiles(String poolId, String nodeId) {
-        // Generated convenience method for listNodeFiles
+    PagedIterable<BatchNodeFile> listNodeFilesInternal(String poolId, String nodeId) {
+        // Generated convenience method for listNodeFilesInternal
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.listNodeFiles(poolId, nodeId, requestOptions)
+        return serviceClient.listNodeFilesInternal(poolId, nodeId, requestOptions)
             .mapPage(bodyItemValue -> bodyItemValue.toObject(BatchNodeFile.class));
     }
 }
