@@ -85,11 +85,6 @@ public final class GetOperationStatusRequest implements JsonSerializable<GetOper
                 .log(new IllegalArgumentException(
                     "Missing required property operationIds in model GetOperationStatusRequest"));
         }
-        if (correlationid() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property correlationid in model GetOperationStatusRequest"));
-        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(GetOperationStatusRequest.class);

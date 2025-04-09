@@ -13,14 +13,14 @@ public final class GetOperationErrorsRequestTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         GetOperationErrorsRequest model
-            = BinaryData.fromString("{\"operationIds\":[\"yb\"]}").toObject(GetOperationErrorsRequest.class);
-        Assertions.assertEquals("yb", model.operationIds().get(0));
+            = BinaryData.fromString("{\"operationIds\":[\"paierh\"]}").toObject(GetOperationErrorsRequest.class);
+        Assertions.assertEquals("paierh", model.operationIds().get(0));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        GetOperationErrorsRequest model = new GetOperationErrorsRequest().withOperationIds(Arrays.asList("yb"));
+        GetOperationErrorsRequest model = new GetOperationErrorsRequest().withOperationIds(Arrays.asList("paierh"));
         model = BinaryData.fromObject(model).toObject(GetOperationErrorsRequest.class);
-        Assertions.assertEquals("yb", model.operationIds().get(0));
+        Assertions.assertEquals("paierh", model.operationIds().get(0));
     }
 }

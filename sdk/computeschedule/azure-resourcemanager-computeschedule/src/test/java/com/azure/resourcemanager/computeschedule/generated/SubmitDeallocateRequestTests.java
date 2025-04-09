@@ -20,7 +20,7 @@ public final class SubmitDeallocateRequestTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         SubmitDeallocateRequest model = BinaryData.fromString(
-            "{\"schedule\":{\"deadline\":\"2021-09-06T02:12:49Z\",\"deadLine\":\"2021-12-03T06:58:55Z\",\"timezone\":\"zvgnwzs\",\"timeZone\":\"glzufc\",\"deadlineType\":\"CompleteBy\"},\"executionParameters\":{\"optimizationPreference\":\"CostAvailabilityBalanced\",\"retryPolicy\":{\"retryCount\":1757371466,\"retryWindowInMinutes\":1730607260}},\"resources\":{\"ids\":[\"nufhf\",\"bj\",\"s\",\"git\"]},\"correlationid\":\"xqhabi\"}")
+            "{\"schedule\":{\"deadline\":\"2021-09-06T02:12:49Z\",\"deadLine\":\"2021-12-03T06:58:55Z\",\"timezone\":\"zvgnwzs\",\"timeZone\":\"glzufc\",\"deadlineType\":\"CompleteBy\"},\"executionParameters\":{\"optimizationPreference\":\"CostAvailabilityBalanced\",\"retryPolicy\":{\"retryCount\":1757371466,\"retryWindowInMinutes\":1730607260}},\"resources\":{\"ids\":[\"nufhf\",\"bj\",\"s\",\"git\"]},\"correlationid\":\"qhabifpikxwcz\"}")
             .toObject(SubmitDeallocateRequest.class);
         Assertions.assertEquals(OffsetDateTime.parse("2021-09-06T02:12:49Z"), model.schedule().deadline());
         Assertions.assertEquals(OffsetDateTime.parse("2021-12-03T06:58:55Z"), model.schedule().deadLine());
@@ -32,7 +32,7 @@ public final class SubmitDeallocateRequestTests {
         Assertions.assertEquals(1757371466, model.executionParameters().retryPolicy().retryCount());
         Assertions.assertEquals(1730607260, model.executionParameters().retryPolicy().retryWindowInMinutes());
         Assertions.assertEquals("nufhf", model.resources().ids().get(0));
-        Assertions.assertEquals("xqhabi", model.correlationid());
+        Assertions.assertEquals("qhabifpikxwcz", model.correlationid());
     }
 
     @org.junit.jupiter.api.Test
@@ -47,7 +47,7 @@ public final class SubmitDeallocateRequestTests {
                 new ExecutionParameters().withOptimizationPreference(OptimizationPreference.COST_AVAILABILITY_BALANCED)
                     .withRetryPolicy(new RetryPolicy().withRetryCount(1757371466).withRetryWindowInMinutes(1730607260)))
             .withResources(new Resources().withIds(Arrays.asList("nufhf", "bj", "s", "git")))
-            .withCorrelationid("xqhabi");
+            .withCorrelationid("qhabifpikxwcz");
         model = BinaryData.fromObject(model).toObject(SubmitDeallocateRequest.class);
         Assertions.assertEquals(OffsetDateTime.parse("2021-09-06T02:12:49Z"), model.schedule().deadline());
         Assertions.assertEquals(OffsetDateTime.parse("2021-12-03T06:58:55Z"), model.schedule().deadLine());
@@ -59,6 +59,6 @@ public final class SubmitDeallocateRequestTests {
         Assertions.assertEquals(1757371466, model.executionParameters().retryPolicy().retryCount());
         Assertions.assertEquals(1730607260, model.executionParameters().retryPolicy().retryWindowInMinutes());
         Assertions.assertEquals("nufhf", model.resources().ids().get(0));
-        Assertions.assertEquals("xqhabi", model.correlationid());
+        Assertions.assertEquals("qhabifpikxwcz", model.correlationid());
     }
 }

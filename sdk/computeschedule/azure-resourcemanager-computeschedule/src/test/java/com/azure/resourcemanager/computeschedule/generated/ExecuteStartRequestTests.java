@@ -17,27 +17,30 @@ public final class ExecuteStartRequestTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ExecuteStartRequest model = BinaryData.fromString(
-            "{\"executionParameters\":{\"optimizationPreference\":\"Cost\",\"retryPolicy\":{\"retryCount\":2117023774,\"retryWindowInMinutes\":1003107077}},\"resources\":{\"ids\":[\"dhkrwpdappdsbdk\",\"wrwjfeu\"]},\"correlationid\":\"nhutjeltmrldhugj\"}")
+            "{\"executionParameters\":{\"optimizationPreference\":\"CostAvailabilityBalanced\",\"retryPolicy\":{\"retryCount\":1999845889,\"retryWindowInMinutes\":2066308678}},\"resources\":{\"ids\":[\"c\"]},\"correlationid\":\"zdzevndh\"}")
             .toObject(ExecuteStartRequest.class);
-        Assertions.assertEquals(OptimizationPreference.COST, model.executionParameters().optimizationPreference());
-        Assertions.assertEquals(2117023774, model.executionParameters().retryPolicy().retryCount());
-        Assertions.assertEquals(1003107077, model.executionParameters().retryPolicy().retryWindowInMinutes());
-        Assertions.assertEquals("dhkrwpdappdsbdk", model.resources().ids().get(0));
-        Assertions.assertEquals("nhutjeltmrldhugj", model.correlationid());
+        Assertions.assertEquals(OptimizationPreference.COST_AVAILABILITY_BALANCED,
+            model.executionParameters().optimizationPreference());
+        Assertions.assertEquals(1999845889, model.executionParameters().retryPolicy().retryCount());
+        Assertions.assertEquals(2066308678, model.executionParameters().retryPolicy().retryWindowInMinutes());
+        Assertions.assertEquals("c", model.resources().ids().get(0));
+        Assertions.assertEquals("zdzevndh", model.correlationid());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         ExecuteStartRequest model = new ExecuteStartRequest()
-            .withExecutionParameters(new ExecutionParameters().withOptimizationPreference(OptimizationPreference.COST)
-                .withRetryPolicy(new RetryPolicy().withRetryCount(2117023774).withRetryWindowInMinutes(1003107077)))
-            .withResources(new Resources().withIds(Arrays.asList("dhkrwpdappdsbdk", "wrwjfeu")))
-            .withCorrelationid("nhutjeltmrldhugj");
+            .withExecutionParameters(
+                new ExecutionParameters().withOptimizationPreference(OptimizationPreference.COST_AVAILABILITY_BALANCED)
+                    .withRetryPolicy(new RetryPolicy().withRetryCount(1999845889).withRetryWindowInMinutes(2066308678)))
+            .withResources(new Resources().withIds(Arrays.asList("c")))
+            .withCorrelationid("zdzevndh");
         model = BinaryData.fromObject(model).toObject(ExecuteStartRequest.class);
-        Assertions.assertEquals(OptimizationPreference.COST, model.executionParameters().optimizationPreference());
-        Assertions.assertEquals(2117023774, model.executionParameters().retryPolicy().retryCount());
-        Assertions.assertEquals(1003107077, model.executionParameters().retryPolicy().retryWindowInMinutes());
-        Assertions.assertEquals("dhkrwpdappdsbdk", model.resources().ids().get(0));
-        Assertions.assertEquals("nhutjeltmrldhugj", model.correlationid());
+        Assertions.assertEquals(OptimizationPreference.COST_AVAILABILITY_BALANCED,
+            model.executionParameters().optimizationPreference());
+        Assertions.assertEquals(1999845889, model.executionParameters().retryPolicy().retryCount());
+        Assertions.assertEquals(2066308678, model.executionParameters().retryPolicy().retryWindowInMinutes());
+        Assertions.assertEquals("c", model.resources().ids().get(0));
+        Assertions.assertEquals("zdzevndh", model.correlationid());
     }
 }

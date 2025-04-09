@@ -17,28 +17,27 @@ public final class ExecuteDeallocateRequestTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ExecuteDeallocateRequest model = BinaryData.fromString(
-            "{\"executionParameters\":{\"optimizationPreference\":\"Cost\",\"retryPolicy\":{\"retryCount\":2070892597,\"retryWindowInMinutes\":412158498}},\"resources\":{\"ids\":[\"sntnbybkzgcw\",\"wclxxwrl\",\"douskcqvkocrcjdk\",\"tnhxbn\"]},\"correlationid\":\"biksq\"}")
+            "{\"executionParameters\":{\"optimizationPreference\":\"Cost\",\"retryPolicy\":{\"retryCount\":897753397,\"retryWindowInMinutes\":306155012}},\"resources\":{\"ids\":[\"xxwr\",\"jdous\",\"cqvkocrcjdkwtn\",\"xbnjbiksq\"]},\"correlationid\":\"lssai\"}")
             .toObject(ExecuteDeallocateRequest.class);
         Assertions.assertEquals(OptimizationPreference.COST, model.executionParameters().optimizationPreference());
-        Assertions.assertEquals(2070892597, model.executionParameters().retryPolicy().retryCount());
-        Assertions.assertEquals(412158498, model.executionParameters().retryPolicy().retryWindowInMinutes());
-        Assertions.assertEquals("sntnbybkzgcw", model.resources().ids().get(0));
-        Assertions.assertEquals("biksq", model.correlationid());
+        Assertions.assertEquals(897753397, model.executionParameters().retryPolicy().retryCount());
+        Assertions.assertEquals(306155012, model.executionParameters().retryPolicy().retryWindowInMinutes());
+        Assertions.assertEquals("xxwr", model.resources().ids().get(0));
+        Assertions.assertEquals("lssai", model.correlationid());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         ExecuteDeallocateRequest model = new ExecuteDeallocateRequest()
             .withExecutionParameters(new ExecutionParameters().withOptimizationPreference(OptimizationPreference.COST)
-                .withRetryPolicy(new RetryPolicy().withRetryCount(2070892597).withRetryWindowInMinutes(412158498)))
-            .withResources(
-                new Resources().withIds(Arrays.asList("sntnbybkzgcw", "wclxxwrl", "douskcqvkocrcjdk", "tnhxbn")))
-            .withCorrelationid("biksq");
+                .withRetryPolicy(new RetryPolicy().withRetryCount(897753397).withRetryWindowInMinutes(306155012)))
+            .withResources(new Resources().withIds(Arrays.asList("xxwr", "jdous", "cqvkocrcjdkwtn", "xbnjbiksq")))
+            .withCorrelationid("lssai");
         model = BinaryData.fromObject(model).toObject(ExecuteDeallocateRequest.class);
         Assertions.assertEquals(OptimizationPreference.COST, model.executionParameters().optimizationPreference());
-        Assertions.assertEquals(2070892597, model.executionParameters().retryPolicy().retryCount());
-        Assertions.assertEquals(412158498, model.executionParameters().retryPolicy().retryWindowInMinutes());
-        Assertions.assertEquals("sntnbybkzgcw", model.resources().ids().get(0));
-        Assertions.assertEquals("biksq", model.correlationid());
+        Assertions.assertEquals(897753397, model.executionParameters().retryPolicy().retryCount());
+        Assertions.assertEquals(306155012, model.executionParameters().retryPolicy().retryWindowInMinutes());
+        Assertions.assertEquals("xxwr", model.resources().ids().get(0));
+        Assertions.assertEquals("lssai", model.correlationid());
     }
 }

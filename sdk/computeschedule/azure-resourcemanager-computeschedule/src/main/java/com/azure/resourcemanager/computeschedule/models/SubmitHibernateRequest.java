@@ -150,11 +150,6 @@ public final class SubmitHibernateRequest implements JsonSerializable<SubmitHibe
         } else {
             resources().validate();
         }
-        if (correlationid() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property correlationid in model SubmitHibernateRequest"));
-        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(SubmitHibernateRequest.class);

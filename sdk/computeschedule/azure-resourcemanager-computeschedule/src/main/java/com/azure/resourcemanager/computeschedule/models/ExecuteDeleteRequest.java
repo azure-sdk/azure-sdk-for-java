@@ -13,10 +13,10 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The ExecuteDeallocateRequest request for executeDeallocate operations.
+ * The ExecuteDeleteRequest request for delete operations.
  */
 @Fluent
-public final class ExecuteDeallocateRequest implements JsonSerializable<ExecuteDeallocateRequest> {
+public final class ExecuteDeleteRequest implements JsonSerializable<ExecuteDeleteRequest> {
     /*
      * The execution parameters for the request
      */
@@ -33,9 +33,9 @@ public final class ExecuteDeallocateRequest implements JsonSerializable<ExecuteD
     private String correlationid;
 
     /**
-     * Creates an instance of ExecuteDeallocateRequest class.
+     * Creates an instance of ExecuteDeleteRequest class.
      */
-    public ExecuteDeallocateRequest() {
+    public ExecuteDeleteRequest() {
     }
 
     /**
@@ -51,9 +51,9 @@ public final class ExecuteDeallocateRequest implements JsonSerializable<ExecuteD
      * Set the executionParameters property: The execution parameters for the request.
      * 
      * @param executionParameters the executionParameters value to set.
-     * @return the ExecuteDeallocateRequest object itself.
+     * @return the ExecuteDeleteRequest object itself.
      */
-    public ExecuteDeallocateRequest withExecutionParameters(ExecutionParameters executionParameters) {
+    public ExecuteDeleteRequest withExecutionParameters(ExecutionParameters executionParameters) {
         this.executionParameters = executionParameters;
         return this;
     }
@@ -71,9 +71,9 @@ public final class ExecuteDeallocateRequest implements JsonSerializable<ExecuteD
      * Set the resources property: The resources for the request.
      * 
      * @param resources the resources value to set.
-     * @return the ExecuteDeallocateRequest object itself.
+     * @return the ExecuteDeleteRequest object itself.
      */
-    public ExecuteDeallocateRequest withResources(Resources resources) {
+    public ExecuteDeleteRequest withResources(Resources resources) {
         this.resources = resources;
         return this;
     }
@@ -91,9 +91,9 @@ public final class ExecuteDeallocateRequest implements JsonSerializable<ExecuteD
      * Set the correlationid property: CorrelationId item.
      * 
      * @param correlationid the correlationid value to set.
-     * @return the ExecuteDeallocateRequest object itself.
+     * @return the ExecuteDeleteRequest object itself.
      */
-    public ExecuteDeallocateRequest withCorrelationid(String correlationid) {
+    public ExecuteDeleteRequest withCorrelationid(String correlationid) {
         this.correlationid = correlationid;
         return this;
     }
@@ -107,20 +107,19 @@ public final class ExecuteDeallocateRequest implements JsonSerializable<ExecuteD
         if (executionParameters() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property executionParameters in model ExecuteDeallocateRequest"));
+                    "Missing required property executionParameters in model ExecuteDeleteRequest"));
         } else {
             executionParameters().validate();
         }
         if (resources() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property resources in model ExecuteDeallocateRequest"));
+                .log(new IllegalArgumentException("Missing required property resources in model ExecuteDeleteRequest"));
         } else {
             resources().validate();
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ExecuteDeallocateRequest.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ExecuteDeleteRequest.class);
 
     /**
      * {@inheritDoc}
@@ -135,33 +134,33 @@ public final class ExecuteDeallocateRequest implements JsonSerializable<ExecuteD
     }
 
     /**
-     * Reads an instance of ExecuteDeallocateRequest from the JsonReader.
+     * Reads an instance of ExecuteDeleteRequest from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ExecuteDeallocateRequest if the JsonReader was pointing to an instance of it, or null if
-     * it was pointing to JSON null.
+     * @return An instance of ExecuteDeleteRequest if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the ExecuteDeallocateRequest.
+     * @throws IOException If an error occurs while reading the ExecuteDeleteRequest.
      */
-    public static ExecuteDeallocateRequest fromJson(JsonReader jsonReader) throws IOException {
+    public static ExecuteDeleteRequest fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ExecuteDeallocateRequest deserializedExecuteDeallocateRequest = new ExecuteDeallocateRequest();
+            ExecuteDeleteRequest deserializedExecuteDeleteRequest = new ExecuteDeleteRequest();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("executionParameters".equals(fieldName)) {
-                    deserializedExecuteDeallocateRequest.executionParameters = ExecutionParameters.fromJson(reader);
+                    deserializedExecuteDeleteRequest.executionParameters = ExecutionParameters.fromJson(reader);
                 } else if ("resources".equals(fieldName)) {
-                    deserializedExecuteDeallocateRequest.resources = Resources.fromJson(reader);
+                    deserializedExecuteDeleteRequest.resources = Resources.fromJson(reader);
                 } else if ("correlationid".equals(fieldName)) {
-                    deserializedExecuteDeallocateRequest.correlationid = reader.getString();
+                    deserializedExecuteDeleteRequest.correlationid = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedExecuteDeallocateRequest;
+            return deserializedExecuteDeleteRequest;
         });
     }
 }
