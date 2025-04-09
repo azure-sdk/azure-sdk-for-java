@@ -85,11 +85,6 @@ public final class CancelOperationsRequest implements JsonSerializable<CancelOpe
                 .log(new IllegalArgumentException(
                     "Missing required property operationIds in model CancelOperationsRequest"));
         }
-        if (correlationid() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property correlationid in model CancelOperationsRequest"));
-        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(CancelOperationsRequest.class);

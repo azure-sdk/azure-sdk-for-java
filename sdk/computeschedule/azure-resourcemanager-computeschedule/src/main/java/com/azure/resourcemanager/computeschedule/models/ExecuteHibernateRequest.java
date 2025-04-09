@@ -118,11 +118,6 @@ public final class ExecuteHibernateRequest implements JsonSerializable<ExecuteHi
         } else {
             resources().validate();
         }
-        if (correlationid() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property correlationid in model ExecuteHibernateRequest"));
-        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ExecuteHibernateRequest.class);

@@ -11,17 +11,17 @@ import org.junit.jupiter.api.Assertions;
 public final class RetryPolicyTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        RetryPolicy model = BinaryData.fromString("{\"retryCount\":257838249,\"retryWindowInMinutes\":355535904}")
+        RetryPolicy model = BinaryData.fromString("{\"retryCount\":768699380,\"retryWindowInMinutes\":827133079}")
             .toObject(RetryPolicy.class);
-        Assertions.assertEquals(257838249, model.retryCount());
-        Assertions.assertEquals(355535904, model.retryWindowInMinutes());
+        Assertions.assertEquals(768699380, model.retryCount());
+        Assertions.assertEquals(827133079, model.retryWindowInMinutes());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        RetryPolicy model = new RetryPolicy().withRetryCount(257838249).withRetryWindowInMinutes(355535904);
+        RetryPolicy model = new RetryPolicy().withRetryCount(768699380).withRetryWindowInMinutes(827133079);
         model = BinaryData.fromObject(model).toObject(RetryPolicy.class);
-        Assertions.assertEquals(257838249, model.retryCount());
-        Assertions.assertEquals(355535904, model.retryWindowInMinutes());
+        Assertions.assertEquals(768699380, model.retryCount());
+        Assertions.assertEquals(827133079, model.retryWindowInMinutes());
     }
 }

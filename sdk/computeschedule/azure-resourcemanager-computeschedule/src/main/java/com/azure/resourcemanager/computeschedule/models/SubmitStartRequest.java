@@ -148,11 +148,6 @@ public final class SubmitStartRequest implements JsonSerializable<SubmitStartReq
         } else {
             resources().validate();
         }
-        if (correlationid() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property correlationid in model SubmitStartRequest"));
-        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(SubmitStartRequest.class);
