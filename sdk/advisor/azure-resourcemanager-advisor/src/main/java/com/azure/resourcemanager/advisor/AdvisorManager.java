@@ -22,23 +22,41 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.advisor.fluent.AdvisorManagementClient;
 import com.azure.resourcemanager.advisor.implementation.AdvisorManagementClientBuilder;
+import com.azure.resourcemanager.advisor.implementation.AdvisorScoresImpl;
+import com.azure.resourcemanager.advisor.implementation.AssessmentTypesImpl;
+import com.azure.resourcemanager.advisor.implementation.AssessmentsImpl;
 import com.azure.resourcemanager.advisor.implementation.ConfigurationsImpl;
 import com.azure.resourcemanager.advisor.implementation.OperationsImpl;
 import com.azure.resourcemanager.advisor.implementation.RecommendationMetadatasImpl;
 import com.azure.resourcemanager.advisor.implementation.RecommendationsImpl;
+import com.azure.resourcemanager.advisor.implementation.ResiliencyReviewsImpl;
+import com.azure.resourcemanager.advisor.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.advisor.implementation.SuppressionsImpl;
+import com.azure.resourcemanager.advisor.implementation.TriageRecommendationsImpl;
+import com.azure.resourcemanager.advisor.implementation.TriageResourcesImpl;
+import com.azure.resourcemanager.advisor.implementation.WorkloadsImpl;
+import com.azure.resourcemanager.advisor.models.AdvisorScores;
+import com.azure.resourcemanager.advisor.models.AssessmentTypes;
+import com.azure.resourcemanager.advisor.models.Assessments;
 import com.azure.resourcemanager.advisor.models.Configurations;
 import com.azure.resourcemanager.advisor.models.Operations;
 import com.azure.resourcemanager.advisor.models.RecommendationMetadatas;
 import com.azure.resourcemanager.advisor.models.Recommendations;
+import com.azure.resourcemanager.advisor.models.ResiliencyReviews;
+import com.azure.resourcemanager.advisor.models.ResourceProviders;
 import com.azure.resourcemanager.advisor.models.Suppressions;
+import com.azure.resourcemanager.advisor.models.TriageRecommendations;
+import com.azure.resourcemanager.advisor.models.TriageResources;
+import com.azure.resourcemanager.advisor.models.Workloads;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -56,6 +74,22 @@ public final class AdvisorManager {
     private Operations operations;
 
     private Suppressions suppressions;
+
+    private ResourceProviders resourceProviders;
+
+    private AdvisorScores advisorScores;
+
+    private Assessments assessments;
+
+    private AssessmentTypes assessmentTypes;
+
+    private Workloads workloads;
+
+    private ResiliencyReviews resiliencyReviews;
+
+    private TriageRecommendations triageRecommendations;
+
+    private TriageResources triageResources;
 
     private final AdvisorManagementClient clientObject;
 
@@ -109,6 +143,9 @@ public final class AdvisorManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-advisor.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -216,12 +253,14 @@ public final class AdvisorManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.advisor")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -326,6 +365,102 @@ public final class AdvisorManager {
             this.suppressions = new SuppressionsImpl(clientObject.getSuppressions(), this);
         }
         return suppressions;
+    }
+
+    /**
+     * Gets the resource collection API of ResourceProviders.
+     * 
+     * @return Resource collection API of ResourceProviders.
+     */
+    public ResourceProviders resourceProviders() {
+        if (this.resourceProviders == null) {
+            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
+        }
+        return resourceProviders;
+    }
+
+    /**
+     * Gets the resource collection API of AdvisorScores.
+     * 
+     * @return Resource collection API of AdvisorScores.
+     */
+    public AdvisorScores advisorScores() {
+        if (this.advisorScores == null) {
+            this.advisorScores = new AdvisorScoresImpl(clientObject.getAdvisorScores(), this);
+        }
+        return advisorScores;
+    }
+
+    /**
+     * Gets the resource collection API of Assessments. It manages AssessmentResult.
+     * 
+     * @return Resource collection API of Assessments.
+     */
+    public Assessments assessments() {
+        if (this.assessments == null) {
+            this.assessments = new AssessmentsImpl(clientObject.getAssessments(), this);
+        }
+        return assessments;
+    }
+
+    /**
+     * Gets the resource collection API of AssessmentTypes.
+     * 
+     * @return Resource collection API of AssessmentTypes.
+     */
+    public AssessmentTypes assessmentTypes() {
+        if (this.assessmentTypes == null) {
+            this.assessmentTypes = new AssessmentTypesImpl(clientObject.getAssessmentTypes(), this);
+        }
+        return assessmentTypes;
+    }
+
+    /**
+     * Gets the resource collection API of Workloads.
+     * 
+     * @return Resource collection API of Workloads.
+     */
+    public Workloads workloads() {
+        if (this.workloads == null) {
+            this.workloads = new WorkloadsImpl(clientObject.getWorkloads(), this);
+        }
+        return workloads;
+    }
+
+    /**
+     * Gets the resource collection API of ResiliencyReviews.
+     * 
+     * @return Resource collection API of ResiliencyReviews.
+     */
+    public ResiliencyReviews resiliencyReviews() {
+        if (this.resiliencyReviews == null) {
+            this.resiliencyReviews = new ResiliencyReviewsImpl(clientObject.getResiliencyReviews(), this);
+        }
+        return resiliencyReviews;
+    }
+
+    /**
+     * Gets the resource collection API of TriageRecommendations.
+     * 
+     * @return Resource collection API of TriageRecommendations.
+     */
+    public TriageRecommendations triageRecommendations() {
+        if (this.triageRecommendations == null) {
+            this.triageRecommendations = new TriageRecommendationsImpl(clientObject.getTriageRecommendations(), this);
+        }
+        return triageRecommendations;
+    }
+
+    /**
+     * Gets the resource collection API of TriageResources.
+     * 
+     * @return Resource collection API of TriageResources.
+     */
+    public TriageResources triageResources() {
+        if (this.triageResources == null) {
+            this.triageResources = new TriageResourcesImpl(clientObject.getTriageResources(), this);
+        }
+        return triageResources;
     }
 
     /**
