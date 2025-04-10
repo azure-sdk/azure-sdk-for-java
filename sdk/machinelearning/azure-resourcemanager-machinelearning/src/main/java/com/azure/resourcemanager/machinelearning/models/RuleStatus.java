@@ -22,6 +22,21 @@ public final class RuleStatus extends ExpandableStringEnum<RuleStatus> {
     public static final RuleStatus ACTIVE = fromString("Active");
 
     /**
+     * Static value Provisioning for RuleStatus.
+     */
+    public static final RuleStatus PROVISIONING = fromString("Provisioning");
+
+    /**
+     * Static value Deleting for RuleStatus.
+     */
+    public static final RuleStatus DELETING = fromString("Deleting");
+
+    /**
+     * Static value Failed for RuleStatus.
+     */
+    public static final RuleStatus FAILED = fromString("Failed");
+
+    /**
      * Creates a new instance of RuleStatus value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
