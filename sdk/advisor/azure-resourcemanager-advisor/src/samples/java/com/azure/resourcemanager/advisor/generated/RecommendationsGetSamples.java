@@ -9,8 +9,8 @@ package com.azure.resourcemanager.advisor.generated;
  */
 public final class RecommendationsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/GetRecommendationDetail.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/preview/2024-11-18-preview/examples/
+     * GetRecommendationDetail.json
      */
     /**
      * Sample code: GetRecommendationDetail.
@@ -18,6 +18,9 @@ public final class RecommendationsGetSamples {
      * @param manager Entry point to AdvisorManager.
      */
     public static void getRecommendationDetail(com.azure.resourcemanager.advisor.AdvisorManager manager) {
-        manager.recommendations().getWithResponse("resourceUri", "recommendationId", com.azure.core.util.Context.NONE);
+        manager.recommendations()
+            .getWithResponse(
+                "subscriptions/a5481ee1-95df-47d0-85d4-dd3f0dfa19bc/resourceGroups/resourceGroup/providers/Microsoft.Compute/availabilitysets/armavset",
+                "bd27ddc6-1312-4067-b4af-cbb45e32cfd7", com.azure.core.util.Context.NONE);
     }
 }
