@@ -309,7 +309,8 @@ public final class HostPoolPatch extends ProxyResource {
     }
 
     /**
-     * Get the registrationInfo property: The registration info of HostPool.
+     * Get the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @return the registrationInfo value.
      */
@@ -318,7 +319,8 @@ public final class HostPoolPatch extends ProxyResource {
     }
 
     /**
-     * Set the registrationInfo property: The registration info of HostPool.
+     * Set the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @param registrationInfo the registrationInfo value to set.
      * @return the HostPoolPatch object itself.
@@ -541,6 +543,122 @@ public final class HostPoolPatch extends ProxyResource {
             this.innerProperties = new HostPoolPatchProperties();
         }
         this.innerProperties().withAgentUpdate(agentUpdate);
+        return this;
+    }
+
+    /**
+     * Get the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedPrivateUdp();
+    }
+
+    /**
+     * Set the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @param managedPrivateUdp the managedPrivateUdp value to set.
+     * @return the HostPoolPatch object itself.
+     */
+    public HostPoolPatch withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPatchProperties();
+        }
+        this.innerProperties().withManagedPrivateUdp(managedPrivateUdp);
+        return this;
+    }
+
+    /**
+     * Get the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    public DirectUdp directUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().directUdp();
+    }
+
+    /**
+     * Set the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param directUdp the directUdp value to set.
+     * @return the HostPoolPatch object itself.
+     */
+    public HostPoolPatch withDirectUdp(DirectUdp directUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPatchProperties();
+        }
+        this.innerProperties().withDirectUdp(directUdp);
+        return this;
+    }
+
+    /**
+     * Get the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    public PublicUdp publicUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicUdp();
+    }
+
+    /**
+     * Set the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param publicUdp the publicUdp value to set.
+     * @return the HostPoolPatch object itself.
+     */
+    public HostPoolPatch withPublicUdp(PublicUdp publicUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPatchProperties();
+        }
+        this.innerProperties().withPublicUdp(publicUdp);
+        return this;
+    }
+
+    /**
+     * Get the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    public RelayUdp relayUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().relayUdp();
+    }
+
+    /**
+     * Set the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @param relayUdp the relayUdp value to set.
+     * @return the HostPoolPatch object itself.
+     */
+    public HostPoolPatch withRelayUdp(RelayUdp relayUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPatchProperties();
+        }
+        this.innerProperties().withRelayUdp(relayUdp);
         return this;
     }
 
