@@ -15,8 +15,8 @@ import java.util.Map;
 public final class DataContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/DataContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/DataContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Data Container.
@@ -29,8 +29,8 @@ public final class DataContainersCreateOrUpdateSamples {
             .define("datacontainer123")
             .withExistingWorkspace("testrg123", "workspace123")
             .withProperties(new DataContainerProperties().withDescription("string")
-                .withTags(mapOf("tag1", "value1", "tag2", "value2"))
                 .withProperties(mapOf("properties1", "value1", "properties2", "value2"))
+                .withTags(mapOf("tag1", "value1", "tag2", "value2"))
                 .withDataType(DataType.fromString("UriFile")))
             .create();
     }
