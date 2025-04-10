@@ -294,11 +294,29 @@ public final class KeyAttributes implements JsonSerializable<KeyAttributes> {
                     deserializedKeyAttributes.exportable = reader.getNullable(JsonReader::getBoolean);
                 } else if ("hsmPlatform".equals(fieldName)) {
                     deserializedKeyAttributes.hsmPlatform = reader.getString();
+                } else if ("attestation".equals(fieldName)) {
+                    deserializedKeyAttributes.attestation = KeyAttestation.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedKeyAttributes;
         });
+    }
+
+    /*
+     * The key or key version attestation information.
+     */
+    @Generated
+    private KeyAttestation attestation;
+
+    /**
+     * Get the attestation property: The key or key version attestation information.
+     *
+     * @return the attestation value.
+     */
+    @Generated
+    public KeyAttestation getAttestation() {
+        return this.attestation;
     }
 }

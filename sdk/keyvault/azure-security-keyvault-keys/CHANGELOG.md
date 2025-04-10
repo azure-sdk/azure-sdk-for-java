@@ -2,13 +2,473 @@
 
 ## 4.10.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.models.KeyListResult` was removed
 
-### Other Changes
+#### `implementation.models.KeyExportParameters` was removed
+
+#### `implementation.models.Error` was removed
+
+#### `implementation.models.DeletedKeyListResult` was removed
+
+#### `implementation.models.KeyProperties` was removed
+
+#### `implementation.models.Attributes` was removed
+
+#### `implementation.models.KeyVaultError` was removed
+
+#### `implementation.models.KeyVaultErrorException` was removed
+
+#### `implementation.models.KeyAttributes` was modified
+
+* `setExpires(java.time.OffsetDateTime)` was removed
+* `setNotBefore(java.time.OffsetDateTime)` was removed
+* `setEnabled(java.lang.Boolean)` was removed
+
+#### `implementation.models.DeletedKeyBundle` was modified
+
+* `setRecoveryId(java.lang.String)` was removed
+* `setKey(implementation.models.JsonWebKey)` was removed
+* `setAttributes(implementation.models.KeyAttributes)` was removed
+* `setTags(java.util.Map)` was removed
+* `setReleasePolicy(implementation.models.KeyReleasePolicy)` was removed
+
+#### `implementation.models.RandomBytes` was modified
+
+* `setValue(byte[])` was removed
+
+#### `implementation.models.KeyItem` was modified
+
+* `setKid(java.lang.String)` was removed
+* `setAttributes(implementation.models.KeyAttributes)` was removed
+* `setTags(java.util.Map)` was removed
+
+#### `implementation.models.KeyImportParameters` was modified
+
+* `setKey(implementation.models.JsonWebKey)` was removed
+
+#### `implementation.models.KeyVerifyParameters` was modified
+
+* `setAlgorithm(implementation.models.JsonWebKeySignatureAlgorithm)` was removed
+* `setDigest(byte[])` was removed
+* `setSignature(byte[])` was removed
+
+#### `implementation.models.KeyReleaseParameters` was modified
+
+* `setTargetAttestationToken(java.lang.String)` was removed
+
+#### `implementation.models.DeletedKeyItem` was modified
+
+* `setTags(java.util.Map)` was removed
+* `setAttributes(implementation.models.KeyAttributes)` was removed
+* `setRecoveryId(java.lang.String)` was removed
+* `setKid(java.lang.String)` was removed
+
+#### `implementation.models.KeyOperationsParameters` was modified
+
+* `setAlgorithm(implementation.models.JsonWebKeyEncryptionAlgorithm)` was removed
+* `setValue(byte[])` was removed
+
+#### `implementation.KeyVaultKeysUtils` was modified
+
+* `mapGetKeyException(implementation.models.KeyVaultErrorException)` was removed
+
+#### `implementation.models.GetRandomBytesRequest` was modified
+
+* `setCount(int)` was removed
+
+#### `implementation.models.KeySignParameters` was modified
+
+* `setValue(byte[])` was removed
+* `setAlgorithm(implementation.models.JsonWebKeySignatureAlgorithm)` was removed
+
+#### `implementation.KeyClientImpl$KeyClientService` was modified
+
+* `decrypt(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyOperationsParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeysNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeysNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedKeysSync(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreKey(java.lang.String,java.lang.String,implementation.models.KeyRestoreParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `createKeySync(java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyCreateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyUpdateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyVersionsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeysSync(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyUpdateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeys(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyVersions(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedKeysNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `encryptSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyOperationsParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `unwrapKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyOperationsParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyRotationPolicy(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `importKeySync(java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyImportParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `verifySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyVerifyParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getRandomBytesSync(java.lang.String,java.lang.String,implementation.models.GetRandomBytesRequest,java.lang.String,com.azure.core.util.Context)` was removed
+* `getRandomBytes(java.lang.String,java.lang.String,implementation.models.GetRandomBytesRequest,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedKeysNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createKey(java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyCreateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `wrapKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyOperationsParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `verify(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyVerifyParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyRotationPolicySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `unwrapKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyOperationsParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `wrapKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyOperationsParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `rotateKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `releaseSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyReleaseParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedKeys(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `sign(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeySignParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `decryptSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyOperationsParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateKeyRotationPolicySync(java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyRotationPolicy,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyVersionsSync(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `rotateKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `release(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyReleaseParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyVersionsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `signSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeySignParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateKeyRotationPolicy(java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyRotationPolicy,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreKeySync(java.lang.String,java.lang.String,implementation.models.KeyRestoreParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `importKey(java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyImportParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `encrypt(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyOperationsParameters,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `implementation.models.KeyRestoreParameters` was modified
+
+* `setKeyBundleBackup(byte[])` was removed
+
+#### `implementation.KeyClientImpl` was modified
+
+* `signWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],com.azure.core.util.Context)` was removed
+* `getKeyVersionsNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `wrapKeyAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `getDeletedKeysSinglePage(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `updateKeyRotationPolicy(java.lang.String,java.lang.String,implementation.models.KeyRotationPolicy)` was removed
+* `getKeyVersions(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `getKey(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `signWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],com.azure.core.util.Context)` was removed
+* `getKeyWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `rotateKey(java.lang.String,java.lang.String)` was removed
+* `updateKeyRotationPolicyAsync(java.lang.String,java.lang.String,implementation.models.KeyRotationPolicy,com.azure.core.util.Context)` was removed
+* `deleteKey(java.lang.String,java.lang.String)` was removed
+* `getKeyVersionsNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `getDeletedKeyWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getKeysSinglePageAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `wrapKey(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `release(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.KeyExportEncryptionAlgorithm)` was removed
+* `createKeyWithResponseAsync(java.lang.String,java.lang.String,models.KeyType,java.lang.Integer,java.lang.Integer,java.util.List,implementation.models.KeyAttributes,java.util.Map,models.KeyCurveName,implementation.models.KeyReleasePolicy)` was removed
+* `getDeletedKeysNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `updateKeyRotationPolicyWithResponseAsync(java.lang.String,java.lang.String,implementation.models.KeyRotationPolicy)` was removed
+* `deleteKeyAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `encryptAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `getKeys(java.lang.String,java.lang.Integer)` was removed
+* `getDeletedKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyVersionsSinglePage(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `getDeletedKeysNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `backupKey(java.lang.String,java.lang.String)` was removed
+* `getKeyVersionsNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `createKeyAsync(java.lang.String,java.lang.String,models.KeyType,java.lang.Integer,java.lang.Integer,java.util.List,implementation.models.KeyAttributes,java.util.Map,models.KeyCurveName,implementation.models.KeyReleasePolicy)` was removed
+* `signWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[])` was removed
+* `getRandomBytesWithResponseAsync(java.lang.String,int)` was removed
+* `getRandomBytesWithResponse(java.lang.String,int,com.azure.core.util.Context)` was removed
+* `decryptWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `getDeletedKeys(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `verifyWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],byte[],com.azure.core.util.Context)` was removed
+* `encryptAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `recoverDeletedKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `releaseWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.KeyExportEncryptionAlgorithm,com.azure.core.util.Context)` was removed
+* `getKeysSinglePage(java.lang.String,java.lang.Integer)` was removed
+* `getRandomBytesWithResponseAsync(java.lang.String,int,com.azure.core.util.Context)` was removed
+* `rotateKeyAsync(java.lang.String,java.lang.String)` was removed
+* `getKeyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `wrapKeyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `encrypt(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `getApiVersion()` was removed
+* `updateKeyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy)` was removed
+* `getDeletedKeysSinglePageAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `releaseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.KeyExportEncryptionAlgorithm)` was removed
+* `verifyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],byte[],com.azure.core.util.Context)` was removed
+* `unwrapKeyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `getRandomBytesAsync(java.lang.String,int)` was removed
+* `importKeyAsync(java.lang.String,java.lang.String,implementation.models.JsonWebKey,java.lang.Boolean,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy)` was removed
+* `decryptWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `purgeDeletedKeyWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `deleteKeyWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `purgeDeletedKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `unwrapKeyWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `getDeletedKeys(java.lang.String,java.lang.Integer)` was removed
+* `signAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[])` was removed
+* `releaseWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.KeyExportEncryptionAlgorithm,com.azure.core.util.Context)` was removed
+* `rotateKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedKey(java.lang.String,java.lang.String)` was removed
+* `updateKeyAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy)` was removed
+* `rotateKeyWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `createKeyWithResponse(java.lang.String,java.lang.String,models.KeyType,java.lang.Integer,java.lang.Integer,java.util.List,implementation.models.KeyAttributes,java.util.Map,models.KeyCurveName,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `getKeysSinglePageAsync(java.lang.String,java.lang.Integer)` was removed
+* `getDeletedKeysSinglePageAsync(java.lang.String,java.lang.Integer)` was removed
+* `getKeysNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `purgeDeletedKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateKeyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `importKeyAsync(java.lang.String,java.lang.String,implementation.models.JsonWebKey,java.lang.Boolean,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `importKeyWithResponse(java.lang.String,java.lang.String,implementation.models.JsonWebKey,java.lang.Boolean,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `unwrapKeyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `getDeletedKeysNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `decrypt(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `getKeyRotationPolicyAsync(java.lang.String,java.lang.String)` was removed
+* `createKeyWithResponseAsync(java.lang.String,java.lang.String,models.KeyType,java.lang.Integer,java.lang.Integer,java.util.List,implementation.models.KeyAttributes,java.util.Map,models.KeyCurveName,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `getKeyVersionsAsync(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `importKeyWithResponseAsync(java.lang.String,java.lang.String,implementation.models.JsonWebKey,java.lang.Boolean,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy)` was removed
+* `decryptWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `restoreKeyWithResponse(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `recoverDeletedKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyRotationPolicyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateKeyAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `getKeyRotationPolicyWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `backupKeyAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `sign(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[])` was removed
+* `getKeys(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `restoreKeyWithResponseAsync(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `importKeyWithResponseAsync(java.lang.String,java.lang.String,implementation.models.JsonWebKey,java.lang.Boolean,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `unwrapKey(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `getKeyVersions(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getKeyVersionsNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedKeysSinglePage(java.lang.String,java.lang.Integer)` was removed
+* `createKey(java.lang.String,java.lang.String,models.KeyType,java.lang.Integer,java.lang.Integer,java.util.List,implementation.models.KeyAttributes,java.util.Map,models.KeyCurveName,implementation.models.KeyReleasePolicy)` was removed
+* `backupKeyAsync(java.lang.String,java.lang.String)` was removed
+* `deleteKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyRotationPolicy(java.lang.String,java.lang.String)` was removed
+* `purgeDeletedKeyAsync(java.lang.String,java.lang.String)` was removed
+* `restoreKeyAsync(java.lang.String,byte[])` was removed
+* `backupKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `verify(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],byte[])` was removed
+* `purgeDeletedKeyAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `wrapKeyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `getKeysNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `getKeyRotationPolicyAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreKey(java.lang.String,byte[])` was removed
+* `updateKeyRotationPolicyAsync(java.lang.String,java.lang.String,implementation.models.KeyRotationPolicy)` was removed
+* `encryptWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `encryptWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `getDeletedKey(java.lang.String,java.lang.String)` was removed
+* `restoreKeyAsync(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `recoverDeletedKeyWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `updateKeyRotationPolicyWithResponse(java.lang.String,java.lang.String,implementation.models.KeyRotationPolicy,com.azure.core.util.Context)` was removed
+* `rotateKeyAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeysAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getDeletedKeyAsync(java.lang.String,java.lang.String)` was removed
+* `decryptAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `verifyAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],byte[])` was removed
+* `importKey(java.lang.String,java.lang.String,implementation.models.JsonWebKey,java.lang.Boolean,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy)` was removed
+* `decryptAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `getKeyRotationPolicyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedKeyAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeysSinglePage(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getKeyVersionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `updateKeyWithResponse(java.lang.String,java.lang.String,java.lang.String,java.util.List,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `recoverDeletedKeyAsync(java.lang.String,java.lang.String)` was removed
+* `getDeletedKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `releaseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.KeyExportEncryptionAlgorithm,com.azure.core.util.Context)` was removed
+* `wrapKeyAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `encryptWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `rotateKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `releaseWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.KeyExportEncryptionAlgorithm)` was removed
+* `restoreKeyWithResponseAsync(java.lang.String,byte[])` was removed
+* `getDeletedKeysNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyVersionsAsync(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getRandomBytesAsync(java.lang.String,int,com.azure.core.util.Context)` was removed
+* `updateKeyRotationPolicyWithResponseAsync(java.lang.String,java.lang.String,implementation.models.KeyRotationPolicy,com.azure.core.util.Context)` was removed
+* `getKeyAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupKeyWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `unwrapKeyAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `updateKey(java.lang.String,java.lang.String,java.lang.String,java.util.List,implementation.models.KeyAttributes,java.util.Map,implementation.models.KeyReleasePolicy)` was removed
+* `deleteKeyAsync(java.lang.String,java.lang.String)` was removed
+* `createKeyAsync(java.lang.String,java.lang.String,models.KeyType,java.lang.Integer,java.lang.Integer,java.util.List,implementation.models.KeyAttributes,java.util.Map,models.KeyCurveName,implementation.models.KeyReleasePolicy,com.azure.core.util.Context)` was removed
+* `wrapKeyWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[],com.azure.core.util.Context)` was removed
+* `getKeyVersionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `recoverDeletedKey(java.lang.String,java.lang.String)` was removed
+* `verifyAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],byte[],com.azure.core.util.Context)` was removed
+* `getDeletedKeyAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedKeysAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getKeysAsync(java.lang.String,java.lang.Integer)` was removed
+* `signAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],com.azure.core.util.Context)` was removed
+* `getKeyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `verifyWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeySignatureAlgorithm,byte[],byte[])` was removed
+* `getRandomBytes(java.lang.String,int)` was removed
+* `getDeletedKeysAsync(java.lang.String,java.lang.Integer)` was removed
+* `getKeysNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeysNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `unwrapKeyAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.JsonWebKeyEncryptionAlgorithm,byte[],byte[],byte[],byte[])` was removed
+* `getKeyVersionsSinglePage(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+
+#### `implementation.models.KeyBundle` was modified
+
+* `setAttributes(implementation.models.KeyAttributes)` was removed
+* `setReleasePolicy(implementation.models.KeyReleasePolicy)` was removed
+* `setKey(implementation.models.JsonWebKey)` was removed
+* `setTags(java.util.Map)` was removed
+
+#### `implementation.models.KeyCreateParameters` was modified
+
+* `getCrv()` was removed
+* `setKty(models.KeyType)` was removed
+* `setCrv(models.KeyCurveName)` was removed
+
+### Features Added
+
+* `implementation.models.KeyAttestation` was added
+
+#### `implementation.models.KeyAttributes` was modified
+
+* `getExpires()` was added
+* `isEnabled()` was added
+* `getAttestation()` was added
+* `getNotBefore()` was added
+
+#### `implementation.models.DeletedKeyBundle` was modified
+
+* `getAttributes()` was added
+* `getReleasePolicy()` was added
+* `getTags()` was added
+* `getKey()` was added
+
+#### `implementation.models.DeletedKeyItem` was modified
+
+* `getKid()` was added
+* `getAttributes()` was added
+* `getTags()` was added
+
+#### `implementation.KeyClientImpl$KeyClientService` was modified
+
+* `updateKeyRotationPolicySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getRandomBytesSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeysNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `rotateKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `unwrapKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `sign(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeyRotationPolicy(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeyVersionsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `wrapKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `decrypt(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `importKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeyVersions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getRandomBytes(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `decryptSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeyRotationPolicySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedKeysNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `purgeDeletedKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `unwrapKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `encrypt(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `backupKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `restoreKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `restoreKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeysNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeyVersionsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `verify(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedKeysNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeyVersionsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `recoverDeletedKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateKeyRotationPolicy(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `backupKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedKeysSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `purgeDeletedKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeyAttestation(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `encryptSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `importKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeyAttestationSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `signSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `releaseSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `rotateKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeys(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `verifySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedKeys(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `recoverDeletedKeySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `release(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getKeysSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `wrapKey(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `implementation.KeyClientImpl` was modified
+
+* `verifyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `releaseWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getServiceVersion()` was added
+* `deleteKeyWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedKeys(com.azure.core.http.rest.RequestOptions)` was added
+* `getRandomBytesWithResponse(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `createKeyWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `importKeyWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `decryptWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `recoverDeletedKeyWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateKeyRotationPolicyWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `unwrapKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `verifyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `releaseWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `signWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeyVersionsAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `purgeDeletedKeyWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `createKeyWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `signWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `restoreKeyWithResponse(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getVaultBaseUrl()` was added
+* `getDeletedKeysAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `unwrapKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedKeyWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeyRotationPolicyWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `decryptWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeyRotationPolicyWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateKeyRotationPolicyWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `wrapKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `rotateKeyWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `encryptWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `encryptWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedKeyWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeysAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `backupKeyWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `purgeDeletedKeyWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `rotateKeyWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeyAttestationWithResponse(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeyAttestationWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `recoverDeletedKeyWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `wrapKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getRandomBytesWithResponseAsync(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeyWithResponse(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeyVersions(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `importKeyWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `backupKeyWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `restoreKeyWithResponseAsync(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getKeys(com.azure.core.http.rest.RequestOptions)` was added
+* `deleteKeyWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+
+#### `KeyAsyncClient` was modified
+
+* `mapGetKeyException(com.azure.core.exception.HttpResponseException)` was added
+
+#### `implementation.models.KeyCreateParameters` was modified
+
+* `getCurve()` was added
+* `setCurve(models.KeyCurveName)` was added
 
 ## 4.9.4 (2025-03-24)
 
