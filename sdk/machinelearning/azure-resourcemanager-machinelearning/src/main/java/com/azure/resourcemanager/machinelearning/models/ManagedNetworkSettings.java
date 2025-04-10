@@ -12,6 +12,14 @@ import java.util.Map;
  */
 public interface ManagedNetworkSettings {
     /**
+     * Gets the enableNetworkMonitor property: A flag to indicate if monitoring needs to be enabled for the managed
+     * network.
+     * 
+     * @return the enableNetworkMonitor value.
+     */
+    Boolean enableNetworkMonitor();
+
+    /**
      * Gets the isolationMode property: Isolation mode for the managed network of a machine learning workspace.
      * 
      * @return the isolationMode value.
@@ -38,6 +46,27 @@ public interface ManagedNetworkSettings {
      * @return the status value.
      */
     ManagedNetworkProvisionStatus status();
+
+    /**
+     * Gets the firewallSku property: Firewall Sku used for FQDN Rules.
+     * 
+     * @return the firewallSku value.
+     */
+    FirewallSku firewallSku();
+
+    /**
+     * Gets the managedNetworkKind property: Kind of the managed network.
+     * 
+     * @return the managedNetworkKind value.
+     */
+    ManagedNetworkKind managedNetworkKind();
+
+    /**
+     * Gets the firewallPublicIpAddress property: Public IP address assigned to the Azure Firewall.
+     * 
+     * @return the firewallPublicIpAddress value.
+     */
+    String firewallPublicIpAddress();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner object.

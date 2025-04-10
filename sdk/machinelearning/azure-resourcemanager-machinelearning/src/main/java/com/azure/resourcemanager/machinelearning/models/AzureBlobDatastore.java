@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -47,19 +48,14 @@ public final class AzureBlobDatastore extends DatastoreProperties {
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
 
     /*
-     * Azure Subscription Id
-     */
-    private String subscriptionId;
-
-    /*
      * Azure Resource Group name
      */
     private String resourceGroup;
 
     /*
-     * Readonly property to indicate if datastore is the workspace default datastore
+     * Azure Subscription Id
      */
-    private Boolean isDefault;
+    private String subscriptionId;
 
     /**
      * Creates an instance of AzureBlobDatastore class.
@@ -181,26 +177,6 @@ public final class AzureBlobDatastore extends DatastoreProperties {
     }
 
     /**
-     * Get the subscriptionId property: Azure Subscription Id.
-     * 
-     * @return the subscriptionId value.
-     */
-    public String subscriptionId() {
-        return this.subscriptionId;
-    }
-
-    /**
-     * Set the subscriptionId property: Azure Subscription Id.
-     * 
-     * @param subscriptionId the subscriptionId value to set.
-     * @return the AzureBlobDatastore object itself.
-     */
-    public AzureBlobDatastore withSubscriptionId(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
-        return this;
-    }
-
-    /**
      * Get the resourceGroup property: Azure Resource Group name.
      * 
      * @return the resourceGroup value.
@@ -221,13 +197,23 @@ public final class AzureBlobDatastore extends DatastoreProperties {
     }
 
     /**
-     * Get the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
+     * Get the subscriptionId property: Azure Subscription Id.
      * 
-     * @return the isDefault value.
+     * @return the subscriptionId value.
      */
-    @Override
-    public Boolean isDefault() {
-        return this.isDefault;
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     * 
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureBlobDatastore object itself.
+     */
+    public AzureBlobDatastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
     }
 
     /**
@@ -252,8 +238,8 @@ public final class AzureBlobDatastore extends DatastoreProperties {
      * {@inheritDoc}
      */
     @Override
-    public AzureBlobDatastore withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public AzureBlobDatastore withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -261,8 +247,8 @@ public final class AzureBlobDatastore extends DatastoreProperties {
      * {@inheritDoc}
      */
     @Override
-    public AzureBlobDatastore withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public AzureBlobDatastore withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -273,8 +259,15 @@ public final class AzureBlobDatastore extends DatastoreProperties {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (credentials() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property credentials in model AzureBlobDatastore"));
+        } else {
+            credentials().validate();
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AzureBlobDatastore.class);
 
     /**
      * {@inheritDoc}
@@ -284,8 +277,8 @@ public final class AzureBlobDatastore extends DatastoreProperties {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("credentials", credentials());
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("datastoreType", this.datastoreType == null ? null : this.datastoreType.toString());
         jsonWriter.writeStringField("accountName", this.accountName);
         jsonWriter.writeStringField("containerName", this.containerName);
@@ -293,8 +286,8 @@ public final class AzureBlobDatastore extends DatastoreProperties {
         jsonWriter.writeStringField("protocol", this.protocol);
         jsonWriter.writeStringField("serviceDataAccessAuthIdentity",
             this.serviceDataAccessAuthIdentity == null ? null : this.serviceDataAccessAuthIdentity.toString());
-        jsonWriter.writeStringField("subscriptionId", this.subscriptionId);
         jsonWriter.writeStringField("resourceGroup", this.resourceGroup);
+        jsonWriter.writeStringField("subscriptionId", this.subscriptionId);
         return jsonWriter.writeEndObject();
     }
 
@@ -318,14 +311,14 @@ public final class AzureBlobDatastore extends DatastoreProperties {
                     deserializedAzureBlobDatastore.withCredentials(DatastoreCredentials.fromJson(reader));
                 } else if ("description".equals(fieldName)) {
                     deserializedAzureBlobDatastore.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedAzureBlobDatastore.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedAzureBlobDatastore.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAzureBlobDatastore.withTags(tags);
                 } else if ("isDefault".equals(fieldName)) {
-                    deserializedAzureBlobDatastore.isDefault = reader.getNullable(JsonReader::getBoolean);
+                    deserializedAzureBlobDatastore.withIsDefault(reader.getNullable(JsonReader::getBoolean));
                 } else if ("datastoreType".equals(fieldName)) {
                     deserializedAzureBlobDatastore.datastoreType = DatastoreType.fromString(reader.getString());
                 } else if ("accountName".equals(fieldName)) {
@@ -339,10 +332,10 @@ public final class AzureBlobDatastore extends DatastoreProperties {
                 } else if ("serviceDataAccessAuthIdentity".equals(fieldName)) {
                     deserializedAzureBlobDatastore.serviceDataAccessAuthIdentity
                         = ServiceDataAccessAuthIdentity.fromString(reader.getString());
-                } else if ("subscriptionId".equals(fieldName)) {
-                    deserializedAzureBlobDatastore.subscriptionId = reader.getString();
                 } else if ("resourceGroup".equals(fieldName)) {
                     deserializedAzureBlobDatastore.resourceGroup = reader.getString();
+                } else if ("subscriptionId".equals(fieldName)) {
+                    deserializedAzureBlobDatastore.subscriptionId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

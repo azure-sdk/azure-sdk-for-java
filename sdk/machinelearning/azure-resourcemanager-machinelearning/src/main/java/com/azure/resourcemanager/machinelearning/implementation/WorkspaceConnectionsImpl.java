@@ -68,9 +68,9 @@ public final class WorkspaceConnectionsImpl implements WorkspaceConnections {
     }
 
     public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(String resourceGroupName,
-        String workspaceName, String target, String category, Context context) {
+        String workspaceName, String target, String category, Boolean includeAll, Context context) {
         PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner
-            = this.serviceClient().list(resourceGroupName, workspaceName, target, category, context);
+            = this.serviceClient().list(resourceGroupName, workspaceName, target, category, includeAll, context);
         return ResourceManagerUtils.mapPage(inner,
             inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
     }

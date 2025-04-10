@@ -22,14 +22,14 @@ public final class GetBlobReferenceForConsumptionDto implements JsonSerializable
     private String blobUri;
 
     /*
-     * The ARM id of the storage account
-     */
-    private String storageAccountArmId;
-
-    /*
      * Credential info to access storage account
      */
     private DataReferenceCredential credential;
+
+    /*
+     * The ARM id of the storage account
+     */
+    private String storageAccountArmId;
 
     /**
      * Creates an instance of GetBlobReferenceForConsumptionDto class.
@@ -58,26 +58,6 @@ public final class GetBlobReferenceForConsumptionDto implements JsonSerializable
     }
 
     /**
-     * Get the storageAccountArmId property: The ARM id of the storage account.
-     * 
-     * @return the storageAccountArmId value.
-     */
-    public String storageAccountArmId() {
-        return this.storageAccountArmId;
-    }
-
-    /**
-     * Set the storageAccountArmId property: The ARM id of the storage account.
-     * 
-     * @param storageAccountArmId the storageAccountArmId value to set.
-     * @return the GetBlobReferenceForConsumptionDto object itself.
-     */
-    public GetBlobReferenceForConsumptionDto withStorageAccountArmId(String storageAccountArmId) {
-        this.storageAccountArmId = storageAccountArmId;
-        return this;
-    }
-
-    /**
      * Get the credential property: Credential info to access storage account.
      * 
      * @return the credential value.
@@ -94,6 +74,26 @@ public final class GetBlobReferenceForConsumptionDto implements JsonSerializable
      */
     public GetBlobReferenceForConsumptionDto withCredential(DataReferenceCredential credential) {
         this.credential = credential;
+        return this;
+    }
+
+    /**
+     * Get the storageAccountArmId property: The ARM id of the storage account.
+     * 
+     * @return the storageAccountArmId value.
+     */
+    public String storageAccountArmId() {
+        return this.storageAccountArmId;
+    }
+
+    /**
+     * Set the storageAccountArmId property: The ARM id of the storage account.
+     * 
+     * @param storageAccountArmId the storageAccountArmId value to set.
+     * @return the GetBlobReferenceForConsumptionDto object itself.
+     */
+    public GetBlobReferenceForConsumptionDto withStorageAccountArmId(String storageAccountArmId) {
+        this.storageAccountArmId = storageAccountArmId;
         return this;
     }
 
@@ -115,8 +115,8 @@ public final class GetBlobReferenceForConsumptionDto implements JsonSerializable
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("blobUri", this.blobUri);
-        jsonWriter.writeStringField("storageAccountArmId", this.storageAccountArmId);
         jsonWriter.writeJsonField("credential", this.credential);
+        jsonWriter.writeStringField("storageAccountArmId", this.storageAccountArmId);
         return jsonWriter.writeEndObject();
     }
 
@@ -138,10 +138,10 @@ public final class GetBlobReferenceForConsumptionDto implements JsonSerializable
 
                 if ("blobUri".equals(fieldName)) {
                     deserializedGetBlobReferenceForConsumptionDto.blobUri = reader.getString();
-                } else if ("storageAccountArmId".equals(fieldName)) {
-                    deserializedGetBlobReferenceForConsumptionDto.storageAccountArmId = reader.getString();
                 } else if ("credential".equals(fieldName)) {
                     deserializedGetBlobReferenceForConsumptionDto.credential = DataReferenceCredential.fromJson(reader);
+                } else if ("storageAccountArmId".equals(fieldName)) {
+                    deserializedGetBlobReferenceForConsumptionDto.storageAccountArmId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
