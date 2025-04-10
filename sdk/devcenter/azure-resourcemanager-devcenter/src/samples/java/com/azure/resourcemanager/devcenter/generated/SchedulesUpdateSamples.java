@@ -12,7 +12,8 @@ import com.azure.resourcemanager.devcenter.models.Schedule;
 public final class SchedulesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Schedules_Patch.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Schedules_Patch.
+     * json
      */
     /**
      * Sample code: Schedules_Update.
