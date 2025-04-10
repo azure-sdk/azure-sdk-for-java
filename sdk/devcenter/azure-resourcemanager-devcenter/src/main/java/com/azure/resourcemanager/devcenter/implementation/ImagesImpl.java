@@ -72,6 +72,37 @@ public final class ImagesImpl implements Images {
         }
     }
 
+    public PagedIterable<Image> listByProject(String resourceGroupName, String projectName) {
+        PagedIterable<ImageInner> inner = this.serviceClient().listByProject(resourceGroupName, projectName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ImageImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Image> listByProject(String resourceGroupName, String projectName, Context context) {
+        PagedIterable<ImageInner> inner = this.serviceClient().listByProject(resourceGroupName, projectName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ImageImpl(inner1, this.manager()));
+    }
+
+    public Response<Image> getByProjectWithResponse(String resourceGroupName, String projectName, String imageName,
+        Context context) {
+        Response<ImageInner> inner
+            = this.serviceClient().getByProjectWithResponse(resourceGroupName, projectName, imageName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ImageImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Image getByProject(String resourceGroupName, String projectName, String imageName) {
+        ImageInner inner = this.serviceClient().getByProject(resourceGroupName, projectName, imageName);
+        if (inner != null) {
+            return new ImageImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     private ImagesClient serviceClient() {
         return this.innerClient;
     }
