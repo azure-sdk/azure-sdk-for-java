@@ -82,4 +82,66 @@ public interface ImageVersionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     ImageVersionInner get(String resourceGroupName, String devCenterName, String galleryName, String imageName,
         String versionName);
+
+    /**
+     * Lists versions for an image.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param projectName The name of the project.
+     * @param imageName The name of the image.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return results of the image version list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ImageVersionInner> listByProject(String resourceGroupName, String projectName, String imageName);
+
+    /**
+     * Lists versions for an image.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param projectName The name of the project.
+     * @param imageName The name of the image.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return results of the image version list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ImageVersionInner> listByProject(String resourceGroupName, String projectName, String imageName,
+        Context context);
+
+    /**
+     * Gets an image version.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param projectName The name of the project.
+     * @param imageName The name of the image.
+     * @param versionName The version of the image.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an image version along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ImageVersionInner> getByProjectWithResponse(String resourceGroupName, String projectName, String imageName,
+        String versionName, Context context);
+
+    /**
+     * Gets an image version.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param projectName The name of the project.
+     * @param imageName The name of the image.
+     * @param versionName The version of the image.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an image version.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ImageVersionInner getByProject(String resourceGroupName, String projectName, String imageName, String versionName);
 }
