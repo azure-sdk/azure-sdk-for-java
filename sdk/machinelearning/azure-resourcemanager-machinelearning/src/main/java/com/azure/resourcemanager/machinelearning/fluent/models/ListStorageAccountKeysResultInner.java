@@ -17,7 +17,7 @@ import java.io.IOException;
 @Immutable
 public final class ListStorageAccountKeysResultInner implements JsonSerializable<ListStorageAccountKeysResultInner> {
     /*
-     * The userStorageKey property.
+     * The access key of the storage
      */
     private String userStorageKey;
 
@@ -28,7 +28,7 @@ public final class ListStorageAccountKeysResultInner implements JsonSerializable
     }
 
     /**
-     * Get the userStorageKey property: The userStorageKey property.
+     * Get the userStorageKey property: The access key of the storage.
      * 
      * @return the userStorageKey value.
      */
