@@ -49,14 +49,6 @@ public interface Event {
     EventTypeValues eventType();
 
     /**
-     * Gets the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     * 
-     * @return the eventSubType value.
-     */
-    EventSubTypeValues eventSubType();
-
-    /**
      * Gets the eventSource property: Source of event.
      * 
      * @return the eventSource value.
@@ -78,7 +70,8 @@ public interface Event {
     String title();
 
     /**
-     * Gets the summary property: Summary text of event.
+     * Gets the summary property: Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive
+     * events.
      * 
      * @return the summary value.
      */
@@ -104,6 +97,15 @@ public interface Event {
      * @return the eventLevel value.
      */
     EventLevelValues eventLevel();
+
+    /**
+     * Gets the isEventSensitive property: If true the event may contains sensitive data. Use the post
+     * events/{trackingId}/fetchEventDetails endpoint to fetch sensitive data see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
+     * 
+     * @return the isEventSensitive value.
+     */
+    Boolean isEventSensitive();
 
     /**
      * Gets the externalIncidentId property: The id of the Incident.
@@ -184,7 +186,7 @@ public interface Event {
 
     /**
      * Gets the description property: Contains the communication message for the event, that could include summary, root
-     * cause and other details.
+     * cause and other details. Use fetchEventDetails endpoint to get description of sensitive events.
      * 
      * @return the description value.
      */
@@ -248,28 +250,6 @@ public interface Event {
      * @return the impactType value.
      */
     String impactType();
-
-    /**
-     * Gets the maintenanceId property: Unique identifier for planned maintenance event.
-     * 
-     * @return the maintenanceId value.
-     */
-    String maintenanceId();
-
-    /**
-     * Gets the maintenanceType property: The type of planned maintenance event.
-     * 
-     * @return the maintenanceType value.
-     */
-    String maintenanceType();
-
-    /**
-     * Gets the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     * 
-     * @return the argQuery value.
-     */
-    String argQuery();
 
     /**
      * Gets the inner com.azure.resourcemanager.resourcehealth.fluent.models.EventInner object.

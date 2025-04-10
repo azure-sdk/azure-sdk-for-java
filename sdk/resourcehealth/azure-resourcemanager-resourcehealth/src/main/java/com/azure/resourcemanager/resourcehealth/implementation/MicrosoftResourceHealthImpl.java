@@ -289,7 +289,7 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-10-01-preview";
+        this.apiVersion = "2025-04-01";
         this.availabilityStatuses = new AvailabilityStatusesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.metadatas = new MetadatasClientImpl(this);
