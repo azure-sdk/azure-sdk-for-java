@@ -12,8 +12,8 @@ import com.azure.resourcemanager.devcenter.models.NetworkConnection;
 public final class NetworkConnectionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/NetworkConnections_Patch.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_Patch.json
      */
     /**
      * Sample code: NetworkConnections_Update.
