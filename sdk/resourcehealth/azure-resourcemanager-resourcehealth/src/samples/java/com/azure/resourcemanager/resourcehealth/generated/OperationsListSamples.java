@@ -10,8 +10,8 @@ package com.azure.resourcemanager.resourcehealth.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
-     * Operations_List.json
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-04-01/examples/Operations_List
+     * .json
      */
     /**
      * Sample code: GetOperationsList.
