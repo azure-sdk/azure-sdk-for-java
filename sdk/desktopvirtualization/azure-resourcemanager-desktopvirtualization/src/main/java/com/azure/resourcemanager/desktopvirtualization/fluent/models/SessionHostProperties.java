@@ -24,6 +24,21 @@ import java.util.List;
 @Fluent
 public final class SessionHostProperties implements JsonSerializable<SessionHostProperties> {
     /*
+     * Number of active sessions on SessionHost.
+     */
+    private Integer activeSessions;
+
+    /*
+     * Number of disconnected sessions on SessionHost.
+     */
+    private Integer disconnectedSessions;
+
+    /*
+     * Number of pending sessions on SessionHost.
+     */
+    private Integer pendingSessions;
+
+    /*
      * ObjectId of SessionHost. (internal use)
      */
     private String objectId;
@@ -104,6 +119,17 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
     private String updateErrorMessage;
 
     /*
+     * The last time update was completed.
+     */
+    private OffsetDateTime lastSessionHostUpdateTime;
+
+    /*
+     * SessionHostConfiguration version reference at the time the update is initiated, in the format of date time.
+     * Example: 2024-04-26T04:56:45Z
+     */
+    private String sessionHostConfiguration;
+
+    /*
      * List of SessionHostHealthCheckReports
      */
     private List<SessionHostHealthCheckReport> sessionHostHealthCheckResults;
@@ -112,6 +138,66 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
      * Creates an instance of SessionHostProperties class.
      */
     public SessionHostProperties() {
+    }
+
+    /**
+     * Get the activeSessions property: Number of active sessions on SessionHost.
+     * 
+     * @return the activeSessions value.
+     */
+    public Integer activeSessions() {
+        return this.activeSessions;
+    }
+
+    /**
+     * Set the activeSessions property: Number of active sessions on SessionHost.
+     * 
+     * @param activeSessions the activeSessions value to set.
+     * @return the SessionHostProperties object itself.
+     */
+    public SessionHostProperties withActiveSessions(Integer activeSessions) {
+        this.activeSessions = activeSessions;
+        return this;
+    }
+
+    /**
+     * Get the disconnectedSessions property: Number of disconnected sessions on SessionHost.
+     * 
+     * @return the disconnectedSessions value.
+     */
+    public Integer disconnectedSessions() {
+        return this.disconnectedSessions;
+    }
+
+    /**
+     * Set the disconnectedSessions property: Number of disconnected sessions on SessionHost.
+     * 
+     * @param disconnectedSessions the disconnectedSessions value to set.
+     * @return the SessionHostProperties object itself.
+     */
+    public SessionHostProperties withDisconnectedSessions(Integer disconnectedSessions) {
+        this.disconnectedSessions = disconnectedSessions;
+        return this;
+    }
+
+    /**
+     * Get the pendingSessions property: Number of pending sessions on SessionHost.
+     * 
+     * @return the pendingSessions value.
+     */
+    public Integer pendingSessions() {
+        return this.pendingSessions;
+    }
+
+    /**
+     * Set the pendingSessions property: Number of pending sessions on SessionHost.
+     * 
+     * @param pendingSessions the pendingSessions value to set.
+     * @return the SessionHostProperties object itself.
+     */
+    public SessionHostProperties withPendingSessions(Integer pendingSessions) {
+        this.pendingSessions = pendingSessions;
+        return this;
     }
 
     /**
@@ -380,6 +466,25 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
     }
 
     /**
+     * Get the lastSessionHostUpdateTime property: The last time update was completed.
+     * 
+     * @return the lastSessionHostUpdateTime value.
+     */
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.lastSessionHostUpdateTime;
+    }
+
+    /**
+     * Get the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time. Example: 2024-04-26T04:56:45Z.
+     * 
+     * @return the sessionHostConfiguration value.
+     */
+    public String sessionHostConfiguration() {
+        return this.sessionHostConfiguration;
+    }
+
+    /**
      * Get the sessionHostHealthCheckResults property: List of SessionHostHealthCheckReports.
      * 
      * @return the sessionHostHealthCheckResults value.
@@ -405,6 +510,9 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeNumberField("activeSessions", this.activeSessions);
+        jsonWriter.writeNumberField("disconnectedSessions", this.disconnectedSessions);
+        jsonWriter.writeNumberField("pendingSessions", this.pendingSessions);
         jsonWriter.writeStringField("lastHeartBeat",
             this.lastHeartBeat == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastHeartBeat));
         jsonWriter.writeNumberField("sessions", this.sessions);
@@ -435,7 +543,13 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("objectId".equals(fieldName)) {
+                if ("activeSessions".equals(fieldName)) {
+                    deserializedSessionHostProperties.activeSessions = reader.getNullable(JsonReader::getInt);
+                } else if ("disconnectedSessions".equals(fieldName)) {
+                    deserializedSessionHostProperties.disconnectedSessions = reader.getNullable(JsonReader::getInt);
+                } else if ("pendingSessions".equals(fieldName)) {
+                    deserializedSessionHostProperties.pendingSessions = reader.getNullable(JsonReader::getInt);
+                } else if ("objectId".equals(fieldName)) {
                     deserializedSessionHostProperties.objectId = reader.getString();
                 } else if ("lastHeartBeat".equals(fieldName)) {
                     deserializedSessionHostProperties.lastHeartBeat = reader
@@ -470,6 +584,11 @@ public final class SessionHostProperties implements JsonSerializable<SessionHost
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("updateErrorMessage".equals(fieldName)) {
                     deserializedSessionHostProperties.updateErrorMessage = reader.getString();
+                } else if ("lastSessionHostUpdateTime".equals(fieldName)) {
+                    deserializedSessionHostProperties.lastSessionHostUpdateTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("sessionHostConfiguration".equals(fieldName)) {
+                    deserializedSessionHostProperties.sessionHostConfiguration = reader.getString();
                 } else if ("sessionHostHealthCheckResults".equals(fieldName)) {
                     List<SessionHostHealthCheckReport> sessionHostHealthCheckResults
                         = reader.readArray(reader1 -> SessionHostHealthCheckReport.fromJson(reader1));

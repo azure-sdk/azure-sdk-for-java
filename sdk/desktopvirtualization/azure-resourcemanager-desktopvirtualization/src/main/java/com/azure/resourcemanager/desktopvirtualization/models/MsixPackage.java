@@ -100,7 +100,7 @@ public interface MsixPackage {
     List<MsixPackageDependencies> packageDependencies();
 
     /**
-     * Gets the version property: Package version found in the appxmanifest.xml.
+     * Gets the version property: Package Version found in the appxmanifest.xml.
      * 
      * @return the version value.
      */
@@ -301,9 +301,9 @@ public interface MsixPackage {
          */
         interface WithVersion {
             /**
-             * Specifies the version property: Package version found in the appxmanifest.xml. .
+             * Specifies the version property: Package Version found in the appxmanifest.xml. .
              * 
-             * @param version Package version found in the appxmanifest.xml.
+             * @param version Package Version found in the appxmanifest.xml.
              * @return the next definition stage.
              */
             WithCreate withVersion(String version);
