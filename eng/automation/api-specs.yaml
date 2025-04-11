@@ -48,6 +48,8 @@ dnc:
   service: delegatednetwork
 dns:
   suffix: generated
+edge/Microsoft.Edge/sites:
+  service: edgemicrosoftedgesites
 eventhub:
   service: eventhubs
   suffix: generated
