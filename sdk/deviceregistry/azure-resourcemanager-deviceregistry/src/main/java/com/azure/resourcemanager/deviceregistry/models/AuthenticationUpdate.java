@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.deviceregistry.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,7 +15,7 @@ import java.io.IOException;
  * Definition of the client authentication mechanism to the server.
  */
 @Fluent
-public final class Authentication implements JsonSerializable<Authentication> {
+public final class AuthenticationUpdate implements JsonSerializable<AuthenticationUpdate> {
     /*
      * Defines the method to authenticate the user of the client at the server.
      */
@@ -25,17 +24,17 @@ public final class Authentication implements JsonSerializable<Authentication> {
     /*
      * Defines the username and password references when UsernamePassword user authentication mode is selected.
      */
-    private UsernamePasswordCredentials usernamePasswordCredentials;
+    private UsernamePasswordCredentialsUpdate usernamePasswordCredentials;
 
     /*
      * Defines the certificate reference when Certificate user authentication mode is selected.
      */
-    private X509Credentials x509Credentials;
+    private X509CredentialsUpdate x509Credentials;
 
     /**
-     * Creates an instance of Authentication class.
+     * Creates an instance of AuthenticationUpdate class.
      */
-    public Authentication() {
+    public AuthenticationUpdate() {
     }
 
     /**
@@ -51,9 +50,9 @@ public final class Authentication implements JsonSerializable<Authentication> {
      * Set the method property: Defines the method to authenticate the user of the client at the server.
      * 
      * @param method the method value to set.
-     * @return the Authentication object itself.
+     * @return the AuthenticationUpdate object itself.
      */
-    public Authentication withMethod(AuthenticationMethod method) {
+    public AuthenticationUpdate withMethod(AuthenticationMethod method) {
         this.method = method;
         return this;
     }
@@ -64,7 +63,7 @@ public final class Authentication implements JsonSerializable<Authentication> {
      * 
      * @return the usernamePasswordCredentials value.
      */
-    public UsernamePasswordCredentials usernamePasswordCredentials() {
+    public UsernamePasswordCredentialsUpdate usernamePasswordCredentials() {
         return this.usernamePasswordCredentials;
     }
 
@@ -73,9 +72,10 @@ public final class Authentication implements JsonSerializable<Authentication> {
      * user authentication mode is selected.
      * 
      * @param usernamePasswordCredentials the usernamePasswordCredentials value to set.
-     * @return the Authentication object itself.
+     * @return the AuthenticationUpdate object itself.
      */
-    public Authentication withUsernamePasswordCredentials(UsernamePasswordCredentials usernamePasswordCredentials) {
+    public AuthenticationUpdate
+        withUsernamePasswordCredentials(UsernamePasswordCredentialsUpdate usernamePasswordCredentials) {
         this.usernamePasswordCredentials = usernamePasswordCredentials;
         return this;
     }
@@ -86,7 +86,7 @@ public final class Authentication implements JsonSerializable<Authentication> {
      * 
      * @return the x509Credentials value.
      */
-    public X509Credentials x509Credentials() {
+    public X509CredentialsUpdate x509Credentials() {
         return this.x509Credentials;
     }
 
@@ -95,9 +95,9 @@ public final class Authentication implements JsonSerializable<Authentication> {
      * selected.
      * 
      * @param x509Credentials the x509Credentials value to set.
-     * @return the Authentication object itself.
+     * @return the AuthenticationUpdate object itself.
      */
-    public Authentication withX509Credentials(X509Credentials x509Credentials) {
+    public AuthenticationUpdate withX509Credentials(X509CredentialsUpdate x509Credentials) {
         this.x509Credentials = x509Credentials;
         return this;
     }
@@ -108,10 +108,6 @@ public final class Authentication implements JsonSerializable<Authentication> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (method() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property method in model Authentication"));
-        }
         if (usernamePasswordCredentials() != null) {
             usernamePasswordCredentials().validate();
         }
@@ -119,8 +115,6 @@ public final class Authentication implements JsonSerializable<Authentication> {
             x509Credentials().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Authentication.class);
 
     /**
      * {@inheritDoc}
@@ -135,34 +129,33 @@ public final class Authentication implements JsonSerializable<Authentication> {
     }
 
     /**
-     * Reads an instance of Authentication from the JsonReader.
+     * Reads an instance of AuthenticationUpdate from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of Authentication if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the Authentication.
+     * @return An instance of AuthenticationUpdate if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AuthenticationUpdate.
      */
-    public static Authentication fromJson(JsonReader jsonReader) throws IOException {
+    public static AuthenticationUpdate fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            Authentication deserializedAuthentication = new Authentication();
+            AuthenticationUpdate deserializedAuthenticationUpdate = new AuthenticationUpdate();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("method".equals(fieldName)) {
-                    deserializedAuthentication.method = AuthenticationMethod.fromString(reader.getString());
+                    deserializedAuthenticationUpdate.method = AuthenticationMethod.fromString(reader.getString());
                 } else if ("usernamePasswordCredentials".equals(fieldName)) {
-                    deserializedAuthentication.usernamePasswordCredentials
-                        = UsernamePasswordCredentials.fromJson(reader);
+                    deserializedAuthenticationUpdate.usernamePasswordCredentials
+                        = UsernamePasswordCredentialsUpdate.fromJson(reader);
                 } else if ("x509Credentials".equals(fieldName)) {
-                    deserializedAuthentication.x509Credentials = X509Credentials.fromJson(reader);
+                    deserializedAuthenticationUpdate.x509Credentials = X509CredentialsUpdate.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedAuthentication;
+            return deserializedAuthenticationUpdate;
         });
     }
 }
