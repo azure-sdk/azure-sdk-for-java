@@ -42,7 +42,7 @@ import java.util.Arrays;
  */
 public final class MoveCollectionsBulkRemoveSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * MoveCollections_BulkRemove.json
      */
     /**
@@ -52,9 +52,9 @@ public final class MoveCollectionsBulkRemoveSamples {
      */
     public static void moveCollectionsBulkRemove(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .bulkRemove("rg1", "movecollection1", new BulkRemoveRequest().withValidateOnly(false)
+            .bulkRemove("rg1", "movecollection_1", new BulkRemoveRequest().withValidateOnly(false)
                 .withMoveResources(Arrays.asList(
-                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection1/MoveResources/moveresource1")),
+                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection_1/MoveResources/moveresource_1")),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -72,7 +72,7 @@ import java.util.Arrays;
 public final class MoveCollectionsCommitSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Commit.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Commit.
      * json
      */
     /**
@@ -82,9 +82,9 @@ public final class MoveCollectionsCommitSamples {
      */
     public static void moveCollectionsCommit(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .commit("rg1", "movecollection1", new CommitRequest().withValidateOnly(false)
+            .commit("rg1", "movecollection_1", new CommitRequest().withValidateOnly(false)
                 .withMoveResources(Arrays.asList(
-                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection1/MoveResources/moveresource1")),
+                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection_1/MoveResources/moveresource1")),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -104,7 +104,7 @@ import com.azure.resourcemanager.resourcemover.models.ResourceIdentityType;
 public final class MoveCollectionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Create.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Create.
      * json
      */
     /**
@@ -114,7 +114,7 @@ public final class MoveCollectionsCreateSamples {
      */
     public static void moveCollectionsCreate(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .define("movecollection1")
+            .define("movecollection_1")
             .withRegion("eastus2")
             .withExistingResourceGroup("rg1")
             .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
@@ -135,7 +135,7 @@ public final class MoveCollectionsCreateSamples {
 public final class MoveCollectionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Delete.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Delete.
      * json
      */
     /**
@@ -144,7 +144,7 @@ public final class MoveCollectionsDeleteSamples {
      * @param manager Entry point to ResourceMoverManager.
      */
     public static void moveCollectionsDelete(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
-        manager.moveCollections().delete("rg1", "movecollection1", com.azure.core.util.Context.NONE);
+        manager.moveCollections().delete("rg1", "movecollection_1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -161,7 +161,7 @@ import java.util.Arrays;
 public final class MoveCollectionsDiscardSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Discard
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Discard
      * .json
      */
     /**
@@ -171,9 +171,9 @@ public final class MoveCollectionsDiscardSamples {
      */
     public static void moveCollectionsDiscard(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .discard("rg1", "movecollection1", new DiscardRequest().withValidateOnly(false)
+            .discard("rg1", "movecollection_1", new DiscardRequest().withValidateOnly(false)
                 .withMoveResources(Arrays.asList(
-                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection1/MoveResources/moveresource1")),
+                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection_1/MoveResources/moveresource1")),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -188,7 +188,7 @@ public final class MoveCollectionsDiscardSamples {
 public final class MoveCollectionsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Get.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Get.
      * json
      */
     /**
@@ -198,7 +198,7 @@ public final class MoveCollectionsGetByResourceGroupSamples {
      */
     public static void moveCollectionsGet(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .getByResourceGroupWithResponse("rg1", "movecollection1", com.azure.core.util.Context.NONE);
+            .getByResourceGroupWithResponse("rg1", "movecollection_1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -214,7 +214,7 @@ import java.util.Arrays;
  */
 public final class MoveCollectionsInitiateMoveSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * MoveCollections_InitiateMove.json
      */
     /**
@@ -225,9 +225,9 @@ public final class MoveCollectionsInitiateMoveSamples {
     public static void
         moveCollectionsInitiateMove(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .initiateMove("rg1", "movecollection1", new ResourceMoveRequest().withValidateOnly(false)
+            .initiateMove("rg1", "movecollection_1", new ResourceMoveRequest().withValidateOnly(false)
                 .withMoveResources(Arrays.asList(
-                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection1/MoveResources/moveresource1")),
+                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection_1/MoveResources/moveresource1")),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -241,7 +241,7 @@ public final class MoveCollectionsInitiateMoveSamples {
  */
 public final class MoveCollectionsListSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * MoveCollections_ListMoveCollectionsBySubscription.json
      */
     /**
@@ -264,7 +264,7 @@ public final class MoveCollectionsListSamples {
  */
 public final class MoveCollectionsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * MoveCollections_ListMoveCollectionsByResourceGroup.json
      */
     /**
@@ -288,7 +288,7 @@ public final class MoveCollectionsListByResourceGroupSamples {
 public final class MoveCollectionsListRequiredForSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/RequiredFor_Get.json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/RequiredFor_Get.json
      */
     /**
      * Sample code: RequiredFor_Get.
@@ -297,7 +297,7 @@ public final class MoveCollectionsListRequiredForSamples {
      */
     public static void requiredForGet(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .listRequiredForWithResponse("rg1", "movecollection1",
+            .listRequiredForWithResponse("rg1", "movecollection_1",
                 "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/nic1",
                 com.azure.core.util.Context.NONE);
     }
@@ -316,7 +316,7 @@ import java.util.Arrays;
 public final class MoveCollectionsPrepareSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Prepare
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Prepare
      * .json
      */
     /**
@@ -326,9 +326,9 @@ public final class MoveCollectionsPrepareSamples {
      */
     public static void moveCollectionsPrepare(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .prepare("rg1", "movecollection1", new PrepareRequest().withValidateOnly(false)
+            .prepare("rg1", "movecollection_1", new PrepareRequest().withValidateOnly(false)
                 .withMoveResources(Arrays.asList(
-                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection1/MoveResources/moveresource1")),
+                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection_1/MoveResources/moveresource1")),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -342,7 +342,7 @@ public final class MoveCollectionsPrepareSamples {
  */
 public final class MoveCollectionsResolveDependenciesSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * MoveCollections_ResolveDependencies.json
      */
     /**
@@ -352,7 +352,7 @@ public final class MoveCollectionsResolveDependenciesSamples {
      */
     public static void
         moveCollectionsResolveDependencies(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
-        manager.moveCollections().resolveDependencies("rg1", "movecollection1", com.azure.core.util.Context.NONE);
+        manager.moveCollections().resolveDependencies("rg1", "movecollection_1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -372,7 +372,7 @@ import java.util.Map;
 public final class MoveCollectionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Update.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Update.
      * json
      */
     /**
@@ -382,7 +382,7 @@ public final class MoveCollectionsUpdateSamples {
      */
     public static void moveCollectionsUpdate(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         MoveCollection resource = manager.moveCollections()
-            .getByResourceGroupWithResponse("rg1", "movecollection1", com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("rg1", "movecollection_1", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withTags(mapOf("key1", "fakeTokenPlaceholder"))
@@ -407,6 +407,7 @@ public final class MoveCollectionsUpdateSamples {
 ### MoveResources_Create
 
 ```java
+import com.azure.resourcemanager.resourcemover.models.DiskDetails;
 import com.azure.resourcemanager.resourcemover.models.MoveResourceDependencyOverride;
 import com.azure.resourcemanager.resourcemover.models.MoveResourceProperties;
 import com.azure.resourcemanager.resourcemover.models.TargetAvailabilityZone;
@@ -419,7 +420,7 @@ import java.util.Arrays;
 public final class MoveResourcesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveResources_Create.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveResources_Create.
      * json
      */
     /**
@@ -430,7 +431,7 @@ public final class MoveResourcesCreateSamples {
     public static void moveResourcesCreate(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveResources()
             .define("moveresourcename1")
-            .withExistingMoveCollection("rg1", "movecollection1")
+            .withExistingMoveCollection("rg1", "movecollection_1")
             .withProperties(new MoveResourceProperties().withSourceId(
                 "/subscriptions/subid/resourceGroups/eastusRG/providers/Microsoft.Compute/virtualMachines/eastusvm1")
                 .withResourceSettings(new VirtualMachineResourceSettings().withTargetResourceName("westusvm1")
@@ -438,7 +439,10 @@ public final class MoveResourcesCreateSamples {
                         "/subscriptions/subid/resourceGroups/eastusRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/umi1"))
                     .withTargetAvailabilityZone(TargetAvailabilityZone.TWO)
                     .withTargetAvailabilitySetId(
-                        "/subscriptions/subid/resourceGroups/eastusRG/providers/Microsoft.Compute/availabilitySets/avset1"))
+                        "/subscriptions/subid/resourceGroups/eastusRG/providers/Microsoft.Compute/availabilitySets/avset1")
+                    .withTargetDiskDetails(Arrays.asList(new DiskDetails().withSourceId(
+                        "/subscriptions/c4488a3f-a7f7-4ad4-aa72-0e1f4d9c0756/resourceGroups/EASTUS/providers/Microsoft.Compute/disks/eastusvm1_OsDisk_1_a88a2f0e8cf44fb3af24aa0f27101f83")
+                        .withTargetDiskName("eastusvm1_OsDisk_1_a88a2f0e8cf44fb3af24aa0f27101f83"))))
                 .withDependsOnOverrides(Arrays.asList(new MoveResourceDependencyOverride().withId(
                     "/subscriptions/c4488a3f-a7f7-4ad4-aa72-0e1f4d9c0756/resourceGroups/eastusRG/providers/Microsoft.Network/networkInterfaces/eastusvm140")
                     .withTargetId(
@@ -457,7 +461,7 @@ public final class MoveResourcesCreateSamples {
 public final class MoveResourcesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveResources_Delete.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveResources_Delete.
      * json
      */
     /**
@@ -466,7 +470,8 @@ public final class MoveResourcesDeleteSamples {
      * @param manager Entry point to ResourceMoverManager.
      */
     public static void moveResourcesDelete(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
-        manager.moveResources().delete("rg1", "movecollection1", "moveresourcename1", com.azure.core.util.Context.NONE);
+        manager.moveResources()
+            .delete("rg1", "movecollection_1", "moveresourcename1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -480,7 +485,7 @@ public final class MoveResourcesDeleteSamples {
 public final class MoveResourcesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveResources_Get.json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveResources_Get.json
      */
     /**
      * Sample code: MoveResources_Get.
@@ -489,7 +494,7 @@ public final class MoveResourcesGetSamples {
      */
     public static void moveResourcesGet(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveResources()
-            .getWithResponse("rg1", "movecollection1", "moveresourcename1", com.azure.core.util.Context.NONE);
+            .getWithResponse("rg1", "movecollection_1", "moveresourcename1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -503,7 +508,7 @@ public final class MoveResourcesGetSamples {
 public final class MoveResourcesListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveResources_List.json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveResources_List.json
      */
     /**
      * Sample code: MoveResources_List.
@@ -511,7 +516,7 @@ public final class MoveResourcesListSamples {
      * @param manager Entry point to ResourceMoverManager.
      */
     public static void moveResourcesList(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
-        manager.moveResources().list("rg1", "movecollection1", null, com.azure.core.util.Context.NONE);
+        manager.moveResources().list("rg1", "movecollection_1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -525,7 +530,7 @@ public final class MoveResourcesListSamples {
 public final class OperationsDiscoveryGetSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/OperationsDiscovery_Get
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/OperationsDiscovery_Get
      * .json
      */
     /**
@@ -548,7 +553,7 @@ public final class OperationsDiscoveryGetSamples {
  */
 public final class UnresolvedDependenciesGetSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * UnresolvedDependencies_Get.json
      */
     /**
@@ -558,7 +563,7 @@ public final class UnresolvedDependenciesGetSamples {
      */
     public static void unresolvedDependenciesGet(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.unresolvedDependencies()
-            .get("rg1", "movecollection1", null, null, null, com.azure.core.util.Context.NONE);
+            .get("rg1", "movecollection_1", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```

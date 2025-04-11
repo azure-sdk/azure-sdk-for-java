@@ -10,7 +10,7 @@ package com.azure.resourcemanager.resourcemover.generated;
 public final class MoveCollectionsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Get.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Get.
      * json
      */
     /**
@@ -20,6 +20,6 @@ public final class MoveCollectionsGetByResourceGroupSamples {
      */
     public static void moveCollectionsGet(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .getByResourceGroupWithResponse("rg1", "movecollection1", com.azure.core.util.Context.NONE);
+            .getByResourceGroupWithResponse("rg1", "movecollection_1", com.azure.core.util.Context.NONE);
     }
 }

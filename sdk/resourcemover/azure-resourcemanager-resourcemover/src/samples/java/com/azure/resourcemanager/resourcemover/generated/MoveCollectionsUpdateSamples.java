@@ -16,7 +16,7 @@ import java.util.Map;
 public final class MoveCollectionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Update.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Update.
      * json
      */
     /**
@@ -26,7 +26,7 @@ public final class MoveCollectionsUpdateSamples {
      */
     public static void moveCollectionsUpdate(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         MoveCollection resource = manager.moveCollections()
-            .getByResourceGroupWithResponse("rg1", "movecollection1", com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("rg1", "movecollection_1", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withTags(mapOf("key1", "fakeTokenPlaceholder"))

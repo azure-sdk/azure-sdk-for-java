@@ -47,6 +47,11 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
      */
     private String targetAvailabilitySetId;
 
+    /*
+     * Gets or sets the disk details.
+     */
+    private List<DiskDetails> targetDiskDetails;
+
     /**
      * Creates an instance of VirtualMachineResourceSettings class.
      */
@@ -167,6 +172,26 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
     }
 
     /**
+     * Get the targetDiskDetails property: Gets or sets the disk details.
+     * 
+     * @return the targetDiskDetails value.
+     */
+    public List<DiskDetails> targetDiskDetails() {
+        return this.targetDiskDetails;
+    }
+
+    /**
+     * Set the targetDiskDetails property: Gets or sets the disk details.
+     * 
+     * @param targetDiskDetails the targetDiskDetails value to set.
+     * @return the VirtualMachineResourceSettings object itself.
+     */
+    public VirtualMachineResourceSettings withTargetDiskDetails(List<DiskDetails> targetDiskDetails) {
+        this.targetDiskDetails = targetDiskDetails;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -185,12 +210,24 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public VirtualMachineResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
+        if (targetDiskDetails() != null) {
+            targetDiskDetails().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -201,6 +238,7 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("targetResourceName", targetResourceName());
         jsonWriter.writeStringField("targetResourceGroupName", targetResourceGroupName());
+        jsonWriter.writeStringField("targetSubscriptionId", targetSubscriptionId());
         jsonWriter.writeStringField("resourceType", this.resourceType);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("userManagedIdentities", this.userManagedIdentities,
@@ -209,6 +247,8 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
             this.targetAvailabilityZone == null ? null : this.targetAvailabilityZone.toString());
         jsonWriter.writeStringField("targetVmSize", this.targetVmSize);
         jsonWriter.writeStringField("targetAvailabilitySetId", this.targetAvailabilitySetId);
+        jsonWriter.writeArrayField("targetDiskDetails", this.targetDiskDetails,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -232,6 +272,8 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
                     deserializedVirtualMachineResourceSettings.withTargetResourceName(reader.getString());
                 } else if ("targetResourceGroupName".equals(fieldName)) {
                     deserializedVirtualMachineResourceSettings.withTargetResourceGroupName(reader.getString());
+                } else if ("targetSubscriptionId".equals(fieldName)) {
+                    deserializedVirtualMachineResourceSettings.withTargetSubscriptionId(reader.getString());
                 } else if ("resourceType".equals(fieldName)) {
                     deserializedVirtualMachineResourceSettings.resourceType = reader.getString();
                 } else if ("tags".equals(fieldName)) {
@@ -247,6 +289,9 @@ public final class VirtualMachineResourceSettings extends ResourceSettings {
                     deserializedVirtualMachineResourceSettings.targetVmSize = reader.getString();
                 } else if ("targetAvailabilitySetId".equals(fieldName)) {
                     deserializedVirtualMachineResourceSettings.targetAvailabilitySetId = reader.getString();
+                } else if ("targetDiskDetails".equals(fieldName)) {
+                    List<DiskDetails> targetDiskDetails = reader.readArray(reader1 -> DiskDetails.fromJson(reader1));
+                    deserializedVirtualMachineResourceSettings.targetDiskDetails = targetDiskDetails;
                 } else {
                     reader.skipChildren();
                 }

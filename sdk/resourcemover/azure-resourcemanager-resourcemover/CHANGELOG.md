@@ -1,14 +1,71 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-11)
+
+- Azure Resource Manager ResourceMover client library for Java. This package contains Microsoft Azure SDK for ResourceMover Management SDK. A first party Azure service orchestrating the move of Azure resources from one Azure region to another or between zones within a region. Package tag package-2024-08-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.DiskDetails` was added
 
-### Bugs Fixed
+#### `models.AvailabilitySetResourceSettings` was modified
 
-### Other Changes
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.ResourceSettings` was modified
+
+* `targetSubscriptionId()` was added
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.LoadBalancerResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.SqlElasticPoolResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.ResourceGroupResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.PublicIpAddressResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.SqlServerResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.VirtualNetworkResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.KeyVaultResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.DiskEncryptionSetResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.NetworkSecurityGroupResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.SqlDatabaseResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.VirtualMachineResourceSettings` was modified
+
+* `withTargetDiskDetails(java.util.List)` was added
+* `targetDiskDetails()` was added
+* `withTargetSubscriptionId(java.lang.String)` was added
+
+#### `models.NetworkInterfaceResourceSettings` was modified
+
+* `withTargetSubscriptionId(java.lang.String)` was added
 
 ## 1.2.0 (2024-12-11)
 

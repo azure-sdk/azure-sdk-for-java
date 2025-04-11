@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class MoveCollectionsCommitSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Commit.
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/MoveCollections_Commit.
      * json
      */
     /**
@@ -23,9 +23,9 @@ public final class MoveCollectionsCommitSamples {
      */
     public static void moveCollectionsCommit(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
         manager.moveCollections()
-            .commit("rg1", "movecollection1", new CommitRequest().withValidateOnly(false)
+            .commit("rg1", "movecollection_1", new CommitRequest().withValidateOnly(false)
                 .withMoveResources(Arrays.asList(
-                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection1/MoveResources/moveresource1")),
+                    "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Migrate/MoveCollections/movecollection_1/MoveResources/moveresource1")),
                 com.azure.core.util.Context.NONE);
     }
 }
