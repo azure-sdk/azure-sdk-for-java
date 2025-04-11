@@ -5,11 +5,13 @@
 package com.azure.resourcemanager.recoveryservicesdatareplication.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.VaultModelInner;
+import com.azure.resourcemanager.recoveryservicesdatareplication.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.recoveryservicesdatareplication.models.VaultIdentityModel;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.VaultModel;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.VaultModelProperties;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.VaultModelSystemData;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.VaultModelUpdate;
 import java.util.Collections;
 import java.util.Map;
@@ -48,7 +50,11 @@ public final class VaultModelImpl implements VaultModel, VaultModel.Definition, 
         return this.innerModel().properties();
     }
 
-    public VaultModelSystemData systemData() {
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
+    }
+
+    public SystemData systemData() {
         return this.innerModel().systemData();
     }
 
@@ -173,6 +179,16 @@ public final class VaultModelImpl implements VaultModel, VaultModel.Definition, 
             this.updateBody.withProperties(properties);
             return this;
         }
+    }
+
+    public VaultModelImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public VaultModelImpl withIdentity(VaultIdentityModel identity) {
+        this.updateBody.withIdentity(identity);
+        return this;
     }
 
     private boolean isInCreateMode() {

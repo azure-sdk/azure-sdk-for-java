@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class FabricGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Fabric_Get.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Fabric_Get.json
      */
     /**
-     * Sample code: Fabric_Get.
+     * Sample code: Gets the fabric.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void fabricGet(
+    public static void getsTheFabric(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.fabrics()
             .getByResourceGroupWithResponse("rgrecoveryservicesdatareplication", "wPR",

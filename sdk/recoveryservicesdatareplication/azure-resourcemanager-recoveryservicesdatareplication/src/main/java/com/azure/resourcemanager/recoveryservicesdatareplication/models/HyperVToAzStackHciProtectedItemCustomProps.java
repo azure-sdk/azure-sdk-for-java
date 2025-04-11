@@ -20,7 +20,7 @@ import java.util.List;
 @Fluent
 public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedItemModelCustomProperties {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for ProtectedItemModelCustomProperties.
      */
     private String instanceType = "HyperVToAzStackHCI";
 
@@ -130,14 +130,14 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
     private String runAsAccountId;
 
     /*
-     * Gets or sets the source DRA name.
+     * Gets or sets the source fabric agent name.
      */
-    private String sourceDraName;
+    private String sourceFabricAgentName;
 
     /*
-     * Gets or sets the target DRA name.
+     * Gets or sets the target fabric agent name.
      */
-    private String targetDraName;
+    private String targetFabricAgentName;
 
     /*
      * Gets or sets the source appliance name.
@@ -190,14 +190,14 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
     private String lastRecoveryPointId;
 
     /*
-     * Gets or sets the initial replication progress percentage. This is calculated based on
-     * total bytes processed for all disks in the source VM.
+     * Gets or sets the initial replication progress percentage. This is calculated based on total bytes processed for
+     * all disks in the source VM.
      */
     private Integer initialReplicationProgressPercentage;
 
     /*
-     * Gets or sets the resync progress percentage. This is calculated based on total bytes
-     * processed for all disks in the source VM.
+     * Gets or sets the resync progress percentage. This is calculated based on total bytes processed for all disks in
+     * the source VM.
      */
     private Integer resyncProgressPercentage;
 
@@ -228,7 +228,7 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for ProtectedItemModelCustomProperties.
      * 
      * @return the instanceType value.
      */
@@ -607,42 +607,42 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
     }
 
     /**
-     * Get the sourceDraName property: Gets or sets the source DRA name.
+     * Get the sourceFabricAgentName property: Gets or sets the source fabric agent name.
      * 
-     * @return the sourceDraName value.
+     * @return the sourceFabricAgentName value.
      */
-    public String sourceDraName() {
-        return this.sourceDraName;
+    public String sourceFabricAgentName() {
+        return this.sourceFabricAgentName;
     }
 
     /**
-     * Set the sourceDraName property: Gets or sets the source DRA name.
+     * Set the sourceFabricAgentName property: Gets or sets the source fabric agent name.
      * 
-     * @param sourceDraName the sourceDraName value to set.
+     * @param sourceFabricAgentName the sourceFabricAgentName value to set.
      * @return the HyperVToAzStackHciProtectedItemCustomProps object itself.
      */
-    public HyperVToAzStackHciProtectedItemCustomProps withSourceDraName(String sourceDraName) {
-        this.sourceDraName = sourceDraName;
+    public HyperVToAzStackHciProtectedItemCustomProps withSourceFabricAgentName(String sourceFabricAgentName) {
+        this.sourceFabricAgentName = sourceFabricAgentName;
         return this;
     }
 
     /**
-     * Get the targetDraName property: Gets or sets the target DRA name.
+     * Get the targetFabricAgentName property: Gets or sets the target fabric agent name.
      * 
-     * @return the targetDraName value.
+     * @return the targetFabricAgentName value.
      */
-    public String targetDraName() {
-        return this.targetDraName;
+    public String targetFabricAgentName() {
+        return this.targetFabricAgentName;
     }
 
     /**
-     * Set the targetDraName property: Gets or sets the target DRA name.
+     * Set the targetFabricAgentName property: Gets or sets the target fabric agent name.
      * 
-     * @param targetDraName the targetDraName value to set.
+     * @param targetFabricAgentName the targetFabricAgentName value to set.
      * @return the HyperVToAzStackHciProtectedItemCustomProps object itself.
      */
-    public HyperVToAzStackHciProtectedItemCustomProps withTargetDraName(String targetDraName) {
-        this.targetDraName = targetDraName;
+    public HyperVToAzStackHciProtectedItemCustomProps withTargetFabricAgentName(String targetFabricAgentName) {
+        this.targetFabricAgentName = targetFabricAgentName;
         return this;
     }
 
@@ -749,8 +749,7 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
 
     /**
      * Get the initialReplicationProgressPercentage property: Gets or sets the initial replication progress percentage.
-     * This is calculated based on
-     * total bytes processed for all disks in the source VM.
+     * This is calculated based on total bytes processed for all disks in the source VM.
      * 
      * @return the initialReplicationProgressPercentage value.
      */
@@ -760,8 +759,7 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
 
     /**
      * Get the resyncProgressPercentage property: Gets or sets the resync progress percentage. This is calculated based
-     * on total bytes
-     * processed for all disks in the source VM.
+     * on total bytes processed for all disks in the source VM.
      * 
      * @return the resyncProgressPercentage value.
      */
@@ -864,15 +862,15 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
                 .log(new IllegalArgumentException(
                     "Missing required property runAsAccountId in model HyperVToAzStackHciProtectedItemCustomProps"));
         }
-        if (sourceDraName() == null) {
+        if (sourceFabricAgentName() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property sourceDraName in model HyperVToAzStackHciProtectedItemCustomProps"));
+                    "Missing required property sourceFabricAgentName in model HyperVToAzStackHciProtectedItemCustomProps"));
         }
-        if (targetDraName() == null) {
+        if (targetFabricAgentName() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property targetDraName in model HyperVToAzStackHciProtectedItemCustomProps"));
+                    "Missing required property targetFabricAgentName in model HyperVToAzStackHciProtectedItemCustomProps"));
         }
         if (customLocationRegion() == null) {
             throw LOGGER.atError()
@@ -905,8 +903,8 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
         jsonWriter.writeStringField("storageContainerId", this.storageContainerId);
         jsonWriter.writeStringField("hyperVGeneration", this.hyperVGeneration);
         jsonWriter.writeStringField("runAsAccountId", this.runAsAccountId);
-        jsonWriter.writeStringField("sourceDraName", this.sourceDraName);
-        jsonWriter.writeStringField("targetDraName", this.targetDraName);
+        jsonWriter.writeStringField("sourceFabricAgentName", this.sourceFabricAgentName);
+        jsonWriter.writeStringField("targetFabricAgentName", this.targetFabricAgentName);
         jsonWriter.writeStringField("customLocationRegion", this.customLocationRegion);
         jsonWriter.writeStringField("instanceType", this.instanceType);
         jsonWriter.writeStringField("targetVmName", this.targetVmName);
@@ -960,10 +958,10 @@ public final class HyperVToAzStackHciProtectedItemCustomProps extends ProtectedI
                     deserializedHyperVToAzStackHciProtectedItemCustomProps.hyperVGeneration = reader.getString();
                 } else if ("runAsAccountId".equals(fieldName)) {
                     deserializedHyperVToAzStackHciProtectedItemCustomProps.runAsAccountId = reader.getString();
-                } else if ("sourceDraName".equals(fieldName)) {
-                    deserializedHyperVToAzStackHciProtectedItemCustomProps.sourceDraName = reader.getString();
-                } else if ("targetDraName".equals(fieldName)) {
-                    deserializedHyperVToAzStackHciProtectedItemCustomProps.targetDraName = reader.getString();
+                } else if ("sourceFabricAgentName".equals(fieldName)) {
+                    deserializedHyperVToAzStackHciProtectedItemCustomProps.sourceFabricAgentName = reader.getString();
+                } else if ("targetFabricAgentName".equals(fieldName)) {
+                    deserializedHyperVToAzStackHciProtectedItemCustomProps.targetFabricAgentName = reader.getString();
                 } else if ("customLocationRegion".equals(fieldName)) {
                     deserializedHyperVToAzStackHciProtectedItemCustomProps.customLocationRegion = reader.getString();
                 } else if ("instanceType".equals(fieldName)) {

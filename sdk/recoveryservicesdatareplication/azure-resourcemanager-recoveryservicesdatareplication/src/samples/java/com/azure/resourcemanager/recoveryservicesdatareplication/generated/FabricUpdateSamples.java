@@ -16,22 +16,21 @@ import java.util.Map;
 public final class FabricUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Fabric_Update.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Fabric_Update.json
      */
     /**
-     * Sample code: Fabric_Update.
+     * Sample code: Updates the fabric.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void fabricUpdate(
+    public static void updatesTheFabric(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         FabricModel resource = manager.fabrics()
-            .getByResourceGroupWithResponse("rgrecoveryservicesdatareplication", "wPR",
-                com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("rgswagger_2024-09-01", "wPR", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withTags(mapOf("key6664", "fakeTokenPlaceholder"))
+            .withTags(mapOf())
             .withProperties(new FabricModelProperties().withCustomProperties(new FabricModelCustomProperties()))
             .apply();
     }

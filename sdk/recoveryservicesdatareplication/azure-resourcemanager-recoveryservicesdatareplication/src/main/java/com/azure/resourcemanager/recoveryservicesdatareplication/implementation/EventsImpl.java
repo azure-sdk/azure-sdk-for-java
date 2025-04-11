@@ -27,6 +27,18 @@ public final class EventsImpl implements Events {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<EventModel> list(String resourceGroupName, String vaultName) {
+        PagedIterable<EventModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new EventModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<EventModel> list(String resourceGroupName, String vaultName, String odataOptions,
+        String continuationToken, Integer pageSize, Context context) {
+        PagedIterable<EventModelInner> inner = this.serviceClient()
+            .list(resourceGroupName, vaultName, odataOptions, continuationToken, pageSize, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new EventModelImpl(inner1, this.manager()));
+    }
+
     public Response<EventModel> getWithResponse(String resourceGroupName, String vaultName, String eventName,
         Context context) {
         Response<EventModelInner> inner
@@ -46,18 +58,6 @@ public final class EventsImpl implements Events {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<EventModel> list(String resourceGroupName, String vaultName) {
-        PagedIterable<EventModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new EventModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<EventModel> list(String resourceGroupName, String vaultName, String filter,
-        String continuationToken, Context context) {
-        PagedIterable<EventModelInner> inner
-            = this.serviceClient().list(resourceGroupName, vaultName, filter, continuationToken, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new EventModelImpl(inner1, this.manager()));
     }
 
     private EventsClient serviceClient() {

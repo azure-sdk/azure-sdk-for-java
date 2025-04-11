@@ -10,16 +10,16 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class VaultListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Vault_ListBySubscription.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Vault_ListBySubscription.json
      */
     /**
-     * Sample code: Vault_ListBySubscription.
+     * Sample code: Lists the vaults by subscription.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void vaultListBySubscription(
+    public static void listsTheVaultsBySubscription(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
-        manager.vaults().list("dqsjhseyugyexxrlrln", com.azure.core.util.Context.NONE);
+        manager.vaults().list(com.azure.core.util.Context.NONE);
     }
 }

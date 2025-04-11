@@ -18,7 +18,7 @@ import java.util.List;
 @Fluent
 public final class AzStackHciFabricModelCustomProperties extends FabricModelCustomProperties {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for FabricModelCustomProperties.
      */
     private String instanceType = "AzStackHCI";
 
@@ -64,7 +64,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for FabricModelCustomProperties.
      * 
      * @return the instanceType value.
      */

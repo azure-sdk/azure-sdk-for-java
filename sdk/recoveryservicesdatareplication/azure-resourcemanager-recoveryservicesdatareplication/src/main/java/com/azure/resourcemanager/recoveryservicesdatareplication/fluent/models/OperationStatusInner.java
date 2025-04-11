@@ -27,8 +27,8 @@ public final class OperationStatusInner implements JsonSerializable<OperationSta
     private String name;
 
     /*
-     * Gets or sets the status of the operation. ARM expects the terminal status to be one of
-     * Succeeded/ Failed/ Canceled. All other values imply that the operation is still running.
+     * Gets or sets the status of the operation. ARM expects the terminal status to be one of Succeeded/ Failed/
+     * Canceled. All other values imply that the operation is still running.
      */
     private String status;
 

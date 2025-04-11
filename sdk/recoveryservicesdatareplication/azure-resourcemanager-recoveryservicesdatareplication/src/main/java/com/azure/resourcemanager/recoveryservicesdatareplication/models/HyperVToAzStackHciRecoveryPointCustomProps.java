@@ -17,7 +17,7 @@ import java.util.List;
 @Immutable
 public final class HyperVToAzStackHciRecoveryPointCustomProps extends RecoveryPointModelCustomProperties {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for RecoveryPointModelCustomProperties.
      */
     private String instanceType = "HyperVToAzStackHCI";
 
@@ -33,7 +33,7 @@ public final class HyperVToAzStackHciRecoveryPointCustomProps extends RecoveryPo
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for RecoveryPointModelCustomProperties.
      * 
      * @return the instanceType value.
      */

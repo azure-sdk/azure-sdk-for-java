@@ -13,64 +13,6 @@ import com.azure.core.util.Context;
  */
 public interface Vaults {
     /**
-     * Gets the vault.
-     * 
-     * Gets the details of the vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the vault along with {@link Response}.
-     */
-    Response<VaultModel> getByResourceGroupWithResponse(String resourceGroupName, String vaultName, Context context);
-
-    /**
-     * Gets the vault.
-     * 
-     * Gets the details of the vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the vault.
-     */
-    VaultModel getByResourceGroup(String resourceGroupName, String vaultName);
-
-    /**
-     * Deletes the vault.
-     * 
-     * Removes the vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteByResourceGroup(String resourceGroupName, String vaultName);
-
-    /**
-     * Deletes the vault.
-     * 
-     * Removes the vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String vaultName, Context context);
-
-    /**
-     * Lists the vaults.
-     * 
      * Gets the list of vaults in the given subscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -80,22 +22,17 @@ public interface Vaults {
     PagedIterable<VaultModel> list();
 
     /**
-     * Lists the vaults.
-     * 
      * Gets the list of vaults in the given subscription.
      * 
-     * @param continuationToken Continuation token from the previous call.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of vaults in the given subscription as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VaultModel> list(String continuationToken, Context context);
+    PagedIterable<VaultModel> list(Context context);
 
     /**
-     * Lists the vaults.
-     * 
      * Gets the list of vaults in the given subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -108,8 +45,6 @@ public interface Vaults {
     PagedIterable<VaultModel> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Lists the vaults.
-     * 
      * Gets the list of vaults in the given subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -124,8 +59,54 @@ public interface Vaults {
     PagedIterable<VaultModel> listByResourceGroup(String resourceGroupName, String continuationToken, Context context);
 
     /**
-     * Gets the vault.
+     * Gets the details of the vault.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of the vault along with {@link Response}.
+     */
+    Response<VaultModel> getByResourceGroupWithResponse(String resourceGroupName, String vaultName, Context context);
+
+    /**
+     * Gets the details of the vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of the vault.
+     */
+    VaultModel getByResourceGroup(String resourceGroupName, String vaultName);
+
+    /**
+     * Removes the vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByResourceGroup(String resourceGroupName, String vaultName);
+
+    /**
+     * Removes the vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String vaultName, Context context);
+
+    /**
      * Gets the details of the vault.
      * 
      * @param id the resource ID.
@@ -137,8 +118,6 @@ public interface Vaults {
     VaultModel getById(String id);
 
     /**
-     * Gets the vault.
-     * 
      * Gets the details of the vault.
      * 
      * @param id the resource ID.
@@ -151,8 +130,6 @@ public interface Vaults {
     Response<VaultModel> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes the vault.
-     * 
      * Removes the vault.
      * 
      * @param id the resource ID.
@@ -163,8 +140,6 @@ public interface Vaults {
     void deleteById(String id);
 
     /**
-     * Deletes the vault.
-     * 
      * Removes the vault.
      * 
      * @param id the resource ID.

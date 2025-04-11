@@ -16,8 +16,35 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.E
  */
 public interface EmailConfigurationsClient {
     /**
-     * Gets the email configuration setting.
+     * Gets the list of alert configuration settings for the given vault.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of alert configuration settings for the given vault as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<EmailConfigurationModelInner> list(String resourceGroupName, String vaultName);
+
+    /**
+     * Gets the list of alert configuration settings for the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of alert configuration settings for the given vault as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<EmailConfigurationModelInner> list(String resourceGroupName, String vaultName, Context context);
+
+    /**
      * Gets the details of the alert configuration setting.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -34,8 +61,6 @@ public interface EmailConfigurationsClient {
         String emailConfigurationName, Context context);
 
     /**
-     * Gets the email configuration setting.
-     * 
      * Gets the details of the alert configuration setting.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -50,8 +75,6 @@ public interface EmailConfigurationsClient {
     EmailConfigurationModelInner get(String resourceGroupName, String vaultName, String emailConfigurationName);
 
     /**
-     * Creates email configuration settings.
-     * 
      * Creates an alert configuration setting for the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -69,51 +92,18 @@ public interface EmailConfigurationsClient {
         String emailConfigurationName, EmailConfigurationModelInner body, Context context);
 
     /**
-     * Creates email configuration settings.
-     * 
      * Creates an alert configuration setting for the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param emailConfigurationName The email configuration name.
+     * @param body EmailConfiguration model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return email configuration model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    EmailConfigurationModelInner create(String resourceGroupName, String vaultName, String emailConfigurationName);
-
-    /**
-     * Lists the email configuration settings.
-     * 
-     * Gets the list of alert configuration settings for the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of alert configuration settings for the given vault as paginated response with
-     * {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<EmailConfigurationModelInner> list(String resourceGroupName, String vaultName);
-
-    /**
-     * Lists the email configuration settings.
-     * 
-     * Gets the list of alert configuration settings for the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of alert configuration settings for the given vault as paginated response with
-     * {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<EmailConfigurationModelInner> list(String resourceGroupName, String vaultName, Context context);
+    EmailConfigurationModelInner create(String resourceGroupName, String vaultName, String emailConfigurationName,
+        EmailConfigurationModelInner body);
 }

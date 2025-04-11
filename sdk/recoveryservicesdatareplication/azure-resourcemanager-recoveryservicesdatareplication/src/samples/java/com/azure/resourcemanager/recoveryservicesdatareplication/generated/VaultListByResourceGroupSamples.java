@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class VaultListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Vault_List.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Vault_List.json
      */
     /**
-     * Sample code: Vault_List.
+     * Sample code: Lists the vaults.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void vaultList(
+    public static void listsTheVaults(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.vaults()
             .listByResourceGroup("rgrecoveryservicesdatareplication", "mwculdaqndp", com.azure.core.util.Context.NONE);

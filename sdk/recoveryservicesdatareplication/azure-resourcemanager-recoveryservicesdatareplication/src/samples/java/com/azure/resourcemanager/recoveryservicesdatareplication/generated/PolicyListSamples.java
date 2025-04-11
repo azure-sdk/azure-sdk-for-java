@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class PolicyListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Policy_List.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Policy_List.json
      */
     /**
-     * Sample code: Policy_List.
+     * Sample code: Lists the policies.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void policyList(
+    public static void listsThePolicies(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.policies().list("rgrecoveryservicesdatareplication", "4", com.azure.core.util.Context.NONE);
     }

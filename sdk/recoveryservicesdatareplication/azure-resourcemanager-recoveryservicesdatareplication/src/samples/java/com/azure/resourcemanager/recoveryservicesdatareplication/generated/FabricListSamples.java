@@ -10,16 +10,16 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class FabricListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Fabric_ListBySubscription.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Fabric_ListBySubscription.json
      */
     /**
-     * Sample code: Fabric_ListBySubscription.
+     * Sample code: Lists the fabrics by subscription.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void fabricListBySubscription(
+    public static void listsTheFabricsBySubscription(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
-        manager.fabrics().list("rmgqrpzucsizbyjscxzockbiyg", com.azure.core.util.Context.NONE);
+        manager.fabrics().list(com.azure.core.util.Context.NONE);
     }
 }
