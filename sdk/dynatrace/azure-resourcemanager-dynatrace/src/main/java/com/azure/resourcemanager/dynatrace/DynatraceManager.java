@@ -22,13 +22,18 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dynatrace.fluent.DynatraceObservability;
+import com.azure.resourcemanager.dynatrace.implementation.CreationSupportedsImpl;
 import com.azure.resourcemanager.dynatrace.implementation.DynatraceObservabilityBuilder;
+import com.azure.resourcemanager.dynatrace.implementation.MonitoredSubscriptionsImpl;
 import com.azure.resourcemanager.dynatrace.implementation.MonitorsImpl;
 import com.azure.resourcemanager.dynatrace.implementation.OperationsImpl;
 import com.azure.resourcemanager.dynatrace.implementation.SingleSignOnsImpl;
 import com.azure.resourcemanager.dynatrace.implementation.TagRulesImpl;
+import com.azure.resourcemanager.dynatrace.models.CreationSupporteds;
+import com.azure.resourcemanager.dynatrace.models.MonitoredSubscriptions;
 import com.azure.resourcemanager.dynatrace.models.Monitors;
 import com.azure.resourcemanager.dynatrace.models.Operations;
 import com.azure.resourcemanager.dynatrace.models.SingleSignOns;
@@ -37,6 +42,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -45,6 +51,10 @@ import java.util.stream.Collectors;
  */
 public final class DynatraceManager {
     private Monitors monitors;
+
+    private MonitoredSubscriptions monitoredSubscriptions;
+
+    private CreationSupporteds creationSupporteds;
 
     private Operations operations;
 
@@ -104,6 +114,9 @@ public final class DynatraceManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-dynatrace.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -211,12 +224,14 @@ public final class DynatraceManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.dynatrace")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -272,6 +287,31 @@ public final class DynatraceManager {
             this.monitors = new MonitorsImpl(clientObject.getMonitors(), this);
         }
         return monitors;
+    }
+
+    /**
+     * Gets the resource collection API of MonitoredSubscriptions.
+     * 
+     * @return Resource collection API of MonitoredSubscriptions.
+     */
+    public MonitoredSubscriptions monitoredSubscriptions() {
+        if (this.monitoredSubscriptions == null) {
+            this.monitoredSubscriptions
+                = new MonitoredSubscriptionsImpl(clientObject.getMonitoredSubscriptions(), this);
+        }
+        return monitoredSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of CreationSupporteds.
+     * 
+     * @return Resource collection API of CreationSupporteds.
+     */
+    public CreationSupporteds creationSupporteds() {
+        if (this.creationSupporteds == null) {
+            this.creationSupporteds = new CreationSupportedsImpl(clientObject.getCreationSupporteds(), this);
+        }
+        return creationSupporteds;
     }
 
     /**

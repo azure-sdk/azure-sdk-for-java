@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface DynatraceObservability {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -52,6 +52,20 @@ public interface DynatraceObservability {
      * @return the MonitorsClient object.
      */
     MonitorsClient getMonitors();
+
+    /**
+     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * 
+     * @return the MonitoredSubscriptionsClient object.
+     */
+    MonitoredSubscriptionsClient getMonitoredSubscriptions();
+
+    /**
+     * Gets the CreationSupportedsClient object to access its operations.
+     * 
+     * @return the CreationSupportedsClient object.
+     */
+    CreationSupportedsClient getCreationSupporteds();
 
     /**
      * Gets the OperationsClient object to access its operations.

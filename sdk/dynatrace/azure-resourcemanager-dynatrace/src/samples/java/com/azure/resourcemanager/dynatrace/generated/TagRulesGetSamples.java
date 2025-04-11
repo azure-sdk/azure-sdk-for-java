@@ -9,7 +9,7 @@ package com.azure.resourcemanager.dynatrace.generated;
  */
 public final class TagRulesGetSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_Get_MinimumSet_Gen.json
      */
     /**
@@ -22,7 +22,7 @@ public final class TagRulesGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_Get_MaximumSet_Gen.json
      */
     /**
