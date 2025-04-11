@@ -146,7 +146,6 @@ public final class RecurrenceTrigger extends TriggerBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (frequency() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property frequency in model RecurrenceTrigger"));

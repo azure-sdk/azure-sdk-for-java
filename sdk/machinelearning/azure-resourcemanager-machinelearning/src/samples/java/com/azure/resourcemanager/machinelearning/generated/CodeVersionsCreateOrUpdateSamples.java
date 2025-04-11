@@ -14,7 +14,7 @@ import java.util.Map;
 public final class CodeVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/CodeVersion/createOrUpdate.json
      */
     /**
@@ -28,8 +28,8 @@ public final class CodeVersionsCreateOrUpdateSamples {
             .define("string")
             .withExistingCode("test-rg", "my-aml-workspace", "string")
             .withProperties(new CodeVersionProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
                 .withIsAnonymous(false)
                 .withCodeUri("fakeTokenPlaceholder"))
             .create();
