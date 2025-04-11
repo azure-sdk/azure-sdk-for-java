@@ -5,12 +5,14 @@
 package com.azure.resourcemanager.astro.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 /**
  * Offer details for the marketplace that is selected by the user.
@@ -46,6 +48,16 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
      * Plan Display Name for the marketplace offer
      */
     private String termId;
+
+    /*
+     * Subscription renewal mode
+     */
+    private RenewalMode renewalMode;
+
+    /*
+     * Current subscription end date and time
+     */
+    private OffsetDateTime endDate;
 
     /**
      * Creates an instance of LiftrBaseOfferDetails class.
@@ -174,6 +186,35 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
     }
 
     /**
+     * Get the renewalMode property: Subscription renewal mode.
+     * 
+     * @return the renewalMode value.
+     */
+    public RenewalMode renewalMode() {
+        return this.renewalMode;
+    }
+
+    /**
+     * Set the renewalMode property: Subscription renewal mode.
+     * 
+     * @param renewalMode the renewalMode value to set.
+     * @return the LiftrBaseOfferDetails object itself.
+     */
+    public LiftrBaseOfferDetails withRenewalMode(RenewalMode renewalMode) {
+        this.renewalMode = renewalMode;
+        return this;
+    }
+
+    /**
+     * Get the endDate property: Current subscription end date and time.
+     * 
+     * @return the endDate value.
+     */
+    public OffsetDateTime endDate() {
+        return this.endDate;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -208,6 +249,7 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
         jsonWriter.writeStringField("planName", this.planName);
         jsonWriter.writeStringField("termUnit", this.termUnit);
         jsonWriter.writeStringField("termId", this.termId);
+        jsonWriter.writeStringField("renewalMode", this.renewalMode == null ? null : this.renewalMode.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -239,6 +281,11 @@ public final class LiftrBaseOfferDetails implements JsonSerializable<LiftrBaseOf
                     deserializedLiftrBaseOfferDetails.termUnit = reader.getString();
                 } else if ("termId".equals(fieldName)) {
                     deserializedLiftrBaseOfferDetails.termId = reader.getString();
+                } else if ("renewalMode".equals(fieldName)) {
+                    deserializedLiftrBaseOfferDetails.renewalMode = RenewalMode.fromString(reader.getString());
+                } else if ("endDate".equals(fieldName)) {
+                    deserializedLiftrBaseOfferDetails.endDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else {
                     reader.skipChildren();
                 }

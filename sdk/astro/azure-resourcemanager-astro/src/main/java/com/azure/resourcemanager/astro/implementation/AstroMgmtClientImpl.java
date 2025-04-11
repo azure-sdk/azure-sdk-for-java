@@ -169,7 +169,7 @@ public final class AstroMgmtClientImpl implements AstroMgmtClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-08-01";
+        this.apiVersion = "2024-08-27";
         this.operations = new OperationsClientImpl(this);
         this.organizations = new OrganizationsClientImpl(this);
     }
