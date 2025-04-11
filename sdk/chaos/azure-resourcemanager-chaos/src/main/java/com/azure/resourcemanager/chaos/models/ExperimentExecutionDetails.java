@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.chaos.models;
 
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner;
-import java.time.OffsetDateTime;
 
 /**
  * An immutable client-side representation of ExperimentExecutionDetails.
@@ -33,46 +32,11 @@ public interface ExperimentExecutionDetails {
     String name();
 
     /**
-     * Gets the failureReason property: The reason why the execution failed.
+     * Gets the properties property: The properties of the experiment execution details.
      * 
-     * @return the failureReason value.
+     * @return the properties value.
      */
-    String failureReason();
-
-    /**
-     * Gets the lastActionAt property: String that represents the last action date time.
-     * 
-     * @return the lastActionAt value.
-     */
-    OffsetDateTime lastActionAt();
-
-    /**
-     * Gets the runInformation property: The information of the experiment run.
-     * 
-     * @return the runInformation value.
-     */
-    ExperimentExecutionDetailsPropertiesRunInformation runInformation();
-
-    /**
-     * Gets the status property: The status of the execution.
-     * 
-     * @return the status value.
-     */
-    String status();
-
-    /**
-     * Gets the startedAt property: String that represents the start date time.
-     * 
-     * @return the startedAt value.
-     */
-    OffsetDateTime startedAt();
-
-    /**
-     * Gets the stoppedAt property: String that represents the stop date time.
-     * 
-     * @return the stoppedAt value.
-     */
-    OffsetDateTime stoppedAt();
+    ExperimentExecutionDetailsProperties properties();
 
     /**
      * Gets the inner com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner object.

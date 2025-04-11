@@ -36,10 +36,6 @@ public final class TargetTypeImpl implements TargetType {
         return this.innerModel().systemData();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
     public String displayName() {
         return this.innerModel().displayName();
     }
