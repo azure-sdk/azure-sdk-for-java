@@ -29,18 +29,6 @@ public final class TranslationText implements JsonSerializable<TranslationText> 
     @Generated
     private TransliteratedText transliteration;
 
-    /*
-     * Alignment information.
-     */
-    @Generated
-    private TranslatedTextAlignment alignment;
-
-    /*
-     * Sentence boundaries in the input and output texts.
-     */
-    @Generated
-    private SentenceBoundaries sentenceBoundaries;
-
     /**
      * Creates an instance of TranslationText class.
      *
@@ -84,26 +72,6 @@ public final class TranslationText implements JsonSerializable<TranslationText> 
         return this.transliteration;
     }
 
-    /**
-     * Get the alignment property: Alignment information.
-     *
-     * @return the alignment value.
-     */
-    @Generated
-    public TranslatedTextAlignment getAlignment() {
-        return this.alignment;
-    }
-
-    /**
-     * Get the sentenceBoundaries property: Sentence boundaries in the input and output texts.
-     *
-     * @return the sentenceBoundaries value.
-     */
-    @Generated
-    public SentenceBoundaries getSentenceBoundaries() {
-        return this.sentenceBoundaries;
-    }
-
     /*
      * A string representing the language code of the target language.
      */
@@ -120,8 +88,6 @@ public final class TranslationText implements JsonSerializable<TranslationText> 
         jsonWriter.writeStringField("to", this.targetLanguage);
         jsonWriter.writeStringField("text", this.text);
         jsonWriter.writeJsonField("transliteration", this.transliteration);
-        jsonWriter.writeJsonField("alignment", this.alignment);
-        jsonWriter.writeJsonField("sentLen", this.sentenceBoundaries);
         return jsonWriter.writeEndObject();
     }
 
@@ -140,8 +106,6 @@ public final class TranslationText implements JsonSerializable<TranslationText> 
             String targetLanguage = null;
             String text = null;
             TransliteratedText transliteration = null;
-            TranslatedTextAlignment alignment = null;
-            SentenceBoundaries sentenceBoundaries = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -151,18 +115,12 @@ public final class TranslationText implements JsonSerializable<TranslationText> 
                     text = reader.getString();
                 } else if ("transliteration".equals(fieldName)) {
                     transliteration = TransliteratedText.fromJson(reader);
-                } else if ("alignment".equals(fieldName)) {
-                    alignment = TranslatedTextAlignment.fromJson(reader);
-                } else if ("sentLen".equals(fieldName)) {
-                    sentenceBoundaries = SentenceBoundaries.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
             TranslationText deserializedTranslationText = new TranslationText(targetLanguage, text);
             deserializedTranslationText.transliteration = transliteration;
-            deserializedTranslationText.alignment = alignment;
-            deserializedTranslationText.sentenceBoundaries = sentenceBoundaries;
             return deserializedTranslationText;
         });
     }
