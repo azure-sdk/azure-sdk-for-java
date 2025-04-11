@@ -27,7 +27,7 @@ import java.util.Arrays;
  */
 public final class VirtualMachineInstancesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -43,8 +43,16 @@ public final class VirtualMachineInstancesCreateOrUpdateSamples {
                     .withAvailabilitySets(Arrays.asList(new AvailabilitySetListItem().withId(
                         "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.ScVmm/availabilitySets/availabilitySetResourceName")
                         .withName("lwbhaseo")))
-                    .withOsProfile(new OsProfileForVmInstance().withAdminPassword("fakeTokenPlaceholder")
-                        .withComputerName("uuxpcxuxcufllc"))
+                    .withOsProfile(new OsProfileForVmInstance().withAdminUsername("asasas")
+                        .withAdminPassword("fakeTokenPlaceholder")
+                        .withComputerName("uuxpcxuxcufllc")
+                        .withDomainName("vblzsoqxzlrygdulnefexjdezo")
+                        .withDomainUsername("sn")
+                        .withDomainPassword("fakeTokenPlaceholder")
+                        .withWorkgroup("bsqftibgcnnjpvmuxligk")
+                        .withProductKey("fakeTokenPlaceholder")
+                        .withTimezone(4)
+                        .withRunOnceCommands("byxpnluptiwxycbbybsf;qwerty"))
                     .withHardwareProfile(new HardwareProfile().withMemoryMB(5)
                         .withCpuCount(22)
                         .withLimitCpuForMigration(LimitCpuForMigration.TRUE)
@@ -90,7 +98,7 @@ public final class VirtualMachineInstancesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
