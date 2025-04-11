@@ -37,6 +37,16 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
      */
     private FailHealthCheckOnStagingFailure failHealthCheckOnStagingFailure;
 
+    /*
+     * Lookback url to third party control plane, is null for native app attach packages
+     */
+    private String packageLookbackUrl;
+
+    /*
+     * Field that can be populated with custom data and filtered on in list GET calls
+     */
+    private String customData;
+
     /**
      * Creates an instance of AppAttachPackagePatchProperties class.
      */
@@ -127,6 +137,48 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
     }
 
     /**
+     * Get the packageLookbackUrl property: Lookback url to third party control plane, is null for native app attach
+     * packages.
+     * 
+     * @return the packageLookbackUrl value.
+     */
+    public String packageLookbackUrl() {
+        return this.packageLookbackUrl;
+    }
+
+    /**
+     * Set the packageLookbackUrl property: Lookback url to third party control plane, is null for native app attach
+     * packages.
+     * 
+     * @param packageLookbackUrl the packageLookbackUrl value to set.
+     * @return the AppAttachPackagePatchProperties object itself.
+     */
+    public AppAttachPackagePatchProperties withPackageLookbackUrl(String packageLookbackUrl) {
+        this.packageLookbackUrl = packageLookbackUrl;
+        return this;
+    }
+
+    /**
+     * Get the customData property: Field that can be populated with custom data and filtered on in list GET calls.
+     * 
+     * @return the customData value.
+     */
+    public String customData() {
+        return this.customData;
+    }
+
+    /**
+     * Set the customData property: Field that can be populated with custom data and filtered on in list GET calls.
+     * 
+     * @param customData the customData value to set.
+     * @return the AppAttachPackagePatchProperties object itself.
+     */
+    public AppAttachPackagePatchProperties withCustomData(String customData) {
+        this.customData = customData;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -149,6 +201,8 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
         jsonWriter.writeStringField("keyVaultURL", this.keyVaultUrl);
         jsonWriter.writeStringField("failHealthCheckOnStagingFailure",
             this.failHealthCheckOnStagingFailure == null ? null : this.failHealthCheckOnStagingFailure.toString());
+        jsonWriter.writeStringField("packageLookbackUrl", this.packageLookbackUrl);
+        jsonWriter.writeStringField("customData", this.customData);
         return jsonWriter.writeEndObject();
     }
 
@@ -178,6 +232,10 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
                 } else if ("failHealthCheckOnStagingFailure".equals(fieldName)) {
                     deserializedAppAttachPackagePatchProperties.failHealthCheckOnStagingFailure
                         = FailHealthCheckOnStagingFailure.fromString(reader.getString());
+                } else if ("packageLookbackUrl".equals(fieldName)) {
+                    deserializedAppAttachPackagePatchProperties.packageLookbackUrl = reader.getString();
+                } else if ("customData".equals(fieldName)) {
+                    deserializedAppAttachPackagePatchProperties.customData = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -5,16 +5,16 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -23,24 +23,53 @@ import java.util.Map;
  * Represents a Workspace definition.
  */
 @Fluent
-public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
+public final class WorkspaceInner extends Resource {
     /*
      * Detailed properties for Workspace
      */
     private WorkspaceProperties innerProperties;
 
     /*
+     * The managed service identities assigned to this resource.
+     */
+    private ManagedServiceIdentity identity;
+
+    /*
+     * If etag is provided in the response body, it may also be provided as a header per the normal etag convention.
+     * Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity
+     * tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section
+     * 14.27) header fields.
+     */
+    private String etag;
+
+    /*
+     * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g.
+     * ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist
+     * this value.
+     */
+    private String kind;
+
+    /*
+     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed
+     * by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is
+     * removed from the template since it is managed by another resource.
+     */
+    private String managedBy;
+
+    /*
+     * Details of the resource plan.
+     */
+    private Plan plan;
+
+    /*
+     * The SKU (Stock Keeping Unit) assigned to this resource.
+     */
+    private Sku sku;
+
+    /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
-
-    /*
-     * The etag field is *not* required. If it is provided in the response body, it must also be provided as a header
-     * per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested
-     * resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section
-     * 14.26), and If-Range (section 14.27) header fields.
-     */
-    private String etag;
 
     /*
      * The type of the resource.
@@ -73,26 +102,132 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
     }
 
     /**
+     * Get the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed service identities assigned to this resource.
+     * 
+     * @param identity the identity value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the etag property: If etag is provided in the response body, it may also be provided as a header per the
+     * normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource.
+     * HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26),
+     * and If-Range (section 14.27) header fields.
+     * 
+     * @return the etag value.
+     */
+    public String etag() {
+        return this.etag;
+    }
+
+    /**
+     * Get the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
+     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * validate and persist this value.
+     * 
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
+     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * validate and persist this value.
+     * 
+     * @param kind the kind value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withKind(String kind) {
+        this.kind = kind;
+        return this;
+    }
+
+    /**
+     * Get the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
+     * 
+     * @return the managedBy value.
+     */
+    public String managedBy() {
+        return this.managedBy;
+    }
+
+    /**
+     * Set the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
+     * 
+     * @param managedBy the managedBy value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withManagedBy(String managedBy) {
+        this.managedBy = managedBy;
+        return this;
+    }
+
+    /**
+     * Get the plan property: Details of the resource plan.
+     * 
+     * @return the plan value.
+     */
+    public Plan plan() {
+        return this.plan;
+    }
+
+    /**
+     * Set the plan property: Details of the resource plan.
+     * 
+     * @param plan the plan value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withPlan(Plan plan) {
+        this.plan = plan;
+        return this;
+    }
+
+    /**
+     * Get the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @return the sku value.
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @param sku the sku value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withSku(Sku sku) {
+        this.sku = sku;
+        return this;
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
-    @Override
     public SystemData systemData() {
         return this.systemData;
-    }
-
-    /**
-     * Get the etag property: The etag field is *not* required. If it is provided in the response body, it must also be
-     * provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from
-     * the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24),
-     * If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
-     * 
-     * @return the etag value.
-     */
-    @Override
-    public String etag() {
-        return this.etag;
     }
 
     /**
@@ -123,51 +258,6 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
     @Override
     public String id() {
         return this.id;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public WorkspaceInner withManagedBy(String managedBy) {
-        super.withManagedBy(managedBy);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public WorkspaceInner withKind(String kind) {
-        super.withKind(kind);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public WorkspaceInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
-        super.withIdentity(identity);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public WorkspaceInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
-        super.withSku(sku);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public WorkspaceInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
-        super.withPlan(plan);
-        return this;
     }
 
     /**
@@ -315,7 +405,6 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
@@ -323,11 +412,11 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
         if (identity() != null) {
             identity().validate();
         }
-        if (sku() != null) {
-            sku().validate();
-        }
         if (plan() != null) {
             plan().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
         }
     }
 
@@ -339,12 +428,12 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("managedBy", managedBy());
-        jsonWriter.writeStringField("kind", kind());
-        jsonWriter.writeJsonField("identity", identity());
-        jsonWriter.writeJsonField("sku", sku());
-        jsonWriter.writeJsonField("plan", plan());
         jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeStringField("kind", this.kind);
+        jsonWriter.writeStringField("managedBy", this.managedBy);
+        jsonWriter.writeJsonField("plan", this.plan);
+        jsonWriter.writeJsonField("sku", this.sku);
         return jsonWriter.writeEndObject();
     }
 
@@ -375,23 +464,22 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedWorkspaceInner.withTags(tags);
-                } else if ("managedBy".equals(fieldName)) {
-                    deserializedWorkspaceInner.withManagedBy(reader.getString());
-                } else if ("kind".equals(fieldName)) {
-                    deserializedWorkspaceInner.withKind(reader.getString());
-                } else if ("etag".equals(fieldName)) {
-                    deserializedWorkspaceInner.etag = reader.getString();
-                } else if ("identity".equals(fieldName)) {
-                    deserializedWorkspaceInner
-                        .withIdentity(ResourceModelWithAllowedPropertySetIdentity.fromJson(reader));
-                } else if ("sku".equals(fieldName)) {
-                    deserializedWorkspaceInner.withSku(ResourceModelWithAllowedPropertySetSku.fromJson(reader));
-                } else if ("plan".equals(fieldName)) {
-                    deserializedWorkspaceInner.withPlan(ResourceModelWithAllowedPropertySetPlan.fromJson(reader));
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedWorkspaceInner.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedWorkspaceInner.innerProperties = WorkspaceProperties.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedWorkspaceInner.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("etag".equals(fieldName)) {
+                    deserializedWorkspaceInner.etag = reader.getString();
+                } else if ("kind".equals(fieldName)) {
+                    deserializedWorkspaceInner.kind = reader.getString();
+                } else if ("managedBy".equals(fieldName)) {
+                    deserializedWorkspaceInner.managedBy = reader.getString();
+                } else if ("plan".equals(fieldName)) {
+                    deserializedWorkspaceInner.plan = Plan.fromJson(reader);
+                } else if ("sku".equals(fieldName)) {
+                    deserializedWorkspaceInner.sku = Sku.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedWorkspaceInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
