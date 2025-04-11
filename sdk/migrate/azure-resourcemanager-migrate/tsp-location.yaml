@@ -1,0 +1,5 @@
+directory: specification/migrate/AssessmentProjects.Management/WebAppCompoundAssessments.Management
+commit: e564336079f8a08e36a6b4a482a9625de662e185
+repo: Azure/azure-rest-api-specs
+additionalDirectories: 
+- specification/migrate/AssessmentProjects.Management/Common
