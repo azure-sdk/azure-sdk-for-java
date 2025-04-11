@@ -21,11 +21,6 @@ public final class StorageAccountDetails implements JsonSerializable<StorageAcco
      */
     private SystemCreatedStorageAccount systemCreatedStorageAccount;
 
-    /*
-     * Details of user created storage account to be used for the registry
-     */
-    private UserCreatedStorageAccount userCreatedStorageAccount;
-
     /**
      * Creates an instance of StorageAccountDetails class.
      */
@@ -56,26 +51,6 @@ public final class StorageAccountDetails implements JsonSerializable<StorageAcco
     }
 
     /**
-     * Get the userCreatedStorageAccount property: Details of user created storage account to be used for the registry.
-     * 
-     * @return the userCreatedStorageAccount value.
-     */
-    public UserCreatedStorageAccount userCreatedStorageAccount() {
-        return this.userCreatedStorageAccount;
-    }
-
-    /**
-     * Set the userCreatedStorageAccount property: Details of user created storage account to be used for the registry.
-     * 
-     * @param userCreatedStorageAccount the userCreatedStorageAccount value to set.
-     * @return the StorageAccountDetails object itself.
-     */
-    public StorageAccountDetails withUserCreatedStorageAccount(UserCreatedStorageAccount userCreatedStorageAccount) {
-        this.userCreatedStorageAccount = userCreatedStorageAccount;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -83,9 +58,6 @@ public final class StorageAccountDetails implements JsonSerializable<StorageAcco
     public void validate() {
         if (systemCreatedStorageAccount() != null) {
             systemCreatedStorageAccount().validate();
-        }
-        if (userCreatedStorageAccount() != null) {
-            userCreatedStorageAccount().validate();
         }
     }
 
@@ -96,7 +68,6 @@ public final class StorageAccountDetails implements JsonSerializable<StorageAcco
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("systemCreatedStorageAccount", this.systemCreatedStorageAccount);
-        jsonWriter.writeJsonField("userCreatedStorageAccount", this.userCreatedStorageAccount);
         return jsonWriter.writeEndObject();
     }
 
@@ -118,9 +89,6 @@ public final class StorageAccountDetails implements JsonSerializable<StorageAcco
                 if ("systemCreatedStorageAccount".equals(fieldName)) {
                     deserializedStorageAccountDetails.systemCreatedStorageAccount
                         = SystemCreatedStorageAccount.fromJson(reader);
-                } else if ("userCreatedStorageAccount".equals(fieldName)) {
-                    deserializedStorageAccountDetails.userCreatedStorageAccount
-                        = UserCreatedStorageAccount.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

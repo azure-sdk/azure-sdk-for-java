@@ -14,7 +14,7 @@ import java.util.Map;
 public final class FeaturesetContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/FeaturesetContainer/createOrUpdate.json
      */
     /**
@@ -28,8 +28,8 @@ public final class FeaturesetContainersCreateOrUpdateSamples {
             .define("string")
             .withExistingWorkspace("test-rg", "my-aml-workspace")
             .withProperties(new FeaturesetContainerProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
                 .withIsArchived(false))
             .create();
     }

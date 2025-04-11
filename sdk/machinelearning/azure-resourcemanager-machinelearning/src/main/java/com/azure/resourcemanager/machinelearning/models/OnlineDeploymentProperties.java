@@ -22,17 +22,34 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     private EndpointComputeType endpointComputeType = EndpointComputeType.fromString("OnlineDeploymentProperties");
 
     /*
-     * Scale settings for the deployment.
-     * If it is null or not provided,
-     * it defaults to TargetUtilizationScaleSettings for KubernetesOnlineDeployment
-     * and to DefaultScaleSettings for ManagedOnlineDeployment.
+     * If true, enables Application Insights logging.
      */
-    private OnlineScaleSettings scaleSettings;
+    private Boolean appInsightsEnabled;
 
     /*
-     * Request settings for the deployment.
+     * The mdc configuration, we disable mdc when it's null.
      */
-    private OnlineRequestSettings requestSettings;
+    private DataCollector dataCollector;
+
+    /*
+     * If Enabled, allow egress public network access. If Disabled, this will create secure egress. Default: Enabled.
+     */
+    private EgressPublicNetworkAccessType egressPublicNetworkAccess;
+
+    /*
+     * Compute instance type. Default: Standard_F4s_v2.
+     */
+    private String instanceType;
+
+    /*
+     * Liveness probe monitors the health of the container regularly.
+     */
+    private ProbeSettings livenessProbe;
+
+    /*
+     * The URI path to the model.
+     */
+    private String model;
 
     /*
      * The path to mount the model in custom container.
@@ -40,14 +57,9 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     private String modelMountPath;
 
     /*
-     * If true, enables Application Insights logging.
+     * Provisioning state for the endpoint deployment.
      */
-    private Boolean appInsightsEnabled;
-
-    /*
-     * Liveness probe monitors the health of the container regularly.
-     */
-    private ProbeSettings livenessProbe;
+    private DeploymentProvisioningState provisioningState;
 
     /*
      * Readiness probe validates if the container is ready to serve traffic. The properties and defaults are the same as
@@ -56,29 +68,22 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     private ProbeSettings readinessProbe;
 
     /*
-     * Provisioning state for the endpoint deployment.
+     * Startup probe verify whether an application within a container has started successfully.
      */
-    private DeploymentProvisioningState provisioningState;
+    private ProbeSettings startupProbe;
 
     /*
-     * Compute instance type.
+     * Request settings for the deployment.
      */
-    private String instanceType;
+    private OnlineRequestSettings requestSettings;
 
     /*
-     * The URI path to the model.
+     * Scale settings for the deployment.
+     * If it is null or not provided,
+     * it defaults to TargetUtilizationScaleSettings for KubernetesOnlineDeployment
+     * and to DefaultScaleSettings for ManagedOnlineDeployment.
      */
-    private String model;
-
-    /*
-     * If Enabled, allow egress public network access. If Disabled, this will create secure egress. Default: Enabled.
-     */
-    private EgressPublicNetworkAccessType egressPublicNetworkAccess;
-
-    /*
-     * The mdc configuration, we disable mdc when it's null.
-     */
-    private DataCollector dataCollector;
+    private OnlineScaleSettings scaleSettings;
 
     /**
      * Creates an instance of OnlineDeploymentProperties class.
@@ -93,6 +98,233 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
      */
     public EndpointComputeType endpointComputeType() {
         return this.endpointComputeType;
+    }
+
+    /**
+     * Get the appInsightsEnabled property: If true, enables Application Insights logging.
+     * 
+     * @return the appInsightsEnabled value.
+     */
+    public Boolean appInsightsEnabled() {
+        return this.appInsightsEnabled;
+    }
+
+    /**
+     * Set the appInsightsEnabled property: If true, enables Application Insights logging.
+     * 
+     * @param appInsightsEnabled the appInsightsEnabled value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withAppInsightsEnabled(Boolean appInsightsEnabled) {
+        this.appInsightsEnabled = appInsightsEnabled;
+        return this;
+    }
+
+    /**
+     * Get the dataCollector property: The mdc configuration, we disable mdc when it's null.
+     * 
+     * @return the dataCollector value.
+     */
+    public DataCollector dataCollector() {
+        return this.dataCollector;
+    }
+
+    /**
+     * Set the dataCollector property: The mdc configuration, we disable mdc when it's null.
+     * 
+     * @param dataCollector the dataCollector value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withDataCollector(DataCollector dataCollector) {
+        this.dataCollector = dataCollector;
+        return this;
+    }
+
+    /**
+     * Get the egressPublicNetworkAccess property: If Enabled, allow egress public network access. If Disabled, this
+     * will create secure egress. Default: Enabled.
+     * 
+     * @return the egressPublicNetworkAccess value.
+     */
+    public EgressPublicNetworkAccessType egressPublicNetworkAccess() {
+        return this.egressPublicNetworkAccess;
+    }
+
+    /**
+     * Set the egressPublicNetworkAccess property: If Enabled, allow egress public network access. If Disabled, this
+     * will create secure egress. Default: Enabled.
+     * 
+     * @param egressPublicNetworkAccess the egressPublicNetworkAccess value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties
+        withEgressPublicNetworkAccess(EgressPublicNetworkAccessType egressPublicNetworkAccess) {
+        this.egressPublicNetworkAccess = egressPublicNetworkAccess;
+        return this;
+    }
+
+    /**
+     * Get the instanceType property: Compute instance type. Default: Standard_F4s_v2.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
+    }
+
+    /**
+     * Set the instanceType property: Compute instance type. Default: Standard_F4s_v2.
+     * 
+     * @param instanceType the instanceType value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withInstanceType(String instanceType) {
+        this.instanceType = instanceType;
+        return this;
+    }
+
+    /**
+     * Get the livenessProbe property: Liveness probe monitors the health of the container regularly.
+     * 
+     * @return the livenessProbe value.
+     */
+    public ProbeSettings livenessProbe() {
+        return this.livenessProbe;
+    }
+
+    /**
+     * Set the livenessProbe property: Liveness probe monitors the health of the container regularly.
+     * 
+     * @param livenessProbe the livenessProbe value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withLivenessProbe(ProbeSettings livenessProbe) {
+        this.livenessProbe = livenessProbe;
+        return this;
+    }
+
+    /**
+     * Get the model property: The URI path to the model.
+     * 
+     * @return the model value.
+     */
+    public String model() {
+        return this.model;
+    }
+
+    /**
+     * Set the model property: The URI path to the model.
+     * 
+     * @param model the model value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withModel(String model) {
+        this.model = model;
+        return this;
+    }
+
+    /**
+     * Get the modelMountPath property: The path to mount the model in custom container.
+     * 
+     * @return the modelMountPath value.
+     */
+    public String modelMountPath() {
+        return this.modelMountPath;
+    }
+
+    /**
+     * Set the modelMountPath property: The path to mount the model in custom container.
+     * 
+     * @param modelMountPath the modelMountPath value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withModelMountPath(String modelMountPath) {
+        this.modelMountPath = modelMountPath;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the endpoint deployment.
+     * 
+     * @return the provisioningState value.
+     */
+    public DeploymentProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Set the provisioningState property: Provisioning state for the endpoint deployment.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    OnlineDeploymentProperties withProvisioningState(DeploymentProvisioningState provisioningState) {
+        this.provisioningState = provisioningState;
+        return this;
+    }
+
+    /**
+     * Get the readinessProbe property: Readiness probe validates if the container is ready to serve traffic. The
+     * properties and defaults are the same as liveness probe.
+     * 
+     * @return the readinessProbe value.
+     */
+    public ProbeSettings readinessProbe() {
+        return this.readinessProbe;
+    }
+
+    /**
+     * Set the readinessProbe property: Readiness probe validates if the container is ready to serve traffic. The
+     * properties and defaults are the same as liveness probe.
+     * 
+     * @param readinessProbe the readinessProbe value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withReadinessProbe(ProbeSettings readinessProbe) {
+        this.readinessProbe = readinessProbe;
+        return this;
+    }
+
+    /**
+     * Get the startupProbe property: Startup probe verify whether an application within a container has started
+     * successfully.
+     * 
+     * @return the startupProbe value.
+     */
+    public ProbeSettings startupProbe() {
+        return this.startupProbe;
+    }
+
+    /**
+     * Set the startupProbe property: Startup probe verify whether an application within a container has started
+     * successfully.
+     * 
+     * @param startupProbe the startupProbe value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withStartupProbe(ProbeSettings startupProbe) {
+        this.startupProbe = startupProbe;
+        return this;
+    }
+
+    /**
+     * Get the requestSettings property: Request settings for the deployment.
+     * 
+     * @return the requestSettings value.
+     */
+    public OnlineRequestSettings requestSettings() {
+        return this.requestSettings;
+    }
+
+    /**
+     * Set the requestSettings property: Request settings for the deployment.
+     * 
+     * @param requestSettings the requestSettings value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withRequestSettings(OnlineRequestSettings requestSettings) {
+        this.requestSettings = requestSettings;
+        return this;
     }
 
     /**
@@ -122,207 +354,11 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     }
 
     /**
-     * Get the requestSettings property: Request settings for the deployment.
-     * 
-     * @return the requestSettings value.
+     * {@inheritDoc}
      */
-    public OnlineRequestSettings requestSettings() {
-        return this.requestSettings;
-    }
-
-    /**
-     * Set the requestSettings property: Request settings for the deployment.
-     * 
-     * @param requestSettings the requestSettings value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties withRequestSettings(OnlineRequestSettings requestSettings) {
-        this.requestSettings = requestSettings;
-        return this;
-    }
-
-    /**
-     * Get the modelMountPath property: The path to mount the model in custom container.
-     * 
-     * @return the modelMountPath value.
-     */
-    public String modelMountPath() {
-        return this.modelMountPath;
-    }
-
-    /**
-     * Set the modelMountPath property: The path to mount the model in custom container.
-     * 
-     * @param modelMountPath the modelMountPath value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties withModelMountPath(String modelMountPath) {
-        this.modelMountPath = modelMountPath;
-        return this;
-    }
-
-    /**
-     * Get the appInsightsEnabled property: If true, enables Application Insights logging.
-     * 
-     * @return the appInsightsEnabled value.
-     */
-    public Boolean appInsightsEnabled() {
-        return this.appInsightsEnabled;
-    }
-
-    /**
-     * Set the appInsightsEnabled property: If true, enables Application Insights logging.
-     * 
-     * @param appInsightsEnabled the appInsightsEnabled value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties withAppInsightsEnabled(Boolean appInsightsEnabled) {
-        this.appInsightsEnabled = appInsightsEnabled;
-        return this;
-    }
-
-    /**
-     * Get the livenessProbe property: Liveness probe monitors the health of the container regularly.
-     * 
-     * @return the livenessProbe value.
-     */
-    public ProbeSettings livenessProbe() {
-        return this.livenessProbe;
-    }
-
-    /**
-     * Set the livenessProbe property: Liveness probe monitors the health of the container regularly.
-     * 
-     * @param livenessProbe the livenessProbe value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties withLivenessProbe(ProbeSettings livenessProbe) {
-        this.livenessProbe = livenessProbe;
-        return this;
-    }
-
-    /**
-     * Get the readinessProbe property: Readiness probe validates if the container is ready to serve traffic. The
-     * properties and defaults are the same as liveness probe.
-     * 
-     * @return the readinessProbe value.
-     */
-    public ProbeSettings readinessProbe() {
-        return this.readinessProbe;
-    }
-
-    /**
-     * Set the readinessProbe property: Readiness probe validates if the container is ready to serve traffic. The
-     * properties and defaults are the same as liveness probe.
-     * 
-     * @param readinessProbe the readinessProbe value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties withReadinessProbe(ProbeSettings readinessProbe) {
-        this.readinessProbe = readinessProbe;
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning state for the endpoint deployment.
-     * 
-     * @return the provisioningState value.
-     */
-    public DeploymentProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Set the provisioningState property: Provisioning state for the endpoint deployment.
-     * 
-     * @param provisioningState the provisioningState value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    OnlineDeploymentProperties withProvisioningState(DeploymentProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
-    }
-
-    /**
-     * Get the instanceType property: Compute instance type.
-     * 
-     * @return the instanceType value.
-     */
-    public String instanceType() {
-        return this.instanceType;
-    }
-
-    /**
-     * Set the instanceType property: Compute instance type.
-     * 
-     * @param instanceType the instanceType value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties withInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-        return this;
-    }
-
-    /**
-     * Get the model property: The URI path to the model.
-     * 
-     * @return the model value.
-     */
-    public String model() {
-        return this.model;
-    }
-
-    /**
-     * Set the model property: The URI path to the model.
-     * 
-     * @param model the model value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties withModel(String model) {
-        this.model = model;
-        return this;
-    }
-
-    /**
-     * Get the egressPublicNetworkAccess property: If Enabled, allow egress public network access. If Disabled, this
-     * will create secure egress. Default: Enabled.
-     * 
-     * @return the egressPublicNetworkAccess value.
-     */
-    public EgressPublicNetworkAccessType egressPublicNetworkAccess() {
-        return this.egressPublicNetworkAccess;
-    }
-
-    /**
-     * Set the egressPublicNetworkAccess property: If Enabled, allow egress public network access. If Disabled, this
-     * will create secure egress. Default: Enabled.
-     * 
-     * @param egressPublicNetworkAccess the egressPublicNetworkAccess value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties
-        withEgressPublicNetworkAccess(EgressPublicNetworkAccessType egressPublicNetworkAccess) {
-        this.egressPublicNetworkAccess = egressPublicNetworkAccess;
-        return this;
-    }
-
-    /**
-     * Get the dataCollector property: The mdc configuration, we disable mdc when it's null.
-     * 
-     * @return the dataCollector value.
-     */
-    public DataCollector dataCollector() {
-        return this.dataCollector;
-    }
-
-    /**
-     * Set the dataCollector property: The mdc configuration, we disable mdc when it's null.
-     * 
-     * @param dataCollector the dataCollector value to set.
-     * @return the OnlineDeploymentProperties object itself.
-     */
-    public OnlineDeploymentProperties withDataCollector(DataCollector dataCollector) {
-        this.dataCollector = dataCollector;
+    @Override
+    public OnlineDeploymentProperties withCodeConfiguration(CodeConfiguration codeConfiguration) {
+        super.withCodeConfiguration(codeConfiguration);
         return this;
     }
 
@@ -332,24 +368,6 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     @Override
     public OnlineDeploymentProperties withDescription(String description) {
         super.withDescription(description);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public OnlineDeploymentProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public OnlineDeploymentProperties withCodeConfiguration(CodeConfiguration codeConfiguration) {
-        super.withCodeConfiguration(codeConfiguration);
         return this;
     }
 
@@ -372,18 +390,23 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public OnlineDeploymentProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
-        if (scaleSettings() != null) {
-            scaleSettings().validate();
-        }
-        if (requestSettings() != null) {
-            requestSettings().validate();
+        if (dataCollector() != null) {
+            dataCollector().validate();
         }
         if (livenessProbe() != null) {
             livenessProbe().validate();
@@ -391,8 +414,17 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
         if (readinessProbe() != null) {
             readinessProbe().validate();
         }
-        if (dataCollector() != null) {
-            dataCollector().validate();
+        if (startupProbe() != null) {
+            startupProbe().validate();
+        }
+        if (requestSettings() != null) {
+            requestSettings().validate();
+        }
+        if (scaleSettings() != null) {
+            scaleSettings().validate();
+        }
+        if (codeConfiguration() != null) {
+            codeConfiguration().validate();
         }
     }
 
@@ -402,25 +434,26 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("codeConfiguration", codeConfiguration());
+        jsonWriter.writeStringField("description", description());
         jsonWriter.writeStringField("environmentId", environmentId());
         jsonWriter.writeMapField("environmentVariables", environmentVariables(),
             (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("endpointComputeType",
             this.endpointComputeType == null ? null : this.endpointComputeType.toString());
-        jsonWriter.writeJsonField("scaleSettings", this.scaleSettings);
-        jsonWriter.writeJsonField("requestSettings", this.requestSettings);
-        jsonWriter.writeStringField("modelMountPath", this.modelMountPath);
         jsonWriter.writeBooleanField("appInsightsEnabled", this.appInsightsEnabled);
-        jsonWriter.writeJsonField("livenessProbe", this.livenessProbe);
-        jsonWriter.writeJsonField("readinessProbe", this.readinessProbe);
-        jsonWriter.writeStringField("instanceType", this.instanceType);
-        jsonWriter.writeStringField("model", this.model);
+        jsonWriter.writeJsonField("dataCollector", this.dataCollector);
         jsonWriter.writeStringField("egressPublicNetworkAccess",
             this.egressPublicNetworkAccess == null ? null : this.egressPublicNetworkAccess.toString());
-        jsonWriter.writeJsonField("dataCollector", this.dataCollector);
+        jsonWriter.writeStringField("instanceType", this.instanceType);
+        jsonWriter.writeJsonField("livenessProbe", this.livenessProbe);
+        jsonWriter.writeStringField("model", this.model);
+        jsonWriter.writeStringField("modelMountPath", this.modelMountPath);
+        jsonWriter.writeJsonField("readinessProbe", this.readinessProbe);
+        jsonWriter.writeJsonField("startupProbe", this.startupProbe);
+        jsonWriter.writeJsonField("requestSettings", this.requestSettings);
+        jsonWriter.writeJsonField("scaleSettings", this.scaleSettings);
         return jsonWriter.writeEndObject();
     }
 
@@ -466,46 +499,48 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("description".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.withDescription(reader.getString());
-                } else if ("properties".equals(fieldName)) {
-                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
-                    deserializedOnlineDeploymentProperties.withProperties(properties);
-                } else if ("codeConfiguration".equals(fieldName)) {
+                if ("codeConfiguration".equals(fieldName)) {
                     deserializedOnlineDeploymentProperties.withCodeConfiguration(CodeConfiguration.fromJson(reader));
+                } else if ("description".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.withDescription(reader.getString());
                 } else if ("environmentId".equals(fieldName)) {
                     deserializedOnlineDeploymentProperties.withEnvironmentId(reader.getString());
                 } else if ("environmentVariables".equals(fieldName)) {
                     Map<String, String> environmentVariables = reader.readMap(reader1 -> reader1.getString());
                     deserializedOnlineDeploymentProperties.withEnvironmentVariables(environmentVariables);
+                } else if ("properties".equals(fieldName)) {
+                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
+                    deserializedOnlineDeploymentProperties.withProperties(properties);
                 } else if ("endpointComputeType".equals(fieldName)) {
                     deserializedOnlineDeploymentProperties.endpointComputeType
                         = EndpointComputeType.fromString(reader.getString());
-                } else if ("scaleSettings".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.scaleSettings = OnlineScaleSettings.fromJson(reader);
-                } else if ("requestSettings".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.requestSettings = OnlineRequestSettings.fromJson(reader);
-                } else if ("modelMountPath".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.modelMountPath = reader.getString();
                 } else if ("appInsightsEnabled".equals(fieldName)) {
                     deserializedOnlineDeploymentProperties.appInsightsEnabled
                         = reader.getNullable(JsonReader::getBoolean);
-                } else if ("livenessProbe".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.livenessProbe = ProbeSettings.fromJson(reader);
-                } else if ("readinessProbe".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.readinessProbe = ProbeSettings.fromJson(reader);
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.provisioningState
-                        = DeploymentProvisioningState.fromString(reader.getString());
-                } else if ("instanceType".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.instanceType = reader.getString();
-                } else if ("model".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.model = reader.getString();
+                } else if ("dataCollector".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.dataCollector = DataCollector.fromJson(reader);
                 } else if ("egressPublicNetworkAccess".equals(fieldName)) {
                     deserializedOnlineDeploymentProperties.egressPublicNetworkAccess
                         = EgressPublicNetworkAccessType.fromString(reader.getString());
-                } else if ("dataCollector".equals(fieldName)) {
-                    deserializedOnlineDeploymentProperties.dataCollector = DataCollector.fromJson(reader);
+                } else if ("instanceType".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.instanceType = reader.getString();
+                } else if ("livenessProbe".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.livenessProbe = ProbeSettings.fromJson(reader);
+                } else if ("model".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.model = reader.getString();
+                } else if ("modelMountPath".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.modelMountPath = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.provisioningState
+                        = DeploymentProvisioningState.fromString(reader.getString());
+                } else if ("readinessProbe".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.readinessProbe = ProbeSettings.fromJson(reader);
+                } else if ("startupProbe".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.startupProbe = ProbeSettings.fromJson(reader);
+                } else if ("requestSettings".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.requestSettings = OnlineRequestSettings.fromJson(reader);
+                } else if ("scaleSettings".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.scaleSettings = OnlineScaleSettings.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
