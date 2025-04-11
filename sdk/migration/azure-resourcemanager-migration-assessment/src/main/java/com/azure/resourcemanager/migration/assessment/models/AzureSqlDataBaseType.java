@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureSqlDataBaseType.
+ * Azure Sql Data Base Type.
  */
 public final class AzureSqlDataBaseType extends ExpandableStringEnum<AzureSqlDataBaseType> {
     /**

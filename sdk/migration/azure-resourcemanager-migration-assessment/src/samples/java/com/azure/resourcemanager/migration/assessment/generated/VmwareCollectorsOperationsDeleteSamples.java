@@ -10,15 +10,15 @@ package com.azure.resourcemanager.migration.assessment.generated;
 public final class VmwareCollectorsOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * VmwareCollectorsOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: VmwareCollectorsOperations_Delete_MaximumSet_Gen.
+     * Sample code: VmwareCollectorsOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void vmwareCollectorsOperationsDeleteMaximumSetGen(
+    public static void vmwareCollectorsOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.vmwareCollectorsOperations()
             .deleteWithResponse("ayagrawRG", "app18700project", "Vmware2258collector",

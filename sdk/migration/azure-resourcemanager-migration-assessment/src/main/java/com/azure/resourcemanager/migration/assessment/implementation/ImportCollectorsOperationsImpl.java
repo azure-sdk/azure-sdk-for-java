@@ -27,16 +27,14 @@ public final class ImportCollectorsOperationsImpl implements ImportCollectorsOpe
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ImportCollector> listByAssessmentProject(String resourceGroupName, String projectName) {
-        PagedIterable<ImportCollectorInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName);
+    public PagedIterable<ImportCollector> listByParent(String resourceGroupName, String projectName) {
+        PagedIterable<ImportCollectorInner> inner = this.serviceClient().listByParent(resourceGroupName, projectName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ImportCollectorImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ImportCollector> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context) {
+    public PagedIterable<ImportCollector> listByParent(String resourceGroupName, String projectName, Context context) {
         PagedIterable<ImportCollectorInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName, context);
+            = this.serviceClient().listByParent(resourceGroupName, projectName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ImportCollectorImpl(inner1, this.manager()));
     }
 

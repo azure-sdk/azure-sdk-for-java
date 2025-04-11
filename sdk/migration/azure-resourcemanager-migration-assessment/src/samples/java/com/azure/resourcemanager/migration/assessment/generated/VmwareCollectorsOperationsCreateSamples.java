@@ -7,7 +7,6 @@ package com.azure.resourcemanager.migration.assessment.generated;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentSpnPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBaseWithAgent;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import java.time.OffsetDateTime;
 
 /**
@@ -16,20 +15,20 @@ import java.time.OffsetDateTime;
 public final class VmwareCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * VmwareCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: VmwareCollectorsOperations_Create_MaximumSet_Gen.
+     * Sample code: VmwareCollectorsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void vmwareCollectorsOperationsCreateMaximumSetGen(
+    public static void vmwareCollectorsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.vmwareCollectorsOperations()
             .define("Vmware2258collector")
             .withExistingAssessmentProject("ayagrawRG", "app18700project")
-            .withProperties(new CollectorPropertiesBaseWithAgent().withProvisioningState(ProvisioningState.SUCCEEDED)
+            .withProperties(new CollectorPropertiesBaseWithAgent()
                 .withAgentProperties(new CollectorAgentPropertiesBase().withId("fe243486-3318-41fa-aaba-c48b5df75308")
                     .withVersion("1.0.8.383")
                     .withLastHeartbeatUtc(OffsetDateTime.parse("2022-03-29T12:10:08.9167289Z"))

@@ -27,16 +27,14 @@ public final class ServerCollectorsOperationsImpl implements ServerCollectorsOpe
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ServerCollector> listByAssessmentProject(String resourceGroupName, String projectName) {
-        PagedIterable<ServerCollectorInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName);
+    public PagedIterable<ServerCollector> listByParent(String resourceGroupName, String projectName) {
+        PagedIterable<ServerCollectorInner> inner = this.serviceClient().listByParent(resourceGroupName, projectName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ServerCollectorImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ServerCollector> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context) {
+    public PagedIterable<ServerCollector> listByParent(String resourceGroupName, String projectName, Context context) {
         PagedIterable<ServerCollectorInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName, context);
+            = this.serviceClient().listByParent(resourceGroupName, projectName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ServerCollectorImpl(inner1, this.manager()));
     }
 

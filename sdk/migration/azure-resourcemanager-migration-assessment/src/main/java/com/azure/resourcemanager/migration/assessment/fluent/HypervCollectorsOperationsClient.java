@@ -28,7 +28,7 @@ public interface HypervCollectorsOperationsClient {
      * @return the response of a HypervCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<HypervCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<HypervCollectorInner> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List HypervCollector resources by AssessmentProject.
@@ -42,8 +42,7 @@ public interface HypervCollectorsOperationsClient {
      * @return the response of a HypervCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<HypervCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<HypervCollectorInner> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a HypervCollector.

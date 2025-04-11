@@ -7,6 +7,7 @@ package com.azure.resourcemanager.migration.assessment.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.migration.assessment.fluent.models.PrivateEndpointConnectionInner;
@@ -18,7 +19,12 @@ import java.util.List;
  * Properties of a project.
  */
 @Fluent
-public final class ProjectProperties extends AzureResourceProperties {
+public final class ProjectProperties implements JsonSerializable<ProjectProperties> {
+    /*
+     * The status of the last operation.
+     */
+    private ProvisioningState provisioningState;
+
     /*
      * Time when this project was created. Date-Time represented in ISO-8601 format.
      */
@@ -78,6 +84,15 @@ public final class ProjectProperties extends AzureResourceProperties {
      * Creates an instance of ProjectProperties class.
      */
     public ProjectProperties() {
+    }
+
+    /**
+     * Get the provisioningState property: The status of the last operation.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -248,20 +263,10 @@ public final class ProjectProperties extends AzureResourceProperties {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ProjectProperties withProvisioningState(ProvisioningState provisioningState) {
-        super.withProvisioningState(provisioningState);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
@@ -274,8 +279,6 @@ public final class ProjectProperties extends AzureResourceProperties {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("provisioningState",
-            provisioningState() == null ? null : provisioningState().toString());
         jsonWriter.writeStringField("assessmentSolutionId", this.assessmentSolutionId);
         jsonWriter.writeStringField("projectStatus", this.projectStatus == null ? null : this.projectStatus.toString());
         jsonWriter.writeStringField("customerWorkspaceId", this.customerWorkspaceId);
@@ -301,8 +304,7 @@ public final class ProjectProperties extends AzureResourceProperties {
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedProjectProperties
-                        .withProvisioningState(ProvisioningState.fromString(reader.getString()));
+                    deserializedProjectProperties.provisioningState = ProvisioningState.fromString(reader.getString());
                 } else if ("createdTimestamp".equals(fieldName)) {
                     deserializedProjectProperties.createdTimestamp = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));

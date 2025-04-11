@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for SqlServerLicense.
+ * Sql Server License.
  */
 public final class SqlServerLicense extends ExpandableStringEnum<SqlServerLicense> {
     /**

@@ -10,15 +10,15 @@ package com.azure.resourcemanager.migration.assessment.generated;
 public final class PrivateEndpointConnectionOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * PrivateEndpointConnectionOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateEndpointConnectionOperations_Delete_MaximumSet_Gen.
+     * Sample code: PrivateEndpointConnectionOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateEndpointConnectionOperationsDeleteMaximumSetGen(
+    public static void privateEndpointConnectionOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateEndpointConnectionOperations()
             .deleteWithResponse("sakanwar", "sakanwar1204project",

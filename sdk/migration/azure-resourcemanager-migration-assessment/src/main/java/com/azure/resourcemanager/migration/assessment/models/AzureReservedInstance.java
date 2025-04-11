@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureReservedInstance.
+ * Azure reserved Instance.
  */
 public final class AzureReservedInstance extends ExpandableStringEnum<AzureReservedInstance> {
     /**

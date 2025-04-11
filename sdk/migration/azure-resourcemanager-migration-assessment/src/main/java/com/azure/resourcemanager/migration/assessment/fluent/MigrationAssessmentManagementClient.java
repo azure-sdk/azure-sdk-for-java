@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface MigrationAssessmentManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -61,118 +61,6 @@ public interface MigrationAssessmentManagementClient {
     AssessmentProjectsOperationsClient getAssessmentProjectsOperations();
 
     /**
-     * Gets the AssessmentOptionsOperationsClient object to access its operations.
-     * 
-     * @return the AssessmentOptionsOperationsClient object.
-     */
-    AssessmentOptionsOperationsClient getAssessmentOptionsOperations();
-
-    /**
-     * Gets the AvsAssessmentOptionsOperationsClient object to access its operations.
-     * 
-     * @return the AvsAssessmentOptionsOperationsClient object.
-     */
-    AvsAssessmentOptionsOperationsClient getAvsAssessmentOptionsOperations();
-
-    /**
-     * Gets the GroupsOperationsClient object to access its operations.
-     * 
-     * @return the GroupsOperationsClient object.
-     */
-    GroupsOperationsClient getGroupsOperations();
-
-    /**
-     * Gets the AssessmentsOperationsClient object to access its operations.
-     * 
-     * @return the AssessmentsOperationsClient object.
-     */
-    AssessmentsOperationsClient getAssessmentsOperations();
-
-    /**
-     * Gets the AssessedMachinesOperationsClient object to access its operations.
-     * 
-     * @return the AssessedMachinesOperationsClient object.
-     */
-    AssessedMachinesOperationsClient getAssessedMachinesOperations();
-
-    /**
-     * Gets the AvsAssessmentsOperationsClient object to access its operations.
-     * 
-     * @return the AvsAssessmentsOperationsClient object.
-     */
-    AvsAssessmentsOperationsClient getAvsAssessmentsOperations();
-
-    /**
-     * Gets the AvsAssessedMachinesOperationsClient object to access its operations.
-     * 
-     * @return the AvsAssessedMachinesOperationsClient object.
-     */
-    AvsAssessedMachinesOperationsClient getAvsAssessedMachinesOperations();
-
-    /**
-     * Gets the SqlAssessmentV2OperationsClient object to access its operations.
-     * 
-     * @return the SqlAssessmentV2OperationsClient object.
-     */
-    SqlAssessmentV2OperationsClient getSqlAssessmentV2Operations();
-
-    /**
-     * Gets the AssessedSqlDatabaseV2OperationsClient object to access its operations.
-     * 
-     * @return the AssessedSqlDatabaseV2OperationsClient object.
-     */
-    AssessedSqlDatabaseV2OperationsClient getAssessedSqlDatabaseV2Operations();
-
-    /**
-     * Gets the AssessedSqlInstanceV2OperationsClient object to access its operations.
-     * 
-     * @return the AssessedSqlInstanceV2OperationsClient object.
-     */
-    AssessedSqlInstanceV2OperationsClient getAssessedSqlInstanceV2Operations();
-
-    /**
-     * Gets the AssessedSqlMachinesOperationsClient object to access its operations.
-     * 
-     * @return the AssessedSqlMachinesOperationsClient object.
-     */
-    AssessedSqlMachinesOperationsClient getAssessedSqlMachinesOperations();
-
-    /**
-     * Gets the AssessedSqlRecommendedEntityOperationsClient object to access its operations.
-     * 
-     * @return the AssessedSqlRecommendedEntityOperationsClient object.
-     */
-    AssessedSqlRecommendedEntityOperationsClient getAssessedSqlRecommendedEntityOperations();
-
-    /**
-     * Gets the SqlAssessmentV2SummaryOperationsClient object to access its operations.
-     * 
-     * @return the SqlAssessmentV2SummaryOperationsClient object.
-     */
-    SqlAssessmentV2SummaryOperationsClient getSqlAssessmentV2SummaryOperations();
-
-    /**
-     * Gets the HypervCollectorsOperationsClient object to access its operations.
-     * 
-     * @return the HypervCollectorsOperationsClient object.
-     */
-    HypervCollectorsOperationsClient getHypervCollectorsOperations();
-
-    /**
-     * Gets the ImportCollectorsOperationsClient object to access its operations.
-     * 
-     * @return the ImportCollectorsOperationsClient object.
-     */
-    ImportCollectorsOperationsClient getImportCollectorsOperations();
-
-    /**
-     * Gets the MachinesOperationsClient object to access its operations.
-     * 
-     * @return the MachinesOperationsClient object.
-     */
-    MachinesOperationsClient getMachinesOperations();
-
-    /**
      * Gets the PrivateEndpointConnectionOperationsClient object to access its operations.
      * 
      * @return the PrivateEndpointConnectionOperationsClient object.
@@ -194,18 +82,298 @@ public interface MigrationAssessmentManagementClient {
     AssessmentProjectSummaryOperationsClient getAssessmentProjectSummaryOperations();
 
     /**
+     * Gets the AvsGraphAssessmentOptionsOperationsClient object to access its operations.
+     * 
+     * @return the AvsGraphAssessmentOptionsOperationsClient object.
+     */
+    AvsGraphAssessmentOptionsOperationsClient getAvsGraphAssessmentOptionsOperations();
+
+    /**
+     * Gets the AvsAssessmentsV2OperationsClient object to access its operations.
+     * 
+     * @return the AvsAssessmentsV2OperationsClient object.
+     */
+    AvsAssessmentsV2OperationsClient getAvsAssessmentsV2Operations();
+
+    /**
+     * Gets the AvsAssessedMachinesV2OperationsClient object to access its operations.
+     * 
+     * @return the AvsAssessedMachinesV2OperationsClient object.
+     */
+    AvsAssessedMachinesV2OperationsClient getAvsAssessedMachinesV2Operations();
+
+    /**
+     * Gets the AvsAssessmentV2SummaryOperationsClient object to access its operations.
+     * 
+     * @return the AvsAssessmentV2SummaryOperationsClient object.
+     */
+    AvsAssessmentV2SummaryOperationsClient getAvsAssessmentV2SummaryOperations();
+
+    /**
+     * Gets the HeterogeneousAssessmentOperationsClient object to access its operations.
+     * 
+     * @return the HeterogeneousAssessmentOperationsClient object.
+     */
+    HeterogeneousAssessmentOperationsClient getHeterogeneousAssessmentOperations();
+
+    /**
+     * Gets the HeterogeneousAssessmentSummaryOperationsClient object to access its operations.
+     * 
+     * @return the HeterogeneousAssessmentSummaryOperationsClient object.
+     */
+    HeterogeneousAssessmentSummaryOperationsClient getHeterogeneousAssessmentSummaryOperations();
+
+    /**
+     * Gets the MachineGraphAssessmentOptionsOperationsClient object to access its operations.
+     * 
+     * @return the MachineGraphAssessmentOptionsOperationsClient object.
+     */
+    MachineGraphAssessmentOptionsOperationsClient getMachineGraphAssessmentOptionsOperations();
+
+    /**
+     * Gets the MachineAssessmentsV2OperationsClient object to access its operations.
+     * 
+     * @return the MachineAssessmentsV2OperationsClient object.
+     */
+    MachineAssessmentsV2OperationsClient getMachineAssessmentsV2Operations();
+
+    /**
+     * Gets the AssessedMachinesV2OperationsClient object to access its operations.
+     * 
+     * @return the AssessedMachinesV2OperationsClient object.
+     */
+    AssessedMachinesV2OperationsClient getAssessedMachinesV2Operations();
+
+    /**
+     * Gets the MachineAssessmentV2SummaryOperationsClient object to access its operations.
+     * 
+     * @return the MachineAssessmentV2SummaryOperationsClient object.
+     */
+    MachineAssessmentV2SummaryOperationsClient getMachineAssessmentV2SummaryOperations();
+
+    /**
+     * Gets the SqlGraphAssessmentOptionsOperationsClient object to access its operations.
+     * 
+     * @return the SqlGraphAssessmentOptionsOperationsClient object.
+     */
+    SqlGraphAssessmentOptionsOperationsClient getSqlGraphAssessmentOptionsOperations();
+
+    /**
+     * Gets the SqlAssessmentV3OperationsClient object to access its operations.
+     * 
+     * @return the SqlAssessmentV3OperationsClient object.
+     */
+    SqlAssessmentV3OperationsClient getSqlAssessmentV3Operations();
+
+    /**
+     * Gets the AssessedSqlDatabaseV3OperationsClient object to access its operations.
+     * 
+     * @return the AssessedSqlDatabaseV3OperationsClient object.
+     */
+    AssessedSqlDatabaseV3OperationsClient getAssessedSqlDatabaseV3Operations();
+
+    /**
+     * Gets the AssessedSqlInstanceV3OperationsClient object to access its operations.
+     * 
+     * @return the AssessedSqlInstanceV3OperationsClient object.
+     */
+    AssessedSqlInstanceV3OperationsClient getAssessedSqlInstanceV3Operations();
+
+    /**
+     * Gets the AssessedSqlMachinesV3OperationsClient object to access its operations.
+     * 
+     * @return the AssessedSqlMachinesV3OperationsClient object.
+     */
+    AssessedSqlMachinesV3OperationsClient getAssessedSqlMachinesV3Operations();
+
+    /**
+     * Gets the SqlAssessmentV3SummaryOperationsClient object to access its operations.
+     * 
+     * @return the SqlAssessmentV3SummaryOperationsClient object.
+     */
+    SqlAssessmentV3SummaryOperationsClient getSqlAssessmentV3SummaryOperations();
+
+    /**
+     * Gets the BusinessCaseOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCaseOperationsClient object.
+     */
+    BusinessCaseOperationsClient getBusinessCaseOperations();
+
+    /**
+     * Gets the BusinessCaseAvsSummaryOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCaseAvsSummaryOperationsClient object.
+     */
+    BusinessCaseAvsSummaryOperationsClient getBusinessCaseAvsSummaryOperations();
+
+    /**
+     * Gets the EvaluatedAvsMachinesOperationsClient object to access its operations.
+     * 
+     * @return the EvaluatedAvsMachinesOperationsClient object.
+     */
+    EvaluatedAvsMachinesOperationsClient getEvaluatedAvsMachinesOperations();
+
+    /**
+     * Gets the EvaluatedMachinesOperationsClient object to access its operations.
+     * 
+     * @return the EvaluatedMachinesOperationsClient object.
+     */
+    EvaluatedMachinesOperationsClient getEvaluatedMachinesOperations();
+
+    /**
+     * Gets the EvaluatedSqlEntitiesOperationsClient object to access its operations.
+     * 
+     * @return the EvaluatedSqlEntitiesOperationsClient object.
+     */
+    EvaluatedSqlEntitiesOperationsClient getEvaluatedSqlEntitiesOperations();
+
+    /**
+     * Gets the EvaluatedWebAppsOperationsClient object to access its operations.
+     * 
+     * @return the EvaluatedWebAppsOperationsClient object.
+     */
+    EvaluatedWebAppsOperationsClient getEvaluatedWebAppsOperations();
+
+    /**
+     * Gets the BusinessCaseIaasSummaryOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCaseIaasSummaryOperationsClient object.
+     */
+    BusinessCaseIaasSummaryOperationsClient getBusinessCaseIaasSummaryOperations();
+
+    /**
+     * Gets the BusinessCaseOverviewSummaryOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCaseOverviewSummaryOperationsClient object.
+     */
+    BusinessCaseOverviewSummaryOperationsClient getBusinessCaseOverviewSummaryOperations();
+
+    /**
+     * Gets the BusinessCasePaasSummaryOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCasePaasSummaryOperationsClient object.
+     */
+    BusinessCasePaasSummaryOperationsClient getBusinessCasePaasSummaryOperations();
+
+    /**
+     * Gets the WebAppGraphAssessmentOptionsOperationsClient object to access its operations.
+     * 
+     * @return the WebAppGraphAssessmentOptionsOperationsClient object.
+     */
+    WebAppGraphAssessmentOptionsOperationsClient getWebAppGraphAssessmentOptionsOperations();
+
+    /**
+     * Gets the WebAppAssessmentV3OperationsClient object to access its operations.
+     * 
+     * @return the WebAppAssessmentV3OperationsClient object.
+     */
+    WebAppAssessmentV3OperationsClient getWebAppAssessmentV3Operations();
+
+    /**
+     * Gets the AssessedWebAppsV3OperationsClient object to access its operations.
+     * 
+     * @return the AssessedWebAppsV3OperationsClient object.
+     */
+    AssessedWebAppsV3OperationsClient getAssessedWebAppsV3Operations();
+
+    /**
+     * Gets the WebAppAssessmentV3SummaryOperationsClient object to access its operations.
+     * 
+     * @return the WebAppAssessmentV3SummaryOperationsClient object.
+     */
+    WebAppAssessmentV3SummaryOperationsClient getWebAppAssessmentV3SummaryOperations();
+
+    /**
+     * Gets the WebAppServicePlansOperationsClient object to access its operations.
+     * 
+     * @return the WebAppServicePlansOperationsClient object.
+     */
+    WebAppServicePlansOperationsClient getWebAppServicePlansOperations();
+
+    /**
+     * Gets the CompoundAssessmentOperationsClient object to access its operations.
+     * 
+     * @return the CompoundAssessmentOperationsClient object.
+     */
+    CompoundAssessmentOperationsClient getCompoundAssessmentOperations();
+
+    /**
+     * Gets the CompoundAssessmentSummaryOperationsClient object to access its operations.
+     * 
+     * @return the CompoundAssessmentSummaryOperationsClient object.
+     */
+    CompoundAssessmentSummaryOperationsClient getCompoundAssessmentSummaryOperations();
+
+    /**
+     * Gets the AksOptionsOperationsClient object to access its operations.
+     * 
+     * @return the AksOptionsOperationsClient object.
+     */
+    AksOptionsOperationsClient getAksOptionsOperations();
+
+    /**
+     * Gets the AksAssessmentOperationsClient object to access its operations.
+     * 
+     * @return the AksAssessmentOperationsClient object.
+     */
+    AksAssessmentOperationsClient getAksAssessmentOperations();
+
+    /**
+     * Gets the AssessedWebApplicationOperationsClient object to access its operations.
+     * 
+     * @return the AssessedWebApplicationOperationsClient object.
+     */
+    AssessedWebApplicationOperationsClient getAssessedWebApplicationOperations();
+
+    /**
+     * Gets the AksClusterOperationsClient object to access its operations.
+     * 
+     * @return the AksClusterOperationsClient object.
+     */
+    AksClusterOperationsClient getAksClusterOperations();
+
+    /**
+     * Gets the AksCostDetailOperationsClient object to access its operations.
+     * 
+     * @return the AksCostDetailOperationsClient object.
+     */
+    AksCostDetailOperationsClient getAksCostDetailOperations();
+
+    /**
+     * Gets the AksSummaryOperationsClient object to access its operations.
+     * 
+     * @return the AksSummaryOperationsClient object.
+     */
+    AksSummaryOperationsClient getAksSummaryOperations();
+
+    /**
+     * Gets the HypervCollectorsOperationsClient object to access its operations.
+     * 
+     * @return the HypervCollectorsOperationsClient object.
+     */
+    HypervCollectorsOperationsClient getHypervCollectorsOperations();
+
+    /**
+     * Gets the ImportSqlCollectorOperationsClient object to access its operations.
+     * 
+     * @return the ImportSqlCollectorOperationsClient object.
+     */
+    ImportSqlCollectorOperationsClient getImportSqlCollectorOperations();
+
+    /**
+     * Gets the ImportCollectorsOperationsClient object to access its operations.
+     * 
+     * @return the ImportCollectorsOperationsClient object.
+     */
+    ImportCollectorsOperationsClient getImportCollectorsOperations();
+
+    /**
      * Gets the ServerCollectorsOperationsClient object to access its operations.
      * 
      * @return the ServerCollectorsOperationsClient object.
      */
     ServerCollectorsOperationsClient getServerCollectorsOperations();
-
-    /**
-     * Gets the SqlAssessmentOptionsOperationsClient object to access its operations.
-     * 
-     * @return the SqlAssessmentOptionsOperationsClient object.
-     */
-    SqlAssessmentOptionsOperationsClient getSqlAssessmentOptionsOperations();
 
     /**
      * Gets the SqlCollectorOperationsClient object to access its operations.
@@ -220,4 +388,11 @@ public interface MigrationAssessmentManagementClient {
      * @return the VmwareCollectorsOperationsClient object.
      */
     VmwareCollectorsOperationsClient getVmwareCollectorsOperations();
+
+    /**
+     * Gets the WebAppCollectorOperationsClient object to access its operations.
+     * 
+     * @return the WebAppCollectorOperationsClient object.
+     */
+    WebAppCollectorOperationsClient getWebAppCollectorOperations();
 }

@@ -239,12 +239,12 @@ public interface AssessmentProject {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The updatable properties of the AssessmentProject..
+             * Specifies the properties property: The resource-specific properties for this resource..
              * 
-             * @param properties The updatable properties of the AssessmentProject.
+             * @param properties The resource-specific properties for this resource.
              * @return the next definition stage.
              */
-            Update withProperties(AssessmentProjectUpdateProperties properties);
+            Update withProperties(ProjectProperties properties);
         }
     }
 

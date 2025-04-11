@@ -27,7 +27,7 @@ public interface AssessmentProjectSummaryOperationsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AssessmentProjectSummaryInner> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<AssessmentProjectSummaryInner> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List AssessmentProjectSummary resources by AssessmentProject.
@@ -42,7 +42,7 @@ public interface AssessmentProjectSummaryOperationsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AssessmentProjectSummaryInner> listByAssessmentProject(String resourceGroupName, String projectName,
+    PagedIterable<AssessmentProjectSummaryInner> listByParent(String resourceGroupName, String projectName,
         Context context);
 
     /**
@@ -50,7 +50,7 @@ public interface AssessmentProjectSummaryOperationsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -66,7 +66,7 @@ public interface AssessmentProjectSummaryOperationsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

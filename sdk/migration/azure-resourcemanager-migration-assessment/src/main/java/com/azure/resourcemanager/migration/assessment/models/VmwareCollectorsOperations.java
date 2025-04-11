@@ -22,7 +22,7 @@ public interface VmwareCollectorsOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a VmwareCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VmwareCollector> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<VmwareCollector> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List VmwareCollector resources by AssessmentProject.
@@ -35,8 +35,7 @@ public interface VmwareCollectorsOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a VmwareCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VmwareCollector> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<VmwareCollector> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a VmwareCollector.

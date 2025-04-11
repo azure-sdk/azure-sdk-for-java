@@ -7,6 +7,7 @@ package com.azure.resourcemanager.migration.assessment.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
@@ -16,7 +17,12 @@ import java.time.OffsetDateTime;
  * Collector properties class.
  */
 @Fluent
-public final class CollectorPropertiesBase extends AzureResourceProperties {
+public final class CollectorPropertiesBase implements JsonSerializable<CollectorPropertiesBase> {
+    /*
+     * The status of the last operation.
+     */
+    private ProvisioningState provisioningState;
+
     /*
      * Gets the discovery site id.
      */
@@ -36,6 +42,15 @@ public final class CollectorPropertiesBase extends AzureResourceProperties {
      * Creates an instance of CollectorPropertiesBase class.
      */
     public CollectorPropertiesBase() {
+    }
+
+    /**
+     * Get the provisioningState property: The status of the last operation.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -77,20 +92,10 @@ public final class CollectorPropertiesBase extends AzureResourceProperties {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CollectorPropertiesBase withProvisioningState(ProvisioningState provisioningState) {
-        super.withProvisioningState(provisioningState);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
     }
 
@@ -100,8 +105,6 @@ public final class CollectorPropertiesBase extends AzureResourceProperties {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("provisioningState",
-            provisioningState() == null ? null : provisioningState().toString());
         jsonWriter.writeStringField("discoverySiteId", this.discoverySiteId);
         return jsonWriter.writeEndObject();
     }
@@ -122,8 +125,8 @@ public final class CollectorPropertiesBase extends AzureResourceProperties {
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedCollectorPropertiesBase
-                        .withProvisioningState(ProvisioningState.fromString(reader.getString()));
+                    deserializedCollectorPropertiesBase.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else if ("discoverySiteId".equals(fieldName)) {
                     deserializedCollectorPropertiesBase.discoverySiteId = reader.getString();
                 } else if ("createdTimestamp".equals(fieldName)) {

@@ -66,7 +66,7 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/privateLinkResources")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PrivateLinkResourceListResult>> listByAssessmentProject(@HostParam("$host") String endpoint,
+        Mono<Response<PrivateLinkResourceListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("projectName") String projectName,
             @HeaderParam("Accept") String accept, Context context);
@@ -85,7 +85,7 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PrivateLinkResourceListResult>> listByAssessmentProjectNext(
+        Mono<Response<PrivateLinkResourceListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -102,8 +102,8 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateLinkResourceInner>>
-        listByAssessmentProjectSinglePageAsync(String resourceGroupName, String projectName) {
+    private Mono<PagedResponse<PrivateLinkResourceInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String projectName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -121,9 +121,8 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByAssessmentProject(this.client.getEndpoint(), this.client.getApiVersion(),
-                    this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context))
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context))
             .<PagedResponse<PrivateLinkResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -142,8 +141,8 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateLinkResourceInner>>
-        listByAssessmentProjectSinglePageAsync(String resourceGroupName, String projectName, Context context) {
+    private Mono<PagedResponse<PrivateLinkResourceInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String projectName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -162,8 +161,8 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByAssessmentProject(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context)
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, projectName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -179,10 +178,9 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
      * @return the response of a PrivateLinkResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateLinkResourceInner> listByAssessmentProjectAsync(String resourceGroupName,
-        String projectName) {
-        return new PagedFlux<>(() -> listByAssessmentProjectSinglePageAsync(resourceGroupName, projectName),
-            nextLink -> listByAssessmentProjectNextSinglePageAsync(nextLink));
+    private PagedFlux<PrivateLinkResourceInner> listByParentAsync(String resourceGroupName, String projectName) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, projectName),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -197,10 +195,10 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
      * @return the response of a PrivateLinkResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateLinkResourceInner> listByAssessmentProjectAsync(String resourceGroupName,
-        String projectName, Context context) {
-        return new PagedFlux<>(() -> listByAssessmentProjectSinglePageAsync(resourceGroupName, projectName, context),
-            nextLink -> listByAssessmentProjectNextSinglePageAsync(nextLink, context));
+    private PagedFlux<PrivateLinkResourceInner> listByParentAsync(String resourceGroupName, String projectName,
+        Context context) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, projectName, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -214,9 +212,8 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
      * @return the response of a PrivateLinkResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateLinkResourceInner> listByAssessmentProject(String resourceGroupName,
-        String projectName) {
-        return new PagedIterable<>(listByAssessmentProjectAsync(resourceGroupName, projectName));
+    public PagedIterable<PrivateLinkResourceInner> listByParent(String resourceGroupName, String projectName) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, projectName));
     }
 
     /**
@@ -231,9 +228,9 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
      * @return the response of a PrivateLinkResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateLinkResourceInner> listByAssessmentProject(String resourceGroupName, String projectName,
+    public PagedIterable<PrivateLinkResourceInner> listByParent(String resourceGroupName, String projectName,
         Context context) {
-        return new PagedIterable<>(listByAssessmentProjectAsync(resourceGroupName, projectName, context));
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, projectName, context));
     }
 
     /**
@@ -378,7 +375,7 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateLinkResourceInner>> listByAssessmentProjectNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<PrivateLinkResourceInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -388,8 +385,7 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByAssessmentProjectNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<PrivateLinkResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -407,7 +403,7 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateLinkResourceInner>> listByAssessmentProjectNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<PrivateLinkResourceInner>> listByParentNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -418,7 +414,7 @@ public final class PrivateLinkResourceOperationsClientImpl implements PrivateLin
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByAssessmentProjectNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

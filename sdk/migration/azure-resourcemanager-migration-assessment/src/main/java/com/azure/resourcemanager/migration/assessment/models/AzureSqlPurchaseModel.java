@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureSqlPurchaseModel.
+ * Azure Sql Purchase Model.
  */
 public final class AzureSqlPurchaseModel extends ExpandableStringEnum<AzureSqlPurchaseModel> {
     /**

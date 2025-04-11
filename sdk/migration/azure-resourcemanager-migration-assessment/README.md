@@ -2,7 +2,7 @@
 
 Azure Resource Manager Migration Assessment client library for Java.
 
-This package contains Microsoft Azure SDK for Migration Assessment Management SDK. Azure Migrate Resource Provider management API. Package tag package-2023-03. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for Migration Assessment Management SDK. Azure Migrate Resource Provider management API. Package tag package-preview-2024-03. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 

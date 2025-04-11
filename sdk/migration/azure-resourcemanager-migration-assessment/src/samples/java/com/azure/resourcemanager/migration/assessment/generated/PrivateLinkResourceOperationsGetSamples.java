@@ -10,15 +10,15 @@ package com.azure.resourcemanager.migration.assessment.generated;
 public final class PrivateLinkResourceOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * PrivateLinkResourceOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateLinkResourceOperations_Get_MaximumSet_Gen.
+     * Sample code: PrivateLinkResourceOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateLinkResourceOperationsGetMaximumSetGen(
+    public static void privateLinkResourceOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateLinkResourceOperations()
             .getWithResponse("sakanwar", "sakanwar1204project", "Default", com.azure.core.util.Context.NONE);

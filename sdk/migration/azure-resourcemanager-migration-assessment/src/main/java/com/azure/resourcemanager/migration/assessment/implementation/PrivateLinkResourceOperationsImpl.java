@@ -27,16 +27,16 @@ public final class PrivateLinkResourceOperationsImpl implements PrivateLinkResou
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<PrivateLinkResource> listByAssessmentProject(String resourceGroupName, String projectName) {
+    public PagedIterable<PrivateLinkResource> listByParent(String resourceGroupName, String projectName) {
         PagedIterable<PrivateLinkResourceInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName);
+            = this.serviceClient().listByParent(resourceGroupName, projectName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<PrivateLinkResource> listByAssessmentProject(String resourceGroupName, String projectName,
+    public PagedIterable<PrivateLinkResource> listByParent(String resourceGroupName, String projectName,
         Context context) {
         PagedIterable<PrivateLinkResourceInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName, context);
+            = this.serviceClient().listByParent(resourceGroupName, projectName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 

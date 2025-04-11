@@ -22,7 +22,7 @@ public interface HypervCollectorsOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a HypervCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<HypervCollector> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<HypervCollector> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List HypervCollector resources by AssessmentProject.
@@ -35,8 +35,7 @@ public interface HypervCollectorsOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a HypervCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<HypervCollector> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<HypervCollector> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a HypervCollector.

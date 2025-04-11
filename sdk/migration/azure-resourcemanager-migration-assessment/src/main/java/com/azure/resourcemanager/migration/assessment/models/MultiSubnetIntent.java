@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for MultiSubnetIntent.
+ * Multi Subnet Intent.
  */
 public final class MultiSubnetIntent extends ExpandableStringEnum<MultiSubnetIntent> {
     /**

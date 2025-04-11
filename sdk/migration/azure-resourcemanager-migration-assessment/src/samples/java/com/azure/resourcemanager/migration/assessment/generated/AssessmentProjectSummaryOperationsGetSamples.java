@@ -10,15 +10,15 @@ package com.azure.resourcemanager.migration.assessment.generated;
 public final class AssessmentProjectSummaryOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectSummaryOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectSummaryOperations_Get_MaximumSet_Gen.
+     * Sample code: AssessmentProjectSummaryOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectSummaryOperationsGetMaximumSetGen(
+    public static void assessmentProjectSummaryOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectSummaryOperations()
             .getWithResponse("piyushapp1", "PiyushApp15328project", "default", com.azure.core.util.Context.NONE);

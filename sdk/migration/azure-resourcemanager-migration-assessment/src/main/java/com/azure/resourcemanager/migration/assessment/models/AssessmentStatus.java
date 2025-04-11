@@ -52,6 +52,11 @@ public final class AssessmentStatus extends ExpandableStringEnum<AssessmentStatu
     public static final AssessmentStatus DELETED = fromString("Deleted");
 
     /**
+     * Static value Failed for AssessmentStatus.
+     */
+    public static final AssessmentStatus FAILED = fromString("Failed");
+
+    /**
      * Creates a new instance of AssessmentStatus value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

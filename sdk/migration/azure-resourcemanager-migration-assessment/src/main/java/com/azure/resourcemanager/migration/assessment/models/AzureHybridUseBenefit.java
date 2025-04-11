@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureHybridUseBenefit.
+ * Azure Hybrid Use Benefit.
  */
 public final class AzureHybridUseBenefit extends ExpandableStringEnum<AzureHybridUseBenefit> {
     /**

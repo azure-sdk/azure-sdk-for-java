@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for SqlFciMetadataState.
+ * Sql FCI Metadata State.
  */
 public final class SqlFciMetadataState extends ExpandableStringEnum<SqlFciMetadataState> {
     /**

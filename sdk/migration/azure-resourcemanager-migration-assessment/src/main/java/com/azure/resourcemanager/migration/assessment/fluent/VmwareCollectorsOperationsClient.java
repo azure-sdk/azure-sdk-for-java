@@ -28,7 +28,7 @@ public interface VmwareCollectorsOperationsClient {
      * @return the response of a VmwareCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VmwareCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<VmwareCollectorInner> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List VmwareCollector resources by AssessmentProject.
@@ -42,8 +42,7 @@ public interface VmwareCollectorsOperationsClient {
      * @return the response of a VmwareCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VmwareCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<VmwareCollectorInner> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a VmwareCollector.

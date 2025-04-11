@@ -312,6 +312,41 @@ public final class AzureLocation extends ExpandableStringEnum<AzureLocation> {
     public static final AzureLocation QATAR_CENTRAL = fromString("QatarCentral");
 
     /**
+     * Static value JioIndiaWest for AzureLocation.
+     */
+    public static final AzureLocation JIO_INDIA_WEST = fromString("JioIndiaWest");
+
+    /**
+     * Static value ItalyNorth for AzureLocation.
+     */
+    public static final AzureLocation ITALY_NORTH = fromString("ItalyNorth");
+
+    /**
+     * Static value PolandCentral for AzureLocation.
+     */
+    public static final AzureLocation POLAND_CENTRAL = fromString("PolandCentral");
+
+    /**
+     * Static value IsraelCentral for AzureLocation.
+     */
+    public static final AzureLocation ISRAEL_CENTRAL = fromString("IsraelCentral");
+
+    /**
+     * Static value MexicoCentral for AzureLocation.
+     */
+    public static final AzureLocation MEXICO_CENTRAL = fromString("MexicoCentral");
+
+    /**
+     * Static value NewZealandNorth for AzureLocation.
+     */
+    public static final AzureLocation NEW_ZEALAND_NORTH = fromString("NewZealandNorth");
+
+    /**
+     * Static value SpainCentral for AzureLocation.
+     */
+    public static final AzureLocation SPAIN_CENTRAL = fromString("SpainCentral");
+
+    /**
      * Creates a new instance of AzureLocation value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for SkuReplicationMode.
+ * Sku Replication Mode.
  */
 public final class SkuReplicationMode extends ExpandableStringEnum<SkuReplicationMode> {
     /**

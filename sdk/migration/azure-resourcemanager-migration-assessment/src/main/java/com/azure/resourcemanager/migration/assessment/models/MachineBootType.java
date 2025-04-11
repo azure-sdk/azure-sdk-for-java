@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for MachineBootType.
+ * Machine Boot Type.
  */
 public final class MachineBootType extends ExpandableStringEnum<MachineBootType> {
     /**

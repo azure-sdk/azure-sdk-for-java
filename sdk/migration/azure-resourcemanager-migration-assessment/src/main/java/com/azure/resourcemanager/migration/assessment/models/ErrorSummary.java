@@ -19,7 +19,7 @@ public final class ErrorSummary implements JsonSerializable<ErrorSummary> {
     /*
      * Gets the assessment type.
      */
-    private AssessmentType assessmentType;
+    private String assessmentType;
 
     /*
      * Gets the affected entity count.
@@ -37,7 +37,7 @@ public final class ErrorSummary implements JsonSerializable<ErrorSummary> {
      * 
      * @return the assessmentType value.
      */
-    public AssessmentType assessmentType() {
+    public String assessmentType() {
         return this.assessmentType;
     }
 
@@ -83,7 +83,7 @@ public final class ErrorSummary implements JsonSerializable<ErrorSummary> {
                 reader.nextToken();
 
                 if ("assessmentType".equals(fieldName)) {
-                    deserializedErrorSummary.assessmentType = AssessmentType.fromString(reader.getString());
+                    deserializedErrorSummary.assessmentType = reader.getString();
                 } else if ("count".equals(fieldName)) {
                     deserializedErrorSummary.count = reader.getNullable(JsonReader::getInt);
                 } else {

@@ -7,7 +7,6 @@ package com.azure.resourcemanager.migration.assessment.generated;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentSpnPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBaseWithAgent;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import java.time.OffsetDateTime;
 
 /**
@@ -16,20 +15,20 @@ import java.time.OffsetDateTime;
 public final class HypervCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * HypervCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: HypervCollectorsOperations_Create_MaximumSet_Gen.
+     * Sample code: HypervCollectorsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void hypervCollectorsOperationsCreateMaximumSetGen(
+    public static void hypervCollectorsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.hypervCollectorsOperations()
             .define("test-697cecollector")
             .withExistingAssessmentProject("ayagrawRG", "app18700project")
-            .withProperties(new CollectorPropertiesBaseWithAgent().withProvisioningState(ProvisioningState.SUCCEEDED)
+            .withProperties(new CollectorPropertiesBaseWithAgent()
                 .withAgentProperties(new CollectorAgentPropertiesBase().withId("12f1d90f-b3fa-4926-8893-e56803a09af0")
                     .withVersion("2.0.1993.19")
                     .withLastHeartbeatUtc(OffsetDateTime.parse("2022-07-07T14:25:35.708325Z"))

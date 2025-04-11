@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for EnvironmentType.
+ * Environment Type.
  */
 public final class EnvironmentType extends ExpandableStringEnum<EnvironmentType> {
     /**
@@ -17,9 +17,14 @@ public final class EnvironmentType extends ExpandableStringEnum<EnvironmentType>
     public static final EnvironmentType PRODUCTION = fromString("Production");
 
     /**
-     * Static value Test for EnvironmentType.
+     * Static value Unknown for EnvironmentType.
      */
-    public static final EnvironmentType TEST = fromString("Test");
+    public static final EnvironmentType UNKNOWN = fromString("Unknown");
+
+    /**
+     * Static value DevTest for EnvironmentType.
+     */
+    public static final EnvironmentType DEV_TEST = fromString("DevTest");
 
     /**
      * Creates a new instance of EnvironmentType value.

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureSqlInstanceType.
+ * Azure Sql Instance Type.
  */
 public final class AzureSqlInstanceType extends ExpandableStringEnum<AzureSqlInstanceType> {
     /**

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.migration.assessment.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
@@ -16,7 +17,12 @@ import java.time.OffsetDateTime;
  * Collector properties class.
  */
 @Fluent
-public final class CollectorPropertiesBaseWithAgent extends AzureResourceProperties {
+public final class CollectorPropertiesBaseWithAgent implements JsonSerializable<CollectorPropertiesBaseWithAgent> {
+    /*
+     * The status of the last operation.
+     */
+    private ProvisioningState provisioningState;
+
     /*
      * Gets or sets the collector agent properties.
      */
@@ -41,6 +47,15 @@ public final class CollectorPropertiesBaseWithAgent extends AzureResourcePropert
      * Creates an instance of CollectorPropertiesBaseWithAgent class.
      */
     public CollectorPropertiesBaseWithAgent() {
+    }
+
+    /**
+     * Get the provisioningState property: The status of the last operation.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -102,20 +117,10 @@ public final class CollectorPropertiesBaseWithAgent extends AzureResourcePropert
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CollectorPropertiesBaseWithAgent withProvisioningState(ProvisioningState provisioningState) {
-        super.withProvisioningState(provisioningState);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
         if (agentProperties() != null) {
             agentProperties().validate();
@@ -128,8 +133,6 @@ public final class CollectorPropertiesBaseWithAgent extends AzureResourcePropert
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("provisioningState",
-            provisioningState() == null ? null : provisioningState().toString());
         jsonWriter.writeJsonField("agentProperties", this.agentProperties);
         jsonWriter.writeStringField("discoverySiteId", this.discoverySiteId);
         return jsonWriter.writeEndObject();
@@ -152,8 +155,8 @@ public final class CollectorPropertiesBaseWithAgent extends AzureResourcePropert
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedCollectorPropertiesBaseWithAgent
-                        .withProvisioningState(ProvisioningState.fromString(reader.getString()));
+                    deserializedCollectorPropertiesBaseWithAgent.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else if ("agentProperties".equals(fieldName)) {
                     deserializedCollectorPropertiesBaseWithAgent.agentProperties
                         = CollectorAgentPropertiesBase.fromJson(reader);

@@ -74,7 +74,7 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/vmwarecollectors")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VmwareCollectorListResult>> listByAssessmentProject(@HostParam("$host") String endpoint,
+        Mono<Response<VmwareCollectorListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("projectName") String projectName,
             @HeaderParam("Accept") String accept, Context context);
@@ -114,7 +114,7 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VmwareCollectorListResult>> listByAssessmentProjectNext(
+        Mono<Response<VmwareCollectorListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -131,7 +131,7 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VmwareCollectorInner>> listByAssessmentProjectSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<VmwareCollectorInner>> listByParentSinglePageAsync(String resourceGroupName,
         String projectName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -150,9 +150,8 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByAssessmentProject(this.client.getEndpoint(), this.client.getApiVersion(),
-                    this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context))
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context))
             .<PagedResponse<VmwareCollectorInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -171,7 +170,7 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VmwareCollectorInner>> listByAssessmentProjectSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<VmwareCollectorInner>> listByParentSinglePageAsync(String resourceGroupName,
         String projectName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -191,8 +190,8 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByAssessmentProject(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context)
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, projectName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -208,9 +207,9 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
      * @return the response of a VmwareCollector list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VmwareCollectorInner> listByAssessmentProjectAsync(String resourceGroupName, String projectName) {
-        return new PagedFlux<>(() -> listByAssessmentProjectSinglePageAsync(resourceGroupName, projectName),
-            nextLink -> listByAssessmentProjectNextSinglePageAsync(nextLink));
+    private PagedFlux<VmwareCollectorInner> listByParentAsync(String resourceGroupName, String projectName) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, projectName),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -225,10 +224,10 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
      * @return the response of a VmwareCollector list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VmwareCollectorInner> listByAssessmentProjectAsync(String resourceGroupName, String projectName,
+    private PagedFlux<VmwareCollectorInner> listByParentAsync(String resourceGroupName, String projectName,
         Context context) {
-        return new PagedFlux<>(() -> listByAssessmentProjectSinglePageAsync(resourceGroupName, projectName, context),
-            nextLink -> listByAssessmentProjectNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, projectName, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -242,8 +241,8 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
      * @return the response of a VmwareCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VmwareCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName) {
-        return new PagedIterable<>(listByAssessmentProjectAsync(resourceGroupName, projectName));
+    public PagedIterable<VmwareCollectorInner> listByParent(String resourceGroupName, String projectName) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, projectName));
     }
 
     /**
@@ -258,9 +257,9 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
      * @return the response of a VmwareCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VmwareCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName,
+    public PagedIterable<VmwareCollectorInner> listByParent(String resourceGroupName, String projectName,
         Context context) {
-        return new PagedIterable<>(listByAssessmentProjectAsync(resourceGroupName, projectName, context));
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, projectName, context));
     }
 
     /**
@@ -788,7 +787,7 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VmwareCollectorInner>> listByAssessmentProjectNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<VmwareCollectorInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -798,8 +797,7 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByAssessmentProjectNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<VmwareCollectorInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -817,7 +815,7 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VmwareCollectorInner>> listByAssessmentProjectNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<VmwareCollectorInner>> listByParentNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -828,7 +826,7 @@ public final class VmwareCollectorsOperationsClientImpl implements VmwareCollect
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByAssessmentProjectNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

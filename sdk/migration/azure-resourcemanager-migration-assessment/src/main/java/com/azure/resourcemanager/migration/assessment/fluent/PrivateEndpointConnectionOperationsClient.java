@@ -29,7 +29,7 @@ public interface PrivateEndpointConnectionOperationsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateEndpointConnectionInner> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<PrivateEndpointConnectionInner> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List PrivateEndpointConnection resources by AssessmentProject.
@@ -44,7 +44,7 @@ public interface PrivateEndpointConnectionOperationsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateEndpointConnectionInner> listByAssessmentProject(String resourceGroupName, String projectName,
+    PagedIterable<PrivateEndpointConnectionInner> listByParent(String resourceGroupName, String projectName,
         Context context);
 
     /**

@@ -23,7 +23,7 @@ public interface AssessmentProjectSummaryOperations {
      * @return the response of a AssessmentProjectSummary list operation as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<AssessmentProjectSummary> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<AssessmentProjectSummary> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List AssessmentProjectSummary resources by AssessmentProject.
@@ -37,15 +37,14 @@ public interface AssessmentProjectSummaryOperations {
      * @return the response of a AssessmentProjectSummary list operation as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<AssessmentProjectSummary> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<AssessmentProjectSummary> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a AssessmentProjectSummary.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -60,7 +59,7 @@ public interface AssessmentProjectSummaryOperations {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for ComputeTier.
+ * Compute Tier.
  */
 public final class ComputeTier extends ExpandableStringEnum<ComputeTier> {
     /**

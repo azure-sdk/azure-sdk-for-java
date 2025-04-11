@@ -10,7 +10,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.migration.assessment.fluent.models.AssessmentProjectInner;
 import com.azure.resourcemanager.migration.assessment.models.AssessmentProject;
 import com.azure.resourcemanager.migration.assessment.models.AssessmentProjectUpdate;
-import com.azure.resourcemanager.migration.assessment.models.AssessmentProjectUpdateProperties;
 import com.azure.resourcemanager.migration.assessment.models.ProjectProperties;
 import java.util.Collections;
 import java.util.Map;
@@ -170,13 +169,13 @@ public final class AssessmentProjectImpl
     }
 
     public AssessmentProjectImpl withProperties(ProjectProperties properties) {
-        this.innerModel().withProperties(properties);
-        return this;
-    }
-
-    public AssessmentProjectImpl withProperties(AssessmentProjectUpdateProperties properties) {
-        this.updateProperties.withProperties(properties);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withProperties(properties);
+            return this;
+        } else {
+            this.updateProperties.withProperties(properties);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {

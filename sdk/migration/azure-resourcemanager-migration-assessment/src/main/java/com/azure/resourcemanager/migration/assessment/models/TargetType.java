@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for TargetType.
+ * Target Type.
  */
 public final class TargetType extends ExpandableStringEnum<TargetType> {
     /**

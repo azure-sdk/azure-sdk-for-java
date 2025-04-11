@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for SqlMigrationGuidelineCategory.
+ * Sql Migration Guideline Category.
  */
 public final class SqlMigrationGuidelineCategory extends ExpandableStringEnum<SqlMigrationGuidelineCategory> {
     /**

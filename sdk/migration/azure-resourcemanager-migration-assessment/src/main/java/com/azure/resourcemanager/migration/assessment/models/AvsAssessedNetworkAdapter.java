@@ -33,11 +33,16 @@ public final class AvsAssessedNetworkAdapter implements JsonSerializable<AvsAsse
     private String displayName;
 
     /*
-     * Gets the Received data for Network Adapter in MB/s.
+     * Gets the name of the network adapter.
+     */
+    private String name;
+
+    /*
+     * Gets the Recieved data for Network Adapter in MB/s.
      * This value is
      * the percentile of historical data based on options selected in Assessment.
      */
-    private Float megabytesPerSecondReceived;
+    private Float megabytesPerSecondRecieved;
 
     /*
      * Gets the Transmitted data for Network Adapter in MB/s.
@@ -80,14 +85,23 @@ public final class AvsAssessedNetworkAdapter implements JsonSerializable<AvsAsse
     }
 
     /**
-     * Get the megabytesPerSecondReceived property: Gets the Received data for Network Adapter in MB/s.
+     * Get the name property: Gets the name of the network adapter.
+     * 
+     * @return the name value.
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the megabytesPerSecondRecieved property: Gets the Recieved data for Network Adapter in MB/s.
      * This value is
      * the percentile of historical data based on options selected in Assessment.
      * 
-     * @return the megabytesPerSecondReceived value.
+     * @return the megabytesPerSecondRecieved value.
      */
-    public Float megabytesPerSecondReceived() {
-        return this.megabytesPerSecondReceived;
+    public Float megabytesPerSecondRecieved() {
+        return this.megabytesPerSecondRecieved;
     }
 
     /**
@@ -140,8 +154,10 @@ public final class AvsAssessedNetworkAdapter implements JsonSerializable<AvsAsse
                     deserializedAvsAssessedNetworkAdapter.ipAddresses = ipAddresses;
                 } else if ("displayName".equals(fieldName)) {
                     deserializedAvsAssessedNetworkAdapter.displayName = reader.getString();
-                } else if ("megabytesPerSecondReceived".equals(fieldName)) {
-                    deserializedAvsAssessedNetworkAdapter.megabytesPerSecondReceived
+                } else if ("name".equals(fieldName)) {
+                    deserializedAvsAssessedNetworkAdapter.name = reader.getString();
+                } else if ("megabytesPerSecondRecieved".equals(fieldName)) {
+                    deserializedAvsAssessedNetworkAdapter.megabytesPerSecondRecieved
                         = reader.getNullable(JsonReader::getFloat);
                 } else if ("megabytesPerSecondTransmitted".equals(fieldName)) {
                     deserializedAvsAssessedNetworkAdapter.megabytesPerSecondTransmitted

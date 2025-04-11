@@ -22,7 +22,7 @@ public interface PrivateLinkResourceOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a PrivateLinkResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<PrivateLinkResource> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<PrivateLinkResource> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List PrivateLinkResource resources by AssessmentProject.
@@ -35,8 +35,7 @@ public interface PrivateLinkResourceOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a PrivateLinkResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<PrivateLinkResource> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<PrivateLinkResource> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a PrivateLinkResource.

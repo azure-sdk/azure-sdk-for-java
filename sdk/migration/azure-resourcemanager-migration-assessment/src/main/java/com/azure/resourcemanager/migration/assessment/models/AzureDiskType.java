@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureDiskType.
+ * Azure Disk Type.
  */
 public final class AzureDiskType extends ExpandableStringEnum<AzureDiskType> {
     /**
