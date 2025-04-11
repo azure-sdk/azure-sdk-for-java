@@ -15,7 +15,7 @@ import java.io.IOException;
  * Element containing the text for translation.
  */
 @Immutable
-public class InputTextItem implements JsonSerializable<InputTextItem> {
+public final class InputTextItem implements JsonSerializable<InputTextItem> {
 
     /*
      * Text to translate.
