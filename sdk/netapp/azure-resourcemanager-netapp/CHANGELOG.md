@@ -1,14 +1,202 @@
 # Release History
 
-## 1.7.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-11)
 
-### Features Added
+- Azure Resource Manager NetAppFiles client library for Java. This package contains Microsoft Azure SDK for NetAppFiles Management SDK. Microsoft NetApp Files Azure Resource Provider specification. Package tag package-2025-01-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.SubscriptionQuotaItem` was removed
 
-### Other Changes
+#### `models.SubscriptionQuotaItemList` was removed
+
+#### `models.Volume$Definition` was modified
+
+* `withIsRestoring(java.lang.Boolean)` was removed
+
+#### `models.ReplicationObject` was modified
+
+* `withEndpointType(models.EndpointType)` was removed
+
+#### `models.VolumeGroupVolumeProperties` was modified
+
+* `withIsRestoring(java.lang.Boolean)` was removed
+
+#### `models.NetAppResourceQuotaLimits` was modified
+
+* `models.SubscriptionQuotaItem get(java.lang.String,java.lang.String)` -> `models.QuotaItem get(java.lang.String,java.lang.String)`
+
+### Features Added
+
+* `models.BucketPatch` was added
+
+* `models.AcceptGrowCapacityPoolForShortTermCloneSplit` was added
+
+* `models.QuotaItemList` was added
+
+* `models.LdapConfiguration` was added
+
+* `models.Bucket$DefinitionStages` was added
+
+* `models.ListQuotaReportResponse` was added
+
+* `models.NetAppResourceUsages` was added
+
+* `models.BucketServerProperties` was added
+
+* `models.LdapServerType` was added
+
+* `models.VolumeLanguage` was added
+
+* `models.UsagesListResult` was added
+
+* `models.MultiAdStatus` was added
+
+* `models.UsageResult` was added
+
+* `models.ReplicationType` was added
+
+* `models.Bucket$Definition` was added
+
+* `models.Bucket` was added
+
+* `models.NfsUser` was added
+
+* `models.BucketGenerateCredentials` was added
+
+* `models.BucketCredentialsExpiry` was added
+
+* `models.NetAppResourceQuotaLimitsAccounts` was added
+
+* `models.UsageName` was added
+
+* `models.Bucket$Update` was added
+
+* `models.CifsUser` was added
+
+* `models.QuotaReport` was added
+
+* `models.DestinationReplication` was added
+
+* `models.BucketServerPatchProperties` was added
+
+* `models.CredentialsStatus` was added
+
+* `models.BucketList` was added
+
+* `models.QuotaItem` was added
+
+* `models.ExternalReplicationSetupStatus` was added
+
+* `models.Bucket$UpdateStages` was added
+
+* `models.Buckets` was added
+
+* `models.FileSystemUser` was added
+
+* `models.NetappProvisioningState` was added
+
+#### `models.NetAppAccount$Definition` was modified
+
+* `withNfsV4IdDomain(java.lang.String)` was added
+* `withLdapConfiguration(models.LdapConfiguration)` was added
+
+#### `models.CapacityPool$Update` was modified
+
+* `withCustomThroughputMibps(java.lang.Float)` was added
+
+#### `models.Backup` was modified
+
+* `snapshotCreationDate()` was added
+* `completionDate()` was added
+* `isLargeVolume()` was added
+
+#### `models.CapacityPool` was modified
+
+* `customThroughputMibps()` was added
+
+#### `models.Volume$Definition` was modified
+
+* `withLdapServerType(models.LdapServerType)` was added
+* `withAcceptGrowCapacityPoolForShortTermCloneSplit(models.AcceptGrowCapacityPoolForShortTermCloneSplit)` was added
+* `withLanguage(models.VolumeLanguage)` was added
+
+#### `models.OperationListResult` was modified
+
+* `nextLink()` was added
+
+#### `models.ReplicationObject` was modified
+
+* `destinationReplications()` was added
+* `externalReplicationSetupInfo()` was added
+* `externalReplicationSetupStatus()` was added
+
+#### `models.NetAppAccountPatch` was modified
+
+* `ldapConfiguration()` was added
+* `nfsV4IdDomain()` was added
+* `withLdapConfiguration(models.LdapConfiguration)` was added
+* `multiAdStatus()` was added
+* `withNfsV4IdDomain(java.lang.String)` was added
+
+#### `models.NetAppAccount$Update` was modified
+
+* `withNfsV4IdDomain(java.lang.String)` was added
+* `withLdapConfiguration(models.LdapConfiguration)` was added
+
+#### `models.CapacityPoolPatch` was modified
+
+* `customThroughputMibps()` was added
+* `withCustomThroughputMibps(java.lang.Float)` was added
+
+#### `models.VolumeGroupVolumeProperties` was modified
+
+* `withLdapServerType(models.LdapServerType)` was added
+* `withAcceptGrowCapacityPoolForShortTermCloneSplit(models.AcceptGrowCapacityPoolForShortTermCloneSplit)` was added
+* `language()` was added
+* `acceptGrowCapacityPoolForShortTermCloneSplit()` was added
+* `inheritedSizeInBytes()` was added
+* `withLanguage(models.VolumeLanguage)` was added
+* `ldapServerType()` was added
+
+#### `models.Volume` was modified
+
+* `splitCloneFromParent(com.azure.core.util.Context)` was added
+* `language()` was added
+* `splitCloneFromParent()` was added
+* `listQuotaReport()` was added
+* `inheritedSizeInBytes()` was added
+* `ldapServerType()` was added
+* `listQuotaReport(com.azure.core.util.Context)` was added
+* `acceptGrowCapacityPoolForShortTermCloneSplit()` was added
+
+#### `models.CapacityPool$Definition` was modified
+
+* `withCustomThroughputMibps(java.lang.Float)` was added
+
+#### `NetAppFilesManager` was modified
+
+* `netAppResourceUsages()` was added
+* `buckets()` was added
+* `netAppResourceQuotaLimitsAccounts()` was added
+
+#### `models.EncryptionIdentity` was modified
+
+* `withFederatedClientId(java.lang.String)` was added
+* `federatedClientId()` was added
+
+#### `models.Volumes` was modified
+
+* `splitCloneFromParent(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `splitCloneFromParent(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listQuotaReport(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `listQuotaReport(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.NetAppAccount` was modified
+
+* `nfsV4IdDomain()` was added
+* `ldapConfiguration()` was added
+* `multiAdStatus()` was added
 
 ## 1.6.0 (2025-02-21)
 
