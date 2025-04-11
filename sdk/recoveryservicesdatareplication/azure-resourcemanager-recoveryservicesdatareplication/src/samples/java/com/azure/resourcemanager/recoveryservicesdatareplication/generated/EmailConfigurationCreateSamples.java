@@ -13,19 +13,19 @@ import java.util.Arrays;
 public final class EmailConfigurationCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/EmailConfiguration_Create.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/EmailConfiguration_Create.json
      */
     /**
-     * Sample code: EmailConfiguration_Create.
+     * Sample code: Creates email configuration settings.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void emailConfigurationCreate(
+    public static void createsEmailConfigurationSettings(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.emailConfigurations()
             .define("0")
-            .withExistingReplicationVault("rgrecoveryservicesdatareplication", "4")
+            .withExistingReplicationVault("rgswagger_2024-09-01", "4")
             .withProperties(new EmailConfigurationModelProperties().withSendToOwners(true)
                 .withCustomEmailAddresses(Arrays.asList("ketvbducyailcny"))
                 .withLocale("vpnjxjvdqtebnucyxiyrjiko"))

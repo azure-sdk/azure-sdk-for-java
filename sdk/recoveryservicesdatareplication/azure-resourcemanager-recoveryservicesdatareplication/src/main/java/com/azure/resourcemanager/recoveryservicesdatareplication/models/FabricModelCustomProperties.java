@@ -17,7 +17,7 @@ import java.io.IOException;
 @Immutable
 public class FabricModelCustomProperties implements JsonSerializable<FabricModelCustomProperties> {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for FabricModelCustomProperties.
      */
     private String instanceType = "FabricModelCustomProperties";
 
@@ -28,7 +28,7 @@ public class FabricModelCustomProperties implements JsonSerializable<FabricModel
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for FabricModelCustomProperties.
      * 
      * @return the instanceType value.
      */

@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class VaultDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Vault_Delete.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Vault_Delete.json
      */
     /**
-     * Sample code: Vault_Delete.
+     * Sample code: Deletes the vault.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void vaultDelete(
+    public static void deletesTheVault(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.vaults().delete("rgrecoveryservicesdatareplication", "4", com.azure.core.util.Context.NONE);
     }

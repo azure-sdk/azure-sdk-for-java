@@ -5,11 +5,11 @@
 package com.azure.resourcemanager.recoveryservicesdatareplication.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.FabricModelInner;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricModel;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricModelProperties;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricModelSystemData;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricModelUpdate;
 import java.util.Collections;
 import java.util.Map;
@@ -48,7 +48,7 @@ public final class FabricModelImpl implements FabricModel, FabricModel.Definitio
         return this.innerModel().properties();
     }
 
-    public FabricModelSystemData systemData() {
+    public SystemData systemData() {
         return this.innerModel().systemData();
     }
 
@@ -156,22 +156,22 @@ public final class FabricModelImpl implements FabricModel, FabricModel.Definitio
         return this;
     }
 
-    public FabricModelImpl withProperties(FabricModelProperties properties) {
-        if (isInCreateMode()) {
-            this.innerModel().withProperties(properties);
-            return this;
-        } else {
-            this.updateBody.withProperties(properties);
-            return this;
-        }
-    }
-
     public FabricModelImpl withTags(Map<String, String> tags) {
         if (isInCreateMode()) {
             this.innerModel().withTags(tags);
             return this;
         } else {
             this.updateBody.withTags(tags);
+            return this;
+        }
+    }
+
+    public FabricModelImpl withProperties(FabricModelProperties properties) {
+        if (isInCreateMode()) {
+            this.innerModel().withProperties(properties);
+            return this;
+        } else {
+            this.updateBody.withProperties(properties);
             return this;
         }
     }

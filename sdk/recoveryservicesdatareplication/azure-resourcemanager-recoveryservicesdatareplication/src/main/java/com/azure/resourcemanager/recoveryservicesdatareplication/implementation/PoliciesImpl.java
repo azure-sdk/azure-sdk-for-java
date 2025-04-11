@@ -27,6 +27,16 @@ public final class PoliciesImpl implements Policies {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<PolicyModel> list(String resourceGroupName, String vaultName) {
+        PagedIterable<PolicyModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PolicyModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PolicyModel> list(String resourceGroupName, String vaultName, Context context) {
+        PagedIterable<PolicyModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PolicyModelImpl(inner1, this.manager()));
+    }
+
     public Response<PolicyModel> getWithResponse(String resourceGroupName, String vaultName, String policyName,
         Context context) {
         Response<PolicyModelInner> inner
@@ -54,16 +64,6 @@ public final class PoliciesImpl implements Policies {
 
     public void delete(String resourceGroupName, String vaultName, String policyName, Context context) {
         this.serviceClient().delete(resourceGroupName, vaultName, policyName, context);
-    }
-
-    public PagedIterable<PolicyModel> list(String resourceGroupName, String vaultName) {
-        PagedIterable<PolicyModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PolicyModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<PolicyModel> list(String resourceGroupName, String vaultName, Context context) {
-        PagedIterable<PolicyModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PolicyModelImpl(inner1, this.manager()));
     }
 
     public PolicyModel getById(String id) {

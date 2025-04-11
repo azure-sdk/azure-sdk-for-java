@@ -4,11 +4,11 @@
 
 package com.azure.resourcemanager.recoveryservicesdatareplication.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.PolicyModelInner;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.PolicyModel;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.PolicyModelProperties;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.PolicyModelSystemData;
 
 public final class PolicyModelImpl implements PolicyModel, PolicyModel.Definition {
     private PolicyModelInner innerObject;
@@ -37,7 +37,7 @@ public final class PolicyModelImpl implements PolicyModel, PolicyModel.Definitio
         return this.innerModel().properties();
     }
 
-    public PolicyModelSystemData systemData() {
+    public SystemData systemData() {
         return this.innerModel().systemData();
     }
 

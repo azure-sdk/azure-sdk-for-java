@@ -42,6 +42,16 @@ public final class HyperVToAzStackHciNicInput implements JsonSerializable<HyperV
      */
     private VMNicSelection selectionTypeForFailover;
 
+    /*
+     * Gets or sets a value indicating whether static ip migration is enabled.
+     */
+    private Boolean isStaticIpMigrationEnabled;
+
+    /*
+     * Gets or sets a value indicating whether mac address migration is enabled.
+     */
+    private Boolean isMacMigrationEnabled;
+
     /**
      * Creates an instance of HyperVToAzStackHciNicInput class.
      */
@@ -138,6 +148,48 @@ public final class HyperVToAzStackHciNicInput implements JsonSerializable<HyperV
     }
 
     /**
+     * Get the isStaticIpMigrationEnabled property: Gets or sets a value indicating whether static ip migration is
+     * enabled.
+     * 
+     * @return the isStaticIpMigrationEnabled value.
+     */
+    public Boolean isStaticIpMigrationEnabled() {
+        return this.isStaticIpMigrationEnabled;
+    }
+
+    /**
+     * Set the isStaticIpMigrationEnabled property: Gets or sets a value indicating whether static ip migration is
+     * enabled.
+     * 
+     * @param isStaticIpMigrationEnabled the isStaticIpMigrationEnabled value to set.
+     * @return the HyperVToAzStackHciNicInput object itself.
+     */
+    public HyperVToAzStackHciNicInput withIsStaticIpMigrationEnabled(Boolean isStaticIpMigrationEnabled) {
+        this.isStaticIpMigrationEnabled = isStaticIpMigrationEnabled;
+        return this;
+    }
+
+    /**
+     * Get the isMacMigrationEnabled property: Gets or sets a value indicating whether mac address migration is enabled.
+     * 
+     * @return the isMacMigrationEnabled value.
+     */
+    public Boolean isMacMigrationEnabled() {
+        return this.isMacMigrationEnabled;
+    }
+
+    /**
+     * Set the isMacMigrationEnabled property: Gets or sets a value indicating whether mac address migration is enabled.
+     * 
+     * @param isMacMigrationEnabled the isMacMigrationEnabled value to set.
+     * @return the HyperVToAzStackHciNicInput object itself.
+     */
+    public HyperVToAzStackHciNicInput withIsMacMigrationEnabled(Boolean isMacMigrationEnabled) {
+        this.isMacMigrationEnabled = isMacMigrationEnabled;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -147,16 +199,6 @@ public final class HyperVToAzStackHciNicInput implements JsonSerializable<HyperV
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property nicId in model HyperVToAzStackHciNicInput"));
-        }
-        if (targetNetworkId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property targetNetworkId in model HyperVToAzStackHciNicInput"));
-        }
-        if (testNetworkId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property testNetworkId in model HyperVToAzStackHciNicInput"));
         }
         if (selectionTypeForFailover() == null) {
             throw LOGGER.atError()
@@ -174,10 +216,12 @@ public final class HyperVToAzStackHciNicInput implements JsonSerializable<HyperV
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("nicId", this.nicId);
-        jsonWriter.writeStringField("targetNetworkId", this.targetNetworkId);
-        jsonWriter.writeStringField("testNetworkId", this.testNetworkId);
         jsonWriter.writeStringField("selectionTypeForFailover",
             this.selectionTypeForFailover == null ? null : this.selectionTypeForFailover.toString());
+        jsonWriter.writeStringField("targetNetworkId", this.targetNetworkId);
+        jsonWriter.writeStringField("testNetworkId", this.testNetworkId);
+        jsonWriter.writeBooleanField("isStaticIpMigrationEnabled", this.isStaticIpMigrationEnabled);
+        jsonWriter.writeBooleanField("isMacMigrationEnabled", this.isMacMigrationEnabled);
         return jsonWriter.writeEndObject();
     }
 
@@ -199,15 +243,21 @@ public final class HyperVToAzStackHciNicInput implements JsonSerializable<HyperV
 
                 if ("nicId".equals(fieldName)) {
                     deserializedHyperVToAzStackHciNicInput.nicId = reader.getString();
-                } else if ("targetNetworkId".equals(fieldName)) {
-                    deserializedHyperVToAzStackHciNicInput.targetNetworkId = reader.getString();
-                } else if ("testNetworkId".equals(fieldName)) {
-                    deserializedHyperVToAzStackHciNicInput.testNetworkId = reader.getString();
                 } else if ("selectionTypeForFailover".equals(fieldName)) {
                     deserializedHyperVToAzStackHciNicInput.selectionTypeForFailover
                         = VMNicSelection.fromString(reader.getString());
                 } else if ("networkName".equals(fieldName)) {
                     deserializedHyperVToAzStackHciNicInput.networkName = reader.getString();
+                } else if ("targetNetworkId".equals(fieldName)) {
+                    deserializedHyperVToAzStackHciNicInput.targetNetworkId = reader.getString();
+                } else if ("testNetworkId".equals(fieldName)) {
+                    deserializedHyperVToAzStackHciNicInput.testNetworkId = reader.getString();
+                } else if ("isStaticIpMigrationEnabled".equals(fieldName)) {
+                    deserializedHyperVToAzStackHciNicInput.isStaticIpMigrationEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("isMacMigrationEnabled".equals(fieldName)) {
+                    deserializedHyperVToAzStackHciNicInput.isMacMigrationEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }

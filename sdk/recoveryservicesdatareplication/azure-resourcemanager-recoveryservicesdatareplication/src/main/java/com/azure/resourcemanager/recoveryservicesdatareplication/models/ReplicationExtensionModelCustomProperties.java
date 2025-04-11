@@ -18,7 +18,7 @@ import java.io.IOException;
 public class ReplicationExtensionModelCustomProperties
     implements JsonSerializable<ReplicationExtensionModelCustomProperties> {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for ReplicationExtensionModelCustomProperties.
      */
     private String instanceType = "ReplicationExtensionModelCustomProperties";
 
@@ -29,7 +29,7 @@ public class ReplicationExtensionModelCustomProperties
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for ReplicationExtensionModelCustomProperties.
      * 
      * @return the instanceType value.
      */

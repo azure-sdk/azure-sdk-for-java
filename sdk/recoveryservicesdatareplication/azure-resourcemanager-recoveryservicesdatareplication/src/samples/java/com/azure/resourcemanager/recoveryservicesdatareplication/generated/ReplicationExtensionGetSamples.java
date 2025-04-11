@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class ReplicationExtensionGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/ReplicationExtension_Get.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/ReplicationExtension_Get.json
      */
     /**
-     * Sample code: ReplicationExtension_Get.
+     * Sample code: Gets the replication extension.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void replicationExtensionGet(
+    public static void getsTheReplicationExtension(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.replicationExtensions()
             .getWithResponse("rgrecoveryservicesdatareplication", "4", "g16yjJ", com.azure.core.util.Context.NONE);

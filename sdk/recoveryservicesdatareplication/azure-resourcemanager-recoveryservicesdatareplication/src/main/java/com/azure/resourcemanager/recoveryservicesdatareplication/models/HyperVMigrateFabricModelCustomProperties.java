@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class HyperVMigrateFabricModelCustomProperties extends FabricModelCustomProperties {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for FabricModelCustomProperties.
      */
     private String instanceType = "HyperVMigrate";
 
@@ -53,7 +53,7 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for FabricModelCustomProperties.
      * 
      * @return the instanceType value.
      */

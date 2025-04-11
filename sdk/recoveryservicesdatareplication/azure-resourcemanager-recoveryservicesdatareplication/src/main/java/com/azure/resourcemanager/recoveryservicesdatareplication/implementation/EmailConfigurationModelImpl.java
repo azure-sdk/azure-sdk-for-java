@@ -4,11 +4,11 @@
 
 package com.azure.resourcemanager.recoveryservicesdatareplication.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.EmailConfigurationModelInner;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.EmailConfigurationModel;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.EmailConfigurationModelProperties;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.EmailConfigurationModelSystemData;
 
 public final class EmailConfigurationModelImpl implements EmailConfigurationModel, EmailConfigurationModel.Definition {
     private EmailConfigurationModelInner innerObject;
@@ -37,7 +37,7 @@ public final class EmailConfigurationModelImpl implements EmailConfigurationMode
         return this.innerModel().properties();
     }
 
-    public EmailConfigurationModelSystemData systemData() {
+    public SystemData systemData() {
         return this.innerModel().systemData();
     }
 

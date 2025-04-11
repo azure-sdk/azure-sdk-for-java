@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class ProtectedItemGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/ProtectedItem_Get.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/ProtectedItem_Get.json
      */
     /**
-     * Sample code: ProtectedItem_Get.
+     * Sample code: Gets the protected item.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void protectedItemGet(
+    public static void getsTheProtectedItem(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.protectedItems()
             .getWithResponse("rgrecoveryservicesdatareplication", "4", "d", com.azure.core.util.Context.NONE);

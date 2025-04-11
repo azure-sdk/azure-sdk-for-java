@@ -34,7 +34,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.FabricsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.FabricModelInner;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricModelCollection;
+import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricModelListResult;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricModelUpdate;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -72,67 +72,66 @@ public final class FabricsClientImpl implements FabricsClient {
     @ServiceInterface(name = "DataReplicationMgmtC")
     public interface FabricsService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FabricModelInner>> getByResourceGroup(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fabricName") String fabricName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}")
-        @ExpectedResponses({ 200, 201 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fabricName") String fabricName,
-            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") FabricModelInner body,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}")
-        @ExpectedResponses({ 200, 202 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fabricName") String fabricName,
-            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") FabricModelUpdate body,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}")
-        @ExpectedResponses({ 202, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fabricName") String fabricName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.DataReplication/replicationFabrics")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FabricModelCollection>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("continuationToken") String continuationToken, @QueryParam("api-version") String apiVersion,
+        Mono<Response<FabricModelListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FabricModelCollection>> listByResourceGroup(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<FabricModelListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("continuationToken") String continuationToken, @QueryParam("api-version") String apiVersion,
+            @QueryParam("continuationToken") String continuationToken, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<FabricModelInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fabricName") String fabricName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fabricName") String fabricName,
+            @BodyParam("application/json") FabricModelInner body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fabricName") String fabricName,
+            @BodyParam("application/json") FabricModelUpdate body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}")
+        @ExpectedResponses({ 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fabricName") String fabricName,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FabricModelCollection>> listBySubscriptionNext(
+        Mono<Response<FabricModelListResult>> listBySubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -140,13 +139,279 @@ public final class FabricsClientImpl implements FabricsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FabricModelCollection>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<FabricModelListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Gets the fabric.
+     * Gets the list of fabrics in the given subscription.
      * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<FabricModelInner>> listSinglePageAsync() {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
+            .<PagedResponse<FabricModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<FabricModelInner>> listSinglePageAsync(Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription.
+     * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<FabricModelInner> listAsync() {
+        return new PagedFlux<>(() -> listSinglePageAsync(),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<FabricModelInner> listAsync(Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription.
+     * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<FabricModelInner> list() {
+        return new PagedIterable<>(listAsync());
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<FabricModelInner> list(Context context) {
+        return new PagedIterable<>(listAsync(context));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param continuationToken Continuation token from the previous call.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<FabricModelInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String continuationToken) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, continuationToken, accept, context))
+            .<PagedResponse<FabricModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param continuationToken Continuation token from the previous call.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<FabricModelInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String continuationToken, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, continuationToken, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param continuationToken Continuation token from the previous call.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<FabricModelInner> listByResourceGroupAsync(String resourceGroupName, String continuationToken) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, continuationToken),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<FabricModelInner> listByResourceGroupAsync(String resourceGroupName) {
+        final String continuationToken = null;
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, continuationToken),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param continuationToken Continuation token from the previous call.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<FabricModelInner> listByResourceGroupAsync(String resourceGroupName, String continuationToken,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, continuationToken, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<FabricModelInner> listByResourceGroup(String resourceGroupName) {
+        final String continuationToken = null;
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, continuationToken));
+    }
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param continuationToken Continuation token from the previous call.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<FabricModelInner> listByResourceGroup(String resourceGroupName, String continuationToken,
+        Context context) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, continuationToken, context));
+    }
+
+    /**
      * Gets the details of the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -176,15 +441,12 @@ public final class FabricsClientImpl implements FabricsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, fabricName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, fabricName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the fabric.
-     * 
      * Gets the details of the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -215,13 +477,11 @@ public final class FabricsClientImpl implements FabricsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            fabricName, this.client.getApiVersion(), accept, context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, fabricName, accept, context);
     }
 
     /**
-     * Gets the fabric.
-     * 
      * Gets the details of the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -238,8 +498,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Gets the fabric.
-     * 
      * Gets the details of the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -257,8 +515,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Gets the fabric.
-     * 
      * Gets the details of the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -274,8 +530,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -304,19 +558,19 @@ public final class FabricsClientImpl implements FabricsClient {
         if (fabricName == null) {
             return Mono.error(new IllegalArgumentException("Parameter fabricName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, fabricName, this.client.getApiVersion(), body, accept, context))
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, fabricName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -346,18 +600,18 @@ public final class FabricsClientImpl implements FabricsClient {
         if (fabricName == null) {
             return Mono.error(new IllegalArgumentException("Parameter fabricName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, fabricName,
-            this.client.getApiVersion(), body, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, fabricName, body, accept, context);
     }
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -377,29 +631,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Puts the fabric.
-     * 
-     * Creates the fabric.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fabricName The fabric name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of fabric model.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<FabricModelInner>, FabricModelInner> beginCreateAsync(String resourceGroupName,
-        String fabricName) {
-        final FabricModelInner body = null;
-        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, fabricName, body);
-        return this.client.<FabricModelInner, FabricModelInner>getLroResult(mono, this.client.getHttpPipeline(),
-            FabricModelInner.class, FabricModelInner.class, this.client.getContext());
-    }
-
-    /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -421,12 +652,11 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fabricName The fabric name.
+     * @param body Fabric properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -434,14 +664,11 @@ public final class FabricsClientImpl implements FabricsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FabricModelInner>, FabricModelInner> beginCreate(String resourceGroupName,
-        String fabricName) {
-        final FabricModelInner body = null;
+        String fabricName, FabricModelInner body) {
         return this.beginCreateAsync(resourceGroupName, fabricName, body).getSyncPoller();
     }
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -460,8 +687,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -479,27 +704,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Puts the fabric.
-     * 
-     * Creates the fabric.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fabricName The fabric name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return fabric model on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FabricModelInner> createAsync(String resourceGroupName, String fabricName) {
-        final FabricModelInner body = null;
-        return beginCreateAsync(resourceGroupName, fabricName, body).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -519,26 +723,22 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fabricName The fabric name.
+     * @param body Fabric properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return fabric model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FabricModelInner create(String resourceGroupName, String fabricName) {
-        final FabricModelInner body = null;
+    public FabricModelInner create(String resourceGroupName, String fabricName, FabricModelInner body) {
         return createAsync(resourceGroupName, fabricName, body).block();
     }
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -557,8 +757,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -587,19 +785,19 @@ public final class FabricsClientImpl implements FabricsClient {
         if (fabricName == null) {
             return Mono.error(new IllegalArgumentException("Parameter fabricName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, fabricName, this.client.getApiVersion(), body, accept, context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, fabricName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -629,18 +827,18 @@ public final class FabricsClientImpl implements FabricsClient {
         if (fabricName == null) {
             return Mono.error(new IllegalArgumentException("Parameter fabricName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, fabricName,
-            this.client.getApiVersion(), body, accept, context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, fabricName, body, accept, context);
     }
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -660,29 +858,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Updates the fabric.
-     * 
-     * Performs update on the fabric.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fabricName The fabric name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of fabric model.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<FabricModelInner>, FabricModelInner> beginUpdateAsync(String resourceGroupName,
-        String fabricName) {
-        final FabricModelUpdate body = null;
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, fabricName, body);
-        return this.client.<FabricModelInner, FabricModelInner>getLroResult(mono, this.client.getHttpPipeline(),
-            FabricModelInner.class, FabricModelInner.class, this.client.getContext());
-    }
-
-    /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -704,12 +879,11 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fabricName The fabric name.
+     * @param body Fabric properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -717,14 +891,11 @@ public final class FabricsClientImpl implements FabricsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FabricModelInner>, FabricModelInner> beginUpdate(String resourceGroupName,
-        String fabricName) {
-        final FabricModelUpdate body = null;
+        String fabricName, FabricModelUpdate body) {
         return this.beginUpdateAsync(resourceGroupName, fabricName, body).getSyncPoller();
     }
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -743,8 +914,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -762,27 +931,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Updates the fabric.
-     * 
-     * Performs update on the fabric.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fabricName The fabric name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return fabric model on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FabricModelInner> updateAsync(String resourceGroupName, String fabricName) {
-        final FabricModelUpdate body = null;
-        return beginUpdateAsync(resourceGroupName, fabricName, body).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -802,26 +950,22 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fabricName The fabric name.
+     * @param body Fabric properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return fabric model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FabricModelInner update(String resourceGroupName, String fabricName) {
-        final FabricModelUpdate body = null;
+    public FabricModelInner update(String resourceGroupName, String fabricName, FabricModelUpdate body) {
         return updateAsync(resourceGroupName, fabricName, body).block();
     }
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -840,8 +984,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -870,14 +1012,12 @@ public final class FabricsClientImpl implements FabricsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, fabricName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, fabricName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -908,13 +1048,11 @@ public final class FabricsClientImpl implements FabricsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, fabricName,
-            this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, fabricName, accept, context);
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -932,8 +1070,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -954,8 +1090,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -971,8 +1105,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -990,8 +1122,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1007,8 +1137,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1026,8 +1154,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1042,8 +1168,6 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1059,332 +1183,14 @@ public final class FabricsClientImpl implements FabricsClient {
     }
 
     /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @param continuationToken Continuation token from the previous call.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FabricModelInner>> listSinglePageAsync(String continuationToken) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                continuationToken, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<FabricModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
-                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @param continuationToken Continuation token from the previous call.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FabricModelInner>> listSinglePageAsync(String continuationToken, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), continuationToken,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @param continuationToken Continuation token from the previous call.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FabricModelInner> listAsync(String continuationToken) {
-        return new PagedFlux<>(() -> listSinglePageAsync(continuationToken),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FabricModelInner> listAsync() {
-        final String continuationToken = null;
-        return new PagedFlux<>(() -> listSinglePageAsync(continuationToken),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @param continuationToken Continuation token from the previous call.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FabricModelInner> listAsync(String continuationToken, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(continuationToken, context),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FabricModelInner> list() {
-        final String continuationToken = null;
-        return new PagedIterable<>(listAsync(continuationToken));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @param continuationToken Continuation token from the previous call.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FabricModelInner> list(String continuationToken, Context context) {
-        return new PagedIterable<>(listAsync(continuationToken, context));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param continuationToken Continuation token from the previous call.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group along with {@link PagedResponse} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FabricModelInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
-        String continuationToken) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, continuationToken, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<FabricModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
-                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param continuationToken Continuation token from the previous call.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group along with {@link PagedResponse} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FabricModelInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
-        String continuationToken, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                continuationToken, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param continuationToken Continuation token from the previous call.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group as paginated response with
-     * {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FabricModelInner> listByResourceGroupAsync(String resourceGroupName, String continuationToken) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, continuationToken),
-            nextLink -> listNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group as paginated response with
-     * {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FabricModelInner> listByResourceGroupAsync(String resourceGroupName) {
-        final String continuationToken = null;
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, continuationToken),
-            nextLink -> listNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param continuationToken Continuation token from the previous call.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group as paginated response with
-     * {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FabricModelInner> listByResourceGroupAsync(String resourceGroupName, String continuationToken,
-        Context context) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, continuationToken, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group as paginated response with
-     * {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FabricModelInner> listByResourceGroup(String resourceGroupName) {
-        final String continuationToken = null;
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, continuationToken));
-    }
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param continuationToken Continuation token from the previous call.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group as paginated response with
-     * {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FabricModelInner> listByResourceGroup(String resourceGroupName, String continuationToken,
-        Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, continuationToken, context));
-    }
-
-    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return fabric model collection along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a FabricModel list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FabricModelInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1412,7 +1218,8 @@ public final class FabricsClientImpl implements FabricsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return fabric model collection along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a FabricModel list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FabricModelInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
@@ -1438,7 +1245,8 @@ public final class FabricsClientImpl implements FabricsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return fabric model collection along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a FabricModel list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FabricModelInner>> listNextSinglePageAsync(String nextLink) {
@@ -1464,7 +1272,8 @@ public final class FabricsClientImpl implements FabricsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return fabric model collection along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a FabricModel list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FabricModelInner>> listNextSinglePageAsync(String nextLink, Context context) {

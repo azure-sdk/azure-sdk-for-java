@@ -13,8 +13,34 @@ import com.azure.core.util.Context;
  */
 public interface RecoveryPoints {
     /**
-     * Gets the recovery point.
+     * Gets the list of recovery points of the given protected item.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of recovery points of the given protected item as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<RecoveryPointModel> list(String resourceGroupName, String vaultName, String protectedItemName);
+
+    /**
+     * Gets the list of recovery points of the given protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of recovery points of the given protected item as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<RecoveryPointModel> list(String resourceGroupName, String vaultName, String protectedItemName,
+        Context context);
+
+    /**
      * Gets the details of the recovery point of a protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -31,8 +57,6 @@ public interface RecoveryPoints {
         String recoveryPointName, Context context);
 
     /**
-     * Gets the recovery point.
-     * 
      * Gets the details of the recovery point of a protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -46,36 +70,4 @@ public interface RecoveryPoints {
      */
     RecoveryPointModel get(String resourceGroupName, String vaultName, String protectedItemName,
         String recoveryPointName);
-
-    /**
-     * Lists the recovery points.
-     * 
-     * Gets the list of recovery points of the given protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of recovery points of the given protected item as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<RecoveryPointModel> list(String resourceGroupName, String vaultName, String protectedItemName);
-
-    /**
-     * Lists the recovery points.
-     * 
-     * Gets the list of recovery points of the given protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of recovery points of the given protected item as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<RecoveryPointModel> list(String resourceGroupName, String vaultName, String protectedItemName,
-        Context context);
 }

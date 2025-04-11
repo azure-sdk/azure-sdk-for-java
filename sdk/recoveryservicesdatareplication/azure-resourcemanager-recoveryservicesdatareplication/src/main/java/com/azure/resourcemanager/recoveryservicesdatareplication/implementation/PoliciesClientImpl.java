@@ -33,7 +33,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.PoliciesClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.PolicyModelInner;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.PolicyModelCollection;
+import com.azure.resourcemanager.recoveryservicesdatareplication.models.PolicyModelListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -70,56 +70,191 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceInterface(name = "DataReplicationMgmtC")
     public interface PoliciesService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PolicyModelListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyModelInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @PathParam("policyName") String policyName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("policyName") String policyName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @PathParam("policyName") String policyName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") PolicyModelInner body, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("policyName") String policyName, @BodyParam("application/json") PolicyModelInner body,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}")
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @PathParam("policyName") String policyName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PolicyModelCollection>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("policyName") String policyName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PolicyModelCollection>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<PolicyModelListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Gets the policy.
+     * Gets the list of policies in the given vault.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of policies in the given vault along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PolicyModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, accept, context))
+            .<PagedResponse<PolicyModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the list of policies in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of policies in the given vault along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PolicyModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, vaultName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets the list of policies in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of policies in the given vault as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PolicyModelInner> listAsync(String resourceGroupName, String vaultName) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of policies in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of policies in the given vault as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PolicyModelInner> listAsync(String resourceGroupName, String vaultName, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets the list of policies in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of policies in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PolicyModelInner> list(String resourceGroupName, String vaultName) {
+        return new PagedIterable<>(listAsync(resourceGroupName, vaultName));
+    }
+
+    /**
+     * Gets the list of policies in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of policies in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PolicyModelInner> list(String resourceGroupName, String vaultName, Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, vaultName, context));
+    }
+
+    /**
      * Gets the details of the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -153,14 +288,12 @@ public final class PoliciesClientImpl implements PoliciesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, policyName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, policyName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the policy.
-     * 
      * Gets the details of the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -195,13 +328,11 @@ public final class PoliciesClientImpl implements PoliciesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-            policyName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, vaultName, policyName, accept, context);
     }
 
     /**
-     * Gets the policy.
-     * 
      * Gets the details of the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -219,8 +350,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Gets the policy.
-     * 
      * Gets the details of the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -239,8 +368,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Gets the policy.
-     * 
      * Gets the details of the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -257,8 +384,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -291,19 +416,19 @@ public final class PoliciesClientImpl implements PoliciesClient {
         if (policyName == null) {
             return Mono.error(new IllegalArgumentException("Parameter policyName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, policyName, this.client.getApiVersion(), body, accept, context))
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, policyName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -337,18 +462,18 @@ public final class PoliciesClientImpl implements PoliciesClient {
         if (policyName == null) {
             return Mono.error(new IllegalArgumentException("Parameter policyName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-            policyName, this.client.getApiVersion(), body, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, vaultName, policyName, body, accept, context);
     }
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -369,30 +494,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Puts the policy.
-     * 
-     * Creates the policy.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param policyName The policy name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of policy model.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<PolicyModelInner>, PolicyModelInner> beginCreateAsync(String resourceGroupName,
-        String vaultName, String policyName) {
-        final PolicyModelInner body = null;
-        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, vaultName, policyName, body);
-        return this.client.<PolicyModelInner, PolicyModelInner>getLroResult(mono, this.client.getHttpPipeline(),
-            PolicyModelInner.class, PolicyModelInner.class, this.client.getContext());
-    }
-
-    /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -416,13 +517,12 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param policyName The policy name.
+     * @param body Policy model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -430,14 +530,11 @@ public final class PoliciesClientImpl implements PoliciesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PolicyModelInner>, PolicyModelInner> beginCreate(String resourceGroupName,
-        String vaultName, String policyName) {
-        final PolicyModelInner body = null;
+        String vaultName, String policyName, PolicyModelInner body) {
         return this.beginCreateAsync(resourceGroupName, vaultName, policyName, body).getSyncPoller();
     }
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -457,8 +554,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -478,28 +573,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Puts the policy.
-     * 
-     * Creates the policy.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param policyName The policy name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return policy model on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PolicyModelInner> createAsync(String resourceGroupName, String vaultName, String policyName) {
-        final PolicyModelInner body = null;
-        return beginCreateAsync(resourceGroupName, vaultName, policyName, body).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -520,27 +593,24 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param policyName The policy name.
+     * @param body Policy model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return policy model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PolicyModelInner create(String resourceGroupName, String vaultName, String policyName) {
-        final PolicyModelInner body = null;
+    public PolicyModelInner create(String resourceGroupName, String vaultName, String policyName,
+        PolicyModelInner body) {
         return createAsync(resourceGroupName, vaultName, policyName, body).block();
     }
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -560,8 +630,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -595,14 +663,12 @@ public final class PoliciesClientImpl implements PoliciesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, policyName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, policyName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -637,13 +703,11 @@ public final class PoliciesClientImpl implements PoliciesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-            policyName, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, vaultName, policyName, accept, context);
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -663,8 +727,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -687,8 +749,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -706,8 +766,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -726,8 +784,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -745,8 +801,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -765,8 +819,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -782,8 +834,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -800,165 +850,14 @@ public final class PoliciesClientImpl implements PoliciesClient {
     }
 
     /**
-     * Lists the policies.
-     * 
-     * Gets the list of policies in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of policies in the given vault along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PolicyModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (vaultName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<PolicyModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
-                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the policies.
-     * 
-     * Gets the list of policies in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of policies in the given vault along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PolicyModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (vaultName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the policies.
-     * 
-     * Gets the list of policies in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of policies in the given vault as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PolicyModelInner> listAsync(String resourceGroupName, String vaultName) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName),
-            nextLink -> listNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the policies.
-     * 
-     * Gets the list of policies in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of policies in the given vault as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PolicyModelInner> listAsync(String resourceGroupName, String vaultName, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the policies.
-     * 
-     * Gets the list of policies in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of policies in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PolicyModelInner> list(String resourceGroupName, String vaultName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, vaultName));
-    }
-
-    /**
-     * Lists the policies.
-     * 
-     * Gets the list of policies in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of policies in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PolicyModelInner> list(String resourceGroupName, String vaultName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, vaultName, context));
-    }
-
-    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return policy model collection along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a PolicyModel list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyModelInner>> listNextSinglePageAsync(String nextLink) {
@@ -984,7 +883,8 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return policy model collection along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a PolicyModel list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyModelInner>> listNextSinglePageAsync(String nextLink, Context context) {

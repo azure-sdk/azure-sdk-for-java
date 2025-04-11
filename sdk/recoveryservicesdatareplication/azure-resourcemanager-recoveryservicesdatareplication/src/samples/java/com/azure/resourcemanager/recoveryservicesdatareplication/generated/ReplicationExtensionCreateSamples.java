@@ -13,15 +13,15 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.Replicat
 public final class ReplicationExtensionCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/ReplicationExtension_Create.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/ReplicationExtension_Create.json
      */
     /**
-     * Sample code: ReplicationExtension_Create.
+     * Sample code: Puts the replication extension.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void replicationExtensionCreate(
+    public static void putsTheReplicationExtension(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.replicationExtensions()
             .define("g16yjJ")

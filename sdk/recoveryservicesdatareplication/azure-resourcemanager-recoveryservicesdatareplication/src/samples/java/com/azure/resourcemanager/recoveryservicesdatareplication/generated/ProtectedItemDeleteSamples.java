@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class ProtectedItemDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/ProtectedItem_Delete.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/ProtectedItem_Delete.json
      */
     /**
-     * Sample code: ProtectedItem_Delete.
+     * Sample code: Deletes the protected item.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void protectedItemDelete(
+    public static void deletesTheProtectedItem(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.protectedItems()
             .delete("rgrecoveryservicesdatareplication", "4", "d", true, com.azure.core.util.Context.NONE);

@@ -27,7 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.RecoveryPointsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.RecoveryPointModelInner;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.RecoveryPointModelCollection;
+import com.azure.resourcemanager.recoveryservicesdatareplication.models.RecoveryPointModelListResult;
 import reactor.core.publisher.Mono;
 
 /**
@@ -63,38 +63,195 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
     @ServiceInterface(name = "DataReplicationMgmtC")
     public interface RecoveryPointsService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}/recoveryPoints")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<RecoveryPointModelListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
+            @PathParam("protectedItemName") String protectedItemName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RecoveryPointModelInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
             @PathParam("protectedItemName") String protectedItemName,
-            @PathParam("recoveryPointName") String recoveryPointName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}/recoveryPoints")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RecoveryPointModelCollection>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @PathParam("protectedItemName") String protectedItemName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("recoveryPointName") String recoveryPointName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RecoveryPointModelCollection>> listNext(
+        Mono<Response<RecoveryPointModelListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Gets the recovery point.
+     * Gets the list of recovery points of the given protected item.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of recovery points of the given protected item along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<RecoveryPointModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
+        String protectedItemName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        if (protectedItemName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, protectedItemName, accept, context))
+            .<PagedResponse<RecoveryPointModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the list of recovery points of the given protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of recovery points of the given protected item along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<RecoveryPointModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
+        String protectedItemName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        if (protectedItemName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, vaultName, protectedItemName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets the list of recovery points of the given protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of recovery points of the given protected item as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<RecoveryPointModelInner> listAsync(String resourceGroupName, String vaultName,
+        String protectedItemName) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName, protectedItemName),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of recovery points of the given protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of recovery points of the given protected item as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<RecoveryPointModelInner> listAsync(String resourceGroupName, String vaultName,
+        String protectedItemName, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName, protectedItemName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets the list of recovery points of the given protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of recovery points of the given protected item as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<RecoveryPointModelInner> list(String resourceGroupName, String vaultName,
+        String protectedItemName) {
+        return new PagedIterable<>(listAsync(resourceGroupName, vaultName, protectedItemName));
+    }
+
+    /**
+     * Gets the list of recovery points of the given protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of recovery points of the given protected item as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<RecoveryPointModelInner> list(String resourceGroupName, String vaultName,
+        String protectedItemName, Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, vaultName, protectedItemName, context));
+    }
+
+    /**
      * Gets the details of the recovery point of a protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -135,15 +292,13 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    vaultName, protectedItemName, recoveryPointName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, protectedItemName, recoveryPointName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the recovery point.
-     * 
      * Gets the details of the recovery point of a protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -185,13 +340,11 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-            protectedItemName, recoveryPointName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, vaultName, protectedItemName, recoveryPointName, accept, context);
     }
 
     /**
-     * Gets the recovery point.
-     * 
      * Gets the details of the recovery point of a protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -211,8 +364,6 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
     }
 
     /**
-     * Gets the recovery point.
-     * 
      * Gets the details of the recovery point of a protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -233,8 +384,6 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
     }
 
     /**
-     * Gets the recovery point.
-     * 
      * Gets the details of the recovery point of a protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -254,185 +403,14 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
     }
 
     /**
-     * Lists the recovery points.
-     * 
-     * Gets the list of recovery points of the given protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of recovery points of the given protected item along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RecoveryPointModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
-        String protectedItemName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (vaultName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
-        }
-        if (protectedItemName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, protectedItemName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<RecoveryPointModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the recovery points.
-     * 
-     * Gets the list of recovery points of the given protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of recovery points of the given protected item along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RecoveryPointModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
-        String protectedItemName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (vaultName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
-        }
-        if (protectedItemName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-                protectedItemName, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the recovery points.
-     * 
-     * Gets the list of recovery points of the given protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of recovery points of the given protected item as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RecoveryPointModelInner> listAsync(String resourceGroupName, String vaultName,
-        String protectedItemName) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName, protectedItemName),
-            nextLink -> listNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the recovery points.
-     * 
-     * Gets the list of recovery points of the given protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of recovery points of the given protected item as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RecoveryPointModelInner> listAsync(String resourceGroupName, String vaultName,
-        String protectedItemName, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName, protectedItemName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the recovery points.
-     * 
-     * Gets the list of recovery points of the given protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of recovery points of the given protected item as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RecoveryPointModelInner> list(String resourceGroupName, String vaultName,
-        String protectedItemName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, vaultName, protectedItemName));
-    }
-
-    /**
-     * Lists the recovery points.
-     * 
-     * Gets the list of recovery points of the given protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of recovery points of the given protected item as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RecoveryPointModelInner> list(String resourceGroupName, String vaultName,
-        String protectedItemName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, vaultName, protectedItemName, context));
-    }
-
-    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return recovery point model collection along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a RecoveryPointModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RecoveryPointModelInner>> listNextSinglePageAsync(String nextLink) {
@@ -458,8 +436,8 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return recovery point model collection along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a RecoveryPointModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RecoveryPointModelInner>> listNextSinglePageAsync(String nextLink, Context context) {

@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class FabricDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Fabric_Delete.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Fabric_Delete.json
      */
     /**
-     * Sample code: Fabric_Delete.
+     * Sample code: Deletes the fabric.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void fabricDelete(
+    public static void deletesTheFabric(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.fabrics().delete("rgrecoveryservicesdatareplication", "wPR", com.azure.core.util.Context.NONE);
     }

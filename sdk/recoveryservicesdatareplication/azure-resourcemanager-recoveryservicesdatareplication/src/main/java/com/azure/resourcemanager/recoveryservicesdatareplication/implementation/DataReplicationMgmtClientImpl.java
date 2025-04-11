@@ -23,25 +23,25 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.CheckNameAvailabilitiesClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.DataReplicationMgmtClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.DraOperationStatusClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.DrasClient;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.DeploymentPreflightsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.EmailConfigurationsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.EventsClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.FabricOperationsStatusClient;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.FabricAgentsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.FabricsClient;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.JobsClient;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.LocationBasedOperationResultsClient;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.OperationResultsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.OperationsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.PoliciesClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.PolicyOperationStatusClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.ProtectedItemOperationStatusClient;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.PrivateEndpointConnectionProxiesClient;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.PrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.ProtectedItemsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.RecoveryPointsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.ReplicationExtensionsClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.ResourceProvidersClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.VaultOperationStatusClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.VaultsClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.WorkflowOperationStatusClient;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.WorkflowsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -141,31 +141,115 @@ public final class DataReplicationMgmtClientImpl implements DataReplicationMgmtC
     }
 
     /**
-     * The DrasClient object to access its operations.
+     * The OperationsClient object to access its operations.
      */
-    private final DrasClient dras;
+    private final OperationsClient operations;
 
     /**
-     * Gets the DrasClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      * 
-     * @return the DrasClient object.
+     * @return the OperationsClient object.
      */
-    public DrasClient getDras() {
-        return this.dras;
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /**
-     * The DraOperationStatusClient object to access its operations.
+     * The CheckNameAvailabilitiesClient object to access its operations.
      */
-    private final DraOperationStatusClient draOperationStatus;
+    private final CheckNameAvailabilitiesClient checkNameAvailabilities;
 
     /**
-     * Gets the DraOperationStatusClient object to access its operations.
+     * Gets the CheckNameAvailabilitiesClient object to access its operations.
      * 
-     * @return the DraOperationStatusClient object.
+     * @return the CheckNameAvailabilitiesClient object.
      */
-    public DraOperationStatusClient getDraOperationStatus() {
-        return this.draOperationStatus;
+    public CheckNameAvailabilitiesClient getCheckNameAvailabilities() {
+        return this.checkNameAvailabilities;
+    }
+
+    /**
+     * The FabricsClient object to access its operations.
+     */
+    private final FabricsClient fabrics;
+
+    /**
+     * Gets the FabricsClient object to access its operations.
+     * 
+     * @return the FabricsClient object.
+     */
+    public FabricsClient getFabrics() {
+        return this.fabrics;
+    }
+
+    /**
+     * The VaultsClient object to access its operations.
+     */
+    private final VaultsClient vaults;
+
+    /**
+     * Gets the VaultsClient object to access its operations.
+     * 
+     * @return the VaultsClient object.
+     */
+    public VaultsClient getVaults() {
+        return this.vaults;
+    }
+
+    /**
+     * The DeploymentPreflightsClient object to access its operations.
+     */
+    private final DeploymentPreflightsClient deploymentPreflights;
+
+    /**
+     * Gets the DeploymentPreflightsClient object to access its operations.
+     * 
+     * @return the DeploymentPreflightsClient object.
+     */
+    public DeploymentPreflightsClient getDeploymentPreflights() {
+        return this.deploymentPreflights;
+    }
+
+    /**
+     * The LocationBasedOperationResultsClient object to access its operations.
+     */
+    private final LocationBasedOperationResultsClient locationBasedOperationResults;
+
+    /**
+     * Gets the LocationBasedOperationResultsClient object to access its operations.
+     * 
+     * @return the LocationBasedOperationResultsClient object.
+     */
+    public LocationBasedOperationResultsClient getLocationBasedOperationResults() {
+        return this.locationBasedOperationResults;
+    }
+
+    /**
+     * The OperationResultsClient object to access its operations.
+     */
+    private final OperationResultsClient operationResults;
+
+    /**
+     * Gets the OperationResultsClient object to access its operations.
+     * 
+     * @return the OperationResultsClient object.
+     */
+    public OperationResultsClient getOperationResults() {
+        return this.operationResults;
+    }
+
+    /**
+     * The FabricAgentsClient object to access its operations.
+     */
+    private final FabricAgentsClient fabricAgents;
+
+    /**
+     * Gets the FabricAgentsClient object to access its operations.
+     * 
+     * @return the FabricAgentsClient object.
+     */
+    public FabricAgentsClient getFabricAgents() {
+        return this.fabricAgents;
     }
 
     /**
@@ -197,59 +281,59 @@ public final class DataReplicationMgmtClientImpl implements DataReplicationMgmtC
     }
 
     /**
-     * The FabricsClient object to access its operations.
+     * The JobsClient object to access its operations.
      */
-    private final FabricsClient fabrics;
+    private final JobsClient jobs;
 
     /**
-     * Gets the FabricsClient object to access its operations.
+     * Gets the JobsClient object to access its operations.
      * 
-     * @return the FabricsClient object.
+     * @return the JobsClient object.
      */
-    public FabricsClient getFabrics() {
-        return this.fabrics;
+    public JobsClient getJobs() {
+        return this.jobs;
     }
 
     /**
-     * The FabricOperationsStatusClient object to access its operations.
+     * The PrivateEndpointConnectionProxiesClient object to access its operations.
      */
-    private final FabricOperationsStatusClient fabricOperationsStatus;
+    private final PrivateEndpointConnectionProxiesClient privateEndpointConnectionProxies;
 
     /**
-     * Gets the FabricOperationsStatusClient object to access its operations.
+     * Gets the PrivateEndpointConnectionProxiesClient object to access its operations.
      * 
-     * @return the FabricOperationsStatusClient object.
+     * @return the PrivateEndpointConnectionProxiesClient object.
      */
-    public FabricOperationsStatusClient getFabricOperationsStatus() {
-        return this.fabricOperationsStatus;
+    public PrivateEndpointConnectionProxiesClient getPrivateEndpointConnectionProxies() {
+        return this.privateEndpointConnectionProxies;
     }
 
     /**
-     * The PoliciesClient object to access its operations.
+     * The PrivateEndpointConnectionsClient object to access its operations.
      */
-    private final PoliciesClient policies;
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
 
     /**
-     * Gets the PoliciesClient object to access its operations.
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
      * 
-     * @return the PoliciesClient object.
+     * @return the PrivateEndpointConnectionsClient object.
      */
-    public PoliciesClient getPolicies() {
-        return this.policies;
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
     }
 
     /**
-     * The PolicyOperationStatusClient object to access its operations.
+     * The PrivateLinkResourcesClient object to access its operations.
      */
-    private final PolicyOperationStatusClient policyOperationStatus;
+    private final PrivateLinkResourcesClient privateLinkResources;
 
     /**
-     * Gets the PolicyOperationStatusClient object to access its operations.
+     * Gets the PrivateLinkResourcesClient object to access its operations.
      * 
-     * @return the PolicyOperationStatusClient object.
+     * @return the PrivateLinkResourcesClient object.
      */
-    public PolicyOperationStatusClient getPolicyOperationStatus() {
-        return this.policyOperationStatus;
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
     }
 
     /**
@@ -264,20 +348,6 @@ public final class DataReplicationMgmtClientImpl implements DataReplicationMgmtC
      */
     public ProtectedItemsClient getProtectedItems() {
         return this.protectedItems;
-    }
-
-    /**
-     * The ProtectedItemOperationStatusClient object to access its operations.
-     */
-    private final ProtectedItemOperationStatusClient protectedItemOperationStatus;
-
-    /**
-     * Gets the ProtectedItemOperationStatusClient object to access its operations.
-     * 
-     * @return the ProtectedItemOperationStatusClient object.
-     */
-    public ProtectedItemOperationStatusClient getProtectedItemOperationStatus() {
-        return this.protectedItemOperationStatus;
     }
 
     /**
@@ -309,87 +379,17 @@ public final class DataReplicationMgmtClientImpl implements DataReplicationMgmtC
     }
 
     /**
-     * The ResourceProvidersClient object to access its operations.
+     * The PoliciesClient object to access its operations.
      */
-    private final ResourceProvidersClient resourceProviders;
+    private final PoliciesClient policies;
 
     /**
-     * Gets the ResourceProvidersClient object to access its operations.
+     * Gets the PoliciesClient object to access its operations.
      * 
-     * @return the ResourceProvidersClient object.
+     * @return the PoliciesClient object.
      */
-    public ResourceProvidersClient getResourceProviders() {
-        return this.resourceProviders;
-    }
-
-    /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
-     * The VaultsClient object to access its operations.
-     */
-    private final VaultsClient vaults;
-
-    /**
-     * Gets the VaultsClient object to access its operations.
-     * 
-     * @return the VaultsClient object.
-     */
-    public VaultsClient getVaults() {
-        return this.vaults;
-    }
-
-    /**
-     * The VaultOperationStatusClient object to access its operations.
-     */
-    private final VaultOperationStatusClient vaultOperationStatus;
-
-    /**
-     * Gets the VaultOperationStatusClient object to access its operations.
-     * 
-     * @return the VaultOperationStatusClient object.
-     */
-    public VaultOperationStatusClient getVaultOperationStatus() {
-        return this.vaultOperationStatus;
-    }
-
-    /**
-     * The WorkflowsClient object to access its operations.
-     */
-    private final WorkflowsClient workflows;
-
-    /**
-     * Gets the WorkflowsClient object to access its operations.
-     * 
-     * @return the WorkflowsClient object.
-     */
-    public WorkflowsClient getWorkflows() {
-        return this.workflows;
-    }
-
-    /**
-     * The WorkflowOperationStatusClient object to access its operations.
-     */
-    private final WorkflowOperationStatusClient workflowOperationStatus;
-
-    /**
-     * Gets the WorkflowOperationStatusClient object to access its operations.
-     * 
-     * @return the WorkflowOperationStatusClient object.
-     */
-    public WorkflowOperationStatusClient getWorkflowOperationStatus() {
-        return this.workflowOperationStatus;
+    public PoliciesClient getPolicies() {
+        return this.policies;
     }
 
     /**
@@ -409,25 +409,25 @@ public final class DataReplicationMgmtClientImpl implements DataReplicationMgmtC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-02-16-preview";
-        this.dras = new DrasClientImpl(this);
-        this.draOperationStatus = new DraOperationStatusClientImpl(this);
+        this.apiVersion = "2024-09-01";
+        this.operations = new OperationsClientImpl(this);
+        this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
+        this.fabrics = new FabricsClientImpl(this);
+        this.vaults = new VaultsClientImpl(this);
+        this.deploymentPreflights = new DeploymentPreflightsClientImpl(this);
+        this.locationBasedOperationResults = new LocationBasedOperationResultsClientImpl(this);
+        this.operationResults = new OperationResultsClientImpl(this);
+        this.fabricAgents = new FabricAgentsClientImpl(this);
         this.emailConfigurations = new EmailConfigurationsClientImpl(this);
         this.events = new EventsClientImpl(this);
-        this.fabrics = new FabricsClientImpl(this);
-        this.fabricOperationsStatus = new FabricOperationsStatusClientImpl(this);
-        this.policies = new PoliciesClientImpl(this);
-        this.policyOperationStatus = new PolicyOperationStatusClientImpl(this);
+        this.jobs = new JobsClientImpl(this);
+        this.privateEndpointConnectionProxies = new PrivateEndpointConnectionProxiesClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.protectedItems = new ProtectedItemsClientImpl(this);
-        this.protectedItemOperationStatus = new ProtectedItemOperationStatusClientImpl(this);
         this.recoveryPoints = new RecoveryPointsClientImpl(this);
         this.replicationExtensions = new ReplicationExtensionsClientImpl(this);
-        this.resourceProviders = new ResourceProvidersClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
-        this.vaults = new VaultsClientImpl(this);
-        this.vaultOperationStatus = new VaultOperationStatusClientImpl(this);
-        this.workflows = new WorkflowsClientImpl(this);
-        this.workflowOperationStatus = new WorkflowOperationStatusClientImpl(this);
+        this.policies = new PoliciesClientImpl(this);
     }
 
     /**
