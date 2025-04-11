@@ -13,6 +13,55 @@ import com.azure.core.util.Context;
  */
 public interface ApplicationGroups {
     /**
+     * List applicationGroups in subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ApplicationGroup> list();
+
+    /**
+     * List applicationGroups in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ApplicationGroup> list(String filter, Context context);
+
+    /**
+     * List applicationGroups.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * List applicationGroups.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName, String filter, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context);
+
+    /**
      * Get an application group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -62,55 +111,6 @@ public interface ApplicationGroups {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void deleteByResourceGroup(String resourceGroupName, String applicationGroupName);
-
-    /**
-     * List applicationGroups.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * List applicationGroups.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName, String filter, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context);
-
-    /**
-     * List applicationGroups in subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ApplicationGroup> list();
-
-    /**
-     * List applicationGroups in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ApplicationGroup> list(String filter, Context context);
 
     /**
      * Get an application group.
