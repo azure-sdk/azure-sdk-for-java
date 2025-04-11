@@ -130,3 +130,5 @@ workloads/Microsoft.Workloads/SAPDiscoverySites:
   service: migrationdiscoverysap
 workloads/Microsoft.Workloads/SAPVirtualInstance:
   service: workloadssapvirtualinstance
+workloads/Microsoft.Workloads/monitors:
+  service: workloadsmicrosoftworkloadsmonitors
