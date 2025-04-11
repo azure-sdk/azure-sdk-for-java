@@ -2860,8 +2860,8 @@ public final class BillingRoleDefinitionListByInvoiceSectionSamples {
 ### BillingSubscriptions_Cancel
 
 ```java
-import com.azure.resourcemanager.billing.models.CancellationReason;
 import com.azure.resourcemanager.billing.models.CancelSubscriptionRequest;
+import com.azure.resourcemanager.billing.models.CancellationReason;
 
 /**
  * Samples for BillingSubscriptions Cancel.
