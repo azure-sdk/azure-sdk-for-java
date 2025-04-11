@@ -47,16 +47,16 @@ public final class BatchDeploymentImpl implements BatchDeployment, BatchDeployme
         }
     }
 
-    public BatchDeploymentProperties properties() {
-        return this.innerModel().properties();
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public String kind() {
         return this.innerModel().kind();
     }
 
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
+    public BatchDeploymentProperties properties() {
+        return this.innerModel().properties();
     }
 
     public Sku sku() {
@@ -196,13 +196,13 @@ public final class BatchDeploymentImpl implements BatchDeployment, BatchDeployme
         }
     }
 
-    public BatchDeploymentImpl withKind(String kind) {
-        this.innerModel().withKind(kind);
+    public BatchDeploymentImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public BatchDeploymentImpl withIdentity(ManagedServiceIdentity identity) {
-        this.innerModel().withIdentity(identity);
+    public BatchDeploymentImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 
