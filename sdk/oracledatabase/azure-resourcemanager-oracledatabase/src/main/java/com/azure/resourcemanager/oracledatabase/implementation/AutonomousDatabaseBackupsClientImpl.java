@@ -76,7 +76,7 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/autonomousDatabases/{autonomousdatabasename}/autonomousDatabaseBackups")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AutonomousDatabaseBackupListResult>> listByAutonomousDatabase(@HostParam("$host") String endpoint,
+        Mono<Response<AutonomousDatabaseBackupListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("autonomousdatabasename") String autonomousdatabasename, @HeaderParam("Accept") String accept,
@@ -130,7 +130,7 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AutonomousDatabaseBackupListResult>> listByAutonomousDatabaseNext(
+        Mono<Response<AutonomousDatabaseBackupListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -147,8 +147,8 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AutonomousDatabaseBackupInner>>
-        listByAutonomousDatabaseSinglePageAsync(String resourceGroupName, String autonomousdatabasename) {
+    private Mono<PagedResponse<AutonomousDatabaseBackupInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String autonomousdatabasename) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -167,9 +167,8 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByAutonomousDatabase(this.client.getEndpoint(), this.client.getApiVersion(),
-                    this.client.getSubscriptionId(), resourceGroupName, autonomousdatabasename, accept, context))
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, autonomousdatabasename, accept, context))
             .<PagedResponse<AutonomousDatabaseBackupInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -188,8 +187,8 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AutonomousDatabaseBackupInner>> listByAutonomousDatabaseSinglePageAsync(
-        String resourceGroupName, String autonomousdatabasename, Context context) {
+    private Mono<PagedResponse<AutonomousDatabaseBackupInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String autonomousdatabasename, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -209,8 +208,8 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByAutonomousDatabase(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, autonomousdatabasename, accept, context)
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, autonomousdatabasename, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -226,10 +225,10 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
      * @return the response of a AutonomousDatabaseBackup list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AutonomousDatabaseBackupInner> listByAutonomousDatabaseAsync(String resourceGroupName,
+    private PagedFlux<AutonomousDatabaseBackupInner> listByParentAsync(String resourceGroupName,
         String autonomousdatabasename) {
-        return new PagedFlux<>(() -> listByAutonomousDatabaseSinglePageAsync(resourceGroupName, autonomousdatabasename),
-            nextLink -> listByAutonomousDatabaseNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, autonomousdatabasename),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -244,11 +243,10 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
      * @return the response of a AutonomousDatabaseBackup list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AutonomousDatabaseBackupInner> listByAutonomousDatabaseAsync(String resourceGroupName,
+    private PagedFlux<AutonomousDatabaseBackupInner> listByParentAsync(String resourceGroupName,
         String autonomousdatabasename, Context context) {
-        return new PagedFlux<>(
-            () -> listByAutonomousDatabaseSinglePageAsync(resourceGroupName, autonomousdatabasename, context),
-            nextLink -> listByAutonomousDatabaseNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, autonomousdatabasename, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -263,9 +261,9 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AutonomousDatabaseBackupInner> listByAutonomousDatabase(String resourceGroupName,
+    public PagedIterable<AutonomousDatabaseBackupInner> listByParent(String resourceGroupName,
         String autonomousdatabasename) {
-        return new PagedIterable<>(listByAutonomousDatabaseAsync(resourceGroupName, autonomousdatabasename));
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, autonomousdatabasename));
     }
 
     /**
@@ -281,9 +279,9 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AutonomousDatabaseBackupInner> listByAutonomousDatabase(String resourceGroupName,
+    public PagedIterable<AutonomousDatabaseBackupInner> listByParent(String resourceGroupName,
         String autonomousdatabasename, Context context) {
-        return new PagedIterable<>(listByAutonomousDatabaseAsync(resourceGroupName, autonomousdatabasename, context));
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, autonomousdatabasename, context));
     }
 
     /**
@@ -1174,8 +1172,7 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AutonomousDatabaseBackupInner>>
-        listByAutonomousDatabaseNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<AutonomousDatabaseBackupInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1185,8 +1182,7 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByAutonomousDatabaseNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<AutonomousDatabaseBackupInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1204,8 +1200,8 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AutonomousDatabaseBackupInner>>
-        listByAutonomousDatabaseNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<AutonomousDatabaseBackupInner>> listByParentNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1215,7 +1211,7 @@ public final class AutonomousDatabaseBackupsClientImpl implements AutonomousData
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByAutonomousDatabaseNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

@@ -74,7 +74,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualNetworkAddressListResult>> listByCloudVmCluster(@HostParam("$host") String endpoint,
+        Mono<Response<VirtualNetworkAddressListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudvmclustername") String cloudvmclustername, @HeaderParam("Accept") String accept,
@@ -118,7 +118,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualNetworkAddressListResult>> listByCloudVmClusterNext(
+        Mono<Response<VirtualNetworkAddressListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -135,8 +135,8 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkAddressInner>>
-        listByCloudVmClusterSinglePageAsync(String resourceGroupName, String cloudvmclustername) {
+    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String cloudvmclustername) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -155,7 +155,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCloudVmCluster(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, accept, context))
             .<PagedResponse<VirtualNetworkAddressInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -175,8 +175,8 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkAddressInner>>
-        listByCloudVmClusterSinglePageAsync(String resourceGroupName, String cloudvmclustername, Context context) {
+    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String cloudvmclustername, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -196,8 +196,8 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByCloudVmCluster(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, accept, context)
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, cloudvmclustername, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -213,10 +213,10 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualNetworkAddressInner> listByCloudVmClusterAsync(String resourceGroupName,
+    private PagedFlux<VirtualNetworkAddressInner> listByParentAsync(String resourceGroupName,
         String cloudvmclustername) {
-        return new PagedFlux<>(() -> listByCloudVmClusterSinglePageAsync(resourceGroupName, cloudvmclustername),
-            nextLink -> listByCloudVmClusterNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, cloudvmclustername),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -231,11 +231,10 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualNetworkAddressInner> listByCloudVmClusterAsync(String resourceGroupName,
-        String cloudvmclustername, Context context) {
-        return new PagedFlux<>(
-            () -> listByCloudVmClusterSinglePageAsync(resourceGroupName, cloudvmclustername, context),
-            nextLink -> listByCloudVmClusterNextSinglePageAsync(nextLink, context));
+    private PagedFlux<VirtualNetworkAddressInner> listByParentAsync(String resourceGroupName, String cloudvmclustername,
+        Context context) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, cloudvmclustername, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -249,9 +248,8 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualNetworkAddressInner> listByCloudVmCluster(String resourceGroupName,
-        String cloudvmclustername) {
-        return new PagedIterable<>(listByCloudVmClusterAsync(resourceGroupName, cloudvmclustername));
+    public PagedIterable<VirtualNetworkAddressInner> listByParent(String resourceGroupName, String cloudvmclustername) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, cloudvmclustername));
     }
 
     /**
@@ -266,9 +264,9 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualNetworkAddressInner> listByCloudVmCluster(String resourceGroupName,
-        String cloudvmclustername, Context context) {
-        return new PagedIterable<>(listByCloudVmClusterAsync(resourceGroupName, cloudvmclustername, context));
+    public PagedIterable<VirtualNetworkAddressInner> listByParent(String resourceGroupName, String cloudvmclustername,
+        Context context) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, cloudvmclustername, context));
     }
 
     /**
@@ -916,7 +914,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByCloudVmClusterNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -926,8 +924,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByCloudVmClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<VirtualNetworkAddressInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -945,7 +942,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByCloudVmClusterNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByParentNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -956,7 +953,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByCloudVmClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

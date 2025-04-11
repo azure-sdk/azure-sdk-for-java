@@ -73,7 +73,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/dbNodes")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DbNodeListResult>> listByCloudVmCluster(@HostParam("$host") String endpoint,
+        Mono<Response<DbNodeListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudvmclustername") String cloudvmclustername, @HeaderParam("Accept") String accept,
@@ -103,7 +103,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DbNodeListResult>> listByCloudVmClusterNext(
+        Mono<Response<DbNodeListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -120,7 +120,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbNodeInner>> listByCloudVmClusterSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<DbNodeInner>> listByParentSinglePageAsync(String resourceGroupName,
         String cloudvmclustername) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -140,7 +140,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCloudVmCluster(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, accept, context))
             .<PagedResponse<DbNodeInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -160,7 +160,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbNodeInner>> listByCloudVmClusterSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<DbNodeInner>> listByParentSinglePageAsync(String resourceGroupName,
         String cloudvmclustername, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -181,8 +181,8 @@ public final class DbNodesClientImpl implements DbNodesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByCloudVmCluster(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, accept, context)
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, cloudvmclustername, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -198,9 +198,9 @@ public final class DbNodesClientImpl implements DbNodesClient {
      * @return the response of a DbNode list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DbNodeInner> listByCloudVmClusterAsync(String resourceGroupName, String cloudvmclustername) {
-        return new PagedFlux<>(() -> listByCloudVmClusterSinglePageAsync(resourceGroupName, cloudvmclustername),
-            nextLink -> listByCloudVmClusterNextSinglePageAsync(nextLink));
+    private PagedFlux<DbNodeInner> listByParentAsync(String resourceGroupName, String cloudvmclustername) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, cloudvmclustername),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -215,11 +215,10 @@ public final class DbNodesClientImpl implements DbNodesClient {
      * @return the response of a DbNode list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DbNodeInner> listByCloudVmClusterAsync(String resourceGroupName, String cloudvmclustername,
+    private PagedFlux<DbNodeInner> listByParentAsync(String resourceGroupName, String cloudvmclustername,
         Context context) {
-        return new PagedFlux<>(
-            () -> listByCloudVmClusterSinglePageAsync(resourceGroupName, cloudvmclustername, context),
-            nextLink -> listByCloudVmClusterNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, cloudvmclustername, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -233,8 +232,8 @@ public final class DbNodesClientImpl implements DbNodesClient {
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DbNodeInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername) {
-        return new PagedIterable<>(listByCloudVmClusterAsync(resourceGroupName, cloudvmclustername));
+    public PagedIterable<DbNodeInner> listByParent(String resourceGroupName, String cloudvmclustername) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, cloudvmclustername));
     }
 
     /**
@@ -249,9 +248,9 @@ public final class DbNodesClientImpl implements DbNodesClient {
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DbNodeInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername,
+    public PagedIterable<DbNodeInner> listByParent(String resourceGroupName, String cloudvmclustername,
         Context context) {
-        return new PagedIterable<>(listByCloudVmClusterAsync(resourceGroupName, cloudvmclustername, context));
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, cloudvmclustername, context));
     }
 
     /**
@@ -646,7 +645,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbNodeInner>> listByCloudVmClusterNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<DbNodeInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -656,8 +655,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByCloudVmClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<DbNodeInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -675,7 +673,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbNodeInner>> listByCloudVmClusterNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<DbNodeInner>> listByParentNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -685,7 +683,7 @@ public final class DbNodesClientImpl implements DbNodesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByCloudVmClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
