@@ -10,7 +10,7 @@ package com.azure.resourcemanager.scvmm.generated;
 public final class InventoryItemsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/InventoryItems_Get_MinimumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/InventoryItems_Get_MinimumSet_Gen
      * .json
      */
     /**
@@ -25,7 +25,7 @@ public final class InventoryItemsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/InventoryItems_Get_MaximumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/InventoryItems_Get_MaximumSet_Gen
      * .json
      */
     /**

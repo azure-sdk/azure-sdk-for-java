@@ -9,7 +9,7 @@ package com.azure.resourcemanager.scvmm.generated;
  */
 public final class CloudsListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * Clouds_ListBySubscription_MinimumSet_Gen.json
      */
     /**
@@ -22,7 +22,7 @@ public final class CloudsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * Clouds_ListBySubscription_MaximumSet_Gen.json
      */
     /**
