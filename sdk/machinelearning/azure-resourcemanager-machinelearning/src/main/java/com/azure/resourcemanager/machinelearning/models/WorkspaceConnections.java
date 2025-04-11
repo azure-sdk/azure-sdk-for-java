@@ -87,6 +87,8 @@ public interface WorkspaceConnections {
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param target Target of the workspace connection.
      * @param category Category of the workspace connection.
+     * @param includeAll query parameter that indicates if get connection call should return both connections and
+     * datastores.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -94,7 +96,7 @@ public interface WorkspaceConnections {
      * @return the paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(String resourceGroupName, String workspaceName,
-        String target, String category, Context context);
+        String target, String category, Boolean includeAll, Context context);
 
     /**
      * List all the secrets of a machine learning workspaces connections.
