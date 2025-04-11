@@ -22,7 +22,7 @@ public interface ImportCollectorsOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a ImportCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ImportCollector> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<ImportCollector> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List ImportCollector resources by AssessmentProject.
@@ -35,8 +35,7 @@ public interface ImportCollectorsOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a ImportCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ImportCollector> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<ImportCollector> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a ImportCollector.

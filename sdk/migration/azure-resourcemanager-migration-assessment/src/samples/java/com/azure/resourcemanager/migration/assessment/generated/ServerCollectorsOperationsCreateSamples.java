@@ -7,7 +7,6 @@ package com.azure.resourcemanager.migration.assessment.generated;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentSpnPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBaseWithAgent;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 
 /**
  * Samples for ServerCollectorsOperations Create.
@@ -15,20 +14,20 @@ import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 public final class ServerCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * ServerCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ServerCollectorsOperations_Create_MaximumSet_Gen.
+     * Sample code: ServerCollectorsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void serverCollectorsOperationsCreateMaximumSetGen(
+    public static void serverCollectorsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.serverCollectorsOperations()
             .define("walter389fcollector")
             .withExistingAssessmentProject("ayagrawRG", "app18700project")
-            .withProperties(new CollectorPropertiesBaseWithAgent().withProvisioningState(ProvisioningState.SUCCEEDED)
+            .withProperties(new CollectorPropertiesBaseWithAgent()
                 .withAgentProperties(new CollectorAgentPropertiesBase().withId("498e4965-bbb1-47c2-8613-345baff9c509")
                     .withSpnDetails(new CollectorAgentSpnPropertiesBase()
                         .withAuthority("https://login.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47")

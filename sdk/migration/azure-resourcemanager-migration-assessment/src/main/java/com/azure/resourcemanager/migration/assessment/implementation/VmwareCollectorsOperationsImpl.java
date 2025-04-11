@@ -27,16 +27,14 @@ public final class VmwareCollectorsOperationsImpl implements VmwareCollectorsOpe
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<VmwareCollector> listByAssessmentProject(String resourceGroupName, String projectName) {
-        PagedIterable<VmwareCollectorInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName);
+    public PagedIterable<VmwareCollector> listByParent(String resourceGroupName, String projectName) {
+        PagedIterable<VmwareCollectorInner> inner = this.serviceClient().listByParent(resourceGroupName, projectName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VmwareCollectorImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<VmwareCollector> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context) {
+    public PagedIterable<VmwareCollector> listByParent(String resourceGroupName, String projectName, Context context) {
         PagedIterable<VmwareCollectorInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName, context);
+            = this.serviceClient().listByParent(resourceGroupName, projectName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VmwareCollectorImpl(inner1, this.manager()));
     }
 

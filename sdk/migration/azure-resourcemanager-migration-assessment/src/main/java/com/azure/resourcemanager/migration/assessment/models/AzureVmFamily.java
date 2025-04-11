@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureVmFamily.
+ * Azure VM Family.
  */
 public final class AzureVmFamily extends ExpandableStringEnum<AzureVmFamily> {
     /**

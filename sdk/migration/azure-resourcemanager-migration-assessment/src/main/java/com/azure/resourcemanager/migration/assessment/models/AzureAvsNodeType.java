@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureAvsNodeType.
+ * Azure AVS Node type.
  */
 public final class AzureAvsNodeType extends ExpandableStringEnum<AzureAvsNodeType> {
     /**
@@ -20,6 +20,21 @@ public final class AzureAvsNodeType extends ExpandableStringEnum<AzureAvsNodeTyp
      * Static value AV36 for AzureAvsNodeType.
      */
     public static final AzureAvsNodeType AV36 = fromString("AV36");
+
+    /**
+     * Static value AV36P for AzureAvsNodeType.
+     */
+    public static final AzureAvsNodeType AV36P = fromString("AV36P");
+
+    /**
+     * Static value AV52 for AzureAvsNodeType.
+     */
+    public static final AzureAvsNodeType AV52 = fromString("AV52");
+
+    /**
+     * Static value AV64 for AzureAvsNodeType.
+     */
+    public static final AzureAvsNodeType AV64 = fromString("AV64");
 
     /**
      * Creates a new instance of AzureAvsNodeType value.

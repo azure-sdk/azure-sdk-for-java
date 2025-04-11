@@ -5,27 +5,42 @@
 package com.azure.resourcemanager.migration.assessment.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.util.Map;
 
 /**
- * The type used for update operations of the AssessmentProject.
+ * An Assessment project site resource.
  */
 @Fluent
-public final class AssessmentProjectUpdate implements JsonSerializable<AssessmentProjectUpdate> {
+public final class AssessmentProjectUpdate extends AzureResourceManagerCommonTypesTrackedResourceUpdate {
     /*
-     * Resource tags.
+     * The resource-specific properties for this resource.
      */
-    private Map<String, String> tags;
+    private ProjectProperties properties;
 
     /*
-     * The updatable properties of the AssessmentProject.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    private AssessmentProjectUpdateProperties properties;
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
      * Creates an instance of AssessmentProjectUpdate class.
@@ -34,42 +49,71 @@ public final class AssessmentProjectUpdate implements JsonSerializable<Assessmen
     }
 
     /**
-     * Get the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Resource tags.
-     * 
-     * @param tags the tags value to set.
-     * @return the AssessmentProjectUpdate object itself.
-     */
-    public AssessmentProjectUpdate withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the properties property: The updatable properties of the AssessmentProject.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
-    public AssessmentProjectUpdateProperties properties() {
+    public ProjectProperties properties() {
         return this.properties;
     }
 
     /**
-     * Set the properties property: The updatable properties of the AssessmentProject.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the AssessmentProjectUpdate object itself.
      */
-    public AssessmentProjectUpdate withProperties(AssessmentProjectUpdateProperties properties) {
+    public AssessmentProjectUpdate withProperties(ProjectProperties properties) {
         this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    @Override
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AssessmentProjectUpdate withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -78,6 +122,7 @@ public final class AssessmentProjectUpdate implements JsonSerializable<Assessmen
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
         if (properties() != null) {
             properties().validate();
@@ -90,7 +135,7 @@ public final class AssessmentProjectUpdate implements JsonSerializable<Assessmen
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
@@ -101,6 +146,7 @@ public final class AssessmentProjectUpdate implements JsonSerializable<Assessmen
      * @param jsonReader The JsonReader being read.
      * @return An instance of AssessmentProjectUpdate if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the AssessmentProjectUpdate.
      */
     public static AssessmentProjectUpdate fromJson(JsonReader jsonReader) throws IOException {
@@ -110,11 +156,19 @@ public final class AssessmentProjectUpdate implements JsonSerializable<Assessmen
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("tags".equals(fieldName)) {
+                if ("id".equals(fieldName)) {
+                    deserializedAssessmentProjectUpdate.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedAssessmentProjectUpdate.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedAssessmentProjectUpdate.type = reader.getString();
+                } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedAssessmentProjectUpdate.tags = tags;
+                    deserializedAssessmentProjectUpdate.withTags(tags);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedAssessmentProjectUpdate.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedAssessmentProjectUpdate.properties = AssessmentProjectUpdateProperties.fromJson(reader);
+                    deserializedAssessmentProjectUpdate.properties = ProjectProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

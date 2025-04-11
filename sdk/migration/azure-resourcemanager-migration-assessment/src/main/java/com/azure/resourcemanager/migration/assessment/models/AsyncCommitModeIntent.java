@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AsyncCommitModeIntent.
+ * Async Commit Mode Intent.
  */
 public final class AsyncCommitModeIntent extends ExpandableStringEnum<AsyncCommitModeIntent> {
     /**

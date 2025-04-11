@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for GuestOperatingSystemArchitecture.
+ * Guest operating system architecture.
  */
 public final class GuestOperatingSystemArchitecture extends ExpandableStringEnum<GuestOperatingSystemArchitecture> {
     /**

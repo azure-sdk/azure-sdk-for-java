@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for CompatibilityLevel.
+ * Compatibility Level.
  */
 public final class CompatibilityLevel extends ExpandableStringEnum<CompatibilityLevel> {
     /**

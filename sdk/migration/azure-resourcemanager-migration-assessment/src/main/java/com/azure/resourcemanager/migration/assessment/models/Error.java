@@ -12,7 +12,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.Map;
+import java.util.List;
 
 /**
  * Error web model class.
@@ -72,7 +72,7 @@ public final class Error implements JsonSerializable<Error> {
     /*
      * Gets the error message parameters.
      */
-    private Map<String, String> messageParameters;
+    private List<ErrorMessageParametersItem> messageParameters;
 
     /*
      * Gets the time stamp when the error was updated.
@@ -185,7 +185,7 @@ public final class Error implements JsonSerializable<Error> {
      * 
      * @return the messageParameters value.
      */
-    public Map<String, String> messageParameters() {
+    public List<ErrorMessageParametersItem> messageParameters() {
         return this.messageParameters;
     }
 
@@ -213,6 +213,9 @@ public final class Error implements JsonSerializable<Error> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (messageParameters() != null) {
+            messageParameters().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -260,7 +263,8 @@ public final class Error implements JsonSerializable<Error> {
                 } else if ("severity".equals(fieldName)) {
                     deserializedError.severity = reader.getString();
                 } else if ("messageParameters".equals(fieldName)) {
-                    Map<String, String> messageParameters = reader.readMap(reader1 -> reader1.getString());
+                    List<ErrorMessageParametersItem> messageParameters
+                        = reader.readArray(reader1 -> ErrorMessageParametersItem.fromJson(reader1));
                     deserializedError.messageParameters = messageParameters;
                 } else if ("updatedTimeStamp".equals(fieldName)) {
                     deserializedError.updatedTimestamp = reader

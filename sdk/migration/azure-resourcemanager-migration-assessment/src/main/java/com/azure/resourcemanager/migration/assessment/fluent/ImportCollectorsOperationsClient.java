@@ -28,7 +28,7 @@ public interface ImportCollectorsOperationsClient {
      * @return the response of a ImportCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ImportCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<ImportCollectorInner> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List ImportCollector resources by AssessmentProject.
@@ -42,8 +42,7 @@ public interface ImportCollectorsOperationsClient {
      * @return the response of a ImportCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ImportCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<ImportCollectorInner> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a ImportCollector.

@@ -25,57 +25,107 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.migration.assessment.fluent.MigrationAssessmentManagementClient;
-import com.azure.resourcemanager.migration.assessment.implementation.AssessedMachinesOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AssessedSqlDatabaseV2OperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AssessedSqlInstanceV2OperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AssessedSqlMachinesOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AssessedSqlRecommendedEntityOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AssessmentOptionsOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AksAssessmentOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AksClusterOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AksCostDetailOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AksOptionsOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AksSummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AssessedMachinesV2OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AssessedSqlDatabaseV3OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AssessedSqlInstanceV3OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AssessedSqlMachinesV3OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AssessedWebApplicationOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AssessedWebAppsV3OperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.AssessmentProjectSummaryOperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.AssessmentProjectsOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AssessmentsOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AvsAssessedMachinesOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AvsAssessmentOptionsOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.AvsAssessmentsOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.GroupsOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AvsAssessedMachinesV2OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AvsAssessmentV2SummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AvsAssessmentsV2OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.AvsGraphAssessmentOptionsOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.BusinessCaseAvsSummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.BusinessCaseIaasSummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.BusinessCaseOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.BusinessCaseOverviewSummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.BusinessCasePaasSummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.CompoundAssessmentOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.CompoundAssessmentSummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.EvaluatedAvsMachinesOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.EvaluatedMachinesOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.EvaluatedSqlEntitiesOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.EvaluatedWebAppsOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.HeterogeneousAssessmentOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.HeterogeneousAssessmentSummaryOperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.HypervCollectorsOperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.ImportCollectorsOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.MachinesOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.ImportSqlCollectorOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.MachineAssessmentV2SummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.MachineAssessmentsV2OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.MachineGraphAssessmentOptionsOperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.MigrationAssessmentManagementClientBuilder;
 import com.azure.resourcemanager.migration.assessment.implementation.OperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.PrivateEndpointConnectionOperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.PrivateLinkResourceOperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.ServerCollectorsOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.SqlAssessmentOptionsOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.SqlAssessmentV2OperationsImpl;
-import com.azure.resourcemanager.migration.assessment.implementation.SqlAssessmentV2SummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.SqlAssessmentV3OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.SqlAssessmentV3SummaryOperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.SqlCollectorOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.SqlGraphAssessmentOptionsOperationsImpl;
 import com.azure.resourcemanager.migration.assessment.implementation.VmwareCollectorsOperationsImpl;
-import com.azure.resourcemanager.migration.assessment.models.AssessedMachinesOperations;
-import com.azure.resourcemanager.migration.assessment.models.AssessedSqlDatabaseV2Operations;
-import com.azure.resourcemanager.migration.assessment.models.AssessedSqlInstanceV2Operations;
-import com.azure.resourcemanager.migration.assessment.models.AssessedSqlMachinesOperations;
-import com.azure.resourcemanager.migration.assessment.models.AssessedSqlRecommendedEntityOperations;
-import com.azure.resourcemanager.migration.assessment.models.AssessmentOptionsOperations;
+import com.azure.resourcemanager.migration.assessment.implementation.WebAppAssessmentV3OperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.WebAppAssessmentV3SummaryOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.WebAppCollectorOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.WebAppGraphAssessmentOptionsOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.implementation.WebAppServicePlansOperationsImpl;
+import com.azure.resourcemanager.migration.assessment.models.AksAssessmentOperations;
+import com.azure.resourcemanager.migration.assessment.models.AksClusterOperations;
+import com.azure.resourcemanager.migration.assessment.models.AksCostDetailOperations;
+import com.azure.resourcemanager.migration.assessment.models.AksOptionsOperations;
+import com.azure.resourcemanager.migration.assessment.models.AksSummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.AssessedMachinesV2Operations;
+import com.azure.resourcemanager.migration.assessment.models.AssessedSqlDatabaseV3Operations;
+import com.azure.resourcemanager.migration.assessment.models.AssessedSqlInstanceV3Operations;
+import com.azure.resourcemanager.migration.assessment.models.AssessedSqlMachinesV3Operations;
+import com.azure.resourcemanager.migration.assessment.models.AssessedWebApplicationOperations;
+import com.azure.resourcemanager.migration.assessment.models.AssessedWebAppsV3Operations;
 import com.azure.resourcemanager.migration.assessment.models.AssessmentProjectSummaryOperations;
 import com.azure.resourcemanager.migration.assessment.models.AssessmentProjectsOperations;
-import com.azure.resourcemanager.migration.assessment.models.AssessmentsOperations;
-import com.azure.resourcemanager.migration.assessment.models.AvsAssessedMachinesOperations;
-import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentOptionsOperations;
-import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentsOperations;
-import com.azure.resourcemanager.migration.assessment.models.GroupsOperations;
+import com.azure.resourcemanager.migration.assessment.models.AvsAssessedMachinesV2Operations;
+import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentV2SummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentsV2Operations;
+import com.azure.resourcemanager.migration.assessment.models.AvsGraphAssessmentOptionsOperations;
+import com.azure.resourcemanager.migration.assessment.models.BusinessCaseAvsSummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.BusinessCaseIaasSummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.BusinessCaseOperations;
+import com.azure.resourcemanager.migration.assessment.models.BusinessCaseOverviewSummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.BusinessCasePaasSummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.CompoundAssessmentOperations;
+import com.azure.resourcemanager.migration.assessment.models.CompoundAssessmentSummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.EvaluatedAvsMachinesOperations;
+import com.azure.resourcemanager.migration.assessment.models.EvaluatedMachinesOperations;
+import com.azure.resourcemanager.migration.assessment.models.EvaluatedSqlEntitiesOperations;
+import com.azure.resourcemanager.migration.assessment.models.EvaluatedWebAppsOperations;
+import com.azure.resourcemanager.migration.assessment.models.HeterogeneousAssessmentOperations;
+import com.azure.resourcemanager.migration.assessment.models.HeterogeneousAssessmentSummaryOperations;
 import com.azure.resourcemanager.migration.assessment.models.HypervCollectorsOperations;
 import com.azure.resourcemanager.migration.assessment.models.ImportCollectorsOperations;
-import com.azure.resourcemanager.migration.assessment.models.MachinesOperations;
+import com.azure.resourcemanager.migration.assessment.models.ImportSqlCollectorOperations;
+import com.azure.resourcemanager.migration.assessment.models.MachineAssessmentV2SummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.MachineAssessmentsV2Operations;
+import com.azure.resourcemanager.migration.assessment.models.MachineGraphAssessmentOptionsOperations;
 import com.azure.resourcemanager.migration.assessment.models.Operations;
 import com.azure.resourcemanager.migration.assessment.models.PrivateEndpointConnectionOperations;
 import com.azure.resourcemanager.migration.assessment.models.PrivateLinkResourceOperations;
 import com.azure.resourcemanager.migration.assessment.models.ServerCollectorsOperations;
-import com.azure.resourcemanager.migration.assessment.models.SqlAssessmentOptionsOperations;
-import com.azure.resourcemanager.migration.assessment.models.SqlAssessmentV2Operations;
-import com.azure.resourcemanager.migration.assessment.models.SqlAssessmentV2SummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.SqlAssessmentV3Operations;
+import com.azure.resourcemanager.migration.assessment.models.SqlAssessmentV3SummaryOperations;
 import com.azure.resourcemanager.migration.assessment.models.SqlCollectorOperations;
+import com.azure.resourcemanager.migration.assessment.models.SqlGraphAssessmentOptionsOperations;
 import com.azure.resourcemanager.migration.assessment.models.VmwareCollectorsOperations;
+import com.azure.resourcemanager.migration.assessment.models.WebAppAssessmentV3Operations;
+import com.azure.resourcemanager.migration.assessment.models.WebAppAssessmentV3SummaryOperations;
+import com.azure.resourcemanager.migration.assessment.models.WebAppCollectorOperations;
+import com.azure.resourcemanager.migration.assessment.models.WebAppGraphAssessmentOptionsOperations;
+import com.azure.resourcemanager.migration.assessment.models.WebAppServicePlansOperations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -93,51 +143,101 @@ public final class MigrationAssessmentManager {
 
     private AssessmentProjectsOperations assessmentProjectsOperations;
 
-    private AssessmentOptionsOperations assessmentOptionsOperations;
-
-    private AvsAssessmentOptionsOperations avsAssessmentOptionsOperations;
-
-    private GroupsOperations groupsOperations;
-
-    private AssessmentsOperations assessmentsOperations;
-
-    private AssessedMachinesOperations assessedMachinesOperations;
-
-    private AvsAssessmentsOperations avsAssessmentsOperations;
-
-    private AvsAssessedMachinesOperations avsAssessedMachinesOperations;
-
-    private SqlAssessmentV2Operations sqlAssessmentV2Operations;
-
-    private AssessedSqlDatabaseV2Operations assessedSqlDatabaseV2Operations;
-
-    private AssessedSqlInstanceV2Operations assessedSqlInstanceV2Operations;
-
-    private AssessedSqlMachinesOperations assessedSqlMachinesOperations;
-
-    private AssessedSqlRecommendedEntityOperations assessedSqlRecommendedEntityOperations;
-
-    private SqlAssessmentV2SummaryOperations sqlAssessmentV2SummaryOperations;
-
-    private HypervCollectorsOperations hypervCollectorsOperations;
-
-    private ImportCollectorsOperations importCollectorsOperations;
-
-    private MachinesOperations machinesOperations;
-
     private PrivateEndpointConnectionOperations privateEndpointConnectionOperations;
 
     private PrivateLinkResourceOperations privateLinkResourceOperations;
 
     private AssessmentProjectSummaryOperations assessmentProjectSummaryOperations;
 
-    private ServerCollectorsOperations serverCollectorsOperations;
+    private AvsGraphAssessmentOptionsOperations avsGraphAssessmentOptionsOperations;
 
-    private SqlAssessmentOptionsOperations sqlAssessmentOptionsOperations;
+    private AvsAssessmentsV2Operations avsAssessmentsV2Operations;
+
+    private AvsAssessedMachinesV2Operations avsAssessedMachinesV2Operations;
+
+    private AvsAssessmentV2SummaryOperations avsAssessmentV2SummaryOperations;
+
+    private HeterogeneousAssessmentOperations heterogeneousAssessmentOperations;
+
+    private HeterogeneousAssessmentSummaryOperations heterogeneousAssessmentSummaryOperations;
+
+    private MachineGraphAssessmentOptionsOperations machineGraphAssessmentOptionsOperations;
+
+    private MachineAssessmentsV2Operations machineAssessmentsV2Operations;
+
+    private AssessedMachinesV2Operations assessedMachinesV2Operations;
+
+    private MachineAssessmentV2SummaryOperations machineAssessmentV2SummaryOperations;
+
+    private SqlGraphAssessmentOptionsOperations sqlGraphAssessmentOptionsOperations;
+
+    private SqlAssessmentV3Operations sqlAssessmentV3Operations;
+
+    private AssessedSqlDatabaseV3Operations assessedSqlDatabaseV3Operations;
+
+    private AssessedSqlInstanceV3Operations assessedSqlInstanceV3Operations;
+
+    private AssessedSqlMachinesV3Operations assessedSqlMachinesV3Operations;
+
+    private SqlAssessmentV3SummaryOperations sqlAssessmentV3SummaryOperations;
+
+    private BusinessCaseOperations businessCaseOperations;
+
+    private BusinessCaseAvsSummaryOperations businessCaseAvsSummaryOperations;
+
+    private EvaluatedAvsMachinesOperations evaluatedAvsMachinesOperations;
+
+    private EvaluatedMachinesOperations evaluatedMachinesOperations;
+
+    private EvaluatedSqlEntitiesOperations evaluatedSqlEntitiesOperations;
+
+    private EvaluatedWebAppsOperations evaluatedWebAppsOperations;
+
+    private BusinessCaseIaasSummaryOperations businessCaseIaasSummaryOperations;
+
+    private BusinessCaseOverviewSummaryOperations businessCaseOverviewSummaryOperations;
+
+    private BusinessCasePaasSummaryOperations businessCasePaasSummaryOperations;
+
+    private WebAppGraphAssessmentOptionsOperations webAppGraphAssessmentOptionsOperations;
+
+    private WebAppAssessmentV3Operations webAppAssessmentV3Operations;
+
+    private AssessedWebAppsV3Operations assessedWebAppsV3Operations;
+
+    private WebAppAssessmentV3SummaryOperations webAppAssessmentV3SummaryOperations;
+
+    private WebAppServicePlansOperations webAppServicePlansOperations;
+
+    private CompoundAssessmentOperations compoundAssessmentOperations;
+
+    private CompoundAssessmentSummaryOperations compoundAssessmentSummaryOperations;
+
+    private AksOptionsOperations aksOptionsOperations;
+
+    private AksAssessmentOperations aksAssessmentOperations;
+
+    private AssessedWebApplicationOperations assessedWebApplicationOperations;
+
+    private AksClusterOperations aksClusterOperations;
+
+    private AksCostDetailOperations aksCostDetailOperations;
+
+    private AksSummaryOperations aksSummaryOperations;
+
+    private HypervCollectorsOperations hypervCollectorsOperations;
+
+    private ImportSqlCollectorOperations importSqlCollectorOperations;
+
+    private ImportCollectorsOperations importCollectorsOperations;
+
+    private ServerCollectorsOperations serverCollectorsOperations;
 
     private SqlCollectorOperations sqlCollectorOperations;
 
     private VmwareCollectorsOperations vmwareCollectorsOperations;
+
+    private WebAppCollectorOperations webAppCollectorOperations;
 
     private final MigrationAssessmentManagementClient clientObject;
 
@@ -380,211 +480,6 @@ public final class MigrationAssessmentManager {
     }
 
     /**
-     * Gets the resource collection API of AssessmentOptionsOperations.
-     * 
-     * @return Resource collection API of AssessmentOptionsOperations.
-     */
-    public AssessmentOptionsOperations assessmentOptionsOperations() {
-        if (this.assessmentOptionsOperations == null) {
-            this.assessmentOptionsOperations
-                = new AssessmentOptionsOperationsImpl(clientObject.getAssessmentOptionsOperations(), this);
-        }
-        return assessmentOptionsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of AvsAssessmentOptionsOperations.
-     * 
-     * @return Resource collection API of AvsAssessmentOptionsOperations.
-     */
-    public AvsAssessmentOptionsOperations avsAssessmentOptionsOperations() {
-        if (this.avsAssessmentOptionsOperations == null) {
-            this.avsAssessmentOptionsOperations
-                = new AvsAssessmentOptionsOperationsImpl(clientObject.getAvsAssessmentOptionsOperations(), this);
-        }
-        return avsAssessmentOptionsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of GroupsOperations. It manages Group.
-     * 
-     * @return Resource collection API of GroupsOperations.
-     */
-    public GroupsOperations groupsOperations() {
-        if (this.groupsOperations == null) {
-            this.groupsOperations = new GroupsOperationsImpl(clientObject.getGroupsOperations(), this);
-        }
-        return groupsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of AssessmentsOperations. It manages Assessment.
-     * 
-     * @return Resource collection API of AssessmentsOperations.
-     */
-    public AssessmentsOperations assessmentsOperations() {
-        if (this.assessmentsOperations == null) {
-            this.assessmentsOperations = new AssessmentsOperationsImpl(clientObject.getAssessmentsOperations(), this);
-        }
-        return assessmentsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of AssessedMachinesOperations.
-     * 
-     * @return Resource collection API of AssessedMachinesOperations.
-     */
-    public AssessedMachinesOperations assessedMachinesOperations() {
-        if (this.assessedMachinesOperations == null) {
-            this.assessedMachinesOperations
-                = new AssessedMachinesOperationsImpl(clientObject.getAssessedMachinesOperations(), this);
-        }
-        return assessedMachinesOperations;
-    }
-
-    /**
-     * Gets the resource collection API of AvsAssessmentsOperations. It manages AvsAssessment.
-     * 
-     * @return Resource collection API of AvsAssessmentsOperations.
-     */
-    public AvsAssessmentsOperations avsAssessmentsOperations() {
-        if (this.avsAssessmentsOperations == null) {
-            this.avsAssessmentsOperations
-                = new AvsAssessmentsOperationsImpl(clientObject.getAvsAssessmentsOperations(), this);
-        }
-        return avsAssessmentsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of AvsAssessedMachinesOperations.
-     * 
-     * @return Resource collection API of AvsAssessedMachinesOperations.
-     */
-    public AvsAssessedMachinesOperations avsAssessedMachinesOperations() {
-        if (this.avsAssessedMachinesOperations == null) {
-            this.avsAssessedMachinesOperations
-                = new AvsAssessedMachinesOperationsImpl(clientObject.getAvsAssessedMachinesOperations(), this);
-        }
-        return avsAssessedMachinesOperations;
-    }
-
-    /**
-     * Gets the resource collection API of SqlAssessmentV2Operations. It manages SqlAssessmentV2.
-     * 
-     * @return Resource collection API of SqlAssessmentV2Operations.
-     */
-    public SqlAssessmentV2Operations sqlAssessmentV2Operations() {
-        if (this.sqlAssessmentV2Operations == null) {
-            this.sqlAssessmentV2Operations
-                = new SqlAssessmentV2OperationsImpl(clientObject.getSqlAssessmentV2Operations(), this);
-        }
-        return sqlAssessmentV2Operations;
-    }
-
-    /**
-     * Gets the resource collection API of AssessedSqlDatabaseV2Operations.
-     * 
-     * @return Resource collection API of AssessedSqlDatabaseV2Operations.
-     */
-    public AssessedSqlDatabaseV2Operations assessedSqlDatabaseV2Operations() {
-        if (this.assessedSqlDatabaseV2Operations == null) {
-            this.assessedSqlDatabaseV2Operations
-                = new AssessedSqlDatabaseV2OperationsImpl(clientObject.getAssessedSqlDatabaseV2Operations(), this);
-        }
-        return assessedSqlDatabaseV2Operations;
-    }
-
-    /**
-     * Gets the resource collection API of AssessedSqlInstanceV2Operations.
-     * 
-     * @return Resource collection API of AssessedSqlInstanceV2Operations.
-     */
-    public AssessedSqlInstanceV2Operations assessedSqlInstanceV2Operations() {
-        if (this.assessedSqlInstanceV2Operations == null) {
-            this.assessedSqlInstanceV2Operations
-                = new AssessedSqlInstanceV2OperationsImpl(clientObject.getAssessedSqlInstanceV2Operations(), this);
-        }
-        return assessedSqlInstanceV2Operations;
-    }
-
-    /**
-     * Gets the resource collection API of AssessedSqlMachinesOperations.
-     * 
-     * @return Resource collection API of AssessedSqlMachinesOperations.
-     */
-    public AssessedSqlMachinesOperations assessedSqlMachinesOperations() {
-        if (this.assessedSqlMachinesOperations == null) {
-            this.assessedSqlMachinesOperations
-                = new AssessedSqlMachinesOperationsImpl(clientObject.getAssessedSqlMachinesOperations(), this);
-        }
-        return assessedSqlMachinesOperations;
-    }
-
-    /**
-     * Gets the resource collection API of AssessedSqlRecommendedEntityOperations.
-     * 
-     * @return Resource collection API of AssessedSqlRecommendedEntityOperations.
-     */
-    public AssessedSqlRecommendedEntityOperations assessedSqlRecommendedEntityOperations() {
-        if (this.assessedSqlRecommendedEntityOperations == null) {
-            this.assessedSqlRecommendedEntityOperations = new AssessedSqlRecommendedEntityOperationsImpl(
-                clientObject.getAssessedSqlRecommendedEntityOperations(), this);
-        }
-        return assessedSqlRecommendedEntityOperations;
-    }
-
-    /**
-     * Gets the resource collection API of SqlAssessmentV2SummaryOperations.
-     * 
-     * @return Resource collection API of SqlAssessmentV2SummaryOperations.
-     */
-    public SqlAssessmentV2SummaryOperations sqlAssessmentV2SummaryOperations() {
-        if (this.sqlAssessmentV2SummaryOperations == null) {
-            this.sqlAssessmentV2SummaryOperations
-                = new SqlAssessmentV2SummaryOperationsImpl(clientObject.getSqlAssessmentV2SummaryOperations(), this);
-        }
-        return sqlAssessmentV2SummaryOperations;
-    }
-
-    /**
-     * Gets the resource collection API of HypervCollectorsOperations. It manages HypervCollector.
-     * 
-     * @return Resource collection API of HypervCollectorsOperations.
-     */
-    public HypervCollectorsOperations hypervCollectorsOperations() {
-        if (this.hypervCollectorsOperations == null) {
-            this.hypervCollectorsOperations
-                = new HypervCollectorsOperationsImpl(clientObject.getHypervCollectorsOperations(), this);
-        }
-        return hypervCollectorsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of ImportCollectorsOperations. It manages ImportCollector.
-     * 
-     * @return Resource collection API of ImportCollectorsOperations.
-     */
-    public ImportCollectorsOperations importCollectorsOperations() {
-        if (this.importCollectorsOperations == null) {
-            this.importCollectorsOperations
-                = new ImportCollectorsOperationsImpl(clientObject.getImportCollectorsOperations(), this);
-        }
-        return importCollectorsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of MachinesOperations.
-     * 
-     * @return Resource collection API of MachinesOperations.
-     */
-    public MachinesOperations machinesOperations() {
-        if (this.machinesOperations == null) {
-            this.machinesOperations = new MachinesOperationsImpl(clientObject.getMachinesOperations(), this);
-        }
-        return machinesOperations;
-    }
-
-    /**
      * Gets the resource collection API of PrivateEndpointConnectionOperations.
      * 
      * @return Resource collection API of PrivateEndpointConnectionOperations.
@@ -624,6 +519,536 @@ public final class MigrationAssessmentManager {
     }
 
     /**
+     * Gets the resource collection API of AvsGraphAssessmentOptionsOperations.
+     * 
+     * @return Resource collection API of AvsGraphAssessmentOptionsOperations.
+     */
+    public AvsGraphAssessmentOptionsOperations avsGraphAssessmentOptionsOperations() {
+        if (this.avsGraphAssessmentOptionsOperations == null) {
+            this.avsGraphAssessmentOptionsOperations = new AvsGraphAssessmentOptionsOperationsImpl(
+                clientObject.getAvsGraphAssessmentOptionsOperations(), this);
+        }
+        return avsGraphAssessmentOptionsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of AvsAssessmentsV2Operations. It manages AvsAssessmentV2.
+     * 
+     * @return Resource collection API of AvsAssessmentsV2Operations.
+     */
+    public AvsAssessmentsV2Operations avsAssessmentsV2Operations() {
+        if (this.avsAssessmentsV2Operations == null) {
+            this.avsAssessmentsV2Operations
+                = new AvsAssessmentsV2OperationsImpl(clientObject.getAvsAssessmentsV2Operations(), this);
+        }
+        return avsAssessmentsV2Operations;
+    }
+
+    /**
+     * Gets the resource collection API of AvsAssessedMachinesV2Operations.
+     * 
+     * @return Resource collection API of AvsAssessedMachinesV2Operations.
+     */
+    public AvsAssessedMachinesV2Operations avsAssessedMachinesV2Operations() {
+        if (this.avsAssessedMachinesV2Operations == null) {
+            this.avsAssessedMachinesV2Operations
+                = new AvsAssessedMachinesV2OperationsImpl(clientObject.getAvsAssessedMachinesV2Operations(), this);
+        }
+        return avsAssessedMachinesV2Operations;
+    }
+
+    /**
+     * Gets the resource collection API of AvsAssessmentV2SummaryOperations.
+     * 
+     * @return Resource collection API of AvsAssessmentV2SummaryOperations.
+     */
+    public AvsAssessmentV2SummaryOperations avsAssessmentV2SummaryOperations() {
+        if (this.avsAssessmentV2SummaryOperations == null) {
+            this.avsAssessmentV2SummaryOperations
+                = new AvsAssessmentV2SummaryOperationsImpl(clientObject.getAvsAssessmentV2SummaryOperations(), this);
+        }
+        return avsAssessmentV2SummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of HeterogeneousAssessmentOperations. It manages HeterogeneousAssessment.
+     * 
+     * @return Resource collection API of HeterogeneousAssessmentOperations.
+     */
+    public HeterogeneousAssessmentOperations heterogeneousAssessmentOperations() {
+        if (this.heterogeneousAssessmentOperations == null) {
+            this.heterogeneousAssessmentOperations
+                = new HeterogeneousAssessmentOperationsImpl(clientObject.getHeterogeneousAssessmentOperations(), this);
+        }
+        return heterogeneousAssessmentOperations;
+    }
+
+    /**
+     * Gets the resource collection API of HeterogeneousAssessmentSummaryOperations.
+     * 
+     * @return Resource collection API of HeterogeneousAssessmentSummaryOperations.
+     */
+    public HeterogeneousAssessmentSummaryOperations heterogeneousAssessmentSummaryOperations() {
+        if (this.heterogeneousAssessmentSummaryOperations == null) {
+            this.heterogeneousAssessmentSummaryOperations = new HeterogeneousAssessmentSummaryOperationsImpl(
+                clientObject.getHeterogeneousAssessmentSummaryOperations(), this);
+        }
+        return heterogeneousAssessmentSummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of MachineGraphAssessmentOptionsOperations.
+     * 
+     * @return Resource collection API of MachineGraphAssessmentOptionsOperations.
+     */
+    public MachineGraphAssessmentOptionsOperations machineGraphAssessmentOptionsOperations() {
+        if (this.machineGraphAssessmentOptionsOperations == null) {
+            this.machineGraphAssessmentOptionsOperations = new MachineGraphAssessmentOptionsOperationsImpl(
+                clientObject.getMachineGraphAssessmentOptionsOperations(), this);
+        }
+        return machineGraphAssessmentOptionsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of MachineAssessmentsV2Operations. It manages MachineAssessmentV2.
+     * 
+     * @return Resource collection API of MachineAssessmentsV2Operations.
+     */
+    public MachineAssessmentsV2Operations machineAssessmentsV2Operations() {
+        if (this.machineAssessmentsV2Operations == null) {
+            this.machineAssessmentsV2Operations
+                = new MachineAssessmentsV2OperationsImpl(clientObject.getMachineAssessmentsV2Operations(), this);
+        }
+        return machineAssessmentsV2Operations;
+    }
+
+    /**
+     * Gets the resource collection API of AssessedMachinesV2Operations.
+     * 
+     * @return Resource collection API of AssessedMachinesV2Operations.
+     */
+    public AssessedMachinesV2Operations assessedMachinesV2Operations() {
+        if (this.assessedMachinesV2Operations == null) {
+            this.assessedMachinesV2Operations
+                = new AssessedMachinesV2OperationsImpl(clientObject.getAssessedMachinesV2Operations(), this);
+        }
+        return assessedMachinesV2Operations;
+    }
+
+    /**
+     * Gets the resource collection API of MachineAssessmentV2SummaryOperations.
+     * 
+     * @return Resource collection API of MachineAssessmentV2SummaryOperations.
+     */
+    public MachineAssessmentV2SummaryOperations machineAssessmentV2SummaryOperations() {
+        if (this.machineAssessmentV2SummaryOperations == null) {
+            this.machineAssessmentV2SummaryOperations = new MachineAssessmentV2SummaryOperationsImpl(
+                clientObject.getMachineAssessmentV2SummaryOperations(), this);
+        }
+        return machineAssessmentV2SummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of SqlGraphAssessmentOptionsOperations.
+     * 
+     * @return Resource collection API of SqlGraphAssessmentOptionsOperations.
+     */
+    public SqlGraphAssessmentOptionsOperations sqlGraphAssessmentOptionsOperations() {
+        if (this.sqlGraphAssessmentOptionsOperations == null) {
+            this.sqlGraphAssessmentOptionsOperations = new SqlGraphAssessmentOptionsOperationsImpl(
+                clientObject.getSqlGraphAssessmentOptionsOperations(), this);
+        }
+        return sqlGraphAssessmentOptionsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of SqlAssessmentV3Operations. It manages SqlAssessmentV3.
+     * 
+     * @return Resource collection API of SqlAssessmentV3Operations.
+     */
+    public SqlAssessmentV3Operations sqlAssessmentV3Operations() {
+        if (this.sqlAssessmentV3Operations == null) {
+            this.sqlAssessmentV3Operations
+                = new SqlAssessmentV3OperationsImpl(clientObject.getSqlAssessmentV3Operations(), this);
+        }
+        return sqlAssessmentV3Operations;
+    }
+
+    /**
+     * Gets the resource collection API of AssessedSqlDatabaseV3Operations.
+     * 
+     * @return Resource collection API of AssessedSqlDatabaseV3Operations.
+     */
+    public AssessedSqlDatabaseV3Operations assessedSqlDatabaseV3Operations() {
+        if (this.assessedSqlDatabaseV3Operations == null) {
+            this.assessedSqlDatabaseV3Operations
+                = new AssessedSqlDatabaseV3OperationsImpl(clientObject.getAssessedSqlDatabaseV3Operations(), this);
+        }
+        return assessedSqlDatabaseV3Operations;
+    }
+
+    /**
+     * Gets the resource collection API of AssessedSqlInstanceV3Operations.
+     * 
+     * @return Resource collection API of AssessedSqlInstanceV3Operations.
+     */
+    public AssessedSqlInstanceV3Operations assessedSqlInstanceV3Operations() {
+        if (this.assessedSqlInstanceV3Operations == null) {
+            this.assessedSqlInstanceV3Operations
+                = new AssessedSqlInstanceV3OperationsImpl(clientObject.getAssessedSqlInstanceV3Operations(), this);
+        }
+        return assessedSqlInstanceV3Operations;
+    }
+
+    /**
+     * Gets the resource collection API of AssessedSqlMachinesV3Operations.
+     * 
+     * @return Resource collection API of AssessedSqlMachinesV3Operations.
+     */
+    public AssessedSqlMachinesV3Operations assessedSqlMachinesV3Operations() {
+        if (this.assessedSqlMachinesV3Operations == null) {
+            this.assessedSqlMachinesV3Operations
+                = new AssessedSqlMachinesV3OperationsImpl(clientObject.getAssessedSqlMachinesV3Operations(), this);
+        }
+        return assessedSqlMachinesV3Operations;
+    }
+
+    /**
+     * Gets the resource collection API of SqlAssessmentV3SummaryOperations.
+     * 
+     * @return Resource collection API of SqlAssessmentV3SummaryOperations.
+     */
+    public SqlAssessmentV3SummaryOperations sqlAssessmentV3SummaryOperations() {
+        if (this.sqlAssessmentV3SummaryOperations == null) {
+            this.sqlAssessmentV3SummaryOperations
+                = new SqlAssessmentV3SummaryOperationsImpl(clientObject.getSqlAssessmentV3SummaryOperations(), this);
+        }
+        return sqlAssessmentV3SummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of BusinessCaseOperations. It manages BusinessCase.
+     * 
+     * @return Resource collection API of BusinessCaseOperations.
+     */
+    public BusinessCaseOperations businessCaseOperations() {
+        if (this.businessCaseOperations == null) {
+            this.businessCaseOperations
+                = new BusinessCaseOperationsImpl(clientObject.getBusinessCaseOperations(), this);
+        }
+        return businessCaseOperations;
+    }
+
+    /**
+     * Gets the resource collection API of BusinessCaseAvsSummaryOperations.
+     * 
+     * @return Resource collection API of BusinessCaseAvsSummaryOperations.
+     */
+    public BusinessCaseAvsSummaryOperations businessCaseAvsSummaryOperations() {
+        if (this.businessCaseAvsSummaryOperations == null) {
+            this.businessCaseAvsSummaryOperations
+                = new BusinessCaseAvsSummaryOperationsImpl(clientObject.getBusinessCaseAvsSummaryOperations(), this);
+        }
+        return businessCaseAvsSummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of EvaluatedAvsMachinesOperations.
+     * 
+     * @return Resource collection API of EvaluatedAvsMachinesOperations.
+     */
+    public EvaluatedAvsMachinesOperations evaluatedAvsMachinesOperations() {
+        if (this.evaluatedAvsMachinesOperations == null) {
+            this.evaluatedAvsMachinesOperations
+                = new EvaluatedAvsMachinesOperationsImpl(clientObject.getEvaluatedAvsMachinesOperations(), this);
+        }
+        return evaluatedAvsMachinesOperations;
+    }
+
+    /**
+     * Gets the resource collection API of EvaluatedMachinesOperations.
+     * 
+     * @return Resource collection API of EvaluatedMachinesOperations.
+     */
+    public EvaluatedMachinesOperations evaluatedMachinesOperations() {
+        if (this.evaluatedMachinesOperations == null) {
+            this.evaluatedMachinesOperations
+                = new EvaluatedMachinesOperationsImpl(clientObject.getEvaluatedMachinesOperations(), this);
+        }
+        return evaluatedMachinesOperations;
+    }
+
+    /**
+     * Gets the resource collection API of EvaluatedSqlEntitiesOperations.
+     * 
+     * @return Resource collection API of EvaluatedSqlEntitiesOperations.
+     */
+    public EvaluatedSqlEntitiesOperations evaluatedSqlEntitiesOperations() {
+        if (this.evaluatedSqlEntitiesOperations == null) {
+            this.evaluatedSqlEntitiesOperations
+                = new EvaluatedSqlEntitiesOperationsImpl(clientObject.getEvaluatedSqlEntitiesOperations(), this);
+        }
+        return evaluatedSqlEntitiesOperations;
+    }
+
+    /**
+     * Gets the resource collection API of EvaluatedWebAppsOperations.
+     * 
+     * @return Resource collection API of EvaluatedWebAppsOperations.
+     */
+    public EvaluatedWebAppsOperations evaluatedWebAppsOperations() {
+        if (this.evaluatedWebAppsOperations == null) {
+            this.evaluatedWebAppsOperations
+                = new EvaluatedWebAppsOperationsImpl(clientObject.getEvaluatedWebAppsOperations(), this);
+        }
+        return evaluatedWebAppsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of BusinessCaseIaasSummaryOperations.
+     * 
+     * @return Resource collection API of BusinessCaseIaasSummaryOperations.
+     */
+    public BusinessCaseIaasSummaryOperations businessCaseIaasSummaryOperations() {
+        if (this.businessCaseIaasSummaryOperations == null) {
+            this.businessCaseIaasSummaryOperations
+                = new BusinessCaseIaasSummaryOperationsImpl(clientObject.getBusinessCaseIaasSummaryOperations(), this);
+        }
+        return businessCaseIaasSummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of BusinessCaseOverviewSummaryOperations.
+     * 
+     * @return Resource collection API of BusinessCaseOverviewSummaryOperations.
+     */
+    public BusinessCaseOverviewSummaryOperations businessCaseOverviewSummaryOperations() {
+        if (this.businessCaseOverviewSummaryOperations == null) {
+            this.businessCaseOverviewSummaryOperations = new BusinessCaseOverviewSummaryOperationsImpl(
+                clientObject.getBusinessCaseOverviewSummaryOperations(), this);
+        }
+        return businessCaseOverviewSummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of BusinessCasePaasSummaryOperations.
+     * 
+     * @return Resource collection API of BusinessCasePaasSummaryOperations.
+     */
+    public BusinessCasePaasSummaryOperations businessCasePaasSummaryOperations() {
+        if (this.businessCasePaasSummaryOperations == null) {
+            this.businessCasePaasSummaryOperations
+                = new BusinessCasePaasSummaryOperationsImpl(clientObject.getBusinessCasePaasSummaryOperations(), this);
+        }
+        return businessCasePaasSummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WebAppGraphAssessmentOptionsOperations.
+     * 
+     * @return Resource collection API of WebAppGraphAssessmentOptionsOperations.
+     */
+    public WebAppGraphAssessmentOptionsOperations webAppGraphAssessmentOptionsOperations() {
+        if (this.webAppGraphAssessmentOptionsOperations == null) {
+            this.webAppGraphAssessmentOptionsOperations = new WebAppGraphAssessmentOptionsOperationsImpl(
+                clientObject.getWebAppGraphAssessmentOptionsOperations(), this);
+        }
+        return webAppGraphAssessmentOptionsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WebAppAssessmentV3Operations. It manages WebAppAssessmentV3.
+     * 
+     * @return Resource collection API of WebAppAssessmentV3Operations.
+     */
+    public WebAppAssessmentV3Operations webAppAssessmentV3Operations() {
+        if (this.webAppAssessmentV3Operations == null) {
+            this.webAppAssessmentV3Operations
+                = new WebAppAssessmentV3OperationsImpl(clientObject.getWebAppAssessmentV3Operations(), this);
+        }
+        return webAppAssessmentV3Operations;
+    }
+
+    /**
+     * Gets the resource collection API of AssessedWebAppsV3Operations.
+     * 
+     * @return Resource collection API of AssessedWebAppsV3Operations.
+     */
+    public AssessedWebAppsV3Operations assessedWebAppsV3Operations() {
+        if (this.assessedWebAppsV3Operations == null) {
+            this.assessedWebAppsV3Operations
+                = new AssessedWebAppsV3OperationsImpl(clientObject.getAssessedWebAppsV3Operations(), this);
+        }
+        return assessedWebAppsV3Operations;
+    }
+
+    /**
+     * Gets the resource collection API of WebAppAssessmentV3SummaryOperations.
+     * 
+     * @return Resource collection API of WebAppAssessmentV3SummaryOperations.
+     */
+    public WebAppAssessmentV3SummaryOperations webAppAssessmentV3SummaryOperations() {
+        if (this.webAppAssessmentV3SummaryOperations == null) {
+            this.webAppAssessmentV3SummaryOperations = new WebAppAssessmentV3SummaryOperationsImpl(
+                clientObject.getWebAppAssessmentV3SummaryOperations(), this);
+        }
+        return webAppAssessmentV3SummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WebAppServicePlansOperations.
+     * 
+     * @return Resource collection API of WebAppServicePlansOperations.
+     */
+    public WebAppServicePlansOperations webAppServicePlansOperations() {
+        if (this.webAppServicePlansOperations == null) {
+            this.webAppServicePlansOperations
+                = new WebAppServicePlansOperationsImpl(clientObject.getWebAppServicePlansOperations(), this);
+        }
+        return webAppServicePlansOperations;
+    }
+
+    /**
+     * Gets the resource collection API of CompoundAssessmentOperations. It manages CompoundAssessment.
+     * 
+     * @return Resource collection API of CompoundAssessmentOperations.
+     */
+    public CompoundAssessmentOperations compoundAssessmentOperations() {
+        if (this.compoundAssessmentOperations == null) {
+            this.compoundAssessmentOperations
+                = new CompoundAssessmentOperationsImpl(clientObject.getCompoundAssessmentOperations(), this);
+        }
+        return compoundAssessmentOperations;
+    }
+
+    /**
+     * Gets the resource collection API of CompoundAssessmentSummaryOperations.
+     * 
+     * @return Resource collection API of CompoundAssessmentSummaryOperations.
+     */
+    public CompoundAssessmentSummaryOperations compoundAssessmentSummaryOperations() {
+        if (this.compoundAssessmentSummaryOperations == null) {
+            this.compoundAssessmentSummaryOperations = new CompoundAssessmentSummaryOperationsImpl(
+                clientObject.getCompoundAssessmentSummaryOperations(), this);
+        }
+        return compoundAssessmentSummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of AksOptionsOperations.
+     * 
+     * @return Resource collection API of AksOptionsOperations.
+     */
+    public AksOptionsOperations aksOptionsOperations() {
+        if (this.aksOptionsOperations == null) {
+            this.aksOptionsOperations = new AksOptionsOperationsImpl(clientObject.getAksOptionsOperations(), this);
+        }
+        return aksOptionsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of AksAssessmentOperations. It manages AksAssessment.
+     * 
+     * @return Resource collection API of AksAssessmentOperations.
+     */
+    public AksAssessmentOperations aksAssessmentOperations() {
+        if (this.aksAssessmentOperations == null) {
+            this.aksAssessmentOperations
+                = new AksAssessmentOperationsImpl(clientObject.getAksAssessmentOperations(), this);
+        }
+        return aksAssessmentOperations;
+    }
+
+    /**
+     * Gets the resource collection API of AssessedWebApplicationOperations.
+     * 
+     * @return Resource collection API of AssessedWebApplicationOperations.
+     */
+    public AssessedWebApplicationOperations assessedWebApplicationOperations() {
+        if (this.assessedWebApplicationOperations == null) {
+            this.assessedWebApplicationOperations
+                = new AssessedWebApplicationOperationsImpl(clientObject.getAssessedWebApplicationOperations(), this);
+        }
+        return assessedWebApplicationOperations;
+    }
+
+    /**
+     * Gets the resource collection API of AksClusterOperations.
+     * 
+     * @return Resource collection API of AksClusterOperations.
+     */
+    public AksClusterOperations aksClusterOperations() {
+        if (this.aksClusterOperations == null) {
+            this.aksClusterOperations = new AksClusterOperationsImpl(clientObject.getAksClusterOperations(), this);
+        }
+        return aksClusterOperations;
+    }
+
+    /**
+     * Gets the resource collection API of AksCostDetailOperations.
+     * 
+     * @return Resource collection API of AksCostDetailOperations.
+     */
+    public AksCostDetailOperations aksCostDetailOperations() {
+        if (this.aksCostDetailOperations == null) {
+            this.aksCostDetailOperations
+                = new AksCostDetailOperationsImpl(clientObject.getAksCostDetailOperations(), this);
+        }
+        return aksCostDetailOperations;
+    }
+
+    /**
+     * Gets the resource collection API of AksSummaryOperations.
+     * 
+     * @return Resource collection API of AksSummaryOperations.
+     */
+    public AksSummaryOperations aksSummaryOperations() {
+        if (this.aksSummaryOperations == null) {
+            this.aksSummaryOperations = new AksSummaryOperationsImpl(clientObject.getAksSummaryOperations(), this);
+        }
+        return aksSummaryOperations;
+    }
+
+    /**
+     * Gets the resource collection API of HypervCollectorsOperations. It manages HypervCollector.
+     * 
+     * @return Resource collection API of HypervCollectorsOperations.
+     */
+    public HypervCollectorsOperations hypervCollectorsOperations() {
+        if (this.hypervCollectorsOperations == null) {
+            this.hypervCollectorsOperations
+                = new HypervCollectorsOperationsImpl(clientObject.getHypervCollectorsOperations(), this);
+        }
+        return hypervCollectorsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ImportSqlCollectorOperations. It manages ImportSqlCollector.
+     * 
+     * @return Resource collection API of ImportSqlCollectorOperations.
+     */
+    public ImportSqlCollectorOperations importSqlCollectorOperations() {
+        if (this.importSqlCollectorOperations == null) {
+            this.importSqlCollectorOperations
+                = new ImportSqlCollectorOperationsImpl(clientObject.getImportSqlCollectorOperations(), this);
+        }
+        return importSqlCollectorOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ImportCollectorsOperations. It manages ImportCollector.
+     * 
+     * @return Resource collection API of ImportCollectorsOperations.
+     */
+    public ImportCollectorsOperations importCollectorsOperations() {
+        if (this.importCollectorsOperations == null) {
+            this.importCollectorsOperations
+                = new ImportCollectorsOperationsImpl(clientObject.getImportCollectorsOperations(), this);
+        }
+        return importCollectorsOperations;
+    }
+
+    /**
      * Gets the resource collection API of ServerCollectorsOperations. It manages ServerCollector.
      * 
      * @return Resource collection API of ServerCollectorsOperations.
@@ -634,19 +1059,6 @@ public final class MigrationAssessmentManager {
                 = new ServerCollectorsOperationsImpl(clientObject.getServerCollectorsOperations(), this);
         }
         return serverCollectorsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of SqlAssessmentOptionsOperations.
-     * 
-     * @return Resource collection API of SqlAssessmentOptionsOperations.
-     */
-    public SqlAssessmentOptionsOperations sqlAssessmentOptionsOperations() {
-        if (this.sqlAssessmentOptionsOperations == null) {
-            this.sqlAssessmentOptionsOperations
-                = new SqlAssessmentOptionsOperationsImpl(clientObject.getSqlAssessmentOptionsOperations(), this);
-        }
-        return sqlAssessmentOptionsOperations;
     }
 
     /**
@@ -673,6 +1085,19 @@ public final class MigrationAssessmentManager {
                 = new VmwareCollectorsOperationsImpl(clientObject.getVmwareCollectorsOperations(), this);
         }
         return vmwareCollectorsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WebAppCollectorOperations. It manages WebAppCollector.
+     * 
+     * @return Resource collection API of WebAppCollectorOperations.
+     */
+    public WebAppCollectorOperations webAppCollectorOperations() {
+        if (this.webAppCollectorOperations == null) {
+            this.webAppCollectorOperations
+                = new WebAppCollectorOperationsImpl(clientObject.getWebAppCollectorOperations(), this);
+        }
+        return webAppCollectorOperations;
     }
 
     /**

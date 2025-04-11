@@ -6,7 +6,6 @@ package com.azure.resourcemanager.migration.assessment.generated;
 
 import com.azure.resourcemanager.migration.assessment.models.ProjectProperties;
 import com.azure.resourcemanager.migration.assessment.models.ProjectStatus;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,24 +15,23 @@ import java.util.Map;
 public final class AssessmentProjectsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_Create_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsCreateMaximumSetGen(
+    public static void assessmentProjectsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectsOperations()
             .define("sakanwar1204project")
             .withRegion("southeastasia")
             .withExistingResourceGroup("sakanwar")
             .withTags(mapOf("Migrate Project", "sakanwar-PE-SEA"))
-            .withProperties(new ProjectProperties().withProvisioningState(ProvisioningState.SUCCEEDED)
-                .withAssessmentSolutionId(
-                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa")
+            .withProperties(new ProjectProperties().withAssessmentSolutionId(
+                "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa")
                 .withProjectStatus(ProjectStatus.ACTIVE)
                 .withPublicNetworkAccess("Disabled")
                 .withCustomerStorageAccountArmId(

@@ -23,32 +23,57 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.migration.assessment.fluent.AssessedMachinesOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AssessedSqlDatabaseV2OperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AssessedSqlInstanceV2OperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AssessedSqlMachinesOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AssessedSqlRecommendedEntityOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AssessmentOptionsOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AksAssessmentOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AksClusterOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AksCostDetailOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AksOptionsOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AksSummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AssessedMachinesV2OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AssessedSqlDatabaseV3OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AssessedSqlInstanceV3OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AssessedSqlMachinesV3OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AssessedWebApplicationOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AssessedWebAppsV3OperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.AssessmentProjectSummaryOperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.AssessmentProjectsOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AssessmentsOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AvsAssessedMachinesOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AvsAssessmentOptionsOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.AvsAssessmentsOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.GroupsOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AvsAssessedMachinesV2OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AvsAssessmentV2SummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AvsAssessmentsV2OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.AvsGraphAssessmentOptionsOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.BusinessCaseAvsSummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.BusinessCaseIaasSummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.BusinessCaseOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.BusinessCaseOverviewSummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.BusinessCasePaasSummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.CompoundAssessmentOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.CompoundAssessmentSummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.EvaluatedAvsMachinesOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.EvaluatedMachinesOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.EvaluatedSqlEntitiesOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.EvaluatedWebAppsOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.HeterogeneousAssessmentOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.HeterogeneousAssessmentSummaryOperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.HypervCollectorsOperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.ImportCollectorsOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.MachinesOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.ImportSqlCollectorOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.MachineAssessmentV2SummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.MachineAssessmentsV2OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.MachineGraphAssessmentOptionsOperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.MigrationAssessmentManagementClient;
 import com.azure.resourcemanager.migration.assessment.fluent.OperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.PrivateEndpointConnectionOperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.PrivateLinkResourceOperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.ServerCollectorsOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.SqlAssessmentOptionsOperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.SqlAssessmentV2OperationsClient;
-import com.azure.resourcemanager.migration.assessment.fluent.SqlAssessmentV2SummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.SqlAssessmentV3OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.SqlAssessmentV3SummaryOperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.SqlCollectorOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.SqlGraphAssessmentOptionsOperationsClient;
 import com.azure.resourcemanager.migration.assessment.fluent.VmwareCollectorsOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.WebAppAssessmentV3OperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.WebAppAssessmentV3SummaryOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.WebAppCollectorOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.WebAppGraphAssessmentOptionsOperationsClient;
+import com.azure.resourcemanager.migration.assessment.fluent.WebAppServicePlansOperationsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -64,12 +89,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = MigrationAssessmentManagementClientBuilder.class)
 public final class MigrationAssessmentManagementClientImpl implements MigrationAssessmentManagementClient {
     /**
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -176,230 +201,6 @@ public final class MigrationAssessmentManagementClientImpl implements MigrationA
     }
 
     /**
-     * The AssessmentOptionsOperationsClient object to access its operations.
-     */
-    private final AssessmentOptionsOperationsClient assessmentOptionsOperations;
-
-    /**
-     * Gets the AssessmentOptionsOperationsClient object to access its operations.
-     * 
-     * @return the AssessmentOptionsOperationsClient object.
-     */
-    public AssessmentOptionsOperationsClient getAssessmentOptionsOperations() {
-        return this.assessmentOptionsOperations;
-    }
-
-    /**
-     * The AvsAssessmentOptionsOperationsClient object to access its operations.
-     */
-    private final AvsAssessmentOptionsOperationsClient avsAssessmentOptionsOperations;
-
-    /**
-     * Gets the AvsAssessmentOptionsOperationsClient object to access its operations.
-     * 
-     * @return the AvsAssessmentOptionsOperationsClient object.
-     */
-    public AvsAssessmentOptionsOperationsClient getAvsAssessmentOptionsOperations() {
-        return this.avsAssessmentOptionsOperations;
-    }
-
-    /**
-     * The GroupsOperationsClient object to access its operations.
-     */
-    private final GroupsOperationsClient groupsOperations;
-
-    /**
-     * Gets the GroupsOperationsClient object to access its operations.
-     * 
-     * @return the GroupsOperationsClient object.
-     */
-    public GroupsOperationsClient getGroupsOperations() {
-        return this.groupsOperations;
-    }
-
-    /**
-     * The AssessmentsOperationsClient object to access its operations.
-     */
-    private final AssessmentsOperationsClient assessmentsOperations;
-
-    /**
-     * Gets the AssessmentsOperationsClient object to access its operations.
-     * 
-     * @return the AssessmentsOperationsClient object.
-     */
-    public AssessmentsOperationsClient getAssessmentsOperations() {
-        return this.assessmentsOperations;
-    }
-
-    /**
-     * The AssessedMachinesOperationsClient object to access its operations.
-     */
-    private final AssessedMachinesOperationsClient assessedMachinesOperations;
-
-    /**
-     * Gets the AssessedMachinesOperationsClient object to access its operations.
-     * 
-     * @return the AssessedMachinesOperationsClient object.
-     */
-    public AssessedMachinesOperationsClient getAssessedMachinesOperations() {
-        return this.assessedMachinesOperations;
-    }
-
-    /**
-     * The AvsAssessmentsOperationsClient object to access its operations.
-     */
-    private final AvsAssessmentsOperationsClient avsAssessmentsOperations;
-
-    /**
-     * Gets the AvsAssessmentsOperationsClient object to access its operations.
-     * 
-     * @return the AvsAssessmentsOperationsClient object.
-     */
-    public AvsAssessmentsOperationsClient getAvsAssessmentsOperations() {
-        return this.avsAssessmentsOperations;
-    }
-
-    /**
-     * The AvsAssessedMachinesOperationsClient object to access its operations.
-     */
-    private final AvsAssessedMachinesOperationsClient avsAssessedMachinesOperations;
-
-    /**
-     * Gets the AvsAssessedMachinesOperationsClient object to access its operations.
-     * 
-     * @return the AvsAssessedMachinesOperationsClient object.
-     */
-    public AvsAssessedMachinesOperationsClient getAvsAssessedMachinesOperations() {
-        return this.avsAssessedMachinesOperations;
-    }
-
-    /**
-     * The SqlAssessmentV2OperationsClient object to access its operations.
-     */
-    private final SqlAssessmentV2OperationsClient sqlAssessmentV2Operations;
-
-    /**
-     * Gets the SqlAssessmentV2OperationsClient object to access its operations.
-     * 
-     * @return the SqlAssessmentV2OperationsClient object.
-     */
-    public SqlAssessmentV2OperationsClient getSqlAssessmentV2Operations() {
-        return this.sqlAssessmentV2Operations;
-    }
-
-    /**
-     * The AssessedSqlDatabaseV2OperationsClient object to access its operations.
-     */
-    private final AssessedSqlDatabaseV2OperationsClient assessedSqlDatabaseV2Operations;
-
-    /**
-     * Gets the AssessedSqlDatabaseV2OperationsClient object to access its operations.
-     * 
-     * @return the AssessedSqlDatabaseV2OperationsClient object.
-     */
-    public AssessedSqlDatabaseV2OperationsClient getAssessedSqlDatabaseV2Operations() {
-        return this.assessedSqlDatabaseV2Operations;
-    }
-
-    /**
-     * The AssessedSqlInstanceV2OperationsClient object to access its operations.
-     */
-    private final AssessedSqlInstanceV2OperationsClient assessedSqlInstanceV2Operations;
-
-    /**
-     * Gets the AssessedSqlInstanceV2OperationsClient object to access its operations.
-     * 
-     * @return the AssessedSqlInstanceV2OperationsClient object.
-     */
-    public AssessedSqlInstanceV2OperationsClient getAssessedSqlInstanceV2Operations() {
-        return this.assessedSqlInstanceV2Operations;
-    }
-
-    /**
-     * The AssessedSqlMachinesOperationsClient object to access its operations.
-     */
-    private final AssessedSqlMachinesOperationsClient assessedSqlMachinesOperations;
-
-    /**
-     * Gets the AssessedSqlMachinesOperationsClient object to access its operations.
-     * 
-     * @return the AssessedSqlMachinesOperationsClient object.
-     */
-    public AssessedSqlMachinesOperationsClient getAssessedSqlMachinesOperations() {
-        return this.assessedSqlMachinesOperations;
-    }
-
-    /**
-     * The AssessedSqlRecommendedEntityOperationsClient object to access its operations.
-     */
-    private final AssessedSqlRecommendedEntityOperationsClient assessedSqlRecommendedEntityOperations;
-
-    /**
-     * Gets the AssessedSqlRecommendedEntityOperationsClient object to access its operations.
-     * 
-     * @return the AssessedSqlRecommendedEntityOperationsClient object.
-     */
-    public AssessedSqlRecommendedEntityOperationsClient getAssessedSqlRecommendedEntityOperations() {
-        return this.assessedSqlRecommendedEntityOperations;
-    }
-
-    /**
-     * The SqlAssessmentV2SummaryOperationsClient object to access its operations.
-     */
-    private final SqlAssessmentV2SummaryOperationsClient sqlAssessmentV2SummaryOperations;
-
-    /**
-     * Gets the SqlAssessmentV2SummaryOperationsClient object to access its operations.
-     * 
-     * @return the SqlAssessmentV2SummaryOperationsClient object.
-     */
-    public SqlAssessmentV2SummaryOperationsClient getSqlAssessmentV2SummaryOperations() {
-        return this.sqlAssessmentV2SummaryOperations;
-    }
-
-    /**
-     * The HypervCollectorsOperationsClient object to access its operations.
-     */
-    private final HypervCollectorsOperationsClient hypervCollectorsOperations;
-
-    /**
-     * Gets the HypervCollectorsOperationsClient object to access its operations.
-     * 
-     * @return the HypervCollectorsOperationsClient object.
-     */
-    public HypervCollectorsOperationsClient getHypervCollectorsOperations() {
-        return this.hypervCollectorsOperations;
-    }
-
-    /**
-     * The ImportCollectorsOperationsClient object to access its operations.
-     */
-    private final ImportCollectorsOperationsClient importCollectorsOperations;
-
-    /**
-     * Gets the ImportCollectorsOperationsClient object to access its operations.
-     * 
-     * @return the ImportCollectorsOperationsClient object.
-     */
-    public ImportCollectorsOperationsClient getImportCollectorsOperations() {
-        return this.importCollectorsOperations;
-    }
-
-    /**
-     * The MachinesOperationsClient object to access its operations.
-     */
-    private final MachinesOperationsClient machinesOperations;
-
-    /**
-     * Gets the MachinesOperationsClient object to access its operations.
-     * 
-     * @return the MachinesOperationsClient object.
-     */
-    public MachinesOperationsClient getMachinesOperations() {
-        return this.machinesOperations;
-    }
-
-    /**
      * The PrivateEndpointConnectionOperationsClient object to access its operations.
      */
     private final PrivateEndpointConnectionOperationsClient privateEndpointConnectionOperations;
@@ -442,6 +243,580 @@ public final class MigrationAssessmentManagementClientImpl implements MigrationA
     }
 
     /**
+     * The AvsGraphAssessmentOptionsOperationsClient object to access its operations.
+     */
+    private final AvsGraphAssessmentOptionsOperationsClient avsGraphAssessmentOptionsOperations;
+
+    /**
+     * Gets the AvsGraphAssessmentOptionsOperationsClient object to access its operations.
+     * 
+     * @return the AvsGraphAssessmentOptionsOperationsClient object.
+     */
+    public AvsGraphAssessmentOptionsOperationsClient getAvsGraphAssessmentOptionsOperations() {
+        return this.avsGraphAssessmentOptionsOperations;
+    }
+
+    /**
+     * The AvsAssessmentsV2OperationsClient object to access its operations.
+     */
+    private final AvsAssessmentsV2OperationsClient avsAssessmentsV2Operations;
+
+    /**
+     * Gets the AvsAssessmentsV2OperationsClient object to access its operations.
+     * 
+     * @return the AvsAssessmentsV2OperationsClient object.
+     */
+    public AvsAssessmentsV2OperationsClient getAvsAssessmentsV2Operations() {
+        return this.avsAssessmentsV2Operations;
+    }
+
+    /**
+     * The AvsAssessedMachinesV2OperationsClient object to access its operations.
+     */
+    private final AvsAssessedMachinesV2OperationsClient avsAssessedMachinesV2Operations;
+
+    /**
+     * Gets the AvsAssessedMachinesV2OperationsClient object to access its operations.
+     * 
+     * @return the AvsAssessedMachinesV2OperationsClient object.
+     */
+    public AvsAssessedMachinesV2OperationsClient getAvsAssessedMachinesV2Operations() {
+        return this.avsAssessedMachinesV2Operations;
+    }
+
+    /**
+     * The AvsAssessmentV2SummaryOperationsClient object to access its operations.
+     */
+    private final AvsAssessmentV2SummaryOperationsClient avsAssessmentV2SummaryOperations;
+
+    /**
+     * Gets the AvsAssessmentV2SummaryOperationsClient object to access its operations.
+     * 
+     * @return the AvsAssessmentV2SummaryOperationsClient object.
+     */
+    public AvsAssessmentV2SummaryOperationsClient getAvsAssessmentV2SummaryOperations() {
+        return this.avsAssessmentV2SummaryOperations;
+    }
+
+    /**
+     * The HeterogeneousAssessmentOperationsClient object to access its operations.
+     */
+    private final HeterogeneousAssessmentOperationsClient heterogeneousAssessmentOperations;
+
+    /**
+     * Gets the HeterogeneousAssessmentOperationsClient object to access its operations.
+     * 
+     * @return the HeterogeneousAssessmentOperationsClient object.
+     */
+    public HeterogeneousAssessmentOperationsClient getHeterogeneousAssessmentOperations() {
+        return this.heterogeneousAssessmentOperations;
+    }
+
+    /**
+     * The HeterogeneousAssessmentSummaryOperationsClient object to access its operations.
+     */
+    private final HeterogeneousAssessmentSummaryOperationsClient heterogeneousAssessmentSummaryOperations;
+
+    /**
+     * Gets the HeterogeneousAssessmentSummaryOperationsClient object to access its operations.
+     * 
+     * @return the HeterogeneousAssessmentSummaryOperationsClient object.
+     */
+    public HeterogeneousAssessmentSummaryOperationsClient getHeterogeneousAssessmentSummaryOperations() {
+        return this.heterogeneousAssessmentSummaryOperations;
+    }
+
+    /**
+     * The MachineGraphAssessmentOptionsOperationsClient object to access its operations.
+     */
+    private final MachineGraphAssessmentOptionsOperationsClient machineGraphAssessmentOptionsOperations;
+
+    /**
+     * Gets the MachineGraphAssessmentOptionsOperationsClient object to access its operations.
+     * 
+     * @return the MachineGraphAssessmentOptionsOperationsClient object.
+     */
+    public MachineGraphAssessmentOptionsOperationsClient getMachineGraphAssessmentOptionsOperations() {
+        return this.machineGraphAssessmentOptionsOperations;
+    }
+
+    /**
+     * The MachineAssessmentsV2OperationsClient object to access its operations.
+     */
+    private final MachineAssessmentsV2OperationsClient machineAssessmentsV2Operations;
+
+    /**
+     * Gets the MachineAssessmentsV2OperationsClient object to access its operations.
+     * 
+     * @return the MachineAssessmentsV2OperationsClient object.
+     */
+    public MachineAssessmentsV2OperationsClient getMachineAssessmentsV2Operations() {
+        return this.machineAssessmentsV2Operations;
+    }
+
+    /**
+     * The AssessedMachinesV2OperationsClient object to access its operations.
+     */
+    private final AssessedMachinesV2OperationsClient assessedMachinesV2Operations;
+
+    /**
+     * Gets the AssessedMachinesV2OperationsClient object to access its operations.
+     * 
+     * @return the AssessedMachinesV2OperationsClient object.
+     */
+    public AssessedMachinesV2OperationsClient getAssessedMachinesV2Operations() {
+        return this.assessedMachinesV2Operations;
+    }
+
+    /**
+     * The MachineAssessmentV2SummaryOperationsClient object to access its operations.
+     */
+    private final MachineAssessmentV2SummaryOperationsClient machineAssessmentV2SummaryOperations;
+
+    /**
+     * Gets the MachineAssessmentV2SummaryOperationsClient object to access its operations.
+     * 
+     * @return the MachineAssessmentV2SummaryOperationsClient object.
+     */
+    public MachineAssessmentV2SummaryOperationsClient getMachineAssessmentV2SummaryOperations() {
+        return this.machineAssessmentV2SummaryOperations;
+    }
+
+    /**
+     * The SqlGraphAssessmentOptionsOperationsClient object to access its operations.
+     */
+    private final SqlGraphAssessmentOptionsOperationsClient sqlGraphAssessmentOptionsOperations;
+
+    /**
+     * Gets the SqlGraphAssessmentOptionsOperationsClient object to access its operations.
+     * 
+     * @return the SqlGraphAssessmentOptionsOperationsClient object.
+     */
+    public SqlGraphAssessmentOptionsOperationsClient getSqlGraphAssessmentOptionsOperations() {
+        return this.sqlGraphAssessmentOptionsOperations;
+    }
+
+    /**
+     * The SqlAssessmentV3OperationsClient object to access its operations.
+     */
+    private final SqlAssessmentV3OperationsClient sqlAssessmentV3Operations;
+
+    /**
+     * Gets the SqlAssessmentV3OperationsClient object to access its operations.
+     * 
+     * @return the SqlAssessmentV3OperationsClient object.
+     */
+    public SqlAssessmentV3OperationsClient getSqlAssessmentV3Operations() {
+        return this.sqlAssessmentV3Operations;
+    }
+
+    /**
+     * The AssessedSqlDatabaseV3OperationsClient object to access its operations.
+     */
+    private final AssessedSqlDatabaseV3OperationsClient assessedSqlDatabaseV3Operations;
+
+    /**
+     * Gets the AssessedSqlDatabaseV3OperationsClient object to access its operations.
+     * 
+     * @return the AssessedSqlDatabaseV3OperationsClient object.
+     */
+    public AssessedSqlDatabaseV3OperationsClient getAssessedSqlDatabaseV3Operations() {
+        return this.assessedSqlDatabaseV3Operations;
+    }
+
+    /**
+     * The AssessedSqlInstanceV3OperationsClient object to access its operations.
+     */
+    private final AssessedSqlInstanceV3OperationsClient assessedSqlInstanceV3Operations;
+
+    /**
+     * Gets the AssessedSqlInstanceV3OperationsClient object to access its operations.
+     * 
+     * @return the AssessedSqlInstanceV3OperationsClient object.
+     */
+    public AssessedSqlInstanceV3OperationsClient getAssessedSqlInstanceV3Operations() {
+        return this.assessedSqlInstanceV3Operations;
+    }
+
+    /**
+     * The AssessedSqlMachinesV3OperationsClient object to access its operations.
+     */
+    private final AssessedSqlMachinesV3OperationsClient assessedSqlMachinesV3Operations;
+
+    /**
+     * Gets the AssessedSqlMachinesV3OperationsClient object to access its operations.
+     * 
+     * @return the AssessedSqlMachinesV3OperationsClient object.
+     */
+    public AssessedSqlMachinesV3OperationsClient getAssessedSqlMachinesV3Operations() {
+        return this.assessedSqlMachinesV3Operations;
+    }
+
+    /**
+     * The SqlAssessmentV3SummaryOperationsClient object to access its operations.
+     */
+    private final SqlAssessmentV3SummaryOperationsClient sqlAssessmentV3SummaryOperations;
+
+    /**
+     * Gets the SqlAssessmentV3SummaryOperationsClient object to access its operations.
+     * 
+     * @return the SqlAssessmentV3SummaryOperationsClient object.
+     */
+    public SqlAssessmentV3SummaryOperationsClient getSqlAssessmentV3SummaryOperations() {
+        return this.sqlAssessmentV3SummaryOperations;
+    }
+
+    /**
+     * The BusinessCaseOperationsClient object to access its operations.
+     */
+    private final BusinessCaseOperationsClient businessCaseOperations;
+
+    /**
+     * Gets the BusinessCaseOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCaseOperationsClient object.
+     */
+    public BusinessCaseOperationsClient getBusinessCaseOperations() {
+        return this.businessCaseOperations;
+    }
+
+    /**
+     * The BusinessCaseAvsSummaryOperationsClient object to access its operations.
+     */
+    private final BusinessCaseAvsSummaryOperationsClient businessCaseAvsSummaryOperations;
+
+    /**
+     * Gets the BusinessCaseAvsSummaryOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCaseAvsSummaryOperationsClient object.
+     */
+    public BusinessCaseAvsSummaryOperationsClient getBusinessCaseAvsSummaryOperations() {
+        return this.businessCaseAvsSummaryOperations;
+    }
+
+    /**
+     * The EvaluatedAvsMachinesOperationsClient object to access its operations.
+     */
+    private final EvaluatedAvsMachinesOperationsClient evaluatedAvsMachinesOperations;
+
+    /**
+     * Gets the EvaluatedAvsMachinesOperationsClient object to access its operations.
+     * 
+     * @return the EvaluatedAvsMachinesOperationsClient object.
+     */
+    public EvaluatedAvsMachinesOperationsClient getEvaluatedAvsMachinesOperations() {
+        return this.evaluatedAvsMachinesOperations;
+    }
+
+    /**
+     * The EvaluatedMachinesOperationsClient object to access its operations.
+     */
+    private final EvaluatedMachinesOperationsClient evaluatedMachinesOperations;
+
+    /**
+     * Gets the EvaluatedMachinesOperationsClient object to access its operations.
+     * 
+     * @return the EvaluatedMachinesOperationsClient object.
+     */
+    public EvaluatedMachinesOperationsClient getEvaluatedMachinesOperations() {
+        return this.evaluatedMachinesOperations;
+    }
+
+    /**
+     * The EvaluatedSqlEntitiesOperationsClient object to access its operations.
+     */
+    private final EvaluatedSqlEntitiesOperationsClient evaluatedSqlEntitiesOperations;
+
+    /**
+     * Gets the EvaluatedSqlEntitiesOperationsClient object to access its operations.
+     * 
+     * @return the EvaluatedSqlEntitiesOperationsClient object.
+     */
+    public EvaluatedSqlEntitiesOperationsClient getEvaluatedSqlEntitiesOperations() {
+        return this.evaluatedSqlEntitiesOperations;
+    }
+
+    /**
+     * The EvaluatedWebAppsOperationsClient object to access its operations.
+     */
+    private final EvaluatedWebAppsOperationsClient evaluatedWebAppsOperations;
+
+    /**
+     * Gets the EvaluatedWebAppsOperationsClient object to access its operations.
+     * 
+     * @return the EvaluatedWebAppsOperationsClient object.
+     */
+    public EvaluatedWebAppsOperationsClient getEvaluatedWebAppsOperations() {
+        return this.evaluatedWebAppsOperations;
+    }
+
+    /**
+     * The BusinessCaseIaasSummaryOperationsClient object to access its operations.
+     */
+    private final BusinessCaseIaasSummaryOperationsClient businessCaseIaasSummaryOperations;
+
+    /**
+     * Gets the BusinessCaseIaasSummaryOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCaseIaasSummaryOperationsClient object.
+     */
+    public BusinessCaseIaasSummaryOperationsClient getBusinessCaseIaasSummaryOperations() {
+        return this.businessCaseIaasSummaryOperations;
+    }
+
+    /**
+     * The BusinessCaseOverviewSummaryOperationsClient object to access its operations.
+     */
+    private final BusinessCaseOverviewSummaryOperationsClient businessCaseOverviewSummaryOperations;
+
+    /**
+     * Gets the BusinessCaseOverviewSummaryOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCaseOverviewSummaryOperationsClient object.
+     */
+    public BusinessCaseOverviewSummaryOperationsClient getBusinessCaseOverviewSummaryOperations() {
+        return this.businessCaseOverviewSummaryOperations;
+    }
+
+    /**
+     * The BusinessCasePaasSummaryOperationsClient object to access its operations.
+     */
+    private final BusinessCasePaasSummaryOperationsClient businessCasePaasSummaryOperations;
+
+    /**
+     * Gets the BusinessCasePaasSummaryOperationsClient object to access its operations.
+     * 
+     * @return the BusinessCasePaasSummaryOperationsClient object.
+     */
+    public BusinessCasePaasSummaryOperationsClient getBusinessCasePaasSummaryOperations() {
+        return this.businessCasePaasSummaryOperations;
+    }
+
+    /**
+     * The WebAppGraphAssessmentOptionsOperationsClient object to access its operations.
+     */
+    private final WebAppGraphAssessmentOptionsOperationsClient webAppGraphAssessmentOptionsOperations;
+
+    /**
+     * Gets the WebAppGraphAssessmentOptionsOperationsClient object to access its operations.
+     * 
+     * @return the WebAppGraphAssessmentOptionsOperationsClient object.
+     */
+    public WebAppGraphAssessmentOptionsOperationsClient getWebAppGraphAssessmentOptionsOperations() {
+        return this.webAppGraphAssessmentOptionsOperations;
+    }
+
+    /**
+     * The WebAppAssessmentV3OperationsClient object to access its operations.
+     */
+    private final WebAppAssessmentV3OperationsClient webAppAssessmentV3Operations;
+
+    /**
+     * Gets the WebAppAssessmentV3OperationsClient object to access its operations.
+     * 
+     * @return the WebAppAssessmentV3OperationsClient object.
+     */
+    public WebAppAssessmentV3OperationsClient getWebAppAssessmentV3Operations() {
+        return this.webAppAssessmentV3Operations;
+    }
+
+    /**
+     * The AssessedWebAppsV3OperationsClient object to access its operations.
+     */
+    private final AssessedWebAppsV3OperationsClient assessedWebAppsV3Operations;
+
+    /**
+     * Gets the AssessedWebAppsV3OperationsClient object to access its operations.
+     * 
+     * @return the AssessedWebAppsV3OperationsClient object.
+     */
+    public AssessedWebAppsV3OperationsClient getAssessedWebAppsV3Operations() {
+        return this.assessedWebAppsV3Operations;
+    }
+
+    /**
+     * The WebAppAssessmentV3SummaryOperationsClient object to access its operations.
+     */
+    private final WebAppAssessmentV3SummaryOperationsClient webAppAssessmentV3SummaryOperations;
+
+    /**
+     * Gets the WebAppAssessmentV3SummaryOperationsClient object to access its operations.
+     * 
+     * @return the WebAppAssessmentV3SummaryOperationsClient object.
+     */
+    public WebAppAssessmentV3SummaryOperationsClient getWebAppAssessmentV3SummaryOperations() {
+        return this.webAppAssessmentV3SummaryOperations;
+    }
+
+    /**
+     * The WebAppServicePlansOperationsClient object to access its operations.
+     */
+    private final WebAppServicePlansOperationsClient webAppServicePlansOperations;
+
+    /**
+     * Gets the WebAppServicePlansOperationsClient object to access its operations.
+     * 
+     * @return the WebAppServicePlansOperationsClient object.
+     */
+    public WebAppServicePlansOperationsClient getWebAppServicePlansOperations() {
+        return this.webAppServicePlansOperations;
+    }
+
+    /**
+     * The CompoundAssessmentOperationsClient object to access its operations.
+     */
+    private final CompoundAssessmentOperationsClient compoundAssessmentOperations;
+
+    /**
+     * Gets the CompoundAssessmentOperationsClient object to access its operations.
+     * 
+     * @return the CompoundAssessmentOperationsClient object.
+     */
+    public CompoundAssessmentOperationsClient getCompoundAssessmentOperations() {
+        return this.compoundAssessmentOperations;
+    }
+
+    /**
+     * The CompoundAssessmentSummaryOperationsClient object to access its operations.
+     */
+    private final CompoundAssessmentSummaryOperationsClient compoundAssessmentSummaryOperations;
+
+    /**
+     * Gets the CompoundAssessmentSummaryOperationsClient object to access its operations.
+     * 
+     * @return the CompoundAssessmentSummaryOperationsClient object.
+     */
+    public CompoundAssessmentSummaryOperationsClient getCompoundAssessmentSummaryOperations() {
+        return this.compoundAssessmentSummaryOperations;
+    }
+
+    /**
+     * The AksOptionsOperationsClient object to access its operations.
+     */
+    private final AksOptionsOperationsClient aksOptionsOperations;
+
+    /**
+     * Gets the AksOptionsOperationsClient object to access its operations.
+     * 
+     * @return the AksOptionsOperationsClient object.
+     */
+    public AksOptionsOperationsClient getAksOptionsOperations() {
+        return this.aksOptionsOperations;
+    }
+
+    /**
+     * The AksAssessmentOperationsClient object to access its operations.
+     */
+    private final AksAssessmentOperationsClient aksAssessmentOperations;
+
+    /**
+     * Gets the AksAssessmentOperationsClient object to access its operations.
+     * 
+     * @return the AksAssessmentOperationsClient object.
+     */
+    public AksAssessmentOperationsClient getAksAssessmentOperations() {
+        return this.aksAssessmentOperations;
+    }
+
+    /**
+     * The AssessedWebApplicationOperationsClient object to access its operations.
+     */
+    private final AssessedWebApplicationOperationsClient assessedWebApplicationOperations;
+
+    /**
+     * Gets the AssessedWebApplicationOperationsClient object to access its operations.
+     * 
+     * @return the AssessedWebApplicationOperationsClient object.
+     */
+    public AssessedWebApplicationOperationsClient getAssessedWebApplicationOperations() {
+        return this.assessedWebApplicationOperations;
+    }
+
+    /**
+     * The AksClusterOperationsClient object to access its operations.
+     */
+    private final AksClusterOperationsClient aksClusterOperations;
+
+    /**
+     * Gets the AksClusterOperationsClient object to access its operations.
+     * 
+     * @return the AksClusterOperationsClient object.
+     */
+    public AksClusterOperationsClient getAksClusterOperations() {
+        return this.aksClusterOperations;
+    }
+
+    /**
+     * The AksCostDetailOperationsClient object to access its operations.
+     */
+    private final AksCostDetailOperationsClient aksCostDetailOperations;
+
+    /**
+     * Gets the AksCostDetailOperationsClient object to access its operations.
+     * 
+     * @return the AksCostDetailOperationsClient object.
+     */
+    public AksCostDetailOperationsClient getAksCostDetailOperations() {
+        return this.aksCostDetailOperations;
+    }
+
+    /**
+     * The AksSummaryOperationsClient object to access its operations.
+     */
+    private final AksSummaryOperationsClient aksSummaryOperations;
+
+    /**
+     * Gets the AksSummaryOperationsClient object to access its operations.
+     * 
+     * @return the AksSummaryOperationsClient object.
+     */
+    public AksSummaryOperationsClient getAksSummaryOperations() {
+        return this.aksSummaryOperations;
+    }
+
+    /**
+     * The HypervCollectorsOperationsClient object to access its operations.
+     */
+    private final HypervCollectorsOperationsClient hypervCollectorsOperations;
+
+    /**
+     * Gets the HypervCollectorsOperationsClient object to access its operations.
+     * 
+     * @return the HypervCollectorsOperationsClient object.
+     */
+    public HypervCollectorsOperationsClient getHypervCollectorsOperations() {
+        return this.hypervCollectorsOperations;
+    }
+
+    /**
+     * The ImportSqlCollectorOperationsClient object to access its operations.
+     */
+    private final ImportSqlCollectorOperationsClient importSqlCollectorOperations;
+
+    /**
+     * Gets the ImportSqlCollectorOperationsClient object to access its operations.
+     * 
+     * @return the ImportSqlCollectorOperationsClient object.
+     */
+    public ImportSqlCollectorOperationsClient getImportSqlCollectorOperations() {
+        return this.importSqlCollectorOperations;
+    }
+
+    /**
+     * The ImportCollectorsOperationsClient object to access its operations.
+     */
+    private final ImportCollectorsOperationsClient importCollectorsOperations;
+
+    /**
+     * Gets the ImportCollectorsOperationsClient object to access its operations.
+     * 
+     * @return the ImportCollectorsOperationsClient object.
+     */
+    public ImportCollectorsOperationsClient getImportCollectorsOperations() {
+        return this.importCollectorsOperations;
+    }
+
+    /**
      * The ServerCollectorsOperationsClient object to access its operations.
      */
     private final ServerCollectorsOperationsClient serverCollectorsOperations;
@@ -453,20 +828,6 @@ public final class MigrationAssessmentManagementClientImpl implements MigrationA
      */
     public ServerCollectorsOperationsClient getServerCollectorsOperations() {
         return this.serverCollectorsOperations;
-    }
-
-    /**
-     * The SqlAssessmentOptionsOperationsClient object to access its operations.
-     */
-    private final SqlAssessmentOptionsOperationsClient sqlAssessmentOptionsOperations;
-
-    /**
-     * Gets the SqlAssessmentOptionsOperationsClient object to access its operations.
-     * 
-     * @return the SqlAssessmentOptionsOperationsClient object.
-     */
-    public SqlAssessmentOptionsOperationsClient getSqlAssessmentOptionsOperations() {
-        return this.sqlAssessmentOptionsOperations;
     }
 
     /**
@@ -498,13 +859,27 @@ public final class MigrationAssessmentManagementClientImpl implements MigrationA
     }
 
     /**
+     * The WebAppCollectorOperationsClient object to access its operations.
+     */
+    private final WebAppCollectorOperationsClient webAppCollectorOperations;
+
+    /**
+     * Gets the WebAppCollectorOperationsClient object to access its operations.
+     * 
+     * @return the WebAppCollectorOperationsClient object.
+     */
+    public WebAppCollectorOperationsClient getWebAppCollectorOperations() {
+        return this.webAppCollectorOperations;
+    }
+
+    /**
      * Initializes an instance of MigrationAssessmentManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     MigrationAssessmentManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -514,32 +889,57 @@ public final class MigrationAssessmentManagementClientImpl implements MigrationA
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-03-15";
+        this.apiVersion = "2024-03-03-preview";
         this.operations = new OperationsClientImpl(this);
         this.assessmentProjectsOperations = new AssessmentProjectsOperationsClientImpl(this);
-        this.assessmentOptionsOperations = new AssessmentOptionsOperationsClientImpl(this);
-        this.avsAssessmentOptionsOperations = new AvsAssessmentOptionsOperationsClientImpl(this);
-        this.groupsOperations = new GroupsOperationsClientImpl(this);
-        this.assessmentsOperations = new AssessmentsOperationsClientImpl(this);
-        this.assessedMachinesOperations = new AssessedMachinesOperationsClientImpl(this);
-        this.avsAssessmentsOperations = new AvsAssessmentsOperationsClientImpl(this);
-        this.avsAssessedMachinesOperations = new AvsAssessedMachinesOperationsClientImpl(this);
-        this.sqlAssessmentV2Operations = new SqlAssessmentV2OperationsClientImpl(this);
-        this.assessedSqlDatabaseV2Operations = new AssessedSqlDatabaseV2OperationsClientImpl(this);
-        this.assessedSqlInstanceV2Operations = new AssessedSqlInstanceV2OperationsClientImpl(this);
-        this.assessedSqlMachinesOperations = new AssessedSqlMachinesOperationsClientImpl(this);
-        this.assessedSqlRecommendedEntityOperations = new AssessedSqlRecommendedEntityOperationsClientImpl(this);
-        this.sqlAssessmentV2SummaryOperations = new SqlAssessmentV2SummaryOperationsClientImpl(this);
-        this.hypervCollectorsOperations = new HypervCollectorsOperationsClientImpl(this);
-        this.importCollectorsOperations = new ImportCollectorsOperationsClientImpl(this);
-        this.machinesOperations = new MachinesOperationsClientImpl(this);
         this.privateEndpointConnectionOperations = new PrivateEndpointConnectionOperationsClientImpl(this);
         this.privateLinkResourceOperations = new PrivateLinkResourceOperationsClientImpl(this);
         this.assessmentProjectSummaryOperations = new AssessmentProjectSummaryOperationsClientImpl(this);
+        this.avsGraphAssessmentOptionsOperations = new AvsGraphAssessmentOptionsOperationsClientImpl(this);
+        this.avsAssessmentsV2Operations = new AvsAssessmentsV2OperationsClientImpl(this);
+        this.avsAssessedMachinesV2Operations = new AvsAssessedMachinesV2OperationsClientImpl(this);
+        this.avsAssessmentV2SummaryOperations = new AvsAssessmentV2SummaryOperationsClientImpl(this);
+        this.heterogeneousAssessmentOperations = new HeterogeneousAssessmentOperationsClientImpl(this);
+        this.heterogeneousAssessmentSummaryOperations = new HeterogeneousAssessmentSummaryOperationsClientImpl(this);
+        this.machineGraphAssessmentOptionsOperations = new MachineGraphAssessmentOptionsOperationsClientImpl(this);
+        this.machineAssessmentsV2Operations = new MachineAssessmentsV2OperationsClientImpl(this);
+        this.assessedMachinesV2Operations = new AssessedMachinesV2OperationsClientImpl(this);
+        this.machineAssessmentV2SummaryOperations = new MachineAssessmentV2SummaryOperationsClientImpl(this);
+        this.sqlGraphAssessmentOptionsOperations = new SqlGraphAssessmentOptionsOperationsClientImpl(this);
+        this.sqlAssessmentV3Operations = new SqlAssessmentV3OperationsClientImpl(this);
+        this.assessedSqlDatabaseV3Operations = new AssessedSqlDatabaseV3OperationsClientImpl(this);
+        this.assessedSqlInstanceV3Operations = new AssessedSqlInstanceV3OperationsClientImpl(this);
+        this.assessedSqlMachinesV3Operations = new AssessedSqlMachinesV3OperationsClientImpl(this);
+        this.sqlAssessmentV3SummaryOperations = new SqlAssessmentV3SummaryOperationsClientImpl(this);
+        this.businessCaseOperations = new BusinessCaseOperationsClientImpl(this);
+        this.businessCaseAvsSummaryOperations = new BusinessCaseAvsSummaryOperationsClientImpl(this);
+        this.evaluatedAvsMachinesOperations = new EvaluatedAvsMachinesOperationsClientImpl(this);
+        this.evaluatedMachinesOperations = new EvaluatedMachinesOperationsClientImpl(this);
+        this.evaluatedSqlEntitiesOperations = new EvaluatedSqlEntitiesOperationsClientImpl(this);
+        this.evaluatedWebAppsOperations = new EvaluatedWebAppsOperationsClientImpl(this);
+        this.businessCaseIaasSummaryOperations = new BusinessCaseIaasSummaryOperationsClientImpl(this);
+        this.businessCaseOverviewSummaryOperations = new BusinessCaseOverviewSummaryOperationsClientImpl(this);
+        this.businessCasePaasSummaryOperations = new BusinessCasePaasSummaryOperationsClientImpl(this);
+        this.webAppGraphAssessmentOptionsOperations = new WebAppGraphAssessmentOptionsOperationsClientImpl(this);
+        this.webAppAssessmentV3Operations = new WebAppAssessmentV3OperationsClientImpl(this);
+        this.assessedWebAppsV3Operations = new AssessedWebAppsV3OperationsClientImpl(this);
+        this.webAppAssessmentV3SummaryOperations = new WebAppAssessmentV3SummaryOperationsClientImpl(this);
+        this.webAppServicePlansOperations = new WebAppServicePlansOperationsClientImpl(this);
+        this.compoundAssessmentOperations = new CompoundAssessmentOperationsClientImpl(this);
+        this.compoundAssessmentSummaryOperations = new CompoundAssessmentSummaryOperationsClientImpl(this);
+        this.aksOptionsOperations = new AksOptionsOperationsClientImpl(this);
+        this.aksAssessmentOperations = new AksAssessmentOperationsClientImpl(this);
+        this.assessedWebApplicationOperations = new AssessedWebApplicationOperationsClientImpl(this);
+        this.aksClusterOperations = new AksClusterOperationsClientImpl(this);
+        this.aksCostDetailOperations = new AksCostDetailOperationsClientImpl(this);
+        this.aksSummaryOperations = new AksSummaryOperationsClientImpl(this);
+        this.hypervCollectorsOperations = new HypervCollectorsOperationsClientImpl(this);
+        this.importSqlCollectorOperations = new ImportSqlCollectorOperationsClientImpl(this);
+        this.importCollectorsOperations = new ImportCollectorsOperationsClientImpl(this);
         this.serverCollectorsOperations = new ServerCollectorsOperationsClientImpl(this);
-        this.sqlAssessmentOptionsOperations = new SqlAssessmentOptionsOperationsClientImpl(this);
         this.sqlCollectorOperations = new SqlCollectorOperationsClientImpl(this);
         this.vmwareCollectorsOperations = new VmwareCollectorsOperationsClientImpl(this);
+        this.webAppCollectorOperations = new WebAppCollectorOperationsClientImpl(this);
     }
 
     /**

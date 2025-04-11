@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for OsLicense.
+ * Os License.
  */
 public final class OsLicense extends ExpandableStringEnum<OsLicense> {
     /**

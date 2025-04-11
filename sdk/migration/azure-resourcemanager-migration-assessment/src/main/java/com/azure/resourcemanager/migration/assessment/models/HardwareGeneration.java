@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for HardwareGeneration.
+ * Hardware Generation.
  */
 public final class HardwareGeneration extends ExpandableStringEnum<HardwareGeneration> {
     /**

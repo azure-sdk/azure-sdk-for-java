@@ -139,7 +139,7 @@ public final class AssessmentProjectsOperationsClientImpl implements AssessmentP
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AssessmentProjectListResult>> listByResourceGroupNext(
+        Mono<Response<AssessmentProjectListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -334,7 +334,7 @@ public final class AssessmentProjectsOperationsClientImpl implements AssessmentP
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AssessmentProjectInner> listByResourceGroupAsync(String resourceGroupName) {
         return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -350,7 +350,7 @@ public final class AssessmentProjectsOperationsClientImpl implements AssessmentP
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AssessmentProjectInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
         return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -1143,7 +1143,7 @@ public final class AssessmentProjectsOperationsClientImpl implements AssessmentP
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AssessmentProjectInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<AssessmentProjectInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1153,8 +1153,7 @@ public final class AssessmentProjectsOperationsClientImpl implements AssessmentP
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<AssessmentProjectInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1172,7 +1171,7 @@ public final class AssessmentProjectsOperationsClientImpl implements AssessmentP
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AssessmentProjectInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<AssessmentProjectInner>> listByParentNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1183,7 +1182,7 @@ public final class AssessmentProjectsOperationsClientImpl implements AssessmentP
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

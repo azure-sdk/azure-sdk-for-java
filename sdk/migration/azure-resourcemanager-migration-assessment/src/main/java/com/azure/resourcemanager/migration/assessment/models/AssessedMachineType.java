@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AssessedMachineType.
+ * Assessed machine type.
  */
 public final class AssessedMachineType extends ExpandableStringEnum<AssessedMachineType> {
     /**

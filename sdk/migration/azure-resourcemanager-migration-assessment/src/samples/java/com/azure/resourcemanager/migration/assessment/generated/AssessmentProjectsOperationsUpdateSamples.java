@@ -5,9 +5,8 @@
 package com.azure.resourcemanager.migration.assessment.generated;
 
 import com.azure.resourcemanager.migration.assessment.models.AssessmentProject;
-import com.azure.resourcemanager.migration.assessment.models.AssessmentProjectUpdateProperties;
+import com.azure.resourcemanager.migration.assessment.models.ProjectProperties;
 import com.azure.resourcemanager.migration.assessment.models.ProjectStatus;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,28 +16,27 @@ import java.util.Map;
 public final class AssessmentProjectsOperationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectsOperations_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_Update_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_Update.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsUpdateMaximumSetGen(
+    public static void assessmentProjectsOperationsUpdate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         AssessmentProject resource = manager.assessmentProjectsOperations()
             .getByResourceGroupWithResponse("sakanwar", "sakanwar1204project", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withTags(mapOf("Migrate Project", "sakanwar-PE-SEA"))
-            .withProperties(new AssessmentProjectUpdateProperties().withAssessmentSolutionId(
+            .withProperties(new ProjectProperties().withAssessmentSolutionId(
                 "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa")
                 .withProjectStatus(ProjectStatus.ACTIVE)
                 .withPublicNetworkAccess("Disabled")
                 .withCustomerStorageAccountArmId(
-                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa")
-                .withProvisioningState(ProvisioningState.SUCCEEDED))
+                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa"))
             .apply();
     }
 

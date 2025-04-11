@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureSqlServiceTier.
+ * Azure Sql Service Tier.
  */
 public final class AzureSqlServiceTier extends ExpandableStringEnum<AzureSqlServiceTier> {
     /**

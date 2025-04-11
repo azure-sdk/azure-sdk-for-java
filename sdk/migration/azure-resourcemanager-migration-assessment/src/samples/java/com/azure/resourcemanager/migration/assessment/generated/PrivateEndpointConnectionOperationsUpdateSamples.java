@@ -16,15 +16,15 @@ import com.azure.resourcemanager.migration.assessment.models.PrivateLinkServiceC
 public final class PrivateEndpointConnectionOperationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * PrivateEndpointConnectionOperations_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateEndpointConnectionOperations_Update_MaximumSet_Gen.
+     * Sample code: PrivateEndpointConnectionOperations_Update.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateEndpointConnectionOperationsUpdateMaximumSetGen(
+    public static void privateEndpointConnectionOperationsUpdate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateEndpointConnectionOperations()
             .update("sakanwar", "sakanwar1204project", "sakanwar1204project1634pe.bf42f8a1-09f5-4ee4-aea6-a019cc60f9d7",

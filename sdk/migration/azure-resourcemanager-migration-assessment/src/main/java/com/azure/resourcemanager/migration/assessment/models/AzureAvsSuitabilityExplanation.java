@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureAvsSuitabilityExplanation.
+ * Azure AVS Suitability Detail.
  */
 public final class AzureAvsSuitabilityExplanation extends ExpandableStringEnum<AzureAvsSuitabilityExplanation> {
     /**
@@ -26,6 +26,18 @@ public final class AzureAvsSuitabilityExplanation extends ExpandableStringEnum<A
      */
     public static final AzureAvsSuitabilityExplanation UNSUPPORTED_LOCATION_FOR_SELECTED_NODE
         = fromString("UnsupportedLocationForSelectedNode");
+
+    /**
+     * Static value InternalErrorInRecommendation for AzureAvsSuitabilityExplanation.
+     */
+    public static final AzureAvsSuitabilityExplanation INTERNAL_ERROR_IN_RECOMMENDATION
+        = fromString("InternalErrorInRecommendation");
+
+    /**
+     * Static value UnsupportedLocationForSelectedExternalStorageTypes for AzureAvsSuitabilityExplanation.
+     */
+    public static final AzureAvsSuitabilityExplanation UNSUPPORTED_LOCATION_FOR_SELECTED_EXTERNAL_STORAGE_TYPES
+        = fromString("UnsupportedLocationForSelectedExternalStorageTypes");
 
     /**
      * Creates a new instance of AzureAvsSuitabilityExplanation value.

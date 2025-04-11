@@ -28,7 +28,7 @@ public interface ServerCollectorsOperationsClient {
      * @return the response of a ServerCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ServerCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<ServerCollectorInner> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List ServerCollector resources by AssessmentProject.
@@ -42,8 +42,7 @@ public interface ServerCollectorsOperationsClient {
      * @return the response of a ServerCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ServerCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<ServerCollectorInner> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a ServerCollector.

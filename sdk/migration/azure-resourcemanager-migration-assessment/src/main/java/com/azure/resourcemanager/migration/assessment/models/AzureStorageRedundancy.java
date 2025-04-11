@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureStorageRedundancy.
+ * Azure Storage Redundancy.
  */
 public final class AzureStorageRedundancy extends ExpandableStringEnum<AzureStorageRedundancy> {
     /**

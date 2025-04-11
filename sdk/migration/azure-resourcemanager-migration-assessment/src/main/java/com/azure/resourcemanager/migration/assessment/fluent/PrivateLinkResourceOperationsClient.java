@@ -26,7 +26,7 @@ public interface PrivateLinkResourceOperationsClient {
      * @return the response of a PrivateLinkResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateLinkResourceInner> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<PrivateLinkResourceInner> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List PrivateLinkResource resources by AssessmentProject.
@@ -40,8 +40,7 @@ public interface PrivateLinkResourceOperationsClient {
      * @return the response of a PrivateLinkResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateLinkResourceInner> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<PrivateLinkResourceInner> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a PrivateLinkResource.

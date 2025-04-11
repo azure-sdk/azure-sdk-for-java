@@ -27,17 +27,16 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<PrivateEndpointConnection> listByAssessmentProject(String resourceGroupName,
-        String projectName) {
+    public PagedIterable<PrivateEndpointConnection> listByParent(String resourceGroupName, String projectName) {
         PagedIterable<PrivateEndpointConnectionInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName);
+            = this.serviceClient().listByParent(resourceGroupName, projectName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<PrivateEndpointConnection> listByAssessmentProject(String resourceGroupName,
-        String projectName, Context context) {
+    public PagedIterable<PrivateEndpointConnection> listByParent(String resourceGroupName, String projectName,
+        Context context) {
         PagedIterable<PrivateEndpointConnectionInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName, context);
+            = this.serviceClient().listByParent(resourceGroupName, projectName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
     }
 

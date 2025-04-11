@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzurePricingTier.
+ * Azure Pricing Tier.
  */
 public final class AzurePricingTier extends ExpandableStringEnum<AzurePricingTier> {
     /**

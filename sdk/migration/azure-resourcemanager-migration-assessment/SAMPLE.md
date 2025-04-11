@@ -1,40 +1,67 @@
 # Code snippets and samples
 
 
-## AssessedMachinesOperations
+## AksAssessmentOperations
 
-- [Get](#assessedmachinesoperations_get)
-- [ListByAssessment](#assessedmachinesoperations_listbyassessment)
+- [Create](#aksassessmentoperations_create)
+- [Delete](#aksassessmentoperations_delete)
+- [DownloadUrl](#aksassessmentoperations_downloadurl)
+- [Get](#aksassessmentoperations_get)
+- [ListByParent](#aksassessmentoperations_listbyparent)
 
-## AssessedSqlDatabaseV2Operations
+## AksClusterOperations
 
-- [Get](#assessedsqldatabasev2operations_get)
-- [ListBySqlAssessmentV2](#assessedsqldatabasev2operations_listbysqlassessmentv2)
+- [Get](#aksclusteroperations_get)
+- [ListByParent](#aksclusteroperations_listbyparent)
 
-## AssessedSqlInstanceV2Operations
+## AksCostDetailOperations
 
-- [Get](#assessedsqlinstancev2operations_get)
-- [ListBySqlAssessmentV2](#assessedsqlinstancev2operations_listbysqlassessmentv2)
+- [ListByParent](#akscostdetailoperations_listbyparent)
 
-## AssessedSqlMachinesOperations
+## AksOptionsOperations
 
-- [Get](#assessedsqlmachinesoperations_get)
-- [ListBySqlAssessmentV2](#assessedsqlmachinesoperations_listbysqlassessmentv2)
+- [Get](#aksoptionsoperations_get)
+- [ListByParent](#aksoptionsoperations_listbyparent)
 
-## AssessedSqlRecommendedEntityOperations
+## AksSummaryOperations
 
-- [Get](#assessedsqlrecommendedentityoperations_get)
-- [ListBySqlAssessmentV2](#assessedsqlrecommendedentityoperations_listbysqlassessmentv2)
+- [Get](#akssummaryoperations_get)
+- [ListByParent](#akssummaryoperations_listbyparent)
 
-## AssessmentOptionsOperations
+## AssessedMachinesV2Operations
 
-- [Get](#assessmentoptionsoperations_get)
-- [ListByAssessmentProject](#assessmentoptionsoperations_listbyassessmentproject)
+- [Get](#assessedmachinesv2operations_get)
+- [ListByParent](#assessedmachinesv2operations_listbyparent)
+
+## AssessedSqlDatabaseV3Operations
+
+- [Get](#assessedsqldatabasev3operations_get)
+- [ListByParent](#assessedsqldatabasev3operations_listbyparent)
+
+## AssessedSqlInstanceV3Operations
+
+- [Get](#assessedsqlinstancev3operations_get)
+- [ListByParent](#assessedsqlinstancev3operations_listbyparent)
+
+## AssessedSqlMachinesV3Operations
+
+- [Get](#assessedsqlmachinesv3operations_get)
+- [ListByParent](#assessedsqlmachinesv3operations_listbyparent)
+
+## AssessedWebApplicationOperations
+
+- [Get](#assessedwebapplicationoperations_get)
+- [ListByParent](#assessedwebapplicationoperations_listbyparent)
+
+## AssessedWebAppsV3Operations
+
+- [Get](#assessedwebappsv3operations_get)
+- [ListByParent](#assessedwebappsv3operations_listbyparent)
 
 ## AssessmentProjectSummaryOperations
 
 - [Get](#assessmentprojectsummaryoperations_get)
-- [ListByAssessmentProject](#assessmentprojectsummaryoperations_listbyassessmentproject)
+- [ListByParent](#assessmentprojectsummaryoperations_listbyparent)
 
 ## AssessmentProjectsOperations
 
@@ -45,58 +72,141 @@
 - [ListByResourceGroup](#assessmentprojectsoperations_listbyresourcegroup)
 - [Update](#assessmentprojectsoperations_update)
 
-## AssessmentsOperations
+## AvsAssessedMachinesV2Operations
 
-- [Create](#assessmentsoperations_create)
-- [Delete](#assessmentsoperations_delete)
-- [DownloadUrl](#assessmentsoperations_downloadurl)
-- [Get](#assessmentsoperations_get)
-- [ListByGroup](#assessmentsoperations_listbygroup)
+- [Get](#avsassessedmachinesv2operations_get)
+- [ListByParent](#avsassessedmachinesv2operations_listbyparent)
 
-## AvsAssessedMachinesOperations
+## AvsAssessmentV2SummaryOperations
 
-- [Get](#avsassessedmachinesoperations_get)
-- [ListByAvsAssessment](#avsassessedmachinesoperations_listbyavsassessment)
+- [Get](#avsassessmentv2summaryoperations_get)
+- [ListByParent](#avsassessmentv2summaryoperations_listbyparent)
 
-## AvsAssessmentOptionsOperations
+## AvsAssessmentsV2Operations
 
-- [Get](#avsassessmentoptionsoperations_get)
-- [ListByAssessmentProject](#avsassessmentoptionsoperations_listbyassessmentproject)
+- [Create](#avsassessmentsv2operations_create)
+- [Delete](#avsassessmentsv2operations_delete)
+- [DownloadUrl](#avsassessmentsv2operations_downloadurl)
+- [Get](#avsassessmentsv2operations_get)
+- [ListByParent](#avsassessmentsv2operations_listbyparent)
 
-## AvsAssessmentsOperations
+## AvsGraphAssessmentOptionsOperations
 
-- [Create](#avsassessmentsoperations_create)
-- [Delete](#avsassessmentsoperations_delete)
-- [DownloadUrl](#avsassessmentsoperations_downloadurl)
-- [Get](#avsassessmentsoperations_get)
-- [ListByGroup](#avsassessmentsoperations_listbygroup)
+- [Get](#avsgraphassessmentoptionsoperations_get)
+- [ListByParent](#avsgraphassessmentoptionsoperations_listbyparent)
 
-## GroupsOperations
+## BusinessCaseAvsSummaryOperations
 
-- [Create](#groupsoperations_create)
-- [Delete](#groupsoperations_delete)
-- [Get](#groupsoperations_get)
-- [ListByAssessmentProject](#groupsoperations_listbyassessmentproject)
-- [UpdateMachines](#groupsoperations_updatemachines)
+- [Get](#businesscaseavssummaryoperations_get)
+- [ListByParent](#businesscaseavssummaryoperations_listbyparent)
+
+## BusinessCaseIaasSummaryOperations
+
+- [Get](#businesscaseiaassummaryoperations_get)
+- [ListByParent](#businesscaseiaassummaryoperations_listbyparent)
+
+## BusinessCaseOperations
+
+- [CompareSummary](#businesscaseoperations_comparesummary)
+- [Create](#businesscaseoperations_create)
+- [Delete](#businesscaseoperations_delete)
+- [Get](#businesscaseoperations_get)
+- [GetReportDownloadUrl](#businesscaseoperations_getreportdownloadurl)
+- [ListByParent](#businesscaseoperations_listbyparent)
+
+## BusinessCaseOverviewSummaryOperations
+
+- [Get](#businesscaseoverviewsummaryoperations_get)
+- [ListByParent](#businesscaseoverviewsummaryoperations_listbyparent)
+
+## BusinessCasePaasSummaryOperations
+
+- [Get](#businesscasepaassummaryoperations_get)
+- [ListByParent](#businesscasepaassummaryoperations_listbyparent)
+
+## CompoundAssessmentOperations
+
+- [Create](#compoundassessmentoperations_create)
+- [Delete](#compoundassessmentoperations_delete)
+- [DownloadUrl](#compoundassessmentoperations_downloadurl)
+- [Get](#compoundassessmentoperations_get)
+- [ListByParent](#compoundassessmentoperations_listbyparent)
+
+## CompoundAssessmentSummaryOperations
+
+- [Get](#compoundassessmentsummaryoperations_get)
+- [ListByParent](#compoundassessmentsummaryoperations_listbyparent)
+
+## EvaluatedAvsMachinesOperations
+
+- [Get](#evaluatedavsmachinesoperations_get)
+- [ListByParent](#evaluatedavsmachinesoperations_listbyparent)
+
+## EvaluatedMachinesOperations
+
+- [Get](#evaluatedmachinesoperations_get)
+- [ListByParent](#evaluatedmachinesoperations_listbyparent)
+
+## EvaluatedSqlEntitiesOperations
+
+- [Get](#evaluatedsqlentitiesoperations_get)
+- [ListByParent](#evaluatedsqlentitiesoperations_listbyparent)
+
+## EvaluatedWebAppsOperations
+
+- [Get](#evaluatedwebappsoperations_get)
+- [ListByParent](#evaluatedwebappsoperations_listbyparent)
+
+## HeterogeneousAssessmentOperations
+
+- [Create](#heterogeneousassessmentoperations_create)
+- [Delete](#heterogeneousassessmentoperations_delete)
+- [Get](#heterogeneousassessmentoperations_get)
+- [ListByParent](#heterogeneousassessmentoperations_listbyparent)
+
+## HeterogeneousAssessmentSummaryOperations
+
+- [Get](#heterogeneousassessmentsummaryoperations_get)
+- [ListByParent](#heterogeneousassessmentsummaryoperations_listbyparent)
 
 ## HypervCollectorsOperations
 
 - [Create](#hypervcollectorsoperations_create)
 - [Delete](#hypervcollectorsoperations_delete)
 - [Get](#hypervcollectorsoperations_get)
-- [ListByAssessmentProject](#hypervcollectorsoperations_listbyassessmentproject)
+- [ListByParent](#hypervcollectorsoperations_listbyparent)
 
 ## ImportCollectorsOperations
 
 - [Create](#importcollectorsoperations_create)
 - [Delete](#importcollectorsoperations_delete)
 - [Get](#importcollectorsoperations_get)
-- [ListByAssessmentProject](#importcollectorsoperations_listbyassessmentproject)
+- [ListByParent](#importcollectorsoperations_listbyparent)
 
-## MachinesOperations
+## ImportSqlCollectorOperations
 
-- [Get](#machinesoperations_get)
-- [ListByAssessmentProject](#machinesoperations_listbyassessmentproject)
+- [Create](#importsqlcollectoroperations_create)
+- [Delete](#importsqlcollectoroperations_delete)
+- [Get](#importsqlcollectoroperations_get)
+- [ListByParent](#importsqlcollectoroperations_listbyparent)
+
+## MachineAssessmentV2SummaryOperations
+
+- [Get](#machineassessmentv2summaryoperations_get)
+- [ListByParent](#machineassessmentv2summaryoperations_listbyparent)
+
+## MachineAssessmentsV2Operations
+
+- [Create](#machineassessmentsv2operations_create)
+- [Delete](#machineassessmentsv2operations_delete)
+- [DownloadUrl](#machineassessmentsv2operations_downloadurl)
+- [Get](#machineassessmentsv2operations_get)
+- [ListByParent](#machineassessmentsv2operations_listbyparent)
+
+## MachineGraphAssessmentOptionsOperations
+
+- [Get](#machinegraphassessmentoptionsoperations_get)
+- [ListByParent](#machinegraphassessmentoptionsoperations_listbyparent)
 
 ## Operations
 
@@ -106,358 +216,741 @@
 
 - [Delete](#privateendpointconnectionoperations_delete)
 - [Get](#privateendpointconnectionoperations_get)
-- [ListByAssessmentProject](#privateendpointconnectionoperations_listbyassessmentproject)
+- [ListByParent](#privateendpointconnectionoperations_listbyparent)
 - [Update](#privateendpointconnectionoperations_update)
 
 ## PrivateLinkResourceOperations
 
 - [Get](#privatelinkresourceoperations_get)
-- [ListByAssessmentProject](#privatelinkresourceoperations_listbyassessmentproject)
+- [ListByParent](#privatelinkresourceoperations_listbyparent)
 
 ## ServerCollectorsOperations
 
 - [Create](#servercollectorsoperations_create)
 - [Delete](#servercollectorsoperations_delete)
 - [Get](#servercollectorsoperations_get)
-- [ListByAssessmentProject](#servercollectorsoperations_listbyassessmentproject)
+- [ListByParent](#servercollectorsoperations_listbyparent)
 
-## SqlAssessmentOptionsOperations
+## SqlAssessmentV3Operations
 
-- [Get](#sqlassessmentoptionsoperations_get)
-- [ListByAssessmentProject](#sqlassessmentoptionsoperations_listbyassessmentproject)
+- [Create](#sqlassessmentv3operations_create)
+- [Delete](#sqlassessmentv3operations_delete)
+- [DownloadUrl](#sqlassessmentv3operations_downloadurl)
+- [Get](#sqlassessmentv3operations_get)
+- [ListByParent](#sqlassessmentv3operations_listbyparent)
 
-## SqlAssessmentV2Operations
+## SqlAssessmentV3SummaryOperations
 
-- [Create](#sqlassessmentv2operations_create)
-- [Delete](#sqlassessmentv2operations_delete)
-- [DownloadUrl](#sqlassessmentv2operations_downloadurl)
-- [Get](#sqlassessmentv2operations_get)
-- [ListByGroup](#sqlassessmentv2operations_listbygroup)
-
-## SqlAssessmentV2SummaryOperations
-
-- [Get](#sqlassessmentv2summaryoperations_get)
-- [ListBySqlAssessmentV2](#sqlassessmentv2summaryoperations_listbysqlassessmentv2)
+- [Get](#sqlassessmentv3summaryoperations_get)
+- [ListByParent](#sqlassessmentv3summaryoperations_listbyparent)
 
 ## SqlCollectorOperations
 
 - [Create](#sqlcollectoroperations_create)
 - [Delete](#sqlcollectoroperations_delete)
 - [Get](#sqlcollectoroperations_get)
-- [ListByAssessmentProject](#sqlcollectoroperations_listbyassessmentproject)
+- [ListByParent](#sqlcollectoroperations_listbyparent)
+
+## SqlGraphAssessmentOptionsOperations
+
+- [Get](#sqlgraphassessmentoptionsoperations_get)
+- [ListByParent](#sqlgraphassessmentoptionsoperations_listbyparent)
 
 ## VmwareCollectorsOperations
 
 - [Create](#vmwarecollectorsoperations_create)
 - [Delete](#vmwarecollectorsoperations_delete)
 - [Get](#vmwarecollectorsoperations_get)
-- [ListByAssessmentProject](#vmwarecollectorsoperations_listbyassessmentproject)
-### AssessedMachinesOperations_Get
+- [ListByParent](#vmwarecollectorsoperations_listbyparent)
+
+## WebAppAssessmentV3Operations
+
+- [Create](#webappassessmentv3operations_create)
+- [Delete](#webappassessmentv3operations_delete)
+- [DownloadUrl](#webappassessmentv3operations_downloadurl)
+- [Get](#webappassessmentv3operations_get)
+- [ListByParent](#webappassessmentv3operations_listbyparent)
+
+## WebAppAssessmentV3SummaryOperations
+
+- [Get](#webappassessmentv3summaryoperations_get)
+- [ListByParent](#webappassessmentv3summaryoperations_listbyparent)
+
+## WebAppCollectorOperations
+
+- [Create](#webappcollectoroperations_create)
+- [Delete](#webappcollectoroperations_delete)
+- [Get](#webappcollectoroperations_get)
+- [ListByParent](#webappcollectoroperations_listbyparent)
+
+## WebAppGraphAssessmentOptionsOperations
+
+- [Get](#webappgraphassessmentoptionsoperations_get)
+- [ListByParent](#webappgraphassessmentoptionsoperations_listbyparent)
+
+## WebAppServicePlansOperations
+
+- [Get](#webappserviceplansoperations_get)
+- [ListByParent](#webappserviceplansoperations_listbyparent)
+### AksAssessmentOperations_Create
 
 ```java
+import com.azure.resourcemanager.migration.assessment.models.AksAssessmentProperties;
+import com.azure.resourcemanager.migration.assessment.models.AksAssessmentSettings;
+import com.azure.resourcemanager.migration.assessment.models.AssessmentSizingCriterion;
+import com.azure.resourcemanager.migration.assessment.models.AzureCurrency;
+import com.azure.resourcemanager.migration.assessment.models.AzureOffer;
+import com.azure.resourcemanager.migration.assessment.models.AzureVmCategory;
+import com.azure.resourcemanager.migration.assessment.models.BillingSettings;
+import com.azure.resourcemanager.migration.assessment.models.ConsolidationType;
+import com.azure.resourcemanager.migration.assessment.models.EnvironmentType;
+import com.azure.resourcemanager.migration.assessment.models.LicensingProgram;
+import com.azure.resourcemanager.migration.assessment.models.Percentile;
+import com.azure.resourcemanager.migration.assessment.models.PerformanceData;
+import com.azure.resourcemanager.migration.assessment.models.PricingTier;
+import com.azure.resourcemanager.migration.assessment.models.SavingsOptions;
+import com.azure.resourcemanager.migration.assessment.models.SavingsSettings;
+import com.azure.resourcemanager.migration.assessment.models.Scope;
+import com.azure.resourcemanager.migration.assessment.models.ScopeType;
+import com.azure.resourcemanager.migration.assessment.models.TimeRange;
+import java.time.OffsetDateTime;
+
 /**
- * Samples for AssessedMachinesOperations Get.
+ * Samples for AksAssessmentOperations Create.
  */
-public final class AssessedMachinesOperationsGetSamples {
+public final class AksAssessmentOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedMachinesOperations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksAssessmentOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedMachinesOperations_Get_MaximumSet_Gen.
+     * Sample code: AksAssessmentOperations_Create_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedMachinesOperationsGetMaximumSetGen(
+    public static void aksAssessmentOperationsCreateMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedMachinesOperations()
-            .getWithResponse("rgopenapi", "pavqtntysjn", "smawqdmhfngray", "qjlumxyqsitd", "oqxjeheiipjmuo",
+        manager.aksAssessmentOperations()
+            .define("testaksassessment")
+            .withExistingAssessmentProject("rgaksAssessments", "testProject")
+            .withProperties(new AksAssessmentProperties()
+                .withScope(new Scope().withScopeType(ScopeType.SERVER_GROUP_ID)
+                    .withServerGroupId("this-will-be-a-valid-arm-id")
+                    .withAzureResourceGraphQuery("zyhczkubwaqjqrmyithugmedmtdjxb"))
+                .withSettings(new AksAssessmentSettings().withAzureLocation("EastUS")
+                    .withCurrency(AzureCurrency.USD)
+                    .withScalingFactor(20.0F)
+                    .withDiscountPercentage(14.0F)
+                    .withSizingCriterion(AssessmentSizingCriterion.PERFORMANCE_BASED)
+                    .withPerformanceData(new PerformanceData().withPercentile(Percentile.fromString("Unknown"))
+                        .withTimeRange(TimeRange.DAY)
+                        .withPerfDataStartTime(OffsetDateTime.parse("2025-02-14T07:09:09.242Z"))
+                        .withPerfDataEndTime(OffsetDateTime.parse("2025-02-14T07:09:09.242Z")))
+                    .withSavingsSettings(new SavingsSettings().withSavingsOptions(SavingsOptions.NONE)
+                        .withAzureOfferCode(AzureOffer.UNKNOWN))
+                    .withBillingSettings(new BillingSettings().withLicensingProgram(LicensingProgram.EA)
+                        .withSubscriptionId("572C3D3F-425D-4AE8-A935-72631EADDE56"))
+                    .withEnvironmentType(EnvironmentType.PRODUCTION)
+                    .withCategory(AzureVmCategory.ALL)
+                    .withConsolidation(ConsolidationType.FULL)
+                    .withPricingTier(PricingTier.STANDARD)))
+            .create();
+    }
+}
+```
+
+### AksAssessmentOperations_Delete
+
+```java
+/**
+ * Samples for AksAssessmentOperations Delete.
+ */
+public final class AksAssessmentOperationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksAssessmentOperations_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AksAssessmentOperations_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void aksAssessmentOperationsDeleteMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.aksAssessmentOperations()
+            .deleteWithResponse("rgaksAssessments", "testProject", "testaksassessment",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedMachinesOperations_ListByAssessment
+### AksAssessmentOperations_DownloadUrl
 
 ```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import java.io.IOException;
+
 /**
- * Samples for AssessedMachinesOperations ListByAssessment.
+ * Samples for AksAssessmentOperations DownloadUrl.
  */
-public final class AssessedMachinesOperationsListByAssessmentSamples {
+public final class AksAssessmentOperationsDownloadUrlSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedMachinesOperations_ListByAssessment_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksAssessmentOperations_DownloadUrl_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedMachinesOperations_ListByAssessment_MaximumSet_Gen.
+     * Sample code: AksAssessmentOperations_DownloadUrl_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedMachinesOperationsListByAssessmentMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedMachinesOperations()
-            .listByAssessment("rgopenapi", "sloqixzfjk", "kjuepxerwseq", "rhzcmubwrrkhtocsibu", "sbkdovsfqldhdb", 10,
-                "hbyseetshbplfkjmpjhsiurqgt", 25, com.azure.core.util.Context.NONE);
+    public static void aksAssessmentOperationsDownloadUrlMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
+        manager.aksAssessmentOperations()
+            .downloadUrl("rgaksAssessments", "testProject", "testaksassessment",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedSqlDatabaseV2Operations_Get
+### AksAssessmentOperations_Get
 
 ```java
 /**
- * Samples for AssessedSqlDatabaseV2Operations Get.
+ * Samples for AksAssessmentOperations Get.
  */
-public final class AssessedSqlDatabaseV2OperationsGetSamples {
+public final class AksAssessmentOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedSqlDatabaseV2Operations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksAssessmentOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedSqlDatabaseV2Operations_Get_MaximumSet_Gen.
+     * Sample code: AksAssessmentOperations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedSqlDatabaseV2OperationsGetMaximumSetGen(
+    public static void aksAssessmentOperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedSqlDatabaseV2Operations()
-            .getWithResponse("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                "858eb860-9e07-417c-91b6-bca1bffb3bf5", com.azure.core.util.Context.NONE);
+        manager.aksAssessmentOperations()
+            .getWithResponse("rgaksAssessments", "testProject", "testaksassessment", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedSqlDatabaseV2Operations_ListBySqlAssessmentV2
+### AksAssessmentOperations_ListByParent
 
 ```java
 /**
- * Samples for AssessedSqlDatabaseV2Operations ListBySqlAssessmentV2.
+ * Samples for AksAssessmentOperations ListByParent.
  */
-public final class AssessedSqlDatabaseV2OperationsListBySqlAssessmentV2Samples {
+public final class AksAssessmentOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedSqlDatabaseV2Operations_ListBySqlAssessmentV2_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksAssessmentOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedSqlDatabaseV2Operations_ListBySqlAssessmentV2_MaximumSet_Gen.
+     * Sample code: AksAssessmentOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedSqlDatabaseV2OperationsListBySqlAssessmentV2MaximumSetGen(
+    public static void aksAssessmentOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedSqlDatabaseV2Operations()
-            .listBySqlAssessmentV2("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                "(contains(Properties/DatabaseName,'adv130'))", 23, null, 1, com.azure.core.util.Context.NONE);
+        manager.aksAssessmentOperations()
+            .listByParent("rgaksAssessments", "testProject", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedSqlInstanceV2Operations_Get
+### AksClusterOperations_Get
 
 ```java
 /**
- * Samples for AssessedSqlInstanceV2Operations Get.
+ * Samples for AksClusterOperations Get.
  */
-public final class AssessedSqlInstanceV2OperationsGetSamples {
+public final class AksClusterOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedSqlInstanceV2Operations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksClusterOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedSqlInstanceV2Operations_Get_MaximumSet_Gen.
+     * Sample code: AksClusterOperations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedSqlInstanceV2OperationsGetMaximumSetGen(
+    public static void aksClusterOperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedSqlInstanceV2Operations()
-            .getWithResponse("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                "3c6574cf-b4e1-4fdc-93db-6bbcc570dda2", com.azure.core.util.Context.NONE);
+        manager.aksClusterOperations()
+            .getWithResponse("rgaksAssessments", "testProject", "testaksassessment", "testaksassessment-cluster",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedSqlInstanceV2Operations_ListBySqlAssessmentV2
+### AksClusterOperations_ListByParent
 
 ```java
 /**
- * Samples for AssessedSqlInstanceV2Operations ListBySqlAssessmentV2.
+ * Samples for AksClusterOperations ListByParent.
  */
-public final class AssessedSqlInstanceV2OperationsListBySqlAssessmentV2Samples {
+public final class AksClusterOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedSqlInstanceV2Operations_ListBySqlAssessmentV2_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksClusterOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedSqlInstanceV2Operations_ListBySqlAssessmentV2_MaximumSet_Gen.
+     * Sample code: AksClusterOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedSqlInstanceV2OperationsListBySqlAssessmentV2MaximumSetGen(
+    public static void aksClusterOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedSqlInstanceV2Operations()
-            .listBySqlAssessmentV2("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                "(contains(Properties/InstanceName,'MSSQLSERVER'))", 23, null, 1, com.azure.core.util.Context.NONE);
+        manager.aksClusterOperations()
+            .listByParent("rgaksAssessments", "testProject", "testaksassessment", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedSqlMachinesOperations_Get
+### AksCostDetailOperations_ListByParent
 
 ```java
 /**
- * Samples for AssessedSqlMachinesOperations Get.
+ * Samples for AksCostDetailOperations ListByParent.
  */
-public final class AssessedSqlMachinesOperationsGetSamples {
+public final class AksCostDetailOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedSqlMachinesOperations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksCostDetailOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedSqlMachinesOperations_Get_MaximumSet_Gen.
+     * Sample code: AksCostDetailOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedSqlMachinesOperationsGetMaximumSetGen(
+    public static void aksCostDetailOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedSqlMachinesOperations()
-            .getWithResponse("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                "cc64c9dc-b38e-435d-85ad-d509df5d92c6", com.azure.core.util.Context.NONE);
+        manager.aksCostDetailOperations()
+            .listByParent("rgaksAssessments", "testProject", "testaksassessment", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedSqlMachinesOperations_ListBySqlAssessmentV2
+### AksOptionsOperations_Get
 
 ```java
 /**
- * Samples for AssessedSqlMachinesOperations ListBySqlAssessmentV2.
+ * Samples for AksOptionsOperations Get.
  */
-public final class AssessedSqlMachinesOperationsListBySqlAssessmentV2Samples {
+public final class AksOptionsOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedSqlMachinesOperations_ListBySqlAssessmentV2_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksOptionsOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedSqlMachinesOperations_ListBySqlAssessmentV2_MaximumSet_Gen.
+     * Sample code: AksOptionsOperations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedSqlMachinesOperationsListBySqlAssessmentV2MaximumSetGen(
+    public static void aksOptionsOperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedSqlMachinesOperations()
-            .listBySqlAssessmentV2("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                "(contains(Properties/DisplayName,'SQLHAVM17'))", 23, null, 1, com.azure.core.util.Context.NONE);
+        manager.aksOptionsOperations()
+            .getWithResponse("rgaksAssessments", "testProject", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedSqlRecommendedEntityOperations_Get
+### AksOptionsOperations_ListByParent
 
 ```java
 /**
- * Samples for AssessedSqlRecommendedEntityOperations Get.
+ * Samples for AksOptionsOperations ListByParent.
  */
-public final class AssessedSqlRecommendedEntityOperationsGetSamples {
+public final class AksOptionsOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedSqlRecommendedEntityOperations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksOptionsOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedSqlRecommendedEntityOperations_Get_MaximumSet_Gen.
+     * Sample code: AksOptionsOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedSqlRecommendedEntityOperationsGetMaximumSetGen(
+    public static void aksOptionsOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedSqlRecommendedEntityOperations()
-            .getWithResponse("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                "cc64c9dc-b38e-435d-85ad-d509df5d92c6", com.azure.core.util.Context.NONE);
+        manager.aksOptionsOperations()
+            .listByParent("rgaksAssessments", "testProject", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessedSqlRecommendedEntityOperations_ListBySqlAssessmentV2
+### AksSummaryOperations_Get
 
 ```java
 /**
- * Samples for AssessedSqlRecommendedEntityOperations ListBySqlAssessmentV2.
+ * Samples for AksSummaryOperations Get.
  */
-public final class AssessedSqlRecommendedEntityOperationsListBySqlAssessmentV2Samples {
+public final class AksSummaryOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessedSqlRecommendedEntityOperations_ListBySqlAssessmentV2_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksSummaryOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessedSqlRecommendedEntityOperations_ListBySqlAssessmentV2_MaximumSet_Gen.
+     * Sample code: AksSummaryOperations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessedSqlRecommendedEntityOperationsListBySqlAssessmentV2MaximumSetGen(
+    public static void aksSummaryOperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessedSqlRecommendedEntityOperations()
-            .listBySqlAssessmentV2("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                "(contains(Properties/InstanceName,'MSSQLSERVER'))", 23, null, 1, com.azure.core.util.Context.NONE);
+        manager.aksSummaryOperations()
+            .getWithResponse("rgaksAssessments", "testProject", "testaksassessment", "AKS",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessmentOptionsOperations_Get
+### AksSummaryOperations_ListByParent
 
 ```java
 /**
- * Samples for AssessmentOptionsOperations Get.
+ * Samples for AksSummaryOperations ListByParent.
  */
-public final class AssessmentOptionsOperationsGetSamples {
+public final class AksSummaryOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentOptionsOperations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AksSummaryOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentOptionsOperations_Get_MaximumSet_Gen.
+     * Sample code: AksSummaryOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentOptionsOperationsGetMaximumSetGen(
+    public static void aksSummaryOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessmentOptionsOperations()
-            .getWithResponse("ayagrawrg", "app18700project", "default", com.azure.core.util.Context.NONE);
+        manager.aksSummaryOperations()
+            .listByParent("rgaksAssessments", "testProject", "testaksassessment", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessmentOptionsOperations_ListByAssessmentProject
+### AssessedMachinesV2Operations_Get
 
 ```java
 /**
- * Samples for AssessmentOptionsOperations ListByAssessmentProject.
+ * Samples for AssessedMachinesV2Operations Get.
  */
-public final class AssessmentOptionsOperationsListByAssessmentProjectSamples {
+public final class AssessedMachinesV2OperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentOptionsOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedMachinesV2Operations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentOptionsOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: AssessedMachinesV2Operations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentOptionsOperationsListByAssessmentProjectMaximumSetGen(
+    public static void assessedMachinesV2OperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessmentOptionsOperations()
-            .listByAssessmentProject("rgmigrate", "fhodvffhuoqwbysrrqbizete", com.azure.core.util.Context.NONE);
+        manager.assessedMachinesV2Operations()
+            .getWithResponse("rgmachineAssessments", "contosoProject", "assessmentName", "machine1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedMachinesV2Operations_ListByParent
+
+```java
+/**
+ * Samples for AssessedMachinesV2Operations ListByParent.
+ */
+public final class AssessedMachinesV2OperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedMachinesV2Operations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedMachinesV2Operations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedMachinesV2OperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedMachinesV2Operations()
+            .listByParent("rgmachineAssessments", "contosoProject", "assessmentName", "eabpcsewhenpdfcsjck", 13,
+                "lsuhpxtnundds", 28, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedSqlDatabaseV3Operations_Get
+
+```java
+/**
+ * Samples for AssessedSqlDatabaseV3Operations Get.
+ */
+public final class AssessedSqlDatabaseV3OperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedSqlDatabaseV3Operations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedSqlDatabaseV3Operations_Get.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedSqlDatabaseV3OperationsGet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedSqlDatabaseV3Operations()
+            .getWithResponse("rgsqlAssessments", "contosoProject", "assessmentName", "db1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedSqlDatabaseV3Operations_ListByParent
+
+```java
+/**
+ * Samples for AssessedSqlDatabaseV3Operations ListByParent.
+ */
+public final class AssessedSqlDatabaseV3OperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedSqlDatabaseV3Operations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedSqlDatabaseV3Operations_ListByParent.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedSqlDatabaseV3OperationsListByParent(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedSqlDatabaseV3Operations()
+            .listByParent("rgsqlAssessments", "contosoProject", "assessmentName", "cbywgnphlxhqdkrnzgylmumtbtbocx", 11,
+                "ahjkwi", 11, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedSqlInstanceV3Operations_Get
+
+```java
+/**
+ * Samples for AssessedSqlInstanceV3Operations Get.
+ */
+public final class AssessedSqlInstanceV3OperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedSqlInstanceV3Operations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedSqlInstanceV3Operations_Get.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedSqlInstanceV3OperationsGet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedSqlInstanceV3Operations()
+            .getWithResponse("rgsqlAssessments", "contosoProject", "assessmentName", "sql1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedSqlInstanceV3Operations_ListByParent
+
+```java
+/**
+ * Samples for AssessedSqlInstanceV3Operations ListByParent.
+ */
+public final class AssessedSqlInstanceV3OperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedSqlInstanceV3Operations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedSqlInstanceV3Operations_ListByParent.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedSqlInstanceV3OperationsListByParent(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedSqlInstanceV3Operations()
+            .listByParent("rgsqlAssessments", "contosoProject", "assessmentName", "tbkvgswkchdzuwegejuas", 30,
+                "tvblslp", 29, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedSqlMachinesV3Operations_Get
+
+```java
+/**
+ * Samples for AssessedSqlMachinesV3Operations Get.
+ */
+public final class AssessedSqlMachinesV3OperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedSqlMachinesV3Operations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedSqlMachinesV3Operations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedSqlMachinesV3OperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedSqlMachinesV3Operations()
+            .getWithResponse("rgsqlAssessments", "contosoProject", "assessmentName", "machine1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedSqlMachinesV3Operations_ListByParent
+
+```java
+/**
+ * Samples for AssessedSqlMachinesV3Operations ListByParent.
+ */
+public final class AssessedSqlMachinesV3OperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedSqlMachinesV3Operations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedSqlMachinesV3Operations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedSqlMachinesV3OperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedSqlMachinesV3Operations()
+            .listByParent("rgsqlAssessments", "contosoProject", "assessmentName", "xzirrhfzrsgksfgxerscseqkggcess", 27,
+                "vzjkdmjvvkeuvm", 30, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedWebApplicationOperations_Get
+
+```java
+/**
+ * Samples for AssessedWebApplicationOperations Get.
+ */
+public final class AssessedWebApplicationOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedWebApplicationOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedWebApplicationOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedWebApplicationOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedWebApplicationOperations()
+            .getWithResponse("rgaksAssessments", "testProject", "testaksassessment", "webapp",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedWebApplicationOperations_ListByParent
+
+```java
+/**
+ * Samples for AssessedWebApplicationOperations ListByParent.
+ */
+public final class AssessedWebApplicationOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedWebApplicationOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedWebApplicationOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedWebApplicationOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedWebApplicationOperations()
+            .listByParent("rgaksAssessments", "testProject", "testaksassessment", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedWebAppsV3Operations_Get
+
+```java
+/**
+ * Samples for AssessedWebAppsV3Operations Get.
+ */
+public final class AssessedWebAppsV3OperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedWebAppsV3Operations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedWebAppsV3Operations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedWebAppsV3OperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedWebAppsV3Operations()
+            .getWithResponse("rgwebAppAssessments", "contosoProject", "assessmentName", "webapp1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssessedWebAppsV3Operations_ListByParent
+
+```java
+/**
+ * Samples for AssessedWebAppsV3Operations ListByParent.
+ */
+public final class AssessedWebAppsV3OperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessedWebAppsV3Operations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AssessedWebAppsV3Operations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void assessedWebAppsV3OperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.assessedWebAppsV3Operations()
+            .listByParent("rgwebAppAssessments", "contosoProject", "assessmentName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -471,15 +964,15 @@ public final class AssessmentOptionsOperationsListByAssessmentProjectSamples {
 public final class AssessmentProjectSummaryOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectSummaryOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectSummaryOperations_Get_MaximumSet_Gen.
+     * Sample code: AssessmentProjectSummaryOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectSummaryOperationsGetMaximumSetGen(
+    public static void assessmentProjectSummaryOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectSummaryOperations()
             .getWithResponse("piyushapp1", "PiyushApp15328project", "default", com.azure.core.util.Context.NONE);
@@ -487,27 +980,27 @@ public final class AssessmentProjectSummaryOperationsGetSamples {
 }
 ```
 
-### AssessmentProjectSummaryOperations_ListByAssessmentProject
+### AssessmentProjectSummaryOperations_ListByParent
 
 ```java
 /**
- * Samples for AssessmentProjectSummaryOperations ListByAssessmentProject.
+ * Samples for AssessmentProjectSummaryOperations ListByParent.
  */
-public final class AssessmentProjectSummaryOperationsListByAssessmentProjectSamples {
+public final class AssessmentProjectSummaryOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentProjectSummaryOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessmentProjectSummaryOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectSummaryOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: AssessmentProjectSummaryOperations_ListByParent.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectSummaryOperationsListByAssessmentProjectMaximumSetGen(
+    public static void assessmentProjectSummaryOperationsListByParent(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectSummaryOperations()
-            .listByAssessmentProject("piyushapp1", "PiyushApp15328project", com.azure.core.util.Context.NONE);
+            .listByParent("piyushapp1", "PiyushApp15328project", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -517,7 +1010,6 @@ public final class AssessmentProjectSummaryOperationsListByAssessmentProjectSamp
 ```java
 import com.azure.resourcemanager.migration.assessment.models.ProjectProperties;
 import com.azure.resourcemanager.migration.assessment.models.ProjectStatus;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -527,24 +1019,23 @@ import java.util.Map;
 public final class AssessmentProjectsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_Create_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsCreateMaximumSetGen(
+    public static void assessmentProjectsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectsOperations()
             .define("sakanwar1204project")
             .withRegion("southeastasia")
             .withExistingResourceGroup("sakanwar")
             .withTags(mapOf("Migrate Project", "sakanwar-PE-SEA"))
-            .withProperties(new ProjectProperties().withProvisioningState(ProvisioningState.SUCCEEDED)
-                .withAssessmentSolutionId(
-                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa")
+            .withProperties(new ProjectProperties().withAssessmentSolutionId(
+                "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa")
                 .withProjectStatus(ProjectStatus.ACTIVE)
                 .withPublicNetworkAccess("Disabled")
                 .withCustomerStorageAccountArmId(
@@ -575,15 +1066,15 @@ public final class AssessmentProjectsOperationsCreateSamples {
 public final class AssessmentProjectsOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectsOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_Delete_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsDeleteMaximumSetGen(
+    public static void assessmentProjectsOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectsOperations()
             .deleteByResourceGroupWithResponse("rgmigrate", "zqrsyncwahgydqvwuchkfd", com.azure.core.util.Context.NONE);
@@ -600,15 +1091,15 @@ public final class AssessmentProjectsOperationsDeleteSamples {
 public final class AssessmentProjectsOperationsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectsOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_Get_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsGetMaximumSetGen(
+    public static void assessmentProjectsOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectsOperations()
             .getByResourceGroupWithResponse("sakanwar", "sakanwar1204project", com.azure.core.util.Context.NONE);
@@ -625,15 +1116,15 @@ public final class AssessmentProjectsOperationsGetByResourceGroupSamples {
 public final class AssessmentProjectsOperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectsOperations_ListBySubscription_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_ListBySubscription_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_ListBySubscription.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsListBySubscriptionMaximumSetGen(
+    public static void assessmentProjectsOperationsListBySubscription(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectsOperations().list(com.azure.core.util.Context.NONE);
     }
@@ -649,15 +1140,15 @@ public final class AssessmentProjectsOperationsListSamples {
 public final class AssessmentProjectsOperationsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentProjectsOperations_ListByResourceGroup_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessmentProjectsOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_ListByResourceGroup_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_ListByParent.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsListByResourceGroupMaximumSetGen(
+    public static void assessmentProjectsOperationsListByParent(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectsOperations().listByResourceGroup("sakanwar", com.azure.core.util.Context.NONE);
     }
@@ -668,9 +1159,8 @@ public final class AssessmentProjectsOperationsListByResourceGroupSamples {
 
 ```java
 import com.azure.resourcemanager.migration.assessment.models.AssessmentProject;
-import com.azure.resourcemanager.migration.assessment.models.AssessmentProjectUpdateProperties;
+import com.azure.resourcemanager.migration.assessment.models.ProjectProperties;
 import com.azure.resourcemanager.migration.assessment.models.ProjectStatus;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -680,28 +1170,27 @@ import java.util.Map;
 public final class AssessmentProjectsOperationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectsOperations_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_Update_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_Update.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsUpdateMaximumSetGen(
+    public static void assessmentProjectsOperationsUpdate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         AssessmentProject resource = manager.assessmentProjectsOperations()
             .getByResourceGroupWithResponse("sakanwar", "sakanwar1204project", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withTags(mapOf("Migrate Project", "sakanwar-PE-SEA"))
-            .withProperties(new AssessmentProjectUpdateProperties().withAssessmentSolutionId(
+            .withProperties(new ProjectProperties().withAssessmentSolutionId(
                 "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa")
                 .withProjectStatus(ProjectStatus.ACTIVE)
                 .withPublicNetworkAccess("Disabled")
                 .withCustomerStorageAccountArmId(
-                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa")
-                .withProvisioningState(ProvisioningState.SUCCEEDED))
+                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sakanwar/providers/Microsoft.Storage/storageAccounts/sakanwar1204usa"))
             .apply();
     }
 
@@ -719,366 +1208,216 @@ public final class AssessmentProjectsOperationsUpdateSamples {
 }
 ```
 
-### AssessmentsOperations_Create
-
-```java
-import com.azure.resourcemanager.migration.assessment.models.AssessmentSizingCriterion;
-import com.azure.resourcemanager.migration.assessment.models.AzureCurrency;
-import com.azure.resourcemanager.migration.assessment.models.AzureDiskType;
-import com.azure.resourcemanager.migration.assessment.models.AzureHybridUseBenefit;
-import com.azure.resourcemanager.migration.assessment.models.AzureOfferCode;
-import com.azure.resourcemanager.migration.assessment.models.AzurePricingTier;
-import com.azure.resourcemanager.migration.assessment.models.AzureReservedInstance;
-import com.azure.resourcemanager.migration.assessment.models.AzureStorageRedundancy;
-import com.azure.resourcemanager.migration.assessment.models.AzureVmFamily;
-import com.azure.resourcemanager.migration.assessment.models.MachineAssessmentProperties;
-import com.azure.resourcemanager.migration.assessment.models.Percentile;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
-import com.azure.resourcemanager.migration.assessment.models.TimeRange;
-import com.azure.resourcemanager.migration.assessment.models.VmUptime;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-
-/**
- * Samples for AssessmentsOperations Create.
- */
-public final class AssessmentsOperationsCreateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentsOperations_Create_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: AssessmentsOperations_Create_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void assessmentsOperationsCreateMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessmentsOperations()
-            .define("asm1")
-            .withExistingGroup("ayagrawrg", "app18700project", "kuchatur-test")
-            .withProperties(new MachineAssessmentProperties().withProvisioningState(ProvisioningState.SUCCEEDED)
-                .withEaSubscriptionId("kwsu")
-                .withAzurePricingTier(AzurePricingTier.STANDARD)
-                .withAzureStorageRedundancy(AzureStorageRedundancy.UNKNOWN)
-                .withReservedInstance(AzureReservedInstance.NONE)
-                .withAzureHybridUseBenefit(AzureHybridUseBenefit.UNKNOWN)
-                .withAzureDiskTypes(Arrays.asList(AzureDiskType.PREMIUM, AzureDiskType.STANDARD_SSD))
-                .withAzureVmFamilies(
-                    Arrays.asList(AzureVmFamily.D_SERIES, AzureVmFamily.LSV2_SERIES, AzureVmFamily.M_SERIES,
-                        AzureVmFamily.MDSV2_SERIES, AzureVmFamily.MSV2_SERIES, AzureVmFamily.MV2_SERIES))
-                .withVmUptime(new VmUptime().withDaysPerMonth(13).withHoursPerDay(26))
-                .withAzureLocation("njxbwdtsxzhichsnk")
-                .withAzureOfferCode(AzureOfferCode.UNKNOWN)
-                .withCurrency(AzureCurrency.UNKNOWN)
-                .withScalingFactor(24.0F)
-                .withPercentile(Percentile.PERCENTILE50)
-                .withTimeRange(TimeRange.DAY)
-                .withPerfDataStartTime(OffsetDateTime.parse("2023-09-26T09:36:48.491Z"))
-                .withPerfDataEndTime(OffsetDateTime.parse("2023-09-26T09:36:48.491Z"))
-                .withDiscountPercentage(6.0F)
-                .withSizingCriterion(AssessmentSizingCriterion.PERFORMANCE_BASED))
-            .create();
-    }
-}
-```
-
-### AssessmentsOperations_Delete
+### AvsAssessedMachinesV2Operations_Get
 
 ```java
 /**
- * Samples for AssessmentsOperations Delete.
+ * Samples for AvsAssessedMachinesV2Operations Get.
  */
-public final class AssessmentsOperationsDeleteSamples {
+public final class AvsAssessedMachinesV2OperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentsOperations_Delete_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessedMachinesV2Operations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentsOperations_Delete_MaximumSet_Gen.
+     * Sample code: AvsAssessedMachinesV2Operations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentsOperationsDeleteMaximumSetGen(
+    public static void avsAssessedMachinesV2OperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessmentsOperations()
-            .deleteWithResponse("ayagrawrg", "app18700project", "kuchatur-test", "asm1",
+        manager.avsAssessedMachinesV2Operations()
+            .getWithResponse("rgavsAssessments", "contosoProject", "assessmentName", "machine1",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessmentsOperations_DownloadUrl
+### AvsAssessedMachinesV2Operations_ListByParent
 
 ```java
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import java.io.IOException;
-
 /**
- * Samples for AssessmentsOperations DownloadUrl.
+ * Samples for AvsAssessedMachinesV2Operations ListByParent.
  */
-public final class AssessmentsOperationsDownloadUrlSamples {
+public final class AvsAssessedMachinesV2OperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentsOperations_DownloadUrl_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessedMachinesV2Operations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentsOperations_DownloadUrl_MaximumSet_Gen.
+     * Sample code: AvsAssessedMachinesV2Operations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentsOperationsDownloadUrlMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
-        manager.assessmentsOperations()
-            .downloadUrl("ayagrawrg", "app18700project", "kuchatur-test", "asm1",
-                SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+    public static void avsAssessedMachinesV2OperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.avsAssessedMachinesV2Operations()
+            .listByParent("rgavsAssessments", "contosoProject", "assessmentName", "ozyotnnfedxreohjtgfqxmefn", 26,
+                "vhdrqptyyromhgz", 7, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AvsAssessmentV2SummaryOperations_Get
+
+```java
+/**
+ * Samples for AvsAssessmentV2SummaryOperations Get.
+ */
+public final class AvsAssessmentV2SummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessmentV2SummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AvsAssessmentV2SummaryOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void avsAssessmentV2SummaryOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.avsAssessmentV2SummaryOperations()
+            .getWithResponse("rgavsAssessments", "contosoProject", "assessmentName", "PaaSPreferred",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessmentsOperations_Get
+### AvsAssessmentV2SummaryOperations_ListByParent
 
 ```java
 /**
- * Samples for AssessmentsOperations Get.
+ * Samples for AvsAssessmentV2SummaryOperations ListByParent.
  */
-public final class AssessmentsOperationsGetSamples {
+public final class AvsAssessmentV2SummaryOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentsOperations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessmentV2SummaryOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentsOperations_Get_MaximumSet_Gen.
+     * Sample code: AvsAssessmentV2SummaryOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentsOperationsGetMaximumSetGen(
+    public static void avsAssessmentV2SummaryOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessmentsOperations()
-            .getWithResponse("ayagrawrg", "app18700project", "kuchatur-test", "asm1", com.azure.core.util.Context.NONE);
+        manager.avsAssessmentV2SummaryOperations()
+            .listByParent("rgavsAssessments", "contosoProject", "assessmentName", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AssessmentsOperations_ListByGroup
+### AvsAssessmentsV2Operations_Create
 
 ```java
-/**
- * Samples for AssessmentsOperations ListByGroup.
- */
-public final class AssessmentsOperationsListByGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentsOperations_ListByGroup_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: AssessmentsOperations_ListByGroup_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void assessmentsOperationsListByGroupMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.assessmentsOperations()
-            .listByGroup("ayagrawrg", "app18700project", "kuchatur-test", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AvsAssessedMachinesOperations_Get
-
-```java
-/**
- * Samples for AvsAssessedMachinesOperations Get.
- */
-public final class AvsAssessedMachinesOperationsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessedMachinesOperations_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: AvsAssessedMachinesOperations_Get_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void avsAssessedMachinesOperationsGetMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.avsAssessedMachinesOperations()
-            .getWithResponse("ayagrawrg", "app18700project", "kuchatur-test", "asm2",
-                "b6d6fc6f-796f-4c16-96af-a6d22e0f12f7", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AvsAssessedMachinesOperations_ListByAvsAssessment
-
-```java
-/**
- * Samples for AvsAssessedMachinesOperations ListByAvsAssessment.
- */
-public final class AvsAssessedMachinesOperationsListByAvsAssessmentSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessedMachinesOperations_ListByAvsAssessment_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: AvsAssessedMachinesOperations_ListByAvsAssessment_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void avsAssessedMachinesOperationsListByAvsAssessmentMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.avsAssessedMachinesOperations()
-            .listByAvsAssessment("ayagrawrg", "app18700project", "kuchatur-test", "asm2", "ujmwhhuloficljxcjyc", 6,
-                "qwrjeiukbcicfrkqlqsfukfc", 19, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AvsAssessmentOptionsOperations_Get
-
-```java
-/**
- * Samples for AvsAssessmentOptionsOperations Get.
- */
-public final class AvsAssessmentOptionsOperationsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessmentOptionsOperations_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: AvsAssessmentOptionsOperations_Get_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void avsAssessmentOptionsOperationsGetMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.avsAssessmentOptionsOperations()
-            .getWithResponse("ayagrawrg", "app18700project", "default", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AvsAssessmentOptionsOperations_ListByAssessmentProject
-
-```java
-/**
- * Samples for AvsAssessmentOptionsOperations ListByAssessmentProject.
- */
-public final class AvsAssessmentOptionsOperationsListByAssessmentProjectSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessmentOptionsOperations_ListByAssessmentProject_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: AvsAssessmentOptionsOperations_ListByAssessmentProject_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void avsAssessmentOptionsOperationsListByAssessmentProjectMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.avsAssessmentOptionsOperations()
-            .listByAssessmentProject("ayagrawrg", "app18700project", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AvsAssessmentsOperations_Create
-
-```java
+import com.azure.resourcemanager.migration.assessment.models.AssessmentDetails;
 import com.azure.resourcemanager.migration.assessment.models.AssessmentSizingCriterion;
-import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentProperties;
+import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentPropertiesV2;
+import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentScenario;
+import com.azure.resourcemanager.migration.assessment.models.AvsAssessmentSettings;
 import com.azure.resourcemanager.migration.assessment.models.AzureAvsNodeType;
 import com.azure.resourcemanager.migration.assessment.models.AzureCurrency;
-import com.azure.resourcemanager.migration.assessment.models.AzureLocation;
-import com.azure.resourcemanager.migration.assessment.models.AzureOfferCode;
-import com.azure.resourcemanager.migration.assessment.models.AzureReservedInstance;
+import com.azure.resourcemanager.migration.assessment.models.AzureOffer;
+import com.azure.resourcemanager.migration.assessment.models.BillingSettings;
+import com.azure.resourcemanager.migration.assessment.models.EnvironmentType;
+import com.azure.resourcemanager.migration.assessment.models.ExternalStorageType;
 import com.azure.resourcemanager.migration.assessment.models.FttAndRaidLevel;
+import com.azure.resourcemanager.migration.assessment.models.LicensingProgram;
 import com.azure.resourcemanager.migration.assessment.models.Percentile;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
+import com.azure.resourcemanager.migration.assessment.models.PerformanceData;
+import com.azure.resourcemanager.migration.assessment.models.SavingsOptions;
+import com.azure.resourcemanager.migration.assessment.models.SavingsSettings;
+import com.azure.resourcemanager.migration.assessment.models.Scope;
+import com.azure.resourcemanager.migration.assessment.models.ScopeType;
 import com.azure.resourcemanager.migration.assessment.models.TimeRange;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 /**
- * Samples for AvsAssessmentsOperations Create.
+ * Samples for AvsAssessmentsV2Operations Create.
  */
-public final class AvsAssessmentsOperationsCreateSamples {
+public final class AvsAssessmentsV2OperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessmentsOperations_Create_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessmentsV2Operations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AvsAssessmentsOperations_Create_MaximumSet_Gen.
+     * Sample code: AvsAssessmentsV2Operations_Create_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void avsAssessmentsOperationsCreateMaximumSetGen(
+    public static void avsAssessmentsV2OperationsCreateMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.avsAssessmentsOperations()
-            .define("asm2")
-            .withExistingGroup("ayagrawrg", "app18700project", "kuchatur-test")
-            .withProperties(new AvsAssessmentProperties().withProvisioningState(ProvisioningState.SUCCEEDED)
-                .withFailuresToTolerateAndRaidLevel(FttAndRaidLevel.FTT1RAID1)
-                .withVcpuOversubscription(4.0F)
-                .withNodeType(AzureAvsNodeType.AV36)
-                .withReservedInstance(AzureReservedInstance.RI3YEAR)
-                .withMemOvercommit(1.0F)
-                .withDedupeCompression(1.5F)
-                .withIsStretchClusterEnabled(true)
-                .withAzureLocation(AzureLocation.EAST_US)
-                .withAzureOfferCode(AzureOfferCode.MSAZR0003P)
-                .withCurrency(AzureCurrency.USD)
-                .withScalingFactor(1.0F)
-                .withPercentile(Percentile.PERCENTILE95)
-                .withTimeRange(TimeRange.DAY)
-                .withPerfDataStartTime(OffsetDateTime.parse("2023-09-25T13:35:56.5671462Z"))
-                .withPerfDataEndTime(OffsetDateTime.parse("2023-09-26T13:35:56.5671462Z"))
-                .withDiscountPercentage(0.0F)
-                .withSizingCriterion(AssessmentSizingCriterion.AS_ON_PREMISES))
+        manager.avsAssessmentsV2Operations()
+            .define("assessmentName")
+            .withExistingAssessmentProject("rgavsAssessments", "contosoProject")
+            .withProperties(new AvsAssessmentPropertiesV2()
+                .withScope(new Scope().withScopeType(ScopeType.SERVER_GROUP_ID)
+                    .withServerGroupId("fxonspfmzfuiaepr")
+                    .withAzureResourceGraphQuery("ylnfwgptlyzwzkotmunbx"))
+                .withSettings(new AvsAssessmentSettings().withAzureLocation("actuloeieva")
+                    .withCurrency(AzureCurrency.UNKNOWN)
+                    .withScalingFactor(28.0F)
+                    .withDiscountPercentage(27.0F)
+                    .withSizingCriterion(AssessmentSizingCriterion.PERFORMANCE_BASED)
+                    .withPerformanceData(new PerformanceData().withPercentile(Percentile.fromString("Unknown"))
+                        .withTimeRange(TimeRange.DAY)
+                        .withPerfDataStartTime(OffsetDateTime.parse("2025-02-21T05:36:34.751Z"))
+                        .withPerfDataEndTime(OffsetDateTime.parse("2025-02-21T05:36:34.751Z")))
+                    .withSavingsSettings(new SavingsSettings().withSavingsOptions(SavingsOptions.NONE)
+                        .withAzureOfferCode(AzureOffer.UNKNOWN))
+                    .withBillingSettings(new BillingSettings().withLicensingProgram(LicensingProgram.RETAIL)
+                        .withSubscriptionId("xvtuenxmmjuqlhgmvev"))
+                    .withEnvironmentType(EnvironmentType.PRODUCTION)
+                    .withFailuresToTolerateAndRaidLevelList(Arrays.asList(FttAndRaidLevel.UNKNOWN))
+                    .withVcpuOversubscription(25.0F)
+                    .withNodeTypes(Arrays.asList(AzureAvsNodeType.UNKNOWN))
+                    .withAvsAssessmentScenario(AvsAssessmentScenario.UNKNOWN)
+                    .withExternalStorageTypes(Arrays.asList(ExternalStorageType.UNKNOWN))
+                    .withCpuHeadroom(27.0F)
+                    .withIsVcfByolEnabled(true)
+                    .withMemOvercommit(11.0F)
+                    .withDedupeCompression(26.0F)
+                    .withIsStretchClusterEnabled(true))
+                .withDetails(new AssessmentDetails())
+                .withFallbackMachineAssessmentArmId("tpjvxfcyxsgngqdxyrrfh"))
             .create();
     }
 }
 ```
 
-### AvsAssessmentsOperations_Delete
+### AvsAssessmentsV2Operations_Delete
 
 ```java
 /**
- * Samples for AvsAssessmentsOperations Delete.
+ * Samples for AvsAssessmentsV2Operations Delete.
  */
-public final class AvsAssessmentsOperationsDeleteSamples {
+public final class AvsAssessmentsV2OperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessmentsOperations_Delete_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessmentsV2Operations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AvsAssessmentsOperations_Delete_MaximumSet_Gen.
+     * Sample code: AvsAssessmentsV2Operations_Delete_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void avsAssessmentsOperationsDeleteMaximumSetGen(
+    public static void avsAssessmentsV2OperationsDeleteMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.avsAssessmentsOperations()
-            .deleteWithResponse("ayagrawrg", "app18700project", "kuchatur-test", "asm2",
+        manager.avsAssessmentsV2Operations()
+            .deleteWithResponse("rgavsAssessments", "contosoProject", "assessmentName",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AvsAssessmentsOperations_DownloadUrl
+### AvsAssessmentsV2Operations_DownloadUrl
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
@@ -1086,23 +1425,23 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import java.io.IOException;
 
 /**
- * Samples for AvsAssessmentsOperations DownloadUrl.
+ * Samples for AvsAssessmentsV2Operations DownloadUrl.
  */
-public final class AvsAssessmentsOperationsDownloadUrlSamples {
+public final class AvsAssessmentsV2OperationsDownloadUrlSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessmentsOperations_DownloadUrl_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessmentsV2Operations_DownloadUrl_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AvsAssessmentsOperations_DownloadUrl_MaximumSet_Gen.
+     * Sample code: Get download URL for the assessment report.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void avsAssessmentsOperationsDownloadUrlMaximumSetGen(
+    public static void getDownloadURLForTheAssessmentReport(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
-        manager.avsAssessmentsOperations()
-            .downloadUrl("ayagrawrg", "app18700project", "kuchatur-test", "asm2",
+        manager.avsAssessmentsV2Operations()
+            .downloadUrl("rgavsAssessments", "contosoProject", "assessmentName",
                 SerializerFactory.createDefaultManagementSerializerAdapter()
                     .deserialize("{}", Object.class, SerializerEncoding.JSON),
                 com.azure.core.util.Context.NONE);
@@ -1110,193 +1449,1140 @@ public final class AvsAssessmentsOperationsDownloadUrlSamples {
 }
 ```
 
-### AvsAssessmentsOperations_Get
+### AvsAssessmentsV2Operations_Get
 
 ```java
 /**
- * Samples for AvsAssessmentsOperations Get.
+ * Samples for AvsAssessmentsV2Operations Get.
  */
-public final class AvsAssessmentsOperationsGetSamples {
+public final class AvsAssessmentsV2OperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessmentsOperations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessmentsV2Operations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AvsAssessmentsOperations_Get_MaximumSet_Gen.
+     * Sample code: AvsAssessmentsV2Operations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void avsAssessmentsOperationsGetMaximumSetGen(
+    public static void avsAssessmentsV2OperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.avsAssessmentsOperations()
-            .getWithResponse("ayagrawrg", "app18700project", "kuchatur-test", "asm2", com.azure.core.util.Context.NONE);
+        manager.avsAssessmentsV2Operations()
+            .getWithResponse("rgavsAssessments", "contosoProject", "assessmentName", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AvsAssessmentsOperations_ListByGroup
+### AvsAssessmentsV2Operations_ListByParent
 
 ```java
 /**
- * Samples for AvsAssessmentsOperations ListByGroup.
+ * Samples for AvsAssessmentsV2Operations ListByParent.
  */
-public final class AvsAssessmentsOperationsListByGroupSamples {
+public final class AvsAssessmentsV2OperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AvsAssessmentsOperations_ListByGroup_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsAssessmentsV2Operations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AvsAssessmentsOperations_ListByGroup_MaximumSet_Gen.
+     * Sample code: AvsAssessmentsV2Operations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void avsAssessmentsOperationsListByGroupMaximumSetGen(
+    public static void avsAssessmentsV2OperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.avsAssessmentsOperations()
-            .listByGroup("ayagrawrg", "app18700project", "kuchatur-test", com.azure.core.util.Context.NONE);
+        manager.avsAssessmentsV2Operations()
+            .listByParent("rgavsAssessments", "contosoProject", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### GroupsOperations_Create
+### AvsGraphAssessmentOptionsOperations_Get
 
 ```java
-import com.azure.resourcemanager.migration.assessment.models.GroupProperties;
-import com.azure.resourcemanager.migration.assessment.models.GroupType;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
-
 /**
- * Samples for GroupsOperations Create.
+ * Samples for AvsGraphAssessmentOptionsOperations Get.
  */
-public final class GroupsOperationsCreateSamples {
+public final class AvsGraphAssessmentOptionsOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * GroupsOperations_Create_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsGraphAssessmentOptionsOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: GroupsOperations_Create_MaximumSet_Gen.
+     * Sample code: AvsGraphAssessmentOptionsOperations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void groupsOperationsCreateMaximumSetGen(
+    public static void avsGraphAssessmentOptionsOperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.groupsOperations()
-            .define("kuchatur-test")
-            .withExistingAssessmentProject("ayagrawrg", "app18700project")
-            .withProperties(new GroupProperties().withProvisioningState(ProvisioningState.SUCCEEDED)
-                .withGroupType(GroupType.DEFAULT))
+        manager.avsGraphAssessmentOptionsOperations()
+            .getWithResponse("rgavsAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AvsGraphAssessmentOptionsOperations_ListByParent
+
+```java
+/**
+ * Samples for AvsGraphAssessmentOptionsOperations ListByParent.
+ */
+public final class AvsGraphAssessmentOptionsOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AvsGraphAssessmentOptionsOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AvsGraphAssessmentOptionsOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void avsGraphAssessmentOptionsOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.avsGraphAssessmentOptionsOperations()
+            .listByParent("rgavsAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCaseAvsSummaryOperations_Get
+
+```java
+/**
+ * Samples for BusinessCaseAvsSummaryOperations Get.
+ */
+public final class BusinessCaseAvsSummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseAvsSummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCaseAvsSummaryOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCaseAvsSummaryOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCaseAvsSummaryOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "MySummary",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCaseAvsSummaryOperations_ListByParent
+
+```java
+/**
+ * Samples for BusinessCaseAvsSummaryOperations ListByParent.
+ */
+public final class BusinessCaseAvsSummaryOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseAvsSummaryOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCaseAvsSummaryOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCaseAvsSummaryOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCaseAvsSummaryOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCaseIaasSummaryOperations_Get
+
+```java
+/**
+ * Samples for BusinessCaseIaasSummaryOperations Get.
+ */
+public final class BusinessCaseIaasSummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseIaasSummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCaseIaasSummaryOperations_Get_MaximumSet - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCaseIaasSummaryOperationsGetMaximumSetGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCaseIaasSummaryOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "MySummary",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCaseIaasSummaryOperations_ListByParent
+
+```java
+/**
+ * Samples for BusinessCaseIaasSummaryOperations ListByParent.
+ */
+public final class BusinessCaseIaasSummaryOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseIaasSummaryOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCaseIaasSummaryOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCaseIaasSummaryOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCaseIaasSummaryOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCaseOperations_CompareSummary
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import java.io.IOException;
+
+/**
+ * Samples for BusinessCaseOperations CompareSummary.
+ */
+public final class BusinessCaseOperationsCompareSummarySamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseOperations_CompareSummary_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Get Compare summary report for Business case.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void getCompareSummaryReportForBusinessCase(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
+        manager.businessCaseOperations()
+            .compareSummary("rgbusinessCases", "MyMigrateProject", "MyBusinessCase",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCaseOperations_Create
+
+```java
+import com.azure.resourcemanager.migration.assessment.models.AzureArcManagementSettings;
+import com.azure.resourcemanager.migration.assessment.models.AzureArcMonitoringSettings;
+import com.azure.resourcemanager.migration.assessment.models.AzureArcSettings;
+import com.azure.resourcemanager.migration.assessment.models.AzureArcState;
+import com.azure.resourcemanager.migration.assessment.models.AzureSettings;
+import com.azure.resourcemanager.migration.assessment.models.AzureSettingsPerYearMigrationCompletionPercentageItem;
+import com.azure.resourcemanager.migration.assessment.models.BusinessCaseCurrency;
+import com.azure.resourcemanager.migration.assessment.models.BusinessCaseProperties;
+import com.azure.resourcemanager.migration.assessment.models.ComputeSettings;
+import com.azure.resourcemanager.migration.assessment.models.DiscoverySource;
+import com.azure.resourcemanager.migration.assessment.models.FacilitySettings;
+import com.azure.resourcemanager.migration.assessment.models.HyperVLicenseType;
+import com.azure.resourcemanager.migration.assessment.models.HypervLicense;
+import com.azure.resourcemanager.migration.assessment.models.HypervVirtualizationManagementSettings;
+import com.azure.resourcemanager.migration.assessment.models.LaborSettings;
+import com.azure.resourcemanager.migration.assessment.models.LinuxServerLicensingSettings;
+import com.azure.resourcemanager.migration.assessment.models.ManagementSettings;
+import com.azure.resourcemanager.migration.assessment.models.MigrationStrategy;
+import com.azure.resourcemanager.migration.assessment.models.NetworkSettings;
+import com.azure.resourcemanager.migration.assessment.models.OnPremiseSettings;
+import com.azure.resourcemanager.migration.assessment.models.OtherManagementCostsSettings;
+import com.azure.resourcemanager.migration.assessment.models.SavingsOption;
+import com.azure.resourcemanager.migration.assessment.models.SecuritySettings;
+import com.azure.resourcemanager.migration.assessment.models.Settings;
+import com.azure.resourcemanager.migration.assessment.models.SqlServerLicenseType;
+import com.azure.resourcemanager.migration.assessment.models.SqlServerLicensingSettings;
+import com.azure.resourcemanager.migration.assessment.models.StorageSettings;
+import com.azure.resourcemanager.migration.assessment.models.ThirdPartyManagementSettings;
+import com.azure.resourcemanager.migration.assessment.models.VirtualizationSoftwareSettings;
+import com.azure.resourcemanager.migration.assessment.models.WindowsServerLicensingSettings;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+
+/**
+ * Samples for BusinessCaseOperations Create.
+ */
+public final class BusinessCaseOperationsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseOperations_Create_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCaseOperations_Create_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCaseOperationsCreateMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCaseOperations()
+            .define("MyBusinessCase")
+            .withExistingAssessmentProject("rgbusinessCases", "MyMigrateProject")
+            .withProperties(new BusinessCaseProperties().withSettings(new Settings()
+                .withAzureSettings(new AzureSettings().withTargetLocation("hpocokeckktxpzilk")
+                    .withDiscountPercentage(48.0F)
+                    .withCurrency(BusinessCaseCurrency.UNKNOWN)
+                    .withBusinessCaseType(MigrationStrategy.UNKNOWN)
+                    .withWorkloadDiscoverySource(DiscoverySource.UNKNOWN)
+                    .withPerformanceDataStartTime(OffsetDateTime.parse("2024-11-14T10:27:58.436Z"))
+                    .withPerformanceDataEndTime(OffsetDateTime.parse("2024-11-14T10:27:58.436Z"))
+                    .withComfortFactor(19.0F)
+                    .withPerformanceUtilizationPercentile(93.0F)
+                    .withPerYearMigrationCompletionPercentage(Arrays.asList(
+                        new AzureSettingsPerYearMigrationCompletionPercentageItem().withName("cthxvjhedpsnbddvyghswtgp")
+                            .withValue(13.0F)))
+                    .withInfrastructureGrowthRate(79.0F)
+                    .withWacc(43.0F)
+                    .withNetworkCostPercentage(81.0F)
+                    .withIaasLaborCostPercentage(51.0F)
+                    .withPaasLaborCostPercentage(13.0F)
+                    .withAvsLaborCostPercentage(2.0F)
+                    .withSavingsOption(SavingsOption.UNKNOWN))
+                .withOnPremiseSettings(new OnPremiseSettings()
+                    .withComputeSettings(new ComputeSettings().withHyperthreadCoreToMemoryRatio(26f)
+                        .withPrice(8f)
+                        .withComputeHardwareMaintenanceCost(1f)
+                        .withVmOversubscriptionRatio(10f)
+                        .withCpuOversubscriptionRatio(10f)
+                        .withSqlServerLicensing(
+                            Arrays.asList(new SqlServerLicensingSettings().withVersion(SqlServerLicenseType.UNKNOWN)
+                                .withLicenseCost(28f)
+                                .withSoftwareAssuranceCost(27f)))
+                        .withWindowsServerLicensing(new WindowsServerLicensingSettings().withLicenseCost(2f)
+                            .withSoftwareAssuranceCost(6f)
+                            .withLicensesPerCore(21))
+                        .withRhelLinuxServerLicensing(new LinuxServerLicensingSettings().withLicenseCost(7f))
+                        .withSuseLinuxServerLicensing(new LinuxServerLicensingSettings().withLicenseCost(7f))
+                        .withVirtualizationSoftwareSettings(
+                            new VirtualizationSoftwareSettings().withVMwareCloudFoundationLicenseCost(23f)))
+                    .withStorageSettings(new StorageSettings().withCostPerGbPerYear(12f)
+                        .withMaintainanceCostPercentageToAcquisitionCost(5f))
+                    .withNetworkSettings(new NetworkSettings().withMaintenanceCostPercentage(84f)
+                        .withPhysicalServersPerCabinet(18)
+                        .withAverageCostPerCabinet(27f))
+                    .withFacilitySettings(
+                        new FacilitySettings().withFacilitiesCostPerKwh(1.0F).withPowerUtilizationEfficiency(25f))
+                    .withLaborSettings(new LaborSettings().withPhysicalServersPerAdmin(16)
+                        .withVirtualMachinesPerAdmin(18)
+                        .withHourlyAdminCost(22f))
+                    .withSecuritySettings(new SecuritySettings().withServerSecurityCostPerServerPerYear(6f)
+                        .withSqlServerSecurityCostPerServerPerYear(10f))
+                    .withManagementSettings(
+                        new ManagementSettings()
+                            .withHypervVirtualizationManagementSettings(
+                                new HypervVirtualizationManagementSettings().withNumberOfPhysicalCoresPerLicense(8)
+                                    .withSoftwareAssuranceCost(15f)
+                                    .withLicenseAndSupportList(Arrays.asList(new HypervLicense().withLicenseCost(1f)
+                                        .withLicenseType(HyperVLicenseType.UNKNOWN))))
+                            .withThirdPartyManagementSettings(
+                                new ThirdPartyManagementSettings().withLicenseCost(1f).withSupportCost(13f))
+                            .withOtherManagementCostsSettings(
+                                new OtherManagementCostsSettings().withMonitoringCostPerServerPerYear(2f)
+                                    .withPatchingCostPerServerPerYear(28f)
+                                    .withDataProtectionCostPerServerPerYear(4f))))
+                .withAzureArcSettings(new AzureArcSettings().withAzureArcState(AzureArcState.DISABLED)
+                    .withLaborCostPercentage(46.0F)
+                    .withManagementSettings(new AzureArcManagementSettings().withMonitoringSettings(
+                        new AzureArcMonitoringSettings().withLogsVolumeInGB(17f).withAlertRulesCount(19))))))
             .create();
     }
 }
 ```
 
-### GroupsOperations_Delete
+### BusinessCaseOperations_Delete
 
 ```java
 /**
- * Samples for GroupsOperations Delete.
+ * Samples for BusinessCaseOperations Delete.
  */
-public final class GroupsOperationsDeleteSamples {
+public final class BusinessCaseOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * GroupsOperations_Delete_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: GroupsOperations_Delete_MaximumSet_Gen.
+     * Sample code: BusinessCaseOperations_Delete_MaximumSet - generated by [MaximumSet] rule.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void groupsOperationsDeleteMaximumSetGen(
+    public static void businessCaseOperationsDeleteMaximumSetGeneratedByMaximumSetRule(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.groupsOperations()
-            .deleteWithResponse("ayagrawrg", "app18700project", "kuchatur-test", com.azure.core.util.Context.NONE);
+        manager.businessCaseOperations()
+            .deleteWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### GroupsOperations_Get
+### BusinessCaseOperations_Get
 
 ```java
 /**
- * Samples for GroupsOperations Get.
+ * Samples for BusinessCaseOperations Get.
  */
-public final class GroupsOperationsGetSamples {
+public final class BusinessCaseOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * GroupsOperations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: GroupsOperations_Get_MaximumSet_Gen.
+     * Sample code: BusinessCaseOperations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void groupsOperationsGetMaximumSetGen(
+    public static void businessCaseOperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.groupsOperations()
-            .getWithResponse("ayagrawrg", "app18700project", "kuchatur-test", com.azure.core.util.Context.NONE);
+        manager.businessCaseOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### GroupsOperations_ListByAssessmentProject
+### BusinessCaseOperations_GetReportDownloadUrl
 
 ```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import java.io.IOException;
+
 /**
- * Samples for GroupsOperations ListByAssessmentProject.
+ * Samples for BusinessCaseOperations GetReportDownloadUrl.
  */
-public final class GroupsOperationsListByAssessmentProjectSamples {
+public final class BusinessCaseOperationsGetReportDownloadUrlSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * GroupsOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseOperations_GetReportDownloadUrl_MaximumSet_Gen.json
      */
     /**
-     * Sample code: GroupsOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: Get download URL for the business case report. - generated by [MaximumSet] rule.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void groupsOperationsListByAssessmentProjectMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.groupsOperations()
-            .listByAssessmentProject("ayagrawrg", "app18700project", com.azure.core.util.Context.NONE);
+    public static void getDownloadURLForTheBusinessCaseReportGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
+        manager.businessCaseOperations()
+            .getReportDownloadUrl("rgbusinessCases", "MyMigrateProject", "MyBusinessCase",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### GroupsOperations_UpdateMachines
+### BusinessCaseOperations_ListByParent
 
 ```java
-import com.azure.resourcemanager.migration.assessment.models.GroupBodyProperties;
-import com.azure.resourcemanager.migration.assessment.models.GroupUpdateOperation;
-import com.azure.resourcemanager.migration.assessment.models.UpdateGroupBody;
+/**
+ * Samples for BusinessCaseOperations ListByParent.
+ */
+public final class BusinessCaseOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCaseOperations_ListByParent_MaximumSet - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCaseOperationsListByParentMaximumSetGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCaseOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCaseOverviewSummaryOperations_Get
+
+```java
+/**
+ * Samples for BusinessCaseOverviewSummaryOperations Get.
+ */
+public final class BusinessCaseOverviewSummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseOverviewSummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCaseOverviewSummaryOperations_Get_MaximumSet - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCaseOverviewSummaryOperationsGetMaximumSetGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCaseOverviewSummaryOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "MySummary",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCaseOverviewSummaryOperations_ListByParent
+
+```java
+/**
+ * Samples for BusinessCaseOverviewSummaryOperations ListByParent.
+ */
+public final class BusinessCaseOverviewSummaryOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCaseOverviewSummaryOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCaseOverviewSummaryOperations_ListByParent_MaximumSet - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCaseOverviewSummaryOperationsListByParentMaximumSetGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCaseOverviewSummaryOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCasePaasSummaryOperations_Get
+
+```java
+/**
+ * Samples for BusinessCasePaasSummaryOperations Get.
+ */
+public final class BusinessCasePaasSummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCasePaasSummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCasePaasSummaryOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCasePaasSummaryOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCasePaasSummaryOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "MySummary",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BusinessCasePaasSummaryOperations_ListByParent
+
+```java
+/**
+ * Samples for BusinessCasePaasSummaryOperations ListByParent.
+ */
+public final class BusinessCasePaasSummaryOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * BusinessCasePaasSummaryOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BusinessCasePaasSummaryOperations_ListByParent_MaximumSet - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void businessCasePaasSummaryOperationsListByParentMaximumSetGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.businessCasePaasSummaryOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CompoundAssessmentOperations_Create
+
+```java
+import com.azure.resourcemanager.migration.assessment.models.CompoundAssessmentProperties;
+import com.azure.resourcemanager.migration.assessment.models.TargetAssessmentArmIds;
+
+/**
+ * Samples for CompoundAssessmentOperations Create.
+ */
+public final class CompoundAssessmentOperationsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * CompoundAssessmentOperations_Create_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: CompoundAssessmentOperations_Create.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void compoundAssessmentOperationsCreate(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.compoundAssessmentOperations()
+            .define("assessmentName")
+            .withExistingAssessmentProject("rgwebAppCompoundAssessments", "contosoProject")
+            .withProperties(new CompoundAssessmentProperties().withTargetAssessmentArmIds(new TargetAssessmentArmIds()
+                .withAks(
+                    "/subscriptions/6898488D-BBF0-40FC-A5E3-3DF2C00C5F21/resourceGroups/rgwebAppCompoundAssessments/providers/Microsoft.Migrate/assessmentprojects/contosoProject/aksAssessments/nameOfAssessment")
+                .withAzureAppService(
+                    "/subscriptions/6898488D-BBF0-40FC-A5E3-3DF2C00C5F21/resourceGroups/rgwebAppCompoundAssessments/providers/Microsoft.Migrate/assessmentprojects/contosoProject/webAppAssessments/nameOfAssessment")
+                .withAzureAppServiceContainer(
+                    "/subscriptions/6898488D-BBF0-40FC-A5E3-3DF2C00C5F21/resourceGroups/rgwebAppCompoundAssessments/providers/Microsoft.Migrate/assessmentprojects/contosoProject/webAppAssessments/nameOfAssessment"))
+                .withFallbackMachineAssessmentArmId(
+                    "/subscriptions/6898488D-BBF0-40FC-A5E3-3DF2C00C5F21/resourceGroups/rgwebAppCompoundAssessments/providers/Microsoft.Migrate/assessmentprojects/contosoProject/assessments/nameOfAssessment"))
+            .create();
+    }
+}
+```
+
+### CompoundAssessmentOperations_Delete
+
+```java
+/**
+ * Samples for CompoundAssessmentOperations Delete.
+ */
+public final class CompoundAssessmentOperationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * CompoundAssessmentOperations_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: CompoundAssessmentOperations_Delete.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void compoundAssessmentOperationsDelete(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.compoundAssessmentOperations()
+            .deleteWithResponse("rgwebAppCompoundAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CompoundAssessmentOperations_DownloadUrl
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import java.io.IOException;
+
+/**
+ * Samples for CompoundAssessmentOperations DownloadUrl.
+ */
+public final class CompoundAssessmentOperationsDownloadUrlSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * CompoundAssessmentOperations_DownloadUrl_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: CompoundAssessmentOperations_DownloadUrl.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void compoundAssessmentOperationsDownloadUrl(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
+        manager.compoundAssessmentOperations()
+            .downloadUrl("rgwebAppCompoundAssessments", "contosoProject", "assessmentName",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CompoundAssessmentOperations_Get
+
+```java
+/**
+ * Samples for CompoundAssessmentOperations Get.
+ */
+public final class CompoundAssessmentOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * CompoundAssessmentOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: CompoundAssessmentOperations_Get.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void compoundAssessmentOperationsGet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.compoundAssessmentOperations()
+            .getWithResponse("rgwebAppCompoundAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CompoundAssessmentOperations_ListByParent
+
+```java
+/**
+ * Samples for CompoundAssessmentOperations ListByParent.
+ */
+public final class CompoundAssessmentOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * CompoundAssessmentOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: CompoundAssessmentOperations_ListByParent.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void compoundAssessmentOperationsListByParent(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.compoundAssessmentOperations()
+            .listByParent("rgwebAppCompoundAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CompoundAssessmentSummaryOperations_Get
+
+```java
+/**
+ * Samples for CompoundAssessmentSummaryOperations Get.
+ */
+public final class CompoundAssessmentSummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * CompoundAssessmentSummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: CompoundAssessmentSummaryOperations_Get.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void compoundAssessmentSummaryOperationsGet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.compoundAssessmentSummaryOperations()
+            .getWithResponse("rgwebAppCompoundAssessments", "contosoProject", "assessmentName", "Modernize",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CompoundAssessmentSummaryOperations_ListByParent
+
+```java
+/**
+ * Samples for CompoundAssessmentSummaryOperations ListByParent.
+ */
+public final class CompoundAssessmentSummaryOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * CompoundAssessmentSummaryOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: CompoundAssessmentSummaryOperations_ListByParent.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void compoundAssessmentSummaryOperationsListByParent(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.compoundAssessmentSummaryOperations()
+            .listByParent("rgwebAppCompoundAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EvaluatedAvsMachinesOperations_Get
+
+```java
+/**
+ * Samples for EvaluatedAvsMachinesOperations Get.
+ */
+public final class EvaluatedAvsMachinesOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * EvaluatedAvsMachinesOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: EvaluatedAvsMachinesOperations_Get_MaximumSet - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void evaluatedAvsMachinesOperationsGetMaximumSetGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.evaluatedAvsMachinesOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "MyMachine",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EvaluatedAvsMachinesOperations_ListByParent
+
+```java
+/**
+ * Samples for EvaluatedAvsMachinesOperations ListByParent.
+ */
+public final class EvaluatedAvsMachinesOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * EvaluatedAvsMachinesOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: EvaluatedAvsMachinesOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void evaluatedAvsMachinesOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.evaluatedAvsMachinesOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "fknroh", 18, "kri", 12,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EvaluatedMachinesOperations_Get
+
+```java
+/**
+ * Samples for EvaluatedMachinesOperations Get.
+ */
+public final class EvaluatedMachinesOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * EvaluatedMachinesOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: EvaluatedMachinesOperations_Get_MaximumSet - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void evaluatedMachinesOperationsGetMaximumSetGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.evaluatedMachinesOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "MyMachine",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EvaluatedMachinesOperations_ListByParent
+
+```java
+/**
+ * Samples for EvaluatedMachinesOperations ListByParent.
+ */
+public final class EvaluatedMachinesOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * EvaluatedMachinesOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: EvaluatedMachinesOperations_ListByParent_MaximumSet - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void evaluatedMachinesOperationsListByParentMaximumSetGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.evaluatedMachinesOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "wzky", 24, "eoevgdmtpkbhlgyglvsa",
+                6, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EvaluatedSqlEntitiesOperations_Get
+
+```java
+/**
+ * Samples for EvaluatedSqlEntitiesOperations Get.
+ */
+public final class EvaluatedSqlEntitiesOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * EvaluatedSqlEntitiesOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: EvaluatedSqlEntitiesOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void evaluatedSqlEntitiesOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.evaluatedSqlEntitiesOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "MyEntity",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EvaluatedSqlEntitiesOperations_ListByParent
+
+```java
+/**
+ * Samples for EvaluatedSqlEntitiesOperations ListByParent.
+ */
+public final class EvaluatedSqlEntitiesOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * EvaluatedSqlEntitiesOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: EvaluatedSqlEntitiesOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void evaluatedSqlEntitiesOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.evaluatedSqlEntitiesOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "luzlkremkujtmqjmc", 13, "bnmyic",
+                23, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EvaluatedWebAppsOperations_Get
+
+```java
+/**
+ * Samples for EvaluatedWebAppsOperations Get.
+ */
+public final class EvaluatedWebAppsOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * EvaluatedWebAppsOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: EvaluatedWebAppsOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void evaluatedWebAppsOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.evaluatedWebAppsOperations()
+            .getWithResponse("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "MyWebApp",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EvaluatedWebAppsOperations_ListByParent
+
+```java
+/**
+ * Samples for EvaluatedWebAppsOperations ListByParent.
+ */
+public final class EvaluatedWebAppsOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * EvaluatedWebAppsOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: EvaluatedWebAppsOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void evaluatedWebAppsOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.evaluatedWebAppsOperations()
+            .listByParent("rgbusinessCases", "MyMigrateProject", "MyBusinessCase", "krlcuqeagsjdbbjthvwqqu", 20,
+                "giprsbjufkenlzmqf", 12, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HeterogeneousAssessmentOperations_Create
+
+```java
+import com.azure.resourcemanager.migration.assessment.models.HeterogeneousAssessmentProperties;
 import java.util.Arrays;
 
 /**
- * Samples for GroupsOperations UpdateMachines.
+ * Samples for HeterogeneousAssessmentOperations Create.
  */
-public final class GroupsOperationsUpdateMachinesSamples {
+public final class HeterogeneousAssessmentOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * GroupsOperations_UpdateMachines_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * HeterogeneousAssessmentOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: GroupsOperations_UpdateMachines_MaximumSet_Gen.
+     * Sample code: HeterogeneousAssessmentOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void groupsOperationsUpdateMachinesMaximumSetGen(
+    public static void heterogeneousAssessmentOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.groupsOperations()
-            .updateMachines("ayagrawrg", "app18700project", "kuchatur-test", new UpdateGroupBody().withEtag("*")
-                .withProperties(new GroupBodyProperties().withOperationType(GroupUpdateOperation.ADD)
-                    .withMachines(Arrays.asList(
-                        "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/ayagrawrg/providers/Microsoft.Migrate/assessmentprojects/app18700project/machines/18895660-c5e5-4247-8cfc-cd24e1fe57f3"))),
+        manager.heterogeneousAssessmentOperations()
+            .define("assessmentName")
+            .withExistingAssessmentProject("rgheterogeneousAssessments", "contosoProject")
+            .withProperties(
+                new HeterogeneousAssessmentProperties().withAssessmentArmIds(Arrays.asList("gartykxgfvqccfs")))
+            .create();
+    }
+}
+```
+
+### HeterogeneousAssessmentOperations_Delete
+
+```java
+/**
+ * Samples for HeterogeneousAssessmentOperations Delete.
+ */
+public final class HeterogeneousAssessmentOperationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * HeterogeneousAssessmentOperations_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: HeterogeneousAssessmentOperations_Delete.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void heterogeneousAssessmentOperationsDelete(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.heterogeneousAssessmentOperations()
+            .deleteWithResponse("rgheterogeneousAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HeterogeneousAssessmentOperations_Get
+
+```java
+/**
+ * Samples for HeterogeneousAssessmentOperations Get.
+ */
+public final class HeterogeneousAssessmentOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * HeterogeneousAssessmentOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: HeterogeneousAssessmentOperations_Get.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void heterogeneousAssessmentOperationsGet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.heterogeneousAssessmentOperations()
+            .getWithResponse("rgheterogeneousAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HeterogeneousAssessmentOperations_ListByParent
+
+```java
+/**
+ * Samples for HeterogeneousAssessmentOperations ListByParent.
+ */
+public final class HeterogeneousAssessmentOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * HeterogeneousAssessmentOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: HeterogeneousAssessmentOperations_ListByParent.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void heterogeneousAssessmentOperationsListByParent(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.heterogeneousAssessmentOperations()
+            .listByParent("rgheterogeneousAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HeterogeneousAssessmentSummaryOperations_Get
+
+```java
+/**
+ * Samples for HeterogeneousAssessmentSummaryOperations Get.
+ */
+public final class HeterogeneousAssessmentSummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * HeterogeneousAssessmentSummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: HeterogeneousAssessmentSummaryOperations_Get.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void heterogeneousAssessmentSummaryOperationsGet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.heterogeneousAssessmentSummaryOperations()
+            .getWithResponse("rgheterogeneousAssessments", "contosoProject", "assessmentName", "PaaSPreferred",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HeterogeneousAssessmentSummaryOperations_ListByParent
+
+```java
+/**
+ * Samples for HeterogeneousAssessmentSummaryOperations ListByParent.
+ */
+public final class HeterogeneousAssessmentSummaryOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * HeterogeneousAssessmentSummaryOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: HeterogeneousAssessmentSummaryOperations_ListByParent.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void heterogeneousAssessmentSummaryOperationsListByParent(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.heterogeneousAssessmentSummaryOperations()
+            .listByParent("rgheterogeneousAssessments", "contosoProject", "assessmentName",
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -1308,7 +2594,6 @@ public final class GroupsOperationsUpdateMachinesSamples {
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentSpnPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBaseWithAgent;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import java.time.OffsetDateTime;
 
 /**
@@ -1317,20 +2602,20 @@ import java.time.OffsetDateTime;
 public final class HypervCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * HypervCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: HypervCollectorsOperations_Create_MaximumSet_Gen.
+     * Sample code: HypervCollectorsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void hypervCollectorsOperationsCreateMaximumSetGen(
+    public static void hypervCollectorsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.hypervCollectorsOperations()
             .define("test-697cecollector")
             .withExistingAssessmentProject("ayagrawRG", "app18700project")
-            .withProperties(new CollectorPropertiesBaseWithAgent().withProvisioningState(ProvisioningState.SUCCEEDED)
+            .withProperties(new CollectorPropertiesBaseWithAgent()
                 .withAgentProperties(new CollectorAgentPropertiesBase().withId("12f1d90f-b3fa-4926-8893-e56803a09af0")
                     .withVersion("2.0.1993.19")
                     .withLastHeartbeatUtc(OffsetDateTime.parse("2022-07-07T14:25:35.708325Z"))
@@ -1356,15 +2641,15 @@ public final class HypervCollectorsOperationsCreateSamples {
 public final class HypervCollectorsOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * HypervCollectorsOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: HypervCollectorsOperations_Delete_MaximumSet_Gen.
+     * Sample code: HypervCollectorsOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void hypervCollectorsOperationsDeleteMaximumSetGen(
+    public static void hypervCollectorsOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.hypervCollectorsOperations()
             .deleteWithResponse("ayagrawRG", "app18700project", "test-697cecollector",
@@ -1382,15 +2667,15 @@ public final class HypervCollectorsOperationsDeleteSamples {
 public final class HypervCollectorsOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * HypervCollectorsOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: HypervCollectorsOperations_Get_MaximumSet_Gen.
+     * Sample code: HypervCollectorsOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void hypervCollectorsOperationsGetMaximumSetGen(
+    public static void hypervCollectorsOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.hypervCollectorsOperations()
             .getWithResponse("ayagrawRG", "app18700project", "test-697cecollector", com.azure.core.util.Context.NONE);
@@ -1398,27 +2683,27 @@ public final class HypervCollectorsOperationsGetSamples {
 }
 ```
 
-### HypervCollectorsOperations_ListByAssessmentProject
+### HypervCollectorsOperations_ListByParent
 
 ```java
 /**
- * Samples for HypervCollectorsOperations ListByAssessmentProject.
+ * Samples for HypervCollectorsOperations ListByParent.
  */
-public final class HypervCollectorsOperationsListByAssessmentProjectSamples {
+public final class HypervCollectorsOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * HypervCollectorsOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * HypervCollectorsOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: HypervCollectorsOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: HypervCollectorsOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void hypervCollectorsOperationsListByAssessmentProjectMaximumSetGen(
+    public static void hypervCollectorsOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.hypervCollectorsOperations()
-            .listByAssessmentProject("ayagrawRG", "app18700project", com.azure.core.util.Context.NONE);
+            .listByParent("ayagrawRG", "app18700project", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1427,7 +2712,6 @@ public final class HypervCollectorsOperationsListByAssessmentProjectSamples {
 
 ```java
 import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBase;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 
 /**
  * Samples for ImportCollectorsOperations Create.
@@ -1435,22 +2719,21 @@ import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 public final class ImportCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * ImportCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ImportCollectorsOperations_Create_MaximumSet_Gen.
+     * Sample code: ImportCollectorsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void importCollectorsOperationsCreateMaximumSetGen(
+    public static void importCollectorsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.importCollectorsOperations()
             .define("importCollectore7d5")
             .withExistingAssessmentProject("ayagrawRG", "app18700project")
-            .withProperties(new CollectorPropertiesBase().withProvisioningState(ProvisioningState.SUCCEEDED)
-                .withDiscoverySiteId(
-                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourcegroups/ayagrawRG/providers/microsoft.offazure/importsites/actualSEA37d4importSite"))
+            .withProperties(new CollectorPropertiesBase().withDiscoverySiteId(
+                "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourcegroups/ayagrawRG/providers/microsoft.offazure/importsites/actualSEA37d4importSite"))
             .create();
     }
 }
@@ -1465,15 +2748,15 @@ public final class ImportCollectorsOperationsCreateSamples {
 public final class ImportCollectorsOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * ImportCollectorsOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ImportCollectorsOperations_Delete_MaximumSet_Gen.
+     * Sample code: ImportCollectorsOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void importCollectorsOperationsDeleteMaximumSetGen(
+    public static void importCollectorsOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.importCollectorsOperations()
             .deleteWithResponse("ayagrawRG", "app18700project", "importCollectore7d5",
@@ -1491,15 +2774,15 @@ public final class ImportCollectorsOperationsDeleteSamples {
 public final class ImportCollectorsOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * ImportCollectorsOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ImportCollectorsOperations_Get_MaximumSet_Gen.
+     * Sample code: ImportCollectorsOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void importCollectorsOperationsGetMaximumSetGen(
+    public static void importCollectorsOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.importCollectorsOperations()
             .getWithResponse("ayagrawRG", "app18700project", "importCollectore7d5", com.azure.core.util.Context.NONE);
@@ -1507,79 +2790,424 @@ public final class ImportCollectorsOperationsGetSamples {
 }
 ```
 
-### ImportCollectorsOperations_ListByAssessmentProject
+### ImportCollectorsOperations_ListByParent
 
 ```java
 /**
- * Samples for ImportCollectorsOperations ListByAssessmentProject.
+ * Samples for ImportCollectorsOperations ListByParent.
  */
-public final class ImportCollectorsOperationsListByAssessmentProjectSamples {
+public final class ImportCollectorsOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * ImportCollectorsOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * ImportCollectorsOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ImportCollectorsOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: ImportCollectorsOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void importCollectorsOperationsListByAssessmentProjectMaximumSetGen(
+    public static void importCollectorsOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.importCollectorsOperations()
-            .listByAssessmentProject("ayagrawRG", "app18700project", com.azure.core.util.Context.NONE);
+            .listByParent("ayagrawRG", "app18700project", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### MachinesOperations_Get
+### ImportSqlCollectorOperations_Create
 
 ```java
+import com.azure.resourcemanager.migration.assessment.models.ImportSqlCollectorProperties;
+
 /**
- * Samples for MachinesOperations Get.
+ * Samples for ImportSqlCollectorOperations Create.
  */
-public final class MachinesOperationsGetSamples {
+public final class ImportSqlCollectorOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * MachinesOperations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * ImportSqlCollectorOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: MachinesOperations_Get_MaximumSet_Gen.
+     * Sample code: ImportSqlCollectorOperations_Create_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void machinesOperationsGetMaximumSetGen(
+    public static void importSqlCollectorOperationsCreateMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.machinesOperations()
-            .getWithResponse("ayagrawrg", "app18700project", "55082b89-99e2-4c40-b63f-d4f4d6ba961d",
+        manager.importSqlCollectorOperations()
+            .define("importCollector")
+            .withExistingAssessmentProject("rgsqlAssessments", "contosoProject")
+            .withProperties(new ImportSqlCollectorProperties().withDiscoverySiteId(
+                "/subscriptions/C1DB66AE-BCF9-42FD-ADC2-390E0721C351/resourceGroups/rgsqlAssessments/providers/Microsoft.OffAzure/MasterSites/testproject8566mastersite/SqlSites/testproject8566sqlsites"))
+            .create();
+    }
+}
+```
+
+### ImportSqlCollectorOperations_Delete
+
+```java
+/**
+ * Samples for ImportSqlCollectorOperations Delete.
+ */
+public final class ImportSqlCollectorOperationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * ImportSqlCollectorOperations_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ImportSqlCollectorOperations_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void importSqlCollectorOperationsDeleteMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.importSqlCollectorOperations()
+            .deleteWithResponse("rgsqlAssessments", "contosoProject", "importCollector",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### MachinesOperations_ListByAssessmentProject
+### ImportSqlCollectorOperations_Get
 
 ```java
 /**
- * Samples for MachinesOperations ListByAssessmentProject.
+ * Samples for ImportSqlCollectorOperations Get.
  */
-public final class MachinesOperationsListByAssessmentProjectSamples {
+public final class ImportSqlCollectorOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * MachinesOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * ImportSqlCollectorOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: MachinesOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: ImportSqlCollectorOperations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void machinesOperationsListByAssessmentProjectMaximumSetGen(
+    public static void importSqlCollectorOperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.machinesOperations()
-            .listByAssessmentProject("ayagrawrg", "app18700project", null, 1, null, 1,
+        manager.importSqlCollectorOperations()
+            .getWithResponse("rgsqlAssessments", "contosoProject", "importCollector", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ImportSqlCollectorOperations_ListByParent
+
+```java
+/**
+ * Samples for ImportSqlCollectorOperations ListByParent.
+ */
+public final class ImportSqlCollectorOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * ImportSqlCollectorOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ImportSqlCollectorOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void importSqlCollectorOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.importSqlCollectorOperations()
+            .listByParent("rgsqlAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineAssessmentV2SummaryOperations_Get
+
+```java
+/**
+ * Samples for MachineAssessmentV2SummaryOperations Get.
+ */
+public final class MachineAssessmentV2SummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineAssessmentV2SummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: MachineAssessmentV2SummaryOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void machineAssessmentV2SummaryOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.machineAssessmentV2SummaryOperations()
+            .getWithResponse("rgmachineAssessments", "contosoProject", "assessmentName", "PaaSPreferred",
                 com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineAssessmentV2SummaryOperations_ListByParent
+
+```java
+/**
+ * Samples for MachineAssessmentV2SummaryOperations ListByParent.
+ */
+public final class MachineAssessmentV2SummaryOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineAssessmentV2SummaryOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: MachineAssessmentV2SummaryOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void machineAssessmentV2SummaryOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.machineAssessmentV2SummaryOperations()
+            .listByParent("rgmachineAssessments", "contosoProject", "assessmentName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineAssessmentsV2Operations_Create
+
+```java
+import com.azure.resourcemanager.migration.assessment.models.AssessmentDetails;
+import com.azure.resourcemanager.migration.assessment.models.AssessmentSizingCriterion;
+import com.azure.resourcemanager.migration.assessment.models.AzureCurrency;
+import com.azure.resourcemanager.migration.assessment.models.AzureDiskType;
+import com.azure.resourcemanager.migration.assessment.models.AzureHybridUseBenefit;
+import com.azure.resourcemanager.migration.assessment.models.AzureOffer;
+import com.azure.resourcemanager.migration.assessment.models.AzurePricingTier;
+import com.azure.resourcemanager.migration.assessment.models.AzureSecurityOfferingType;
+import com.azure.resourcemanager.migration.assessment.models.AzureStorageRedundancy;
+import com.azure.resourcemanager.migration.assessment.models.AzureVmFamily;
+import com.azure.resourcemanager.migration.assessment.models.BillingSettings;
+import com.azure.resourcemanager.migration.assessment.models.EnvironmentType;
+import com.azure.resourcemanager.migration.assessment.models.LicensingProgram;
+import com.azure.resourcemanager.migration.assessment.models.MachineAssessmentSettings;
+import com.azure.resourcemanager.migration.assessment.models.MachineAssessmentV2Properties;
+import com.azure.resourcemanager.migration.assessment.models.Percentile;
+import com.azure.resourcemanager.migration.assessment.models.PerformanceData;
+import com.azure.resourcemanager.migration.assessment.models.SavingsOptions;
+import com.azure.resourcemanager.migration.assessment.models.SavingsSettings;
+import com.azure.resourcemanager.migration.assessment.models.Scope;
+import com.azure.resourcemanager.migration.assessment.models.ScopeType;
+import com.azure.resourcemanager.migration.assessment.models.TimeRange;
+import com.azure.resourcemanager.migration.assessment.models.VmUptime;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+
+/**
+ * Samples for MachineAssessmentsV2Operations Create.
+ */
+public final class MachineAssessmentsV2OperationsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineAssessmentsV2Operations_Create_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: MachineAssessmentsV2Operations_Create_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void machineAssessmentsV2OperationsCreateMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.machineAssessmentsV2Operations()
+            .define("assessmentName")
+            .withExistingAssessmentProject("rgmachineAssessments", "contosoProject")
+            .withProperties(new MachineAssessmentV2Properties()
+                .withScope(new Scope().withScopeType(ScopeType.SERVER_GROUP_ID)
+                    .withServerGroupId("f")
+                    .withAzureResourceGraphQuery("hfhwuqalmenpcttboxvo"))
+                .withSettings(new MachineAssessmentSettings().withAzureLocation("rsequlcso")
+                    .withCurrency(AzureCurrency.UNKNOWN)
+                    .withScalingFactor(9.0F)
+                    .withDiscountPercentage(5.0F)
+                    .withSizingCriterion(AssessmentSizingCriterion.PERFORMANCE_BASED)
+                    .withPerformanceData(new PerformanceData().withPercentile(Percentile.fromString("Unknown"))
+                        .withTimeRange(TimeRange.DAY)
+                        .withPerfDataStartTime(OffsetDateTime.parse("2025-02-21T05:47:51.336Z"))
+                        .withPerfDataEndTime(OffsetDateTime.parse("2025-02-21T05:47:51.336Z")))
+                    .withSavingsSettings(new SavingsSettings().withSavingsOptions(SavingsOptions.NONE)
+                        .withAzureOfferCode(AzureOffer.UNKNOWN))
+                    .withBillingSettings(
+                        new BillingSettings().withLicensingProgram(LicensingProgram.RETAIL).withSubscriptionId("lee"))
+                    .withEnvironmentType(EnvironmentType.PRODUCTION)
+                    .withAzureSecurityOfferingType(AzureSecurityOfferingType.NO)
+                    .withAzureDiskTypes(Arrays.asList(AzureDiskType.UNKNOWN))
+                    .withAzurePricingTier(AzurePricingTier.STANDARD)
+                    .withAzureStorageRedundancy(AzureStorageRedundancy.UNKNOWN)
+                    .withAzureHybridUseBenefit(AzureHybridUseBenefit.UNKNOWN)
+                    .withLinuxAzureHybridUseBenefit(AzureHybridUseBenefit.UNKNOWN)
+                    .withAzureVmFamilies(Arrays.asList(AzureVmFamily.UNKNOWN))
+                    .withVmUptime(new VmUptime().withDaysPerMonth(9).withHoursPerDay(10)))
+                .withDetails(new AssessmentDetails()))
+            .create();
+    }
+}
+```
+
+### MachineAssessmentsV2Operations_Delete
+
+```java
+/**
+ * Samples for MachineAssessmentsV2Operations Delete.
+ */
+public final class MachineAssessmentsV2OperationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineAssessmentsV2Operations_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: MachineAssessmentsV2Operations_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void machineAssessmentsV2OperationsDeleteMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.machineAssessmentsV2Operations()
+            .deleteWithResponse("rgmachineAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineAssessmentsV2Operations_DownloadUrl
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import java.io.IOException;
+
+/**
+ * Samples for MachineAssessmentsV2Operations DownloadUrl.
+ */
+public final class MachineAssessmentsV2OperationsDownloadUrlSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineAssessmentsV2Operations_DownloadUrl_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Get download URL for the assessment report.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void getDownloadURLForTheAssessmentReport(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
+        manager.machineAssessmentsV2Operations()
+            .downloadUrl("rgmachineAssessments", "contosoProject", "assessmentName",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineAssessmentsV2Operations_Get
+
+```java
+/**
+ * Samples for MachineAssessmentsV2Operations Get.
+ */
+public final class MachineAssessmentsV2OperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineAssessmentsV2Operations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: MachineAssessmentsV2Operations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void machineAssessmentsV2OperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.machineAssessmentsV2Operations()
+            .getWithResponse("rgmachineAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineAssessmentsV2Operations_ListByParent
+
+```java
+/**
+ * Samples for MachineAssessmentsV2Operations ListByParent.
+ */
+public final class MachineAssessmentsV2OperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineAssessmentsV2Operations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: MachineAssessmentsV2Operations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void machineAssessmentsV2OperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.machineAssessmentsV2Operations()
+            .listByParent("rgmachineAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineGraphAssessmentOptionsOperations_Get
+
+```java
+/**
+ * Samples for MachineGraphAssessmentOptionsOperations Get.
+ */
+public final class MachineGraphAssessmentOptionsOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineGraphAssessmentOptionsOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: MachineGraphAssessmentOptionsOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void machineGraphAssessmentOptionsOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.machineGraphAssessmentOptionsOperations()
+            .getWithResponse("rgmachineAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineGraphAssessmentOptionsOperations_ListByParent
+
+```java
+/**
+ * Samples for MachineGraphAssessmentOptionsOperations ListByParent.
+ */
+public final class MachineGraphAssessmentOptionsOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * MachineGraphAssessmentOptionsOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: MachineGraphAssessmentOptionsOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void machineGraphAssessmentOptionsOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.machineGraphAssessmentOptionsOperations()
+            .listByParent("rgmachineAssessments", "contosoProject", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1593,16 +3221,16 @@ public final class MachinesOperationsListByAssessmentProjectSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * Operations_List_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Operations_List_MaximumSet_Gen.
+     * Sample code: Operations_List.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
     public static void
-        operationsListMaximumSetGen(com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        operationsList(com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -1617,15 +3245,15 @@ public final class OperationsListSamples {
 public final class PrivateEndpointConnectionOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * PrivateEndpointConnectionOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateEndpointConnectionOperations_Delete_MaximumSet_Gen.
+     * Sample code: PrivateEndpointConnectionOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateEndpointConnectionOperationsDeleteMaximumSetGen(
+    public static void privateEndpointConnectionOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateEndpointConnectionOperations()
             .deleteWithResponse("sakanwar", "sakanwar1204project",
@@ -1643,15 +3271,15 @@ public final class PrivateEndpointConnectionOperationsDeleteSamples {
 public final class PrivateEndpointConnectionOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * PrivateEndpointConnectionOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateEndpointConnectionOperations_Get_MaximumSet_Gen.
+     * Sample code: PrivateEndpointConnectionOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateEndpointConnectionOperationsGetMaximumSetGen(
+    public static void privateEndpointConnectionOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateEndpointConnectionOperations()
             .getWithResponse("sakanwar", "sakanwar1204project",
@@ -1660,27 +3288,27 @@ public final class PrivateEndpointConnectionOperationsGetSamples {
 }
 ```
 
-### PrivateEndpointConnectionOperations_ListByAssessmentProject
+### PrivateEndpointConnectionOperations_ListByParent
 
 ```java
 /**
- * Samples for PrivateEndpointConnectionOperations ListByAssessmentProject.
+ * Samples for PrivateEndpointConnectionOperations ListByParent.
  */
-public final class PrivateEndpointConnectionOperationsListByAssessmentProjectSamples {
+public final class PrivateEndpointConnectionOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * PrivateEndpointConnectionOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * PrivateEndpointConnectionOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateEndpointConnectionOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: PrivateEndpointConnectionOperations_ListByParent.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateEndpointConnectionOperationsListByAssessmentProjectMaximumSetGen(
+    public static void privateEndpointConnectionOperationsListByParent(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateEndpointConnectionOperations()
-            .listByAssessmentProject("sakanwar", "sakanwar1204project", com.azure.core.util.Context.NONE);
+            .listByParent("sakanwar", "sakanwar1204project", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1700,15 +3328,15 @@ import com.azure.resourcemanager.migration.assessment.models.PrivateLinkServiceC
 public final class PrivateEndpointConnectionOperationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * PrivateEndpointConnectionOperations_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateEndpointConnectionOperations_Update_MaximumSet_Gen.
+     * Sample code: PrivateEndpointConnectionOperations_Update.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateEndpointConnectionOperationsUpdateMaximumSetGen(
+    public static void privateEndpointConnectionOperationsUpdate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateEndpointConnectionOperations()
             .update("sakanwar", "sakanwar1204project", "sakanwar1204project1634pe.bf42f8a1-09f5-4ee4-aea6-a019cc60f9d7",
@@ -1731,15 +3359,15 @@ public final class PrivateEndpointConnectionOperationsUpdateSamples {
 public final class PrivateLinkResourceOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * PrivateLinkResourceOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateLinkResourceOperations_Get_MaximumSet_Gen.
+     * Sample code: PrivateLinkResourceOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateLinkResourceOperationsGetMaximumSetGen(
+    public static void privateLinkResourceOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateLinkResourceOperations()
             .getWithResponse("sakanwar", "sakanwar1204project", "Default", com.azure.core.util.Context.NONE);
@@ -1747,27 +3375,27 @@ public final class PrivateLinkResourceOperationsGetSamples {
 }
 ```
 
-### PrivateLinkResourceOperations_ListByAssessmentProject
+### PrivateLinkResourceOperations_ListByParent
 
 ```java
 /**
- * Samples for PrivateLinkResourceOperations ListByAssessmentProject.
+ * Samples for PrivateLinkResourceOperations ListByParent.
  */
-public final class PrivateLinkResourceOperationsListByAssessmentProjectSamples {
+public final class PrivateLinkResourceOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * PrivateLinkResourceOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * PrivateLinkResourceOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: PrivateLinkResourceOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: PrivateLinkResourceOperations_ListByParent.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void privateLinkResourceOperationsListByAssessmentProjectMaximumSetGen(
+    public static void privateLinkResourceOperationsListByParent(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.privateLinkResourceOperations()
-            .listByAssessmentProject("sakanwar", "sakanwar1204project", com.azure.core.util.Context.NONE);
+            .listByParent("sakanwar", "sakanwar1204project", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1778,7 +3406,6 @@ public final class PrivateLinkResourceOperationsListByAssessmentProjectSamples {
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentSpnPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBaseWithAgent;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 
 /**
  * Samples for ServerCollectorsOperations Create.
@@ -1786,20 +3413,20 @@ import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 public final class ServerCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * ServerCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ServerCollectorsOperations_Create_MaximumSet_Gen.
+     * Sample code: ServerCollectorsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void serverCollectorsOperationsCreateMaximumSetGen(
+    public static void serverCollectorsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.serverCollectorsOperations()
             .define("walter389fcollector")
             .withExistingAssessmentProject("ayagrawRG", "app18700project")
-            .withProperties(new CollectorPropertiesBaseWithAgent().withProvisioningState(ProvisioningState.SUCCEEDED)
+            .withProperties(new CollectorPropertiesBaseWithAgent()
                 .withAgentProperties(new CollectorAgentPropertiesBase().withId("498e4965-bbb1-47c2-8613-345baff9c509")
                     .withSpnDetails(new CollectorAgentSpnPropertiesBase()
                         .withAuthority("https://login.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47")
@@ -1823,15 +3450,15 @@ public final class ServerCollectorsOperationsCreateSamples {
 public final class ServerCollectorsOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * ServerCollectorsOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ServerCollectorsOperations_Delete_MaximumSet_Gen.
+     * Sample code: ServerCollectorsOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void serverCollectorsOperationsDeleteMaximumSetGen(
+    public static void serverCollectorsOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.serverCollectorsOperations()
             .deleteWithResponse("ayagrawRG", "app18700project", "walter389fcollector",
@@ -1849,15 +3476,15 @@ public final class ServerCollectorsOperationsDeleteSamples {
 public final class ServerCollectorsOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * ServerCollectorsOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ServerCollectorsOperations_Get_MaximumSet_Gen.
+     * Sample code: ServerCollectorsOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void serverCollectorsOperationsGetMaximumSetGen(
+    public static void serverCollectorsOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.serverCollectorsOperations()
             .getWithResponse("ayagrawRG", "app18700project", "walter389fcollector", com.azure.core.util.Context.NONE);
@@ -1865,190 +3492,161 @@ public final class ServerCollectorsOperationsGetSamples {
 }
 ```
 
-### ServerCollectorsOperations_ListByAssessmentProject
+### ServerCollectorsOperations_ListByParent
 
 ```java
 /**
- * Samples for ServerCollectorsOperations ListByAssessmentProject.
+ * Samples for ServerCollectorsOperations ListByParent.
  */
-public final class ServerCollectorsOperationsListByAssessmentProjectSamples {
+public final class ServerCollectorsOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * ServerCollectorsOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * ServerCollectorsOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ServerCollectorsOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: ServerCollectorsOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void serverCollectorsOperationsListByAssessmentProjectMaximumSetGen(
+    public static void serverCollectorsOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.serverCollectorsOperations()
-            .listByAssessmentProject("ayagrawRG", "app18700project", com.azure.core.util.Context.NONE);
+            .listByParent("ayagrawRG", "app18700project", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### SqlAssessmentOptionsOperations_Get
+### SqlAssessmentV3Operations_Create
 
 ```java
-/**
- * Samples for SqlAssessmentOptionsOperations Get.
- */
-public final class SqlAssessmentOptionsOperationsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentOptionsOperations_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: SqlAssessmentOptionsOperations_Get_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void sqlAssessmentOptionsOperationsGetMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.sqlAssessmentOptionsOperations()
-            .getWithResponse("rgmigrate", "fci-test6904project", "default", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SqlAssessmentOptionsOperations_ListByAssessmentProject
-
-```java
-/**
- * Samples for SqlAssessmentOptionsOperations ListByAssessmentProject.
- */
-public final class SqlAssessmentOptionsOperationsListByAssessmentProjectSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentOptionsOperations_ListByAssessmentProject_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: SqlAssessmentOptionsOperations_ListByAssessmentProject_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void sqlAssessmentOptionsOperationsListByAssessmentProjectMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.sqlAssessmentOptionsOperations()
-            .listByAssessmentProject("rgmigrate", "fci-test6904project", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SqlAssessmentV2Operations_Create
-
-```java
+import com.azure.resourcemanager.migration.assessment.models.AssessmentDetails;
 import com.azure.resourcemanager.migration.assessment.models.AssessmentSizingCriterion;
 import com.azure.resourcemanager.migration.assessment.models.AsyncCommitModeIntent;
 import com.azure.resourcemanager.migration.assessment.models.AzureCurrency;
 import com.azure.resourcemanager.migration.assessment.models.AzureLocation;
-import com.azure.resourcemanager.migration.assessment.models.AzureOfferCode;
-import com.azure.resourcemanager.migration.assessment.models.AzureReservedInstance;
+import com.azure.resourcemanager.migration.assessment.models.AzureOffer;
+import com.azure.resourcemanager.migration.assessment.models.AzureSecurityOfferingType;
 import com.azure.resourcemanager.migration.assessment.models.AzureSqlDataBaseType;
 import com.azure.resourcemanager.migration.assessment.models.AzureSqlInstanceType;
 import com.azure.resourcemanager.migration.assessment.models.AzureSqlPurchaseModel;
-import com.azure.resourcemanager.migration.assessment.models.AzureSqlServiceTier;
+import com.azure.resourcemanager.migration.assessment.models.AzureSqlServiceTierV3;
+import com.azure.resourcemanager.migration.assessment.models.AzureTarget;
 import com.azure.resourcemanager.migration.assessment.models.AzureVmFamily;
+import com.azure.resourcemanager.migration.assessment.models.BillingSettings;
 import com.azure.resourcemanager.migration.assessment.models.ComputeTier;
 import com.azure.resourcemanager.migration.assessment.models.EntityUptime;
 import com.azure.resourcemanager.migration.assessment.models.EnvironmentType;
+import com.azure.resourcemanager.migration.assessment.models.LicensingProgram;
 import com.azure.resourcemanager.migration.assessment.models.MultiSubnetIntent;
-import com.azure.resourcemanager.migration.assessment.models.OptimizationLogic;
 import com.azure.resourcemanager.migration.assessment.models.OsLicense;
 import com.azure.resourcemanager.migration.assessment.models.Percentile;
-import com.azure.resourcemanager.migration.assessment.models.SqlAssessmentV2Properties;
-import com.azure.resourcemanager.migration.assessment.models.SqlDbSettings;
-import com.azure.resourcemanager.migration.assessment.models.SqlMiSettings;
+import com.azure.resourcemanager.migration.assessment.models.PerformanceData;
+import com.azure.resourcemanager.migration.assessment.models.SavingsOptions;
+import com.azure.resourcemanager.migration.assessment.models.SavingsSettings;
+import com.azure.resourcemanager.migration.assessment.models.Scope;
+import com.azure.resourcemanager.migration.assessment.models.ScopeType;
+import com.azure.resourcemanager.migration.assessment.models.SqlAssessmentSettings;
+import com.azure.resourcemanager.migration.assessment.models.SqlAssessmentV3Properties;
+import com.azure.resourcemanager.migration.assessment.models.SqlDbSettingsV3;
+import com.azure.resourcemanager.migration.assessment.models.SqlMiSettingsV3;
 import com.azure.resourcemanager.migration.assessment.models.SqlServerLicense;
 import com.azure.resourcemanager.migration.assessment.models.SqlVmSettings;
 import com.azure.resourcemanager.migration.assessment.models.TimeRange;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 /**
- * Samples for SqlAssessmentV2Operations Create.
+ * Samples for SqlAssessmentV3Operations Create.
  */
-public final class SqlAssessmentV2OperationsCreateSamples {
+public final class SqlAssessmentV3OperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentV2Operations_Create_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlAssessmentV3Operations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlAssessmentV2Operations_Create_MaximumSet_Gen.
+     * Sample code: SqlAssessmentV3Operations_Create_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlAssessmentV2OperationsCreateMaximumSetGen(
+    public static void sqlAssessmentV3OperationsCreateMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.sqlAssessmentV2Operations()
-            .define("test_swagger_1")
-            .withExistingGroup("rgmigrate", "fci-test6904project", "test_fci_hadr")
-            .withProperties(new SqlAssessmentV2Properties().withOsLicense(OsLicense.UNKNOWN)
-                .withEnvironmentType(EnvironmentType.PRODUCTION)
-                .withEntityUptime(new EntityUptime().withDaysPerMonth(30).withHoursPerDay(24))
-                .withOptimizationLogic(OptimizationLogic.MINIMIZE_COST)
-                .withReservedInstanceForVm(AzureReservedInstance.NONE)
-                .withAzureOfferCodeForVm(AzureOfferCode.MSAZR0003P)
-                .withAzureSqlManagedInstanceSettings(
-                    new SqlMiSettings().withAzureSqlServiceTier(AzureSqlServiceTier.AUTOMATIC)
-                        .withAzureSqlInstanceType(AzureSqlInstanceType.SINGLE_INSTANCE))
-                .withAzureSqlDatabaseSettings(new SqlDbSettings().withAzureSqlServiceTier(AzureSqlServiceTier.AUTOMATIC)
-                    .withAzureSqlDataBaseType(AzureSqlDataBaseType.SINGLE_DATABASE)
-                    .withAzureSqlComputeTier(ComputeTier.AUTOMATIC)
-                    .withAzureSqlPurchaseModel(AzureSqlPurchaseModel.VCORE))
-                .withAzureSqlVmSettings(
-                    new SqlVmSettings().withInstanceSeries(Arrays.asList(AzureVmFamily.EADSV5_SERIES)))
-                .withMultiSubnetIntent(MultiSubnetIntent.DISASTER_RECOVERY)
-                .withAsyncCommitModeIntent(AsyncCommitModeIntent.DISASTER_RECOVERY)
-                .withDisasterRecoveryLocation(AzureLocation.EAST_ASIA)
-                .withEnableHadrAssessment(true)
-                .withReservedInstance(AzureReservedInstance.NONE)
-                .withSqlServerLicense(SqlServerLicense.UNKNOWN)
-                .withAzureLocation("SoutheastAsia")
-                .withAzureOfferCode(AzureOfferCode.MSAZR0003P)
-                .withCurrency(AzureCurrency.USD)
-                .withScalingFactor(1.0F)
-                .withPercentile(Percentile.PERCENTILE95)
-                .withTimeRange(TimeRange.DAY)
-                .withDiscountPercentage(0.0F)
-                .withSizingCriterion(AssessmentSizingCriterion.PERFORMANCE_BASED))
+        manager.sqlAssessmentV3Operations()
+            .define("assessmentName")
+            .withExistingAssessmentProject("rgsqlAssessments", "contosoProject")
+            .withProperties(new SqlAssessmentV3Properties()
+                .withScope(new Scope().withScopeType(ScopeType.SERVER_GROUP_ID)
+                    .withServerGroupId("ppxcjyrxfmpm")
+                    .withAzureResourceGraphQuery("ddqs"))
+                .withSettings(new SqlAssessmentSettings().withAzureLocation("vtpazagckatiezkiwol")
+                    .withCurrency(AzureCurrency.UNKNOWN)
+                    .withScalingFactor(27.0F)
+                    .withDiscountPercentage(8.0F)
+                    .withSizingCriterion(AssessmentSizingCriterion.PERFORMANCE_BASED)
+                    .withPerformanceData(new PerformanceData().withPercentile(Percentile.fromString("Unknown"))
+                        .withTimeRange(TimeRange.DAY)
+                        .withPerfDataStartTime(OffsetDateTime.parse("2025-02-21T05:15:28.133Z"))
+                        .withPerfDataEndTime(OffsetDateTime.parse("2025-02-21T05:15:28.133Z")))
+                    .withSavingsSettings(new SavingsSettings().withSavingsOptions(SavingsOptions.NONE)
+                        .withAzureOfferCode(AzureOffer.UNKNOWN))
+                    .withBillingSettings(
+                        new BillingSettings().withLicensingProgram(LicensingProgram.RETAIL).withSubscriptionId("sp"))
+                    .withEnvironmentType(EnvironmentType.PRODUCTION)
+                    .withOsLicense(OsLicense.UNKNOWN)
+                    .withEntityUptime(new EntityUptime().withDaysPerMonth(2).withHoursPerDay(28))
+                    .withPreferredTargets(Arrays.asList(AzureTarget.UNKNOWN))
+                    .withAzureSqlManagedInstanceSettings(
+                        new SqlMiSettingsV3().withAzureSqlServiceTier(AzureSqlServiceTierV3.SQL_SERVICE_UNKNOWN)
+                            .withAzureSqlInstanceType(AzureSqlInstanceType.UNKNOWN))
+                    .withAzureSqlDatabaseSettings(
+                        new SqlDbSettingsV3().withAzureSqlServiceTier(AzureSqlServiceTierV3.SQL_SERVICE_UNKNOWN)
+                            .withAzureSqlDataBaseType(AzureSqlDataBaseType.UNKNOWN)
+                            .withAzureSqlComputeTier(ComputeTier.UNKNOWN)
+                            .withAzureSqlPurchaseModel(AzureSqlPurchaseModel.UNKNOWN))
+                    .withAzureSqlVmSettings(
+                        new SqlVmSettings().withInstanceSeries(Arrays.asList(AzureVmFamily.UNKNOWN)))
+                    .withMultiSubnetIntent(MultiSubnetIntent.NONE)
+                    .withAsyncCommitModeIntent(AsyncCommitModeIntent.NONE)
+                    .withIsInternetAccessAvailable(true)
+                    .withDisasterRecoveryLocation(AzureLocation.UNKNOWN)
+                    .withEnableHadrAssessment(true)
+                    .withAzureSecurityOfferingType(AzureSecurityOfferingType.NO)
+                    .withSqlServerLicense(SqlServerLicense.UNKNOWN))
+                .withDetails(new AssessmentDetails())
+                .withFallbackMachineAssessmentArmId("jfwkifsuigza"))
             .create();
     }
 }
 ```
 
-### SqlAssessmentV2Operations_Delete
+### SqlAssessmentV3Operations_Delete
 
 ```java
 /**
- * Samples for SqlAssessmentV2Operations Delete.
+ * Samples for SqlAssessmentV3Operations Delete.
  */
-public final class SqlAssessmentV2OperationsDeleteSamples {
+public final class SqlAssessmentV3OperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentV2Operations_Delete_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlAssessmentV3Operations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlAssessmentV2Operations_Delete_MaximumSet_Gen.
+     * Sample code: SqlAssessmentV3Operations_Delete_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlAssessmentV2OperationsDeleteMaximumSetGen(
+    public static void sqlAssessmentV3OperationsDeleteMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.sqlAssessmentV2Operations()
-            .deleteWithResponse("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
+        manager.sqlAssessmentV3Operations()
+            .deleteWithResponse("rgsqlAssessments", "contosoProject", "assessmentName",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### SqlAssessmentV2Operations_DownloadUrl
+### SqlAssessmentV3Operations_DownloadUrl
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
@@ -2056,23 +3654,23 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import java.io.IOException;
 
 /**
- * Samples for SqlAssessmentV2Operations DownloadUrl.
+ * Samples for SqlAssessmentV3Operations DownloadUrl.
  */
-public final class SqlAssessmentV2OperationsDownloadUrlSamples {
+public final class SqlAssessmentV3OperationsDownloadUrlSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentV2Operations_DownloadUrl_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlAssessmentV3Operations_DownloadUrl_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlAssessmentV2Operations_DownloadUrl_MaximumSet_Gen.
+     * Sample code: Get download URL for the assessment report.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlAssessmentV2OperationsDownloadUrlMaximumSetGen(
+    public static void getDownloadURLForTheAssessmentReport(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
-        manager.sqlAssessmentV2Operations()
-            .downloadUrl("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
+        manager.sqlAssessmentV3Operations()
+            .downloadUrl("rgsqlAssessments", "contosoProject", "assessmentName",
                 SerializerFactory.createDefaultManagementSerializerAdapter()
                     .deserialize("{}", Object.class, SerializerEncoding.JSON),
                 com.azure.core.util.Context.NONE);
@@ -2080,105 +3678,103 @@ public final class SqlAssessmentV2OperationsDownloadUrlSamples {
 }
 ```
 
-### SqlAssessmentV2Operations_Get
+### SqlAssessmentV3Operations_Get
 
 ```java
 /**
- * Samples for SqlAssessmentV2Operations Get.
+ * Samples for SqlAssessmentV3Operations Get.
  */
-public final class SqlAssessmentV2OperationsGetSamples {
+public final class SqlAssessmentV3OperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentV2Operations_Get_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlAssessmentV3Operations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlAssessmentV2Operations_Get_MaximumSet_Gen.
+     * Sample code: SqlAssessmentV3Operations_Get_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlAssessmentV2OperationsGetMaximumSetGen(
+    public static void sqlAssessmentV3OperationsGetMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.sqlAssessmentV2Operations()
-            .getWithResponse("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
+        manager.sqlAssessmentV3Operations()
+            .getWithResponse("rgsqlAssessments", "contosoProject", "assessmentName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlAssessmentV3Operations_ListByParent
+
+```java
+/**
+ * Samples for SqlAssessmentV3Operations ListByParent.
+ */
+public final class SqlAssessmentV3OperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlAssessmentV3Operations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: SqlAssessmentV3Operations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void sqlAssessmentV3OperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.sqlAssessmentV3Operations()
+            .listByParent("rgsqlAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlAssessmentV3SummaryOperations_Get
+
+```java
+/**
+ * Samples for SqlAssessmentV3SummaryOperations Get.
+ */
+public final class SqlAssessmentV3SummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlAssessmentV3SummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: SqlAssessmentV3SummaryOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void sqlAssessmentV3SummaryOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.sqlAssessmentV3SummaryOperations()
+            .getWithResponse("rgsqlAssessments", "contosoProject", "assessmentName", "PaaSPreferred",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### SqlAssessmentV2Operations_ListByGroup
+### SqlAssessmentV3SummaryOperations_ListByParent
 
 ```java
 /**
- * Samples for SqlAssessmentV2Operations ListByGroup.
+ * Samples for SqlAssessmentV3SummaryOperations ListByParent.
  */
-public final class SqlAssessmentV2OperationsListByGroupSamples {
+public final class SqlAssessmentV3SummaryOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentV2Operations_ListByGroup_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlAssessmentV3SummaryOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlAssessmentV2Operations_ListByGroup_MaximumSet_Gen.
+     * Sample code: SqlAssessmentV3SummaryOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlAssessmentV2OperationsListByGroupMaximumSetGen(
+    public static void sqlAssessmentV3SummaryOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.sqlAssessmentV2Operations()
-            .listByGroup("rgmigrate", "fci-test6904project", "test_fci_hadr", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SqlAssessmentV2SummaryOperations_Get
-
-```java
-/**
- * Samples for SqlAssessmentV2SummaryOperations Get.
- */
-public final class SqlAssessmentV2SummaryOperationsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentV2SummaryOperations_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: SqlAssessmentV2SummaryOperations_Get_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void sqlAssessmentV2SummaryOperationsGetMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.sqlAssessmentV2SummaryOperations()
-            .getWithResponse("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1", "default",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SqlAssessmentV2SummaryOperations_ListBySqlAssessmentV2
-
-```java
-/**
- * Samples for SqlAssessmentV2SummaryOperations ListBySqlAssessmentV2.
- */
-public final class SqlAssessmentV2SummaryOperationsListBySqlAssessmentV2Samples {
-    /*
-     * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlAssessmentV2SummaryOperations_ListBySqlAssessmentV2_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: SqlAssessmentV2SummaryOperations_ListBySqlAssessmentV2_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to MigrationAssessmentManager.
-     */
-    public static void sqlAssessmentV2SummaryOperationsListBySqlAssessmentV2MaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
-        manager.sqlAssessmentV2SummaryOperations()
-            .listBySqlAssessmentV2("rgmigrate", "fci-test6904project", "test_fci_hadr", "test_swagger_1",
-                com.azure.core.util.Context.NONE);
+        manager.sqlAssessmentV3SummaryOperations()
+            .listByParent("rgsqlAssessments", "contosoProject", "assessmentName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2196,15 +3792,15 @@ import com.azure.resourcemanager.migration.assessment.models.CollectorProperties
 public final class SqlCollectorOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * SqlCollectorOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlCollectorOperations_Create_MaximumSet_Gen.
+     * Sample code: SqlCollectorOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlCollectorOperationsCreateMaximumSetGen(
+    public static void sqlCollectorOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.sqlCollectorOperations()
             .define("fci-test0c1esqlsitecollector")
@@ -2234,15 +3830,15 @@ public final class SqlCollectorOperationsCreateSamples {
 public final class SqlCollectorOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * SqlCollectorOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlCollectorOperations_Delete_MaximumSet_Gen.
+     * Sample code: SqlCollectorOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlCollectorOperationsDeleteMaximumSetGen(
+    public static void sqlCollectorOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.sqlCollectorOperations()
             .deleteWithResponse("rgmigrate", "fci-test6904project", "fci-test0c1esqlsitecollector",
@@ -2260,16 +3856,16 @@ public final class SqlCollectorOperationsDeleteSamples {
 public final class SqlCollectorOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * SqlCollectorOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlCollectorOperations_Get_MaximumSet_Gen.
+     * Sample code: SqlCollectorOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlCollectorOperationsGetMaximumSetGen(
-        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+    public static void
+        sqlCollectorOperationsGet(com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.sqlCollectorOperations()
             .getWithResponse("rgmigrate", "fci-test6904project", "fci-test0c1esqlsitecollector",
                 com.azure.core.util.Context.NONE);
@@ -2277,27 +3873,77 @@ public final class SqlCollectorOperationsGetSamples {
 }
 ```
 
-### SqlCollectorOperations_ListByAssessmentProject
+### SqlCollectorOperations_ListByParent
 
 ```java
 /**
- * Samples for SqlCollectorOperations ListByAssessmentProject.
+ * Samples for SqlCollectorOperations ListByParent.
  */
-public final class SqlCollectorOperationsListByAssessmentProjectSamples {
+public final class SqlCollectorOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * SqlCollectorOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlCollectorOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlCollectorOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: SqlCollectorOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlCollectorOperationsListByAssessmentProjectMaximumSetGen(
+    public static void sqlCollectorOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.sqlCollectorOperations()
-            .listByAssessmentProject("rgmigrate", "fci-test6904project", com.azure.core.util.Context.NONE);
+            .listByParent("rgmigrate", "fci-test6904project", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlGraphAssessmentOptionsOperations_Get
+
+```java
+/**
+ * Samples for SqlGraphAssessmentOptionsOperations Get.
+ */
+public final class SqlGraphAssessmentOptionsOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlGraphAssessmentOptionsOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: SqlGraphAssessmentOptionsOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void sqlGraphAssessmentOptionsOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.sqlGraphAssessmentOptionsOperations()
+            .getWithResponse("rgsqlAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlGraphAssessmentOptionsOperations_ListByParent
+
+```java
+/**
+ * Samples for SqlGraphAssessmentOptionsOperations ListByParent.
+ */
+public final class SqlGraphAssessmentOptionsOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * SqlGraphAssessmentOptionsOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: SqlGraphAssessmentOptionsOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void sqlGraphAssessmentOptionsOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.sqlGraphAssessmentOptionsOperations()
+            .listByParent("rgsqlAssessments", "contosoProject", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2308,7 +3954,6 @@ public final class SqlCollectorOperationsListByAssessmentProjectSamples {
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorAgentSpnPropertiesBase;
 import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBaseWithAgent;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 import java.time.OffsetDateTime;
 
 /**
@@ -2317,20 +3962,20 @@ import java.time.OffsetDateTime;
 public final class VmwareCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * VmwareCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: VmwareCollectorsOperations_Create_MaximumSet_Gen.
+     * Sample code: VmwareCollectorsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void vmwareCollectorsOperationsCreateMaximumSetGen(
+    public static void vmwareCollectorsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.vmwareCollectorsOperations()
             .define("Vmware2258collector")
             .withExistingAssessmentProject("ayagrawRG", "app18700project")
-            .withProperties(new CollectorPropertiesBaseWithAgent().withProvisioningState(ProvisioningState.SUCCEEDED)
+            .withProperties(new CollectorPropertiesBaseWithAgent()
                 .withAgentProperties(new CollectorAgentPropertiesBase().withId("fe243486-3318-41fa-aaba-c48b5df75308")
                     .withVersion("1.0.8.383")
                     .withLastHeartbeatUtc(OffsetDateTime.parse("2022-03-29T12:10:08.9167289Z"))
@@ -2356,15 +4001,15 @@ public final class VmwareCollectorsOperationsCreateSamples {
 public final class VmwareCollectorsOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * VmwareCollectorsOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: VmwareCollectorsOperations_Delete_MaximumSet_Gen.
+     * Sample code: VmwareCollectorsOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void vmwareCollectorsOperationsDeleteMaximumSetGen(
+    public static void vmwareCollectorsOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.vmwareCollectorsOperations()
             .deleteWithResponse("ayagrawRG", "app18700project", "Vmware2258collector",
@@ -2382,15 +4027,15 @@ public final class VmwareCollectorsOperationsDeleteSamples {
 public final class VmwareCollectorsOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * VmwareCollectorsOperations_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: VmwareCollectorsOperations_Get_MaximumSet_Gen.
+     * Sample code: VmwareCollectorsOperations_Get.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void vmwareCollectorsOperationsGetMaximumSetGen(
+    public static void vmwareCollectorsOperationsGet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.vmwareCollectorsOperations()
             .getWithResponse("ayagrawRG", "app18700project", "Vmware2258collector", com.azure.core.util.Context.NONE);
@@ -2398,27 +4043,479 @@ public final class VmwareCollectorsOperationsGetSamples {
 }
 ```
 
-### VmwareCollectorsOperations_ListByAssessmentProject
+### VmwareCollectorsOperations_ListByParent
 
 ```java
 /**
- * Samples for VmwareCollectorsOperations ListByAssessmentProject.
+ * Samples for VmwareCollectorsOperations ListByParent.
  */
-public final class VmwareCollectorsOperationsListByAssessmentProjectSamples {
+public final class VmwareCollectorsOperationsListByParentSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * VmwareCollectorsOperations_ListByAssessmentProject_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * VmwareCollectorsOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: VmwareCollectorsOperations_ListByAssessmentProject_MaximumSet_Gen.
+     * Sample code: VmwareCollectorsOperations_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void vmwareCollectorsOperationsListByAssessmentProjectMaximumSetGen(
+    public static void vmwareCollectorsOperationsListByParentMaximumSet(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.vmwareCollectorsOperations()
-            .listByAssessmentProject("ayagrawRG", "app18700project", com.azure.core.util.Context.NONE);
+            .listByParent("ayagrawRG", "app18700project", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppAssessmentV3Operations_Create
+
+```java
+import com.azure.resourcemanager.migration.assessment.models.AppSvcContainerSettings;
+import com.azure.resourcemanager.migration.assessment.models.AppSvcNativeSettings;
+import com.azure.resourcemanager.migration.assessment.models.AssessmentDetails;
+import com.azure.resourcemanager.migration.assessment.models.AssessmentSizingCriterion;
+import com.azure.resourcemanager.migration.assessment.models.AzureCurrency;
+import com.azure.resourcemanager.migration.assessment.models.AzureOffer;
+import com.azure.resourcemanager.migration.assessment.models.AzureSecurityOfferingType;
+import com.azure.resourcemanager.migration.assessment.models.BillingSettings;
+import com.azure.resourcemanager.migration.assessment.models.EnvironmentType;
+import com.azure.resourcemanager.migration.assessment.models.LicensingProgram;
+import com.azure.resourcemanager.migration.assessment.models.Percentile;
+import com.azure.resourcemanager.migration.assessment.models.PerformanceData;
+import com.azure.resourcemanager.migration.assessment.models.SavingsOptions;
+import com.azure.resourcemanager.migration.assessment.models.SavingsSettings;
+import com.azure.resourcemanager.migration.assessment.models.Scope;
+import com.azure.resourcemanager.migration.assessment.models.ScopeType;
+import com.azure.resourcemanager.migration.assessment.models.TimeRange;
+import com.azure.resourcemanager.migration.assessment.models.WebAppAssessmentSettings;
+import com.azure.resourcemanager.migration.assessment.models.WebAppAssessmentV3Properties;
+import java.time.OffsetDateTime;
+
+/**
+ * Samples for WebAppAssessmentV3Operations Create.
+ */
+public final class WebAppAssessmentV3OperationsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppAssessmentV3Operations_Create_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppAssessmentV3Operations_Create_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppAssessmentV3OperationsCreateMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppAssessmentV3Operations()
+            .define("assessmentName")
+            .withExistingAssessmentProject("rgwebAppAssessments", "contosoProject")
+            .withProperties(new WebAppAssessmentV3Properties()
+                .withScope(new Scope().withScopeType(ScopeType.SERVER_GROUP_ID)
+                    .withServerGroupId("sxwigkygd")
+                    .withAzureResourceGraphQuery("mjonozzzflcglhdb"))
+                .withSettings(new WebAppAssessmentSettings().withAzureLocation("khzvggbrcnpkzrqdtvvyytc")
+                    .withCurrency(AzureCurrency.UNKNOWN)
+                    .withScalingFactor(6.0F)
+                    .withDiscountPercentage(12.0F)
+                    .withSizingCriterion(AssessmentSizingCriterion.PERFORMANCE_BASED)
+                    .withPerformanceData(new PerformanceData().withPercentile(Percentile.fromString("Unknown"))
+                        .withTimeRange(TimeRange.DAY)
+                        .withPerfDataStartTime(OffsetDateTime.parse("2025-02-21T06:18:34.789Z"))
+                        .withPerfDataEndTime(OffsetDateTime.parse("2025-02-21T06:18:34.789Z")))
+                    .withSavingsSettings(new SavingsSettings().withSavingsOptions(SavingsOptions.NONE)
+                        .withAzureOfferCode(AzureOffer.UNKNOWN))
+                    .withBillingSettings(new BillingSettings().withLicensingProgram(LicensingProgram.RETAIL)
+                        .withSubscriptionId("lakvxkjeqpajer"))
+                    .withEnvironmentType(EnvironmentType.PRODUCTION)
+                    .withAppSvcNativeSettings(new AppSvcNativeSettings().withIsolationRequired(true))
+                    .withAppSvcContainerSettings(new AppSvcContainerSettings().withIsolationRequired(true))
+                    .withAzureSecurityOfferingType(AzureSecurityOfferingType.NO))
+                .withDetails(new AssessmentDetails())
+                .withFallbackMachineAssessmentArmId("gfjcubgnh"))
+            .create();
+    }
+}
+```
+
+### WebAppAssessmentV3Operations_Delete
+
+```java
+/**
+ * Samples for WebAppAssessmentV3Operations Delete.
+ */
+public final class WebAppAssessmentV3OperationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppAssessmentV3Operations_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppAssessmentV3Operations_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppAssessmentV3OperationsDeleteMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppAssessmentV3Operations()
+            .deleteWithResponse("rgwebAppAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppAssessmentV3Operations_DownloadUrl
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import java.io.IOException;
+
+/**
+ * Samples for WebAppAssessmentV3Operations DownloadUrl.
+ */
+public final class WebAppAssessmentV3OperationsDownloadUrlSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppAssessmentV3Operations_DownloadUrl_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppAssessmentV3Operations_DownloadUrl_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppAssessmentV3OperationsDownloadUrlMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) throws IOException {
+        manager.webAppAssessmentV3Operations()
+            .downloadUrl("rgwebAppAssessments", "contosoProject", "assessmentName",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppAssessmentV3Operations_Get
+
+```java
+/**
+ * Samples for WebAppAssessmentV3Operations Get.
+ */
+public final class WebAppAssessmentV3OperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppAssessmentV3Operations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppAssessmentV3Operations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppAssessmentV3OperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppAssessmentV3Operations()
+            .getWithResponse("rgwebAppAssessments", "contosoProject", "assessmentName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppAssessmentV3Operations_ListByParent
+
+```java
+/**
+ * Samples for WebAppAssessmentV3Operations ListByParent.
+ */
+public final class WebAppAssessmentV3OperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppAssessmentV3Operations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppAssessmentV3Operations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppAssessmentV3OperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppAssessmentV3Operations()
+            .listByParent("rgwebAppAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppAssessmentV3SummaryOperations_Get
+
+```java
+/**
+ * Samples for WebAppAssessmentV3SummaryOperations Get.
+ */
+public final class WebAppAssessmentV3SummaryOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppAssessmentV3SummaryOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppAssessmentV3SummaryOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppAssessmentV3SummaryOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppAssessmentV3SummaryOperations()
+            .getWithResponse("rgwebAppAssessments", "contosoProject", "assessmentName", "PaaSPreferred",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppAssessmentV3SummaryOperations_ListByParent
+
+```java
+/**
+ * Samples for WebAppAssessmentV3SummaryOperations ListByParent.
+ */
+public final class WebAppAssessmentV3SummaryOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppAssessmentV3SummaryOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppAssessmentV3SummaryOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppAssessmentV3SummaryOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppAssessmentV3SummaryOperations()
+            .listByParent("rgwebAppAssessments", "contosoProject", "assessmentName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppCollectorOperations_Create
+
+```java
+import com.azure.resourcemanager.migration.assessment.models.CollectorAgentPropertiesBase;
+import com.azure.resourcemanager.migration.assessment.models.CollectorAgentSpnPropertiesBase;
+import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBaseWithAgent;
+import java.time.OffsetDateTime;
+
+/**
+ * Samples for WebAppCollectorOperations Create.
+ */
+public final class WebAppCollectorOperationsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppCollectorOperations_Create_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppCollectorOperations_Create.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppCollectorOperationsCreate(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppCollectorOperations()
+            .define("collector1")
+            .withExistingAssessmentProject("rgopenapi", "sumukk-ccy-bcs4557project")
+            .withProperties(new CollectorPropertiesBaseWithAgent()
+                .withAgentProperties(
+                    new CollectorAgentPropertiesBase().withId("fed93df5-b787-4e3f-a764-e3d2b9101a59-agent")
+                        .withLastHeartbeatUtc(OffsetDateTime.parse("2023-11-03T05:43:02.078Z"))
+                        .withSpnDetails(new CollectorAgentSpnPropertiesBase()
+                            .withAuthority("https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47")
+                            .withApplicationId("2f70d5e8-7adc-4c64-910a-7031079efc6e")
+                            .withAudience("2f70d5e8-7adc-4c64-910a-7031079efc6e")
+                            .withObjectId("2f70d5e8-7adc-4c64-910a-7031079efc6e")
+                            .withTenantId("2f70d5e8-7adc-4c64-910a-7031079efc6e")))
+                .withDiscoverySiteId(
+                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourceGroups/sumukk-ccy-bcs/providers/Microsoft.OffAzure/MasterSites/sumukk-ccy-bcs9880mastersite/WebAppSites/sumukk-ccy-bcs9880webappsites"))
+            .create();
+    }
+}
+```
+
+### WebAppCollectorOperations_Delete
+
+```java
+/**
+ * Samples for WebAppCollectorOperations Delete.
+ */
+public final class WebAppCollectorOperationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppCollectorOperations_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppCollectorOperations_Delete.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppCollectorOperationsDelete(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppCollectorOperations()
+            .deleteWithResponse("rgopenapi", "sumukk-ccy-bcs4557project", "collector1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppCollectorOperations_Get
+
+```java
+/**
+ * Samples for WebAppCollectorOperations Get.
+ */
+public final class WebAppCollectorOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppCollectorOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppCollectorOperations_Get.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppCollectorOperationsGet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppCollectorOperations()
+            .getWithResponse("rgopenapi", "sumukk-ccy-bcs4557project", "collector1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppCollectorOperations_ListByParent
+
+```java
+/**
+ * Samples for WebAppCollectorOperations ListByParent.
+ */
+public final class WebAppCollectorOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppCollectorOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppCollectorOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppCollectorOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppCollectorOperations()
+            .listByParent("rgopenapi", "sumukk-ccy-bcs4557project", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppGraphAssessmentOptionsOperations_Get
+
+```java
+/**
+ * Samples for WebAppGraphAssessmentOptionsOperations Get.
+ */
+public final class WebAppGraphAssessmentOptionsOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppGraphAssessmentOptionsOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppGraphAssessmentOptionsOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppGraphAssessmentOptionsOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppGraphAssessmentOptionsOperations()
+            .getWithResponse("rgwebAppAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppGraphAssessmentOptionsOperations_ListByParent
+
+```java
+/**
+ * Samples for WebAppGraphAssessmentOptionsOperations ListByParent.
+ */
+public final class WebAppGraphAssessmentOptionsOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppGraphAssessmentOptionsOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppGraphAssessmentOptionsOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppGraphAssessmentOptionsOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppGraphAssessmentOptionsOperations()
+            .listByParent("rgwebAppAssessments", "contosoProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppServicePlansOperations_Get
+
+```java
+/**
+ * Samples for WebAppServicePlansOperations Get.
+ */
+public final class WebAppServicePlansOperationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppServicePlansOperations_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppServicePlansOperations_Get_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppServicePlansOperationsGetMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppServicePlansOperations()
+            .getWithResponse("rgwebAppAssessments", "contosoProject", "assessmentName", "sp1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### WebAppServicePlansOperations_ListByParent
+
+```java
+/**
+ * Samples for WebAppServicePlansOperations ListByParent.
+ */
+public final class WebAppServicePlansOperationsListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * WebAppServicePlansOperations_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: WebAppServicePlansOperations_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to MigrationAssessmentManager.
+     */
+    public static void webAppServicePlansOperationsListByParentMaximumSet(
+        com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        manager.webAppServicePlansOperations()
+            .listByParent("rgwebAppAssessments", "contosoProject", "assessmentName", com.azure.core.util.Context.NONE);
     }
 }
 ```

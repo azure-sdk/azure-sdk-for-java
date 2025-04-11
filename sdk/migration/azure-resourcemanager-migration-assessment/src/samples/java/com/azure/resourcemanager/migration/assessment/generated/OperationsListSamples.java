@@ -10,16 +10,16 @@ package com.azure.resourcemanager.migration.assessment.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * Operations_List_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Operations_List_MaximumSet_Gen.
+     * Sample code: Operations_List.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
     public static void
-        operationsListMaximumSetGen(com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
+        operationsList(com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

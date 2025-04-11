@@ -24,7 +24,7 @@ public interface PrivateEndpointConnectionOperations {
      * @return the response of a PrivateEndpointConnection list operation as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<PrivateEndpointConnection> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<PrivateEndpointConnection> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List PrivateEndpointConnection resources by AssessmentProject.
@@ -38,7 +38,7 @@ public interface PrivateEndpointConnectionOperations {
      * @return the response of a PrivateEndpointConnection list operation as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<PrivateEndpointConnection> listByAssessmentProject(String resourceGroupName, String projectName,
+    PagedIterable<PrivateEndpointConnection> listByParent(String resourceGroupName, String projectName,
         Context context);
 
     /**

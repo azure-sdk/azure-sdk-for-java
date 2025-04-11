@@ -66,7 +66,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/projectSummary")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AssessmentProjectSummaryListResult>> listByAssessmentProject(@HostParam("$host") String endpoint,
+        Mono<Response<AssessmentProjectSummaryListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("projectName") String projectName,
             @HeaderParam("Accept") String accept, Context context);
@@ -85,7 +85,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AssessmentProjectSummaryListResult>> listByAssessmentProjectNext(
+        Mono<Response<AssessmentProjectSummaryListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -102,8 +102,8 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AssessmentProjectSummaryInner>>
-        listByAssessmentProjectSinglePageAsync(String resourceGroupName, String projectName) {
+    private Mono<PagedResponse<AssessmentProjectSummaryInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String projectName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -121,9 +121,8 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByAssessmentProject(this.client.getEndpoint(), this.client.getApiVersion(),
-                    this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context))
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context))
             .<PagedResponse<AssessmentProjectSummaryInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -142,8 +141,8 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AssessmentProjectSummaryInner>>
-        listByAssessmentProjectSinglePageAsync(String resourceGroupName, String projectName, Context context) {
+    private Mono<PagedResponse<AssessmentProjectSummaryInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String projectName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -162,8 +161,8 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByAssessmentProject(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, projectName, accept, context)
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, projectName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -179,10 +178,9 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * @return the response of a AssessmentProjectSummary list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AssessmentProjectSummaryInner> listByAssessmentProjectAsync(String resourceGroupName,
-        String projectName) {
-        return new PagedFlux<>(() -> listByAssessmentProjectSinglePageAsync(resourceGroupName, projectName),
-            nextLink -> listByAssessmentProjectNextSinglePageAsync(nextLink));
+    private PagedFlux<AssessmentProjectSummaryInner> listByParentAsync(String resourceGroupName, String projectName) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, projectName),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -197,10 +195,10 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * @return the response of a AssessmentProjectSummary list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AssessmentProjectSummaryInner> listByAssessmentProjectAsync(String resourceGroupName,
-        String projectName, Context context) {
-        return new PagedFlux<>(() -> listByAssessmentProjectSinglePageAsync(resourceGroupName, projectName, context),
-            nextLink -> listByAssessmentProjectNextSinglePageAsync(nextLink, context));
+    private PagedFlux<AssessmentProjectSummaryInner> listByParentAsync(String resourceGroupName, String projectName,
+        Context context) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, projectName, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -215,9 +213,8 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AssessmentProjectSummaryInner> listByAssessmentProject(String resourceGroupName,
-        String projectName) {
-        return new PagedIterable<>(listByAssessmentProjectAsync(resourceGroupName, projectName));
+    public PagedIterable<AssessmentProjectSummaryInner> listByParent(String resourceGroupName, String projectName) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, projectName));
     }
 
     /**
@@ -233,9 +230,9 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AssessmentProjectSummaryInner> listByAssessmentProject(String resourceGroupName,
-        String projectName, Context context) {
-        return new PagedIterable<>(listByAssessmentProjectAsync(resourceGroupName, projectName, context));
+    public PagedIterable<AssessmentProjectSummaryInner> listByParent(String resourceGroupName, String projectName,
+        Context context) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, projectName, context));
     }
 
     /**
@@ -243,7 +240,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -283,7 +280,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -323,7 +320,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -341,7 +338,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -359,7 +356,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param projectName Assessment Project Name.
-     * @param projectSummaryName Group ARM name.
+     * @param projectSummaryName Assessment project summary resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -381,8 +378,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AssessmentProjectSummaryInner>>
-        listByAssessmentProjectNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<AssessmentProjectSummaryInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -392,8 +388,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByAssessmentProjectNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<AssessmentProjectSummaryInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -411,8 +406,8 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AssessmentProjectSummaryInner>>
-        listByAssessmentProjectNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<AssessmentProjectSummaryInner>> listByParentNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -422,7 +417,7 @@ public final class AssessmentProjectSummaryOperationsClientImpl implements Asses
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByAssessmentProjectNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Enum to represent component name.
+ * Cost Component Name.
  */
 public final class CostComponentName extends ExpandableStringEnum<CostComponentName> {
     /**
@@ -31,6 +31,32 @@ public final class CostComponentName extends ExpandableStringEnum<CostComponentN
      * Static value MonthlyPremiumV2StorageCost for CostComponentName.
      */
     public static final CostComponentName MONTHLY_PREMIUM_V2STORAGE_COST = fromString("MonthlyPremiumV2StorageCost");
+
+    /**
+     * Static value MonthlyLinuxAzureHybridCostSavings for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_LINUX_AZURE_HYBRID_COST_SAVINGS
+        = fromString("MonthlyLinuxAzureHybridCostSavings");
+
+    /**
+     * Static value MonthlyAvsNodeCost for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_AVS_NODE_COST = fromString("MonthlyAvsNodeCost");
+
+    /**
+     * Static value MonthlyExternalStorageCost for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_EXTERNAL_STORAGE_COST = fromString("MonthlyExternalStorageCost");
+
+    /**
+     * Static value MonthlyNetworkCost for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_NETWORK_COST = fromString("MonthlyNetworkCost");
+
+    /**
+     * Static value MonthlyVcfByolCostDifference for CostComponentName.
+     */
+    public static final CostComponentName MONTHLY_VCF_BYOL_COST_DIFFERENCE = fromString("MonthlyVcfByolCostDifference");
 
     /**
      * Creates a new instance of CostComponentName value.

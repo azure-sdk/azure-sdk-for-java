@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for FttAndRaidLevel.
+ * FTT and RAID Level.
  */
 public final class FttAndRaidLevel extends ExpandableStringEnum<FttAndRaidLevel> {
     /**

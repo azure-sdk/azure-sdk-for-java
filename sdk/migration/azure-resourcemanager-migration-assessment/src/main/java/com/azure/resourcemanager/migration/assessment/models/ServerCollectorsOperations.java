@@ -22,7 +22,7 @@ public interface ServerCollectorsOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a ServerCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ServerCollector> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<ServerCollector> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List ServerCollector resources by AssessmentProject.
@@ -35,8 +35,7 @@ public interface ServerCollectorsOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a ServerCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ServerCollector> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<ServerCollector> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a ServerCollector.

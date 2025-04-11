@@ -22,7 +22,7 @@ public interface SqlCollectorOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a SqlCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SqlCollector> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<SqlCollector> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List SqlCollector resources by AssessmentProject.
@@ -35,7 +35,7 @@ public interface SqlCollectorOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a SqlCollector list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SqlCollector> listByAssessmentProject(String resourceGroupName, String projectName, Context context);
+    PagedIterable<SqlCollector> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a SqlCollector.

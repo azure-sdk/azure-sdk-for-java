@@ -28,7 +28,7 @@ public interface SqlCollectorOperationsClient {
      * @return the response of a SqlCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SqlCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName);
+    PagedIterable<SqlCollectorInner> listByParent(String resourceGroupName, String projectName);
 
     /**
      * List SqlCollector resources by AssessmentProject.
@@ -42,8 +42,7 @@ public interface SqlCollectorOperationsClient {
      * @return the response of a SqlCollector list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SqlCollectorInner> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context);
+    PagedIterable<SqlCollectorInner> listByParent(String resourceGroupName, String projectName, Context context);
 
     /**
      * Get a SqlCollector.

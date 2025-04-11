@@ -27,17 +27,16 @@ public final class AssessmentProjectSummaryOperationsImpl implements AssessmentP
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<AssessmentProjectSummary> listByAssessmentProject(String resourceGroupName,
-        String projectName) {
+    public PagedIterable<AssessmentProjectSummary> listByParent(String resourceGroupName, String projectName) {
         PagedIterable<AssessmentProjectSummaryInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName);
+            = this.serviceClient().listByParent(resourceGroupName, projectName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new AssessmentProjectSummaryImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<AssessmentProjectSummary> listByAssessmentProject(String resourceGroupName, String projectName,
+    public PagedIterable<AssessmentProjectSummary> listByParent(String resourceGroupName, String projectName,
         Context context) {
         PagedIterable<AssessmentProjectSummaryInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName, context);
+            = this.serviceClient().listByParent(resourceGroupName, projectName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new AssessmentProjectSummaryImpl(inner1, this.manager()));
     }
 

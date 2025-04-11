@@ -10,15 +10,15 @@ package com.azure.resourcemanager.migration.assessment.generated;
 public final class AssessmentProjectsOperationsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
-     * AssessmentProjectsOperations_ListByResourceGroup_MaximumSet_Gen.json
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
+     * AssessmentProjectsOperations_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_ListByResourceGroup_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_ListByParent.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsListByResourceGroupMaximumSetGen(
+    public static void assessmentProjectsOperationsListByParent(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectsOperations().listByResourceGroup("sakanwar", com.azure.core.util.Context.NONE);
     }

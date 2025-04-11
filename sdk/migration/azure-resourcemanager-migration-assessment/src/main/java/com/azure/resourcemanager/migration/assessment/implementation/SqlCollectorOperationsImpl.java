@@ -27,16 +27,14 @@ public final class SqlCollectorOperationsImpl implements SqlCollectorOperations 
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<SqlCollector> listByAssessmentProject(String resourceGroupName, String projectName) {
-        PagedIterable<SqlCollectorInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName);
+    public PagedIterable<SqlCollector> listByParent(String resourceGroupName, String projectName) {
+        PagedIterable<SqlCollectorInner> inner = this.serviceClient().listByParent(resourceGroupName, projectName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SqlCollectorImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<SqlCollector> listByAssessmentProject(String resourceGroupName, String projectName,
-        Context context) {
+    public PagedIterable<SqlCollector> listByParent(String resourceGroupName, String projectName, Context context) {
         PagedIterable<SqlCollectorInner> inner
-            = this.serviceClient().listByAssessmentProject(resourceGroupName, projectName, context);
+            = this.serviceClient().listByParent(resourceGroupName, projectName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SqlCollectorImpl(inner1, this.manager()));
     }
 

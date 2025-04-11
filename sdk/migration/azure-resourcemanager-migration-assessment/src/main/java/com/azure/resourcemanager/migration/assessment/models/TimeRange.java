@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for TimeRange.
+ * Time Range for Performance Data.
  */
 public final class TimeRange extends ExpandableStringEnum<TimeRange> {
     /**

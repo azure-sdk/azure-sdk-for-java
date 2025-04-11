@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AzureSecurityOfferingType.
+ * Azure Security Offering Type.
  */
 public final class AzureSecurityOfferingType extends ExpandableStringEnum<AzureSecurityOfferingType> {
     /**

@@ -14,15 +14,15 @@ import com.azure.resourcemanager.migration.assessment.models.CollectorProperties
 public final class SqlCollectorOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * SqlCollectorOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: SqlCollectorOperations_Create_MaximumSet_Gen.
+     * Sample code: SqlCollectorOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void sqlCollectorOperationsCreateMaximumSetGen(
+    public static void sqlCollectorOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.sqlCollectorOperations()
             .define("fci-test0c1esqlsitecollector")

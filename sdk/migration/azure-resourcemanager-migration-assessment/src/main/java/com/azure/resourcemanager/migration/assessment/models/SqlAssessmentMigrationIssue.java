@@ -18,14 +18,34 @@ import java.util.List;
 @Immutable
 public final class SqlAssessmentMigrationIssue implements JsonSerializable<SqlAssessmentMigrationIssue> {
     /*
-     * Gets the issue id.
+     * The issue id.
      */
-    private String issueId;
+    private String issueCode;
 
     /*
-     * Gets the issue category.
+     * The issue category.
      */
-    private SqlAssessmentMigrationIssueCategory issueCategory;
+    private MigrationIssuesCategory issueCategory;
+
+    /*
+     * The issue description.
+     */
+    private String issueDescription;
+
+    /*
+     * The possible causes.
+     */
+    private String possibleCause;
+
+    /*
+     * The recommended action.
+     */
+    private List<String> recommendedActions;
+
+    /*
+     * The more information list.
+     */
+    private List<MoreInformation> moreInformation;
 
     /*
      * Gets the list of impacted objects.
@@ -39,21 +59,57 @@ public final class SqlAssessmentMigrationIssue implements JsonSerializable<SqlAs
     }
 
     /**
-     * Get the issueId property: Gets the issue id.
+     * Get the issueCode property: The issue id.
      * 
-     * @return the issueId value.
+     * @return the issueCode value.
      */
-    public String issueId() {
-        return this.issueId;
+    public String issueCode() {
+        return this.issueCode;
     }
 
     /**
-     * Get the issueCategory property: Gets the issue category.
+     * Get the issueCategory property: The issue category.
      * 
      * @return the issueCategory value.
      */
-    public SqlAssessmentMigrationIssueCategory issueCategory() {
+    public MigrationIssuesCategory issueCategory() {
         return this.issueCategory;
+    }
+
+    /**
+     * Get the issueDescription property: The issue description.
+     * 
+     * @return the issueDescription value.
+     */
+    public String issueDescription() {
+        return this.issueDescription;
+    }
+
+    /**
+     * Get the possibleCause property: The possible causes.
+     * 
+     * @return the possibleCause value.
+     */
+    public String possibleCause() {
+        return this.possibleCause;
+    }
+
+    /**
+     * Get the recommendedActions property: The recommended action.
+     * 
+     * @return the recommendedActions value.
+     */
+    public List<String> recommendedActions() {
+        return this.recommendedActions;
+    }
+
+    /**
+     * Get the moreInformation property: The more information list.
+     * 
+     * @return the moreInformation value.
+     */
+    public List<MoreInformation> moreInformation() {
+        return this.moreInformation;
     }
 
     /**
@@ -71,6 +127,9 @@ public final class SqlAssessmentMigrationIssue implements JsonSerializable<SqlAs
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (moreInformation() != null) {
+            moreInformation().forEach(e -> e.validate());
+        }
         if (impactedObjects() != null) {
             impactedObjects().forEach(e -> e.validate());
         }
@@ -100,11 +159,22 @@ public final class SqlAssessmentMigrationIssue implements JsonSerializable<SqlAs
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("issueId".equals(fieldName)) {
-                    deserializedSqlAssessmentMigrationIssue.issueId = reader.getString();
+                if ("issueCode".equals(fieldName)) {
+                    deserializedSqlAssessmentMigrationIssue.issueCode = reader.getString();
                 } else if ("issueCategory".equals(fieldName)) {
                     deserializedSqlAssessmentMigrationIssue.issueCategory
-                        = SqlAssessmentMigrationIssueCategory.fromString(reader.getString());
+                        = MigrationIssuesCategory.fromString(reader.getString());
+                } else if ("issueDescription".equals(fieldName)) {
+                    deserializedSqlAssessmentMigrationIssue.issueDescription = reader.getString();
+                } else if ("possibleCause".equals(fieldName)) {
+                    deserializedSqlAssessmentMigrationIssue.possibleCause = reader.getString();
+                } else if ("recommendedActions".equals(fieldName)) {
+                    List<String> recommendedActions = reader.readArray(reader1 -> reader1.getString());
+                    deserializedSqlAssessmentMigrationIssue.recommendedActions = recommendedActions;
+                } else if ("moreInformation".equals(fieldName)) {
+                    List<MoreInformation> moreInformation
+                        = reader.readArray(reader1 -> MoreInformation.fromJson(reader1));
+                    deserializedSqlAssessmentMigrationIssue.moreInformation = moreInformation;
                 } else if ("impactedObjects".equals(fieldName)) {
                     List<ImpactedAssessmentObject> impactedObjects
                         = reader.readArray(reader1 -> ImpactedAssessmentObject.fromJson(reader1));

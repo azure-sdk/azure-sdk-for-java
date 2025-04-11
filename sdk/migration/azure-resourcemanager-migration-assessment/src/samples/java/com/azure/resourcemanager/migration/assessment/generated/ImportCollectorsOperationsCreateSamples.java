@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.migration.assessment.generated;
 
 import com.azure.resourcemanager.migration.assessment.models.CollectorPropertiesBase;
-import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 
 /**
  * Samples for ImportCollectorsOperations Create.
@@ -13,22 +12,21 @@ import com.azure.resourcemanager.migration.assessment.models.ProvisioningState;
 public final class ImportCollectorsOperationsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * ImportCollectorsOperations_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: ImportCollectorsOperations_Create_MaximumSet_Gen.
+     * Sample code: ImportCollectorsOperations_Create.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void importCollectorsOperationsCreateMaximumSetGen(
+    public static void importCollectorsOperationsCreate(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.importCollectorsOperations()
             .define("importCollectore7d5")
             .withExistingAssessmentProject("ayagrawRG", "app18700project")
-            .withProperties(new CollectorPropertiesBase().withProvisioningState(ProvisioningState.SUCCEEDED)
-                .withDiscoverySiteId(
-                    "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourcegroups/ayagrawRG/providers/microsoft.offazure/importsites/actualSEA37d4importSite"))
+            .withProperties(new CollectorPropertiesBase().withDiscoverySiteId(
+                "/subscriptions/4bd2aa0f-2bd2-4d67-91a8-5a4533d58600/resourcegroups/ayagrawRG/providers/microsoft.offazure/importsites/actualSEA37d4importSite"))
             .create();
     }
 }

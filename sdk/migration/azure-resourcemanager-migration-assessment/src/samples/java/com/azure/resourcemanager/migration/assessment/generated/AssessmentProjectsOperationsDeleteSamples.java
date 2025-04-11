@@ -10,15 +10,15 @@ package com.azure.resourcemanager.migration.assessment.generated;
 public final class AssessmentProjectsOperationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/stable/2023-03-15/examples/
+     * specification/migrate/resource-manager/Microsoft.Migrate/AssessmentProjects/preview/2024-03-03-preview/examples/
      * AssessmentProjectsOperations_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: AssessmentProjectsOperations_Delete_MaximumSet_Gen.
+     * Sample code: AssessmentProjectsOperations_Delete.
      * 
      * @param manager Entry point to MigrationAssessmentManager.
      */
-    public static void assessmentProjectsOperationsDeleteMaximumSetGen(
+    public static void assessmentProjectsOperationsDelete(
         com.azure.resourcemanager.migration.assessment.MigrationAssessmentManager manager) {
         manager.assessmentProjectsOperations()
             .deleteByResourceGroupWithResponse("rgmigrate", "zqrsyncwahgydqvwuchkfd", com.azure.core.util.Context.NONE);
