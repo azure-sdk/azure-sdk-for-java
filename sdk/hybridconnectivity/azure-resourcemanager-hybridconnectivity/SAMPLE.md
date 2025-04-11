@@ -60,7 +60,6 @@
 ### Endpoints_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.hybridconnectivity.models.EndpointProperties;
 import com.azure.resourcemanager.hybridconnectivity.models.Type;
 
 /**
@@ -68,7 +67,9 @@ import com.azure.resourcemanager.hybridconnectivity.models.Type;
  */
 public final class EndpointsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsPutCustom.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsPutCustom.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsPutCustom.
@@ -81,14 +82,16 @@ public final class EndpointsCreateOrUpdateSamples {
             .define("custom")
             .withExistingResourceUri(
                 "subscriptions/f5bcc1d9-23af-4ae9-aca1-041d0f593a63/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/machines/testMachine")
-            .withProperties(new EndpointProperties().withType(Type.CUSTOM)
-                .withResourceId(
-                    "/subscriptions/f5bcc1d9-23af-4ae9-aca1-041d0f593a63/resourceGroups/hybridRG/providers/Microsoft.Relay/namespaces/custom-relay-namespace"))
+            .withTypePropertiesType(Type.CUSTOM)
+            .withResourceId(
+                "/subscriptions/f5bcc1d9-23af-4ae9-aca1-041d0f593a63/resourceGroups/hybridRG/providers/Microsoft.Relay/namespaces/custom-relay-namespace")
             .create();
     }
 
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsPutDefault.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsPutDefault.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsPutDefault.
@@ -101,7 +104,7 @@ public final class EndpointsCreateOrUpdateSamples {
             .define("default")
             .withExistingResourceUri(
                 "subscriptions/f5bcc1d9-23af-4ae9-aca1-041d0f593a63/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/machines/testMachine")
-            .withProperties(new EndpointProperties().withType(Type.DEFAULT))
+            .withTypePropertiesType(Type.DEFAULT)
             .create();
     }
 }
@@ -115,7 +118,9 @@ public final class EndpointsCreateOrUpdateSamples {
  */
 public final class EndpointsDeleteSamples {
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsDeleteDefault.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsDeleteDefault.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsDeleteDefault.
@@ -140,7 +145,9 @@ public final class EndpointsDeleteSamples {
  */
 public final class EndpointsGetSamples {
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsGetDefault.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsGetDefault.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsGetDefault.
@@ -156,7 +163,9 @@ public final class EndpointsGetSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsGetCustom.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsGetCustom.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsGetCustom.
@@ -181,7 +190,9 @@ public final class EndpointsGetSamples {
  */
 public final class EndpointsListSamples {
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsList.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsList.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsGet.
@@ -209,7 +220,9 @@ import com.azure.resourcemanager.hybridconnectivity.models.ServiceName;
  */
 public final class EndpointsListCredentialsSamples {
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsPostListCredentials.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsPostListCredentials.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsPostListCredentials.
@@ -236,7 +249,9 @@ public final class EndpointsListCredentialsSamples {
  */
 public final class EndpointsListIngressGatewayCredentialsSamples {
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsPostListIngressGatewayCredentials.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsPostListIngressGatewayCredentials.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsPostListIngressGatewayCredentials.
@@ -264,7 +279,9 @@ import com.azure.resourcemanager.hybridconnectivity.models.ServiceName;
  */
 public final class EndpointsListManagedProxyDetailsSamples {
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsPostListManagedProxyDetails.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsPostListManagedProxyDetails.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsPostListManagedProxyDetails.
@@ -288,7 +305,6 @@ public final class EndpointsListManagedProxyDetailsSamples {
 ### Endpoints_Update
 
 ```java
-import com.azure.resourcemanager.hybridconnectivity.models.EndpointProperties;
 import com.azure.resourcemanager.hybridconnectivity.models.EndpointResource;
 import com.azure.resourcemanager.hybridconnectivity.models.Type;
 
@@ -297,7 +313,9 @@ import com.azure.resourcemanager.hybridconnectivity.models.Type;
  */
 public final class EndpointsUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/EndpointsPatchDefault.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * EndpointsPatchDefault.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsPatchDefault.
@@ -311,7 +329,7 @@ public final class EndpointsUpdateSamples {
                 "subscriptions/f5bcc1d9-23af-4ae9-aca1-041d0f593a63/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/machines/testMachine",
                 "default", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withProperties(new EndpointProperties().withType(Type.DEFAULT)).apply();
+        resource.update().withTypePropertiesType(Type.DEFAULT).apply();
     }
 }
 ```
@@ -320,7 +338,6 @@ public final class EndpointsUpdateSamples {
 
 ```java
 import com.azure.resourcemanager.hybridconnectivity.models.GenerateAwsTemplateRequest;
-import com.azure.resourcemanager.hybridconnectivity.models.SolutionSettings;
 import com.azure.resourcemanager.hybridconnectivity.models.SolutionTypeSettings;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -331,7 +348,9 @@ import java.util.Map;
  */
 public final class GenerateAwsTemplatePostSamples {
     /*
-     * x-ms-original-file: 2024-12-01/GenerateAwsTemplate_Post.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * GenerateAwsTemplate_Post.json
      */
     /**
      * Sample code: GenerateAwsTemplate_Post.
@@ -343,8 +362,8 @@ public final class GenerateAwsTemplatePostSamples {
         manager.generateAwsTemplates()
             .postWithResponse(
                 new GenerateAwsTemplateRequest().withConnectorId("pnxcfjidglabnwxit")
-                    .withSolutionTypes(Arrays.asList(new SolutionTypeSettings().withSolutionType("hjyownzpfxwiufmd")
-                        .withSolutionSettings(new SolutionSettings().withAdditionalProperties(mapOf())))),
+                    .withSolutionTypes(Arrays.asList(
+                        new SolutionTypeSettings().withSolutionType("hjyownzpfxwiufmd").withSolutionSettings(mapOf()))),
                 com.azure.core.util.Context.NONE);
     }
 
@@ -370,7 +389,9 @@ public final class GenerateAwsTemplatePostSamples {
  */
 public final class InventoryGetSamples {
     /*
-     * x-ms-original-file: 2024-12-01/Inventory_Get.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * Inventory_Get.json
      */
     /**
      * Sample code: Inventory_Get.
@@ -392,7 +413,9 @@ public final class InventoryGetSamples {
  */
 public final class InventoryListBySolutionConfigurationSamples {
     /*
-     * x-ms-original-file: 2024-12-01/Inventory_ListBySolutionConfiguration.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * Inventory_ListBySolutionConfiguration.json
      */
     /**
      * Sample code: Inventory_ListBySolutionConfiguration.
@@ -414,7 +437,9 @@ public final class InventoryListBySolutionConfigurationSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: 2024-12-01/OperationsList.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * OperationsList.json
      */
     /**
      * Sample code: HybridConnectivityOperationsList.
@@ -433,7 +458,6 @@ public final class OperationsListSamples {
 ```java
 import com.azure.resourcemanager.hybridconnectivity.models.AwsCloudProfile;
 import com.azure.resourcemanager.hybridconnectivity.models.HostType;
-import com.azure.resourcemanager.hybridconnectivity.models.PublicCloudConnectorProperties;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -443,7 +467,9 @@ import java.util.Map;
  */
 public final class PublicCloudConnectorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/PublicCloudConnectors_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * PublicCloudConnectors_CreateOrUpdate.json
      */
     /**
      * Sample code: PublicCloudConnectors_CreateOrUpdate.
@@ -457,11 +483,10 @@ public final class PublicCloudConnectorsCreateOrUpdateSamples {
             .withRegion("jpiglusfxynfcewcjwvvnn")
             .withExistingResourceGroup("rgpublicCloud")
             .withTags(mapOf())
-            .withProperties(new PublicCloudConnectorProperties()
-                .withAwsCloudProfile(new AwsCloudProfile().withAccountId("snbnuxckevyqpm")
-                    .withExcludedAccounts(Arrays.asList("rwgqpukglvbqmogqcliqolucp"))
-                    .withIsOrganizationalAccount(true))
-                .withHostType(HostType.AWS))
+            .withAwsCloudProfile(new AwsCloudProfile().withAccountId("snbnuxckevyqpm")
+                .withExcludedAccounts(Arrays.asList("rwgqpukglvbqmogqcliqolucp"))
+                .withIsOrganizationalAccount(true))
+            .withHostType(HostType.AWS)
             .create();
     }
 
@@ -487,7 +512,9 @@ public final class PublicCloudConnectorsCreateOrUpdateSamples {
  */
 public final class PublicCloudConnectorsDeleteSamples {
     /*
-     * x-ms-original-file: 2024-12-01/PublicCloudConnectors_Delete.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * PublicCloudConnectors_Delete.json
      */
     /**
      * Sample code: PublicCloudConnectors_Delete.
@@ -511,7 +538,9 @@ public final class PublicCloudConnectorsDeleteSamples {
  */
 public final class PublicCloudConnectorsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-12-01/PublicCloudConnectors_Get.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * PublicCloudConnectors_Get.json
      */
     /**
      * Sample code: PublicCloudConnectors_Get.
@@ -535,7 +564,9 @@ public final class PublicCloudConnectorsGetByResourceGroupSamples {
  */
 public final class PublicCloudConnectorsListSamples {
     /*
-     * x-ms-original-file: 2024-12-01/PublicCloudConnectors_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * PublicCloudConnectors_ListBySubscription.json
      */
     /**
      * Sample code: PublicCloudConnectors_ListBySubscription.
@@ -557,7 +588,9 @@ public final class PublicCloudConnectorsListSamples {
  */
 public final class PublicCloudConnectorsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-12-01/PublicCloudConnectors_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * PublicCloudConnectors_ListByResourceGroup.json
      */
     /**
      * Sample code: PublicCloudConnectors_ListByResourceGroup.
@@ -579,7 +612,9 @@ public final class PublicCloudConnectorsListByResourceGroupSamples {
  */
 public final class PublicCloudConnectorsTestPermissionsSamples {
     /*
-     * x-ms-original-file: 2024-12-01/PublicCloudConnectors_TestPermissions.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * PublicCloudConnectors_TestPermissions.json
      */
     /**
      * Sample code: PublicCloudConnectors_TestPermissions.
@@ -597,9 +632,8 @@ public final class PublicCloudConnectorsTestPermissionsSamples {
 ### PublicCloudConnectors_Update
 
 ```java
-import com.azure.resourcemanager.hybridconnectivity.models.AwsCloudProfile;
+import com.azure.resourcemanager.hybridconnectivity.models.AwsCloudProfileUpdate;
 import com.azure.resourcemanager.hybridconnectivity.models.PublicCloudConnector;
-import com.azure.resourcemanager.hybridconnectivity.models.PublicCloudConnectorProperties;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -609,7 +643,9 @@ import java.util.Map;
  */
 public final class PublicCloudConnectorsUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/PublicCloudConnectors_Update.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * PublicCloudConnectors_Update.json
      */
     /**
      * Sample code: PublicCloudConnectors_Update.
@@ -624,8 +660,7 @@ public final class PublicCloudConnectorsUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf())
-            .withProperties(new PublicCloudConnectorProperties()
-                .withAwsCloudProfile(new AwsCloudProfile().withExcludedAccounts(Arrays.asList("zrbtd"))))
+            .withAwsCloudProfile(new AwsCloudProfileUpdate().withExcludedAccounts(Arrays.asList("zrbtd")))
             .apply();
     }
 
@@ -653,7 +688,9 @@ import com.azure.resourcemanager.hybridconnectivity.models.ServiceName;
  */
 public final class ServiceConfigurationsCreateOrupdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/ServiceConfigurationsPutWAC.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * ServiceConfigurationsPutWAC.json
      */
     /**
      * Sample code: ServiceConfigurationsPutWAC.
@@ -673,7 +710,9 @@ public final class ServiceConfigurationsCreateOrupdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-12-01/ServiceConfigurationsPutSSH.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * ServiceConfigurationsPutSSH.json
      */
     /**
      * Sample code: ServiceConfigurationsPutSSH.
@@ -702,7 +741,9 @@ public final class ServiceConfigurationsCreateOrupdateSamples {
  */
 public final class ServiceConfigurationsDeleteSamples {
     /*
-     * x-ms-original-file: 2024-12-01/ServiceConfigurationsDeleteSSH.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * ServiceConfigurationsDeleteSSH.json
      */
     /**
      * Sample code: ServiceConfigurationsDeleteSSH.
@@ -727,7 +768,9 @@ public final class ServiceConfigurationsDeleteSamples {
  */
 public final class ServiceConfigurationsGetSamples {
     /*
-     * x-ms-original-file: 2024-12-01/ServiceConfigurationsGetWAC.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * ServiceConfigurationsGetWAC.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsServiceconfigurationsGetWAC.
@@ -743,7 +786,9 @@ public final class ServiceConfigurationsGetSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-12-01/ServiceConfigurationsGetSSH.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * ServiceConfigurationsGetSSH.json
      */
     /**
      * Sample code: HybridConnectivityEndpointsServiceconfigurationsGetSSH.
@@ -768,7 +813,9 @@ public final class ServiceConfigurationsGetSamples {
  */
 public final class ServiceConfigurationsListByEndpointResourceSamples {
     /*
-     * x-ms-original-file: 2024-12-01/ServiceConfigurationsList.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * ServiceConfigurationsList.json
      */
     /**
      * Sample code: GetClustersExample.
@@ -795,7 +842,9 @@ import com.azure.resourcemanager.hybridconnectivity.models.ServiceConfigurationR
  */
 public final class ServiceConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/ServiceConfigurationsPatchSSH.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * ServiceConfigurationsPatchSSH.json
      */
     /**
      * Sample code: ServiceConfigurationsPatchSSH.
@@ -817,8 +866,6 @@ public final class ServiceConfigurationsUpdateSamples {
 ### SolutionConfigurations_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.hybridconnectivity.models.SolutionConfigurationProperties;
-import com.azure.resourcemanager.hybridconnectivity.models.SolutionSettings;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -827,7 +874,9 @@ import java.util.Map;
  */
 public final class SolutionConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionConfigurations_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionConfigurations_CreateOrUpdate.json
      */
     /**
      * Sample code: SolutionConfigurations_CreateOrUpdate.
@@ -839,8 +888,8 @@ public final class SolutionConfigurationsCreateOrUpdateSamples {
         manager.solutionConfigurations()
             .define("keebwujt")
             .withExistingResourceUri("ymuj")
-            .withProperties(new SolutionConfigurationProperties().withSolutionType("nmtqllkyohwtsthxaimsye")
-                .withSolutionSettings(new SolutionSettings().withAdditionalProperties(mapOf())))
+            .withSolutionType("nmtqllkyohwtsthxaimsye")
+            .withSolutionSettings(mapOf())
             .create();
     }
 
@@ -866,7 +915,9 @@ public final class SolutionConfigurationsCreateOrUpdateSamples {
  */
 public final class SolutionConfigurationsDeleteSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionConfigurations_Delete.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionConfigurations_Delete.json
      */
     /**
      * Sample code: SolutionConfigurations_Delete.
@@ -889,7 +940,9 @@ public final class SolutionConfigurationsDeleteSamples {
  */
 public final class SolutionConfigurationsGetSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionConfigurations_Get.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionConfigurations_Get.json
      */
     /**
      * Sample code: SolutionConfigurations_Get.
@@ -911,7 +964,9 @@ public final class SolutionConfigurationsGetSamples {
  */
 public final class SolutionConfigurationsListSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionConfigurations_List.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionConfigurations_List.json
      */
     /**
      * Sample code: SolutionConfigurations_List.
@@ -933,7 +988,9 @@ public final class SolutionConfigurationsListSamples {
  */
 public final class SolutionConfigurationsSyncNowSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionConfigurations_SyncNow.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionConfigurations_SyncNow.json
      */
     /**
      * Sample code: SolutionConfigurations_SyncNow.
@@ -951,8 +1008,6 @@ public final class SolutionConfigurationsSyncNowSamples {
 
 ```java
 import com.azure.resourcemanager.hybridconnectivity.models.SolutionConfiguration;
-import com.azure.resourcemanager.hybridconnectivity.models.SolutionConfigurationProperties;
-import com.azure.resourcemanager.hybridconnectivity.models.SolutionSettings;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -961,7 +1016,9 @@ import java.util.Map;
  */
 public final class SolutionConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionConfigurations_Update.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionConfigurations_Update.json
      */
     /**
      * Sample code: SolutionConfigurations_Update.
@@ -973,10 +1030,7 @@ public final class SolutionConfigurationsUpdateSamples {
         SolutionConfiguration resource = manager.solutionConfigurations()
             .getWithResponse("ymuj", "dxt", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update()
-            .withProperties(new SolutionConfigurationProperties().withSolutionType("myzljlstvmgkp")
-                .withSolutionSettings(new SolutionSettings().withAdditionalProperties(mapOf())))
-            .apply();
+        resource.update().withSolutionType("myzljlstvmgkp").withSolutionSettings(mapOf()).apply();
     }
 
     // Use "Map.of" if available
@@ -1001,7 +1055,9 @@ public final class SolutionConfigurationsUpdateSamples {
  */
 public final class SolutionTypesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionTypes_Get.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionTypes_Get.json
      */
     /**
      * Sample code: SolutionTypes_Get.
@@ -1024,7 +1080,9 @@ public final class SolutionTypesGetByResourceGroupSamples {
  */
 public final class SolutionTypesListSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionTypes_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionTypes_ListBySubscription.json
      */
     /**
      * Sample code: SolutionTypes_ListBySubscription.
@@ -1046,7 +1104,9 @@ public final class SolutionTypesListSamples {
  */
 public final class SolutionTypesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-12-01/SolutionTypes_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/hybridconnectivity/resource-manager/Microsoft.HybridConnectivity/stable/2024-12-01/examples/
+     * SolutionTypes_ListByResourceGroup.json
      */
     /**
      * Sample code: SolutionTypes_ListByResourceGroup.
