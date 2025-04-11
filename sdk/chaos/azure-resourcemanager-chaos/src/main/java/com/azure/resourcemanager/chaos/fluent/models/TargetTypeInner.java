@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.chaos.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
@@ -17,22 +17,17 @@ import java.util.List;
 /**
  * Model that represents a Target Type resource.
  */
-@Fluent
+@Immutable
 public final class TargetTypeInner extends ProxyResource {
-    /*
-     * The system metadata properties of the target type resource.
-     */
-    private SystemData systemData;
-
-    /*
-     * Location of the Target Type resource.
-     */
-    private String location;
-
     /*
      * The properties of the target type resource.
      */
     private TargetTypeProperties innerProperties = new TargetTypeProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -56,41 +51,21 @@ public final class TargetTypeInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The system metadata properties of the target type resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the location property: Location of the Target Type resource.
-     * 
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location property: Location of the Target Type resource.
-     * 
-     * @param location the location value to set.
-     * @return the TargetTypeInner object itself.
-     */
-    public TargetTypeInner withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
-    /**
      * Get the innerProperties property: The properties of the target type resource.
      * 
      * @return the innerProperties value.
      */
     private TargetTypeProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -183,7 +158,6 @@ public final class TargetTypeInner extends ProxyResource {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("properties", this.innerProperties);
-        jsonWriter.writeStringField("location", this.location);
         return jsonWriter.writeEndObject();
     }
 
@@ -213,8 +187,6 @@ public final class TargetTypeInner extends ProxyResource {
                     deserializedTargetTypeInner.innerProperties = TargetTypeProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedTargetTypeInner.systemData = SystemData.fromJson(reader);
-                } else if ("location".equals(fieldName)) {
-                    deserializedTargetTypeInner.location = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
