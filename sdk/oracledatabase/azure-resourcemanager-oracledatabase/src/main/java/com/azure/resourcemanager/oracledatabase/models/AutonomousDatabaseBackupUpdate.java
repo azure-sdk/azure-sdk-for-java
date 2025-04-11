@@ -5,21 +5,42 @@
 package com.azure.resourcemanager.oracledatabase.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The type used for update operations of the AutonomousDatabaseBackup.
+ * AutonomousDatabaseBackup resource definition.
  */
 @Fluent
-public final class AutonomousDatabaseBackupUpdate implements JsonSerializable<AutonomousDatabaseBackupUpdate> {
+public final class AutonomousDatabaseBackupUpdate extends ProxyResource {
     /*
-     * The updatable properties of the AutonomousDatabaseBackup.
+     * The resource-specific properties for this resource.
      */
-    private AutonomousDatabaseBackupUpdateProperties properties;
+    private AutonomousDatabaseBackupProperties properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
      * Creates an instance of AutonomousDatabaseBackupUpdate class.
@@ -28,23 +49,62 @@ public final class AutonomousDatabaseBackupUpdate implements JsonSerializable<Au
     }
 
     /**
-     * Get the properties property: The updatable properties of the AutonomousDatabaseBackup.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
-    public AutonomousDatabaseBackupUpdateProperties properties() {
+    public AutonomousDatabaseBackupProperties properties() {
         return this.properties;
     }
 
     /**
-     * Set the properties property: The updatable properties of the AutonomousDatabaseBackup.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the AutonomousDatabaseBackupUpdate object itself.
      */
-    public AutonomousDatabaseBackupUpdate withProperties(AutonomousDatabaseBackupUpdateProperties properties) {
+    public AutonomousDatabaseBackupUpdate withProperties(AutonomousDatabaseBackupProperties properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -74,6 +134,7 @@ public final class AutonomousDatabaseBackupUpdate implements JsonSerializable<Au
      * @param jsonReader The JsonReader being read.
      * @return An instance of AutonomousDatabaseBackupUpdate if the JsonReader was pointing to an instance of it, or
      * null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the AutonomousDatabaseBackupUpdate.
      */
     public static AutonomousDatabaseBackupUpdate fromJson(JsonReader jsonReader) throws IOException {
@@ -84,9 +145,17 @@ public final class AutonomousDatabaseBackupUpdate implements JsonSerializable<Au
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("properties".equals(fieldName)) {
+                if ("id".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupUpdate.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupUpdate.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupUpdate.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
                     deserializedAutonomousDatabaseBackupUpdate.properties
-                        = AutonomousDatabaseBackupUpdateProperties.fromJson(reader);
+                        = AutonomousDatabaseBackupProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupUpdate.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

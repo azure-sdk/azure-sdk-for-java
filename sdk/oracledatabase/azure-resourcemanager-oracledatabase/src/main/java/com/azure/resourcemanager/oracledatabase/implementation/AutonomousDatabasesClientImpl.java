@@ -38,6 +38,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDatabase
 import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDatabaseWalletFileInner;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseListResult;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseUpdate;
+import com.azure.resourcemanager.oracledatabase.models.DisasterRecoveryConfigurationDetails;
 import com.azure.resourcemanager.oracledatabase.models.GenerateAutonomousDatabaseWalletDetails;
 import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
 import com.azure.resourcemanager.oracledatabase.models.RestoreAutonomousDatabaseDetails;
@@ -135,6 +136,17 @@ public final class AutonomousDatabasesClientImpl implements AutonomousDatabasesC
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("autonomousdatabasename") String autonomousdatabasename, @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/autonomousDatabases/{autonomousdatabasename}/changeDisasterRecoveryConfiguration")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> changeDisasterRecoveryConfiguration(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("autonomousdatabasename") String autonomousdatabasename,
+            @BodyParam("application/json") DisasterRecoveryConfigurationDetails body,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/autonomousDatabases/{autonomousdatabasename}/failover")
@@ -1235,6 +1247,251 @@ public final class AutonomousDatabasesClientImpl implements AutonomousDatabasesC
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String autonomousdatabasename, Context context) {
         deleteAsync(resourceGroupName, autonomousdatabasename, context).block();
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> changeDisasterRecoveryConfigurationWithResponseAsync(
+        String resourceGroupName, String autonomousdatabasename, DisasterRecoveryConfigurationDetails body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (autonomousdatabasename == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter autonomousdatabasename is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.changeDisasterRecoveryConfiguration(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, autonomousdatabasename,
+                body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> changeDisasterRecoveryConfigurationWithResponseAsync(
+        String resourceGroupName, String autonomousdatabasename, DisasterRecoveryConfigurationDetails body,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (autonomousdatabasename == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter autonomousdatabasename is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.changeDisasterRecoveryConfiguration(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, autonomousdatabasename, body, accept, context);
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<AutonomousDatabaseInner>, AutonomousDatabaseInner>
+        beginChangeDisasterRecoveryConfigurationAsync(String resourceGroupName, String autonomousdatabasename,
+            DisasterRecoveryConfigurationDetails body) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = changeDisasterRecoveryConfigurationWithResponseAsync(resourceGroupName, autonomousdatabasename, body);
+        return this.client.<AutonomousDatabaseInner, AutonomousDatabaseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), AutonomousDatabaseInner.class, AutonomousDatabaseInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<AutonomousDatabaseInner>, AutonomousDatabaseInner>
+        beginChangeDisasterRecoveryConfigurationAsync(String resourceGroupName, String autonomousdatabasename,
+            DisasterRecoveryConfigurationDetails body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = changeDisasterRecoveryConfigurationWithResponseAsync(resourceGroupName,
+            autonomousdatabasename, body, context);
+        return this.client.<AutonomousDatabaseInner, AutonomousDatabaseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), AutonomousDatabaseInner.class, AutonomousDatabaseInner.class, context);
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<AutonomousDatabaseInner>, AutonomousDatabaseInner>
+        beginChangeDisasterRecoveryConfiguration(String resourceGroupName, String autonomousdatabasename,
+            DisasterRecoveryConfigurationDetails body) {
+        return this.beginChangeDisasterRecoveryConfigurationAsync(resourceGroupName, autonomousdatabasename, body)
+            .getSyncPoller();
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<AutonomousDatabaseInner>, AutonomousDatabaseInner>
+        beginChangeDisasterRecoveryConfiguration(String resourceGroupName, String autonomousdatabasename,
+            DisasterRecoveryConfigurationDetails body, Context context) {
+        return this
+            .beginChangeDisasterRecoveryConfigurationAsync(resourceGroupName, autonomousdatabasename, body, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AutonomousDatabaseInner> changeDisasterRecoveryConfigurationAsync(String resourceGroupName,
+        String autonomousdatabasename, DisasterRecoveryConfigurationDetails body) {
+        return beginChangeDisasterRecoveryConfigurationAsync(resourceGroupName, autonomousdatabasename, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AutonomousDatabaseInner> changeDisasterRecoveryConfigurationAsync(String resourceGroupName,
+        String autonomousdatabasename, DisasterRecoveryConfigurationDetails body, Context context) {
+        return beginChangeDisasterRecoveryConfigurationAsync(resourceGroupName, autonomousdatabasename, body, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AutonomousDatabaseInner changeDisasterRecoveryConfiguration(String resourceGroupName,
+        String autonomousdatabasename, DisasterRecoveryConfigurationDetails body) {
+        return changeDisasterRecoveryConfigurationAsync(resourceGroupName, autonomousdatabasename, body).block();
+    }
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AutonomousDatabaseInner changeDisasterRecoveryConfiguration(String resourceGroupName,
+        String autonomousdatabasename, DisasterRecoveryConfigurationDetails body, Context context) {
+        return changeDisasterRecoveryConfigurationAsync(resourceGroupName, autonomousdatabasename, body, context)
+            .block();
     }
 
     /**

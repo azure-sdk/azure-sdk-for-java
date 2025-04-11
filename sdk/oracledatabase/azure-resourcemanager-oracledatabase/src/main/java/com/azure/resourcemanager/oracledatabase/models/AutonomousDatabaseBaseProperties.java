@@ -95,16 +95,15 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
     private Boolean isAutoScalingForStorageEnabled;
 
     /*
-     * The list of [OCIDs](https://docs.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of standby databases
-     * located in Autonomous Data Guard remote regions that are associated with the source database. Note that for
-     * Autonomous Database Serverless instances, standby databases located in the same region as the source primary
-     * database do not have OCIDs.
+     * The list of Azure resource IDs of standby databases located in Autonomous Data Guard remote regions that are
+     * associated with the source database. Note that for Autonomous Database Serverless instances, standby databases
+     * located in the same region as the source primary database do not have Azure IDs.
      */
     private List<String> peerDbIds;
 
     /*
-     * The database OCID of the Disaster Recovery peer database, which is located in a different region from the current
-     * peer database.
+     * The Azure resource ID of the Disaster Recovery peer database, which is located in a different region from the
+     * current peer database.
      */
     private String peerDbId;
 
@@ -124,6 +123,16 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
      * switchover.Backup-based DR type provides lower cost DR with a slower RTO during failover or switchover.
      */
     private DisasterRecoveryType localDisasterRecoveryType;
+
+    /*
+     * The date and time the Disaster Recovery role was switched for the standby Autonomous Database.
+     */
+    private OffsetDateTime timeDisasterRecoveryRoleChanged;
+
+    /*
+     * Indicates remote disaster recovery configuration
+     */
+    private DisasterRecoveryConfigurationDetails remoteDisasterRecoveryConfiguration;
 
     /*
      * Local Autonomous Disaster Recovery standby database details.
@@ -712,11 +721,9 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
     }
 
     /**
-     * Get the peerDbIds property: The list of
-     * [OCIDs](https://docs.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of standby databases located in
-     * Autonomous Data Guard remote regions that are associated with the source database. Note that for Autonomous
-     * Database Serverless instances, standby databases located in the same region as the source primary database do not
-     * have OCIDs.
+     * Get the peerDbIds property: The list of Azure resource IDs of standby databases located in Autonomous Data Guard
+     * remote regions that are associated with the source database. Note that for Autonomous Database Serverless
+     * instances, standby databases located in the same region as the source primary database do not have Azure IDs.
      * 
      * @return the peerDbIds value.
      */
@@ -725,11 +732,9 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
     }
 
     /**
-     * Set the peerDbIds property: The list of
-     * [OCIDs](https://docs.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of standby databases located in
-     * Autonomous Data Guard remote regions that are associated with the source database. Note that for Autonomous
-     * Database Serverless instances, standby databases located in the same region as the source primary database do not
-     * have OCIDs.
+     * Set the peerDbIds property: The list of Azure resource IDs of standby databases located in Autonomous Data Guard
+     * remote regions that are associated with the source database. Note that for Autonomous Database Serverless
+     * instances, standby databases located in the same region as the source primary database do not have Azure IDs.
      * 
      * @param peerDbIds the peerDbIds value to set.
      * @return the AutonomousDatabaseBaseProperties object itself.
@@ -740,7 +745,7 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
     }
 
     /**
-     * Get the peerDbId property: The database OCID of the Disaster Recovery peer database, which is located in a
+     * Get the peerDbId property: The Azure resource ID of the Disaster Recovery peer database, which is located in a
      * different region from the current peer database.
      * 
      * @return the peerDbId value.
@@ -750,7 +755,7 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
     }
 
     /**
-     * Set the peerDbId property: The database OCID of the Disaster Recovery peer database, which is located in a
+     * Set the peerDbId property: The Azure resource ID of the Disaster Recovery peer database, which is located in a
      * different region from the current peer database.
      * 
      * @param peerDbId the peerDbId value to set.
@@ -828,6 +833,50 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
      */
     AutonomousDatabaseBaseProperties withLocalDisasterRecoveryType(DisasterRecoveryType localDisasterRecoveryType) {
         this.localDisasterRecoveryType = localDisasterRecoveryType;
+        return this;
+    }
+
+    /**
+     * Get the timeDisasterRecoveryRoleChanged property: The date and time the Disaster Recovery role was switched for
+     * the standby Autonomous Database.
+     * 
+     * @return the timeDisasterRecoveryRoleChanged value.
+     */
+    public OffsetDateTime timeDisasterRecoveryRoleChanged() {
+        return this.timeDisasterRecoveryRoleChanged;
+    }
+
+    /**
+     * Set the timeDisasterRecoveryRoleChanged property: The date and time the Disaster Recovery role was switched for
+     * the standby Autonomous Database.
+     * 
+     * @param timeDisasterRecoveryRoleChanged the timeDisasterRecoveryRoleChanged value to set.
+     * @return the AutonomousDatabaseBaseProperties object itself.
+     */
+    AutonomousDatabaseBaseProperties
+        withTimeDisasterRecoveryRoleChanged(OffsetDateTime timeDisasterRecoveryRoleChanged) {
+        this.timeDisasterRecoveryRoleChanged = timeDisasterRecoveryRoleChanged;
+        return this;
+    }
+
+    /**
+     * Get the remoteDisasterRecoveryConfiguration property: Indicates remote disaster recovery configuration.
+     * 
+     * @return the remoteDisasterRecoveryConfiguration value.
+     */
+    public DisasterRecoveryConfigurationDetails remoteDisasterRecoveryConfiguration() {
+        return this.remoteDisasterRecoveryConfiguration;
+    }
+
+    /**
+     * Set the remoteDisasterRecoveryConfiguration property: Indicates remote disaster recovery configuration.
+     * 
+     * @param remoteDisasterRecoveryConfiguration the remoteDisasterRecoveryConfiguration value to set.
+     * @return the AutonomousDatabaseBaseProperties object itself.
+     */
+    AutonomousDatabaseBaseProperties withRemoteDisasterRecoveryConfiguration(
+        DisasterRecoveryConfigurationDetails remoteDisasterRecoveryConfiguration) {
+        this.remoteDisasterRecoveryConfiguration = remoteDisasterRecoveryConfiguration;
         return this;
     }
 
@@ -1982,6 +2031,9 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
         if (customerContacts() != null) {
             customerContacts().forEach(e -> e.validate());
         }
+        if (remoteDisasterRecoveryConfiguration() != null) {
+            remoteDisasterRecoveryConfiguration().validate();
+        }
         if (localStandbyDb() != null) {
             localStandbyDb().validate();
         }
@@ -2078,6 +2130,10 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
                 // Use the discriminator value to determine which subtype should be deserialized.
                 if ("Clone".equals(discriminatorValue)) {
                     return AutonomousDatabaseCloneProperties.fromJson(readerToUse.reset());
+                } else if ("CrossRegionDisasterRecovery".equals(discriminatorValue)) {
+                    return AutonomousDatabaseCrossRegionDisasterRecoveryProperties.fromJson(readerToUse.reset());
+                } else if ("CloneFromBackupTimestamp".equals(discriminatorValue)) {
+                    return AutonomousDatabaseFromBackupTimestampProperties.fromJson(readerToUse.reset());
                 } else if ("Regular".equals(discriminatorValue)) {
                     return AutonomousDatabaseProperties.fromJson(readerToUse.reset());
                 } else {
@@ -2150,6 +2206,12 @@ public class AutonomousDatabaseBaseProperties implements JsonSerializable<Autono
                 } else if ("localDisasterRecoveryType".equals(fieldName)) {
                     deserializedAutonomousDatabaseBaseProperties.localDisasterRecoveryType
                         = DisasterRecoveryType.fromString(reader.getString());
+                } else if ("timeDisasterRecoveryRoleChanged".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBaseProperties.timeDisasterRecoveryRoleChanged = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("remoteDisasterRecoveryConfiguration".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBaseProperties.remoteDisasterRecoveryConfiguration
+                        = DisasterRecoveryConfigurationDetails.fromJson(reader);
                 } else if ("localStandbyDb".equals(fieldName)) {
                     deserializedAutonomousDatabaseBaseProperties.localStandbyDb
                         = AutonomousDatabaseStandbySummary.fromJson(reader);

@@ -1,14 +1,458 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-11)
 
-### Features Added
+- Azure Resource Manager OracleDatabase client library for Java. This package contains Microsoft Azure SDK for OracleDatabase Management SDK.  Package tag package-2025-03-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.AutonomousDatabaseBackupUpdateProperties` was removed
 
-### Other Changes
+#### `models.DbNodes` was modified
+
+* `listByCloudVmCluster(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listByCloudVmCluster(java.lang.String,java.lang.String)` was removed
+
+#### `models.DbSystemShapeProperties` was modified
+
+* `java.lang.Integer availableCoreCount()` -> `int availableCoreCount()`
+
+#### `models.DbServers` was modified
+
+* `listByCloudExadataInfrastructure(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listByCloudExadataInfrastructure(java.lang.String,java.lang.String)` was removed
+
+#### `models.VirtualNetworkAddresses` was modified
+
+* `listByCloudVmCluster(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listByCloudVmCluster(java.lang.String,java.lang.String)` was removed
+
+#### `models.AutonomousDatabaseBackupUpdate` was modified
+
+* `withProperties(models.AutonomousDatabaseBackupUpdateProperties)` was removed
+* `models.AutonomousDatabaseBackupUpdateProperties properties()` -> `models.AutonomousDatabaseBackupProperties properties()`
+
+#### `models.DbSystemShapes` was modified
+
+* `listByLocation(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.AutonomousDatabaseCloneProperties` was modified
+
+* `localStandbyDb()` was removed
+* `provisionableCpus()` was removed
+* `dataSafeStatus()` was removed
+* `failedDataRecoveryInSeconds()` was removed
+* `nextLongTermBackupTimestamp()` was removed
+* `actualUsedDataStorageSizeInTbs()` was removed
+* `timeOfLastRefresh()` was removed
+* `supportedRegionsToCloneTo()` was removed
+* `apexDetails()` was removed
+* `isPreview()` was removed
+* `timeOfLastFailover()` was removed
+* `inMemoryAreaInGbs()` was removed
+* `peerDbIds()` was removed
+* `timeMaintenanceBegin()` was removed
+* `serviceConsoleUrl()` was removed
+* `ocid()` was removed
+* `isRemoteDataGuardEnabled()` was removed
+* `lifecycleState()` was removed
+* `sqlWebDeveloperUrl()` was removed
+* `timeMaintenanceEnd()` was removed
+* `usedDataStorageSizeInGbs()` was removed
+* `timeDeletionOfFreeAutonomousDatabase()` was removed
+* `connectionUrls()` was removed
+* `timeOfLastRefreshPoint()` was removed
+* `operationsInsightsStatus()` was removed
+* `timeOfLastSwitchover()` was removed
+* `connectionStrings()` was removed
+* `memoryPerOracleComputeUnitInGbs()` was removed
+* `provisioningState()` was removed
+* `lifecycleDetails()` was removed
+* `timeCreated()` was removed
+* `timeLocalDataGuardEnabled()` was removed
+* `allocatedStorageSizeInTbs()` was removed
+* `timeReclamationOfFreeAutonomousDatabase()` was removed
+* `availableUpgradeVersions()` was removed
+* `localDisasterRecoveryType()` was removed
+* `ociUrl()` was removed
+* `timeDataGuardRoleChanged()` was removed
+* `privateEndpoint()` was removed
+* `usedDataStorageSizeInTbs()` was removed
+
+#### `models.AutonomousDatabaseBackups` was modified
+
+* `listByAutonomousDatabase(java.lang.String,java.lang.String)` was removed
+* `listByAutonomousDatabase(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.DnsPrivateZoneProperties` was modified
+
+* `java.lang.Boolean isProtected()` -> `boolean isProtected()`
+* `java.lang.Integer serial()` -> `int serial()`
+
+#### `models.GiVersions` was modified
+
+* `listByLocation(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.AutonomousDatabaseProperties` was modified
+
+* `localDisasterRecoveryType()` was removed
+* `nextLongTermBackupTimestamp()` was removed
+* `sqlWebDeveloperUrl()` was removed
+* `timeOfLastRefreshPoint()` was removed
+* `privateEndpoint()` was removed
+* `timeMaintenanceEnd()` was removed
+* `timeCreated()` was removed
+* `isRemoteDataGuardEnabled()` was removed
+* `connectionStrings()` was removed
+* `timeDeletionOfFreeAutonomousDatabase()` was removed
+* `timeOfLastSwitchover()` was removed
+* `peerDbIds()` was removed
+* `localStandbyDb()` was removed
+* `timeOfLastFailover()` was removed
+* `usedDataStorageSizeInTbs()` was removed
+* `provisioningState()` was removed
+* `availableUpgradeVersions()` was removed
+* `allocatedStorageSizeInTbs()` was removed
+* `apexDetails()` was removed
+* `connectionUrls()` was removed
+* `lifecycleState()` was removed
+* `operationsInsightsStatus()` was removed
+* `supportedRegionsToCloneTo()` was removed
+* `serviceConsoleUrl()` was removed
+* `failedDataRecoveryInSeconds()` was removed
+* `timeMaintenanceBegin()` was removed
+* `memoryPerOracleComputeUnitInGbs()` was removed
+* `usedDataStorageSizeInGbs()` was removed
+* `timeReclamationOfFreeAutonomousDatabase()` was removed
+* `actualUsedDataStorageSizeInTbs()` was removed
+* `timeLocalDataGuardEnabled()` was removed
+* `provisionableCpus()` was removed
+* `inMemoryAreaInGbs()` was removed
+* `ociUrl()` was removed
+* `timeOfLastRefresh()` was removed
+* `ocid()` was removed
+* `timeDataGuardRoleChanged()` was removed
+* `dataSafeStatus()` was removed
+* `isPreview()` was removed
+* `lifecycleDetails()` was removed
+
+#### `models.DnsPrivateViewProperties` was modified
+
+* `java.lang.Boolean isProtected()` -> `boolean isProtected()`
+
+#### `models.AutonomousDatabaseBackup$Update` was modified
+
+* `withProperties(models.AutonomousDatabaseBackupUpdateProperties)` was removed
+
+### Features Added
+
+* `models.DefinedFileSystemConfiguration` was added
+
+* `models.ExadbVmClusterProperties` was added
+
+* `models.ExascaleDbStorageVaultListResult` was added
+
+* `models.GridImageType` was added
+
+* `models.ExascaleDbStorageVault` was added
+
+* `models.DbNodeDetails` was added
+
+* `models.ExascaleDbStorageVault$UpdateStages` was added
+
+* `models.FlexComponent` was added
+
+* `models.FlexComponentListResult` was added
+
+* `models.ExascaleDbStorageVaults` was added
+
+* `models.ExascaleDbStorageDetails` was added
+
+* `models.ExadbVmClusters` was added
+
+* `models.AutonomousDatabaseCrossRegionDisasterRecoveryProperties` was added
+
+* `models.RemoveVirtualMachineFromExadbVmClusterDetails` was added
+
+* `models.FlexComponents` was added
+
+* `models.AutonomousDatabaseFromBackupTimestampProperties` was added
+
+* `models.AzureSubscriptions` was added
+
+* `models.ExadbVmClusterUpdate` was added
+
+* `models.ExascaleDbStorageVaultLifecycleState` was added
+
+* `models.DisasterRecoveryConfigurationDetails` was added
+
+* `models.ShapeFamily` was added
+
+* `models.ExadbVmClusterUpdateProperties` was added
+
+* `models.ExadbVmClusterListResult` was added
+
+* `models.ExadbVmCluster` was added
+
+* `models.ExadbVmCluster$UpdateStages` was added
+
+* `models.GiMinorVersions` was added
+
+* `models.GiMinorVersionListResult` was added
+
+* `models.ExascaleDbStorageVault$DefinitionStages` was added
+
+* `models.ExadbVmCluster$Definition` was added
+
+* `models.FileSystemConfigurationDetails` was added
+
+* `models.ExascaleDbNodeProperties` was added
+
+* `models.SystemShapes` was added
+
+* `models.AddSubscriptionOperationState` was added
+
+* `models.ExadbVmClusterLifecycleState` was added
+
+* `models.ExadbVmCluster$DefinitionStages` was added
+
+* `models.FlexComponentProperties` was added
+
+* `models.ExascaleDbNodes` was added
+
+* `models.HardwareType` was added
+
+* `models.ExascaleDbStorageVault$Definition` was added
+
+* `models.GiMinorVersionProperties` was added
+
+* `models.ExadbVmClusterStorageDetails` was added
+
+* `models.ExascaleDbStorageVaultProperties` was added
+
+* `models.ExascaleDbStorageVaultTagsUpdate` was added
+
+* `models.DbActionResponse` was added
+
+* `models.ExascaleDbStorageInputDetails` was added
+
+* `models.GiMinorVersion` was added
+
+* `models.ExascaleDbStorageVault$Update` was added
+
+* `models.ExascaleDbNode` was added
+
+* `models.ExascaleDbNodeListResult` was added
+
+* `models.ExadbVmCluster$Update` was added
+
+#### `models.DbNodeProperties` was modified
+
+* `withBackupVnicId(java.lang.String)` was added
+* `withMaintenanceType(models.DbNodeMaintenanceType)` was added
+* `withDbSystemId(java.lang.String)` was added
+* `withHostIpId(java.lang.String)` was added
+* `withLifecycleState(models.DbNodeProvisioningState)` was added
+* `withDbServerId(java.lang.String)` was added
+* `withCpuCoreCount(java.lang.Integer)` was added
+* `withAdditionalDetails(java.lang.String)` was added
+* `withSoftwareStorageSizeInGb(java.lang.Integer)` was added
+* `withMemorySizeInGbs(java.lang.Integer)` was added
+* `withHostname(java.lang.String)` was added
+* `withLifecycleDetails(java.lang.String)` was added
+* `withTimeCreated(java.time.OffsetDateTime)` was added
+* `withFaultDomain(java.lang.String)` was added
+* `withOcid(java.lang.String)` was added
+* `withBackupIpId(java.lang.String)` was added
+* `withVnicId(java.lang.String)` was added
+* `withVnic2Id(java.lang.String)` was added
+* `withTimeMaintenanceWindowStart(java.time.OffsetDateTime)` was added
+* `withBackupVnic2Id(java.lang.String)` was added
+* `withTimeMaintenanceWindowEnd(java.time.OffsetDateTime)` was added
+* `withDbNodeStorageSizeInGbs(java.lang.Integer)` was added
+
+#### `models.CloudVmClusterProperties` was modified
+
+* `withFileSystemConfigurationDetails(java.util.List)` was added
+* `computeModel()` was added
+* `fileSystemConfigurationDetails()` was added
+
+#### `models.DbServerProperties` was modified
+
+* `computeModel()` was added
+
+#### `models.OracleSubscriptions` was modified
+
+* `addAzureSubscriptions(models.AzureSubscriptions,com.azure.core.util.Context)` was added
+* `addAzureSubscriptions(models.AzureSubscriptions)` was added
+
+#### `models.SystemVersionProperties` was modified
+
+* `withSystemVersion(java.lang.String)` was added
+
+#### `models.DbNodes` was modified
+
+* `listByParent(java.lang.String,java.lang.String)` was added
+* `listByParent(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.PeerDbDetails` was modified
+
+* `peerDbOcid()` was added
+* `withPeerDbOcid(java.lang.String)` was added
+* `withPeerDbLocation(java.lang.String)` was added
+* `peerDbLocation()` was added
+
+#### `models.DbSystemShapeProperties` was modified
+
+* `withAvailableCoreCount(int)` was added
+* `withAvailableMemoryPerNodeInGbs(java.lang.Integer)` was added
+* `withAvailableCoreCountPerNode(java.lang.Integer)` was added
+* `computeModel()` was added
+* `withAvailableDataStoragePerServerInTbs(java.lang.Double)` was added
+* `withMinDbNodeStoragePerNodeInGbs(java.lang.Integer)` was added
+* `withMinimumCoreCount(java.lang.Integer)` was added
+* `withMinCoreCountPerNode(java.lang.Integer)` was added
+* `withComputeModel(models.ComputeModel)` was added
+* `withDisplayName(java.lang.String)` was added
+* `withAreServerTypesSupported(java.lang.Boolean)` was added
+* `withAvailableDbNodePerNodeInGbs(java.lang.Integer)` was added
+* `withShapeFamily(java.lang.String)` was added
+* `displayName()` was added
+* `withAvailableDataStorageInTbs(java.lang.Integer)` was added
+* `withShapeName(java.lang.String)` was added
+* `withMinStorageCount(java.lang.Integer)` was added
+* `withAvailableDbNodeStorageInGbs(java.lang.Integer)` was added
+* `withMinMemoryPerNodeInGbs(java.lang.Integer)` was added
+* `withRuntimeMinimumCoreCount(java.lang.Integer)` was added
+* `withMaxStorageCount(java.lang.Integer)` was added
+* `withCoreCountIncrement(java.lang.Integer)` was added
+* `withMinimumNodeCount(java.lang.Integer)` was added
+* `withAvailableMemoryInGbs(java.lang.Integer)` was added
+* `areServerTypesSupported()` was added
+* `shapeName()` was added
+* `withMaximumNodeCount(java.lang.Integer)` was added
+* `withMinDataStorageInTbs(java.lang.Integer)` was added
+
+#### `models.DbServers` was modified
+
+* `listByParent(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByParent(java.lang.String,java.lang.String)` was added
+
+#### `models.AutonomousDatabase` was modified
+
+* `changeDisasterRecoveryConfiguration(models.DisasterRecoveryConfigurationDetails,com.azure.core.util.Context)` was added
+* `changeDisasterRecoveryConfiguration(models.DisasterRecoveryConfigurationDetails)` was added
+
+#### `models.VirtualNetworkAddresses` was modified
+
+* `listByParent(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByParent(java.lang.String,java.lang.String)` was added
+
+#### `models.AutonomousDatabaseBackupUpdate` was modified
+
+* `systemData()` was added
+* `name()` was added
+* `type()` was added
+* `id()` was added
+* `withProperties(models.AutonomousDatabaseBackupProperties)` was added
+
+#### `models.DbSystemShapes` was modified
+
+* `listByLocation(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.AutonomousDatabaseBackups` was modified
+
+* `listByParent(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByParent(java.lang.String,java.lang.String)` was added
+
+#### `models.DnsPrivateZoneProperties` was modified
+
+* `withIsProtected(boolean)` was added
+* `withSelf(java.lang.String)` was added
+* `withOcid(java.lang.String)` was added
+* `withLifecycleState(models.DnsPrivateZonesLifecycleState)` was added
+* `withViewId(java.lang.String)` was added
+* `withTimeCreated(java.time.OffsetDateTime)` was added
+* `withSerial(int)` was added
+* `withVersion(java.lang.String)` was added
+* `withZoneType(models.ZoneType)` was added
+
+#### `models.GiVersions` was modified
+
+* `listByLocation(java.lang.String,models.SystemShapes,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `OracleDatabaseManager` was modified
+
+* `exadbVmClusters()` was added
+* `exascaleDbNodes()` was added
+* `exascaleDbStorageVaults()` was added
+* `giMinorVersions()` was added
+* `flexComponents()` was added
+
+#### `models.OracleSubscriptionProperties` was modified
+
+* `addSubscriptionOperationState()` was added
+* `azureSubscriptionIds()` was added
+* `lastOperationStatusDetail()` was added
+
+#### `models.CloudExadataInfrastructureProperties` was modified
+
+* `databaseServerType()` was added
+* `storageServerType()` was added
+* `definedFileSystemConfiguration()` was added
+* `withStorageServerType(java.lang.String)` was added
+* `computeModel()` was added
+* `withDatabaseServerType(java.lang.String)` was added
+
+#### `models.AutonomousDbVersionProperties` was modified
+
+* `withIsFreeTierEnabled(java.lang.Boolean)` was added
+* `withIsPaidEnabled(java.lang.Boolean)` was added
+* `withVersion(java.lang.String)` was added
+* `withDbWorkload(models.WorkloadType)` was added
+* `withIsDefaultForPaid(java.lang.Boolean)` was added
+* `withIsDefaultForFree(java.lang.Boolean)` was added
+
+#### `models.AutonomousDatabases` was modified
+
+* `changeDisasterRecoveryConfiguration(java.lang.String,java.lang.String,models.DisasterRecoveryConfigurationDetails,com.azure.core.util.Context)` was added
+* `changeDisasterRecoveryConfiguration(java.lang.String,java.lang.String,models.DisasterRecoveryConfigurationDetails)` was added
+
+#### `models.AutonomousDatabaseCharacterSetProperties` was modified
+
+* `withCharacterSet(java.lang.String)` was added
+
+#### `models.AutonomousDatabaseNationalCharacterSetProperties` was modified
+
+* `withCharacterSet(java.lang.String)` was added
+
+#### `models.AutonomousDatabaseBaseProperties` was modified
+
+* `remoteDisasterRecoveryConfiguration()` was added
+* `timeDisasterRecoveryRoleChanged()` was added
+
+#### `models.DnsPrivateViewProperties` was modified
+
+* `withTimeUpdated(java.time.OffsetDateTime)` was added
+* `withLifecycleState(models.DnsPrivateViewsLifecycleState)` was added
+* `withTimeCreated(java.time.OffsetDateTime)` was added
+* `withDisplayName(java.lang.String)` was added
+* `withIsProtected(boolean)` was added
+* `withOcid(java.lang.String)` was added
+* `withSelf(java.lang.String)` was added
+
+#### `models.CloudVmClusterUpdateProperties` was modified
+
+* `fileSystemConfigurationDetails()` was added
+* `withFileSystemConfigurationDetails(java.util.List)` was added
+
+#### `models.AutonomousDatabaseBackup$Update` was modified
+
+* `withProperties(models.AutonomousDatabaseBackupProperties)` was added
+
+#### `models.GiVersionProperties` was modified
+
+* `withVersion(java.lang.String)` was added
 
 ## 1.0.0 (2024-07-04)
 

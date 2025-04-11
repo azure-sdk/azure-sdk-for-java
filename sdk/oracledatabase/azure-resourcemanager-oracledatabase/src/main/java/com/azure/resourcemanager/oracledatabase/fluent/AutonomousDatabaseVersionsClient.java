@@ -16,7 +16,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDbVersio
  */
 public interface AutonomousDatabaseVersionsClient {
     /**
-     * List AutonomousDbVersion resources by Location.
+     * List AutonomousDbVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,7 +28,7 @@ public interface AutonomousDatabaseVersionsClient {
     PagedIterable<AutonomousDbVersionInner> listByLocation(String location);
 
     /**
-     * List AutonomousDbVersion resources by Location.
+     * List AutonomousDbVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

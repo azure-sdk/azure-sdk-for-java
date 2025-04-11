@@ -23,8 +23,7 @@ public interface AutonomousDatabaseBackups {
      * @return the response of a AutonomousDatabaseBackup list operation as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<AutonomousDatabaseBackup> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename);
+    PagedIterable<AutonomousDatabaseBackup> listByParent(String resourceGroupName, String autonomousdatabasename);
 
     /**
      * List AutonomousDatabaseBackup resources by AutonomousDatabase.
@@ -38,8 +37,8 @@ public interface AutonomousDatabaseBackups {
      * @return the response of a AutonomousDatabaseBackup list operation as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<AutonomousDatabaseBackup> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename, Context context);
+    PagedIterable<AutonomousDatabaseBackup> listByParent(String resourceGroupName, String autonomousdatabasename,
+        Context context);
 
     /**
      * Get a AutonomousDatabaseBackup.
