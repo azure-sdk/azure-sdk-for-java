@@ -33,6 +33,12 @@ public final class ManagedServiceIdentityType extends ExpandableStringEnum<Manag
         = fromString("SystemAssigned, UserAssigned");
 
     /**
+     * Static value SystemAssigned,UserAssigned for ManagedServiceIdentityType.
+     */
+    public static final ManagedServiceIdentityType SYSTEM_ASSIGNED_USER_ASSIGNED_1
+        = fromString("SystemAssigned,UserAssigned");
+
+    /**
      * Creates a new instance of ManagedServiceIdentityType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

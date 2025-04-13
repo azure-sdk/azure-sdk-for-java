@@ -154,6 +154,56 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
     }
 
     /**
+     * Get the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @return the networkSettings value.
+     */
+    public DevCenterNetworkSettings networkSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkSettings();
+    }
+
+    /**
+     * Set the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @param networkSettings the networkSettings value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withNetworkSettings(networkSettings);
+        return this;
+    }
+
+    /**
+     * Get the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @return the devBoxProvisioningSettings value.
+     */
+    public DevBoxProvisioningSettings devBoxProvisioningSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxProvisioningSettings();
+    }
+
+    /**
+     * Set the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @param devBoxProvisioningSettings the devBoxProvisioningSettings value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withDevBoxProvisioningSettings(devBoxProvisioningSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
