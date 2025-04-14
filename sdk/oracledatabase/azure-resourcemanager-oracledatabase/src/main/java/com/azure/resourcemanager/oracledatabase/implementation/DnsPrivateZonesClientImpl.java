@@ -89,7 +89,7 @@ public final class DnsPrivateZonesClientImpl implements DnsPrivateZonesClient {
     }
 
     /**
-     * List DnsPrivateZone resources by Location.
+     * List DnsPrivateZone resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -121,7 +121,7 @@ public final class DnsPrivateZonesClientImpl implements DnsPrivateZonesClient {
     }
 
     /**
-     * List DnsPrivateZone resources by Location.
+     * List DnsPrivateZone resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
@@ -154,7 +154,7 @@ public final class DnsPrivateZonesClientImpl implements DnsPrivateZonesClient {
     }
 
     /**
-     * List DnsPrivateZone resources by Location.
+     * List DnsPrivateZone resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -169,7 +169,7 @@ public final class DnsPrivateZonesClientImpl implements DnsPrivateZonesClient {
     }
 
     /**
-     * List DnsPrivateZone resources by Location.
+     * List DnsPrivateZone resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
@@ -185,7 +185,7 @@ public final class DnsPrivateZonesClientImpl implements DnsPrivateZonesClient {
     }
 
     /**
-     * List DnsPrivateZone resources by Location.
+     * List DnsPrivateZone resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -199,7 +199,7 @@ public final class DnsPrivateZonesClientImpl implements DnsPrivateZonesClient {
     }
 
     /**
-     * List DnsPrivateZone resources by Location.
+     * List DnsPrivateZone resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

@@ -16,7 +16,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.DnsPrivateZoneInne
  */
 public interface DnsPrivateZonesClient {
     /**
-     * List DnsPrivateZone resources by Location.
+     * List DnsPrivateZone resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,7 +28,7 @@ public interface DnsPrivateZonesClient {
     PagedIterable<DnsPrivateZoneInner> listByLocation(String location);
 
     /**
-     * List DnsPrivateZone resources by Location.
+     * List DnsPrivateZone resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

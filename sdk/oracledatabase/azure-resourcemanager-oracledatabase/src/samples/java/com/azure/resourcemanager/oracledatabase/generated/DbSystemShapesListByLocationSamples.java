@@ -10,7 +10,7 @@ package com.azure.resourcemanager.oracledatabase.generated;
 public final class DbSystemShapesListByLocationSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbSystemShapes_listByLocation.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbSystemShapes_listByLocation.
      * json
      */
     /**
@@ -20,6 +20,6 @@ public final class DbSystemShapesListByLocationSamples {
      */
     public static void
         listDbSystemShapesByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbSystemShapes().listByLocation("eastus", com.azure.core.util.Context.NONE);
+        manager.dbSystemShapes().listByLocation("eastus", null, com.azure.core.util.Context.NONE);
     }
 }

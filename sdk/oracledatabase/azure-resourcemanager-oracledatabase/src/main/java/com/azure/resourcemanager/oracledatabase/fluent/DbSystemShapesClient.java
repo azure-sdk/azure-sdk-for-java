@@ -16,7 +16,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.DbSystemShapeInner
  */
 public interface DbSystemShapesClient {
     /**
-     * List DbSystemShape resources by Location.
+     * List DbSystemShape resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,9 +28,10 @@ public interface DbSystemShapesClient {
     PagedIterable<DbSystemShapeInner> listByLocation(String location);
 
     /**
-     * List DbSystemShape resources by Location.
+     * List DbSystemShape resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
+     * @param zone Filters the result for the given Azure Availability Zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -38,7 +39,7 @@ public interface DbSystemShapesClient {
      * @return the response of a DbSystemShape list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbSystemShapeInner> listByLocation(String location, Context context);
+    PagedIterable<DbSystemShapeInner> listByLocation(String location, String zone, Context context);
 
     /**
      * Get a DbSystemShape.

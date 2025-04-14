@@ -10,7 +10,7 @@ package com.azure.resourcemanager.oracledatabase.generated;
 public final class CloudVmClustersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_delete.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_delete.json
      */
     /**
      * Sample code: Delete VM Cluster.

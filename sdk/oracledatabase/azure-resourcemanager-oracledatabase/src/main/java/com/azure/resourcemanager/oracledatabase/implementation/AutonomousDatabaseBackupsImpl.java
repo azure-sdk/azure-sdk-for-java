@@ -27,17 +27,17 @@ public final class AutonomousDatabaseBackupsImpl implements AutonomousDatabaseBa
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<AutonomousDatabaseBackup> listByAutonomousDatabase(String resourceGroupName,
+    public PagedIterable<AutonomousDatabaseBackup> listByParent(String resourceGroupName,
         String autonomousdatabasename) {
         PagedIterable<AutonomousDatabaseBackupInner> inner
-            = this.serviceClient().listByAutonomousDatabase(resourceGroupName, autonomousdatabasename);
+            = this.serviceClient().listByParent(resourceGroupName, autonomousdatabasename);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new AutonomousDatabaseBackupImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<AutonomousDatabaseBackup> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename, Context context) {
+    public PagedIterable<AutonomousDatabaseBackup> listByParent(String resourceGroupName, String autonomousdatabasename,
+        Context context) {
         PagedIterable<AutonomousDatabaseBackupInner> inner
-            = this.serviceClient().listByAutonomousDatabase(resourceGroupName, autonomousdatabasename, context);
+            = this.serviceClient().listByParent(resourceGroupName, autonomousdatabasename, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new AutonomousDatabaseBackupImpl(inner1, this.manager()));
     }
 

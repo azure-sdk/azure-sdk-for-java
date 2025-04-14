@@ -10,7 +10,7 @@ package com.azure.resourcemanager.oracledatabase.generated;
 public final class CloudExadataInfrastructuresListSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_listBySubscription.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_listBySubscription.json
      */
     /**
      * Sample code: List Exadata Infrastructure by subscription.

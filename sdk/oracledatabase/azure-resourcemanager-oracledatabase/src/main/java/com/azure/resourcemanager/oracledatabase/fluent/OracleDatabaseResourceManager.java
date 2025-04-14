@@ -75,6 +75,20 @@ public interface OracleDatabaseResourceManager {
     CloudVmClustersClient getCloudVmClusters();
 
     /**
+     * Gets the ExadbVmClustersClient object to access its operations.
+     * 
+     * @return the ExadbVmClustersClient object.
+     */
+    ExadbVmClustersClient getExadbVmClusters();
+
+    /**
+     * Gets the ExascaleDbStorageVaultsClient object to access its operations.
+     * 
+     * @return the ExascaleDbStorageVaultsClient object.
+     */
+    ExascaleDbStorageVaultsClient getExascaleDbStorageVaults();
+
+    /**
      * Gets the AutonomousDatabaseCharacterSetsClient object to access its operations.
      * 
      * @return the AutonomousDatabaseCharacterSetsClient object.
@@ -117,11 +131,25 @@ public interface OracleDatabaseResourceManager {
     DnsPrivateZonesClient getDnsPrivateZones();
 
     /**
+     * Gets the FlexComponentsClient object to access its operations.
+     * 
+     * @return the FlexComponentsClient object.
+     */
+    FlexComponentsClient getFlexComponents();
+
+    /**
      * Gets the GiVersionsClient object to access its operations.
      * 
      * @return the GiVersionsClient object.
      */
     GiVersionsClient getGiVersions();
+
+    /**
+     * Gets the GiMinorVersionsClient object to access its operations.
+     * 
+     * @return the GiMinorVersionsClient object.
+     */
+    GiMinorVersionsClient getGiMinorVersions();
 
     /**
      * Gets the SystemVersionsClient object to access its operations.
@@ -164,4 +192,11 @@ public interface OracleDatabaseResourceManager {
      * @return the VirtualNetworkAddressesClient object.
      */
     VirtualNetworkAddressesClient getVirtualNetworkAddresses();
+
+    /**
+     * Gets the ExascaleDbNodesClient object to access its operations.
+     * 
+     * @return the ExascaleDbNodesClient object.
+     */
+    ExascaleDbNodesClient getExascaleDbNodes();
 }

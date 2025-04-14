@@ -28,16 +28,14 @@ public final class DbNodesImpl implements DbNodes {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<DbNode> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername) {
-        PagedIterable<DbNodeInner> inner
-            = this.serviceClient().listByCloudVmCluster(resourceGroupName, cloudvmclustername);
+    public PagedIterable<DbNode> listByParent(String resourceGroupName, String cloudvmclustername) {
+        PagedIterable<DbNodeInner> inner = this.serviceClient().listByParent(resourceGroupName, cloudvmclustername);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new DbNodeImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<DbNode> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername,
-        Context context) {
+    public PagedIterable<DbNode> listByParent(String resourceGroupName, String cloudvmclustername, Context context) {
         PagedIterable<DbNodeInner> inner
-            = this.serviceClient().listByCloudVmCluster(resourceGroupName, cloudvmclustername, context);
+            = this.serviceClient().listByParent(resourceGroupName, cloudvmclustername, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new DbNodeImpl(inner1, this.manager()));
     }
 
