@@ -238,6 +238,7 @@
     <module>sdk/webpubsub</module>
     <module>sdk/weightsandbiases</module>
     <module>sdk/workloads</module>
+    <module>sdk/workloadsmicrosoftworkloadsmonitors</module>
     <module>sdk/workloadssapvirtualinstance</module>
   </modules>
 </project>
