@@ -8,8 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.devcenter.models.AzureAiServicesSettings;
+import com.azure.resourcemanager.devcenter.models.DevBoxAutoDeleteSettings;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
+import com.azure.resourcemanager.devcenter.models.ServerlessGpuSessionsSettings;
+import com.azure.resourcemanager.devcenter.models.WorkspaceStorageSettings;
 import java.io.IOException;
 
 /**
@@ -97,6 +102,52 @@ public final class ProjectProperties extends ProjectUpdateProperties {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProjectProperties withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        super.withCustomizationSettings(customizationSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProjectProperties withDevBoxAutoDeleteSettings(DevBoxAutoDeleteSettings devBoxAutoDeleteSettings) {
+        super.withDevBoxAutoDeleteSettings(devBoxAutoDeleteSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProjectProperties withAzureAiServicesSettings(AzureAiServicesSettings azureAiServicesSettings) {
+        super.withAzureAiServicesSettings(azureAiServicesSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProjectProperties
+        withServerlessGpuSessionsSettings(ServerlessGpuSessionsSettings serverlessGpuSessionsSettings) {
+        super.withServerlessGpuSessionsSettings(serverlessGpuSessionsSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProjectProperties withWorkspaceStorageSettings(WorkspaceStorageSettings workspaceStorageSettings) {
+        super.withWorkspaceStorageSettings(workspaceStorageSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -105,6 +156,21 @@ public final class ProjectProperties extends ProjectUpdateProperties {
     public void validate() {
         if (catalogSettings() != null) {
             catalogSettings().validate();
+        }
+        if (customizationSettings() != null) {
+            customizationSettings().validate();
+        }
+        if (devBoxAutoDeleteSettings() != null) {
+            devBoxAutoDeleteSettings().validate();
+        }
+        if (azureAiServicesSettings() != null) {
+            azureAiServicesSettings().validate();
+        }
+        if (serverlessGpuSessionsSettings() != null) {
+            serverlessGpuSessionsSettings().validate();
+        }
+        if (workspaceStorageSettings() != null) {
+            workspaceStorageSettings().validate();
         }
     }
 
@@ -119,6 +185,11 @@ public final class ProjectProperties extends ProjectUpdateProperties {
         jsonWriter.writeNumberField("maxDevBoxesPerUser", maxDevBoxesPerUser());
         jsonWriter.writeStringField("displayName", displayName());
         jsonWriter.writeJsonField("catalogSettings", catalogSettings());
+        jsonWriter.writeJsonField("customizationSettings", customizationSettings());
+        jsonWriter.writeJsonField("devBoxAutoDeleteSettings", devBoxAutoDeleteSettings());
+        jsonWriter.writeJsonField("azureAiServicesSettings", azureAiServicesSettings());
+        jsonWriter.writeJsonField("serverlessGpuSessionsSettings", serverlessGpuSessionsSettings());
+        jsonWriter.writeJsonField("workspaceStorageSettings", workspaceStorageSettings());
         return jsonWriter.writeEndObject();
     }
 
@@ -147,6 +218,20 @@ public final class ProjectProperties extends ProjectUpdateProperties {
                     deserializedProjectProperties.withDisplayName(reader.getString());
                 } else if ("catalogSettings".equals(fieldName)) {
                     deserializedProjectProperties.withCatalogSettings(ProjectCatalogSettings.fromJson(reader));
+                } else if ("customizationSettings".equals(fieldName)) {
+                    deserializedProjectProperties
+                        .withCustomizationSettings(ProjectCustomizationSettings.fromJson(reader));
+                } else if ("devBoxAutoDeleteSettings".equals(fieldName)) {
+                    deserializedProjectProperties
+                        .withDevBoxAutoDeleteSettings(DevBoxAutoDeleteSettings.fromJson(reader));
+                } else if ("azureAiServicesSettings".equals(fieldName)) {
+                    deserializedProjectProperties.withAzureAiServicesSettings(AzureAiServicesSettings.fromJson(reader));
+                } else if ("serverlessGpuSessionsSettings".equals(fieldName)) {
+                    deserializedProjectProperties
+                        .withServerlessGpuSessionsSettings(ServerlessGpuSessionsSettings.fromJson(reader));
+                } else if ("workspaceStorageSettings".equals(fieldName)) {
+                    deserializedProjectProperties
+                        .withWorkspaceStorageSettings(WorkspaceStorageSettings.fromJson(reader));
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedProjectProperties.provisioningState = ProvisioningState.fromString(reader.getString());
                 } else if ("devCenterUri".equals(fieldName)) {

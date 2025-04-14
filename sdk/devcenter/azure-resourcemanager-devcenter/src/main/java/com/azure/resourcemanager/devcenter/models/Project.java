@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devcenter.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -114,6 +115,41 @@ public interface Project {
     ProjectCatalogSettings catalogSettings();
 
     /**
+     * Gets the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @return the customizationSettings value.
+     */
+    ProjectCustomizationSettings customizationSettings();
+
+    /**
+     * Gets the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings.
+     * 
+     * @return the devBoxAutoDeleteSettings value.
+     */
+    DevBoxAutoDeleteSettings devBoxAutoDeleteSettings();
+
+    /**
+     * Gets the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a project.
+     * 
+     * @return the azureAiServicesSettings value.
+     */
+    AzureAiServicesSettings azureAiServicesSettings();
+
+    /**
+     * Gets the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU.
+     * 
+     * @return the serverlessGpuSessionsSettings value.
+     */
+    ServerlessGpuSessionsSettings serverlessGpuSessionsSettings();
+
+    /**
+     * Gets the workspaceStorageSettings property: Settings to be used for workspace storage.
+     * 
+     * @return the workspaceStorageSettings value.
+     */
+    WorkspaceStorageSettings workspaceStorageSettings();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -196,9 +232,12 @@ public interface Project {
          * The stage of the Project definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
-            DefinitionStages.WithDevCenterId, DefinitionStages.WithDescription, DefinitionStages.WithMaxDevBoxesPerUser,
-            DefinitionStages.WithDisplayName, DefinitionStages.WithCatalogSettings {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithDevCenterId,
+            DefinitionStages.WithDescription, DefinitionStages.WithMaxDevBoxesPerUser, DefinitionStages.WithDisplayName,
+            DefinitionStages.WithCatalogSettings, DefinitionStages.WithCustomizationSettings,
+            DefinitionStages.WithDevBoxAutoDeleteSettings, DefinitionStages.WithAzureAiServicesSettings,
+            DefinitionStages.WithServerlessGpuSessionsSettings, DefinitionStages.WithWorkspaceStorageSettings {
             /**
              * Executes the create request.
              * 
@@ -308,6 +347,72 @@ public interface Project {
              */
             WithCreate withCatalogSettings(ProjectCatalogSettings catalogSettings);
         }
+
+        /**
+         * The stage of the Project definition allowing to specify customizationSettings.
+         */
+        interface WithCustomizationSettings {
+            /**
+             * Specifies the customizationSettings property: Settings to be used for customizations..
+             * 
+             * @param customizationSettings Settings to be used for customizations.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomizationSettings(ProjectCustomizationSettings customizationSettings);
+        }
+
+        /**
+         * The stage of the Project definition allowing to specify devBoxAutoDeleteSettings.
+         */
+        interface WithDevBoxAutoDeleteSettings {
+            /**
+             * Specifies the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings..
+             * 
+             * @param devBoxAutoDeleteSettings Dev Box Auto Delete settings.
+             * @return the next definition stage.
+             */
+            WithCreate withDevBoxAutoDeleteSettings(DevBoxAutoDeleteSettings devBoxAutoDeleteSettings);
+        }
+
+        /**
+         * The stage of the Project definition allowing to specify azureAiServicesSettings.
+         */
+        interface WithAzureAiServicesSettings {
+            /**
+             * Specifies the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a
+             * project..
+             * 
+             * @param azureAiServicesSettings Indicates whether Azure AI services are enabled for a project.
+             * @return the next definition stage.
+             */
+            WithCreate withAzureAiServicesSettings(AzureAiServicesSettings azureAiServicesSettings);
+        }
+
+        /**
+         * The stage of the Project definition allowing to specify serverlessGpuSessionsSettings.
+         */
+        interface WithServerlessGpuSessionsSettings {
+            /**
+             * Specifies the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU..
+             * 
+             * @param serverlessGpuSessionsSettings Settings to be used for serverless GPU.
+             * @return the next definition stage.
+             */
+            WithCreate withServerlessGpuSessionsSettings(ServerlessGpuSessionsSettings serverlessGpuSessionsSettings);
+        }
+
+        /**
+         * The stage of the Project definition allowing to specify workspaceStorageSettings.
+         */
+        interface WithWorkspaceStorageSettings {
+            /**
+             * Specifies the workspaceStorageSettings property: Settings to be used for workspace storage..
+             * 
+             * @param workspaceStorageSettings Settings to be used for workspace storage.
+             * @return the next definition stage.
+             */
+            WithCreate withWorkspaceStorageSettings(WorkspaceStorageSettings workspaceStorageSettings);
+        }
     }
 
     /**
@@ -322,7 +427,9 @@ public interface Project {
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithDevCenterId,
         UpdateStages.WithDescription, UpdateStages.WithMaxDevBoxesPerUser, UpdateStages.WithDisplayName,
-        UpdateStages.WithCatalogSettings {
+        UpdateStages.WithCatalogSettings, UpdateStages.WithCustomizationSettings,
+        UpdateStages.WithDevBoxAutoDeleteSettings, UpdateStages.WithAzureAiServicesSettings,
+        UpdateStages.WithServerlessGpuSessionsSettings, UpdateStages.WithWorkspaceStorageSettings {
         /**
          * Executes the update request.
          * 
@@ -436,6 +543,72 @@ public interface Project {
              */
             Update withCatalogSettings(ProjectCatalogSettings catalogSettings);
         }
+
+        /**
+         * The stage of the Project update allowing to specify customizationSettings.
+         */
+        interface WithCustomizationSettings {
+            /**
+             * Specifies the customizationSettings property: Settings to be used for customizations..
+             * 
+             * @param customizationSettings Settings to be used for customizations.
+             * @return the next definition stage.
+             */
+            Update withCustomizationSettings(ProjectCustomizationSettings customizationSettings);
+        }
+
+        /**
+         * The stage of the Project update allowing to specify devBoxAutoDeleteSettings.
+         */
+        interface WithDevBoxAutoDeleteSettings {
+            /**
+             * Specifies the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings..
+             * 
+             * @param devBoxAutoDeleteSettings Dev Box Auto Delete settings.
+             * @return the next definition stage.
+             */
+            Update withDevBoxAutoDeleteSettings(DevBoxAutoDeleteSettings devBoxAutoDeleteSettings);
+        }
+
+        /**
+         * The stage of the Project update allowing to specify azureAiServicesSettings.
+         */
+        interface WithAzureAiServicesSettings {
+            /**
+             * Specifies the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a
+             * project..
+             * 
+             * @param azureAiServicesSettings Indicates whether Azure AI services are enabled for a project.
+             * @return the next definition stage.
+             */
+            Update withAzureAiServicesSettings(AzureAiServicesSettings azureAiServicesSettings);
+        }
+
+        /**
+         * The stage of the Project update allowing to specify serverlessGpuSessionsSettings.
+         */
+        interface WithServerlessGpuSessionsSettings {
+            /**
+             * Specifies the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU..
+             * 
+             * @param serverlessGpuSessionsSettings Settings to be used for serverless GPU.
+             * @return the next definition stage.
+             */
+            Update withServerlessGpuSessionsSettings(ServerlessGpuSessionsSettings serverlessGpuSessionsSettings);
+        }
+
+        /**
+         * The stage of the Project update allowing to specify workspaceStorageSettings.
+         */
+        interface WithWorkspaceStorageSettings {
+            /**
+             * Specifies the workspaceStorageSettings property: Settings to be used for workspace storage..
+             * 
+             * @param workspaceStorageSettings Settings to be used for workspace storage.
+             * @return the next definition stage.
+             */
+            Update withWorkspaceStorageSettings(WorkspaceStorageSettings workspaceStorageSettings);
+        }
     }
 
     /**
@@ -452,4 +625,24 @@ public interface Project {
      * @return the refreshed resource.
      */
     Project refresh(Context context);
+
+    /**
+     * Gets applicable inherited settings for this project.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return applicable inherited settings for this project along with {@link Response}.
+     */
+    Response<InheritedSettingsForProject> getInheritedSettingsWithResponse(Context context);
+
+    /**
+     * Gets applicable inherited settings for this project.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return applicable inherited settings for this project.
+     */
+    InheritedSettingsForProject getInheritedSettings();
 }
