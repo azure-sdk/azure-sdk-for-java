@@ -15,15 +15,12 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
-import com.azure.core.management.polling.SyncPollerFactory;
-import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
-import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.datafactory.fluent.ActivityRunsClient;
@@ -42,7 +39,6 @@ import com.azure.resourcemanager.datafactory.fluent.IntegrationRuntimesClient;
 import com.azure.resourcemanager.datafactory.fluent.LinkedServicesClient;
 import com.azure.resourcemanager.datafactory.fluent.ManagedPrivateEndpointsClient;
 import com.azure.resourcemanager.datafactory.fluent.ManagedVirtualNetworksClient;
-import com.azure.resourcemanager.datafactory.fluent.OperationsClient;
 import com.azure.resourcemanager.datafactory.fluent.PipelineRunsClient;
 import com.azure.resourcemanager.datafactory.fluent.PipelinesClient;
 import com.azure.resourcemanager.datafactory.fluent.PrivateEndPointConnectionsClient;
@@ -146,20 +142,6 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
-    }
-
-    /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
     }
 
     /**
@@ -488,7 +470,6 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2018-06-01";
-        this.operations = new OperationsClientImpl(this);
         this.factories = new FactoriesClientImpl(this);
         this.exposureControls = new ExposureControlsClientImpl(this);
         this.integrationRuntimes = new IntegrationRuntimesClientImpl(this);
@@ -548,23 +529,6 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
-    }
-
-    /**
-     * Gets long running operation result.
-     * 
-     * @param activationResponse the response of activation operation.
-     * @param pollResultType type of poll result.
-     * @param finalResultType type of final result.
-     * @param context the context shared by all requests.
-     * @param <T> type of poll result.
-     * @param <U> type of final result.
-     * @return SyncPoller for poll result and final result.
-     */
-    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
-        Type pollResultType, Type finalResultType, Context context) {
-        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
-            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**
