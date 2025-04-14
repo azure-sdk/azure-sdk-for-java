@@ -76,6 +76,22 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
+    public void failover(String resourceGroupName, String location, String workspaceName) {
+        this.serviceClient().failover(resourceGroupName, location, workspaceName);
+    }
+
+    public void failover(String resourceGroupName, String location, String workspaceName, Context context) {
+        this.serviceClient().failover(resourceGroupName, location, workspaceName, context);
+    }
+
+    public void failback(String resourceGroupName, String workspaceName) {
+        this.serviceClient().failback(resourceGroupName, workspaceName);
+    }
+
+    public void failback(String resourceGroupName, String workspaceName, Context context) {
+        this.serviceClient().failback(resourceGroupName, workspaceName, context);
+    }
+
     public Workspace getById(String id) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourcegroups");
         if (resourceGroupName == null) {
