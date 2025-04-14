@@ -2,23 +2,935 @@
 
 ## 2.0.0-beta.1 (Unreleased)
 
-### Features Added
-
-- Added `MaxConcurrentOffers` to RouterWorker and CreateWorkerOptions
-- Added createJobWithClassificationPolicy and createJobWithClassificationPolicyWithResponse to JobRouterClient and JobRouterAsyncClient
-- Added updateXX methods that accept and return XX in JobRouterClient, JobRouterAdministrationClient, JobRouterAsyncClient and JobRouterAdministrationAsyncClient
-
 ### Breaking Changes
 
-- Added value to RouterWorkerSelector/RouterQueueSelector constructor, remove setter
-- Change return type of createJobWithResponse to RouterJob instead of BinaryData in JobRouterClient and JobRouterAsyncClient
+#### `implementation.JsonMergePatchHelper$ExceptionPolicyInternalAccessor` was removed
 
-### Bugs Fixed
+#### `implementation.JsonMergePatchHelper$JobMatchingModeInternalAccessor` was removed
 
-- Fix Jackson annotations for all models
-- JobRouterClient and JobRouterAdminClient no longer throws 401 errors when HmacAuthenticationPolicy is not provided
+#### `implementation.accesshelpers.DistributionPolicyConstructorProxy` was removed
 
-### Other Changes
+#### `implementation.accesshelpers.RouterWorkerConstructorProxy` was removed
+
+#### `implementation.models.StaticRouterRuleInternal` was removed
+
+#### `implementation.accesshelpers.ExceptionPolicyConstructorProxy` was removed
+
+#### `implementation.models.RouterQueueStatisticsInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$WebhookRouterRuleInternalAccessor` was removed
+
+#### `implementation.models.RouterRuleInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$ClassificationPolicyInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$WorkerWeightedAllocationInternalAccessor` was removed
+
+#### `implementation.accesshelpers.RouterWorkerConstructorProxy$RouterWorkerConstructorAccessor` was removed
+
+#### `implementation.models.WaitTimeExceptionTriggerInternal` was removed
+
+#### `implementation.converters.JobAdapter` was removed
+
+#### `implementation.models.FunctionRouterRuleInternal` was removed
+
+#### `implementation.models.WorkerWeightedAllocationInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterJobAssignmentAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterJobOfferAccessor` was removed
+
+#### `implementation.models.WeightedAllocationQueueSelectorAttachmentInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$FunctionRouterRuleInternalAccessor` was removed
+
+#### `implementation.models.PassThroughWorkerSelectorAttachmentInternal` was removed
+
+#### `implementation.models.QueueWeightedAllocationInternal` was removed
+
+#### `implementation.accesshelpers.RouterQueueConstructorProxy$RouterQueueConstructorAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$WeightedAllocationWorkerSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$DistributionModeInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$RuleEngineWorkerSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.models.QueueAndMatchModeInternal` was removed
+
+#### `implementation.models.DeclineJobOfferOptionsInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$PassThroughWorkerSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.models.JobMatchingModeInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$CancelExceptionActionInternalAccessor` was removed
+
+#### `implementation.models.LongestIdleModeInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterRuleInternalAccessor` was removed
+
+#### `implementation.models.CancelJobOptionsInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$ConditionalWorkerSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.models.RouterQueueSelectorInternal` was removed
+
+#### `implementation.models.StaticQueueSelectorAttachmentInternal` was removed
+
+#### `implementation.converters.ExceptionPolicyAdapter` was removed
+
+#### `implementation.converters.RouterRuleAdapter` was removed
+
+#### `implementation.accesshelpers.ClassificationPolicyConstructorProxy` was removed
+
+#### `implementation.models.RouterQueueInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$QueueLengthExceptionTriggerInternalAccessor` was removed
+
+#### `implementation.models.DistributionModeInternal` was removed
+
+#### `implementation.accesshelpers.RouterJobConstructorProxy$RouterJobConstructorAccessor` was removed
+
+#### `implementation.models.ExceptionPolicyInternal` was removed
+
+#### `implementation.converters.DistributionPolicyAdapter` was removed
+
+#### `implementation.JsonMergePatchHelper$StaticWorkerSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.models.RuleEngineQueueSelectorAttachmentInternal` was removed
+
+#### `implementation.models.RouterWorkerSelectorInternal` was removed
+
+#### `implementation.models.WeightedAllocationWorkerSelectorAttachmentInternal` was removed
+
+#### `implementation.models.QueueSelectorAttachmentInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$QueueWeightedAllocationInternalAccessor` was removed
+
+#### `implementation.models.ExceptionRuleInternal` was removed
+
+#### `implementation.models.ScheduleAndSuspendModeInternal` was removed
+
+#### `implementation.models.SuspendModeInternal` was removed
+
+#### `implementation.models.DirectMapRouterRuleInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$ManualReclassifyExceptionActionInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$RoundRobinModeInternalAccessor` was removed
+
+#### `implementation.models.ExceptionTriggerInternal` was removed
+
+#### `implementation.models.RoundRobinModeInternal` was removed
+
+#### `implementation.accesshelpers.ExceptionPolicyConstructorProxy$ExceptionPolicyConstructorAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$DirectMapRouterRuleInternalAccessor` was removed
+
+#### `implementation.accesshelpers.RouterJobConstructorProxy` was removed
+
+#### `implementation.models.RuleEngineWorkerSelectorAttachmentInternal` was removed
+
+#### `implementation.models.WorkerSelectorAttachmentInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterWorkerAssignmentAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$QueueAndMatchModeInternalAccessor` was removed
+
+#### `implementation.models.CancelExceptionActionInternal` was removed
+
+#### `implementation.models.ExpressionRouterRuleInternal` was removed
+
+#### `implementation.models.ClassificationPolicyInternal` was removed
+
+#### `implementation.models.ConditionalWorkerSelectorAttachmentInternal` was removed
+
+#### `implementation.accesshelpers.RouterValueConstructorProxy` was removed
+
+#### `implementation.JsonMergePatchHelper$SuspendModeInternalAccessor` was removed
+
+#### `implementation.models.RouterJobInternal` was removed
+
+#### `implementation.models.DistributionPolicyInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterWorkerInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterQueueSelectorInternalAccessor` was removed
+
+#### `implementation.accesshelpers.RouterQueueConstructorProxy` was removed
+
+#### `implementation.converters.QueueAdapter` was removed
+
+#### `implementation.JsonMergePatchHelper$PassThroughQueueSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.models.WebhookRouterRuleInternal` was removed
+
+#### `implementation.models.RouterWorkerInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$BestWorkerModeInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$ExceptionRuleInternalAccessor` was removed
+
+#### `implementation.accesshelpers.RouterValueConstructorProxy$RouterValueConstructorAccessor` was removed
+
+#### `implementation.converters.ClassificationPolicyAdapter` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterWorkerSelectorInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$ExpressionRouterRuleInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$ReclassifyExceptionActionInternalAccessor` was removed
+
+#### `implementation.models.ReclassifyExceptionActionInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$WorkerSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$LongestIdleModeInternalAccessor` was removed
+
+#### `implementation.models.QueueLengthExceptionTriggerInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$StaticRouterRuleInternalAccessor` was removed
+
+#### `implementation.accesshelpers.DistributionPolicyConstructorProxy$DistributionPolicyConstructorAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$WaitTimeExceptionTriggerInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterJobInternalAccessor` was removed
+
+#### `implementation.models.PassThroughQueueSelectorAttachmentInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$RuleEngineQueueSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$DistributionPolicyInternalAccessor` was removed
+
+#### `implementation.converters.LabelSelectorAdapter` was removed
+
+#### `implementation.JsonMergePatchHelper$ScheduleAndSuspendModeInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$StaticQueueSelectorAttachmentInternalAccessor` was removed
+
+#### `models.ReclassifyJobOptionsInternal` was removed
+
+#### `implementation.models.CompleteJobOptionsInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$WeightedAllocationQueueSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.models.ExceptionActionInternal` was removed
+
+#### `implementation.models.ConditionalQueueSelectorAttachmentInternal` was removed
+
+#### `implementation.converters.WorkerAdapter` was removed
+
+#### `implementation.accesshelpers.ClassificationPolicyConstructorProxy$ClassificationPolicyConstructorAccessor` was removed
+
+#### `implementation.models.ManualReclassifyExceptionActionInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$ExceptionTriggerInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$QueueSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.JsonMergePatchHelper$ExceptionActionInternalAccessor` was removed
+
+#### `implementation.converters.RouterValueAdapter` was removed
+
+#### `implementation.JsonMergePatchHelper$RouterQueueInternalAccessor` was removed
+
+#### `implementation.models.CloseJobOptionsInternal` was removed
+
+#### `implementation.JsonMergePatchHelper$ConditionalQueueSelectorAttachmentInternalAccessor` was removed
+
+#### `implementation.models.BestWorkerModeInternal` was removed
+
+#### `implementation.models.StaticWorkerSelectorAttachmentInternal` was removed
+
+#### `models.ExceptionTrigger` was modified
+
+* `java.lang.String getKind()` -> `models.ExceptionTriggerKind getKind()`
+
+#### `models.ExceptionAction` was modified
+
+* `java.lang.String getKind()` -> `models.ExceptionActionKind getKind()`
+
+#### `models.ExpressionRouterRule` was modified
+
+* `models.ExpressionRouterRule setLanguage(models.ExpressionRouterRuleLanguage)` -> `models.ExpressionRouterRule setLanguage(models.ExpressionRouterRuleLanguage)`
+
+#### `implementation.JsonMergePatchHelper` was modified
+
+* `setConditionalQueueSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$ConditionalQueueSelectorAttachmentInternalAccessor)` was removed
+* `setLongestIdleModeInternalAccessor(implementation.JsonMergePatchHelper$LongestIdleModeInternalAccessor)` was removed
+* `getDistributionPolicyInternalAccessor()` was removed
+* `setRuleEngineQueueSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$RuleEngineQueueSelectorAttachmentInternalAccessor)` was removed
+* `getScheduleAndSuspendModeInternalAccessor()` was removed
+* `getStaticQueueSelectorAttachmentInternalAccessor()` was removed
+* `setBestWorkerModeInternalAccessor(implementation.JsonMergePatchHelper$BestWorkerModeInternalAccessor)` was removed
+* `setExceptionActionInternalAccessor(implementation.JsonMergePatchHelper$ExceptionActionInternalAccessor)` was removed
+* `setManualReclassifyExceptionActionInternalAccessor(implementation.JsonMergePatchHelper$ManualReclassifyExceptionActionInternalAccessor)` was removed
+* `getExpressionRouterRuleInternalAccessor()` was removed
+* `setRouterWorkerInternalAccessor(implementation.JsonMergePatchHelper$RouterWorkerInternalAccessor)` was removed
+* `setWeightedAllocationWorkerSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$WeightedAllocationWorkerSelectorAttachmentInternalAccessor)` was removed
+* `setWorkerSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$WorkerSelectorAttachmentInternalAccessor)` was removed
+* `setRouterJobAssignmentAccessor(implementation.JsonMergePatchHelper$RouterJobAssignmentAccessor)` was removed
+* `setDirectMapRouterRuleInternalAccessor(implementation.JsonMergePatchHelper$DirectMapRouterRuleInternalAccessor)` was removed
+* `setQueueLengthExceptionTriggerInternalAccessor(implementation.JsonMergePatchHelper$QueueLengthExceptionTriggerInternalAccessor)` was removed
+* `getQueueAndMatchModeInternalAccessor()` was removed
+* `setStaticQueueSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$StaticQueueSelectorAttachmentInternalAccessor)` was removed
+* `setRouterWorkerAssignmentAccessor(implementation.JsonMergePatchHelper$RouterWorkerAssignmentAccessor)` was removed
+* `getRuleEngineQueueSelectorAttachmentInternalAccessor()` was removed
+* `getManualReclassifyExceptionActionInternalAccessor()` was removed
+* `setReclassifyExceptionActionInternalAccessor(implementation.JsonMergePatchHelper$ReclassifyExceptionActionInternalAccessor)` was removed
+* `getBestWorkerModeInternalAccessor()` was removed
+* `setRouterQueueSelectorInternalAccessor(implementation.JsonMergePatchHelper$RouterQueueSelectorInternalAccessor)` was removed
+* `getPassThroughQueueSelectorAttachmentInternalAccessor()` was removed
+* `setExceptionPolicyInternalAccessor(implementation.JsonMergePatchHelper$ExceptionPolicyInternalAccessor)` was removed
+* `getRouterJobInternalAccessor()` was removed
+* `getExceptionRuleInternalAccessor()` was removed
+* `setCancelExceptionActionInternalAccessor(implementation.JsonMergePatchHelper$CancelExceptionActionInternalAccessor)` was removed
+* `setWebhookRouterRuleInternalAccessor(implementation.JsonMergePatchHelper$WebhookRouterRuleInternalAccessor)` was removed
+* `getRouterWorkerSelectorInternalAccessor()` was removed
+* `getRouterWorkerInternalAccessor()` was removed
+* `setStaticWorkerSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$StaticWorkerSelectorAttachmentInternalAccessor)` was removed
+* `setQueueWeightedAllocationInternalAccessor(implementation.JsonMergePatchHelper$QueueWeightedAllocationInternalAccessor)` was removed
+* `getJobMatchingModeInternalAccessor()` was removed
+* `getDistributionModeInternalAccessor()` was removed
+* `setRouterRuleInternalAccessor(implementation.JsonMergePatchHelper$RouterRuleInternalAccessor)` was removed
+* `getConditionalQueueSelectorAttachmentInternalAccessor()` was removed
+* `setDistributionModeInternalAccessor(implementation.JsonMergePatchHelper$DistributionModeInternalAccessor)` was removed
+* `setQueueAndMatchModeInternalAccessor(implementation.JsonMergePatchHelper$QueueAndMatchModeInternalAccessor)` was removed
+* `getRouterRuleInternalAccessor()` was removed
+* `getWorkerSelectorAttachmentInternalAccessor()` was removed
+* `setWorkerWeightedAllocationInternalAccessor(implementation.JsonMergePatchHelper$WorkerWeightedAllocationInternalAccessor)` was removed
+* `setFunctionRouterRuleInternalAccessor(implementation.JsonMergePatchHelper$FunctionRouterRuleInternalAccessor)` was removed
+* `getConditionalWorkerSelectorAttachmentInternalAccessor()` was removed
+* `getSuspendModeInternalAccessor()` was removed
+* `setRouterJobInternalAccessor(implementation.JsonMergePatchHelper$RouterJobInternalAccessor)` was removed
+* `setRuleEngineWorkerSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$RuleEngineWorkerSelectorAttachmentInternalAccessor)` was removed
+* `setExceptionRuleInternalAccessor(implementation.JsonMergePatchHelper$ExceptionRuleInternalAccessor)` was removed
+* `getRouterWorkerAssignmentAccessor()` was removed
+* `getLongestIdleModeInternalAccessor()` was removed
+* `setStaticRouterRuleInternalAccessor(implementation.JsonMergePatchHelper$StaticRouterRuleInternalAccessor)` was removed
+* `getQueueWeightedAllocationInternalAccessor()` was removed
+* `getFunctionRouterRuleInternalAccessor()` was removed
+* `getRuleEngineWorkerSelectorAttachmentInternalAccessor()` was removed
+* `getExceptionTriggerInternalAccessor()` was removed
+* `getWorkerWeightedAllocationInternalAccessor()` was removed
+* `getStaticWorkerSelectorAttachmentInternalAccessor()` was removed
+* `setJobMatchingModeInternalAccessor(implementation.JsonMergePatchHelper$JobMatchingModeInternalAccessor)` was removed
+* `setConditionalWorkerSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$ConditionalWorkerSelectorAttachmentInternalAccessor)` was removed
+* `setRouterWorkerSelectorInternalAccessor(implementation.JsonMergePatchHelper$RouterWorkerSelectorInternalAccessor)` was removed
+* `setExpressionRouterRuleInternalAccessor(implementation.JsonMergePatchHelper$ExpressionRouterRuleInternalAccessor)` was removed
+* `getRoundRobinModeInternalAccessor()` was removed
+* `setSuspendModeInternalAccessor(implementation.JsonMergePatchHelper$SuspendModeInternalAccessor)` was removed
+* `getExceptionPolicyInternalAccessor()` was removed
+* `getRouterJobAssignmentAccessor()` was removed
+* `getClassificationPolicyInternalAccessor()` was removed
+* `getQueueLengthExceptionTriggerInternalAccessor()` was removed
+* `getRouterQueueInternalAccessor()` was removed
+* `setWeightedAllocationQueueSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$WeightedAllocationQueueSelectorAttachmentInternalAccessor)` was removed
+* `setPassThroughQueueSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$PassThroughQueueSelectorAttachmentInternalAccessor)` was removed
+* `setWaitTimeExceptionTriggerInternalAccessor(implementation.JsonMergePatchHelper$WaitTimeExceptionTriggerInternalAccessor)` was removed
+* `setScheduleAndSuspendModeInternalAccessor(implementation.JsonMergePatchHelper$ScheduleAndSuspendModeInternalAccessor)` was removed
+* `getPassThroughWorkerSelectorAttachmentInternalAccessor()` was removed
+* `setQueueSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$QueueSelectorAttachmentInternalAccessor)` was removed
+* `getWaitTimeExceptionTriggerInternalAccessor()` was removed
+* `getWebhookRouterRuleInternalAccessor()` was removed
+* `getRouterQueueSelectorInternalAccessor()` was removed
+* `setExceptionTriggerInternalAccessor(implementation.JsonMergePatchHelper$ExceptionTriggerInternalAccessor)` was removed
+* `getExceptionActionInternalAccessor()` was removed
+* `getWeightedAllocationQueueSelectorAttachmentInternalAccessor()` was removed
+* `getRouterJobOfferAccessor()` was removed
+* `getStaticRouterRuleInternalAccessor()` was removed
+* `getReclassifyExceptionActionInternalAccessor()` was removed
+* `getWeightedAllocationWorkerSelectorAttachmentInternalAccessor()` was removed
+* `getDirectMapRouterRuleInternalAccessor()` was removed
+* `setRouterJobOfferAccessor(implementation.JsonMergePatchHelper$RouterJobOfferAccessor)` was removed
+* `setDistributionPolicyInternalAccessor(implementation.JsonMergePatchHelper$DistributionPolicyInternalAccessor)` was removed
+* `setPassThroughWorkerSelectorAttachmentInternalAccessor(implementation.JsonMergePatchHelper$PassThroughWorkerSelectorAttachmentInternalAccessor)` was removed
+* `setRoundRobinModeInternalAccessor(implementation.JsonMergePatchHelper$RoundRobinModeInternalAccessor)` was removed
+* `getCancelExceptionActionInternalAccessor()` was removed
+* `getQueueSelectorAttachmentInternalAccessor()` was removed
+* `setClassificationPolicyInternalAccessor(implementation.JsonMergePatchHelper$ClassificationPolicyInternalAccessor)` was removed
+* `setRouterQueueInternalAccessor(implementation.JsonMergePatchHelper$RouterQueueInternalAccessor)` was removed
+
+#### `models.ScoringRuleOptions` was modified
+
+* `setIsBatchScoringEnabled(java.lang.Boolean)` was removed
+
+#### `models.DistributionMode` was modified
+
+* `java.lang.String getKind()` -> `models.DistributionModeKind getKind()`
+
+#### `models.JobMatchingMode` was modified
+
+* `java.lang.String getKind()` -> `models.JobMatchingModeKind getKind()`
+
+#### `models.WorkerSelectorAttachment` was modified
+
+* `java.lang.String getKind()` -> `models.WorkerSelectorAttachmentKind getKind()`
+
+#### `models.QueueSelectorAttachment` was modified
+
+* `java.lang.String getKind()` -> `models.QueueSelectorAttachmentKind getKind()`
+
+#### `models.RouterRule` was modified
+
+* `java.lang.String getKind()` -> `models.RouterRuleKind getKind()`
+
+### Features Added
+
+* `models.DistributionModeKind` was added
+
+* `implementation.JsonMergePatchHelper$ClassificationPolicyAccessor` was added
+
+* `implementation.JsonMergePatchHelper$DistributionModeAccessor` was added
+
+* `implementation.JsonMergePatchHelper$ExceptionActionAccessor` was added
+
+* `implementation.JsonMergePatchHelper$ExceptionTriggerAccessor` was added
+
+* `models.CreateJobWithClassificationPolicyOptions` was added
+
+* `implementation.JsonMergePatchHelper$JobMatchingModeAccessor` was added
+
+* `models.ExceptionActionKind` was added
+
+* `implementation.utils.CustomizationHelper` was added
+
+* `implementation.JsonMergePatchHelper$RouterWorkerSelectorAccessor` was added
+
+* `implementation.JsonMergePatchHelper$RouterQueueSelectorAccessor` was added
+
+* `implementation.JsonMergePatchHelper$DistributionPolicyAccessor` was added
+
+* `implementation.JsonMergePatchHelper$RouterJobAccessor` was added
+
+* `implementation.JsonMergePatchHelper$WorkerWeightedAllocationAccessor` was added
+
+* `implementation.JsonMergePatchHelper$QueueSelectorAttachmentAccessor` was added
+
+* `models.JobMatchingModeKind` was added
+
+* `implementation.JsonMergePatchHelper$ExceptionPolicyAccessor` was added
+
+* `implementation.JsonMergePatchHelper$ExceptionRuleAccessor` was added
+
+* `models.ExceptionTriggerKind` was added
+
+* `models.WorkerSelectorAttachmentKind` was added
+
+* `implementation.converters.OptionBagAdapters` was added
+
+* `implementation.JsonMergePatchHelper$QueueWeightedAllocationAccessor` was added
+
+* `implementation.JsonMergePatchHelper$RouterRuleAccessor` was added
+
+* `implementation.JsonMergePatchHelper$RouterWorkerAccessor` was added
+
+* `implementation.JsonMergePatchHelper$RouterQueueAccessor` was added
+
+* `implementation.JsonMergePatchHelper$WorkerSelectorAttachmentAccessor` was added
+
+* `models.QueueSelectorAttachmentKind` was added
+
+* `models.RouterRuleKind` was added
+
+#### `models.QueueAndMatchMode` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+
+#### `implementation.JsonMergePatchHelper$RouterChannelAccessor` was modified
+
+* `isJsonMergePatch(models.RouterChannel)` was added
+
+#### `models.UnassignJobOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RouterQueueSelector` was modified
+
+* `setKey(java.lang.String)` was added
+* `setLabelOperator(models.LabelOperator)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AcceptJobOfferResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CancelExceptionAction` was modified
+
+* `setId(java.lang.String)` was added
+* `getKind()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `implementation.JsonMergePatchHelper$FunctionRouterRuleCredentialAccessor` was modified
+
+* `isJsonMergePatch(models.FunctionRouterRuleCredential)` was added
+
+#### `models.RouterWorkerAssignment` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WebhookRouterRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `JobRouterAsyncClient` was modified
+
+* `createJobWithClassificationPolicyWithResponse(models.CreateJobWithClassificationPolicyOptions,com.azure.core.http.rest.RequestOptions)` was added
+* `updateWorker(java.lang.String,models.RouterWorker)` was added
+* `updateJob(java.lang.String,models.RouterJob)` was added
+* `createJobWithClassificationPolicy(models.CreateJobWithClassificationPolicyOptions)` was added
+
+#### `models.ExceptionTrigger` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WeightedAllocationWorkerSelectorAttachment` was modified
+
+* `getKind()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `setAllocations(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExceptionAction` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `setId(java.lang.String)` was added
+
+#### `models.OAuth2WebhookClientCredential` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CloseJobOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RouterQueueStatistics` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.models.DeclineJobOfferResultInternal` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WeightedAllocationQueueSelectorAttachment` was modified
+
+* `setAllocations(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.LongestIdleMode` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RuleEngineQueueSelectorAttachment` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+* `setRule(models.RouterRule)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.JsonMergePatchHelper$RouterJobNoteAccessor` was modified
+
+* `isJsonMergePatch(models.RouterJobNote)` was added
+
+#### `models.PassThroughWorkerSelectorAttachment` was modified
+
+* `setKey(java.lang.String)` was added
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setLabelOperator(models.LabelOperator)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RouterJobOffer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.QueueWeightedAllocation` was modified
+
+* `setWeight(double)` was added
+* `setQueueSelectors(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.StaticWorkerSelectorAttachment` was modified
+
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `setWorkerSelector(models.RouterWorkerSelector)` was added
+
+#### `models.WorkerWeightedAllocation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `setWeight(double)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setWorkerSelectors(java.util.List)` was added
+
+#### `models.ExpressionRouterRule` was modified
+
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `setExpression(java.lang.String)` was added
+
+#### `implementation.JsonMergePatchHelper$OAuth2WebhookClientCredentialAccessor` was modified
+
+* `isJsonMergePatch(models.OAuth2WebhookClientCredential)` was added
+
+#### `models.ManualReclassifyExceptionAction` was modified
+
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setId(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BestWorkerMode` was modified
+
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.QueueLengthExceptionTrigger` was modified
+
+* `setThreshold(int)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RouterQueue` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RouterJob` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.JsonMergePatchHelper` was modified
+
+* `setWorkerSelectorAttachmentAccessor(implementation.JsonMergePatchHelper$WorkerSelectorAttachmentAccessor)` was added
+* `getJobMatchingModeAccessor()` was added
+* `setDistributionModeAccessor(implementation.JsonMergePatchHelper$DistributionModeAccessor)` was added
+* `getExceptionActionAccessor()` was added
+* `setRouterWorkerAccessor(implementation.JsonMergePatchHelper$RouterWorkerAccessor)` was added
+* `getRouterJobAccessor()` was added
+* `getExceptionPolicyAccessor()` was added
+* `getRouterWorkerAccessor()` was added
+* `getExceptionTriggerAccessor()` was added
+* `getWorkerWeightedAllocationAccessor()` was added
+* `setRouterRuleAccessor(implementation.JsonMergePatchHelper$RouterRuleAccessor)` was added
+* `setExceptionRuleAccessor(implementation.JsonMergePatchHelper$ExceptionRuleAccessor)` was added
+* `getDistributionPolicyAccessor()` was added
+* `setQueueWeightedAllocationAccessor(implementation.JsonMergePatchHelper$QueueWeightedAllocationAccessor)` was added
+* `getClassificationPolicyAccessor()` was added
+* `setJobMatchingModeAccessor(implementation.JsonMergePatchHelper$JobMatchingModeAccessor)` was added
+* `getRouterQueueSelectorAccessor()` was added
+* `setQueueSelectorAttachmentAccessor(implementation.JsonMergePatchHelper$QueueSelectorAttachmentAccessor)` was added
+* `getQueueWeightedAllocationAccessor()` was added
+* `getWorkerSelectorAttachmentAccessor()` was added
+* `setRouterWorkerSelectorAccessor(implementation.JsonMergePatchHelper$RouterWorkerSelectorAccessor)` was added
+* `getExceptionRuleAccessor()` was added
+* `getRouterRuleAccessor()` was added
+* `getQueueSelectorAttachmentAccessor()` was added
+* `setDistributionPolicyAccessor(implementation.JsonMergePatchHelper$DistributionPolicyAccessor)` was added
+* `getRouterWorkerSelectorAccessor()` was added
+* `setRouterJobAccessor(implementation.JsonMergePatchHelper$RouterJobAccessor)` was added
+* `setClassificationPolicyAccessor(implementation.JsonMergePatchHelper$ClassificationPolicyAccessor)` was added
+* `setWorkerWeightedAllocationAccessor(implementation.JsonMergePatchHelper$WorkerWeightedAllocationAccessor)` was added
+* `setRouterQueueAccessor(implementation.JsonMergePatchHelper$RouterQueueAccessor)` was added
+* `setExceptionActionAccessor(implementation.JsonMergePatchHelper$ExceptionActionAccessor)` was added
+* `setExceptionTriggerAccessor(implementation.JsonMergePatchHelper$ExceptionTriggerAccessor)` was added
+* `getDistributionModeAccessor()` was added
+* `getRouterQueueAccessor()` was added
+* `setRouterQueueSelectorAccessor(implementation.JsonMergePatchHelper$RouterQueueSelectorAccessor)` was added
+* `setExceptionPolicyAccessor(implementation.JsonMergePatchHelper$ExceptionPolicyAccessor)` was added
+
+#### `models.ClassificationPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.StaticRouterRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.DistributionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.StaticQueueSelectorAttachment` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `setQueueSelector(models.RouterQueueSelector)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScoringRuleOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.JsonMergePatchHelper$ScoringRuleOptionsAccessor` was modified
+
+* `isJsonMergePatch(models.ScoringRuleOptions)` was added
+
+#### `models.WaitTimeExceptionTrigger` was modified
+
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setThreshold(java.time.Duration)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FunctionRouterRuleCredential` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RouterValue` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CancelJobOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.models.CloseJobResultInternal` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CreateWorkerOptions` was modified
+
+* `setMaxConcurrentOffers(java.lang.Integer)` was added
+* `getMaxConcurrentOffers()` was added
+
+#### `models.RouterWorkerSelector` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `setKey(java.lang.String)` was added
+* `setLabelOperator(models.LabelOperator)` was added
+
+#### `models.CompleteJobOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PassThroughQueueSelectorAttachment` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setLabelOperator(models.LabelOperator)` was added
+* `setKey(java.lang.String)` was added
+* `getKind()` was added
+
+#### `models.RouterChannel` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `setCapacityCostPerJob(int)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setChannelId(java.lang.String)` was added
+
+#### `models.SuspendMode` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+
+#### `implementation.models.CompleteJobResultInternal` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RouterWorker` was modified
+
+* `getMaxConcurrentOffers()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setMaxConcurrentOffers(java.lang.Integer)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeclineJobOfferOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ConditionalWorkerSelectorAttachment` was modified
+
+* `setCondition(models.RouterRule)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `setWorkerSelectors(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.UnassignJobResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.models.ReclassifyJobResultInternal` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DistributionMode` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DirectMapRouterRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.ReclassifyExceptionAction` was modified
+
+* `setId(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExceptionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `JobRouterAdministrationAsyncClient` was modified
+
+* `updateExceptionPolicy(java.lang.String,models.ExceptionPolicy)` was added
+* `updateClassificationPolicy(java.lang.String,models.ClassificationPolicy)` was added
+* `updateQueue(java.lang.String,models.RouterQueue)` was added
+* `updateDistributionPolicy(java.lang.String,models.DistributionPolicy)` was added
+
+#### `models.RouterJobAssignment` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `JobRouterAdministrationClient` was modified
+
+* `updateClassificationPolicy(java.lang.String,models.ClassificationPolicy)` was added
+* `updateQueue(java.lang.String,models.RouterQueue)` was added
+* `updateDistributionPolicy(java.lang.String,models.DistributionPolicy)` was added
+* `updateExceptionPolicy(java.lang.String,models.ExceptionPolicy)` was added
+
+#### `models.ExceptionRule` was modified
+
+* `setId(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setActions(java.util.List)` was added
+* `setTrigger(models.ExceptionTrigger)` was added
+
+#### `models.JobMatchingMode` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ConditionalQueueSelectorAttachment` was modified
+
+* `getKind()` was added
+* `setCondition(models.RouterRule)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setQueueSelectors(java.util.List)` was added
+
+#### `implementation.models.ReclassifyJobOptionsInternal` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RouterJobNote` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setMessage(java.lang.String)` was added
+
+#### `models.WorkerSelectorAttachment` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `JobRouterClient` was modified
+
+* `updateJob(java.lang.String,models.RouterJob)` was added
+* `createJobWithClassificationPolicyWithResponse(models.CreateJobWithClassificationPolicyOptions,com.azure.core.http.rest.RequestOptions)` was added
+* `updateWorker(java.lang.String,models.RouterWorker)` was added
+* `createJobWithClassificationPolicy(models.CreateJobWithClassificationPolicyOptions)` was added
+
+#### `models.QueueSelectorAttachment` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RuleEngineWorkerSelectorAttachment` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setRule(models.RouterRule)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+
+#### `models.ScheduleAndSuspendMode` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `setScheduleAt(java.time.OffsetDateTime)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FunctionRouterRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `setFunctionUri(java.lang.String)` was added
+* `getKind()` was added
+
+#### `models.RoundRobinMode` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RouterRule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RouterJobPositionDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.models.CancelJobResultInternal` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.1.12 (2025-03-24)
 
