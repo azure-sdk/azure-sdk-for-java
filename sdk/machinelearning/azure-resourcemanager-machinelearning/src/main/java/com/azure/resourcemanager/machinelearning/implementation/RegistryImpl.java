@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.RegistryInner;
 import com.azure.resourcemanager.machinelearning.models.ArmResourceId;
+import com.azure.resourcemanager.machinelearning.models.ManagedResourceGroupSettings;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.PartialRegistryPartialTrackedResource;
 import com.azure.resourcemanager.machinelearning.models.PartialSku;
@@ -77,6 +78,10 @@ public final class RegistryImpl implements Registry, Registry.Definition, Regist
 
     public ArmResourceId managedResourceGroup() {
         return this.innerModel().managedResourceGroup();
+    }
+
+    public ManagedResourceGroupSettings managedResourceGroupSettings() {
+        return this.innerModel().managedResourceGroupSettings();
     }
 
     public String mlFlowRegistryUri() {
@@ -256,6 +261,11 @@ public final class RegistryImpl implements Registry, Registry.Definition, Regist
 
     public RegistryImpl withManagedResourceGroup(ArmResourceId managedResourceGroup) {
         this.innerModel().withManagedResourceGroup(managedResourceGroup);
+        return this;
+    }
+
+    public RegistryImpl withManagedResourceGroupSettings(ManagedResourceGroupSettings managedResourceGroupSettings) {
+        this.innerModel().withManagedResourceGroupSettings(managedResourceGroupSettings);
         return this;
     }
 
