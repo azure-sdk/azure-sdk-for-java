@@ -13,12 +13,12 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Tags field of the HANA instance.
+ * Tags field of the resource.
  */
 @Fluent
 public final class Tags implements JsonSerializable<Tags> {
     /*
-     * Tags field of the HANA instance.
+     * Tags field of the resource.
      */
     private Map<String, String> tags;
 
@@ -29,7 +29,7 @@ public final class Tags implements JsonSerializable<Tags> {
     }
 
     /**
-     * Get the tags property: Tags field of the HANA instance.
+     * Get the tags property: Tags field of the resource.
      * 
      * @return the tags value.
      */
@@ -38,7 +38,7 @@ public final class Tags implements JsonSerializable<Tags> {
     }
 
     /**
-     * Set the tags property: Tags field of the HANA instance.
+     * Set the tags property: Tags field of the resource.
      * 
      * @param tags the tags value to set.
      * @return the Tags object itself.
