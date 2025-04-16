@@ -81,6 +81,11 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
      */
     private Boolean enableDataResidency;
 
+    /*
+     * Portal endpoint to enable CORS for this provisioning service.
+     */
+    private String portalOperationsHostname;
+
     /**
      * Creates an instance of IotDpsPropertiesDescription class.
      */
@@ -299,6 +304,26 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
     }
 
     /**
+     * Get the portalOperationsHostname property: Portal endpoint to enable CORS for this provisioning service.
+     * 
+     * @return the portalOperationsHostname value.
+     */
+    public String portalOperationsHostname() {
+        return this.portalOperationsHostname;
+    }
+
+    /**
+     * Set the portalOperationsHostname property: Portal endpoint to enable CORS for this provisioning service.
+     * 
+     * @param portalOperationsHostname the portalOperationsHostname value to set.
+     * @return the IotDpsPropertiesDescription object itself.
+     */
+    public IotDpsPropertiesDescription withPortalOperationsHostname(String portalOperationsHostname) {
+        this.portalOperationsHostname = portalOperationsHostname;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -337,6 +362,7 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
         jsonWriter.writeArrayField("authorizationPolicies", this.authorizationPolicies,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeBooleanField("enableDataResidency", this.enableDataResidency);
+        jsonWriter.writeStringField("portalOperationsHostName", this.portalOperationsHostname);
         return jsonWriter.writeEndObject();
     }
 
@@ -389,6 +415,8 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
                 } else if ("enableDataResidency".equals(fieldName)) {
                     deserializedIotDpsPropertiesDescription.enableDataResidency
                         = reader.getNullable(JsonReader::getBoolean);
+                } else if ("portalOperationsHostName".equals(fieldName)) {
+                    deserializedIotDpsPropertiesDescription.portalOperationsHostname = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

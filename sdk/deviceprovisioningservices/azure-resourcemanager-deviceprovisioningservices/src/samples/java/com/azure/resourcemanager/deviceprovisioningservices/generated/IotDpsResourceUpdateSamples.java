@@ -14,8 +14,8 @@ import java.util.Map;
 public final class IotDpsResourceUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSPatch.
-     * json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSPatch.json
      */
     /**
      * Sample code: DPSPatch.
