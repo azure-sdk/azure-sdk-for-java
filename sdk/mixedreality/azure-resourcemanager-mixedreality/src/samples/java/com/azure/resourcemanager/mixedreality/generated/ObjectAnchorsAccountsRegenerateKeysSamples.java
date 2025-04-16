@@ -8,22 +8,22 @@ import com.azure.resourcemanager.mixedreality.models.AccountKeyRegenerateRequest
 import com.azure.resourcemanager.mixedreality.models.Serial;
 
 /**
- * Samples for SpatialAnchorsAccounts RegenerateKeys.
+ * Samples for ObjectAnchorsAccounts RegenerateKeys.
  */
-public final class SpatialAnchorsAccountsRegenerateKeysSamples {
+public final class ObjectAnchorsAccountsRegenerateKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/spatial-
+     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/object-
      * anchors/RegenerateKey.json
      */
     /**
-     * Sample code: Regenerate spatial anchors account keys.
+     * Sample code: Regenerate object anchors account keys.
      * 
      * @param manager Entry point to MixedRealityManager.
      */
     public static void
-        regenerateSpatialAnchorsAccountKeys(com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
-        manager.spatialAnchorsAccounts()
+        regenerateObjectAnchorsAccountKeys(com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
+        manager.objectAnchorsAccounts()
             .regenerateKeysWithResponse("MyResourceGroup", "MyAccount",
                 new AccountKeyRegenerateRequest().withSerial(Serial.ONE), com.azure.core.util.Context.NONE);
     }

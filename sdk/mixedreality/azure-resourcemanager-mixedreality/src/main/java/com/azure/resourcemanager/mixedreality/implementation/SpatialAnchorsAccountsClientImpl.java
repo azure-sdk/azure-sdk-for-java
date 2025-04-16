@@ -164,6 +164,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Spatial Anchors Accounts by Subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
@@ -191,6 +197,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Spatial Anchors Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
@@ -220,6 +232,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Spatial Anchors Accounts by Subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
@@ -233,6 +251,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Spatial Anchors Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
@@ -248,6 +272,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Spatial Anchors Accounts by Subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
@@ -260,6 +290,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Spatial Anchors Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
@@ -274,6 +310,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -308,6 +350,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -343,6 +391,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -358,6 +412,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -374,6 +434,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -388,6 +454,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -403,6 +475,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -437,6 +515,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -472,6 +556,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -487,6 +577,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -503,6 +599,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -517,6 +619,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -553,6 +661,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -588,6 +702,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -604,6 +724,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -621,6 +747,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -636,6 +768,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -678,6 +816,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -720,6 +864,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -738,6 +888,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -756,6 +912,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -773,6 +935,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Creating or Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -815,6 +983,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Creating or Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -857,6 +1031,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Creating or Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -875,6 +1055,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Creating or Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -893,6 +1079,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Creating or Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -910,6 +1102,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -944,6 +1142,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -979,6 +1183,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -995,6 +1205,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -1012,6 +1228,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -1027,6 +1249,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -1068,6 +1296,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -1109,6 +1343,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -1127,6 +1367,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -1145,6 +1391,12 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
     }
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.

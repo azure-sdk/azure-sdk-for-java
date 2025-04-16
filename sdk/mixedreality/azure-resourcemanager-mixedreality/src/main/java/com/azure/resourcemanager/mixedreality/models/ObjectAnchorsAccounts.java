@@ -9,9 +9,9 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
 /**
- * Resource collection API of SpatialAnchorsAccounts.
+ * Resource collection API of ObjectAnchorsAccounts.
  */
-public interface SpatialAnchorsAccounts {
+public interface ObjectAnchorsAccounts {
     /**
      * &gt; [!NOTE]
      * &gt;
@@ -19,13 +19,13 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Spatial Anchors Accounts by Subscription.
+     * List Object Anchors Accounts by Subscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of the request to get resource collection as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SpatialAnchorsAccount> list();
+    PagedIterable<ObjectAnchorsAccount> list();
 
     /**
      * &gt; [!NOTE]
@@ -34,7 +34,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Spatial Anchors Accounts by Subscription.
+     * List Object Anchors Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -42,7 +42,7 @@ public interface SpatialAnchorsAccounts {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of the request to get resource collection as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SpatialAnchorsAccount> list(Context context);
+    PagedIterable<ObjectAnchorsAccount> list(Context context);
 
     /**
      * &gt; [!NOTE]
@@ -59,7 +59,7 @@ public interface SpatialAnchorsAccounts {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of the request to get resource collection as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SpatialAnchorsAccount> listByResourceGroup(String resourceGroupName);
+    PagedIterable<ObjectAnchorsAccount> listByResourceGroup(String resourceGroupName);
 
     /**
      * &gt; [!NOTE]
@@ -77,7 +77,7 @@ public interface SpatialAnchorsAccounts {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of the request to get resource collection as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SpatialAnchorsAccount> listByResourceGroup(String resourceGroupName, Context context);
+    PagedIterable<ObjectAnchorsAccount> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
      * &gt; [!NOTE]
@@ -86,7 +86,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Spatial Anchors Account.
+     * Delete an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -105,7 +105,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Spatial Anchors Account.
+     * Delete an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -122,7 +122,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Spatial Anchors Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -130,9 +130,9 @@ public interface SpatialAnchorsAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return spatialAnchorsAccount Response along with {@link Response}.
+     * @return objectAnchorsAccount Response along with {@link Response}.
      */
-    Response<SpatialAnchorsAccount> getByResourceGroupWithResponse(String resourceGroupName, String accountName,
+    Response<ObjectAnchorsAccount> getByResourceGroupWithResponse(String resourceGroupName, String accountName,
         Context context);
 
     /**
@@ -142,16 +142,16 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Spatial Anchors Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return spatialAnchorsAccount Response.
+     * @return objectAnchorsAccount Response.
      */
-    SpatialAnchorsAccount getByResourceGroup(String resourceGroupName, String accountName);
+    ObjectAnchorsAccount getByResourceGroup(String resourceGroupName, String accountName);
 
     /**
      * &gt; [!NOTE]
@@ -160,7 +160,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Spatial Anchors Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -179,7 +179,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Spatial Anchors Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -197,7 +197,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Spatial Anchors Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -218,7 +218,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Spatial Anchors Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -237,15 +237,15 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Spatial Anchors Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return spatialAnchorsAccount Response along with {@link Response}.
+     * @return objectAnchorsAccount Response along with {@link Response}.
      */
-    SpatialAnchorsAccount getById(String id);
+    ObjectAnchorsAccount getById(String id);
 
     /**
      * &gt; [!NOTE]
@@ -254,16 +254,16 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Spatial Anchors Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return spatialAnchorsAccount Response along with {@link Response}.
+     * @return objectAnchorsAccount Response along with {@link Response}.
      */
-    Response<SpatialAnchorsAccount> getByIdWithResponse(String id, Context context);
+    Response<ObjectAnchorsAccount> getByIdWithResponse(String id, Context context);
 
     /**
      * &gt; [!NOTE]
@@ -272,7 +272,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Spatial Anchors Account.
+     * Delete an Object Anchors Account.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -288,7 +288,7 @@ public interface SpatialAnchorsAccounts {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Spatial Anchors Account.
+     * Delete an Object Anchors Account.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -300,10 +300,10 @@ public interface SpatialAnchorsAccounts {
     Response<Void> deleteByIdWithResponse(String id, Context context);
 
     /**
-     * Begins definition for a new SpatialAnchorsAccount resource.
+     * Begins definition for a new ObjectAnchorsAccount resource.
      * 
      * @param name resource name.
-     * @return the first stage of the new SpatialAnchorsAccount definition.
+     * @return the first stage of the new ObjectAnchorsAccount definition.
      */
-    SpatialAnchorsAccount.DefinitionStages.Blank define(String name);
+    ObjectAnchorsAccount.DefinitionStages.Blank define(String name);
 }
