@@ -234,7 +234,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter managementGroupName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForManagementGroup(this.client.getEndpoint(),
@@ -288,7 +288,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter managementGroupName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -494,7 +494,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         if (subscriptionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForSubscription(this.client.getEndpoint(),
@@ -546,7 +546,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         if (subscriptionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -757,7 +757,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResourceGroup(this.client.getEndpoint(),
@@ -814,7 +814,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listQueryResultsForResourceGroup(this.client.getEndpoint(), policyEventsResource, subscriptionId,
@@ -1027,7 +1027,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResource(this.client.getEndpoint(), policyEventsResource,
@@ -1080,7 +1080,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1295,7 +1295,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 new IllegalArgumentException("Parameter policySetDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForPolicySetDefinition(this.client.getEndpoint(),
@@ -1353,7 +1353,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 new IllegalArgumentException("Parameter policySetDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1574,7 +1574,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter policyDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForPolicyDefinition(this.client.getEndpoint(),
@@ -1632,7 +1632,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter policyDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1853,7 +1853,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1912,7 +1912,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2137,7 +2137,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResourceGroupLevelPolicyAssignment(
@@ -2201,7 +2201,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
