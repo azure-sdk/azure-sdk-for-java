@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.notificationhubs.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,15 +16,15 @@ import java.util.List;
 /**
  * The response of the List Namespace operation.
  */
-@Fluent
+@Immutable
 public final class NamespaceListResult implements JsonSerializable<NamespaceListResult> {
     /*
-     * Result of the List Namespace operation.
+     * Gets or sets result of the List AuthorizationRules operation.
      */
     private List<NamespaceResourceInner> value;
 
     /*
-     * Link to the next set of results. Not empty if Value contains incomplete list of Namespaces
+     * Gets or sets link to the next set of results.
      */
     private String nextLink;
 
@@ -35,7 +35,7 @@ public final class NamespaceListResult implements JsonSerializable<NamespaceList
     }
 
     /**
-     * Get the value property: Result of the List Namespace operation.
+     * Get the value property: Gets or sets result of the List AuthorizationRules operation.
      * 
      * @return the value value.
      */
@@ -44,36 +44,12 @@ public final class NamespaceListResult implements JsonSerializable<NamespaceList
     }
 
     /**
-     * Set the value property: Result of the List Namespace operation.
-     * 
-     * @param value the value value to set.
-     * @return the NamespaceListResult object itself.
-     */
-    public NamespaceListResult withValue(List<NamespaceResourceInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the nextLink property: Link to the next set of results. Not empty if Value contains incomplete list of
-     * Namespaces.
+     * Get the nextLink property: Gets or sets link to the next set of results.
      * 
      * @return the nextLink value.
      */
     public String nextLink() {
         return this.nextLink;
-    }
-
-    /**
-     * Set the nextLink property: Link to the next set of results. Not empty if Value contains incomplete list of
-     * Namespaces.
-     * 
-     * @param nextLink the nextLink value to set.
-     * @return the NamespaceListResult object itself.
-     */
-    public NamespaceListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
     }
 
     /**
@@ -93,8 +69,6 @@ public final class NamespaceListResult implements JsonSerializable<NamespaceList
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 

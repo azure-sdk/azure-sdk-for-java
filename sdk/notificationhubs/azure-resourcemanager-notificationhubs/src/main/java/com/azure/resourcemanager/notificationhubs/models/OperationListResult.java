@@ -14,18 +14,20 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Result of the request to list NotificationHubs operations. It contains a list of operations and a URL link to get the
- * next set of results.
+ * Result of the request to list NotificationHubs operations. It contains
+ * a list of operations and a URL link to get the next set of results.
  */
 @Immutable
 public final class OperationListResult implements JsonSerializable<OperationListResult> {
     /*
-     * List of NotificationHubs operations supported by the Microsoft.NotificationHubs resource provider.
+     * Gets list of NotificationHubs operations supported by the
+     * Microsoft.NotificationHubs resource provider.
      */
     private List<OperationInner> value;
 
     /*
-     * URL to get the next set of operation list results if there are any.
+     * Gets URL to get the next set of operation list results if there are
+     * any.
      */
     private String nextLink;
 
@@ -36,8 +38,8 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Get the value property: List of NotificationHubs operations supported by the Microsoft.NotificationHubs resource
-     * provider.
+     * Get the value property: Gets list of NotificationHubs operations supported by the
+     * Microsoft.NotificationHubs resource provider.
      * 
      * @return the value value.
      */
@@ -46,7 +48,8 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Get the nextLink property: URL to get the next set of operation list results if there are any.
+     * Get the nextLink property: Gets URL to get the next set of operation list results if there are
+     * any.
      * 
      * @return the nextLink value.
      */

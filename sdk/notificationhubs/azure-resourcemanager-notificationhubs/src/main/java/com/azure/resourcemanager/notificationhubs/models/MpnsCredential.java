@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.notificationhubs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -18,9 +19,9 @@ import java.io.IOException;
 @Fluent
 public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
     /*
-     * Properties of NotificationHub MpnsCredential.
+     * Description of a NotificationHub MpnsCredential.
      */
-    private MpnsCredentialProperties innerProperties;
+    private MpnsCredentialProperties innerProperties = new MpnsCredentialProperties();
 
     /**
      * Creates an instance of MpnsCredential class.
@@ -29,7 +30,7 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
     }
 
     /**
-     * Get the innerProperties property: Properties of NotificationHub MpnsCredential.
+     * Get the innerProperties property: Description of a NotificationHub MpnsCredential.
      * 
      * @return the innerProperties value.
      */
@@ -38,7 +39,7 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
     }
 
     /**
-     * Get the mpnsCertificate property: The MPNS certificate.
+     * Get the mpnsCertificate property: Gets or sets the MPNS certificate.
      * 
      * @return the mpnsCertificate value.
      */
@@ -47,7 +48,7 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
     }
 
     /**
-     * Set the mpnsCertificate property: The MPNS certificate.
+     * Set the mpnsCertificate property: Gets or sets the MPNS certificate.
      * 
      * @param mpnsCertificate the mpnsCertificate value to set.
      * @return the MpnsCredential object itself.
@@ -61,7 +62,7 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
     }
 
     /**
-     * Get the certificateKey property: The certificate key for this credential.
+     * Get the certificateKey property: Gets or sets the certificate key for this credential.
      * 
      * @return the certificateKey value.
      */
@@ -70,7 +71,7 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
     }
 
     /**
-     * Set the certificateKey property: The certificate key for this credential.
+     * Set the certificateKey property: Gets or sets the certificate key for this credential.
      * 
      * @param certificateKey the certificateKey value to set.
      * @return the MpnsCredential object itself.
@@ -84,7 +85,7 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
     }
 
     /**
-     * Get the thumbprint property: The MPNS certificate Thumbprint.
+     * Get the thumbprint property: Gets or sets the MPNS certificate Thumbprint.
      * 
      * @return the thumbprint value.
      */
@@ -93,7 +94,7 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
     }
 
     /**
-     * Set the thumbprint property: The MPNS certificate Thumbprint.
+     * Set the thumbprint property: Gets or sets the MPNS certificate Thumbprint.
      * 
      * @param thumbprint the thumbprint value to set.
      * @return the MpnsCredential object itself.
@@ -112,10 +113,15 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
+        if (innerProperties() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property innerProperties in model MpnsCredential"));
+        } else {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(MpnsCredential.class);
 
     /**
      * {@inheritDoc}
@@ -133,6 +139,7 @@ public final class MpnsCredential implements JsonSerializable<MpnsCredential> {
      * @param jsonReader The JsonReader being read.
      * @return An instance of MpnsCredential if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the MpnsCredential.
      */
     public static MpnsCredential fromJson(JsonReader jsonReader) throws IOException {

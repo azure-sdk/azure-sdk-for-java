@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Name of the notification hub sku.
+ * Namespace SKU name.
  */
 public final class SkuName extends ExpandableStringEnum<SkuName> {
     /**

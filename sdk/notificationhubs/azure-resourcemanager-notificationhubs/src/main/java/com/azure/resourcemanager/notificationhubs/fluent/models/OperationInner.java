@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.notificationhubs.models.OperationDisplay;
+import com.azure.resourcemanager.notificationhubs.models.OperationProperties;
 import java.io.IOException;
 
 /**
@@ -18,7 +19,7 @@ import java.io.IOException;
 @Fluent
 public final class OperationInner implements JsonSerializable<OperationInner> {
     /*
-     * Operation name: {provider}/{resource}/{operation}
+     * Gets operation name: {provider}/{resource}/{operation}
      */
     private String name;
 
@@ -27,6 +28,16 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
      */
     private OperationDisplay display;
 
+    /*
+     * Optional operation properties.
+     */
+    private OperationProperties properties;
+
+    /*
+     * Gets or sets IsDataAction property. It is used to differentiate management and data plane operations.
+     */
+    private Boolean isDataAction;
+
     /**
      * Creates an instance of OperationInner class.
      */
@@ -34,7 +45,7 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     }
 
     /**
-     * Get the name property: Operation name: {provider}/{resource}/{operation}.
+     * Get the name property: Gets operation name: {provider}/{resource}/{operation}.
      * 
      * @return the name value.
      */
@@ -63,6 +74,36 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     }
 
     /**
+     * Get the properties property: Optional operation properties.
+     * 
+     * @return the properties value.
+     */
+    public OperationProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Optional operation properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the OperationInner object itself.
+     */
+    public OperationInner withProperties(OperationProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the isDataAction property: Gets or sets IsDataAction property. It is used to differentiate management and
+     * data plane operations.
+     * 
+     * @return the isDataAction value.
+     */
+    public Boolean isDataAction() {
+        return this.isDataAction;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -70,6 +111,9 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     public void validate() {
         if (display() != null) {
             display().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -80,6 +124,7 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("display", this.display);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -102,6 +147,10 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
                     deserializedOperationInner.name = reader.getString();
                 } else if ("display".equals(fieldName)) {
                     deserializedOperationInner.display = OperationDisplay.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedOperationInner.properties = OperationProperties.fromJson(reader);
+                } else if ("isDataAction".equals(fieldName)) {
+                    deserializedOperationInner.isDataAction = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }

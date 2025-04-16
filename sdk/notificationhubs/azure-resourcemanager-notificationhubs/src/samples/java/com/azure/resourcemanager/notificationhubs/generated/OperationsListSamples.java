@@ -10,11 +10,11 @@ package com.azure.resourcemanager.notificationhubs.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
      * NHOperationsList.json
      */
     /**
-     * Sample code: OperationsList.
+     * Sample code: Operations_List.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */

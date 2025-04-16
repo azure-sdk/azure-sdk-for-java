@@ -10,12 +10,13 @@
 - [DeleteAuthorizationRule](#namespaces_deleteauthorizationrule)
 - [GetAuthorizationRule](#namespaces_getauthorizationrule)
 - [GetByResourceGroup](#namespaces_getbyresourcegroup)
+- [GetPnsCredentials](#namespaces_getpnscredentials)
 - [List](#namespaces_list)
 - [ListAuthorizationRules](#namespaces_listauthorizationrules)
 - [ListByResourceGroup](#namespaces_listbyresourcegroup)
 - [ListKeys](#namespaces_listkeys)
-- [Patch](#namespaces_patch)
 - [RegenerateKeys](#namespaces_regeneratekeys)
+- [Update](#namespaces_update)
 
 ## NotificationHubs
 
@@ -31,12 +32,21 @@
 - [List](#notificationhubs_list)
 - [ListAuthorizationRules](#notificationhubs_listauthorizationrules)
 - [ListKeys](#notificationhubs_listkeys)
-- [Patch](#notificationhubs_patch)
 - [RegenerateKeys](#notificationhubs_regeneratekeys)
+- [Update](#notificationhubs_update)
 
 ## Operations
 
 - [List](#operations_list)
+
+## PrivateEndpointConnections
+
+- [Delete](#privateendpointconnections_delete)
+- [Get](#privateendpointconnections_get)
+- [GetGroupId](#privateendpointconnections_getgroupid)
+- [List](#privateendpointconnections_list)
+- [ListGroupIds](#privateendpointconnections_listgroupids)
+- [Update](#privateendpointconnections_update)
 ### Namespaces_CheckAvailability
 
 ```java
@@ -48,16 +58,16 @@ import com.azure.resourcemanager.notificationhubs.models.CheckAvailabilityParame
 public final class NamespacesCheckAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceCheckNameAvailability.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/CheckAvailability.json
      */
     /**
-     * Sample code: NameSpaceCheckNameAvailability.
+     * Sample code: Namespaces_CheckAvailability.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void
-        nameSpaceCheckNameAvailability(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        namespacesCheckAvailability(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.namespaces()
             .checkAvailabilityWithResponse(new CheckAvailabilityParameters().withName("sdk-Namespace-2924"),
                 com.azure.core.util.Context.NONE);
@@ -68,8 +78,14 @@ public final class NamespacesCheckAvailabilitySamples {
 ### Namespaces_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.notificationhubs.models.AccessRights;
+import com.azure.resourcemanager.notificationhubs.models.IpRule;
+import com.azure.resourcemanager.notificationhubs.models.NetworkAcls;
+import com.azure.resourcemanager.notificationhubs.models.PublicInternetAuthorizationRule;
 import com.azure.resourcemanager.notificationhubs.models.Sku;
 import com.azure.resourcemanager.notificationhubs.models.SkuName;
+import com.azure.resourcemanager.notificationhubs.models.ZoneRedundancyPreference;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,21 +95,28 @@ import java.util.Map;
 public final class NamespacesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceCreate.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/CreateOrUpdate.json
      */
     /**
-     * Sample code: NameSpaceCreate.
+     * Sample code: Namespaces_CreateOrUpdate.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void nameSpaceCreate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+    public static void
+        namespacesCreateOrUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.namespaces()
             .define("nh-sdk-ns")
-            .withLocation("South Central US")
+            .withRegion("South Central US")
             .withExistingResourceGroup("5ktrial")
-            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
             .withSku(new Sku().withName(SkuName.STANDARD).withTier("Standard"))
+            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
+            .withZoneRedundancy(ZoneRedundancyPreference.ENABLED)
+            .withNetworkAcls(new NetworkAcls()
+                .withIpRules(Arrays.asList(new IpRule().withIpMask("185.48.100.00/24")
+                    .withRights(Arrays.asList(AccessRights.MANAGE, AccessRights.SEND, AccessRights.LISTEN))))
+                .withPublicNetworkRule(
+                    new PublicInternetAuthorizationRule().withRights(Arrays.asList(AccessRights.LISTEN))))
             .create();
     }
 
@@ -114,7 +137,7 @@ public final class NamespacesCreateOrUpdateSamples {
 ### Namespaces_CreateOrUpdateAuthorizationRule
 
 ```java
-import com.azure.resourcemanager.notificationhubs.fluent.models.SharedAccessAuthorizationRuleProperties;
+import com.azure.resourcemanager.notificationhubs.fluent.models.SharedAccessAuthorizationRuleResourceInner;
 import com.azure.resourcemanager.notificationhubs.models.AccessRights;
 import java.util.Arrays;
 
@@ -124,22 +147,21 @@ import java.util.Arrays;
 public final class NamespacesCreateOrUpdateAuthorizationRuleSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceAuthorizationRuleCreate.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/AuthorizationRuleCreateOrUpdate.json
      */
     /**
-     * Sample code: NameSpaceAuthorizationRuleCreate.
+     * Sample code: Namespaces_CreateOrUpdateAuthorizationRule.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void
-        nameSpaceAuthorizationRuleCreate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+    public static void namespacesCreateOrUpdateAuthorizationRule(
+        com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.namespaces()
-            .defineAuthorizationRule("sdk-AuthRules-1788")
-            .withExistingNamespace("5ktrial", "nh-sdk-ns")
-            .withProperties(new SharedAccessAuthorizationRuleProperties()
-                .withRights(Arrays.asList(AccessRights.LISTEN, AccessRights.SEND)))
-            .create();
+            .createOrUpdateAuthorizationRuleWithResponse(
+                "5ktrial", "nh-sdk-ns", "sdk-AuthRules-1788", new SharedAccessAuthorizationRuleResourceInner()
+                    .withRights(Arrays.asList(AccessRights.LISTEN, AccessRights.SEND)),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -153,16 +175,17 @@ public final class NamespacesCreateOrUpdateAuthorizationRuleSamples {
 public final class NamespacesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceDelete.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/Delete.json
      */
     /**
-     * Sample code: NameSpaceDelete.
+     * Sample code: Namespaces_Delete.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void nameSpaceDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().delete("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
+    public static void namespacesDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.namespaces()
+            .deleteByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -176,16 +199,16 @@ public final class NamespacesDeleteSamples {
 public final class NamespacesDeleteAuthorizationRuleSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceAuthorizationRuleDelete.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/AuthorizationRuleDelete.json
      */
     /**
-     * Sample code: NameSpaceAuthorizationRuleDelete.
+     * Sample code: Namespaces_DeleteAuthorizationRule.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void
-        nameSpaceAuthorizationRuleDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        namespacesDeleteAuthorizationRule(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.namespaces()
             .deleteAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
                 com.azure.core.util.Context.NONE);
@@ -202,16 +225,16 @@ public final class NamespacesDeleteAuthorizationRuleSamples {
 public final class NamespacesGetAuthorizationRuleSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceAuthorizationRuleGet.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/AuthorizationRuleGet.json
      */
     /**
-     * Sample code: NameSpaceAuthorizationRuleGet.
+     * Sample code: Namespaces_GetAuthorizationRule.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void
-        nameSpaceAuthorizationRuleGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        namespacesGetAuthorizationRule(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.namespaces()
             .getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
                 com.azure.core.util.Context.NONE);
@@ -228,16 +251,40 @@ public final class NamespacesGetAuthorizationRuleSamples {
 public final class NamespacesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceGet.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/Get.json
      */
     /**
-     * Sample code: NameSpaceGet.
+     * Sample code: Namespaces_Get.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void nameSpaceGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+    public static void namespacesGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.namespaces().getByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Namespaces_GetPnsCredentials
+
+```java
+/**
+ * Samples for Namespaces GetPnsCredentials.
+ */
+public final class NamespacesGetPnsCredentialsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/PnsCredentialsGet.json
+     */
+    /**
+     * Sample code: Namespaces_GetPnsCredentials.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void
+        namespacesGetPnsCredentials(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.namespaces().getPnsCredentialsWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -251,16 +298,16 @@ public final class NamespacesGetByResourceGroupSamples {
 public final class NamespacesListSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceList.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/ListBySubscription.json
      */
     /**
-     * Sample code: NameSpaceList.
+     * Sample code: Namespaces_ListAll.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void nameSpaceList(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().list(com.azure.core.util.Context.NONE);
+    public static void namespacesListAll(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.namespaces().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -274,16 +321,16 @@ public final class NamespacesListSamples {
 public final class NamespacesListAuthorizationRulesSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceAuthorizationRuleListAll.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/AuthorizationRuleList.json
      */
     /**
-     * Sample code: NameSpaceAuthorizationRuleListAll.
+     * Sample code: Namespaces_ListAuthorizationRules.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void
-        nameSpaceAuthorizationRuleListAll(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        namespacesListAuthorizationRules(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.namespaces().listAuthorizationRules("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
     }
 }
@@ -298,17 +345,16 @@ public final class NamespacesListAuthorizationRulesSamples {
 public final class NamespacesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceListByResourceGroup.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/ListByResourceGroup.json
      */
     /**
-     * Sample code: NameSpaceListByResourceGroup.
+     * Sample code: Namespaces_List.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void
-        nameSpaceListByResourceGroup(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().listByResourceGroup("5ktrial", com.azure.core.util.Context.NONE);
+    public static void namespacesList(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.namespaces().listByResourceGroup("5ktrial", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -322,16 +368,15 @@ public final class NamespacesListByResourceGroupSamples {
 public final class NamespacesListKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceAuthorizationRuleListKey.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/AuthorizationRuleListKeys.json
      */
     /**
-     * Sample code: NameSpaceAuthorizationRuleListKey.
+     * Sample code: Namespaces_ListKeys.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void
-        nameSpaceAuthorizationRuleListKey(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+    public static void namespacesListKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.namespaces()
             .listKeysWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
                 com.azure.core.util.Context.NONE);
@@ -339,9 +384,41 @@ public final class NamespacesListKeysSamples {
 }
 ```
 
-### Namespaces_Patch
+### Namespaces_RegenerateKeys
 
 ```java
+import com.azure.resourcemanager.notificationhubs.models.PolicyKeyResource;
+import com.azure.resourcemanager.notificationhubs.models.PolicyKeyType;
+
+/**
+ * Samples for Namespaces RegenerateKeys.
+ */
+public final class NamespacesRegenerateKeysSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/AuthorizationRuleRegenerateKey.json
+     */
+    /**
+     * Sample code: Namespaces_RegenerateKeys.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void
+        namespacesRegenerateKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.namespaces()
+            .regenerateKeysWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
+                new PolicyKeyResource().withPolicyKey(PolicyKeyType.PRIMARY_KEY), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Namespaces_Update
+
+```java
+import com.azure.resourcemanager.notificationhubs.fluent.models.NamespaceProperties;
+import com.azure.resourcemanager.notificationhubs.fluent.models.PnsCredentials;
+import com.azure.resourcemanager.notificationhubs.models.GcmCredential;
 import com.azure.resourcemanager.notificationhubs.models.NamespaceResource;
 import com.azure.resourcemanager.notificationhubs.models.Sku;
 import com.azure.resourcemanager.notificationhubs.models.SkuName;
@@ -349,26 +426,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for Namespaces Patch.
+ * Samples for Namespaces Update.
  */
-public final class NamespacesPatchSamples {
+public final class NamespacesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceUpdate.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/Update.json
      */
     /**
-     * Sample code: NameSpaceUpdate.
+     * Sample code: Namespaces_Update.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void nameSpaceUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+    public static void namespacesUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         NamespaceResource resource = manager.namespaces()
             .getByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withSku(new Sku().withName(SkuName.STANDARD).withTier("Standard"))
+            .withTags(mapOf("tag1", "value3"))
+            .withSku(new Sku().withName(SkuName.FREE))
+            .withProperties(new NamespaceProperties().withPnsCredentials(new PnsCredentials()
+                .withGcmCredential(new GcmCredential().withGcmEndpoint("https://fcm.googleapis.com/fcm/send")
+                    .withGoogleApiKey("fakeTokenPlaceholder"))))
             .apply();
     }
 
@@ -386,34 +466,6 @@ public final class NamespacesPatchSamples {
 }
 ```
 
-### Namespaces_RegenerateKeys
-
-```java
-import com.azure.resourcemanager.notificationhubs.models.PolicykeyResource;
-
-/**
- * Samples for Namespaces RegenerateKeys.
- */
-public final class NamespacesRegenerateKeysSamples {
-    /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/Namespaces/
-     * NHNameSpaceAuthorizationRuleRegenrateKey.json
-     */
-    /**
-     * Sample code: NameSpaceAuthorizationRuleRegenerateKey.
-     * 
-     * @param manager Entry point to NotificationHubsManager.
-     */
-    public static void nameSpaceAuthorizationRuleRegenerateKey(
-        com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces()
-            .regenerateKeysWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
-                new PolicykeyResource().withPolicyKey("fakeTokenPlaceholder"), com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### NotificationHubs_CheckNotificationHubAvailability
 
 ```java
@@ -425,15 +477,15 @@ import com.azure.resourcemanager.notificationhubs.models.CheckAvailabilityParame
 public final class NotificationHubsCheckNotificationHubAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubCheckNameAvailability.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/CheckAvailability.json
      */
     /**
-     * Sample code: notificationHubCheckNameAvailability.
+     * Sample code: NotificationHubs_CheckNotificationHubAvailability.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubCheckNameAvailability(
+    public static void notificationHubsCheckNotificationHubAvailability(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .checkNotificationHubAvailabilityWithResponse("5ktrial", "locp-newns",
@@ -452,16 +504,16 @@ public final class NotificationHubsCheckNotificationHubAvailabilitySamples {
 public final class NotificationHubsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubCreate.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/CreateOrUpdate.json
      */
     /**
-     * Sample code: NotificationHubCreate.
+     * Sample code: NotificationHubs_CreateOrUpdate.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void
-        notificationHubCreate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        notificationHubsCreateOrUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .define("nh-sdk-hub")
             .withRegion("eastus")
@@ -474,9 +526,7 @@ public final class NotificationHubsCreateOrUpdateSamples {
 ### NotificationHubs_CreateOrUpdateAuthorizationRule
 
 ```java
-import com.azure.resourcemanager.notificationhubs.fluent.models.SharedAccessAuthorizationRuleProperties;
 import com.azure.resourcemanager.notificationhubs.models.AccessRights;
-import com.azure.resourcemanager.notificationhubs.models.SharedAccessAuthorizationRuleCreateOrUpdateParameters;
 import java.util.Arrays;
 
 /**
@@ -485,23 +535,21 @@ import java.util.Arrays;
 public final class NotificationHubsCreateOrUpdateAuthorizationRuleSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubAuthorizationRuleCreate.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/AuthorizationRuleCreateOrUpdate.json
      */
     /**
-     * Sample code: NotificationHubAuthorizationRuleCreate.
+     * Sample code: NotificationHubs_CreateOrUpdateAuthorizationRule.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubAuthorizationRuleCreate(
+    public static void notificationHubsCreateOrUpdateAuthorizationRule(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
-            .createOrUpdateAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-                "DefaultListenSharedAccessSignature",
-                new SharedAccessAuthorizationRuleCreateOrUpdateParameters()
-                    .withProperties(new SharedAccessAuthorizationRuleProperties()
-                        .withRights(Arrays.asList(AccessRights.LISTEN, AccessRights.SEND))),
-                com.azure.core.util.Context.NONE);
+            .defineAuthorizationRule("MyManageSharedAccessKey")
+            .withExistingNotificationHub("5ktrial", "nh-sdk-ns", "nh-sdk-hub")
+            .withRights(Arrays.asList(AccessRights.LISTEN, AccessRights.SEND))
+            .create();
     }
 }
 ```
@@ -509,31 +557,24 @@ public final class NotificationHubsCreateOrUpdateAuthorizationRuleSamples {
 ### NotificationHubs_DebugSend
 
 ```java
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import java.io.IOException;
-
 /**
  * Samples for NotificationHubs DebugSend.
  */
 public final class NotificationHubsDebugSendSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubDebugSend.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/DebugSend.json
      */
     /**
-     * Sample code: debugsend.
+     * Sample code: NotificationHubs_DebugSend.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void debugsend(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager)
-        throws IOException {
+    public static void
+        notificationHubsDebugSend(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
-            .debugSendWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-                SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize("{\"data\":{\"message\":\"Hello\"}}", Object.class, SerializerEncoding.JSON),
-                com.azure.core.util.Context.NONE);
+            .debugSendWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -547,16 +588,16 @@ public final class NotificationHubsDebugSendSamples {
 public final class NotificationHubsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubDelete.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/Delete.json
      */
     /**
-     * Sample code: NotificationHubDelete.
+     * Sample code: NotificationHubs_Delete.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void
-        notificationHubDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        notificationHubsDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .deleteWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
@@ -572,15 +613,15 @@ public final class NotificationHubsDeleteSamples {
 public final class NotificationHubsDeleteAuthorizationRuleSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubAuthorizationRuleDelete.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/AuthorizationRuleDelete.json
      */
     /**
-     * Sample code: NotificationHubAuthorizationRuleDelete.
+     * Sample code: NotificationHubs_DeleteAuthorizationRule.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubAuthorizationRuleDelete(
+    public static void notificationHubsDeleteAuthorizationRule(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .deleteAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
@@ -598,15 +639,15 @@ public final class NotificationHubsDeleteAuthorizationRuleSamples {
 public final class NotificationHubsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubGet.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/Get.json
      */
     /**
-     * Sample code: NotificationHubGet.
+     * Sample code: NotificationHubs_Get.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+    public static void notificationHubsGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .getWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
@@ -622,15 +663,15 @@ public final class NotificationHubsGetSamples {
 public final class NotificationHubsGetAuthorizationRuleSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubAuthorizationRuleGet.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/AuthorizationRuleGet.json
      */
     /**
-     * Sample code: NotificationHubAuthorizationRuleGet.
+     * Sample code: NotificationHubs_GetAuthorizationRule.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubAuthorizationRuleGet(
+    public static void notificationHubsGetAuthorizationRule(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
@@ -648,16 +689,16 @@ public final class NotificationHubsGetAuthorizationRuleSamples {
 public final class NotificationHubsGetPnsCredentialsSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubPnsCredentials.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/PnsCredentialsGet.json
      */
     /**
-     * Sample code: notificationHubPnsCredentials.
+     * Sample code: NotificationHubs_GetPnsCredentials.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void
-        notificationHubPnsCredentials(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        notificationHubsGetPnsCredentials(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .getPnsCredentialsWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
@@ -673,17 +714,17 @@ public final class NotificationHubsGetPnsCredentialsSamples {
 public final class NotificationHubsListSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubListByNameSpace.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/List.json
      */
     /**
-     * Sample code: NotificationHubListByNameSpace.
+     * Sample code: NotificationHubs_List.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void
-        notificationHubListByNameSpace(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().list("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
+        notificationHubsList(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.notificationHubs().list("5ktrial", "nh-sdk-ns", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -697,15 +738,15 @@ public final class NotificationHubsListSamples {
 public final class NotificationHubsListAuthorizationRulesSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubAuthorizationRuleListAll.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/AuthorizationRuleList.json
      */
     /**
-     * Sample code: NotificationHubAuthorizationRuleListAll.
+     * Sample code: NotificationHubs_ListAuthorizationRules.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubAuthorizationRuleListAll(
+    public static void notificationHubsListAuthorizationRules(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .listAuthorizationRules("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
@@ -722,16 +763,16 @@ public final class NotificationHubsListAuthorizationRulesSamples {
 public final class NotificationHubsListKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubAuthorizationRuleListKey.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/AuthorizationRuleListKeys.json
      */
     /**
-     * Sample code: NotificationHubAuthorizationRuleListKey.
+     * Sample code: NotificationHubs_ListKeys.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubAuthorizationRuleListKey(
-        com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+    public static void
+        notificationHubsListKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .listKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800",
                 com.azure.core.util.Context.NONE);
@@ -739,40 +780,11 @@ public final class NotificationHubsListKeysSamples {
 }
 ```
 
-### NotificationHubs_Patch
-
-```java
-import com.azure.resourcemanager.notificationhubs.models.NotificationHubResource;
-
-/**
- * Samples for NotificationHubs Patch.
- */
-public final class NotificationHubsPatchSamples {
-    /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubPatch.json
-     */
-    /**
-     * Sample code: NotificationHubPatch.
-     * 
-     * @param manager Entry point to NotificationHubsManager.
-     */
-    public static void
-        notificationHubPatch(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        NotificationHubResource resource = manager.notificationHubs()
-            .getWithResponse("sdkresourceGroup", "nh-sdk-ns", "sdk-notificationHubs-8708",
-                com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-}
-```
-
 ### NotificationHubs_RegenerateKeys
 
 ```java
-import com.azure.resourcemanager.notificationhubs.models.PolicykeyResource;
+import com.azure.resourcemanager.notificationhubs.models.PolicyKeyResource;
+import com.azure.resourcemanager.notificationhubs.models.PolicyKeyType;
 
 /**
  * Samples for NotificationHubs RegenerateKeys.
@@ -780,19 +792,54 @@ import com.azure.resourcemanager.notificationhubs.models.PolicykeyResource;
 public final class NotificationHubsRegenerateKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
-     * NotificationHubs/NotificationHubAuthorizationRuleRegenrateKey.json
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/AuthorizationRuleRegenerateKey.json
      */
     /**
-     * Sample code: NotificationHubAuthorizationRuleRegenrateKey.
+     * Sample code: NotificationHubs_RegenerateKeys.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubAuthorizationRuleRegenrateKey(
-        com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+    public static void
+        notificationHubsRegenerateKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.notificationHubs()
             .regenerateKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "DefaultListenSharedAccessSignature",
-                new PolicykeyResource().withPolicyKey("fakeTokenPlaceholder"), com.azure.core.util.Context.NONE);
+                new PolicyKeyResource().withPolicyKey(PolicyKeyType.PRIMARY_KEY), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NotificationHubs_Update
+
+```java
+import com.azure.resourcemanager.notificationhubs.models.GcmCredential;
+import com.azure.resourcemanager.notificationhubs.models.NotificationHubResource;
+
+/**
+ * Samples for NotificationHubs Update.
+ */
+public final class NotificationHubsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * NotificationHubs/Update.json
+     */
+    /**
+     * Sample code: NotificationHubs_Update.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void
+        notificationHubsUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        NotificationHubResource resource = manager.notificationHubs()
+            .getWithResponse("sdkresourceGroup", "nh-sdk-ns", "sdk-notificationHubs-8708",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withRegistrationTtl("10675199.02:48:05.4775807")
+            .withGcmCredential(new GcmCredential().withGcmEndpoint("https://fcm.googleapis.com/fcm/send")
+                .withGoogleApiKey("fakeTokenPlaceholder"))
+            .apply();
     }
 }
 ```
@@ -806,16 +853,177 @@ public final class NotificationHubsRegenerateKeysSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
      * NHOperationsList.json
      */
     /**
-     * Sample code: OperationsList.
+     * Sample code: Operations_List.
      * 
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void operationsList(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Delete
+
+```java
+/**
+ * Samples for PrivateEndpointConnections Delete.
+ */
+public final class PrivateEndpointConnectionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/PrivateEndpointConnectionDelete.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_Delete.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void
+        privateEndpointConnectionsDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.privateEndpointConnections()
+            .delete("5ktrial", "nh-sdk-ns", "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Get
+
+```java
+/**
+ * Samples for PrivateEndpointConnections Get.
+ */
+public final class PrivateEndpointConnectionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/PrivateEndpointConnectionGet.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_Get.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void
+        privateEndpointConnectionsGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.privateEndpointConnections()
+            .getWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_GetGroupId
+
+```java
+/**
+ * Samples for PrivateEndpointConnections GetGroupId.
+ */
+public final class PrivateEndpointConnectionsGetGroupIdSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/PrivateLinkResourceGet.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_GetGroupId.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void privateEndpointConnectionsGetGroupId(
+        com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.privateEndpointConnections()
+            .getGroupIdWithResponse("5ktrial", "nh-sdk-ns", "namespace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_List
+
+```java
+/**
+ * Samples for PrivateEndpointConnections List.
+ */
+public final class PrivateEndpointConnectionsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/PrivateEndpointConnectionList.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_List.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void
+        privateEndpointConnectionsList(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.privateEndpointConnections().list("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_ListGroupIds
+
+```java
+/**
+ * Samples for PrivateEndpointConnections ListGroupIds.
+ */
+public final class PrivateEndpointConnectionsListGroupIdsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/PrivateLinkResourceList.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_ListGroupIds.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void privateEndpointConnectionsListGroupIds(
+        com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.privateEndpointConnections().listGroupIds("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Update
+
+```java
+import com.azure.resourcemanager.notificationhubs.fluent.models.PrivateEndpointConnectionResourceInner;
+import com.azure.resourcemanager.notificationhubs.models.PrivateEndpointConnectionProperties;
+import com.azure.resourcemanager.notificationhubs.models.PrivateLinkConnectionStatus;
+import com.azure.resourcemanager.notificationhubs.models.RemotePrivateEndpointConnection;
+import com.azure.resourcemanager.notificationhubs.models.RemotePrivateLinkServiceConnectionState;
+
+/**
+ * Samples for PrivateEndpointConnections Update.
+ */
+public final class PrivateEndpointConnectionsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
+     * Namespaces/PrivateEndpointConnectionUpdate.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_Update.
+     * 
+     * @param manager Entry point to NotificationHubsManager.
+     */
+    public static void
+        privateEndpointConnectionsUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
+        manager.privateEndpointConnections()
+            .update("5ktrial", "nh-sdk-ns", "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e",
+                new PrivateEndpointConnectionResourceInner().withProperties(
+                    new PrivateEndpointConnectionProperties().withPrivateEndpoint(new RemotePrivateEndpointConnection())
+                        .withPrivateLinkServiceConnectionState(new RemotePrivateLinkServiceConnectionState()
+                            .withStatus(PrivateLinkConnectionStatus.APPROVED))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```

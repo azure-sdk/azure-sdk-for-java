@@ -22,39 +22,45 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.notificationhubs.fluent.NotificationHubsManagementClient;
+import com.azure.resourcemanager.notificationhubs.fluent.NotificationHubsRPClient;
 import com.azure.resourcemanager.notificationhubs.implementation.NamespacesImpl;
 import com.azure.resourcemanager.notificationhubs.implementation.NotificationHubsImpl;
-import com.azure.resourcemanager.notificationhubs.implementation.NotificationHubsManagementClientBuilder;
+import com.azure.resourcemanager.notificationhubs.implementation.NotificationHubsRPClientBuilder;
 import com.azure.resourcemanager.notificationhubs.implementation.OperationsImpl;
+import com.azure.resourcemanager.notificationhubs.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.notificationhubs.models.Namespaces;
 import com.azure.resourcemanager.notificationhubs.models.NotificationHubs;
 import com.azure.resourcemanager.notificationhubs.models.Operations;
+import com.azure.resourcemanager.notificationhubs.models.PrivateEndpointConnections;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
  * Entry point to NotificationHubsManager.
- * Azure NotificationHub client.
+ * Microsoft Notification Hubs Resource Provider REST API.
  */
 public final class NotificationHubsManager {
-    private Operations operations;
+    private NotificationHubs notificationHubs;
 
     private Namespaces namespaces;
 
-    private NotificationHubs notificationHubs;
+    private Operations operations;
 
-    private final NotificationHubsManagementClient clientObject;
+    private PrivateEndpointConnections privateEndpointConnections;
+
+    private final NotificationHubsRPClient clientObject;
 
     private NotificationHubsManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new NotificationHubsManagementClientBuilder().pipeline(httpPipeline)
+        this.clientObject = new NotificationHubsRPClientBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
             .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
@@ -101,6 +107,9 @@ public final class NotificationHubsManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-notificationhubs.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -208,12 +217,14 @@ public final class NotificationHubsManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.notificationhubs")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -260,6 +271,31 @@ public final class NotificationHubsManager {
     }
 
     /**
+     * Gets the resource collection API of NotificationHubs. It manages NotificationHubResource,
+     * SharedAccessAuthorizationRuleResource.
+     * 
+     * @return Resource collection API of NotificationHubs.
+     */
+    public NotificationHubs notificationHubs() {
+        if (this.notificationHubs == null) {
+            this.notificationHubs = new NotificationHubsImpl(clientObject.getNotificationHubs(), this);
+        }
+        return notificationHubs;
+    }
+
+    /**
+     * Gets the resource collection API of Namespaces. It manages NamespaceResource.
+     * 
+     * @return Resource collection API of Namespaces.
+     */
+    public Namespaces namespaces() {
+        if (this.namespaces == null) {
+            this.namespaces = new NamespacesImpl(clientObject.getNamespaces(), this);
+        }
+        return namespaces;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      * 
      * @return Resource collection API of Operations.
@@ -272,37 +308,25 @@ public final class NotificationHubsManager {
     }
 
     /**
-     * Gets the resource collection API of Namespaces. It manages NamespaceResource,
-     * SharedAccessAuthorizationRuleResource.
+     * Gets the resource collection API of PrivateEndpointConnections.
      * 
-     * @return Resource collection API of Namespaces.
+     * @return Resource collection API of PrivateEndpointConnections.
      */
-    public Namespaces namespaces() {
-        if (this.namespaces == null) {
-            this.namespaces = new NamespacesImpl(clientObject.getNamespaces(), this);
+    public PrivateEndpointConnections privateEndpointConnections() {
+        if (this.privateEndpointConnections == null) {
+            this.privateEndpointConnections
+                = new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
         }
-        return namespaces;
+        return privateEndpointConnections;
     }
 
     /**
-     * Gets the resource collection API of NotificationHubs. It manages NotificationHubResource.
+     * Gets wrapped service client NotificationHubsRPClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
      * 
-     * @return Resource collection API of NotificationHubs.
+     * @return Wrapped service client NotificationHubsRPClient.
      */
-    public NotificationHubs notificationHubs() {
-        if (this.notificationHubs == null) {
-            this.notificationHubs = new NotificationHubsImpl(clientObject.getNotificationHubs(), this);
-        }
-        return notificationHubs;
-    }
-
-    /**
-     * Gets wrapped service client NotificationHubsManagementClient providing direct access to the underlying
-     * auto-generated API implementation, based on Azure REST API.
-     * 
-     * @return Wrapped service client NotificationHubsManagementClient.
-     */
-    public NotificationHubsManagementClient serviceClient() {
+    public NotificationHubsRPClient serviceClient() {
         return this.clientObject;
     }
 }
