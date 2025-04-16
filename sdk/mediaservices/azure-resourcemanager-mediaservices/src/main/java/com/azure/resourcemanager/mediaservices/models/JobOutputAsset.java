@@ -11,7 +11,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Represents an Asset used as a JobOutput.
@@ -27,33 +26,6 @@ public final class JobOutputAsset extends JobOutput {
      * The name of the output Asset.
      */
     private String assetName;
-
-    /*
-     * The UTC date and time at which this Job Output finished processing.
-     */
-    private OffsetDateTime endTime;
-
-    /*
-     * The UTC date and time at which this Job Output began processing.
-     */
-    private OffsetDateTime startTime;
-
-    /*
-     * If the JobOutput is in a Processing state, this contains the Job completion percentage. The value is an estimate
-     * and not intended to be used to predict Job completion times. To determine if the JobOutput is complete, use the
-     * State property.
-     */
-    private Integer progress;
-
-    /*
-     * Describes the state of the JobOutput.
-     */
-    private JobState state;
-
-    /*
-     * If the JobOutput is in the Error state, it contains the details of the error.
-     */
-    private JobError error;
 
     /**
      * Creates an instance of JobOutputAsset class.
@@ -89,58 +61,6 @@ public final class JobOutputAsset extends JobOutput {
     public JobOutputAsset withAssetName(String assetName) {
         this.assetName = assetName;
         return this;
-    }
-
-    /**
-     * Get the endTime property: The UTC date and time at which this Job Output finished processing.
-     * 
-     * @return the endTime value.
-     */
-    @Override
-    public OffsetDateTime endTime() {
-        return this.endTime;
-    }
-
-    /**
-     * Get the startTime property: The UTC date and time at which this Job Output began processing.
-     * 
-     * @return the startTime value.
-     */
-    @Override
-    public OffsetDateTime startTime() {
-        return this.startTime;
-    }
-
-    /**
-     * Get the progress property: If the JobOutput is in a Processing state, this contains the Job completion
-     * percentage. The value is an estimate and not intended to be used to predict Job completion times. To determine if
-     * the JobOutput is complete, use the State property.
-     * 
-     * @return the progress value.
-     */
-    @Override
-    public Integer progress() {
-        return this.progress;
-    }
-
-    /**
-     * Get the state property: Describes the state of the JobOutput.
-     * 
-     * @return the state value.
-     */
-    @Override
-    public JobState state() {
-        return this.state;
-    }
-
-    /**
-     * Get the error property: If the JobOutput is in the Error state, it contains the details of the error.
-     * 
-     * @return the error value.
-     */
-    @Override
-    public JobError error() {
-        return this.error;
     }
 
     /**
@@ -212,21 +132,21 @@ public final class JobOutputAsset extends JobOutput {
                 reader.nextToken();
 
                 if ("error".equals(fieldName)) {
-                    deserializedJobOutputAsset.error = JobError.fromJson(reader);
+                    deserializedJobOutputAsset.withError(JobError.fromJson(reader));
                 } else if ("presetOverride".equals(fieldName)) {
                     deserializedJobOutputAsset.withPresetOverride(Preset.fromJson(reader));
                 } else if ("state".equals(fieldName)) {
-                    deserializedJobOutputAsset.state = JobState.fromString(reader.getString());
+                    deserializedJobOutputAsset.withState(JobState.fromString(reader.getString()));
                 } else if ("progress".equals(fieldName)) {
-                    deserializedJobOutputAsset.progress = reader.getNullable(JsonReader::getInt);
+                    deserializedJobOutputAsset.withProgress(reader.getNullable(JsonReader::getInt));
                 } else if ("label".equals(fieldName)) {
                     deserializedJobOutputAsset.withLabel(reader.getString());
                 } else if ("startTime".equals(fieldName)) {
-                    deserializedJobOutputAsset.startTime = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedJobOutputAsset.withStartTime(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("endTime".equals(fieldName)) {
-                    deserializedJobOutputAsset.endTime = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedJobOutputAsset.withEndTime(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("assetName".equals(fieldName)) {
                     deserializedJobOutputAsset.assetName = reader.getString();
                 } else if ("@odata.type".equals(fieldName)) {
