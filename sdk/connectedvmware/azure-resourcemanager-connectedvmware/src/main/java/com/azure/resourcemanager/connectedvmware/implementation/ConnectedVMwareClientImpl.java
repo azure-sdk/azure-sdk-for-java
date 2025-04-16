@@ -319,7 +319,7 @@ public final class ConnectedVMwareClientImpl implements ConnectedVMwareClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-10-01";
+        this.apiVersion = "2023-12-01";
         this.operations = new OperationsClientImpl(this);
         this.resourcePools = new ResourcePoolsClientImpl(this);
         this.clusters = new ClustersClientImpl(this);
