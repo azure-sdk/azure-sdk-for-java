@@ -1,14 +1,131 @@
 # Release History
 
-## 1.1.0-beta.3 (Unreleased)
+## 1.0.0-beta.1 (2025-04-16)
+
+- Azure Resource Manager IotCentral client library for Java. This package contains Microsoft Azure SDK for IotCentral Management SDK. Use this API to manage IoT Central Applications in your Azure subscription. Package tag package-preview-2021-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.PrivateEndpointConnection$DefinitionStages` was added
 
-### Bugs Fixed
+* `models.PrivateLinkResource` was added
 
-### Other Changes
+* `models.PrivateEndpointServiceConnectionStatus` was added
+
+* `models.PrivateEndpointConnectionListResult` was added
+
+* `models.NetworkAction` was added
+
+* `models.PrivateLinks` was added
+
+* `models.PrivateEndpointConnectionProvisioningState` was added
+
+* `models.PrivateEndpointConnections` was added
+
+* `models.PrivateLinkServiceConnectionState` was added
+
+* `models.NetworkRuleSetIpRule` was added
+
+* `models.PrivateEndpoint` was added
+
+* `models.PrivateEndpointConnection` was added
+
+* `models.PrivateLinkResourceListResult` was added
+
+* `models.ProvisioningState` was added
+
+* `models.IpRuleAction` was added
+
+* `models.NetworkRuleSets` was added
+
+* `models.PrivateEndpointConnection$Definition` was added
+
+* `models.PublicNetworkAccess` was added
+
+#### `models.AppSkuInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.App$Definition` was modified
+
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was added
+* `withNetworkRuleSets(models.NetworkRuleSets)` was added
+
+#### `models.AppTemplateLocations` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AppListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AppTemplatesResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `IotCentralManager$Configurable` was modified
+
+* `withRetryOptions(com.azure.core.http.policy.RetryOptions)` was added
+
+#### `models.App` was modified
+
+* `privateEndpointConnections()` was added
+* `systemData()` was added
+* `resourceGroupName()` was added
+* `publicNetworkAccess()` was added
+* `provisioningState()` was added
+* `networkRuleSets()` was added
+
+#### `models.AppPatch` was modified
+
+* `networkRuleSets()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `privateEndpointConnections()` was added
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withNetworkRuleSets(models.NetworkRuleSets)` was added
+* `publicNetworkAccess()` was added
+* `provisioningState()` was added
+
+#### `IotCentralManager` was modified
+
+* `authenticate(com.azure.core.http.HttpPipeline,com.azure.core.management.profile.AzureProfile)` was added
+* `privateLinks()` was added
+* `privateEndpointConnections()` was added
+
+#### `models.OperationInputs` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Apps` was modified
+
+* `update(java.lang.String,java.lang.String,models.AppPatch)` was added
+* `update(java.lang.String,java.lang.String,models.AppPatch,com.azure.core.util.Context)` was added
+
+#### `models.SystemAssignedServiceIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.App$Update` was modified
+
+* `withNetworkRuleSets(models.NetworkRuleSets)` was added
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was added
 
 ## 1.1.0-beta.2 (2024-10-09)
 
