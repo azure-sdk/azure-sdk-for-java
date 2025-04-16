@@ -97,11 +97,10 @@ public final class AvailableServiceTiersClientImpl implements AvailableServiceTi
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -135,11 +134,10 @@ public final class AvailableServiceTiersClientImpl implements AvailableServiceTi
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, accept, context);
+            workspaceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
