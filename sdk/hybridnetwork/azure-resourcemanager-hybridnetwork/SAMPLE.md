@@ -13,10 +13,16 @@
 
 ## ArtifactStores
 
+- [AddNetworkFabricControllerEndPoints](#artifactstores_addnetworkfabriccontrollerendpoints)
+- [ApprovePrivateEndPoints](#artifactstores_approveprivateendpoints)
 - [CreateOrUpdate](#artifactstores_createorupdate)
 - [Delete](#artifactstores_delete)
+- [DeleteNetworkFabricControllerEndPoints](#artifactstores_deletenetworkfabriccontrollerendpoints)
 - [Get](#artifactstores_get)
 - [ListByPublisher](#artifactstores_listbypublisher)
+- [ListNetworkFabricControllerPrivateEndPoints](#artifactstores_listnetworkfabriccontrollerprivateendpoints)
+- [ListPrivateEndPoints](#artifactstores_listprivateendpoints)
+- [RemovePrivateEndPoints](#artifactstores_removeprivateendpoints)
 - [Update](#artifactstores_update)
 
 ## Components
@@ -136,7 +142,7 @@ import java.util.Arrays;
 public final class ArtifactManifestsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestCreate.json
      */
     /**
@@ -171,7 +177,7 @@ public final class ArtifactManifestsCreateOrUpdateSamples {
 public final class ArtifactManifestsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestDelete.json
      */
     /**
@@ -196,7 +202,7 @@ public final class ArtifactManifestsDeleteSamples {
 public final class ArtifactManifestsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestGet.json
      */
     /**
@@ -222,7 +228,7 @@ public final class ArtifactManifestsGetSamples {
 public final class ArtifactManifestsListByArtifactStoreSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestListByArtifactStore.json
      */
     /**
@@ -247,7 +253,7 @@ public final class ArtifactManifestsListByArtifactStoreSamples {
 public final class ArtifactManifestsListCredentialSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestListCredential.json
      */
     /**
@@ -277,7 +283,7 @@ import java.util.Map;
 public final class ArtifactManifestsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestUpdateTags.json
      */
     /**
@@ -320,7 +326,7 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactManifestState;
 public final class ArtifactManifestsUpdateStateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestUpdateState.json
      */
     /**
@@ -338,6 +344,71 @@ public final class ArtifactManifestsUpdateStateSamples {
 }
 ```
 
+### ArtifactStores_AddNetworkFabricControllerEndPoints
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import java.util.Arrays;
+
+/**
+ * Samples for ArtifactStores AddNetworkFabricControllerEndPoints.
+ */
+public final class ArtifactStoresAddNetworkFabricControllerEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreAddNFCEndPoints.json
+     */
+    /**
+     * Sample code: Add Network Fabric Endpoint.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void addNetworkFabricEndpoint(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .addNetworkFabricControllerEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                new ArtifactStoreNetworkFabricControllerEndPointsInner()
+                    .withNetworkFabricControllerIds(Arrays.asList(new ReferencedResource().withId(
+                        "/subscriptions/testsubid/resourceGroups/testNFCMRG/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers/testNFCControllerId"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_ApprovePrivateEndPoints
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import java.util.Arrays;
+
+/**
+ * Samples for ArtifactStores ApprovePrivateEndPoints.
+ */
+public final class ArtifactStoresApprovePrivateEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreApprovePrivateEndPoints.json
+     */
+    /**
+     * Sample code: Approve manual private endpoints.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        approveManualPrivateEndpoints(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .approvePrivateEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                new ArtifactStorePrivateEndPointsFormatInner()
+                    .withManualPrivateEndPointConnections(Arrays.asList(new ReferencedResource().withId(
+                        "/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/privateEndpoints/newpetest"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### ArtifactStores_CreateOrUpdate
 
 ```java
@@ -345,6 +416,7 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactReplicationStrateg
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormat;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormatManagedResourceGroupConfiguration;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreType;
+import com.azure.resourcemanager.hybridnetwork.models.BackingResourcePublicNetworkAccess;
 
 /**
  * Samples for ArtifactStores CreateOrUpdate.
@@ -352,7 +424,33 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreType;
 public final class ArtifactStoresCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreCreateContainer.json
+     */
+    /**
+     * Sample code: Create or update an artifact store of publisher resource with container registry.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateAnArtifactStoreOfPublisherResourceWithContainerRegistry(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .withProperties(
+                new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_CONTAINER_REGISTRY)
+                    .withBackingResourcePublicNetworkAccess(BackingResourcePublicNetworkAccess.DISABLED)
+                    .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
+                    .withManagedResourceGroupConfiguration(
+                        new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
+                            .withLocation("eastus")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactStoreCreate.json
      */
     /**
@@ -374,6 +472,31 @@ public final class ArtifactStoresCreateOrUpdateSamples {
                             .withLocation("eastus")))
             .create();
     }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreCreateStorage.json
+     */
+    /**
+     * Sample code: Create or update an artifact store of publisher resource with storage.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateAnArtifactStoreOfPublisherResourceWithStorage(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .withProperties(new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_STORAGE_ACCOUNT)
+                .withBackingResourcePublicNetworkAccess(BackingResourcePublicNetworkAccess.ENABLED)
+                .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
+                .withManagedResourceGroupConfiguration(
+                    new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
+                        .withLocation("eastus")))
+            .create();
+    }
 }
 ```
 
@@ -386,7 +509,7 @@ public final class ArtifactStoresCreateOrUpdateSamples {
 public final class ArtifactStoresDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactStoreDelete.json
      */
     /**
@@ -401,6 +524,39 @@ public final class ArtifactStoresDeleteSamples {
 }
 ```
 
+### ArtifactStores_DeleteNetworkFabricControllerEndPoints
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import java.util.Arrays;
+
+/**
+ * Samples for ArtifactStores DeleteNetworkFabricControllerEndPoints.
+ */
+public final class ArtifactStoresDeleteNetworkFabricControllerEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreDeleteNFCEndPoints.json
+     */
+    /**
+     * Sample code: Delete Network Fabric Endpoints.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteNetworkFabricEndpoints(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .deleteNetworkFabricControllerEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                new ArtifactStoreNetworkFabricControllerEndPointsInner()
+                    .withNetworkFabricControllerIds(Arrays.asList(new ReferencedResource().withId(
+                        "/subscriptions/testsubid/resourceGroups/testNFCMRG/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers/testNFCControllerId"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### ArtifactStores_Get
 
 ```java
@@ -410,7 +566,7 @@ public final class ArtifactStoresDeleteSamples {
 public final class ArtifactStoresGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ArtifactStoreGet.
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/ArtifactStoreGet.
      * json
      */
     /**
@@ -434,7 +590,7 @@ public final class ArtifactStoresGetSamples {
 public final class ArtifactStoresListByPublisherSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactStoresListByPublisherName.json
      */
     /**
@@ -445,6 +601,89 @@ public final class ArtifactStoresListByPublisherSamples {
     public static void getApplicationGroupsUnderAPublisherResource(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.artifactStores().listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_ListNetworkFabricControllerPrivateEndPoints
+
+```java
+/**
+ * Samples for ArtifactStores ListNetworkFabricControllerPrivateEndPoints.
+ */
+public final class ArtifactStoresListNetworkFabricControllerPrivateEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreListNFCEndPoints.json
+     */
+    /**
+     * Sample code: List Network Fabric Endpoints.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listNetworkFabricEndpoints(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .listNetworkFabricControllerPrivateEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_ListPrivateEndPoints
+
+```java
+/**
+ * Samples for ArtifactStores ListPrivateEndPoints.
+ */
+public final class ArtifactStoresListPrivateEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreListPrivateEndPoints.json
+     */
+    /**
+     * Sample code: List Manual Private Endpoints.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listManualPrivateEndpoints(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .listPrivateEndPoints("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_RemovePrivateEndPoints
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import java.util.Arrays;
+
+/**
+ * Samples for ArtifactStores RemovePrivateEndPoints.
+ */
+public final class ArtifactStoresRemovePrivateEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreRemovePrivateEndPoints.json
+     */
+    /**
+     * Sample code: Remove Manual Endpoint.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void removeManualEndpoint(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .removePrivateEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                new ArtifactStorePrivateEndPointsFormatInner()
+                    .withManualPrivateEndPointConnections(Arrays.asList(new ReferencedResource().withId(
+                        "/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/privateEndpoints/newpetest"))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -462,7 +701,7 @@ import java.util.Map;
 public final class ArtifactStoresUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactStoreUpdateTags.json
      */
     /**
@@ -501,7 +740,7 @@ public final class ArtifactStoresUpdateSamples {
 public final class ComponentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ComponentGet.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/ComponentGet.json
      */
     /**
      * Sample code: Get component resource.
@@ -523,7 +762,7 @@ public final class ComponentsGetSamples {
 public final class ComponentsListByNetworkFunctionSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ComponentListByNetworkFunction.json
      */
     /**
@@ -549,7 +788,7 @@ import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupSchemaPr
 public final class ConfigurationGroupSchemasCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupSchemaCreate.json
      */
     /**
@@ -580,7 +819,7 @@ public final class ConfigurationGroupSchemasCreateOrUpdateSamples {
 public final class ConfigurationGroupSchemasDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupSchemaDelete.json
      */
     /**
@@ -605,7 +844,7 @@ public final class ConfigurationGroupSchemasDeleteSamples {
 public final class ConfigurationGroupSchemasGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupSchemaGet.json
      */
     /**
@@ -630,7 +869,7 @@ public final class ConfigurationGroupSchemasGetSamples {
 public final class ConfigurationGroupSchemasListByPublisherSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupSchemaListByPublisherName.json
      */
     /**
@@ -658,7 +897,7 @@ import java.util.Map;
 public final class ConfigurationGroupSchemasUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupSchemaUpdateTags.json
      */
     /**
@@ -700,7 +939,7 @@ import com.azure.resourcemanager.hybridnetwork.models.VersionState;
 public final class ConfigurationGroupSchemasUpdateStateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupSchemaVersionUpdateState.json
      */
     /**
@@ -732,7 +971,7 @@ import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceRe
 public final class ConfigurationGroupValuesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueCreate.json
      */
     /**
@@ -756,7 +995,7 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueFirstPartyCreate.json
      */
     /**
@@ -780,7 +1019,7 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueCreateSecret.json
      */
     /**
@@ -812,7 +1051,7 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
 public final class ConfigurationGroupValuesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueDelete.json
      */
     /**
@@ -837,7 +1076,7 @@ public final class ConfigurationGroupValuesDeleteSamples {
 public final class ConfigurationGroupValuesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueGet.json
      */
     /**
@@ -862,7 +1101,7 @@ public final class ConfigurationGroupValuesGetByResourceGroupSamples {
 public final class ConfigurationGroupValuesListSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueListBySubscription.json
      */
     /**
@@ -886,7 +1125,7 @@ public final class ConfigurationGroupValuesListSamples {
 public final class ConfigurationGroupValuesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueListByResourceGroup.json
      */
     /**
@@ -914,7 +1153,7 @@ import java.util.Map;
 public final class ConfigurationGroupValuesUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueUpdateTags.json
      */
     /**
@@ -953,7 +1192,7 @@ public final class ConfigurationGroupValuesUpdateTagsSamples {
 public final class NetworkFunctionDefinitionGroupsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionGroupCreate.json
      */
     /**
@@ -981,7 +1220,7 @@ public final class NetworkFunctionDefinitionGroupsCreateOrUpdateSamples {
 public final class NetworkFunctionDefinitionGroupsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionGroupDelete.json
      */
     /**
@@ -1006,7 +1245,7 @@ public final class NetworkFunctionDefinitionGroupsDeleteSamples {
 public final class NetworkFunctionDefinitionGroupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionGroupGet.json
      */
     /**
@@ -1032,7 +1271,7 @@ public final class NetworkFunctionDefinitionGroupsGetSamples {
 public final class NetworkFunctionDefinitionGroupsListByPublisherSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionGroupsListByPublisherName.json
      */
     /**
@@ -1061,7 +1300,7 @@ import java.util.Map;
 public final class NetworkFunctionDefinitionGroupsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionGroupUpdateTags.json
      */
     /**
@@ -1137,7 +1376,7 @@ import java.util.Arrays;
 public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -1192,7 +1431,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -1248,7 +1487,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -1286,10 +1525,10 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                                     .withValues("")
                                     .withOptions(new HelmMappingRuleProfileOptions()
                                         .withInstallOptions(new HelmInstallOptions().withAtomic("true")
-                                            .withWaitOption("true")
+                                            .withWaitOption("waitValue")
                                             .withTimeout("30"))
                                         .withUpgradeOptions(new HelmUpgradeOptions().withAtomic("true")
-                                            .withWaitOption("true")
+                                            .withWaitOption("waitValue")
                                             .withTimeout("30")))))))))
             .create();
     }
@@ -1305,7 +1544,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
 public final class NetworkFunctionDefinitionVersionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionDelete.json
      */
     /**
@@ -1322,7 +1561,7 @@ public final class NetworkFunctionDefinitionVersionsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionDelete.json
      */
     /**
@@ -1339,7 +1578,7 @@ public final class NetworkFunctionDefinitionVersionsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionDefinitionVersionDelete.json
      */
     /**
@@ -1365,7 +1604,7 @@ public final class NetworkFunctionDefinitionVersionsDeleteSamples {
 public final class NetworkFunctionDefinitionVersionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionGet.json
      */
     /**
@@ -1382,7 +1621,7 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionDefinitionVersionGet.json
      */
     /**
@@ -1399,7 +1638,7 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionGet.json
      */
     /**
@@ -1425,7 +1664,7 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
 public final class NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionListByNetworkFunctionDefinitionGroup.json
      */
     /**
@@ -1454,7 +1693,7 @@ import java.util.Map;
 public final class NetworkFunctionDefinitionVersionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionUpdateTags.json
      */
     /**
@@ -1497,7 +1736,7 @@ import com.azure.resourcemanager.hybridnetwork.models.VersionState;
 public final class NetworkFunctionDefinitionVersionsUpdateStateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionUpdateState.json
      */
     /**
@@ -1531,7 +1770,7 @@ import java.util.Arrays;
 public final class NetworkFunctionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionCreate.json
      */
     /**
@@ -1558,7 +1797,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionFirstPartyCreate.json
      */
     /**
@@ -1588,7 +1827,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionCreate.json
      */
     /**
@@ -1618,7 +1857,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionCreateSecret.json
      */
     /**
@@ -1648,7 +1887,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionCreate.json
      */
     /**
@@ -1685,7 +1924,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 public final class NetworkFunctionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDelete.json
      */
     /**
@@ -1700,7 +1939,7 @@ public final class NetworkFunctionsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionDelete.json
      */
     /**
@@ -1715,7 +1954,7 @@ public final class NetworkFunctionsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionDelete.json
      */
     /**
@@ -1743,7 +1982,7 @@ import com.azure.resourcemanager.hybridnetwork.models.RequestMetadata;
 public final class NetworkFunctionsExecuteRequestSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionsExecuteRequest.json
      */
     /**
@@ -1775,7 +2014,7 @@ public final class NetworkFunctionsExecuteRequestSamples {
 public final class NetworkFunctionsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionGet.json
      */
     /**
@@ -1790,7 +2029,7 @@ public final class NetworkFunctionsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionGet.json
      */
     /**
@@ -1805,7 +2044,7 @@ public final class NetworkFunctionsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionGet.json
      */
     /**
@@ -1829,7 +2068,7 @@ public final class NetworkFunctionsGetByResourceGroupSamples {
 public final class NetworkFunctionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionListBySubscription.json
      */
     /**
@@ -1853,7 +2092,7 @@ public final class NetworkFunctionsListSamples {
 public final class NetworkFunctionsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionListByResourceGroup.json
      */
     /**
@@ -1881,7 +2120,7 @@ import java.util.Map;
 public final class NetworkFunctionsUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionUpdateTags.json
      */
     /**
@@ -1920,7 +2159,7 @@ public final class NetworkFunctionsUpdateTagsSamples {
 public final class NetworkServiceDesignGroupsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignGroupCreate.json
      */
     /**
@@ -1948,7 +2187,7 @@ public final class NetworkServiceDesignGroupsCreateOrUpdateSamples {
 public final class NetworkServiceDesignGroupsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignGroupDelete.json
      */
     /**
@@ -1973,7 +2212,7 @@ public final class NetworkServiceDesignGroupsDeleteSamples {
 public final class NetworkServiceDesignGroupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignGroupGet.json
      */
     /**
@@ -1999,7 +2238,7 @@ public final class NetworkServiceDesignGroupsGetSamples {
 public final class NetworkServiceDesignGroupsListByPublisherSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignGroupsListByPublisherName.json
      */
     /**
@@ -2027,7 +2266,7 @@ import java.util.Map;
 public final class NetworkServiceDesignGroupsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignGroupUpdateTags.json
      */
     /**
@@ -2078,7 +2317,7 @@ import java.util.Map;
 public final class NetworkServiceDesignVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignVersionCreate.json
      */
     /**
@@ -2133,7 +2372,7 @@ public final class NetworkServiceDesignVersionsCreateOrUpdateSamples {
 public final class NetworkServiceDesignVersionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignVersionDelete.json
      */
     /**
@@ -2159,7 +2398,7 @@ public final class NetworkServiceDesignVersionsDeleteSamples {
 public final class NetworkServiceDesignVersionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignVersionGet.json
      */
     /**
@@ -2185,7 +2424,7 @@ public final class NetworkServiceDesignVersionsGetSamples {
 public final class NetworkServiceDesignVersionsListByNetworkServiceDesignGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignVersionListByNetworkServiceDesignGroup.json
      */
     /**
@@ -2214,7 +2453,7 @@ import java.util.Map;
 public final class NetworkServiceDesignVersionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignVersionUpdateTags.json
      */
     /**
@@ -2257,7 +2496,7 @@ import com.azure.resourcemanager.hybridnetwork.models.VersionState;
 public final class NetworkServiceDesignVersionsUpdateStateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignVersionUpdateState.json
      */
     /**
@@ -2284,7 +2523,7 @@ public final class NetworkServiceDesignVersionsUpdateStateSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/GetOperations.
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/GetOperations.
      * json
      */
     /**
@@ -2307,7 +2546,7 @@ public final class OperationsListSamples {
 public final class ProxyArtifactGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PureProxyArtifact
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PureProxyArtifact
      * /ArtifactGet.json
      */
     /**
@@ -2332,7 +2571,7 @@ public final class ProxyArtifactGetSamples {
 public final class ProxyArtifactListSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PureProxyArtifact
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PureProxyArtifact
      * /ArtifactList.json
      */
     /**
@@ -2361,7 +2600,7 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactState;
 public final class ProxyArtifactUpdateStateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PureProxyArtifact
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PureProxyArtifact
      * /ArtifactChangeState.json
      */
     /**
@@ -2391,7 +2630,7 @@ import com.azure.resourcemanager.hybridnetwork.models.PublisherScope;
 public final class PublishersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherCreate.
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PublisherCreate.
      * json
      */
     /**
@@ -2420,7 +2659,7 @@ public final class PublishersCreateOrUpdateSamples {
 public final class PublishersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherDelete.
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PublisherDelete.
      * json
      */
     /**
@@ -2443,7 +2682,7 @@ public final class PublishersDeleteSamples {
 public final class PublishersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherGet.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PublisherGet.json
      */
     /**
      * Sample code: Get a publisher resource.
@@ -2465,7 +2704,7 @@ public final class PublishersGetByResourceGroupSamples {
 public final class PublishersListSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * PublisherListBySubscription.json
      */
     /**
@@ -2489,7 +2728,7 @@ public final class PublishersListSamples {
 public final class PublishersListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * PublisherListByResourceGroup.json
      */
     /**
@@ -2517,7 +2756,7 @@ import java.util.Map;
 public final class PublishersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * PublisherUpdateTags.json
      */
     /**
@@ -2564,7 +2803,7 @@ import java.util.Map;
 public final class SiteNetworkServicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteNetworkServiceCreate.json
      */
     /**
@@ -2591,7 +2830,7 @@ public final class SiteNetworkServicesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteNetworkServiceFirstPartyCreate.json
      */
     /**
@@ -2640,7 +2879,7 @@ public final class SiteNetworkServicesCreateOrUpdateSamples {
 public final class SiteNetworkServicesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteNetworkServiceDelete.json
      */
     /**
@@ -2663,7 +2902,7 @@ public final class SiteNetworkServicesDeleteSamples {
 public final class SiteNetworkServicesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteNetworkServiceGet.json
      */
     /**
@@ -2687,7 +2926,7 @@ public final class SiteNetworkServicesGetByResourceGroupSamples {
 public final class SiteNetworkServicesListSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteNetworkServiceListBySubscription.json
      */
     /**
@@ -2711,7 +2950,7 @@ public final class SiteNetworkServicesListSamples {
 public final class SiteNetworkServicesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteNetworkServiceListByResourceGroup.json
      */
     /**
@@ -2738,7 +2977,7 @@ import java.util.Map;
 public final class SiteNetworkServicesUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteNetworkServiceUpdateTags.json
      */
     /**
@@ -2783,7 +3022,7 @@ import java.util.Arrays;
 public final class SitesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteCreate.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/SiteCreate.json
      */
     /**
      * Sample code: Create network site.
@@ -2817,7 +3056,7 @@ public final class SitesCreateOrUpdateSamples {
 public final class SitesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteDelete.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/SiteDelete.json
      */
     /**
      * Sample code: Delete network site.
@@ -2839,7 +3078,7 @@ public final class SitesDeleteSamples {
 public final class SitesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteGet.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/SiteGet.json
      */
     /**
      * Sample code: Get network site.
@@ -2861,7 +3100,7 @@ public final class SitesGetByResourceGroupSamples {
 public final class SitesListSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteListBySubscription.json
      */
     /**
@@ -2885,7 +3124,7 @@ public final class SitesListSamples {
 public final class SitesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * SiteListByResourceGroup.json
      */
     /**
@@ -2912,7 +3151,7 @@ import java.util.Map;
 public final class SitesUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteUpdateTags.
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/SiteUpdateTags.
      * json
      */
     /**

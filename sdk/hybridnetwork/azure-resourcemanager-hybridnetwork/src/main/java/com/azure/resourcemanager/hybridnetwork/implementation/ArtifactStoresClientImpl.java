@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -34,7 +35,11 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.hybridnetwork.fluent.ArtifactStoresClient;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreListResult;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreNetworkFabricControllerEndPointsList;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePrivateEndPointsListResult;
 import com.azure.resourcemanager.hybridnetwork.models.TagsObject;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -121,10 +126,90 @@ public final class ArtifactStoresClientImpl implements ArtifactStoresClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/addNetworkFabricControllerEndPoints")
+        @ExpectedResponses({ 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> addNetworkFabricControllerEndPoints(@HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("publisherName") String publisherName,
+            @PathParam("artifactStoreName") String artifactStoreName, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/deleteNetworkFabricControllerEndPoints")
+        @ExpectedResponses({ 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> deleteNetworkFabricControllerEndPoints(@HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("publisherName") String publisherName,
+            @PathParam("artifactStoreName") String artifactStoreName, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/listNetworkFabricControllerPrivateEndPoints")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> listNetworkFabricControllerPrivateEndPoints(
+            @HostParam("$host") String endpoint, @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("publisherName") String publisherName, @PathParam("artifactStoreName") String artifactStoreName,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/approvePrivateEndPoints")
+        @ExpectedResponses({ 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> approvePrivateEndPoints(@HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("publisherName") String publisherName,
+            @PathParam("artifactStoreName") String artifactStoreName, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") ArtifactStorePrivateEndPointsFormatInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/removePrivateEndPoints")
+        @ExpectedResponses({ 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> removePrivateEndPoints(@HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("publisherName") String publisherName,
+            @PathParam("artifactStoreName") String artifactStoreName, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") ArtifactStorePrivateEndPointsFormatInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/listPrivateEndPoints")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> listPrivateEndPoints(@HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("publisherName") String publisherName,
+            @PathParam("artifactStoreName") String artifactStoreName, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ArtifactStoreListResult>> listByPublisherNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ArtifactStoreNetworkFabricControllerEndPointsList>>
+            listNetworkFabricControllerPrivateEndPointsNext(
+                @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+                @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ArtifactStorePrivateEndPointsListResult>> listPrivateEndPointsNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -1035,6 +1120,1412 @@ public final class ArtifactStoresClientImpl implements ArtifactStoresClient {
     }
 
     /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> addNetworkFabricControllerEndPointsWithResponseAsync(
+        String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.addNetworkFabricControllerEndPoints(this.client.getEndpoint(),
+                resourceGroupName, publisherName, artifactStoreName, this.client.getApiVersion(),
+                this.client.getSubscriptionId(), parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> addNetworkFabricControllerEndPointsWithResponseAsync(
+        String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.addNetworkFabricControllerEndPoints(this.client.getEndpoint(), resourceGroupName, publisherName,
+            artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept,
+            context);
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginAddNetworkFabricControllerEndPointsAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono = addNetworkFabricControllerEndPointsWithResponseAsync(resourceGroupName,
+            publisherName, artifactStoreName, parameters);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginAddNetworkFabricControllerEndPointsAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = addNetworkFabricControllerEndPointsWithResponseAsync(resourceGroupName,
+            publisherName, artifactStoreName, parameters, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginAddNetworkFabricControllerEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        return this
+            .beginAddNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName,
+                parameters)
+            .getSyncPoller();
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginAddNetworkFabricControllerEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context) {
+        return this
+            .beginAddNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName,
+                parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> addNetworkFabricControllerEndPointsAsync(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        return beginAddNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName,
+            parameters).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> addNetworkFabricControllerEndPointsAsync(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        return beginAddNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName,
+            parameters, context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void addNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        addNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters)
+            .block();
+    }
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void addNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        addNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters,
+            context).block();
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteNetworkFabricControllerEndPointsWithResponseAsync(
+        String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.deleteNetworkFabricControllerEndPoints(this.client.getEndpoint(),
+                resourceGroupName, publisherName, artifactStoreName, this.client.getApiVersion(),
+                this.client.getSubscriptionId(), parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteNetworkFabricControllerEndPointsWithResponseAsync(
+        String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.deleteNetworkFabricControllerEndPoints(this.client.getEndpoint(), resourceGroupName,
+            publisherName, artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(), parameters,
+            accept, context);
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteNetworkFabricControllerEndPointsAsync(
+        String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteNetworkFabricControllerEndPointsWithResponseAsync(
+            resourceGroupName, publisherName, artifactStoreName, parameters);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteNetworkFabricControllerEndPointsAsync(
+        String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteNetworkFabricControllerEndPointsWithResponseAsync(
+            resourceGroupName, publisherName, artifactStoreName, parameters, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDeleteNetworkFabricControllerEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        return this
+            .beginDeleteNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName,
+                parameters)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDeleteNetworkFabricControllerEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context) {
+        return this
+            .beginDeleteNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName,
+                parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteNetworkFabricControllerEndPointsAsync(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        return beginDeleteNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName,
+            parameters).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteNetworkFabricControllerEndPointsAsync(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        return beginDeleteNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName,
+            parameters, context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        deleteNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters)
+            .block();
+    }
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        deleteNetworkFabricControllerEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters,
+            context).block();
+    }
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ArtifactStoreNetworkFabricControllerEndPointsInner>>
+        listNetworkFabricControllerPrivateEndPointsSinglePageAsync(String resourceGroupName, String publisherName,
+            String artifactStoreName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> {
+            Mono<Response<Flux<ByteBuffer>>> mono
+                = service
+                    .listNetworkFabricControllerPrivateEndPoints(this.client.getEndpoint(), resourceGroupName,
+                        publisherName, artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(),
+                        accept, context)
+                    .cache();
+            return Mono.zip(mono, this.client
+                .<ArtifactStoreNetworkFabricControllerEndPointsList, ArtifactStoreNetworkFabricControllerEndPointsList>getLroResult(
+                    mono, this.client.getHttpPipeline(), ArtifactStoreNetworkFabricControllerEndPointsList.class,
+                    ArtifactStoreNetworkFabricControllerEndPointsList.class, this.client.getContext())
+                .last()
+                .flatMap(this.client::getLroFinalResultOrError));
+        })
+            .<PagedResponse<ArtifactStoreNetworkFabricControllerEndPointsInner>>map(
+                res -> new PagedResponseBase<>(res.getT1().getRequest(), res.getT1().getStatusCode(),
+                    res.getT1().getHeaders(), res.getT2().value(), res.getT2().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ArtifactStoreNetworkFabricControllerEndPointsInner>>
+        listNetworkFabricControllerPrivateEndPointsSinglePageAsync(String resourceGroupName, String publisherName,
+            String artifactStoreName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = service
+            .listNetworkFabricControllerPrivateEndPoints(this.client.getEndpoint(), resourceGroupName, publisherName,
+                artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context)
+            .cache();
+        return Mono.zip(mono, this.client
+            .<ArtifactStoreNetworkFabricControllerEndPointsList, ArtifactStoreNetworkFabricControllerEndPointsList>getLroResult(
+                mono, this.client.getHttpPipeline(), ArtifactStoreNetworkFabricControllerEndPointsList.class,
+                ArtifactStoreNetworkFabricControllerEndPointsList.class, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError))
+            .map(res -> new PagedResponseBase<>(res.getT1().getRequest(), res.getT1().getStatusCode(),
+                res.getT1().getHeaders(), res.getT2().value(), res.getT2().nextLink(), null));
+    }
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ArtifactStoreNetworkFabricControllerEndPointsInner>
+        listNetworkFabricControllerPrivateEndPointsAsync(String resourceGroupName, String publisherName,
+            String artifactStoreName) {
+        return new PagedFlux<>(
+            () -> listNetworkFabricControllerPrivateEndPointsSinglePageAsync(resourceGroupName, publisherName,
+                artifactStoreName),
+            nextLink -> listNetworkFabricControllerPrivateEndPointsNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ArtifactStoreNetworkFabricControllerEndPointsInner>
+        listNetworkFabricControllerPrivateEndPointsAsync(String resourceGroupName, String publisherName,
+            String artifactStoreName, Context context) {
+        return new PagedFlux<>(
+            () -> listNetworkFabricControllerPrivateEndPointsSinglePageAsync(resourceGroupName, publisherName,
+                artifactStoreName, context),
+            nextLink -> listNetworkFabricControllerPrivateEndPointsNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ArtifactStoreNetworkFabricControllerEndPointsInner>
+        listNetworkFabricControllerPrivateEndPoints(String resourceGroupName, String publisherName,
+            String artifactStoreName) {
+        return new PagedIterable<>(
+            listNetworkFabricControllerPrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName));
+    }
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ArtifactStoreNetworkFabricControllerEndPointsInner>
+        listNetworkFabricControllerPrivateEndPoints(String resourceGroupName, String publisherName,
+            String artifactStoreName, Context context) {
+        return new PagedIterable<>(listNetworkFabricControllerPrivateEndPointsAsync(resourceGroupName, publisherName,
+            artifactStoreName, context));
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> approvePrivateEndPointsWithResponseAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.approvePrivateEndPoints(this.client.getEndpoint(), resourceGroupName,
+                publisherName, artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(),
+                parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> approvePrivateEndPointsWithResponseAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.approvePrivateEndPoints(this.client.getEndpoint(), resourceGroupName, publisherName,
+            artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept,
+            context);
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginApprovePrivateEndPointsAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = approvePrivateEndPointsWithResponseAsync(resourceGroupName, publisherName, artifactStoreName, parameters);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginApprovePrivateEndPointsAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = approvePrivateEndPointsWithResponseAsync(resourceGroupName,
+            publisherName, artifactStoreName, parameters, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginApprovePrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters) {
+        return this.beginApprovePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters)
+            .getSyncPoller();
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginApprovePrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters,
+        Context context) {
+        return this
+            .beginApprovePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> approvePrivateEndPointsAsync(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters) {
+        return beginApprovePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> approvePrivateEndPointsAsync(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters, Context context) {
+        return beginApprovePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void approvePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters) {
+        approvePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters).block();
+    }
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void approvePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters, Context context) {
+        approvePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters, context).block();
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> removePrivateEndPointsWithResponseAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.removePrivateEndPoints(this.client.getEndpoint(), resourceGroupName,
+                publisherName, artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(),
+                parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> removePrivateEndPointsWithResponseAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.removePrivateEndPoints(this.client.getEndpoint(), resourceGroupName, publisherName,
+            artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept,
+            context);
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginRemovePrivateEndPointsAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = removePrivateEndPointsWithResponseAsync(resourceGroupName, publisherName, artifactStoreName, parameters);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginRemovePrivateEndPointsAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = removePrivateEndPointsWithResponseAsync(resourceGroupName,
+            publisherName, artifactStoreName, parameters, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginRemovePrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters) {
+        return this.beginRemovePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters)
+            .getSyncPoller();
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginRemovePrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters,
+        Context context) {
+        return this
+            .beginRemovePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> removePrivateEndPointsAsync(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters) {
+        return beginRemovePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> removePrivateEndPointsAsync(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters, Context context) {
+        return beginRemovePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void removePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters) {
+        removePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters).block();
+    }
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void removePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters, Context context) {
+        removePrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, parameters, context).block();
+    }
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ArtifactStorePrivateEndPointsFormatInner>>
+        listPrivateEndPointsSinglePageAsync(String resourceGroupName, String publisherName, String artifactStoreName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> {
+            Mono<Response<Flux<ByteBuffer>>> mono
+                = service.listPrivateEndPoints(this.client.getEndpoint(), resourceGroupName, publisherName,
+                    artifactStoreName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context)
+                    .cache();
+            return Mono.zip(mono,
+                this.client
+                    .<ArtifactStorePrivateEndPointsListResult, ArtifactStorePrivateEndPointsListResult>getLroResult(
+                        mono, this.client.getHttpPipeline(), ArtifactStorePrivateEndPointsListResult.class,
+                        ArtifactStorePrivateEndPointsListResult.class, this.client.getContext())
+                    .last()
+                    .flatMap(this.client::getLroFinalResultOrError));
+        })
+            .<PagedResponse<ArtifactStorePrivateEndPointsFormatInner>>map(
+                res -> new PagedResponseBase<>(res.getT1().getRequest(), res.getT1().getStatusCode(),
+                    res.getT1().getHeaders(), res.getT2().value(), res.getT2().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ArtifactStorePrivateEndPointsFormatInner>> listPrivateEndPointsSinglePageAsync(
+        String resourceGroupName, String publisherName, String artifactStoreName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (publisherName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter publisherName is required and cannot be null."));
+        }
+        if (artifactStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter artifactStoreName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = service
+                .listPrivateEndPoints(this.client.getEndpoint(), resourceGroupName, publisherName, artifactStoreName,
+                    this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context)
+                .cache();
+        return Mono
+            .zip(mono,
+                this.client
+                    .<ArtifactStorePrivateEndPointsListResult, ArtifactStorePrivateEndPointsListResult>getLroResult(
+                        mono, this.client.getHttpPipeline(), ArtifactStorePrivateEndPointsListResult.class,
+                        ArtifactStorePrivateEndPointsListResult.class, context)
+                    .last()
+                    .flatMap(this.client::getLroFinalResultOrError))
+            .map(res -> new PagedResponseBase<>(res.getT1().getRequest(), res.getT1().getStatusCode(),
+                res.getT1().getHeaders(), res.getT2().value(), res.getT2().nextLink(), null));
+    }
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ArtifactStorePrivateEndPointsFormatInner> listPrivateEndPointsAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName) {
+        return new PagedFlux<>(
+            () -> listPrivateEndPointsSinglePageAsync(resourceGroupName, publisherName, artifactStoreName),
+            nextLink -> listPrivateEndPointsNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ArtifactStorePrivateEndPointsFormatInner> listPrivateEndPointsAsync(String resourceGroupName,
+        String publisherName, String artifactStoreName, Context context) {
+        return new PagedFlux<>(
+            () -> listPrivateEndPointsSinglePageAsync(resourceGroupName, publisherName, artifactStoreName, context),
+            nextLink -> listPrivateEndPointsNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ArtifactStorePrivateEndPointsFormatInner> listPrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName) {
+        return new PagedIterable<>(listPrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName));
+    }
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ArtifactStorePrivateEndPointsFormatInner> listPrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, Context context) {
+        return new PagedIterable<>(
+            listPrivateEndPointsAsync(resourceGroupName, publisherName, artifactStoreName, context));
+    }
+
+    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -1083,6 +2574,123 @@ public final class ArtifactStoresClientImpl implements ArtifactStoresClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listByPublisherNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ArtifactStoreNetworkFabricControllerEndPointsInner>>
+        listNetworkFabricControllerPrivateEndPointsNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listNetworkFabricControllerPrivateEndPointsNext(nextLink,
+                this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ArtifactStoreNetworkFabricControllerEndPointsInner>>map(
+                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                    res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ArtifactStoreNetworkFabricControllerEndPointsInner>>
+        listNetworkFabricControllerPrivateEndPointsNextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listNetworkFabricControllerPrivateEndPointsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ArtifactStorePrivateEndPointsFormatInner>>
+        listPrivateEndPointsNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listPrivateEndPointsNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ArtifactStorePrivateEndPointsFormatInner>>map(
+                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                    res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ArtifactStorePrivateEndPointsFormatInner>>
+        listPrivateEndPointsNextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listPrivateEndPointsNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

@@ -66,6 +66,54 @@ public final class NetworkFunctionValueWithoutSecrets extends NetworkFunctionPro
      * {@inheritDoc}
      */
     @Override
+    public NetworkFunctionValueWithoutSecrets withPublisherName(String publisherName) {
+        super.withPublisherName(publisherName);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkFunctionValueWithoutSecrets withPublisherScope(PublisherScope publisherScope) {
+        super.withPublisherScope(publisherScope);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkFunctionValueWithoutSecrets
+        withNetworkFunctionDefinitionGroupName(String networkFunctionDefinitionGroupName) {
+        super.withNetworkFunctionDefinitionGroupName(networkFunctionDefinitionGroupName);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkFunctionValueWithoutSecrets
+        withNetworkFunctionDefinitionVersion(String networkFunctionDefinitionVersion) {
+        super.withNetworkFunctionDefinitionVersion(networkFunctionDefinitionVersion);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkFunctionValueWithoutSecrets
+        withNetworkFunctionDefinitionOfferingLocation(String networkFunctionDefinitionOfferingLocation) {
+        super.withNetworkFunctionDefinitionOfferingLocation(networkFunctionDefinitionOfferingLocation);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public NetworkFunctionValueWithoutSecrets withNetworkFunctionDefinitionVersionResourceReference(
         DeploymentResourceIdReference networkFunctionDefinitionVersionResourceReference) {
         super.withNetworkFunctionDefinitionVersionResourceReference(networkFunctionDefinitionVersionResourceReference);
@@ -126,6 +174,12 @@ public final class NetworkFunctionValueWithoutSecrets extends NetworkFunctionPro
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("publisherName", publisherName());
+        jsonWriter.writeStringField("publisherScope", publisherScope() == null ? null : publisherScope().toString());
+        jsonWriter.writeStringField("networkFunctionDefinitionGroupName", networkFunctionDefinitionGroupName());
+        jsonWriter.writeStringField("networkFunctionDefinitionVersion", networkFunctionDefinitionVersion());
+        jsonWriter.writeStringField("networkFunctionDefinitionOfferingLocation",
+            networkFunctionDefinitionOfferingLocation());
         jsonWriter.writeJsonField("networkFunctionDefinitionVersionResourceReference",
             networkFunctionDefinitionVersionResourceReference());
         jsonWriter.writeStringField("nfviType", nfviType() == null ? null : nfviType().toString());
