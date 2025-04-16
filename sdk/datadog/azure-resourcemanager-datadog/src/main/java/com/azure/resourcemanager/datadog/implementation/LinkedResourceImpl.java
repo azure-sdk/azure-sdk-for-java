@@ -22,6 +22,10 @@ public final class LinkedResourceImpl implements LinkedResource {
         return this.innerModel().id();
     }
 
+    public String location() {
+        return this.innerModel().location();
+    }
+
     public LinkedResourceInner innerModel() {
         return this.innerObject;
     }

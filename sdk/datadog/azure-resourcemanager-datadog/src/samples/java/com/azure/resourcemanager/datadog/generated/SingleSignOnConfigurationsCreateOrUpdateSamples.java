@@ -12,7 +12,7 @@ import com.azure.resourcemanager.datadog.models.SingleSignOnStates;
  */
 public final class SingleSignOnConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/
      * SingleSignOnConfigurations_CreateOrUpdate.json
      */
     /**

@@ -121,6 +121,14 @@ public final class MonitoredSubscriptionsClientImpl implements MonitoredSubscrip
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
             @PathParam("configurationName") String configurationName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<MonitoredSubscriptionPropertiesList>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
@@ -156,7 +164,7 @@ public final class MonitoredSubscriptionsClientImpl implements MonitoredSubscrip
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
                 resourceGroupName, monitorName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<MonitoredSubscriptionPropertiesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -195,7 +203,7 @@ public final class MonitoredSubscriptionsClientImpl implements MonitoredSubscrip
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, monitorName,
                 this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), null, null));
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -210,7 +218,8 @@ public final class MonitoredSubscriptionsClientImpl implements MonitoredSubscrip
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MonitoredSubscriptionPropertiesInner> listAsync(String resourceGroupName, String monitorName) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, monitorName));
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, monitorName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -227,7 +236,8 @@ public final class MonitoredSubscriptionsClientImpl implements MonitoredSubscrip
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MonitoredSubscriptionPropertiesInner> listAsync(String resourceGroupName, String monitorName,
         Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, monitorName, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, monitorName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -1224,5 +1234,57 @@ public final class MonitoredSubscriptionsClientImpl implements MonitoredSubscrip
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String monitorName, String configurationName, Context context) {
         deleteAsync(resourceGroupName, monitorName, configurationName, context).block();
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<MonitoredSubscriptionPropertiesInner>> listNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<MonitoredSubscriptionPropertiesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<MonitoredSubscriptionPropertiesInner>> listNextSinglePageAsync(String nextLink,
+        Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }
