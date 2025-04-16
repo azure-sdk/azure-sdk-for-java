@@ -1,14 +1,8 @@
 # Release History
 
-## 1.4.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-16)
 
-### Features Added
-
-### Breaking Changes
-
-### Bugs Fixed
-
-### Other Changes
+- Azure Resource Manager IotHub client library for Java. This package contains Microsoft Azure SDK for IotHub Management SDK. Use this API to manage the IoT hubs in your Azure subscription. Package tag package-2023-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## 1.3.0 (2024-12-11)
 
