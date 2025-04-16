@@ -16,6 +16,7 @@ import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentAuthToken;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
+import com.azure.resourcemanager.appcontainers.models.IngressConfiguration;
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
@@ -98,6 +99,10 @@ public final class ManagedEnvironmentImpl
         return this.innerModel().defaultDomain();
     }
 
+    public String privateLinkDefaultDomain() {
+        return this.innerModel().privateLinkDefaultDomain();
+    }
+
     public String staticIp() {
         return this.innerModel().staticIp();
     }
@@ -116,6 +121,15 @@ public final class ManagedEnvironmentImpl
 
     public Boolean zoneRedundant() {
         return this.innerModel().zoneRedundant();
+    }
+
+    public List<String> availabilityZones() {
+        List<String> inner = this.innerModel().availabilityZones();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public CustomDomainConfiguration customDomainConfiguration() {
@@ -153,6 +167,10 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration() {
         return this.innerModel().peerTrafficConfiguration();
+    }
+
+    public IngressConfiguration ingressConfiguration() {
+        return this.innerModel().ingressConfiguration();
     }
 
     public List<PrivateEndpointConnection> privateEndpointConnections() {
@@ -332,6 +350,11 @@ public final class ManagedEnvironmentImpl
         return this;
     }
 
+    public ManagedEnvironmentImpl withAvailabilityZones(List<String> availabilityZones) {
+        this.innerModel().withAvailabilityZones(availabilityZones);
+        return this;
+    }
+
     public ManagedEnvironmentImpl withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration) {
         this.innerModel().withCustomDomainConfiguration(customDomainConfiguration);
         return this;
@@ -366,6 +389,11 @@ public final class ManagedEnvironmentImpl
     public ManagedEnvironmentImpl
         withPeerTrafficConfiguration(ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration) {
         this.innerModel().withPeerTrafficConfiguration(peerTrafficConfiguration);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withIngressConfiguration(IngressConfiguration ingressConfiguration) {
+        this.innerModel().withIngressConfiguration(ingressConfiguration);
         return this;
     }
 
