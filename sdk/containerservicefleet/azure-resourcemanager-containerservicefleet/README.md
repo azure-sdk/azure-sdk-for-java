@@ -1,8 +1,8 @@
-# Azure Resource Manager Container Service Fleet client library for Java
+# Azure Resource Manager ContainerServiceFleet client library for Java
 
-Azure Resource Manager Container Service Fleet client library for Java.
+Azure Resource Manager ContainerServiceFleet client library for Java.
 
-This package contains Microsoft Azure SDK for Container Service Fleet Management SDK. Azure Kubernetes Fleet Manager api client. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for ContainerServiceFleet Management SDK. Azure Kubernetes Fleet Manager Client. Package tag package-2025-03-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
