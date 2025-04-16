@@ -9,7 +9,7 @@ package com.azure.resourcemanager.consumption.generated;
  */
 public final class MarketplacesListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesByBillingAccountListForBillingPeriod.json
      */
     /**
@@ -25,7 +25,7 @@ public final class MarketplacesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesByEnrollmentAccounts_ListByBillingPeriod.json
      */
     /**
@@ -42,7 +42,7 @@ public final class MarketplacesListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/MarketplacesList.json
+     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/MarketplacesList.json
      */
     /**
      * Sample code: SubscriptionMarketplacesList.
@@ -56,7 +56,7 @@ public final class MarketplacesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesByEnrollmentAccountList.json
      */
     /**
@@ -72,7 +72,7 @@ public final class MarketplacesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesByDepartment_ListByBillingPeriod.json
      */
     /**
@@ -87,7 +87,7 @@ public final class MarketplacesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesByManagementGroupList.json
      */
     /**
@@ -103,7 +103,7 @@ public final class MarketplacesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesListForBillingPeriod.json
      */
     /**
@@ -119,7 +119,7 @@ public final class MarketplacesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesByDepartmentList.json
      */
     /**
@@ -133,7 +133,7 @@ public final class MarketplacesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesByManagementGroup_ListForBillingPeriod.json
      */
     /**
@@ -149,7 +149,7 @@ public final class MarketplacesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * MarketplacesByBillingAccountList.json
      */
     /**

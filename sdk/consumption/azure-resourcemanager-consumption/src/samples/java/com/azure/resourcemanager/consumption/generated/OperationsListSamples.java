@@ -10,7 +10,7 @@ package com.azure.resourcemanager.consumption.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/OperationList.json
+     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/OperationList.json
      */
     /**
      * Sample code: OperationList.

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.consumption.generated;
 public final class TagsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/Tags.json
+     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/Tags.json
      */
     /**
      * Sample code: Tags_Get.
