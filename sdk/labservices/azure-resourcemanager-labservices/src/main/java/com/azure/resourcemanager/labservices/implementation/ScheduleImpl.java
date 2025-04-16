@@ -9,6 +9,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.fluent.models.ScheduleInner;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
 import com.azure.resourcemanager.labservices.models.RecurrencePattern;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.Schedule;
 import com.azure.resourcemanager.labservices.models.ScheduleUpdate;
 import java.time.OffsetDateTime;
@@ -36,6 +37,10 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
 
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
+    }
+
+    public ResourceOperationError resourceOperationError() {
+        return this.innerModel().resourceOperationError();
     }
 
     public OffsetDateTime startAt() {

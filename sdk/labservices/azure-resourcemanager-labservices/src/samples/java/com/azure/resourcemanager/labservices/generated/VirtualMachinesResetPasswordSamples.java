@@ -12,7 +12,7 @@ import com.azure.resourcemanager.labservices.models.ResetPasswordBody;
 public final class VirtualMachinesResetPasswordSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/
      * resetPasswordVirtualMachine.json
      */
     /**
