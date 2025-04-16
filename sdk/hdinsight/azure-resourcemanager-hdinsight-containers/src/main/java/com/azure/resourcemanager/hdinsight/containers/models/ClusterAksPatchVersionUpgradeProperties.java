@@ -43,7 +43,6 @@ public final class ClusterAksPatchVersionUpgradeProperties extends ClusterUpgrad
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

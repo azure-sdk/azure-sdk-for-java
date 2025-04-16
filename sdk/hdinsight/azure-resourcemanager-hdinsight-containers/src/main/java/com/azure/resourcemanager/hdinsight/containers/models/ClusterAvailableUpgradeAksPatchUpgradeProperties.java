@@ -121,7 +121,6 @@ public final class ClusterAvailableUpgradeAksPatchUpgradeProperties extends Clus
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
