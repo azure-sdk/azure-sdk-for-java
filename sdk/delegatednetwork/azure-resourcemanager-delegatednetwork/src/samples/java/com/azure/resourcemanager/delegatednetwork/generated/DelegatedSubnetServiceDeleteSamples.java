@@ -10,8 +10,8 @@ package com.azure.resourcemanager.delegatednetwork.generated;
 public final class DelegatedSubnetServiceDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/deleteDelegatedSubnet.
-     * json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * deleteDelegatedSubnet.json
      */
     /**
      * Sample code: delete delegated subnet.

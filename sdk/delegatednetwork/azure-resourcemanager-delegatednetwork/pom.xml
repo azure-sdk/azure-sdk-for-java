@@ -18,7 +18,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for DelegatedNetwork Management</name>
-  <description>This package contains Microsoft Azure SDK for DelegatedNetwork Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. DNC web api provides way to create, get and delete dnc controller. Package tag package-2021-03-15.</description>
+  <description>This package contains Microsoft Azure SDK for DelegatedNetwork Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. DNC web api provides way to create, get and delete dnc controller. Package tag package-2023-06-27-preview.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>
@@ -46,6 +46,7 @@
     <jacoco.min.linecoverage>0</jacoco.min.linecoverage>
     <jacoco.min.branchcoverage>0</jacoco.min.branchcoverage>
     <revapi.skip>true</revapi.skip>
+    <spotless.skip>false</spotless.skip>
   </properties>
   <dependencies>
     <dependency>
