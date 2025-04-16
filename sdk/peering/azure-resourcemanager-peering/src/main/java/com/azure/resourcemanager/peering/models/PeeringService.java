@@ -93,6 +93,13 @@ public interface PeeringService {
     String providerBackupPeeringLocation();
 
     /**
+     * Gets the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+     * 
+     * @return the logAnalyticsWorkspaceProperties value.
+     */
+    LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -175,9 +182,10 @@ public interface PeeringService {
          * The stage of the PeeringService definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithSku,
-            DefinitionStages.WithPeeringServiceLocation, DefinitionStages.WithPeeringServiceProvider,
-            DefinitionStages.WithProviderPrimaryPeeringLocation, DefinitionStages.WithProviderBackupPeeringLocation {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithSku, DefinitionStages.WithPeeringServiceLocation,
+            DefinitionStages.WithPeeringServiceProvider, DefinitionStages.WithProviderPrimaryPeeringLocation,
+            DefinitionStages.WithProviderBackupPeeringLocation, DefinitionStages.WithLogAnalyticsWorkspaceProperties {
             /**
              * Executes the create request.
              * 
@@ -274,6 +282,20 @@ public interface PeeringService {
              * @return the next definition stage.
              */
             WithCreate withProviderBackupPeeringLocation(String providerBackupPeeringLocation);
+        }
+
+        /**
+         * The stage of the PeeringService definition allowing to specify logAnalyticsWorkspaceProperties.
+         */
+        interface WithLogAnalyticsWorkspaceProperties {
+            /**
+             * Specifies the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+             * 
+             * @param logAnalyticsWorkspaceProperties The Log Analytics Workspace Properties.
+             * @return the next definition stage.
+             */
+            WithCreate
+                withLogAnalyticsWorkspaceProperties(LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties);
         }
     }
 

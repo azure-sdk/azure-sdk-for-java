@@ -10,7 +10,7 @@ package com.azure.resourcemanager.peering.generated;
 public final class RegisteredPrefixesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeleteRegisteredPrefix.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/DeleteRegisteredPrefix.json
      */
     /**
      * Sample code: Deletes a registered prefix associated with the peering.

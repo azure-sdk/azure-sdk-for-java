@@ -47,6 +47,11 @@ public final class DirectPeeringType extends ExpandableStringEnum<DirectPeeringT
     public static final DirectPeeringType VOICE = fromString("Voice");
 
     /**
+     * Static value EdgeZoneForOperators for DirectPeeringType.
+     */
+    public static final DirectPeeringType EDGE_ZONE_FOR_OPERATORS = fromString("EdgeZoneForOperators");
+
+    /**
      * Creates a new instance of DirectPeeringType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
