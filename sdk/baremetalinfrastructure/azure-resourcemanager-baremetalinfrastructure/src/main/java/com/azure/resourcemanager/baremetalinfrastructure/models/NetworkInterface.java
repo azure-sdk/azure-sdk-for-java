@@ -12,19 +12,19 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Specifies the IP address of the network interface.
+ * Specifies the network interfaces of a bare metal resource.
  */
 @Fluent
-public final class IpAddress implements JsonSerializable<IpAddress> {
+public final class NetworkInterface implements JsonSerializable<NetworkInterface> {
     /*
      * Specifies the IP address of the network interface.
      */
     private String ipAddress;
 
     /**
-     * Creates an instance of IpAddress class.
+     * Creates an instance of NetworkInterface class.
      */
-    public IpAddress() {
+    public NetworkInterface() {
     }
 
     /**
@@ -40,9 +40,9 @@ public final class IpAddress implements JsonSerializable<IpAddress> {
      * Set the ipAddress property: Specifies the IP address of the network interface.
      * 
      * @param ipAddress the ipAddress value to set.
-     * @return the IpAddress object itself.
+     * @return the NetworkInterface object itself.
      */
-    public IpAddress withIpAddress(String ipAddress) {
+    public NetworkInterface withIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
         return this;
     }
@@ -66,28 +66,28 @@ public final class IpAddress implements JsonSerializable<IpAddress> {
     }
 
     /**
-     * Reads an instance of IpAddress from the JsonReader.
+     * Reads an instance of NetworkInterface from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of IpAddress if the JsonReader was pointing to an instance of it, or null if it was pointing
-     * to JSON null.
-     * @throws IOException If an error occurs while reading the IpAddress.
+     * @return An instance of NetworkInterface if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the NetworkInterface.
      */
-    public static IpAddress fromJson(JsonReader jsonReader) throws IOException {
+    public static NetworkInterface fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            IpAddress deserializedIpAddress = new IpAddress();
+            NetworkInterface deserializedNetworkInterface = new NetworkInterface();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("ipAddress".equals(fieldName)) {
-                    deserializedIpAddress.ipAddress = reader.getString();
+                    deserializedNetworkInterface.ipAddress = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedIpAddress;
+            return deserializedNetworkInterface;
         });
     }
 }

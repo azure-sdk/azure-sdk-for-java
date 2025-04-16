@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Specifies the storage settings for the AzureBareMetal instance disks.
+ * Specifies the storage settings for the Azure Bare Metal instance disks.
  */
 @Fluent
 public final class StorageProfile implements JsonSerializable<StorageProfile> {
@@ -23,7 +23,7 @@ public final class StorageProfile implements JsonSerializable<StorageProfile> {
     private String nfsIpAddress;
 
     /*
-     * Specifies information about the operating system disk used by baremetal instance.
+     * Specifies information about the operating system disk used by bare metal instance.
      */
     private List<Disk> osDisks;
 
@@ -43,7 +43,18 @@ public final class StorageProfile implements JsonSerializable<StorageProfile> {
     }
 
     /**
-     * Get the osDisks property: Specifies information about the operating system disk used by baremetal instance.
+     * Set the nfsIpAddress property: IP Address to connect to storage.
+     * 
+     * @param nfsIpAddress the nfsIpAddress value to set.
+     * @return the StorageProfile object itself.
+     */
+    public StorageProfile withNfsIpAddress(String nfsIpAddress) {
+        this.nfsIpAddress = nfsIpAddress;
+        return this;
+    }
+
+    /**
+     * Get the osDisks property: Specifies information about the operating system disk used by bare metal instance.
      * 
      * @return the osDisks value.
      */
@@ -52,7 +63,7 @@ public final class StorageProfile implements JsonSerializable<StorageProfile> {
     }
 
     /**
-     * Set the osDisks property: Specifies information about the operating system disk used by baremetal instance.
+     * Set the osDisks property: Specifies information about the operating system disk used by bare metal instance.
      * 
      * @param osDisks the osDisks value to set.
      * @return the StorageProfile object itself.
@@ -79,6 +90,7 @@ public final class StorageProfile implements JsonSerializable<StorageProfile> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("nfsIpAddress", this.nfsIpAddress);
         jsonWriter.writeArrayField("osDisks", this.osDisks, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }

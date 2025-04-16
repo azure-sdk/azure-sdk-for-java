@@ -13,14 +13,14 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Specifies the network settings for the AzureBareMetal instance disks.
+ * Specifies the network settings for the Azure Bare Metal Instance disks.
  */
 @Fluent
 public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
     /*
-     * Specifies the network interfaces for the AzureBareMetal instance.
+     * Specifies the network interfaces for the Azure Bare Metal Instance.
      */
-    private List<IpAddress> networkInterfaces;
+    private List<NetworkInterface> networkInterfaces;
 
     /*
      * Specifies the circuit id for connecting to express route.
@@ -34,21 +34,21 @@ public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
     }
 
     /**
-     * Get the networkInterfaces property: Specifies the network interfaces for the AzureBareMetal instance.
+     * Get the networkInterfaces property: Specifies the network interfaces for the Azure Bare Metal Instance.
      * 
      * @return the networkInterfaces value.
      */
-    public List<IpAddress> networkInterfaces() {
+    public List<NetworkInterface> networkInterfaces() {
         return this.networkInterfaces;
     }
 
     /**
-     * Set the networkInterfaces property: Specifies the network interfaces for the AzureBareMetal instance.
+     * Set the networkInterfaces property: Specifies the network interfaces for the Azure Bare Metal Instance.
      * 
      * @param networkInterfaces the networkInterfaces value to set.
      * @return the NetworkProfile object itself.
      */
-    public NetworkProfile withNetworkInterfaces(List<IpAddress> networkInterfaces) {
+    public NetworkProfile withNetworkInterfaces(List<NetworkInterface> networkInterfaces) {
         this.networkInterfaces = networkInterfaces;
         return this;
     }
@@ -60,6 +60,17 @@ public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
      */
     public String circuitId() {
         return this.circuitId;
+    }
+
+    /**
+     * Set the circuitId property: Specifies the circuit id for connecting to express route.
+     * 
+     * @param circuitId the circuitId value to set.
+     * @return the NetworkProfile object itself.
+     */
+    public NetworkProfile withCircuitId(String circuitId) {
+        this.circuitId = circuitId;
+        return this;
     }
 
     /**
@@ -81,6 +92,7 @@ public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("networkInterfaces", this.networkInterfaces,
             (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("circuitId", this.circuitId);
         return jsonWriter.writeEndObject();
     }
 
@@ -100,7 +112,8 @@ public final class NetworkProfile implements JsonSerializable<NetworkProfile> {
                 reader.nextToken();
 
                 if ("networkInterfaces".equals(fieldName)) {
-                    List<IpAddress> networkInterfaces = reader.readArray(reader1 -> IpAddress.fromJson(reader1));
+                    List<NetworkInterface> networkInterfaces
+                        = reader.readArray(reader1 -> NetworkInterface.fromJson(reader1));
                     deserializedNetworkProfile.networkInterfaces = networkInterfaces;
                 } else if ("circuitId".equals(fieldName)) {
                     deserializedNetworkProfile.circuitId = reader.getString();

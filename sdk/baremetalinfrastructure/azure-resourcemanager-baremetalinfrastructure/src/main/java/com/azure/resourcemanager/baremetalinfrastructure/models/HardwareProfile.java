@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.baremetalinfrastructure.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -12,9 +12,9 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Specifies the hardware settings for the AzureBareMetal instance.
+ * Specifies the hardware settings for the Azure Bare Metal Instance.
  */
-@Immutable
+@Fluent
 public final class HardwareProfile implements JsonSerializable<HardwareProfile> {
     /*
      * Name of the hardware type (vendor and/or their product name)
@@ -22,7 +22,7 @@ public final class HardwareProfile implements JsonSerializable<HardwareProfile> 
     private AzureBareMetalHardwareTypeNamesEnum hardwareType;
 
     /*
-     * Specifies the AzureBareMetal instance SKU.
+     * Specifies the Azure Bare Metal Instance SKU.
      */
     private AzureBareMetalInstanceSizeNamesEnum azureBareMetalInstanceSize;
 
@@ -42,12 +42,35 @@ public final class HardwareProfile implements JsonSerializable<HardwareProfile> 
     }
 
     /**
-     * Get the azureBareMetalInstanceSize property: Specifies the AzureBareMetal instance SKU.
+     * Set the hardwareType property: Name of the hardware type (vendor and/or their product name).
+     * 
+     * @param hardwareType the hardwareType value to set.
+     * @return the HardwareProfile object itself.
+     */
+    public HardwareProfile withHardwareType(AzureBareMetalHardwareTypeNamesEnum hardwareType) {
+        this.hardwareType = hardwareType;
+        return this;
+    }
+
+    /**
+     * Get the azureBareMetalInstanceSize property: Specifies the Azure Bare Metal Instance SKU.
      * 
      * @return the azureBareMetalInstanceSize value.
      */
     public AzureBareMetalInstanceSizeNamesEnum azureBareMetalInstanceSize() {
         return this.azureBareMetalInstanceSize;
+    }
+
+    /**
+     * Set the azureBareMetalInstanceSize property: Specifies the Azure Bare Metal Instance SKU.
+     * 
+     * @param azureBareMetalInstanceSize the azureBareMetalInstanceSize value to set.
+     * @return the HardwareProfile object itself.
+     */
+    public HardwareProfile
+        withAzureBareMetalInstanceSize(AzureBareMetalInstanceSizeNamesEnum azureBareMetalInstanceSize) {
+        this.azureBareMetalInstanceSize = azureBareMetalInstanceSize;
+        return this;
     }
 
     /**
@@ -64,6 +87,9 @@ public final class HardwareProfile implements JsonSerializable<HardwareProfile> 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("hardwareType", this.hardwareType == null ? null : this.hardwareType.toString());
+        jsonWriter.writeStringField("azureBareMetalInstanceSize",
+            this.azureBareMetalInstanceSize == null ? null : this.azureBareMetalInstanceSize.toString());
         return jsonWriter.writeEndObject();
     }
 
