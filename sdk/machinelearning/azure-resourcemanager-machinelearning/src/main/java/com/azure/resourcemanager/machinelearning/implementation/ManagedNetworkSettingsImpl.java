@@ -6,11 +6,13 @@ package com.azure.resourcemanager.machinelearning.implementation;
 
 import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkProvisionStatusInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
+import com.azure.resourcemanager.machinelearning.models.FirewallSku;
 import com.azure.resourcemanager.machinelearning.models.IsolationMode;
 import com.azure.resourcemanager.machinelearning.models.ManagedNetworkProvisionStatus;
 import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
 import com.azure.resourcemanager.machinelearning.models.OutboundRule;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class ManagedNetworkSettingsImpl implements ManagedNetworkSettings {
@@ -22,6 +24,14 @@ public final class ManagedNetworkSettingsImpl implements ManagedNetworkSettings 
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
+    }
+
+    public String firewallPublicIpAddress() {
+        return this.innerModel().firewallPublicIpAddress();
+    }
+
+    public FirewallSku firewallSku() {
+        return this.innerModel().firewallSku();
     }
 
     public IsolationMode isolationMode() {
@@ -47,6 +57,15 @@ public final class ManagedNetworkSettingsImpl implements ManagedNetworkSettings 
             return new ManagedNetworkProvisionStatusImpl(inner, this.manager());
         } else {
             return null;
+        }
+    }
+
+    public List<IsolationMode> changeableIsolationModes() {
+        List<IsolationMode> inner = this.innerModel().changeableIsolationModes();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
         }
     }
 

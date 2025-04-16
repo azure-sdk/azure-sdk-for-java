@@ -19,9 +19,9 @@ import java.time.Duration;
 @Fluent
 public final class NlpVerticalLimitSettings implements JsonSerializable<NlpVerticalLimitSettings> {
     /*
-     * AutoML job timeout.
+     * Maximum Concurrent AutoML iterations.
      */
-    private Duration timeout;
+    private Integer maxConcurrentTrials;
 
     /*
      * Number of AutoML iterations.
@@ -29,9 +29,9 @@ public final class NlpVerticalLimitSettings implements JsonSerializable<NlpVerti
     private Integer maxTrials;
 
     /*
-     * Maximum Concurrent AutoML iterations.
+     * AutoML job timeout.
      */
-    private Integer maxConcurrentTrials;
+    private Duration timeout;
 
     /**
      * Creates an instance of NlpVerticalLimitSettings class.
@@ -40,22 +40,22 @@ public final class NlpVerticalLimitSettings implements JsonSerializable<NlpVerti
     }
 
     /**
-     * Get the timeout property: AutoML job timeout.
+     * Get the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
      * 
-     * @return the timeout value.
+     * @return the maxConcurrentTrials value.
      */
-    public Duration timeout() {
-        return this.timeout;
+    public Integer maxConcurrentTrials() {
+        return this.maxConcurrentTrials;
     }
 
     /**
-     * Set the timeout property: AutoML job timeout.
+     * Set the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
      * 
-     * @param timeout the timeout value to set.
+     * @param maxConcurrentTrials the maxConcurrentTrials value to set.
      * @return the NlpVerticalLimitSettings object itself.
      */
-    public NlpVerticalLimitSettings withTimeout(Duration timeout) {
-        this.timeout = timeout;
+    public NlpVerticalLimitSettings withMaxConcurrentTrials(Integer maxConcurrentTrials) {
+        this.maxConcurrentTrials = maxConcurrentTrials;
         return this;
     }
 
@@ -80,22 +80,22 @@ public final class NlpVerticalLimitSettings implements JsonSerializable<NlpVerti
     }
 
     /**
-     * Get the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
+     * Get the timeout property: AutoML job timeout.
      * 
-     * @return the maxConcurrentTrials value.
+     * @return the timeout value.
      */
-    public Integer maxConcurrentTrials() {
-        return this.maxConcurrentTrials;
+    public Duration timeout() {
+        return this.timeout;
     }
 
     /**
-     * Set the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
+     * Set the timeout property: AutoML job timeout.
      * 
-     * @param maxConcurrentTrials the maxConcurrentTrials value to set.
+     * @param timeout the timeout value to set.
      * @return the NlpVerticalLimitSettings object itself.
      */
-    public NlpVerticalLimitSettings withMaxConcurrentTrials(Integer maxConcurrentTrials) {
-        this.maxConcurrentTrials = maxConcurrentTrials;
+    public NlpVerticalLimitSettings withTimeout(Duration timeout) {
+        this.timeout = timeout;
         return this;
     }
 
@@ -113,9 +113,9 @@ public final class NlpVerticalLimitSettings implements JsonSerializable<NlpVerti
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("timeout", CoreUtils.durationToStringWithDays(this.timeout));
-        jsonWriter.writeNumberField("maxTrials", this.maxTrials);
         jsonWriter.writeNumberField("maxConcurrentTrials", this.maxConcurrentTrials);
+        jsonWriter.writeNumberField("maxTrials", this.maxTrials);
+        jsonWriter.writeStringField("timeout", CoreUtils.durationToStringWithDays(this.timeout));
         return jsonWriter.writeEndObject();
     }
 
@@ -134,13 +134,13 @@ public final class NlpVerticalLimitSettings implements JsonSerializable<NlpVerti
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("timeout".equals(fieldName)) {
-                    deserializedNlpVerticalLimitSettings.timeout
-                        = reader.getNullable(nonNullReader -> Duration.parse(nonNullReader.getString()));
+                if ("maxConcurrentTrials".equals(fieldName)) {
+                    deserializedNlpVerticalLimitSettings.maxConcurrentTrials = reader.getNullable(JsonReader::getInt);
                 } else if ("maxTrials".equals(fieldName)) {
                     deserializedNlpVerticalLimitSettings.maxTrials = reader.getNullable(JsonReader::getInt);
-                } else if ("maxConcurrentTrials".equals(fieldName)) {
-                    deserializedNlpVerticalLimitSettings.maxConcurrentTrials = reader.getNullable(JsonReader::getInt);
+                } else if ("timeout".equals(fieldName)) {
+                    deserializedNlpVerticalLimitSettings.timeout
+                        = reader.getNullable(nonNullReader -> Duration.parse(nonNullReader.getString()));
                 } else {
                     reader.skipChildren();
                 }
