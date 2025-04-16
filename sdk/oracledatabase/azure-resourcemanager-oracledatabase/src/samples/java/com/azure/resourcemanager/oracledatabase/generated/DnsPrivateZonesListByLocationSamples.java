@@ -10,7 +10,7 @@ package com.azure.resourcemanager.oracledatabase.generated;
 public final class DnsPrivateZonesListByLocationSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dnsPrivateZones_listByLocation.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dnsPrivateZones_listByLocation.
      * json
      */
     /**

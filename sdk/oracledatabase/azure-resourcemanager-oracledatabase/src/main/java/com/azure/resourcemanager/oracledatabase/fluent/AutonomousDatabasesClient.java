@@ -14,6 +14,7 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDatabaseInner;
 import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDatabaseWalletFileInner;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseUpdate;
+import com.azure.resourcemanager.oracledatabase.models.DisasterRecoveryConfigurationDetails;
 import com.azure.resourcemanager.oracledatabase.models.GenerateAutonomousDatabaseWalletDetails;
 import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
 import com.azure.resourcemanager.oracledatabase.models.RestoreAutonomousDatabaseDetails;
@@ -273,6 +274,69 @@ public interface AutonomousDatabasesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String autonomousdatabasename, Context context);
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<AutonomousDatabaseInner>, AutonomousDatabaseInner> beginChangeDisasterRecoveryConfiguration(
+        String resourceGroupName, String autonomousdatabasename, DisasterRecoveryConfigurationDetails body);
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<AutonomousDatabaseInner>, AutonomousDatabaseInner> beginChangeDisasterRecoveryConfiguration(
+        String resourceGroupName, String autonomousdatabasename, DisasterRecoveryConfigurationDetails body,
+        Context context);
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AutonomousDatabaseInner changeDisasterRecoveryConfiguration(String resourceGroupName, String autonomousdatabasename,
+        DisasterRecoveryConfigurationDetails body);
+
+    /**
+     * Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param autonomousdatabasename The database name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return autonomous Database resource model.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AutonomousDatabaseInner changeDisasterRecoveryConfiguration(String resourceGroupName, String autonomousdatabasename,
+        DisasterRecoveryConfigurationDetails body, Context context);
 
     /**
      * Perform failover action on Autonomous Database.

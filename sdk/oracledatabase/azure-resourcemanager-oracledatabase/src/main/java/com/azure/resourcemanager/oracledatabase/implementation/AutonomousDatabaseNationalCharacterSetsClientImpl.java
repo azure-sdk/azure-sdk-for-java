@@ -92,7 +92,7 @@ public final class AutonomousDatabaseNationalCharacterSetsClientImpl
     }
 
     /**
-     * List AutonomousDatabaseNationalCharacterSet resources by Location.
+     * List AutonomousDatabaseNationalCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -126,7 +126,7 @@ public final class AutonomousDatabaseNationalCharacterSetsClientImpl
     }
 
     /**
-     * List AutonomousDatabaseNationalCharacterSet resources by Location.
+     * List AutonomousDatabaseNationalCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
@@ -160,7 +160,7 @@ public final class AutonomousDatabaseNationalCharacterSetsClientImpl
     }
 
     /**
-     * List AutonomousDatabaseNationalCharacterSet resources by Location.
+     * List AutonomousDatabaseNationalCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -176,7 +176,7 @@ public final class AutonomousDatabaseNationalCharacterSetsClientImpl
     }
 
     /**
-     * List AutonomousDatabaseNationalCharacterSet resources by Location.
+     * List AutonomousDatabaseNationalCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
@@ -194,7 +194,7 @@ public final class AutonomousDatabaseNationalCharacterSetsClientImpl
     }
 
     /**
-     * List AutonomousDatabaseNationalCharacterSet resources by Location.
+     * List AutonomousDatabaseNationalCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -209,7 +209,7 @@ public final class AutonomousDatabaseNationalCharacterSetsClientImpl
     }
 
     /**
-     * List AutonomousDatabaseNationalCharacterSet resources by Location.
+     * List AutonomousDatabaseNationalCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

@@ -12,7 +12,7 @@ import com.azure.resourcemanager.oracledatabase.models.VirtualNetworkAddressProp
 public final class VirtualNetworkAddressesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/virtualNetworkAddresses_create.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/virtualNetworkAddresses_create.
      * json
      */
     /**

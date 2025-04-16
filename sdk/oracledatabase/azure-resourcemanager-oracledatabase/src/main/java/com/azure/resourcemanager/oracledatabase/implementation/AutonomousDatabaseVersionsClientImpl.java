@@ -90,7 +90,7 @@ public final class AutonomousDatabaseVersionsClientImpl implements AutonomousDat
     }
 
     /**
-     * List AutonomousDbVersion resources by Location.
+     * List AutonomousDbVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -122,7 +122,7 @@ public final class AutonomousDatabaseVersionsClientImpl implements AutonomousDat
     }
 
     /**
-     * List AutonomousDbVersion resources by Location.
+     * List AutonomousDbVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
@@ -156,7 +156,7 @@ public final class AutonomousDatabaseVersionsClientImpl implements AutonomousDat
     }
 
     /**
-     * List AutonomousDbVersion resources by Location.
+     * List AutonomousDbVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -171,7 +171,7 @@ public final class AutonomousDatabaseVersionsClientImpl implements AutonomousDat
     }
 
     /**
-     * List AutonomousDbVersion resources by Location.
+     * List AutonomousDbVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
@@ -187,7 +187,7 @@ public final class AutonomousDatabaseVersionsClientImpl implements AutonomousDat
     }
 
     /**
-     * List AutonomousDbVersion resources by Location.
+     * List AutonomousDbVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -201,7 +201,7 @@ public final class AutonomousDatabaseVersionsClientImpl implements AutonomousDat
     }
 
     /**
-     * List AutonomousDbVersion resources by Location.
+     * List AutonomousDbVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

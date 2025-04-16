@@ -12,7 +12,7 @@ import com.azure.resourcemanager.oracledatabase.models.GenerateType;
  */
 public final class AutonomousDatabasesGenerateWalletSamples {
     /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
      * autonomousDatabase_generateWallet.json
      */
     /**

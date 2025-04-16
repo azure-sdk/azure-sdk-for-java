@@ -10,7 +10,6 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDatabase
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackup;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackupProperties;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackupUpdate;
-import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackupUpdateProperties;
 
 public final class AutonomousDatabaseBackupImpl
     implements AutonomousDatabaseBackup, AutonomousDatabaseBackup.Definition, AutonomousDatabaseBackup.Update {
@@ -132,12 +131,16 @@ public final class AutonomousDatabaseBackupImpl
     }
 
     public AutonomousDatabaseBackupImpl withProperties(AutonomousDatabaseBackupProperties properties) {
-        this.innerModel().withProperties(properties);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withProperties(properties);
+            return this;
+        } else {
+            this.updateProperties.withProperties(properties);
+            return this;
+        }
     }
 
-    public AutonomousDatabaseBackupImpl withProperties(AutonomousDatabaseBackupUpdateProperties properties) {
-        this.updateProperties.withProperties(properties);
-        return this;
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class CloudVmClustersAddVmsSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_addVms.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_addVms.json
      */
     /**
      * Sample code: Add VMs to VM Cluster.

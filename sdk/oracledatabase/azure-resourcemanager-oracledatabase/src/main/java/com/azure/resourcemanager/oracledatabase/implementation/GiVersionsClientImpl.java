@@ -28,6 +28,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.oracledatabase.fluent.GiVersionsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.models.GiVersionInner;
 import com.azure.resourcemanager.oracledatabase.models.GiVersionListResult;
+import com.azure.resourcemanager.oracledatabase.models.SystemShapes;
 import reactor.core.publisher.Mono;
 
 /**
@@ -68,7 +69,8 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GiVersionListResult>> listByLocation(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("location") String location, @QueryParam("shape") SystemShapes shape,
+            @QueryParam("zone") String zone, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/giVersions/{giversionname}")
@@ -89,9 +91,11 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
     }
 
     /**
-     * List GiVersion resources by Location.
+     * List GiVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
+     * @param shape If provided, filters the results for the given shape.
+     * @param zone Filters the result for the given Azure Availability Zone.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -99,7 +103,8 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<GiVersionInner>> listByLocationSinglePageAsync(String location) {
+    private Mono<PagedResponse<GiVersionInner>> listByLocationSinglePageAsync(String location, SystemShapes shape,
+        String zone) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -114,16 +119,18 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByLocation(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), location, accept, context))
+                this.client.getSubscriptionId(), location, shape, zone, accept, context))
             .<PagedResponse<GiVersionInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List GiVersion resources by Location.
+     * List GiVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
+     * @param shape If provided, filters the results for the given shape.
+     * @param zone Filters the result for the given Azure Availability Zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -132,7 +139,8 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<GiVersionInner>> listByLocationSinglePageAsync(String location, Context context) {
+    private Mono<PagedResponse<GiVersionInner>> listByLocationSinglePageAsync(String location, SystemShapes shape,
+        String zone, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -148,13 +156,30 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
         context = this.client.mergeContext(context);
         return service
             .listByLocation(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                location, accept, context)
+                location, shape, zone, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List GiVersion resources by Location.
+     * List GiVersion resources by SubscriptionLocationResource.
+     * 
+     * @param location The name of the Azure region.
+     * @param shape If provided, filters the results for the given shape.
+     * @param zone Filters the result for the given Azure Availability Zone.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a GiVersion list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<GiVersionInner> listByLocationAsync(String location, SystemShapes shape, String zone) {
+        return new PagedFlux<>(() -> listByLocationSinglePageAsync(location, shape, zone),
+            nextLink -> listByLocationNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List GiVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -164,14 +189,18 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GiVersionInner> listByLocationAsync(String location) {
-        return new PagedFlux<>(() -> listByLocationSinglePageAsync(location),
+        final SystemShapes shape = null;
+        final String zone = null;
+        return new PagedFlux<>(() -> listByLocationSinglePageAsync(location, shape, zone),
             nextLink -> listByLocationNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List GiVersion resources by Location.
+     * List GiVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
+     * @param shape If provided, filters the results for the given shape.
+     * @param zone Filters the result for the given Azure Availability Zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -179,13 +208,14 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
      * @return the response of a GiVersion list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<GiVersionInner> listByLocationAsync(String location, Context context) {
-        return new PagedFlux<>(() -> listByLocationSinglePageAsync(location, context),
+    private PagedFlux<GiVersionInner> listByLocationAsync(String location, SystemShapes shape, String zone,
+        Context context) {
+        return new PagedFlux<>(() -> listByLocationSinglePageAsync(location, shape, zone, context),
             nextLink -> listByLocationNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List GiVersion resources by Location.
+     * List GiVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -195,13 +225,17 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<GiVersionInner> listByLocation(String location) {
-        return new PagedIterable<>(listByLocationAsync(location));
+        final SystemShapes shape = null;
+        final String zone = null;
+        return new PagedIterable<>(listByLocationAsync(location, shape, zone));
     }
 
     /**
-     * List GiVersion resources by Location.
+     * List GiVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
+     * @param shape If provided, filters the results for the given shape.
+     * @param zone Filters the result for the given Azure Availability Zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -209,8 +243,9 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
      * @return the response of a GiVersion list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<GiVersionInner> listByLocation(String location, Context context) {
-        return new PagedIterable<>(listByLocationAsync(location, context));
+    public PagedIterable<GiVersionInner> listByLocation(String location, SystemShapes shape, String zone,
+        Context context) {
+        return new PagedIterable<>(listByLocationAsync(location, shape, zone, context));
     }
 
     /**

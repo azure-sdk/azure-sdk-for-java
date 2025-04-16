@@ -16,7 +16,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.DnsPrivateViewInne
  */
 public interface DnsPrivateViewsClient {
     /**
-     * List DnsPrivateView resources by Location.
+     * List DnsPrivateView resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,7 +28,7 @@ public interface DnsPrivateViewsClient {
     PagedIterable<DnsPrivateViewInner> listByLocation(String location);
 
     /**
-     * List DnsPrivateView resources by Location.
+     * List DnsPrivateView resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

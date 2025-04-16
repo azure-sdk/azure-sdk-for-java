@@ -14,6 +14,7 @@ import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBasePro
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseUpdate;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseUpdateProperties;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseWalletFile;
+import com.azure.resourcemanager.oracledatabase.models.DisasterRecoveryConfigurationDetails;
 import com.azure.resourcemanager.oracledatabase.models.GenerateAutonomousDatabaseWalletDetails;
 import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
 import com.azure.resourcemanager.oracledatabase.models.RestoreAutonomousDatabaseDetails;
@@ -152,6 +153,17 @@ public final class AutonomousDatabaseImpl
             .getByResourceGroupWithResponse(resourceGroupName, autonomousdatabasename, context)
             .getValue();
         return this;
+    }
+
+    public AutonomousDatabase changeDisasterRecoveryConfiguration(DisasterRecoveryConfigurationDetails body) {
+        return serviceManager.autonomousDatabases()
+            .changeDisasterRecoveryConfiguration(resourceGroupName, autonomousdatabasename, body);
+    }
+
+    public AutonomousDatabase changeDisasterRecoveryConfiguration(DisasterRecoveryConfigurationDetails body,
+        Context context) {
+        return serviceManager.autonomousDatabases()
+            .changeDisasterRecoveryConfiguration(resourceGroupName, autonomousdatabasename, body, context);
     }
 
     public AutonomousDatabase failover(PeerDbDetails body) {

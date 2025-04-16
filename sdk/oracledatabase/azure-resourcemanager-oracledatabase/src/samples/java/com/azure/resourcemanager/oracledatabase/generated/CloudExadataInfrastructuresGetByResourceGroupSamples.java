@@ -10,7 +10,7 @@ package com.azure.resourcemanager.oracledatabase.generated;
 public final class CloudExadataInfrastructuresGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_get.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_get.json
      */
     /**
      * Sample code: Get Exadata Infrastructure.

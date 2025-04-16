@@ -22,7 +22,7 @@ public interface VirtualNetworkAddresses {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VirtualNetworkAddress> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername);
+    PagedIterable<VirtualNetworkAddress> listByParent(String resourceGroupName, String cloudvmclustername);
 
     /**
      * List VirtualNetworkAddress resources by CloudVmCluster.
@@ -35,7 +35,7 @@ public interface VirtualNetworkAddresses {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VirtualNetworkAddress> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername,
+    PagedIterable<VirtualNetworkAddress> listByParent(String resourceGroupName, String cloudvmclustername,
         Context context);
 
     /**

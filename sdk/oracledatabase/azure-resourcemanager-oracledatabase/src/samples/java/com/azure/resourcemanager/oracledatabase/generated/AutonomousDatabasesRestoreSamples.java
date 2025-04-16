@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 public final class AutonomousDatabasesRestoreSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_restore.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_restore.json
      */
     /**
      * Sample code: AutonomousDatabases_Restore.
@@ -30,7 +30,7 @@ public final class AutonomousDatabasesRestoreSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_restore.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_restore.json
      */
     /**
      * Sample code: Perform restore action on Autonomous Database.

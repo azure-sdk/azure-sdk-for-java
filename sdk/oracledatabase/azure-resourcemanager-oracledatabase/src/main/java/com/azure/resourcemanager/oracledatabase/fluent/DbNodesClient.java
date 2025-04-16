@@ -29,7 +29,7 @@ public interface DbNodesClient {
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbNodeInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername);
+    PagedIterable<DbNodeInner> listByParent(String resourceGroupName, String cloudvmclustername);
 
     /**
      * List DbNode resources by CloudVmCluster.
@@ -43,8 +43,7 @@ public interface DbNodesClient {
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbNodeInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername,
-        Context context);
+    PagedIterable<DbNodeInner> listByParent(String resourceGroupName, String cloudvmclustername, Context context);
 
     /**
      * Get a DbNode.
