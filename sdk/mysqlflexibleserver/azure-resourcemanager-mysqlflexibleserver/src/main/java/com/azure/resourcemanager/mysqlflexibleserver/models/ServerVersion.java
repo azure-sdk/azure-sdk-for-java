@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * The version of a server.
+ * The major version of a server. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
  */
 public final class ServerVersion extends ExpandableStringEnum<ServerVersion> {
     /**
