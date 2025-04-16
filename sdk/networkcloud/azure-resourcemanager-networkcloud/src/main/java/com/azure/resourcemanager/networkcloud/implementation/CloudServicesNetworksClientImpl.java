@@ -108,6 +108,7 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudServicesNetworkName") String cloudServicesNetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") CloudServicesNetworkInner cloudServicesNetworkParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -119,6 +120,7 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudServicesNetworkName") String cloudServicesNetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -129,6 +131,7 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudServicesNetworkName") String cloudServicesNetworkName,
+            @HeaderParam("If-Match") String ifMatch, @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -561,6 +564,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
      * @param cloudServicesNetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -569,7 +576,8 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String cloudServicesNetworkName, CloudServicesNetworkInner cloudServicesNetworkParameters) {
+        String cloudServicesNetworkName, CloudServicesNetworkInner cloudServicesNetworkParameters, String ifMatch,
+        String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -595,7 +603,7 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudServicesNetworkName,
+                this.client.getSubscriptionId(), resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
                 cloudServicesNetworkParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -608,6 +616,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
      * @param cloudServicesNetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -617,7 +629,8 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String cloudServicesNetworkName, CloudServicesNetworkInner cloudServicesNetworkParameters, Context context) {
+        String cloudServicesNetworkName, CloudServicesNetworkInner cloudServicesNetworkParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -643,8 +656,37 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, cloudServicesNetworkName,
+            this.client.getSubscriptionId(), resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
             cloudServicesNetworkParameters, accept, context);
+    }
+
+    /**
+     * Create or update the cloud services network.
+     * 
+     * Create a new cloud services network or update the properties of the existing cloud services network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param cloudServicesNetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of cloudServicesNetwork represents additional egress information that
+     * will be used by associated virtual machines or hybrid AKS clusters.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String cloudServicesNetworkName,
+        CloudServicesNetworkInner cloudServicesNetworkParameters, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            cloudServicesNetworkName, cloudServicesNetworkParameters, ifMatch, ifNoneMatch);
+        return this.client.<CloudServicesNetworkInner, CloudServicesNetworkInner>getLroResult(mono,
+            this.client.getHttpPipeline(), CloudServicesNetworkInner.class, CloudServicesNetworkInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -665,8 +707,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     private PollerFlux<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String cloudServicesNetworkName,
         CloudServicesNetworkInner cloudServicesNetworkParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            cloudServicesNetworkName, cloudServicesNetworkParameters);
+            cloudServicesNetworkName, cloudServicesNetworkParameters, ifMatch, ifNoneMatch);
         return this.client.<CloudServicesNetworkInner, CloudServicesNetworkInner>getLroResult(mono,
             this.client.getHttpPipeline(), CloudServicesNetworkInner.class, CloudServicesNetworkInner.class,
             this.client.getContext());
@@ -680,6 +724,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
      * @param cloudServicesNetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -690,10 +738,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String cloudServicesNetworkName,
-        CloudServicesNetworkInner cloudServicesNetworkParameters, Context context) {
+        CloudServicesNetworkInner cloudServicesNetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            cloudServicesNetworkName, cloudServicesNetworkParameters, context);
+            cloudServicesNetworkName, cloudServicesNetworkParameters, ifMatch, ifNoneMatch, context);
         return this.client.<CloudServicesNetworkInner, CloudServicesNetworkInner>getLroResult(mono,
             this.client.getHttpPipeline(), CloudServicesNetworkInner.class, CloudServicesNetworkInner.class, context);
     }
@@ -716,8 +764,11 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     public SyncPoller<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner> beginCreateOrUpdate(
         String resourceGroupName, String cloudServicesNetworkName,
         CloudServicesNetworkInner cloudServicesNetworkParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         return this
-            .beginCreateOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters)
+            .beginCreateOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters,
+                ifMatch, ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -729,6 +780,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
      * @param cloudServicesNetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -739,11 +794,37 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner> beginCreateOrUpdate(
         String resourceGroupName, String cloudServicesNetworkName,
-        CloudServicesNetworkInner cloudServicesNetworkParameters, Context context) {
+        CloudServicesNetworkInner cloudServicesNetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
         return this
             .beginCreateOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters,
-                context)
+                ifMatch, ifNoneMatch, context)
             .getSyncPoller();
+    }
+
+    /**
+     * Create or update the cloud services network.
+     * 
+     * Create a new cloud services network or update the properties of the existing cloud services network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param cloudServicesNetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cloudServicesNetwork represents additional egress information that will be used by associated virtual
+     * machines or hybrid AKS clusters on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CloudServicesNetworkInner> createOrUpdateAsync(String resourceGroupName,
+        String cloudServicesNetworkName, CloudServicesNetworkInner cloudServicesNetworkParameters, String ifMatch,
+        String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters,
+            ifMatch, ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -763,9 +844,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CloudServicesNetworkInner> createOrUpdateAsync(String resourceGroupName,
         String cloudServicesNetworkName, CloudServicesNetworkInner cloudServicesNetworkParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters,
+            ifMatch, ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -776,6 +858,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
      * @param cloudServicesNetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -785,9 +871,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CloudServicesNetworkInner> createOrUpdateAsync(String resourceGroupName,
-        String cloudServicesNetworkName, CloudServicesNetworkInner cloudServicesNetworkParameters, Context context) {
+        String cloudServicesNetworkName, CloudServicesNetworkInner cloudServicesNetworkParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters,
-            context).last().flatMap(this.client::getLroFinalResultOrError);
+            ifMatch, ifNoneMatch, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -807,7 +894,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CloudServicesNetworkInner createOrUpdate(String resourceGroupName, String cloudServicesNetworkName,
         CloudServicesNetworkInner cloudServicesNetworkParameters) {
-        return createOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters, ifMatch,
+            ifNoneMatch).block();
     }
 
     /**
@@ -818,6 +908,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
      * @param cloudServicesNetworkParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -827,9 +921,9 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CloudServicesNetworkInner createOrUpdate(String resourceGroupName, String cloudServicesNetworkName,
-        CloudServicesNetworkInner cloudServicesNetworkParameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters, context)
-            .block();
+        CloudServicesNetworkInner cloudServicesNetworkParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters, ifMatch,
+            ifNoneMatch, context).block();
     }
 
     /**
@@ -839,6 +933,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -847,7 +945,7 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String cloudServicesNetworkName) {
+        String cloudServicesNetworkName, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -867,7 +965,8 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudServicesNetworkName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -878,6 +977,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -887,7 +990,7 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String cloudServicesNetworkName, Context context) {
+        String cloudServicesNetworkName, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -907,7 +1010,33 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, cloudServicesNetworkName, accept, context);
+            resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the cloud services network.
+     * 
+     * Delete the provided cloud services network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String cloudServicesNetworkName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -925,7 +1054,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String cloudServicesNetworkName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, cloudServicesNetworkName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -938,6 +1070,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -945,11 +1081,12 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String cloudServicesNetworkName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String cloudServicesNetworkName, String ifMatch, String ifNoneMatch,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, cloudServicesNetworkName, context);
+            = deleteWithResponseAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -969,7 +1106,9 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String cloudServicesNetworkName) {
-        return this.beginDeleteAsync(resourceGroupName, cloudServicesNetworkName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -979,6 +1118,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -986,9 +1129,34 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String cloudServicesNetworkName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, cloudServicesNetworkName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String cloudServicesNetworkName, String ifMatch, String ifNoneMatch,
+        Context context) {
+        return this.beginDeleteAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete the cloud services network.
+     * 
+     * Delete the provided cloud services network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String cloudServicesNetworkName,
+        String ifMatch, String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1005,7 +1173,9 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String cloudServicesNetworkName) {
-        return beginDeleteAsync(resourceGroupName, cloudServicesNetworkName).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1016,6 +1186,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1024,8 +1198,8 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String cloudServicesNetworkName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, cloudServicesNetworkName, context).last()
+        String ifMatch, String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1043,7 +1217,9 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String cloudServicesNetworkName) {
-        return deleteAsync(resourceGroupName, cloudServicesNetworkName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1053,6 +1229,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1060,9 +1240,9 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String cloudServicesNetworkName,
-        Context context) {
-        return deleteAsync(resourceGroupName, cloudServicesNetworkName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String cloudServicesNetworkName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1073,6 +1253,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param cloudServicesNetworkUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1082,7 +1266,8 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String cloudServicesNetworkName, CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters) {
+        String cloudServicesNetworkName, String ifMatch, String ifNoneMatch,
+        CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1105,7 +1290,7 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudServicesNetworkName,
+                this.client.getSubscriptionId(), resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
                 cloudServicesNetworkUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1118,6 +1303,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param cloudServicesNetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1128,8 +1317,8 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String cloudServicesNetworkName, CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters,
-        Context context) {
+        String cloudServicesNetworkName, String ifMatch, String ifNoneMatch,
+        CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1152,7 +1341,8 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkUpdateParameters, accept, context);
+            resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch, cloudServicesNetworkUpdateParameters,
+            accept, context);
     }
 
     /**
@@ -1163,6 +1353,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param cloudServicesNetworkUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1172,10 +1366,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner> beginUpdateAsync(
-        String resourceGroupName, String cloudServicesNetworkName,
+        String resourceGroupName, String cloudServicesNetworkName, String ifMatch, String ifNoneMatch,
         CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, cloudServicesNetworkName,
-            cloudServicesNetworkUpdateParameters);
+            ifMatch, ifNoneMatch, cloudServicesNetworkUpdateParameters);
         return this.client.<CloudServicesNetworkInner, CloudServicesNetworkInner>getLroResult(mono,
             this.client.getHttpPipeline(), CloudServicesNetworkInner.class, CloudServicesNetworkInner.class,
             this.client.getContext());
@@ -1198,9 +1392,11 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner>
         beginUpdateAsync(String resourceGroupName, String cloudServicesNetworkName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters = null;
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, cloudServicesNetworkName,
-            cloudServicesNetworkUpdateParameters);
+            ifMatch, ifNoneMatch, cloudServicesNetworkUpdateParameters);
         return this.client.<CloudServicesNetworkInner, CloudServicesNetworkInner>getLroResult(mono,
             this.client.getHttpPipeline(), CloudServicesNetworkInner.class, CloudServicesNetworkInner.class,
             this.client.getContext());
@@ -1214,6 +1410,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param cloudServicesNetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1224,11 +1424,11 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner> beginUpdateAsync(
-        String resourceGroupName, String cloudServicesNetworkName,
+        String resourceGroupName, String cloudServicesNetworkName, String ifMatch, String ifNoneMatch,
         CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, cloudServicesNetworkName,
-            cloudServicesNetworkUpdateParameters, context);
+            ifMatch, ifNoneMatch, cloudServicesNetworkUpdateParameters, context);
         return this.client.<CloudServicesNetworkInner, CloudServicesNetworkInner>getLroResult(mono,
             this.client.getHttpPipeline(), CloudServicesNetworkInner.class, CloudServicesNetworkInner.class, context);
     }
@@ -1250,8 +1450,12 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner>
         beginUpdate(String resourceGroupName, String cloudServicesNetworkName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters = null;
-        return this.beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkUpdateParameters)
+        return this
+            .beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
+                cloudServicesNetworkUpdateParameters)
             .getSyncPoller();
     }
 
@@ -1263,6 +1467,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param cloudServicesNetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1273,11 +1481,11 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CloudServicesNetworkInner>, CloudServicesNetworkInner> beginUpdate(
-        String resourceGroupName, String cloudServicesNetworkName,
+        String resourceGroupName, String cloudServicesNetworkName, String ifMatch, String ifNoneMatch,
         CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters, Context context) {
         return this
-            .beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkUpdateParameters,
-                context)
+            .beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
+                cloudServicesNetworkUpdateParameters, context)
             .getSyncPoller();
     }
 
@@ -1289,6 +1497,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param cloudServicesNetworkUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1298,10 +1510,9 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CloudServicesNetworkInner> updateAsync(String resourceGroupName, String cloudServicesNetworkName,
-        CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters) {
-        return beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkUpdateParameters)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String ifMatch, String ifNoneMatch, CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters) {
+        return beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
+            cloudServicesNetworkUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1320,10 +1531,11 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CloudServicesNetworkInner> updateAsync(String resourceGroupName, String cloudServicesNetworkName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters = null;
-        return beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkUpdateParameters)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
+            cloudServicesNetworkUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1334,6 +1546,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param cloudServicesNetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1344,9 +1560,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CloudServicesNetworkInner> updateAsync(String resourceGroupName, String cloudServicesNetworkName,
-        CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkUpdateParameters,
-            context).last().flatMap(this.client::getLroFinalResultOrError);
+        String ifMatch, String ifNoneMatch, CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
+            cloudServicesNetworkUpdateParameters, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1365,8 +1582,11 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CloudServicesNetworkInner update(String resourceGroupName, String cloudServicesNetworkName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters = null;
-        return updateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkUpdateParameters).block();
+        return updateAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
+            cloudServicesNetworkUpdateParameters).block();
     }
 
     /**
@@ -1377,6 +1597,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudServicesNetworkName The name of the cloud services network.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param cloudServicesNetworkUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1386,10 +1610,10 @@ public final class CloudServicesNetworksClientImpl implements CloudServicesNetwo
      * machines or hybrid AKS clusters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CloudServicesNetworkInner update(String resourceGroupName, String cloudServicesNetworkName,
-        CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters, Context context) {
-        return updateAsync(resourceGroupName, cloudServicesNetworkName, cloudServicesNetworkUpdateParameters, context)
-            .block();
+    public CloudServicesNetworkInner update(String resourceGroupName, String cloudServicesNetworkName, String ifMatch,
+        String ifNoneMatch, CloudServicesNetworkPatchParameters cloudServicesNetworkUpdateParameters, Context context) {
+        return updateAsync(resourceGroupName, cloudServicesNetworkName, ifMatch, ifNoneMatch,
+            cloudServicesNetworkUpdateParameters, context).block();
     }
 
     /**

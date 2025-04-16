@@ -109,7 +109,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("kubernetesClusterName") String kubernetesClusterName,
+            @PathParam("kubernetesClusterName") String kubernetesClusterName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") KubernetesClusterInner kubernetesClusterParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -120,8 +121,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("kubernetesClusterName") String kubernetesClusterName, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("kubernetesClusterName") String kubernetesClusterName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}")
@@ -130,7 +131,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("kubernetesClusterName") String kubernetesClusterName,
+            @PathParam("kubernetesClusterName") String kubernetesClusterName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") KubernetesClusterPatchParameters kubernetesClusterUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -571,6 +573,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param kubernetesClusterParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -579,7 +585,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters) {
+        String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters, String ifMatch,
+        String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -605,8 +612,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, kubernetesClusterParameters,
-                accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+                kubernetesClusterParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -618,6 +625,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param kubernetesClusterParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -627,7 +638,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters, Context context) {
+        String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -653,8 +665,37 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, kubernetesClusterParameters,
-            accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+            kubernetesClusterParameters, accept, context);
+    }
+
+    /**
+     * Create or update the Kubernetes cluster.
+     * 
+     * Create a new Kubernetes cluster or update the properties of the existing one.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param kubernetesClusterParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of kubernetesCluster represents the Kubernetes cluster hosted on
+     * Network Cloud.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters,
+        String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            kubernetesClusterName, kubernetesClusterParameters, ifMatch, ifNoneMatch);
+        return this.client.<KubernetesClusterInner, KubernetesClusterInner>getLroResult(mono,
+            this.client.getHttpPipeline(), KubernetesClusterInner.class, KubernetesClusterInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -674,8 +715,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            kubernetesClusterName, kubernetesClusterParameters, ifMatch, ifNoneMatch);
         return this.client.<KubernetesClusterInner, KubernetesClusterInner>getLroResult(mono,
             this.client.getHttpPipeline(), KubernetesClusterInner.class, KubernetesClusterInner.class,
             this.client.getContext());
@@ -689,6 +732,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param kubernetesClusterParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -699,10 +746,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            kubernetesClusterName, kubernetesClusterParameters, context);
+            kubernetesClusterName, kubernetesClusterParameters, ifMatch, ifNoneMatch, context);
         return this.client.<KubernetesClusterInner, KubernetesClusterInner>getLroResult(mono,
             this.client.getHttpPipeline(), KubernetesClusterInner.class, KubernetesClusterInner.class, context);
     }
@@ -724,7 +771,11 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginCreateOrUpdate(
         String resourceGroupName, String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters)
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, ifMatch,
+                ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -736,6 +787,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param kubernetesClusterParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -746,9 +801,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginCreateOrUpdate(
         String resourceGroupName, String kubernetesClusterName, KubernetesClusterInner kubernetesClusterParameters,
-        Context context) {
+        String ifMatch, String ifNoneMatch, Context context) {
         return this
-            .beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, context)
+            .beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, ifMatch,
+                ifNoneMatch, context)
             .getSyncPoller();
     }
 
@@ -760,6 +816,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param kubernetesClusterParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -768,9 +828,9 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<KubernetesClusterInner> createOrUpdateAsync(String resourceGroupName, String kubernetesClusterName,
-        KubernetesClusterInner kubernetesClusterParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        KubernetesClusterInner kubernetesClusterParameters, String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, ifMatch,
+            ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -781,6 +841,33 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param kubernetesClusterParameters The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return kubernetesCluster represents the Kubernetes cluster hosted on Network Cloud on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<KubernetesClusterInner> createOrUpdateAsync(String resourceGroupName, String kubernetesClusterName,
+        KubernetesClusterInner kubernetesClusterParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, ifMatch,
+            ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the Kubernetes cluster.
+     * 
+     * Create a new Kubernetes cluster or update the properties of the existing one.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param kubernetesClusterParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -790,10 +877,9 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<KubernetesClusterInner> createOrUpdateAsync(String resourceGroupName, String kubernetesClusterName,
-        KubernetesClusterInner kubernetesClusterParameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        KubernetesClusterInner kubernetesClusterParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, ifMatch,
+            ifNoneMatch, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -812,7 +898,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public KubernetesClusterInner createOrUpdate(String resourceGroupName, String kubernetesClusterName,
         KubernetesClusterInner kubernetesClusterParameters) {
-        return createOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, ifMatch,
+            ifNoneMatch).block();
     }
 
     /**
@@ -823,6 +912,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param kubernetesClusterParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -831,9 +924,9 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public KubernetesClusterInner createOrUpdate(String resourceGroupName, String kubernetesClusterName,
-        KubernetesClusterInner kubernetesClusterParameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, context)
-            .block();
+        KubernetesClusterInner kubernetesClusterParameters, String ifMatch, String ifNoneMatch, Context context) {
+        return createOrUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterParameters, ifMatch,
+            ifNoneMatch, context).block();
     }
 
     /**
@@ -843,6 +936,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -851,7 +948,7 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName) {
+        String kubernetesClusterName, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -871,7 +968,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -882,6 +980,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -891,7 +993,7 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, Context context) {
+        String kubernetesClusterName, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -911,7 +1013,33 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, kubernetesClusterName, accept, context);
+            resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the Kubernetes cluster.
+     * 
+     * Delete the provided Kubernetes cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginDeleteAsync(String resourceGroupName, String kubernetesClusterName, String ifMatch, String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -929,7 +1057,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String kubernetesClusterName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -942,6 +1073,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -949,11 +1084,11 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDeleteAsync(String resourceGroupName, String kubernetesClusterName, Context context) {
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String kubernetesClusterName, String ifMatch, String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName, context);
+            = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -973,7 +1108,9 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String kubernetesClusterName) {
-        return this.beginDeleteAsync(resourceGroupName, kubernetesClusterName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch).getSyncPoller();
     }
 
     /**
@@ -983,6 +1120,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -990,9 +1131,33 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String kubernetesClusterName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, kubernetesClusterName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String kubernetesClusterName, String ifMatch, String ifNoneMatch, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete the Kubernetes cluster.
+     * 
+     * Delete the provided Kubernetes cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String kubernetesClusterName,
+        String ifMatch, String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1009,7 +1174,9 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String kubernetesClusterName) {
-        return beginDeleteAsync(resourceGroupName, kubernetesClusterName).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1020,6 +1187,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1028,8 +1199,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String kubernetesClusterName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, context).last()
+        String ifMatch, String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1047,7 +1218,9 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String kubernetesClusterName) {
-        return deleteAsync(resourceGroupName, kubernetesClusterName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -1057,6 +1230,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1064,8 +1241,9 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(String resourceGroupName, String kubernetesClusterName, Context context) {
-        return deleteAsync(resourceGroupName, kubernetesClusterName, context).block();
+    public OperationStatusResultInner delete(String resourceGroupName, String kubernetesClusterName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -1076,6 +1254,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param kubernetesClusterUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1085,7 +1267,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, KubernetesClusterPatchParameters kubernetesClusterUpdateParameters) {
+        String kubernetesClusterName, String ifMatch, String ifNoneMatch,
+        KubernetesClusterPatchParameters kubernetesClusterUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1108,7 +1291,7 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName,
+                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
                 kubernetesClusterUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1121,6 +1304,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param kubernetesClusterUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1131,8 +1318,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, KubernetesClusterPatchParameters kubernetesClusterUpdateParameters,
-        Context context) {
+        String kubernetesClusterName, String ifMatch, String ifNoneMatch,
+        KubernetesClusterPatchParameters kubernetesClusterUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1155,7 +1342,8 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters, accept, context);
+            resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch, kubernetesClusterUpdateParameters, accept,
+            context);
     }
 
     /**
@@ -1166,6 +1354,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param kubernetesClusterUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1175,10 +1367,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginUpdateAsync(
-        String resourceGroupName, String kubernetesClusterName,
+        String resourceGroupName, String kubernetesClusterName, String ifMatch, String ifNoneMatch,
         KubernetesClusterPatchParameters kubernetesClusterUpdateParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, kubernetesClusterName,
+            ifMatch, ifNoneMatch, kubernetesClusterUpdateParameters);
         return this.client.<KubernetesClusterInner, KubernetesClusterInner>getLroResult(mono,
             this.client.getHttpPipeline(), KubernetesClusterInner.class, KubernetesClusterInner.class,
             this.client.getContext());
@@ -1201,9 +1393,11 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<KubernetesClusterInner>, KubernetesClusterInner>
         beginUpdateAsync(String resourceGroupName, String kubernetesClusterName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final KubernetesClusterPatchParameters kubernetesClusterUpdateParameters = null;
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, kubernetesClusterName,
+            ifMatch, ifNoneMatch, kubernetesClusterUpdateParameters);
         return this.client.<KubernetesClusterInner, KubernetesClusterInner>getLroResult(mono,
             this.client.getHttpPipeline(), KubernetesClusterInner.class, KubernetesClusterInner.class,
             this.client.getContext());
@@ -1217,6 +1411,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param kubernetesClusterUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1227,11 +1425,11 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginUpdateAsync(
-        String resourceGroupName, String kubernetesClusterName,
+        String resourceGroupName, String kubernetesClusterName, String ifMatch, String ifNoneMatch,
         KubernetesClusterPatchParameters kubernetesClusterUpdateParameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, kubernetesClusterName,
-            kubernetesClusterUpdateParameters, context);
+            ifMatch, ifNoneMatch, kubernetesClusterUpdateParameters, context);
         return this.client.<KubernetesClusterInner, KubernetesClusterInner>getLroResult(mono,
             this.client.getHttpPipeline(), KubernetesClusterInner.class, KubernetesClusterInner.class, context);
     }
@@ -1253,8 +1451,12 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginUpdate(String resourceGroupName,
         String kubernetesClusterName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final KubernetesClusterPatchParameters kubernetesClusterUpdateParameters = null;
-        return this.beginUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters)
+        return this
+            .beginUpdateAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+                kubernetesClusterUpdateParameters)
             .getSyncPoller();
     }
 
@@ -1266,6 +1468,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param kubernetesClusterUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1276,10 +1482,11 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<KubernetesClusterInner>, KubernetesClusterInner> beginUpdate(String resourceGroupName,
-        String kubernetesClusterName, KubernetesClusterPatchParameters kubernetesClusterUpdateParameters,
-        Context context) {
+        String kubernetesClusterName, String ifMatch, String ifNoneMatch,
+        KubernetesClusterPatchParameters kubernetesClusterUpdateParameters, Context context) {
         return this
-            .beginUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters, context)
+            .beginUpdateAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+                kubernetesClusterUpdateParameters, context)
             .getSyncPoller();
     }
 
@@ -1291,6 +1498,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param kubernetesClusterUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1300,9 +1511,9 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<KubernetesClusterInner> updateAsync(String resourceGroupName, String kubernetesClusterName,
-        KubernetesClusterPatchParameters kubernetesClusterUpdateParameters) {
-        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String ifMatch, String ifNoneMatch, KubernetesClusterPatchParameters kubernetesClusterUpdateParameters) {
+        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+            kubernetesClusterUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1321,9 +1532,11 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<KubernetesClusterInner> updateAsync(String resourceGroupName, String kubernetesClusterName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final KubernetesClusterPatchParameters kubernetesClusterUpdateParameters = null;
-        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+            kubernetesClusterUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1334,6 +1547,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param kubernetesClusterUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1344,10 +1561,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<KubernetesClusterInner> updateAsync(String resourceGroupName, String kubernetesClusterName,
-        KubernetesClusterPatchParameters kubernetesClusterUpdateParameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String ifMatch, String ifNoneMatch, KubernetesClusterPatchParameters kubernetesClusterUpdateParameters,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+            kubernetesClusterUpdateParameters, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1365,8 +1582,11 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public KubernetesClusterInner update(String resourceGroupName, String kubernetesClusterName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final KubernetesClusterPatchParameters kubernetesClusterUpdateParameters = null;
-        return updateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters).block();
+        return updateAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+            kubernetesClusterUpdateParameters).block();
     }
 
     /**
@@ -1377,6 +1597,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param kubernetesClusterUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1385,10 +1609,10 @@ public final class KubernetesClustersClientImpl implements KubernetesClustersCli
      * @return kubernetesCluster represents the Kubernetes cluster hosted on Network Cloud.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public KubernetesClusterInner update(String resourceGroupName, String kubernetesClusterName,
-        KubernetesClusterPatchParameters kubernetesClusterUpdateParameters, Context context) {
-        return updateAsync(resourceGroupName, kubernetesClusterName, kubernetesClusterUpdateParameters, context)
-            .block();
+    public KubernetesClusterInner update(String resourceGroupName, String kubernetesClusterName, String ifMatch,
+        String ifNoneMatch, KubernetesClusterPatchParameters kubernetesClusterUpdateParameters, Context context) {
+        return updateAsync(resourceGroupName, kubernetesClusterName, ifMatch, ifNoneMatch,
+            kubernetesClusterUpdateParameters, context).block();
     }
 
     /**

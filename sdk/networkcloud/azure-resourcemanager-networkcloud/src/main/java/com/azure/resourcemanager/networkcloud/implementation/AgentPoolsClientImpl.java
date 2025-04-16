@@ -101,7 +101,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("kubernetesClusterName") String kubernetesClusterName,
-            @PathParam("agentPoolName") String agentPoolName,
+            @PathParam("agentPoolName") String agentPoolName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") AgentPoolInner agentPoolParameters, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -113,7 +114,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("kubernetesClusterName") String kubernetesClusterName,
-            @PathParam("agentPoolName") String agentPoolName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("agentPoolName") String agentPoolName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}")
@@ -123,7 +125,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("kubernetesClusterName") String kubernetesClusterName,
-            @PathParam("agentPoolName") String agentPoolName,
+            @PathParam("agentPoolName") String agentPoolName, @HeaderParam("If-Match") String ifMatch,
+            @HeaderParam("If-None-Match") String ifNoneMatch,
             @BodyParam("application/json") AgentPoolPatchParameters agentPoolUpdateParameters,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -451,6 +454,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
      * @param agentPoolParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -459,7 +466,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters) {
+        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters, String ifMatch,
+        String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -488,8 +496,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, agentPoolName,
-                agentPoolParameters, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch,
+                ifNoneMatch, agentPoolParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -502,6 +510,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
      * @param agentPoolParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -511,7 +523,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters, Context context) {
+        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -540,8 +553,36 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, agentPoolName,
-            agentPoolParameters, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch,
+            ifNoneMatch, agentPoolParameters, accept, context);
+    }
+
+    /**
+     * Create or update the Kubernetes cluster agent pool.
+     * 
+     * Create a new Kubernetes cluster agent pool or update the properties of the existing one.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param agentPoolParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of agentPool represents the agent pool of Kubernetes cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters, String ifMatch,
+        String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            kubernetesClusterName, agentPoolName, agentPoolParameters, ifMatch, ifNoneMatch);
+        return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
+            AgentPoolInner.class, AgentPoolInner.class, this.client.getContext());
     }
 
     /**
@@ -561,8 +602,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdateAsync(String resourceGroupName,
         String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            kubernetesClusterName, agentPoolName, agentPoolParameters);
+            kubernetesClusterName, agentPoolName, agentPoolParameters, ifMatch, ifNoneMatch);
         return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
             AgentPoolInner.class, AgentPoolInner.class, this.client.getContext());
     }
@@ -576,6 +619,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
      * @param agentPoolParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -584,10 +631,11 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdateAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters, Context context) {
+        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            kubernetesClusterName, agentPoolName, agentPoolParameters, context);
+            kubernetesClusterName, agentPoolName, agentPoolParameters, ifMatch, ifNoneMatch, context);
         return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
             AgentPoolInner.class, AgentPoolInner.class, context);
     }
@@ -609,8 +657,11 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdate(String resourceGroupName,
         String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         return this
-            .beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters)
+            .beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters,
+                ifMatch, ifNoneMatch)
             .getSyncPoller();
     }
 
@@ -623,6 +674,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
      * @param agentPoolParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -631,11 +686,37 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdate(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters, Context context) {
+        String kubernetesClusterName, String agentPoolName, AgentPoolInner agentPoolParameters, String ifMatch,
+        String ifNoneMatch, Context context) {
         return this
             .beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters,
-                context)
+                ifMatch, ifNoneMatch, context)
             .getSyncPoller();
+    }
+
+    /**
+     * Create or update the Kubernetes cluster agent pool.
+     * 
+     * Create a new Kubernetes cluster agent pool or update the properties of the existing one.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param agentPoolParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return agentPool represents the agent pool of Kubernetes cluster on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AgentPoolInner> createOrUpdateAsync(String resourceGroupName, String kubernetesClusterName,
+        String agentPoolName, AgentPoolInner agentPoolParameters, String ifMatch, String ifNoneMatch) {
+        return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters,
+            ifMatch, ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -655,9 +736,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgentPoolInner> createOrUpdateAsync(String resourceGroupName, String kubernetesClusterName,
         String agentPoolName, AgentPoolInner agentPoolParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters,
+            ifMatch, ifNoneMatch).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -669,6 +751,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
      * @param agentPoolParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -677,9 +763,9 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgentPoolInner> createOrUpdateAsync(String resourceGroupName, String kubernetesClusterName,
-        String agentPoolName, AgentPoolInner agentPoolParameters, Context context) {
+        String agentPoolName, AgentPoolInner agentPoolParameters, String ifMatch, String ifNoneMatch, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters,
-            context).last().flatMap(this.client::getLroFinalResultOrError);
+            ifMatch, ifNoneMatch, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -699,8 +785,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AgentPoolInner createOrUpdate(String resourceGroupName, String kubernetesClusterName, String agentPoolName,
         AgentPoolInner agentPoolParameters) {
-        return createOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters)
-            .block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters,
+            ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -712,6 +800,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
      * @param agentPoolParameters The request body.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -720,9 +812,9 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AgentPoolInner createOrUpdate(String resourceGroupName, String kubernetesClusterName, String agentPoolName,
-        AgentPoolInner agentPoolParameters, Context context) {
+        AgentPoolInner agentPoolParameters, String ifMatch, String ifNoneMatch, Context context) {
         return createOrUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters,
-            context).block();
+            ifMatch, ifNoneMatch, context).block();
     }
 
     /**
@@ -733,6 +825,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -741,7 +837,7 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName) {
+        String kubernetesClusterName, String agentPoolName, String ifMatch, String ifNoneMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -762,8 +858,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
             return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, agentPoolName, accept, context))
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch,
+                ifNoneMatch, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -775,6 +873,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -784,7 +886,7 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, Context context) {
+        String kubernetesClusterName, String agentPoolName, String ifMatch, String ifNoneMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -807,7 +909,35 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, kubernetesClusterName, agentPoolName, accept, context);
+            resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch, accept, context);
+    }
+
+    /**
+     * Delete the Kubernetes cluster agent pool.
+     * 
+     * Delete the provided Kubernetes cluster agent pool.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+        String resourceGroupName, String kubernetesClusterName, String agentPoolName, String ifMatch,
+        String ifNoneMatch) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -826,8 +956,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDeleteAsync(String resourceGroupName, String kubernetesClusterName, String agentPoolName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName, agentPoolName);
+            = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
             this.client.getContext());
@@ -841,6 +973,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -849,10 +985,11 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
-        String resourceGroupName, String kubernetesClusterName, String agentPoolName, Context context) {
+        String resourceGroupName, String kubernetesClusterName, String agentPoolName, String ifMatch,
+        String ifNoneMatch, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName, agentPoolName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, kubernetesClusterName,
+            agentPoolName, ifMatch, ifNoneMatch, context);
         return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
             this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
@@ -873,7 +1010,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
         beginDelete(String resourceGroupName, String kubernetesClusterName, String agentPoolName) {
-        return this.beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName).getSyncPoller();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return this.beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch)
+            .getSyncPoller();
     }
 
     /**
@@ -884,6 +1024,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -891,9 +1035,36 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginDelete(String resourceGroupName, String kubernetesClusterName, String agentPoolName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, context).getSyncPoller();
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+        String resourceGroupName, String kubernetesClusterName, String agentPoolName, String ifMatch,
+        String ifNoneMatch, Context context) {
+        return this
+            .beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete the Kubernetes cluster agent pool.
+     * 
+     * Delete the provided Kubernetes cluster agent pool.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kubernetesClusterName The name of the Kubernetes cluster.
+     * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String kubernetesClusterName,
+        String agentPoolName, String ifMatch, String ifNoneMatch) {
+        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -912,7 +1083,9 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String kubernetesClusterName,
         String agentPoolName) {
-        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName).last()
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -924,6 +1097,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -932,8 +1109,9 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> deleteAsync(String resourceGroupName, String kubernetesClusterName,
-        String agentPoolName, Context context) {
-        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, context).last()
+        String agentPoolName, String ifMatch, String ifNoneMatch, Context context) {
+        return beginDeleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch, context)
+            .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -953,7 +1131,9 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String kubernetesClusterName,
         String agentPoolName) {
-        return deleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName).block();
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return deleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch).block();
     }
 
     /**
@@ -964,6 +1144,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -972,8 +1156,9 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner delete(String resourceGroupName, String kubernetesClusterName,
-        String agentPoolName, Context context) {
-        return deleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, context).block();
+        String agentPoolName, String ifMatch, String ifNoneMatch, Context context) {
+        return deleteAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch, context)
+            .block();
     }
 
     /**
@@ -985,6 +1170,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param agentPoolUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -994,7 +1183,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolPatchParameters agentPoolUpdateParameters) {
+        String kubernetesClusterName, String agentPoolName, String ifMatch, String ifNoneMatch,
+        AgentPoolPatchParameters agentPoolUpdateParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1020,8 +1210,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, agentPoolName,
-                agentPoolUpdateParameters, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch,
+                ifNoneMatch, agentPoolUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1034,6 +1224,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param agentPoolUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1044,8 +1238,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolPatchParameters agentPoolUpdateParameters,
-        Context context) {
+        String kubernetesClusterName, String agentPoolName, String ifMatch, String ifNoneMatch,
+        AgentPoolPatchParameters agentPoolUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1071,7 +1265,8 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolUpdateParameters, accept, context);
+            resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch, agentPoolUpdateParameters,
+            accept, context);
     }
 
     /**
@@ -1083,6 +1278,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param agentPoolUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1091,9 +1290,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdateAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolPatchParameters agentPoolUpdateParameters) {
+        String kubernetesClusterName, String agentPoolName, String ifMatch, String ifNoneMatch,
+        AgentPoolPatchParameters agentPoolUpdateParameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, kubernetesClusterName,
-            agentPoolName, agentPoolUpdateParameters);
+            agentPoolName, ifMatch, ifNoneMatch, agentPoolUpdateParameters);
         return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
             AgentPoolInner.class, AgentPoolInner.class, this.client.getContext());
     }
@@ -1115,9 +1315,11 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdateAsync(String resourceGroupName,
         String kubernetesClusterName, String agentPoolName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final AgentPoolPatchParameters agentPoolUpdateParameters = null;
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, kubernetesClusterName,
-            agentPoolName, agentPoolUpdateParameters);
+            agentPoolName, ifMatch, ifNoneMatch, agentPoolUpdateParameters);
         return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
             AgentPoolInner.class, AgentPoolInner.class, this.client.getContext());
     }
@@ -1131,6 +1333,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param agentPoolUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1140,11 +1346,11 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdateAsync(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolPatchParameters agentPoolUpdateParameters,
-        Context context) {
+        String kubernetesClusterName, String agentPoolName, String ifMatch, String ifNoneMatch,
+        AgentPoolPatchParameters agentPoolUpdateParameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, kubernetesClusterName,
-            agentPoolName, agentPoolUpdateParameters, context);
+            agentPoolName, ifMatch, ifNoneMatch, agentPoolUpdateParameters, context);
         return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
             AgentPoolInner.class, AgentPoolInner.class, context);
     }
@@ -1166,8 +1372,12 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdate(String resourceGroupName,
         String kubernetesClusterName, String agentPoolName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final AgentPoolPatchParameters agentPoolUpdateParameters = null;
-        return this.beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolUpdateParameters)
+        return this
+            .beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch,
+                agentPoolUpdateParameters)
             .getSyncPoller();
     }
 
@@ -1180,6 +1390,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param agentPoolUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1189,11 +1403,11 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdate(String resourceGroupName,
-        String kubernetesClusterName, String agentPoolName, AgentPoolPatchParameters agentPoolUpdateParameters,
-        Context context) {
+        String kubernetesClusterName, String agentPoolName, String ifMatch, String ifNoneMatch,
+        AgentPoolPatchParameters agentPoolUpdateParameters, Context context) {
         return this
-            .beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolUpdateParameters,
-                context)
+            .beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch,
+                agentPoolUpdateParameters, context)
             .getSyncPoller();
     }
 
@@ -1206,6 +1420,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param agentPoolUpdateParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1214,10 +1432,9 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgentPoolInner> updateAsync(String resourceGroupName, String kubernetesClusterName,
-        String agentPoolName, AgentPoolPatchParameters agentPoolUpdateParameters) {
-        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolUpdateParameters)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String agentPoolName, String ifMatch, String ifNoneMatch, AgentPoolPatchParameters agentPoolUpdateParameters) {
+        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch,
+            agentPoolUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1237,10 +1454,11 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgentPoolInner> updateAsync(String resourceGroupName, String kubernetesClusterName,
         String agentPoolName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final AgentPoolPatchParameters agentPoolUpdateParameters = null;
-        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolUpdateParameters)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch,
+            agentPoolUpdateParameters).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1252,6 +1470,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param agentPoolUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1261,9 +1483,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgentPoolInner> updateAsync(String resourceGroupName, String kubernetesClusterName,
-        String agentPoolName, AgentPoolPatchParameters agentPoolUpdateParameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolUpdateParameters,
-            context).last().flatMap(this.client::getLroFinalResultOrError);
+        String agentPoolName, String ifMatch, String ifNoneMatch, AgentPoolPatchParameters agentPoolUpdateParameters,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch,
+            agentPoolUpdateParameters, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1282,8 +1505,11 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AgentPoolInner update(String resourceGroupName, String kubernetesClusterName, String agentPoolName) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
         final AgentPoolPatchParameters agentPoolUpdateParameters = null;
-        return updateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolUpdateParameters).block();
+        return updateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch,
+            agentPoolUpdateParameters).block();
     }
 
     /**
@@ -1295,6 +1521,10 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
+     * @param ifMatch The ETag of the transformation. Omit this value to always overwrite the current resource. Specify
+     * the last-seen ETag value to prevent accidentally overwriting concurrent changes.
+     * @param ifNoneMatch Set to '*' to allow a new record set to be created, but to prevent updating an existing
+     * resource. Other values will result in error from server as they are not supported.
      * @param agentPoolUpdateParameters The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1304,9 +1534,9 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AgentPoolInner update(String resourceGroupName, String kubernetesClusterName, String agentPoolName,
-        AgentPoolPatchParameters agentPoolUpdateParameters, Context context) {
-        return updateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, agentPoolUpdateParameters, context)
-            .block();
+        String ifMatch, String ifNoneMatch, AgentPoolPatchParameters agentPoolUpdateParameters, Context context) {
+        return updateAsync(resourceGroupName, kubernetesClusterName, agentPoolName, ifMatch, ifNoneMatch,
+            agentPoolUpdateParameters, context).block();
     }
 
     /**

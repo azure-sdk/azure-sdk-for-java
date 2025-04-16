@@ -213,7 +213,7 @@ import java.util.Map;
 public final class AgentPoolsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/AgentPools_Create.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/AgentPools_Create.
      * json
      */
     /**
@@ -280,7 +280,7 @@ public final class AgentPoolsCreateOrUpdateSamples {
 public final class AgentPoolsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/AgentPools_Delete.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/AgentPools_Delete.
      * json
      */
     /**
@@ -291,7 +291,8 @@ public final class AgentPoolsDeleteSamples {
     public static void
         deleteKubernetesClusterAgentPool(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.agentPools()
-            .delete("resourceGroupName", "kubernetesClusterName", "agentPoolName", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "kubernetesClusterName", "agentPoolName", null, null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -305,7 +306,7 @@ public final class AgentPoolsDeleteSamples {
 public final class AgentPoolsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/AgentPools_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/AgentPools_Get.json
      */
     /**
      * Sample code: Get Kubernetes cluster agent pool.
@@ -330,7 +331,7 @@ public final class AgentPoolsGetSamples {
 public final class AgentPoolsListByKubernetesClusterSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * AgentPools_ListByKubernetesCluster.json
      */
     /**
@@ -363,7 +364,7 @@ import java.util.Map;
 public final class AgentPoolsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/AgentPools_Patch.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/AgentPools_Patch.
      * json
      */
     /**
@@ -419,7 +420,7 @@ import java.util.Map;
 public final class BareMetalMachineKeySetsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachineKeySets_Create.json
      */
     /**
@@ -477,7 +478,7 @@ public final class BareMetalMachineKeySetsCreateOrUpdateSamples {
 public final class BareMetalMachineKeySetsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachineKeySets_Delete.json
      */
     /**
@@ -488,7 +489,8 @@ public final class BareMetalMachineKeySetsDeleteSamples {
     public static void
         deleteBareMetalMachineKeySetOfCluster(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.bareMetalMachineKeySets()
-            .delete("resourceGroupName", "clusterName", "bareMetalMachineKeySetName", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "clusterName", "bareMetalMachineKeySetName", null, null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -502,7 +504,7 @@ public final class BareMetalMachineKeySetsDeleteSamples {
 public final class BareMetalMachineKeySetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachineKeySets_Get.json
      */
     /**
@@ -528,7 +530,7 @@ public final class BareMetalMachineKeySetsGetSamples {
 public final class BareMetalMachineKeySetsListByClusterSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachineKeySets_ListByCluster.json
      */
     /**
@@ -561,7 +563,7 @@ import java.util.Map;
 public final class BareMetalMachineKeySetsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachineKeySets_Patch.json
      */
     /**
@@ -617,7 +619,7 @@ import com.azure.resourcemanager.networkcloud.models.BareMetalMachineEvacuate;
 public final class BareMetalMachinesCordonSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Cordon.json
      */
     /**
@@ -648,7 +650,7 @@ import java.util.Map;
 public final class BareMetalMachinesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Create.json
      */
     /**
@@ -704,7 +706,7 @@ public final class BareMetalMachinesCreateOrUpdateSamples {
 public final class BareMetalMachinesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Delete.json
      */
     /**
@@ -714,7 +716,7 @@ public final class BareMetalMachinesDeleteSamples {
      */
     public static void deleteBareMetalMachine(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.bareMetalMachines()
-            .delete("resourceGroupName", "bareMetalMachineName", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "bareMetalMachineName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -728,7 +730,7 @@ public final class BareMetalMachinesDeleteSamples {
 public final class BareMetalMachinesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Get.json
      */
     /**
@@ -753,7 +755,7 @@ public final class BareMetalMachinesGetByResourceGroupSamples {
 public final class BareMetalMachinesListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_ListBySubscription.json
      */
     /**
@@ -777,7 +779,7 @@ public final class BareMetalMachinesListSamples {
 public final class BareMetalMachinesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_ListByResourceGroup.json
      */
     /**
@@ -804,7 +806,7 @@ import com.azure.resourcemanager.networkcloud.models.BareMetalMachineSkipShutdow
 public final class BareMetalMachinesPowerOffSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_PowerOff.json
      */
     /**
@@ -830,7 +832,7 @@ public final class BareMetalMachinesPowerOffSamples {
 public final class BareMetalMachinesReimageSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Reimage.json
      */
     /**
@@ -857,7 +859,7 @@ import com.azure.resourcemanager.networkcloud.models.BareMetalMachineReplacePara
 public final class BareMetalMachinesReplaceSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Replace.json
      */
     /**
@@ -889,7 +891,7 @@ public final class BareMetalMachinesReplaceSamples {
 public final class BareMetalMachinesRestartSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Restart.json
      */
     /**
@@ -916,7 +918,7 @@ import java.util.Arrays;
 public final class BareMetalMachinesRunCommandSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_RunCommand.json
      */
     /**
@@ -949,7 +951,7 @@ import java.util.Arrays;
 public final class BareMetalMachinesRunDataExtractsSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_RunDataExtracts.json
      */
     /**
@@ -983,7 +985,7 @@ import java.util.Arrays;
 public final class BareMetalMachinesRunReadCommandsSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_RunReadCommands.json
      */
     /**
@@ -1015,7 +1017,7 @@ public final class BareMetalMachinesRunReadCommandsSamples {
 public final class BareMetalMachinesStartSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Start.json
      */
     /**
@@ -1039,7 +1041,7 @@ public final class BareMetalMachinesStartSamples {
 public final class BareMetalMachinesUncordonSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Uncordon.json
      */
     /**
@@ -1067,7 +1069,7 @@ import java.util.Map;
 public final class BareMetalMachinesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BareMetalMachines_Patch.json
      */
     /**
@@ -1118,7 +1120,7 @@ import java.util.Map;
 public final class BmcKeySetsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/BmcKeySets_Create.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/BmcKeySets_Create.
      * json
      */
     /**
@@ -1174,7 +1176,7 @@ public final class BmcKeySetsCreateOrUpdateSamples {
 public final class BmcKeySetsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/BmcKeySets_Delete.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/BmcKeySets_Delete.
      * json
      */
     /**
@@ -1185,7 +1187,7 @@ public final class BmcKeySetsDeleteSamples {
     public static void deleteBaseboardManagementControllerKeySetOfCluster(
         com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.bmcKeySets()
-            .delete("resourceGroupName", "clusterName", "bmcKeySetName", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "clusterName", "bmcKeySetName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1199,7 +1201,7 @@ public final class BmcKeySetsDeleteSamples {
 public final class BmcKeySetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/BmcKeySets_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/BmcKeySets_Get.json
      */
     /**
      * Sample code: Get baseboard management controller key set of cluster.
@@ -1223,7 +1225,7 @@ public final class BmcKeySetsGetSamples {
 public final class BmcKeySetsListByClusterSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * BmcKeySets_ListByCluster.json
      */
     /**
@@ -1255,7 +1257,7 @@ import java.util.Map;
 public final class BmcKeySetsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/BmcKeySets_Patch.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/BmcKeySets_Patch.
      * json
      */
     /**
@@ -1314,7 +1316,7 @@ import java.util.Map;
 public final class CloudServicesNetworksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * CloudServicesNetworks_Create.json
      */
     /**
@@ -1362,7 +1364,7 @@ public final class CloudServicesNetworksCreateOrUpdateSamples {
 public final class CloudServicesNetworksDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * CloudServicesNetworks_Delete.json
      */
     /**
@@ -1372,7 +1374,7 @@ public final class CloudServicesNetworksDeleteSamples {
      */
     public static void deleteCloudServicesNetwork(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.cloudServicesNetworks()
-            .delete("resourceGroupName", "cloudServicesNetworkName", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "cloudServicesNetworkName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1386,7 +1388,7 @@ public final class CloudServicesNetworksDeleteSamples {
 public final class CloudServicesNetworksGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * CloudServicesNetworks_Get.json
      */
     /**
@@ -1411,7 +1413,7 @@ public final class CloudServicesNetworksGetByResourceGroupSamples {
 public final class CloudServicesNetworksListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * CloudServicesNetworks_ListBySubscription.json
      */
     /**
@@ -1435,7 +1437,7 @@ public final class CloudServicesNetworksListSamples {
 public final class CloudServicesNetworksListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * CloudServicesNetworks_ListByResourceGroup.json
      */
     /**
@@ -1467,7 +1469,7 @@ import java.util.Map;
 public final class CloudServicesNetworksUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * CloudServicesNetworks_Patch.json
      */
     /**
@@ -1519,7 +1521,7 @@ import java.util.Map;
 public final class ClusterManagersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterManagers_Create.json
      */
     /**
@@ -1546,7 +1548,7 @@ public final class ClusterManagersCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterManagers_Create_Uami.json
      */
     /**
@@ -1597,7 +1599,7 @@ public final class ClusterManagersCreateOrUpdateSamples {
 public final class ClusterManagersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterManagers_Delete.json
      */
     /**
@@ -1606,7 +1608,8 @@ public final class ClusterManagersDeleteSamples {
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteClusterManager(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager.clusterManagers().delete("resourceGroupName", "clusterManagerName", com.azure.core.util.Context.NONE);
+        manager.clusterManagers()
+            .delete("resourceGroupName", "clusterManagerName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1620,7 +1623,7 @@ public final class ClusterManagersDeleteSamples {
 public final class ClusterManagersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/ClusterManagers_Get
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/ClusterManagers_Get
      * .json
      */
     /**
@@ -1645,7 +1648,7 @@ public final class ClusterManagersGetByResourceGroupSamples {
 public final class ClusterManagersListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterManagers_ListBySubscription.json
      */
     /**
@@ -1669,7 +1672,7 @@ public final class ClusterManagersListSamples {
 public final class ClusterManagersListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterManagers_ListByResourceGroup.json
      */
     /**
@@ -1700,7 +1703,7 @@ import java.util.Map;
 public final class ClusterManagersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterManagers_Patch.json
      */
     /**
@@ -1749,7 +1752,7 @@ import com.azure.resourcemanager.networkcloud.models.ClusterContinueUpdateVersio
 public final class ClustersContinueUpdateVersionSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_ContinueUpdateVersion.json
      */
     /**
@@ -1772,9 +1775,8 @@ public final class ClustersContinueUpdateVersionSamples {
 
 ```java
 import com.azure.resourcemanager.networkcloud.models.AdministrativeCredentials;
+import com.azure.resourcemanager.networkcloud.models.AnalyticsOutputSettings;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineConfigurationData;
-import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
-import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchiveEnabled;
 import com.azure.resourcemanager.networkcloud.models.ClusterType;
 import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
 import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategyType;
@@ -1788,12 +1790,15 @@ import com.azure.resourcemanager.networkcloud.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
 import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
 import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionEnforcementLevel;
+import com.azure.resourcemanager.networkcloud.models.SecretArchiveSettings;
 import com.azure.resourcemanager.networkcloud.models.ServicePrincipalInformation;
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceConfigurationData;
 import com.azure.resourcemanager.networkcloud.models.UserAssignedIdentity;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import com.azure.resourcemanager.networkcloud.models.ValidationThresholdGrouping;
 import com.azure.resourcemanager.networkcloud.models.ValidationThresholdType;
+import com.azure.resourcemanager.networkcloud.models.VulnerabilityScanningSettings;
+import com.azure.resourcemanager.networkcloud.models.VulnerabilityScanningSettingsContainerScan;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -1804,7 +1809,7 @@ import java.util.Map;
 public final class ClustersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Clusters_Create.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Clusters_Create.
      * json
      */
     /**
@@ -1820,37 +1825,41 @@ public final class ClustersCreateOrUpdateSamples {
             .withExtendedLocation(new ExtendedLocation().withName(
                 "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterManagerExtendedLocationName")
                 .withType("CustomLocation"))
-            .withAggregatorOrSingleRackDefinition(new RackDefinition()
-                .withBareMetalMachineConfigurationData(Arrays.asList(
-                    new BareMetalMachineConfigurationData()
-                        .withBmcCredentials(new AdministrativeCredentials().withPassword("fakeTokenPlaceholder")
+            .withAggregatorOrSingleRackDefinition(
+                new RackDefinition()
+                    .withBareMetalMachineConfigurationData(Arrays.asList(
+                        new BareMetalMachineConfigurationData()
+                            .withBmcCredentials(new AdministrativeCredentials().withPassword("fakeTokenPlaceholder")
+                                .withUsername("username"))
+                            .withBmcMacAddress("AA:BB:CC:DD:EE:FF")
+                            .withBootMacAddress("00:BB:CC:DD:EE:FF")
+                            .withMachineDetails("extraDetails")
+                            .withMachineName("bmmName1")
+                            .withRackSlot(1L)
+                            .withSerialNumber("BM1219XXX"),
+                        new BareMetalMachineConfigurationData()
+                            .withBmcCredentials(
+                                new AdministrativeCredentials()
+                                    .withPassword("fakeTokenPlaceholder")
+                                    .withUsername("username"))
+                            .withBmcMacAddress("AA:BB:CC:DD:EE:00")
+                            .withBootMacAddress("00:BB:CC:DD:EE:00")
+                            .withMachineDetails("extraDetails")
+                            .withMachineName("bmmName2")
+                            .withRackSlot(2L)
+                            .withSerialNumber("BM1219YYY")))
+                    .withNetworkRackId(
+                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedNetworkFabric/networkRacks/networkRackName")
+                    .withRackLocation("Foo Datacenter, Floor 3, Aisle 9, Rack 2")
+                    .withRackSerialNumber("AA1234")
+                    .withRackSkuId(
+                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName")
+                    .withStorageApplianceConfigurationData(Arrays.asList(new StorageApplianceConfigurationData()
+                        .withAdminCredentials(new AdministrativeCredentials().withPassword("fakeTokenPlaceholder")
                             .withUsername("username"))
-                        .withBmcMacAddress("AA:BB:CC:DD:EE:FF")
-                        .withBootMacAddress("00:BB:CC:DD:EE:FF")
-                        .withMachineDetails("extraDetails")
-                        .withMachineName("bmmName1")
                         .withRackSlot(1L)
-                        .withSerialNumber("BM1219XXX"),
-                    new BareMetalMachineConfigurationData().withBmcCredentials(
-                        new AdministrativeCredentials().withPassword("fakeTokenPlaceholder").withUsername("username"))
-                        .withBmcMacAddress("AA:BB:CC:DD:EE:00")
-                        .withBootMacAddress("00:BB:CC:DD:EE:00")
-                        .withMachineDetails("extraDetails")
-                        .withMachineName("bmmName2")
-                        .withRackSlot(2L)
-                        .withSerialNumber("BM1219YYY")))
-                .withNetworkRackId(
-                    "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedNetworkFabric/networkRacks/networkRackName")
-                .withRackLocation("Foo Datacenter, Floor 3, Aisle 9, Rack 2")
-                .withRackSerialNumber("AA1234")
-                .withRackSkuId(
-                    "/subscriptions/123e4567-e89b-12d3-a456-426655440000/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName")
-                .withStorageApplianceConfigurationData(Arrays.asList(new StorageApplianceConfigurationData()
-                    .withAdminCredentials(
-                        new AdministrativeCredentials().withPassword("fakeTokenPlaceholder").withUsername("username"))
-                    .withRackSlot(1L)
-                    .withSerialNumber("BM1219XXX")
-                    .withStorageApplianceName("vmName"))))
+                        .withSerialNumber("BM1219XXX")
+                        .withStorageApplianceName("vmName"))))
             .withClusterType(ClusterType.SINGLE_RACK)
             .withClusterVersion("1.0.0")
             .withNetworkFabricId(
@@ -1860,8 +1869,12 @@ public final class ClustersCreateOrUpdateSamples {
                 .withUserAssignedIdentities(mapOf(
                     "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity1",
                     new UserAssignedIdentity())))
-            .withAnalyticsWorkspaceId(
+            .withAnalyticsOutputSettings(new AnalyticsOutputSettings().withAnalyticsWorkspaceId(
                 "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/microsoft.operationalInsights/workspaces/logAnalyticsWorkspaceName")
+                .withAssociatedIdentity(new IdentitySelector()
+                    .withIdentityType(ManagedServiceIdentitySelectorType.USER_ASSIGNED_IDENTITY)
+                    .withUserAssignedIdentityResourceId(
+                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity1")))
             .withClusterLocation("Foo Street, 3rd Floor, row 9")
             .withClusterServicePrincipal(
                 new ServicePrincipalInformation().withApplicationId("12345678-1234-1234-1234-123456789012")
@@ -1879,8 +1892,9 @@ public final class ClustersCreateOrUpdateSamples {
                     .withValue(90L))
             .withComputeRackDefinitions(Arrays.asList(new RackDefinition()
                 .withBareMetalMachineConfigurationData(Arrays.asList(
-                    new BareMetalMachineConfigurationData().withBmcCredentials(
-                        new AdministrativeCredentials().withPassword("fakeTokenPlaceholder").withUsername("username"))
+                    new BareMetalMachineConfigurationData()
+                        .withBmcCredentials(new AdministrativeCredentials().withPassword("fakeTokenPlaceholder")
+                            .withUsername("username"))
                         .withBmcMacAddress("AA:BB:CC:DD:EE:FF")
                         .withBootMacAddress("00:BB:CC:DD:EE:FF")
                         .withMachineDetails("extraDetails")
@@ -1912,13 +1926,18 @@ public final class ClustersCreateOrUpdateSamples {
                 new ManagedResourceGroupConfiguration().withLocation("East US").withName("my-managed-rg"))
             .withRuntimeProtectionConfiguration(
                 new RuntimeProtectionConfiguration().withEnforcementLevel(RuntimeProtectionEnforcementLevel.ON_DEMAND))
-            .withSecretArchive(new ClusterSecretArchive().withKeyVaultId("fakeTokenPlaceholder")
-                .withUseKeyVault(ClusterSecretArchiveEnabled.TRUE))
+            .withSecretArchiveSettings(new SecretArchiveSettings().withAssociatedIdentity(new IdentitySelector()
+                .withIdentityType(ManagedServiceIdentitySelectorType.USER_ASSIGNED_IDENTITY)
+                .withUserAssignedIdentityResourceId(
+                    "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity1"))
+                .withVaultUri("https://keyvaultname.vault.azure.net/"))
             .withUpdateStrategy(new ClusterUpdateStrategy().withMaxUnavailable(4L)
                 .withStrategyType(ClusterUpdateStrategyType.RACK)
                 .withThresholdType(ValidationThresholdType.COUNT_SUCCESS)
                 .withThresholdValue(4L)
                 .withWaitTimeMinutes(10L))
+            .withVulnerabilityScanningSettings(new VulnerabilityScanningSettings()
+                .withContainerScan(VulnerabilityScanningSettingsContainerScan.ENABLED))
             .create();
     }
 
@@ -1945,7 +1964,7 @@ public final class ClustersCreateOrUpdateSamples {
 public final class ClustersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Clusters_Delete.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Clusters_Delete.
      * json
      */
     /**
@@ -1954,7 +1973,7 @@ public final class ClustersDeleteSamples {
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteCluster(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager.clusters().delete("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE);
+        manager.clusters().delete("resourceGroupName", "clusterName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1971,7 +1990,7 @@ import java.util.Arrays;
 public final class ClustersDeploySamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Clusters_Deploy.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Clusters_Deploy.
      * json
      */
     /**
@@ -1987,7 +2006,7 @@ public final class ClustersDeploySamples {
 
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_Deploy_SkipValidation.json
      */
     /**
@@ -2014,7 +2033,7 @@ public final class ClustersDeploySamples {
 public final class ClustersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Clusters_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Clusters_Get.json
      */
     /**
      * Sample code: Get cluster.
@@ -2037,7 +2056,7 @@ public final class ClustersGetByResourceGroupSamples {
 public final class ClustersListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_ListBySubscription.json
      */
     /**
@@ -2060,7 +2079,7 @@ public final class ClustersListSamples {
 public final class ClustersListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_ListByResourceGroup.json
      */
     /**
@@ -2087,7 +2106,7 @@ import com.azure.resourcemanager.networkcloud.models.ClusterScanRuntimeParameter
 public final class ClustersScanRuntimeSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_ScanRuntime.json
      */
     /**
@@ -2109,10 +2128,9 @@ public final class ClustersScanRuntimeSamples {
 
 ```java
 import com.azure.resourcemanager.networkcloud.models.AdministrativeCredentials;
+import com.azure.resourcemanager.networkcloud.models.AnalyticsOutputSettings;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineConfigurationData;
 import com.azure.resourcemanager.networkcloud.models.Cluster;
-import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
-import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchiveEnabled;
 import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
 import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategyType;
 import com.azure.resourcemanager.networkcloud.models.CommandOutputSettings;
@@ -2123,11 +2141,14 @@ import com.azure.resourcemanager.networkcloud.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
 import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
 import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionEnforcementLevel;
+import com.azure.resourcemanager.networkcloud.models.SecretArchiveSettings;
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceConfigurationData;
 import com.azure.resourcemanager.networkcloud.models.UserAssignedIdentity;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import com.azure.resourcemanager.networkcloud.models.ValidationThresholdGrouping;
 import com.azure.resourcemanager.networkcloud.models.ValidationThresholdType;
+import com.azure.resourcemanager.networkcloud.models.VulnerabilityScanningSettingsContainerScan;
+import com.azure.resourcemanager.networkcloud.models.VulnerabilityScanningSettingsPatch;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -2138,7 +2159,7 @@ import java.util.Map;
 public final class ClustersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_Patch_UpdateStrategy.json
      */
     /**
@@ -2162,7 +2183,28 @@ public final class ClustersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
+     * Clusters_Patch_VulnerabilityScanning.json
+     */
+    /**
+     * Sample code: Patch vulnerability scanning.
+     * 
+     * @param manager Entry point to NetworkCloudManager.
+     */
+    public static void patchVulnerabilityScanning(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
+        Cluster resource = manager.clusters()
+            .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withVulnerabilityScanningSettings(new VulnerabilityScanningSettingsPatch()
+                .withContainerScan(VulnerabilityScanningSettingsContainerScan.ENABLED))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_Patch_Location.json
      */
     /**
@@ -2182,7 +2224,7 @@ public final class ClustersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_Patch_AggregatorOrSingleRackDefinition.json
      */
     /**
@@ -2241,7 +2283,7 @@ public final class ClustersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_Patch_CommandOutput.json
      */
     /**
@@ -2271,7 +2313,7 @@ public final class ClustersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_Patch_RuntimeProtectionConfiguration.json
      */
     /**
@@ -2293,7 +2335,7 @@ public final class ClustersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_Patch_SecretArchive.json
      */
     /**
@@ -2307,8 +2349,42 @@ public final class ClustersUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withSecretArchive(new ClusterSecretArchive().withKeyVaultId("fakeTokenPlaceholder")
-                .withUseKeyVault(ClusterSecretArchiveEnabled.TRUE))
+            .withSecretArchiveSettings(new SecretArchiveSettings().withAssociatedIdentity(new IdentitySelector()
+                .withIdentityType(ManagedServiceIdentitySelectorType.USER_ASSIGNED_IDENTITY)
+                .withUserAssignedIdentityResourceId(
+                    "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity1"))
+                .withVaultUri("https://keyvaultname.vault.azure.net/"))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
+     * Clusters_Patch_AnalyticsOutput.json
+     */
+    /**
+     * Sample code: Patch cluster analytics output.
+     * 
+     * @param manager Entry point to NetworkCloudManager.
+     */
+    public static void patchClusterAnalyticsOutput(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
+        Cluster resource = manager.clusters()
+            .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity1",
+                    null,
+                    "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity2",
+                    new UserAssignedIdentity())))
+            .withAnalyticsOutputSettings(new AnalyticsOutputSettings().withAnalyticsWorkspaceId(
+                "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/microsoft.operationalInsights/workspaces/logAnalyticsWorkspaceName")
+                .withAssociatedIdentity(new IdentitySelector()
+                    .withIdentityType(ManagedServiceIdentitySelectorType.USER_ASSIGNED_IDENTITY)
+                    .withUserAssignedIdentityResourceId(
+                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity2")))
             .apply();
     }
 
@@ -2337,7 +2413,7 @@ import com.azure.resourcemanager.networkcloud.models.ClusterUpdateVersionParamet
 public final class ClustersUpdateVersionSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Clusters_UpdateVersion.json
      */
     /**
@@ -2369,7 +2445,7 @@ import java.util.Map;
 public final class ConsolesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Consoles_Create.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Consoles_Create.
      * json
      */
     /**
@@ -2416,7 +2492,7 @@ public final class ConsolesCreateOrUpdateSamples {
 public final class ConsolesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Consoles_Delete.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Consoles_Delete.
      * json
      */
     /**
@@ -2426,7 +2502,7 @@ public final class ConsolesDeleteSamples {
      */
     public static void deleteVirtualMachineConsole(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.consoles()
-            .delete("resourceGroupName", "virtualMachineName", "default", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "virtualMachineName", "default", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2440,7 +2516,7 @@ public final class ConsolesDeleteSamples {
 public final class ConsolesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Consoles_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Consoles_Get.json
      */
     /**
      * Sample code: Get virtual machine console.
@@ -2463,7 +2539,7 @@ public final class ConsolesGetSamples {
 public final class ConsolesListByVirtualMachineSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Consoles_ListByVirtualMachine.json
      */
     /**
@@ -2495,7 +2571,7 @@ import java.util.Map;
 public final class ConsolesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Consoles_Patch.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Consoles_Patch.json
      */
     /**
      * Sample code: Patch virtual machine console.
@@ -2542,7 +2618,7 @@ import java.util.Map;
 public final class KubernetesClusterFeaturesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusterFeatures_Create.json
      */
     /**
@@ -2585,7 +2661,7 @@ public final class KubernetesClusterFeaturesCreateOrUpdateSamples {
 public final class KubernetesClusterFeaturesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusterFeatures_Delete.json
      */
     /**
@@ -2596,7 +2672,8 @@ public final class KubernetesClusterFeaturesDeleteSamples {
     public static void
         deleteKubernetesClusterFeature(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.kubernetesClusterFeatures()
-            .delete("resourceGroupName", "kubernetesClusterName", "featureName", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "kubernetesClusterName", "featureName", null, null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2610,7 +2687,7 @@ public final class KubernetesClusterFeaturesDeleteSamples {
 public final class KubernetesClusterFeaturesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusterFeatures_Get.json
      */
     /**
@@ -2635,7 +2712,7 @@ public final class KubernetesClusterFeaturesGetSamples {
 public final class KubernetesClusterFeaturesListByKubernetesClusterSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusterFeatures_ListByKubernetesCluster.json
      */
     /**
@@ -2666,7 +2743,7 @@ import java.util.Map;
 public final class KubernetesClusterFeaturesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusterFeatures_Patch.json
      */
     /**
@@ -2742,7 +2819,7 @@ import java.util.Map;
 public final class KubernetesClustersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusters_Create.json
      */
     /**
@@ -2844,7 +2921,7 @@ public final class KubernetesClustersCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusters_L2LoadBalancer_Create.json
      */
     /**
@@ -2950,7 +3027,7 @@ public final class KubernetesClustersCreateOrUpdateSamples {
 public final class KubernetesClustersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusters_Delete.json
      */
     /**
@@ -2960,7 +3037,7 @@ public final class KubernetesClustersDeleteSamples {
      */
     public static void deleteKubernetesCluster(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.kubernetesClusters()
-            .delete("resourceGroupName", "kubernetesClusterName", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "kubernetesClusterName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2974,7 +3051,7 @@ public final class KubernetesClustersDeleteSamples {
 public final class KubernetesClustersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusters_Get.json
      */
     /**
@@ -2999,7 +3076,7 @@ public final class KubernetesClustersGetByResourceGroupSamples {
 public final class KubernetesClustersListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusters_ListBySubscription.json
      */
     /**
@@ -3023,7 +3100,7 @@ public final class KubernetesClustersListSamples {
 public final class KubernetesClustersListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusters_ListByResourceGroup.json
      */
     /**
@@ -3049,7 +3126,7 @@ import com.azure.resourcemanager.networkcloud.models.KubernetesClusterRestartNod
 public final class KubernetesClustersRestartNodeSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusters_RestartNode.json
      */
     /**
@@ -3084,7 +3161,7 @@ import java.util.Map;
 public final class KubernetesClustersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * KubernetesClusters_Patch.json
      */
     /**
@@ -3137,7 +3214,7 @@ import java.util.Map;
 public final class L2NetworksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/L2Networks_Create.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/L2Networks_Create.
      * json
      */
     /**
@@ -3184,7 +3261,7 @@ public final class L2NetworksCreateOrUpdateSamples {
 public final class L2NetworksDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/L2Networks_Delete.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/L2Networks_Delete.
      * json
      */
     /**
@@ -3193,7 +3270,7 @@ public final class L2NetworksDeleteSamples {
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteL2Network(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager.l2Networks().delete("resourceGroupName", "l2NetworkName", com.azure.core.util.Context.NONE);
+        manager.l2Networks().delete("resourceGroupName", "l2NetworkName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3207,7 +3284,7 @@ public final class L2NetworksDeleteSamples {
 public final class L2NetworksGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/L2Networks_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/L2Networks_Get.json
      */
     /**
      * Sample code: Get L2 network.
@@ -3230,7 +3307,7 @@ public final class L2NetworksGetByResourceGroupSamples {
 public final class L2NetworksListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * L2Networks_ListBySubscription.json
      */
     /**
@@ -3254,7 +3331,7 @@ public final class L2NetworksListSamples {
 public final class L2NetworksListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * L2Networks_ListByResourceGroup.json
      */
     /**
@@ -3282,7 +3359,7 @@ import java.util.Map;
 public final class L2NetworksUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/L2Networks_Patch.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/L2Networks_Patch.
      * json
      */
     /**
@@ -3325,7 +3402,7 @@ import java.util.Map;
 public final class L3NetworksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/L3Networks_Create.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/L3Networks_Create.
      * json
      */
     /**
@@ -3375,7 +3452,7 @@ public final class L3NetworksCreateOrUpdateSamples {
 public final class L3NetworksDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/L3Networks_Delete.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/L3Networks_Delete.
      * json
      */
     /**
@@ -3384,7 +3461,7 @@ public final class L3NetworksDeleteSamples {
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteL3Network(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager.l3Networks().delete("resourceGroupName", "l3NetworkName", com.azure.core.util.Context.NONE);
+        manager.l3Networks().delete("resourceGroupName", "l3NetworkName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3398,7 +3475,7 @@ public final class L3NetworksDeleteSamples {
 public final class L3NetworksGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/L3Networks_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/L3Networks_Get.json
      */
     /**
      * Sample code: Get L3network.
@@ -3421,7 +3498,7 @@ public final class L3NetworksGetByResourceGroupSamples {
 public final class L3NetworksListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * L3Networks_ListBySubscription.json
      */
     /**
@@ -3445,7 +3522,7 @@ public final class L3NetworksListSamples {
 public final class L3NetworksListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * L3Networks_ListByResourceGroup.json
      */
     /**
@@ -3473,7 +3550,7 @@ import java.util.Map;
 public final class L3NetworksUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/L3Networks_Patch.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/L3Networks_Patch.
      * json
      */
     /**
@@ -3516,7 +3593,7 @@ import java.util.Map;
 public final class MetricsConfigurationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterMetricsConfigurations_Create.json
      */
     /**
@@ -3562,7 +3639,7 @@ public final class MetricsConfigurationsCreateOrUpdateSamples {
 public final class MetricsConfigurationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterMetricsConfigurations_Delete.json
      */
     /**
@@ -3573,7 +3650,7 @@ public final class MetricsConfigurationsDeleteSamples {
     public static void
         deleteMetricsConfigurationOfCluster(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.metricsConfigurations()
-            .delete("resourceGroupName", "clusterName", "default", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "clusterName", "default", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3587,7 +3664,7 @@ public final class MetricsConfigurationsDeleteSamples {
 public final class MetricsConfigurationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterMetricsConfigurations_Get.json
      */
     /**
@@ -3612,7 +3689,7 @@ public final class MetricsConfigurationsGetSamples {
 public final class MetricsConfigurationsListByClusterSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterMetricsConfigurations_ListByCluster.json
      */
     /**
@@ -3642,7 +3719,7 @@ import java.util.Map;
 public final class MetricsConfigurationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * ClusterMetricsConfigurations_Patch.json
      */
     /**
@@ -3685,7 +3762,7 @@ public final class MetricsConfigurationsUpdateSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Operations_List.
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Operations_List.
      * json
      */
     /**
@@ -3709,7 +3786,7 @@ public final class OperationsListSamples {
 public final class RackSkusGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/RackSkus_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/RackSkus_Get.json
      */
     /**
      * Sample code: Get rack SKU resource.
@@ -3731,7 +3808,7 @@ public final class RackSkusGetSamples {
 public final class RackSkusListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * RackSkus_ListBySubscription.json
      */
     /**
@@ -3758,7 +3835,7 @@ import java.util.Map;
 public final class RacksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Racks_Create.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Racks_Create.json
      */
     /**
      * Sample code: Create or update rack.
@@ -3805,7 +3882,7 @@ public final class RacksCreateOrUpdateSamples {
 public final class RacksDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Racks_Delete.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Racks_Delete.json
      */
     /**
      * Sample code: Delete rack.
@@ -3813,7 +3890,7 @@ public final class RacksDeleteSamples {
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteRack(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager.racks().delete("resourceGroupName", "rackName", com.azure.core.util.Context.NONE);
+        manager.racks().delete("resourceGroupName", "rackName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3827,7 +3904,7 @@ public final class RacksDeleteSamples {
 public final class RacksGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Racks_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Racks_Get.json
      */
     /**
      * Sample code: Get rack.
@@ -3850,7 +3927,7 @@ public final class RacksGetByResourceGroupSamples {
 public final class RacksListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Racks_ListBySubscription.json
      */
     /**
@@ -3873,7 +3950,7 @@ public final class RacksListSamples {
 public final class RacksListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Racks_ListByResourceGroup.json
      */
     /**
@@ -3900,7 +3977,7 @@ import java.util.Map;
 public final class RacksUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Racks_Patch.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Racks_Patch.json
      */
     /**
      * Sample code: Patch rack.
@@ -3946,7 +4023,7 @@ import java.util.Map;
 public final class StorageAppliancesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * StorageAppliances_Create.json
      */
     /**
@@ -3997,7 +4074,7 @@ public final class StorageAppliancesCreateOrUpdateSamples {
 public final class StorageAppliancesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * StorageAppliances_Delete.json
      */
     /**
@@ -4007,7 +4084,7 @@ public final class StorageAppliancesDeleteSamples {
      */
     public static void deleteStorageAppliance(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
         manager.storageAppliances()
-            .delete("resourceGroupName", "storageApplianceName", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "storageApplianceName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4021,7 +4098,7 @@ public final class StorageAppliancesDeleteSamples {
 public final class StorageAppliancesDisableRemoteVendorManagementSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * StorageAppliances_DisableRemoteVendorManagement.json
      */
     /**
@@ -4050,7 +4127,7 @@ import java.util.Arrays;
 public final class StorageAppliancesEnableRemoteVendorManagementSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * StorageAppliances_EnableRemoteVendorManagement.json
      */
     /**
@@ -4078,7 +4155,7 @@ public final class StorageAppliancesEnableRemoteVendorManagementSamples {
 public final class StorageAppliancesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * StorageAppliances_Get.json
      */
     /**
@@ -4103,7 +4180,7 @@ public final class StorageAppliancesGetByResourceGroupSamples {
 public final class StorageAppliancesListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * StorageAppliances_ListBySubscription.json
      */
     /**
@@ -4127,7 +4204,7 @@ public final class StorageAppliancesListSamples {
 public final class StorageAppliancesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * StorageAppliances_ListByResourceGroup.json
      */
     /**
@@ -4155,7 +4232,7 @@ import java.util.Map;
 public final class StorageAppliancesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * StorageAppliances_Patch.json
      */
     /**
@@ -4202,7 +4279,7 @@ import java.util.Map;
 public final class TrunkedNetworksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * TrunkedNetworks_Create.json
      */
     /**
@@ -4251,7 +4328,7 @@ public final class TrunkedNetworksCreateOrUpdateSamples {
 public final class TrunkedNetworksDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * TrunkedNetworks_Delete.json
      */
     /**
@@ -4260,7 +4337,8 @@ public final class TrunkedNetworksDeleteSamples {
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteTrunkedNetwork(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager.trunkedNetworks().delete("resourceGroupName", "trunkedNetworkName", com.azure.core.util.Context.NONE);
+        manager.trunkedNetworks()
+            .delete("resourceGroupName", "trunkedNetworkName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4274,7 +4352,7 @@ public final class TrunkedNetworksDeleteSamples {
 public final class TrunkedNetworksGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/TrunkedNetworks_Get
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/TrunkedNetworks_Get
      * .json
      */
     /**
@@ -4299,7 +4377,7 @@ public final class TrunkedNetworksGetByResourceGroupSamples {
 public final class TrunkedNetworksListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * TrunkedNetworks_ListBySubscription.json
      */
     /**
@@ -4323,7 +4401,7 @@ public final class TrunkedNetworksListSamples {
 public final class TrunkedNetworksListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * TrunkedNetworks_ListByResourceGroup.json
      */
     /**
@@ -4351,7 +4429,7 @@ import java.util.Map;
 public final class TrunkedNetworksUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * TrunkedNetworks_Patch.json
      */
     /**
@@ -4409,7 +4487,7 @@ import java.util.Map;
 public final class VirtualMachinesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_Create.json
      */
     /**
@@ -4487,7 +4565,7 @@ public final class VirtualMachinesCreateOrUpdateSamples {
 public final class VirtualMachinesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_Delete.json
      */
     /**
@@ -4496,7 +4574,8 @@ public final class VirtualMachinesDeleteSamples {
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteVirtualMachine(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager.virtualMachines().delete("resourceGroupName", "virtualMachineName", com.azure.core.util.Context.NONE);
+        manager.virtualMachines()
+            .delete("resourceGroupName", "virtualMachineName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4510,7 +4589,7 @@ public final class VirtualMachinesDeleteSamples {
 public final class VirtualMachinesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/VirtualMachines_Get
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/VirtualMachines_Get
      * .json
      */
     /**
@@ -4535,7 +4614,7 @@ public final class VirtualMachinesGetByResourceGroupSamples {
 public final class VirtualMachinesListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_ListBySubscription.json
      */
     /**
@@ -4559,7 +4638,7 @@ public final class VirtualMachinesListSamples {
 public final class VirtualMachinesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_ListByResourceGroup.json
      */
     /**
@@ -4586,7 +4665,7 @@ import com.azure.resourcemanager.networkcloud.models.VirtualMachinePowerOffParam
 public final class VirtualMachinesPowerOffSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_PowerOff.json
      */
     /**
@@ -4612,7 +4691,7 @@ public final class VirtualMachinesPowerOffSamples {
 public final class VirtualMachinesReimageSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_Reimage.json
      */
     /**
@@ -4635,7 +4714,7 @@ public final class VirtualMachinesReimageSamples {
 public final class VirtualMachinesRestartSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_Restart.json
      */
     /**
@@ -4658,7 +4737,7 @@ public final class VirtualMachinesRestartSamples {
 public final class VirtualMachinesStartSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_Start.json
      */
     /**
@@ -4686,7 +4765,7 @@ import java.util.Map;
 public final class VirtualMachinesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * VirtualMachines_Patch.json
      */
     /**
@@ -4733,7 +4812,7 @@ import java.util.Map;
 public final class VolumesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Volumes_Create.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Volumes_Create.json
      */
     /**
      * Sample code: Create or update volume.
@@ -4776,7 +4855,7 @@ public final class VolumesCreateOrUpdateSamples {
 public final class VolumesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Volumes_Delete.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Volumes_Delete.json
      */
     /**
      * Sample code: Delete volume.
@@ -4784,7 +4863,7 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteVolume(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager.volumes().delete("resourceGroupName", "volumeName", com.azure.core.util.Context.NONE);
+        manager.volumes().delete("resourceGroupName", "volumeName", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4798,7 +4877,7 @@ public final class VolumesDeleteSamples {
 public final class VolumesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Volumes_Get.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Volumes_Get.json
      */
     /**
      * Sample code: Get volume.
@@ -4821,7 +4900,7 @@ public final class VolumesGetByResourceGroupSamples {
 public final class VolumesListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Volumes_ListBySubscription.json
      */
     /**
@@ -4844,7 +4923,7 @@ public final class VolumesListSamples {
 public final class VolumesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/
      * Volumes_ListByResourceGroup.json
      */
     /**
@@ -4871,7 +4950,7 @@ import java.util.Map;
 public final class VolumesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2024-07-01/examples/Volumes_Patch.json
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2025-02-01/examples/Volumes_Patch.json
      */
     /**
      * Sample code: Patch volume.
