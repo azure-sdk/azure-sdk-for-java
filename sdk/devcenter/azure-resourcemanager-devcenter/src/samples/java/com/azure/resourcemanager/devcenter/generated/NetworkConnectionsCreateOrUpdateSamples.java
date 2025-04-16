@@ -12,7 +12,7 @@ import com.azure.resourcemanager.devcenter.models.DomainJoinType;
 public final class NetworkConnectionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/NetworkConnections_Put.
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/NetworkConnections_Put.
      * json
      */
     /**

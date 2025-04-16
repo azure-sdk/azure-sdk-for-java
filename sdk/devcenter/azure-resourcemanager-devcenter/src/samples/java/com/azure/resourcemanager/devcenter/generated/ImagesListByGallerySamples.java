@@ -10,7 +10,7 @@ package com.azure.resourcemanager.devcenter.generated;
 public final class ImagesListByGallerySamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Images_ListByGallery.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/Images_ListByGallery.json
      */
     /**
      * Sample code: Images_ListByGallery.

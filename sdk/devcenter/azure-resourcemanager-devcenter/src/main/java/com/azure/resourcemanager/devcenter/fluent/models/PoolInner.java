@@ -14,9 +14,12 @@ import com.azure.resourcemanager.devcenter.models.HealthStatus;
 import com.azure.resourcemanager.devcenter.models.HealthStatusDetail;
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinition;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinitionType;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
+import com.azure.resourcemanager.devcenter.models.StopOnNoConnectConfiguration;
 import com.azure.resourcemanager.devcenter.models.VirtualNetworkType;
 import java.io.IOException;
 import java.util.List;
@@ -163,7 +166,33 @@ public final class PoolInner extends Resource {
     }
 
     /**
-     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Get the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @return the devBoxDefinitionType value.
+     */
+    public PoolDevBoxDefinitionType devBoxDefinitionType() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxDefinitionType();
+    }
+
+    /**
+     * Set the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @param devBoxDefinitionType the devBoxDefinitionType value to set.
+     * @return the PoolInner object itself.
+     */
+    public PoolInner withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolProperties();
+        }
+        this.innerProperties().withDevBoxDefinitionType(devBoxDefinitionType);
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @return the devBoxDefinitionName value.
      */
@@ -172,7 +201,8 @@ public final class PoolInner extends Resource {
     }
 
     /**
-     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @param devBoxDefinitionName the devBoxDefinitionName value to set.
      * @return the PoolInner object itself.
@@ -182,6 +212,31 @@ public final class PoolInner extends Resource {
             this.innerProperties = new PoolProperties();
         }
         this.innerProperties().withDevBoxDefinitionName(devBoxDefinitionName);
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @return the devBoxDefinition value.
+     */
+    public PoolDevBoxDefinition devBoxDefinition() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxDefinition();
+    }
+
+    /**
+     * Set the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @param devBoxDefinition the devBoxDefinition value to set.
+     * @return the PoolInner object itself.
+     */
+    public PoolInner withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolProperties();
+        }
+        this.innerProperties().withDevBoxDefinition(devBoxDefinition);
         return this;
     }
 
@@ -278,6 +333,29 @@ public final class PoolInner extends Resource {
             this.innerProperties = new PoolProperties();
         }
         this.innerProperties().withStopOnDisconnect(stopOnDisconnect);
+        return this;
+    }
+
+    /**
+     * Get the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @return the stopOnNoConnect value.
+     */
+    public StopOnNoConnectConfiguration stopOnNoConnect() {
+        return this.innerProperties() == null ? null : this.innerProperties().stopOnNoConnect();
+    }
+
+    /**
+     * Set the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @param stopOnNoConnect the stopOnNoConnect value to set.
+     * @return the PoolInner object itself.
+     */
+    public PoolInner withStopOnNoConnect(StopOnNoConnectConfiguration stopOnNoConnect) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolProperties();
+        }
+        this.innerProperties().withStopOnNoConnect(stopOnNoConnect);
         return this;
     }
 

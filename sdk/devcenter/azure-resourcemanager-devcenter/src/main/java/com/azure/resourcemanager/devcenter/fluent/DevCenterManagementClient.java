@@ -54,6 +54,13 @@ public interface DevCenterManagementClient {
     DevCentersClient getDevCenters();
 
     /**
+     * Gets the ProjectPoliciesClient object to access its operations.
+     * 
+     * @return the ProjectPoliciesClient object.
+     */
+    ProjectPoliciesClient getProjectPolicies();
+
+    /**
      * Gets the ProjectsClient object to access its operations.
      * 
      * @return the ProjectsClient object.
@@ -108,6 +115,13 @@ public interface DevCenterManagementClient {
      * @return the ImageVersionsClient object.
      */
     ImageVersionsClient getImageVersions();
+
+    /**
+     * Gets the SkusClient object to access its operations.
+     * 
+     * @return the SkusClient object.
+     */
+    SkusClient getSkus();
 
     /**
      * Gets the CatalogsClient object to access its operations.
@@ -180,11 +194,32 @@ public interface DevCenterManagementClient {
     CheckScopedNameAvailabilitiesClient getCheckScopedNameAvailabilities();
 
     /**
-     * Gets the SkusClient object to access its operations.
+     * Gets the CustomizationTasksClient object to access its operations.
      * 
-     * @return the SkusClient object.
+     * @return the CustomizationTasksClient object.
      */
-    SkusClient getSkus();
+    CustomizationTasksClient getCustomizationTasks();
+
+    /**
+     * Gets the ProjectCatalogImageDefinitionsClient object to access its operations.
+     * 
+     * @return the ProjectCatalogImageDefinitionsClient object.
+     */
+    ProjectCatalogImageDefinitionsClient getProjectCatalogImageDefinitions();
+
+    /**
+     * Gets the ProjectCatalogImageDefinitionBuildsClient object to access its operations.
+     * 
+     * @return the ProjectCatalogImageDefinitionBuildsClient object.
+     */
+    ProjectCatalogImageDefinitionBuildsClient getProjectCatalogImageDefinitionBuilds();
+
+    /**
+     * Gets the ProjectCatalogImageDefinitionBuildOperationsClient object to access its operations.
+     * 
+     * @return the ProjectCatalogImageDefinitionBuildOperationsClient object.
+     */
+    ProjectCatalogImageDefinitionBuildOperationsClient getProjectCatalogImageDefinitionBuildOperations();
 
     /**
      * Gets the PoolsClient object to access its operations.

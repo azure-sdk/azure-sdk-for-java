@@ -4,12 +4,18 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
+import com.azure.resourcemanager.devcenter.models.CatalogItemSyncEnableStatus;
 import com.azure.resourcemanager.devcenter.models.CustomerManagedKeyEncryption;
 import com.azure.resourcemanager.devcenter.models.CustomerManagedKeyEncryptionKeyIdentity;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.azure.resourcemanager.devcenter.models.IdentityType;
+import com.azure.resourcemanager.devcenter.models.InstallAzureMonitorAgentEnableStatus;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.devcenter.models.MicrosoftHostedNetworkEnableStatus;
 import com.azure.resourcemanager.devcenter.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +26,7 @@ import java.util.Map;
 public final class DevCentersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevCenters_Create.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/DevCenters_Create.json
      */
     /**
      * Sample code: DevCenters_Create.
@@ -34,11 +40,41 @@ public final class DevCentersCreateOrUpdateSamples {
             .withExistingResourceGroup("rg1")
             .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
             .withDisplayName("ContosoDevCenter")
+            .withProjectCatalogSettings(new DevCenterProjectCatalogSettings()
+                .withCatalogItemSyncEnableStatus(CatalogItemSyncEnableStatus.ENABLED))
+            .withDevBoxProvisioningSettings(new DevBoxProvisioningSettings()
+                .withInstallAzureMonitorAgentEnableStatus(InstallAzureMonitorAgentEnableStatus.ENABLED))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/
+     * DevCenters_CreateWithDisabledManagedNetworks.json
+     */
+    /**
+     * Sample code: DevCenters_CreateWithDisabledManagedNetworks.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        devCentersCreateWithDisabledManagedNetworks(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenters()
+            .define("Contoso")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
+            .withDisplayName("ContosoDevCenter")
+            .withNetworkSettings(new DevCenterNetworkSettings()
+                .withMicrosoftHostedNetworkEnableStatus(MicrosoftHostedNetworkEnableStatus.DISABLED))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/
      * DevCenters_CreateWithUserIdentity.json
      */
     /**
@@ -61,7 +97,7 @@ public final class DevCentersCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/
      * DevCenters_CreateWithEncryption.json
      */
     /**
