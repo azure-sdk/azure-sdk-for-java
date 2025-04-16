@@ -24,8 +24,14 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.AzureHsmResourceProvider;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClusterBackupStatusClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClusterPrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClusterPrivateLinkResourcesClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClusterRestoreStatusClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClustersClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.DedicatedHsmsClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.OperationsClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.PrivateEndpointConnectionsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -41,12 +47,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = AzureHsmResourceProviderBuilder.class)
 public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvider {
     /**
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -125,17 +131,87 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
     }
 
     /**
-     * The OperationsClient object to access its operations.
+     * The CloudHsmClustersClient object to access its operations.
      */
-    private final OperationsClient operations;
+    private final CloudHsmClustersClient cloudHsmClusters;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the CloudHsmClustersClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the CloudHsmClustersClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public CloudHsmClustersClient getCloudHsmClusters() {
+        return this.cloudHsmClusters;
+    }
+
+    /**
+     * The CloudHsmClusterPrivateLinkResourcesClient object to access its operations.
+     */
+    private final CloudHsmClusterPrivateLinkResourcesClient cloudHsmClusterPrivateLinkResources;
+
+    /**
+     * Gets the CloudHsmClusterPrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the CloudHsmClusterPrivateLinkResourcesClient object.
+     */
+    public CloudHsmClusterPrivateLinkResourcesClient getCloudHsmClusterPrivateLinkResources() {
+        return this.cloudHsmClusterPrivateLinkResources;
+    }
+
+    /**
+     * The CloudHsmClusterPrivateEndpointConnectionsClient object to access its operations.
+     */
+    private final CloudHsmClusterPrivateEndpointConnectionsClient cloudHsmClusterPrivateEndpointConnections;
+
+    /**
+     * Gets the CloudHsmClusterPrivateEndpointConnectionsClient object to access its operations.
+     * 
+     * @return the CloudHsmClusterPrivateEndpointConnectionsClient object.
+     */
+    public CloudHsmClusterPrivateEndpointConnectionsClient getCloudHsmClusterPrivateEndpointConnections() {
+        return this.cloudHsmClusterPrivateEndpointConnections;
+    }
+
+    /**
+     * The PrivateEndpointConnectionsClient object to access its operations.
+     */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     * 
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /**
+     * The CloudHsmClusterBackupStatusClient object to access its operations.
+     */
+    private final CloudHsmClusterBackupStatusClient cloudHsmClusterBackupStatus;
+
+    /**
+     * Gets the CloudHsmClusterBackupStatusClient object to access its operations.
+     * 
+     * @return the CloudHsmClusterBackupStatusClient object.
+     */
+    public CloudHsmClusterBackupStatusClient getCloudHsmClusterBackupStatus() {
+        return this.cloudHsmClusterBackupStatus;
+    }
+
+    /**
+     * The CloudHsmClusterRestoreStatusClient object to access its operations.
+     */
+    private final CloudHsmClusterRestoreStatusClient cloudHsmClusterRestoreStatus;
+
+    /**
+     * Gets the CloudHsmClusterRestoreStatusClient object to access its operations.
+     * 
+     * @return the CloudHsmClusterRestoreStatusClient object.
+     */
+    public CloudHsmClusterRestoreStatusClient getCloudHsmClusterRestoreStatus() {
+        return this.cloudHsmClusterRestoreStatus;
     }
 
     /**
@@ -153,13 +229,27 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
     }
 
     /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
      * Initializes an instance of AzureHsmResourceProvider client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     AzureHsmResourceProviderImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -169,9 +259,15 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-11-30";
-        this.operations = new OperationsClientImpl(this);
+        this.apiVersion = "2024-06-30-preview";
+        this.cloudHsmClusters = new CloudHsmClustersClientImpl(this);
+        this.cloudHsmClusterPrivateLinkResources = new CloudHsmClusterPrivateLinkResourcesClientImpl(this);
+        this.cloudHsmClusterPrivateEndpointConnections = new CloudHsmClusterPrivateEndpointConnectionsClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.cloudHsmClusterBackupStatus = new CloudHsmClusterBackupStatusClientImpl(this);
+        this.cloudHsmClusterRestoreStatus = new CloudHsmClusterRestoreStatusClientImpl(this);
         this.dedicatedHsms = new DedicatedHsmsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
     }
 
     /**
