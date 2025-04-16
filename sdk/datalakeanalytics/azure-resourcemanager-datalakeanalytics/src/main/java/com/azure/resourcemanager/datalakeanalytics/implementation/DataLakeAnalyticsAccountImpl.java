@@ -72,6 +72,10 @@ public final class DataLakeAnalyticsAccountImpl
         }
     }
 
+    public String defaultDataLakeStoreAccountType() {
+        return this.innerModel().defaultDataLakeStoreAccountType();
+    }
+
     public String defaultDataLakeStoreAccount() {
         return this.innerModel().defaultDataLakeStoreAccount();
     }

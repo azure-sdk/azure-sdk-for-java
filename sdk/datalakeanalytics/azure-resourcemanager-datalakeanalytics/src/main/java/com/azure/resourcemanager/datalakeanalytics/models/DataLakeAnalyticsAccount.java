@@ -52,6 +52,14 @@ public interface DataLakeAnalyticsAccount {
     Map<String, String> tags();
 
     /**
+     * Gets the defaultDataLakeStoreAccountType property: The type of the default Data Lake Store account associated
+     * with this account.
+     * 
+     * @return the defaultDataLakeStoreAccountType value.
+     */
+    String defaultDataLakeStoreAccountType();
+
+    /**
      * Gets the defaultDataLakeStoreAccount property: The default Data Lake Store account associated with this account.
      * 
      * @return the defaultDataLakeStoreAccount value.

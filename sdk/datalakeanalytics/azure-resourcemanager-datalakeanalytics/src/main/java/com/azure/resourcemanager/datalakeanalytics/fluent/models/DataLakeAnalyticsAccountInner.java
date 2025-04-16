@@ -114,6 +114,16 @@ public final class DataLakeAnalyticsAccountInner extends Resource {
     }
 
     /**
+     * Get the defaultDataLakeStoreAccountType property: The type of the default Data Lake Store account associated with
+     * this account.
+     * 
+     * @return the defaultDataLakeStoreAccountType value.
+     */
+    public String defaultDataLakeStoreAccountType() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultDataLakeStoreAccountType();
+    }
+
+    /**
      * Get the defaultDataLakeStoreAccount property: The default Data Lake Store account associated with this account.
      * 
      * @return the defaultDataLakeStoreAccount value.
