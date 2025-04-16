@@ -10,8 +10,8 @@ package com.azure.resourcemanager.hybridcompute.generated;
 public final class MachineRunCommandsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
-     * runCommand/RunCommands_Get.json
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/stable/2025-01-13/examples/runCommand/
+     * RunCommands_Get.json
      */
     /**
      * Sample code: Get a Run Command.

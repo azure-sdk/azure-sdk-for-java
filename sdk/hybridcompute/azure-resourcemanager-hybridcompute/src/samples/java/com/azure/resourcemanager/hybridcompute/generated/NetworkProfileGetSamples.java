@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridcompute.generated;
 public final class NetworkProfileGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/stable/2025-01-13/examples/
      * NetworkProfile_Get.json
      */
     /**

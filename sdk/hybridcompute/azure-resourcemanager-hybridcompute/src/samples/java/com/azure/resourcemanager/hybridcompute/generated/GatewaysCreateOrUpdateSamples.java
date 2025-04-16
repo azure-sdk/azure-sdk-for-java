@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class GatewaysCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/gateway/
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/stable/2025-01-13/examples/gateway/
      * Gateway_CreateOrUpdate.json
      */
     /**
