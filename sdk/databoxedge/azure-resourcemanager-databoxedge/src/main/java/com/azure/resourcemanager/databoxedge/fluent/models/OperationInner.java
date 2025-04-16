@@ -24,6 +24,11 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     private String name;
 
     /*
+     * Is data action.
+     */
+    private Boolean isDataAction;
+
+    /*
      * Properties displayed for the operation.
      */
     private OperationDisplay display;
@@ -61,6 +66,26 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
      */
     public OperationInner withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the isDataAction property: Is data action.
+     * 
+     * @return the isDataAction value.
+     */
+    public Boolean isDataAction() {
+        return this.isDataAction;
+    }
+
+    /**
+     * Set the isDataAction property: Is data action.
+     * 
+     * @param isDataAction the isDataAction value to set.
+     * @return the OperationInner object itself.
+     */
+    public OperationInner withIsDataAction(Boolean isDataAction) {
+        this.isDataAction = isDataAction;
         return this;
     }
 
@@ -157,6 +182,7 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name);
+        jsonWriter.writeBooleanField("isDataAction", this.isDataAction);
         jsonWriter.writeJsonField("display", this.display);
         jsonWriter.writeStringField("origin", this.origin);
         jsonWriter.writeJsonField("properties", this.innerProperties);
@@ -180,6 +206,8 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
 
                 if ("name".equals(fieldName)) {
                     deserializedOperationInner.name = reader.getString();
+                } else if ("isDataAction".equals(fieldName)) {
+                    deserializedOperationInner.isDataAction = reader.getNullable(JsonReader::getBoolean);
                 } else if ("display".equals(fieldName)) {
                     deserializedOperationInner.display = OperationDisplay.fromJson(reader);
                 } else if ("origin".equals(fieldName)) {

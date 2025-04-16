@@ -73,18 +73,6 @@ public final class UserProperties implements JsonSerializable<UserProperties> {
     }
 
     /**
-     * Set the shareAccessRights property: List of shares that the user has rights on. This field should not be
-     * specified during user creation.
-     * 
-     * @param shareAccessRights the shareAccessRights value to set.
-     * @return the UserProperties object itself.
-     */
-    public UserProperties withShareAccessRights(List<ShareAccessRight> shareAccessRights) {
-        this.shareAccessRights = shareAccessRights;
-        return this;
-    }
-
-    /**
      * Get the userType property: Type of the user.
      * 
      * @return the userType value.
@@ -132,8 +120,6 @@ public final class UserProperties implements JsonSerializable<UserProperties> {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("userType", this.userType == null ? null : this.userType.toString());
         jsonWriter.writeJsonField("encryptedPassword", this.encryptedPassword);
-        jsonWriter.writeArrayField("shareAccessRights", this.shareAccessRights,
-            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -159,7 +160,14 @@ public final class StorageAccountProperties implements JsonSerializable<StorageA
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (dataPolicy() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataPolicy in model StorageAccountProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(StorageAccountProperties.class);
 
     /**
      * {@inheritDoc}
@@ -167,10 +175,10 @@ public final class StorageAccountProperties implements JsonSerializable<StorageA
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("dataPolicy", this.dataPolicy == null ? null : this.dataPolicy.toString());
         jsonWriter.writeStringField("description", this.description);
         jsonWriter.writeStringField("storageAccountStatus",
             this.storageAccountStatus == null ? null : this.storageAccountStatus.toString());
-        jsonWriter.writeStringField("dataPolicy", this.dataPolicy == null ? null : this.dataPolicy.toString());
         jsonWriter.writeStringField("storageAccountCredentialId", this.storageAccountCredentialId);
         return jsonWriter.writeEndObject();
     }
@@ -181,6 +189,7 @@ public final class StorageAccountProperties implements JsonSerializable<StorageA
      * @param jsonReader The JsonReader being read.
      * @return An instance of StorageAccountProperties if the JsonReader was pointing to an instance of it, or null if
      * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the StorageAccountProperties.
      */
     public static StorageAccountProperties fromJson(JsonReader jsonReader) throws IOException {
@@ -190,13 +199,13 @@ public final class StorageAccountProperties implements JsonSerializable<StorageA
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("description".equals(fieldName)) {
+                if ("dataPolicy".equals(fieldName)) {
+                    deserializedStorageAccountProperties.dataPolicy = DataPolicy.fromString(reader.getString());
+                } else if ("description".equals(fieldName)) {
                     deserializedStorageAccountProperties.description = reader.getString();
                 } else if ("storageAccountStatus".equals(fieldName)) {
                     deserializedStorageAccountProperties.storageAccountStatus
                         = StorageAccountStatus.fromString(reader.getString());
-                } else if ("dataPolicy".equals(fieldName)) {
-                    deserializedStorageAccountProperties.dataPolicy = DataPolicy.fromString(reader.getString());
                 } else if ("storageAccountCredentialId".equals(fieldName)) {
                     deserializedStorageAccountProperties.storageAccountCredentialId = reader.getString();
                 } else if ("blobEndpoint".equals(fieldName)) {

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Role status.
+ * Local Edge Management Status.
  */
 public final class RoleStatus extends ExpandableStringEnum<RoleStatus> {
     /**
